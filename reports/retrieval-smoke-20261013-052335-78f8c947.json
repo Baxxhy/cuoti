@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "stage": "complete",
+  "remote_ai_calls": 0,
+  "bge_models_loaded": true,
+  "qdrant_index_ready": true,
+  "source_question_id": "b5f28de2-2ccf-407f-8060-c2aa8c7d7d86",
+  "elapsed_seconds": 26.16,
+  "http_status": 200,
+  "candidate_ids": [
+    "a5ae6ed8-89ae-443d-903e-e9282d7bc283"
+  ],
+  "stem_characters": 179,
+  "mysql_question_and_trace_verified": true,
+  "answer_fields_absent": true,
+  "retrieval_trace": {
+    "dense_rank": 14,
+    "sparse_rank": 1,
+    "fusion_rank": 2,
+    "reranker_score": 0.92325,
+    "mode_score": 1.18005,
+    "structure_similarity": 0.5
+  }
+}

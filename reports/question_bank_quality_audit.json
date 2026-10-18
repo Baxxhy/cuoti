@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-08-10T12:53:05.285330+00:00",
+  "total": 20839,
+  "has_answer": 16491,
+  "has_solution": 15047,
+  "has_image": 6999,
+  "image_missing": 0,
+  "answer_verified": 8238,
+  "usable_for_practice": 12817,
+  "usable_for_auto_grade": 12817,
+  "no_answer_isolated": 4348,
+  "subject": {
+    "数学": 15525,
+    "生物": 878,
+    "化学": 876,
+    "历史": 814,
+    "思想政治": 797,
+    "物理": 681,
+    "地理": 668,
+    "语文": 600
+  },
+  "grade": {
+    "高二": 3158,
+    "初中": 3054,
+    "高中": 2929,
+    "高一": 2871,
+    "高三": 2492,
+    "九年级": 2393,
+    "七年级": 2209,
+    "八年级": 1733
+  },
+  "question_type": {
+    "解答题": 7479,
+    "选择题": 7377,
+    "单项选择题": 4308,
+    "multiple-choice": 1255,
+    "fill-in-the-blank": 293,
+    "multiple-response": 127
+  },
+  "source_dataset": {
+    "cmm-math": 14856,
+    "m3ke": 4308,
+    "cmmu": 1675
+  },
+  "quality_status": {
+    "usable": 12817,
+    "no_answer": 4348,
+    "manual_grade_only": 3674
+  },
+  "no_answer_by_source_split": {
+    "m3ke:test": 4228,
+    "cmm-math:all": 120
+  }
+}

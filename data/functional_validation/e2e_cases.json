@@ -1,0 +1,128 @@
+[
+  {
+    "case_id": "e2e-01",
+    "name": "一元方程移项符号错误",
+    "subject": "数学",
+    "image_case_id": "image-01",
+    "visualization": "equation_balance",
+    "expected_pipeline": [
+      "upload",
+      "opencv",
+      "qwen_vision",
+      "qwen_text",
+      "mysql",
+      "diagnosis",
+      "tutor",
+      "visualization",
+      "teach_back",
+      "near",
+      "far",
+      "export"
+    ]
+  },
+  {
+    "case_id": "e2e-02",
+    "name": "二次函数平移方向错误",
+    "subject": "数学",
+    "image_case_id": "image-05",
+    "visualization": "quadratic_function",
+    "expected_pipeline": [
+      "upload",
+      "opencv",
+      "qwen_vision",
+      "qwen_text",
+      "mysql",
+      "diagnosis",
+      "tutor",
+      "visualization",
+      "teach_back",
+      "near",
+      "far",
+      "export"
+    ]
+  },
+  {
+    "case_id": "e2e-03",
+    "name": "勾股定理误用",
+    "subject": "数学",
+    "image_case_id": "image-03",
+    "visualization": "right_triangle",
+    "expected_pipeline": [
+      "upload",
+      "opencv",
+      "qwen_vision",
+      "qwen_text",
+      "mysql",
+      "diagnosis",
+      "tutor",
+      "visualization",
+      "teach_back",
+      "near",
+      "far",
+      "export"
+    ]
+  },
+  {
+    "case_id": "e2e-04",
+    "name": "匀加速公式选择错误",
+    "subject": "物理",
+    "image_case_id": "image-18",
+    "visualization": "uniform_acceleration",
+    "expected_pipeline": [
+      "upload",
+      "opencv",
+      "qwen_vision",
+      "qwen_text",
+      "mysql",
+      "diagnosis",
+      "tutor",
+      "visualization",
+      "teach_back",
+      "near",
+      "far",
+      "export"
+    ]
+  },
+  {
+    "case_id": "e2e-05",
+    "name": "牛顿第二定律概念错误",
+    "subject": "物理",
+    "image_case_id": "image-19",
+    "visualization": "force_diagram",
+    "expected_pipeline": [
+      "upload",
+      "opencv",
+      "qwen_vision",
+      "qwen_text",
+      "mysql",
+      "diagnosis",
+      "tutor",
+      "visualization",
+      "teach_back",
+      "near",
+      "far",
+      "export"
+    ]
+  },
+  {
+    "case_id": "e2e-06",
+    "name": "历史事件因果混淆",
+    "subject": "历史",
+    "image_case_id": "image-23",
+    "visualization": "history_timeline",
+    "expected_pipeline": [
+      "upload",
+      "opencv",
+      "qwen_vision",
+      "qwen_text",
+      "mysql",
+      "diagnosis",
+      "tutor",
+      "visualization",
+      "teach_back",
+      "near",
+      "far",
+      "export"
+    ]
+  }
+]

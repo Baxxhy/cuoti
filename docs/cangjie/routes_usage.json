@@ -1,0 +1,2082 @@
+{
+  "baseline_routes": 103,
+  "active_routes": 94,
+  "categories": {
+    "existing_support": 1,
+    "independent_api": 15,
+    "removed": 9,
+    "returned_media": 1,
+    "script_workflow": 5,
+    "ui": 72
+  },
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/register",
+      "source": "backend/app/main.py",
+      "function": "register",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/account_api.cj",
+      "verification": "scripts/smoke_cangjie_accounts.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/store/index.js:31"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:34",
+          "scripts/smoke_demo.py:28",
+          "scripts/smoke_local.py:28",
+          "scripts/smoke_local.py:67",
+          "scripts/smoke_retrieval.py:113"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "source": "backend/app/main.py",
+      "function": "login",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/account_api.cj",
+      "verification": "scripts/smoke_cangjie_accounts.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/store/index.js:24"
+        ],
+        "validation": [
+          "scripts/check_live_alignment.py:39",
+          "scripts/check_live_figure.py:223",
+          "scripts/check_live_image.py:37",
+          "scripts/check_live_practice.py:34",
+          "scripts/check_live_subjects.py:136",
+          "scripts/smoke_local.py:31",
+          "scripts/verify_agent_branches.py:30",
+          "scripts/verify_knowledge_base.py:54",
+          "scripts/verify_papers.py:21",
+          "scripts/verify_parent_teacher.py:19",
+          "scripts/verify_teacher_workspace.py:12",
+          "scripts/verify_visualizations.py:53",
+          "scripts/verify_voice.py:45"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/reset-password",
+      "source": "backend/app/main.py",
+      "function": "reset_password",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/account_api.cj",
+      "verification": "scripts/smoke_cangjie_accounts.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/forgot/forgot.vue:87"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/me",
+      "source": "backend/app/main.py",
+      "function": "me",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/account_api.cj",
+      "verification": "scripts/smoke_cangjie_accounts.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/review/review.vue:518",
+          "frontend/src/store/index.js:38",
+          "frontend/src/utils/task-entry.js:11"
+        ],
+        "validation": [
+          "scripts/check_voice_cangjie.py:33",
+          "scripts/smoke_local.py:34",
+          "scripts/smoke_local.py:37",
+          "scripts/smoke_local.py:50"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/auth/me",
+      "source": "backend/app/main.py",
+      "function": "update_me",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/account_api.cj",
+      "verification": "scripts/smoke_cangjie_accounts.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/smoke_local.py:36"
+        ],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "账号改名能力；当前资料页没有编辑入口，不属于学生主页面必需接口。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/system/health",
+      "source": "backend/app/main.py",
+      "function": "health",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/system_api.cj",
+      "verification": "scripts/smoke_cangjie_system_admin.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_system_voice_compute.py"
+      ],
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/smoke_local.py:22"
+        ],
+        "internal": []
+      },
+      "usage_class": "existing_support",
+      "usage_reason": "既有检查脚本依赖；本轮不做运维、不扩展或部署该能力。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/system/providers",
+      "source": "backend/app/main.py",
+      "function": "providers",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/system_api.cj",
+      "verification": "scripts/smoke_cangjie_system_admin.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_system_voice_compute.py"
+      ],
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/system/system.vue:105"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:36",
+          "scripts/functional_flow.py:97",
+          "scripts/smoke_demo.py:107",
+          "scripts/smoke_demo.py:33"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/system/providers/probe",
+      "source": "backend/app/main.py",
+      "function": "probe_provider",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/system_api.cj",
+      "verification": "scripts/smoke_cangjie_voice.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_system_voice_compute.py"
+      ],
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/system/system.vue:114"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/system/voice",
+      "source": "backend/app/main.py",
+      "function": "voice_status",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/system_api.cj",
+      "verification": "scripts/smoke_cangjie_system_admin.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_system_voice_compute.py"
+      ],
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/verify_voice.py:57"
+        ],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "独立语音验收脚本查询能力状态；学生页面未接语音，不算页面已使用。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/workbench",
+      "source": "backend/app/main.py",
+      "function": "admin_workbench",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/admin_api.cj",
+      "verification": "scripts/smoke_cangjie_system_admin.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/admin/workbench.vue:656"
+        ],
+        "validation": [
+          "scripts/smoke_local.py:49"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/students/{student_id}",
+      "source": "backend/app/main.py",
+      "function": "admin_student",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/admin_api.cj",
+      "verification": "scripts/smoke_cangjie_system_admin.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/admin/workbench.vue:667"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/sessions/{session_id}",
+      "source": "backend/app/main.py",
+      "function": "admin_session",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/admin_api.cj",
+      "verification": "scripts/smoke_cangjie_system_admin.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/admin/workbench.vue:676"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/dashboard",
+      "source": "backend/app/main.py",
+      "function": "dashboard",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/dashboard.cj",
+      "verification": "scripts/smoke_cangjie_insights.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/index/index.vue:413",
+          "frontend/src/pages/manual/manual.vue:159",
+          "frontend/src/pages/profile/profile.vue:124",
+          "frontend/src/pages/review/review.vue:660",
+          "frontend/src/store/index.js:53"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:95",
+          "scripts/smoke_demo.py:106",
+          "scripts/smoke_local.py:24",
+          "scripts/smoke_local.py:38"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/ingest",
+      "source": "backend/app/main.py",
+      "function": "ingest_question",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/ingest_api.cj",
+      "verification": "scripts/smoke_cangjie_ingest.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/capture/capture.vue:104"
+        ],
+        "validation": [
+          "backend/tests/test_learning_safety.py:686",
+          "scripts/check_live_image.py:54",
+          "scripts/functional_flow.py:39",
+          "scripts/smoke_demo.py:44"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/questions",
+      "source": "backend/app/main.py",
+      "function": "questions",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/question_list.cj",
+      "verification": "scripts/smoke_cangjie_list.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/problem/list.vue:355",
+          "frontend/src/utils/learning.js:82"
+        ],
+        "validation": [
+          "scripts/smoke_local.py:59",
+          "scripts/smoke_local.py:92",
+          "scripts/verify_agent_branches.py:32",
+          "scripts/verify_knowledge_base.py:70",
+          "scripts/verify_visualizations.py:57"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/questions/{question_id}",
+      "source": "backend/app/main.py",
+      "function": "get_question",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/question_detail.cj",
+      "verification": "scripts/smoke_cangjie_detail.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/crop/crop.vue:203",
+          "frontend/src/pages/crop/crop.vue:236",
+          "frontend/src/pages/crop/crop.vue:253",
+          "frontend/src/pages/detail/detail.vue:406",
+          "frontend/src/pages/diagnosis/diagnosis.vue:895",
+          "frontend/src/pages/knowledge/knowledge.vue:170",
+          "frontend/src/pages/ocr/ocr.vue:314",
+          "frontend/src/pages/ocr/ocr.vue:352",
+          "frontend/src/pages/repair/repair.vue:136",
+          "frontend/src/pages/replay/replay.vue:217"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:44",
+          "scripts/smoke_local.py:56",
+          "scripts/smoke_local.py:72"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/questions/{question_id}",
+      "source": "backend/app/main.py",
+      "function": "patch_question",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/question_edit.cj",
+      "verification": "scripts/smoke_cangjie_edit.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/detail/detail.vue:473"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/crop",
+      "source": "backend/app/main.py",
+      "function": "crop_question",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/crop_api.cj",
+      "verification": "scripts/smoke_cangjie_ingest.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/crop/crop.vue:225"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/questions/{question_id}",
+      "source": "backend/app/main.py",
+      "function": "delete_question",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/question_api.cj",
+      "verification": "scripts/smoke_cangjie_questions.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/detail/detail.vue:510"
+        ],
+        "validation": [
+          "scripts/smoke_local.py:74",
+          "scripts/smoke_local.py:91"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/draft",
+      "source": "backend/app/main.py",
+      "function": "save_ocr_draft",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/ocr_edits.cj",
+      "verification": "scripts/smoke_cangjie_ocr_edits.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "保存未确认内容；有功能测试，当前页面直接 confirm，不宣称页面自动保存。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/confirm",
+      "source": "backend/app/main.py",
+      "function": "confirm_question",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/ocr_edits.cj",
+      "verification": "scripts/smoke_cangjie_ocr_edits.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/ocr/ocr.vue:435",
+          "frontend/src/pages/ocr/ocr.vue:450"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:51",
+          "scripts/smoke_demo.py:60"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/ocr",
+      "source": "backend/app/main.py",
+      "function": "run_question_ocr",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/recognition_api.cj",
+      "verification": "scripts/smoke_cangjie_ingest.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/functional_flow.py:47"
+        ],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "同步识别工具入口；当前页面使用异步 crop/reprocess，独立脚本仍调用。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/reprocess",
+      "source": "backend/app/main.py",
+      "function": "reprocess",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/recognition_api.cj",
+      "verification": "scripts/smoke_cangjie_ingest.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/detail/detail.vue:494"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/analyze",
+      "source": "backend/app/main.py",
+      "function": "analyze",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/analysis_api.cj",
+      "verification": "scripts/smoke_cangjie_analysis.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/diagnosis/diagnosis.vue:924",
+          "frontend/src/pages/ocr/ocr.vue:451"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:60",
+          "scripts/smoke_demo.py:65"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/student-work",
+      "source": "backend/app/main.py",
+      "function": "add_student_work",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/student_work_api.cj",
+      "verification": "scripts/smoke_cangjie_student_work.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "独立追加作答版本、步骤并使旧结果失效；用于功能验证，当前页面走 confirm。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/diagnose",
+      "source": "backend/app/main.py",
+      "function": "diagnose",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/diagnosis_api.cj",
+      "verification": "scripts/smoke_cangjie_diagnosis.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/diagnosis/diagnosis.vue:926",
+          "frontend/src/pages/ocr/ocr.vue:452"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:61",
+          "scripts/smoke_demo.py:69"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/{question_id}/diagnosis/counterfactual",
+      "source": "backend/app/main.py",
+      "function": "create_counterfactual",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/counterfactual_api.cj",
+      "verification": "scripts/smoke_cangjie_diagnosis.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/diagnosis/diagnosis.vue:901"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/questions/{question_id}/diagnosis",
+      "source": "backend/app/main.py",
+      "function": "get_diagnosis",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/diagnosis_api.cj",
+      "verification": "scripts/smoke_cangjie_diagnosis.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "单独读取诊断证据；当前页面从题目详情聚合读取，独立返回契约仍有验证。"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/questions/{question_id}/diagnosis",
+      "source": "backend/app/main.py",
+      "function": "correct_diagnosis",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/diagnosis_edit.cj",
+      "verification": "scripts/smoke_cangjie_diagnosis.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/diagnosis/diagnosis.vue:1007"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/jobs/{job_id}",
+      "source": "backend/app/main.py",
+      "function": "get_job",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/job_api.cj",
+      "verification": "scripts/smoke_cangjie_detail.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/crop/crop.vue:241",
+          "frontend/src/pages/ocr/ocr.vue:343"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/jobs/{job_id}/retry",
+      "source": "backend/app/main.py",
+      "function": "retry_job",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/job_api.cj",
+      "verification": "scripts/smoke_cangjie_ingest.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/ocr/ocr.vue:329"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/answers/handwriting",
+      "source": "backend/app/main.py",
+      "function": "upload_answer_handwriting",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/handwriting.cj",
+      "verification": "scripts/smoke_cangjie_practice.py",
+      "additional_verification": [
+        "scripts/smoke_cangjie_handwriting.py",
+        "scripts/smoke_cangjie_reviews.py",
+        "scripts/smoke_cangjie_assignments.py"
+      ],
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/assignment/assignment.vue:53",
+          "frontend/src/pages/practice/practice.vue:80",
+          "frontend/src/pages/review/review.vue:131",
+          "frontend/src/pages/tutor/tutor.vue:371"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/activity/answer",
+      "source": "backend/app/main.py",
+      "function": "answer_tutor_activity",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_answer.cj",
+      "verification": "scripts/smoke_cangjie_tutor.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/tutor/tutor.vue:699"
+        ],
+        "validation": [
+          "scripts/smoke_demo.py:95"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions",
+      "source": "backend/app/main.py",
+      "function": "start_tutor",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_start.cj",
+      "verification": "scripts/smoke_cangjie_tutor.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/detail/detail.vue:460"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:63",
+          "scripts/smoke_demo.py:72",
+          "scripts/verify_agent_branches.py:38",
+          "scripts/verify_knowledge_base.py:72",
+          "scripts/verify_visualizations.py:58"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tutor/sessions/{session_id}",
+      "source": "backend/app/main.py",
+      "function": "get_tutor",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_read.cj",
+      "verification": "scripts/smoke_cangjie_retrieval.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_retrieval_compute.py",
+        "scripts/smoke_cangjie_tutor.py"
+      ],
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/tutor/tutor.vue:686"
+        ],
+        "validation": [
+          "scripts/smoke_demo.py:79",
+          "scripts/verify_tutor_activity_flow.py:65"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/turns",
+      "source": "backend/app/main.py",
+      "function": "tutor_turn",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_dialogue.cj",
+      "verification": "scripts/smoke_cangjie_tutor_dialogue.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_dialogue_compute.py"
+      ],
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/tutor/tutor.vue:794"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:64",
+          "scripts/smoke_demo.py:73",
+          "scripts/verify_agent_branches.py:50",
+          "scripts/verify_agent_branches.py:57",
+          "scripts/verify_agent_branches.py:58",
+          "scripts/verify_knowledge_base.py:73"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/advance",
+      "source": "backend/app/main.py",
+      "function": "advance_tutor_stage",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_navigation.cj",
+      "verification": "scripts/smoke_cangjie_tutor.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/tutor/tutor.vue:767"
+        ],
+        "validation": [
+          "scripts/smoke_demo.py:83"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/rewind",
+      "source": "backend/app/main.py",
+      "function": "rewind_tutor_stage",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_navigation.cj",
+      "verification": "scripts/smoke_cangjie_tutor.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/tutor/tutor.vue:779"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/teach-back",
+      "source": "backend/app/main.py",
+      "function": "teach_back",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_teach_back.cj",
+      "verification": "scripts/smoke_cangjie_tutor_completion.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/functional_flow.py:75",
+          "scripts/verify_agent_branches.py:65",
+          "scripts/verify_agent_branches.py:72"
+        ],
+        "internal": []
+      },
+      "usage_class": "script_workflow",
+      "usage_reason": "functional_flow.py、verify_agent_branches.py 的分步教学脚本仍调用；学生页面走 activity/answer。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tutor/sessions/{session_id}/visualization",
+      "source": "backend/app/main.py",
+      "function": "recommended_session_visualization",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/visualizations.cj",
+      "verification": "scripts/smoke_cangjie_visualizations.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/visualization/visualization.vue:74"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/visualization",
+      "source": "backend/app/main.py",
+      "function": "visualization",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/visualizations.cj",
+      "verification": "scripts/smoke_cangjie_visualizations.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/visualization/visualization.vue:86"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:67",
+          "scripts/smoke_demo.py:76",
+          "scripts/verify_visualizations.py:62"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/visualizations/types",
+      "source": "backend/app/main.py",
+      "function": "visualization_types",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/visualizations.cj",
+      "verification": "scripts/smoke_cangjie_visualizations.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/verify_visualizations.py:55"
+        ],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "可视化验收脚本读取类型目录，页面未调用，不计为页面必需。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/visualizations/{visualization_id}",
+      "source": "backend/app/main.py",
+      "function": "get_visualization",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/visualizations.cj",
+      "verification": "scripts/smoke_cangjie_visualizations.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/verify_visualizations.py:65"
+        ],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "独立按 ID 读取图形规范；页面使用会话可视化接口，脚本验证此独立能力。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/variant",
+      "source": "backend/app/main.py",
+      "function": "variant",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_variants.cj",
+      "verification": "scripts/smoke_cangjie_retrieval.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_retrieval_compute.py",
+        "scripts/smoke_cangjie_tutor.py"
+      ],
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/functional_flow.py:80",
+          "scripts/verify_agent_branches.py:73"
+        ],
+        "internal": []
+      },
+      "usage_class": "script_workflow",
+      "usage_reason": "脚本分步生成练习；页面会话读取与作答路径自动补题，不能把内部生成函数调用算成直接调用此 HTTP 路由。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/variants/{variant_id}/attempt",
+      "source": "backend/app/main.py",
+      "function": "attempt_variant",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/variant_attempt.cj",
+      "verification": "scripts/smoke_cangjie_variant_attempt.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/functional_flow.py:82",
+          "scripts/verify_agent_branches.py:75"
+        ],
+        "internal": []
+      },
+      "usage_class": "script_workflow",
+      "usage_reason": "分步教学脚本提交练习并写入认知证据；页面走 activity/answer。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/finish",
+      "source": "backend/app/main.py",
+      "function": "finish_tutor",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/tutor_finish.cj",
+      "verification": "scripts/smoke_cangjie_tutor_completion.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/functional_flow.py:86",
+          "scripts/smoke_demo.py:101"
+        ],
+        "internal": []
+      },
+      "usage_class": "script_workflow",
+      "usage_reason": "functional_flow.py、smoke_demo.py 结束教学；页面由活动流程自动结束。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reviews/today",
+      "source": "backend/app/main.py",
+      "function": "today_reviews",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/reviews.cj",
+      "verification": "scripts/smoke_cangjie_reviews.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/repair/repair.vue:142",
+          "frontend/src/pages/review/review.vue:519",
+          "frontend/src/pages/review/review.vue:755"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/reviews/{plan_id}/attempt",
+      "source": "backend/app/main.py",
+      "function": "attempt_review",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/reviews.cj",
+      "verification": "scripts/smoke_cangjie_reviews.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/review/review.vue:740"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:87"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/reviews/{plan_id}/grade",
+      "source": "backend/app/main.py",
+      "function": "grade_review",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/reviews.cj",
+      "verification": "scripts/smoke_cangjie_reviews.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/review/review.vue:805"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:89"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/reviews/history",
+      "source": "backend/app/main.py",
+      "function": "review_history",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/reviews.cj",
+      "verification": "scripts/smoke_cangjie_reviews.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/review/review.vue:657",
+          "frontend/src/pages/review/review.vue:811"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/knowledge/cards",
+      "source": "backend/app/main.py",
+      "function": "knowledge_cards",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/learning_insights.cj",
+      "verification": "scripts/smoke_cangjie_insights.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/library/library.vue:131"
+        ],
+        "validation": [
+          "scripts/verify_knowledge_base.py:56",
+          "scripts/verify_knowledge_base.py:60",
+          "scripts/verify_knowledge_base.py:65"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/knowledge/cards/{code}",
+      "source": "backend/app/main.py",
+      "function": "knowledge_card",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/learning_insights.cj",
+      "verification": "scripts/smoke_cangjie_insights.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/library/library.vue:145"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/analytics/overview",
+      "source": "backend/app/main.py",
+      "function": "analytics",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/learning_insights.cj",
+      "verification": "scripts/smoke_cangjie_insights.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/analysis/analysis.vue:276"
+        ],
+        "validation": [
+          "scripts/check_live_alignment.py:47",
+          "scripts/functional_flow.py:96",
+          "scripts/smoke_local.py:45"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/analytics/cognition-graph",
+      "source": "backend/app/main.py",
+      "function": "cognition_graph",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/cognition_graph.cj",
+      "verification": "scripts/smoke_cangjie_insights.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/analysis/analysis.vue:301"
+        ],
+        "validation": [
+          "scripts/verify_knowledge_base.py:76"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/papers",
+      "source": "backend/app/main.py",
+      "function": "create_paper",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/papers.cj",
+      "verification": "scripts/smoke_cangjie_papers.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/paper/paper-center.vue:348"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:91",
+          "scripts/smoke_demo.py:104",
+          "scripts/smoke_local.py:76",
+          "scripts/verify_papers.py:27",
+          "scripts/verify_papers.py:53"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/papers/candidates",
+      "source": "backend/app/main.py",
+      "function": "paper_candidates",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/paper_candidates.cj",
+      "verification": "scripts/smoke_cangjie_papers.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/paper/paper-center.vue:321"
+        ],
+        "validation": [
+          "scripts/verify_papers.py:23"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/papers",
+      "source": "backend/app/main.py",
+      "function": "list_papers",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/papers.cj",
+      "verification": "scripts/smoke_cangjie_papers.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/paper/paper-center.vue:303",
+          "frontend/src/pages/paper/paper-center.vue:355",
+          "frontend/src/pages/paper/paper-center.vue:396"
+        ],
+        "validation": [
+          "scripts/smoke_local.py:93"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/papers/{paper_id}",
+      "source": "backend/app/main.py",
+      "function": "get_paper",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/papers.cj",
+      "verification": "scripts/smoke_cangjie_papers.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/paper/paper-center.vue:368",
+          "frontend/src/pages/paper/paper-center.vue:457"
+        ],
+        "validation": [
+          "scripts/smoke_local.py:78",
+          "scripts/smoke_local.py:79",
+          "scripts/verify_papers.py:32",
+          "scripts/verify_papers.py:51"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/papers/{paper_id}",
+      "source": "backend/app/main.py",
+      "function": "patch_paper",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/papers.cj",
+      "verification": "scripts/smoke_cangjie_papers.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/paper/paper-center.vue:389"
+        ],
+        "validation": [
+          "scripts/verify_papers.py:36"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/papers/{paper_id}",
+      "source": "backend/app/main.py",
+      "function": "delete_paper",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/papers.cj",
+      "verification": "scripts/smoke_cangjie_papers.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/paper/paper-center.vue:425"
+        ],
+        "validation": [
+          "scripts/smoke_local.py:90",
+          "scripts/verify_papers.py:56"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/papers/{paper_id}/export",
+      "source": "backend/app/main.py",
+      "function": "export_paper",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/paper_exports.cj",
+      "verification": "scripts/smoke_cangjie_papers.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/paper/paper-center.vue:443"
+        ],
+        "validation": [
+          "scripts/functional_flow.py:93",
+          "scripts/smoke_demo.py:105",
+          "scripts/smoke_local.py:81",
+          "scripts/verify_papers.py:42"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/papers/{paper_id}/download",
+      "source": "backend/app/main.py",
+      "function": "download_paper",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/paper_exports.cj",
+      "verification": "scripts/smoke_cangjie_papers.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/smoke_local.py:82",
+          "scripts/smoke_local.py:88"
+        ],
+        "internal": []
+      },
+      "usage_class": "script_workflow",
+      "usage_reason": "试卷验收脚本按 kind 下载最新导出；页面实际消费 exports[].url 中的 /reports 签名链接，不调用此接口。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/voice/transcribe",
+      "source": "backend/app/main.py",
+      "function": "transcribe_voice",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/voice_api.cj",
+      "verification": "scripts/smoke_cangjie_voice.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_system_voice_compute.py"
+      ],
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/check_voice_cangjie.py:56",
+          "scripts/verify_voice.py:52"
+        ],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "语音验收脚本使用的独立专业能力；当前学生页面没有语音入口。保留算法，不追加页面。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/voice/synthesize",
+      "source": "backend/app/main.py",
+      "function": "synthesize_voice",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/voice_api.cj",
+      "verification": "scripts/smoke_cangjie_voice.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_system_voice_compute.py"
+      ],
+      "usage_evidence": {
+        "ui": [],
+        "validation": [
+          "scripts/check_voice_cangjie.py:37",
+          "scripts/verify_voice.py:47"
+        ],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "语音验收脚本使用的独立专业能力；当前学生页面没有语音入口。保留算法，不追加页面。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guardians/students",
+      "source": "backend/app/main.py",
+      "function": "guardian_students",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/guardian/home.vue:68"
+        ],
+        "validation": [
+          "scripts/verify_parent_teacher.py:26"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guardians/students/{student_id}/overview",
+      "source": "backend/app/main.py",
+      "function": "student_report",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/guardian/report.vue:37"
+        ],
+        "validation": [
+          "scripts/verify_parent_teacher.py:29"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/students/{student_id}/report",
+      "source": "backend/app/main.py",
+      "function": "student_report",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/student.vue:112"
+        ],
+        "validation": [
+          "scripts/verify_parent_teacher.py:37"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/classes",
+      "source": "backend/app/main.py",
+      "function": "teacher_classes",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/assignment.vue:113",
+          "frontend/src/pages/teacher/classes.vue:60"
+        ],
+        "validation": [
+          "scripts/verify_parent_teacher.py:33"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/classes/{class_id}",
+      "source": "backend/app/main.py",
+      "function": "teacher_class",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/class-detail.vue:62"
+        ],
+        "validation": [
+          "scripts/verify_parent_teacher.py:35"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/practice/recommend",
+      "source": "backend/app/main.py",
+      "function": "recommend_practice",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/practice_recommend.cj",
+      "verification": "scripts/smoke_cangjie_retrieval.py",
+      "additional_verification": [
+        "backend-algorithms/tests/test_retrieval_compute.py",
+        "scripts/smoke_cangjie_tutor.py"
+      ],
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/practice/practice.vue:199"
+        ],
+        "validation": [
+          "backend/tests/test_learning_safety.py:371",
+          "scripts/check_live_alignment.py:74",
+          "scripts/check_live_practice.py:52",
+          "scripts/smoke_retrieval.py:130"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/practice/questions/{question_id}/images/{image_index}",
+      "source": "backend/app/main.py",
+      "function": "practice_image",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/practice_context.cj",
+      "verification": "scripts/smoke_cangjie_practice.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "returned_media",
+      "usage_reason": "练习推荐响应产生签名图片 URL，练习页面 image 消费；属于必要资源接口。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/practice/attempt",
+      "source": "backend/app/main.py",
+      "function": "attempt_practice",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/practice_attempt.cj",
+      "verification": "scripts/smoke_cangjie_practice.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/practice/practice.vue:217"
+        ],
+        "validation": [
+          "scripts/check_live_alignment.py:117",
+          "scripts/check_live_alignment.py:61",
+          "scripts/check_live_practice.py:92",
+          "scripts/check_live_practice.py:97"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/dashboard",
+      "source": "backend/app/teacher_api.py",
+      "function": "dashboard",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/teacher_dashboard.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/dashboard.vue:102"
+        ],
+        "validation": [
+          "scripts/verify_teacher_workspace.py:22",
+          "scripts/verify_teacher_workspace.py:24"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/classes",
+      "source": "backend/app/teacher_api.py",
+      "function": "create_class",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/classes.vue:65"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/classes/{class_id}/students",
+      "source": "backend/app/teacher_api.py",
+      "function": "add_student",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/class-detail.vue:67"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/teachers/classes/{class_id}/students/{student_id}",
+      "source": "backend/app/teacher_api.py",
+      "function": "remove_student",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "教师移除成员并撤销班级报告/计划权限，有 HTTP 验证；当前班级页面只提供添加入口。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/reviews",
+      "source": "backend/app/teacher_api.py",
+      "function": "review_queue",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/assignment_reviews.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/reviews.vue:85"
+        ],
+        "validation": [
+          "scripts/verify_teacher_workspace.py:23"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/reviews/{task_id}",
+      "source": "backend/app/teacher_api.py",
+      "function": "review_detail",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/assignment_reviews.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/review-detail.vue:183"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/reviews/{task_id}/decision",
+      "source": "backend/app/teacher_api.py",
+      "function": "decide_review",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/assignment_reviews.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/review-detail.vue:200"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/reviews/{task_id}/revoke",
+      "source": "backend/app/teacher_api.py",
+      "function": "revoke_review",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/review_mutations.cj",
+      "verification": "scripts/smoke_cangjie_review_mutations.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "教师撤销已发布复核及其学习效果，有独立语义；当前页面未放撤销按钮，不等同 decision。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/reviews/{task_id}/regrade",
+      "source": "backend/app/teacher_api.py",
+      "function": "regrade_review",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/review_mutations.cj",
+      "verification": "scripts/smoke_cangjie_review_mutations.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "教师重新判定既有复核，有独立语义；当前页面未提供按钮，不等同首次 decision。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/reviews/{task_id}/transfer",
+      "source": "backend/app/teacher_api.py",
+      "function": "transfer_review",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/review_mutations.cj",
+      "verification": "scripts/smoke_cangjie_review_mutations.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "教师转交复核任务，有独立权限与审计语义；当前页面未提供按钮。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/questions",
+      "source": "backend/app/teacher_api.py",
+      "function": "teacher_questions",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/assignment_catalog.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/assignment.vue:114",
+          "frontend/src/pages/teacher/questions.vue:45"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/questions",
+      "source": "backend/app/teacher_api.py",
+      "function": "create_question",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/assignment_catalog.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/question-edit.vue:109"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/assignments",
+      "source": "backend/app/teacher_api.py",
+      "function": "create_assignment",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/assignment_catalog.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/assignment.vue:126"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/assignments",
+      "source": "backend/app/teacher_api.py",
+      "function": "assignments",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/assignment_catalog.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/assignment.vue:115"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/students/assignments",
+      "source": "backend/app/teacher_api.py",
+      "function": "student_assignments",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/student_assignments.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/assignment/assignment.vue:154"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/students/assignments/{student_assignment_id}/attempts",
+      "source": "backend/app/teacher_api.py",
+      "function": "submit_assignment",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/student_assignments.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/assignment/assignment.vue:170"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/students/teacher-feedback",
+      "source": "backend/app/teacher_api.py",
+      "function": "student_feedback",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/student_assignments.cj",
+      "verification": "scripts/smoke_cangjie_assignments.py",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "independent_api",
+      "usage_reason": "独立反馈历史，返回结果与任务；首页/作业只返回相应摘要，不是完全相同的响应。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/students/{student_id}/plans",
+      "source": "backend/app/teacher_api.py",
+      "function": "student_plans",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/plans.vue:74"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/teachers/plans/{plan_id}",
+      "source": "backend/app/teacher_api.py",
+      "function": "update_plan",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/plans.vue:91"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/audit-logs",
+      "source": "backend/app/teacher_api.py",
+      "function": "audit_logs",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie_school.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/teacher/audit.vue:45"
+        ],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/questions/manual",
+      "source": "backend/app/learning_api.py",
+      "function": "create_manual_question",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/manual_questions.cj",
+      "verification": "scripts/smoke_cangjie_questions.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/manual/manual.vue:139"
+        ],
+        "validation": [
+          "scripts/check_live_practice.py:37",
+          "scripts/check_live_subjects.py:141",
+          "scripts/smoke_local.py:51",
+          "scripts/smoke_retrieval.py:119"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/questions/{question_id}/journey",
+      "source": "backend/app/learning_api.py",
+      "function": "journey",
+      "status": "verified",
+      "implementation": "backend-cangjie/src/learning_journey.cj",
+      "verification": "scripts/smoke_cangjie_journey.py",
+      "usage_evidence": {
+        "ui": [
+          "frontend/src/pages/detail/detail.vue:407",
+          "frontend/src/pages/journey/journey.vue:163",
+          "frontend/src/pages/repair/repair.vue:137"
+        ],
+        "validation": [
+          "scripts/smoke_demo.py:102",
+          "scripts/smoke_local.py:60",
+          "scripts/smoke_local.py:73"
+        ],
+        "internal": []
+      },
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/refresh",
+      "source": "backend/app/main.py",
+      "function": "local_auth_noop",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/account_api.cj",
+      "verification": "scripts/smoke_cangjie_accounts.py",
+      "original_status": "verified",
+      "retirement_reason": "无人调用的 local_mode 空操作；不会续期令牌，重新登录仍走 login。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "无人调用的 local_mode 空操作；不会续期令牌，重新登录仍走 login。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/logout",
+      "source": "backend/app/main.py",
+      "function": "local_auth_noop",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/account_api.cj",
+      "verification": "scripts/smoke_cangjie_accounts.py",
+      "original_status": "verified",
+      "retirement_reason": "无人调用的 local_mode 空操作；学生端 store.logout 已清除本地令牌，不做服务端撤销。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "无人调用的 local_mode 空操作；学生端 store.logout 已清除本地令牌，不做服务端撤销。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/system/readiness",
+      "source": "backend/app/main.py",
+      "function": "readiness",
+      "status": "retired",
+      "original_status": "pending",
+      "retirement_reason": "无页面或检查脚本调用；重复拼装 provider.health_check，已有 providers 规范入口。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "无页面或检查脚本调用；重复拼装 provider.health_check，已有 providers 规范入口。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/system/models",
+      "source": "backend/app/main.py",
+      "function": "providers",
+      "status": "retired",
+      "original_status": "pending",
+      "retirement_reason": "无调用的 providers 别名；系统页面实际调用 providers。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "无调用的 providers 别名；系统页面实际调用 providers。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/system/features",
+      "source": "backend/app/main.py",
+      "function": "features",
+      "status": "retired",
+      "original_status": "pending",
+      "retirement_reason": "无人消费的固定 true 清单，不能证明实际可用，删除。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "无人消费的固定 true 清单，不能证明实际可用，删除。"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tutor/sessions/{session_id}/understanding-check",
+      "source": "backend/app/main.py",
+      "function": "understanding_check",
+      "status": "retired",
+      "original_status": "pending",
+      "retirement_reason": "旧理解检查入口没有页面或脚本调用，当前活动作答由 activity/answer 承担。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "旧理解检查入口没有页面或脚本调用，当前活动作答由 activity/answer 承担。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/analytics/knowledge-points",
+      "source": "backend/app/main.py",
+      "function": "analytics",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/learning_insights.cj",
+      "verification": "scripts/smoke_cangjie_insights.py",
+      "original_status": "verified",
+      "retirement_reason": "与 overview 完全相同的响应；学习统计页面只使用 overview。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "与 overview 完全相同的响应；学习统计页面只使用 overview。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/analytics/misconceptions",
+      "source": "backend/app/main.py",
+      "function": "analytics",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/learning_insights.cj",
+      "verification": "scripts/smoke_cangjie_insights.py",
+      "original_status": "verified",
+      "retirement_reason": "与 overview 完全相同的响应；学习统计页面只使用 overview。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "与 overview 完全相同的响应；学习统计页面只使用 overview。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/analytics/study-trend",
+      "source": "backend/app/main.py",
+      "function": "analytics",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/learning_insights.cj",
+      "verification": "scripts/smoke_cangjie_insights.py",
+      "original_status": "verified",
+      "retirement_reason": "与 overview 完全相同的响应；学习统计页面只使用 overview。",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "与 overview 完全相同的响应；学习统计页面只使用 overview。"
+    }
+  ]
+}

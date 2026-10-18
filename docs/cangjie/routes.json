@@ -1,0 +1,886 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/register",
+    "source": "backend/app/main.py",
+    "function": "register",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/account_api.cj",
+    "verification": "scripts/smoke_cangjie_accounts.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/login",
+    "source": "backend/app/main.py",
+    "function": "login",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/account_api.cj",
+    "verification": "scripts/smoke_cangjie_accounts.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/reset-password",
+    "source": "backend/app/main.py",
+    "function": "reset_password",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/account_api.cj",
+    "verification": "scripts/smoke_cangjie_accounts.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/auth/me",
+    "source": "backend/app/main.py",
+    "function": "me",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/account_api.cj",
+    "verification": "scripts/smoke_cangjie_accounts.py"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/auth/me",
+    "source": "backend/app/main.py",
+    "function": "update_me",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/account_api.cj",
+    "verification": "scripts/smoke_cangjie_accounts.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/system/health",
+    "source": "backend/app/main.py",
+    "function": "health",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/system_api.cj",
+    "verification": "scripts/smoke_cangjie_system_admin.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_system_voice_compute.py"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/system/providers",
+    "source": "backend/app/main.py",
+    "function": "providers",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/system_api.cj",
+    "verification": "scripts/smoke_cangjie_system_admin.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_system_voice_compute.py"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/system/providers/probe",
+    "source": "backend/app/main.py",
+    "function": "probe_provider",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/system_api.cj",
+    "verification": "scripts/smoke_cangjie_voice.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_system_voice_compute.py"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/system/voice",
+    "source": "backend/app/main.py",
+    "function": "voice_status",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/system_api.cj",
+    "verification": "scripts/smoke_cangjie_system_admin.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_system_voice_compute.py"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/workbench",
+    "source": "backend/app/main.py",
+    "function": "admin_workbench",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/admin_api.cj",
+    "verification": "scripts/smoke_cangjie_system_admin.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/students/{student_id}",
+    "source": "backend/app/main.py",
+    "function": "admin_student",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/admin_api.cj",
+    "verification": "scripts/smoke_cangjie_system_admin.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/sessions/{session_id}",
+    "source": "backend/app/main.py",
+    "function": "admin_session",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/admin_api.cj",
+    "verification": "scripts/smoke_cangjie_system_admin.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/dashboard",
+    "source": "backend/app/main.py",
+    "function": "dashboard",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/dashboard.cj",
+    "verification": "scripts/smoke_cangjie_insights.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/ingest",
+    "source": "backend/app/main.py",
+    "function": "ingest_question",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/ingest_api.cj",
+    "verification": "scripts/smoke_cangjie_ingest.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/questions",
+    "source": "backend/app/main.py",
+    "function": "questions",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/question_list.cj",
+    "verification": "scripts/smoke_cangjie_list.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/questions/{question_id}",
+    "source": "backend/app/main.py",
+    "function": "get_question",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/question_detail.cj",
+    "verification": "scripts/smoke_cangjie_detail.py"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/questions/{question_id}",
+    "source": "backend/app/main.py",
+    "function": "patch_question",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/question_edit.cj",
+    "verification": "scripts/smoke_cangjie_edit.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/crop",
+    "source": "backend/app/main.py",
+    "function": "crop_question",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/crop_api.cj",
+    "verification": "scripts/smoke_cangjie_ingest.py"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/questions/{question_id}",
+    "source": "backend/app/main.py",
+    "function": "delete_question",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/question_api.cj",
+    "verification": "scripts/smoke_cangjie_questions.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/draft",
+    "source": "backend/app/main.py",
+    "function": "save_ocr_draft",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/ocr_edits.cj",
+    "verification": "scripts/smoke_cangjie_ocr_edits.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/confirm",
+    "source": "backend/app/main.py",
+    "function": "confirm_question",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/ocr_edits.cj",
+    "verification": "scripts/smoke_cangjie_ocr_edits.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/ocr",
+    "source": "backend/app/main.py",
+    "function": "run_question_ocr",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/recognition_api.cj",
+    "verification": "scripts/smoke_cangjie_ingest.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/reprocess",
+    "source": "backend/app/main.py",
+    "function": "reprocess",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/recognition_api.cj",
+    "verification": "scripts/smoke_cangjie_ingest.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/analyze",
+    "source": "backend/app/main.py",
+    "function": "analyze",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/analysis_api.cj",
+    "verification": "scripts/smoke_cangjie_analysis.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/student-work",
+    "source": "backend/app/main.py",
+    "function": "add_student_work",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/student_work_api.cj",
+    "verification": "scripts/smoke_cangjie_student_work.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/diagnose",
+    "source": "backend/app/main.py",
+    "function": "diagnose",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/diagnosis_api.cj",
+    "verification": "scripts/smoke_cangjie_diagnosis.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/{question_id}/diagnosis/counterfactual",
+    "source": "backend/app/main.py",
+    "function": "create_counterfactual",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/counterfactual_api.cj",
+    "verification": "scripts/smoke_cangjie_diagnosis.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/questions/{question_id}/diagnosis",
+    "source": "backend/app/main.py",
+    "function": "get_diagnosis",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/diagnosis_api.cj",
+    "verification": "scripts/smoke_cangjie_diagnosis.py"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/questions/{question_id}/diagnosis",
+    "source": "backend/app/main.py",
+    "function": "correct_diagnosis",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/diagnosis_edit.cj",
+    "verification": "scripts/smoke_cangjie_diagnosis.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/jobs/{job_id}",
+    "source": "backend/app/main.py",
+    "function": "get_job",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/job_api.cj",
+    "verification": "scripts/smoke_cangjie_detail.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/jobs/{job_id}/retry",
+    "source": "backend/app/main.py",
+    "function": "retry_job",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/job_api.cj",
+    "verification": "scripts/smoke_cangjie_ingest.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/answers/handwriting",
+    "source": "backend/app/main.py",
+    "function": "upload_answer_handwriting",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/handwriting.cj",
+    "verification": "scripts/smoke_cangjie_practice.py",
+    "additional_verification": [
+      "scripts/smoke_cangjie_handwriting.py",
+      "scripts/smoke_cangjie_reviews.py",
+      "scripts/smoke_cangjie_assignments.py"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions/{session_id}/activity/answer",
+    "source": "backend/app/main.py",
+    "function": "answer_tutor_activity",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_answer.cj",
+    "verification": "scripts/smoke_cangjie_tutor.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions",
+    "source": "backend/app/main.py",
+    "function": "start_tutor",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_start.cj",
+    "verification": "scripts/smoke_cangjie_tutor.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/tutor/sessions/{session_id}",
+    "source": "backend/app/main.py",
+    "function": "get_tutor",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_read.cj",
+    "verification": "scripts/smoke_cangjie_retrieval.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_retrieval_compute.py",
+      "scripts/smoke_cangjie_tutor.py"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions/{session_id}/turns",
+    "source": "backend/app/main.py",
+    "function": "tutor_turn",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_dialogue.cj",
+    "verification": "scripts/smoke_cangjie_tutor_dialogue.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_dialogue_compute.py"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions/{session_id}/advance",
+    "source": "backend/app/main.py",
+    "function": "advance_tutor_stage",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_navigation.cj",
+    "verification": "scripts/smoke_cangjie_tutor.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions/{session_id}/rewind",
+    "source": "backend/app/main.py",
+    "function": "rewind_tutor_stage",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_navigation.cj",
+    "verification": "scripts/smoke_cangjie_tutor.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions/{session_id}/teach-back",
+    "source": "backend/app/main.py",
+    "function": "teach_back",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_teach_back.cj",
+    "verification": "scripts/smoke_cangjie_tutor_completion.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/tutor/sessions/{session_id}/visualization",
+    "source": "backend/app/main.py",
+    "function": "recommended_session_visualization",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/visualizations.cj",
+    "verification": "scripts/smoke_cangjie_visualizations.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions/{session_id}/visualization",
+    "source": "backend/app/main.py",
+    "function": "visualization",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/visualizations.cj",
+    "verification": "scripts/smoke_cangjie_visualizations.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/visualizations/types",
+    "source": "backend/app/main.py",
+    "function": "visualization_types",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/visualizations.cj",
+    "verification": "scripts/smoke_cangjie_visualizations.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/visualizations/{visualization_id}",
+    "source": "backend/app/main.py",
+    "function": "get_visualization",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/visualizations.cj",
+    "verification": "scripts/smoke_cangjie_visualizations.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions/{session_id}/variant",
+    "source": "backend/app/main.py",
+    "function": "variant",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_variants.cj",
+    "verification": "scripts/smoke_cangjie_retrieval.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_retrieval_compute.py",
+      "scripts/smoke_cangjie_tutor.py"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/variants/{variant_id}/attempt",
+    "source": "backend/app/main.py",
+    "function": "attempt_variant",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/variant_attempt.cj",
+    "verification": "scripts/smoke_cangjie_variant_attempt.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/tutor/sessions/{session_id}/finish",
+    "source": "backend/app/main.py",
+    "function": "finish_tutor",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/tutor_finish.cj",
+    "verification": "scripts/smoke_cangjie_tutor_completion.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/reviews/today",
+    "source": "backend/app/main.py",
+    "function": "today_reviews",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/reviews.cj",
+    "verification": "scripts/smoke_cangjie_reviews.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/reviews/{plan_id}/attempt",
+    "source": "backend/app/main.py",
+    "function": "attempt_review",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/reviews.cj",
+    "verification": "scripts/smoke_cangjie_reviews.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/reviews/{plan_id}/grade",
+    "source": "backend/app/main.py",
+    "function": "grade_review",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/reviews.cj",
+    "verification": "scripts/smoke_cangjie_reviews.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/reviews/history",
+    "source": "backend/app/main.py",
+    "function": "review_history",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/reviews.cj",
+    "verification": "scripts/smoke_cangjie_reviews.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/knowledge/cards",
+    "source": "backend/app/main.py",
+    "function": "knowledge_cards",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/learning_insights.cj",
+    "verification": "scripts/smoke_cangjie_insights.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/knowledge/cards/{code}",
+    "source": "backend/app/main.py",
+    "function": "knowledge_card",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/learning_insights.cj",
+    "verification": "scripts/smoke_cangjie_insights.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/analytics/overview",
+    "source": "backend/app/main.py",
+    "function": "analytics",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/learning_insights.cj",
+    "verification": "scripts/smoke_cangjie_insights.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/analytics/cognition-graph",
+    "source": "backend/app/main.py",
+    "function": "cognition_graph",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/cognition_graph.cj",
+    "verification": "scripts/smoke_cangjie_insights.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/papers",
+    "source": "backend/app/main.py",
+    "function": "create_paper",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/papers.cj",
+    "verification": "scripts/smoke_cangjie_papers.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/papers/candidates",
+    "source": "backend/app/main.py",
+    "function": "paper_candidates",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/paper_candidates.cj",
+    "verification": "scripts/smoke_cangjie_papers.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/papers",
+    "source": "backend/app/main.py",
+    "function": "list_papers",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/papers.cj",
+    "verification": "scripts/smoke_cangjie_papers.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/papers/{paper_id}",
+    "source": "backend/app/main.py",
+    "function": "get_paper",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/papers.cj",
+    "verification": "scripts/smoke_cangjie_papers.py"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/papers/{paper_id}",
+    "source": "backend/app/main.py",
+    "function": "patch_paper",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/papers.cj",
+    "verification": "scripts/smoke_cangjie_papers.py"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/papers/{paper_id}",
+    "source": "backend/app/main.py",
+    "function": "delete_paper",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/papers.cj",
+    "verification": "scripts/smoke_cangjie_papers.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/papers/{paper_id}/export",
+    "source": "backend/app/main.py",
+    "function": "export_paper",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/paper_exports.cj",
+    "verification": "scripts/smoke_cangjie_papers.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/papers/{paper_id}/download",
+    "source": "backend/app/main.py",
+    "function": "download_paper",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/paper_exports.cj",
+    "verification": "scripts/smoke_cangjie_papers.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/voice/transcribe",
+    "source": "backend/app/main.py",
+    "function": "transcribe_voice",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/voice_api.cj",
+    "verification": "scripts/smoke_cangjie_voice.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_system_voice_compute.py"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/voice/synthesize",
+    "source": "backend/app/main.py",
+    "function": "synthesize_voice",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/voice_api.cj",
+    "verification": "scripts/smoke_cangjie_voice.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_system_voice_compute.py"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/guardians/students",
+    "source": "backend/app/main.py",
+    "function": "guardian_students",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/guardians/students/{student_id}/overview",
+    "source": "backend/app/main.py",
+    "function": "student_report",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/students/{student_id}/report",
+    "source": "backend/app/main.py",
+    "function": "student_report",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/classes",
+    "source": "backend/app/main.py",
+    "function": "teacher_classes",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/classes/{class_id}",
+    "source": "backend/app/main.py",
+    "function": "teacher_class",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/practice/recommend",
+    "source": "backend/app/main.py",
+    "function": "recommend_practice",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/practice_recommend.cj",
+    "verification": "scripts/smoke_cangjie_retrieval.py",
+    "additional_verification": [
+      "backend-algorithms/tests/test_retrieval_compute.py",
+      "scripts/smoke_cangjie_tutor.py"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/practice/questions/{question_id}/images/{image_index}",
+    "source": "backend/app/main.py",
+    "function": "practice_image",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/practice_context.cj",
+    "verification": "scripts/smoke_cangjie_practice.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/practice/attempt",
+    "source": "backend/app/main.py",
+    "function": "attempt_practice",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/practice_attempt.cj",
+    "verification": "scripts/smoke_cangjie_practice.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/dashboard",
+    "source": "backend/app/teacher_api.py",
+    "function": "dashboard",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/teacher_dashboard.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teachers/classes",
+    "source": "backend/app/teacher_api.py",
+    "function": "create_class",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teachers/classes/{class_id}/students",
+    "source": "backend/app/teacher_api.py",
+    "function": "add_student",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/teachers/classes/{class_id}/students/{student_id}",
+    "source": "backend/app/teacher_api.py",
+    "function": "remove_student",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/reviews",
+    "source": "backend/app/teacher_api.py",
+    "function": "review_queue",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/assignment_reviews.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/reviews/{task_id}",
+    "source": "backend/app/teacher_api.py",
+    "function": "review_detail",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/assignment_reviews.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teachers/reviews/{task_id}/decision",
+    "source": "backend/app/teacher_api.py",
+    "function": "decide_review",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/assignment_reviews.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teachers/reviews/{task_id}/revoke",
+    "source": "backend/app/teacher_api.py",
+    "function": "revoke_review",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/review_mutations.cj",
+    "verification": "scripts/smoke_cangjie_review_mutations.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teachers/reviews/{task_id}/regrade",
+    "source": "backend/app/teacher_api.py",
+    "function": "regrade_review",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/review_mutations.cj",
+    "verification": "scripts/smoke_cangjie_review_mutations.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teachers/reviews/{task_id}/transfer",
+    "source": "backend/app/teacher_api.py",
+    "function": "transfer_review",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/review_mutations.cj",
+    "verification": "scripts/smoke_cangjie_review_mutations.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/questions",
+    "source": "backend/app/teacher_api.py",
+    "function": "teacher_questions",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/assignment_catalog.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teachers/questions",
+    "source": "backend/app/teacher_api.py",
+    "function": "create_question",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/assignment_catalog.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/teachers/assignments",
+    "source": "backend/app/teacher_api.py",
+    "function": "create_assignment",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/assignment_catalog.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/assignments",
+    "source": "backend/app/teacher_api.py",
+    "function": "assignments",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/assignment_catalog.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/students/assignments",
+    "source": "backend/app/teacher_api.py",
+    "function": "student_assignments",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/student_assignments.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/students/assignments/{student_assignment_id}/attempts",
+    "source": "backend/app/teacher_api.py",
+    "function": "submit_assignment",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/student_assignments.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/students/teacher-feedback",
+    "source": "backend/app/teacher_api.py",
+    "function": "student_feedback",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/student_assignments.cj",
+    "verification": "scripts/smoke_cangjie_assignments.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/students/{student_id}/plans",
+    "source": "backend/app/teacher_api.py",
+    "function": "student_plans",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/teachers/plans/{plan_id}",
+    "source": "backend/app/teacher_api.py",
+    "function": "update_plan",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/teachers/audit-logs",
+    "source": "backend/app/teacher_api.py",
+    "function": "audit_logs",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/school_api.cj",
+    "verification": "scripts/smoke_cangjie_school.py"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/questions/manual",
+    "source": "backend/app/learning_api.py",
+    "function": "create_manual_question",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/manual_questions.cj",
+    "verification": "scripts/smoke_cangjie_questions.py"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/questions/{question_id}/journey",
+    "source": "backend/app/learning_api.py",
+    "function": "journey",
+    "status": "verified",
+    "implementation": "backend-cangjie/src/learning_journey.cj",
+    "verification": "scripts/smoke_cangjie_journey.py"
+  }
+]

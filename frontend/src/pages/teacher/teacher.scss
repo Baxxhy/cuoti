@@ -1,0 +1,225 @@
+.teacher-page {
+  min-height: 100vh;
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--color-bg);
+  padding-bottom: 50rpx;
+  .teacher-content {
+    width: min(1120px, 100%);
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 24rpx 28rpx;
+  }
+  .teacher-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18rpx;
+  }
+  .metric-card,
+  .teacher-card {
+    box-sizing: border-box;
+    border: 1rpx solid var(--color-border);
+    border-radius: 20rpx;
+    background: #fff;
+    box-shadow: none;
+  }
+  .metric-card {
+    padding: 24rpx;
+  }
+  .metric-value {
+    display: block;
+    color: #101828;
+    font-size: 48rpx;
+    font-weight: 700;
+  }
+  .metric-label {
+    display: block;
+    margin-top: 6rpx;
+    color: #667085;
+    font-size: 23rpx;
+    line-height: 1.5;
+  }
+  .teacher-card {
+    margin-top: 20rpx;
+    padding: 26rpx;
+  }
+  .card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20rpx;
+    margin-bottom: 18rpx;
+  }
+  .card-heading text:first-child {
+    color: #101828;
+    font-size: 29rpx;
+    font-weight: 650;
+  }
+  .card-link {
+    color: var(--color-primary) !important;
+    font-size: 23rpx !important;
+    font-weight: 500 !important;
+  }
+  .teacher-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 18rpx;
+    padding: 20rpx 0;
+    border-top: 1rpx solid #eef1f5;
+  }
+  .teacher-row:first-of-type {
+    border-top: 0;
+  }
+  .row-main {
+    min-width: 0;
+    flex: 1;
+  }
+  .row-title {
+    display: block;
+    overflow-wrap: anywhere;
+    color: #172033;
+    font-size: 27rpx;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+  .row-meta,
+  .muted {
+    display: block;
+    margin-top: 6rpx;
+    overflow-wrap: anywhere;
+    color: #667085;
+    font-size: 23rpx;
+    line-height: 1.55;
+  }
+  .tag {
+    flex: none;
+    padding: 7rpx 13rpx;
+    border-radius: 999rpx;
+    background: var(--color-primary-soft);
+    color: #2457d6;
+    font-size: 21rpx;
+  }
+  .tag.warn {
+    background: #fff4e5;
+    color: #b54708;
+  }
+  .tag.success {
+    background: #ecfdf3;
+    color: #067647;
+  }
+  .teacher-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14rpx;
+    margin-top: 20rpx;
+  }
+  .teacher-actions button {
+    width: auto;
+    min-height: 44px;
+    margin: 0;
+    padding: 0 24rpx;
+    border: 0;
+    border-radius: 14rpx;
+    background: var(--color-primary-soft);
+    color: #2457d6;
+    font-size: 24rpx;
+  }
+  .teacher-actions button.primary {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .teacher-actions button.danger {
+    background: #fff1f0;
+    color: #d92d20;
+  }
+  .teacher-actions button::after {
+    border: 0;
+  }
+  .field {
+    margin-top: 22rpx;
+  }
+  .field-label {
+    display: block;
+    margin-bottom: 10rpx;
+    color: #344054;
+    font-size: 23rpx;
+    font-weight: 600;
+  }
+  .field input,
+  .field textarea,
+  .field picker,
+  .field-box {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 78rpx;
+    padding: 18rpx 20rpx;
+    border: 1rpx solid #dce2ea;
+    border-radius: 14rpx;
+    background: #fff;
+    color: #101828;
+    font-size: 25rpx;
+    line-height: 1.55;
+  }
+  .field textarea {
+    min-height: 150rpx;
+  }
+  .empty-card {
+    padding: 70rpx 30rpx;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 25rpx;
+  }
+  .evidence-text {
+    display: block;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: #344054;
+    font-size: 25rpx;
+    line-height: 1.75;
+  }
+  .image-list image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 14rpx;
+    border-radius: 14rpx;
+  }
+  .section-tabs {
+    display: flex;
+    gap: 12rpx;
+    overflow-x: auto;
+    padding: 4rpx 0 14rpx;
+  }
+  .section-tabs text {
+    flex: none;
+    padding: 12rpx 20rpx;
+    border-radius: 999rpx;
+    background: #fff;
+    color: #667085;
+    font-size: 23rpx;
+  }
+  .section-tabs text.active {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  @media (min-width: 768px) {
+    .teacher-content {
+      padding: 32px;
+    }
+    .teacher-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .teacher-card {
+      padding: 24px;
+    }
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .two-column > .teacher-card {
+      margin-top: 20rpx;
+    }
+  }
+}

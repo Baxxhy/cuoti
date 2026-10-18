@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "candidate_count": 11,
+  "paper_id": "3818621d-cfa7-4f8b-824d-5079d3a84dee",
+  "item_count": 3,
+  "scores": [
+    15,
+    16,
+    17
+  ],
+  "reorder_verified": true,
+  "delete_verified": true,
+  "export_history_count": 3,
+  "files": {
+    "question": {
+      "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-question.pdf",
+      "bytes": 36198
+    },
+    "answer": {
+      "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-answer.pdf",
+      "bytes": 36509
+    },
+    "excel": {
+      "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-excel.xlsx",
+      "bytes": 5103
+    }
+  }
+}

@@ -1,0 +1,12 @@
+[package]
+  cjc-version = "1.0.5"
+  name = "zhiwei"
+  description = "错题帮独立仓颉业务后端"
+  version = "0.1.0"
+  output-type = "executable"
+  link-option = "-L${CANGJIE_MYSQL_NATIVE} -lzhiwei_mysql"
+
+[dependencies]
+
+[target.x86_64-unknown-linux-gnu.bin-dependencies]
+  path-option = ["${CANGJIE_STDX_PATH}"]

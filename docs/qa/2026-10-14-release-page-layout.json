@@ -1,0 +1,3663 @@
+{
+  "records": [
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "index/index",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "继续学习",
+          "disabled": false,
+          "width": 319,
+          "height": 46
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "capture/capture",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "拍照或选择图片",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        },
+        {
+          "text": "手动录入错题",
+          "disabled": false,
+          "width": 350,
+          "height": 50
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "manual/manual",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "保存并查看错题",
+          "disabled": true,
+          "width": 350,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "problem/list",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "search/search",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "搜索",
+          "disabled": false,
+          "width": 56,
+          "height": 40
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "review/review",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "assignment/assignment",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "拍照或选图",
+          "disabled": false,
+          "width": 73,
+          "height": 31
+        },
+        {
+          "text": "提交作答",
+          "disabled": true,
+          "width": 319,
+          "height": 48
+        },
+        {
+          "text": "拍照或选图",
+          "disabled": false,
+          "width": 73,
+          "height": 31
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "analysis/analysis",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "查看相关错题",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "profile/profile",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 70,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "detail/detail",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        },
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "23px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始错因诊断",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        },
+        {
+          "text": "修改录入内容",
+          "disabled": false,
+          "width": 350,
+          "height": 38
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "journey/journey",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始错因诊断",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "ocr/ocr",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "添加文字",
+          "disabled": false,
+          "width": 350,
+          "height": 39
+        },
+        {
+          "text": "保存修改",
+          "disabled": false,
+          "width": 293,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "knowledge/knowledge",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始修正这个错误",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "paper/paper-center",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "更多筛选条件",
+          "disabled": false,
+          "width": 308,
+          "height": 44
+        },
+        {
+          "text": "按条件筛选题目",
+          "disabled": false,
+          "width": 308,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "diagnosis/diagnosis",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始修正错误",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "tutor/tutor",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "完成",
+          "disabled": false,
+          "width": 330,
+          "height": 46
+        },
+        {
+          "text": "查看之前的对话",
+          "disabled": false,
+          "width": 362,
+          "height": 36
+        },
+        {
+          "text": "问小智老师",
+          "disabled": false,
+          "width": 362,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "student",
+      "page": "visualization/visualization",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/dashboard",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "个人中心",
+          "disabled": false,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "text": "待核对队列",
+          "disabled": false,
+          "width": 87,
+          "height": 44
+        },
+        {
+          "text": "班级与学生",
+          "disabled": false,
+          "width": 87,
+          "height": 44
+        },
+        {
+          "text": "题目管理",
+          "disabled": false,
+          "width": 75,
+          "height": 44
+        },
+        {
+          "text": "布置记录",
+          "disabled": false,
+          "width": 75,
+          "height": 44
+        },
+        {
+          "text": "操作记录",
+          "disabled": false,
+          "width": 75,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/classes",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/class-detail",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/student",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/reviews",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/review-detail",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/plans",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/questions",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/question-edit",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/assignment",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "布置给全班",
+          "disabled": false,
+          "width": 87,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "teacher/audit",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "teacher",
+      "page": "profile/profile",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "guardian",
+      "page": "guardian/home",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "个人中心",
+          "disabled": false,
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "guardian",
+      "page": "guardian/report",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "guardian",
+      "page": "profile/profile",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "admin",
+      "page": "admin/workbench",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "全局概览",
+          "disabled": false,
+          "width": 52,
+          "height": 68
+        },
+        {
+          "text": "学生画像",
+          "disabled": false,
+          "width": 52,
+          "height": 68
+        },
+        {
+          "text": "智能体轨迹",
+          "disabled": false,
+          "width": 64,
+          "height": 68
+        },
+        {
+          "text": "系统状态",
+          "disabled": false,
+          "width": 52,
+          "height": 68
+        },
+        {
+          "text": "刷新数据",
+          "disabled": false,
+          "width": 75,
+          "height": 41
+        },
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 75,
+          "height": 41
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "admin",
+      "page": "system/system",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "重新检查智能服务",
+          "disabled": false,
+          "width": 308,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "mobile",
+      "role": "admin",
+      "page": "profile/profile",
+      "width": 390,
+      "scrollWidth": 390,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 350,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "index/index",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "继续学习",
+          "disabled": false,
+          "width": 672,
+          "height": 46
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "capture/capture",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "拍照或选择图片",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        },
+        {
+          "text": "手动录入错题",
+          "disabled": false,
+          "width": 702,
+          "height": 50
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "manual/manual",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "保存并查看错题",
+          "disabled": true,
+          "width": 702,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "problem/list",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "search/search",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "搜索",
+          "disabled": false,
+          "width": 56,
+          "height": 40
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "review/review",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "assignment/assignment",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "拍照或选图",
+          "disabled": false,
+          "width": 71,
+          "height": 30
+        },
+        {
+          "text": "提交作答",
+          "disabled": true,
+          "width": 672,
+          "height": 48
+        },
+        {
+          "text": "拍照或选图",
+          "disabled": false,
+          "width": 71,
+          "height": 30
+        },
+        {
+          "text": "再次提交",
+          "disabled": true,
+          "width": 672,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "analysis/analysis",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "查看相关错题",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "profile/profile",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 145,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "detail/detail",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        },
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "23px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始错因诊断",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        },
+        {
+          "text": "修改录入内容",
+          "disabled": false,
+          "width": 702,
+          "height": 38
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "journey/journey",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始错因诊断",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        },
+        {
+          "text": "复制学习摘要",
+          "disabled": false,
+          "width": 346,
+          "height": 44
+        },
+        {
+          "text": "回到错题详情",
+          "disabled": false,
+          "width": 346,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "ocr/ocr",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "添加文字",
+          "disabled": false,
+          "width": 702,
+          "height": 39
+        },
+        {
+          "text": "保存修改",
+          "disabled": false,
+          "width": 639,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "knowledge/knowledge",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始修正这个错误",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "paper/paper-center",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "更多筛选条件",
+          "disabled": false,
+          "width": 660,
+          "height": 44
+        },
+        {
+          "text": "按条件筛选题目",
+          "disabled": false,
+          "width": 660,
+          "height": 48
+        },
+        {
+          "text": "创建试卷（0题）",
+          "disabled": true,
+          "width": 702,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "diagnosis/diagnosis",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始修正错误",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "tutor/tutor",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "完成",
+          "disabled": false,
+          "width": 706,
+          "height": 46
+        },
+        {
+          "text": "查看之前的对话",
+          "disabled": false,
+          "width": 738,
+          "height": 36
+        },
+        {
+          "text": "问小智老师",
+          "disabled": false,
+          "width": 704,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "student",
+      "page": "visualization/visualization",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "保存并继续",
+          "disabled": true,
+          "width": 660,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/dashboard",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "个人中心",
+          "disabled": false,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "text": "待核对队列",
+          "disabled": false,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "text": "班级与学生",
+          "disabled": false,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "text": "题目管理",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        },
+        {
+          "text": "布置记录",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        },
+        {
+          "text": "操作记录",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/classes",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/class-detail",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/student",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/reviews",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/review-detail",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "确认结论",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/plans",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/questions",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/question-edit",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "发布题目",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/assignment",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "布置给全班",
+          "disabled": false,
+          "width": 84,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "teacher/audit",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "teacher",
+      "page": "profile/profile",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "guardian",
+      "page": "guardian/home",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "个人中心",
+          "disabled": false,
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "guardian",
+      "page": "guardian/report",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "guardian",
+      "page": "profile/profile",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "admin",
+      "page": "admin/workbench",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "",
+          "disabled": false,
+          "width": 28,
+          "height": 50
+        },
+        {
+          "text": "",
+          "disabled": false,
+          "width": 28,
+          "height": 50
+        },
+        {
+          "text": "",
+          "disabled": false,
+          "width": 28,
+          "height": 50
+        },
+        {
+          "text": "",
+          "disabled": false,
+          "width": 28,
+          "height": 50
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "admin",
+      "page": "system/system",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "重新检查智能服务",
+          "disabled": false,
+          "width": 660,
+          "height": 48
+        },
+        {
+          "text": "保存 App 地址",
+          "disabled": false,
+          "width": 660,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "tablet",
+      "role": "admin",
+      "page": "profile/profile",
+      "width": 768,
+      "scrollWidth": 768,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 702,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "index/index",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "继续学习",
+          "disabled": false,
+          "width": 726,
+          "height": 46
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "capture/capture",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "拍照或选择图片",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        },
+        {
+          "text": "手动录入错题",
+          "disabled": false,
+          "width": 756,
+          "height": 50
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "manual/manual",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "保存并查看错题",
+          "disabled": true,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "problem/list",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "search/search",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "搜索",
+          "disabled": false,
+          "width": 56,
+          "height": 40
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "review/review",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "assignment/assignment",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "拍照或选图",
+          "disabled": false,
+          "width": 71,
+          "height": 30
+        },
+        {
+          "text": "提交作答",
+          "disabled": true,
+          "width": 726,
+          "height": 48
+        },
+        {
+          "text": "拍照或选图",
+          "disabled": false,
+          "width": 71,
+          "height": 30
+        },
+        {
+          "text": "再次提交",
+          "disabled": true,
+          "width": 726,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "analysis/analysis",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "查看相关错题",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "profile/profile",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        },
+        {
+          "text": "首页",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "录入错题",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "学习",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        },
+        {
+          "text": "我的",
+          "disabled": false,
+          "width": 150,
+          "height": 59
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "detail/detail",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        },
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "23px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始错因诊断",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        },
+        {
+          "text": "修改录入内容",
+          "disabled": false,
+          "width": 756,
+          "height": 38
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "journey/journey",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始错因诊断",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "ocr/ocr",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "添加文字",
+          "disabled": false,
+          "width": 756,
+          "height": 39
+        },
+        {
+          "text": "保存修改",
+          "disabled": false,
+          "width": 691,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "knowledge/knowledge",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始修正这个错误",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "paper/paper-center",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "更多筛选条件",
+          "disabled": false,
+          "width": 714,
+          "height": 44
+        },
+        {
+          "text": "按条件筛选题目",
+          "disabled": false,
+          "width": 714,
+          "height": 48
+        },
+        {
+          "text": "创建试卷（0题）",
+          "disabled": true,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "diagnosis/diagnosis",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "开始修正错误",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "tutor/tutor",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "完成",
+          "disabled": false,
+          "width": 760,
+          "height": 46
+        },
+        {
+          "text": "查看之前的对话",
+          "disabled": false,
+          "width": 792,
+          "height": 36
+        },
+        {
+          "text": "问小智老师",
+          "disabled": false,
+          "width": 756,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "student",
+      "page": "visualization/visualization",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/dashboard",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "个人中心",
+          "disabled": false,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "text": "待核对队列",
+          "disabled": false,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "text": "班级与学生",
+          "disabled": false,
+          "width": 84,
+          "height": 44
+        },
+        {
+          "text": "题目管理",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        },
+        {
+          "text": "布置记录",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        },
+        {
+          "text": "操作记录",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/classes",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/class-detail",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/student",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/reviews",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/review-detail",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "确认结论",
+          "disabled": false,
+          "width": 72,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/plans",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/questions",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/question-edit",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/assignment",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "布置给全班",
+          "disabled": false,
+          "width": 84,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "teacher/audit",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "teacher",
+      "page": "profile/profile",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "guardian",
+      "page": "guardian/home",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(98, 101, 108)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "个人中心",
+          "disabled": false,
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "guardian",
+      "page": "guardian/report",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "guardian",
+      "page": "profile/profile",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "admin",
+      "page": "admin/workbench",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "全局概览",
+          "disabled": false,
+          "width": 123,
+          "height": 50
+        },
+        {
+          "text": "学生画像",
+          "disabled": false,
+          "width": 123,
+          "height": 50
+        },
+        {
+          "text": "智能体轨迹",
+          "disabled": false,
+          "width": 138,
+          "height": 50
+        },
+        {
+          "text": "系统状态",
+          "disabled": false,
+          "width": 123,
+          "height": 50
+        },
+        {
+          "text": "刷新数据",
+          "disabled": false,
+          "width": 191,
+          "height": 47
+        },
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 191,
+          "height": 47
+        },
+        {
+          "text": "已\n已验证资料保存\n初二\n0\n0",
+          "disabled": false,
+          "width": 430,
+          "height": 62
+        },
+        {
+          "text": "数\n数据隔离验收学生\n初二\n0\n0",
+          "disabled": false,
+          "width": 430,
+          "height": 62
+        },
+        {
+          "text": "Solve: 2x + 3 = 11\n前端验收学生 · near_transfer\n10/14 04:44",
+          "disabled": false,
+          "width": 430,
+          "height": 69
+        },
+        {
+          "text": "Solve: 2x + 3 = 11\n前端验收学生 · finished\n10/14 03:06",
+          "disabled": false,
+          "width": 430,
+          "height": 69
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "admin",
+      "page": "system/system",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [
+        {
+          "color": "rgb(32, 33, 36)",
+          "background": "rgb(255, 255, 255)",
+          "size": "24px"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "返回",
+          "disabled": false,
+          "width": 40,
+          "height": 44
+        },
+        {
+          "text": "重新检查智能服务",
+          "disabled": false,
+          "width": 714,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    },
+    {
+      "device": "desktop",
+      "role": "admin",
+      "page": "profile/profile",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "headerIcons": [],
+      "buttons": [
+        {
+          "text": "退出登录",
+          "disabled": false,
+          "width": 756,
+          "height": 48
+        }
+      ],
+      "hasObjectText": false,
+      "errors": [],
+      "warnings": [],
+      "httpFailures": []
+    }
+  ],
+  "unavailable": {},
+  "environment": "local HTTPS compiled H5, FastAPI 8001, MySQL",
+  "summary": {
+    "instances": 105,
+    "distinct_pages": 32,
+    "changed_pages_rechecked": 12,
+    "issues": 0
+  }
+}

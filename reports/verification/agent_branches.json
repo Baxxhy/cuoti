@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "case_count": 12,
+  "cases": [
+    {
+      "case": "completely_unknown",
+      "branch": "completely_unknown",
+      "stage": "prerequisite",
+      "passed": true
+    },
+    {
+      "case": "partial_correct",
+      "branch": "partial_correct",
+      "stage": "local_hint",
+      "passed": true
+    },
+    {
+      "case": "new_error",
+      "branch": "new_error",
+      "stage": "replan",
+      "passed": true
+    },
+    {
+      "case": "answer_requested",
+      "branch": "answer_requested",
+      "stage": "answer_shown",
+      "passed": true
+    },
+    {
+      "case": "correct_but_unclear",
+      "branch": "correct_but_unclear",
+      "stage": "teach_back",
+      "passed": true
+    },
+    {
+      "case": "repeated_error",
+      "branch": "repeated_error",
+      "stage": "strategy_switch",
+      "passed": true
+    },
+    {
+      "case": "teach_back_fail",
+      "branch": "teach_back_fail",
+      "stage": "teach_back_retry",
+      "passed": true
+    },
+    {
+      "case": "teach_back_pass",
+      "branch": "teach_back_pass",
+      "stage": "near_transfer",
+      "passed": true
+    },
+    {
+      "case": "near_transfer_fail",
+      "branch": "near_transfer_fail",
+      "stage": "near_remediation",
+      "passed": true
+    },
+    {
+      "case": "near_transfer_pass",
+      "branch": "near_transfer_pass",
+      "stage": "far_transfer",
+      "passed": true
+    },
+    {
+      "case": "far_transfer_fail",
+      "branch": "far_transfer_fail",
+      "stage": "transfer_insufficient",
+      "passed": true
+    },
+    {
+      "case": "far_transfer_pass",
+      "branch": "far_transfer_pass",
+      "stage": "finished",
+      "passed": true
+    }
+  ],
+  "database": {
+    "tutor_turns": 46,
+    "agent_runs": 33,
+    "agent_tool_calls": 33,
+    "cognitive_updates": 292,
+    "review_plans": 137
+  }
+}

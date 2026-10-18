@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "card_counts": {
+    "语文": 18,
+    "数学": 48,
+    "英语": 18,
+    "物理": 38,
+    "化学": 18,
+    "生物": 18,
+    "历史": 33,
+    "地理": 18,
+    "道德与法治": 18,
+    "思想政治": 18
+  },
+  "required_fields": [
+    "chapter",
+    "common_misconceptions",
+    "definition",
+    "formulas",
+    "grade",
+    "prerequisites",
+    "related_knowledge",
+    "teaching_prompts",
+    "visualization_types",
+    "worked_example"
+  ],
+  "search_hit": "math.linear_equation",
+  "prerequisite_count": 1,
+  "next_count": 1,
+  "graph": {
+    "nodes": 7,
+    "links": 84,
+    "evidence": 78
+  },
+  "database": {
+    "subjects": {
+      "思想政治": 18,
+      "化学": 18,
+      "物理": 38,
+      "道德与法治": 18,
+      "数学": 48,
+      "语文": 18,
+      "英语": 18,
+      "历史": 33,
+      "地理": 18,
+      "生物": 18
+    },
+    "relations": 62,
+    "agent_codes": [
+      "curr.数学.初一.1",
+      "curr.数学.初一.2",
+      "curr.数学.初一.3"
+    ],
+    "agent_query_recorded": true,
+    "matched_cards": 3
+  }
+}

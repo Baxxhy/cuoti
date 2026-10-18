@@ -1,0 +1,273 @@
+{
+  "question_assets": {
+    "sha256": "",
+    "role": null,
+    "bbox": [],
+    "description": null
+  },
+  "ocr_runs": {
+    "provider": "qwen",
+    "raw_result": {},
+    "confidence": 0.0,
+    "stream": "qwen_crop",
+    "status": "completed",
+    "model_name": "",
+    "duration_ms": 0,
+    "error": null
+  },
+  "problem_analyses": {
+    "problem_type": "综合题",
+    "known_conditions": [],
+    "goal": "",
+    "knowledge_points": [],
+    "prerequisites": [],
+    "final_answer": "",
+    "verified": false,
+    "raw_result": {}
+  },
+  "reference_steps": {
+    "expression": null,
+    "explanation": "",
+    "math_valid": false,
+    "uses_condition": true
+  },
+  "diagnoses": {
+    "first_error_step": null,
+    "first_error_text": "",
+    "error_type": "unknown",
+    "root_misconception": "",
+    "propagated_errors": [],
+    "strategy_candidates": [],
+    "confidence": 0.0,
+    "error_location": "",
+    "missing_prerequisites": [],
+    "recommended_strategy": "",
+    "user_confirmed": false,
+    "correction": {}
+  },
+  "diagnosis_evidence": {
+    "reference_step_id": null,
+    "student_step_id": null,
+    "alignment": "unmatched",
+    "equivalent": false,
+    "uses_condition": false,
+    "is_first_error": false,
+    "propagated": false,
+    "math_valid": false,
+    "metadata_json": {}
+  },
+  "teacher_marks": {
+    "mark_type": "comment",
+    "comment": "",
+    "bbox": [],
+    "confidence": 0.0,
+    "source": "qwen_vision"
+  },
+  "processing_jobs": {
+    "kind": "ingest",
+    "status": "pending",
+    "progress": 0,
+    "error": null
+  },
+  "mastery_states": {
+    "mastery_score": 0.0,
+    "confidence": 0.0,
+    "evidence_count": 0,
+    "near_transfer_rate": 0.0,
+    "far_transfer_rate": 0.0,
+    "forgetting_risk": 0.5,
+    "last_evidence_at": null,
+    "update_reason": ""
+  },
+  "review_plans": {
+    "interval_days": 1,
+    "reason": "首次修复后巩固",
+    "status": "pending"
+  },
+  "questions": {
+    "subject": "数学",
+    "grade": null,
+    "title": "新错题",
+    "question_text": "",
+    "student_answer": null,
+    "status": "processing",
+    "confirmed": false,
+    "favorite": false,
+    "tags": [],
+    "formulas": [],
+    "options": [],
+    "question_type": "综合题",
+    "knowledge_points": []
+  },
+  "tutor_sessions": {
+    "stage": "understanding",
+    "hint_level": 0,
+    "turn_count": 0,
+    "mastery_score": 0.0,
+    "state": {},
+    "status": "active"
+  },
+  "tutor_turns": {
+    "stage": "understanding",
+    "metadata_json": {}
+  },
+  "variant_questions": {
+    "transfer_type": "near",
+    "explanation": "",
+    "reference_solution": [],
+    "verified": false,
+    "generation_metadata": {}
+  },
+  "agent_runs": {
+    "session_id": null,
+    "status": "completed",
+    "result": {}
+  },
+  "agent_tool_calls": {
+    "input_json": {},
+    "output_json": {}
+  },
+  "knowledge_points": {
+    "content": {}
+  },
+  "user_question_knowledge_links": {
+    "role": "primary",
+    "confidence": 0.0,
+    "mapping_method": "analysis_match",
+    "evidence_text": ""
+  },
+  "dataset_questions": {
+    "split": "",
+    "grade": "",
+    "title": "",
+    "question_type": "综合题",
+    "options": [],
+    "answer": [],
+    "solution": "",
+    "knowledge_points": [],
+    "image_paths": [],
+    "difficulty": "",
+    "source_metadata": {},
+    "has_answer": false,
+    "has_solution": false,
+    "answer_verified": false,
+    "quality_status": "pending",
+    "usable_for_practice": false,
+    "usable_for_auto_grade": false
+  },
+  "dataset_sources": {
+    "version": "",
+    "homepage": "",
+    "license": "",
+    "local_path": "",
+    "total_items": 0,
+    "imported_items": 0,
+    "source_metadata": {},
+    "last_imported_at": null
+  },
+  "dataset_practice_attempts": {
+    "knowledge_id": null,
+    "student_answer": "",
+    "correct": false,
+    "duration_seconds": 0,
+    "grading_details": {}
+  },
+  "practice_recommendations": {
+    "retrieval_rank": 0,
+    "retrieval_trace": {}
+  },
+  "review_records": {
+    "correct": false,
+    "student_answer": "",
+    "expected_answer": "",
+    "feedback": "",
+    "score": 0,
+    "grading_details": {}
+  },
+  "assignment_attempts": {
+    "answer": "",
+    "steps": [],
+    "handwriting_asset_ref": null,
+    "grading_details": {},
+    "verdict": "review_required",
+    "status": "submitted",
+    "version": 1
+  },
+  "teacher_questions": {
+    "source_type": "manual",
+    "standard_answer": "",
+    "reference_steps": [],
+    "scoring_points": [],
+    "difficulty": "",
+    "allow_auto_grade": true,
+    "require_handwriting": false,
+    "status": "draft"
+  },
+  "teacher_audit_logs": {
+    "before_json": {},
+    "after_json": {},
+    "reason": ""
+  },
+  "teacher_class_students": {},
+  "guardian_student_links": {},
+  "assignment_students": {
+    "status": "pending",
+    "latest_attempt_id": null
+  },
+  "question_assignments": {
+    "class_id": null,
+    "title": "练习任务",
+    "due_at": null,
+    "settings": {},
+    "status": "active"
+  },
+  "teacher_review_results": {
+    "score": null,
+    "first_key_error": "",
+    "error_type": "",
+    "propagated_error": false,
+    "student_hint": "",
+    "next_task": "",
+    "mastered_steps": [],
+    "allow_learning_update": false,
+    "evidence_snapshot": {},
+    "learning_snapshot": {},
+    "supersedes_id": null,
+    "revoked_at": null
+  },
+  "teacher_review_tasks": {
+    "source_type": "assignment_attempt",
+    "status": "pending",
+    "reason_codes": [],
+    "ai_result": {},
+    "rule_result": {},
+    "confidence": 0.0,
+    "has_conflict": false,
+    "assigned_teacher_id": null,
+    "version": 1,
+    "learning_applied": false
+  },
+  "teacher_classes": {
+    "grade": ""
+  },
+  "cognitive_updates": {
+    "question_id": null,
+    "old_value": 0.0,
+    "new_value": 0.0,
+    "evidence": {},
+    "reason": ""
+  },
+  "misconception_states": {
+    "probability": 0.5,
+    "evidence_count": 1,
+    "status": "active",
+    "related_question_count": 1,
+    "successful_strategy": "",
+    "failed_strategy": "",
+    "first_seen_at": null,
+    "last_seen_at": null
+  },
+  "knowledge_relations": {
+    "relation_type": "prerequisite"
+  }
+}

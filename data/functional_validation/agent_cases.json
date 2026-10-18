@@ -1,0 +1,62 @@
+[
+  {
+    "case_id": "agent-01",
+    "name": "完全不会",
+    "expected_branch": "completely_unknown"
+  },
+  {
+    "case_id": "agent-02",
+    "name": "部分正确",
+    "expected_branch": "partial_correct"
+  },
+  {
+    "case_id": "agent-03",
+    "name": "重复相同错误",
+    "expected_branch": "repeated_error"
+  },
+  {
+    "case_id": "agent-04",
+    "name": "出现新错误",
+    "expected_branch": "new_error"
+  },
+  {
+    "case_id": "agent-05",
+    "name": "直接索要答案",
+    "expected_branch": "answer_requested"
+  },
+  {
+    "case_id": "agent-06",
+    "name": "答案正确但解释错误",
+    "expected_branch": "correct_but_unclear"
+  },
+  {
+    "case_id": "agent-07",
+    "name": "教回失败",
+    "expected_branch": "teach_back_fail"
+  },
+  {
+    "case_id": "agent-08",
+    "name": "教回通过",
+    "expected_branch": "teach_back_pass"
+  },
+  {
+    "case_id": "agent-09",
+    "name": "近迁移失败",
+    "expected_branch": "near_transfer_fail"
+  },
+  {
+    "case_id": "agent-10",
+    "name": "近迁移通过",
+    "expected_branch": "near_transfer_pass"
+  },
+  {
+    "case_id": "agent-11",
+    "name": "远迁移失败",
+    "expected_branch": "far_transfer_fail"
+  },
+  {
+    "case_id": "agent-12",
+    "name": "远迁移通过",
+    "expected_branch": "far_transfer_pass"
+  }
+]

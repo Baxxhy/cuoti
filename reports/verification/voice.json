@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "source_text": "因为等式两边同时减去相同的数，所以移项表现为变号。",
+  "transcript": "因为等式两边同时减去相同的数,所以一向表现为变号。",
+  "stt": {
+    "language": "zh",
+    "language_probability": 1,
+    "audio_duration_seconds": 5.28,
+    "duration_ms": 2178,
+    "segment_count": 1,
+    "model": "faster-whisper-small"
+  },
+  "tts": {
+    "model": "edge-tts",
+    "bytes": 33552,
+    "sha256": "826c1b22aa51236f96298ea05bc8564598efd51440db07d66bd5183cd0e20e7a"
+  },
+  "database": {
+    "records_for_user": 15,
+    "stt_model": "faster-whisper-small",
+    "tts_model": "edge-tts",
+    "stt_audio_saved": true,
+    "tts_audio_saved": true
+  },
+  "browser_fallback_used": false
+}

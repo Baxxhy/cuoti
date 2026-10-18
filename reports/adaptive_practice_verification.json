@@ -1,0 +1,352 @@
+{
+  "generated_at": "2026-08-09T23:34:46.514505+08:00",
+  "models": {
+    "embedding": "BAAI/bge-m3",
+    "dimension": 1024,
+    "sparse": "BGE-M3 lexical weights",
+    "reranker": "BAAI/bge-reranker-v2-m3",
+    "fusion": "Qdrant RRF"
+  },
+  "counts": {
+    "total": 20839,
+    "usable_for_practice": 12817,
+    "usable_for_auto_grade": 12817,
+    "has_image": 6999,
+    "no_answer_isolated": 4348,
+    "mapped_questions": 20839,
+    "mapping_coverage": 1.0,
+    "qdrant_indexed": 12817
+  },
+  "by_subject": {
+    "化学": 876,
+    "历史": 814,
+    "地理": 668,
+    "思想政治": 797,
+    "数学": 15525,
+    "物理": 681,
+    "生物": 878,
+    "语文": 600
+  },
+  "by_grade": {
+    "七年级": 2209,
+    "九年级": 2393,
+    "八年级": 1733,
+    "初中": 3054,
+    "高一": 2871,
+    "高三": 2492,
+    "高中": 2929,
+    "高二": 3158
+  },
+  "by_source": {
+    "cmm-math": 14856,
+    "cmmu": 1675,
+    "m3ke": 4308
+  },
+  "subject_checks": {
+    "数学": {
+      "status": "passed",
+      "direct_target_relevance": true,
+      "sample": {
+        "question_id": "2824ba6f-885c-4b35-8118-932da560accc",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "选择题",
+        "stem": "已知二次函数 $f(x)=x^{2}+b x+c$, 且 $f(x+2)$ 是偶函数, 若满足 $f(2-a)>f(4)$, 则实数 $a$ 的取值范围是（ ）",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "二次函数",
+          "二次函数",
+          "参数讨论"
+        ],
+        "dense_rank": 1,
+        "sparse_rank": 13,
+        "fusion_rank": 1,
+        "reranker_score": 0.73735,
+        "structure_similarity": 0.5,
+        "mode_score": 0.94245
+      }
+    },
+    "物理": {
+      "status": "passed",
+      "direct_target_relevance": true,
+      "sample": {
+        "question_id": "89d08a6e-7048-4e3a-b819-028b82f0919f",
+        "source_dataset": "cmmu",
+        "subject": "物理",
+        "grade": "高中",
+        "question_type": "multiple-choice",
+        "stem": "如图所示, 质量为 $m$ 的物块在倾角为 $\\theta$ 的斜面上加速下滑，物块与斜面间的动摩擦因数为 $\\mu$ 。下列说法 正确的是 ( )",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "力与受力分析"
+        ],
+        "dense_rank": 1,
+        "sparse_rank": 1,
+        "fusion_rank": 1,
+        "reranker_score": 0.34389,
+        "structure_similarity": 0.0,
+        "mode_score": 0.53056
+      }
+    },
+    "化学": {
+      "status": "limited_coverage",
+      "direct_target_relevance": false,
+      "sample": {
+        "question_id": "55666af2-34d1-4017-86dd-55a4a3d393cb",
+        "source_dataset": "cmmu",
+        "subject": "化学",
+        "grade": "高中",
+        "question_type": "multiple-choice",
+        "stem": "某同学拟用硫铁矿焙烧后的烧渣(主要成分为$${Fe_{2}O}$$、$${SiO_{2}}$$、$${Al_{2}O_{3}}$$，不考虑其他杂质)制取七水合硫酸亚铁$${(FeSO_{4}⋅7H_{2}O)}$$，设计了如下流程：下列说法错误的是()",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "物质变化观察"
+        ],
+        "dense_rank": 16,
+        "sparse_rank": 3,
+        "fusion_rank": 4,
+        "reranker_score": 0.39624,
+        "structure_similarity": 0.5,
+        "mode_score": 0.57313
+      },
+      "reason": "现有三套数据能返回化学可判分题，但没有命中该指定细分知识点的直接题面证据。"
+    },
+    "英语": {
+      "status": "not_testable",
+      "reason": "CMM-Math、M3KE、CMMU 当前导入数据中没有英语题；按要求未新增数据、未伪造答案。",
+      "dataset_count": 0
+    }
+  },
+  "samples": {
+    "reinforce": [
+      {
+        "question_id": "2824ba6f-885c-4b35-8118-932da560accc",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "选择题",
+        "stem": "已知二次函数 $f(x)=x^{2}+b x+c$, 且 $f(x+2)$ 是偶函数, 若满足 $f(2-a)>f(4)$, 则实数 $a$ 的取值范围是（ ）",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "二次函数",
+          "二次函数",
+          "参数讨论"
+        ],
+        "dense_rank": 1,
+        "sparse_rank": 13,
+        "fusion_rank": 1,
+        "reranker_score": 0.73735,
+        "structure_similarity": 0.5,
+        "mode_score": 0.94245
+      },
+      {
+        "question_id": "b728390e-0667-42e3-a33a-8354c5c97c1d",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "选择题",
+        "stem": "已知函数 $\\mathrm{f}(\\mathrm{x})=4 \\mathrm{x}^{2}-\\mathrm{kx}-8$ 在区间 $(5,20)$ 上既没有最大值也没有最小值, 则实数 $\\mathrm{k}$ 的取值范围是",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "平面直角坐标系",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": null,
+        "sparse_rank": 1,
+        "fusion_rank": 2,
+        "reranker_score": 0.77046,
+        "structure_similarity": 0.0,
+        "mode_score": 0.90026
+      },
+      {
+        "question_id": "379de40d-5c5d-45ed-a2cb-d21f0cd2ce9a",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "解答题",
+        "stem": "已知函数 $f(x)=4 x^{2}-4 a x+a+2(a \\in \\mathbf{R})$, 方程 $f(x)=0$ 在 $(1,2)$ 上有实根, 求实数 $a$ 的取值范围.",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "去括号法则",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": null,
+        "sparse_rank": 2,
+        "fusion_rank": 3,
+        "reranker_score": 0.71123,
+        "structure_similarity": 0.5,
+        "mode_score": 0.89942
+      },
+      {
+        "question_id": "1e54d141-074d-45c8-8507-253ac53ae550",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "选择题",
+        "stem": "已知函数 $f(x)=\\left\\{\\begin{array}{l}e^{x-1}, x<2, \\\\ \\log _{3}\\left(x^{2}-1\\right), x \\geq 2,\\end{array}\\right.$ 若 $f(a) \\geq 1$, 则 $a$ 的取值范围是 ( )",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "平面直角坐标系",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": 22,
+        "sparse_rank": 3,
+        "fusion_rank": 5,
+        "reranker_score": 0.7074,
+        "structure_similarity": 0.33333,
+        "mode_score": 0.85654
+      },
+      {
+        "question_id": "39d97b79-3d9d-431b-b690-fda8463598e7",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "选择题",
+        "stem": "已知函数 $f(x)=\\left\\{\\begin{array}{l}-x^{2}+2 x-1, x \\leq 1 \\\\ |x-1|, x>1\\end{array}\\right.$, 若 $f\\left(a^{2}-4\\right)>f(3 a),$, 则实数 $a$ 的取值范围是 $($ )",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "平面直角坐标系",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": null,
+        "sparse_rank": 12,
+        "fusion_rank": 27,
+        "reranker_score": 0.75037,
+        "structure_similarity": 0.33333,
+        "mode_score": 0.85442
+      }
+    ],
+    "variation": [
+      {
+        "question_id": "b728390e-0667-42e3-a33a-8354c5c97c1d",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "选择题",
+        "stem": "已知函数 $\\mathrm{f}(\\mathrm{x})=4 \\mathrm{x}^{2}-\\mathrm{kx}-8$ 在区间 $(5,20)$ 上既没有最大值也没有最小值, 则实数 $\\mathrm{k}$ 的取值范围是",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "平面直角坐标系",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": null,
+        "sparse_rank": 1,
+        "fusion_rank": 2,
+        "reranker_score": 0.77046,
+        "structure_similarity": 0.0,
+        "mode_score": 1.18494
+      },
+      {
+        "question_id": "9f1740c0-8f1e-4381-a802-8f8b97348955",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "选择题",
+        "stem": "已知函数 $f(x)=\\left\\{\\begin{array}{l}\\mathrm{e}^{x}, x \\leq 0, \\\\ \\ln x, x>0,\\end{array} g(x)=f(x)+x+a\\right.$. 若 $g(x)$ 存在 2 个零点, 则 $a$ 的取值范围是",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "平面直角坐标系",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": 5,
+        "sparse_rank": 9,
+        "fusion_rank": 6,
+        "reranker_score": 0.72584,
+        "structure_similarity": 0.0,
+        "mode_score": 1.10238
+      },
+      {
+        "question_id": "14576a26-b8bd-4895-b293-d7073a628ca2",
+        "source_dataset": "cmmu",
+        "subject": "数学",
+        "grade": "高中",
+        "question_type": "multiple-choice",
+        "stem": "已知函数 $f（x）=\\left\\{\\begin{array}{l}e^{x}, x \\leqslant 0 \\\\ \\ln x, x>0\\end{array}, g（x）=f（x）+x+a\\right.$. 若 $g（x）$ 存在 2 个零点, 则 $a$ 的取值范围是 $（\\quad）$",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "平面直角坐标系",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": 6,
+        "sparse_rank": 14,
+        "fusion_rank": 9,
+        "reranker_score": 0.7238,
+        "structure_similarity": 0.0,
+        "mode_score": 1.09084
+      },
+      {
+        "question_id": "901063c4-c974-4451-92d0-5023564faf73",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "选择题",
+        "stem": "设函数 $f(x)=\\left\\{\\begin{array}{ll}a-3^{x}, & x \\leq 0 \\\\ 2 x+1, & x>0\\end{array}\\right.$, 若函数 $f(x)$ 有最小值, 则实数 $a$ 的取值范围是 ( )",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "平面直角坐标系",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": null,
+        "sparse_rank": 19,
+        "fusion_rank": 37,
+        "reranker_score": 0.74317,
+        "structure_similarity": 0.0,
+        "mode_score": 1.07229
+      },
+      {
+        "question_id": "409763f0-99ee-4bd7-ad7b-a475827da150",
+        "source_dataset": "cmm-math",
+        "subject": "数学",
+        "grade": "高一",
+        "question_type": "解答题",
+        "stem": "已知函数 $f(x)=\\left\\{-\\frac{1}{2} x+6, x>10\\right.$ 若 $a, b, c$ 互不相等, 且 $f(a)=f(b)=f(c)$, 则 $a b c$ 的取值范围是 \\$ \\qquad \\$ .",
+        "has_official_answer": true,
+        "auto_grade": true,
+        "knowledge_points": [
+          "平面直角坐标系",
+          "参数讨论",
+          "边界条件"
+        ],
+        "dense_rank": 19,
+        "sparse_rank": 23,
+        "fusion_rank": 18,
+        "reranker_score": 0.70912,
+        "structure_similarity": 0.0,
+        "mode_score": 1.06068
+      }
+    ]
+  },
+  "assertions": {
+    "mysql_total_is_20839": true,
+    "qdrant_matches_usable": true,
+    "all_questions_mapped": true,
+    "math_never_returns_english": true,
+    "all_samples_have_official_answers": true,
+    "high_school_query_has_no_primary_school": true,
+    "modes_have_different_first_choice": true,
+    "modes_are_not_top1_top2_aliases": true
+  },
+  "coverage_complete": false,
+  "passed": true
+}

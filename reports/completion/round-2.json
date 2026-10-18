@@ -1,0 +1,1994 @@
+{
+  "round": 2,
+  "passed": true,
+  "generated_at": "2026-08-07T08:52:27+00:00",
+  "start_commit": "8934c5a69cf91885aa5dd6fa1c7046f187d8180e",
+  "verified_commit": "aa51934d86ec0cead921b6ec78acc2e7f144c048",
+  "git_status": "M backend/app/main.py\n M backend/app/providers/api_pool.py\n M backend/config/api_pool.json\n M backend/tests/test_core.py\n M docs/CURRENT_AUDIT.md\n M docs/FUNCTION_GAP_MATRIX.md\n M reports/completion/round-1.json\n M reports/completion/round-1.md\n M reports/verification/agent_branches.json\n M reports/verification/dual_stream.json\n M reports/verification/project_audit.json\n M scripts/audit_project.py\n M scripts/build_completion_report.py",
+  "commits": [
+    "aa51934 docs: 更新Qwen统一模型证据",
+    "ad547a1 fix: 统一API池全部使用Qwen模型",
+    "29ba1a0 docs: 更新最终交付元数据",
+    "ef1372d docs: 固化最终功能和运行证据",
+    "3e8abb9 test: 完成三轮全量回归",
+    "1ba5a4b test: 增加全量回归与完成报告入口",
+    "0918e99 test: 完成数据库与六案例端到端验收",
+    "c11844a test: 增加固定功能验收数据",
+    "75dfb09 feat: 完成组卷和30页面角色视图",
+    "f6b96a5 feat: 接入真实Whisper与语音合成",
+    "863954d feat: 实现16类受控教学可视化",
+    "59e1161 feat: 实现知识库与认知错因图",
+    "a07fc7b feat: 完善教学Agent完整分支",
+    "d522cee feat: 完善OCR确认和路径对齐",
+    "5c1d5ad feat: 接入真实PaddleOCR与双流证据",
+    "3848628 audit: 审计当前功能和缺口"
+  ],
+  "logical_model": "Qwen3.6-35B-A3B",
+  "actual_models": [
+    "Qwen3.6-35B-A3B"
+  ],
+  "api_pool": {
+    "total": 13,
+    "text": 7,
+    "vision": 6,
+    "last_status": "ok",
+    "recent_rotation": [
+      "e922c5810616",
+      "88cf30568bc9",
+      "e922c5810616",
+      "88cf30568bc9",
+      "baa922e09644",
+      "578c136624b1"
+    ]
+  },
+  "mysql": {
+    "table_count": 37,
+    "business_counts": {
+      "users": 40,
+      "student_profiles": 37,
+      "guardian_student_links": 5,
+      "teacher_classes": 1,
+      "teacher_class_students": 5,
+      "questions": 47,
+      "question_assets": 170,
+      "processing_jobs": 43,
+      "ocr_runs": 188,
+      "question_blocks": 355,
+      "student_works": 49,
+      "student_steps": 87,
+      "teacher_marks": 35,
+      "problem_analyses": 43,
+      "reference_steps": 155,
+      "diagnoses": 38,
+      "diagnosis_evidence": 134,
+      "tutor_sessions": 133,
+      "tutor_turns": 648,
+      "agent_runs": 599,
+      "agent_tool_calls": 599,
+      "visualization_specs": 104,
+      "visualization_interactions": 104,
+      "variant_questions": 107,
+      "variant_attempts": 86,
+      "knowledge_points": 65,
+      "knowledge_relations": 62,
+      "mastery_states": 40,
+      "misconception_states": 41,
+      "cognitive_updates": 232,
+      "review_plans": 113,
+      "review_records": 30,
+      "papers": 39,
+      "paper_items": 47,
+      "voice_records": 13,
+      "export_jobs": 57
+    },
+    "orphan_total": 0
+  },
+  "results": {
+    "images": {
+      "total": 24,
+      "completed": 24,
+      "threshold": 22,
+      "results": [
+        {
+          "case_id": "image-01",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9839,
+          "duration_ms": 7343,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-02",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9828,
+          "duration_ms": 7042,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-03",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9976,
+          "duration_ms": 7960,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-04",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9842,
+          "duration_ms": 7249,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-05",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9925,
+          "duration_ms": 7339,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-06",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9971,
+          "duration_ms": 7223,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-07",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9806,
+          "duration_ms": 7174,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-08",
+          "completed": true,
+          "block_count": 4,
+          "confidence": 0.9981,
+          "duration_ms": 6308,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-09",
+          "completed": true,
+          "block_count": 6,
+          "confidence": 0.996,
+          "duration_ms": 7167,
+          "red_ratio": 0.0043,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-10",
+          "completed": true,
+          "block_count": 6,
+          "confidence": 0.9968,
+          "duration_ms": 10420,
+          "red_ratio": 0.0043,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-11",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9983,
+          "duration_ms": 7935,
+          "red_ratio": 0.0043,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-12",
+          "completed": true,
+          "block_count": 6,
+          "confidence": 0.9888,
+          "duration_ms": 7127,
+          "red_ratio": 0.0043,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-13",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9829,
+          "duration_ms": 7493,
+          "red_ratio": 0.0043,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-14",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9876,
+          "duration_ms": 6666,
+          "red_ratio": 0.0043,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-15",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9762,
+          "duration_ms": 7714,
+          "red_ratio": 0.0043,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-16",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9971,
+          "duration_ms": 7343,
+          "red_ratio": 0.0043,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-17",
+          "completed": true,
+          "block_count": 6,
+          "confidence": 0.9982,
+          "duration_ms": 8028,
+          "red_ratio": 0.0042,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-18",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9985,
+          "duration_ms": 7404,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-19",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9851,
+          "duration_ms": 6616,
+          "red_ratio": 0.0066,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-20",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9989,
+          "duration_ms": 7093,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-21",
+          "completed": true,
+          "block_count": 5,
+          "confidence": 0.9791,
+          "duration_ms": 7808,
+          "red_ratio": 0.0041,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-22",
+          "completed": true,
+          "block_count": 3,
+          "confidence": 0.9867,
+          "duration_ms": 6860,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-23",
+          "completed": true,
+          "block_count": 4,
+          "confidence": 0.9962,
+          "duration_ms": 7426,
+          "red_ratio": 0.0066,
+          "original_preserved": true
+        },
+        {
+          "case_id": "image-24",
+          "completed": true,
+          "block_count": 4,
+          "confidence": 0.7394,
+          "duration_ms": 6756,
+          "red_ratio": 0.0,
+          "original_preserved": true
+        }
+      ]
+    },
+    "diagnosis": {
+      "case_count": 24,
+      "first_error_step_pass": 24,
+      "error_type_pass": 24
+    },
+    "agent": {
+      "case_count": 12
+    },
+    "visualizations": {
+      "type_count": 16
+    },
+    "live_e2e": {
+      "case_count": 6,
+      "passed_count": 6,
+      "threshold": 6
+    },
+    "pages": {
+      "route_count": 30,
+      "loads": 60,
+      "placeholder_hits": 0,
+      "page_errors": 0
+    },
+    "voice": {
+      "stt": {
+        "language": "zh",
+        "language_probability": 1,
+        "audio_duration_seconds": 5.28,
+        "duration_ms": 2178,
+        "segment_count": 1,
+        "model": "faster-whisper-small"
+      },
+      "tts": {
+        "model": "edge-tts",
+        "bytes": 33552,
+        "sha256": "826c1b22aa51236f96298ea05bc8564598efd51440db07d66bd5183cd0e20e7a"
+      }
+    },
+    "roles": {
+      "guardian_student_count": 5,
+      "class_student_count": 5
+    },
+    "exports": {
+      "question": {
+        "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-question.pdf",
+        "bytes": 36198
+      },
+      "answer": {
+        "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-answer.pdf",
+        "bytes": 36509
+      },
+      "excel": {
+        "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-excel.xlsx",
+        "bytes": 5103
+      }
+    }
+  },
+  "known_failures_and_repairs": [],
+  "evidence": {
+    "project_audit": {
+      "passed": true,
+      "git": {
+        "head": "aa51934d86ec0cead921b6ec78acc2e7f144c048",
+        "status_entries": 11
+      },
+      "api_pool": {
+        "entry_count": 13,
+        "disabled_entry_count": 1,
+        "model_field_count": 13,
+        "allowed_provider": "CSU",
+        "logical_model": "Qwen3.6-35B-A3B",
+        "actual_models": [
+          "Qwen3.6-35B-A3B"
+        ],
+        "legacy_model_count": 0,
+        "non_logical_model_count": 0
+      },
+      "frontend": {
+        "route_count": 30,
+        "vue_page_count": 18,
+        "placeholder_files": []
+      },
+      "database": {
+        "engine": "mysql",
+        "business_table_count": 36,
+        "total_table_count": 37,
+        "alembic_version": "20260807_0003",
+        "counts": {
+          "users": 46,
+          "student_profiles": 43,
+          "guardian_student_links": 5,
+          "teacher_classes": 1,
+          "teacher_class_students": 5,
+          "questions": 55,
+          "question_assets": 202,
+          "processing_jobs": 51,
+          "ocr_runs": 228,
+          "question_blocks": 431,
+          "student_works": 57,
+          "student_steps": 101,
+          "teacher_marks": 43,
+          "problem_analyses": 49,
+          "reference_steps": 181,
+          "diagnoses": 44,
+          "diagnosis_evidence": 160,
+          "tutor_sessions": 178,
+          "tutor_turns": 843,
+          "agent_runs": 776,
+          "agent_tool_calls": 776,
+          "visualization_specs": 127,
+          "visualization_interactions": 127,
+          "variant_questions": 135,
+          "variant_attempts": 110,
+          "knowledge_points": 65,
+          "knowledge_relations": 62,
+          "mastery_states": 46,
+          "misconception_states": 47,
+          "cognitive_updates": 292,
+          "review_plans": 137,
+          "review_records": 36,
+          "papers": 46,
+          "paper_items": 56,
+          "voice_records": 15,
+          "export_jobs": 66
+        },
+        "empty_tables": []
+      },
+      "scripts": {
+        "required": 16,
+        "present": 16
+      }
+    },
+    "functional_data": {
+      "passed": true,
+      "dataset": "MindTrace-Functional-Validation-v1",
+      "images": 24,
+      "subjects": {
+        "数学": 16,
+        "物理": 5,
+        "历史": 3
+      },
+      "interference": {
+        "clear": 8,
+        "annotated": 8,
+        "degraded": 8
+      },
+      "red_annotation_cases": 12,
+      "diagnoses": 24,
+      "agent_branches": 12,
+      "e2e": 6
+    },
+    "paddle_ocr": {
+      "passed": true,
+      "model_name": "PP-OCRv6_medium_det+PP-OCRv6_medium_rec",
+      "model_path": "/root/.paddlex/official_models",
+      "device": "cpu",
+      "block_count": 4,
+      "confidence": 0.951,
+      "duration_ms": 4876,
+      "recognized_text": "解方程：2x+3=11\n学生：2x=11+3\n移项要变号\nx = 7",
+      "functional_dataset": {
+        "total": 24,
+        "completed": 24,
+        "threshold": 22,
+        "results": [
+          {
+            "case_id": "image-01",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9839,
+            "duration_ms": 7343,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-02",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9828,
+            "duration_ms": 7042,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-03",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9976,
+            "duration_ms": 7960,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-04",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9842,
+            "duration_ms": 7249,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-05",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9925,
+            "duration_ms": 7339,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-06",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9971,
+            "duration_ms": 7223,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-07",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9806,
+            "duration_ms": 7174,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-08",
+            "completed": true,
+            "block_count": 4,
+            "confidence": 0.9981,
+            "duration_ms": 6308,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-09",
+            "completed": true,
+            "block_count": 6,
+            "confidence": 0.996,
+            "duration_ms": 7167,
+            "red_ratio": 0.0043,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-10",
+            "completed": true,
+            "block_count": 6,
+            "confidence": 0.9968,
+            "duration_ms": 10420,
+            "red_ratio": 0.0043,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-11",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9983,
+            "duration_ms": 7935,
+            "red_ratio": 0.0043,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-12",
+            "completed": true,
+            "block_count": 6,
+            "confidence": 0.9888,
+            "duration_ms": 7127,
+            "red_ratio": 0.0043,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-13",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9829,
+            "duration_ms": 7493,
+            "red_ratio": 0.0043,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-14",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9876,
+            "duration_ms": 6666,
+            "red_ratio": 0.0043,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-15",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9762,
+            "duration_ms": 7714,
+            "red_ratio": 0.0043,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-16",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9971,
+            "duration_ms": 7343,
+            "red_ratio": 0.0043,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-17",
+            "completed": true,
+            "block_count": 6,
+            "confidence": 0.9982,
+            "duration_ms": 8028,
+            "red_ratio": 0.0042,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-18",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9985,
+            "duration_ms": 7404,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-19",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9851,
+            "duration_ms": 6616,
+            "red_ratio": 0.0066,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-20",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9989,
+            "duration_ms": 7093,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-21",
+            "completed": true,
+            "block_count": 5,
+            "confidence": 0.9791,
+            "duration_ms": 7808,
+            "red_ratio": 0.0041,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-22",
+            "completed": true,
+            "block_count": 3,
+            "confidence": 0.9867,
+            "duration_ms": 6860,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-23",
+            "completed": true,
+            "block_count": 4,
+            "confidence": 0.9962,
+            "duration_ms": 7426,
+            "red_ratio": 0.0066,
+            "original_preserved": true
+          },
+          {
+            "case_id": "image-24",
+            "completed": true,
+            "block_count": 4,
+            "confidence": 0.7394,
+            "duration_ms": 6756,
+            "red_ratio": 0.0,
+            "original_preserved": true
+          }
+        ]
+      }
+    },
+    "dual_stream": {
+      "passed": true,
+      "question_id": "bf976abe-5988-47fc-8306-f944608c28d2",
+      "providers": [
+        "fused",
+        "paddle_clean",
+        "paddle_original",
+        "qwen_clean",
+        "qwen_original"
+      ],
+      "text_entries": 7,
+      "vision_entries": 6,
+      "question_text": "解方程：2x + 3 = 11",
+      "formula_count": 1,
+      "student_step_count": 2,
+      "teacher_mark_count": 1,
+      "layout_block_count": 8,
+      "confidence": 0.9414,
+      "original_sha256_preserved": true
+    },
+    "database_usage": {
+      "passed": true,
+      "flow": {
+        "user_id": "7514d5bd-6339-4123-9e5f-747d4351624c",
+        "question_id": "9f8bbba4-d02f-4725-ad1f-32322c463f86",
+        "job_id": "ba776d91-8ada-40fb-ab4e-edef0d97c14f",
+        "session_id": "5c43da96-2527-4a38-9dfc-5d4870f18094",
+        "visualization_id": "c9869619-831b-487a-9ae9-376d1f0167ab",
+        "attempt_ids": [
+          "4c48cb31-285c-4003-a517-790c0fd2f21e",
+          "67a580f4-32c4-4c04-a299-ffba81f7d3dd"
+        ],
+        "review_record_id": "e151a096-f550-42cc-987a-eaa0f1026827",
+        "paper_id": "43e9fdad-a374-433d-86c2-0a5ec997a8d2",
+        "paper_item_count": 1,
+        "export_path": "/root/Baxxhy/zhiwei/reports/43e9fdad-a374-433d-86c2-0a5ec997a8d2-question.pdf",
+        "streams": [
+          "fused",
+          "paddle_clean",
+          "paddle_original",
+          "qwen_clean",
+          "qwen_original"
+        ],
+        "paddle": true,
+        "qwen_vision": true,
+        "qwen_text": true,
+        "dashboard_questions": 1,
+        "analytics_knowledge": 1
+      },
+      "database": {
+        "table_count": 36,
+        "counts": {
+          "users": 40,
+          "student_profiles": 37,
+          "guardian_student_links": 5,
+          "teacher_classes": 1,
+          "teacher_class_students": 5,
+          "questions": 47,
+          "question_assets": 170,
+          "processing_jobs": 43,
+          "ocr_runs": 188,
+          "question_blocks": 355,
+          "student_works": 49,
+          "student_steps": 87,
+          "teacher_marks": 35,
+          "problem_analyses": 43,
+          "reference_steps": 155,
+          "diagnoses": 38,
+          "diagnosis_evidence": 134,
+          "tutor_sessions": 133,
+          "tutor_turns": 648,
+          "agent_runs": 599,
+          "agent_tool_calls": 599,
+          "visualization_specs": 104,
+          "visualization_interactions": 104,
+          "variant_questions": 107,
+          "variant_attempts": 86,
+          "knowledge_points": 65,
+          "knowledge_relations": 62,
+          "mastery_states": 40,
+          "misconception_states": 41,
+          "cognitive_updates": 232,
+          "review_plans": 113,
+          "review_records": 30,
+          "papers": 39,
+          "paper_items": 47,
+          "voice_records": 13,
+          "export_jobs": 57
+        },
+        "missing_writes": [],
+        "scoped_flow": {
+          "assets": 4,
+          "blocks": 10,
+          "student_steps": 2,
+          "diagnosis_evidence": 4,
+          "tutor_turns": 9,
+          "agent_tools": 9,
+          "variant_attempts": 2,
+          "review_records": 1,
+          "paper_items": 1,
+          "visualization_interactions": 1
+        },
+        "orphans": {
+          "question_assets": 0,
+          "student_steps": 0,
+          "diagnosis_evidence": 0,
+          "tutor_turns": 0,
+          "agent_tool_calls": 0,
+          "paper_items": 0,
+          "variant_attempts": 0
+        }
+      }
+    },
+    "diagnosis": {
+      "passed": true,
+      "case_count": 24,
+      "first_error_step_pass": 24,
+      "error_type_pass": 24,
+      "threshold": 20,
+      "results": [
+        {
+          "case_id": "diagnosis-01",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "sign_error",
+          "predicted_type": "sign_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-02",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "formula_error",
+          "predicted_type": "formula_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-03",
+          "gold_step": 1,
+          "predicted_step": 1,
+          "gold_type": "calculation_error",
+          "predicted_type": "calculation_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-04",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "formula_error",
+          "predicted_type": "formula_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-05",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "condition_omission",
+          "predicted_type": "condition_omission",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-06",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "invalid_transformation",
+          "predicted_type": "invalid_transformation",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-07",
+          "gold_step": 1,
+          "predicted_step": 1,
+          "gold_type": "missing_step",
+          "predicted_type": "missing_step",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-08",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "calculation_error",
+          "predicted_type": "calculation_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-09",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "unit_error",
+          "predicted_type": "unit_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-10",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "concept_error",
+          "predicted_type": "concept_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-11",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "causality_confusion",
+          "predicted_type": "causality_confusion",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-12",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "concept_error",
+          "predicted_type": "concept_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-13",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "sign_error",
+          "predicted_type": "sign_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-14",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "formula_error",
+          "predicted_type": "formula_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-15",
+          "gold_step": 1,
+          "predicted_step": 1,
+          "gold_type": "calculation_error",
+          "predicted_type": "calculation_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-16",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "formula_error",
+          "predicted_type": "formula_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-17",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "condition_omission",
+          "predicted_type": "condition_omission",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-18",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "invalid_transformation",
+          "predicted_type": "invalid_transformation",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-19",
+          "gold_step": 1,
+          "predicted_step": 1,
+          "gold_type": "missing_step",
+          "predicted_type": "missing_step",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-20",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "calculation_error",
+          "predicted_type": "calculation_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-21",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "unit_error",
+          "predicted_type": "unit_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-22",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "concept_error",
+          "predicted_type": "concept_error",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-23",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "causality_confusion",
+          "predicted_type": "causality_confusion",
+          "step_ok": true,
+          "type_ok": true
+        },
+        {
+          "case_id": "diagnosis-24",
+          "gold_step": 0,
+          "predicted_step": 0,
+          "gold_type": "concept_error",
+          "predicted_type": "concept_error",
+          "step_ok": true,
+          "type_ok": true
+        }
+      ]
+    },
+    "agent_branches": {
+      "passed": true,
+      "case_count": 12,
+      "cases": [
+        {
+          "case": "completely_unknown",
+          "branch": "completely_unknown",
+          "stage": "prerequisite",
+          "passed": true
+        },
+        {
+          "case": "partial_correct",
+          "branch": "partial_correct",
+          "stage": "local_hint",
+          "passed": true
+        },
+        {
+          "case": "new_error",
+          "branch": "new_error",
+          "stage": "replan",
+          "passed": true
+        },
+        {
+          "case": "answer_requested",
+          "branch": "answer_requested",
+          "stage": "answer_shown",
+          "passed": true
+        },
+        {
+          "case": "correct_but_unclear",
+          "branch": "correct_but_unclear",
+          "stage": "teach_back",
+          "passed": true
+        },
+        {
+          "case": "repeated_error",
+          "branch": "repeated_error",
+          "stage": "strategy_switch",
+          "passed": true
+        },
+        {
+          "case": "teach_back_fail",
+          "branch": "teach_back_fail",
+          "stage": "teach_back_retry",
+          "passed": true
+        },
+        {
+          "case": "teach_back_pass",
+          "branch": "teach_back_pass",
+          "stage": "near_transfer",
+          "passed": true
+        },
+        {
+          "case": "near_transfer_fail",
+          "branch": "near_transfer_fail",
+          "stage": "near_remediation",
+          "passed": true
+        },
+        {
+          "case": "near_transfer_pass",
+          "branch": "near_transfer_pass",
+          "stage": "far_transfer",
+          "passed": true
+        },
+        {
+          "case": "far_transfer_fail",
+          "branch": "far_transfer_fail",
+          "stage": "transfer_insufficient",
+          "passed": true
+        },
+        {
+          "case": "far_transfer_pass",
+          "branch": "far_transfer_pass",
+          "stage": "finished",
+          "passed": true
+        }
+      ],
+      "database": {
+        "tutor_turns": 46,
+        "agent_runs": 33,
+        "agent_tool_calls": 33,
+        "cognitive_updates": 292,
+        "review_plans": 137
+      }
+    },
+    "visualizations": {
+      "passed": true,
+      "type_count": 16,
+      "types": [
+        "buoyancy",
+        "circle",
+        "coordinate_geometry",
+        "equation_balance",
+        "force_diagram",
+        "history_timeline",
+        "linear_function",
+        "pressure",
+        "projectile_motion",
+        "quadratic_function",
+        "right_triangle",
+        "timeline_map",
+        "triangle",
+        "uniform_acceleration",
+        "uniform_motion",
+        "work_energy"
+      ],
+      "schema_validated": 16,
+      "created_ids": 16,
+      "database": {
+        "specs": 16,
+        "interactions": 16,
+        "agent_tool_calls": 16
+      },
+      "frontend_policy": "Zod whitelist + Canvas; no model code execution"
+    },
+    "knowledge_base": {
+      "passed": true,
+      "card_counts": {
+        "数学": 30,
+        "物理": 20,
+        "历史": 15
+      },
+      "required_fields": [
+        "chapter",
+        "common_misconceptions",
+        "definition",
+        "formulas",
+        "grade",
+        "prerequisites",
+        "related_knowledge",
+        "teaching_prompts",
+        "visualization_types",
+        "worked_example"
+      ],
+      "search_hit": "math.linear_equation",
+      "prerequisite_count": 1,
+      "next_count": 1,
+      "graph": {
+        "nodes": 5,
+        "links": 22,
+        "evidence": 16
+      },
+      "database": {
+        "subjects": {
+          "物理": 20,
+          "数学": 30,
+          "历史": 15
+        },
+        "relations": 62,
+        "agent_codes": [
+          "math.equation_property",
+          "math.linear_equation",
+          "math.transpose"
+        ],
+        "agent_query_recorded": true,
+        "matched_cards": 3
+      }
+    },
+    "voice": {
+      "passed": true,
+      "source_text": "因为等式两边同时减去相同的数，所以移项表现为变号。",
+      "transcript": "因为等式两边同时减去相同的数,所以一向表现为变号。",
+      "stt": {
+        "language": "zh",
+        "language_probability": 1,
+        "audio_duration_seconds": 5.28,
+        "duration_ms": 2178,
+        "segment_count": 1,
+        "model": "faster-whisper-small"
+      },
+      "tts": {
+        "model": "edge-tts",
+        "bytes": 33552,
+        "sha256": "826c1b22aa51236f96298ea05bc8564598efd51440db07d66bd5183cd0e20e7a"
+      },
+      "database": {
+        "records_for_user": 15,
+        "stt_model": "faster-whisper-small",
+        "tts_model": "edge-tts",
+        "stt_audio_saved": true,
+        "tts_audio_saved": true
+      },
+      "browser_fallback_used": false
+    },
+    "papers": {
+      "passed": true,
+      "candidate_count": 11,
+      "paper_id": "3818621d-cfa7-4f8b-824d-5079d3a84dee",
+      "item_count": 3,
+      "scores": [
+        15,
+        16,
+        17
+      ],
+      "reorder_verified": true,
+      "delete_verified": true,
+      "export_history_count": 3,
+      "files": {
+        "question": {
+          "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-question.pdf",
+          "bytes": 36198
+        },
+        "answer": {
+          "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-answer.pdf",
+          "bytes": 36509
+        },
+        "excel": {
+          "path": "/root/Baxxhy/zhiwei/reports/3818621d-cfa7-4f8b-824d-5079d3a84dee-excel.xlsx",
+          "bytes": 5103
+        }
+      }
+    },
+    "parent_teacher": {
+      "passed": true,
+      "guardian_student_count": 5,
+      "class_count": 1,
+      "class_student_count": 5,
+      "student_names": [
+        "小维",
+        "陈一",
+        "周可",
+        "林晓",
+        "孙宁"
+      ],
+      "report_summaries": [
+        {
+          "questions": 11,
+          "completed_sessions": 5,
+          "review_records": 0
+        },
+        {
+          "questions": 1,
+          "completed_sessions": 0,
+          "review_records": 0
+        },
+        {
+          "questions": 1,
+          "completed_sessions": 0,
+          "review_records": 0
+        },
+        {
+          "questions": 1,
+          "completed_sessions": 0,
+          "review_records": 0
+        },
+        {
+          "questions": 1,
+          "completed_sessions": 0,
+          "review_records": 0
+        }
+      ],
+      "mysql_aggregates": true
+    },
+    "pages": {
+      "passed": true,
+      "route_count": 30,
+      "loads": 60,
+      "placeholder_hits": 0,
+      "page_errors": 0,
+      "results": [
+        {
+          "viewport": "mobile",
+          "name": "root",
+          "url": "/",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "login",
+          "url": "/login",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "register",
+          "url": "/register",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "forgot-password",
+          "url": "/forgot-password",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "dashboard",
+          "url": "/dashboard",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "upload",
+          "url": "/upload",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "crop",
+          "url": "/crop/044ed3df-5945-4274-b9fa-5ba8014252a9",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "question",
+          "url": "/questions/044ed3df-5945-4274-b9fa-5ba8014252a9",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "ocr",
+          "url": "/questions/044ed3df-5945-4274-b9fa-5ba8014252a9/ocr",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "diagnosis",
+          "url": "/questions/044ed3df-5945-4274-b9fa-5ba8014252a9/diagnosis",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "tutor",
+          "url": "/tutor/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "visualization",
+          "url": "/visualization/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "teach-back",
+          "url": "/teach-back/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "near-transfer",
+          "url": "/near-transfer/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "far-transfer",
+          "url": "/far-transfer/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "reviews",
+          "url": "/reviews",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "collection",
+          "url": "/collection",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "search",
+          "url": "/search",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "analytics",
+          "url": "/analytics",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "cognition-graph",
+          "url": "/cognition-graph",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "papers",
+          "url": "/papers",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "papers-export",
+          "url": "/papers/export",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "voice",
+          "url": "/voice",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "profile",
+          "url": "/profile",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "guardian",
+          "url": "/guardian",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "guardian-report",
+          "url": "/guardian/students/e0e0d560-2949-41e2-b2e8-ea17f69a5b12",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "teacher-classes",
+          "url": "/teacher/classes",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "teacher-report",
+          "url": "/teacher/students/e0e0d560-2949-41e2-b2e8-ea17f69a5b12",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "system",
+          "url": "/system",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "mobile",
+          "name": "providers",
+          "url": "/providers",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "root",
+          "url": "/",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "login",
+          "url": "/login",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "register",
+          "url": "/register",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "forgot-password",
+          "url": "/forgot-password",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "dashboard",
+          "url": "/dashboard",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "upload",
+          "url": "/upload",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "crop",
+          "url": "/crop/044ed3df-5945-4274-b9fa-5ba8014252a9",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "question",
+          "url": "/questions/044ed3df-5945-4274-b9fa-5ba8014252a9",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "ocr",
+          "url": "/questions/044ed3df-5945-4274-b9fa-5ba8014252a9/ocr",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "diagnosis",
+          "url": "/questions/044ed3df-5945-4274-b9fa-5ba8014252a9/diagnosis",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "tutor",
+          "url": "/tutor/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "visualization",
+          "url": "/visualization/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "teach-back",
+          "url": "/teach-back/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "near-transfer",
+          "url": "/near-transfer/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "far-transfer",
+          "url": "/far-transfer/8b811d03-3f5a-4287-8814-216391f1811a",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "reviews",
+          "url": "/reviews",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "collection",
+          "url": "/collection",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "search",
+          "url": "/search",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "analytics",
+          "url": "/analytics",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "cognition-graph",
+          "url": "/cognition-graph",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "papers",
+          "url": "/papers",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "papers-export",
+          "url": "/papers/export",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "voice",
+          "url": "/voice",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "profile",
+          "url": "/profile",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "guardian",
+          "url": "/guardian",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "guardian-report",
+          "url": "/guardian/students/e0e0d560-2949-41e2-b2e8-ea17f69a5b12",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "teacher-classes",
+          "url": "/teacher/classes",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "teacher-report",
+          "url": "/teacher/students/e0e0d560-2949-41e2-b2e8-ea17f69a5b12",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "system",
+          "url": "/system",
+          "status": 200,
+          "errors": []
+        },
+        {
+          "viewport": "desktop",
+          "name": "providers",
+          "url": "/providers",
+          "status": 200,
+          "errors": []
+        }
+      ]
+    },
+    "live_e2e": {
+      "passed": true,
+      "case_count": 6,
+      "passed_count": 6,
+      "threshold": 6,
+      "subjects": {
+        "数学": 3,
+        "物理": 2,
+        "历史": 1
+      },
+      "results": [
+        {
+          "case_id": "e2e-01",
+          "name": "一元方程移项符号错误",
+          "subject": "数学",
+          "passed": true,
+          "duration_seconds": 37.97,
+          "checks": {
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "mysql": true,
+            "visualization": true,
+            "export": true
+          },
+          "flow": {
+            "user_id": "2c05f509-9e86-423b-a623-30d6e04c42ce",
+            "question_id": "e920add8-3385-46f4-a2ef-2ec55430cc14",
+            "job_id": "56a006a9-9a20-49de-a6b2-80a8162f1cd4",
+            "session_id": "e06d152a-a504-4794-afcf-1efa4ef2f586",
+            "visualization_id": "26ba2cdd-f596-4696-8635-3ad4c6a60947",
+            "attempt_ids": [
+              "d45306d0-1de9-4ef5-a6d6-7f993b861464",
+              "76d6d6c6-8468-4136-8600-c060e3f0f561"
+            ],
+            "review_record_id": "4731078b-2446-4c7f-bec8-750f39072d07",
+            "paper_id": "f9e323da-099a-4d19-b656-cf9ff772eb93",
+            "paper_item_count": 1,
+            "export_path": "/root/Baxxhy/zhiwei/reports/f9e323da-099a-4d19-b656-cf9ff772eb93-question.pdf",
+            "streams": [
+              "fused",
+              "paddle_clean",
+              "paddle_original",
+              "qwen_clean",
+              "qwen_original"
+            ],
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "dashboard_questions": 1,
+            "analytics_knowledge": 1
+          }
+        },
+        {
+          "case_id": "e2e-02",
+          "name": "二次函数平移方向错误",
+          "subject": "数学",
+          "passed": true,
+          "duration_seconds": 42.97,
+          "checks": {
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "mysql": true,
+            "visualization": true,
+            "export": true
+          },
+          "flow": {
+            "user_id": "917cd8b1-aefe-4ed3-ac36-b6edb30aa9e6",
+            "question_id": "ad530137-d052-48f0-a6db-14277ad5ee40",
+            "job_id": "c70e68dd-ef5a-468e-beba-a78df3d39d36",
+            "session_id": "7b500f8c-0923-49d8-aa0f-097107f492e8",
+            "visualization_id": "7410ac59-3ee7-4529-80c4-06a43664b840",
+            "attempt_ids": [
+              "4d4c0f15-4403-4874-ac8c-cd4b7e3c7b58",
+              "d4ffa4ee-97d8-44f2-bc79-167d00602962"
+            ],
+            "review_record_id": "935259cc-87e3-4881-a9d4-67b53bf6675c",
+            "paper_id": "ef1c7e11-9b26-4da9-a5e7-1a25b1daf259",
+            "paper_item_count": 1,
+            "export_path": "/root/Baxxhy/zhiwei/reports/ef1c7e11-9b26-4da9-a5e7-1a25b1daf259-question.pdf",
+            "streams": [
+              "fused",
+              "paddle_clean",
+              "paddle_original",
+              "qwen_clean",
+              "qwen_original"
+            ],
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "dashboard_questions": 1,
+            "analytics_knowledge": 1
+          }
+        },
+        {
+          "case_id": "e2e-03",
+          "name": "勾股定理误用",
+          "subject": "数学",
+          "passed": true,
+          "duration_seconds": 124.66,
+          "checks": {
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "mysql": true,
+            "visualization": true,
+            "export": true
+          },
+          "flow": {
+            "user_id": "6bb43acc-2aad-46f9-955d-3b970197ea6d",
+            "question_id": "f58253e4-44f2-4ce9-919b-ae90bb30d421",
+            "job_id": "1a10f6ce-88df-475f-8c80-a46a4730eeb2",
+            "session_id": "1982f996-f158-4a9d-b3e6-eb0322ddccb4",
+            "visualization_id": "dfd794b5-9d6a-4bbc-a401-3a4d72716fa8",
+            "attempt_ids": [
+              "c980d3d6-3e86-4168-9f20-8e7d46b205f9",
+              "9ea1f664-d921-4804-b1bf-870cbc20ef37"
+            ],
+            "review_record_id": "116e86b6-6689-4c9c-a1cd-80ae3c5a6a02",
+            "paper_id": "59f34d84-0b17-499d-8b43-74edcdc3049b",
+            "paper_item_count": 1,
+            "export_path": "/root/Baxxhy/zhiwei/reports/59f34d84-0b17-499d-8b43-74edcdc3049b-question.pdf",
+            "streams": [
+              "fused",
+              "paddle_clean",
+              "paddle_original",
+              "qwen_clean",
+              "qwen_original"
+            ],
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "dashboard_questions": 1,
+            "analytics_knowledge": 1
+          }
+        },
+        {
+          "case_id": "e2e-04",
+          "name": "匀加速公式选择错误",
+          "subject": "物理",
+          "passed": true,
+          "duration_seconds": 50.49,
+          "checks": {
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "mysql": true,
+            "visualization": true,
+            "export": true
+          },
+          "flow": {
+            "user_id": "42684260-b98d-4c7b-8f80-925c409f0f33",
+            "question_id": "53697dc4-ad78-4861-8a05-8a1efa2e7390",
+            "job_id": "247d5f15-0858-46a1-9c83-72eda9c9eb30",
+            "session_id": "d8598edf-25a3-4a6c-8370-a94e4837c7aa",
+            "visualization_id": "a950ca46-27d2-414f-ace6-a722db74346c",
+            "attempt_ids": [
+              "d18ad01a-4249-45ae-a704-f7f05dae5004",
+              "90069af1-4772-421c-8275-873301750a69"
+            ],
+            "review_record_id": "67773e4e-65db-425f-87be-f8bc5e76aaa4",
+            "paper_id": "77030979-e73e-41e5-9196-3407b7167884",
+            "paper_item_count": 1,
+            "export_path": "/root/Baxxhy/zhiwei/reports/77030979-e73e-41e5-9196-3407b7167884-question.pdf",
+            "streams": [
+              "fused",
+              "paddle_clean",
+              "paddle_original",
+              "qwen_clean",
+              "qwen_original"
+            ],
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "dashboard_questions": 1,
+            "analytics_knowledge": 1
+          }
+        },
+        {
+          "case_id": "e2e-05",
+          "name": "牛顿第二定律概念错误",
+          "subject": "物理",
+          "passed": true,
+          "duration_seconds": 54.97,
+          "checks": {
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "mysql": true,
+            "visualization": true,
+            "export": true
+          },
+          "flow": {
+            "user_id": "161ff8a1-04d9-4947-80c7-59521d1e1c8d",
+            "question_id": "f72ce74e-a25c-4037-8378-3ce0fcb11fe1",
+            "job_id": "35d159a5-8732-4374-94c6-96c514071eb0",
+            "session_id": "c133666a-f885-47a1-8d09-7f5c273a89f9",
+            "visualization_id": "bcf35d28-861f-4aad-8c60-2e498ad7d29e",
+            "attempt_ids": [
+              "68501315-d3cf-4c1a-b074-ca575d69278b",
+              "233e63e6-107e-4b7e-9d65-012f80993da1"
+            ],
+            "review_record_id": "d55a90f6-2615-44dd-a6bd-ac6961a0be0d",
+            "paper_id": "e1e90fea-7ace-4ce5-8519-9b0649eb1661",
+            "paper_item_count": 1,
+            "export_path": "/root/Baxxhy/zhiwei/reports/e1e90fea-7ace-4ce5-8519-9b0649eb1661-question.pdf",
+            "streams": [
+              "fused",
+              "paddle_clean",
+              "paddle_original",
+              "qwen_clean",
+              "qwen_original"
+            ],
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "dashboard_questions": 1,
+            "analytics_knowledge": 1
+          }
+        },
+        {
+          "case_id": "e2e-06",
+          "name": "历史事件因果混淆",
+          "subject": "历史",
+          "passed": true,
+          "duration_seconds": 349.38,
+          "checks": {
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "mysql": true,
+            "visualization": true,
+            "export": true
+          },
+          "flow": {
+            "user_id": "cb53daf6-cc93-4b5d-a648-9780fa8c826f",
+            "question_id": "36204d2d-60f8-472d-b80c-c9d51c3624e1",
+            "job_id": "af16901b-6e1e-4b60-b9ae-180e68d54e2e",
+            "session_id": "343a1323-1bd7-4f6f-87cd-4807a46bcae5",
+            "visualization_id": "e90b494b-3274-4830-8116-2684b1830c92",
+            "attempt_ids": [
+              "07dc8041-b98b-4eea-9a40-72c956b496d4",
+              "8a77c79a-fd06-480a-9128-15f6f8791144"
+            ],
+            "review_record_id": "d08c8adb-ccc2-4053-88f2-173372efd6bc",
+            "paper_id": "4dc2a807-6c93-4486-9dc4-bdf42e6e59d3",
+            "paper_item_count": 1,
+            "export_path": "/root/Baxxhy/zhiwei/reports/4dc2a807-6c93-4486-9dc4-bdf42e6e59d3-question.pdf",
+            "streams": [
+              "fused",
+              "paddle_clean",
+              "paddle_original",
+              "qwen_clean",
+              "qwen_original"
+            ],
+            "paddle": true,
+            "qwen_vision": true,
+            "qwen_text": true,
+            "dashboard_questions": 1,
+            "analytics_knowledge": 1
+          }
+        }
+      ]
+    }
+  },
+  "accounts": [
+    "student@minddimension.local",
+    "guardian@minddimension.local",
+    "teacher@minddimension.local",
+    "admin@minddimension.local"
+  ],
+  "start_commands": [
+    "make mysql migrate seed",
+    "make dev"
+  ],
+  "addresses": {
+    "frontend": "http://127.0.0.1:5173",
+    "backend": "http://127.0.0.1:8000",
+    "docs": "http://127.0.0.1:8000/docs"
+  }
+}
