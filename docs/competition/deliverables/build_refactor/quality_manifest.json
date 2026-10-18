@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-18",
+  "documents": {
+    "错题帮_系统设计文档_重构终稿.docx": {
+      "pages": 33,
+      "pdf_text_colors": [
+        0
+      ],
+      "docx_color_errors": [],
+      "thin_pages": [],
+      "horizontal_overflow": [],
+      "source_fragments_not_found": [],
+      "sha256": "9d2c879af6f1944bb76dad66fa7fcaf72c5a59a80a9d0a47568b3c0c75c56aa1",
+      ".docx_sha256": "9d2c879af6f1944bb76dad66fa7fcaf72c5a59a80a9d0a47568b3c0c75c56aa1",
+      ".pdf_sha256": "7a0c51b22a2e6b327917e1d0d69379cb7fbafd75cd0574aa489bc61fcc79663b",
+      ".md_sha256": "0f03e37a9f6443bbd3759dc17aa6bdb93afa8db3d04fe21bb04b716bad12530b"
+    },
+    "错题帮_项目说明文档_重构终稿.docx": {
+      "pages": 23,
+      "pdf_text_colors": [
+        0
+      ],
+      "docx_color_errors": [],
+      "thin_pages": [],
+      "horizontal_overflow": [],
+      "source_fragments_not_found": [],
+      "sha256": "10f0c9f2867ca86e5c0c1b674b261af71c705d94aca529c0621c3975985c49a7",
+      ".docx_sha256": "10f0c9f2867ca86e5c0c1b674b261af71c705d94aca529c0621c3975985c49a7",
+      ".pdf_sha256": "17eb8f3c0a73234b5eff8cb1f33d8a424b3417db385bbd616023614917cd148f",
+      ".md_sha256": "a5d17829ba0ca03bf7422ab655429961626e89e9adf0705044e602a24ee12078"
+    }
+  },
+  "figures": {
+    "01": {
+      "text_labels": 24,
+      "black": true,
+      "png_exists": true
+    },
+    "02": {
+      "text_labels": 22,
+      "black": true,
+      "png_exists": true
+    },
+    "03": {
+      "text_labels": 16,
+      "black": true,
+      "png_exists": true
+    },
+    "04": {
+      "text_labels": 19,
+      "black": true,
+      "png_exists": true
+    },
+    "05": {
+      "text_labels": 25,
+      "black": true,
+      "png_exists": true
+    },
+    "06": {
+      "text_labels": 17,
+      "black": true,
+      "png_exists": true
+    },
+    "07": {
+      "text_labels": 15,
+      "black": true,
+      "png_exists": true
+    },
+    "08": {
+      "text_labels": 20,
+      "black": true,
+      "png_exists": true
+    },
+    "09": {
+      "text_labels": 18,
+      "black": true,
+      "png_exists": true
+    },
+    "10": {
+      "text_labels": 16,
+      "black": true,
+      "png_exists": true
+    },
+    "11": {
+      "text_labels": 32,
+      "black": true,
+      "png_exists": true
+    },
+    "12": {
+      "text_labels": 16,
+      "black": true,
+      "png_exists": true
+    },
+    "13": {
+      "text_labels": 14,
+      "black": true,
+      "png_exists": true
+    },
+    "14": {
+      "text_labels": 15,
+      "black": true,
+      "png_exists": true
+    },
+    "15": {
+      "text_labels": 24,
+      "black": true,
+      "png_exists": true
+    }
+  },
+  "originals_unchanged": true
+}

@@ -1,0 +1,9 @@
+{
+  "svg_count": 15,
+  "png_count": 15,
+  "all_text_pure_black": true,
+  "minimum_font_px": 18,
+  "measured_lines": 312,
+  "canvas_boundary_issues": [],
+  "scope": "Font metric canvas bounds + XML color audit; manual panel inspection separately."
+}
