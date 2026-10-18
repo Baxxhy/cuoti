@@ -1,0 +1,18 @@
+digraph G {
+graph [layout=neato,overlap=false,splines=polyline];
+node [shape=box,fontname="Noto Sans CJK SC"];
+lane0 [label="学生前端",pos="0.9722222222222222,8.51388888888889!",width="1.6666666666666667",height="0.6388888888888888"];
+lane1 [label="仓颉协调器",pos="3.361111111111111,8.51388888888889!",width="1.6666666666666667",height="0.6388888888888888"];
+lane2 [label="MySQL",pos="5.75,8.51388888888889!",width="1.6666666666666667",height="0.6388888888888888"];
+lane3 [label="Python工具",pos="8.0,8.51388888888889!",width="1.6666666666666667",height="0.6388888888888888"];
+lane0 -> lane1 [label="① 动作与版本"];
+lane1 -> lane2 [label="② 幂等保存"];
+lane1 -> lane0 [label="③ 已受理"];
+lane1 -> lane2 [label="④ 领取 / 读来源"];
+lane1 -> lane3 [label="⑤ 上下文与预算"];
+lane3 -> lane3 [label="规划 → 工具 → 核验"];
+lane3 -> lane1 [label="⑥ 结果与证据"];
+lane1 -> lane2 [label="⑦ 重验并事务提交"];
+lane0 -> lane1 [label="⑧ 查询任务"];
+lane1 -> lane0 [label="⑨ 当前一步与反馈"];
+}

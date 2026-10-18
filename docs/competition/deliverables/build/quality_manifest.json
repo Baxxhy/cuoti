@@ -1,0 +1,459 @@
+[
+  {
+    "document": "错题帮_项目说明文档",
+    "pages": 32,
+    "characters": 22283,
+    "inline_images": 5,
+    "docx_pdf_text_matched": true,
+    "page_bounds_passed": true,
+    "all_pages_rendered": true,
+    "sha256": {
+      "docx": "2cf2cdbe4fff58526ff32170148047833873dbaccac21780d5d32834adc2e29e",
+      "pdf": "6bcfba8595e17a1ad97df576c13125135fe42778eeb754ce571563f6536fab55",
+      "md": "ee496b59c3f5e5ef9f15eb29a0a7292c115a25d8edb8d1c75b34a5595bcc27e5"
+    },
+    "page_checks": [
+      {
+        "page": 1,
+        "characters": 177,
+        "image_count": 0
+      },
+      {
+        "page": 2,
+        "characters": 1483,
+        "image_count": 0
+      },
+      {
+        "page": 3,
+        "characters": 865,
+        "image_count": 0
+      },
+      {
+        "page": 4,
+        "characters": 478,
+        "image_count": 1
+      },
+      {
+        "page": 5,
+        "characters": 843,
+        "image_count": 0
+      },
+      {
+        "page": 6,
+        "characters": 816,
+        "image_count": 0
+      },
+      {
+        "page": 7,
+        "characters": 940,
+        "image_count": 0
+      },
+      {
+        "page": 8,
+        "characters": 727,
+        "image_count": 0
+      },
+      {
+        "page": 9,
+        "characters": 682,
+        "image_count": 0
+      },
+      {
+        "page": 10,
+        "characters": 868,
+        "image_count": 0
+      },
+      {
+        "page": 11,
+        "characters": 847,
+        "image_count": 0
+      },
+      {
+        "page": 12,
+        "characters": 372,
+        "image_count": 0
+      },
+      {
+        "page": 13,
+        "characters": 462,
+        "image_count": 1
+      },
+      {
+        "page": 14,
+        "characters": 762,
+        "image_count": 0
+      },
+      {
+        "page": 15,
+        "characters": 923,
+        "image_count": 0
+      },
+      {
+        "page": 16,
+        "characters": 843,
+        "image_count": 0
+      },
+      {
+        "page": 17,
+        "characters": 269,
+        "image_count": 0
+      },
+      {
+        "page": 18,
+        "characters": 363,
+        "image_count": 1
+      },
+      {
+        "page": 19,
+        "characters": 823,
+        "image_count": 0
+      },
+      {
+        "page": 20,
+        "characters": 383,
+        "image_count": 1
+      },
+      {
+        "page": 21,
+        "characters": 875,
+        "image_count": 0
+      },
+      {
+        "page": 22,
+        "characters": 785,
+        "image_count": 0
+      },
+      {
+        "page": 23,
+        "characters": 394,
+        "image_count": 1
+      },
+      {
+        "page": 24,
+        "characters": 762,
+        "image_count": 0
+      },
+      {
+        "page": 25,
+        "characters": 863,
+        "image_count": 0
+      },
+      {
+        "page": 26,
+        "characters": 745,
+        "image_count": 0
+      },
+      {
+        "page": 27,
+        "characters": 888,
+        "image_count": 0
+      },
+      {
+        "page": 28,
+        "characters": 775,
+        "image_count": 0
+      },
+      {
+        "page": 29,
+        "characters": 241,
+        "image_count": 0
+      },
+      {
+        "page": 30,
+        "characters": 881,
+        "image_count": 0
+      },
+      {
+        "page": 31,
+        "characters": 1157,
+        "image_count": 0
+      },
+      {
+        "page": 32,
+        "characters": 913,
+        "image_count": 0
+      }
+    ]
+  },
+  {
+    "document": "错题帮_系统设计文档",
+    "pages": 53,
+    "characters": 37357,
+    "inline_images": 11,
+    "docx_pdf_text_matched": true,
+    "page_bounds_passed": true,
+    "all_pages_rendered": true,
+    "sha256": {
+      "docx": "e45618857affd253f80d80cf4e14bc6091f98e9cb73f74b6aa9671d0dcffe4a7",
+      "pdf": "931bc17c0bd9c02b3af7281f933801f87acd457a784937928a7f4b61f31635ef",
+      "md": "7420f2f9830a1a3d1917cfbd44275adfae907aeb663bbd10a115c7fe68971c06"
+    },
+    "page_checks": [
+      {
+        "page": 1,
+        "characters": 177,
+        "image_count": 0
+      },
+      {
+        "page": 2,
+        "characters": 1622,
+        "image_count": 0
+      },
+      {
+        "page": 3,
+        "characters": 825,
+        "image_count": 0
+      },
+      {
+        "page": 4,
+        "characters": 643,
+        "image_count": 0
+      },
+      {
+        "page": 5,
+        "characters": 575,
+        "image_count": 1
+      },
+      {
+        "page": 6,
+        "characters": 348,
+        "image_count": 1
+      },
+      {
+        "page": 7,
+        "characters": 903,
+        "image_count": 0
+      },
+      {
+        "page": 8,
+        "characters": 310,
+        "image_count": 1
+      },
+      {
+        "page": 9,
+        "characters": 862,
+        "image_count": 0
+      },
+      {
+        "page": 10,
+        "characters": 809,
+        "image_count": 0
+      },
+      {
+        "page": 11,
+        "characters": 866,
+        "image_count": 0
+      },
+      {
+        "page": 12,
+        "characters": 906,
+        "image_count": 0
+      },
+      {
+        "page": 13,
+        "characters": 236,
+        "image_count": 1
+      },
+      {
+        "page": 14,
+        "characters": 883,
+        "image_count": 0
+      },
+      {
+        "page": 15,
+        "characters": 665,
+        "image_count": 0
+      },
+      {
+        "page": 16,
+        "characters": 803,
+        "image_count": 0
+      },
+      {
+        "page": 17,
+        "characters": 855,
+        "image_count": 0
+      },
+      {
+        "page": 18,
+        "characters": 805,
+        "image_count": 0
+      },
+      {
+        "page": 19,
+        "characters": 842,
+        "image_count": 0
+      },
+      {
+        "page": 20,
+        "characters": 807,
+        "image_count": 0
+      },
+      {
+        "page": 21,
+        "characters": 354,
+        "image_count": 1
+      },
+      {
+        "page": 22,
+        "characters": 969,
+        "image_count": 0
+      },
+      {
+        "page": 23,
+        "characters": 703,
+        "image_count": 0
+      },
+      {
+        "page": 24,
+        "characters": 257,
+        "image_count": 1
+      },
+      {
+        "page": 25,
+        "characters": 987,
+        "image_count": 0
+      },
+      {
+        "page": 26,
+        "characters": 862,
+        "image_count": 0
+      },
+      {
+        "page": 27,
+        "characters": 245,
+        "image_count": 1
+      },
+      {
+        "page": 28,
+        "characters": 725,
+        "image_count": 0
+      },
+      {
+        "page": 29,
+        "characters": 342,
+        "image_count": 1
+      },
+      {
+        "page": 30,
+        "characters": 833,
+        "image_count": 0
+      },
+      {
+        "page": 31,
+        "characters": 806,
+        "image_count": 0
+      },
+      {
+        "page": 32,
+        "characters": 932,
+        "image_count": 0
+      },
+      {
+        "page": 33,
+        "characters": 734,
+        "image_count": 0
+      },
+      {
+        "page": 34,
+        "characters": 378,
+        "image_count": 1
+      },
+      {
+        "page": 35,
+        "characters": 993,
+        "image_count": 0
+      },
+      {
+        "page": 36,
+        "characters": 850,
+        "image_count": 0
+      },
+      {
+        "page": 37,
+        "characters": 228,
+        "image_count": 1
+      },
+      {
+        "page": 38,
+        "characters": 1021,
+        "image_count": 0
+      },
+      {
+        "page": 39,
+        "characters": 232,
+        "image_count": 1
+      },
+      {
+        "page": 40,
+        "characters": 1031,
+        "image_count": 0
+      },
+      {
+        "page": 41,
+        "characters": 951,
+        "image_count": 0
+      },
+      {
+        "page": 42,
+        "characters": 758,
+        "image_count": 0
+      },
+      {
+        "page": 43,
+        "characters": 699,
+        "image_count": 0
+      },
+      {
+        "page": 44,
+        "characters": 775,
+        "image_count": 0
+      },
+      {
+        "page": 45,
+        "characters": 902,
+        "image_count": 0
+      },
+      {
+        "page": 46,
+        "characters": 814,
+        "image_count": 0
+      },
+      {
+        "page": 47,
+        "characters": 822,
+        "image_count": 0
+      },
+      {
+        "page": 48,
+        "characters": 751,
+        "image_count": 0
+      },
+      {
+        "page": 49,
+        "characters": 957,
+        "image_count": 0
+      },
+      {
+        "page": 50,
+        "characters": 305,
+        "image_count": 0
+      },
+      {
+        "page": 51,
+        "characters": 881,
+        "image_count": 0
+      },
+      {
+        "page": 52,
+        "characters": 1157,
+        "image_count": 0
+      },
+      {
+        "page": 53,
+        "characters": 913,
+        "image_count": 0
+      }
+    ]
+  }
+]

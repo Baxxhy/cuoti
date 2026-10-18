@@ -1,0 +1,15 @@
+digraph G {
+graph [layout=neato,overlap=false,splines=polyline];
+node [shape=box,fontname="Noto Sans CJK SC"];
+s [label="当前原题与诊断",pos="4.444444444444445,7.805555555555555!",width="3.888888888888889",height="0.7777777777777778"];
+r [label="支持时局部订正\nrepair",pos="2.2222222222222223,6.180555555555555!",width="3.6666666666666665",height="0.9722222222222222"];
+i [label="原题独立作答\nindependent",pos="6.722222222222222,6.180555555555555!",width="3.5555555555555554",height="0.9722222222222222"];
+t [label="适用时条件对照\ncontrast",pos="6.722222222222222,4.277777777777778!",width="3.5555555555555554",height="0.9722222222222222"];
+d [label="当前任务完成\ndone",pos="2.2222222222222223,4.277777777777778!",width="3.6666666666666665",height="0.9722222222222222"];
+s -> r [label=""];
+s -> i [label=""];
+r -> i [label=""];
+i -> t [label="有已验证对照"];
+i -> d [label="无适用对照"];
+t -> d [label=""];
+}

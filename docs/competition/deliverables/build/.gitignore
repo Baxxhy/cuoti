@@ -1,0 +1,4 @@
+# 文档制作时的可再生中间产物；正式材料保留在上级目录。
+page_previews/
+*_raw.docx
+__pycache__/

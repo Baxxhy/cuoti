@@ -1,0 +1,15 @@
+flowchart TB
+ UI[移动交互层<br/>uni-app · Vue 3 · TypeScript · uni-ui]
+ BIZ[业务服务层<br/>仓颉：身份权限 · 题目 · 任务 · 学习状态]
+ ALG[智能计算层<br/>Python/FastAPI：识别 · 诊断 · 策略工具 · 验证]
+ DB[(MySQL<br/>业务事实与任务状态)]
+ FILES[文件存储<br/>原图 · 裁剪图 · 派生文件]
+ RET[检索组件<br/>BGE · Qdrant]
+ MODEL[外部模型池<br/>ApiPoolProvider → Qwen]
+ UI -->|业务 API| BIZ
+ BIZ -->|事务读写| DB
+ BIZ -->|受控文件访问| FILES
+ BIZ -->|内部计算契约| ALG
+ ALG --> RET
+ ALG --> MODEL
+ ALG -->|结构化证据与建议| BIZ

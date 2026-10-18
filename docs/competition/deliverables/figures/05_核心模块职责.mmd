@@ -1,0 +1,15 @@
+flowchart TB
+ AUTH[身份与权限] --> CONTENT[题目与作答]
+ CONTENT --> DIAG[分析诊断与证据]
+ DIAG --> TASK[学习任务与来源快照]
+ TASK --> REC[学习证据与掌握状态]
+ REC --> REVIEW[复习计划与记录]
+ DIAG --> MAP[易错地图与学习报告]
+ REC --> MAP
+ BANK[真实题库与知识卡] --> PRACTICE[专项练习与迁移练习]
+ PRACTICE --> REC
+ DIAG --> PRACTICE
+ TASK --> TOOLS[内部算法契约<br/>规划 · 工具 · 核验]
+ SCHOOL[班级 · 作业 · 教师复核] --> REC
+ AUTH -.访问约束.-> TASK
+ AUTH -.访问约束.-> SCHOOL
