@@ -3,7 +3,7 @@ from lxml import etree
 from PIL import ImageFont
 import subprocess,json
 O=Path(__file__).resolve().parents[1]/'figures/restructured';rows={};bad=[]
-regular=subprocess.check_output(['fc-match','-f','%{file}','Noto Sans CJK SC'],text=True)
+regular=subprocess.check_output(['fc-match','-f','%{file}','Noto Serif CJK SC'],text=True)
 bold=subprocess.check_output(['fc-match','-f','%{file}','Noto Sans CJK SC:style=Bold'],text=True)
 for p in sorted(O.glob('*.svg')):
  r=etree.fromstring(p.read_bytes());W,H=float(r.get('width')),float(r.get('height'));count=0;small=999

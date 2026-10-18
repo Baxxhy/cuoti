@@ -2,14 +2,14 @@
   "method": "SVG black fill and PIL/Noto font-line geometry; does not replace visual review",
   "figures": {
     "01": {
-      "lines": 28,
+      "lines": 23,
       "minimum_font_px": 18.0,
       "text_color": "#000000",
       "png_width": 2700,
       "effective_ppi_at_16_4cm": 418
     },
     "02": {
-      "lines": 25,
+      "lines": 26,
       "minimum_font_px": 18.0,
       "text_color": "#000000",
       "png_width": 2700,
@@ -30,7 +30,7 @@
       "effective_ppi_at_16_4cm": 418
     },
     "05": {
-      "lines": 25,
+      "lines": 27,
       "minimum_font_px": 18.0,
       "text_color": "#000000",
       "png_width": 2700,

@@ -1,0 +1,662 @@
+[
+  {
+    "id": "01",
+    "claim": "原始作答连接诊断、辅导与后续学习。",
+    "archetype": "断点纸页与中心证据回路",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/01.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      650
+    ],
+    "narrative_map": {
+      "L1": "学习闭环",
+      "L2": "原始作答连接诊断、辅导与后续学习。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "断点纸页与中心证据回路",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "02",
+    "claim": "学生证据经过计算与业务校验，形成下一步学习。",
+    "archetype": "计算与业务双栏并行",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/02.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      760
+    ],
+    "narrative_map": {
+      "L1": "总体方法",
+      "L2": "学生证据经过计算与业务校验，形成下一步学习。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "计算与业务双栏并行",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "03",
+    "claim": "仓颉负责业务事实与提交，Python负责内部智能计算。",
+    "archetype": "服务层带与数据库圆柱",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/03.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      665
+    ],
+    "narrative_map": {
+      "L1": "系统架构",
+      "L2": "仓颉负责业务事实与提交，Python负责内部智能计算。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "服务层带与数据库圆柱",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "04",
+    "claim": "学生只访问业务入口；内部计算不直接写业务数据库。",
+    "archetype": "信任域嵌套及双向计算合同",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/04.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      720
+    ],
+    "narrative_map": {
+      "L1": "容器视图",
+      "L2": "学生只访问业务入口；内部计算不直接写业务数据库。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "信任域嵌套及双向计算合同",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "05",
+    "claim": "学生路径与参考顺序不同；诊断引用实际步骤并保留核对等级。",
+    "archetype": "学生纸页、参考解法、局部证据对照",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/05.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      700
+    ],
+    "narrative_map": {
+      "L1": "错因回放",
+      "L2": "学生路径与参考顺序不同；诊断引用实际步骤并保留核对等级。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "学生纸页、参考解法、局部证据对照",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "06",
+    "claim": "持久任务协调局部工具循环并接收学生动作。",
+    "archetype": "协调器包围的观察—工具—反馈回路",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/06.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      730
+    ],
+    "narrative_map": {
+      "L1": "任务智能体",
+      "L2": "持久任务协调局部工具循环并接收学生动作。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "协调器包围的观察—工具—反馈回路",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "07",
+    "claim": "受理与结果读取分别发生，耗时计算在持久任务提交事务外。",
+    "archetype": "时间纵轴与四角色生命线",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/07.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      725
+    ],
+    "narrative_map": {
+      "L1": "关键时序",
+      "L2": "受理与结果读取分别发生，耗时计算在持久任务提交事务外。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "时间纵轴与四角色生命线",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "08",
+    "claim": "完成、待核对与失效具有不同语义；完成不等于掌握。",
+    "archetype": "状态图及终态胶囊",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/08.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      740
+    ],
+    "narrative_map": {
+      "L1": "任务生命周期",
+      "L2": "完成、待核对与失效具有不同语义；完成不等于掌握。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "状态图及终态胶囊",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "09",
+    "claim": "独立、正确且适配的首次有效证据，才可进入对应认知更新。",
+    "archetype": "辅助轨迹与资格条件并列",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/09.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      650
+    ],
+    "narrative_map": {
+      "L1": "学习任务条件对照",
+      "L2": "独立、正确且适配的首次有效证据，才可进入对应认知更新。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "辅助轨迹与资格条件并列",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "10",
+    "claim": "编辑清除当前派生诊断；冻结任务快照按原始来源解释。",
+    "archetype": "实体纸页与新旧版本两栏",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/10.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      700
+    ],
+    "narrative_map": {
+      "L1": "概念数据与版本",
+      "L2": "编辑清除当前派生诊断；冻结任务快照按原始来源解释。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "实体纸页与新旧版本两栏",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "11",
+    "claim": "角色名称不是访问许可，班级范围与可撤回授权必须同时校验。",
+    "archetype": "角色—对象全格线矩阵",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/11.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      590
+    ],
+    "narrative_map": {
+      "L1": "角色权限矩阵",
+      "L2": "角色名称不是访问许可，班级范围与可撤回授权必须同时校验。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "角色—对象全格线矩阵",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "12",
+    "claim": "当前验收覆盖服务组合与受测重启场景，公网交付仍需独立验收。",
+    "archetype": "运行拓扑和恢复机制两区",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/12.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      700
+    ],
+    "narrative_map": {
+      "L1": "部署与故障恢复",
+      "L2": "当前验收覆盖服务组合与受测重启场景，公网交付仍需独立验收。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "运行拓扑和恢复机制两区",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "13",
+    "claim": "复用跨端工程，按可达性、原生行为和发行验证逐步交付。",
+    "archetype": "跨端交付阶段与验证依据",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/13.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      615
+    ],
+    "narrative_map": {
+      "L1": "手机 App 路线",
+      "L2": "复用跨端工程，按可达性、原生行为和发行验证逐步交付。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "跨端交付阶段与验证依据",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "14",
+    "claim": "无历史时给出学习入口，有历史后以真实任务与复习组织下一步。",
+    "archetype": "首页入口与三阶段旅程",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/14.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      670
+    ],
+    "narrative_map": {
+      "L1": "学生使用旅程",
+      "L2": "无历史时给出学习入口，有历史后以真实任务与复习组织下一步。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "首页入口与三阶段旅程",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  },
+  {
+    "id": "15",
+    "claim": "任务正向对照与练习正负证据分开准入；复习不直接更新认知。",
+    "archetype": "三类证据路径及不同写入目标",
+    "execution": {
+      "renderer": "Python SVG + CairoSVG",
+      "source": "build_refactor/render_figures.py",
+      "output": "figures/restructured/15.svg",
+      "editability": "SVG text/shape/path objects; not live draw.io"
+    },
+    "publication_width_cm": 16.4,
+    "canvas": [
+      900,
+      720
+    ],
+    "narrative_map": {
+      "L1": "复习、任务与练习",
+      "L2": "任务正向对照与练习正负证据分开准入；复习不直接更新认知。",
+      "L3": "各面板中的来源、条件与支持范围"
+    },
+    "visual_grammar_receipt": {
+      "primary_reading_spine": "三类证据路径及不同写入目标",
+      "palette": {
+        "evidence": "#fff0cd",
+        "computation": "#d6eafa",
+        "business": "#cfece1",
+        "review": "#f8dcc9",
+        "tool_or_alternative": "#e5ddf4",
+        "text": "#000000"
+      },
+      "roles": {
+        "source": "folded sheet",
+        "transformation": "hexagonal operator",
+        "persistence": "cylinder",
+        "terminal_state": "capsule",
+        "scope": "header band and open side rule"
+      },
+      "routes": "solid primary dependency, dashed bounded feedback/association; diagrams retain explicit legend",
+      "typography": "rendered Noto Serif CJK; bold Noto Sans CJK; requested SimSun/SimHei unavailable",
+      "whitespace": "connector lanes and separation of evidence ownership",
+      "forbidden": "uniform rounded-card wall, colored labels, decorative icons, invented performance"
+    },
+    "reference_firewall": "Transfer role grammar and color hierarchy only; never transfer reference labels, topology, coordinates or results."
+  }
+]

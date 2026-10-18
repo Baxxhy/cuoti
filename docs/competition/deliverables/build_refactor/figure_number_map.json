@@ -1,21 +1,110 @@
 {
-  "product": {
-    "01": "1",
-    "14": "2",
-    "05": "3",
-    "09": "4",
-    "02": "5",
-    "13": "6"
-  },
-  "system": {
-    "03": "1",
-    "04": "2",
-    "06": "3",
-    "15": "4",
-    "10": "5",
-    "08": "6",
-    "11": "7",
-    "12": "8",
-    "07": "9"
-  }
+  "项目说明文档": [
+    {
+      "caption": "图1 学习闭环",
+      "sources": [
+        "figures/restructured/01.png"
+      ]
+    },
+    {
+      "caption": "图2 学生旅程",
+      "sources": [
+        "figures/restructured/14.png"
+      ]
+    },
+    {
+      "caption": "图3 今日与易错地图",
+      "sources": [
+        "figures/screenshots/today-detail.png",
+        "figures/screenshots/map-detail.png"
+      ]
+    },
+    {
+      "caption": "图4 错因回放",
+      "sources": [
+        "figures/restructured/05.png"
+      ]
+    },
+    {
+      "caption": "图5 诊断与修复",
+      "sources": [
+        "figures/screenshots/diagnosis-detail.png",
+        "figures/screenshots/repair-detail.png"
+      ]
+    },
+    {
+      "caption": "图6 任务资格",
+      "sources": [
+        "figures/restructured/09.png"
+      ]
+    },
+    {
+      "caption": "图7 总体方法",
+      "sources": [
+        "figures/restructured/02.png"
+      ]
+    },
+    {
+      "caption": "图8 移动方案",
+      "sources": [
+        "figures/restructured/13.png"
+      ]
+    }
+  ],
+  "系统设计文档": [
+    {
+      "caption": "图1 系统架构",
+      "sources": [
+        "figures/restructured/03.png"
+      ]
+    },
+    {
+      "caption": "图2 容器协作",
+      "sources": [
+        "figures/restructured/04.png"
+      ]
+    },
+    {
+      "caption": "图3 任务智能体",
+      "sources": [
+        "figures/restructured/06.png"
+      ]
+    },
+    {
+      "caption": "图4 学习事件分流",
+      "sources": [
+        "figures/restructured/15.png"
+      ]
+    },
+    {
+      "caption": "图5 数据关联",
+      "sources": [
+        "figures/restructured/10.png"
+      ]
+    },
+    {
+      "caption": "图6 任务状态",
+      "sources": [
+        "figures/restructured/08.png"
+      ]
+    },
+    {
+      "caption": "图7 角色权限",
+      "sources": [
+        "figures/restructured/11.png"
+      ]
+    },
+    {
+      "caption": "图8 运行部署",
+      "sources": [
+        "figures/restructured/12.png"
+      ]
+    },
+    {
+      "caption": "图9 任务时序",
+      "sources": [
+        "figures/restructured/07.png"
+      ]
+    }
+  ]
 }

@@ -41,7 +41,7 @@ try:
  ps=doc.getStyleFamilies().getByName('ParagraphStyles')
  for name in ps.getElementNames():
   if name.startswith('Contents ') and name[-1:] in ['1','2']:
-   st=ps.getByName(name);st.CharHeight=10.5;st.ParaTopMargin=0;st.ParaBottomMargin=45
+   st=ps.getByName(name);st.CharFontName='SimSun';st.CharFontNameAsian='SimSun';st.CharHeight=10.5;st.ParaTopMargin=0;st.ParaBottomMargin=45
    spacing=uno.createUnoStruct('com.sun.star.style.LineSpacing');spacing.Mode=3;spacing.Height=494;st.ParaLineSpacing=spacing
  for i in range(indexes.getCount()):indexes.getByIndex(i).update()
  print('Loaded',Path(source).name,'indexes=',indexes.getCount(),flush=True)
@@ -58,7 +58,7 @@ try:
    if style.getPropertySetInfo().hasPropertyByName('CharColor'):style.setPropertyValue('CharColor',0)
  cursor=doc.Text.createTextCursor();cursor.gotoStart(False);cursor.gotoEnd(True);cursor.CharColor=0
  doc.storeAsURL(file_url(docx_out),(prop('FilterName','Office Open XML Text'),prop('Overwrite',True)))
- doc.storeToURL(file_url(pdf_out),(prop('FilterName','writer_pdf_Export'),prop('Overwrite',True)))
- print('Saved DOCX',docx_out,'PDF',pdf_out,flush=True)
+ if pdf_out != '-':doc.storeToURL(file_url(pdf_out),(prop('FilterName','writer_pdf_Export'),prop('Overwrite',True)))
+ print('Saved DOCX',docx_out,'PDF export skipped' if pdf_out == '-' else pdf_out,flush=True)
 finally:
  doc.close(True)
