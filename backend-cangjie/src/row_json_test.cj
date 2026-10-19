@@ -8,6 +8,19 @@ import stdx.encoding.json.*
 @Test
 class RowJsonTest {
     @TestCase
+    func historicalFormulaTitleUsesCompleteQuestion() {
+        let row = HashMap<String, Option<String>>()
+        row.add("title", Some("求 $x^")); row.add("question_text", Some("求 $x^2+1$ 的最小值"))
+        @Expect(jsonText(rowJson("questions", row), "title"), "求 $x^2+1$ 的最小值")
+        row["title"] = Some("我的题目 $x$")
+        @Expect(jsonText(rowJson("questions", row), "title"), "我的题目 $x$")
+        @Expect(academicSummary("求 $x^2+1$ 的最小值", 5), "求 $x^2+1$ 的最小值")
+        @Expect(shortTitle("求 $x^2+1$ 的最小值", 5), "求 …")
+        @Expect(shortTitle("$x^2+1$", 3), "题目详情")
+        @Expect(shortTitle("普通标题", 2), "普通")
+    }
+
+    @TestCase
     func questionResponseTypes() {
         let row = HashMap<String, Option<String>>()
         row.add("id", Some("000123"))

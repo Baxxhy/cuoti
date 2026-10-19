@@ -167,6 +167,8 @@ def review_mutations(endpoint, env, query):
                 arg.annotation = None
             functions.append(node)
     assert len(functions) == len(names)
+    from app.services.academic_text import repair_question_title
+
     namespace = {
         **vars(models),
         "datetime": datetime,
@@ -174,6 +176,7 @@ def review_mutations(endpoint, env, query):
         "select": select,
         "HTTPException": HTTPException,
         "iso_timestamp": iso_timestamp,
+        "repair_question_title": repair_question_title,
         "grade_answer": grade_answer,
         "provider": None,
     }

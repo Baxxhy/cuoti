@@ -33,3 +33,32 @@ it('画布绑定本组件ID并按实际大小缩放；天平读取实际参数',
   page.unmount()
   vi.unstubAllGlobals()
 })
+
+it('动态图示标签保留完整公式，在图例中渲染而不把源码绘入画布', () => {
+  const ctx = new Proxy({} as Record<string, any>, {
+    get(target, key: string) {
+      return (target[key] ||= vi.fn())
+    },
+  })
+  vi.stubGlobal('uni', { createCanvasContext: () => ctx })
+  for (const type of ['history_timeline', 'timeline_map']) {
+    const page = mount(Canvas, {
+      props: {
+        spec: {
+          type,
+          parameters: {
+            events: [String.raw`$\frac{1}{5}$`, '完整事件名称不能被六个字符截断'],
+            places: [String.raw`$A_1$`, '完整地点', '丙', '丁'],
+          },
+        },
+      },
+    })
+    expect(page.find('.visual-legend .katex').exists()).toBe(true)
+    expect(page.find('.math-unparsed').exists()).toBe(false)
+    expect(ctx.fillText.mock.calls.every((call: any[]) => !String(call[0]).includes('$'))).toBe(
+      true,
+    )
+    page.unmount()
+  }
+  vi.unstubAllGlobals()
+})

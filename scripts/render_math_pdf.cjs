@@ -40,7 +40,7 @@ async function main() {
       const type = path.extname(file).slice(1);
       return `url(data:font/${type};base64,${fs.readFileSync(file).toString("base64")})`;
     });
-  const body = input.questions
+  const body = (input.questions || [])
     .map((q, index) => {
       const options = (q.options || [])
         .map(
@@ -57,9 +57,14 @@ async function main() {
       return `<section class="question"><div class="stem"><span class="ordinal">${index + 1}.（${Number(q.score) || 10}分）</span>${render(q.question_text)}</div>${options}${q.formula ? `<div>${render(q.formula)}</div>` : ""}${images}${solution}</section>`;
     })
     .join("");
+  const sheet = input.mode === "excel";
+  const content = sheet
+    ? input.cells.map((cell) => `<div class="sheet-cell" style="width:${Number(cell.width) || 450}px">${render(cell.text)}</div>`).join("")
+    : `<h1>${render(input.title)}</h1>${body}`;
   const html = `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; font-src data:; style-src 'unsafe-inline'"><style>${css}
   *{box-sizing:border-box}body{font:14px/1.9 'Noto Sans CJK SC','Microsoft YaHei',sans-serif;color:#202632;margin:0}h1{font-size:23px;font-weight:600;text-align:center;margin:0 0 25px;line-height:1.6}.question{margin-bottom:28px;break-inside:auto}.stem{white-space:pre-wrap;break-after:avoid}.ordinal{font-weight:600}.option{margin:5px 0 0 14px;white-space:pre-wrap}.answer,.solution{margin-top:12px;white-space:pre-wrap;orphans:3;widows:3}.solution{color:#333f50}.figure{display:block;max-width:100%;max-height:270px;object-fit:contain;margin:12px 0;break-inside:avoid;break-before:avoid}.answer-space{height:65px}.katex{white-space:normal;font-size:1.08em}.katex-display{margin:8px 0}.math-table{max-width:100%}strong{font-weight:600}table{border-collapse:collapse}td,th{padding:4px;border:1px solid #aaa}
-  </style></head><body><h1>${render(input.title)}</h1>${body}</body></html>`;
+  .sheet-cell{padding:6px;white-space:pre-wrap;overflow-wrap:anywhere;background:white;font-size:14px;line-height:1.9;margin-bottom:8px}
+  </style></head><body>${content}</body></html>`;
   const { chromium } = requireFrontend("@playwright/test");
   let executablePath = process.env.ZHIWEI_PDF_CHROMIUM;
   const bundled = path.join(frontend, ".playwright-browsers");
@@ -99,6 +104,34 @@ async function main() {
     await page.route("**/*", (route) => route.abort());
     await page.setContent(html, { waitUntil: "load", timeout: 15000 });
     await page.evaluate(() => document.fonts.ready);
+    if (sheet) {
+      const results = [];
+      for (const element of await page.locator(".sheet-cell").all()) {
+        // Preserve wide formula bodies too, instead of clipping to a worksheet cell.
+        const width = await element.evaluate((node) => node.scrollWidth);
+        await element.evaluate((node, width) => { node.style.width = `${width}px`; }, width);
+        const box = await element.boundingBox();
+        const png = await element.screenshot({ type: "png" });
+        results.push({ png: png.toString("base64"), width: box.width, height: box.height });
+      }
+      process.stdout.write(JSON.stringify(results));
+      return;
+    }
+    // A4 content width is 176 mm. Fit individual unbreakable formulas only;
+    // ordinary prose keeps its readable font size and natural page wrapping.
+    await page.setViewportSize({ width: 665, height: 1000 });
+    await page.emulateMedia({ media: "print" });
+    await page.evaluate(() => {
+      for (const formula of document.querySelectorAll(".katex")) {
+        const width = Math.max(formula.getBoundingClientRect().width, formula.scrollWidth,
+          ...Array.from(formula.querySelectorAll(".base"), (base) => base.getBoundingClientRect().width));
+        if (width > 660) {
+          const size = parseFloat(getComputedStyle(formula).fontSize);
+          formula.style.fontSize = `${size * 660 / width}px`;
+          formula.style.display = "inline-block";
+        }
+      }
+    });
     await page.pdf({
       path: input.output,
       format: "A4",

@@ -102,7 +102,7 @@ public func learningTasks(context: HttpContext, accounts: Accounts): JsonValue {
             for (row in db.query("SELECT * FROM learning_tasks WHERE user_id=? AND (?='' OR question_id=?) ORDER BY updated_at DESC,id DESC LIMIT 50",[Some(owner),Some(questionId),Some(questionId)]).rows) {
                 let item=taskPublic(rowJson("learning_tasks",row),accounts)
                 let titles=db.query("SELECT question_text FROM questions WHERE id=?",[row["question_id"]]).rows
-                item.put("question_title",JsonString(if (titles.isEmpty()) { "本题学习" } else { shortTitle(rowText(titles[0],"question_text"),60) }))
+                item.put("question_title",JsonString(if (titles.isEmpty()) { "本题学习" } else { academicSummary(rowText(titles[0],"question_text"),60) }))
                 result.add(item)
             }
             return result

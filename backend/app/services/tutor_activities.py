@@ -12,6 +12,7 @@ from app.schemas import (
     TutorActivityPlan,
     TutorOptionExplanation,
 )
+from app.services.academic_text import academic_summary
 from app.services.pedagogy import pedagogy_for
 from app.services.question_mapping import student_facing_topic
 
@@ -380,7 +381,7 @@ def build_understanding_plan(
                 title="确认下一步做法",
                 question="下面哪种做法更合适？",
                 options=[
-                    TutorActivityOption(value="reference", label=first_reference[:42]),
+                    TutorActivityOption(value="reference", label=academic_summary(first_reference, 42)),
                     TutorActivityOption(value="guess", label="不看条件，凭印象猜一个答案"),
                 ],
                 correct_answers=["reference"],

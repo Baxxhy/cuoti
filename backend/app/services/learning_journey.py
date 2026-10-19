@@ -19,6 +19,7 @@ from app.models import (
     ReviewRecord,
     TutorSession,
 )
+from app.services.academic_text import question_display_title
 
 
 def utc(value: datetime) -> datetime:
@@ -223,7 +224,7 @@ def build_learning_journey(
     verification = "已完成规则校验" if analysis and analysis.verified else "尚未通过规则校验"
     return {
         "question_id": qid,
-        "title": question.title,
+        "title": question_display_title(question.title, question.question_text),
         "question_text": question.question_text,
         "subject": question.subject,
         "generated_at": now.isoformat(),

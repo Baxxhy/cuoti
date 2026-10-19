@@ -22,6 +22,7 @@ from app.models import (
     TutorTurn,
     User,
 )
+from app.services.academic_text import question_display_title
 
 _SENSITIVE_PARTS = (
     "credential",
@@ -176,7 +177,7 @@ async def get_admin_workbench(
             "student_id": student.id,
             "student_name": student.name,
             "question_id": question.id,
-            "question_title": question.title,
+            "question_title": question_display_title(question.title, question.question_text),
             "subject": question.subject,
             "stage": session.stage,
             "status": session.status,
@@ -358,7 +359,7 @@ async def get_admin_session(db: AsyncSession, session_id: str) -> dict[str, Any]
         "student": {"id": student.id, "name": student.name} if student else None,
         "question": {
             "id": question.id,
-            "title": question.title,
+            "title": question_display_title(question.title, question.question_text),
             "subject": question.subject,
             "question_text": question.question_text,
             "student_answer": question.student_answer,

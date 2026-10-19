@@ -117,6 +117,23 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
         return value
 
     try:
+        # The user's two-blank fraction case traverses the actual durable worker.
+        fraction = request(endpoint, "POST", "/api/v1/questions/manual", {
+            "subject": "数学",
+            "question_text": r"在 $\frac{1}{5}$、$\frac{1}{6}$、$\frac{1}{10}$ 中，最大的是()，最小的是()。",
+            "student_answer": "1/6,1/10",
+        }, token=token)
+        request(endpoint, "PATCH", "/api/v1/questions/" + fraction["id"],
+                {"question_type": "填空题"}, token=token)
+        fraction_analysis = insert("problem_analyses", question_id=fraction["id"], subject="数学",
+                                   final_answer=r"$\frac{1}{5}$，$\frac{1}{10}$")
+        insert("reference_steps", analysis_id=fraction_analysis, step_index=0,
+               text="分子相同，分母越小分数越大；最大1/5、最小1/10。")
+        fraction_task = wait_task(endpoint, create(fraction)["id"], token)
+        fraction_done, _ = action(endpoint, fraction_task, token, text="1/5,1/10")
+        assert fraction_done["status"] == "completed"
+        fraction_history = task_request(endpoint, "/api/v1/learning-tasks/" + fraction_task["id"] + "/history", token)
+        assert any(item["phase"] == "independent" and item["verdict"] == "confirmed_correct" for item in fraction_history["items"])
         correct = request(
             endpoint,
             "POST",

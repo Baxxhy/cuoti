@@ -12,6 +12,9 @@ from typing import Any
 from xml.sax.saxutils import escape
 
 from openpyxl import Workbook
+from openpyxl.comments import Comment
+from openpyxl.drawing.image import Image as SheetImage
+from openpyxl.styles import Alignment
 from PIL import Image as PillowImage
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
@@ -47,30 +50,31 @@ def build_math_pdf(path: Path, title: str, questions: list[dict[str, Any]], answ
             row.pop("answer", None)
             row.pop("explanation", None)
         rows.append(row)
+    render_math_document({"title": title, "questions": rows, "answers": answers, "output": str(path.resolve())})
+    if not path.is_file():
+        raise ValueError("PDF公式排版未完成，请核对公式及本地Chromium环境后重试")
+    return path
+
+
+def render_math_document(payload: dict[str, Any]) -> str:
+    label = "Excel" if payload.get("mode") == "excel" else "PDF"
     worker = Path(__file__).resolve().parents[3] / "scripts" / "render_math_pdf.cjs"
-    payload = json.dumps(
-        {"title": title, "questions": rows, "answers": answers, "output": str(path.resolve())}
-    )
     try:
         process = subprocess.Popen(
-            ["node", str(worker)],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            start_new_session=True,
+            ["node", str(worker)], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE, text=True, start_new_session=True,
         )
         try:
-            process.communicate(payload, timeout=35)
+            output, _ = process.communicate(json.dumps(payload), timeout=35)
         except subprocess.TimeoutExpired:
             os.killpg(process.pid, signal.SIGKILL)
             process.communicate()
-            raise ValueError("PDF公式排版超时，请缩小试卷范围后重试") from None
+            raise ValueError(label + "公式排版超时，请缩小导出范围后重试") from None
     except OSError:
-        raise ValueError("PDF公式排版未完成，请检查本地Chromium环境后重试") from None
-    if process.returncode or not path.is_file():
-        raise ValueError("PDF公式排版未完成，请核对公式及本地Chromium环境后重试")
-    return path
+        raise ValueError(label + "公式排版未完成，请检查本地Chromium环境后重试") from None
+    if process.returncode:
+        raise ValueError(label + "公式排版未完成，请核对公式及本地Chromium环境后重试")
+    return output
 
 
 def build_pdf(path: Path, title: str, questions: list[dict[str, Any]], answers: bool = False) -> Path:
@@ -142,12 +146,35 @@ def build_excel(path: Path, rows: list[dict[str, Any]]) -> Path:
     assert ws is not None
     ws.title = "学习数据"
     ws.append(["题目", "学科", "错因", "掌握度", "复习日期"])
+    formula_cells = []
     for index, row in enumerate(rows, 2):
         for column, key in enumerate(("question", "subject", "misconception", "mastery", "review"), 1):
             value = row.get(key, "")
             cell = ws.cell(index, column, value)
+            cell.alignment = Alignment(vertical="top", wrap_text=True)
+            if isinstance(value, str) and re.search(r"\$|\\[A-Za-z(\[]", value):
+                formula_cells.append((cell, value, 450 if column == 1 else 275))
             if isinstance(value, str):
                 cell.data_type = "s"  # Student text must never become a spreadsheet formula.
+    if formula_cells:
+        rendered = json.loads(render_math_document({
+            "mode": "excel",
+            "cells": [{"text": value, "width": width} for _, value, width in formula_cells],
+        }))
+        if len(rendered) != len(formula_cells):
+            raise ValueError("Excel公式排版结果不完整，请重新导出")
+        for (cell, source, width), result in zip(formula_cells, rendered):
+            picture = SheetImage(io.BytesIO(base64.b64decode(result["png"], validate=True)))
+            # Excel caps row height at 409 points; keep the whole image in its row.
+            factor = min(1, width / result["width"], 530 / result["height"])
+            picture.width = result["width"] * factor
+            picture.height = result["height"] * factor
+            cell.value = ""
+            cell.comment = Comment(source, "公式原文")
+            ws.add_image(picture, cell.coordinate)
+            ws.row_dimensions[cell.row].height = max(
+                ws.row_dimensions[cell.row].height or 0, (picture.height + 10) * 0.75
+            )
     ws.freeze_panes = "A2"
     ws.auto_filter.ref = ws.dimensions
     for column_letter, width in {"A": 65, "B": 12, "C": 40, "D": 14, "E": 22}.items():

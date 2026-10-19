@@ -13,16 +13,22 @@
     </view>
     <view class="header-copy">
       <!-- #ifdef H5 -->
-      <component :is="'h1'" class="header-title">{{ title }}</component>
+      <component :is="'h1'" class="header-title">
+        <math-text v-if="hasMath" :text="title" inline />
+        <template v-else>{{ title }}</template>
+      </component>
       <!-- #endif -->
       <!-- #ifndef H5 -->
-      <text class="header-title">{{ title }}</text>
+      <view v-if="hasMath" class="header-title"><math-text :text="title" inline /></view>
+      <text v-else class="header-title">{{ title }}</text>
       <!-- #endif -->
     </view>
     <view v-if="$slots.default" class="header-extra"><slot /></view>
   </view>
 </template>
 <script setup>
+import { computed } from 'vue'
+import MathText from '@/components/math-text/math-text.vue'
 import { back as goBack } from '@/utils/navigation.js'
 const props = defineProps({
   title: { type: String, required: true },
@@ -30,6 +36,7 @@ const props = defineProps({
   gradient: Boolean,
   backFallback: String,
 })
+const hasMath = computed(() => /[$\\]/.test(props.title))
 function handleBack() {
   goBack(props.backFallback)
 }

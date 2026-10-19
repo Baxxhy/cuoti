@@ -97,6 +97,10 @@ def ingest(endpoint, env, query):
                 body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
                 assert body["model"] == "Qwen"
                 content = body["messages"][-1]["content"]
+                answer_grader = (
+                    "中学作业判题老师" in body["messages"][0]["content"]
+                    and isinstance(content, str)
+                )
                 review_grader = (
                     "中学作业判题老师" in body["messages"][0]["content"]
                     and isinstance(content, str)
@@ -112,7 +116,7 @@ def ingest(endpoint, env, query):
                     else []
                 )
                 if (
-                    review_grader
+                    answer_grader
                     or state.get("analysis")
                     or state.get("diagnosing")
                     or state.get("teaching")
@@ -234,10 +238,12 @@ def ingest(endpoint, env, query):
                         "confidence": 0.99,
                     }
                 state["calls"] += 1
-                if state["mode"] == "block":
+                if state["mode"] == "block" and not (answer_grader and not review_grader):
                     started.set()
                     assert release.wait(15)
-                if state["mode"] == "fail" or (
+                # Unconfigured semantic samples keep the previous unavailable
+                # fallback; do not manufacture correctness or an OCR image error.
+                if (answer_grader and not review_grader) or state["mode"] == "fail" or (
                     state.get("restart_only_handwriting")
                     and "手写作答转写器" not in body["messages"][0]["content"]
                     and not review_grader

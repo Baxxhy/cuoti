@@ -1,4 +1,5 @@
 import katex from 'katex'
+import 'katex/contrib/mhchem'
 
 // Match empty display pairs too: adjacent $$x$$$$y$$ must not swallow prose.
 // Escaped currency dollars are consumed before looking for formula delimiters.
@@ -82,7 +83,7 @@ function repairImportedTex(tex: string) {
 function escapedProse(text: string) {
   // Heading commands carry prose; bare TeX must not leak into student text.
   const source = text.replace(/\\section\*?\{([^{}]*)\}/g, '$1')
-  if (/\$\$|\\\[|\\\(/.test(source)) {
+  if (/\$\$|\\[\[\]()]|\$(?:[A-Za-z\\{]|[0-9]+[A-Za-z_^=+*/-])/.test(source)) {
     return '<span class="math-unparsed">' + escapeHtml(source) + '</span>'
   }
   return splitProse(source)

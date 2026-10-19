@@ -47,6 +47,7 @@ def reference_routes():
     project = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(project / "backend"))
     from app import models
+    from app.services.academic_text import repair_question_title
     from app.services.timestamps import iso_timestamp
     from fastapi import HTTPException
     from sqlalchemy import func, select
@@ -59,6 +60,7 @@ def reference_routes():
         "timezone": timezone,
         "HTTPException": HTTPException,
         "iso_timestamp": iso_timestamp,
+        "repair_question_title": repair_question_title,
         "envelope": lambda data: data,
     }
     sources = {

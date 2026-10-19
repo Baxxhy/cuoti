@@ -43,3 +43,27 @@
 本地8002业务服务与8012算法服务已重载，健康检查通过；更新后的实际内部HTTP公式PDF联调通过，未读写学生题目。旧PDF需重新生成。最终日志：`/tmp/zhiwei-paper-refine-tests.log`、`/tmp/zhiwei-paper-export-native.log`、`/tmp/zhiwei-paper-legacy-tests.log`、`/tmp/zhiwei-paper-export-python.log`、`/tmp/zhiwei-paper-refine-build.log`、`/tmp/zhiwei-paper-refine-browser.json`。
 
 [组卷与分值效果](screenshots/paper-score-and-formulas.png) · [实际PDF排版效果](screenshots/paper-pdf-formulas.png)。
+
+## 全链路复查补充
+
+进一步沿着原始公式、后端摘要、页面渲染、图示文字和文件导出检查，发现并补齐以下入口：
+
+- 后端历史列表、教师复核摘要、认知图谱详情、教学选项与反馈曾直接按字符截断。显示摘要遇到公式保留完整内容；必须限制长度的存储标题改为完整普通文字前缀。历史标题若恰好是包含公式的原题前缀，响应优先使用完整原题，避免显示被截断的公式；不改写存储的题目和标题。诊断页的简短结论也不再切分公式。
+- 时间线与地图的动态标签原来直接进入 Canvas 并截取3或6个字符。画布现在使用编号，完整标签在下方由 MathText 渲染，长标签可换行。
+- 支持 KaTeX 的本地 mhchem 扩展，化学反应式、化学式及物理单位与数学公式共用安全渲染器。未闭合的行内公式会显示核对提示，不擅自补写数学内容；美元价格保持普通文字。
+- Excel 的公式单元格使用相同离线渲染器生成图示，原始公式保留在批注中。普通文字和数值继续使用原生单元格，数值类型和防公式注入规则保留。排版失败直接报错，不生成源码表格。Excel 公式导出与 PDF 使用相同本地运行依赖。
+- PDF 按实际 A4 内容宽度排版，超宽且不可换行的单个公式适配纸宽；普通文字仍按原字号换行。已核对分式、根式、下标、反应式、分段函数与长算式的真实文件。
+
+只读审计当前仓颉题库1770题、9215字段、12467个公式片段；1430道可练习题的未解析字段为0。原先24个缺损字段仍留在已隔离题目中，本次没有改写源题或新增隔离。使用 `scripts/audit_cangjie_question_formats.py`，复用正在运行的业务服务环境，不直接连接数据库、不输出凭据、不调用模型。
+
+浏览器补充复核8条原页面路径及2类动态图示，共40种显示状态（360、390、768、1575宽度）；无公式解析错误、页面脚本错误或整页横向溢出，零业务写请求。实际 Excel 图片及 PDF 页边界也单独核对，未把模拟数据检查当作真实业务流程验收。
+
+验证日志：`/tmp/zhiwei-latex-verify-final.log`、`/tmp/zhiwei-latex-backend-tests.log`；只读审计结果 `.runtime/latex-current-audit.json`；浏览器结果 `/tmp/zhiwei-latex-browser.json`、`/tmp/zhiwei-latex-labels-browser.json`。PDF/Excel 实际样例为 `/tmp/zhiwei-latex-wide.pdf`、`/tmp/zhiwei-latex-sheet.xlsx`。完整验收的首次运行发现部分字段投影缺少 title 时的兼容分支异常，已修复并重新执行，首次失败不记为通过。
+
+最终再核对全部50个页面与15个公共组件，动态练习/试卷标题也接入公式组件；普通页面标题保留原有字号与布局。其余原生选择器仅承载学科、年级、状态等固定标签，表单输入、维护用JSON保留可编辑原文。历史参考路由的隔离验收脚本同步注入标题修复依赖，避免 AST 提取函数时遗漏模块依赖。
+
+动态标题另补4种宽度，分式与化学反应式混排再补4种，合计48种显示状态均通过。当前完整验收日志统一见 `/tmp/zhiwei-ai-grading-verify-final.log`。
+
+本轮最终有效证据：前端256项/46文件、类型/H5/App本地构建、算法625项、仓颉35组、真实HTTP/MySQL与进程恢复全部通过；兼容Python后端330项及全仓Ruff通过。浏览器全量先为55通过/1失败：旧组卷测试要求无解析题直接出现答案PDF，已按解析完整性合同更新；随后在新建独立MySQL、仓颉和算法服务中专项重跑，1项通过，合计56项均有通过证据，无跳过。不是同一次 `make verify-final` 退出0，已复用其余55项有效结果，没有为旧测试放宽产品校验。日志为 `/tmp/zhiwei-ai-grading-verify-final.log` 和 `/tmp/zhiwei-paper-browser-final.log`。
+
+无数据库配置时的独立HTTP/媒体检查另行通过，日志 `/tmp/zhiwei-no-database-final.log`。本地仓颉8002与算法8012服务重载后健康；未调用模型修改任何业务题目或学习记录。

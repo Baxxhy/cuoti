@@ -405,3 +405,15 @@ def test_probably_correct_is_reviewable_feedback_not_a_confirmed_wrong_answer(
     assert result.status == "needs_review" and not result.learning_eligible
     assert result.student_view.feedback == "答案可能正确，请补充单位或依据。"
     assert not result.checkpoint.independent_passed
+
+
+def test_independent_multi_blank_fraction_answer_does_not_stall_on_tex_format():
+    ctx = context(question_text=r"在 $\frac{1}{5}$、$\frac{1}{6}$、$\frac{1}{10}$ 中，最大和最小的是？",
+                  expected=r"$\frac{1}{5}$，$\frac{1}{10}$", question_type="填空题",
+                  student_steps=[], reference_steps=["分子相同，分母越小分数越大。"])
+    result = step(Checkpoint(phase="independent"), "answer", "1/5,1/10", ctx=ctx)
+    assert result.status == "completed"
+    assert result.checkpoint.independent_passed
+    assert result.attempt["verdict"] == "confirmed_correct"
+    assert result.attempt["grading"]["can_update_learning"]
+    assert not result.learning_eligible  # No invented contrast proof of mastery.

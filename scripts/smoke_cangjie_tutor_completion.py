@@ -69,6 +69,7 @@ def tutor_completion(endpoint, env, query, token, other, state):
     project = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(project / "backend"))
     from app import models
+    from app.services.academic_text import repair_question_title
     from app.services.cognition import cognition_target, update_cognition
     from app.services.pedagogy import evaluate_teach_back
     from app.services.timestamps import iso_timestamp
@@ -107,6 +108,7 @@ def tutor_completion(endpoint, env, query, token, other, state):
         "timedelta": timedelta,
         "HTTPException": HTTPException,
         "iso_timestamp": iso_timestamp,
+        "repair_question_title": repair_question_title,
         "cognition_target": cognition_target,
         "update_cognition": update_cognition,
         "canonical_tutor_stage": canonical_tutor_stage,

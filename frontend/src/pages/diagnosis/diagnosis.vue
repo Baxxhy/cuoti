@@ -837,9 +837,9 @@ const repairTips = computed(() => {
 })
 
 function conciseText(value, fallback, limit = 42) {
-  const text = String(value || '')
-    .replace(/\s+/g, ' ')
-    .trim()
+  const source = String(value || '')
+  if (/[$\\]/.test(source)) return source || fallback
+  const text = source.replace(/\s+/g, ' ').trim()
   if (!text) return fallback
   const firstSentence = text.split(/[。；;！!]/)[0].trim()
   return firstSentence.length > limit ? `${firstSentence.slice(0, limit)}…` : firstSentence

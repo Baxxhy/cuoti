@@ -271,7 +271,7 @@ test('错题筛选、搜索、详情折叠、修改与取消归档均可操作',
   expect(saved.status).not.toBe('archived')
 })
 
-test('组卷高级筛选、选择、保存、排序和三类导出真实生效', async ({ page, request }) => {
+test('组卷高级筛选、保存、排序与导出真实生效，缺解析的答案卷被阻止', async ({ page, request }) => {
   const account = await student(request)
   await manual(request, account, '组卷验收题一：2x+3=11')
   await manual(request, account, '组卷验收题二：x+5=9')
@@ -303,7 +303,7 @@ test('组卷高级筛选、选择、保存、排序和三类导出真实生效',
   expect((await savedResponse).ok()).toBe(true)
   await expect(button(page, '保存名称、排序与分值')).not.toHaveAttribute('disabled', 'true')
   await expect(page.locator('.total-score')).toContainText('25')
-  for (const label of ['题目 PDF', '答案 PDF', '学习表格']) {
+  for (const label of ['题目 PDF', '学习表格']) {
     await expect(button(page, label)).not.toHaveAttribute('disabled', 'true')
     const exported = page.waitForResponse(
       (response) => response.url().endsWith('/export') && response.request().method() === 'POST',
@@ -311,7 +311,7 @@ test('组卷高级筛选、选择、保存、排序和三类导出真实生效',
     await button(page, label).click()
     expect((await exported).ok()).toBe(true)
     await expect(page.locator('.download-row')).toHaveCount(
-      ['题目 PDF', '答案 PDF', '学习表格'].indexOf(label) + 1,
+      ['题目 PDF', '学习表格'].indexOf(label) + 1,
     )
   }
   // Exercise the real open control through the same origin as the compiled page.
@@ -328,8 +328,15 @@ test('组卷高级筛选、选择、保存、排序和三类导出真实生效',
     await request.get(API + '/papers/' + papers[0].id, { headers: account.headers }),
   )
   expect(paper.title).toBe('前端验收试卷')
+  await expect(button(page, '补齐解析并导出答案')).toBeVisible()
+  const incompleteAnswer = await request.post(API + '/papers/' + paper.id + '/export', {
+    headers: account.headers,
+    data: { kind: 'answer' },
+  })
+  expect(incompleteAnswer.status()).toBe(409)
+  expect(paper.exports.every((file: any) => file.kind !== 'answer')).toBeTruthy()
   expect(paper.items.reduce((sum: number, item: any) => sum + item.score, 0)).toBe(25)
-  expect(paper.exports).toHaveLength(3)
+  expect(paper.exports).toHaveLength(2)
   for (const file of paper.exports) {
     const download = await request.get(new URL(file.url, API).href)
     expect(download.ok()).toBeTruthy()

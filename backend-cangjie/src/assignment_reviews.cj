@@ -41,7 +41,7 @@ func teacherReviewQueue(context: HttpContext, accounts: Accounts): JsonValue {
         for (row in db.query(sql.toString(),params.toArray()).rows) {
             let task=rowJson("teacher_review_tasks",row); let question=schoolRow(db,SchoolTable.Question,rowText(row,"question_id")); let users=db.query("SELECT name FROM users WHERE id=?",[row["student_id"]]).rows
             if (users.isEmpty()) { continue }
-            task.put("student_name",JsonString(rowText(users[0],"name"))); task.put("question_title",question["title"]); task.put("question_summary",JsonString(shortTitle(tutorText(question,"question_text"),100)))
+            task.put("student_name",JsonString(rowText(users[0],"name"))); task.put("question_title",question["title"]); task.put("question_summary",JsonString(academicSummary(tutorText(question,"question_text"),100)))
             task.put("student_answer",tutorObject(task,"ai_result").get("student_answer") ?? JsonString("")); task.put("subject",question["subject"]); task.put("question_type",question["question_type"]); task.put("verdict",tutorObject(task,"ai_result").get("verdict") ?? JsonNull())
             let elapsed=(unixNow()-DateTime.parse(rowText(row,"created_at").replace(" ","T")+"Z").toUnixTimeStamp().toSeconds())/60
             task.put("waiting_minutes",JsonInt(if (elapsed<0) { 0 } else { elapsed })); result.add(task)

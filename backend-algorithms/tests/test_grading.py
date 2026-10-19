@@ -112,3 +112,32 @@ def test_grading_process_review_and_conflict(tmp_path):
             result["verdict"] == "review_required" and not result["can_update_learning"]
         )
         assert "private-fixture" not in json.dumps(result)
+
+
+def test_short_answer_uses_qwen_pool_and_verifies_semantic_normalization(tmp_path):
+    pool = tmp_path / "pool.json"
+    pool.write_text(json.dumps([{"base_url": "http://semantic.test/v1", "api_key": "fixture-only", "model": "Qwen"}]))
+    provider = ApiPoolProvider(pool)
+    asyncio.run(provider._client.aclose())
+    calls = []
+    def upstream(request):
+        payload = json.loads(request.content)
+        assert payload["model"] == "Qwen"
+        calls.append(payload)
+        return httpx.Response(200, json={"choices": [{"message": {"content": json.dumps({
+            "correct": True, "score": 100, "recognized_final_answer": "1/5,1/10",
+            "reason": "最大值和最小值分别正确，不受分数写法影响。", "confidence": 0.98,
+        })}}]})
+    provider._client = httpx.AsyncClient(transport=httpx.MockTransport(upstream))
+    app = create_app(secret=SECRET, pool_path=pool)
+    app.state.provider = provider
+    with TestClient(app) as client:
+        response = client.post("/v1/compute", headers=HEADERS, json={
+            "operation": "grade_answer", "text": "比较1/5、1/6、1/10，求最大值和最小值。",
+            "answer": "最大是五分之一，最小是十分之一", "expected": r"$\frac{1}{5}$，$\frac{1}{10}$",
+            "subject": "数学", "question_type": "填空题",
+        })
+        assert response.status_code == 200
+        result = response.json()["result"]
+        assert result["grader"] == "llm" and result["verdict"] == "confirmed_correct"
+        assert result["can_update_learning"] and len(calls) == 1

@@ -86,3 +86,27 @@ def test_unparseable_formula_cannot_be_exported_as_broken_pdf(tmp_path):
     with pytest.raises(ValueError, match="PDF公式排版"):
         build_pdf(target, "坏公式", [{"question_text": r"计算 $\frac{1}$"}])
     assert not target.exists()
+
+
+def test_excel_formula_cells_have_rendered_images_and_original_comments(tmp_path):
+    import zipfile
+    path = build_excel(tmp_path / "formula.xlsx", [{
+        "question": r"比较 $\frac{1}{5}$ 与 $\sqrt{3}$",
+        "subject": "数学", "misconception": r"检查 $A_1$", "mastery": 0.5,
+    }])
+    sheet = load_workbook(path).active
+    assert len(sheet._images) == 2
+    assert sheet["A2"].comment.text == r"比较 $\frac{1}{5}$ 与 $\sqrt{3}$"
+    assert sheet["D2"].value == 0.5
+    assert sheet.row_dimensions[2].height > 20
+    with zipfile.ZipFile(path) as archive:
+        assert len([name for name in archive.namelist() if name.startswith("xl/media/")]) == 2
+        assert b"\\frac" not in archive.read("xl/worksheets/sheet1.xml")
+
+
+def test_excel_invalid_formula_fails_instead_of_exporting_source(tmp_path):
+    import pytest
+    path = tmp_path / "bad.xlsx"
+    with pytest.raises(ValueError, match="公式排版未完成"):
+        build_excel(path, [{"question": r"$\notARealCommand{x}$"}])
+    assert not path.exists()

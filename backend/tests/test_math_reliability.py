@@ -159,11 +159,11 @@ def test_math_grading_compares_variables_and_all_answer_components(answer, expec
 
 
 @pytest.mark.asyncio
-async def test_unrecognized_math_requires_review_without_changing_learning():
+async def test_unknown_math_command_requires_review_without_changing_learning():
     result = await grade_answer(
         OfflineProvider(),
         question="填空",
-        answer=r"\frac{1}{2}",
+        answer=r"\unknownFraction{1}{2}",
         expected="0.5",
         reference_solution=[],
         subject="数学",

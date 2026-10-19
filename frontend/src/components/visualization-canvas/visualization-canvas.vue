@@ -6,15 +6,29 @@
       class="visual-canvas"
       :data-visualization-type="spec?.type"
     />
+    <view v-if="legend.length" class="visual-legend">
+      <view v-for="(label, index) in legend" :key="index" class="legend-row">
+        <text class="legend-number">{{ index + 1 }}</text>
+        <math-text :text="String(label ?? '')" inline />
+      </view>
+    </view>
   </view>
 </template>
 
 <script setup>
-import { getCurrentInstance, onBeforeUnmount, onMounted, watch } from 'vue'
+import MathText from '../math-text/math-text.vue'
+import { computed, getCurrentInstance, onBeforeUnmount, onMounted, watch } from 'vue'
 const props = defineProps({
   spec: Object,
   values: Object,
   canvasId: { type: String, default: 'mind-visual' },
+})
+const legend = computed(() => {
+  if (props.spec?.type === 'history_timeline')
+    return (props.spec.parameters?.events || ['事件一', '事件二', '事件三']).slice(0, 5)
+  if (props.spec?.type === 'timeline_map')
+    return (props.spec.parameters?.places || ['甲', '乙', '丙', '丁']).slice(0, 4)
+  return []
 })
 const instance = getCurrentInstance()
 const W = 330,
@@ -385,9 +399,9 @@ function history() {
   events.slice(0, 5).forEach((event, index) => {
     const px = 45 + index * 62
     point(px, 130, '', index === focus ? red : gold)
-    text(String(event).slice(0, 6), px - 18, index % 2 ? 165 : 100, 10, index === focus ? red : ink)
+    text(String(index + 1), px - 18, index % 2 ? 165 : 100, 10, index === focus ? red : ink)
   })
-  text(`当前：${events[focus]}`, 100, 210, 13)
+  text(`当前：事件 ${focus + 1}`, 100, 210, 13)
 }
 function timelineMap() {
   const places = props.spec.parameters?.places || ['甲', '乙', '丙', '丁'],
@@ -403,7 +417,7 @@ function timelineMap() {
     c.beginPath()
     c.arc(p[0], p[1], 19, 0, 7)
     c.fill()
-    text(String(places[index]).slice(0, 3), p[0] - 10, p[1] + 4, 10)
+    text(String(index + 1), p[0] - 10, p[1] + 4, 10)
     if (index < stage)
       arrow(
         p[0] + 19,
@@ -476,10 +490,23 @@ watch(() => [props.spec, JSON.stringify(props.values)], draw, { deep: true })
 
 <style scoped>
 .visual-stage {
-  height: 500rpx;
+  min-height: 500rpx;
   border-radius: 22rpx;
   background: #fff;
   overflow: hidden;
+}
+.visual-legend {
+  padding: 0 24rpx 24rpx;
+}
+.legend-row {
+  display: flex;
+  gap: 16rpx;
+  align-items: baseline;
+  margin-top: 12rpx;
+}
+.legend-number {
+  flex: none;
+  color: #2f6bff;
 }
 .visual-canvas {
   width: 660rpx;

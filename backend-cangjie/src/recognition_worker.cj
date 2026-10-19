@@ -36,10 +36,26 @@ func collapseWhitespace(value: String): String {
     return result.toString()
 }
 
+// Display summaries must never cut a TeX delimiter or a mathematical step.
+func academicSummary(value: String, limit: Int64): String {
+    return if (value.contains("$") || value.contains("\\")) { value } else { shortTitle(value, limit) }
+}
+
 func shortTitle(value: String, limit: Int64): String {
     let builder = StringBuilder()
     var count: Int64 = 0
-    for (rune in value.runes()) { if (count >= limit) { break }; builder.append(rune); count++ }
+    var mathSeen = false
+    var prefix = ""
+    var truncated = false
+    for (rune in value.runes()) {
+        if (count >= limit) { truncated = true; break }
+        let one = StringBuilder(); one.append(rune)
+        if (!mathSeen && (one.toString() == "$" || one.toString() == "\\")) {
+            mathSeen = true; prefix = builder.toString()
+        }
+        builder.append(rune); count++
+    }
+    if (truncated && mathSeen) { return if (stripWhitespace(prefix).isEmpty()) { "题目详情" } else { prefix + "…" } }
     return if (count == 0) { "待确认错题" } else { builder.toString() }
 }
 

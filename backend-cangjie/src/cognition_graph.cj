@@ -173,7 +173,7 @@ func readCognitionGraph(context: HttpContext, accounts: Accounts): JsonValue {
                 let topic=topics.get(id) ?? graphTopic(question)
                 let title=if (topic=="错题学习" || topic=="其他题型") { "相关错题" } else { topic+"相关错题" }
                 let node=CognitionNode("question:${id}",title,CognitionKind.Question,28)
-                node.text("subject",jsonText(question,"subject")); node.text("detail",shortTitle(jsonText(question,"question_text"),120)); node.text("question_id",id); graph.nodes[node.id]=node
+                node.text("subject",jsonText(question,"subject")); node.text("detail",academicSummary(jsonText(question,"question_text"),120)); node.text("question_id",id); graph.nodes[node.id]=node
             }
             for (mapping in mappings) {
                 let questionNode="question:"+jsonText(mapping,"question_id")

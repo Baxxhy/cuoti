@@ -61,7 +61,7 @@ func buildUnderstandingPlan(text: String, subject: String, questionType: String,
         [("key",topic),("answer","只记住最后答案"),("skip","跳过题目条件直接计算")], ["key"],
         "先回到题目条件，找到与${topic}直接相关的信息。","这道题先围绕“${topic}”判断，再继续后面的步骤。"))
     plan.add(tutorActivity("understanding-2","确认下一步做法","下面哪种做法更合适？",
-        [("reference",shortTitle(reference,42)),("guess","不看条件，凭印象猜一个答案")], ["reference"],prompt,"关键做法是：${reference}"))
+        [("reference",academicSummary(reference,42)),("guess","不看条件，凭印象猜一个答案")], ["reference"],prompt,"关键做法是：${reference}"))
     return plan
 }
 

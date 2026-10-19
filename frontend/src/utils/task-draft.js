@@ -63,7 +63,8 @@ export function reconcileTaskDraft(value, task) {
   const changed = draft.step_id !== task.step_id
   if (own) {
     if (!['queued', 'running'].includes(task.status)) {
-      if (task.status !== 'failed' && pending.kind === 'answer') draft.text = ''
+      if (!['failed', 'needs_review'].includes(task.status) && pending.kind === 'answer')
+        draft.text = ''
       draft.pending = null
     }
     draft.step_id = task.step_id

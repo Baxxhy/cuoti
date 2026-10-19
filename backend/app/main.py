@@ -98,6 +98,7 @@ from app.schemas import (
     VariantOutput,
     VisualizationPayload,
 )
+from app.services.academic_text import question_display_title, repair_question_title
 from app.services.access_control import authenticated_account, authorize_api_request, owned_resource
 from app.services.admin_workbench import get_admin_session, get_admin_student, get_admin_workbench
 from app.services.agent_runtime import (
@@ -185,7 +186,7 @@ def row_dict(row: Any) -> dict[str, Any]:
     for key, value in result.items():
         if isinstance(value, datetime):
             result[key] = iso_timestamp(value)
-    return result
+    return repair_question_title(result)
 
 
 def user_dict(user: User) -> dict[str, Any]:
@@ -2595,7 +2596,7 @@ async def answer_tutor_activity(
                 await reuse_or_create_session_variant(session, "near", db)
                 state = dict(session.state or {})
             else:
-                feedback = str(source.get("hint") or "再用刚才的关键条件判断一次。")[:70]
+                feedback = str(source.get("hint") or "再用刚才的关键条件判断一次。")
         else:
             plan = list(state.get("understanding_plan") or [])
             index = int(state.get("understanding_index", 0))
@@ -2620,7 +2621,7 @@ async def answer_tutor_activity(
                     state["assisted"] = True
                     feedback = "先看一个最短讲解，再确认一次就继续。"
                 else:
-                    feedback = str(source.get("hint", "再看一眼题目条件，然后试一次。"))[:70]
+                    feedback = str(source.get("hint", "再看一眼题目条件，然后试一次。"))
             if int(state.get("understanding_index", 0)) >= len(plan):
                 state["understanding_passed"] = True
                 state["understood"] = True
@@ -3463,7 +3464,7 @@ async def recommended_session_visualization(session_id: str, db: AsyncSession = 
     _, question, spec = await visualization_context(session_id, db)
     return envelope(
         {
-            "question": {"id": question.id, "title": question.title, "question_text": question.question_text},
+            "question": {"id": question.id, "title": question_display_title(question.title, question.question_text), "question_text": question.question_text},
             "spec": spec,
         }
     )
@@ -4260,7 +4261,7 @@ async def cognition_graph(
             "category": "question",
             "value": 28,
             "subject": question.subject,
-            "detail": question.question_text[:120],
+            "detail": question.question_text,
             "question_id": question.id,
         }
     for mapping in personal_links:

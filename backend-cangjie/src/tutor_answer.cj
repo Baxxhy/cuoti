@@ -83,7 +83,7 @@ public func answerTutorActivity(context: HttpContext, accounts: Accounts): JsonV
                     state.put("targeted_check_pending",JsonBool(false)); state.put("understanding_passed",JsonBool(true)); state.put("understood",JsonBool(true))
                     state.put("near_transfer",JsonNull()); session.put("stage",JsonString("near_transfer")); state.put("next_goal",JsonString("做一道相似题"))
                     feedback = if (passed) { "答对了，练一道类似的。" } else { "记住这个条件，我们直接练一道。" }
-                } else { let hint = tutorText(source,"hint"); feedback = shortTitle(if (hint.isEmpty()) { "再用刚才的关键条件判断一次。" } else { hint },70) }
+                } else { let hint = tutorText(source,"hint"); feedback = academicSummary(if (hint.isEmpty()) { "再用刚才的关键条件判断一次。" } else { hint },70) }
             } else {
                 let plan = tutorArray(state,"understanding_plan"); let index = tutorNumber(state,"understanding_index")
                 if (index < 0 || index >= plan.getItems().size) { throw ApiError(409,"活动计划已变化，请刷新") }
@@ -97,7 +97,7 @@ public func answerTutorActivity(context: HttpContext, accounts: Accounts): JsonV
                     attempts.put(key,JsonInt(count)); state.put("activity_attempts",attempts)
                     if (passed) { state.put("understanding_index",JsonInt(index+1)); feedback = "答对了，我们继续。" }
                     else if (unknown || count >= 2) { state.put("understanding_confirmation",JsonBool(true)); state.put("assisted",JsonBool(true)); feedback = "先看一个最短讲解，再确认一次就继续。" }
-                    else { feedback = tutorText(source,"hint"); if (!feedback.isEmpty()) { feedback = shortTitle(feedback,70) } }
+                    else { feedback = tutorText(source,"hint"); if (!feedback.isEmpty()) { feedback = academicSummary(feedback,70) } }
                 }
                 if (tutorNumber(state,"understanding_index") >= plan.getItems().size) {
                     state.put("understanding_passed",JsonBool(true)); state.put("understood",JsonBool(true)); state.put("next_goal",JsonString("用自己的话说一遍")); feedback = "已经抓住这个关键点。"

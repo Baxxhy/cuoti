@@ -96,7 +96,36 @@ def _compare_math_answers(answer: str, expected: str) -> tuple[bool, bool]:
             result[match.group(1)] = match.group(2)
         return result
 
+    answer, expected = normalize_expression(answer), normalize_expression(expected)
+
+    def components(value: str, *, split_lines: bool = False) -> list[str]:
+        depth = 0
+        start = 0
+        parts = []
+        for index, char in enumerate(value):
+            if char in "({[":
+                depth += 1
+            elif char in ")}]":
+                depth -= 1
+            elif (char in ",，;；、" or (split_lines and char == "\n")) and depth == 0:
+                parts.append(value[start:index].strip())
+                start = index + 1
+        parts.append(value[start:].strip())
+        return parts
+
     if "=" not in expected and "=" not in answer:
+        right = components(expected)
+        left = components(answer, split_lines=len(right) > 1)
+        if len(left) > 1 or len(right) > 1:
+            if len(left) != len(right):
+                try:
+                    for part in [*left, *right]:
+                        parse_math_expression(part)
+                    return False, True
+                except (ValueError, TypeError, SyntaxError):
+                    return False, False
+            comparisons = [compare_equivalence(a, b) for a, b in zip(left, right)]
+            return all(equal for equal, _ in comparisons), all(parsed for _, parsed in comparisons)
         return compare_equivalence(answer, expected)
     expected_assignments, answer_assignments = assignments(expected), assignments(answer)
     if expected_assignments is None:
@@ -171,7 +200,7 @@ def _grade_by_rule(answer: str, expected: str, subject: str, question_type: str)
     if subject == "数学":
         math_expected = _math_expected_candidate(expected)
         candidate = _final_answer_candidate(answer, expected)
-        if candidate:
+        if candidate and not ("\n" in answer and re.search(r"[,，;；、]", math_expected)):
             recognized = candidate
         math_exact = re.sub(r"\s+", "", normalize_expression(recognized)) == re.sub(
             r"\s+",
@@ -265,8 +294,16 @@ async def grade_answer(
             evidence=["选项集合与标准答案进行精确比较"],
         )
     rule_result = _grade_by_rule(answer_text, expected_text, subject, question_type)
-    if not _needs_process_review(answer_text, question_type):
-        conclusive = _rule_is_conclusive(rule_result)
+    # Ambiguous short answers need semantic review just as long solutions do.
+    # Reliable local equivalence stays a fast path; raw string mismatch is not a verdict.
+    conclusive = _rule_is_conclusive(rule_result)
+    process_review = _needs_process_review(answer_text, question_type)
+    if conclusive and ("填空" in question_type or question_type == "fill_blank") and re.search(r"[,，;；、]", expected_text):
+        # Separate lines can be separate blanks rather than a worked solution.
+        _, complete_parts = _compare_math_answers(answer_text, expected_text) if subject == "数学" else (False, False)
+        if complete_parts:
+            process_review = False
+    if (conclusive and not process_review) or not answer_text.strip() or not expected_text.strip():
         verdict = (
             CONFIRMED_CORRECT
             if rule_result["correct"] and conclusive
@@ -287,10 +324,17 @@ async def grade_answer(
         f"标准答案：{expected_text}\n参考步骤：{reference_solution or []}\n学生作答：{answer_text}\n"
         "请判断学生作答是否正确。允许与参考步骤不同但数学上等价的正确方法；"
         "不要因为表述、排版、OCR空格或乘号写法不同而扣分。"
+        "多空题逐空按题目顺序核对，逗号、顿号、换行和答案标签不影响等价性；"
+        "例如1/5与\\frac{1}{5}、0.2、五分之一可以等价，但不能交换最大值和最小值的位置。"
+        "recognized_final_answer提取学生实际写出的最终答案，不得抄参考答案或替学生改错；"
+        "数学答案优先写成可计算的算式，多空答案用英文逗号按题目顺序分隔，不加Markdown或说明。"
         "同时检查过程是否存在会影响结论的矛盾或计算错误。"
+        "matched_key_steps列出支持判断的条件或逐空对照；error_points列出实质错误。"
         "reason只写一到两句、直接面向学生；若判错，必须明确指出第一个关键错误或答案差异。"
     )
     try:
+        if provider is None or not hasattr(provider, "generate_structured"):
+            raise ApiPoolUnavailable("判题模型暂时不可用")
         result = await provider.generate_structured(
             prompt,
             AnswerGradeOutput,
@@ -330,11 +374,23 @@ async def grade_answer(
         "grader": "llm",
     }
     rule_conclusive = _rule_is_conclusive(rule_result)
-    conflict = rule_conclusive and bool(rule_result["correct"]) != bool(result.correct)
+    normalized_equal, normalized_verified = False, False
+    if subject == "数学" and result.recognized_final_answer.strip():
+        try:
+            normalized_equal, normalized_verified = _compare_math_answers(
+                result.recognized_final_answer, _math_expected_candidate(expected_text)
+            )
+        except (ValueError, TypeError):
+            pass
+    conflict = (rule_conclusive and bool(rule_result["correct"]) != bool(result.correct)) or (
+        normalized_verified and normalized_equal != bool(result.correct)
+    ) or bool(result.correct and (result.error_points or result.score < 60))
     evidence = [
         f"规则校验：{rule_result['method']}（{'通过' if rule_result['correct'] else '未通过'}）",
         f"模型过程复核：{'正确' if result.correct else '有误'}，置信度 {result.confidence:.2f}",
     ]
+    if normalized_verified:
+        evidence.append("AI识别的逐项答案经SymPy等价校验：" + ("通过" if normalized_equal else "不一致"))
     if conflict:
         llm_result["feedback"] = (
             "规则校验和过程判定出现冲突，这次不记录为答对或答错，请核对识别文字和解题过程。"
@@ -346,12 +402,32 @@ async def grade_answer(
             evidence=evidence,
             conflict=True,
         )
+    if normalized_verified and result.confidence >= 0.9:
+        return _safe_result(
+            llm_result,
+            CONFIRMED_CORRECT if result.correct else CONFIRMED_INCORRECT,
+            confidence=min(result.confidence, 0.98),
+            evidence=evidence,
+        )
     if rule_conclusive and result.confidence >= 0.75:
         return _safe_result(
             llm_result,
             CONFIRMED_CORRECT if result.correct else CONFIRMED_INCORRECT,
             confidence=min(0.99, (result.confidence + 0.95) / 2),
             evidence=evidence,
+        )
+    closed_math_answer = subject == "数学" and not process_review and (
+        "填空" in question_type or "判断" in question_type or question_type in {"fill_blank", "short_answer", "true_false"}
+    )
+    semantic_evidence = result.matched_key_steps if result.correct else result.error_points
+    if (
+        closed_math_answer and result.confidence >= 0.95 and semantic_evidence
+        and result.recognized_final_answer.strip() not in {"", "略", "同参考答案", "同上"}
+    ):
+        evidence.append("AI依据题干与参考答案逐项核对，高置信度语义判题")
+        return _safe_result(
+            llm_result, CONFIRMED_CORRECT if result.correct else CONFIRMED_INCORRECT,
+            confidence=result.confidence, evidence=evidence,
         )
     if result.correct and result.confidence >= 0.8:
         llm_result["feedback"] = result.reason + " 当前只能判为可能正确，确认前不会更新掌握度。"

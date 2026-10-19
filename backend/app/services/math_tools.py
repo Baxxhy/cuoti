@@ -22,11 +22,27 @@ MATH_CONSTANTS = {"pi": sp.pi, "E": sp.E}
 
 def normalize_expression(value: str) -> str:
     value = value.strip()
-    for opening, closing in (("$$", "$$"), ("$", "$"), (r"\(", r"\)"), (r"\[", r"\]")):
-        if value.startswith(opening) and value.endswith(closing):
-            value = value[len(opening) : -len(closing)].strip()
+    # Remove complete presentation delimiters independently, including one
+    # delimiter pair per blank. Unmatched source is deliberately not repaired.
+    value = re.sub(
+        r"\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$|\\\(([\s\S]*?)\\\)|\\\[([\s\S]*?)\\\]",
+        lambda match: next(part for part in match.groups() if part is not None),
+        value,
+    )
+    # Normalize bounded presentation syntax; the arithmetic AST below remains
+    # the only parser. Unknown commands and malformed groups remain unverified.
+    for _ in range(30):
+        previous = value
+        value = re.sub(
+            r"\\(?:dfrac|tfrac|frac)\s*\{([^{}]+)\}\s*\{([^{}]+)\}",
+            r"((\1)/(\2))", value,
+        )
+        value = re.sub(r"\\sqrt\s*\{([^{}]+)\}", r"sqrt(\1)", value)
+        if value == previous:
             break
-    # Only translate a bounded arithmetic exponent, never interpret TeX commands.
+    value = re.sub(r"\\(?:left|right)(?=[()])", "", value)
+    value = value.replace(r"\times", "*").replace(r"\cdot", "*")
+    # Translate only a bounded arithmetic exponent; unsupported TeX stays invalid.
     value = re.sub(r"\^\{([+-]?\d{1,3})\}", r"^(\1)", value)
     superscript_digits = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹", "0123456789")
     value = re.sub(r"[⁰¹²³⁴⁵⁶⁷⁸⁹]+", lambda match: "**" + match.group().translate(superscript_digits), value)

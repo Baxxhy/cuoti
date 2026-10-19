@@ -450,6 +450,7 @@ def assignments(endpoint, env, query, state):
     async def parity():
         from app import models
         from app.media import sign_media_url
+        from app.services.academic_text import repair_question_title
         from app.services.timestamps import iso_timestamp
         from fastapi import HTTPException
         from sqlalchemy import select
@@ -496,6 +497,7 @@ def assignments(endpoint, env, query, state):
             "timezone": timezone,
             "HTTPException": HTTPException,
             "iso_timestamp": iso_timestamp,
+            "repair_question_title": repair_question_title,
             "settings": SimpleNamespace(auth_secret=env["CANGJIE_AUTH_SECRET"]),
             "sign_media_url": sign_media_url,
         }

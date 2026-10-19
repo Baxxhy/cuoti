@@ -33,6 +33,7 @@ from app.models import (
     User,
 )
 from app.providers.api_pool import ApiPoolProvider
+from app.services.academic_text import repair_question_title
 from app.services.access_control import authenticated_account
 from app.services.answer_handwriting import validate_answer_handwriting
 from app.services.cognition import cognition_target, update_cognition
@@ -42,9 +43,9 @@ from app.services.timestamps import iso_timestamp, parse_timestamp
 
 def _row(row: Any) -> dict[str, Any]:
     result = {column.name: getattr(row, column.name) for column in row.__table__.columns}
-    return {
+    return repair_question_title({
         key: iso_timestamp(value) if isinstance(value, datetime) else value for key, value in result.items()
-    }
+    })
 
 
 async def _account(
@@ -432,7 +433,7 @@ def create_teacher_router(provider: ApiPoolProvider) -> APIRouter:
                 **_row(task),
                 "student_name": student.name,
                 "question_title": question.title,
-                "question_summary": question.question_text[:100],
+                "question_summary": question.question_text,
                 "student_answer": task.ai_result.get("student_answer", ""),
                 "subject": question.subject,
                 "question_type": question.question_type,

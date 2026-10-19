@@ -4,6 +4,18 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 describe('数学公式文本渲染', () => {
+  it('化学反应式和物理单位使用同一个安全公式渲染器', () => {
+    const html = renderMathText(String.raw`$\ce{2H2 + O2 -> 2H2O}$ 与 $\pu{9.8 m/s2}$`)
+    expect(html.match(/class="katex"/g)).toHaveLength(2)
+    expect(html).not.toContain('math-unparsed')
+  })
+  it('未闭合的行内公式提示核对，美元价格不误判为公式错误', () => {
+    expect(renderMathText('$x+1')).toContain('math-unparsed')
+    expect(renderMathText(String.raw`$\frac{1}{2}`)).toContain('math-unparsed')
+    expect(renderMathText('$5一份')).not.toContain('math-unparsed')
+    expect(renderMathText(String.raw`价格 \$5`)).not.toContain('math-unparsed')
+  })
+
   it('英文语法短语保留词间空格并继续转义普通文本', () => {
     const html = renderMathText('主句 $would tell$，假设 \\(If I were you\\)。<img src=x>')
     expect(html).toContain('would tell')
