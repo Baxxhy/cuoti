@@ -619,7 +619,7 @@ async def support_strategy(
         )
 
 
-def verified_linear_hint(context: TaskContext, state: Checkpoint, level: int):
+def verified_linear_hint(context: TaskContext, state: Checkpoint, level: int, draft=""):
     question = (
         state.contrast.question
         if state.phase == "contrast" and state.contrast
@@ -630,6 +630,40 @@ def verified_linear_hint(context: TaskContext, state: Checkpoint, level: int):
         return None
     _, x, a, b, c, _ = source
     left = sp.latex(a * x + b)
+    work = linear_source(draft) if draft.strip() else None
+    if draft.strip() and work is None:
+        # A paragraph or several lines cannot safely be interpreted as one equation.
+        return None
+    if work is not None:
+        _, wx, wa, wb, wc, _ = work
+        if wx != x:
+            return None
+        equivalent = sp.simplify((wc - wb) / wa - (c - b) / a) == 0
+        if not equivalent:
+            if level >= 2:
+                operation = f"减去 ${sp.latex(b)}$" if b >= 0 else f"加上 ${sp.latex(-b)}$"
+                if b == 0:
+                    operation = f"除以 ${sp.latex(a)}$"
+                return (
+                    f"回到原式 ${left}={sp.latex(c)}$，先把草稿中不等价的变形放在一旁。"
+                    f"为了保持等式成立，左右两边都要{operation}。\n\n"
+                    + ("先不要心算：你能把左右两边各自的运算完整写在一行吗？"
+                       if level == 2 else "把这一行左边、右边分别化简，再检查两边是否用了同一个运算。你能先写出右边未化简的算式吗？")
+                )
+            return (
+                f"原式是 ${left}={sp.latex(c)}$。等式像平衡的天平，两边做相同运算才能保持相等；"
+                "你草稿中的等式与原式解不同，先停在这次变形。\n\n"
+                + (f"要消去左边的常数 ${sp.latex(b)}$，两边需要同时减去哪个数？先把右边的运算写出来，可以吗？"
+                   if b != 0 else f"要把未知数的系数变为1，两边应同时除以 ${sp.latex(a)}$；右边的除法算式怎么写？")
+            )
+        if wb == 0:
+            if wa == 1:
+                return f"你草稿已把未知数单独放在一边。接下来用代入检查，避免只凭变形判断。\n\n把草稿中的值代回原式 ${left}={sp.latex(c)}$，左边各项算出多少，是否与右边相等？"
+            if level == 1:
+                return f"对照原式 ${left}={sp.latex(c)}$，你草稿已消去常数项。现在 ${sp.latex(wa * x)}$ 表示未知数的 ${sp.latex(wa)}$ 倍，目标是留下1倍未知数。\n\n等号两边同时做什么运算，能把系数变成1？"
+            if level == 2:
+                return f"从原式 ${left}={sp.latex(c)}$ 到草稿这一步后，只需处理系数。乘法可用除法还原，等式两边必须同除以非零的 ${sp.latex(wa)}$。\n\n先不计算结果，右边除以这个系数的算式怎么写？"
+            return f"沿着你草稿继续：先写‘右边 ÷ ${sp.latex(wa)}$’，再计算；最后代回原式 ${left}={sp.latex(c)}$ 检查。\n\n代入后左边和右边是否相等？"
     if b == 0:
         if level == 1:
             return f"本题已经整理成 ${left}={sp.latex(c)}$，没有需要移到另一边的常数项。看看未知数的系数 ${sp.latex(a)}$，怎样让它变成1？"
@@ -639,7 +673,7 @@ def verified_linear_hint(context: TaskContext, state: Checkpoint, level: int):
     # All intermediate expressions are derived from the current phase's equation.
     remove = f"减去 ${sp.latex(b)}$" if b >= 0 else f"加上 ${sp.latex(-b)}$"
     if level == 1:
-        return f"先看本题的等式 ${left}={sp.latex(c)}$。要单独留下未知数项，应怎样在等号两边同时消去常数项 ${sp.latex(b)}$？"
+        return f"先看本题的等式 ${left}={sp.latex(c)}$。解方程是要找出未知数；先让含未知数的项单独留在一边，就更容易看清。等式像平衡的天平，两边做相同运算才能保持相等。\n\n要消去左边的常数项 ${sp.latex(b)}$，两边应该同时加上或减去哪个数？"
     if level == 2:
         return f"从 ${left}={sp.latex(c)}$ 出发，两边同时{remove}。先只写消去常数项后的等式，右边的运算留给你完成。"
     if a == 1:
@@ -658,7 +692,9 @@ async def support(provider, context, state, traces, *, explicit_hint, draft=""):
         return
     await support_strategy(provider, context, state, traces, explicit_hint=True)
     level = len(previous) + 1
-    text = verified_linear_hint(context, state, level)
+    text = verified_linear_hint(
+        context, state, level, draft or state.last_answers.get(state.phase, "")
+    )
     reason = "symbolic_linear_hint"
     if text is None:
         question = (

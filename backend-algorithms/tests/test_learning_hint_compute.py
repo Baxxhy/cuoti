@@ -3,7 +3,7 @@ import json
 
 import pytest
 from grading_compute import UnavailableGradingProvider
-from learning_hint_compute import HintDraft
+from learning_hint_compute import GuidedHint, HintDraft
 from learning_task_compute import (
     Checkpoint,
     SupportPlan,
@@ -59,8 +59,13 @@ class Teacher:
                 decision_summary="根据当前交点条件逐步提示",
             )
         self.inputs.append(json.loads(prompt))
-        return HintDraft(
-            hint=self.hints[min(len(self.inputs) - 1, len(self.hints) - 1)],
+        return GuidedHint(
+            connection=self.hints[min(len(self.inputs) - 1, len(self.hints) - 1)],
+            next_step=[
+                "公共点同时满足哪两个方程？",
+                "整理后的二次项系数是多少？",
+                "恒等于零时，k的每次项系数应满足什么关系？",
+            ][min(len(self.inputs) - 1, len(self.hints) - 1, 2)],
             source_quote="有且仅有一个公共点",
         )
 
@@ -102,7 +107,11 @@ def test_invalid_hints_are_not_shown_or_consumed(bad, quote):
         async def generate_structured(self, prompt, schema, **kwargs):
             if schema is SupportPlan:
                 return await super().generate_structured(prompt, schema, **kwargs)
-            return HintDraft(hint=bad, source_quote=quote)
+            return GuidedHint(
+                connection=bad,
+                next_step="你能先写出这一步对应的关系式吗？",
+                source_quote=quote,
+            )
 
     result = run(provider=Invalid())
     assert bad not in result.student_view.feedback
@@ -135,7 +144,7 @@ def test_linear_hints_are_symbolically_bound_to_current_phase_and_legacy_state()
     )
     state = Checkpoint.model_validate({"phase": "repair"})
     for level in range(3):
-        result = run(state, ctx=ctx)
+        result = run(state, ctx=ctx, text="")
         assert result.student_view.hint_level == level + 1
         assert "2 x + 3=11" in result.student_view.feedback
         assert "x=4" not in result.student_view.feedback
@@ -159,7 +168,7 @@ def test_contrast_hint_uses_contrast_question_not_original_references():
 
     ctx = context(question_text="解方程：2x+3=11", expected="x=4")
     contrast = make_contrast(ctx)
-    result = run(Checkpoint(phase="contrast", contrast=contrast), ctx=ctx)
+    result = run(Checkpoint(phase="contrast", contrast=contrast), ctx=ctx, text="")
     assert result.student_view.hint_level == 1
     assert result.checkpoint.assistance["contrast"]
     assert "2 x - 3=11" in result.student_view.feedback
@@ -227,7 +236,7 @@ def test_compute_http_contract_roundtrips_hints_without_external_provider(tmp_pa
 
 def test_linear_without_constant_does_not_ask_to_remove_zero():
     ctx = context(question_text="解方程：3x=12", expected="x=4")
-    result = run(ctx=ctx)
+    result = run(ctx=ctx, text="")
     assert "系数" in result.student_view.feedback
     assert "消去常数项" not in result.student_view.feedback
     assert "x=4" not in result.student_view.feedback
@@ -246,3 +255,55 @@ def test_numeric_final_answer_is_not_returned_as_a_hint():
             expected="4",
             previous=[],
         )
+
+
+def test_linear_hint_continues_from_verified_draft():
+    ctx = context(question_text="解方程：2x+3=11", expected="x=4")
+    state = Checkpoint(phase="independent")
+    feedback = []
+    for level in range(1, 4):
+        result = run(state, ctx=ctx, text="2x=8")
+        feedback.append(result.student_view.feedback)
+        assert result.student_view.hint_level == level
+        assert "x=4" not in result.student_view.feedback
+        state = result.checkpoint
+    assert "草稿已消去常数项" in feedback[0]
+    assert len(set(feedback)) == 3
+
+
+def test_linear_wrong_draft_explains_equality_instead_of_advancing():
+    result = run(ctx=context(question_text="解方程：2x+3=11", expected="x=4"), text="2x=14")
+    assert "与原式解不同" in result.student_view.feedback
+    assert "相同运算" in result.student_view.feedback
+    assert result.attempt is None
+
+
+def test_guided_schema_requires_reason_and_answerable_question():
+    with pytest.raises(ValidationError):
+        GuidedHint(source_quote="公共点", connection="想一想", next_step="怎么做？")
+    with pytest.raises(ValueError, match="concrete question"):
+        GuidedHint(source_quote="公共点", connection="公共点的坐标需要同时满足两个函数表达式。", next_step="认真思考然后继续计算下去。").as_draft()
+
+
+def test_generic_advice_is_rejected_even_with_valid_source():
+    from learning_hint_compute import validate_hint
+    with pytest.raises(ValueError, match="generic"):
+        validate_hint(HintDraft(source_quote="公共点", hint="认真审题，回顾所学知识后套用相关公式。"), question=QUESTION, expected="", previous=[])
+
+
+def test_same_question_is_rejected_even_when_explanation_changes():
+    from learning_hint_compute import validate_hint
+    with pytest.raises(ValueError, match="repeated"):
+        validate_hint(
+            HintDraft(source_quote="公共点", hint="这里先考虑公共点的两个坐标，它们分别满足题中两条关系。\n\n请写出消去y之后的方程是什么？"),
+            question=QUESTION, expected="", previous=["一个交点同时在两条曲线上。\n\n请写出消去y之后的方程是什么？"],
+        )
+
+
+def test_invalid_candidate_is_rewritten_once_before_consuming_level():
+    teacher = Teacher(hints=["认真审题，回顾所学知识后套用相关公式。", Teacher().hints[1]])
+    result = run(provider=teacher)
+    assert len(teacher.inputs) == 2
+    assert "revision_instruction" in teacher.inputs[1]
+    assert result.student_view.hint_level == 1
+    assert len(result.checkpoint.hints["independent"]) == 1

@@ -124,7 +124,20 @@ def learning_memory(
         review_ref = "review_record:" + attempt["attempt_id"]
         target = wait_task(endpoint, create(source)["id"], token)
 
+        def with_hint_budget(current):
+            # Memory probes must actually invoke the planner. After three hints
+            # the product intentionally returns cached guidance without a model call.
+            if current["student_view"].get("hint_level", 0) >= 3:
+                task_request(
+                    endpoint, f"/api/v1/learning-tasks/{current['id']}/cancel", token, {}
+                )
+                fresh = wait_task(endpoint, create(source)["id"], token)
+                assert fresh["id"] != current["id"]
+                return fresh
+            return current
+
         def probe(current):
+            current = with_hint_budget(current)
             current, _ = action(endpoint, current, token, kind="hint")
             assert current["status"] == "waiting_student"
             entries = state["task_memory_context"]["memory_snapshot"]["entries"]
@@ -208,6 +221,7 @@ def learning_memory(
         old_version = entries[note_ref]["version"]
 
         # A real self-check edit while Qwen is in flight invalidates the old plan.
+        target = with_hint_budget(target)
         count = query(
             env,
             f"SELECT COUNT(*) FROM agent_runs WHERE agent_name='learning_task' AND JSON_UNQUOTE(JSON_EXTRACT(result,'$.task_id'))='{target['id']}'",
@@ -311,6 +325,7 @@ def learning_memory(
         target, entries = probe(target)
         assert teacher_ref not in entries
         state["task_memory_foreign"] = True
+        target = with_hint_budget(target)
         target, _ = action(endpoint, target, token, kind="hint")
         state["task_memory_foreign"] = False
         traces = query(
