@@ -121,8 +121,8 @@
           </view>
           <view class="bank-list-heading">
             <text>选择题目</text>
-            <button role="button" :disabled="busy || data.total < 5" @click="start()">
-              随机练 5 题
+            <button role="button" :disabled="busy || data.total < practiceCount" @click="start()">
+              练 {{ practiceCount }} 题
               <uni-icons aria-hidden="true" type="right" size="14" />
             </button>
           </view>
@@ -238,6 +238,7 @@ const mode = ref('practice'),
   search = ref('')
 const failedImages = ref({})
 const filters = ref({ subject: '', grade_band: '', source_id: '', search: '', page: 1 })
+const practiceCount = ref(5)
 const count = ref(5),
   minutes = ref(20)
 const subjects = computed(() => [...new Set((data.value?.facets || []).map((x) => x.subject))])
@@ -309,7 +310,8 @@ async function start(questionId) {
         grade_band: filters.value.grade_band,
         source_id: filters.value.source_id,
         search: filters.value.search,
-        count: mode.value === 'exam' ? count.value : 5,
+        count: mode.value === 'exam' ? count.value : practiceCount.value,
+        selection_strategy: mode.value === 'practice' && !questionId ? 'adaptive' : 'random',
         minutes: minutes.value,
         ...(questionId ? { question_ids: [questionId] } : {}),
       },
@@ -325,6 +327,11 @@ async function start(questionId) {
 onLoad((query) => {
   mode.value = query.mode === 'exam' ? 'exam' : 'practice'
   if (query.subject) filters.value.subject = query.subject
+  if (query.grade_band) filters.value.grade_band = query.grade_band
+  if (query.count && [3, 5, 10].includes(Number(query.count)))
+    practiceCount.value = Number(query.count)
+  if (query.minutes && [5, 10, 20].includes(Number(query.minutes)))
+    minutes.value = Number(query.minutes)
   if (query.source_id) filters.value.source_id = query.source_id
 })
 onShow(load)
@@ -352,7 +359,7 @@ onShow(load)
   margin-bottom: 24px;
 }
 .bank-intro.exam {
-  background: #fff0da;
+  background: var(--color-primary-soft);
 }
 .bank-title {
   display: block;
@@ -488,7 +495,7 @@ onShow(load)
 }
 .image-error {
   font-size: 12px;
-  color: #925014;
+  color: var(--color-primary);
 }
 .question-arrow {
   margin-left: auto;
@@ -533,12 +540,12 @@ onShow(load)
   font-size: 14px;
 }
 .choice-row button.chosen {
-  background: #fff0da;
-  color: #925014;
-  border-color: #dba866;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: var(--color-primary-border);
 }
 .exam-start {
-  background: #a65916;
+  background: var(--color-primary);
 }
 .session-history {
   margin-top: 32px;

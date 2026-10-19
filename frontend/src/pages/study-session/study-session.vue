@@ -83,7 +83,7 @@
               <math-text
                 v-if="item.grading?.feedback"
                 class="grading-feedback"
-                :text="item.grading.feedback"
+                :text="learningFeedback(item.grading.feedback)"
                 inline
               />
               <button
@@ -241,6 +241,7 @@
   </view>
 </template>
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onLoad, onHide, onUnload } from '@dcloudio/uni-app'
@@ -569,7 +570,7 @@ onUnload(() => {
   padding: 7px 12px;
   border-radius: 10px;
   color: #8f4f16;
-  background: #fff0da;
+  background: var(--color-primary-soft);
   font-size: 16px;
   font-variant-numeric: tabular-nums;
 }
@@ -730,12 +731,10 @@ onUnload(() => {
 }
 .result-summary {
   padding: 28px;
-  background: #e7f4ed;
-  border-radius: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   margin-bottom: 24px;
-}
-.result-summary.exam {
-  background: #fff0da;
 }
 .result-title {
   font-size: 18px;
@@ -748,14 +747,11 @@ onUnload(() => {
   margin-top: 12px;
 }
 .result-score > text {
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 650;
   line-height: 1.2;
-  color: #226747;
+  color: var(--color-primary);
   letter-spacing: -0.04em;
-}
-.exam .result-score > text {
-  color: #8f4f16;
 }
 .result-score small {
   font-size: 16px;

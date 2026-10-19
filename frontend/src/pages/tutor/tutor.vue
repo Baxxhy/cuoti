@@ -493,7 +493,61 @@
                 :class="['history-turn', turn.role]"
               >
                 <text>{{ turn.role === 'assistant' ? '小智老师' : '我' }}</text>
-                <view><math-text :text="turn.content" inline /></view>
+                <view>
+                  <math-text
+                    :text="
+                      turn.role === 'assistant' ? learningFeedback(turn.content) : turn.content
+                    "
+                    inline
+                  />
+                  <view
+                    v-if="
+                      turn.role === 'assistant' && turn.metadata_json?.knowledge_sources?.length
+                    "
+                    class="knowledge-sources"
+                  >
+                    <button
+                      role="button"
+                      class="source-toggle"
+                      @click="sourceOpen[turn.id] = !sourceOpen[turn.id]"
+                      tabindex="0"
+                      :aria-expanded="Boolean(sourceOpen[turn.id])"
+                      @keydown.enter.prevent="sourceOpen[turn.id] = !sourceOpen[turn.id]"
+                      @keydown.space.prevent
+                      @keyup.space.prevent="sourceOpen[turn.id] = !sourceOpen[turn.id]"
+                    >
+                      参考知识
+                      <uni-icons
+                        aria-hidden="true"
+                        :type="sourceOpen[turn.id] ? 'top' : 'bottom'"
+                        size="14"
+                      />
+                    </button>
+                    <template v-if="sourceOpen[turn.id]">
+                      <button
+                        v-for="source in turn.metadata_json.knowledge_sources"
+                        :key="source.code"
+                        role="button"
+                        class="source-link"
+                        tabindex="0"
+                        @keydown.enter.prevent="
+                          go('/pages/library/library?code=' + encodeURIComponent(source.code))
+                        "
+                        @keydown.space.prevent
+                        @keyup.space.prevent="
+                          go('/pages/library/library?code=' + encodeURIComponent(source.code))
+                        "
+                        @click="
+                          go('/pages/library/library?code=' + encodeURIComponent(source.code))
+                        "
+                      >
+                        {{ source.name }}
+                        <text v-if="source.role === 'prerequisite'">先修</text>
+                        <uni-icons aria-hidden="true" type="right" size="14" />
+                      </button>
+                    </template>
+                  </view>
+                </view>
               </view>
             </view>
           </view>
@@ -572,12 +626,14 @@
 </template>
 
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 
 import { computed, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { getData, postData } from '@/api/index.js'
+import { go } from '@/utils/navigation.js'
 
 const id = ref('')
 const session = ref(null)
@@ -588,6 +644,7 @@ const figureFailed = ref(false)
 const selectedOptions = ref([])
 const activityAnswer = ref('')
 const activityWorking = ref('')
+const sourceOpen = ref({})
 const historyOpen = ref(false)
 const questionOpen = ref(false)
 const planOpen = ref(false)
@@ -601,7 +658,10 @@ const teachingExpanded = ref(false)
 const feedbackExpanded = ref(false)
 const stages = ['理解', '讲清', '练习', '迁移']
 
-const activity = computed(() => session.value?.activity || null)
+const activity = computed(() => {
+  const value = session.value?.activity
+  return value ? { ...value, feedback: learningFeedback(value.feedback) } : null
+})
 const answerReveal = computed(() => session.value?.answer_reveal || {})
 const teachingMode = computed(() => session.value?.teaching_policy?.mode || 'full')
 const isCompressed = computed(() => teachingMode.value === 'compressed')
@@ -1639,5 +1699,33 @@ onLoad((query) => {
     padding-left: max(32px, calc((100% - 756px) / 2));
     padding-right: max(32px, calc((100% - 756px) / 2));
   }
+}
+</style>
+
+<style scoped lang="scss">
+.knowledge-sources {
+  margin-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+.source-toggle,
+.source-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 0;
+  text-align: left;
+  color: var(--color-primary);
+  background: transparent;
+  font-size: 13px;
+}
+.source-link > text {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+.source-link .uni-icons {
+  margin-left: auto;
 }
 </style>

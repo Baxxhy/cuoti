@@ -348,6 +348,17 @@ def study(endpoint, env, query):
     fresh = request(endpoint, "POST", "/api/v1/study-sessions", {"question_ids": [blocked_id]}, token=token)
     assert fresh["items"][0]["unavailable"] is False
     assert fresh["items"][0]["question"]["question_text"] == "修正后的题目"
+    adaptive = request(endpoint, "POST", "/api/v1/study-sessions", {"mode": "practice", "source_id": source, "count": 3, "selection_strategy": "adaptive"}, token=token)
+    chosen = [item["question"]["id"] for item in adaptive["items"]]
+    assert len(chosen) == len(set(chosen)) == 3 and set(chosen).issubset(set(ids))
+    assert all("answer" not in item and "adaptive_selection" not in item["question"] for item in adaptive["items"])
+    traces = json.loads(query(env, f"SELECT JSON_ARRAYAGG(JSON_EXTRACT(snapshot,'$.adaptive_selection')) FROM study_session_items WHERE session_id='{adaptive['id']}'"))
+    assert all(trace["strategy"] == "bkt_information_gain_v1" for trace in traces)
+    assert all(trace["calibration"] == "cold_start_defaults" for trace in traces)
+    assert any(point["evidence_count"] > 0 for trace in traces for point in trace["trace"])
+    request(endpoint, "GET", "/api/v1/study-sessions/" + adaptive["id"], token=foreign, expected=404)
+    request(endpoint, "POST", "/api/v1/study-sessions", {"selection_strategy": "unknown"}, token=token, expected=422)
+    print("Adaptive practice passed: native owner history, bounded candidate pool, Bayesian information-gain selection, hidden answers and persisted trace", flush=True)
     print("Format quarantine passed: no new practice/exam, masked old snapshots, excluded scoring and idempotent submission", flush=True)
     return {
         "QA_STUDY_CHEM_SOURCE": chemical_source,

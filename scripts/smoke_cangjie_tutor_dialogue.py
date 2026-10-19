@@ -86,6 +86,8 @@ def tutor_dialogue(endpoint, env, query, token, other, state):
         subject="数学",
         content={"definition": "先明确条件，再选择规则。"},
     )
+    prerequisite = insert("knowledge_points", code="001-CHAT-PRE", name="运算次序先修", subject="数学", content={"definition": "先执行括号内的运算，再处理乘除与加减。"})
+    relation = insert("knowledge_relations", source_id=card, target_id=prerequisite, relation_type="prerequisite")
     path = "/api/v1/tutor/sessions/" + sid
     route = path + "/turns"
     request(endpoint, "POST", route, {"message": "提示"}, expected=401)
@@ -135,9 +137,14 @@ def tutor_dialogue(endpoint, env, query, token, other, state):
             and first["decision_verified"] == "verified"
         )
         assert (
-            "知识卡 · 对话专用条件" in first["message"]
+            "先观察等式两边的条件" in first["message"]
             and first["mastery_proven"] is False
         )
+        assert "先执行括号内的运算" in state["dialogue_source_context"]
+        sources = first["knowledge_sources"]
+        assert [item["code"] for item in sources] == ["000-CHAT", "001-CHAT-PRE"]
+        assert sources[1]["role"] == "prerequisite" and sources[1]["anchor_code"] == "000-CHAT"
+        assert all(len(item["source_hash"]) == 64 for item in sources)
         hint = chat("请给提示", "step_alignment")
         assert hint["hint_level"] == 2 and "第2步" in hint["message"]
         repeated = chat("请给提示", "visualization")
@@ -175,6 +182,7 @@ def tutor_dialogue(endpoint, env, query, token, other, state):
         assert visual["stage"] == "teach_back" and visual["mastery_proven"] is False
         restored = request(endpoint, "GET", path, token=token)
         assert restored["turn_count"] == 8 and len(restored["turns"]) == 16
+        assert restored["turns"][1]["metadata_json"]["knowledge_sources"] == sources
         assert restored["state"]["understanding_passed"] is True
         assert [t["role"] for t in restored["turns"]] == ["user", "assistant"] * 8
         assert (
@@ -229,7 +237,8 @@ def tutor_dialogue(endpoint, env, query, token, other, state):
     finally:
         state["dialogue"] = False
         # Keep this fixture's generic card out of later diagnosis mapping.
-        query(env, f"DELETE FROM knowledge_points WHERE id='{card}'")
+        query(env, f"DELETE FROM knowledge_relations WHERE id='{relation}'")
+        query(env, f"DELETE FROM knowledge_points WHERE id IN ('{card}','{prerequisite}')")
     print(
         "Cangjie tutor dialogue passed: original branches/tools, long-term memory, real knowledge lookup, images, stage guards, no chat mastery, ownership and atomic writes"
     )

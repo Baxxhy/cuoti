@@ -55,10 +55,6 @@
           </button>
         </view>
         <view class="focus-card">
-          <view class="focus-heading">
-            <text>今天先做</text>
-            <text>{{ gradeLabel }}</text>
-          </view>
           <template v-if="focusKind === 'task'">
             <math-text
               class="focus-title"
@@ -150,6 +146,43 @@
               查看学习安排
             </button>
           </template>
+          <template v-else-if="focusKind === 'starter' && preferences.goal === 'practice'">
+            <text class="focus-title">{{ preferences.subject }}练习</text>
+            <text class="focus-next">
+              {{ practiceSize(preferences.minutes) }} 道题 · {{ preferences.minutes }} 分钟
+            </text>
+            <button
+              role="button"
+              class="primary-btn"
+              @click="go(preferredPracticeUrl(preferences, gradeLabel))"
+              tabindex="0"
+              @keydown.enter.prevent="go(preferredPracticeUrl(preferences, gradeLabel))"
+              @keydown.space.prevent
+              @keyup.space.prevent="go(preferredPracticeUrl(preferences, gradeLabel))"
+            >
+              开始练习
+            </button>
+          </template>
+          <template v-else-if="focusKind === 'starter' && preferences.goal === 'review'">
+            <text class="focus-title">
+              {{
+                hasTodayReviews
+                  ? '今天有 ' + data.today_reviews + ' 道题待复习'
+                  : '今天没有待复习题目'
+              }}
+            </text>
+            <button
+              role="button"
+              class="primary-btn"
+              tabindex="0"
+              @click="go('/pages/review/review')"
+              @keydown.enter.prevent="go('/pages/review/review')"
+              @keydown.space.prevent
+              @keyup.space.prevent="go('/pages/review/review')"
+            >
+              {{ hasTodayReviews ? '开始复习' : '查看复习安排' }}
+            </button>
+          </template>
           <template v-else-if="focusKind === 'starter'">
             <text class="focus-title">{{ preferences.subject }}</text>
             <button
@@ -193,7 +226,13 @@
               v-for="entry in studyEntries"
               :key="entry.url"
               class="study-gateway"
-              @click="go(entry.url)"
+              @click="
+                go(
+                  entry.url.includes('mode=practice') && preferences?.subject
+                    ? preferredPracticeUrl(preferences, gradeLabel)
+                    : entry.url,
+                )
+              "
             >
               <uni-icons
                 aria-hidden="true"
@@ -281,12 +320,12 @@
         <button
           role="button"
           class="home-direction"
-          aria-label="选择学习方向"
+          aria-label="学习设置"
           @click="go('/pages/preferences/preferences')"
         >
-          <text>{{ preferences?.subject || '学习偏好' }}</text>
+          <text>{{ preferences?.subject || '学习设置' }}</text>
           <text>
-            设置学科与时长
+            学科、目标与时间
             <uni-icons aria-hidden="true" type="right" size="15" />
           </text>
         </button>
@@ -328,6 +367,7 @@ import { go } from '@/utils/navigation.js'
 import { useAppStore } from '@/store/index.js'
 import { errorGroups } from '@/utils/repair.js'
 import { studyEntries } from '@/constants/learning.js'
+import { practiceSize, preferredPracticeUrl } from '@/utils/study-preferences.js'
 
 const store = useAppStore()
 const data = ref(null)
@@ -347,6 +387,8 @@ const gradeLabel = computed(() => data.value?.grade || store.user?.grade || '年
 const hasTodayReviews = computed(() => Number(data.value?.today_reviews || 0) > 0)
 const focusKind = computed(() => {
   if (taskFocus.value) return 'task'
+  if (preferences.value?.subject && ['review', 'practice'].includes(preferences.value.goal))
+    return 'starter'
   if (data.value?.continue_learning) return 'continue'
   if (hasTodayReviews.value) return 'review'
   if (data.value?.teacher_assignment_count) return 'assignment'
@@ -407,10 +449,9 @@ async function load() {
     data.value = dashboard.value
     preferences.value = preferenceResult.status === 'fulfilled' ? preferenceResult.value : null
     sources.value = sourceResult.status === 'fulfilled' ? sourceResult.value?.sources || [] : []
-    if (tasks.status === 'rejected')
-      partialError.value = '上次任务暂时无法读取，可以重试或选择其他学习入口。'
+    if (tasks.status === 'rejected') partialError.value = '上次的订正暂时无法读取。'
     else if (preferenceResult.status === 'rejected' || sourceResult.status === 'rejected')
-      partialError.value = '部分学习建议暂时无法读取，其他功能仍可使用。'
+      partialError.value = '部分学习记录暂时无法读取。'
     taskFocus.value =
       (tasks.status === 'fulfilled' ? tasks.value || [] : []).find((task) =>
         ['queued', 'running', 'waiting_student', 'needs_review', 'failed'].includes(task.status),
@@ -467,20 +508,8 @@ onUnload(clear)
   padding: 22px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-primary);
+  border-top: 1px solid var(--color-primary-border);
   border-radius: 12px;
-}
-.focus-heading {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--color-text-secondary);
-  font-size: 13px;
-  margin-bottom: 18px;
-}
-.focus-heading > text:first-child {
-  color: var(--color-primary);
-  font-weight: 600;
 }
 .focus-title {
   display: block;

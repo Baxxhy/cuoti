@@ -1,6 +1,6 @@
 <template>
   <view class="page preferences-page">
-    <app-header title="学习方向" back />
+    <app-header title="学习设置" back />
     <view class="page-content">
       <state-panel
         v-if="loading || error"
@@ -56,8 +56,8 @@
             </button>
           </view>
         </view>
-        <view class="preference-field">
-          <text class="field-label">建议学习节奏</text>
+        <view v-if="form.goal === 'practice'" class="preference-field">
+          <text class="field-label">预计学习时间</text>
           <view class="preference-options">
             <button
               role="button"
@@ -88,20 +88,7 @@
           @keyup.space.prevent="save"
           @click="save"
         >
-          {{ saving ? '正在保存…' : '保存学习方向' }}
-        </button>
-        <button
-          aria-label="返回今日"
-          role="button"
-          tabindex="0"
-          class="disclosure-link"
-          @keydown.enter.prevent="go('/pages/index/index', { replace: true })"
-          @keydown.space.prevent
-          @keyup.space.prevent="go('/pages/index/index', { replace: true })"
-          @click="go('/pages/index/index', { replace: true })"
-        >
-          返回今日
-          <uni-icons aria-hidden="true" type="right" size="18" />
+          {{ saving ? '正在保存…' : '保存设置' }}
         </button>
       </form>
     </view>
@@ -111,7 +98,6 @@
 import { ref } from 'vue'
 import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData, patchData } from '@/api/index.js'
-import { go } from '@/utils/navigation.js'
 import { CORE_SUBJECTS as subjects } from '@/constants/education.js'
 const form = ref({ subject: '', minutes: 10, goal: 'understand', version: 0 }),
   loading = ref(true),
@@ -135,7 +121,7 @@ async function load() {
     const value = await getData('/student-preferences')
     if (version === revision) form.value = value
   } catch (err) {
-    if (version === revision) error.value = err.message || '学习方向暂时无法读取'
+    if (version === revision) error.value = err.message || '学习设置暂时无法读取'
   } finally {
     if (version === revision) loading.value = false
   }
@@ -168,7 +154,7 @@ async function save() {
     if (version === revision)
       saveError.value =
         err.statusCode === 409
-          ? '另一页面已修改学习方向。请返回再进入，核对最新设置；当前选择仍保留。'
+          ? '另一页面已修改学习设置。请返回再进入，核对最新设置；当前选择仍保留。'
           : err.message || '保存失败，请重试'
   } finally {
     if (version === revision) saving.value = false

@@ -62,7 +62,10 @@
           <math-text :text="item.source.student_step_text" />
         </view>
         <text class="muted">{{ statusLabel(item) }}</text>
-        <teaching-content v-if="item.feedback" :blocks="[{ kind: 'text', text: item.feedback }]" />
+        <teaching-content
+          v-if="item.feedback"
+          :blocks="[{ kind: 'text', text: learningFeedback(item.feedback) }]"
+        />
         <view v-if="item.visualization" class="visual-record">
           <math-text :text="item.visualization.title" inline />
           <math-text :text="`$${item.visualization.relation_tex}$`" />
@@ -84,6 +87,7 @@
   </view>
 </template>
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
 import { ref, watch } from 'vue'
 import { getData } from '@/api/index.js'

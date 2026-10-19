@@ -139,8 +139,19 @@ func studySessions(context: HttpContext, accounts: Accounts): JsonValue {
         if (!(rawIds is JsonArray)) { throw ApiError(422,"题目编号格式无效") }
         let ids=(rawIds as JsonArray).getOrThrow()
         if (ids.getItems().size>1) { throw ApiError(422,"单题练习请选择一道题") }
+        let strategy=schoolText(body,"selection_strategy","random",20)
+        if (strategy!="random" && strategy!="adaptive") { throw ApiError(422,"选题方式无效") }
+        let selection=if (strategy=="adaptive" && mode=="practice" && ids.getItems().isEmpty()) { adaptivePracticeSelection(db,owner,subject,band,source,search,count) } else { JsonObject() }
+        let selected=tutorArray(selection,"question_ids")
         return db.transaction<JsonValue>({ tx =>
-            let rows=if (ids.getItems().isEmpty()) {
+            let rows=if (!selected.getItems().isEmpty()) {
+                let picked=ArrayList<HashMap<String,Option<String>>>()
+                for (id in selected.getItems()) {
+                    let params=ArrayList<Option<String>>(bankFilter(subject,band,source,search)); params.add(sqlValue(id))
+                    for (row in tx.query("SELECT q.*"+bankWhere+" AND q.id=?",params.toArray()).rows) { picked.add(row) }
+                }
+                picked
+            } else if (ids.getItems().isEmpty()) {
                 tx.query("SELECT q.*"+bankWhere+" ORDER BY RAND() LIMIT "+count.toString(),bankFilter(subject,band,source,search)).rows
             } else {
                 tx.query("SELECT * FROM dataset_questions WHERE id=? AND usable_for_practice=1 AND usable_for_auto_grade=1 AND has_answer=1",[Some((editText(ids.getItems()[0],36,minimum:1,trim:true) as JsonString).getOrThrow().getValue())]).rows
@@ -151,6 +162,7 @@ func studySessions(context: HttpContext, accounts: Accounts): JsonValue {
             var position: Int64=0
             for (row in rows) {
                 let snapshot=rowJson("dataset_questions",row); let sources=tx.query("SELECT name FROM dataset_sources WHERE id=?",[row["dataset_source_id"]]).rows
+                if (!selected.getItems().isEmpty()) { snapshot.put("adaptive_selection",selection) }
                 snapshot.put("source_name",JsonString(if (sources.isEmpty()) { "题库" } else { rowText(sources[0],"name") }))
                 tx.query("INSERT INTO study_session_items (id,session_id,position,snapshot,student_answer,grading) VALUES (?,?,?,?,NULL,NULL)",[Some(newId()),Some(id),Some(position.toString()),Some(snapshot.toString())]); position++
             }

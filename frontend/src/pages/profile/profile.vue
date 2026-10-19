@@ -27,7 +27,7 @@
         </view>
         <template v-if="store.role === 'student'">
           <button
-            aria-label="学习方向"
+            aria-label="学习设置"
             role="button"
             tabindex="0"
             class="disclosure-link"
@@ -36,7 +36,7 @@
             @keyup.space.prevent="go('/pages/preferences/preferences')"
             @click="go('/pages/preferences/preferences')"
           >
-            学习方向
+            学习设置
             <uni-icons aria-hidden="true" type="right" size="18" />
           </button>
           <view class="section-title"><text>使用与帮助</text></view>

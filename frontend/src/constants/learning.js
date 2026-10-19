@@ -1,6 +1,6 @@
 export const studyEntries = [
   { title: '题库练习', icon: 'compose', tone: 'blue', url: '/pages/bank/bank?mode=practice' },
-  { title: '模拟考试', icon: 'medal', tone: 'orange', url: '/pages/bank/bank?mode=exam' },
+  { title: '模拟考试', icon: 'medal', tone: 'blue', url: '/pages/bank/bank?mode=exam' },
 ]
 // Each feature has one home; related records are disclosed on demand.
 export const learningPrimaryEntries = [

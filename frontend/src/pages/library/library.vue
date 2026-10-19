@@ -37,7 +37,10 @@
       <template v-else-if="card">
         <text class="card-meta">{{ card.subject }} · {{ card.content?.grade || '通用' }}</text>
         <h2><math-text :text="card.name" inline /></h2>
-        <math-text :text="card.content?.definition || '这张知识卡暂未补充定义。'" />
+        <math-text
+          v-if="hasUsefulDefinition(card.content?.definition)"
+          :text="card.content.definition"
+        />
         <view v-if="card.content?.formulas?.length" class="knowledge-section">
           <h3>关键公式</h3>
           <math-text v-for="(formula, i) in card.content.formulas" :key="i" :text="formula" />
@@ -123,6 +126,7 @@ import { getData } from '@/api/index.js'
 import { CORE_SUBJECTS as subjects, MIDDLE_SCHOOL_GRADES } from '@/constants/education.js'
 import { go } from '@/utils/navigation.js'
 import { scopedQuestionURL } from '@/utils/learning.js'
+import { hasUsefulDefinition } from '@/utils/knowledge-content.js'
 const query = ref(''),
   subject = ref(''),
   grade = ref(''),

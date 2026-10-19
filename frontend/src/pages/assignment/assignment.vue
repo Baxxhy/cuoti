@@ -102,7 +102,7 @@
               />
             </view>
             <view v-if="item.grading_feedback" class="grading-feedback">
-              <math-text :text="item.grading_feedback" />
+              <math-text :text="learningFeedback(item.grading_feedback)" />
             </view>
           </view>
         </view>
@@ -112,6 +112,7 @@
   </view>
 </template>
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 import { computed, reactive, ref } from 'vue'

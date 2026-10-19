@@ -86,7 +86,7 @@
             "
             class="feedback"
           >
-            <math-text :text="task.student_view.feedback" />
+            <math-text :text="learningFeedback(task.student_view.feedback)" />
           </view>
           <teaching-content
             v-if="!task.student_view?.visualization"
@@ -365,6 +365,7 @@
   </view>
 </template>
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref, watch } from 'vue'
 import TeachingContent from '@/components/teaching-content/teaching-content.vue'

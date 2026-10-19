@@ -173,6 +173,7 @@ def ingest(endpoint, env, query):
                     else:
                         assert "中学个性化教师" in system_prompt
                         state["dialogue_images"] = len(pictures)
+                        state["dialogue_source_context"] = json.dumps(content, ensure_ascii=False)
                         selected_result = state["dialogue_reply"]
                 if not state.get("handwriting") and any(
                     name in body["messages"][0]["content"]

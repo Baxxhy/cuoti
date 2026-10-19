@@ -173,7 +173,7 @@
                   />
                   <b>{{ attemptTitle(attempts[activePlan.id]) }}</b>
                 </view>
-                <math-text :text="attempts[activePlan.id].feedback" inline />
+                <math-text :text="learningFeedback(attempts[activePlan.id].feedback)" inline />
                 <small>参考答案</small>
                 <math-text :text="attempts[activePlan.id].expected_answer" />
                 <text v-if="!attempts[activePlan.id].can_update_learning">
@@ -398,6 +398,7 @@
 </template>
 
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 

@@ -13,6 +13,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Annotated, Literal
 
+from adaptive_practice import AdaptivePracticeInput, select_practice
 from app.providers.api_pool import ApiPoolProvider, ApiPoolUnavailable
 from app.schemas import (
     AnalysisOutput,
@@ -101,6 +102,7 @@ class ComputeRequest(BaseModel):
         "voice_synthesize",
         "tutor_dialogue_prepare",
         "tutor_dialogue_finish",
+        "adaptive_practice",
         "retrieval_prepare",
         "retrieval_search",
         "retrieval_rank",
@@ -168,8 +170,9 @@ class ComputeRequest(BaseModel):
     )
     dialogue_preparation: dict[str, JsonValue] = Field(default_factory=dict)
     dialogue_cards: list[dict[str, JsonValue]] = Field(
-        default_factory=list, max_length=3
+        default_factory=list, max_length=8
     )
+    adaptive_practice: AdaptivePracticeInput | None = None
     probe_provider: bool = False
     audio_base64: str = Field(default="", max_length=20 * 1024 * 1024)
     audio_suffix: Literal[".webm", ".wav", ".mp3", ".m4a", ".ogg", ".mp4"] = ".webm"
@@ -348,6 +351,10 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                         data.dialogue_cards,
                         [decode_image(item) for item in data.images_base64],
                     )
+            elif data.operation == "adaptive_practice":
+                if data.adaptive_practice is None:
+                    raise ValueError("adaptive practice input required")
+                result = select_practice(data.adaptive_practice)
             elif data.operation == "system_state":
                 if app.state.provider is None:
                     try:

@@ -19,6 +19,7 @@ from agent_compute import (
 )
 from app.services.ai_pipeline import generate_tutor_guidance
 from app.services.tutor_graph import ensure_fresh_tutor_reply, run_tutor_step
+from grounded_knowledge import build_knowledge_evidence
 from learning_memory_compute import LearningMemorySnapshot
 from pydantic import BaseModel, Field, JsonValue
 
@@ -29,6 +30,7 @@ class DialogueContext(BaseModel):
     memory_snapshot: LearningMemorySnapshot | None = None
     subject: str = Field(default="数学", max_length=30)
     question_type: str = Field(default="综合题", max_length=50)
+    grade: str = Field(default="", max_length=30)
     question_text: Text = ""
     final_answer: Text = ""
     reference_steps: list[Text] = Field(default_factory=list, max_length=100)
@@ -92,6 +94,8 @@ async def prepare_dialogue(
             *(str(item) for item in context.knowledge_points[:3]),
             *(str(item.get("label", "")) for item in memory.misconceptions[:2]),
             data.question_type,
+            data.student_message,
+            data.question_text,
         ]
     ).strip()
     return {
@@ -136,6 +140,11 @@ async def finish_dialogue(
         planner_status=preparation["planner_status"],
     )
     draft = ground_reply_with_tool(graph["reply"], tool)
+    sources = build_knowledge_evidence(cards, data.subject, data.grade)
+    graph_rag = tool.tool_name == "knowledge_search" and any("retrieval_role" in card for card in cards)
+    if graph_rag:
+        draft = graph["reply"]
+
     with TemporaryDirectory(prefix="zhiwei-tutor-guidance-") as directory:
         paths = []
         for index, raw in enumerate(image_bytes):
@@ -154,6 +163,7 @@ async def finish_dialogue(
             student_message=data.student_message,
             recent_turns=data.recent_turns,
             reveal_answer=graph["tool_name"] == "answer_reveal",
+            retrieved_knowledge=sources,
         )
     reply = ensure_fresh_tutor_reply(
         reply,
@@ -163,7 +173,8 @@ async def finish_dialogue(
         branch=graph["branch"],
         turn_count=data.turn_count,
     )
-    reply = ground_reply_with_tool(reply, tool)
+    if not graph_rag:
+        reply = ground_reply_with_tool(reply, tool)
     # Preserve complete conditions and math. Presentation may disclose long guidance
     # progressively, but a character budget must never alter teaching content.
-    return {"reply": reply, "graph": graph, "agent": result.model_dump(mode="json")}
+    return {"reply": reply, "graph": graph, "agent": result.model_dump(mode="json"), "knowledge_sources": sources}

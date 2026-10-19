@@ -282,9 +282,9 @@ async def grade_answer(
                 "expected_answer": "、".join(sorted(expected_values)),
                 "method": "option_exact",
                 "feedback": (
-                    "选项与标准答案一致。"
+                    "选对了。"
                     if correct
-                    else f"系统识别到你的选择为“{'、'.join(sorted(student_values)) or '空'}”，标准答案为“{'、'.join(sorted(expected_values))}”。"
+                    else f"应选 {'、'.join(sorted(expected_values))}。"
                 ),
                 "matched_points": [],
                 "grader": "rule",

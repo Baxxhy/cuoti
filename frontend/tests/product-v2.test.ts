@@ -26,9 +26,9 @@ describe('学生端产品化 V2.0', () => {
   it('defines one shared neutral visual token system', () => {
     const styles = source('styles/uni-common.scss')
     for (const token of [
-      '--color-primary: #002fa7',
-      '--color-bg: #f7f7f8',
-      '--color-text-primary: #1D1D1F',
+      '--color-primary: #426fce',
+      '--color-bg: #f8f9fc',
+      '--color-text-primary: #30343c',
     ]) {
       expect(styles.toLowerCase()).toContain(token.toLowerCase())
     }
