@@ -196,18 +196,25 @@
         修改录入内容
       </button>
       <text v-if="entryError" class="account-notice" role="alert">{{ entryError }}</text>
-      <view v-if="section === 'learn'" class="learning-tools">
-        <text class="section-kicker">围绕这道题</text>
+      <view
+        v-if="section === 'learn'"
+        class="learning-tools"
+        :class="{ 'without-practice': !item.diagnosis }"
+      >
         <button
           class="tool-row"
           role="button"
           tabindex="0"
           :disabled="busy"
           @click="continueLegacyLearning"
-          @keydown.enter.prevent="continueLegacyLearning"
+          @keydown.enter.prevent="!busy && continueLegacyLearning()"
+          @keydown.space.prevent
+          @keyup.space.prevent="!busy && continueLegacyLearning()"
         >
-          完整引导学习
-          <small>跟着提示回顾方法与练习</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons type="chat" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">完整引导学习</text>
         </button>
         <button
           tabindex="0"
@@ -219,8 +226,10 @@
           @keydown.space.prevent
           @keyup.space.prevent="go(`/pages/practice/practice?id=${id}`)"
         >
-          针对练习
-          <small>从真实题库练一道</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons type="compose" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">针对练习</text>
         </button>
         <button
           tabindex="0"
@@ -231,8 +240,10 @@
           @keydown.space.prevent
           @keyup.space.prevent="go(`/pages/diagnosis/diagnosis?id=${id}`)"
         >
-          诊断与纠正
-          <small>核对错因，修正不符合实际的判断</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons type="search" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">诊断与纠正</text>
         </button>
         <button
           tabindex="0"
@@ -243,8 +254,10 @@
           @keydown.space.prevent
           @keyup.space.prevent="go(`/pages/knowledge/knowledge?id=${id}`)"
         >
-          本题知识
-          <small>概念、前置知识与错因关系</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons type="map" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">本题知识</text>
         </button>
         <button
           tabindex="0"
@@ -255,8 +268,10 @@
           @keydown.space.prevent
           @keyup.space.prevent="go(paperURL({ subject: item.subject, ids: [id] }))"
         >
-          加入专项试卷
-          <small>选择更多题目，编排和导出</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons type="list" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">加入专项试卷</text>
         </button>
       </view>
 
@@ -779,22 +794,77 @@ onUnload(leave)
   gap: 12px;
 }
 .learning-tools {
-  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
 }
 .tool-row {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   width: 100%;
-  text-align: left;
-  background: white;
-  padding: 14px 0;
-  border-radius: 0;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 16px;
+  min-width: 0;
+  min-height: 120px;
+  margin: 0;
+  padding: 20px 12px;
+  border: 1px solid rgba(60, 60, 67, 0.06);
+  border-radius: 18px;
+  background: #fff;
+  color: var(--color-text-primary);
+  text-align: center;
 }
-.tool-row small {
-  display: block;
-  margin-top: 4px;
-  color: var(--color-text-secondary);
-  font-size: 13px;
+.tool-row:last-child {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  min-height: 72px;
+  padding: 14px 20px;
+}
+.tool-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: rgba(0, 122, 255, 0.06);
+}
+.tool-label {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.tool-row[disabled] {
+  opacity: 0.5;
+}
+.without-practice .tool-row:last-child {
+  grid-column: auto;
+  flex-direction: column;
+  min-height: 120px;
+}
+@media (hover: hover) {
+  .tool-row:hover:not([disabled]) {
+    background: #f0f5fc;
+  }
+}
+@media (min-width: 900px) {
+  .learning-tools {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .learning-tools.without-practice {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .tool-row,
+  .tool-row:last-child,
+  .without-practice .tool-row:last-child {
+    grid-column: auto;
+    flex-direction: column;
+    min-height: 148px;
+    padding: 24px 12px;
+  }
 }
 </style>
