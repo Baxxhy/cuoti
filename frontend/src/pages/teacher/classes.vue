@@ -24,7 +24,7 @@
               <input v-model="form.grade" placeholder="初二" />
             </view>
             <view class="teacher-actions">
-              <button class="primary" :disabled="busy" @click="create">创建</button>
+              <button role="button" class="primary" :disabled="busy" @click="create">创建</button>
             </view>
           </view>
           <view
@@ -39,7 +39,7 @@
                 {{ item.grade || '未设置年级' }} · {{ item.student_count }} 人
               </text>
             </view>
-            <uni-icons type="right" size="24" color="#98a2b3" />
+            <uni-icons aria-hidden="true" type="right" size="24" color="#98a2b3" />
           </view>
           <view v-if="!classes.length" class="empty-card">还没有班级</view>
         </view>

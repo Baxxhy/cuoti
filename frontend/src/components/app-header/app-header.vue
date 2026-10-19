@@ -9,7 +9,7 @@
       @tap.stop="handleBack"
       @keydown.enter="handleBack"
     >
-      <uni-icons type="left" size="24" color="var(--color-text-primary)" />
+      <uni-icons aria-hidden="true" type="left" size="24" color="var(--color-text-primary)" />
     </view>
     <view class="header-copy">
       <!-- #ifdef H5 -->
@@ -43,8 +43,8 @@ function handleBack() {
 </script>
 <style scoped lang="scss">
 .app-header {
-  min-height: calc(94px + var(--status-bar-height, 0px));
-  padding: calc(28px + var(--status-bar-height, 0px)) var(--space-page) 18px;
+  min-height: calc(64px + var(--status-bar-height, 0px));
+  padding: calc(10px + var(--status-bar-height, 0px)) var(--space-page) 10px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -59,14 +59,14 @@ function handleBack() {
 .header-title {
   display: block;
   margin: 0;
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 21px;
+  font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.035em;
 }
 .header-action {
   flex: none;
-  width: 36px;
+  width: 44px;
   min-height: 44px;
   margin-left: -10px;
   display: flex;
@@ -86,7 +86,7 @@ function handleBack() {
 }
 @media (min-width: 1100px) {
   .app-header {
-    padding-top: 48px;
+    padding-top: 28px;
     padding-bottom: 8px;
   }
 }

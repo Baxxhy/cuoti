@@ -1,19 +1,7 @@
 <template>
   <view class="page practice-workspace">
-    <app-header title="针对练习" back />
+    <app-header title="类似题练习" back />
     <view class="page-content">
-      <button
-        aria-label="本题修复路线"
-        v-if="mistakeId"
-        class="disclosure-link"
-        role="button"
-        tabindex="0"
-        @click="go(`/pages/repair/repair?id=${mistakeId}`)"
-        @keydown.enter.prevent="go(`/pages/repair/repair?id=${mistakeId}`)"
-      >
-        本题修复路线
-        <uni-icons type="right" size="18" />
-      </button>
       <view v-if="loading" class="loading-panel">
         <state-panel state="loading" />
         <text class="loading-hint">正在挑选合适练习，首次匹配可能较慢</text>
@@ -22,13 +10,14 @@
         <b>{{ missingTarget ? '先确认这道题的知识点' : '暂时没有匹配到合适题目' }}</b>
         <text>{{ error }}</text>
         <button
+          role="button"
           v-if="missingTarget"
           class="secondary-btn"
           @click="go(`/pages/detail/detail?id=${encodeURIComponent(mistakeId)}`)"
         >
           核对这道错题
         </button>
-        <button v-else class="secondary-btn" @click="loadQuestion()">重新匹配</button>
+        <button role="button" v-else class="secondary-btn" @click="loadQuestion()">重新匹配</button>
       </view>
       <template v-else-if="question">
         <view class="context-row">
@@ -110,16 +99,29 @@
         </button>
         <button v-else role="button" class="primary-btn" @click="nextQuestion">再练一道</button>
         <button
+          role="button"
           v-if="result && !result.can_update_learning"
           class="secondary-btn switch-mode"
           @click="result = null"
         >
           修改后重新提交
         </button>
-        <button v-if="result" class="secondary-btn switch-mode" @click="switchMode">
+        <button role="button" v-if="result" class="secondary-btn switch-mode" @click="switchMode">
           {{ mode === 'reinforce' ? '换个问法试试' : '再做一道类似的' }}
         </button>
       </template>
+      <button
+        aria-label="学习安排"
+        v-if="mistakeId"
+        class="disclosure-link"
+        role="button"
+        tabindex="0"
+        @click="go(`/pages/repair/repair?id=${mistakeId}`)"
+        @keydown.enter.prevent="go(`/pages/repair/repair?id=${mistakeId}`)"
+      >
+        学习安排
+        <uni-icons aria-hidden="true" type="right" size="18" />
+      </button>
     </view>
   </view>
 </template>

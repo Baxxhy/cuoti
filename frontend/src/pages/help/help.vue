@@ -5,7 +5,7 @@
       <view v-for="section in sections" :key="section.title" class="help-section">
         <h2>{{ section.title }}</h2>
         <text>{{ section.content }}</text>
-        <button v-if="section.url" class="secondary-btn" @click="go(section.url)">
+        <button role="button" v-if="section.url" class="secondary-btn" @click="go(section.url)">
           {{ section.action }}
         </button>
       </view>

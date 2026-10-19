@@ -22,18 +22,9 @@
           模拟考试
         </view>
       </view>
-      <view class="bank-intro" :class="mode">
-        <view class="intro-copy">
-          <text class="bank-title">
-            {{ mode === 'exam' ? '准备好，试一场。' : '今天，练点新题。' }}
-          </text>
-          <text class="bank-count">{{ data?.total ?? '—' }} 道可练习题目</text>
-        </view>
-        <uni-icons
-          :type="mode === 'exam' ? 'medal' : 'compose'"
-          size="42"
-          :color="mode === 'exam' ? '#a35816' : '#176cbb'"
-        />
+      <view class="bank-count-row">
+        <text>{{ data?.total ?? '—' }} 道题</text>
+        <text>{{ filters.subject || '全部学科' }}</text>
       </view>
       <view class="bank-filters">
         <scroll-view scroll-x :show-scrollbar="false">
@@ -62,7 +53,7 @@
           >
             <view class="bank-picker">
               {{ filters.grade_band || '全部学段' }}
-              <uni-icons type="bottom" size="13" />
+              <uni-icons aria-hidden="true" type="bottom" size="13" />
             </view>
           </picker>
         </view>
@@ -75,7 +66,7 @@
       />
       <template v-else-if="data">
         <view v-if="mode === 'exam'" class="exam-setup card">
-          <text class="section-heading">组一份模拟卷</text>
+          <text class="section-heading">考试设置</text>
           <text class="setting-label">题数</text>
           <view class="choice-row">
             <button
@@ -113,7 +104,12 @@
         </view>
         <template v-else>
           <view class="bank-search">
-            <uni-icons type="search" size="20" color="var(--color-text-secondary)" />
+            <uni-icons
+              aria-hidden="true"
+              type="search"
+              size="20"
+              color="var(--color-text-secondary)"
+            />
             <input
               v-model="search"
               aria-label="搜索题库"
@@ -124,10 +120,10 @@
             <button role="button" class="text-search" @click="applySearch">搜索</button>
           </view>
           <view class="bank-list-heading">
-            <text>选一道，开始练习</text>
+            <text>选择题目</text>
             <button role="button" :disabled="busy || data.total < 5" @click="start()">
               随机练 5 题
-              <uni-icons type="right" size="14" />
+              <uni-icons aria-hidden="true" type="right" size="14" />
             </button>
           </view>
           <view v-if="!data.questions.length" class="empty card">
@@ -147,6 +143,7 @@
                 {{ question.grade_band }} · {{ questionTypeLabel(question.question_type) }}
               </text>
               <uni-icons
+                aria-hidden="true"
                 class="question-arrow"
                 type="arrowright"
                 size="20"
@@ -208,7 +205,7 @@
                 : '继续作答'
             }}
           </text>
-          <uni-icons type="right" size="16" color="var(--color-text-tertiary)" />
+          <uni-icons aria-hidden="true" type="right" size="16" color="var(--color-text-tertiary)" />
         </button>
       </view>
       <button
@@ -218,7 +215,7 @@
         @click="go('/pages/paper/paper-center')"
       >
         我的错题组卷
-        <uni-icons type="right" size="18" />
+        <uni-icons aria-hidden="true" type="right" size="18" />
       </button>
     </view>
     <tab-bar current="learning" />
@@ -333,6 +330,13 @@ onLoad((query) => {
 onShow(load)
 </script>
 <style scoped lang="scss">
+.bank-count-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
 .bank-switch {
   max-width: 360px;
   margin-bottom: 24px;

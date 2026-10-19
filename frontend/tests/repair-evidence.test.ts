@@ -100,7 +100,7 @@ describe('修复功能证据边界', () => {
       practice: { correct: 5 },
       review: { due: 0 },
     })
-    expect(route.find((step: any) => step.key === 'learn')?.state).toBe('已有理解证据')
+    expect(route.find((step: any) => step.key === 'learn')?.state).toBe('已完成理解检查')
     expect(route.find((step: any) => step.key === 'practice')?.state).toBe('待验证')
     expect(route.find((step: any) => step.key === 'review')?.url).toBe(
       '/pages/journey/journey?id=q',
@@ -115,7 +115,7 @@ describe('修复功能证据边界', () => {
       learning_tasks: { original_independent: true, near_transfer: true },
       review: { due: 1 },
     })
-    expect(original.find((step: any) => step.key === 'practice')?.state).toBe('已有单条件对照证据')
+    expect(original.find((step: any) => step.key === 'practice')?.state).toBe('已完成变式练习')
     expect(original.find((step: any) => step.recommended)?.key).toBe('review')
     expect(original.find((step: any) => step.key === 'learn')?.state).toBe('原题已独立完成')
   })

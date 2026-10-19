@@ -208,7 +208,7 @@ def recheck_math(correct=False):
                 time.sleep(0.3)
             passed = (
                 passed
-                and current["student_view"]["title"] == "独立完成这道题"
+                and current["student_view"]["title"] == "重新作答"
                 and not current["learning_applied"]
             )
             case["task_id"] = task_id

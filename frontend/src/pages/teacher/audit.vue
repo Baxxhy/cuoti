@@ -14,8 +14,16 @@
             <text class="row-title">{{ label(item.action) }}</text>
             <text class="row-meta">
               {{ new Date(item.created_at).toLocaleString('zh-CN', { hour12: false }) }} ·
-              {{ item.target_type }} /
-              {{ item.target_id }}
+              {{
+                {
+                  class: '班级',
+                  student: '学生',
+                  question: '题目',
+                  assignment: '作业',
+                  review: '复核',
+                  plan: '学习计划',
+                }[item.target_type] || '操作记录'
+              }}
             </text>
             <math-text class="row-meta" :text="'原因：' + (item.reason || '未填写')" inline />
           </view>

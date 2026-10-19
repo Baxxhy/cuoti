@@ -3,7 +3,12 @@
     <view class="auth-page">
       <view class="auth-top">
         <view class="auth-brand">
-          <uni-icons type="compose" size="25" color="var(--color-text-primary)" />
+          <uni-icons
+            aria-hidden="true"
+            type="compose"
+            size="25"
+            color="var(--color-text-primary)"
+          />
           <text>错题帮</text>
         </view>
         <!-- #ifdef H5 -->
@@ -118,10 +123,10 @@ onMounted(restore)
 .auth-page {
   width: 100%;
   max-width: 440px;
-  padding: 40px 32px;
+  padding: 28px 24px;
   background: var(--color-surface);
-  border-radius: 24px;
-  border-top: 5px solid #7bb1df;
+  border-radius: 12px;
+  border-top: 3px solid var(--color-primary);
 }
 .auth-brand {
   display: flex;
@@ -130,13 +135,13 @@ onMounted(restore)
   color: var(--color-text-primary);
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
   letter-spacing: -0.025em;
 }
 .auth-title {
   display: block;
   margin: 0;
-  font-size: 30px;
+  font-size: 23px;
   font-weight: 650;
   line-height: 1.25;
   letter-spacing: -0.035em;

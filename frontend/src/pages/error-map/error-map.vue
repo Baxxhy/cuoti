@@ -1,6 +1,6 @@
 <template>
   <view class="page error-map-page">
-    <app-header title="个人易错地图" back />
+    <app-header title="易错地图" back />
     <view class="page-content">
       <view class="map-heading"><text class="evidence-caption">最近 90 天</text></view>
       <scroll-view scroll-x class="map-filters">
@@ -29,7 +29,7 @@
       />
       <template v-else>
         <view v-if="!groups.length" class="composed-empty">
-          <text class="editorial-title">暂无诊断线索</text>
+          <text class="editorial-title">还没有错因记录</text>
           <text class="editorial-description">完成错题诊断后显示。</text>
           <button
             role="button"
@@ -58,7 +58,7 @@
         </view>
         <template v-else>
           <view class="map-summary">
-            <text>{{ groups.length }} 类诊断线索</text>
+            <text>{{ groups.length }} 类常见错因</text>
             <text>{{ sourceCount }} 道关联题目</text>
           </view>
           <view class="evidence-map-layout">
@@ -82,9 +82,7 @@
                   <small>
                     {{ group.subject }} ·
                     {{
-                      group.sources.length > 1
-                        ? `${group.sources.length}道题中重复出现`
-                        : '1道题中的线索'
+                      group.sources.length > 1 ? `${group.sources.length}道题中重复出现` : '1 道题'
                     }}
                   </small>
                 </view>
@@ -99,7 +97,7 @@
                   {{
                     selected.due
                       ? `${selected.due}道关联题已有到期复习安排。`
-                      : '先核对原题，再决定从哪里修复。'
+                      : '选择一道题，看看当时错在哪里。'
                   }}
                 </text>
               </view>
@@ -125,7 +123,7 @@
                     @keydown.space.prevent
                     @keyup.space.prevent="go(`/pages/detail/detail?id=${source.id}`)"
                   >
-                    原题与原图
+                    查看原题
                   </button>
                   <button
                     role="button"
@@ -145,7 +143,7 @@
                     @keyup.space.prevent="go(`/pages/repair/repair?id=${source.id}`)"
                     @click="go(`/pages/repair/repair?id=${source.id}`)"
                   >
-                    查看修复路线
+                    查看学习安排
                   </button>
                   <button
                     role="button"
@@ -305,7 +303,7 @@ onUnload(clear)
 .evidence-title {
   display: block;
   margin: 8px 0;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 650;
 }
 .point-labels {

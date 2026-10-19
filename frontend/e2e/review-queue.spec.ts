@@ -24,7 +24,7 @@ test('多题复习：缺参考的题不挡住下一题，草稿与位置恢复�
   await expect(page.locator('.review-question')).toContainText('x+2=5')
   const input = page.locator('.written-answer textarea').first()
   await input.fill('还需要想一想')
-  await page.getByRole('button', { name: '提交并判定', exact: true }).click()
+  await page.getByRole('button', { name: '提交作答', exact: true }).click()
   await expect(page.getByRole('alert')).toContainText('标准答案')
   await page.getByRole('button', { name: '下一题', exact: true }).click()
   await expect(page.locator('.review-question')).toContainText('7+5')

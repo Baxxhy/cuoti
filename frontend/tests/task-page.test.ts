@@ -85,7 +85,7 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 describe('持久任务页面', () => {
-  it('默认只显示提示和更多方式，展开不提交动作且换步骤后收起', async () => {
+  it('默认只显示提示和拍照与辅助工具，展开不提交动作且换步骤后收起', async () => {
     server.student_view.secondary_actions = ['hint', 'visualize', 'reveal']
     const page = await make()
     await page.find('textarea').setValue('还没提交的推导')
@@ -94,15 +94,15 @@ describe('持久任务页面', () => {
         .findAll('.secondary-actions button')
         .filter((b) => b.isVisible())
         .map((b) => b.text())
-    expect(visibleActions()).toEqual(['给点提示', '更多方式'])
+    expect(visibleActions()).toEqual(['查看提示', '拍照与辅助工具'])
     expect(page.find('.more-ways').isVisible()).toBe(false)
     await page
       .findAll('.secondary-actions button')
-      .find((b) => b.text() === '更多方式')!
+      .find((b) => b.text() === '拍照与辅助工具')!
       .trigger('keydown', { key: 'Enter' })
     expect(page.find('.more-ways').isVisible()).toBe(true)
     expect(page.find('.more-ways').text()).toContain('拍照或选图作答')
-    expect(page.find('.more-ways').text()).toContain('用图看看')
+    expect(page.find('.more-ways').text()).toContain('查看图解')
     expect(page.find('.more-ways').text()).toContain('查看参考答案')
     expect(page.find('textarea').element.value).toBe('还没提交的推导')
     expect(fake.postData).not.toHaveBeenCalled()
@@ -113,7 +113,7 @@ describe('持久任务页面', () => {
     fake.hooks.show()
     await flushPromises()
     expect(page.find('.more-ways').isVisible()).toBe(false)
-    expect(visibleActions()).toEqual(['给点提示', '更多方式'])
+    expect(visibleActions()).toEqual(['查看提示', '拍照与辅助工具'])
   })
   it('提示携带当前草稿但不提交答案，逐层提示与刷新保留输入', async () => {
     const page = await make()
@@ -128,7 +128,7 @@ describe('持久任务页面', () => {
     })
     await page
       .findAll('button')
-      .find((b) => b.text() === '给点提示')!
+      .find((b) => b.text() === '查看提示')!
       .trigger('click')
     await flushPromises()
     expect(fake.postData.mock.calls[0][1]).toMatchObject({
@@ -139,7 +139,7 @@ describe('持久任务页面', () => {
     })
     expect(page.find('textarea').element.value).toBe('联立方程作为第一步吗')
     expect(page.find('.feedback').text()).toContain('先联立两个表达式')
-    expect(page.findAll('button').some((b) => b.text() === '再提示一步')).toBe(true)
+    expect(page.findAll('button').some((b) => b.text() === '下一条提示')).toBe(true)
     fake.hooks.hide()
     fake.hooks.show()
     await flushPromises()
@@ -149,10 +149,10 @@ describe('持久任务页面', () => {
     fake.hooks.hide()
     fake.hooks.show()
     await flushPromises()
-    expect(page.findAll('button').some((b) => ['给点提示', '再提示一步'].includes(b.text()))).toBe(
+    expect(page.findAll('button').some((b) => ['查看提示', '下一条提示'].includes(b.text()))).toBe(
       false,
     )
-    expect(page.text()).toContain('更多方式')
+    expect(page.text()).toContain('拍照与辅助工具')
   })
   it('确认看图后才发动作，保存观察使用版本与参数，收起后保留原作答', async () => {
     server.student_view.secondary_actions = ['visualize']
@@ -173,7 +173,7 @@ describe('持久任务页面', () => {
     })
     await page
       .findAll('button')
-      .find((b) => b.text() === '用图看看')!
+      .find((b) => b.text() === '查看图解')!
       .trigger('click')
     expect(fake.postData).not.toHaveBeenCalled()
     ;(globalThis as any).uni.showModal.mock.calls[0][0].success({ confirm: true })

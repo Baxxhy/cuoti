@@ -160,7 +160,7 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
             root_misconception="",
         )
         correct_task = wait_task(endpoint, create(correct)["id"], token)
-        assert correct_task["student_view"]["title"] == "独立完成这道题"
+        assert correct_task["student_view"]["title"] == "重新作答"
         assert not correct_task["learning_applied"]
         task_request(
             endpoint,
@@ -202,7 +202,7 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
         if not env.get("CANGJIE_VERIFY_FOCUS") and state.get("inequality_question"):
             inequality = state["inequality_question"]
             checkpoint = wait_task(endpoint, create(inequality)["id"], token)
-            assert checkpoint["student_view"]["title"] == "独立完成这道题"
+            assert checkpoint["student_view"]["title"] == "重新作答"
             completed, _ = action(endpoint, checkpoint, token, text="[2,3]")
             assert (
                 completed["status"] == "completed" and not completed["learning_applied"]
@@ -358,7 +358,7 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
             status=409,
         )
         corrected, _ = action(endpoint, wrong, token, text="11-3")
-        assert corrected["student_view"]["title"] == "独立完成这道题"
+        assert corrected["student_view"]["title"] == "重新作答"
         assert (
             query(
                 env, f"SELECT COUNT(*) FROM cognitive_updates WHERE user_id='{owner}'"

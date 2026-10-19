@@ -112,7 +112,7 @@ test('讲回、练习和复习的文字输入实际渲染且提交内容正确',
   await track.tap({ position: { x: 5, y: 1 } })
   await expect(page.locator('.control b')).not.toHaveText('3')
   await page.locator('.field-textarea textarea').fill('两边同时减去3仍相等。')
-  await button(page, '保存并继续').click()
+  await button(page, '保存观察并返回').click()
   await expect(page).toHaveURL(/tutor\/tutor/)
   await expect(page.locator('.answer-area textarea').first()).toBeVisible()
   await expect(button(page, '讲完了')).toHaveAttribute('disabled', 'true')
@@ -185,7 +185,7 @@ test('讲回、练习和复习的文字输入实际渲染且提交内容正确',
   await page.goto('/#/pages/review/review')
   await expect(page.locator('.written-answer textarea').first()).toBeVisible()
   await page.locator('.written-answer textarea').first().fill('x=4')
-  await button(page, '提交并判定').click()
+  await button(page, '提交作答').click()
   await expect(page.locator('.grade-grid')).toBeVisible()
   expect(submitted.answer).toBe('x=4')
   expect(warnings).toEqual([])
@@ -250,11 +250,13 @@ test('错题筛选、搜索、详情折叠、修改与取消归档均可操作',
   await button(page, '搜索').click()
   await expect(page.locator('.problem-card')).toHaveCount(1)
   await page.locator('.problem-card').click()
-  await page.getByRole('button', { name: '记录', exact: true }).click()
+  await page.getByRole('button', { name: '学习记录', exact: true }).click()
   await page.getByText('我的完整步骤', { exact: true }).click()
   await expect(page.locator('.fold-body')).toContainText('2x=11+3')
-  await page.getByText('参考步骤', { exact: true }).click()
-  await expect(page.locator('.fold-body')).not.toContainText('2x=11+3')
+  await page.getByText('我的完整步骤', { exact: true }).click()
+  await expect(page.locator('.fold-body')).toHaveCount(0)
+  await page.getByRole('button', { name: '题目与错因', exact: true }).click()
+  await expect(page.getByText('参考步骤', { exact: true })).not.toBeVisible()
   await button(page, '修改录入内容').click()
   await expect(page.locator('.question-editor textarea')).toHaveValue(q.question_text)
   await page.locator('.question-editor textarea').fill('界面验收方程已修改：2x+3=11')
@@ -277,7 +279,7 @@ test('组卷高级筛选、保存、排序与导出真实生效，缺解析的�
   await manual(request, account, '组卷验收题二：x+5=9')
   await login(page, account)
   await page.getByRole('button', { name: '学习', exact: true }).click()
-  await page.getByRole('button', { name: '考前组卷', exact: true }).click()
+  await page.getByRole('button', { name: '错题组卷', exact: true }).click()
   await expect(page.locator('.advanced-filters')).not.toBeVisible()
   await page.getByText('更多筛选条件', { exact: true }).click()
   await expect(page.locator('.advanced-filters')).toBeVisible()
@@ -765,12 +767,12 @@ test('学习分类、知识检索与跨页多题组卷保持范围', async ({ pa
   const second = await manual(request, account, '专项范围乙：3x+1=13')
   await login(page, account)
   await page.getByRole('button', { name: '学习', exact: true }).click()
-  for (const name of ['复习', '练一类题', '考前组卷', '查知识']) {
+  for (const name of ['到期复习', '类似题练习', '错题组卷', '知识卡片']) {
     await expect(page.getByRole('button', { name, exact: true })).toBeVisible()
   }
   await expect(page.getByRole('button', { name: '复习记录', exact: true })).not.toBeVisible()
   await page.screenshot({ path: testInfo.outputPath('learning-center.png'), fullPage: true })
-  await page.getByRole('button', { name: '查知识', exact: true }).focus()
+  await page.getByRole('button', { name: '知识卡片', exact: true }).focus()
   await page.keyboard.press('Enter')
   await expect(page.locator('.knowledge-result').first()).toBeVisible()
   await page.locator('.knowledge-result').first().click()
@@ -812,9 +814,9 @@ test('最终手机布局：窄屏页面、筛选草稿和详情分区保持可�
   await login(page, account)
   const screens = [
     ['index/index', '录入错题'],
-    ['learning/learning', '考前组卷'],
+    ['learning/learning', '错题组卷'],
     ['problem/list', question.question_text],
-    [`detail/detail?id=${question.id}`, '当时的答案'],
+    [`detail/detail?id=${question.id}`, '我当时的答案'],
     ['analysis/analysis', '还没有学习报告'],
   ]
   for (const width of [360, 390, 430]) {
@@ -870,12 +872,12 @@ test('最终手机布局：窄屏页面、筛选草稿和详情分区保持可�
   await page.getByRole('button', { name: '取消', exact: true }).click()
   await expect(page.locator('.problem-card')).toHaveCount(1)
   await page.locator('.problem-card').click()
-  await expect(page.getByRole('button', { name: '针对练习', exact: false })).not.toBeVisible()
-  await page.getByRole('button', { name: '学与练', exact: true }).click()
-  await expect(page.getByRole('button', { name: '本题知识', exact: false })).toBeVisible()
-  await expect(page.getByText('当时的答案', { exact: true })).not.toBeVisible()
-  await page.getByRole('button', { name: '题目', exact: true }).click()
-  await expect(page.getByText('当时的答案', { exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: '类似题练习', exact: false })).not.toBeVisible()
+  await page.getByRole('button', { name: '解析与练习', exact: true }).click()
+  await expect(page.getByRole('button', { name: '相关知识', exact: false })).toBeVisible()
+  await expect(page.getByText('我当时的答案', { exact: true })).not.toBeVisible()
+  await page.getByRole('button', { name: '题目与错因', exact: true }).click()
+  await expect(page.getByText('我当时的答案', { exact: true })).toBeVisible()
 })
 
 test('本题知识：未分析时不虚构错因，并能进入明确的分析操作', async ({ page, request }) => {
@@ -883,8 +885,8 @@ test('本题知识：未分析时不虚构错因，并能进入明确的分析�
   const question = await manual(request, account, '解方程：2x+3=11')
   await login(page, account)
   await page.goto(`/#/pages/detail/detail?id=${question.id}`)
-  await page.getByRole('button', { name: '学与练', exact: true }).click()
-  await page.getByRole('button', { name: '本题知识', exact: false }).click()
+  await page.getByRole('button', { name: '解析与练习', exact: true }).click()
+  await page.getByRole('button', { name: '相关知识', exact: false }).click()
   await expect(page.getByText('先核对本题内容', { exact: true })).toBeVisible()
   await expect(page.getByText('先了解本题知识', { exact: true })).toBeVisible()
   await expect(page.getByText('这道题为什么会错', { exact: true })).toHaveCount(0)

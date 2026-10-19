@@ -101,7 +101,7 @@
         </view>
 
         <view v-if="hasAnswer || editing" class="content-section">
-          <text class="section-label">你的答案</text>
+          <text class="section-label">我当时的答案</text>
           <textarea
             v-if="editing"
             v-model="form.student_answer"
@@ -113,7 +113,7 @@
 
         <view class="content-section working-section">
           <view class="section-heading">
-            <text class="section-label">你的解题过程</text>
+            <text class="section-label">我当时的步骤</text>
             <text v-if="hasWorking && !editing" class="section-action" @click="editing = true">
               修改
             </text>
@@ -140,12 +140,11 @@
           </view>
           <view v-else class="working-empty">
             <text>暂未发现解题过程</text>
-            <text>可以使用文字补充</text>
           </view>
           <view class="working-actions">
-            <button class="working-action" @click="addTextStep">
-              <uni-icons type="compose" size="22" color="var(--color-primary)" />
-              <text>添加文字</text>
+            <button role="button" class="working-action" @click="addTextStep">
+              <uni-icons aria-hidden="true" type="compose" size="22" color="var(--color-primary)" />
+              <text>添加解题步骤</text>
             </button>
           </view>
         </view>
@@ -168,10 +167,11 @@
 
       <view class="confirm-actions">
         <view class="confirm-actions-inner">
-          <text class="edit-action" @click="toggleEditing">
-            {{ editing ? '预览修改' : '内容有误？修改' }}
-          </text>
+          <button role="button" class="edit-action" @click="toggleEditing">
+            {{ editing ? '预览修改' : '修改内容' }}
+          </button>
           <button
+            role="button"
             class="primary-btn"
             :disabled="busy || !form.question_text.trim()"
             @click="editOnly ? saveChanges() : confirm()"

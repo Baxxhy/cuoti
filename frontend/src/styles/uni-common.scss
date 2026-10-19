@@ -1,16 +1,16 @@
 :root,
 page {
-  --color-primary: #0066cc;
-  --color-primary-hover: #005bb5;
-  --color-primary-active: #004f9e;
-  --color-primary-dark: #005bb5;
-  --color-primary-soft: #edf5ff;
-  --color-primary-soft-hover: #e2efff;
-  --color-primary-border: #b8d6f5;
-  --color-brand-deep: #004f9e;
-  --color-bg: #f5f7fb;
+  --color-primary: #002fa7;
+  --color-primary-hover: #00288e;
+  --color-primary-active: #002278;
+  --color-primary-dark: #00288e;
+  --color-primary-soft: #edf1fc;
+  --color-primary-soft-hover: #e3e9fa;
+  --color-primary-border: #c8d3f0;
+  --color-brand-deep: #002278;
+  --color-bg: #f7f7f8;
   --color-surface: #ffffff;
-  --color-surface-subtle: #ededf0;
+  --color-surface-subtle: #f0f0f3;
   --color-text-primary: #1d1d1f;
   --color-text-secondary: #636366;
   --color-text-tertiary: #6e6e73;
@@ -22,8 +22,11 @@ page {
   --color-success: #28734a;
   --color-success-text: #246342;
   --color-success-soft: #f0f7f2;
-  --radius-card: 20px;
+  --radius-card: 12px;
   --space-page: 20px;
+  --font-title: 21px;
+  --font-body: 16px;
+  --font-caption: 13px;
 }
 page {
   font-family:
@@ -44,7 +47,8 @@ button,
 image {
   box-sizing: border-box;
 }
-button {
+button,
+uni-button {
   line-height: 1.4;
   font-family: inherit;
 }
@@ -72,7 +76,7 @@ textarea:focus-visible,
   width: 100%;
   max-width: none;
   margin: 0 auto;
-  padding: 24px var(--space-page);
+  padding: 16px var(--space-page);
 }
 .editorial-heading {
   padding: 8px 0 20px;
@@ -86,7 +90,7 @@ textarea:focus-visible,
 .editorial-title {
   display: block;
   margin: 12px 0;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 650;
   line-height: 1.4;
   letter-spacing: -0.02em;
@@ -154,7 +158,7 @@ textarea:focus-visible,
 }
 @media (min-width: 768px) {
   .editorial-title {
-    font-size: 32px;
+    font-size: 24px;
   }
 }
 .safe-bottom {
@@ -208,7 +212,7 @@ textarea:focus-visible,
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  border-radius: 14px;
+  border-radius: 10px;
   font-size: 16px;
   line-height: 22px;
   font-weight: 600;
@@ -306,7 +310,7 @@ textarea:focus-visible,
   display: inline-flex;
   padding: 3px 8px;
   border-radius: 4px;
-  background: #ededf0;
+  background: #f0f0f3;
   color: var(--color-text-secondary);
   font-size: 12px;
   white-space: nowrap;
@@ -539,7 +543,8 @@ textarea:focus-visible,
 page {
   font-variant-numeric: tabular-nums;
 }
-button {
+button,
+uni-button {
   transition:
     background-color 160ms ease,
     color 160ms ease,
@@ -620,4 +625,38 @@ h3 {
   .page-content {
     padding: 28px 32px 48px;
   }
+}
+
+/* Keep long Chinese labels and formulas inside their own content area. */
+.page-content {
+  overflow-wrap: anywhere;
+}
+button,
+uni-button {
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* uni-app's native button defaults load after application styles on H5. */
+.page button,
+.teacher-page button,
+.auth-shell button {
+  line-height: 1.5;
+}
+.page button::after,
+.teacher-page button::after,
+.auth-shell button::after {
+  border: 0;
+}
+.page .uni-icons,
+.teacher-page .uni-icons,
+.auth-shell .uni-icons {
+  line-height: 1;
 }

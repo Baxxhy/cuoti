@@ -156,6 +156,8 @@ describe('学科内容跨页面公式渲染', () => {
       },
       { id: 's1' },
     )
+    expect(page.findAll('.mfrac')).toHaveLength(3)
+    await page.find('.observation-toggle').trigger('click')
     expect(page.findAll('.mfrac')).toHaveLength(4)
     expect(page.find('.question-context .sqrt').exists()).toBe(true)
   })

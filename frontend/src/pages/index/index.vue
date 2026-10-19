@@ -28,7 +28,7 @@
         @keydown.space.prevent
         @keyup.space.prevent="go('/pages/search/search')"
       >
-        <uni-icons type="search" size="24" color="#55565B" />
+        <uni-icons aria-hidden="true" type="search" size="24" color="#55565B" />
       </button>
     </view>
 
@@ -40,51 +40,6 @@
         @retry="load"
       />
       <template v-else-if="data">
-        <view class="home-gateways">
-          <button
-            v-for="entry in studyEntries"
-            :key="entry.url"
-            :class="['study-gateway', entry.tone]"
-            @click="go(entry.url)"
-          >
-            <uni-icons
-              :type="entry.icon"
-              size="28"
-              :color="entry.tone === 'orange' ? '#a65916' : '#176cbb'"
-            />
-            <view>
-              <text>{{ entry.title }}</text>
-            </view>
-            <uni-icons
-              type="right"
-              size="16"
-              :color="entry.tone === 'orange' ? '#a65916' : '#176cbb'"
-            />
-          </button>
-        </view>
-
-        <button
-          role="button"
-          tabindex="0"
-          class="home-direction"
-          aria-label="选择学习方向"
-          @keydown.enter.prevent="go('/pages/preferences/preferences')"
-          @keydown.space.prevent
-          @keyup.space.prevent="go('/pages/preferences/preferences')"
-          @click="go('/pages/preferences/preferences')"
-        >
-          <text>
-            {{
-              preferences?.subject
-                ? `${preferences.subject} · ${goalLabel} · 约${preferences.minutes}分钟`
-                : '选择今天的学习方向'
-            }}
-          </text>
-          <text>
-            调整
-            <uni-icons type="right" size="15" />
-          </text>
-        </button>
         <view v-if="partialError" class="home-partial-error" role="status">
           <text>{{ partialError }}</text>
           <button
@@ -100,19 +55,14 @@
           </button>
         </view>
         <view class="focus-card">
-          <view class="focus-symbol" aria-hidden="true">
-            <uni-icons
-              :type="
-                focusKind === 'capture' ? 'camera' : focusKind === 'review' ? 'calendar' : 'wallet'
-              "
-              size="32"
-              color="var(--color-primary)"
-            />
+          <view class="focus-heading">
+            <text>今天先做</text>
+            <text>{{ gradeLabel }}</text>
           </view>
           <template v-if="focusKind === 'task'">
             <math-text
               class="focus-title"
-              :text="taskFocus.student_view?.title || '继续解决上次那一步'"
+              :text="taskFocus.question_title || '上次的错题还没完成'"
               inline
             />
             <button
@@ -122,7 +72,7 @@
               @click="go(`/pages/task/task?id=${taskFocus.id}`)"
               @keydown.enter.prevent="go(`/pages/task/task?id=${taskFocus.id}`)"
             >
-              继续这一步
+              继续订正
             </button>
           </template>
           <template v-else-if="focusKind === 'continue'">
@@ -145,7 +95,7 @@
                 go(`/pages/tutor/tutor?id=${data.continue_learning.session_id}`)
               "
             >
-              继续学习
+              继续讲解
             </button>
           </template>
           <template v-else-if="focusKind === 'review'">
@@ -177,14 +127,14 @@
             </button>
           </template>
           <template v-else-if="focusKind === 'repair'">
-            <math-text class="focus-title" :text="'先核对：' + recommendedGroup.label" inline />
+            <math-text class="focus-title" :text="recommendedGroup.label" inline />
             <text class="focus-next">
               {{ recommendedGroup.subject }} ·
               {{
                 recommendedGroup.sources.length > 1
                   ? `${recommendedGroup.sources.length}道题中出现相同诊断线索`
                   : '来自你最近的一道题'
-              }}。先回放，再沿路线修复。
+              }}
             </text>
             <button
               role="button"
@@ -197,7 +147,7 @@
               @keyup.space.prevent="go(`/pages/repair/repair?id=${recommendedGroup.sources[0].id}`)"
               @click="go(`/pages/repair/repair?id=${recommendedGroup.sources[0].id}`)"
             >
-              查看这次修复路线
+              查看学习安排
             </button>
           </template>
           <template v-else-if="focusKind === 'starter'">
@@ -211,7 +161,7 @@
               @keyup.space.prevent="openKnowledge"
               @click="openKnowledge"
             >
-              选择知识与例题
+              查看知识卡片
             </button>
           </template>
           <template v-else>
@@ -225,16 +175,44 @@
               @keydown.space.prevent
               @keyup.space.prevent="go('/pages/capture/capture')"
             >
-              <uni-icons type="camera-filled" size="22" color="var(--color-surface)" />
+              <uni-icons
+                aria-hidden="true"
+                type="camera-filled"
+                size="22"
+                color="var(--color-surface)"
+              />
               <text>拍照或选择图片</text>
             </button>
           </template>
         </view>
 
         <view class="home-secondary">
+          <view class="home-gateways">
+            <button
+              role="button"
+              v-for="entry in studyEntries"
+              :key="entry.url"
+              class="study-gateway"
+              @click="go(entry.url)"
+            >
+              <uni-icons
+                aria-hidden="true"
+                :type="entry.icon"
+                size="23"
+                color="var(--color-primary)"
+              />
+              <text>{{ entry.title }}</text>
+              <uni-icons
+                aria-hidden="true"
+                type="right"
+                size="16"
+                color="var(--color-text-tertiary)"
+              />
+            </button>
+          </view>
           <view v-if="focusKind === 'capture'" class="home-starter">
             <button
-              aria-label="知识与例题"
+              aria-label="知识卡片"
               role="button"
               tabindex="0"
               class="disclosure-link"
@@ -244,51 +222,32 @@
               @click="openKnowledge"
             >
               <view class="entry-label">
-                <uni-icons type="wallet" size="22" color="var(--color-primary)" />
-                <text>知识与例题</text>
+                <uni-icons
+                  aria-hidden="true"
+                  type="wallet"
+                  size="22"
+                  color="var(--color-primary)"
+                />
+                <text>知识卡片</text>
               </view>
-              <uni-icons type="right" size="18" />
+              <uni-icons aria-hidden="true" type="right" size="18" />
             </button>
           </view>
 
-          <view class="home-actions">
-            <button
-              tabindex="0"
-              role="button"
-              class="quiet-action"
-              @click="chooseTask"
-              @keydown.enter.prevent="chooseTask"
-              @keydown.space.prevent
-              @keyup.space.prevent="chooseTask"
-            >
-              换个任务
-            </button>
-            <button
-              tabindex="0"
-              role="button"
-              class="quiet-action"
-              @click="go('/pages/manual/manual')"
-              @keydown.enter.prevent="go('/pages/manual/manual')"
-              @keydown.space.prevent
-              @keyup.space.prevent="go('/pages/manual/manual')"
-            >
-              手动录入
-            </button>
-          </view>
           <button
             role="button"
             tabindex="0"
             class="home-map-entry"
-            aria-label="个人易错地图"
+            aria-label="易错地图"
             @keydown.enter.prevent="go('/pages/error-map/error-map')"
             @keydown.space.prevent
             @keyup.space.prevent="go('/pages/error-map/error-map')"
             @click="go('/pages/error-map/error-map')"
           >
             <view>
-              <text>个人易错地图</text>
+              <text>易错地图</text>
             </view>
-            <uni-icons type="right" size="20" />
+            <uni-icons aria-hidden="true" type="right" size="20" />
           </button>
         </view>
         <view v-if="otherTasks.length" class="task-list">
@@ -311,9 +270,26 @@
               <math-text class="task-name" :text="task.title" inline />
               <math-text class="task-detail" :text="task.detail" inline />
             </view>
-            <uni-icons type="right" size="22" color="var(--color-text-secondary)" />
+            <uni-icons
+              aria-hidden="true"
+              type="right"
+              size="22"
+              color="var(--color-text-secondary)"
+            />
           </button>
         </view>
+        <button
+          role="button"
+          class="home-direction"
+          aria-label="选择学习方向"
+          @click="go('/pages/preferences/preferences')"
+        >
+          <text>{{ preferences?.subject || '学习偏好' }}</text>
+          <text>
+            设置学科与时长
+            <uni-icons aria-hidden="true" type="right" size="15" />
+          </text>
+        </button>
         <view v-if="showFeedback && data.teacher_feedback" class="teacher-feedback">
           <view class="section-title"><text>教师反馈</text></view>
           <text class="feedback-conclusion">
@@ -367,12 +343,6 @@ const recommendedGroup = computed(() =>
     (group) => !preferences.value?.subject || group.subject === preferences.value.subject,
   ),
 )
-const goalLabel = computed(
-  () =>
-    ({ understand: '弄懂一道题', practice: '巩固一类题', review: '复习学过的内容' })[
-      preferences.value?.goal
-    ] || '按自己的节奏学习',
-)
 const gradeLabel = computed(() => data.value?.grade || store.user?.grade || '年级未设置')
 const hasTodayReviews = computed(() => Number(data.value?.today_reviews || 0) > 0)
 const focusKind = computed(() => {
@@ -412,22 +382,6 @@ const otherTasks = computed(() => {
     })
   return rows.slice(0, 2)
 })
-function chooseTask() {
-  const choices = []
-  if (hasTodayReviews.value) choices.push({ title: '到期复习', url: '/pages/review/review' })
-  if (data.value?.teacher_assignment_count)
-    choices.push({ title: '教师任务', url: '/pages/assignment/assignment' })
-  choices.push(
-    { title: '练一类题', url: '/pages/problem/list?purpose=practice' },
-    { title: '查知识', url: '/pages/library/library' },
-    { title: '录入错题', url: '/pages/capture/capture' },
-  )
-  const options = choices.slice(0, 3)
-  uni.showActionSheet({
-    itemList: options.map((x) => x.title),
-    success: ({ tapIndex }) => go(options[tapIndex]?.url),
-  })
-}
 
 function openKnowledge() {
   go(
@@ -484,176 +438,146 @@ onUnload(clear)
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: calc(28px + var(--status-bar-height, 0px)) var(--space-page) 8px;
-}
-.home-top-copy {
-  flex: 1;
-  min-width: 0;
+  padding: calc(20px + var(--status-bar-height, 0px)) var(--space-page) 8px;
 }
 .greeting {
-  display: block;
   margin: 0;
-  font-size: 30px;
-  line-height: 1.25;
-  font-weight: 700;
-  letter-spacing: -0.035em;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 .today-copy {
   display: block;
-  margin-top: 8px;
   color: var(--color-text-secondary);
   font-size: 13px;
+  margin-top: 4px;
 }
 .search-action {
-  margin: 0;
-  padding: 0;
-  background: var(--color-surface);
   width: 44px;
   height: 44px;
-  min-width: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  margin: 0;
+  background: var(--color-surface);
   border-radius: 50%;
 }
-.home-content {
-  padding-top: 20px;
-}
-.home-direction {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  width: 100%;
-  padding: 0 4px 20px;
-  min-height: 44px;
-  margin: 0;
-  text-align: left;
-  background: transparent;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-}
-.home-direction > text:last-child {
-  flex-shrink: 0;
-  color: var(--color-primary);
-}
 .focus-card {
-  padding: 32px;
-  background: #edf5ff;
-  color: var(--color-text-primary);
-  border-radius: 24px;
+  padding: 22px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: 12px;
 }
-.focus-symbol {
-  margin-bottom: 24px;
+.focus-heading {
   display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.focus-heading > text:first-child {
+  color: var(--color-primary);
+  font-weight: 600;
 }
 .focus-title {
   display: block;
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.35;
+  line-height: 1.5;
   overflow-wrap: anywhere;
 }
 .focus-next {
   display: block;
-  margin-top: 12px;
   font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  margin-top: 8px;
 }
 .focus-card .primary-btn {
-  width: fit-content;
-  max-width: 100%;
-  min-height: 44px;
-  padding: 12px 22px;
-  margin-top: 24px;
-  gap: 10px;
-  font-size: 15px;
-  border-radius: 999px;
+  margin-top: 22px;
+  gap: 8px;
 }
 .home-secondary {
+  margin-top: 18px;
+}
+.home-gateways {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.study-gateway {
+  line-height: 1.5;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 16px;
-}
-.home-starter {
+  align-items: center;
+  gap: 8px;
   margin: 0;
-}
-.home-starter .disclosure-link {
-  padding: 20px 24px;
+  padding: 16px 12px;
+  min-height: 64px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: var(--color-surface);
-  border: 0;
-  border-radius: 20px;
+  text-align: left;
+}
+.study-gateway .uni-icons {
+  flex: none;
+  line-height: 1;
+}
+.study-gateway > text:not(.uni-icons) {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+}
+.home-map-entry,
+.home-starter .disclosure-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 58px;
+  margin: 10px 0 0;
+  padding: 12px 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
 }
 .entry-label {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
 }
-.home-actions {
+.home-direction {
   display: flex;
-  gap: 12px;
-  margin: 0;
-}
-.home-actions .quiet-action {
-  flex: 1;
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  background: var(--color-surface);
-  color: var(--color-primary);
-  font-size: 14px;
-  border-radius: 14px;
-}
-.home-map-entry {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 16px;
   width: 100%;
-  min-height: 68px;
-  padding: 20px 24px;
-  margin: 0;
-  border-radius: 20px;
-  background: var(--color-surface);
+  min-height: 48px;
+  gap: 12px;
+  padding: 12px 0;
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  background: transparent;
   text-align: left;
 }
-.home-map-entry text {
-  display: block;
-  font-size: 16px;
-  font-weight: 400;
-}
-.home-partial-error {
-  display: block;
-  margin-bottom: 16px;
-  font-size: 13px;
-  color: var(--color-warning);
-}
 .task-list {
-  background: var(--color-surface);
-  padding: 0 24px;
-  margin-top: 16px;
-  border-radius: 20px;
+  margin-top: 12px;
 }
 .task-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
-  text-align: left;
+  min-height: 64px;
+  padding: 14px 0;
   margin: 0;
-  background: transparent;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
   border-radius: 0;
-  min-height: 72px;
-  padding: 18px 0;
-}
-.task-row + .task-row {
-  border-top: 1px solid var(--color-border);
+  background: transparent;
 }
 .list-main {
   flex: 1;
@@ -664,127 +588,67 @@ onUnload(clear)
   display: block;
 }
 .task-name {
-  font-size: 16px;
+  font-size: 15px;
 }
 .task-detail {
+  margin-top: 3px;
   font-size: 13px;
-  line-height: 1.5;
   color: var(--color-text-secondary);
-  margin-top: 4px;
+}
+.home-partial-error {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--color-warning);
 }
 .teacher-feedback {
-  margin-top: 24px;
-  padding: 24px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: var(--color-surface);
-  border-radius: 20px;
 }
 .feedback-conclusion,
 .feedback-detail {
   display: block;
   font-size: 14px;
-  line-height: 1.65;
-}
-.feedback-conclusion {
-  font-weight: 500;
 }
 .feedback-detail {
-  margin-top: 6px;
+  margin-top: 8px;
   color: var(--color-text-secondary);
 }
 @media (min-width: 1100px) {
   .home-top {
-    padding-top: 48px;
+    padding-top: 28px;
   }
   .home-content {
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 16px;
-    align-content: start;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 20px;
     align-items: start;
-  }
-  .home-direction,
-  .home-partial-error {
-    grid-column: 1 / -1;
-    padding-bottom: 0;
   }
   .focus-card {
     grid-column: 1;
-    align-self: stretch;
-    padding: 32px;
+    grid-row: 1 / 3;
   }
   .home-secondary {
     margin-top: 0;
   }
-  .home-actions {
-    margin: 0;
-  }
-
-  .task-list,
+  .home-partial-error,
   .teacher-feedback {
     grid-column: 1 / -1;
+  }
+  .task-list,
+  .home-direction {
+    grid-column: 2;
     margin-top: 0;
   }
 }
-.home-gateways {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-.study-gateway {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  margin: 0;
-  padding: 22px 20px;
-  min-height: 102px;
-  border-radius: 22px;
-  background: #e7f2ff;
-  text-align: left;
-}
-.study-gateway.orange {
-  background: #fff0da;
-}
-.study-gateway > view {
-  flex: 1;
-  min-width: 0;
-}
-.study-gateway text {
-  display: block;
-  font-size: 18px;
-  font-weight: 600;
-  color: #164f83;
-}
-.study-gateway.orange text {
-  color: #874b18;
-}
-.home-map-entry {
-  background: #eaf5ef;
-}
-.home-map-entry text {
-  color: #246849;
-}
-@media (min-width: 1100px) {
-  .home-gateways {
-    grid-column: 1 / -1;
-    margin-bottom: 4px;
-  }
-}
-@media (max-width: 520px) {
+@media (max-width: 360px) {
   .study-gateway {
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 20px;
-  }
-  .study-gateway > view {
-    flex: 1 0 calc(100% - 50px);
+    gap: 6px;
+    padding: 14px 10px;
   }
   .study-gateway > :last-child {
     display: none;
-  }
-  .study-gateway text {
-    font-size: 17px;
   }
 }
 </style>

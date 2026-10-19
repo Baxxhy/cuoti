@@ -159,7 +159,7 @@ describe('按需展开的任务过程', () => {
     await flushPromises()
     expect(page.findAll('.event')[0].text()).toContain('11-3')
     expect(page.text()).not.toContain('secret-answer')
-    expect(page.text()).toContain('局部订正')
+    expect(page.text()).toContain('错处订正')
     await page.setProps({ task: { ...task, version: 9, status: 'running' } })
     await flushPromises()
     expect(fake.getData).toHaveBeenCalledTimes(1)

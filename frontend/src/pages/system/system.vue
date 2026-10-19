@@ -32,6 +32,7 @@
         <view class="capability-grid">
           <view>
             <uni-icons
+              aria-hidden="true"
               :type="provider.vision_entries > 0 ? 'checkbox-filled' : 'circle'"
               size="36"
               :color="provider.vision_entries > 0 ? '#10b981' : '#94a3b8'"
@@ -50,7 +51,7 @@
             <text>图片位置 {{ provider.vision_cursor ?? 0 }}</text>
             <text>最近状态 {{ provider.last_status || '尚未调用' }}</text>
           </view>
-          <button class="primary-btn" :disabled="probing" @click="probe">
+          <button role="button" class="primary-btn" :disabled="probing" @click="probe">
             {{ probing ? '正在检查线路…' : '重新检查智能服务' }}
           </button>
         </view>
@@ -64,7 +65,7 @@
               placeholder="http://192.168.1.10:8002/api/v1"
             />
           </view>
-          <button class="secondary-btn" @click="saveApi">保存 App 地址</button>
+          <button role="button" class="secondary-btn" @click="saveApi">保存 App 地址</button>
         </view>
       </template>
     </view>

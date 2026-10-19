@@ -1,7 +1,7 @@
 <template>
   <view class="custom-tab-bar" role="navigation" aria-label="主要导航">
     <view class="nav-brand">
-      <uni-icons type="compose" size="25" color="var(--color-text-primary)" />
+      <uni-icons aria-hidden="true" type="compose" size="25" color="var(--color-text-primary)" />
       <text>错题帮</text>
     </view>
     <view
@@ -17,6 +17,7 @@
       @keydown.enter="switchPage(item.path)"
     >
       <uni-icons
+        aria-hidden="true"
         :type="item.icon"
         size="24"
         :color="current === item.key ? 'var(--color-primary)' : 'var(--color-text-secondary)'"
@@ -34,6 +35,7 @@
       @keydown.enter="switchPage('/pages/capture/capture')"
     >
       <uni-icons
+        aria-hidden="true"
         type="camera-filled"
         size="24"
         :color="current === 'capture' ? 'var(--color-primary)' : 'var(--color-text-secondary)'"
@@ -53,6 +55,7 @@
       @keydown.enter="switchPage(item.path)"
     >
       <uni-icons
+        aria-hidden="true"
         :type="item.icon"
         size="24"
         :color="current === item.key ? 'var(--color-primary)' : 'var(--color-text-secondary)'"

@@ -61,7 +61,7 @@ def main(verify_existing=False):
             title=task['student_view']['title']
             if title=='先订正这一步':
                 answer='2x=8'
-            elif title=='独立完成这道题':
+            elif title=='重新作答':
                 answer='x=4'
             elif title=='换个条件，再试一次':
                 question=next(block['text'] for block in task['student_view']['prompt_blocks'] if block['kind']=='question')

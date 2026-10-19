@@ -9,7 +9,7 @@
         @click="go('/pages/profile/profile')"
         @keydown.enter="go('/pages/profile/profile')"
       >
-        <uni-icons type="person" size="24" color="var(--color-text-secondary)" />
+        <uni-icons aria-hidden="true" type="person" size="24" color="var(--color-text-secondary)" />
       </view>
     </app-header>
     <view class="page-content">
@@ -46,12 +46,19 @@
               <text>待复习</text>
             </view>
           </view>
-          <button class="secondary-btn unlink" :disabled="busy" @click="unlink(student)">
+          <button
+            role="button"
+            class="secondary-btn unlink"
+            :disabled="busy"
+            @click="unlink(student)"
+          >
             解除关联
           </button>
         </view>
         <view v-if="!students.length" class="empty"><text>还没有可查看的学生档案</text></view>
-        <text class="access-note">请让学生在“我的 → 家长查看权限”中授权你的家长账号邮箱。</text>
+        <text v-if="!students.length" class="access-note">
+          请让学生在“我的 → 家长查看权限”中授权你的家长账号邮箱。
+        </text>
         <text v-if="actionError" role="alert" class="access-note">{{ actionError }}</text>
       </template>
     </view>

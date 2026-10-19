@@ -73,7 +73,16 @@
             <view class="teacher-card">
               <view class="card-heading">
                 <text>判题证据</text>
-                <text class="tag warn">{{ data.task.ai_result?.verdict }}</text>
+                <text class="tag warn">
+                  {{
+                    {
+                      correct: '正确',
+                      incorrect: '错误',
+                      probably_correct: '可能正确',
+                      review_required: '待核对',
+                    }[data.task.ai_result?.verdict] || '待核对'
+                  }}
+                </text>
               </view>
               <math-text class="evidence-text" :text="gradingEvidence" inline />
             </view>
@@ -121,7 +130,7 @@
                 <input v-model="form.next_task" placeholder="如：复习一次函数斜率" />
               </view>
               <view class="teacher-actions">
-                <button class="primary" :disabled="busy" @click="submit">
+                <button role="button" class="primary" :disabled="busy" @click="submit">
                   {{ busy ? '提交中…' : '确认结论' }}
                 </button>
               </view>

@@ -154,6 +154,7 @@
                   <text class="option-letter">{{ option.label }}</text>
                   <math-text :text="option.text" inline />
                   <uni-icons
+                    aria-hidden="true"
                     v-if="selected(option.label)"
                     type="checkmarkempty"
                     size="20"
@@ -181,7 +182,7 @@
               :disabled="currentIndex === 0 || submitting"
               @click="currentIndex--"
             >
-              <uni-icons type="left" size="16" />
+              <uni-icons aria-hidden="true" type="left" size="16" />
               上一题
             </button>
             <button
@@ -191,7 +192,7 @@
               @click="currentIndex++"
             >
               下一题
-              <uni-icons type="right" size="16" />
+              <uni-icons aria-hidden="true" type="right" size="16" />
             </button>
           </view>
           <view class="question-grid" aria-label="答题卡">

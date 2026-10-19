@@ -15,7 +15,7 @@ async function prepare(page: any, request: any) {
   expect(plan).toBeTruthy()
   await page.goto(`/#/pages/review/review?plan=${id}`)
   await page.locator('.written-answer textarea').first().fill('x=3')
-  await page.getByRole('button', { name: '提交并判定', exact: true }).click()
+  await page.getByRole('button', { name: '提交作答', exact: true }).click()
   await expect(page.getByRole('alert')).toContainText('标准答案')
   await page.getByRole('button', { name: '回原题学习', exact: true }).click()
   await expect(page).toHaveURL(new RegExp(`detail/detail\\?id=${plan.question.id}.*review=${id}`))

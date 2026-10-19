@@ -9,10 +9,14 @@
     />
     <view v-else class="page-content">
       <student-report :data="data" />
-      <button class="secondary-btn" :disabled="loading" @click="load">刷新报告</button>
+      <button role="button" class="secondary-btn" :disabled="loading" @click="load">
+        刷新报告
+      </button>
     </view>
     <view v-if="denied" class="page-content">
-      <button class="primary-btn" @click="go('/pages/guardian/home')">返回家长中心</button>
+      <button role="button" class="primary-btn" @click="go('/pages/guardian/home')">
+        返回家长中心
+      </button>
     </view>
   </view>
 </template>

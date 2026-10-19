@@ -15,7 +15,9 @@
             <text class="list-title">{{ guardian.name }}</text>
             <text class="list-desc">{{ guardian.email }}</text>
           </view>
-          <button class="secondary-btn" :disabled="busy" @click="remove(guardian)">解除</button>
+          <button role="button" class="secondary-btn" :disabled="busy" @click="remove(guardian)">
+            解除
+          </button>
         </view>
         <text v-if="!guardians.length" class="access-note">还没有家长可以查看你的报告。</text>
         <view class="grant-form">
@@ -28,7 +30,12 @@
             :disabled="busy"
             maxlength="190"
           />
-          <button class="primary-btn" :disabled="busy || !email.trim()" @click="grant">
+          <button
+            role="button"
+            class="primary-btn"
+            :disabled="busy || !email.trim()"
+            @click="grant"
+          >
             核对并授权
           </button>
           <text v-if="actionError" class="action-error" role="alert">{{ actionError }}</text>

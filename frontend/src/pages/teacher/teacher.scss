@@ -36,7 +36,7 @@
     display: block;
     margin-top: 6rpx;
     color: #667085;
-    font-size: 23rpx;
+    font-size: 13px;
     line-height: 1.5;
   }
   .teacher-card {
@@ -57,7 +57,7 @@
   }
   .card-link {
     color: var(--color-primary) !important;
-    font-size: 23rpx !important;
+    font-size: 13px !important;
     font-weight: 500 !important;
   }
   .teacher-row {
@@ -78,7 +78,7 @@
     display: block;
     overflow-wrap: anywhere;
     color: #172033;
-    font-size: 27rpx;
+    font-size: 15px;
     font-weight: 600;
     line-height: 1.55;
   }
@@ -88,7 +88,7 @@
     margin-top: 6rpx;
     overflow-wrap: anywhere;
     color: #667085;
-    font-size: 23rpx;
+    font-size: 13px;
     line-height: 1.55;
   }
   .tag {
@@ -97,7 +97,7 @@
     border-radius: 999rpx;
     background: var(--color-primary-soft);
     color: #2457d6;
-    font-size: 21rpx;
+    font-size: 12px;
   }
   .tag.warn {
     background: #fff4e5;
@@ -142,7 +142,7 @@
     display: block;
     margin-bottom: 10rpx;
     color: #344054;
-    font-size: 23rpx;
+    font-size: 13px;
     font-weight: 600;
   }
   .field input,
@@ -157,7 +157,7 @@
     border-radius: 14rpx;
     background: #fff;
     color: #101828;
-    font-size: 25rpx;
+    font-size: 14px;
     line-height: 1.55;
   }
   .field textarea {
@@ -167,14 +167,14 @@
     padding: 70rpx 30rpx;
     text-align: center;
     color: var(--color-text-secondary);
-    font-size: 25rpx;
+    font-size: 14px;
   }
   .evidence-text {
     display: block;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     color: #344054;
-    font-size: 25rpx;
+    font-size: 14px;
     line-height: 1.75;
   }
   .image-list image {
@@ -196,7 +196,7 @@
     border-radius: 999rpx;
     background: #fff;
     color: #667085;
-    font-size: 23rpx;
+    font-size: 13px;
   }
   .section-tabs text.active {
     background: var(--color-primary);
@@ -222,4 +222,51 @@
       margin-top: 20rpx;
     }
   }
+}
+
+@media (max-width: 600px) {
+  .teacher-page .two-column {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.teacher-page .metric-card[role='button'] {
+  cursor: pointer;
+}
+
+.teacher-page .field picker {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.teacher-page .field input,
+.teacher-page .field-box {
+  min-height: 44px;
+}
+.teacher-page .section-tabs {
+  flex-wrap: wrap;
+  overflow: visible;
+}
+.teacher-page .assignment-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+.teacher-page .assignment-options button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+.teacher-page .assignment-options button.active {
+  border-color: var(--color-primary-border);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
 }

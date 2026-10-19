@@ -64,7 +64,7 @@
           </view>
         </view>
         <view class="teacher-card">
-          <view class="card-heading"><text>近期认知更新</text></view>
+          <view class="card-heading"><text>近期学习变化</text></view>
           <view v-for="item in data.recent_updates" :key="item.id" class="teacher-row">
             <view class="row-main">
               <math-text

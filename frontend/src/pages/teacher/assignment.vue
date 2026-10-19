@@ -28,6 +28,7 @@
           <view class="field">
             <text class="field-label">选择题目</text>
             <button
+              role="button"
               class="field-box question-picker"
               :aria-expanded="showQuestions"
               @click="showQuestions = !showQuestions"
@@ -36,6 +37,7 @@
             </button>
             <view v-if="showQuestions" class="question-options" role="region" aria-label="可选题目">
               <button
+                role="button"
                 v-for="question in questions"
                 :key="question.id"
                 class="field-box question-picker"
@@ -51,34 +53,44 @@
             <text class="field-label">截止时间</text>
             <date-time-input v-model="form.due_at" clearable />
           </view>
-          <view class="section-tabs">
-            <text
+          <view class="assignment-options">
+            <button
+              role="button"
+              :aria-pressed="settings.allow_repeat"
               :class="{ active: settings.allow_repeat }"
               @click="settings.allow_repeat = !settings.allow_repeat"
             >
               允许重复作答
-            </text>
-            <text
+            </button>
+            <button
+              role="button"
+              :aria-pressed="settings.allow_auto_grade"
               :class="{ active: settings.allow_auto_grade }"
               @click="settings.allow_auto_grade = !settings.allow_auto_grade"
             >
               允许 AI 判题
-            </text>
-            <text
+            </button>
+            <button
+              role="button"
+              :aria-pressed="settings.require_teacher_review"
               :class="{ active: settings.require_teacher_review }"
               @click="settings.require_teacher_review = !settings.require_teacher_review"
             >
               必须教师批改
-            </text>
-            <text
+            </button>
+            <button
+              role="button"
+              :aria-pressed="settings.count_mastery"
               :class="{ active: settings.count_mastery }"
               @click="settings.count_mastery = !settings.count_mastery"
             >
               计入掌握度
-            </text>
+            </button>
           </view>
           <view class="teacher-actions">
-            <button class="primary" :disabled="busy" @click="create">布置给全班</button>
+            <button role="button" class="primary" :disabled="busy" @click="create">
+              布置给全班
+            </button>
           </view>
         </view>
         <view class="teacher-card">
@@ -95,7 +107,17 @@
                 }}
               </text>
             </view>
-            <text class="tag">{{ item.status }}</text>
+            <text class="tag">
+              {{
+                {
+                  active: '进行中',
+                  completed: '已完成',
+                  archived: '已归档',
+                  cancelled: '已取消',
+                  draft: '草稿',
+                }[item.status] || '待处理'
+              }}
+            </text>
           </view>
           <view v-if="!assignments.length" class="empty-card">还没有布置记录</view>
         </view>

@@ -9,7 +9,7 @@
         @click="go('/pages/profile/profile')"
         @keydown.enter="go('/pages/profile/profile')"
       >
-        <uni-icons type="person" size="24" color="var(--color-text-secondary)" />
+        <uni-icons aria-hidden="true" type="person" size="24" color="var(--color-text-secondary)" />
       </view>
     </app-header>
     <view class="teacher-content">
@@ -34,11 +34,13 @@
         <view class="teacher-card">
           <view class="card-heading"><text>快捷入口</text></view>
           <view class="teacher-actions">
-            <button class="primary" @click="go('/pages/teacher/reviews')">待核对队列</button>
-            <button @click="go('/pages/teacher/classes')">班级与学生</button>
-            <button @click="go('/pages/teacher/questions')">题目管理</button>
-            <button @click="go('/pages/teacher/assignment')">布置记录</button>
-            <button @click="go('/pages/teacher/audit')">操作记录</button>
+            <button role="button" class="primary" @click="go('/pages/teacher/reviews')">
+              待核对队列
+            </button>
+            <button role="button" @click="go('/pages/teacher/classes')">班级与学生</button>
+            <button role="button" @click="go('/pages/teacher/questions')">题目管理</button>
+            <button role="button" @click="go('/pages/teacher/assignment')">布置记录</button>
+            <button role="button" @click="go('/pages/teacher/audit')">操作记录</button>
           </view>
         </view>
         <view class="two-column">
@@ -54,13 +56,13 @@
           </view>
           <view class="teacher-card">
             <view class="card-heading"><text>高频错因</text></view>
-            <view v-for="item in data.frequent_errors" :key="item.name" class="teacher-row">
+            <view v-for="item in frequentErrors" :key="item.name" class="teacher-row">
               <view class="row-main">
-                <math-text class="row-title" :text="item.name" inline />
+                <math-text class="row-title" :text="reportCauseLabel(item.name)" inline />
                 <text class="row-meta">出现概率 {{ Math.round(item.probability * 100) }}%</text>
               </view>
             </view>
-            <text v-if="!data.frequent_errors?.length" class="muted">暂无错因记录</text>
+            <text v-if="!frequentErrors.length" class="muted">暂无错因记录</text>
           </view>
         </view>
         <view class="teacher-card">
@@ -82,6 +84,7 @@
   </view>
 </template>
 <script setup>
+import { reportCauseLabel } from '@/utils/report.js'
 import MathText from '@/components/math-text/math-text.vue'
 import { computed, onMounted, ref } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
@@ -99,6 +102,9 @@ const metrics = computed(() => [
     url: '/pages/teacher/assignment',
   },
 ])
+const frequentErrors = computed(() =>
+  (data.value?.frequent_errors || []).filter((item) => reportCauseLabel(item.name)),
+)
 async function loadData() {
   data.value = await getData('/teachers/dashboard')
 }

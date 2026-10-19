@@ -383,7 +383,7 @@ def test_no_error_diagnosis_does_not_ask_to_repair_a_correct_step():
     assert (
         result.status == "waiting_student" and result.checkpoint.phase == "independent"
     )
-    assert result.student_view.title == "独立完成这道题"
+    assert result.student_view.title == "重新作答"
     assert not result.learning_eligible and not result.checkpoint.repair_passed
 
 

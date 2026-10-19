@@ -12,7 +12,7 @@
         <view class="student-profile">
           <view class="avatar">
             <text v-if="store.user?.name">{{ store.user.name.slice(0, 1) }}</text>
-            <uni-icons v-else type="person" size="28" color="#55565B" />
+            <uni-icons aria-hidden="true" v-else type="person" size="28" color="#55565B" />
           </view>
           <view class="list-main">
             <text class="profile-name">{{ store.user?.name || '当前用户' }}</text>
@@ -37,7 +37,7 @@
             @click="go('/pages/preferences/preferences')"
           >
             学习方向
-            <uni-icons type="right" size="18" />
+            <uni-icons aria-hidden="true" type="right" size="18" />
           </button>
           <view class="section-title"><text>使用与帮助</text></view>
           <view class="setting-list">
@@ -47,11 +47,11 @@
               class="setting-row"
               @click="go(item.url)"
             >
-              <uni-icons :type="item.icon" size="24" color="#55565B" />
+              <uni-icons aria-hidden="true" :type="item.icon" size="24" color="#55565B" />
               <view class="list-main">
                 <text class="setting-title">{{ item.title }}</text>
               </view>
-              <uni-icons type="right" size="22" color="#85868B" />
+              <uni-icons aria-hidden="true" type="right" size="22" color="#85868B" />
             </view>
           </view>
         </template>
@@ -62,14 +62,16 @@
             class="setting-row"
             @click="go(item.url)"
           >
-            <uni-icons :type="item.icon" size="24" color="#55565B" />
+            <uni-icons aria-hidden="true" :type="item.icon" size="24" color="#55565B" />
             <view class="list-main">
               <text class="setting-title">{{ item.title }}</text>
             </view>
-            <uni-icons type="right" size="22" color="#85868B" />
+            <uni-icons aria-hidden="true" type="right" size="22" color="#85868B" />
           </view>
         </view>
-        <button class="secondary-btn logout-button" @click="store.logout()">退出登录</button>
+        <button role="button" class="secondary-btn logout-button" @click="store.logout()">
+          退出登录
+        </button>
       </template>
     </view>
     <tab-bar v-if="store.role === 'student'" current="profile" />
@@ -100,12 +102,6 @@ const studentSettings = [
     icon: 'help',
     url: '/pages/help/help',
   },
-  {
-    title: '学习中心',
-    desc: '复习巩固、专项备考、知识与学情',
-    icon: 'wallet',
-    url: '/pages/learning/learning',
-  },
 ]
 const roleSettings = computed(
   () =>
@@ -135,9 +131,9 @@ onMounted(load)
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 26px 24px;
+  padding: 20px 16px;
   background: var(--color-surface);
-  border-radius: 20px;
+  border-radius: 12px;
   margin-bottom: 24px;
 }
 .avatar {
@@ -150,7 +146,7 @@ onMounted(load)
   justify-content: center;
   background: #e8f2ff;
   color: #176cbb;
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 500;
 }
 .profile-name,
@@ -171,7 +167,7 @@ onMounted(load)
 .disclosure-link {
   padding: 18px 24px;
   border: 0;
-  border-radius: 20px;
+  border-radius: 12px;
   background: var(--color-surface);
 }
 .section-title {
@@ -184,7 +180,7 @@ onMounted(load)
 }
 .setting-list {
   padding: 0 24px;
-  border-radius: 20px;
+  border-radius: 12px;
   background: var(--color-surface);
 }
 .setting-row {
@@ -212,6 +208,6 @@ onMounted(load)
   color: var(--color-error);
   font-size: 16px;
   font-weight: 400;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 </style>

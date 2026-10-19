@@ -33,13 +33,14 @@
 
       <view class="crop-panel">
         <button
+          role="button"
           class="secondary-btn"
           :disabled="busy || !!pendingJob || jobCancelled"
           @click="Object.assign(box, { x: 0, y: 0, w: 1, h: 1 })"
         >
           选择整张图片
         </button>
-        <button class="primary-btn" :disabled="busy" @click="submit">
+        <button role="button" class="primary-btn" :disabled="busy" @click="submit">
           {{
             busy ? status : jobCancelled ? '返回错题本' : pendingJob ? '查看识别结果' : '开始识别'
           }}

@@ -15,6 +15,7 @@
         </view>
         <view v-for="item in items" :key="item.student_assignment.id" class="assignment-card">
           <button
+            role="button"
             class="assignment-header"
             :aria-expanded="selected === item.student_assignment.id"
             :disabled="busy !== '' || Object.values(uploading).some(Boolean)"
@@ -59,6 +60,7 @@
                 @uploading-change="uploading[item.student_assignment.id] = $event"
               />
               <button
+                role="button"
                 class="primary-btn"
                 :disabled="
                   busy !== '' ||

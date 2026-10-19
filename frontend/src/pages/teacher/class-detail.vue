@@ -20,7 +20,7 @@
               <input v-model="email" placeholder="请输入邮箱" />
             </view>
             <view class="teacher-actions">
-              <button class="primary" :disabled="busy" @click="add">加入班级</button>
+              <button role="button" class="primary" :disabled="busy" @click="add">加入班级</button>
             </view>
           </view>
           <view
@@ -36,7 +36,7 @@
                 {{ student.active_misconceptions }} 个
               </text>
             </view>
-            <uni-icons type="right" size="24" color="#98a2b3" />
+            <uni-icons aria-hidden="true" type="right" size="24" color="#98a2b3" />
           </view>
           <view v-if="!data.students?.length" class="empty-card">班级中还没有学生</view>
         </view>

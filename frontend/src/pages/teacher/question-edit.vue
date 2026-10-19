@@ -64,7 +64,7 @@
           </text>
         </view>
         <view class="teacher-actions">
-          <button class="primary" :disabled="busy" @click="save">
+          <button role="button" class="primary" :disabled="busy" @click="save">
             {{ busy ? '保存中…' : '发布题目' }}
           </button>
         </view>

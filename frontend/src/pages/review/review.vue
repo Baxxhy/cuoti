@@ -37,11 +37,10 @@
             @keydown.space.prevent
             @keyup.space.prevent="openMissingOriginal"
           >
-            去原题继续学习
+            返回原题
           </button>
         </view>
         <view v-if="!activePlan && !originUnavailable" class="today-summary">
-          <text class="summary-label">独立回忆，再看反馈</text>
           <b>{{ plans.length ? `${plans.length} 道复习等待完成` : '今天没有待复习题目' }}</b>
           <text>
             {{
@@ -50,15 +49,19 @@
                 : '复习会根据你的学习记录安排。'
             }}
           </text>
-          <button v-if="!plans.length" class="primary-btn" @click="go('/pages/capture/capture')">
+          <button
+            role="button"
+            v-if="!plans.length"
+            class="primary-btn"
+            @click="go('/pages/capture/capture')"
+          >
             录入错题
           </button>
         </view>
 
         <template v-if="activePlan">
-          <text class="eyebrow review-route-caption">修复的最后一步 · 先回想，再核对</text>
           <view class="section-title">
-            <text>独立回忆，再看反馈</text>
+            <text>今日复习</text>
             <text
               class="section-link"
               role="status"
@@ -115,13 +118,13 @@
                 </label>
               </radio-group>
               <view v-else class="field">
-                <text class="field-label">独立写下答案或关键步骤</text>
+                <text class="field-label">我的作答</text>
                 <written-answer
                   :key="activePlan.id"
                   :disabled="!!busy"
                   ref="writtenAnswer"
                   v-model="answers[activePlan.id]"
-                  placeholder="先回忆，不要急着看答案……"
+                  placeholder="输入答案或关键步骤"
                   :allow-handwriting="allowsHandwriting"
                   upload-url="/answers/handwriting"
                   :upload-data="handwritingContext"
@@ -129,9 +132,6 @@
                   @uploading-change="uploadingHandwriting = $event"
                 />
               </view>
-              <text v-if="!answers[activePlan.id]?.trim()" class="disabled-help">
-                请先填写你的答案
-              </text>
               <button
                 class="primary-btn"
                 :aria-disabled="
@@ -152,7 +152,7 @@
                     ? '正在判定…'
                     : uploadingHandwriting
                       ? '正在解析手写答案…'
-                      : '提交并判定'
+                      : '提交作答'
                 }}
               </button>
             </template>
@@ -166,6 +166,7 @@
               >
                 <view class="result-title">
                   <uni-icons
+                    aria-hidden="true"
                     :type="attemptIcon(attempts[activePlan.id])"
                     size="24"
                     :color="attemptColor(attempts[activePlan.id])"
@@ -199,6 +200,7 @@
                 </view>
               </template>
               <button
+                role="button"
                 v-else
                 class="secondary-btn"
                 :disabled="!!busy"
@@ -273,7 +275,9 @@
             <view v-if="actionError" class="review-error" role="alert">
               <text>{{ actionError }}</text>
               <text>当前内容已保留，可以重试；题目有更新时请重新读取。</text>
-              <button class="secondary-btn" :disabled="!!busy" @click="load">重新读取复习</button>
+              <button role="button" class="secondary-btn" :disabled="!!busy" @click="load">
+                重新读取复习
+              </button>
             </view>
           </view>
           <view v-if="plans.length > 1" class="review-queue" aria-label="复习题目切换">
@@ -329,7 +333,9 @@
           <view v-for="item in dashboard.misconceptions?.slice(0, 4)" :key="item.label">
             <text>{{ item.label }}</text>
             <small>从相关错题继续练习</small>
-            <button class="row-action" @click="go('/pages/problem/list')">查看错题</button>
+            <button role="button" class="row-action" @click="go('/pages/problem/list')">
+              查看错题
+            </button>
           </view>
           <text v-if="!dashboard.misconceptions?.length" class="muted">当前没有集中出现的错因</text>
         </view>
@@ -355,6 +361,7 @@
           <view v-for="item in history.slice(0, 8)" :key="item.id" class="list-card">
             <view class="history-score" :class="{ correct: item.correct }">
               <uni-icons
+                aria-hidden="true"
                 :type="item.correct ? 'checkmarkempty' : 'reload'"
                 size="22"
                 color="var(--color-text-secondary)"
@@ -367,6 +374,7 @@
                 inline
               />
               <button
+                role="button"
                 v-if="item.question?.id && item.question.status !== 'archived'"
                 class="history-link"
                 @click="go(`/pages/detail/detail?id=${item.question.id}`)"
@@ -382,7 +390,7 @@
         </view>
         <view v-if="secondaryError" class="review-error" role="alert">
           <text>{{ secondaryError }}</text>
-          <button class="secondary-btn" @click="loadSecondary()">重新读取记录</button>
+          <button role="button" class="secondary-btn" @click="loadSecondary()">重新读取记录</button>
         </view>
       </template>
     </view>

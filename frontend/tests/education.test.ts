@@ -28,8 +28,8 @@ describe('中学课程与学生文案', () => {
   it('复习页要求先作答和判定，再允许自评', () => {
     const source = readFileSync(resolve(process.cwd(), 'src/pages/review/review.vue'), 'utf8')
     expect(source).toContain('/attempt')
-    expect(source).toContain('提交并判定')
+    expect(source).toContain('提交作答')
     expect(source).toContain('attempt_id')
-    expect(source.indexOf('提交并判定')).toBeLessThan(source.indexOf('还不会'))
+    expect(source.indexOf('提交作答')).toBeLessThan(source.indexOf('还不会'))
   })
 })

@@ -11,19 +11,19 @@
             confirm-type="search"
             @confirm="search"
           />
-          <button class="small-btn" @click="search">搜索</button>
+          <button role="button" class="small-btn" @click="search">搜索</button>
         </view>
         <view class="library-filters">
           <picker :range="['全部学科', ...subjects]" @change="changeSubject">
             <view class="filter-button">
               {{ subject || '全部学科' }}
-              <uni-icons type="bottom" size="14" />
+              <uni-icons aria-hidden="true" type="bottom" size="14" />
             </view>
           </picker>
           <picker :range="gradeOptions" @change="changeGrade">
             <view class="filter-button">
               {{ grade || '全部年级' }}
-              <uni-icons type="bottom" size="14" />
+              <uni-icons aria-hidden="true" type="bottom" size="14" />
             </view>
           </picker>
         </view>
@@ -58,6 +58,7 @@
           <template v-if="card[section.key]?.length">
             <h3>{{ section.title }}</h3>
             <button
+              role="button"
               v-for="related in card[section.key]"
               :key="related.code"
               class="card-link"
@@ -69,18 +70,24 @@
           </template>
         </view>
         <button
+          role="button"
           class="primary-btn"
           @click="go(scopedQuestionURL({ subject: card.subject, search: card.name }))"
         >
           查看相关错题
         </button>
-        <button class="secondary-btn" @click="go('/pages/library/library', { replace: true })">
+        <button
+          role="button"
+          class="secondary-btn"
+          @click="go('/pages/library/library', { replace: true })"
+        >
           返回知识检索
         </button>
       </template>
       <template v-else>
         <text class="card-meta">{{ cards.length }} 张知识卡</text>
         <button
+          role="button"
           v-for="item in cards"
           :key="item.code"
           class="knowledge-result"
@@ -102,7 +109,7 @@
         </button>
         <view v-if="!cards.length" class="empty">
           <text>没有找到符合条件的知识卡</text>
-          <button class="small-btn" @click="resetSearch">清除条件</button>
+          <button role="button" class="small-btn" @click="resetSearch">清除条件</button>
         </view>
       </template>
     </view>

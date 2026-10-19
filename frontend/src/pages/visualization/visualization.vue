@@ -1,6 +1,6 @@
 <template>
   <view class="page">
-    <app-header title="本题互动演示" back />
+    <app-header title="互动图解" back />
     <state-panel v-if="!spec.type" :state="error ? 'error' : 'loading'" @retry="load" />
     <view v-else class="page-content">
       <view class="question-context">
@@ -34,7 +34,16 @@
         <view class="task">
           <text>试一试</text>
           <b><math-text :text="spec.student_task" inline /></b>
-          <small><math-text :text="'观察重点：' + spec.expected_observation" inline /></small>
+          <button
+            role="button"
+            v-if="spec.expected_observation"
+            class="observation-toggle"
+            :aria-expanded="showObservation"
+            @click="showObservation = !showObservation"
+          >
+            {{ showObservation ? '收起观察提示' : '查看观察提示' }}
+          </button>
+          <math-text v-if="showObservation" :text="spec.expected_observation" inline />
         </view>
       </view>
       <view class="card">
@@ -42,11 +51,17 @@
         <textarea
           v-model="observation"
           class="field-textarea"
-          placeholder="写下图形或数值的变化…"
+          aria-label="图解观察"
+          placeholder="写下图形或数值的变化"
         />
         <text v-if="!observation.trim()" class="disabled-help">先写下你的观察，再继续教学</text>
-        <button class="primary-btn" :disabled="busy || !observation.trim() || !id" @click="save">
-          {{ busy ? '正在保存…' : '保存并继续' }}
+        <button
+          role="button"
+          class="primary-btn"
+          :disabled="busy || !observation.trim() || !id"
+          @click="save"
+        >
+          {{ busy ? '正在保存…' : '保存观察并返回' }}
         </button>
       </view>
     </view>
@@ -58,6 +73,7 @@ import VisualizationCanvas from '@/components/visualization-canvas/visualization
 import { reactive, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { getData, postData } from '@/api/index.js'
+const showObservation = ref(false)
 const id = ref(''),
   spec = ref({}),
   question = ref({}),
@@ -100,6 +116,15 @@ onLoad((q) => {
 })
 </script>
 <style scoped lang="scss">
+.observation-toggle {
+  margin: 8px 0 0;
+  padding: 10px 0;
+  min-height: 44px;
+  font-size: 14px;
+  color: var(--color-primary);
+  background: transparent;
+  text-align: left;
+}
 .question-context {
   padding: 24rpx;
   margin-bottom: 18rpx;

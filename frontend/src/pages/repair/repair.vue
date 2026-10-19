@@ -1,6 +1,6 @@
 <template>
   <view class="page repair-page">
-    <app-header title="本题修复路线" back :back-fallback="`/pages/detail/detail?id=${id}`" />
+    <app-header title="学习安排" back :back-fallback="`/pages/detail/detail?id=${id}`" />
     <view class="page-content">
       <state-panel
         v-if="loading || error"
@@ -10,7 +10,7 @@
       />
       <template v-else-if="item && journey">
         <view class="editorial-heading">
-          <text class="eyebrow">{{ item.subject }} · 依据本题实际学习记录</text>
+          <text class="eyebrow">{{ item.subject }} · 学习进度</text>
           <math-text
             class="editorial-description"
             :text="item.diagnosis?.root_misconception || '先核对题目与自己的作答，再逐步验证。'"
@@ -62,11 +62,9 @@
             </view>
           </view>
         </view>
-        <text class="evidence-caption">
-          路线来自真实档案，不因浏览页面而标记完成。订正、理解、独立迁移与复习分别记录；一道练习不代表掌握整个知识点。
-        </text>
+        <text class="evidence-caption">完成作答后更新学习进度。</text>
         <button
-          aria-label="查看学习证据与历史"
+          aria-label="查看学习记录"
           role="button"
           tabindex="0"
           class="disclosure-link"
@@ -75,11 +73,11 @@
           @keyup.space.prevent="go(`/pages/journey/journey?id=${id}`)"
           @click="go(`/pages/journey/journey?id=${id}`)"
         >
-          查看学习证据与历史
+          查看学习记录
           <uni-icons aria-hidden="true" type="right" size="18" />
         </button>
         <button
-          aria-label="返回个人易错地图"
+          aria-label="返回易错地图"
           role="button"
           tabindex="0"
           class="disclosure-link"
@@ -88,7 +86,7 @@
           @keyup.space.prevent="go('/pages/error-map/error-map')"
           @click="go('/pages/error-map/error-map')"
         >
-          返回个人易错地图
+          返回易错地图
           <uni-icons aria-hidden="true" type="right" size="18" />
         </button>
       </template>
@@ -116,9 +114,9 @@ function actionLabel(step) {
   return step.key === 'learn'
     ? busy.value
       ? '正在准备…'
-      : '进入学习任务'
+      : '开始订正'
     : step.key === 'practice'
-      ? '开始针对练习'
+      ? '练类似题'
       : step.key === 'review'
         ? '查看复习安排'
         : step.key === 'knowledge'

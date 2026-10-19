@@ -43,13 +43,13 @@ watch(
   font-size: 16px;
 }
 .content-block.question {
-  font-size: 18px;
+  font-size: 17px;
 }
 .content-block.formula {
-  padding: 20px 12px;
+  padding: 14px 12px;
   background: var(--color-primary-soft);
   border-radius: 12px;
-  font-size: 22px;
+  font-size: 18px;
 }
 .expand-action {
   width: 100%;

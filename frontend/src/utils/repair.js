@@ -104,10 +104,10 @@ export function repairRoute(item, journey) {
     {
       key: 'learn',
       title: '订正，再独立完成',
-      detail: '由学习智能体根据实际回答调整',
+      detail: '先订正错处，再重新作答',
       url: '',
       state: completed('understanding')
-        ? '已有理解证据'
+        ? '已完成理解检查'
         : progress.original_independent
           ? '原题已独立完成'
           : progress.repair_verified
@@ -120,19 +120,20 @@ export function repairRoute(item, journey) {
       detail: '同类题与变式题分别练习',
       url: `/pages/practice/practice?id=${id}`,
       state: completed('transfer')
-        ? '已有综合迁移证据'
+        ? '已完成同类练习'
         : progress.near_transfer
-          ? '已有单条件对照证据'
+          ? '已完成变式练习'
           : '待验证',
     },
     {
       key: 'review',
       title: '过几天，再独立回忆',
       detail: journey?.review?.next_due_at ? '按已有复习安排继续' : '学习完成后查看复习安排',
-      url: journey?.review?.due && journey.review.plan_id
-        ? `/pages/review/review?plan=${encodeURIComponent(journey.review.plan_id)}`
-        : `/pages/journey/journey?id=${id}`,
-      state: completed('review') ? '已有复习证据' : journey?.review?.due ? '到期复习' : '查看安排',
+      url:
+        journey?.review?.due && journey.review.plan_id
+          ? `/pages/review/review?plan=${encodeURIComponent(journey.review.plan_id)}`
+          : `/pages/journey/journey?id=${id}`,
+      state: completed('review') ? '已完成复习' : journey?.review?.due ? '到期复习' : '查看安排',
     },
   ].map((step) => ({ ...step, recommended: step.key === next }))
 }

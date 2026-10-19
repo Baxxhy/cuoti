@@ -6,6 +6,7 @@
       auto-height
       maxlength="1200"
       :placeholder="placeholder"
+      aria-label="我的作答"
       @input="emit('update:modelValue', $event.detail.value)"
     />
     <textarea
@@ -15,6 +16,7 @@
       class="working"
       auto-height
       maxlength="800"
+      aria-label="解题步骤"
       placeholder="关键步骤（可不填）"
       @input="emit('update:working', $event.detail.value)"
     />
@@ -22,9 +24,9 @@
       <view class="heading">
         <view>
           <b>手写过程</b>
-          <text>可以直接拍照，识别后仍可修改文字</text>
+          <text>拍照后可核对文字</text>
         </view>
-        <button v-if="!imageUrl" :disabled="uploading || disabled" @click="choose">
+        <button role="button" v-if="!imageUrl" :disabled="uploading || disabled" @click="choose">
           {{ uploading ? '正在识别…' : '拍照或选图' }}
         </button>
       </view>
@@ -40,8 +42,8 @@
         <image :src="imageUrl" mode="widthFix" />
         <view>
           <text>{{ status }}</text>
-          <button :disabled="uploading || disabled" @click="choose">重新拍摄</button>
-          <button :disabled="uploading || disabled" @click="reset">移除</button>
+          <button role="button" :disabled="uploading || disabled" @click="choose">重新拍摄</button>
+          <button role="button" :disabled="uploading || disabled" @click="reset">移除</button>
         </view>
       </view>
       <text v-if="notice" class="upload-notice" role="status">{{ notice }}</text>

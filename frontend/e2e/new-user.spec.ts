@@ -22,12 +22,12 @@ async function registerAndLogin(page: Page) {
 test('真实新学生登录后有明确学习起点，且不伪造个人学习记录', async ({ page }, testInfo) => {
   await registerAndLogin(page)
   await expect(page.locator('.focus-title')).toHaveText('录入错题')
-  await expect(page.locator('.home-starter')).toContainText('知识与例题')
+  await expect(page.locator('.home-starter')).toContainText('知识卡片')
   await expect(page.getByRole('button', { name: '选择学习方向', exact: true })).toBeVisible()
   await expect(page.locator('.focus-card .primary-btn')).toHaveCount(1)
   await expect(page.locator('.focus-card .primary-btn')).toHaveText('拍照或选择图片')
-  await expect(page.getByRole('button', { name: '换个任务', exact: true })).toBeVisible()
-  await expect(page.getByRole('button', { name: '手动录入', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: '题库练习', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: '模拟考试', exact: true })).toBeVisible()
   await expect(page.getByRole('navigation').getByRole('button', { name: '录入错题' })).toBeVisible()
   await page.screenshot({ path: testInfo.outputPath('today-current.png'), fullPage: true })
 })
@@ -42,7 +42,7 @@ test('全部功能页：新学生核心入口显示真实空状态且没有运�
     ['analysis/analysis', '还没有学习报告'],
     ['paper/paper-center', '当前筛选条件下没有可用错题'],
     ['profile/profile', '使用与帮助'],
-    ['learning/learning', '考前组卷'],
+    ['learning/learning', '错题组卷'],
     ['library/library', '知识卡片'],
     ['help/help', '使用指南'],
   ]
@@ -105,7 +105,7 @@ test('手动录题保存到错题本，学习档案只显示已完成的阶段',
   await expect(page.getByText('解方程：2x+3=11', { exact: true }).first()).toBeVisible()
   const questionId = new URLSearchParams(page.url().split('?')[1]).get('id')
   expect(questionId).toBeTruthy()
-  await page.getByText('收藏重点题', { exact: true }).click()
+  await page.getByText('收藏题目', { exact: true }).click()
   await expect(page.getByText('取消收藏', { exact: true })).toBeVisible()
   await page.reload()
   await expect(page.getByText('取消收藏', { exact: true })).toBeVisible()
@@ -117,8 +117,8 @@ test('手动录题保存到错题本，学习档案只显示已完成的阶段',
   await page.screenshot({ path: testInfo.outputPath('filtered-paper.png'), fullPage: true })
   await page.goto(`/#/pages/journey/journey?id=${questionId}`)
   await expect(page.getByText('开始错因诊断', { exact: true })).toBeVisible()
-  await expect(page.getByText('尚未通过规则校验', { exact: true })).toBeVisible()
-  await expect(page.getByText('尚无完整的独立迁移证据', { exact: true })).toBeVisible()
+  await expect(page.getByText('参考答案待核对', { exact: true })).toBeVisible()
+  await expect(page.locator('.stage-row').filter({ hasText: '类似题检验' })).toContainText('待完成')
   await page.screenshot({ path: testInfo.outputPath('learning-journey.png'), fullPage: true })
   await page.goto('/#/pages/problem/list')
   await expect(page.getByText('解方程：2x+3=11', { exact: true })).toBeVisible()

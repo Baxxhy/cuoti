@@ -109,7 +109,7 @@
           >
             <view class="filter-control">
               {{ stageLabels[stageCodes.indexOf(draft.stage)] }}
-              <uni-icons type="bottom" size="14" />
+              <uni-icons aria-hidden="true" type="bottom" size="14" />
             </view>
           </picker>
           <button
@@ -145,7 +145,7 @@
           >
             <view class="filter-control">
               {{ groupLabels[groupCodes.indexOf(draft.group)] }}
-              <uni-icons type="bottom" size="14" />
+              <uni-icons aria-hidden="true" type="bottom" size="14" />
             </view>
           </picker>
         </view>

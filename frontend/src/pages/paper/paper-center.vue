@@ -3,11 +3,7 @@
     <app-header title="错题组卷" back />
     <view class="page-content">
       <text v-if="selectionNotice" class="selection-notice">{{ selectionNotice }}</text>
-      <view class="card filter-card">
-        <view class="field">
-          <text class="field-label">试卷名称</text>
-          <input v-model="title" class="field-input" />
-        </view>
+      <view class="filter-card">
         <view class="field">
           <text class="field-label">学科</text>
           <picker :range="['全部', ...subjects]" @change="setSubject">
@@ -24,6 +20,7 @@
         >
           <text>更多筛选条件</text>
           <uni-icons
+            aria-hidden="true"
             :type="showFilters ? 'top' : 'bottom'"
             size="22"
             color="var(--color-text-secondary)"
@@ -76,7 +73,7 @@
             <text>仅选择待复习题</text>
           </view>
         </view>
-        <button class="secondary-btn" :disabled="searching" @click="search">
+        <button role="button" class="secondary-btn" :disabled="searching" @click="search">
           {{ searching ? '正在筛选…' : '按条件筛选题目' }}
         </button>
       </view>
@@ -96,7 +93,13 @@
         @click="toggle(q.id)"
       >
         <view class="checkbox">
-          <uni-icons v-if="selected.includes(q.id)" type="checkmarkempty" size="24" color="#fff" />
+          <uni-icons
+            aria-hidden="true"
+            v-if="selected.includes(q.id)"
+            type="checkmarkempty"
+            size="24"
+            color="#fff"
+          />
         </view>
         <view class="list-main">
           <math-text class="list-title" :text="q.question_text || q.title" inline />
@@ -113,7 +116,12 @@
       <text v-if="actionError && !active" class="operation-error" role="alert">
         {{ actionError }}
       </text>
+      <view class="field paper-name">
+        <text class="field-label">试卷名称</text>
+        <input aria-label="新试卷名称" v-model="title" class="field-input" />
+      </view>
       <button
+        role="button"
         class="primary-btn"
         :disabled="!selected.length || busy || !!openingPaper"
         @click="create"
@@ -136,12 +144,12 @@
         @keydown.space.prevent="open(paper.id)"
       >
         <view class="paper-icon">
-          <uni-icons type="map-filled" size="24" color="var(--color-primary)" />
+          <uni-icons aria-hidden="true" type="map-filled" size="24" color="var(--color-primary)" />
         </view>
         <view class="list-main">
           <math-text class="list-title" :text="paper.title" inline />
         </view>
-        <uni-icons type="right" size="24" color="var(--color-border)" />
+        <uni-icons aria-hidden="true" type="right" size="24" color="var(--color-border)" />
       </view>
       <view v-if="active" class="paper-editor">
         <view class="editor-title">
@@ -163,7 +171,12 @@
             :disabled="busy || !!openingPaper"
           />
           <!-- #endif -->
-          <button class="delete-paper" :disabled="busy || !!openingPaper" @click="remove">
+          <button
+            role="button"
+            class="delete-paper"
+            :disabled="busy || !!openingPaper"
+            @click="remove"
+          >
             删除
           </button>
         </view>
@@ -176,12 +189,13 @@
               <text class="score-label">分值</text>
               <view class="score-stepper">
                 <button
+                  role="button"
                   class="score-step"
                   :aria-label="`第${index + 1}题减1分`"
                   :disabled="busy || !!openingPaper || Number(item.score) <= 1"
                   @click="changeScore(item, -1)"
                 >
-                  <uni-icons type="minus" size="16" color="currentColor" />
+                  <uni-icons aria-hidden="true" type="minus" size="16" color="currentColor" />
                 </button>
                 <!-- #ifdef H5 -->
                 <component
@@ -209,12 +223,13 @@
                 />
                 <!-- #endif -->
                 <button
+                  role="button"
                   class="score-step"
                   :aria-label="`第${index + 1}题加1分`"
                   :disabled="busy || !!openingPaper || Number(item.score) >= 100"
                   @click="changeScore(item, 1)"
                 >
-                  <uni-icons type="plus" size="16" color="currentColor" />
+                  <uni-icons aria-hidden="true" type="plus" size="16" color="currentColor" />
                 </button>
               </view>
               <text class="score-unit">分</text>
@@ -223,6 +238,7 @@
               答案与解析待补齐
             </text>
             <button
+              role="button"
               v-if="item.question?.confirmed === false"
               class="analysis-link"
               :disabled="busy"
@@ -233,6 +249,7 @@
           </view>
           <view class="sort">
             <button
+              role="button"
               :disabled="index === 0 || busy || !!openingPaper"
               :aria-label="`第${index + 1}题上移`"
               @click="move(index, -1)"
@@ -240,6 +257,7 @@
               ↑
             </button>
             <button
+              role="button"
               :disabled="index === active.items.length - 1 || busy || !!openingPaper"
               :aria-label="`第${index + 1}题下移`"
               @click="move(index, 1)"
@@ -253,20 +271,27 @@
           <b>{{ totalScore }}</b>
           分
         </view>
-        <button class="secondary-btn" :disabled="busy || !!openingPaper" @click="save">
+        <button
+          role="button"
+          class="secondary-btn"
+          :disabled="busy || !!openingPaper"
+          @click="save"
+        >
           保存名称、排序与分值
         </button>
         <text v-if="exportProgress" class="operation-status" role="status">
           {{ exportProgress }}
         </text>
         <view class="export-grid">
-          <button :disabled="busy || !!openingPaper" @click="exportFile('question')">
+          <button role="button" :disabled="busy || !!openingPaper" @click="exportFile('question')">
             题目 PDF
           </button>
-          <button :disabled="busy || !!openingPaper" @click="exportFile('answer')">
+          <button role="button" :disabled="busy || !!openingPaper" @click="exportFile('answer')">
             {{ missingAnalysis.length ? '补齐解析并导出答案' : '答案 PDF' }}
           </button>
-          <button :disabled="busy || !!openingPaper" @click="exportFile('excel')">学习表格</button>
+          <button role="button" :disabled="busy || !!openingPaper" @click="exportFile('excel')">
+            学习表格
+          </button>
         </view>
         <view
           v-for="file in active.exports"
@@ -279,7 +304,12 @@
           @keydown.enter="openFile(file.id)"
           @keydown.space.prevent="openFile(file.id)"
         >
-          <uni-icons type="download-filled" size="24" color="var(--color-primary)" />
+          <uni-icons
+            aria-hidden="true"
+            type="download-filled"
+            size="24"
+            color="var(--color-primary)"
+          />
           <text>{{ exportLabel[file.kind] || '导出文件' }}</text>
           <small>{{ openingExport === file.id ? '准备中…' : '打开' }}</small>
         </view>
@@ -574,6 +604,37 @@ onUnload(() => {
 </script>
 
 <style scoped lang="scss">
+.filter-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: end;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+.filter-card > .field {
+  margin: 0;
+}
+.filter-card .filter-toggle {
+  margin: 0;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.filter-card > .secondary-btn,
+.advanced-filters {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.candidate .list-desc {
+  max-height: 3.2em;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.paper-name {
+  margin-top: 20px;
+}
+
 .filter-card > .field:first-child {
   margin-top: 0;
 }

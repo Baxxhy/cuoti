@@ -1,6 +1,6 @@
 <template>
   <view class="page task-page">
-    <app-header :title="id ? '本题学习' : '学习记录'" back>
+    <app-header :title="id ? '错题订正' : '订正记录'" back>
       <button
         v-if="task && canCancel && !task.restart_required"
         class="text-action"
@@ -45,7 +45,7 @@
           @click="go(`/pages/task/task?id=${item.id}`)"
           @keydown.enter.prevent="go(`/pages/task/task?id=${item.id}`)"
         >
-          <math-text class="history-title" :text="item.question_title || '本题学习'" inline />
+          <math-text class="history-title" :text="item.question_title || '错题订正'" inline />
           <text class="muted">{{ taskStatusLabel(item.status) }}</text>
         </button>
       </template>
@@ -79,7 +79,7 @@
           <text class="muted">可以离开，稍后从这里继续。</text>
         </view>
         <template v-else>
-          <math-text class="task-title" :text="task.student_view?.title" inline />
+          <math-text class="task-title" :text="taskTitle" inline />
           <view
             v-if="
               task.student_view?.feedback && !handwritingId && !task.student_view?.visualization
@@ -136,7 +136,7 @@
                 </button>
               </view>
             </view>
-            <text class="answer-label">写下你的回答</text>
+            <text class="answer-label" id="task-answer-label">我的作答</text>
             <view v-if="handwritingId" class="photo-note">
               <text>
                 {{
@@ -172,8 +172,9 @@
             <textarea
               v-model="answer"
               class="answer-input"
-              aria-label="写下你的回答"
-              placeholder="可以写算式，也可以补充依据"
+              aria-label="我的作答"
+              aria-labelledby="task-answer-label"
+              placeholder="输入答案或解题步骤"
               :maxlength="12000"
               :disabled="sending || !!pending"
               auto-height
@@ -194,7 +195,7 @@
                     : '正在保存…'
                   : handwritingId
                     ? '确认文字并提交'
-                    : '提交'
+                    : '提交作答'
               }}
             </button>
             <button
@@ -246,7 +247,7 @@
               @click="send('hint')"
               @keydown.enter.prevent="send('hint')"
             >
-              {{ task.student_view?.hint_level ? '再提示一步' : '给点提示' }}
+              {{ task.student_view?.hint_level ? '下一条提示' : '查看提示' }}
             </button>
             <button
               v-if="task.student_view?.secondary_actions?.includes('resume')"
@@ -270,7 +271,7 @@
               @click="showMoreWays = !showMoreWays"
               @keydown.enter.prevent="showMoreWays = !showMoreWays"
             >
-              {{ showMoreWays ? '收起更多方式' : '更多方式' }}
+              {{ showMoreWays ? '收起辅助工具' : '拍照与辅助工具' }}
             </button>
           </view>
           <view
@@ -279,7 +280,7 @@
             :id="`task-help-${task.id}`"
             class="more-ways"
             role="region"
-            aria-label="更多作答与学习方式"
+            aria-label="拍照与辅助工具"
           >
             <button
               v-if="task.student_view?.input_kind === 'text' && canCancel"
@@ -301,7 +302,7 @@
               @click="openVisual"
               @keydown.enter.prevent="openVisual"
             >
-              用图看看
+              查看图解
             </button>
             <button
               v-if="task.student_view?.secondary_actions?.includes('reveal')"
@@ -397,6 +398,11 @@ const id = ref(''),
   answer = ref(''),
   pending = ref(null),
   sending = ref(false)
+const taskTitle = computed(() =>
+  task.value?.student_view?.title === '独立完成这道题'
+    ? '重新作答'
+    : task.value?.student_view?.title,
+)
 const processing = computed(() => ['queued', 'running'].includes(task.value?.status))
 const retainedDraft = computed(() =>
   answer.value.trim() ? answer.value : previousDraft.value?.text || '',
@@ -607,7 +613,7 @@ function retryPending() {
 function openVisual() {
   if (sending.value || pending.value || processing.value) return
   uni.showModal({
-    title: '用图看看',
+    title: '查看图解',
     content: '这次会记录为辅助学习。',
     confirmText: '查看',
     success: ({ confirm }) => {
@@ -700,7 +706,7 @@ onUnload(stop)
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .text-action {
   min-height: 48px;
@@ -712,10 +718,10 @@ onUnload(stop)
 }
 .task-title {
   display: block;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .feedback {
   margin: 16px 0;
@@ -742,11 +748,11 @@ onUnload(stop)
 }
 .answer-input {
   width: 100%;
-  min-height: 96px;
+  min-height: 132px;
   padding: 16px;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border: 1px solid var(--color-primary-border);
+  border-radius: 10px;
   font-size: 16px;
   line-height: 1.6;
 }

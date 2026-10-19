@@ -102,7 +102,7 @@ def task_images(
     )
     draft = recognized["student_view"]["handwriting"]
     assert draft["suggested_text"] == "x=14" and draft["recognition"]["uncertain"]
-    assert recognized["student_view"]["title"] == "独立完成这道题"
+    assert recognized["student_view"]["title"] == "重新作答"
     assert not recognized["learning_applied"]
     assert (
         query(env, f"SELECT COUNT(*) FROM cognitive_updates WHERE user_id='{owner}'")

@@ -1,6 +1,6 @@
 <template>
   <view class="tutor-page">
-    <app-header title="本题学习" back>
+    <app-header title="AI 讲解" back>
       <button
         tabindex="0"
         role="button"
@@ -44,6 +44,7 @@
         >
           <i>
             <uni-icons
+              aria-hidden="true"
               v-if="index < visibleStageIndex"
               type="checkmarkempty"
               size="14"
@@ -95,7 +96,7 @@
             <template v-if="isAnswerReveal">
               <view class="answer-brief-heading">
                 <math-text :text="answerReveal.topic" inline />
-                <b>先把这次选错的地方看清</b>
+                <b>答案对照</b>
               </view>
               <view class="answer-compare">
                 <view>
@@ -142,7 +143,7 @@
                   @keydown.space.prevent
                   @keyup.space.prevent="!busy && acknowledgeBrief('understood')"
                 >
-                  已懂，练一道
+                  开始练习
                 </button>
                 <button
                   :aria-disabled="busy"
@@ -277,6 +278,7 @@
                 >
                   <i>
                     <uni-icons
+                      aria-hidden="true"
                       v-if="selectedOptions.includes(option.value)"
                       type="checkmarkempty"
                       size="17"
@@ -418,7 +420,12 @@
 
           <view v-else-if="understandingPassed" class="success-card">
             <view class="success-check">
-              <uni-icons type="checkmarkempty" size="25" color="var(--color-primary)" />
+              <uni-icons
+                aria-hidden="true"
+                type="checkmarkempty"
+                size="25"
+                color="var(--color-primary)"
+              />
             </view>
             <b>已经抓住这个关键点</b>
             <text>接下来只用一句自己的话说清楚，不需要复述完整答案。</text>
@@ -439,10 +446,15 @@
 
           <view v-else-if="session.stage === 'finished'" class="success-card finish-card">
             <view class="success-check">
-              <uni-icons type="checkmarkempty" size="25" color="var(--color-primary)" />
+              <uni-icons
+                aria-hidden="true"
+                type="checkmarkempty"
+                size="25"
+                color="var(--color-primary)"
+              />
             </view>
             <b>
-              {{ session.state?.transfer_insufficient ? '本轮学习已完成' : '已经基本修复这个问题' }}
+              {{ session.state?.transfer_insufficient ? '本轮学习已完成' : '本次学习完成' }}
             </b>
             <math-text
               :text="session.completion_summary || '掌握状态和后续复习已经更新。'"

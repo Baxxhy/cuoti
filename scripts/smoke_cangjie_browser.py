@@ -253,9 +253,13 @@ def browser(endpoint, env):
     clear_question, clear_token = clear_entry_fixture(endpoint, env, query)
     from smoke_cangjie_personas import persona_fixtures
     personas = persona_fixtures(endpoint, env, query)
+    from smoke_cangjie_redesign import redesign_fixture
+
+    route_env = redesign_fixture(endpoint, env, query)
     browser_env = {
         **env,
         **role_env,
+        **route_env,
         **personas,
         "ZHIWEI_BACKEND_KIND": "cangjie",
         "QA_ENTRY_CLEAR_QUESTION_ID": clear_question,

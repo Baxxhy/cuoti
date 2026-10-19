@@ -6,20 +6,6 @@
     <state-panel v-if="!item" :state="error ? 'error' : 'loading'" @retry="load" />
 
     <view v-else class="page-content">
-      <button
-        aria-label="逐步回放这次作答"
-        role="button"
-        tabindex="0"
-        v-if="diagnosis && hasStudentWork"
-        class="disclosure-link"
-        @keydown.enter.prevent="go(`/pages/replay/replay?id=${id}`)"
-        @keydown.space.prevent
-        @keyup.space.prevent="go(`/pages/replay/replay?id=${id}`)"
-        @click="go(`/pages/replay/replay?id=${id}`)"
-      >
-        逐步回放这次作答
-        <uni-icons type="right" size="18" />
-      </button>
       <text v-if="entryError" class="account-notice" role="alert">{{ entryError }}</text>
       <text v-if="repairEvidenceNotice" class="evidence-caption" role="status">
         {{ repairEvidenceNotice }}
@@ -46,7 +32,7 @@
             @keydown.space.prevent
             @keyup.space.prevent="continueFromSummary"
           >
-            {{ busy ? '正在准备…' : diagnosisState.kind === 'clear' ? '继续学习' : '查看本题知识' }}
+            {{ busy ? '正在准备…' : diagnosisState.kind === 'clear' ? '重新作答' : '查看相关知识' }}
           </button>
           <button
             v-if="diagnosisState.kind === 'clear'"
@@ -56,9 +42,14 @@
             @click="openKnowledgeGraph"
             @keydown.enter.prevent="openKnowledgeGraph"
           >
-            查看本题知识
+            查看相关知识
           </button>
-          <button class="secondary-btn" :aria-expanded="showPath" @click="showPath = !showPath">
+          <button
+            role="button"
+            class="secondary-btn"
+            :aria-expanded="showPath"
+            @click="showPath = !showPath"
+          >
             {{ showPath ? '收起参考过程' : '查看参考过程' }}
           </button>
           <view v-if="showPath" class="solution-card">
@@ -101,7 +92,12 @@
           <view class="section-title"><text>正确判断</text></view>
           <view class="thought-card correct-thought">
             <view class="thought-mark">
-              <uni-icons type="checkmarkempty" size="20" color="var(--color-primary)" />
+              <uni-icons
+                aria-hidden="true"
+                type="checkmarkempty"
+                size="20"
+                color="var(--color-primary)"
+              />
             </view>
             <math-text class="thought-text" :text="choiceCorrection" />
           </view>
@@ -117,7 +113,7 @@
             @keydown.space.prevent
             @keyup.space.prevent="startLearning"
           >
-            {{ busy ? '正在准备…' : '修正这个问题' }}
+            {{ busy ? '正在准备…' : '开始订正' }}
           </button>
 
           <text class="more-label">补充信息</text>
@@ -125,6 +121,7 @@
             <view class="secondary-row" @click="showPath = !showPath">
               <view><text class="secondary-title">查看完整解题过程</text></view>
               <uni-icons
+                aria-hidden="true"
                 :type="showPath ? 'top' : 'bottom'"
                 size="18"
                 color="var(--color-text-tertiary)"
@@ -141,6 +138,7 @@
             <view class="secondary-row detail-row" @click="showDetails = !showDetails">
               <view><text class="secondary-title">查看 AI 判断依据</text></view>
               <uni-icons
+                aria-hidden="true"
                 :type="showDetails ? 'top' : 'bottom'"
                 size="18"
                 color="var(--color-text-tertiary)"
@@ -187,7 +185,12 @@
 
           <view class="thought-card student-thought">
             <view class="thought-mark">
-              <uni-icons type="closeempty" size="20" color="var(--color-error)" />
+              <uni-icons
+                aria-hidden="true"
+                type="closeempty"
+                size="20"
+                color="var(--color-error)"
+              />
             </view>
             <math-text class="thought-text" :text="studentThought" />
           </view>
@@ -224,6 +227,7 @@
           <view class="thought-card correct-thought">
             <view class="thought-mark">
               <uni-icons
+                aria-hidden="true"
                 :type="manualReferencePending || modelReviewPending ? 'help' : 'checkmarkempty'"
                 size="20"
                 color="var(--color-primary)"
@@ -244,7 +248,7 @@
             @keydown.space.prevent
             @keyup.space.prevent="startLearning"
           >
-            {{ busy ? '正在准备…' : '开始修正错误' }}
+            {{ busy ? '正在准备…' : '开始订正' }}
           </button>
 
           <!-- =====================================================
@@ -260,6 +264,7 @@
               </view>
 
               <uni-icons
+                aria-hidden="true"
                 :type="showPath ? 'top' : 'bottom'"
                 size="18"
                 color="var(--color-text-tertiary)"
@@ -330,6 +335,7 @@
               </view>
 
               <uni-icons
+                aria-hidden="true"
                 :type="showDetails ? 'top' : 'bottom'"
                 size="18"
                 color="var(--color-text-tertiary)"
@@ -369,7 +375,12 @@
 
             <view class="secondary-row detail-row" @click="openKnowledgeGraph">
               <view><text class="secondary-title">知识关联</text></view>
-              <uni-icons type="right" size="18" color="var(--color-text-tertiary)" />
+              <uni-icons
+                aria-hidden="true"
+                type="right"
+                size="18"
+                color="var(--color-text-tertiary)"
+              />
             </view>
           </view>
         </template>
@@ -433,7 +444,7 @@
           <text v-if="correctionError" class="account-notice" role="alert">
             {{ correctionError }}
           </text>
-          <button class="primary-btn" :disabled="busy" @click="saveCorrection">
+          <button role="button" class="primary-btn" :disabled="busy" @click="saveCorrection">
             {{ busy ? '正在保存…' : '保存修正' }}
           </button>
         </view>
@@ -479,10 +490,24 @@
       <view v-else class="empty-card">
         <text class="empty-title">正在整理本题解析</text>
         <text class="empty-desc">题目解析完成后，会在这里展示正确思路。</text>
-        <button class="primary-btn" :disabled="busy" @click="generate">
+        <button role="button" class="primary-btn" :disabled="busy" @click="generate">
           {{ busy ? '正在分析…' : '生成本题解析' }}
         </button>
       </view>
+      <button
+        aria-label="错因回放"
+        role="button"
+        tabindex="0"
+        v-if="diagnosis && hasStudentWork"
+        class="disclosure-link"
+        @keydown.enter.prevent="go(`/pages/replay/replay?id=${id}`)"
+        @keydown.space.prevent
+        @keyup.space.prevent="go(`/pages/replay/replay?id=${id}`)"
+        @click="go(`/pages/replay/replay?id=${id}`)"
+      >
+        错因回放
+        <uni-icons aria-hidden="true" type="right" size="18" />
+      </button>
     </view>
   </view>
 </template>

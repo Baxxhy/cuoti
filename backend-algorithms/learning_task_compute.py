@@ -423,7 +423,7 @@ def view_for(context: TaskContext, state: Checkpoint) -> StudentView:
         title = "换个条件，再试一次"
     else:
         blocks.append(ContentBlock(kind="question", text=context.question_text))
-        title = "独立完成这道题"
+        title = "重新作答"
     visual_available = task_visual(context, state) is not None
     return StudentView(
         title=title,

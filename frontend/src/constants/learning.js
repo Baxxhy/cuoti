@@ -4,28 +4,33 @@ export const studyEntries = [
 ]
 // Each feature has one home; related records are disclosed on demand.
 export const learningPrimaryEntries = [
-  { title: '复习', description: '回想今天到期的题', icon: 'calendar', url: '/pages/review/review' },
   {
-    title: '练一类题',
+    title: '到期复习',
+    description: '回想今天到期的题',
+    icon: 'calendar',
+    url: '/pages/review/review',
+  },
+  {
+    title: '类似题练习',
     description: '从一道错题开始巩固',
     icon: 'compose',
     url: '/pages/problem/list?purpose=practice',
   },
   {
-    title: '考前组卷',
+    title: '错题组卷',
     description: '选题、编排与导出',
     icon: 'download',
     url: '/pages/paper/paper-center',
   },
   {
-    title: '查知识',
+    title: '知识卡片',
     description: '找到概念与前置知识',
     icon: 'wallet',
     url: '/pages/library/library',
   },
 ]
 export const learningRecordEntries = [
-  { title: '订正学习记录', url: '/pages/task/task' },
+  { title: '订正记录', url: '/pages/task/task' },
   { title: '复习记录', url: '/pages/review/review?history=1' },
   { title: '重点收藏', url: '/pages/problem/list?favorite=1' },
   { title: '教师任务', url: '/pages/assignment/assignment' },

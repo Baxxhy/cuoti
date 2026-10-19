@@ -12,7 +12,9 @@ async function bank(page: Page, mode: string) {
   await page.goto(
     `/#/pages/bank/bank?mode=${mode}&subject=${encodeURIComponent('数学')}&source_id=${process.env.QA_STUDY_SOURCE}`,
   )
-  await expect(page.locator('.bank-count')).toHaveText('6 道可练习题目')
+  await expect(page.locator('.bank-count-row').getByText('6 道题', { exact: true })).toHaveText(
+    '6 道题',
+  )
 }
 async function turnIn(page: Page) {
   await page.getByRole('button', { name: '交卷并查看结果', exact: true }).click()

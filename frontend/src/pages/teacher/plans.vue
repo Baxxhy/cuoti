@@ -16,7 +16,9 @@
               截止：{{ formatDate(item.due_at) }} · {{ statusText(item.status) }}
             </text>
           </view>
-          <view class="teacher-actions"><button @click="edit(item)">调整</button></view>
+          <view class="teacher-actions">
+            <button role="button" @click="edit(item)">调整</button>
+          </view>
         </view>
         <view v-if="!items.length" class="empty-card">暂无学习计划</view>
       </view>
@@ -45,7 +47,7 @@
           <textarea v-model="form.reason" />
         </view>
         <view class="teacher-actions">
-          <button class="primary" :disabled="busy" @click="save">保存调整</button>
+          <button role="button" class="primary" :disabled="busy" @click="save">保存调整</button>
         </view>
       </view>
     </view>

@@ -2,19 +2,6 @@
   <view class="page report-page">
     <app-header title="学习报告" back />
     <view class="page-content">
-      <button
-        aria-label="个人易错地图"
-        role="button"
-        tabindex="0"
-        class="disclosure-link"
-        @keydown.enter.prevent="go('/pages/error-map/error-map')"
-        @keydown.space.prevent
-        @keyup.space.prevent="go('/pages/error-map/error-map')"
-        @click="go('/pages/error-map/error-map')"
-      >
-        个人易错地图
-        <uni-icons type="right" size="18" />
-      </button>
       <state-panel
         v-if="loading || error"
         :state="error ? 'error' : 'loading'"
@@ -47,7 +34,7 @@
               <b>{{ Math.round(progressItem.mastery_score * 100) }}%</b>
               <text>学习记录估计</text>
             </view>
-            <text class="block-detail">再独立做一道，确认这个方法是否稳定。</text>
+            <text class="block-detail"></text>
             <button
               class="primary-btn"
               role="button"
@@ -63,7 +50,7 @@
           <text class="block-label">{{ attentionItem.subject }} · 最需要注意</text>
           <template v-if="attentionItem">
             <math-text class="block-title" :text="attentionItem.label" />
-            <text class="block-detail">复习时先检查这一步，再独立完成一道相关题。</text>
+            <text class="block-detail"></text>
             <button
               tabindex="0"
               role="button"
@@ -107,7 +94,7 @@
             <text class="stable-score">
               学习记录估计 {{ Math.round(stableItem.mastery_score * 100) }}%
             </text>
-            <text class="block-detail">再完成一次独立复习，就能进一步确认是否稳定。</text>
+            <text class="block-detail"></text>
           </template>
           <text v-else class="muted">掌握度达到较稳定状态后会显示在这里。</text>
         </view>
@@ -150,7 +137,12 @@
             <text>我的知识图谱</text>
             <small>{{ graphSummary }}</small>
           </view>
-          <uni-icons :type="showRelations ? 'top' : 'bottom'" size="22" color="#72809A" />
+          <uni-icons
+            aria-hidden="true"
+            :type="showRelations ? 'top' : 'bottom'"
+            size="22"
+            color="#72809A"
+          />
         </button>
         <template v-if="showRelations">
           <scroll-view scroll-x class="filter-scroll">
@@ -220,6 +212,19 @@
           </view>
         </template>
       </template>
+      <button
+        aria-label="易错地图"
+        role="button"
+        tabindex="0"
+        class="disclosure-link"
+        @keydown.enter.prevent="go('/pages/error-map/error-map')"
+        @keydown.space.prevent
+        @keyup.space.prevent="go('/pages/error-map/error-map')"
+        @click="go('/pages/error-map/error-map')"
+      >
+        易错地图
+        <uni-icons aria-hidden="true" type="right" size="18" />
+      </button>
     </view>
   </view>
 </template>
@@ -364,7 +369,7 @@ onUnload(clear)
   padding: 28px;
   margin: 24px 0;
   background: var(--color-surface);
-  border-radius: 20px;
+  border-radius: 12px;
 }
 .empty-title {
   display: block;

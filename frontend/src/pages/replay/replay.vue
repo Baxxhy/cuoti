@@ -152,7 +152,7 @@
             @keyup.space.prevent="go(`/pages/repair/repair?id=${id}`)"
             @click="go(`/pages/repair/repair?id=${id}`)"
           >
-            查看修复路线
+            查看学习安排
           </button>
           <button
             aria-label="核对诊断或纠正错因"
