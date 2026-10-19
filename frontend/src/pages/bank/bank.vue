@@ -161,7 +161,7 @@
                 {{ question.grade_band }} · {{ questionTypeLabel(question.question_type) }}
               </text>
             </view>
-            <math-text class="bank-question-text" :text="question.question_text" />
+            <math-text class="bank-question-text" :text="question.question_text" inline />
             <view class="question-tail">
               <text>{{ question.source_name }}</text>
               <uni-icons type="arrowright" size="20" color="var(--color-primary)" />

@@ -39,14 +39,14 @@
               <text>第 {{ index + 1 }} 题</text>
               <text class="verdict" :class="verdictClass(item)">{{ verdict(item) }}</text>
             </view>
-            <math-text :text="item.question.question_text" />
+            <math-text :text="item.question.question_text" inline />
             <view
               v-for="option in normalizeOptions(item.question.options)"
               :key="option.label"
               class="review-option"
             >
               <text>{{ option.label }}.</text>
-              <math-text :text="option.text" />
+              <math-text :text="option.text" inline />
             </view>
             <image
               v-for="url in item.question.image_urls || []"
@@ -58,11 +58,11 @@
             <view class="review-answers">
               <view>
                 <text class="answer-label">我的答案</text>
-                <math-text :text="answerText(item.student_answer)" />
+                <math-text :text="answerText(item.student_answer)" inline />
               </view>
               <view>
                 <text class="answer-label">参考答案</text>
-                <math-text :text="answerText(item.answer)" />
+                <math-text :text="answerText(item.answer)" inline />
               </view>
             </view>
             <math-text v-if="item.solution" class="reference-solution" :text="item.solution" />
@@ -103,7 +103,7 @@
               <text>{{ questionTypeLabel(current.question.question_type) }}</text>
               <text>5 分</text>
             </view>
-            <math-text class="question-stem" :text="current.question.question_text" />
+            <math-text class="question-stem" :text="current.question.question_text" inline />
             <image
               v-for="url in current.question.image_urls || []"
               :key="url"
@@ -122,7 +122,7 @@
                 @click="select(option.label)"
               >
                 <text class="option-letter">{{ option.label }}</text>
-                <math-text :text="option.text" />
+                <math-text :text="option.text" inline />
                 <uni-icons
                   v-if="selected(option.label)"
                   type="checkmarkempty"

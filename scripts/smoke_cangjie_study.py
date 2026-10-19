@@ -284,7 +284,33 @@ def study(endpoint, env, query):
         "Study bank passed: real sources/filtering, hidden answers, owner isolation, validation, durable drafts/CAS, frozen snapshots, idempotent grading, server deadlines, empty answers and no fabricated mastery",
         flush=True,
     )
+    chemical_source = insert(
+        "dataset_sources", key="study-chemical-" + uuid4().hex, name="化学排版验收题库"
+    )
+    insert(
+        "dataset_questions",
+        dataset_source_id=chemical_source,
+        source_item_id="hydrate",
+        content_hash=uuid4().hex,
+        subject="化学",
+        grade="高二",
+        grade_band="高中",
+        question_text=r"胆矾$${CuSO_{4}5H_{2}O}$$可写作$${[Cu(H_{2}O)_{4}]SO_{4}H_{2}O}$$，下列说法正确的是",
+        question_type="multiple-choice",
+        options=[
+            {"key": "A", "text": r"所有氧原子都采取$${sp^{3}}$$杂化"},
+            {"key": "B", "text": "氧原子存在配位键和氢键两种化学键"},
+            {"key": "C", "text": r"$${Cu^{2+}}$$的价电子排布式为$${3d^{8}4s^{1}}$$"},
+            {"key": "D", "text": "胆矾中的水在不同温度下会分步失去"},
+        ],
+        answer=json.dumps("D"),
+        solution=r"水分步失去。独立公式：\[Cu^{2+}\]",
+        has_answer=True,
+        usable_for_practice=True,
+        usable_for_auto_grade=True,
+    )
     return {
+        "QA_STUDY_CHEM_SOURCE": chemical_source,
         "QA_STUDY_EMAIL": email,
         "QA_STUDY_PASSWORD": password,
         "QA_STUDY_SOURCE": source,

@@ -88,3 +88,43 @@ test('模拟考试：抽取题库、计时、逐题作答与答题卡、交卷�
     await page.screenshot({ path: info.outputPath(`exam-setup-${width}.png`), fullPage: true })
   }
 })
+
+test('化学题干与选项中的短公式连续排版，解析保留独立公式', async ({ page }, info) => {
+  test.skip(!process.env.QA_STUDY_CHEM_SOURCE, '需要化学排版样本')
+  await page.goto(`/#/pages/bank/bank?source_id=${process.env.QA_STUDY_CHEM_SOURCE}`)
+  await expect(page.locator('.bank-question')).toHaveCount(1)
+  await expect(page.locator('.bank-question .katex-display')).toHaveCount(0)
+  await page.locator('.bank-question').click()
+  const options = page.locator('.answer-options uni-button, .answer-options button')
+  await expect(options).toHaveCount(4)
+  for (const width of [360, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 })
+    await expect(
+      page.locator('.question-stem .katex-display, .answer-options .katex-display'),
+    ).toHaveCount(0)
+    await expect(options.nth(0)).toContainText('杂化')
+    expect(
+      await options
+        .nth(0)
+        .locator('.math-text')
+        .evaluate((el) => el.getBoundingClientRect().height),
+    ).toBeLessThan(60)
+    expect(
+      await options
+        .nth(2)
+        .locator('.math-text')
+        .evaluate((el) => el.getBoundingClientRect().height),
+    ).toBeLessThan(85)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+    await page.screenshot({
+      path: info.outputPath(`chemical-options-${width}.png`),
+      fullPage: true,
+    })
+  }
+  await options.nth(3).click()
+  await expect(page.getByRole('status')).toHaveText('作答已保存')
+  await turnIn(page)
+  await expect(page.locator('.review-option .katex-display')).toHaveCount(0)
+  await expect(page.locator('.reference-solution .katex-display')).toHaveCount(1)
+  await expect(page.locator('.result-score > uni-text').first()).toHaveText('5')
+})

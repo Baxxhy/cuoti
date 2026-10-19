@@ -22,9 +22,9 @@
 | 动效 | 按压/切换120—180ms；任务反馈不用整屏庆祝 | 系统减少动态效果时关闭非必要动效 |
 | 主题 | 首版以浅色为正式验收主题；深色需独立适配后启用 | 不宣称自动反色就是深色完成 |
 
-公式渲染使用现有受控KaTeX路径，必要公式区域局部滚动，页面本身不横向溢出。复杂公式、下标和较长选项在真机200%字体下单独核对。
+公式渲染使用现有受控KaTeX路径，必要公式区域局部滚动，页面本身不横向溢出。题库预览、作答及交卷回看中的题干、选项和短答案统一按行内公式呈现，导入数据的`$$…$$`不强制把句子拆开；解析中的独立公式保留块级排版。[胆矾题排版修正](screenshots/math-inline-chemistry.png)已核对360/390/768/1440宽度。复杂公式、下标和较长选项在真机200%字体下单独核对。
 
-当前运行截图：[今日](screenshots/study-home.png)、[学习（桌面）](screenshots/study-learning-desktop.png)、[模拟考试](screenshots/study-exam-setup.png)、[模拟考试作答](screenshots/study-exam-answering.png)、[实际题库作答](screenshots/study-practice.png)、[交卷与解析](screenshots/study-practice-result.png)。截图使用本地核验账号，题目与成绩来自真实题库及本次作答。
+界面改版截图：[今日](screenshots/study-home.png)、[学习（桌面）](screenshots/study-learning-desktop.png)、[模拟考试](screenshots/study-exam-setup.png)、[模拟考试作答](screenshots/study-exam-answering.png)、[实际题库作答](screenshots/study-practice.png)、[交卷与解析](screenshots/study-practice-result.png)。截图使用本地核验账号，题目与成绩来自真实题库及本次作答。
 
 ## 2. 页面地图与导航规则
 

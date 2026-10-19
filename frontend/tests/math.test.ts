@@ -57,6 +57,18 @@ describe('数学公式文本渲染', () => {
     expect(renderMathText('$$x^2+1$$')).toContain('katex-display')
   })
 
+  it('胆矾选项里的杂化、离子和电子排布公式不强制拆行', () => {
+    for (const text of [
+      '所有氧原子都采取$${sp^{3}}$$杂化',
+      '$${Cu^{2+}}$$的价电子排布式为$${3d^{8}4s^{1}}$$',
+    ]) {
+      const html = renderMathText(text, true)
+      expect(html).toContain('class="katex"')
+      expect(html).not.toContain('katex-display')
+      expect(html).not.toContain('katex-error')
+    }
+  })
+
   it('教学流程的练习题干和选项都使用公式组件', () => {
     const source = readFileSync(resolve(process.cwd(), 'src/pages/tutor/tutor.vue'), 'utf8')
     expect(source).toContain('<math-text class="activity-question" :text="activity.question" />')
