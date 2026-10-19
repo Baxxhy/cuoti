@@ -1,0 +1,22 @@
+{
+  "product": {
+    "body_paragraphs": 90,
+    "all_body_paragraphs_matched": true,
+    "reference_documents": 5,
+    "exact_reference_paragraph_copies_ge50_chars": [],
+    "placeholder_hits": [],
+    "hyperlinks_matched": 12,
+    "source_sha256": "2b488776bd09cde92b904c1fdd7015438fcb165bfd04df496b901b2c5e4778a1",
+    "docx_sha256": "53ae51137b66eadc35682e9a8c67f048dcdd5a95e3b29fd64b7985a456d8d9fb"
+  },
+  "system": {
+    "body_paragraphs": 142,
+    "all_body_paragraphs_matched": true,
+    "reference_documents": 5,
+    "exact_reference_paragraph_copies_ge50_chars": [],
+    "placeholder_hits": [],
+    "hyperlinks_matched": 8,
+    "source_sha256": "394c262677f2a8905d251342d3ef61f1ffa779f23b9593b089f74e013b43eb67",
+    "docx_sha256": "6c290153401122b432d6c7e537859e1c017a94d94a9cb7984c8cb03bce4ad72e"
+  }
+}
