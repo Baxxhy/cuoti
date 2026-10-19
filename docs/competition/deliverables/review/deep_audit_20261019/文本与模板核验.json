@@ -1,0 +1,20 @@
+{
+  "product": {
+    "docx_nonempty_paragraphs_including_tables": 346,
+    "source_body_paragraphs": 84,
+    "body_lines_not_matched": [],
+    "reference_exact_paragraph_matches_ge50_chars": [],
+    "reference_count": 5,
+    "placeholder_hits": []
+  },
+  "system": {
+    "docx_nonempty_paragraphs_including_tables": 476,
+    "source_body_paragraphs": 143,
+    "body_lines_not_matched": [
+      7
+    ],
+    "reference_exact_paragraph_matches_ge50_chars": [],
+    "reference_count": 5,
+    "placeholder_hits": []
+  }
+}
