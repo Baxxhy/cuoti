@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="新增题目" subtitle="发布前校对题干、答案和步骤" back />
+    <app-header title="新增题目" back />
     <view class="teacher-content">
       <view class="teacher-card">
         <view class="two-column">

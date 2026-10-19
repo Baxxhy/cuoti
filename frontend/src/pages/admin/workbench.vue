@@ -9,7 +9,7 @@
         </view>
       </view>
       <view class="readonly">
-        <uni-icons type="info-filled" size="18" color="#2E69FC" />
+        <uni-icons type="info-filled" size="18" color="var(--color-primary)" />
         <text>只读模式</text>
       </view>
       <view class="nav-list">
@@ -22,7 +22,7 @@
           <uni-icons
             :type="item.icon"
             size="22"
-            :color="section === item.key ? '#2E69FC' : '#667085'"
+            :color="section === item.key ? 'var(--color-primary)' : 'var(--color-text-secondary)'"
           />
           <text>{{ item.label }}</text>
         </button>
@@ -31,11 +31,11 @@
         <text>数据更新于</text>
         <b>{{ clock(workbench?.generated_at) }}</b>
         <button @click="refresh">
-          <uni-icons type="reload" size="18" color="#2E69FC" />
+          <uni-icons type="reload" size="18" color="var(--color-primary)" />
           刷新数据
         </button>
         <button @click="logout">
-          <uni-icons type="person-filled" size="18" color="#667085" />
+          <uni-icons type="person-filled" size="18" color="var(--color-text-secondary)" />
           退出登录
         </button>
       </view>
@@ -44,9 +44,12 @@
     <view class="main-area">
       <view class="topbar">
         <view>
-          <text class="eyebrow">管理员只读工作台</text>
+          <!-- #ifdef H5 -->
+          <component :is="'h1'" class="page-title">{{ currentTitle }}</component>
+          <!-- #endif -->
+          <!-- #ifndef H5 -->
           <text class="page-title">{{ currentTitle }}</text>
-          <text class="page-desc">{{ descriptions[section] }}</text>
+          <!-- #endif -->
         </view>
         <view class="service">
           <span :class="serviceClass" />
@@ -58,7 +61,7 @@
       </view>
 
       <view v-if="loading && !workbench" class="state">
-        <uni-icons type="spinner-cycle" size="44" color="#2E69FC" />
+        <uni-icons type="spinner-cycle" size="44" color="var(--color-primary)" />
         <b>正在加载工作台</b>
         <text>正在读取学习数据，请稍候</text>
       </view>
@@ -79,7 +82,7 @@
           <view class="metric-grid">
             <view v-for="metric in metricCards" :key="metric.key" class="metric-card">
               <view class="icon-box">
-                <uni-icons :type="metric.icon" size="24" color="#2E69FC" />
+                <uni-icons :type="metric.icon" size="24" color="var(--color-primary)" />
               </view>
               <text>{{ metric.label }}</text>
               <b>{{ metric.value }}</b>
@@ -89,11 +92,13 @@
 
           <view class="overview-grid">
             <view class="card loop-panel">
-              <heading title="学习数据闭环" subtitle="从错题录入到主动复习的真实运行数据" />
+              <heading title="学习数据闭环" />
               <view class="learning-loop">
                 <template v-for="(item, index) in learningLoop" :key="item.key">
                   <view class="loop-step">
-                    <view><uni-icons :type="item.icon" size="25" color="#2E69FC" /></view>
+                    <view>
+                      <uni-icons :type="item.icon" size="25" color="var(--color-primary)" />
+                    </view>
                     <b>{{ item.value }}</b>
                     <text>{{ item.label }}</text>
                   </view>
@@ -104,7 +109,7 @@
               </view>
             </view>
             <view class="card distribution-panel">
-              <heading title="会话状态分布" subtitle="教学智能体会话完成情况" />
+              <heading title="会话状态分布" />
               <view class="distribution">
                 <view class="donut" :style="donutStyle">
                   <view>
@@ -130,7 +135,7 @@
 
           <view class="overview-grid lower">
             <view class="card">
-              <heading title="最近学生" subtitle="点击查看长期学习画像" />
+              <heading title="最近学生" />
               <view class="table-head">
                 <text>学生</text>
                 <text>年级</text>
@@ -154,7 +159,7 @@
               <empty-view v-if="!workbench.students.length" text="尚无学生数据" />
             </view>
             <view class="card">
-              <heading title="最近教学会话" subtitle="查看智能体如何做出教学决策" />
+              <heading title="最近教学会话" />
               <button
                 v-for="item in workbench.sessions.slice(0, 7)"
                 :key="item.id"
@@ -165,7 +170,7 @@
                   <uni-icons
                     type="chat-filled"
                     size="21"
-                    :color="item.status === 'active' ? '#2E69FC' : '#168A45'"
+                    :color="item.status === 'active' ? 'var(--color-primary)' : '#168A45'"
                   />
                 </view>
                 <view>
@@ -232,7 +237,7 @@
               </view>
               <view class="detail-grid">
                 <view class="card">
-                  <heading title="知识掌握" subtitle="根据练习证据形成的掌握估计" />
+                  <heading title="知识掌握" />
                   <view
                     v-for="item in studentDetail.mastery"
                     :key="`${item.subject}-${item.knowledge_point}`"
@@ -251,7 +256,7 @@
                   />
                 </view>
                 <view class="card">
-                  <heading title="高频误区" subtitle="近期最需要关注的错误模式" />
+                  <heading title="高频误区" />
                   <view
                     v-for="item in studentDetail.misconceptions"
                     :key="item.code"
@@ -276,11 +281,11 @@
                 </view>
               </view>
               <view class="card">
-                <heading title="复习计划" subtitle="系统根据遗忘风险自动安排" />
+                <heading title="复习计划" />
                 <view class="review-grid">
                   <view v-for="item in studentDetail.reviews" :key="item.id" class="review">
                     <view class="calendar">
-                      <uni-icons type="calendar-filled" size="22" color="#2E69FC" />
+                      <uni-icons type="calendar-filled" size="22" color="var(--color-primary)" />
                     </view>
                     <view>
                       <b>{{ item.reason }}</b>
@@ -308,7 +313,7 @@
                 <uni-icons
                   type="chat-filled"
                   size="19"
-                  :color="item.status === 'active' ? '#2E69FC' : '#168A45'"
+                  :color="item.status === 'active' ? 'var(--color-primary)' : '#168A45'"
                 />
               </view>
               <view>
@@ -346,7 +351,7 @@
               </view>
               <view class="diagnosis">
                 <view class="diagnosis-icon">
-                  <uni-icons type="search" size="28" color="#2E69FC" />
+                  <uni-icons type="search" size="28" color="var(--color-primary)" />
                 </view>
                 <view>
                   <text>智能体观察到的错因</text>
@@ -362,10 +367,7 @@
               </view>
               <view class="trace-grid">
                 <view class="card">
-                  <heading
-                    title="可验证智能体轨迹"
-                    subtitle="观察 → 计划 → 工具行动 → 证据核验，全程不展示模型内部思维链"
-                  />
+                  <heading title="可验证智能体轨迹" />
                   <view
                     v-for="(event, index) in sessionDetail.trace"
                     :key="event.id"
@@ -378,7 +380,11 @@
                     <view class="trace-card">
                       <view class="trace-head">
                         <view>
-                          <uni-icons type="paperplane-filled" size="20" color="#2E69FC" />
+                          <uni-icons
+                            type="paperplane-filled"
+                            size="20"
+                            color="var(--color-primary)"
+                          />
                           <b>{{ event.agent }}</b>
                         </view>
                         <text>{{ clock(event.time) }}</text>
@@ -421,7 +427,7 @@
                   <empty-view v-if="!sessionDetail.trace.length" text="该会话尚未记录智能体轨迹" />
                 </view>
                 <view class="card cognition">
-                  <heading title="认知变化" subtitle="本次学习对长期认知状态的影响" />
+                  <heading title="认知变化" />
                   <view
                     v-for="item in sessionDetail.cognitive_updates"
                     :key="item.id"
@@ -463,7 +469,7 @@
             <span>{{ item.status }}</span>
           </view>
           <view class="card access">
-            <view><uni-icons type="info-filled" size="28" color="#2E69FC" /></view>
+            <view><uni-icons type="info-filled" size="28" color="var(--color-primary)" /></view>
             <view>
               <b>只读访问</b>
               <p>工作台只查询学生学习数据，不修改答案、诊断、教学会话、认知模型或系统配置。</p>
@@ -562,7 +568,7 @@ const metricCards = computed(() => [
 const learningLoop = computed(() => buildLearningLoop(workbench.value?.metrics)),
   sessionDistribution = computed(() => buildSessionDistribution(workbench.value?.metrics))
 const donutStyle = computed(() => ({
-  background: `conic-gradient(var(--color-primary) 0 ${sessionDistribution.value.activePercent * 3.6}deg,#E8EEFC ${sessionDistribution.value.activePercent * 3.6}deg 360deg)`,
+  background: `conic-gradient(var(--color-primary) 0 ${sessionDistribution.value.activePercent * 3.6}deg,#E8EEFC ${sessionDistribution.value.activePercent * 3.6}deg 360deg)`, // taste-skill-ignore: flat chart segments encode actual active/completed session shares.
 }))
 const providerStatus = computed(
     () =>
@@ -588,7 +594,7 @@ const systemCards = computed(() => [
     status: providerStatus.value,
     icon: 'chat-filled',
     tone: 'primary',
-    color: '#2E69FC',
+    color: 'var(--color-primary)',
   },
   {
     label: '文本线路',
@@ -596,7 +602,7 @@ const systemCards = computed(() => [
     status: '可用线路',
     icon: 'paperplane-filled',
     tone: 'primary',
-    color: '#2E69FC',
+    color: 'var(--color-primary)',
   },
   {
     label: '视觉线路',
@@ -604,7 +610,7 @@ const systemCards = computed(() => [
     status: '可用线路',
     icon: 'image',
     tone: 'primary',
-    color: '#2E69FC',
+    color: 'var(--color-primary)',
   },
 ])
 const percent = (v) => `${Math.round(Math.max(0, Math.min(1, Number(v || 0))) * 100)}%`,
@@ -1220,8 +1226,8 @@ onUnmounted(() => clearInterval(timer))
 .profile {
   padding: 26px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #2e69fc, #1746b3);
-  color: #fff;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   gap: 18px;
@@ -1230,7 +1236,7 @@ onUnmounted(() => clearInterval(timer))
   width: 64px;
   height: 64px;
   border-radius: 20px;
-  background: #ffffff2e;
+  background: var(--color-surface-subtle);
   display: grid;
   place-items: center;
   font-size: 27px;

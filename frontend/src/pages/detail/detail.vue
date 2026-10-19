@@ -2,7 +2,6 @@
   <view class="page detail-page">
     <app-header
       title="错题详情"
-      :subtitle="item ? `${item.subject} · ${item.grade} · ${topic}` : ''"
       back
       :back-fallback="
         reviewReturnId

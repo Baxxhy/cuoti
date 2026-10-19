@@ -21,12 +21,11 @@ async function registerAndLogin(page: Page) {
 
 test('真实新学生登录后有明确学习起点，且不伪造个人学习记录', async ({ page }, testInfo) => {
   await registerAndLogin(page)
-  await expect(page.getByText('从一道做错的题开始', { exact: true })).toBeVisible()
-  await expect(page.getByText('从适合自己的起点开始', { exact: false })).toBeVisible()
-  await expect(page.locator('.home-starter')).toContainText('没带错题，也能开始')
+  await expect(page.locator('.focus-title')).toHaveText('录入错题')
+  await expect(page.locator('.home-starter')).toContainText('知识与例题')
   await expect(page.getByRole('button', { name: '选择学习方向', exact: true })).toBeVisible()
   await expect(page.locator('.focus-card .primary-btn')).toHaveCount(1)
-  await expect(page.locator('.focus-card .primary-btn')).toHaveText('录入错题')
+  await expect(page.locator('.focus-card .primary-btn')).toHaveText('拍照或选择图片')
   await expect(page.getByRole('button', { name: '换个任务', exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: '手动录入', exact: true })).toBeVisible()
   await expect(page.getByRole('navigation').getByRole('button', { name: '录入错题' })).toBeVisible()
@@ -65,14 +64,14 @@ test('全部功能页：新学生核心入口显示真实空状态且没有运�
 test('刷新保留登录，失效凭据跳转回登录页', async ({ page }) => {
   await registerAndLogin(page)
   await page.reload()
-  await expect(page.getByText('从一道做错的题开始', { exact: true })).toBeVisible()
+  await expect(page.locator('.focus-title')).toHaveText('录入错题')
   await page.evaluate(() => {
     localStorage.setItem('minddimension_access_token', 'invalid-session-for-e2e')
   })
   await page.goto('/#/pages/profile/profile')
   // UniApp 把 pages.json 的首个登录页规范化为 /#/。
   await expect(page).toHaveURL(/#\/(?:pages\/login\/login)?$/)
-  await expect(page.getByText('欢迎回来', { exact: true })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '登录账号', exact: true })).toBeVisible()
   await expect(page.getByLabel('邮箱', { exact: true })).toBeVisible()
   await expect(page.getByLabel('密码', { exact: true })).toBeVisible()
   expect(await page.evaluate(() => localStorage.getItem('minddimension_access_token'))).toBeNull()
@@ -285,16 +284,16 @@ test.describe('桌面布局', () => {
     isMobile: false,
     hasTouch: false,
   })
-  test('登录表单与学习内容保持可读宽度，底部导航可操作', async ({ page }) => {
+  test('登录表单与学习内容保持可读宽度，桌面侧栏可操作', async ({ page }) => {
     await page.goto('/#/pages/login/login')
-    await expect(page.getByText('欢迎回来', { exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: '登录账号', exact: true })).toBeVisible()
     const form = await page.locator('.auth-page').boundingBox()
     expect(form?.width).toBeLessThanOrEqual(480)
     expect(form?.x).toBeGreaterThan(300)
     await registerAndLogin(page)
     await expect(page.locator('.focus-card .primary-btn')).toBeVisible()
     const main = await page.locator('.home-page').boundingBox()
-    expect(main?.width).toBeLessThanOrEqual(960)
+    expect(main?.width).toBeLessThanOrEqual(1180)
     const button = await page.locator('.focus-card .primary-btn').boundingBox()
     expect(button?.height).toBeGreaterThanOrEqual(44)
     expect(button?.height).toBeLessThanOrEqual(52)

@@ -1,11 +1,6 @@
 <template>
   <view class="page learning-page">
-    <app-header
-      title="到期复习"
-      :subtitle="loading ? '正在读取复习安排' : `${plans.length} 道待复习`"
-      back
-      back-fallback="/pages/learning/learning"
-    />
+    <app-header title="到期复习" back back-fallback="/pages/learning/learning" />
     <view class="page-content">
       <state-panel v-if="loading" state="loading" />
       <state-panel v-else-if="error" state="error" :message="error" @retry="load" />
@@ -100,7 +95,7 @@
                     :value="option.label"
                     :checked="selectedOptions.includes(option.label)"
                     :disabled="!!busy"
-                    color="#002FA7"
+                    color="var(--color-primary)"
                   />
                   <math-text :text="`${option.label}. ${option.text}`" />
                 </label>
@@ -114,7 +109,7 @@
                     :value="option.label"
                     :checked="answers[activePlan.id] === option.label"
                     :disabled="!!busy"
-                    color="#002FA7"
+                    color="var(--color-primary)"
                   />
                   <math-text :text="`${option.label}. ${option.text}`" />
                 </label>

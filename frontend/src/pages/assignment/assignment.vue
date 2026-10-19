@@ -1,6 +1,6 @@
 <template>
   <view class="page assignment-page">
-    <app-header title="我的作业" subtitle="选一项，写完提交" back />
+    <app-header title="我的作业" back />
     <view class="page-content">
       <state-panel
         v-if="loading || error"

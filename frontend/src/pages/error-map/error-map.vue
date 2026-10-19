@@ -1,14 +1,8 @@
 <template>
   <view class="page error-map-page">
-    <app-header title="个人易错地图" subtitle="每个线索，都能回到原题核对" back />
+    <app-header title="个人易错地图" back />
     <view class="page-content">
-      <view class="editorial-heading map-heading">
-        <text class="eyebrow">最近90天 · 本人的有效题目</text>
-        <text class="editorial-title">把重复的问题，连起来看。</text>
-        <text class="editorial-description">
-          按已有诊断归组，不预测考试失分，也不把一次错误当作固定弱项。
-        </text>
-      </view>
+      <view class="map-heading"><text class="evidence-caption">最近 90 天</text></view>
       <scroll-view scroll-x class="map-filters">
         <view class="map-filter-row">
           <button
@@ -35,10 +29,8 @@
       />
       <template v-else>
         <view v-if="!groups.length" class="composed-empty">
-          <text class="editorial-title">先留下可以核对的线索</text>
-          <text class="editorial-description">
-            当前范围还没有明确错因。录入真实作答并完成诊断后，再来看它们的联系。
-          </text>
+          <text class="editorial-title">暂无诊断线索</text>
+          <text class="editorial-description">完成错题诊断后显示。</text>
           <button
             role="button"
             tabindex="0"
@@ -84,7 +76,7 @@
                 @keyup.space.prevent="selectedKey = group.key"
                 @click="selectedKey = group.key"
               >
-                <text class="node-number">{{ String(i + 1).padStart(2, '0') }}</text>
+                <text class="node-number">{{ i + 1 }}</text>
                 <view class="node-copy">
                   <text>{{ group.label }}</text>
                   <small>
@@ -171,13 +163,8 @@
             </view>
           </view>
         </template>
-        <text class="evidence-caption map-boundary">
-          {{
-            truncated
-              ? '当前最多读取最近200道已诊断题目，当前地图并非全部历史。'
-              : '来源：当前题目版本的最新诊断。'
-          }}
-          未定位的错因不归入具体分类；已修复的历史诊断仍可回看，是否保持要通过复习验证。
+        <text v-if="truncated" class="evidence-caption map-boundary">
+          仅显示最近 200 道已诊断题目
         </text>
       </template>
     </view>
@@ -251,7 +238,7 @@ onUnload(clear)
   padding: 10px 16px;
   font-size: 14px;
   background: transparent;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .map-filter-row button.active {
   background: var(--color-primary-soft);
@@ -285,9 +272,9 @@ onUnload(clear)
   text-align: left;
 }
 .map-node.selected {
-  color: var(--color-primary);
-  background: var(--color-primary-soft);
-  box-shadow: inset 3px 0 var(--color-primary);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border-radius: 14px;
 }
 .node-number {
   font-size: 13px;
@@ -399,5 +386,15 @@ onUnload(clear)
   .node-number {
     display: none;
   }
+}
+.composed-empty {
+  padding: 28px;
+  margin-top: 24px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--color-surface);
+}
+.composed-empty .disclosure-link {
+  border: 0;
 }
 </style>

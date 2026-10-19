@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header :title="data?.student?.name || '学生详情'" subtitle="掌握度、错因与教师干预" back />
+    <app-header :title="data?.student?.name || '学生详情'" back />
     <view class="teacher-content">
       <state-panel
         v-if="loading || error || !data"

@@ -3,10 +3,8 @@
     <app-header title="学习" />
     <view class="page-content">
       <view class="learning-featured">
-        <text class="eyebrow">从错题，到自己的方法</text>
-        <text class="editorial-title">这次，解决反复卡住的地方。</text>
         <button
-          aria-label="个人易错地图 找到线索，回到原题，再沿路线修复"
+          aria-label="个人易错地图"
           role="button"
           tabindex="0"
           class="disclosure-link"
@@ -15,9 +13,9 @@
           @keyup.space.prevent="go('/pages/error-map/error-map')"
           @click="go('/pages/error-map/error-map')"
         >
-          <view>
+          <uni-icons type="map" size="22" color="var(--color-primary)" />
+          <view class="feature-copy">
             <text>个人易错地图</text>
-            <small>找到线索，回到原题，再沿路线修复</small>
           </view>
           <uni-icons type="right" size="20" />
         </button>
@@ -40,7 +38,6 @@
           </view>
           <view class="feature-copy">
             <text>{{ item.title }}</text>
-            <text>{{ item.description }}</text>
           </view>
           <uni-icons
             class="feature-arrow"
@@ -109,111 +106,92 @@ const moreOpen = ref(false)
 </script>
 <style scoped lang="scss">
 .learning-featured {
-  margin-bottom: 28px;
-  border-top: 2px solid var(--color-text-primary);
-  padding-top: 20px;
+  margin-bottom: 24px;
+  background: var(--color-surface);
+  border-radius: 20px;
+  overflow: hidden;
 }
-.learning-featured .disclosure-link small {
-  display: block;
-  color: var(--color-text-secondary);
-  font-size: 13px;
-  margin-top: 6px;
+.learning-featured .disclosure-link {
+  min-height: 76px;
+  padding: 20px 24px;
+  border: 0;
+  gap: 16px;
+  font-size: 17px;
 }
 .feature-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  display: block;
+  padding: 0 24px;
+  background: var(--color-surface);
+  border-radius: 20px;
 }
 .feature-link {
-  position: relative;
   width: 100%;
-  min-width: 0;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
   gap: 16px;
-  min-height: 164px;
-  padding: 20px 16px;
+  min-height: 76px;
+  padding: 16px 0;
   margin: 0;
   text-align: left;
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  background: var(--color-surface);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   line-height: 1.5;
   font-size: 16px;
 }
+.feature-link + .feature-link {
+  border-top: 1px solid var(--color-border);
+}
 .feature-icon {
-  width: 44px;
-  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  background: var(--color-primary-soft);
-}
-.feature-arrow {
-  position: absolute;
-  top: 20px;
-  right: 16px;
-}
-.feature-link::after,
-.record-link::after {
-  border: 0;
-}
-.feature-link:active {
-  background: var(--color-primary-soft);
+  width: 24px;
+  flex: none;
 }
 .feature-copy {
   flex: 1;
   min-width: 0;
-  width: 100%;
-  overflow-wrap: anywhere;
 }
 .feature-copy text {
   display: block;
-  font-size: 18px;
+  font-size: 17px;
   color: var(--color-text-primary);
 }
-.feature-copy text + text {
-  font-size: 14px;
-  margin-top: 4px;
-  color: var(--color-text-secondary);
+.feature-arrow {
+  flex: none;
 }
 .record-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 52px;
-  padding: 12px 0;
-  margin-top: 12px;
+  min-height: 60px;
+  padding: 16px 24px;
+  margin-top: 24px;
   text-align: left;
-  background: transparent;
+  background: var(--color-surface);
+  border-radius: 20px;
+  color: var(--color-text-primary);
   font-size: 16px;
 }
+.record-link + .record-link {
+  margin-top: 12px;
+}
 .secondary-list {
-  display: block;
-  margin-top: 8px;
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  overflow: hidden;
+  margin-top: 12px;
 }
 .secondary-list .feature-link {
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  min-height: 52px;
-  padding: 14px 16px;
-  border: 0;
-  border-radius: 0;
+  min-height: 60px;
 }
-.secondary-list .feature-link + .feature-link {
-  border-top: 1px solid var(--color-border);
+.feature-link:active,
+.record-link:active {
+  opacity: 0.65;
 }
-@media (max-width: 320px) {
-  .feature-list {
-    grid-template-columns: 1fr;
+@media (hover: hover) {
+  .feature-link:hover {
+    color: var(--color-primary);
   }
 }
 </style>

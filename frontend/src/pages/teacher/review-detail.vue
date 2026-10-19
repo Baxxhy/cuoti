@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="人工复核" subtitle="AI 原始证据与人工结论分别保存" back />
+    <app-header title="人工复核" back />
     <view class="teacher-content">
       <state-panel
         v-if="loading || error || !data"

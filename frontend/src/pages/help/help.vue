@@ -1,6 +1,6 @@
 <template>
   <view class="page">
-    <app-header title="使用指南" subtitle="知道每个功能何时用" back />
+    <app-header title="使用指南" back />
     <view class="page-content">
       <view v-for="section in sections" :key="section.title" class="help-section">
         <h2>{{ section.title }}</h2>

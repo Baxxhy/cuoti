@@ -1,6 +1,6 @@
 <template>
   <view class="page practice-workspace">
-    <app-header title="针对练习" subtitle="围绕本题知识点练一练" back />
+    <app-header title="针对练习" back />
     <view class="page-content">
       <button
         aria-label="本题修复路线"
@@ -56,7 +56,7 @@
                 :value="option.label"
                 :checked="selectedOptions.includes(option.label)"
                 :disabled="submitting || !!result"
-                color="#002FA7"
+                color="var(--color-primary)"
               />
               <math-text class="option-text" :text="`${option.label}. ${option.text}`" inline />
             </label>
@@ -67,7 +67,7 @@
                 :value="option.label"
                 :checked="answer === option.label"
                 :disabled="submitting || !!result"
-                color="#002FA7"
+                color="var(--color-primary)"
               />
               <math-text class="option-text" :text="`${option.label}. ${option.text}`" inline />
             </label>

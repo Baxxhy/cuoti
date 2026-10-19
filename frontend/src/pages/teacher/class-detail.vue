@@ -1,10 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header
-      :title="data?.name || '班级详情'"
-      :subtitle="`${data?.grade || ''} · 真实学习数据聚合`"
-      back
-    />
+    <app-header :title="data?.name || '班级详情'" back />
     <view class="teacher-content">
       <state-panel
         v-if="loading || error"
@@ -21,7 +17,7 @@
           <view v-if="adding">
             <view class="field">
               <text class="field-label">学生账号邮箱</text>
-              <input v-model="email" placeholder="student@example.com" />
+              <input v-model="email" placeholder="请输入邮箱" />
             </view>
             <view class="teacher-actions">
               <button class="primary" :disabled="busy" @click="add">加入班级</button>

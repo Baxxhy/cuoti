@@ -11,8 +11,6 @@
       <template v-else-if="item">
         <view class="editorial-heading">
           <text class="eyebrow">{{ item.subject }} · 当时的解题过程</text>
-          <text class="editorial-title">从哪一步开始偏离？</text>
-          <text class="editorial-description">逐步核对你的作答。诊断是线索，可以补充和纠正。</text>
         </view>
         <button
           role="button"

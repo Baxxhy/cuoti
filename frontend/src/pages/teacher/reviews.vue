@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="待核对队列" subtitle="未确认前不更新学生学习状态" back />
+    <app-header title="待核对队列" back />
     <view class="teacher-content">
       <view class="teacher-card">
         <view class="section-tabs">

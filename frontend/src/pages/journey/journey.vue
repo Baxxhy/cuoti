@@ -184,7 +184,9 @@ function copySummary() {
     '错题帮 · 学习摘要',
     data.question_text,
     data.summary,
-    ...data.stages.map((stage) => `${stage.completed ? '✓' : '○'} ${stage.label}：${stage.detail}`),
+    ...data.stages.map(
+      (stage) => `${stage.completed ? '已完成' : '未完成'} ${stage.label}：${stage.detail}`,
+    ),
     `下一步：${data.next_action.label}`,
     `生成时间：${formatDate(data.generated_at)}`,
   ].join('\n')

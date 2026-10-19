@@ -1,9 +1,9 @@
 <template>
   <view class="page report-page">
-    <app-header title="学习报告" subtitle="看见进步，也知道下一步做什么" back />
+    <app-header title="学习报告" back />
     <view class="page-content">
       <button
-        aria-label="从诊断依据查看个人易错地图"
+        aria-label="个人易错地图"
         role="button"
         tabindex="0"
         class="disclosure-link"
@@ -12,7 +12,7 @@
         @keyup.space.prevent="go('/pages/error-map/error-map')"
         @click="go('/pages/error-map/error-map')"
       >
-        从诊断依据查看个人易错地图
+        个人易错地图
         <uni-icons type="right" size="18" />
       </button>
       <state-panel
@@ -27,7 +27,6 @@
           class="report-empty"
         >
           <text class="empty-title">还没有学习报告</text>
-          <text class="muted">完成错题学习后，这里会记录掌握情况和易错点。</text>
           <button
             tabindex="0"
             role="button"
@@ -266,7 +265,7 @@ const trend = computed(() => overview.value.trend?.slice(-8) || []),
   graphSummary = computed(() =>
     graph.value.mapped_question_count
       ? `已有 ${graph.value.mapped_question_count} 道错题关联到 ${graph.value.nodes?.filter((node) => node.category === 'knowledge').length || 0} 个知识点`
-      : '分析错题后，会在这里形成个人知识关系',
+      : '暂无知识关系',
   )
 async function load() {
   const current = ++overviewRequest
@@ -358,7 +357,10 @@ onUnload(clear)
 }
 
 .report-empty {
-  padding: 32px 0;
+  padding: 28px;
+  margin: 24px 0;
+  background: var(--color-surface);
+  border-radius: 20px;
 }
 .empty-title {
   display: block;

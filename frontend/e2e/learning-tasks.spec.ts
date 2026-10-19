@@ -37,11 +37,20 @@ test('持久智能体：订正、刷新草稿、独立作答、离开恢复与�
   await expect(page.getByRole('button', { name: '拍照或选图作答', exact: true })).not.toBeVisible()
   await page.getByRole('button', { name: '更多方式', exact: true }).click()
   const chooser = page.waitForEvent('filechooser')
+  const handwritingReceipt = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'POST' &&
+      /\/learning-tasks\/[^/]+\/handwriting$/.test(new URL(response.url()).pathname),
+  )
   await page.getByRole('button', { name: '拍照或选图作答', exact: true }).click()
   await (
     await chooser
   ).setFiles({ name: 'my-working.png', mimeType: 'image/png', buffer: Buffer.from(png, 'base64') })
-  await expect(page.getByRole('button', { name: '确认文字并提交', exact: true })).toBeVisible()
+  expect((await handwritingReceipt).status()).toBe(202)
+  // Upload is asynchronous; the worker and the page's polling reach the editable checkpoint later.
+  await expect(page.getByRole('button', { name: '确认文字并提交', exact: true })).toBeVisible({
+    timeout: 15_000,
+  })
   await expect(page.locator('.photo-note')).toContainText('部分字迹不清晰')
   await page.reload()
   await expect(page.locator('.answer-input textarea, textarea.answer-input')).toHaveValue('x=4')

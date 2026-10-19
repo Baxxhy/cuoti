@@ -1,10 +1,6 @@
 <template>
   <view class="page knowledge-page">
-    <app-header
-      title="本题知识"
-      :subtitle="item ? `${item.subject} · ${item.grade || ''}` : ''"
-      back
-    />
+    <app-header title="本题知识" back />
     <state-panel
       v-if="loading || error"
       :state="error ? 'error' : 'loading'"

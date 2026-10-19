@@ -1,6 +1,6 @@
 <template>
   <view class="page">
-    <app-header title="本题互动演示" subtitle="用图形理解当前这道题" back />
+    <app-header title="本题互动演示" back />
     <state-panel v-if="!spec.type" :state="error ? 'error' : 'loading'" @retry="load" />
     <view v-else class="page-content">
       <view class="question-context">
@@ -26,7 +26,7 @@
             :min="variable.min"
             :max="variable.max"
             :step="variable.step || 1"
-            activeColor="#002FA7"
+            activeColor="var(--color-primary)"
             @changing="values[variable.name] = $event.detail.value"
             @change="values[variable.name] = $event.detail.value"
           />

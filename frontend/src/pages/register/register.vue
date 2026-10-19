@@ -18,7 +18,7 @@
           label="邮箱"
           inputmode="email"
           autocomplete="username"
-          placeholder="student@example.com"
+          placeholder="请输入邮箱"
         />
         <account-field
           id="register-password"

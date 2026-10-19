@@ -1,6 +1,6 @@
 <template>
   <view class="page">
-    <app-header title="系统与智能服务" subtitle="识别、模型和线路状态" back />
+    <app-header title="系统与智能服务" back />
     <view class="page-content">
       <state-panel v-if="!provider" :state="error ? 'error' : 'loading'" @retry="load" />
       <template v-else>

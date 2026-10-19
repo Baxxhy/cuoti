@@ -2,13 +2,6 @@
   <view class="page preferences-page">
     <app-header title="学习方向" back />
     <view class="page-content">
-      <view class="editorial-heading">
-        <text class="eyebrow">你的选择，随时可改</text>
-        <text class="editorial-title">今天，先照顾眼前的目标。</text>
-        <text class="editorial-description">
-          选择当前学科和节奏。它们用于组织入口，不代表能力测评。
-        </text>
-      </view>
       <state-panel
         v-if="loading || error"
         :state="error ? 'error' : 'loading'"
@@ -82,12 +75,9 @@
               {{ minutes }} 分钟
             </button>
           </view>
-          <text class="evidence-caption">这是你选择的节奏，可以提前结束，不据此判断学习表现。</text>
         </view>
         <text v-if="saveError" class="account-notice" role="alert">{{ saveError }}</text>
-        <text v-if="saved" class="saved-preferences" role="status">
-          已保存。返回今日后，会按新的学科组织学习入口。
-        </text>
+        <text v-if="saved" class="saved-preferences" role="status">已保存</text>
         <button
           role="button"
           tabindex="0"
@@ -197,10 +187,15 @@ onUnload(clear)
 <style scoped lang="scss">
 .learning-settings {
   margin-top: 32px;
-  max-width: 560px;
+  display: block;
+  width: 100%;
+  max-width: none;
 }
 .preference-field {
-  margin-bottom: 28px;
+  padding: 24px;
+  margin-bottom: 16px;
+  background: var(--color-surface);
+  border-radius: 20px;
 }
 .field-label {
   display: block;
@@ -214,7 +209,7 @@ onUnload(clear)
   min-height: 48px;
   padding: 12px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--color-surface);
   color: var(--color-text-primary);
   font-size: 16px;
@@ -230,8 +225,9 @@ onUnload(clear)
   padding: 12px;
   min-height: 48px;
   border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: var(--color-bg);
   color: var(--color-text-primary);
+  border-radius: 12px;
   font-size: 14px;
 }
 .preference-options button.selected {
@@ -244,5 +240,8 @@ onUnload(clear)
   margin-bottom: 16px;
   color: var(--color-success);
   font-size: 14px;
+}
+.preferences-page {
+  max-width: 760px;
 }
 </style>

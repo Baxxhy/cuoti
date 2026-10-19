@@ -50,7 +50,6 @@
               <uni-icons :type="item.icon" size="24" color="#55565B" />
               <view class="list-main">
                 <text class="setting-title">{{ item.title }}</text>
-                <text class="setting-desc">{{ item.desc }}</text>
               </view>
               <uni-icons type="right" size="22" color="#85868B" />
             </view>
@@ -104,7 +103,7 @@ const studentSettings = [
   {
     title: '学习中心',
     desc: '复习巩固、专项备考、知识与学情',
-    icon: 'book',
+    icon: 'wallet',
     url: '/pages/learning/learning',
   },
 ]
@@ -135,22 +134,23 @@ onMounted(load)
 .student-profile {
   display: flex;
   align-items: center;
-  gap: 22rpx;
-  padding: 16rpx 0 30rpx;
-  border-bottom: 1rpx solid var(--color-border);
+  gap: 20px;
+  padding: 26px 24px;
+  background: var(--color-surface);
+  border-radius: 20px;
+  margin-bottom: 24px;
 }
 .avatar {
-  width: 88rpx;
-  height: 88rpx;
+  width: 64px;
+  height: 64px;
   flex: none;
-  border: 1rpx solid var(--color-border);
-  border-radius: 16rpx;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-surface);
-  color: var(--color-text-primary);
-  font-size: 34rpx;
+  background: var(--color-surface-subtle);
+  color: var(--color-text-secondary);
+  font-size: 26px;
   font-weight: 500;
 }
 .profile-name,
@@ -158,56 +158,60 @@ onMounted(load)
   display: block;
 }
 .profile-name {
-  font-size: 34rpx;
-  line-height: 1.4;
+  font-size: 23px;
+  line-height: 1.35;
   font-weight: 600;
+  letter-spacing: -0.02em;
 }
 .profile-meta {
-  font-size: 24rpx;
+  font-size: 13px;
   color: var(--color-text-secondary);
-  margin-top: 6rpx;
+  margin-top: 6px;
+}
+.disclosure-link {
+  padding: 18px 24px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--color-surface);
 }
 .section-title {
-  margin: 34rpx 0 12rpx;
+  margin: 28px 24px 10px;
 }
 .section-title > text:first-child {
-  font-size: 25rpx;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
   color: var(--color-text-secondary);
 }
 .setting-list {
-  border-top: 1rpx solid var(--color-border);
+  padding: 0 24px;
+  border-radius: 20px;
+  background: var(--color-surface);
 }
 .setting-row {
   display: flex;
   align-items: center;
-  gap: 20rpx;
-  min-height: 120rpx;
-  padding: 22rpx 0;
-  border-bottom: 1rpx solid var(--color-border);
+  gap: 16px;
+  min-height: 64px;
+  padding: 16px 0;
+  cursor: pointer;
 }
-.setting-title,
-.setting-desc {
-  display: block;
+.setting-row + .setting-row {
+  border-top: 1px solid var(--color-border);
 }
 .setting-title {
-  font-size: 28rpx;
-  font-weight: 500;
-}
-.setting-desc {
-  font-size: 24rpx;
-  color: var(--color-text-secondary);
-  margin-top: 4rpx;
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
 }
 .role-settings {
-  margin-top: 30rpx;
+  margin-top: 24px;
 }
 .logout-button {
-  margin-top: 48rpx;
-  border: 1rpx solid var(--color-border);
+  margin-top: 24px;
   background: var(--color-surface);
-  color: var(--color-text-secondary);
-  font-size: 27rpx;
-  font-weight: 500;
+  color: var(--color-error);
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 20px;
 }
 </style>

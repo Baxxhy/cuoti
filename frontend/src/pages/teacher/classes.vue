@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="班级与学生" subtitle="仅显示你管理的班级" back />
+    <app-header title="班级与学生" back />
     <view class="teacher-content">
       <state-panel
         v-if="loading || error"

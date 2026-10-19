@@ -1,11 +1,6 @@
 <template>
   <view class="page library-page">
-    <app-header
-      title="知识卡片"
-      subtitle="查清概念，再回到题目中运用"
-      back
-      back-fallback="/pages/learning/learning"
-    />
+    <app-header title="知识卡片" back back-fallback="/pages/learning/learning" />
     <view class="page-content">
       <view v-if="!code" class="library-search">
         <view class="search-row">
@@ -20,10 +15,16 @@
         </view>
         <view class="library-filters">
           <picker :range="['全部学科', ...subjects]" @change="changeSubject">
-            <view class="filter-button">{{ subject || '全部学科' }} ▾</view>
+            <view class="filter-button">
+              {{ subject || '全部学科' }}
+              <uni-icons type="bottom" size="14" />
+            </view>
           </picker>
           <picker :range="gradeOptions" @change="changeGrade">
-            <view class="filter-button">{{ grade || '全部年级' }} ▾</view>
+            <view class="filter-button">
+              {{ grade || '全部年级' }}
+              <uni-icons type="bottom" size="14" />
+            </view>
           </picker>
         </view>
       </view>
@@ -76,12 +77,9 @@
         <button class="secondary-btn" @click="go('/pages/library/library', { replace: true })">
           返回知识检索
         </button>
-        <text class="boundary-note">读懂知识后，再通过独立作答检验掌握。</text>
       </template>
       <template v-else>
-        <text class="card-meta">
-          本次显示 {{ cards.length }} 张知识卡，最多50张，可缩小条件检索。
-        </text>
+        <text class="card-meta">{{ cards.length }} 张知识卡</text>
         <button
           v-for="item in cards"
           :key="item.code"
@@ -221,10 +219,11 @@ h3 {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 18px 0;
-  background: transparent;
-  border-radius: 0;
-  border-bottom: 1px solid var(--color-border);
+  padding: 20px 24px;
+  margin: 12px 0;
+  background: var(--color-surface);
+  border-radius: 20px;
+  border: 0;
 }
 .knowledge-result text {
   display: block;

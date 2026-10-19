@@ -90,7 +90,7 @@ test('真正零历史：学习方向与真实知识卡可达；加载失败不�
     data.access_token,
   )
   await page.goto('/#/pages/index/index')
-  await expect(page.locator('.home-starter')).toContainText('没带错题，也能开始')
+  await expect(page.locator('.home-starter')).toContainText('知识与例题')
   await page.screenshot({ path: testInfo.outputPath('product-cold-start.png'), fullPage: true })
   await page.getByRole('button', { name: '选择学习方向', exact: true }).click()
   await page.getByLabel('当前学科', { exact: true }).selectOption('数学')
@@ -103,7 +103,7 @@ test('真正零历史：学习方向与真实知识卡可达；加载失败不�
   await page.locator('.knowledge-result').first().click()
   await expect(page.getByText('理解示例', { exact: true })).toBeVisible()
   await page.goto('/#/pages/error-map/error-map')
-  await expect(page.getByText('先留下可以核对的线索', { exact: true })).toBeVisible()
+  await expect(page.getByText('暂无诊断线索', { exact: true })).toBeVisible()
   await page.route('**/api/v1/analytics/error-sources*', (route) =>
     route.fulfill({
       status: 503,
@@ -112,6 +112,6 @@ test('真正零历史：学习方向与真实知识卡可达；加载失败不�
     }),
   )
   await page.reload()
-  await expect(page.getByText('先留下可以核对的线索', { exact: true })).not.toBeVisible()
+  await expect(page.getByText('暂无诊断线索', { exact: true })).not.toBeVisible()
   await expect(page.getByText('重新加载', { exact: true })).toBeVisible()
 })

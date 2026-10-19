@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="教师工作台" subtitle="先处理需要你判断的学习证据" gradient>
+    <app-header title="教师工作台" gradient>
       <view
         class="header-link"
         role="button"

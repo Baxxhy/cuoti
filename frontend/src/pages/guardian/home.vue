@@ -1,6 +1,6 @@
 <template>
   <view class="page">
-    <app-header title="家长中心" subtitle="了解孩子最近的学习情况" gradient>
+    <app-header title="家长中心" gradient>
       <view
         class="header-link"
         role="button"

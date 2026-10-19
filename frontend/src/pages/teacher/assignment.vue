@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="题目布置" subtitle="支持整班布置，自动同步学生任务" back />
+    <app-header title="题目布置" back />
     <view class="teacher-content">
       <state-panel
         v-if="loading || error"

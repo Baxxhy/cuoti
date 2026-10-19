@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="教师操作记录" subtitle="人工修改可追踪，不覆盖原始数据" back />
+    <app-header title="教师操作记录" back />
     <view class="teacher-content">
       <state-panel
         v-if="loading || error"

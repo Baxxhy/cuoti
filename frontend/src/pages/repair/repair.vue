@@ -11,7 +11,6 @@
       <template v-else-if="item && journey">
         <view class="editorial-heading">
           <text class="eyebrow">{{ item.subject }} · 依据本题实际学习记录</text>
-          <text class="editorial-title">这道题，逐步修复。</text>
           <math-text
             class="editorial-description"
             :text="item.diagnosis?.root_misconception || '先核对题目与自己的作答，再逐步验证。'"
@@ -25,7 +24,7 @@
             class="repair-step"
             :class="{ recommended: step.recommended }"
           >
-            <text class="repair-number">{{ String(i + 1).padStart(2, '0') }}</text>
+            <text class="repair-number">{{ i + 1 }}</text>
             <view class="repair-copy">
               <view class="repair-step-heading">
                 <text>{{ step.title }}</text>

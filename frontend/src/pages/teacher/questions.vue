@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="题目管理" subtitle="题目与学生错题共用统一数据模型" back />
+    <app-header title="题目管理" back />
     <view class="teacher-content">
       <view class="teacher-card">
         <view class="card-heading">

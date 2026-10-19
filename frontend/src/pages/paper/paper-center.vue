@@ -1,6 +1,6 @@
 <template>
   <view class="page">
-    <app-header title="错题组卷" subtitle="选择题目，整理练习与导出" back />
+    <app-header title="错题组卷" back />
     <view class="page-content">
       <text v-if="selectionNotice" class="selection-notice">{{ selectionNotice }}</text>
       <view class="card filter-card">
@@ -142,7 +142,6 @@
         </view>
         <view class="list-main">
           <text class="list-title">{{ paper.title }}</text>
-          <text class="list-desc">点击查看、调整分值、排序与导出</text>
         </view>
         <uni-icons type="right" size="24" color="var(--color-border)" />
       </view>

@@ -1,10 +1,6 @@
 <template>
   <view class="tutor-page">
-    <app-header
-      title="本题学习"
-      :subtitle="session?.knowledge_title || '正在准备今天的学习任务'"
-      back
-    >
+    <app-header title="本题学习" back>
       <button
         tabindex="0"
         role="button"

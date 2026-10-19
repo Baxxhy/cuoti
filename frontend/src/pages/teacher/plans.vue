@@ -1,6 +1,6 @@
 <template>
   <view class="teacher-page">
-    <app-header title="学习计划管理" subtitle="调整会立即反映到学生复习页" back />
+    <app-header title="学习计划管理" back />
     <view class="teacher-content">
       <state-panel
         v-if="loading || error"

@@ -2,9 +2,16 @@
   <view class="auth-shell">
     <view class="auth-page">
       <view class="auth-top">
-        <text class="auth-brand">错题帮</text>
-        <text class="auth-title">欢迎回来</text>
-        <text class="auth-subtitle">登录账号，继续你的学习。</text>
+        <view class="auth-brand">
+          <uni-icons type="compose" size="25" color="var(--color-text-primary)" />
+          <text>错题帮</text>
+        </view>
+        <!-- #ifdef H5 -->
+        <component :is="'h1'" class="auth-title">登录账号</component>
+        <!-- #endif -->
+        <!-- #ifndef H5 -->
+        <text class="auth-title">登录账号</text>
+        <!-- #endif -->
       </view>
       <view class="auth-form">
         <account-field
@@ -102,42 +109,40 @@ onMounted(restore)
 .auth-shell {
   min-height: 100vh;
   min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background: var(--color-bg);
 }
 .auth-page {
-  min-height: 100vh;
-  min-height: 100dvh;
   width: 100%;
-  max-width: 460px;
-  margin: 0 auto;
-  padding: calc(72px + env(safe-area-inset-top)) 28px calc(40px + env(safe-area-inset-bottom));
-  background: #fff;
-}
-.auth-top {
-  text-align: left;
+  max-width: 440px;
+  padding: 40px 32px;
+  background: var(--color-surface);
+  border-radius: 24px;
 }
 .auth-brand {
-  display: block;
-  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-primary);
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 36px;
-}
-.auth-title,
-.auth-subtitle {
-  display: block;
+  margin-bottom: 40px;
+  letter-spacing: -0.025em;
 }
 .auth-title {
-  font-size: 28px;
-  font-weight: 600;
+  display: block;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
   color: var(--color-text-primary);
 }
-.auth-subtitle {
-  font-size: 14px;
-  color: var(--color-text-secondary);
-  margin-top: 8px;
-}
 .auth-form {
-  margin-top: 32px;
+  margin-top: 28px;
 }
 .auth-form .primary-btn {
   margin-top: 28px;
@@ -162,21 +167,18 @@ onMounted(restore)
   text-align: left;
   cursor: pointer;
 }
-@media (min-width: 768px) {
+@media (max-width: 480px) {
   .auth-shell {
-    padding: 64px 24px;
+    align-items: flex-start;
+    padding-top: calc(56px + env(safe-area-inset-top));
   }
   .auth-page {
-    min-height: 0;
-    margin: 0 auto;
-    padding: 40px;
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
+    padding: 32px 24px;
   }
 }
 @media (max-height: 600px) {
-  .auth-page {
-    padding-top: 28px;
+  .auth-shell {
+    padding-top: 24px;
   }
   .auth-brand {
     margin-bottom: 24px;

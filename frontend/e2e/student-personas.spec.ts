@@ -47,7 +47,7 @@ test('学生甲：首次使用，改学习方向、读例题、录入与收藏�
   await page.reload()
   await expect(page.getByText('取消收藏', { exact: true })).toBeVisible()
   await page.goto('/#/pages/error-map/error-map')
-  await expect(page.getByText('先留下可以核对的线索', { exact: true })).toBeVisible()
+  await expect(page.getByText('暂无诊断线索', { exact: true })).toBeVisible()
   await page.screenshot({ path: info.outputPath('student-a-empty-evidence.png'), fullPage: true })
 })
 

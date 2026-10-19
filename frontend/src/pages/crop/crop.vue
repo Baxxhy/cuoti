@@ -1,6 +1,6 @@
 <template>
   <view class="page crop-page">
-    <app-header title="框选题目" subtitle="拖动四角调整识别范围" back />
+    <app-header title="框选题目" back />
     <view v-if="question" class="crop-content">
       <movable-area class="crop-stage">
         <image :src="original" mode="aspectFit" @load="onImageLoad" />
