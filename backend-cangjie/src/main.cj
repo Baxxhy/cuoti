@@ -73,6 +73,10 @@ main(args: Array<String>): Int64 {
     server.distributor.register("/api/v1/reviews/{plan_id}/attempt", { ctx => guarded(ctx, { => attemptReview(ctx, accounts) }) })
     server.distributor.register("/api/v1/reviews/{plan_id}/grade", { ctx => guarded(ctx, { => gradeReview(ctx, accounts) }) })
     server.distributor.register("/api/v1/practice/questions/{question_id}/images/{image_index}", { ctx => servePracticeImage(ctx, accounts) })
+    server.distributor.register("/api/v1/study-bank", { ctx => guarded(ctx, { => studyBank(ctx,accounts) }) })
+    server.distributor.register("/api/v1/study-sessions", { ctx => guarded(ctx, { => studySessions(ctx,accounts) }) })
+    server.distributor.register("/api/v1/study-sessions/{session_id}", { ctx => guarded(ctx, { => studySessionApi(ctx,accounts) }) })
+    server.distributor.register("/api/v1/study-sessions/{session_id}/submit", { ctx => guarded(ctx, { => studySessionApi(ctx,accounts) }) })
     server.distributor.register("/api/v1/practice/recommend", { ctx => guarded(ctx, { => recommendPractice(ctx, accounts) }) })
     server.distributor.register("/api/v1/practice/attempt", { ctx => guarded(ctx, { => attemptPractice(ctx, accounts) }) })
     server.distributor.register("/api/v1/answers/handwriting", { ctx => guarded(ctx, { => uploadHandwriting(ctx, accounts) }) })
@@ -132,9 +136,9 @@ main(args: Array<String>): Int64 {
         } else {
             try (db = Database.fromEnvironment()) {
                 db.query("SELECT id FROM users LIMIT 1")
-                let version = db.query("SELECT version FROM cangjie_schema_versions WHERE version = ?", [Some("009_task_sources")])
+                let version = db.query("SELECT version FROM cangjie_schema_versions WHERE version = ?", [Some("010_study_sessions")])
                 if (version.rows.size != 1) { throw DatabaseException(2000) }
-                context.responseBuilder.body(##"{"database":"mysql","schema":"009_task_sources","status":"database_ready","ai":"not_connected"}"##)
+                context.responseBuilder.body(##"{"database":"mysql","schema":"010_study_sessions","status":"database_ready","ai":"not_connected"}"##)
             } catch (_: Exception) {
                 context.responseBuilder.status(503).body(##"{"status":"database_unavailable"}"##)
             }

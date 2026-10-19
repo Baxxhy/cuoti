@@ -121,6 +121,7 @@ onMounted(restore)
   padding: 40px 32px;
   background: var(--color-surface);
   border-radius: 24px;
+  border-top: 5px solid #7bb1df;
 }
 .auth-brand {
   display: flex;

@@ -133,7 +133,7 @@ async function upload() {
   overflow: hidden;
   border: 0;
   border-radius: 24px;
-  background: #fff;
+  background: #edf5ff;
 }
 .capture-zone-selected {
   height: 240px;

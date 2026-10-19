@@ -148,12 +148,16 @@ def main() -> None:
 
                 alignment(endpoint, env, query)
                 return
+            if env.get("CANGJIE_DB_NAME") and env.get("CANGJIE_VERIFY_FOCUS") == "study-bank":
+                from smoke_cangjie_study import study
+                study(endpoint, env, query)
+                return
             media(endpoint, env, process.pid)
             if env.get("CANGJIE_DB_NAME"):
                 with urlopen(endpoint + "/readyz", timeout=5) as response:
                     assert json.load(response) == {
                         "database": "mysql",
-                        "schema": "009_task_sources",
+                        "schema": "010_study_sessions",
                         "status": "database_ready",
                         "ai": "not_connected",
                     }
@@ -180,6 +184,8 @@ def main() -> None:
 
                 alignment(endpoint, env, query)
                 recovery = ingest(endpoint, env, query)
+                from smoke_cangjie_study import study
+                env.update(study(endpoint, env, query))
                 if env.get("CANGJIE_VERIFY_FOCUS") in {
                     "task-images",
                     "task-figures",

@@ -68,5 +68,11 @@ public func upgradeDatabase(): Unit {
             }
             db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('009_task_sources', UTC_TIMESTAMP())")
         }
+        if (db.query("SELECT version FROM cangjie_schema_versions WHERE version = '010_study_sessions'").rows.isEmpty()) {
+            for (statement in String.fromUtf8(File.readFrom("schema/010_study_sessions.sql")).split(";")) {
+                if (!statement.trimAscii().isEmpty()) { db.query(statement) }
+            }
+            db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('010_study_sessions', UTC_TIMESTAMP())")
+        }
     }
 }

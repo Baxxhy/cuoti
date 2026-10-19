@@ -148,8 +148,8 @@ onMounted(load)
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-surface-subtle);
-  color: var(--color-text-secondary);
+  background: #e8f2ff;
+  color: #176cbb;
   font-size: 26px;
   font-weight: 500;
 }

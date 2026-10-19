@@ -45,13 +45,15 @@
     { "path": "pages/admin/workbench", "style": { "navigationStyle": "custom" } },
     { "path": "pages/learning/learning", "style": { "navigationStyle": "custom" } },
     { "path": "pages/library/library", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/help/help", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/help/help", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/bank/bank", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/study-session/study-session", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "错题帮",
     "navigationBarBackgroundColor": "#ffffff",
-    "backgroundColor": "#F7F7F8",
+    "backgroundColor": "#F5F7FB",
     "rpxCalcMaxDeviceWidth": 480,
     "rpxCalcBaseDeviceWidth": 375
   }

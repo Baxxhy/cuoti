@@ -40,6 +40,29 @@
         @retry="load"
       />
       <template v-else-if="data">
+        <view class="home-gateways">
+          <button
+            v-for="entry in studyEntries"
+            :key="entry.url"
+            :class="['study-gateway', entry.tone]"
+            @click="go(entry.url)"
+          >
+            <uni-icons
+              :type="entry.icon"
+              size="28"
+              :color="entry.tone === 'orange' ? '#a65916' : '#176cbb'"
+            />
+            <view>
+              <text>{{ entry.title }}</text>
+            </view>
+            <uni-icons
+              type="right"
+              size="16"
+              :color="entry.tone === 'orange' ? '#a65916' : '#176cbb'"
+            />
+          </button>
+        </view>
+
         <button
           role="button"
           tabindex="0"
@@ -315,6 +338,7 @@ import { getData } from '@/api/index.js'
 import { go } from '@/utils/navigation.js'
 import { useAppStore } from '@/store/index.js'
 import { errorGroups } from '@/utils/repair.js'
+import { studyEntries } from '@/constants/learning.js'
 
 const store = useAppStore()
 const data = ref(null)
@@ -503,7 +527,7 @@ onUnload(clear)
 }
 .focus-card {
   padding: 32px;
-  background: var(--color-surface);
+  background: #edf5ff;
   color: var(--color-text-primary);
   border-radius: 24px;
 }
@@ -686,6 +710,68 @@ onUnload(clear)
   .teacher-feedback {
     grid-column: 1 / -1;
     margin-top: 0;
+  }
+}
+.home-gateways {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.study-gateway {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin: 0;
+  padding: 22px 20px;
+  min-height: 102px;
+  border-radius: 22px;
+  background: #e7f2ff;
+  text-align: left;
+}
+.study-gateway.orange {
+  background: #fff0da;
+}
+.study-gateway > view {
+  flex: 1;
+  min-width: 0;
+}
+.study-gateway text {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #164f83;
+}
+.study-gateway.orange text {
+  color: #874b18;
+}
+.home-map-entry {
+  background: #eaf5ef;
+}
+.home-map-entry text {
+  color: #246849;
+}
+@media (min-width: 1100px) {
+  .home-gateways {
+    grid-column: 1 / -1;
+    margin-bottom: 4px;
+  }
+}
+@media (max-width: 520px) {
+  .study-gateway {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+  }
+  .study-gateway > view {
+    flex: 1 0 calc(100% - 50px);
+  }
+  .study-gateway > :last-child {
+    display: none;
+  }
+  .study-gateway text {
+    font-size: 17px;
   }
 }
 </style>

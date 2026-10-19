@@ -27,7 +27,7 @@ describe('学生端产品化 V2.0', () => {
     const styles = source('styles/uni-common.scss')
     for (const token of [
       '--color-primary: #0066CC',
-      '--color-bg: #F5F5F7',
+      '--color-bg: #F5F7FB',
       '--color-text-primary: #1D1D1F',
     ]) {
       expect(styles.toLowerCase()).toContain(token.toLowerCase())

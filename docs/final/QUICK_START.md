@@ -40,7 +40,7 @@ bash scripts/cangjie.sh init-db
 bash scripts/cangjie.sh seed-knowledge
 ```
 
-已有仓颉库使用`bash scripts/cangjie.sh upgrade-db`，不重复初始化非空库。当前就绪表版本为`009_task_sources`。变量和工具链细节见[仓颉说明](../../backend-cangjie/README.md)。
+已有仓颉库使用`bash scripts/cangjie.sh upgrade-db`，不重复初始化非空库。当前就绪表版本为`010_study_sessions`。变量和工具链细节见[仓颉说明](../../backend-cangjie/README.md)。
 
 ## 3. 启动并使用
 

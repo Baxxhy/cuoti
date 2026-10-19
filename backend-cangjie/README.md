@@ -26,7 +26,7 @@ bash scripts/cangjie.sh run
 
 配置使用 `CANGJIE_DB_HOST`、`CANGJIE_DB_PORT`、`CANGJIE_DB_USER`、`CANGJIE_DB_PASSWORD`、`CANGJIE_DB_NAME`，不读取原版 `.env`。库名必须以 `zhiwei_cangjie` 开头。业务启动默认连接 127.0.0.1:3307、zhiwei_cangjie 库与同名账号；密码必须自行配置，账号权限应仅覆盖新库。
 
-创建独立空库与对应用户后，运行 `bash scripts/cangjie.sh init-db`。当前初始化拒绝非空库，不自动删表、导入原用户数据或修改原 Alembic 历史。DDL 中途失败会保留已建表并报错，需要另建空库重试；已有独立仓颉库运行 `bash scripts/cangjie.sh upgrade-db` 应用 `002_work_precision`、`003_diagnosis_precision`、`004_tutor_precision` 和 `005_practice_precision`；升级保留数据、支持重复执行，将作答、诊断、教学消息和推荐时间提升为微秒精度以可靠读取连续保存的新版本。新库自动应用，`/readyz` 当前要求 `009_task_sources`（包含006任务、007自检、008手写与009来源迁移）。初始建表中断恢复与后续版本升级需按各自迁移处理。
+创建独立空库与对应用户后，运行 `bash scripts/cangjie.sh init-db`。当前初始化拒绝非空库，不自动删表、导入原用户数据或修改原 Alembic 历史。DDL 中途失败会保留已建表并报错，需要另建空库重试；已有独立仓颉库运行 `bash scripts/cangjie.sh upgrade-db` 应用 `002_work_precision`、`003_diagnosis_precision`、`004_tutor_precision` 和 `005_practice_precision`；升级保留数据、支持重复执行，将作答、诊断、教学消息和推荐时间提升为微秒精度以可靠读取连续保存的新版本。新库自动应用，`/readyz` 当前要求 `010_study_sessions`（包含006任务、007自检、008手写、009来源和010题库练习/模拟考试迁移）。初始建表中断恢复与后续版本升级需按各自迁移处理。
 
 `make verify-cangjie` 通过本机 MySQL socket 的 root 账号创建随机测试库和仅有该库权限的随机测试账号，执行初始化、原生测试和 HTTP 冒烟，然后自动清理。可通过 `CANGJIE_TEST_MYSQL_SOCKET`、`CANGJIE_TEST_MYSQL_PORT` 指定测试实例。原生数据库测试使用临时表，还会拒绝非 `zhiwei_cangjie_test` 前缀的库。
 
@@ -219,3 +219,9 @@ make verify-cangjie 全部通过：21 项算法、25 组仓颉原生及完整 HT
 ## 本地角色账号
 
 教师、家长、管理员通过`bash scripts/local_user.sh --email 实际邮箱 --role guardian --name 家长姓名`创建，密码无回显输入；teacher/admin分别用于教师和管理员。先配置`.env.cangjie`并显式初始化/升级独立数据库，命令不会自动建库或改变已有账号。`--check`仅预检；Python仅收集输入，仓颉负责校验、密码哈希及MySQL写入。具体边界、自动化和验证见[本地身份配置](../docs/final/LOCAL_IDENTITIES.md)。
+
+### 公开题库练习与模拟考试
+
+新增业务使用仓颉/MySQL：`GET /api/v1/study-bank` 支持学科、学段、来源、搜索和分页；`GET/POST /api/v1/study-sessions` 列出本人记录或从可练题库抽题；`GET/PATCH /api/v1/study-sessions/{id}` 恢复或按版本保存答案；`POST /api/v1/study-sessions/{id}/submit` 判分并保存结果。它们是新增接口，不属于原Python路由迁移计数。
+
+010迁移新增独立会话与题目快照表。接口按用户隔离，交卷前只返回题面和本人作答；版本比较、数据库截止时间和事务共同保护答案。交卷复用内部算法的统一判分流程；不确定结果单列待核对，不直接写掌握度。MySQL提交成绩前再次比较版本，重复交卷返回同一结果。当前为题库抽取模拟卷，不代表历年真题整卷。新专项见 `scripts/smoke_cangjie_study.py` 与 `frontend/e2e/bank-study.spec.ts`。

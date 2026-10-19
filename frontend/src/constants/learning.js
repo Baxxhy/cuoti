@@ -1,3 +1,7 @@
+export const studyEntries = [
+  { title: '题库练习', icon: 'compose', tone: 'blue', url: '/pages/bank/bank?mode=practice' },
+  { title: '模拟考试', icon: 'medal', tone: 'orange', url: '/pages/bank/bank?mode=exam' },
+]
 // Each feature has one home; related records are disclosed on demand.
 export const learningPrimaryEntries = [
   { title: '复习', description: '回想今天到期的题', icon: 'calendar', url: '/pages/review/review' },
@@ -29,7 +33,7 @@ export const learningRecordEntries = [
 ]
 // Shared navigation inventory, also used to validate registered destinations.
 export const learningSections = [
-  { title: '学习方式', items: learningPrimaryEntries },
+  { title: '学习方式', items: [...studyEntries, ...learningPrimaryEntries] },
   {
     title: '记录与任务',
     items: [...learningRecordEntries, { title: '学习报告', url: '/pages/analysis/analysis' }],
