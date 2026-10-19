@@ -1,49 +1,49 @@
 路由,角色,页面标题,接口与数据关系,验收状态
-pages/login/login,学生/公共,,,待重构与浏览器验收
-pages/register/register,学生/公共,创建账号,,待重构与浏览器验收
-pages/forgot/forgot,学生/公共,修改登录密码,,待重构与浏览器验收
-pages/index/index,学生/公共,,"'/dashboard'), | '/learning-tasks', { silent: true }), | '/student-preferences', { silent: true }), | '/analytics/error-sources?days=90', { silent: true }),",待重构与浏览器验收
-pages/preferences/preferences,学生/公共,学习方向,"'/student-preferences') | '/student-preferences', {",待重构与浏览器验收
-pages/replay/replay,学生/公共,错因回放,`/questions/${encodeURIComponent(id.value)}`),待重构与浏览器验收
-pages/error-map/error-map,学生/公共,个人易错地图,,待重构与浏览器验收
-pages/repair/repair,学生/公共,本题修复路线,"`/questions/${encodeURIComponent(id.value)}`), | `/questions/${encodeURIComponent(id.value)}/journey`), | '/reviews/today')",待重构与浏览器验收
-pages/capture/capture,学生/公共,录入错题,"'/questions/ingest', imagePath.value, 'file', {",待重构与浏览器验收
-pages/crop/crop,学生/公共,框选题目,"`/questions/${id.value}`) | `/questions/${id.value}`) | `/jobs/${value}`), | `/questions/${id.value}`)",待重构与浏览器验收
-pages/ocr/ocr,学生/公共,确认题目,"`/questions/${id.value}`) | `/jobs/${value}`), | `/questions/${id.value}`) | `/questions/${id.value}/confirm`, payload()) | `/questions/${id.value}/confirm`, payload()) | `/questions/${id.value}/analyze`, {}) | `/questions/${id.value}/diagnose`, {})",待重构与浏览器验收
-pages/manual/manual,学生/公共,手动录入,"'/questions/manual', { | '/dashboard', { silent: true })",待重构与浏览器验收
-pages/journey/journey,学生/公共,错题学习档案,`/questions/${id.value}/journey`),待重构与浏览器验收
-pages/detail/detail,学生/公共,错题详情,"`/questions/${questionId}`) | `/questions/${questionId}/journey`, { silent: true }) | '/tutor/sessions', { question_id: questionId }) | `/questions/${id.value}`, { favorite: !item.value.favorite }) | `/questions/${id.value}/reprocess`, {}) | `/questions/${id.value}`)",待重构与浏览器验收
-pages/diagnosis/diagnosis,学生/公共,hasStudentWork ? '错因诊断' : '本题解析',"`/questions/${questionId}`) | `/questions/${questionId}/diagnosis/counterfactual`, {}) | `/questions/${questionId}/analyze`, {}) | `/questions/${questionId}/diagnose`, {}) | `/questions/${id.value}/diagnosis`, {",待重构与浏览器验收
-pages/task/task,学生/公共,id ? '本题学习' : '学习记录',"'/learning-tasks') | `/learning-tasks/${id.value}`, { silent: true }) | `/learning-tasks/${id.value}/handwriting`, body.file_path, 'file', { | `/learning-tasks/${id.value}/actions`, body, { silent: true }) | `/learning-tasks/${id.value}/cancel`, {})",待重构与浏览器验收
-pages/tutor/tutor,学生/公共,本题学习,"`/tutor/sessions/${id.value}`) | `/tutor/sessions/${id.value}/advance`, { target_stage: 'teach_back' }) | `/tutor/sessions/${id.value}/rewind`, {}) | `/tutor/sessions/${id.value}/turns`, { message: askInput.value.trim() })",待重构与浏览器验收
-pages/visualization/visualization,学生/公共,本题互动演示,"`/tutor/sessions/${id.value}/visualization`) | `/tutor/sessions/${id.value}/visualization`, {",待重构与浏览器验收
-pages/review/review,学生/公共,到期复习,"'/auth/me', { silent: true }), | '/reviews/today'), | '/reviews/history', { silent: true }) | '/dashboard', { silent: true }) | `/reviews/${id}/attempt`, { | '/reviews/today', { silent: true }) | `/reviews/${id}/grade`, { grade: value, attempt_id: receiptId }) | '/reviews/history', { silent: true })",待重构与浏览器验收
-pages/assignment/assignment,学生/公共,我的作业,"'/students/assignments') | `/students/assignments/${id}/attempts`, {",待重构与浏览器验收
-pages/practice/practice,学生/公共,针对练习,"'/practice/attempt', {",待重构与浏览器验收
-pages/problem/list,学生/公共,purpose === 'practice' ? '选择要巩固的错题' : '错题本',questionSearchURL(filters)),待重构与浏览器验收
-pages/search/search,学生/公共,搜索错题,,待重构与浏览器验收
-pages/analysis/analysis,学生/公共,学习报告,'/analytics/overview?days=30'),待重构与浏览器验收
-pages/knowledge/knowledge,学生/公共,本题知识,`/questions/${encodeURIComponent(id.value)}`),待重构与浏览器验收
-pages/paper/paper-center,学生/公共,错题组卷,"'/papers') | `/papers/candidates?${params}`) | '/papers', { | '/papers') | `/papers/${id}`, { silent: true }) | `/papers/${active.value.id}`, { | '/papers') | `/papers/${id}`) | `/papers/${active.value.id}`, { silent: true }) | `/papers/${active.value.id}/export`, { kind }) | `/papers/${paperId}`, { silent: true })",待重构与浏览器验收
-pages/profile/profile,学生/公共,我的,'/dashboard'),待重构与浏览器验收
-pages/guardian/access,学生/公共,家长查看权限,"'/students/guardian-links', { silent: true }) | `/students/guardian-links/${guardian.id}`, { silent: true }),",待重构与浏览器验收
-pages/guardian/home,家长,家长中心,"'/guardians/students') | `/guardians/students/${student.id}`, { silent: true })",待重构与浏览器验收
-pages/guardian/report,家长,学生学习报告,"`/guardians/students/${id}/overview`, { silent: true })",待重构与浏览器验收
-pages/teacher/dashboard,教师,教师工作台,'/teachers/dashboard'),待重构与浏览器验收
-pages/teacher/classes,教师,班级与学生,"'/teachers/classes') | '/teachers/classes', { ...form.value, reason: '教师创建班级' })",待重构与浏览器验收
-pages/teacher/class-detail,教师,data?.name || '班级详情',"`/teachers/classes/${id}`) | `/teachers/classes/${id}/students`, { email: email.value, reason: '教师添加学生' })",待重构与浏览器验收
-pages/teacher/student,教师,data?.student?.name || '学生详情',`/teachers/students/${id}/report`),待重构与浏览器验收
-pages/teacher/reviews,教师,待核对队列,,待重构与浏览器验收
-pages/teacher/review-detail,教师,人工复核,"`/teachers/reviews/${id}`) | `/teachers/reviews/${id}/decision`, {",待重构与浏览器验收
-pages/teacher/plans,教师,学习计划管理,"`/teachers/students/${studentId}/plans?class_id=${classId}`) | `/teachers/plans/${current.value.id}`, { ...form, class_id: classId })",待重构与浏览器验收
-pages/teacher/questions,教师,题目管理,'/teachers/questions'),待重构与浏览器验收
-pages/teacher/question-edit,教师,新增题目,"'/teachers/questions', {",待重构与浏览器验收
-pages/teacher/assignment,教师,题目布置,"'/teachers/classes'), | '/teachers/questions'), | '/teachers/assignments'), | '/teachers/assignments', {",待重构与浏览器验收
-pages/teacher/audit,教师,教师操作记录,'/teachers/audit-logs'),待重构与浏览器验收
-pages/system/system,管理员,系统与智能服务,"'/system/providers') | '/system/providers/probe', {})",待重构与浏览器验收
-pages/admin/workbench,管理员,,'/admin/workbench') | `/admin/students/${id}`) | `/admin/sessions/${id}`),待重构与浏览器验收
-pages/learning/learning,学生/公共,学习,,待重构与浏览器验收
-pages/library/library,学生/公共,知识卡片,`/knowledge/cards/${encodeURIComponent(code.value)}`),待重构与浏览器验收
-pages/help/help,学生/公共,使用指南,,待重构与浏览器验收
-pages/bank/bank,学生/公共,mode === 'exam' ? '模拟考试' : '题库练习',"`/study-bank?${query}`, { silent: true }), | '/study-sessions', { silent: true }),",待重构与浏览器验收
-pages/study-session/study-session,学生/公共,session?.title || '练习与考试',"`/study-sessions/${encodeURIComponent(id.value)}`, { silent: true }) | `/study-sessions/${id.value}`, body, { silent: true }) | `/study-sessions/${id.value}`, { silent: true }).catch(",待重构与浏览器验收
+pages/login/login,学生/公共,登录账号,,已重构；375/1280真实浏览器通过；人工截图复核
+pages/register/register,学生/公共,创建账号,,已重构；375/1280真实浏览器通过；人工截图复核
+pages/forgot/forgot,学生/公共,修改登录密码,,已重构；375/1280真实浏览器通过；人工截图复核
+pages/index/index,学生/公共,今日,"'/dashboard'), | '/learning-tasks', { silent: true }), | '/student-preferences', { silent: true }), | '/analytics/error-sources?days=90', { silent: true }),",已重构；375/1280真实浏览器通过；人工截图复核
+pages/preferences/preferences,学生/公共,学习方向,"'/student-preferences') | '/student-preferences', {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/replay/replay,学生/公共,错因回放,`/questions/${encodeURIComponent(id.value)}`),已重构；375/1280真实浏览器通过；人工截图复核
+pages/error-map/error-map,学生/公共,易错地图,,已重构；375/1280真实浏览器通过；人工截图复核
+pages/repair/repair,学生/公共,学习安排,"`/questions/${encodeURIComponent(id.value)}`), | `/questions/${encodeURIComponent(id.value)}/journey`), | '/reviews/today')",已重构；375/1280真实浏览器通过；人工截图复核
+pages/capture/capture,学生/公共,录入错题,"'/questions/ingest', imagePath.value, 'file', {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/crop/crop,学生/公共,框选题目,"`/questions/${id.value}`) | `/questions/${id.value}`) | `/jobs/${value}`), | `/questions/${id.value}`)",已重构；375/1280真实浏览器通过；人工截图复核
+pages/ocr/ocr,学生/公共,确认题目,"`/questions/${id.value}`) | `/jobs/${value}`), | `/questions/${id.value}`) | `/questions/${id.value}/confirm`, payload()) | `/questions/${id.value}/confirm`, payload()) | `/questions/${id.value}/analyze`, {}) | `/questions/${id.value}/diagnose`, {})",已重构；375/1280真实浏览器通过；人工截图复核
+pages/manual/manual,学生/公共,手动录入,"'/questions/manual', { | '/dashboard', { silent: true })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/journey/journey,学生/公共,学习记录,`/questions/${id.value}/journey`),已重构；375/1280真实浏览器通过；人工截图复核
+pages/detail/detail,学生/公共,错题详情,"`/questions/${questionId}`) | `/questions/${questionId}/journey`, { silent: true }) | '/tutor/sessions', { question_id: questionId }) | `/questions/${id.value}`, { favorite: !item.value.favorite }) | `/questions/${id.value}/reprocess`, {}) | `/questions/${id.value}`)",已重构；375/1280真实浏览器通过；人工截图复核
+pages/diagnosis/diagnosis,学生/公共,错因诊断,"`/questions/${questionId}`) | `/questions/${questionId}/diagnosis/counterfactual`, {}) | `/questions/${questionId}/analyze`, {}) | `/questions/${questionId}/diagnose`, {}) | `/questions/${id.value}/diagnosis`, {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/task/task,学生/公共,错题订正,"'/learning-tasks') | `/learning-tasks/${id.value}`, { silent: true }) | `/learning-tasks/${id.value}/handwriting`, body.file_path, 'file', { | `/learning-tasks/${id.value}/actions`, body, { silent: true }) | `/learning-tasks/${id.value}/cancel`, {})",已重构；375/1280真实浏览器通过；人工截图复核
+pages/tutor/tutor,学生/公共,AI 讲解,"`/tutor/sessions/${id.value}`) | `/tutor/sessions/${id.value}/advance`, { target_stage: 'teach_back' }) | `/tutor/sessions/${id.value}/rewind`, {}) | `/tutor/sessions/${id.value}/turns`, { message: askInput.value.trim() })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/visualization/visualization,学生/公共,互动图解,"`/tutor/sessions/${id.value}/visualization`) | `/tutor/sessions/${id.value}/visualization`, {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/review/review,学生/公共,到期复习,"'/auth/me', { silent: true }), | '/reviews/today'), | '/reviews/history', { silent: true }) | '/dashboard', { silent: true }) | `/reviews/${id}/attempt`, { | '/reviews/today', { silent: true }) | `/reviews/${id}/grade`, { grade: value, attempt_id: receiptId }) | '/reviews/history', { silent: true })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/assignment/assignment,学生/公共,我的作业,"'/students/assignments') | `/students/assignments/${id}/attempts`, {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/practice/practice,学生/公共,类似题练习,"'/practice/attempt', {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/problem/list,学生/公共,错题本,questionSearchURL(filters)),已重构；375/1280真实浏览器通过；人工截图复核
+pages/search/search,学生/公共,错题本,,已重构；375/1280真实浏览器通过；人工截图复核
+pages/analysis/analysis,学生/公共,学习报告,'/analytics/overview?days=30'),已重构；375/1280真实浏览器通过；人工截图复核
+pages/knowledge/knowledge,学生/公共,相关知识,`/questions/${encodeURIComponent(id.value)}`),已重构；375/1280真实浏览器通过；人工截图复核
+pages/paper/paper-center,学生/公共,错题组卷,"'/papers') | `/papers/candidates?${params}`) | '/papers', { | '/papers') | `/papers/${id}`, { silent: true }) | `/papers/${active.value.id}`, { | '/papers') | `/papers/${id}`) | `/papers/${active.value.id}`, { silent: true }) | `/papers/${active.value.id}/export`, { kind }) | `/papers/${paperId}`, { silent: true })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/profile/profile,学生/公共,我的,'/dashboard'),已重构；375/1280真实浏览器通过；人工截图复核
+pages/guardian/access,学生/公共,家长查看权限,"'/students/guardian-links', { silent: true }) | `/students/guardian-links/${guardian.id}`, { silent: true }),",已重构；375/1280真实浏览器通过；人工截图复核
+pages/guardian/home,家长,家长中心,"'/guardians/students') | `/guardians/students/${student.id}`, { silent: true })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/guardian/report,家长,学生学习报告,"`/guardians/students/${id}/overview`, { silent: true })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/dashboard,教师,教师工作台,'/teachers/dashboard'),已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/classes,教师,班级与学生,"'/teachers/classes') | '/teachers/classes', { ...form.value, reason: '教师创建班级' })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/class-detail,教师,全站路由验收班,"`/teachers/classes/${id}`) | `/teachers/classes/${id}/students`, { email: email.value, reason: '教师添加学生' })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/student,教师,全站路由验收,`/teachers/students/${id}/report`),已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/reviews,教师,待核对队列,,已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/review-detail,教师,人工复核,"`/teachers/reviews/${id}`) | `/teachers/reviews/${id}/decision`, {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/plans,教师,学习计划管理,"`/teachers/students/${studentId}/plans?class_id=${classId}`) | `/teachers/plans/${current.value.id}`, { ...form, class_id: classId })",已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/questions,教师,题目管理,'/teachers/questions'),已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/question-edit,教师,新增题目,"'/teachers/questions', {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/assignment,教师,题目布置,"'/teachers/classes'), | '/teachers/questions'), | '/teachers/assignments'), | '/teachers/assignments', {",已重构；375/1280真实浏览器通过；人工截图复核
+pages/teacher/audit,教师,教师操作记录,'/teachers/audit-logs'),已重构；375/1280真实浏览器通过；人工截图复核
+pages/system/system,管理员,系统与智能服务,"'/system/providers') | '/system/providers/probe', {})",已重构；375/1280真实浏览器通过；人工截图复核
+pages/admin/workbench,管理员,全局概览,'/admin/workbench') | `/admin/students/${id}`) | `/admin/sessions/${id}`),已重构；375/1280真实浏览器通过；人工截图复核
+pages/learning/learning,学生/公共,学习,,已重构；375/1280真实浏览器通过；人工截图复核
+pages/library/library,学生/公共,知识卡片,`/knowledge/cards/${encodeURIComponent(code.value)}`),已重构；375/1280真实浏览器通过；人工截图复核
+pages/help/help,学生/公共,使用指南,,已重构；375/1280真实浏览器通过；人工截图复核
+pages/bank/bank,学生/公共,题库练习,"`/study-bank?${query}`, { silent: true }), | '/study-sessions', { silent: true }),",已重构；375/1280真实浏览器通过；人工截图复核
+pages/study-session/study-session,学生/公共,数学练习,"`/study-sessions/${encodeURIComponent(id.value)}`, { silent: true }) | `/study-sessions/${id.value}`, body, { silent: true }) | `/study-sessions/${id.value}`, { silent: true }).catch(",已重构；375/1280真实浏览器通过；人工截图复核

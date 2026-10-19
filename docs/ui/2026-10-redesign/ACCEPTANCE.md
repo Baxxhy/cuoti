@@ -1,21 +1,20 @@
 # 本轮验收清单
 
-当前状态：执行中。所有最终数量与结论须在完整验收结束后更新。
+2026-10-20已完成。最终结果与截图见[交付记录](DELIVERY.md)，机器结果见[验证摘要](evidence/validation.json)。
 
-| 要求 | 权威证据 | 当前状态 |
+| 要求 | 权威证据 | 结果 |
 | --- | --- | --- |
-| 技能发现与选择 | WORKLOG中的实际技能入口、未安装项与查询取舍 | 已完成 |
-| 当前页面与数据关系 | pages.csv、CONTENT_MODEL.md、实际pages.json | 48路由已登记 |
-| 可核验竞品与用户场景研究 | WORKLOG中的官方来源与平台访问边界 | 已完成；无虚构访谈 |
-| 导航、视觉规范与产品文案 | NAVIGATION.md、SITEMAP.mmd、docs/final/UI_SPEC.md、frontend/src | 已实施，最终浏览器复查中 |
-| 今日、详情、订正及AI讲解 | 实际Qwen/MySQL固定样本报告；learning-tasks/task-entry/recovery等浏览器用例 | 真实固定样本通过，完整回归中 |
-| 全部学生、教师、家长、管理页面 | redesign-acceptance.spec.ts动态读取48路由，手机/桌面各一轮 | 待最终通过 |
-| 拍照/OCR/手动录题与原图保留 | new-user/recovery浏览器用例及仓颉ingest回归 | 完整回归中 |
-| 题库、考试、变式与复习 | bank-study/review-queue/review-origin/review-recovery/functional-audit | 完整回归中 |
-| 等价答案与提交、草稿不串题 | 真实0.5与1/2提交；SymPy/Pydantic算法测试；双设备与丢回执用例 | 固定样本通过，完整回归中 |
-| 手机/桌面、200%文字、错误/空/等待状态 | account-access/functional-audit/redesign-acceptance及人工截图 | 完整回归中 |
-| 架构与数据不退化 | 仓颉/MySQL业务，Python内部算法，Qwen/ApiPoolProvider；无新SQLite/生成JS执行 | 已保留；完整回归中 |
-| 工程检查 | make verify-final；兼容pytest backend/tests；Ruff | 单项已通过，主线最终结果待确认 |
-| Git与交付 | git log、git status --short、最终记录与截图 | 待完成 |
+| 技能发现与竞品研究 | WORKLOG实际入口、官方来源、平台访问边界 | 完成；无虚构访谈 |
+| 全部页面与数据关系 | pages.csv、CONTENT_MODEL.md、pages.json | 48注册路由，375/1280各一轮通过 |
+| 视觉、导航、文案与手机布局 | NAVIGATION、UI_SPEC、运行截图 | 已逐页改造并人工看图复核 |
+| 今日、详情、订正与讲解 | 真实模型样本、learning-tasks/task-entry/recovery | 通过；含小数/分数、草稿恢复与保存 |
+| 录入、OCR、原图与图题 | 新用户、失败恢复、仓颉ingest、真实OCR样本 | 通过；原件逐字节一致，合成样本不冒称实拍评测 |
+| 题库、考试、变式、复习、组卷 | bank-study/review/functional-audit及HTTP | 通过；结果与记录持久化 |
+| 教师、家长、管理端 | 全路由浏览器、权限与HTTP/MySQL测试 | 通过；保留角色业务与隔离 |
+| 真实问答与重复查看答案 | live-dialogue.json、live-repeat-answer.json、4项专项 | 通过；文字题调用模型，参考答案不被改写或去重丢失 |
+| 全部工程检查 | make verify-final完整退出0 | 前端256、算法626、仓颉35、浏览器57通过；0跳过 |
+| 兼容与静态检查 | pytest backend/tests、Ruff、类型、H5/App资源 | 332通过；其余检查通过 |
+| 运行服务 | make check-final | 前端、仓颉、MySQL/表版本、算法均就绪 |
+| 交付 | 代码、文档、11张关键截图、路由JSON与Git | 本轮变更提交；交付时复核工作区 |
 
-测试层次：完整隔离回归使用真实仓颉、MySQL、算法模块及受控计算夹具，部分既有浏览器用例显式拦截响应以验证失败恢复；新48路由用例不拦截API，但参考分析是明确的隔离种子。真实Qwen另用当前应用配置与独立学生核验，结果不与替身混计。
+测试分层：完整隔离回归使用真实仓颉、MySQL和算法模块，计算内容来自明确的受控夹具；部分恢复用例有意拦截失败响应。全路由用例不拦截API，但参考分析是隔离种子。当前应用的真实Qwen另外核验，不与替身混计。没有真人学生参与，不将固定样本视为跨学科正确率或学习效果证明。App本地资源构建不代表签名安装包验收。

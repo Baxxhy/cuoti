@@ -153,6 +153,7 @@ async def finish_dialogue(
             draft_reply=draft,
             student_message=data.student_message,
             recent_turns=data.recent_turns,
+            reveal_answer=graph["tool_name"] == "answer_reveal",
         )
     reply = ensure_fresh_tutor_reply(
         reply,

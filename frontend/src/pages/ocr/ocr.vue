@@ -15,7 +15,7 @@
     />
     <state-panel v-else-if="!item" state="loading" />
     <template v-else>
-      <view v-if="item.assets?.length" class="question-image">
+      <view v-if="cropAsset" class="question-image">
         <image
           v-if="cropAsset && !imageError"
           :src="cropAsset.url"

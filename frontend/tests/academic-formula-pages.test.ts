@@ -116,7 +116,7 @@ describe('学科内容跨页面公式渲染', () => {
     )
     expect(page.findAll('.mfrac')).toHaveLength(5)
     expect(page.findAll('.sqrt')).toHaveLength(2)
-    expect(page.text()).toContain('规则：无')
+    expect(page.text()).toContain('规则：未执行')
   })
   it('知识卡名称、正文与相关基础都渲染公式', async () => {
     const page = await show(

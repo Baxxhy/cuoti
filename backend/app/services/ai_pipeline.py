@@ -197,11 +197,12 @@ async def generate_tutor_guidance(
     draft_reply: str,
     student_message: str = "",
     recent_turns: list[dict[str, str]] | None = None,
+    reveal_answer: bool = False,
 ) -> str:
     """让教学回复始终能看到题目图、题干、答案和真实步骤。"""
-    paths = [path for path in visual_paths if path.is_file()]
-    if not paths:
+    if reveal_answer:
         return draft_reply
+    paths = [path for path in visual_paths if path.is_file()]
     prompt = json.dumps(
         {
             "question_text": question_text,
@@ -216,14 +217,19 @@ async def generate_tutor_guidance(
         ensure_ascii=False,
     )
     try:
-        result = await provider.generate_multimodal(
-            "结合图片中的原题图和学生作答，把既定教学策略改写成一句到三句循序引导。"
+        instruction = (
+            "结合原题、学生作答和当前问题，用一句到三句解释学生正在问的具体疑惑。"
+            "优先回答学生的问题，教学策略草稿仅作参考；涉及运算时明确说明这一步的规则。"
             "不要虚构图中不存在的条件，不要泄露完整答案，不要使用工程术语。"
-            "必须承接最近对话推进一个小步骤，禁止重复最近教师已经说过的话。上下文：" + prompt,
-            [path.read_bytes() for path in paths],
-            TutorGuidanceOutput,
-            system="你是中学个性化教师。结合题目视觉信息进行引导，只返回合法JSON。/no_think",
+            "必须承接最近对话推进一个小步骤，禁止重复最近教师已经说过的话。上下文：" + prompt
         )
+        system = "你是中学个性化教师。依据题目和学生当前疑惑进行引导，只返回合法JSON。/no_think"
+        if paths:
+            result = await provider.generate_multimodal(
+                instruction, [path.read_bytes() for path in paths], TutorGuidanceOutput, system=system
+            )
+        else:
+            result = await provider.generate_structured(instruction, TutorGuidanceOutput, system=system)
         return result.reply
     except (ApiPoolUnavailable, ValueError):
         return draft_reply

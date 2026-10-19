@@ -260,6 +260,9 @@ def ensure_fresh_tutor_reply(
     branch: str,
     turn_count: int,
 ) -> str:
+    if branch == "answer_requested":
+        return candidate.strip() or draft.strip()
+
     def normalized(value: str) -> str:
         return "".join(value.lower().split()).replace("，", "").replace("。", "")
 

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { readFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { randomUUID } from 'node:crypto'
 
@@ -100,6 +100,21 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
     count: 1,
     question_ids: [bank.questions[0].id],
   })
+  const imagePage = await browser.newPage()
+  const png = await imagePage.evaluate(() => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 320
+    canvas.height = 200
+    const ctx = canvas.getContext('2d')!
+    ctx.fillStyle = '#fff'
+    ctx.fillRect(0, 0, 320, 200)
+    ctx.fillStyle = '#222'
+    ctx.font = '26px sans-serif'
+    ctx.fillText('2x + 3 = 11', 28, 65)
+    ctx.fillText('2x = 11 + 3', 28, 115)
+    return canvas.toDataURL('image/png').split(',')[1]
+  })
+  await imagePage.close()
   const ingest = await request.post(API + '/questions/ingest', {
     headers: { Authorization: `Bearer ${tokens.student}` },
     multipart: {
@@ -107,10 +122,7 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
       file: {
         name: 'route.png',
         mimeType: 'image/png',
-        buffer: Buffer.from(
-          'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=',
-          'base64',
-        ),
+        buffer: Buffer.from(png, 'base64'),
       },
     },
   })
@@ -143,6 +155,7 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
     errors: string[] = []
   for (const role of ['public', 'student', 'teacher', 'guardian', 'admin'] as const) {
     const context = await browser.newContext({
+      baseURL: process.env.ZHIWEI_FRONTEND_URL,
       viewport: { width: 375, height: 812 },
       reducedMotion: 'reduce',
     })
@@ -169,6 +182,8 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
         await page.setViewportSize({ width, height: 812 })
         await page.goto(`/#/pages/${route}${parameters[route] ? '?' + parameters[route] : ''}`)
         await page.reload()
+        const destination = route === 'search/search' ? 'problem/list' : route
+        await expect(page).toHaveURL(new RegExp(`#/pages/${destination}(?:[?]|$)`))
         await expect(page.locator('h1').first()).toBeVisible({ timeout: 20_000 })
         await expect(page.locator('.state-panel .uni-load-more')).toHaveCount(0, {
           timeout: 20_000,
@@ -178,6 +193,15 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
           `${route} at ${width}`,
         ).toBe(true)
+        if (route === 'detail/detail') {
+          await expect(page.locator('.detail-figure')).toHaveCount(1)
+          await expect(page.locator('.detail-figure img')).toHaveJSProperty('complete', true)
+          expect(
+            await page
+              .locator('.detail-figure img')
+              .evaluate((img: HTMLImageElement) => img.naturalWidth),
+          ).toBeGreaterThan(0)
+        }
         await page.screenshot({
           path: info.outputPath(`${route.replaceAll('/', '-')}-${width}.png`),
           fullPage: true,
@@ -194,6 +218,10 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
   }
   expect(results).toHaveLength(pages.length * 2)
   expect(errors).toEqual([])
+  writeFileSync(
+    info.outputPath('all-route-rendering.json'),
+    JSON.stringify({ results, errors }, null, 2),
+  )
   await info.attach('all-route-rendering.json', {
     body: JSON.stringify({ results, errors }, null, 2),
     contentType: 'application/json',

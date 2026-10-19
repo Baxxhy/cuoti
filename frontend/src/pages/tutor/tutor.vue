@@ -176,12 +176,9 @@
                   <b><math-text :text="answerReveal.correct_answer" inline /></b>
                 </view>
               </view>
-              <view class="activity-meta">
-                <math-text :text="activity.title" inline />
-                <text>
-                  第 {{ Math.min(activity.attempt, activity.max_attempts) }} /
-                  {{ activity.max_attempts }} 次
-                </text>
+              <view v-if="!activity.teaching || activity.attempt > 1" class="activity-meta">
+                <math-text v-if="!activity.teaching" :text="activity.title" inline />
+                <text v-if="activity.attempt > 1">第 {{ activity.attempt }} 次作答</text>
               </view>
 
               <view
@@ -208,7 +205,7 @@
 
               <view v-if="activity.teaching" class="teaching-note">
                 <view class="teaching-heading">
-                  <math-text :text="activity.teaching_title || '先看这个关键点'" inline />
+                  <math-text :text="activity.teaching_title || activity.title" inline />
                   <button
                     tabindex="0"
                     role="button"
@@ -1167,11 +1164,10 @@ onLoad((query) => {
   min-width: 0;
   box-sizing: border-box;
   overflow: hidden;
-  padding: 10px 11px;
-  margin-bottom: 9px;
-  border-left: 1.5px solid var(--color-border);
-  background: var(--color-surface-subtle);
-  border-radius: 5px;
+  padding: 8px 0;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
 }
 .teaching-heading {
   display: flex;
@@ -1180,14 +1176,15 @@ onLoad((query) => {
   gap: 8px;
 }
 .teaching-heading > .math-text {
-  font-size: 12px;
-  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
 }
 .teaching-heading button {
   flex: none;
-  min-height: 26px;
+  min-height: 44px;
   margin: 0;
-  padding: 0 7px;
+  padding: 8px 10px;
   border: 0.5px solid var(--color-border);
   border-radius: 5px;
   background: #fff;

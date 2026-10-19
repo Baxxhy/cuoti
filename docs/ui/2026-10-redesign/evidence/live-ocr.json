@@ -1,0 +1,34 @@
+{
+  "kind": "actual-configured-pool-ocr-generated-print-sample",
+  "mocked": false,
+  "real_student_photo": false,
+  "passed": true,
+  "question_text": "Solve: 2x + 1 = 2",
+  "student_answer": "x = 2",
+  "student_steps": [
+    {
+      "step_index": 0,
+      "text": "My work: 2x = 2 - 1",
+      "bbox": [],
+      "raw_text": "My work: 2x = 2 - 1",
+      "normalized_text": "My work: 2x = 2 - 1",
+      "formula": "My work: 2x = 2 - 1",
+      "confidence": 1,
+      "source": "qwen_crop",
+      "user_confirmed": false
+    },
+    {
+      "step_index": 1,
+      "text": "x = 2",
+      "bbox": [],
+      "raw_text": "x = 2",
+      "normalized_text": "x = 2",
+      "formula": "x = 2",
+      "confidence": 1,
+      "source": "qwen_crop",
+      "user_confirmed": false
+    }
+  ],
+  "original_preserved": true,
+  "original_byte_match": true
+}

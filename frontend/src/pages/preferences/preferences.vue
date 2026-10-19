@@ -192,10 +192,9 @@ onUnload(clear)
   max-width: none;
 }
 .preference-field {
-  padding: 24px;
-  margin-bottom: 16px;
-  background: var(--color-surface);
-  border-radius: 20px;
+  padding: 0 0 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
 }
 .field-label {
   display: block;
@@ -218,7 +217,7 @@ onUnload(clear)
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 .preference-options button {
   margin: 0;

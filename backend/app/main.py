@@ -3162,6 +3162,7 @@ async def tutor_turn(session_id: str, payload: dict = Body(...), db: AsyncSessio
         draft_reply=grounded_draft,
         student_message=message,
         recent_turns=recent_dialogue,
+        reveal_answer=graph_result["tool_name"] == "answer_reveal",
     )
     reply = ensure_fresh_tutor_reply(
         reply,

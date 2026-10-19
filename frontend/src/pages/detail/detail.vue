@@ -66,6 +66,15 @@
             :text="optionText(option, index)"
           />
         </view>
+        <image
+          v-for="figure in item.question_figures || []"
+          :key="figure.id || figure.url"
+          class="detail-figure"
+          :src="figure.url"
+          mode="widthFix"
+          :aria-label="figure.description || '题目配图'"
+          @click="preview(figure.url)"
+        />
         <view class="answer-grid">
           <view>
             <text>我当时的答案</text>
@@ -134,7 +143,7 @@
         </text>
         <math-text v-if="firstErrorTitle" class="issue-title" :text="firstErrorTitle" inline />
         <math-text
-          v-if="diagnosisState.kind === 'finding'"
+          v-if="diagnosisState.kind === 'finding' && item.diagnosis.first_error_text"
           class="issue-formula"
           :text="item.diagnosis.first_error_text"
         />
@@ -618,6 +627,12 @@ onUnload(leave)
 }
 .question-section {
   padding-top: 2px;
+}
+.detail-figure {
+  display: block;
+  width: 100%;
+  margin: 16px 0;
+  border-radius: 8px;
 }
 .question-image {
   width: 100%;

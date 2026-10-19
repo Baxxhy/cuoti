@@ -176,3 +176,48 @@ def test_dialogue_preserves_complete_long_formula_and_conditions(tmp_path, monke
         )
         assert result.status_code == 200
         assert explanation in result.json()["result"]["reply"]
+
+
+def test_explicit_answer_reveal_preserves_reference_instead_of_model_hint(tmp_path):
+    from app.providers.api_pool import ApiPoolUnavailable
+    from app.schemas import TutorGuidanceOutput
+
+    class HintProvider:
+        async def generate_structured(self, _prompt, schema, **_kwargs):
+            if schema is TutorGuidanceOutput:
+                return schema(reply="先观察等式两边的条件。")
+            raise ApiPoolUnavailable("offline planner")
+
+        async def close(self):
+            pass
+
+    secret = "answer-reveal-" + "x" * 32
+    app = create_app(secret=secret, pool_path=tmp_path / "missing.json")
+    headers = {"Authorization": "Bearer " + secret}
+    context = {
+        "student_message": "只要答案", "turn_count": 1, "final_answer": "x=4",
+        "reference_steps": ["2x=8", "x=4"],
+    }
+    with TestClient(app) as client:
+        app.state.provider = HintProvider()
+        preparation = client.post(
+            "/v1/compute", headers=headers,
+            json={"operation": "tutor_dialogue_prepare", "dialogue_context": context},
+        ).json()["result"]
+        response = client.post(
+            "/v1/compute", headers=headers,
+            json={"operation": "tutor_dialogue_finish", "dialogue_context": context,
+                  "dialogue_preparation": preparation},
+        )
+        assert response.status_code == 200
+        assert "x=4" in response.json()["result"]["reply"]
+        assert response.json()["result"]["graph"]["mastery_proven"] is False
+        context["turn_count"] = 2
+        context["recent_turns"] = [{"role": "assistant", "content": response.json()["result"]["reply"]}]
+        repeated = client.post(
+            "/v1/compute", headers=headers,
+            json={"operation": "tutor_dialogue_finish", "dialogue_context": context,
+                  "dialogue_preparation": preparation},
+        )
+        assert repeated.status_code == 200
+        assert "x=4" in repeated.json()["result"]["reply"]

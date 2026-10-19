@@ -196,7 +196,8 @@ function copySummary() {
     data.question_text,
     data.summary,
     ...data.stages.map(
-      (stage) => `${stage.completed ? '已完成' : '未完成'} ${stage.label}：${stage.detail}`,
+      (stage) =>
+        `${stage.completed ? '已完成' : '未完成'} ${stageTitle(stage)}${stage.completed ? '：' + stage.detail : ''}`,
     ),
     `下一步：${data.next_action.label}`,
     `生成时间：${formatDate(data.generated_at)}`,

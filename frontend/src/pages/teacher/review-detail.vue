@@ -171,9 +171,19 @@ const gradingEvidence = computed(() => {
   const value = data.value
   if (!value) return ''
   const verdict = value.task.rule_result?.correct
+  const method = value.task.rule_result?.method
+  const methodLabel =
+    {
+      teacher_pending: '等待教师核对',
+      exact: '答案匹配',
+      choice: '选项核对',
+      sympy: '符号计算',
+      sympy_equivalence: '等价校验',
+      llm: 'AI 判断',
+    }[method] || (method ? '其他校验' : '未执行')
   return [
     `AI：${value.task.ai_result?.feedback || '无说明'}`,
-    `规则：${value.task.rule_result?.method || '无'} / ${verdict === true ? '正确' : verdict === false ? '错误' : '不确定'}`,
+    `规则：${methodLabel} / ${verdict === true ? '正确' : verdict === false ? '错误' : '不确定'}`,
     `证据：${(value.task.ai_result?.evidence || []).join('；')}`,
     `冲突：${value.task.has_conflict ? '是' : '否'}`,
     `OCR：${value.ocr?.confidence != null ? Math.round(value.ocr.confidence * 100) + '%' : '无记录'}`,

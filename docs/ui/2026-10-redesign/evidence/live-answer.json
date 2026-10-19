@@ -1,0 +1,22 @@
+{
+  "kind": "actual-browser-cangjie-mysql-qwen-no-routes-mocked",
+  "steps": [
+    {
+      "title": "先订正这一步",
+      "answer": "x=0.5"
+    },
+    {
+      "title": "重新作答",
+      "answer": "x=1/2"
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "original_independent": true,
+  "checks": [
+    "decimal/fraction answer accepted across two checkpoints",
+    "draft restored after reload",
+    "MySQL journey original_independent true",
+    "actual Qwen tutor session opened"
+  ]
+}

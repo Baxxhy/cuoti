@@ -698,6 +698,40 @@ async def test_analysis_diagnosis_and_tutor_all_receive_visual_and_student_conte
     assert reply.startswith("先看图中的垂直标记")
 
 
+
+@pytest.mark.asyncio
+async def test_text_tutor_guidance_answers_current_question_without_images():
+    class TextProvider:
+        async def generate_structured(self, prompt, schema, system):
+            assert schema is TutorGuidanceOutput
+            assert "为什么要除以2" in prompt
+            assert "2x=1" in prompt
+            assert "优先回答学生的问题" in prompt
+            return schema(reply="2x表示2乘x，要得到x，就把等式两边同时除以2。")
+
+    reply = await generate_tutor_guidance(
+        TextProvider(), visual_paths=[], question_text="解方程2x+1=2",
+        student_answer="x=2", student_steps=["2x=1", "x=2"], subject="数学",
+        question_type="calculation", draft_reply="回顾规则。", student_message="为什么要除以2",
+    )
+    assert "两边同时除以2" in reply
+
+
+@pytest.mark.asyncio
+async def test_text_tutor_guidance_keeps_fallback_when_pool_unavailable():
+    from app.providers.api_pool import ApiPoolUnavailable
+
+    class OfflineProvider:
+        async def generate_structured(self, *_args, **_kwargs):
+            raise ApiPoolUnavailable("offline")
+
+    reply = await generate_tutor_guidance(
+        OfflineProvider(), visual_paths=[], question_text="2x=1", student_answer="2",
+        student_steps=[], subject="数学", question_type="calculation", draft_reply="先看等式性质。",
+    )
+    assert reply == "先看等式性质。"
+
+
 def test_math_tools():
     assert verify_equivalence("11-3", "8")
 
