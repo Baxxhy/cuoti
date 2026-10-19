@@ -179,3 +179,25 @@ flowchart TD
 
 
 学习入口合同：诊断与详情默认进入仓颉持久任务，按用户/题目共享创建编号与在途回执；完整分步讲解仍通过详情“学与练”显式进入教学会话。账号变化或页面离开后的旧回执不得触发跳转，详见[学习入口实现](TASK_ENTRY_IMPLEMENTATION.md)。
+
+## 2026-10-20 增量：课程图谱检索与主动选题
+
+实现与边界见[本轮交付记录](../ui/2026-10-20-followup/DELIVERY.md)。原有BGE/Qdrant/RRF、重排、工具规划、长期记忆和反事实验证继续保留。
+
+```mermaid
+flowchart LR
+  A[题目、分析与当前追问] --> B[仓颉读取本人快照]
+  B --> C[算法规划知识检索工具]
+  C --> D[MySQL知识卡匹配与一跳先修关系]
+  D --> E[校验资料、过滤占位句、限制上下文]
+  E --> F[ApiPoolProvider → Qwen讲解]
+  F --> G[仓颉CAS保存回复与参考资料]
+  G --> H[学生按需打开原知识卡]
+  I[本人已交卷且可确认的作答] --> J[贝叶斯知识追踪]
+  J --> K[信息增益、重复惩罚与题型多样性]
+  K --> L[仓颉验证ID并冻结练习题快照]
+```
+
+- `backend-cangjie/src/tutor_dialogue.cj`负责课程卡匹配、先修关系和快照一致性；`backend-algorithms/grounded_knowledge.py`构建最多6份有内容指纹的资料，`dialogue_compute.py`将其传入结构化讲解。来源保存于`tutor_turns.metadata_json.knowledge_sources`，表示模型可见参考资料，不是模型自报的任意引用或逐句事实证明。
+- `backend-cangjie/src/adaptive_practice.cj`从本人历史和最多200道合格候选题生成输入；`backend-algorithms/adaptive_practice.py`只做贝叶斯/信息增益计算，仓颉验证返回ID并保存于`study_session_items.snapshot.adaptive_selection`。题目答案仍在交卷前隐藏。
+- 模型参数目前是透明的冷启动默认值，没有知识点标签时只使用题型分组；没有进行个体参数拟合或学习效果实验。选题和查看资料都不授予掌握证据，原有学习证据门禁不变。仅练习模式显式请求`selection_strategy=adaptive`；模拟考试随机，手选单题保留原选择。
