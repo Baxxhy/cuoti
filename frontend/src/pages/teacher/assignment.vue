@@ -27,13 +27,25 @@
           </view>
           <view class="field">
             <text class="field-label">选择题目</text>
-            <picker
-              :range="questions"
-              range-key="label"
-              @change="form.question_id = questions[$event.detail.value]?.id"
+            <button
+              class="field-box question-picker"
+              :aria-expanded="showQuestions"
+              @click="showQuestions = !showQuestions"
             >
-              <view class="field-box">{{ questionName || '请选择题目' }}</view>
-            </picker>
+              <math-text :text="questionName || '请选择题目'" inline />
+            </button>
+            <view v-if="showQuestions" class="question-options" role="region" aria-label="可选题目">
+              <button
+                v-for="question in questions"
+                :key="question.id"
+                class="field-box question-picker"
+                :aria-pressed="form.question_id === question.id"
+                @click="selectQuestion(question.id)"
+              >
+                <math-text :text="question.label" inline />
+              </button>
+              <text v-if="!questions.length" class="muted">暂无可选题目，请先添加题目。</text>
+            </view>
           </view>
           <view class="field">
             <text class="field-label">截止时间</text>
@@ -73,7 +85,7 @@
           <view class="card-heading"><text>布置记录</text></view>
           <view v-for="item in assignments" :key="item.id" class="teacher-row">
             <view class="row-main">
-              <text class="row-title">{{ item.title }}</text>
+              <math-text class="row-title" :text="item.title" inline />
               <text class="row-meta">
                 完成 {{ item.completed_count }} / {{ item.student_count }} · 截止
                 {{
@@ -92,6 +104,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import DateTimeInput from '@/components/date-time-input/date-time-input.vue'
 import { computed, onMounted, reactive, ref } from 'vue'
 import { getData, postData } from '@/api/index.js'
@@ -108,6 +121,11 @@ const classes = ref([]),
   })
 const className = computed(() => classes.value.find((x) => x.id === form.class_id)?.name),
   questionName = computed(() => questions.value.find((x) => x.id === form.question_id)?.label)
+const showQuestions = ref(false)
+function selectQuestion(id) {
+  form.question_id = id
+  showQuestions.value = false
+}
 async function loadData() {
   const [cs, qs, as] = await Promise.all([
     getData('/teachers/classes'),
@@ -115,7 +133,14 @@ async function loadData() {
     getData('/teachers/assignments'),
   ])
   classes.value = cs
-  questions.value = qs.map((x) => ({ id: x.question.id, label: x.question.title }))
+  questions.value = qs.map(({ question }) => {
+    const title = question.title || ''
+    const text = question.question_text || title
+    return {
+      id: question.id,
+      label: title && title !== text && !/[$\\]/.test(title) ? `${title}\n${text}` : text,
+    }
+  })
   assignments.value = as
 }
 async function createData() {
@@ -160,4 +185,14 @@ async function create() {
 </script>
 <style lang="scss">
 @import './teacher.scss';
+.teacher-page .question-picker {
+  width: 100%;
+  text-align: left;
+  margin: 0;
+}
+.question-options {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
 </style>

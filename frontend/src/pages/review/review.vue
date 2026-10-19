@@ -83,7 +83,7 @@
               :src="figure.url"
               mode="widthFix"
             />
-            <text class="review-reason">{{ friendlyReason(activePlan.reason) }}</text>
+            <math-text class="review-reason" :text="friendlyReason(activePlan.reason)" inline />
             <template v-if="!attempts[activePlan.id]">
               <checkbox-group
                 v-if="multiple && options.length"
@@ -172,7 +172,7 @@
                   />
                   <b>{{ attemptTitle(attempts[activePlan.id]) }}</b>
                 </view>
-                <text>{{ attempts[activePlan.id].feedback }}</text>
+                <math-text :text="attempts[activePlan.id].feedback" inline />
                 <small>参考答案</small>
                 <math-text :text="attempts[activePlan.id].expected_answer" />
                 <text v-if="!attempts[activePlan.id].can_update_learning">
@@ -222,7 +222,7 @@
               </button>
               <view v-if="showPrevious">
                 <text class="previous-hint">题目或参考已更新，请核对后再使用旧文字。</text>
-                <text class="previous-text" selectable>{{ previousDraft.text }}</text>
+                <math-text class="previous-text" selectable :text="previousDraft.text" inline />
                 <button
                   v-if="!answers[activePlan.id]?.trim()"
                   class="secondary-btn use-previous"
@@ -361,7 +361,11 @@
               />
             </view>
             <view class="list-main">
-              <text class="list-title">{{ item.question?.question_text || '复习题目' }}</text>
+              <math-text
+                class="list-title"
+                :text="item.question?.question_text || '复习题目'"
+                inline
+              />
               <button
                 v-if="item.question?.id && item.question.status !== 'archived'"
                 class="history-link"
@@ -386,6 +390,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 
 import { computed, nextTick, reactive, ref, watch } from 'vue'

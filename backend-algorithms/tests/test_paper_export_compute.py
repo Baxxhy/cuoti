@@ -61,3 +61,13 @@ def test_paper_renderer_includes_only_supplied_question_figures():
     rendered = render_paper("图形题", "question", [question])
     data = base64.b64decode(rendered["file_base64"])
     assert b"/Subtype /Image" in data
+
+
+def test_answer_export_rejects_missing_analysis_before_rendering():
+    import pytest
+    from paper_export_compute import ExportQuestion, render_paper
+
+    with pytest.raises(ValueError, match="缺少答案或解析"):
+        render_paper(
+            "缺解析", "answer", [ExportQuestion(question_text="1+1=?", answer="2")]
+        )

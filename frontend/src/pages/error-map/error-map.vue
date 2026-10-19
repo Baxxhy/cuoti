@@ -78,7 +78,7 @@
               >
                 <text class="node-number">{{ i + 1 }}</text>
                 <view class="node-copy">
-                  <text>{{ group.label }}</text>
+                  <math-text :text="group.label" inline />
                   <small>
                     {{ group.subject }} ·
                     {{
@@ -94,7 +94,7 @@
             <view v-if="selected" class="map-evidence">
               <view class="evidence-heading">
                 <text class="eyebrow">{{ selected.subject }} · 诊断来源</text>
-                <text class="evidence-title">{{ selected.label }}</text>
+                <math-text class="evidence-title" :text="selected.label" inline />
                 <text class="editorial-description">
                   {{
                     selected.due
@@ -104,7 +104,7 @@
                 </text>
               </view>
               <view v-if="selected.points.length" class="point-labels">
-                <text v-for="point in selected.points" :key="point">{{ point }}</text>
+                <math-text v-for="point in selected.points" :key="point" :text="point" inline />
               </view>
               <view v-for="source in selected.sources" :key="source.id" class="map-source">
                 <text class="eyebrow">
@@ -171,6 +171,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

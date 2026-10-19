@@ -88,28 +88,36 @@
           </button>
           <view v-if="session.stage !== 'finished' && !activity" class="teacher-intro">
             <text>小智老师</text>
-            <b>{{ introText }}</b>
+            <b><math-text :text="introText" inline /></b>
           </view>
 
           <view v-if="activity" class="activity-card">
             <template v-if="isAnswerReveal">
               <view class="answer-brief-heading">
-                <text>{{ answerReveal.topic }}</text>
+                <math-text :text="answerReveal.topic" inline />
                 <b>先把这次选错的地方看清</b>
               </view>
               <view class="answer-compare">
                 <view>
                   <text>你的答案</text>
-                  <b class="student-answer">{{ answerReveal.student_answer }}</b>
+                  <b class="student-answer">
+                    <math-text :text="answerReveal.student_answer" inline />
+                  </b>
                 </view>
                 <view>
                   <text>正确答案</text>
-                  <b class="correct-answer">{{ answerReveal.correct_answer }}</b>
+                  <b class="correct-answer">
+                    <math-text :text="answerReveal.correct_answer" inline />
+                  </b>
                 </view>
               </view>
               <view class="why-block">
-                <b>为什么是{{ answerReveal.correct_answer }}？</b>
-                <text v-if="answerReveal.key_explanation">{{ answerReveal.key_explanation }}</text>
+                <b><math-text :text="'为什么是' + answerReveal.correct_answer + '？'" inline /></b>
+                <math-text
+                  v-if="answerReveal.key_explanation"
+                  :text="answerReveal.key_explanation"
+                  inline
+                />
                 <view v-if="answerReveal.option_explanations?.length" class="option-explanations">
                   <view
                     v-for="item in answerReveal.option_explanations"
@@ -117,7 +125,7 @@
                     :class="{ correct: item.correct }"
                   >
                     <i>{{ item.label }}</i>
-                    <text>{{ item.text }}</text>
+                    <math-text :text="item.text" inline />
                     <b v-if="item.correct">正确</b>
                   </view>
                 </view>
@@ -157,18 +165,18 @@
                 v-if="answerReveal.correct_answer && session.stage === 'understanding'"
                 class="compact-answer-compare"
               >
-                <text>
-                  你的答案
-                  <b>{{ answerReveal.student_answer }}</b>
-                </text>
+                <view>
+                  <text>你的答案</text>
+                  <b><math-text :text="answerReveal.student_answer" inline /></b>
+                </view>
                 <i />
-                <text>
-                  正确答案
-                  <b>{{ answerReveal.correct_answer }}</b>
-                </text>
+                <view>
+                  <text>正确答案</text>
+                  <b><math-text :text="answerReveal.correct_answer" inline /></b>
+                </view>
               </view>
               <view class="activity-meta">
-                <text>{{ activity.title }}</text>
+                <math-text :text="activity.title" inline />
                 <text>
                   第 {{ Math.min(activity.attempt, activity.max_attempts) }} /
                   {{ activity.max_attempts }} 次
@@ -186,7 +194,7 @@
                   class="cube-cell"
                   :style="{ left: `${cell.x * 25}%`, top: `${cell.y * 33.333}%` }"
                 >
-                  {{ cell.label }}
+                  <math-text :text="cell.label" inline />
                 </view>
               </view>
               <image
@@ -199,7 +207,7 @@
 
               <view v-if="activity.teaching" class="teaching-note">
                 <view class="teaching-heading">
-                  <text>{{ activity.teaching_title || '先看这个关键点' }}</text>
+                  <math-text :text="activity.teaching_title || '先看这个关键点'" inline />
                   <button
                     tabindex="0"
                     role="button"
@@ -312,7 +320,11 @@
 
               <view v-else class="answer-area">
                 <view v-if="activity.type === 'teach_back'" class="speaking-help">
-                  <text class="starter">{{ activity.sentence_starter || '我会先看……' }}</text>
+                  <math-text
+                    class="starter"
+                    :text="activity.sentence_starter || '我会先看……'"
+                    inline
+                  />
                   <view class="keyword-row">
                     <button
                       tabindex="0"
@@ -324,7 +336,7 @@
                       @keydown.space.prevent
                       @keyup.space.prevent="appendKeyword(keyword)"
                     >
-                      {{ keyword }}
+                      <math-text :text="keyword" inline />
                     </button>
                   </view>
                 </view>
@@ -432,7 +444,10 @@
             <b>
               {{ session.state?.transfer_insufficient ? '本轮学习已完成' : '已经基本修复这个问题' }}
             </b>
-            <text>{{ session.completion_summary || '掌握状态和后续复习已经更新。' }}</text>
+            <math-text
+              :text="session.completion_summary || '掌握状态和后续复习已经更新。'"
+              inline
+            />
             <text v-if="session.assisted" class="assisted-note">
               这次有小智老师帮助，之后会更早安排复习。
             </text>
@@ -469,7 +484,7 @@
                 :class="['history-turn', turn.role]"
               >
                 <text>{{ turn.role === 'assistant' ? '小智老师' : '我' }}</text>
-                <view>{{ turn.content }}</view>
+                <view><math-text :text="turn.content" inline /></view>
               </view>
             </view>
           </view>
@@ -548,6 +563,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 
 import { computed, ref } from 'vue'
@@ -946,11 +962,11 @@ onLoad((query) => {
   padding-bottom: 11px;
   border-bottom: 0.5px solid var(--color-border);
 }
-.answer-brief-heading text,
+.answer-brief-heading > .math-text,
 .answer-brief-heading b {
   display: block;
 }
-.answer-brief-heading text {
+.answer-brief-heading > .math-text {
   color: var(--color-text-secondary);
   font-size: 12px;
 }
@@ -999,7 +1015,7 @@ onLoad((query) => {
   display: block;
   font-size: 14px;
 }
-.why-block > text {
+.why-block > .math-text {
   display: block;
   margin-top: 4.5px;
   color: var(--color-text-secondary);
@@ -1030,7 +1046,7 @@ onLoad((query) => {
   font-size: 12px;
   font-weight: 650;
 }
-.option-explanations text {
+.option-explanations .math-text {
   flex: 1;
   color: var(--color-text-secondary);
   font-size: 12px;
@@ -1070,7 +1086,7 @@ onLoad((query) => {
   border-radius: 6px;
   background: var(--color-surface-subtle);
 }
-.compact-answer-compare text {
+.compact-answer-compare > view {
   flex: 1;
   color: var(--color-text-secondary);
   font-size: 12px;
@@ -1081,7 +1097,7 @@ onLoad((query) => {
   color: var(--color-text-primary);
   font-size: 14px;
 }
-.compact-answer-compare text:last-child b {
+.compact-answer-compare > view:last-child b {
   color: var(--color-primary);
 }
 .compact-answer-compare i {
@@ -1095,7 +1111,7 @@ onLoad((query) => {
   justify-content: space-between;
   margin-bottom: 11px;
 }
-.activity-meta text:first-child {
+.activity-meta > .math-text:first-child {
   font-size: 12px;
   font-weight: 600;
   color: var(--color-primary-hover);
@@ -1151,7 +1167,7 @@ onLoad((query) => {
   justify-content: space-between;
   gap: 8px;
 }
-.teaching-heading text {
+.teaching-heading > .math-text {
   font-size: 12px;
   color: var(--color-text-secondary);
 }
@@ -1465,13 +1481,15 @@ onLoad((query) => {
   font-weight: 700;
 }
 .success-card b,
-.success-card > text {
+.success-card > text,
+.success-card > .math-text {
   display: block;
 }
 .success-card b {
   font-size: 16px;
 }
-.success-card > text {
+.success-card > text,
+.success-card > .math-text {
   margin-top: 5px;
   color: var(--color-text-secondary);
   font-size: 12px;

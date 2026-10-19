@@ -64,9 +64,9 @@
         <text class="muted">{{ statusLabel(item) }}</text>
         <teaching-content v-if="item.feedback" :blocks="[{ kind: 'text', text: item.feedback }]" />
         <view v-if="item.visualization" class="visual-record">
-          <text>{{ item.visualization.title }}</text>
+          <math-text :text="item.visualization.title" inline />
           <math-text :text="`$${item.visualization.relation_tex}$`" />
-          <text class="muted">{{ item.visualization.controls }}</text>
+          <math-text class="muted" :text="item.visualization.controls" inline />
         </view>
         <button
           v-if="item.handwriting_image_url"
@@ -84,6 +84,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { ref, watch } from 'vue'
 import { getData } from '@/api/index.js'
 import TeachingContent from '@/components/teaching-content/teaching-content.vue'

@@ -90,7 +90,7 @@
           :class="{ correct: result.correct === true, pending: !result.can_update_learning }"
         >
           <b>{{ resultTitle }}</b>
-          <text>{{ result.feedback }}</text>
+          <math-text :text="result.feedback" inline />
           <math-text v-if="result.answer" class="reference" :text="`参考答案：${displayAnswer}`" />
           <text v-if="result.mastery !== undefined && result.mastery !== null">
             掌握状态：{{ Math.round(result.mastery_before * 100) }}% →
@@ -125,6 +125,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 
 import { computed, ref } from 'vue'

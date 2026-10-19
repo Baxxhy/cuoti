@@ -17,7 +17,7 @@
               {{ item.target_type }} /
               {{ item.target_id }}
             </text>
-            <text class="row-meta">原因：{{ item.reason || '未填写' }}</text>
+            <math-text class="row-meta" :text="'原因：' + (item.reason || '未填写')" inline />
           </view>
         </view>
         <view v-if="!items.length" class="empty-card">暂无教师操作记录</view>
@@ -26,6 +26,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { onMounted, ref } from 'vue'
 import { getData } from '@/api/index.js'
 const items = ref([]),

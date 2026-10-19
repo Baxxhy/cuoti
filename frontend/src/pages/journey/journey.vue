@@ -7,7 +7,7 @@
         <view class="overview">
           <text class="subject-label">{{ journey.subject }}</text>
           <math-text class="question-copy" :text="journey.question_text" />
-          <text class="summary">{{ journey.summary }}</text>
+          <math-text class="summary" :text="journey.summary" inline />
           <view class="evidence-labels">
             <text>{{ journey.verification.label }}</text>
             <text>
@@ -17,14 +17,14 @@
         </view>
         <view class="next-card">
           <text class="next-heading">下一步</text>
-          <text class="summary">{{ journey.next_action.reason }}</text>
+          <math-text class="summary" :text="journey.next_action.reason" inline />
           <button class="primary-btn" @click="go(journey.next_action.url)">
             {{ journey.next_action.label }}
           </button>
         </view>
         <view v-if="journey.learning_tasks" class="task-records">
           <text class="next-heading">订正与对照</text>
-          <text class="summary">{{ taskSummary }}</text>
+          <math-text class="summary" :text="taskSummary" inline />
           <button
             class="record-action"
             @click="go(`/pages/task/task?id=${journey.learning_tasks.items[0].id}`)"
@@ -86,7 +86,7 @@
             </view>
             <view class="stage-copy">
               <text>{{ stage.label }}</text>
-              <small>{{ stage.detail }}</small>
+              <small><math-text :text="stage.detail" inline /></small>
             </view>
             <text class="stage-status">{{ stage.completed ? '有证据' : '待验证' }}</text>
           </view>
@@ -117,7 +117,7 @@
             <view class="event-dot" />
             <view>
               <view class="event-title">
-                <b>{{ event.title }}</b>
+                <b><math-text :text="event.title" inline /></b>
                 <small>{{ formatDate(event.time) }}</small>
               </view>
               <math-text class="event-detail" :text="event.detail" />
@@ -139,6 +139,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

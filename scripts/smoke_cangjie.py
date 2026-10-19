@@ -93,6 +93,14 @@ def main() -> None:
                         assert error.headers["Allow"] == "GET"
             if (
                 env.get("CANGJIE_DB_NAME")
+                and env.get("CANGJIE_VERIFY_FOCUS") == "paper-export"
+            ):
+                from smoke_cangjie_papers import export_readiness
+
+                export_readiness(endpoint, env, query)
+                return
+            if (
+                env.get("CANGJIE_DB_NAME")
                 and env.get("CANGJIE_VERIFY_FOCUS") == "question-bank"
             ):
                 from smoke_cangjie_question_bank import question_bank
@@ -148,8 +156,12 @@ def main() -> None:
 
                 alignment(endpoint, env, query)
                 return
-            if env.get("CANGJIE_DB_NAME") and env.get("CANGJIE_VERIFY_FOCUS") == "study-bank":
+            if (
+                env.get("CANGJIE_DB_NAME")
+                and env.get("CANGJIE_VERIFY_FOCUS") == "study-bank"
+            ):
                 from smoke_cangjie_study import study
+
                 study(endpoint, env, query)
                 return
             media(endpoint, env, process.pid)
@@ -175,6 +187,7 @@ def main() -> None:
                 student_work(endpoint, env, query)
                 insights(endpoint, env, query)
                 from smoke_cangjie_experience import experience
+
                 experience(endpoint, env, query)
                 from smoke_cangjie_release_inputs import release_inputs
 
@@ -185,6 +198,7 @@ def main() -> None:
                 alignment(endpoint, env, query)
                 recovery = ingest(endpoint, env, query)
                 from smoke_cangjie_study import study
+
                 env.update(study(endpoint, env, query))
                 if env.get("CANGJIE_VERIFY_FOCUS") in {
                     "task-images",

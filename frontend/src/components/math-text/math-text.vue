@@ -32,6 +32,7 @@ const needsReview = computed(() => html.value.includes('class="math-unparsed"'))
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
+  line-height: 1.8;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   overflow-x: auto;

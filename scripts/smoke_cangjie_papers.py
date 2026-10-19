@@ -220,3 +220,98 @@ def papers(endpoint, env, query, token, other):
     print(
         "Cangjie papers passed: filters, deduplication, scores, edit rollback, ownership, PDF/answer/Excel exports and downloads"
     )
+
+
+def export_readiness(endpoint, env, query):
+    from uuid import uuid4
+
+    insert = fixture_insert(env, query)
+    user = request(
+        endpoint,
+        "POST",
+        "/api/v1/auth/register",
+        {
+            "email": f"paper-readiness-{uuid4().hex}@example.test",
+            "name": "导出验收",
+            "password": "Paper-check-2026!",
+            "grade": "初一",
+        },
+    )
+    token = user["access_token"]
+    question = request(
+        endpoint,
+        "POST",
+        "/api/v1/questions/manual",
+        {
+            "question_text": r"比较 $\frac{1}{5}$ 与 $\frac{1}{6}$ 的大小。",
+            "subject": "数学",
+            "question_type": "综合题",
+        },
+        token=token,
+    )
+    paper = request(
+        endpoint,
+        "POST",
+        "/api/v1/papers",
+        {"title": "公式与解析完整性", "question_ids": [question["id"]]},
+        token=token,
+    )
+    path = "/api/v1/papers/" + paper["id"]
+    detail = request(endpoint, "GET", path, token=token)
+    assert detail["items"][0]["analysis_ready"] is False
+    request(
+        endpoint,
+        "POST",
+        path + "/export",
+        {"kind": "answer"},
+        token=token,
+        expected=409,
+    )
+    assert request(endpoint, "GET", path, token=token)["exports"] == []
+    assert (
+        request(endpoint, "POST", path + "/export", {"kind": "question"}, token=token)[
+            "status"
+        ]
+        == "completed"
+    )
+    aid = insert(
+        "problem_analyses",
+        question_id=question["id"],
+        subject="数学",
+        final_answer=r"$\frac{1}{5}>\frac{1}{6}$",
+        knowledge_points=["同分子分数的大小比较"],
+    )
+    assert (
+        request(endpoint, "GET", path, token=token)["items"][0]["analysis_ready"]
+        is False
+    )
+    request(
+        endpoint,
+        "POST",
+        path + "/export",
+        {"kind": "answer"},
+        token=token,
+        expected=409,
+    )
+    insert(
+        "reference_steps",
+        analysis_id=aid,
+        step_index=0,
+        text="分子相同的正分数，分母越大，分数越小。",
+    )
+    assert (
+        request(endpoint, "GET", path, token=token)["items"][0]["analysis_ready"]
+        is True
+    )
+    assert (
+        request(endpoint, "POST", path + "/export", {"kind": "answer"}, token=token)[
+            "status"
+        ]
+        == "completed"
+    )
+    candidates = request(endpoint, "GET", "/api/v1/papers/candidates", token=token)
+    assert candidates[0]["knowledge_points"] == ["同分子分数的大小比较"]
+    assert len(request(endpoint, "GET", path, token=token)["exports"]) == 2
+    print(
+        "Paper export readiness passed: incomplete answer blocked without file, standalone questions available, real formula PDFs, reference-step gate and knowledge refresh"
+    )

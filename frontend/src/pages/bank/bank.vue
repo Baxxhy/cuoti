@@ -196,7 +196,7 @@
           @click="go(`/pages/study-session/study-session?id=${item.id}`)"
         >
           <view>
-            <text>{{ item.title }}</text>
+            <math-text :text="item.title" inline />
             <small>{{ item.question_count }} 题 · {{ shortDate(item.created_at) }}</small>
           </view>
           <text class="record-status" :class="{ done: item.status === 'submitted' }">
@@ -225,6 +225,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { getData, postData, mediaUrl } from '@/api/index.js'

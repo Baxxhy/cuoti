@@ -174,7 +174,7 @@
                   />
                 </view>
                 <view>
-                  <b>{{ item.question_title }}</b>
+                  <b><math-text :text="item.question_title" inline /></b>
                   <text>{{ item.student_name }} · {{ stageName(item.stage) }}</text>
                 </view>
                 <small>{{ clock(item.updated_at) }}</small>
@@ -244,7 +244,7 @@
                     class="progress-row"
                   >
                     <view>
-                      <b>{{ item.knowledge_point }}</b>
+                      <b><math-text :text="item.knowledge_point" inline /></b>
                       <text>{{ item.subject }} · {{ item.evidence_count }} 条证据</text>
                     </view>
                     <strong>{{ percent(item.score) }}</strong>
@@ -266,7 +266,7 @@
                       <uni-icons type="info-filled" size="20" color="#D97706" />
                     </view>
                     <view>
-                      <b>{{ item.label }}</b>
+                      <b><math-text :text="item.label" inline /></b>
                       <text>{{ item.evidence_count }} 条学习证据</text>
                       <view class="risk-progress">
                         <view :style="{ width: percent(item.probability) }" />
@@ -288,7 +288,7 @@
                       <uni-icons type="calendar-filled" size="22" color="var(--color-primary)" />
                     </view>
                     <view>
-                      <b>{{ item.reason }}</b>
+                      <b><math-text :text="item.reason" inline /></b>
                       <text>{{ fullTime(item.due_at) }}</text>
                     </view>
                     <span>{{ reviewStatus(item.status) }}</span>
@@ -317,7 +317,7 @@
                 />
               </view>
               <view>
-                <b>{{ item.question_title }}</b>
+                <b><math-text :text="item.question_title" inline /></b>
                 <text>{{ item.student_name }} · {{ stageName(item.stage) }}</text>
               </view>
               <uni-icons type="right" size="18" color="#98A2B3" />
@@ -338,7 +338,7 @@
                 </view>
                 <view>
                   <text>当前题目</text>
-                  <b>{{ sessionDetail.question?.title || '未命名题目' }}</b>
+                  <b><math-text :text="sessionDetail.question?.title || '未命名题目'" inline /></b>
                 </view>
                 <view>
                   <text>教学阶段</text>
@@ -355,14 +355,27 @@
                 </view>
                 <view>
                   <text>智能体观察到的错因</text>
-                  <b>{{ sessionDetail.diagnosis?.root_misconception || '该会话暂无错因诊断' }}</b>
+                  <b>
+                    <math-text
+                      :text="sessionDetail.diagnosis?.root_misconception || '该会话暂无错因诊断'"
+                      inline
+                    />
+                  </b>
                   <p>
-                    {{ sessionDetail.diagnosis?.first_error_text || '尚未定位具体首错步骤' }}
+                    <math-text
+                      :text="sessionDetail.diagnosis?.first_error_text || '尚未定位具体首错步骤'"
+                      inline
+                    />
                   </p>
                 </view>
                 <view class="strategy">
                   <text>采用的教学策略</text>
-                  <b>{{ sessionDetail.diagnosis?.recommended_strategy || '根据对话动态选择' }}</b>
+                  <b>
+                    <math-text
+                      :text="sessionDetail.diagnosis?.recommended_strategy || '根据对话动态选择'"
+                      inline
+                    />
+                  </b>
                 </view>
               </view>
               <view class="trace-grid">
@@ -391,7 +404,7 @@
                       </view>
                       <view class="decision">
                         <span>教学决策</span>
-                        <b>{{ event.decision }}</b>
+                        <b><math-text :text="event.decision" inline /></b>
                         <em
                           v-if="event.verification?.status"
                           :class="['verify-badge', event.verification.status]"
@@ -399,19 +412,23 @@
                           {{ verificationName(event.verification.status) }}
                         </em>
                       </view>
-                      <p>{{ event.goal || '根据当前学习状态推进下一步教学' }}</p>
+                      <p>
+                        <math-text :text="event.goal || '根据当前学习状态推进下一步教学'" inline />
+                      </p>
                       <view
                         v-if="event.observation?.memory_summary"
                         class="agent-block memory-block"
                       >
                         <label>长期记忆</label>
-                        <text>{{ event.observation.memory_summary }}</text>
+                        <math-text :text="event.observation.memory_summary" inline />
                         <small>{{ event.observation.memory_count || 0 }} 条可追溯证据</small>
                       </view>
                       <view v-if="event.plan?.steps?.length" class="agent-block">
                         <label>执行计划</label>
                         <ol>
-                          <li v-for="step in event.plan.steps" :key="step">{{ step }}</li>
+                          <li v-for="step in event.plan.steps" :key="step">
+                            <math-text :text="step" inline />
+                          </li>
                         </ol>
                       </view>
                       <view v-for="action in event.actions" :key="action.id" class="tool">
@@ -434,12 +451,12 @@
                     class="cognition-row"
                   >
                     <view>
-                      <b>{{ item.entity_key }}</b>
+                      <b><math-text :text="item.entity_key" inline /></b>
                       <span :class="item.new_value >= item.old_value ? 'up' : 'down'">
                         {{ signedDelta(item) }}
                       </span>
                     </view>
-                    <text>{{ item.reason || '认知状态变化' }}</text>
+                    <math-text :text="item.reason || '认知状态变化'" inline />
                     <view class="compare-label">
                       <span>学习前 {{ percent(item.old_value) }}</span>
                       <span>学习后 {{ percent(item.new_value) }}</span>
@@ -483,6 +500,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, defineComponent, h, onMounted, onUnmounted, ref } from 'vue'
 import { getData } from '@/api/index.js'
 import { roleHome, useAppStore } from '@/store/index.js'

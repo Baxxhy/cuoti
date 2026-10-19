@@ -110,9 +110,11 @@
             />
           </view>
           <template v-if="focusKind === 'task'">
-            <text class="focus-title">
-              {{ taskFocus.student_view?.title || '继续解决上次那一步' }}
-            </text>
+            <math-text
+              class="focus-title"
+              :text="taskFocus.student_view?.title || '继续解决上次那一步'"
+              inline
+            />
             <button
               class="primary-btn"
               role="button"
@@ -124,8 +126,12 @@
             </button>
           </template>
           <template v-else-if="focusKind === 'continue'">
-            <text class="focus-title">{{ data.continue_learning.knowledge_point }}</text>
-            <text class="focus-next">下一步：{{ data.continue_learning.next_step }}</text>
+            <math-text class="focus-title" :text="data.continue_learning.knowledge_point" inline />
+            <math-text
+              class="focus-next"
+              :text="'下一步：' + data.continue_learning.next_step"
+              inline
+            />
             <button
               tabindex="0"
               role="button"
@@ -171,7 +177,7 @@
             </button>
           </template>
           <template v-else-if="focusKind === 'repair'">
-            <text class="focus-title">先核对：{{ recommendedGroup.label }}</text>
+            <math-text class="focus-title" :text="'先核对：' + recommendedGroup.label" inline />
             <text class="focus-next">
               {{ recommendedGroup.subject }} ·
               {{
@@ -302,8 +308,8 @@
             "
           >
             <view class="list-main">
-              <text class="task-name">{{ task.title }}</text>
-              <text class="task-detail">{{ task.detail }}</text>
+              <math-text class="task-name" :text="task.title" inline />
+              <math-text class="task-detail" :text="task.detail" inline />
             </view>
             <uni-icons type="right" size="22" color="var(--color-text-secondary)" />
           </button>
@@ -317,13 +323,19 @@
                 : '老师建议继续修改'
             }}
           </text>
-          <text class="feedback-detail">{{ data.teacher_feedback.reason }}</text>
-          <text v-if="data.teacher_feedback.student_hint" class="feedback-detail">
-            提示：{{ data.teacher_feedback.student_hint }}
-          </text>
-          <text v-if="data.teacher_feedback.next_task" class="feedback-detail">
-            下一步：{{ data.teacher_feedback.next_task }}
-          </text>
+          <math-text class="feedback-detail" :text="data.teacher_feedback.reason" inline />
+          <math-text
+            v-if="data.teacher_feedback.student_hint"
+            class="feedback-detail"
+            :text="' 提示：' + data.teacher_feedback.student_hint"
+            inline
+          />
+          <math-text
+            v-if="data.teacher_feedback.next_task"
+            class="feedback-detail"
+            :text="' 下一步：' + data.teacher_feedback.next_task"
+            inline
+          />
         </view>
       </template>
     </view>
@@ -332,6 +344,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

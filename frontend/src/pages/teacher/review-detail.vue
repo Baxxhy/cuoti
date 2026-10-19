@@ -16,7 +16,7 @@
                 <text>题目与学生作答</text>
                 <text class="tag">v{{ data.task.version }}</text>
               </view>
-              <text class="evidence-text">{{ data.question.question_text }}</text>
+              <math-text class="evidence-text" :text="data.question.question_text" inline />
               <view class="image-list">
                 <image
                   v-for="asset in visibleAssets"
@@ -33,33 +33,39 @@
               />
               <view class="field">
                 <text class="field-label">学生答案</text>
-                <text class="evidence-text">
-                  {{ data.attempt?.answer || data.task.ai_result?.student_answer || '无' }}
-                </text>
+                <math-text
+                  class="evidence-text"
+                  :text="data.attempt?.answer || data.task.ai_result?.student_answer || '无'"
+                  inline
+                />
               </view>
               <view class="field">
                 <text class="field-label">学生步骤</text>
-                <text class="evidence-text">
-                  {{ (data.attempt?.steps || []).join('\n') || '无' }}
-                </text>
+                <math-text
+                  class="evidence-text"
+                  :text="(data.attempt?.steps || []).join('\n') || '无'"
+                  inline
+                />
               </view>
             </view>
             <view class="teacher-card">
               <view class="card-heading"><text>标准答案与参考步骤</text></view>
-              <text class="evidence-text">
-                {{
+              <math-text
+                class="evidence-text"
+                :text="
                   data.teacher_question?.standard_answer ||
                   data.analysis?.final_answer ||
                   '标准答案不完整'
-                }}
-              </text>
+                "
+                inline
+              />
               <view
                 v-for="(step, index) in referenceSteps"
                 :key="step.id || index"
                 class="teacher-row"
               >
                 <text class="tag">{{ index + 1 }}</text>
-                <text class="evidence-text row-main">{{ step.text || step }}</text>
+                <math-text class="evidence-text row-main" :text="step.text || step" inline />
               </view>
             </view>
           </view>
@@ -69,25 +75,7 @@
                 <text>判题证据</text>
                 <text class="tag warn">{{ data.task.ai_result?.verdict }}</text>
               </view>
-              <text class="evidence-text">
-                AI：{{ data.task.ai_result?.feedback || '无说明' }}\n规则：{{
-                  data.task.rule_result?.method || '无'
-                }}
-                /
-                {{
-                  data.task.rule_result?.correct === true
-                    ? '正确'
-                    : data.task.rule_result?.correct === false
-                      ? '错误'
-                      : '不确定'
-                }}\n证据：{{ (data.task.ai_result?.evidence || []).join('\n') }}\n冲突：{{
-                  data.task.has_conflict ? '是' : '否'
-                }}\nOCR：{{
-                  data.ocr?.confidence != null
-                    ? Math.round(data.ocr.confidence * 100) + '%'
-                    : '无记录'
-                }}
-              </text>
+              <math-text class="evidence-text" :text="gradingEvidence" inline />
             </view>
             <view class="teacher-card">
               <view class="card-heading"><text>人工结论</text></view>
@@ -145,6 +133,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, reactive, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { getData, postData } from '@/api/index.js'
@@ -168,6 +157,18 @@ const form = reactive({
   student_hint: '',
   next_task: '',
   allow_learning_update: true,
+})
+const gradingEvidence = computed(() => {
+  const value = data.value
+  if (!value) return ''
+  const verdict = value.task.rule_result?.correct
+  return [
+    `AI：${value.task.ai_result?.feedback || '无说明'}`,
+    `规则：${value.task.rule_result?.method || '无'} / ${verdict === true ? '正确' : verdict === false ? '错误' : '不确定'}`,
+    `证据：${(value.task.ai_result?.evidence || []).join('；')}`,
+    `冲突：${value.task.has_conflict ? '是' : '否'}`,
+    `OCR：${value.ocr?.confidence != null ? Math.round(value.ocr.confidence * 100) + '%' : '无记录'}`,
+  ].join('\n')
 })
 const visibleAssets = computed(() =>
     (data.value?.assets || []).filter((x) =>

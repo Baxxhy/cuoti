@@ -1,10 +1,18 @@
 from __future__ import annotations
 
+import base64
+import io
+import json
+import os
+import re
+import signal
+import subprocess
 from pathlib import Path
 from typing import Any
 from xml.sax.saxutils import escape
 
 from openpyxl import Workbook
+from PIL import Image as PillowImage
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
@@ -21,8 +29,63 @@ def option_text(option: Any, index: int) -> str:
     return f"{label}. {value}"
 
 
+def build_math_pdf(path: Path, title: str, questions: list[dict[str, Any]], answers: bool) -> Path:
+    """Render trusted KaTeX HTML offline; student text never becomes script."""
+    rows = []
+    for question in questions:
+        row = {key: value for key, value in question.items() if key not in {"figure_paths", "image_path"}}
+        row["figures"] = []
+        for source in question.get("figure_paths") or []:
+            if not Path(source).is_file():
+                continue
+            with PillowImage.open(source) as image:
+                image.thumbnail((1800, 1800))
+                data = io.BytesIO()
+                image.convert("RGB").save(data, format="PNG")
+            row["figures"].append("data:image/png;base64," + base64.b64encode(data.getvalue()).decode())
+        if not answers:
+            row.pop("answer", None)
+            row.pop("explanation", None)
+        rows.append(row)
+    worker = Path(__file__).resolve().parents[3] / "scripts" / "render_math_pdf.cjs"
+    payload = json.dumps(
+        {"title": title, "questions": rows, "answers": answers, "output": str(path.resolve())}
+    )
+    try:
+        process = subprocess.Popen(
+            ["node", str(worker)],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            start_new_session=True,
+        )
+        try:
+            process.communicate(payload, timeout=35)
+        except subprocess.TimeoutExpired:
+            os.killpg(process.pid, signal.SIGKILL)
+            process.communicate()
+            raise ValueError("PDF公式排版超时，请缩小试卷范围后重试") from None
+    except OSError:
+        raise ValueError("PDF公式排版未完成，请检查本地Chromium环境后重试") from None
+    if process.returncode or not path.is_file():
+        raise ValueError("PDF公式排版未完成，请核对公式及本地Chromium环境后重试")
+    return path
+
+
 def build_pdf(path: Path, title: str, questions: list[dict[str, Any]], answers: bool = False) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
+    if answers:
+        missing = [
+            str(index)
+            for index, item in enumerate(questions, 1)
+            if not str(item.get("answer") or "").strip() or not str(item.get("explanation") or "").strip()
+        ]
+        if missing:
+            raise ValueError("第" + "、".join(missing) + "题缺少答案或解析，请先补齐分析")
+    source = json.dumps([title, questions], ensure_ascii=False)
+    if re.search(r"\$|\\[A-Za-z(\[]", source):
+        return build_math_pdf(path, title, questions, answers)
     pdfmetrics.registerFont(UnicodeCIDFont("STSong-Light"))
     body = ParagraphStyle(
         "body", fontName="STSong-Light", fontSize=11, leading=19, wordWrap="CJK", spaceAfter=9

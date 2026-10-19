@@ -50,3 +50,39 @@ def test_pdf_includes_options_and_does_not_embed_original_work(tmp_path):
     assert any("&lt;" in text for text in paragraphs)
     assert not any("机密参考答案" in text for text in paragraphs)
     image.assert_not_called()
+
+
+def test_answer_pdf_requires_both_answer_and_explanation(tmp_path):
+    import pytest
+
+    for item in [{"answer": "2"}, {"explanation": "相加"}]:
+        target = tmp_path / "incomplete.pdf"
+        with pytest.raises(ValueError, match="缺少答案或解析"):
+            build_pdf(target, "答案", [{"question_text": "1+1=?", **item}], answers=True)
+        assert not target.exists()
+
+
+def test_math_pdf_renders_fractions_roots_and_subscripts_offline(tmp_path):
+    target = build_pdf(
+        tmp_path / "math.pdf",
+        "公式排版",
+        [
+            {
+                "question_text": r"比较 $\frac{1}{5}$ 与 $\frac{1}{6}$，直线 $y=\sqrt{3}x$ 经过 $A_1$。",
+                "answer": r"$\frac{1}{5}>\frac{1}{6}$",
+                "explanation": r"分子相同，分母越大分数越小。$A_1$ 为坐标点。",
+            }
+        ],
+        answers=True,
+    )
+    assert target.read_bytes().startswith(b"%PDF-")
+    assert len(target.read_bytes()) > 10000
+
+
+def test_unparseable_formula_cannot_be_exported_as_broken_pdf(tmp_path):
+    import pytest
+
+    target = tmp_path / "broken.pdf"
+    with pytest.raises(ValueError, match="PDF公式排版"):
+        build_pdf(target, "坏公式", [{"question_text": r"计算 $\frac{1}$"}])
+    assert not target.exists()

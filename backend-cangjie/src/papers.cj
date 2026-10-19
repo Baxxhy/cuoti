@@ -20,6 +20,7 @@ func paperDetail(db: Database, accounts: Accounts, paper: JsonObject): JsonObjec
     let id=jsonText(paper,"id"); let items=queryArray(db,"paper_items","SELECT * FROM paper_items WHERE paper_id=? ORDER BY position,id",id)
     for (value in items.getItems()) {
         let item=(value as JsonObject).getOrThrow(); item.put("question",paperQuestion(db,jsonText(item,"question_id"),jsonText(paper,"user_id")))
+        item.put("analysis_ready",JsonBool(paperAnalysisReady(db,jsonText(item,"question_id"))))
     }
     let exports=queryArray(db,"export_jobs","SELECT * FROM export_jobs WHERE paper_id=? ORDER BY created_at DESC,id DESC",id)
     for (value in exports.getItems()) { let item=(value as JsonObject).getOrThrow(); item.put("url",JsonString(accounts.mediaUrl("/"+jsonText(item,"path")))) }

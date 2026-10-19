@@ -5,20 +5,20 @@
     <view v-else class="page-content">
       <view class="question-context">
         <text>当前题目</text>
-        <b>{{ question.question_text }}</b>
+        <b><math-text :text="question.question_text" inline /></b>
       </view>
       <view class="card">
         <view class="visual-picker">
           <view>
             <text class="hint">本题演示</text>
-            <b>{{ spec.title }}</b>
+            <b><math-text :text="spec.title" inline /></b>
           </view>
         </view>
-        <text class="visual-goal">{{ spec.teaching_goal }}</text>
+        <math-text class="visual-goal" :text="spec.teaching_goal" inline />
         <visualization-canvas :spec="spec" :values="values" />
         <view v-for="variable in spec.interactive_variables" :key="variable.name" class="control">
           <view>
-            <text>{{ variable.label || variable.name }}</text>
+            <math-text :text="variable.label || variable.name" inline />
             <b>{{ values[variable.name] }}</b>
           </view>
           <slider
@@ -33,8 +33,8 @@
         </view>
         <view class="task">
           <text>试一试</text>
-          <b>{{ spec.student_task }}</b>
-          <small>观察重点：{{ spec.expected_observation }}</small>
+          <b><math-text :text="spec.student_task" inline /></b>
+          <small><math-text :text="'观察重点：' + spec.expected_observation" inline /></small>
         </view>
       </view>
       <view class="card">
@@ -53,6 +53,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import VisualizationCanvas from '@/components/visualization-canvas/visualization-canvas.vue'
 import { reactive, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'

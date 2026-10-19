@@ -80,9 +80,12 @@
                 </view>
               </view>
               <math-text v-if="item.solution" class="reference-solution" :text="item.solution" />
-              <text v-if="item.grading?.feedback" class="grading-feedback">
-                {{ item.grading.feedback }}
-              </text>
+              <math-text
+                v-if="item.grading?.feedback"
+                class="grading-feedback"
+                :text="item.grading.feedback"
+                inline
+              />
               <button
                 role="button"
                 v-if="
@@ -237,6 +240,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onLoad, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData, patchData, postData, mediaUrl } from '@/api/index.js'

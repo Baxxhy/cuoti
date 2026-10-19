@@ -3,7 +3,7 @@
     <view class="report-profile">
       <text class="report-eyebrow">学习近况</text>
       <text class="report-name">{{ data.student?.name }}的学习报告</text>
-      <text class="report-suggestion">{{ data.suggestion }}</text>
+      <math-text class="report-suggestion" :text="data.suggestion" inline />
     </view>
     <view class="report-stats">
       <view>
@@ -93,6 +93,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref, watch } from 'vue'
 import { reportCauses, reportCauseLabel, reportMastery, reportPointKey } from '@/utils/report.js'
 const props = defineProps({ data: Object })

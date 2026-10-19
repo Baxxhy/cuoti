@@ -32,12 +32,25 @@
             @click="go(`/pages/teacher/review-detail?id=${item.id}`)"
           >
             <view class="row-main">
-              <text class="row-title">{{ item.student_name }} · {{ item.question_title }}</text>
-              <text class="row-meta">{{ item.question_summary }}</text>
-              <text class="row-meta">
-                作答：{{ item.student_answer || '未识别' }} · 置信度
-                {{ Math.round(item.confidence * 100) }}% · 等待 {{ item.waiting_minutes }} 分钟
-              </text>
+              <math-text
+                class="row-title"
+                :text="item.student_name + ' · ' + item.question_title"
+                inline
+              />
+              <math-text class="row-meta" :text="item.question_summary" inline />
+              <math-text
+                class="row-meta"
+                :text="
+                  ' 作答：' +
+                  (item.student_answer || '未识别') +
+                  ' · 置信度 ' +
+                  Math.round(item.confidence * 100) +
+                  '% · 等待 ' +
+                  item.waiting_minutes +
+                  ' 分钟 '
+                "
+                inline
+              />
               <text class="row-meta">原因：{{ reasonText(item.reason_codes) }}</text>
             </view>
             <text class="tag" :class="{ warn: item.verdict === 'review_required' }">
@@ -51,6 +64,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { ref } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

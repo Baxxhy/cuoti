@@ -46,7 +46,7 @@
             <view class="card-heading"><text>薄弱知识点</text></view>
             <view v-for="item in data.weak_points" :key="item.name" class="teacher-row">
               <view class="row-main">
-                <text class="row-title">{{ item.name }}</text>
+                <math-text class="row-title" :text="item.name" inline />
                 <text class="row-meta">班级掌握 {{ Math.round(item.score * 100) }}%</text>
               </view>
             </view>
@@ -56,7 +56,7 @@
             <view class="card-heading"><text>高频错因</text></view>
             <view v-for="item in data.frequent_errors" :key="item.name" class="teacher-row">
               <view class="row-main">
-                <text class="row-title">{{ item.name }}</text>
+                <math-text class="row-title" :text="item.name" inline />
                 <text class="row-meta">出现概率 {{ Math.round(item.probability * 100) }}%</text>
               </view>
             </view>
@@ -70,7 +70,7 @@
           </view>
           <view v-for="item in data.attention_students" :key="item.id" class="teacher-row">
             <view class="row-main">
-              <text class="row-title">{{ item.name }}</text>
+              <math-text class="row-title" :text="item.name" inline />
               <text class="row-meta">{{ item.pending_reviews }} 个作答等待核对</text>
             </view>
             <text class="tag warn">需关注</text>
@@ -82,6 +82,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, onMounted, ref } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

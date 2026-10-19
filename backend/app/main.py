@@ -4514,7 +4514,22 @@ async def get_paper(paper_id: str, db: AsyncSession = Depends(get_db)):
     item_rows = []
     for item in items:
         question = await db.get(Question, item.question_id)
-        item_rows.append(row_dict(item) | {"question": row_dict(question) if question else None})
+        analysis = (
+            await db.scalars(select(ProblemAnalysis).where(ProblemAnalysis.question_id == item.question_id))
+        ).first()
+        references = (
+            list(await db.scalars(select(ReferenceStep).where(ReferenceStep.analysis_id == analysis.id)))
+            if analysis else []
+        )
+        item_rows.append(
+            row_dict(item) | {
+                "question": row_dict(question) if question else None,
+                "analysis_ready": bool(
+                    analysis and str(analysis.final_answer or "").strip()
+                    and any(str(step.text or "").strip() for step in references)
+                ),
+            }
+        )
     exports = list(
         await db.scalars(
             select(ExportJob).where(ExportJob.paper_id == paper_id).order_by(ExportJob.created_at.desc())
@@ -4634,6 +4649,14 @@ async def export_paper(paper_id: str, payload: dict = Body(default={}), db: Asyn
             }
         )
     kind = payload.get("kind", "question")
+    if kind == "answer":
+        missing = [
+            str(index) for index, question in enumerate(questions, 1)
+            if not str(question.get("answer") or "").strip()
+            or not str(question.get("explanation") or "").strip()
+        ]
+        if missing:
+            raise HTTPException(409, "第" + "、".join(missing) + "题缺少答案或解析，请先补齐分析后再导出答案 PDF")
     suffix = "xlsx" if kind == "excel" else "pdf"
     path = Path("reports") / f"{paper_id}-{kind}.{suffix}"
     if kind == "excel":

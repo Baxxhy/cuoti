@@ -5,11 +5,20 @@ import stdx.encoding.json.*
 import stdx.encoding.url.*
 import stdx.net.http.*
 
+func paperAnalysisReady(db: Database, questionId: String): Bool {
+    let rows=db.query("SELECT id,final_answer FROM problem_analyses WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1",[Some(questionId)]).rows
+    if (rows.isEmpty() || stripWhitespace(rowText(rows[0],"final_answer")).isEmpty()) { return false }
+    for (step in db.query("SELECT text FROM reference_steps WHERE analysis_id=? ORDER BY step_index,id",[Some(rowText(rows[0],"id"))]).rows) {
+        if (!stripWhitespace(rowText(step,"text")).isEmpty()) { return true }
+    }
+    return false
+}
+
 func exportQuestions(db: Database, paper: JsonObject, includeImages: Bool): JsonArray {
     let result=JsonArray()
     for (row in db.query("SELECT * FROM paper_items WHERE paper_id=? ORDER BY position,id",[sqlValue(paper["id"])]).rows) {
         let question=paperQuestion(db,rowText(row,"question_id"),jsonText(paper,"user_id")); let id=jsonText(question,"id")
-        let analyses=db.query("SELECT * FROM problem_analyses WHERE question_id=? ORDER BY created_at,id LIMIT 1",[Some(id)]).rows
+        let analyses=db.query("SELECT * FROM problem_analyses WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1",[Some(id)]).rows
         let diagnoses=db.query("SELECT * FROM diagnoses WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1",[Some(id)]).rows
         let analysis=if (analyses.isEmpty()) { JsonObject() } else { rowJson("problem_analyses",analyses[0]) }
         let item=JsonObject(); item.put("question_text",question["question_text"]); item.put("answer",JsonString(tutorText(analysis,"final_answer")))
@@ -39,6 +48,13 @@ func exportPaper(context: HttpContext, accounts: Accounts): JsonValue {
         if (kind!="question" && kind!="answer" && kind!="excel") { throw ApiError(422,"不支持的导出格式") }
         return db.transaction<JsonValue>({ tx =>
             let paper=ownedPaper(tx,id,rowText(user,"id")); let input=JsonObject(); input.put("operation",JsonString("render_paper")); input.put("paper_title",paper["title"]); input.put("paper_kind",JsonString(kind)); input.put("paper_questions",exportQuestions(tx,paper,kind!="excel"))
+            if (kind=="answer") {
+                var index: Int64=0
+                for (value in tutorArray(input,"paper_questions").getItems()) {
+                    index++; let item=(value as JsonObject).getOrThrow()
+                    if (stripWhitespace(tutorText(item,"answer")).isEmpty() || stripWhitespace(tutorText(item,"explanation")).isEmpty()) { throw ApiError(409,"第${index}题缺少答案或解析，请先补齐分析后再导出答案 PDF") }
+                }
+            }
             let rendered=algorithmCompute(input); let bytes=fromBase64String(jsonText(rendered,"file_base64")).getOrThrow()
             if (bytes.isEmpty() || bytes.size>64*1024*1024 || sha256(bytes)!=jsonText(rendered,"sha256")) { throw ApiError(503,"导出文件校验失败") }
             let jobId=newId(); let suffix=if (kind=="excel") { "xlsx" } else { "pdf" }; let path="reports/${id}-${kind}-${jobId}.${suffix}"

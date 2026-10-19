@@ -647,11 +647,13 @@ test.describe('教师与学生协作', () => {
       page.locator('.field').filter({ hasText: '选择班级' }).locator('.field-box'),
       className,
     )
-    await choose(
-      page,
-      page.locator('.field').filter({ hasText: '选择题目' }).locator('.field-box'),
-      questionName,
-    )
+    await page.locator('.question-picker').first().click()
+    await page
+      .locator('.question-options .question-picker')
+      .filter({ hasText: questionName })
+      .click()
+    await expect(page.locator('.question-options')).toHaveCount(0)
+    await expect(page.locator('.question-picker')).toContainText(questionName)
     await page.getByText('允许 AI 判题', { exact: true }).click()
     await page.getByText('必须教师批改', { exact: true }).click()
     await button(page, '布置给全班').click()

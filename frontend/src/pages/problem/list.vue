@@ -186,7 +186,7 @@
       <template v-else>
         <view v-for="group in groups" :key="group.key" class="problem-group">
           <view v-if="group.title" class="group-heading">
-            <b>{{ group.title }}</b>
+            <b><math-text :text="group.title" inline /></b>
             <text>
               {{ group.subject }} · {{ group.grade || '未设置年级' }} · {{ group.items.length }} 道
             </text>

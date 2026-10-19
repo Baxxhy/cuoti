@@ -26,7 +26,7 @@
               <text>{{ item.question.subject }} · {{ item.question.question_type }}</text>
               <text>{{ statusText(item.student_assignment.status) }}</text>
             </view>
-            <text class="assignment-title">{{ item.assignment.title }}</text>
+            <math-text class="assignment-title" :text="item.assignment.title" inline />
             <text class="assignment-toggle">
               {{ selected === item.student_assignment.id ? '收起' : '打开作业' }}
             </text>
@@ -78,7 +78,7 @@
               </button>
             </template>
             <view v-else class="assignment-result">
-              <text>{{ resultText(item) }}</text>
+              <math-text :text="resultText(item)" inline />
             </view>
             <view v-if="item.teacher_feedback" class="teacher-feedback">
               <b>教师反馈 · {{ conclusionText(item.teacher_feedback.conclusion) }}</b>
@@ -93,9 +93,11 @@
                 v-if="item.teacher_feedback.student_hint"
                 :text="item.teacher_feedback.student_hint"
               />
-              <text v-if="item.teacher_feedback.next_task">
-                下一步：{{ item.teacher_feedback.next_task }}
-              </text>
+              <math-text
+                v-if="item.teacher_feedback.next_task"
+                :text="' 下一步：' + item.teacher_feedback.next_task"
+                inline
+              />
             </view>
             <view v-if="item.grading_feedback" class="grading-feedback">
               <math-text :text="item.grading_feedback" />
@@ -108,6 +110,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 import { computed, reactive, ref } from 'vue'
 import { onShow } from '@dcloudio/uni-app'

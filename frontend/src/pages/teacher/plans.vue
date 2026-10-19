@@ -11,7 +11,7 @@
       <view v-else class="teacher-card">
         <view v-for="item in items" :key="item.id" class="teacher-row">
           <view class="row-main">
-            <text class="row-title">{{ item.reason }}</text>
+            <math-text class="row-title" :text="item.reason" inline />
             <text class="row-meta">
               截止：{{ formatDate(item.due_at) }} · {{ statusText(item.status) }}
             </text>
@@ -52,6 +52,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import DateTimeInput from '@/components/date-time-input/date-time-input.vue'
 import { reactive, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'

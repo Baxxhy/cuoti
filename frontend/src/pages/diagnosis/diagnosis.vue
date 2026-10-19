@@ -72,11 +72,15 @@
           <view class="answer-summary-card">
             <view class="answer-row">
               <text class="answer-label">你的作答</text>
-              <text class="answer-value">{{ studentAnswer }}</text>
+              <math-text class="answer-value" :text="studentAnswer" inline />
             </view>
             <view class="answer-row correct-answer-row">
               <text class="answer-label">正确答案</text>
-              <text class="answer-value correct-answer">{{ finalAnswer || '待确认' }}</text>
+              <math-text
+                class="answer-value correct-answer"
+                :text="finalAnswer || '待确认'"
+                inline
+              />
             </view>
           </view>
 
@@ -484,6 +488,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, reactive, ref } from 'vue'
 
 import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'

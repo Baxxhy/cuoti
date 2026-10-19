@@ -132,7 +132,7 @@
       </view>
       <view v-if="section === 'learn' && item.diagnosis" class="issue-section">
         <text class="section-kicker">{{ diagnosisState.title }}</text>
-        <text v-if="firstErrorTitle" class="issue-title">{{ firstErrorTitle }}</text>
+        <math-text v-if="firstErrorTitle" class="issue-title" :text="firstErrorTitle" inline />
         <math-text
           v-if="diagnosisState.kind === 'finding'"
           class="issue-formula"
@@ -281,9 +281,11 @@
         @click="go(`/pages/journey/journey?id=${id}`)"
       >
         <text class="section-kicker">学习档案</text>
-        <text class="journey-copy">
-          {{ journey?.summary || '查看这道题的诊断、练习和复习记录。' }}
-        </text>
+        <math-text
+          class="journey-copy"
+          :text="journey?.summary || '查看这道题的诊断、练习和复习记录。'"
+          inline
+        />
         <view class="learning-path" v-if="journey">
           <view
             v-for="(step, index) in journey.stages"
@@ -355,7 +357,7 @@
           />
         </view>
         <view v-if="opened === 'knowledge'" class="fold-body chip-row">
-          <text v-for="kp in knowledge" :key="kp" class="tag">{{ kp }}</text>
+          <math-text v-for="kp in knowledge" :key="kp" class="tag" :text="kp" inline />
         </view>
       </view>
     </view>
@@ -363,6 +365,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { originalQuestionImage, questionPreviewImages } from '@/utils/question-assets.js'
 import { computed, ref } from 'vue'
 import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'

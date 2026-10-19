@@ -16,13 +16,13 @@
         <template v-else>
           <view v-for="item in items" :key="item.question.id" class="teacher-row">
             <view class="row-main">
-              <text class="row-title">{{ item.question.title }}</text>
+              <math-text class="row-title" :text="item.question.title" inline />
               <text class="row-meta">
                 {{ item.question.subject }} · {{ item.question.grade || '未设年级' }} ·
                 {{ item.question.question_type }} ·
                 {{ item.teacher_question.difficulty || '未设难度' }}
               </text>
-              <text class="row-meta">{{ item.question.question_text }}</text>
+              <math-text class="row-meta" :text="item.question.question_text" inline />
             </view>
             <text class="tag" :class="{ warn: !item.teacher_question.allow_auto_grade }">
               {{ item.teacher_question.allow_auto_grade ? '可自动判题' : '教师判题' }}
@@ -35,6 +35,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { onMounted, ref } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

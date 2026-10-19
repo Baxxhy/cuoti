@@ -33,14 +33,14 @@
               查看与调整
             </text>
           </view>
-          <text class="evidence-text">{{ data.suggestion }}</text>
+          <math-text class="evidence-text" :text="data.suggestion" inline />
         </view>
         <view class="two-column student-report-details">
           <view class="teacher-card">
             <view class="card-heading"><text>知识掌握估计</text></view>
             <view v-for="item in mastery" :key="item.id" class="teacher-row">
               <view class="row-main">
-                <text class="row-title">{{ item.knowledge_point }}</text>
+                <math-text class="row-title" :text="item.knowledge_point" inline />
                 <text class="row-meta">
                   {{ item.subject }} · {{ Math.round(item.mastery_score * 100) }}% ·
                   {{ item.evidence_count }} 条学习证据
@@ -53,7 +53,7 @@
             <view class="card-heading"><text>需关注的错因</text></view>
             <view v-for="item in misconceptions" :key="item.id" class="teacher-row">
               <view class="row-main">
-                <text class="row-title">{{ item.label }}</text>
+                <math-text class="row-title" :text="item.label" inline />
                 <text class="row-meta">
                   {{ item.subject }} · 记录估计 {{ Math.round(item.probability * 100) }}% ·
                   {{ item.evidence_count }} 条学习证据
@@ -67,17 +67,26 @@
           <view class="card-heading"><text>近期认知更新</text></view>
           <view v-for="item in data.recent_updates" :key="item.id" class="teacher-row">
             <view class="row-main">
-              <text class="row-title">
-                {{
+              <math-text
+                class="row-title"
+                :text="
                   item.entity_type === 'misconception'
                     ? reportCauseLabel(item.entity_key) || '错因待核对'
                     : item.entity_key
-                }}
-              </text>
-              <text class="row-meta">
-                {{ Math.round(item.old_value * 100) }}% → {{ Math.round(item.new_value * 100) }}% ·
-                {{ item.reason }}
-              </text>
+                "
+                inline
+              />
+              <math-text
+                class="row-meta"
+                :text="
+                  Math.round(item.old_value * 100) +
+                  '% → ' +
+                  Math.round(item.new_value * 100) +
+                  '% · ' +
+                  item.reason
+                "
+                inline
+              />
             </view>
           </view>
         </view>
@@ -86,6 +95,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

@@ -27,7 +27,7 @@
             <text class="repair-number">{{ i + 1 }}</text>
             <view class="repair-copy">
               <view class="repair-step-heading">
-                <text>{{ step.title }}</text>
+                <math-text :text="step.title" inline />
                 <small>{{ step.recommended ? '建议先做 · ' : '' }}{{ step.state }}</small>
               </view>
               <math-text class="editorial-description" :text="step.detail" />
@@ -96,6 +96,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

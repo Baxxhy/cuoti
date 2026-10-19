@@ -14,7 +14,7 @@
       @click.stop="selectPoint(point)"
     >
       <view class="node-dot" />
-      <text>{{ shortName(point.name) }}</text>
+      <math-text class="node-label" :text="point.name" inline />
     </button>
     <text v-if="!graph?.nodes?.length" class="graph-empty">
       完成错题学习后，这里会形成知识与错因关系
@@ -25,6 +25,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { nextTick, onMounted, ref, watch } from 'vue'
 const props = defineProps({ graph: Object })
 const emit = defineEmits(['select'])
@@ -74,10 +75,6 @@ function draw() {
     }
   })
   ctx.draw()
-}
-function shortName(value) {
-  const text = String(value || '')
-  return text.length > 9 ? `${text.slice(0, 9)}…` : text
 }
 function nodeStyle(point) {
   return {
@@ -138,7 +135,7 @@ watch(
   border: 6rpx solid #fff;
   box-shadow: 0 2rpx 8rpx rgba(15, 23, 42, 0.18);
 }
-.graph-node text {
+.graph-node .node-label {
   display: block;
   max-width: 190rpx;
   margin-top: 5rpx;
@@ -147,7 +144,7 @@ watch(
   background: rgba(255, 255, 255, 0.9);
   color: #334155;
   font-size: 20rpx;
-  line-height: 1.25;
+  line-height: 1.8;
   text-align: center;
 }
 .graph-node.selected .node-dot {
@@ -156,7 +153,7 @@ watch(
   border-color: #dce8ff;
   box-shadow: 0 0 0 5rpx rgba(47, 107, 255, 0.18);
 }
-.graph-node.selected text {
+.graph-node.selected .node-label {
   font-weight: 600;
   color: #172b4d;
 }

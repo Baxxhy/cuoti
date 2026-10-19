@@ -42,7 +42,7 @@
         <view v-if="progressItem" class="report-block progress-block">
           <text class="block-label">{{ progressItem.subject }} · 近期学习</text>
           <template v-if="progressItem">
-            <text class="block-title">{{ progressItem.knowledge_point }}</text>
+            <math-text class="block-title" :text="progressItem.knowledge_point" inline />
             <view class="change-line">
               <b>{{ Math.round(progressItem.mastery_score * 100) }}%</b>
               <text>学习记录估计</text>
@@ -103,7 +103,7 @@
         <view v-if="stableItem" class="report-block stable-block">
           <text class="block-label">{{ stableItem.subject }} · 正在稳定</text>
           <template v-if="stableItem">
-            <text class="block-title">{{ stableItem.knowledge_point }}</text>
+            <math-text class="block-title" :text="stableItem.knowledge_point" inline />
             <text class="stable-score">
               学习记录估计 {{ Math.round(stableItem.mastery_score * 100) }}%
             </text>
@@ -192,7 +192,10 @@
                 @keydown.space.prevent
                 @keyup.space.prevent="selected = node"
               >
-                {{ categoryLabel[node.category] || '学习关系' }} · {{ node.name }}
+                <math-text
+                  :text="(categoryLabel[node.category] || '学习关系') + ' · ' + node.name"
+                  inline
+                />
               </button>
               <text v-if="!graph.nodes?.length" class="muted">还没有可查看的知识关系</text>
             </view>
@@ -200,8 +203,8 @@
           </template>
           <view v-if="selected" class="node-detail">
             <text class="tag">{{ categoryLabel[selected.category] || '学习关系' }}</text>
-            <b>{{ selected.name }}</b>
-            <text>{{ selected.detail || '来自你的错题学习记录' }}</text>
+            <b><math-text :text="selected.name" inline /></b>
+            <math-text :text="selected.detail || '来自你的错题学习记录'" inline />
             <button
               tabindex="0"
               role="button"
@@ -222,6 +225,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import CognitionCanvas from '@/components/cognition-canvas/cognition-canvas.vue'
 
 import { computed, ref } from 'vue'

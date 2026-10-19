@@ -36,7 +36,7 @@
       />
       <template v-else-if="card">
         <text class="card-meta">{{ card.subject }} · {{ card.content?.grade || '通用' }}</text>
-        <h2>{{ card.name }}</h2>
+        <h2><math-text :text="card.name" inline /></h2>
         <math-text :text="card.content?.definition || '这张知识卡暂未补充定义。'" />
         <view v-if="card.content?.formulas?.length" class="knowledge-section">
           <h3>关键公式</h3>
@@ -63,7 +63,7 @@
               class="card-link"
               @click="openCard(related.code)"
             >
-              {{ related.name }}
+              <math-text :text="related.name" inline />
               <text>查看</text>
             </button>
           </template>
@@ -86,10 +86,18 @@
           class="knowledge-result"
           @click="openCard(item.code)"
         >
-          <text>{{ item.name }}</text>
+          <math-text :text="item.name" inline />
           <small>
-            {{ item.subject }} · {{ item.content?.grade || '通用' }} ·
-            {{ item.content?.chapter || '知识卡' }}
+            <math-text
+              :text="
+                item.subject +
+                ' · ' +
+                (item.content?.grade || '通用') +
+                ' · ' +
+                (item.content?.chapter || '知识卡')
+              "
+              inline
+            />
           </small>
         </button>
         <view v-if="!cards.length" class="empty">
@@ -101,6 +109,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'

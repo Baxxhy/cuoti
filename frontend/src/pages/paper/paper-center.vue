@@ -99,10 +99,8 @@
           <uni-icons v-if="selected.includes(q.id)" type="checkmarkempty" size="24" color="#fff" />
         </view>
         <view class="list-main">
-          <text class="list-title">{{ q.question_text || q.title }}</text>
-          <text class="list-desc">
-            {{ q.subject }} · {{ (q.knowledge_points || []).join('、') || q.grade }}
-          </text>
+          <math-text class="list-title" :text="q.question_text || q.title" inline />
+          <math-text class="list-desc" :text="candidateDescription(q)" inline />
           <text class="list-meta">
             掌握 {{ Math.round((q.mastery_score || 0) * 100) }}% ·
             {{ errorTypeLabel(q.error_type) }}
@@ -141,7 +139,7 @@
           <uni-icons type="map-filled" size="24" color="var(--color-primary)" />
         </view>
         <view class="list-main">
-          <text class="list-title">{{ paper.title }}</text>
+          <math-text class="list-title" :text="paper.title" inline />
         </view>
         <uni-icons type="right" size="24" color="var(--color-border)" />
       </view>
@@ -173,35 +171,65 @@
         <view v-for="(item, index) in active.items" :key="item.id" class="paper-item">
           <text class="item-index">{{ index + 1 }}</text>
           <view class="list-main">
-            <b>{{ item.question?.question_text }}</b>
+            <b><math-text :text="item.question?.question_text" inline /></b>
             <view class="score-edit">
-              <text>分值</text>
-              <!-- #ifdef H5 -->
-              <component
-                :is="'input'"
-                class="paper-score-input"
-                :value="item.score"
-                :aria-label="`第${index + 1}题分值`"
-                :disabled="busy || !!openingPaper"
-                type="number"
-                min="1"
-                max="100"
-                @input="item.score = $event.target.value"
-              />
-              <!-- #endif -->
-              <!-- #ifndef H5 -->
-              <input
-                v-model.number="item.score"
-                class="paper-score-input"
-                :aria-label="`第${index + 1}题分值`"
-                :disabled="busy || !!openingPaper"
-                type="number"
-                min="1"
-                max="100"
-              />
-              <!-- #endif -->
-              <text>分</text>
+              <text class="score-label">分值</text>
+              <view class="score-stepper">
+                <button
+                  class="score-step"
+                  :aria-label="`第${index + 1}题减1分`"
+                  :disabled="busy || !!openingPaper || Number(item.score) <= 1"
+                  @click="changeScore(item, -1)"
+                >
+                  <uni-icons type="minus" size="16" color="currentColor" />
+                </button>
+                <!-- #ifdef H5 -->
+                <component
+                  :is="'input'"
+                  class="paper-score-input"
+                  :value="item.score"
+                  :aria-label="`第${index + 1}题分值`"
+                  :disabled="busy || !!openingPaper"
+                  type="number"
+                  min="1"
+                  max="100"
+                  inputmode="numeric"
+                  @input="item.score = $event.target.value"
+                />
+                <!-- #endif -->
+                <!-- #ifndef H5 -->
+                <input
+                  v-model.number="item.score"
+                  class="paper-score-input"
+                  :aria-label="`第${index + 1}题分值`"
+                  :disabled="busy || !!openingPaper"
+                  type="number"
+                  min="1"
+                  max="100"
+                />
+                <!-- #endif -->
+                <button
+                  class="score-step"
+                  :aria-label="`第${index + 1}题加1分`"
+                  :disabled="busy || !!openingPaper || Number(item.score) >= 100"
+                  @click="changeScore(item, 1)"
+                >
+                  <uni-icons type="plus" size="16" color="currentColor" />
+                </button>
+              </view>
+              <text class="score-unit">分</text>
             </view>
+            <text v-if="item.analysis_ready === false" class="analysis-pending">
+              答案与解析待补齐
+            </text>
+            <button
+              v-if="item.question?.confirmed === false"
+              class="analysis-link"
+              :disabled="busy"
+              @click="reviewQuestion(item)"
+            >
+              先核对题目
+            </button>
           </view>
           <view class="sort">
             <button
@@ -228,11 +256,16 @@
         <button class="secondary-btn" :disabled="busy || !!openingPaper" @click="save">
           保存名称、排序与分值
         </button>
+        <text v-if="exportProgress" class="operation-status" role="status">
+          {{ exportProgress }}
+        </text>
         <view class="export-grid">
           <button :disabled="busy || !!openingPaper" @click="exportFile('question')">
             题目 PDF
           </button>
-          <button :disabled="busy || !!openingPaper" @click="exportFile('answer')">答案 PDF</button>
+          <button :disabled="busy || !!openingPaper" @click="exportFile('answer')">
+            {{ missingAnalysis.length ? '补齐解析并导出答案' : '答案 PDF' }}
+          </button>
           <button :disabled="busy || !!openingPaper" @click="exportFile('excel')">学习表格</button>
         </view>
         <view
@@ -256,8 +289,10 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, reactive, ref } from 'vue'
 import { onLoad, onUnload } from '@dcloudio/uni-app'
+import { go } from '@/utils/navigation.js'
 import { openExportFile } from '@/utils/export-file.js'
 import { deleteData, getData, patchData, postData } from '@/api/index.js'
 import {
@@ -284,6 +319,41 @@ const candidates = ref([]),
   busy = ref(false),
   openingExport = ref(''),
   searching = ref(false)
+const exportProgress = ref('')
+const missingAnalysis = computed(() =>
+  (active.value?.items || []).filter((item) => item.analysis_ready === false),
+)
+function candidateDescription(question) {
+  const points = (Array.isArray(question.knowledge_points) ? question.knowledge_points : []).filter(
+    (value) =>
+      typeof value === 'string' &&
+      value.trim() &&
+      !['null', 'undefined'].includes(value.trim().toLowerCase()),
+  )
+  return `${question.subject || '学科待确认'} · ${points.length ? points.join('、') : '知识点待分析'}`
+}
+function changeScore(item, delta) {
+  if (busy.value || openingPaper.value) return
+  const value = Number(item.score)
+  if (!Number.isInteger(value) || value < 1 || value > 100) {
+    actionError.value = '请输入1至100之间的整数分值。'
+    return
+  }
+  item.score = Math.max(1, Math.min(100, value + delta))
+  actionError.value = ''
+}
+async function reviewQuestion(item) {
+  if (busy.value || openingPaper.value) return
+  busy.value = true
+  try {
+    await persistEditor()
+    go(`/pages/ocr/ocr?id=${encodeURIComponent(item.question_id)}`)
+  } catch (error) {
+    actionError.value = error.message || '试卷未保存，请重试。'
+  } finally {
+    busy.value = false
+  }
+}
 const filter = reactive({
   subject: '',
   knowledge_point: '',
@@ -439,11 +509,35 @@ async function exportFile(kind) {
   actionError.value = ''
   try {
     await persistEditor()
+    if (kind === 'answer' && missingAnalysis.value.length) {
+      const pending = [...missingAnalysis.value]
+      for (let index = 0; index < pending.length; index++) {
+        const item = pending[index]
+        const number =
+          active.value.items.findIndex((row) => row.question_id === item.question_id) + 1
+        if (item.question?.confirmed === false)
+          throw new Error(`第${number}题尚未核对，请先点“先核对题目”，确认后再补齐解析。`)
+        exportProgress.value = `正在补齐第${number}题的解析与知识点（${index + 1}/${pending.length}）…`
+        await postData(
+          `/questions/${item.question_id}/analyze`,
+          {},
+          { timeout: 180000, silent: true },
+        )
+        if (disposed) return
+      }
+      active.value = await getData(`/papers/${active.value.id}`, { silent: true })
+      if (missingAnalysis.value.length)
+        throw new Error('部分题目的分析仍不完整，请核对原题后重试；本次未生成答案 PDF。')
+      await search()
+    }
+    if (disposed) return
+    exportProgress.value = kind === 'excel' ? '正在生成学习表格…' : '正在排版 PDF…'
     await postData(`/papers/${active.value.id}/export`, { kind })
     if (await open(active.value.id, true)) uni.showToast({ title: '导出已生成', icon: 'success' })
   } catch (err) {
     actionError.value = err.message || '导出未完成，可以重试；已保存的试卷不受影响。'
   } finally {
+    exportProgress.value = ''
     busy.value = false
   }
 }
@@ -646,23 +740,86 @@ onUnload(() => {
 .score-edit {
   display: flex;
   align-items: center;
-  gap: 8rpx;
+  gap: 10px;
+  margin-top: 12px;
   color: var(--color-text-secondary);
   font-size: 13px;
-  margin-top: 9rpx;
+}
+.score-label,
+.score-unit {
+  flex: none;
+}
+.score-stepper {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 2px;
+  border: 1px solid #e3e7ed;
+  border-radius: 10px;
+  background: #f7f9fc;
+}
+.score-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  min-height: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #64748b;
+}
+.score-step::after {
+  border: 0;
+}
+.score-step:not([disabled]):hover {
+  background: #eaf1ff;
+  color: var(--color-primary);
+}
+.score-step[disabled] {
+  opacity: 0.3;
 }
 .score-edit :deep(.paper-score-input) {
   box-sizing: border-box;
-  min-height: 44px;
-  width: 64px;
-  padding: 6px;
-  border: 1px solid var(--color-border);
-  font-size: 16px;
-  line-height: 1.5;
+  flex: none;
+  width: 40px;
+  height: 32px;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 32px;
   text-align: center;
-  border-radius: 10rpx;
-  background: var(--color-bg);
-  color: var(--color-text-primary);
+  color: #243247;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.score-edit :deep(.paper-score-input::-webkit-inner-spin-button),
+.score-edit :deep(.paper-score-input::-webkit-outer-spin-button) {
+  margin: 0;
+  -webkit-appearance: none;
+}
+.analysis-pending {
+  display: block;
+  margin-top: 8px;
+  color: #96701b;
+  font-size: 12px;
+}
+.analysis-link {
+  width: auto;
+  margin: 8px 0 0;
+  padding: 4px 8px;
+  font-size: 13px;
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
 }
 .sort {
   display: flex;

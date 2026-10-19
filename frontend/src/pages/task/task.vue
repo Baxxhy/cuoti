@@ -45,7 +45,7 @@
           @click="go(`/pages/task/task?id=${item.id}`)"
           @keydown.enter.prevent="go(`/pages/task/task?id=${item.id}`)"
         >
-          <text class="history-title">{{ item.question_title || '本题学习' }}</text>
+          <math-text class="history-title" :text="item.question_title || '本题学习'" inline />
           <text class="muted">{{ taskStatusLabel(item.status) }}</text>
         </button>
       </template>
@@ -79,7 +79,7 @@
           <text class="muted">可以离开，稍后从这里继续。</text>
         </view>
         <template v-else>
-          <text class="task-title">{{ task.student_view?.title }}</text>
+          <math-text class="task-title" :text="task.student_view?.title" inline />
           <view
             v-if="
               task.student_view?.feedback && !handwritingId && !task.student_view?.visualization
@@ -364,6 +364,7 @@
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref, watch } from 'vue'
 import TeachingContent from '@/components/teaching-content/teaching-content.vue'
 import SelfCheck from '@/components/self-check/self-check.vue'

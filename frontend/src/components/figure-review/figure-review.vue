@@ -28,7 +28,7 @@
             {{ labels[row.status] || '待核对' }}
           </text>
         </view>
-        <text class="figure-message">{{ row.message }}</text>
+        <math-text class="figure-message" :text="row.message" inline />
         <view v-if="showBasis" class="figure-basis">
           <text>照片转写</text>
           <math-text :text="row.evidence_quote" inline />

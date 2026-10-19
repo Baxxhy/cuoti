@@ -81,3 +81,9 @@ make check-final
 | 学习或复习提交失败 | 保留当前作答，按页面提示核对任务/历史状态后重试 |
 
 本指南交付H5运行系统；手机签名安装按用户要求后置，App资源编译不代表已生成安装包。备份恢复不在本次范围。
+
+## 公式 PDF 导出
+
+包含公式的试卷复用前端 KaTeX 排版，经本地 Chromium 离线生成 PDF，运行时需要 Node.js、已安装的前端依赖和 Playwright Chromium。已有本地浏览器包会自动复用；新环境可在 `frontend` 目录运行 `pnpm exec playwright install chromium` 准备浏览器，或用服务环境变量 `ZHIWEI_PDF_CHROMIUM` 指定已安装的 Chromium 可执行文件。Linux 系统库也须满足 Playwright 的运行要求。本轮已验证项目自带的 Chromium 与本地依赖，未触发浏览器下载。
+
+排版过程禁用页面脚本和网络，只读取受控模板、内置字体及题图数据。无法排版时明确失败，不回退到直接打印 LaTeX 源码。答案 PDF 要求每题已有答案和参考步骤；组卷页面的“补齐解析并导出答案”通过现有 Qwen/API池分析入口补齐并重新校验，未核对的原题须先由学生确认。已下载的旧 PDF 保持原样，修改生效后需重新生成。
