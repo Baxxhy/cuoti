@@ -22,6 +22,7 @@ from app.services.question_bank_import import (
 )
 from app.services.question_mapping import map_question, normalized_grade
 from app.services.question_quality import quality_flags
+from question_format_audit import audit_formats
 
 SOURCES = {
     "cmmu": {
@@ -83,12 +84,24 @@ def import_records(source, contains=""):
         print(json.dumps({"stage": "import", **result}, ensure_ascii=False), flush=True)
         batch.clear()
 
-    for item in normalized_records(source):
-        if contains and contains not in item.question_text + item.solution:
-            continue
+    records = [
+        item for item in normalized_records(source)
+        if not contains or contains in item.question_text + item.solution
+    ]
+    # Use exactly the renderer students consume, before any native import.
+    audit = audit_formats([{"id": item.source_item_id, **asdict(item)} for item in records])
+    fields: dict[str, list[str]] = {}
+    for finding in audit["findings"]:
+        fields.setdefault(finding["id"], []).append(finding["field"])
+    for item in records:
         if contains:
             item.source_metadata["selection_text"] = contains
             item.finalize()
+        if item.source_item_id in fields:
+            item.source_metadata["format_review"] = {
+                "content_hash": item.content_hash,
+                "fields": fields[item.source_item_id],
+            }
         flags = quality_flags(item, PROJECT)
         flags.pop("image_missing")
         matches = map_question(

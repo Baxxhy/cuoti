@@ -54,8 +54,17 @@ def quality_flags(question: Any, project_root: Path) -> dict[str, Any]:
     missing = missing_images(question.image_paths or [], project_root)
     answer_verified = selection_answer_verified(question.answer, question.options or [])
     auto_grade = can_auto_grade(question.question_type, question.answer, question.options or [])
+    metadata = getattr(question, "source_metadata", None) or {}
+    review = metadata.get("format_review", {}) if isinstance(metadata, dict) else {}
+    malformed = (
+        isinstance(review, dict)
+        and bool(review.get("fields"))
+        and review.get("content_hash") == getattr(question, "content_hash", None)
+    )
     if not str(question.question_text or "").strip():
         status = "invalid"
+    elif malformed:
+        status = "format_review"
     elif missing:
         status = "missing_asset"
     elif not has_answer:

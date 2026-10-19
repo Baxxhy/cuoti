@@ -88,11 +88,33 @@ func studyDetail(db: Database, value: JsonObject, accounts: Accounts): JsonObjec
     let items=JsonArray(); let submitted=jsonText(value,"status")=="submitted"
     for (raw in studyItems(db,jsonText(value,"id")).getItems()) {
         let item=(raw as JsonObject).getOrThrow(); let snapshot=tutorObject(item,"snapshot"); let publicItem=JsonObject()
-        publicItem.put("id",item["id"]); publicItem.put("position",item["position"]); publicItem.put("question",bankQuestion(snapshot,accounts)); publicItem.put("student_answer",item["student_answer"])
-        if (submitted) { publicItem.put("grading",item["grading"]); publicItem.put("answer",snapshot["answer"]); publicItem.put("solution",snapshot["solution"]) }
+        let available=studyQuestionAvailable(db,snapshot)
+        publicItem.put("id",item["id"]); publicItem.put("position",item["position"]); publicItem.put("student_answer",item["student_answer"]); publicItem.put("unavailable",JsonBool(!available))
+        if (available) { publicItem.put("question",bankQuestion(snapshot,accounts)) }
+        else { let question=JsonObject(); question.put("subject",snapshot["subject"]); question.put("question_type",snapshot["question_type"]); publicItem.put("question",question) }
+        if (submitted) {
+            publicItem.put("grading",item["grading"])
+            if (available) { publicItem.put("answer",snapshot["answer"]); publicItem.put("solution",snapshot["solution"]) }
+        }
         items.add(publicItem)
     }
     value.put("items",items); value.put("question_count",JsonInt(items.getItems().size)); return value
+}
+
+func studyQuestionAvailable(db: Database, snapshot: JsonObject, lock!: Bool=false): Bool {
+    if (jsonText(snapshot,"quality_status")=="format_review") { return false }
+    let rows=db.query("SELECT quality_status,source_metadata FROM dataset_questions WHERE id=?"+if (lock) { " FOR SHARE" } else { "" },[Some(jsonText(snapshot,"id"))]).rows
+    if (rows.isEmpty()) { return true }
+    if (rowText(rows[0],"quality_status")=="format_review") { return false }
+    let metadata=(JsonValue.fromStr(rowText(rows[0],"source_metadata")) as JsonObject).getOrThrow()
+    for (entry in tutorArray(metadata,"format_review_history").getItems()) {
+        if (jsonText((entry as JsonObject).getOrThrow(),"content_hash")==jsonText(snapshot,"content_hash")) { return false }
+    }
+    return true
+}
+
+func studyUnavailableGrade(): JsonObject {
+    let grading=JsonObject(); grading.put("correct",JsonNull()); grading.put("can_update_learning",JsonBool(false)); grading.put("method",JsonString("question_unavailable")); grading.put("feedback",JsonString("此题已暂停使用，未计分")); return grading
 }
 
 func studyInteger(value: JsonValue, minimum: Int64, maximum: Int64): Int64 {
@@ -206,13 +228,16 @@ func studySessionApi(context: HttpContext, accounts: Accounts): JsonValue {
         if (jsonText(before,"status")=="submitted") { return studyDetail(db,before,accounts) }
         if (tutorNumber(before,"version")!=version) { throw ApiError(409,"作答已更新，请重新读取后交卷") }
         let items=studyItems(db,id).getItems(); let results=JsonArray()
+        let unavailable=HashSet<String>()
+        for (entry in items) { let item=(entry as JsonObject).getOrThrow(); if (!studyQuestionAvailable(db,tutorObject(item,"snapshot"))) { unavailable.add(jsonText(item,"id")) } }
         // Bounded parallel computation outside the transaction; no locks during AI.
         var start: Int64=0
         while (start<items.size) {
             let offset=start; let size=if (items.size-start>4) { 4 } else { items.size-start }
             let jobs=Array(size,{ index =>
                 let item=(items[offset+index] as JsonObject).getOrThrow()
-                spawn { gradeStudyItem(item) }
+                let blocked=unavailable.contains(jsonText(item,"id"))
+                spawn { if (blocked) { studyUnavailableGrade() } else { gradeStudyItem(item) } }
             })
             for (job in jobs) { results.add(job.get()) }; start+=size
         }
@@ -220,14 +245,16 @@ func studySessionApi(context: HttpContext, accounts: Accounts): JsonValue {
             let session=ownedStudy(tx,id,owner,lock:true)
             if (jsonText(session,"status")=="submitted") { return studyDetail(tx,session,accounts) }
             if (tutorNumber(session,"version")!=version) { throw ApiError(409,"作答已更新，本次判分未保存，请重新交卷") }
-            var correct: Int64=0; var pending: Int64=0; var answered: Int64=0
+            var correct: Int64=0; var pending: Int64=0; var answered: Int64=0; var excluded: Int64=0
             for (index in 0..items.size) {
-                let item=(items[index] as JsonObject).getOrThrow(); let grading=(results.getItems()[index] as JsonObject).getOrThrow()
+                let item=(items[index] as JsonObject).getOrThrow()
+                let available=studyQuestionAvailable(tx,tutorObject(item,"snapshot"),lock:true)
+                let grading=if (available) { (results.getItems()[index] as JsonObject).getOrThrow() } else { studyUnavailableGrade() }
                 if (studyAnswered(item["student_answer"])) { answered++ }
-                if (!tutorFlag(grading,"can_update_learning")) { pending++ } else if (tutorFlag(grading,"correct")) { correct++ }
+                if (!available) { excluded++ } else if (!tutorFlag(grading,"can_update_learning")) { pending++ } else if (tutorFlag(grading,"correct")) { correct++ }
                 tx.query("UPDATE study_session_items SET grading=? WHERE id=? AND session_id=?",[Some(grading.toString()),Some(jsonText(item,"id")),Some(id)])
             }
-            let summary=JsonObject(); summary.put("correct",JsonInt(correct)); summary.put("pending",JsonInt(pending)); summary.put("answered",JsonInt(answered)); summary.put("total",JsonInt(items.size)); summary.put("score",JsonInt(correct*5)); summary.put("max_score",JsonInt(items.size*5))
+            let summary=JsonObject(); summary.put("correct",JsonInt(correct)); summary.put("pending",JsonInt(pending)); if (excluded>0) { summary.put("excluded",JsonInt(excluded)) }; summary.put("answered",JsonInt(answered)); summary.put("total",JsonInt(items.size)); summary.put("score",JsonInt(correct*5)); summary.put("max_score",JsonInt((items.size-excluded)*5))
             tx.query("UPDATE study_sessions SET status='submitted',results=?,version=version+1,submitted_at=UTC_TIMESTAMP(6),updated_at=UTC_TIMESTAMP(6) WHERE id=?",[Some(summary.toString()),Some(id)])
             return studyDetail(tx,ownedStudy(tx,id,owner),accounts)
         })

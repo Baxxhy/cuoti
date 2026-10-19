@@ -171,3 +171,50 @@ describe('缺失 display 分隔符的正文边界', () => {
     expect(html).not.toContain('<img')
   })
 })
+
+describe('没有分隔符的源题公式', () => {
+  it.each([
+    String.raw`太阳鱼呼吸作用消耗的能量为1357 \mathrm{~J} \cdot \mathrm{m}^{-2} \cdot \mathrm{a}^{-1}`,
+    String.raw`如图，若\angleAGE=32^{\circ}，则\angleGHC等于()`,
+    String.raw`活性成分\mathrm{R}_3\mathrm{~N}在水中存在平衡：\mathrm{R}_3\mathrm{~N}+\mathrm{H}_2\mathrm{O}\rightleftharpoons\mathrm{R}_3\mathrm{NH}^{+}+\mathrm{OH}^{-}`,
+    String.raw`解：\becauseAD//BC，\therefore\angleGHC=106^{\circ}`,
+  ])('裸公式也按数学排版：%s', (source) => {
+    const html = renderMathText(source, true)
+    expect(html).toContain('class="katex"')
+    expect(html).not.toContain('math-unparsed')
+  })
+
+  it('无分隔符表格完整渲染，分组内中文表头保留', () => {
+    const html = renderMathText(
+      String.raw`数据如下：\begin{array}{|c|c|}\hline\text{物质}&\text{现象}\\\hline\mathrm{A}&\text{变蓝}\\\hline\end{array}`,
+      true,
+    )
+    expect(html).toContain('class="katex"')
+    expect(html).not.toContain('math-unparsed')
+    expect(html).toContain('math-table')
+    expect(html).toContain('katex-display')
+    expect(html).toContain('物质')
+    expect(html).toContain('变蓝')
+  })
+
+  it('文档标题命令保留标题文本，百分号不露出转义符', () => {
+    const html = renderMathText(String.raw`\section{消费情况扇形统计图}消费占25 \%`, true)
+    expect(html).toContain('消费情况扇形统计图')
+    expect(html).toContain('消费占25 %')
+    expect(html).not.toContain('\\section')
+    expect(html).not.toContain('math-unparsed')
+  })
+
+  it('损坏的裸命令同样进入格式核验，不假装成普通正文', () => {
+    const html = renderMathText(String.raw`单位\unknownunit{J}，下一个 $x$`, true)
+    expect(html).toContain('class="math-unparsed"')
+    expect(html.match(/class="katex"/g)).toHaveLength(1)
+    expect(html).toContain(String.raw`\unknownunit{J}`)
+  })
+})
+
+it('裸矩阵的外层括号不与环境拆开', () => {
+  const html = renderMathText('矩阵\\left(\\begin{array}{c}1\\\\2\\end{array}\\right)', true)
+  expect(html).toContain('math-table')
+  expect(html).not.toContain('math-unparsed')
+})

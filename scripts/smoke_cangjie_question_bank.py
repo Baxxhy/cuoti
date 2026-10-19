@@ -128,6 +128,37 @@ def question_bank(env, query):
     assert native({**payload, "questions": [row, row]}, 1)["code"] == 422
     assert native({"operation": "unknown"}, 1)["code"] == 422
     assert native(payload, 1, {**env, "CANGJIE_DB_NAME": ""})["code"] == 422
+    review = {"id": saved, "content_hash": "b" * 64, "fields": ["solution"]}
+    assert native({"operation": "review-format", "questions": [review]})["changed"] == 1
+    version = query(env, f"SELECT updated_at FROM dataset_questions WHERE id='{saved}'")
+    assert native({"operation": "review-format", "questions": [review]})["changed"] == 0
+    assert query(env, f"SELECT updated_at FROM dataset_questions WHERE id='{saved}'") == version
+    assert not any(q["id"] == saved for q in native({"operation": "export", "source": "cmmu"}))
+    audited = []
+    after = ""
+    while batch := native({"operation": "audit-export", "after": after}):
+        audited.extend(batch)
+        after = batch[-1]["id"]
+    assert any(q["id"] == saved and q["question_text"] == row["question_text"] for q in audited)
+    native(changed)
+    assert query(env, f"SELECT quality_status FROM dataset_questions WHERE id='{saved}'") == "format_review"
+    assert query(env, f"SELECT usable_for_practice + usable_for_auto_grade FROM dataset_questions WHERE id='{saved}'") == "0"
+    assert query(env, f"SELECT JSON_UNQUOTE(answer) FROM dataset_questions WHERE id='{saved}'") == "x=4"
+    assert native({"operation": "review-format", "questions": [{**review, "content_hash": "c" * 64}]}, 1)["code"] == 409
+    assert native({"operation": "review-format", "questions": [{**review, "fields": ["answer"]}]}, 1)["code"] == 422
+    assert native({"operation": "review-format", "questions": [review, review]}, 1)["code"] == 422
+    failed_batch = [{**review, "fields": ["question"]}, {**review, "id": str(uuid4())}]
+    assert native({"operation": "review-format", "questions": failed_batch}, 1)["code"] == 404
+    assert json.loads(query(env, f"SELECT JSON_EXTRACT(source_metadata,'$.format_review.fields') FROM dataset_questions WHERE id='{saved}'")) == ["solution"]
+    repaired = copy.deepcopy(changed)
+    repaired["questions"][0]["content_hash"] = "c" * 64
+    native(repaired)
+    assert query(env, f"SELECT quality_status FROM dataset_questions WHERE id='{saved}'") == "usable"
+    history = json.loads(query(env, f"SELECT JSON_EXTRACT(source_metadata,'$.format_review_history') FROM dataset_questions WHERE id='{saved}'"))
+    assert history == [{"content_hash": "b" * 64, "fields": ["solution"]}]
+    version = query(env, f"SELECT updated_at FROM dataset_questions WHERE id='{saved}'")
+    native(repaired)
+    assert query(env, f"SELECT updated_at FROM dataset_questions WHERE id='{saved}'") == version
     assert query(env, "SELECT COUNT(*) FROM users") == before_users
     # Avoid changing later retrieval fixtures or leaving isolated test content active.
     query(
@@ -135,5 +166,5 @@ def question_bank(env, query):
         f"UPDATE dataset_questions SET usable_for_practice=0,usable_for_auto_grade=0 WHERE id='{saved}'",
     )
     print(
-        "Cangjie question bank passed: native import/export, stable IDs, content update, validation, atomic batch rollback and no user mutation"
+        "Cangjie question bank passed: native import/export, stable IDs, content update, validation, atomic batch rollback, format quarantine/CAS/reimport protection and no user mutation"
     )

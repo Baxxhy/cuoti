@@ -225,3 +225,7 @@ make verify-cangjie 全部通过：21 项算法、25 组仓颉原生及完整 HT
 新增业务使用仓颉/MySQL：`GET /api/v1/study-bank` 支持学科、学段、来源、搜索和分页；`GET/POST /api/v1/study-sessions` 列出本人记录或从可练题库抽题；`GET/PATCH /api/v1/study-sessions/{id}` 恢复或按版本保存答案；`POST /api/v1/study-sessions/{id}/submit` 判分并保存结果。它们是新增接口，不属于原Python路由迁移计数。
 
 010迁移新增独立会话与题目快照表。接口按用户隔离，交卷前只返回题面和本人作答；版本比较、数据库截止时间和事务共同保护答案。交卷复用内部算法的统一判分流程；不确定结果单列待核对，不直接写掌握度。MySQL提交成绩前再次比较版本，重复交卷返回同一结果。当前为题库抽取模拟卷，不代表历年真题整卷。新专项见 `scripts/smoke_cangjie_study.py` 与 `frontend/e2e/bank-study.spec.ts`。
+
+### 题库公式质量准入
+
+学生页面隐藏数据集来源。新导入在写库前复用前端公式渲染器审计；本地已有库可运行 `scripts/audit_cangjie_question_formats.py --apply --output .runtime/format-report.json`。该工具仅通过仓颉部署命令读取快照和更新状态，不由Python连接MySQL。`audit-export` 包含不可练题，`review-format` 通过内容指纹与事务停用残缺题，不改原题、答案或原图；相同内容再次导入不能清除核验标记。没有新增公开HTTP写入入口。旧会话快照中的停用题被屏蔽，后续交卷排除其分值；详见[公式与学生页面核验](../docs/final/FORMULA_RENDERING_AUDIT.md)。

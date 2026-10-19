@@ -36,7 +36,12 @@ try {
       fields++
       formulas += (html.match(/class="katex"/g) || []).length
       if (html.includes('class="math-unparsed"')) {
-        findings.push({ id: row.id, field, eligible: Boolean(row.usable) })
+        findings.push({
+          id: row.id,
+          content_hash: row.content_hash,
+          field,
+          eligible: Boolean(row.usable ?? (row.usable_for_practice && row.usable_for_auto_grade)),
+        })
       }
     }
   }

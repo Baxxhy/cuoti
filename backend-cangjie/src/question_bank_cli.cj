@@ -36,6 +36,24 @@ func questionBankImport(db: Database, body: JsonObject): JsonObject {
         let sourceId=rowText(tx.query("SELECT id FROM dataset_sources WHERE `key`=? FOR UPDATE",[Some(key)]).rows[0],"id")
         for (value in rows.getItems()) {
             let item=(value as JsonObject).getOrThrow()
+            let previous=tx.query("SELECT * FROM dataset_questions WHERE dataset_source_id=? AND source_item_id=?",[Some(sourceId),sqlValue(item["source_item_id"])]).rows
+            if (!previous.isEmpty()) {
+                let saved=rowJson("dataset_questions",previous[0])
+                // Re-importing the same source cannot silently re-enable a
+                // quarantined question or discard its review evidence.
+                let savedMetadata=tutorObject(saved,"source_metadata"); let review=tutorObject(savedMetadata,"format_review")
+                let history=tutorArray(savedMetadata,"format_review_history")
+                if (jsonText(saved,"content_hash")!=jsonText(item,"content_hash") && !tutorArray(review,"fields").getItems().isEmpty()) {
+                    var recorded=false
+                    for (entry in history.getItems()) { if (jsonText((entry as JsonObject).getOrThrow(),"content_hash")==jsonText(review,"content_hash")) { recorded=true } }
+                    if (!recorded) { history.add(review) }
+                }
+                if (!history.getItems().isEmpty()) { let metadata=tutorObject(item,"source_metadata"); metadata.put("format_review_history",history); item.put("source_metadata",metadata) }
+                if (jsonText(saved,"content_hash")==jsonText(item,"content_hash") && !tutorArray(review,"fields").getItems().isEmpty()) {
+                    let metadata=tutorObject(item,"source_metadata"); metadata.put("format_review",review); item.put("source_metadata",metadata)
+                    item.put("quality_status",JsonString("format_review")); item.put("usable_for_practice",JsonBool(false)); item.put("usable_for_auto_grade",JsonBool(false))
+                }
+            }
             let fields="source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade"
             let names=fields.split(","); let params=ArrayList<Option<String>>(); params.add(Some(newId())); params.add(Some(sourceId))
             let marks=StringBuilder(); let updates=StringBuilder(); var first=true
@@ -43,7 +61,6 @@ func questionBankImport(db: Database, body: JsonObject): JsonObject {
                 params.add(if (field=="answer") { Some(item[field].toString()) } else { sqlValue(item[field]) }); if (!first) { marks.append(","); updates.append(",") }; first=false
                 marks.append("?"); updates.append("${field}=VALUES(${field})")
             }
-            let previous=tx.query("SELECT * FROM dataset_questions WHERE dataset_source_id=? AND source_item_id=?",[Some(sourceId),sqlValue(item["source_item_id"])]).rows
             var unchanged=!previous.isEmpty()
             if (unchanged) {
                 let saved=rowJson("dataset_questions",previous[0])
@@ -70,6 +87,46 @@ func questionBankImport(db: Database, body: JsonObject): JsonObject {
     })
 }
 
+// Deployment-only format reviews use the exported content hash as a CAS guard.
+// Source text, answers, assets and student work are never rewritten here.
+func questionBankFormatReview(db: Database, body: JsonObject): JsonObject {
+    let rows=tutorArray(body,"questions")
+    if (rows.getItems().isEmpty() || rows.getItems().size>100) { throw ApiError(422,"每批需要1至100道题") }
+    let seen=HashSet<String>()
+    for (raw in rows.getItems()) {
+        if (!(raw is JsonObject)) { throw ApiError(422,"核验记录无效") }
+        let item=(raw as JsonObject).getOrThrow(); let id=schoolText(item,"id","",36,nonempty:true)
+        if (seen.contains(id)) { throw ApiError(422,"核验记录重复") }; seen.add(id)
+        let hash=schoolText(item,"content_hash","",64,nonempty:true)
+        if (hash.size!=64) { throw ApiError(422,"内容指纹无效") }
+        for (byte in hash.toArray()) { if (!(byte>=48 && byte<=57 || byte>=97 && byte<=102)) { throw ApiError(422,"内容指纹无效") } }
+        if (!(item["fields"] is JsonArray)) { throw ApiError(422,"核验字段无效") }
+        let fields=tutorArray(item,"fields"); if (fields.getItems().isEmpty() || fields.getItems().size>20) { throw ApiError(422,"核验字段无效") }
+        for (entry in fields.getItems()) {
+            if (!(entry is JsonString)) { throw ApiError(422,"核验字段无效") }
+            let field=(entry as JsonString).getOrThrow().getValue()
+            if (field!="question" && field!="solution" && !(field.startsWith("option.") && field.size==8 && field.toArray()[7]>=65 && field.toArray()[7]<=72)) { throw ApiError(422,"核验字段无效") }
+        }
+    }
+    return db.transaction<JsonObject>({ tx =>
+        var changed: Int64=0
+        for (raw in rows.getItems()) {
+            let item=(raw as JsonObject).getOrThrow(); let id=jsonText(item,"id")
+            let saved=tx.query("SELECT * FROM dataset_questions WHERE id=? FOR UPDATE",[Some(id)]).rows
+            if (saved.isEmpty()) { throw ApiError(404,"题目不存在") }
+            let value=rowJson("dataset_questions",saved[0])
+            if (jsonText(value,"content_hash")!=jsonText(item,"content_hash")) { throw ApiError(409,"题目已更新，请重新核验") }
+            let metadata=tutorObject(value,"source_metadata"); let review=JsonObject()
+            review.put("content_hash",item["content_hash"]); review.put("fields",item["fields"])
+            if (!jsonEquivalent(metadata.get("format_review") ?? JsonNull(),review) || jsonText(value,"quality_status")!="format_review" || tutorFlag(value,"usable_for_practice") || tutorFlag(value,"usable_for_auto_grade")) {
+                metadata.put("format_review",review)
+                tx.query("UPDATE dataset_questions SET source_metadata=?,quality_status='format_review',usable_for_practice=0,usable_for_auto_grade=0,updated_at=UTC_TIMESTAMP(6) WHERE id=?",[Some(metadata.toString()),Some(id)]); changed++
+            }
+        }
+        let result=JsonObject(); result.put("changed",JsonInt(changed)); return result
+    })
+}
+
 func questionBankCommand(): Int64 {
     try {
         let raw=getStdIn().readln() ?? ""
@@ -80,6 +137,12 @@ func questionBankCommand(): Int64 {
             if (db.query("SELECT version FROM cangjie_schema_versions WHERE version='009_task_sources'").rows.size!=1) { throw ApiError(409,"请先初始化或升级仓颉数据库") }
             let operation=schoolText(body,"operation","",30,nonempty:true)
             if (operation=="import") { println(questionBankImport(db,body).toString()); return 0 }
+            if (operation=="review-format") { println(questionBankFormatReview(db,body).toString()); return 0 }
+            if (operation=="audit-export") {
+                let after=schoolText(body,"after","",36); let output=JsonArray()
+                for (row in db.query("SELECT * FROM dataset_questions WHERE id>? ORDER BY id LIMIT 100",[Some(after)]).rows) { output.add(rowJson("dataset_questions",row)) }
+                println(output.toString()); return 0
+            }
             if (operation=="cards") {
                 let output=JsonArray(); for (row in db.query("SELECT * FROM knowledge_points ORDER BY code").rows) { output.add(rowJson("knowledge_points",row)) }
                 println(output.toString()); return 0

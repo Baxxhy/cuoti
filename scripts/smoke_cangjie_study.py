@@ -1,6 +1,8 @@
 """Public-bank practice and timed exams: native ownership, snapshots, answers, grading, deadlines."""
 
 import json
+import subprocess
+from pathlib import Path
 from uuid import uuid4
 
 from smoke_cangjie_accounts import request
@@ -295,7 +297,7 @@ def study(endpoint, env, query):
         subject="化学",
         grade="高二",
         grade_band="高中",
-        question_text=r"胆矾$${CuSO_{4}5H_{2}O}$$可写作$${[Cu(H_{2}O)_{4}]SO_{4}H_{2}O}$$，下列说法正确的是",
+        question_text=r"胆矾\mathrm{CuSO_{4}5H_{2}O}可写作$${[Cu(H_{2}O)_{4}]SO_{4}H_{2}O}$$，下列说法正确的是",
         question_type="multiple-choice",
         options=[
             {"key": "A", "text": r"所有氧原子都采取$${sp^{3}}$$杂化"},
@@ -309,8 +311,47 @@ def study(endpoint, env, query):
         usable_for_practice=True,
         usable_for_auto_grade=True,
     )
+    blocked_source = insert("dataset_sources", key="format-" + uuid4().hex, name="不向学生显示的数据集")
+    blocked_id = insert(
+        "dataset_questions", dataset_source_id=blocked_source, source_item_id="broken",
+        content_hash="d" * 64, subject="数学", grade_band="初中",
+        question_text=r"不应展示的坏公式 $$\overset{⇌}$$", question_type="multiple-choice",
+        options=[{"key": "A", "text": "甲"}, {"key": "B", "text": "乙"}],
+        answer=json.dumps("A"), has_answer=True, usable_for_practice=True, usable_for_auto_grade=True,
+    )
+    held = request(endpoint, "POST", "/api/v1/study-sessions", {"mode": "practice", "question_ids": [blocked_id]}, token=token)
+    to_submit = request(endpoint, "POST", "/api/v1/study-sessions", {"mode": "practice", "question_ids": [blocked_id]}, token=token)
+    done = subprocess.run(
+        ["bash", "scripts/cangjie.sh", "question-bank-built"],
+        input=json.dumps({"operation": "review-format", "questions": [{"id": blocked_id, "content_hash": "d" * 64, "fields": ["question"]}]}) + "\n",
+        cwd=Path(__file__).resolve().parents[1], env=env, text=True, capture_output=True, check=True,
+    )
+    assert json.loads(done.stdout)["changed"] == 1
+    masked = request(endpoint, "GET", "/api/v1/study-sessions/" + held["id"], token=token)
+    assert masked["items"][0]["unavailable"] is True
+    assert "question_text" not in masked["items"][0]["question"]
+    assert request(endpoint, "GET", "/api/v1/study-bank?source_id=" + blocked_source, token=token)["total"] == 0
+    request(endpoint, "POST", "/api/v1/study-sessions", {"question_ids": [blocked_id]}, token=token, expected=422)
+    request(endpoint, "POST", "/api/v1/study-sessions", {"mode": "exam", "source_id": blocked_source, "count": 1}, token=token, expected=422)
+    excluded = request(endpoint, "POST", "/api/v1/study-sessions/" + to_submit["id"] + "/submit", {"version": to_submit["version"]}, token=token)
+    assert excluded["results"]["excluded"] == 1
+    assert excluded["results"]["pending"] == 0 and excluded["results"]["max_score"] == 0
+    assert excluded["items"][0]["grading"]["method"] == "question_unavailable"
+    assert "answer" not in excluded["items"][0] and "solution" not in excluded["items"][0]
+    repeated = request(endpoint, "POST", "/api/v1/study-sessions/" + to_submit["id"] + "/submit", {"version": to_submit["version"]}, token=token)
+    assert repeated["results"] == excluded["results"]
+    # Fixing the current source must not make a frozen damaged version readable.
+    history = json.dumps({"format_review_history": [{"content_hash": "d" * 64, "fields": ["question"]}]})
+    query(env, "UPDATE dataset_questions SET content_hash='" + "e" * 64 + "',quality_status='usable',usable_for_practice=1,usable_for_auto_grade=1,question_text='修正后的题目',source_metadata='" + history + "' WHERE id='" + blocked_id + "'")
+    still_blocked = request(endpoint, "GET", "/api/v1/study-sessions/" + held["id"], token=token)
+    assert still_blocked["items"][0]["unavailable"] is True
+    fresh = request(endpoint, "POST", "/api/v1/study-sessions", {"question_ids": [blocked_id]}, token=token)
+    assert fresh["items"][0]["unavailable"] is False
+    assert fresh["items"][0]["question"]["question_text"] == "修正后的题目"
+    print("Format quarantine passed: no new practice/exam, masked old snapshots, excluded scoring and idempotent submission", flush=True)
     return {
         "QA_STUDY_CHEM_SOURCE": chemical_source,
+        "QA_STUDY_BLOCKED_SESSION": held["id"],
         "QA_STUDY_EMAIL": email,
         "QA_STUDY_PASSWORD": password,
         "QA_STUDY_SOURCE": source,

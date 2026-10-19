@@ -21,16 +21,28 @@
       <template v-else-if="session">
         <template v-if="session.status === 'submitted'">
           <view class="result-summary" :class="{ exam: session.mode === 'exam' }">
-            <text class="result-title">{{ session.mode === 'exam' ? '已交卷' : '练习完成' }}</text>
-            <view class="result-score">
+            <text
+              v-if="session.results.excluded && !session.results.max_score"
+              class="result-title"
+            >
+              本次{{ session.mode === 'exam' ? '考试' : '练习' }}已暂停
+            </text>
+            <text v-else class="result-title">
+              {{ session.mode === 'exam' ? '已交卷' : '练习完成' }}
+            </text>
+            <view v-if="session.results.max_score > 0" class="result-score">
               <text>{{ session.results.score }}</text>
               <small>/ {{ session.results.max_score }} 分</small>
             </view>
-            <text class="result-meta">
-              答对 {{ session.results.correct }} / {{ session.results.total }} 题
+            <text v-if="session.results.max_score > 0" class="result-meta">
+              答对 {{ session.results.correct }} /
+              {{ session.results.total - (session.results.excluded || 0) }} 题
               <template v-if="session.results.pending">
                 · {{ session.results.pending }} 题待核对
               </template>
+            </text>
+            <text v-if="session.results.excluded" class="pending-note">
+              {{ session.results.excluded }} 题已暂停使用，未计分。
             </text>
             <text v-if="session.results.pending" class="pending-note">当前显示已确认得分。</text>
           </view>
@@ -39,49 +51,52 @@
               <text>第 {{ index + 1 }} 题</text>
               <text class="verdict" :class="verdictClass(item)">{{ verdict(item) }}</text>
             </view>
-            <math-text :text="item.question.question_text" inline />
-            <view
-              v-for="option in normalizeOptions(item.question.options)"
-              :key="option.label"
-              class="review-option"
-            >
-              <text>{{ option.label }}.</text>
-              <math-text :text="option.text" inline />
-            </view>
-            <image
-              v-for="url in item.question.image_urls || []"
-              :key="url"
-              :src="mediaUrl(url)"
-              mode="widthFix"
-              class="question-image"
-            />
-            <view class="review-answers">
-              <view>
-                <text class="answer-label">我的答案</text>
-                <math-text :text="answerText(item.student_answer)" inline />
+            <text v-if="item.unavailable" class="unavailable-note">此题已暂停使用</text>
+            <template v-else>
+              <math-text :text="item.question.question_text" inline />
+              <view
+                v-for="option in normalizeOptions(item.question.options)"
+                :key="option.label"
+                class="review-option"
+              >
+                <text>{{ option.label }}.</text>
+                <math-text :text="option.text" inline />
               </view>
-              <view>
-                <text class="answer-label">参考答案</text>
-                <math-text :text="answerText(item.answer)" inline />
+              <image
+                v-for="url in item.question.image_urls || []"
+                :key="url"
+                :src="mediaUrl(url)"
+                mode="widthFix"
+                class="question-image"
+              />
+              <view class="review-answers">
+                <view>
+                  <text class="answer-label">我的答案</text>
+                  <math-text :text="answerText(item.student_answer)" inline />
+                </view>
+                <view>
+                  <text class="answer-label">参考答案</text>
+                  <math-text :text="answerText(item.answer)" inline />
+                </view>
               </view>
-            </view>
-            <math-text v-if="item.solution" class="reference-solution" :text="item.solution" />
-            <text v-if="item.grading?.feedback" class="grading-feedback">
-              {{ item.grading.feedback }}
-            </text>
-            <button
-              role="button"
-              v-if="
-                item.grading?.can_update_learning &&
-                item.grading?.correct === false &&
-                !item.question.image_urls?.length
-              "
-              class="small-btn add-mistake"
-              :disabled="adding === item.id || added.has(item.id)"
-              @click="addMistake(item)"
-            >
-              {{ added.has(item.id) ? '已加入错题本' : '加入错题本' }}
-            </button>
+              <math-text v-if="item.solution" class="reference-solution" :text="item.solution" />
+              <text v-if="item.grading?.feedback" class="grading-feedback">
+                {{ item.grading.feedback }}
+              </text>
+              <button
+                role="button"
+                v-if="
+                  item.grading?.can_update_learning &&
+                  item.grading?.correct === false &&
+                  !item.question.image_urls?.length
+                "
+                class="small-btn add-mistake"
+                :disabled="adding === item.id || added.has(item.id)"
+                @click="addMistake(item)"
+              >
+                {{ added.has(item.id) ? '已加入错题本' : '加入错题本' }}
+              </button>
+            </template>
           </view>
           <button role="button" class="secondary-btn" @click="backToBank">
             返回{{ session.mode === 'exam' ? '模拟考试' : '题库' }}
@@ -98,50 +113,63 @@
             <view :style="{ width: `${(answered / session.items.length) * 100}%` }" />
           </view>
           <view class="question-workspace card">
-            <view class="question-category">
-              <text>{{ current.question.subject }}</text>
-              <text>{{ questionTypeLabel(current.question.question_type) }}</text>
-              <text>5 分</text>
-            </view>
-            <math-text class="question-stem" :text="current.question.question_text" inline />
-            <image
-              v-for="url in current.question.image_urls || []"
-              :key="url"
-              :src="mediaUrl(url)"
-              mode="widthFix"
-              class="question-image"
-            />
-            <view v-if="options.length" class="answer-options">
+            <view v-if="current.unavailable" class="unavailable-note">
+              <text>此题已暂停使用，交卷时不计分。</text>
               <button
+                v-if="session.items.length === 1"
                 role="button"
-                v-for="option in options"
-                :key="option.label"
-                :aria-pressed="selected(option.label)"
-                :class="{ selected: selected(option.label) }"
-                :disabled="submitting || expired"
-                @click="select(option.label)"
+                class="secondary-btn"
+                @click="backToBank"
               >
-                <text class="option-letter">{{ option.label }}</text>
-                <math-text :text="option.text" inline />
-                <uni-icons
-                  v-if="selected(option.label)"
-                  type="checkmarkempty"
-                  size="20"
-                  color="var(--color-primary)"
-                />
+                返回题库
               </button>
             </view>
-            <view v-else class="field">
-              <text class="field-label">我的作答</text>
-              <textarea
-                class="field-textarea study-answer"
-                :value="answers[current.id] || ''"
-                :disabled="submitting || expired"
-                maxlength="3000"
-                placeholder="写下你的答案"
-                @input="setAnswer($event.detail.value)"
+            <template v-else>
+              <view class="question-category">
+                <text>{{ current.question.subject }}</text>
+                <text>{{ questionTypeLabel(current.question.question_type) }}</text>
+                <text>5 分</text>
+              </view>
+              <math-text class="question-stem" :text="current.question.question_text" inline />
+              <image
+                v-for="url in current.question.image_urls || []"
+                :key="url"
+                :src="mediaUrl(url)"
+                mode="widthFix"
+                class="question-image"
               />
-            </view>
+              <view v-if="options.length" class="answer-options">
+                <button
+                  role="button"
+                  v-for="option in options"
+                  :key="option.label"
+                  :aria-pressed="selected(option.label)"
+                  :class="{ selected: selected(option.label) }"
+                  :disabled="submitting || expired"
+                  @click="select(option.label)"
+                >
+                  <text class="option-letter">{{ option.label }}</text>
+                  <math-text :text="option.text" inline />
+                  <uni-icons
+                    v-if="selected(option.label)"
+                    type="checkmarkempty"
+                    size="20"
+                    color="var(--color-primary)"
+                  />
+                </button>
+              </view>
+              <view v-else class="field">
+                <text class="field-label">我的作答</text>
+                <textarea
+                  class="field-textarea study-answer"
+                  :value="answers[current.id] || ''"
+                  :disabled="submitting || expired"
+                  maxlength="3000"
+                  placeholder="写下你的答案"
+                  @input="setAnswer($event.detail.value)"
+                />
+              </view>
+            </template>
           </view>
           <view class="question-navigation">
             <button
@@ -460,6 +488,7 @@ function verdictClass(item) {
       : 'incorrect'
 }
 function verdict(item) {
+  if (item.unavailable) return '已暂停使用'
   return !item.grading?.can_update_learning
     ? '待核对'
     : item.grading.correct
@@ -518,6 +547,15 @@ onUnload(() => {
 })
 </script>
 <style scoped lang="scss">
+.unavailable-note {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.unavailable-note button {
+  margin-top: 20px;
+}
 .study-page {
   max-width: 900px;
 }

@@ -59,6 +59,26 @@ const needsReview = computed(() => html.value.includes('class="math-unparsed"'))
 }
 
 .math-text:deep(.katex) {
+  white-space: normal;
+}
+
+.math-text:deep(.katex-display .katex) {
   white-space: nowrap;
+}
+
+.math-text:deep(.math-table) {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.math-text:deep(.math-table::-webkit-scrollbar) {
+  height: 5px;
+}
+
+.math-text:deep(.math-table::-webkit-scrollbar-thumb) {
+  background: #c7cad1;
+  border-radius: 4px;
 }
 </style>

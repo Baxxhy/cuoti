@@ -23,7 +23,9 @@ test('题库独立于错题：真实来源、作答自动保存、刷新恢复�
   await page.setViewportSize({ width: 390, height: 844 })
   await bank(page, 'practice')
   await expect(page.locator('.bank-question')).toHaveCount(6)
-  await expect(page.locator('.bank-question').first()).toContainText('练习验收题库')
+  await expect(page.locator('.bank-question').first()).not.toContainText('练习验收题库')
+  await expect(page.locator('.bank-question').first()).not.toContainText('来源')
+  await expect(page.getByText('全部来源', { exact: true })).toHaveCount(0)
   await page.locator('.bank-question').first().click()
   await expect(page).toHaveURL(/pages\/study-session\/study-session/)
   await expect(page.locator('.answer-review')).toHaveCount(0)
@@ -97,6 +99,14 @@ test('化学题干与选项中的短公式连续排版，解析保留独立公�
   await page.locator('.bank-question').click()
   const options = page.locator('.answer-options uni-button, .answer-options button')
   await expect(options).toHaveCount(4)
+  await expect(page.locator('.question-stem .katex')).toHaveCount(2)
+  expect(
+    await page.locator('.question-stem').evaluate((element) => {
+      const copy = element.cloneNode(true) as HTMLElement
+      copy.querySelectorAll('.katex').forEach((node) => node.remove())
+      return /\\[A-Za-z]+/.test(copy.textContent || '')
+    }),
+  ).toBe(false)
   for (const width of [360, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 })
     await expect(
@@ -127,4 +137,25 @@ test('化学题干与选项中的短公式连续排版，解析保留独立公�
   await expect(page.locator('.review-option .katex-display')).toHaveCount(0)
   await expect(page.locator('.reference-solution .katex-display')).toHaveCount(1)
   await expect(page.locator('.result-score > uni-text').first()).toHaveText('5')
+})
+
+test('停用题目不显示损坏原文，已有练习交卷时排除该题分值', async ({ page }) => {
+  test.skip(!process.env.QA_STUDY_BLOCKED_SESSION, '需要停用题目样本')
+  await page.goto(`/#/pages/study-session/study-session?id=${process.env.QA_STUDY_BLOCKED_SESSION}`)
+  await expect(page.locator('.question-workspace .unavailable-note')).toContainText(
+    '此题已暂停使用',
+  )
+  await expect(page.locator('.answer-options')).toHaveCount(0)
+  await expect(page.getByText('不应展示的坏公式', { exact: false })).toHaveCount(0)
+  await expect(page.locator('.math-unparsed, .katex-error')).toHaveCount(0)
+  await turnIn(page)
+  await expect(page.locator('.result-summary')).toContainText('1 题已暂停使用，未计分')
+  await expect(page.locator('.result-score')).toHaveCount(0)
+  await expect(page.locator('.result-title')).toHaveText('本次练习已暂停')
+  await expect(page.locator('.answer-review .unavailable-note')).toHaveText('此题已暂停使用')
+  await expect(page.locator('.answer-review .math-text')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: '加入错题本', exact: true })).toHaveCount(0)
+  await page.getByRole('button', { name: '返回题库', exact: true }).click()
+  await expect(page.locator('.record-status').filter({ hasText: '已暂停' }).first()).toBeVisible()
+  await expect(page.locator('.session-history')).not.toContainText('0 / 0 分')
 })

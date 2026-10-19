@@ -52,7 +52,12 @@ export default defineConfig({
       ignoreHTTPSErrors: process.env.QA_PREVIEW_HTTPS === '1',
       reuseExistingServer: true,
       timeout: 120_000,
-      env: { CI: '1', ZHIWEI_BACKEND_URL: new URL(backendURL).origin },
+      env: {
+        CI: '1',
+        CHOKIDAR_USEPOLLING: 'true',
+        CHOKIDAR_INTERVAL: '500',
+        ZHIWEI_BACKEND_URL: new URL(backendURL).origin,
+      },
     },
   ],
   projects: [{ name: 'mobile-chromium', use: { ...devices['Pixel 7'] } }],

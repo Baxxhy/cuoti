@@ -7,6 +7,7 @@ const TEX_DELIMITERS =
 const JOINED_COMMANDS = [
   'triangle',
   'therefore',
+  'because',
   'Rightarrow',
   'leqslant',
   'geqslant',
@@ -79,9 +80,49 @@ function repairImportedTex(tex: string) {
 }
 
 function escapedProse(text: string) {
-  const escaped = escapeHtml(text)
-  // Unpaired display delimiters stay visible, rather than dropping their text.
-  return /\$\$|\\\[|\\\(/.test(text) ? `<span class="math-unparsed">${escaped}</span>` : escaped
+  // Heading commands carry prose; bare TeX must not leak into student text.
+  const source = text.replace(/\\section\*?\{([^{}]*)\}/g, '$1')
+  if (/\$\$|\\\[|\\\(/.test(source)) {
+    return '<span class="math-unparsed">' + escapeHtml(source) + '</span>'
+  }
+  return splitProse(source)
+    .map(({ prose, text: part }) => {
+      if (prose || !/\\[A-Za-z]+/.test(part)) {
+        return escapeHtml(part.replace(/\\([%&#])/g, '$1'))
+      }
+      const renderBareFormula = (tex: string, displayMode = false) => {
+        try {
+          return katex.renderToString(tex, { ...options, displayMode })
+        } catch {
+          try {
+            return katex.renderToString(repairImportedTex(tex), { ...options, displayMode })
+          } catch {
+            return '<span class="math-unparsed">' + escapeHtml(tex) + '</span>'
+          }
+        }
+      }
+      const renderLines = (value: string) =>
+        value
+          .split('\n')
+          .map((line) => (/\\[A-Za-z]+/.test(line) ? renderBareFormula(line) : escapeHtml(line)))
+          .join('\n')
+      // Tables belong on a separate row, with their own horizontal viewport.
+      // Otherwise a question's answer brackets get vertically centered on it.
+      if (/\\begin\{/.test(part) && /\\(?:left|right)\b/.test(part)) {
+        return '<span class="math-table">' + renderBareFormula(part, true) + '</span>'
+      }
+      const environments = /\\begin\{([A-Za-z*]+)\}[\s\S]*?\\end\{\1\}/g
+      let cursor = 0
+      let html = ''
+      for (const match of part.matchAll(environments)) {
+        const index = match.index ?? 0
+        html += renderLines(part.slice(cursor, index))
+        html += '<span class="math-table">' + renderBareFormula(match[0], true) + '</span>'
+        cursor = index + match[0].length
+      }
+      return html + renderLines(part.slice(cursor))
+    })
+    .join('')
 }
 
 function renderDelimitedMath(value: string | null | undefined, inline = false) {

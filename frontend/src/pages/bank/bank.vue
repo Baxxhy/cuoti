@@ -65,20 +65,6 @@
               <uni-icons type="bottom" size="13" />
             </view>
           </picker>
-          <picker
-            :range="['全部来源', ...(data?.sources || []).map((s) => s.name)]"
-            @change="
-              setFilter(
-                'source_id',
-                Number($event.detail.value) ? data.sources[Number($event.detail.value) - 1].id : '',
-              )
-            "
-          >
-            <view class="bank-picker">
-              {{ sourceName }}
-              <uni-icons type="bottom" size="13" />
-            </view>
-          </picker>
         </view>
       </view>
       <state-panel
@@ -160,6 +146,12 @@
               <text>
                 {{ question.grade_band }} · {{ questionTypeLabel(question.question_type) }}
               </text>
+              <uni-icons
+                class="question-arrow"
+                type="arrowright"
+                size="20"
+                color="var(--color-primary)"
+              />
             </view>
             <math-text class="bank-question-text" :text="question.question_text" inline />
             <view v-if="question.image_urls?.length" class="bank-question-images">
@@ -174,10 +166,6 @@
               <text v-if="question.image_urls.some((url) => failedImages[url])" class="image-error">
                 题图加载失败，请刷新重试
               </text>
-            </view>
-            <view class="question-tail">
-              <text>来源：{{ question.source_name }}</text>
-              <uni-icons type="arrowright" size="20" color="var(--color-primary)" />
             </view>
           </button>
           <view v-if="data.total > 20" class="bank-paging">
@@ -214,7 +202,9 @@
           <text class="record-status" :class="{ done: item.status === 'submitted' }">
             {{
               item.status === 'submitted'
-                ? `${item.results?.score ?? 0} / ${item.results?.max_score ?? 0} 分`
+                ? item.results?.excluded && !item.results?.max_score
+                  ? '已暂停'
+                  : `${item.results?.score ?? 0} / ${item.results?.max_score ?? 0} 分`
                 : '继续作答'
             }}
           </text>
@@ -258,9 +248,6 @@ const bands = computed(() =>
 )
 const bandIndex = computed(() =>
   filters.value.grade_band ? bands.value.indexOf(filters.value.grade_band) + 1 : 0,
-)
-const sourceName = computed(
-  () => data.value?.sources?.find((s) => s.id === filters.value.source_id)?.name || '全部来源',
 )
 const visibleHistory = computed(() =>
   history.value.filter((x) => x.mode === mode.value).slice(0, 8),
@@ -498,13 +485,8 @@ onShow(load)
   font-size: 12px;
   color: #925014;
 }
-.question-tail {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 16px;
-  font-size: 12px;
-  color: var(--color-text-secondary);
+.question-arrow {
+  margin-left: auto;
 }
 .bank-paging {
   display: flex;
