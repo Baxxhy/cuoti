@@ -115,6 +115,45 @@ describe('持久任务页面', () => {
     expect(page.find('.more-ways').isVisible()).toBe(false)
     expect(visibleActions()).toEqual(['给点提示', '更多方式'])
   })
+  it('提示携带当前草稿但不提交答案，逐层提示与刷新保留输入', async () => {
+    const page = await make()
+    await page.find('textarea').setValue('联立方程作为第一步吗')
+    fake.postData.mockImplementation(async (_url, body) => {
+      server.version++
+      server.step_id = `hint-step-${server.version}`
+      server.last_request_id = body.request_id
+      server.student_view.hint_level = 1
+      server.student_view.feedback = '先联立两个表达式，再研究交点对应的根。'
+      return structuredClone(server)
+    })
+    await page
+      .findAll('button')
+      .find((b) => b.text() === '给点提示')!
+      .trigger('click')
+    await flushPromises()
+    expect(fake.postData.mock.calls[0][1]).toMatchObject({
+      kind: 'hint',
+      text: '联立方程作为第一步吗',
+      version: 2,
+      step_id: 's1',
+    })
+    expect(page.find('textarea').element.value).toBe('联立方程作为第一步吗')
+    expect(page.find('.feedback').text()).toContain('先联立两个表达式')
+    expect(page.findAll('button').some((b) => b.text() === '再提示一步')).toBe(true)
+    fake.hooks.hide()
+    fake.hooks.show()
+    await flushPromises()
+    expect(page.find('textarea').element.value).toBe('联立方程作为第一步吗')
+    server.student_view.hint_level = 3
+    server.student_view.secondary_actions = ['reveal']
+    fake.hooks.hide()
+    fake.hooks.show()
+    await flushPromises()
+    expect(page.findAll('button').some((b) => ['给点提示', '再提示一步'].includes(b.text()))).toBe(
+      false,
+    )
+    expect(page.text()).toContain('更多方式')
+  })
   it('确认看图后才发动作，保存观察使用版本与参数，收起后保留原作答', async () => {
     server.student_view.secondary_actions = ['visualize']
     const page = await make()

@@ -246,7 +246,7 @@
               @click="send('hint')"
               @keydown.enter.prevent="send('hint')"
             >
-              给点提示
+              {{ task.student_view?.hint_level ? '再提示一步' : '给点提示' }}
             </button>
             <button
               v-if="task.student_view?.secondary_actions?.includes('resume')"
@@ -530,7 +530,7 @@ function send(kind) {
     return
   transmit({
     kind,
-    text: kind === 'answer' ? answer.value : '',
+    text: kind === 'answer' || kind === 'hint' ? answer.value : '',
     version: task.value.version,
     step_id: task.value.step_id,
     input_fingerprint: task.value.input_fingerprint,

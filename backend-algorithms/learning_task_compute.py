@@ -35,6 +35,7 @@ from figure_review import (
     review_figure,
 )
 from grading_compute import grade_answer
+from learning_hint_compute import HINT_LIMIT, generate_hint
 from learning_memory_compute import LearningMemorySnapshot
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from task_visualization_compute import (
@@ -83,6 +84,7 @@ class StudentView(StrictModel):
         Literal["hint", "reveal", "resume", "use_text", "visualize"]
     ] = Field(default_factory=list, max_length=5)
     feedback: str = Field(default="", max_length=1200)
+    hint_level: int = Field(default=0, ge=0, le=3)
     handwriting: HandwritingDraft | None = None
     visualization: TaskVisualization | None = None
 
@@ -146,6 +148,10 @@ class Checkpoint(StrictModel):
     attempts: int = Field(default=0, ge=0, le=24)
     rounds: int = Field(default=0, ge=0, le=24)
     assistance: dict[Phase, bool] = Field(default_factory=dict)
+    hints: dict[Phase, list[Annotated[str, Field(max_length=1200)]]] = Field(
+        default_factory=dict, max_length=4
+    )
+    last_answers: dict[Phase, Text] = Field(default_factory=dict, max_length=4)
     repair_passed: bool = False
     independent_passed: bool = False
     contrast_passed: bool = False
@@ -153,6 +159,12 @@ class Checkpoint(StrictModel):
     feedback: str = Field(default="", max_length=1200)
     visualization: TaskVisualization | None = None
     visual_open: bool = False
+
+    @model_validator(mode="after")
+    def bounded_hints(self):
+        if any(len(items) > HINT_LIMIT for items in self.hints.values()):
+            raise ValueError("too many hints for a phase")
+        return self
 
 
 class TaskAction(StrictModel):
@@ -417,13 +429,17 @@ def view_for(context: TaskContext, state: Checkpoint) -> StudentView:
         title=title,
         prompt_blocks=blocks,
         feedback=state.feedback,
-        secondary_actions=["hint", "reveal"]
+        hint_level=len(state.hints.get(state.phase, [])),
+        secondary_actions=(
+            ["hint"] if len(state.hints.get(state.phase, [])) < HINT_LIMIT else []
+        )
+        + ["reveal"]
         + (["visualize"] if visual_available and not state.visual_open else []),
         visualization=current_visual(context, state) if state.visual_open else None,
     )
 
 
-async def support(
+async def support_strategy(
     provider,
     context: TaskContext,
     state: Checkpoint,
@@ -517,7 +533,7 @@ async def support(
                 elapsed_ms=int((time.monotonic() - start) * 1000),
             )
         )
-        if visual:
+        if visual and not explicit_hint:
             state.visualization = visual
             state.visual_open = True
             state.assistance[state.phase] = True
@@ -600,6 +616,96 @@ async def support(
                 memory_refs=plan.memory_refs,
                 elapsed_ms=0,
             )
+        )
+
+
+def verified_linear_hint(context: TaskContext, state: Checkpoint, level: int):
+    question = (
+        state.contrast.question
+        if state.phase == "contrast" and state.contrast
+        else context.question_text
+    )
+    source = linear_source(question) if context.subject == "数学" else None
+    if source is None:
+        return None
+    _, x, a, b, c, _ = source
+    left = sp.latex(a * x + b)
+    if b == 0:
+        if level == 1:
+            return f"本题已经整理成 ${left}={sp.latex(c)}$，没有需要移到另一边的常数项。看看未知数的系数 ${sp.latex(a)}$，怎样让它变成1？"
+        if level == 2:
+            return f"在 ${left}={sp.latex(c)}$ 两边同时除以非零系数 ${sp.latex(a)}$。先把右边写成除法算式，再自己计算。"
+        return f"先用右边的 ${sp.latex(c)}$ 除以系数 ${sp.latex(a)}$；把你算出的值代回 ${left}={sp.latex(c)}$，检查两边是否相等。代回不成立时，再检查符号与除法。"
+    # All intermediate expressions are derived from the current phase's equation.
+    remove = f"减去 ${sp.latex(b)}$" if b >= 0 else f"加上 ${sp.latex(-b)}$"
+    if level == 1:
+        return f"先看本题的等式 ${left}={sp.latex(c)}$。要单独留下未知数项，应怎样在等号两边同时消去常数项 ${sp.latex(b)}$？"
+    if level == 2:
+        return f"从 ${left}={sp.latex(c)}$ 出发，两边同时{remove}。先只写消去常数项后的等式，右边的运算留给你完成。"
+    if a == 1:
+        return f"先在 ${left}={sp.latex(c)}$ 两边同时{remove}，再算右边。未知数的系数已经是1；算完后代回原等式，检查两边是否相等。"
+    return f"把这一步拆开：先在 ${left}={sp.latex(c)}$ 两边同时{remove}，检查两边是否做了同一运算；再看未知数的系数 ${sp.latex(a)}$，想一想下一步两边该同除以什么。先把第一行写出来。"
+
+
+async def support(provider, context, state, traces, *, explicit_hint, draft=""):
+    if not explicit_hint:
+        return await support_strategy(
+            provider, context, state, traces, explicit_hint=False
+        )
+    previous = state.hints.get(state.phase, [])
+    if len(previous) >= HINT_LIMIT:
+        state.feedback = previous[-1]
+        return
+    await support_strategy(provider, context, state, traces, explicit_hint=True)
+    level = len(previous) + 1
+    text = verified_linear_hint(context, state, level)
+    reason = "symbolic_linear_hint"
+    if text is None:
+        question = (
+            state.contrast.question
+            if state.phase == "contrast" and state.contrast
+            else context.question_text
+        )
+        expected = (
+            state.contrast.expected
+            if state.phase == "contrast" and state.contrast
+            else context.expected
+        )
+        codes = {
+            code
+            for trace in traces
+            for code in trace.evidence.get("knowledge_card_codes", [])
+        }
+        text, reason = await generate_hint(
+            provider,
+            question=question,
+            subject=context.subject,
+            grade=context.grade,
+            phase=state.phase,
+            draft=draft or state.last_answers.get(state.phase, ""),
+            expected=expected,
+            reference_steps=[]
+            if state.phase == "contrast"
+            else context.reference_steps,
+            student_steps=[] if state.phase == "contrast" else context.student_steps,
+            knowledge=[card for card in context.cards if card.get("code") in codes],
+            previous=previous,
+        )
+    if text:
+        state.hints[state.phase] = [*previous, text]
+        state.feedback = text
+        state.assistance[state.phase] = True
+    else:
+        state.feedback = "这次没能生成针对本题的可靠提示，请稍后再试。你的作答已保留，也可以在“更多方式”中查看参考答案。"
+    if traces:
+        traces[-1].evidence.update(
+            {
+                "hint_level": len(state.hints.get(state.phase, [])),
+                "hint_source": reason,
+                "draft_used": bool(
+                    (draft or state.last_answers.get(state.phase, "")).strip()
+                ),
+            }
         )
 
 
@@ -865,7 +971,9 @@ async def execute_task(
         )
         state.feedback = "参考答案：" + expected + "。看过答案后，这次会记为辅助学习。"
     elif action.kind == "hint":
-        await support(provider, context, state, traces, explicit_hint=True)
+        await support(
+            provider, context, state, traces, explicit_hint=True, draft=action.text
+        )
     elif action.kind == "answer":
         if not action.text.strip():
             raise ValueError("student answer required")
@@ -874,6 +982,7 @@ async def execute_task(
         ):
             raise ValueError("student must confirm handwriting transcription")
         phase = state.phase
+        state.last_answers[phase] = action.text
         state.attempts += 1
         if phase == "repair":
             left, expected = repair_target(context)
@@ -1076,10 +1185,14 @@ async def execute_task(
         state.visual_open = False
     view = view_for(context, state)
     if status == "needs_review":
-        view.secondary_actions = ["hint", "reveal", "resume"] + (
-            ["visualize"]
-            if not state.visual_open and task_visual(context, state)
-            else []
+        view.secondary_actions = (
+            (["hint"] if view.hint_level < HINT_LIMIT else [])
+            + ["reveal", "resume"]
+            + (
+                ["visualize"]
+                if not state.visual_open and task_visual(context, state)
+                else []
+            )
         )
     return TaskResult(
         checkpoint=state,
