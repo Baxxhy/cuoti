@@ -162,8 +162,21 @@
               </text>
             </view>
             <math-text class="bank-question-text" :text="question.question_text" inline />
+            <view v-if="question.image_urls?.length" class="bank-question-images">
+              <image
+                v-for="(url, index) in question.image_urls"
+                :key="url"
+                :src="mediaUrl(url)"
+                mode="widthFix"
+                :alt="`题图 ${index + 1}`"
+                @error="failedImages[url] = true"
+              />
+              <text v-if="question.image_urls.some((url) => failedImages[url])" class="image-error">
+                题图加载失败，请刷新重试
+              </text>
+            </view>
             <view class="question-tail">
-              <text>{{ question.source_name }}</text>
+              <text>来源：{{ question.source_name }}</text>
               <uni-icons type="arrowright" size="20" color="var(--color-primary)" />
             </view>
           </button>
@@ -224,7 +237,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
-import { getData, postData } from '@/api/index.js'
+import { getData, postData, mediaUrl } from '@/api/index.js'
 import { go } from '@/utils/navigation.js'
 import { questionTypeLabel } from '@/utils/question.js'
 const mode = ref('practice'),
@@ -235,6 +248,7 @@ const mode = ref('practice'),
   actionError = ref(''),
   history = ref([]),
   search = ref('')
+const failedImages = ref({})
 const filters = ref({ subject: '', grade_band: '', source_id: '', search: '', page: 1 })
 const count = ref(5),
   minutes = ref(20)
@@ -466,8 +480,23 @@ onShow(load)
 .bank-question-text {
   font-size: 16px;
   display: block;
-  max-height: 108px;
-  overflow: hidden;
+}
+.bank-question-images {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.bank-question-images image {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  border-radius: 8px;
+}
+.image-error {
+  font-size: 12px;
+  color: #925014;
 }
 .question-tail {
   display: flex;

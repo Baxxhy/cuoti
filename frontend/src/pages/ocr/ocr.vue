@@ -64,7 +64,7 @@
             class="content-editor question-editor"
             auto-height
           />
-          <math-text v-else class="question-text" :text="form.question_text" />
+          <math-text v-else class="question-text" :text="form.question_text" inline />
           <view v-if="questionFigures.length" class="question-figures">
             <image
               v-for="figure in questionFigures"
@@ -95,7 +95,7 @@
               class="option-row"
             >
               <text class="option-label">{{ optionLabel(option, index) }}</text>
-              <math-text :text="optionValue(option)" />
+              <math-text :text="optionValue(option)" inline />
             </view>
           </view>
         </view>

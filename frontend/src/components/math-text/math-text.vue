@@ -1,6 +1,9 @@
 <template>
   <!-- 普通文本已在 renderMathText 中转义，仅 KaTeX 生成受控 HTML。 -->
-  <view class="math-text" v-html="html" />
+  <view class="math-text">
+    <view class="math-content" v-html="html" />
+    <text v-if="needsReview" class="math-notice" role="status">公式原文待核对</text>
+  </view>
 </template>
 
 <script setup lang="ts">
@@ -19,6 +22,7 @@ const props = withDefaults(
 )
 
 const html = computed(() => renderMathText(props.text, props.inline))
+const needsReview = computed(() => html.value.includes('class="math-unparsed"'))
 </script>
 
 <style scoped lang="scss">
@@ -33,6 +37,19 @@ const html = computed(() => renderMathText(props.text, props.inline))
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+}
+
+.math-notice {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #925014;
+}
+
+.math-text:deep(.math-unparsed) {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .math-text:deep(.katex-display) {

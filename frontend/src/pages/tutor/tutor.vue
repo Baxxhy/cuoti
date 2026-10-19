@@ -58,7 +58,7 @@
       <scroll-view scroll-y class="task-scroll">
         <view class="task-content">
           <view v-if="questionOpen" class="question-context">
-            <math-text :text="session.question?.text || '题目暂时无法读取'" />
+            <math-text :text="session.question?.text || '题目暂时无法读取'" inline />
             <button
               tabindex="0"
               role="button"
@@ -244,7 +244,7 @@
                 </view>
               </view>
 
-              <math-text class="activity-question" :text="activity.question" />
+              <math-text class="activity-question" :text="activity.question" inline />
 
               <view v-if="grading" class="grading-state" aria-live="polite">
                 <view class="grading-spinner" />
@@ -275,7 +275,7 @@
                       color="#FFFFFF"
                     />
                   </i>
-                  <math-text class="option-label" :text="option.label" />
+                  <math-text class="option-label" :text="option.label" inline />
                 </button>
                 <button
                   :aria-disabled="busy"
