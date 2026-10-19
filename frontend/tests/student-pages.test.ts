@@ -35,6 +35,31 @@ afterEach(() => {
 })
 
 describe('学生页面按需展开', () => {
+  it('错题列表渲染上传题目的分式、根号和下标，保留完整题干与跳转', async () => {
+    const fraction = String.raw`9，若不论 k 为何值，直线 $y=k(x-1)-\frac{k^2}{4}$ 与抛物线 $y=ax^2+bx+c$ 有且只有一个公共点，求 a、b、c 的值。`
+    const geometry = String.raw`7. 如图，直线 $y=\sqrt{3}x$，点 $A_1$ 坐标为 $(1,0)$，过点 $A_1$ 作 $x$ 轴的垂线交直线于点 $B_1$；以原点 $O$ 为圆心，$OB_1$ 长为半径画弧交 $x$ 轴于点 $A_2$。这是完整题干的末尾。`
+    mocks.getData.mockResolvedValue([
+      { id: 'q-fraction', subject: '数学', question_text: fraction },
+      { id: 'q-geometry', subject: '数学', question_text: geometry },
+      { id: 'q-pending', subject: '语文', question_text: '' },
+    ])
+    const wrapper = mount(Notebook, { global })
+    wrappers.push(wrapper)
+    await mocks.callbacks[0]()
+    await flushPromises()
+    const cards = wrapper.findAll('.problem-card')
+    expect(cards[0].findAll('.katex')).toHaveLength(2)
+    expect(cards[0].find('.mfrac').exists()).toBe(true)
+    expect(cards[1].find('.sqrt').exists()).toBe(true)
+    expect(cards[1].find('.msupsub').exists()).toBe(true)
+    expect(cards[1].text()).toContain('这是完整题干的末尾。')
+    expect(wrapper.find('.katex-display').exists()).toBe(false)
+    expect(wrapper.find('.math-unparsed').exists()).toBe(false)
+    expect(cards[2].text()).toContain('题目正在整理中')
+    await cards[0].trigger('click')
+    expect(mocks.go.mock.calls.at(-1)![0]).toContain('q-fraction')
+  })
+
   it('学习中心先显示四种方式，记录展开后仍能进入原页面', async () => {
     const wrapper = mount(Learning, { global })
     wrappers.push(wrapper)

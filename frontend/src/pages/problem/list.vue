@@ -208,7 +208,11 @@
                 <text v-if="item.favorite">已收藏</text>
               </view>
               <view class="problem-body">
-                <text class="problem-text">{{ item.question_text || '题目正在整理中' }}</text>
+                <math-text
+                  class="problem-text"
+                  :text="item.question_text || '题目正在整理中'"
+                  inline
+                />
                 <image
                   v-if="item.thumbnail_url"
                   :src="mediaUrl(item.thumbnail_url)"
@@ -256,6 +260,7 @@
 </template>
 <script setup>
 import { computed, reactive, ref, watch } from 'vue'
+import MathText from '@/components/math-text/math-text.vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { questionRoute } from '@/utils/question.js'
 import { getData, mediaUrl } from '@/api/index.js'
@@ -514,12 +519,8 @@ onShow(load)
 .problem-text {
   flex: 1;
   min-width: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.9;
   font-weight: 500;
   color: var(--color-text-primary);
 }
