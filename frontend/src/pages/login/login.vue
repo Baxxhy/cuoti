@@ -3,12 +3,7 @@
     <view class="auth-page">
       <view class="auth-top">
         <view class="auth-brand">
-          <uni-icons
-            aria-hidden="true"
-            type="compose"
-            size="25"
-            color="var(--color-text-primary)"
-          />
+          <uni-icons aria-hidden="true" type="compose" size="25" color="var(--color-primary)" />
           <text>错题帮</text>
         </view>
         <!-- #ifdef H5 -->
@@ -65,6 +60,7 @@
             注册账号
           </button>
           <button
+            class="auth-password-link"
             role="button"
             tabindex="0"
             @click="go('/pages/forgot/forgot')"
@@ -117,16 +113,12 @@ onMounted(restore)
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 20px;
+  padding: 48px 24px calc(48px + env(safe-area-inset-bottom));
   background: var(--color-bg);
 }
 .auth-page {
   width: 100%;
-  max-width: 440px;
-  padding: 28px 24px;
-  background: var(--color-surface);
-  border-radius: 12px;
-  border-top: 3px solid var(--color-primary);
+  max-width: 380px;
 }
 .auth-brand {
   display: flex;
@@ -135,20 +127,25 @@ onMounted(restore)
   color: var(--color-text-primary);
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 28px;
-  letter-spacing: -0.025em;
+  margin-bottom: 32px;
 }
 .auth-title {
   display: block;
   margin: 0;
-  font-size: 23px;
-  font-weight: 650;
-  line-height: 1.25;
-  letter-spacing: -0.035em;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
   color: var(--color-text-primary);
 }
 .auth-form {
-  margin-top: 28px;
+  margin-top: 32px;
+}
+.auth-form :deep(.account-field:first-child) {
+  margin-top: 0;
+}
+.auth-form :deep(.field-input:not(:focus)) {
+  border-color: var(--color-border);
 }
 .auth-form .primary-btn {
   margin-top: 28px;
@@ -158,7 +155,7 @@ onMounted(restore)
   justify-content: space-between;
   gap: 20px;
   color: var(--color-primary);
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 16px;
 }
 .auth-links button {
@@ -173,13 +170,13 @@ onMounted(restore)
   text-align: left;
   cursor: pointer;
 }
+.auth-links .auth-password-link {
+  color: var(--color-text-secondary);
+}
 @media (max-width: 480px) {
   .auth-shell {
     align-items: flex-start;
-    padding-top: calc(56px + env(safe-area-inset-top));
-  }
-  .auth-page {
-    padding: 32px 24px;
+    padding-top: calc(80px + env(safe-area-inset-top));
   }
 }
 @media (max-height: 600px) {
