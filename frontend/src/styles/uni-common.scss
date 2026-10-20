@@ -61,9 +61,6 @@ uni-button::after,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
-.field-input:focus-visible,
-.field-textarea:focus-visible,
-.field-picker:focus-visible,
 [role='button']:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
@@ -305,8 +302,11 @@ textarea:focus-visible,
   min-height: 48px;
 }
 .field-input:focus,
-.field-textarea:focus {
+.field-textarea:focus,
+.field-picker:focus {
   border-color: var(--color-primary);
+  outline: none;
+  box-shadow: none;
 }
 .field-textarea {
   min-height: 120px;
