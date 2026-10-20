@@ -479,11 +479,7 @@ onShow(() => {
   font-size: 16px;
   flex: 1;
   min-width: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-  max-height: 6.4em;
+  // 公式与多行题干高度不固定，跟随内容展开，避免截断文字和分式。
 }
 .bank-question-preview {
   display: flex;
