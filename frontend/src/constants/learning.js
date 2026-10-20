@@ -23,10 +23,10 @@ export const learningPrimaryEntries = [
     url: '/pages/paper/paper-center',
   },
   {
-    title: '知识卡片',
+    title: '知识框架',
     description: '找到概念与前置知识',
     icon: 'wallet',
-    url: '/pages/library/library',
+    url: '/pages/framework/framework',
   },
 ]
 export const learningRecordEntries = [

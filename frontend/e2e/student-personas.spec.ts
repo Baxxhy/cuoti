@@ -128,7 +128,7 @@ test('学生乙：核对首错，人工修正第1步，回放与易错地图同�
   await page.getByText('保存修正', { exact: true }).click()
   await expect(page.locator('.correction-card')).not.toBeVisible()
   await page.reload()
-  await expect(page.locator('body')).toContainText('原有修复建议需要重新核对')
+  await expect(page.locator('body')).toContainText('错因已修改，请重新核对订正建议。')
   await expect(page.getByText('这一步还需核对', { exact: true })).toBeVisible()
   await expect(page.getByText('当前诊断说明', { exact: true })).toBeVisible()
   await expect(page.locator('.correct-thought')).toContainText('暂无与你标记步骤对应的参考')

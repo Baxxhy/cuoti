@@ -770,15 +770,15 @@ test('学习分类、知识检索与跨页多题组卷保持范围', async ({ pa
   const second = await manual(request, account, '专项范围乙：3x+1=13')
   await login(page, account)
   await page.getByRole('button', { name: '学习', exact: true }).click()
-  for (const name of ['到期复习', '类似题练习', '错题组卷', '知识卡片']) {
+  for (const name of ['到期复习', '类似题练习', '错题组卷', '知识框架']) {
     await expect(page.getByRole('button', { name, exact: true })).toBeVisible()
   }
   await expect(page.getByRole('button', { name: '复习记录', exact: true })).not.toBeVisible()
   await page.screenshot({ path: testInfo.outputPath('learning-center.png'), fullPage: true })
-  await page.getByRole('button', { name: '知识卡片', exact: true }).focus()
+  await page.getByRole('button', { name: '知识框架', exact: true }).focus()
   await page.keyboard.press('Enter')
-  await expect(page.locator('.knowledge-result').first()).toBeVisible()
-  await page.locator('.knowledge-result').first().click()
+  await expect(page.locator('.knowledge-node, .direct-knowledge').first()).toBeVisible()
+  await page.locator('.knowledge-node, .direct-knowledge').first().click()
   await expect(page.getByText('查看相关错题', { exact: true })).toBeVisible()
   await page.getByText('查看相关错题', { exact: true }).click()
   await expect(page).toHaveURL(/pages\/problem\/list\?subject=/)

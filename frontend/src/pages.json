@@ -19,6 +19,8 @@
     { "path": "pages/tutor/tutor", "style": { "navigationStyle": "custom" } },
     { "path": "pages/visualization/visualization", "style": { "navigationStyle": "custom" } },
     { "path": "pages/review/review", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/review-search/review-search", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/framework/framework", "style": { "navigationStyle": "custom" } },
     { "path": "pages/assignment/assignment", "style": { "navigationStyle": "custom" } },
     { "path": "pages/practice/practice", "style": { "navigationStyle": "custom" } },
     { "path": "pages/problem/list", "style": { "navigationStyle": "custom" } },

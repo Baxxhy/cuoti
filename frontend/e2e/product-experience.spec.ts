@@ -62,7 +62,7 @@ test('产品闭环：MySQL学习方向、可追溯地图、按ID回放与真实�
   await expect(page.locator('.reference-side')).not.toContainText('x=4')
   await page.screenshot({ path: testInfo.outputPath('product-replay-mobile.png'), fullPage: true })
   await page.getByRole('button', { name: '下一步', exact: true }).click()
-  await expect(page.locator('.reference-side')).toContainText('没有可确认的步骤对应关系')
+  await expect(page.locator('.reference-side')).toContainText('暂时找不到对应的参考步骤')
   await page.getByRole('button', { name: '上一步', exact: true }).focus()
   await page.keyboard.press('Enter')
   await expect(page.locator('.student-side')).toContainText('2x=11+3')

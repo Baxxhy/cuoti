@@ -12,6 +12,7 @@ declare module 'vue' {
     CognitionCanvas: typeof import('./src/components/cognition-canvas/cognition-canvas.vue')['default']
     DateTimeInput: typeof import('./src/components/date-time-input/date-time-input.vue')['default']
     FigureReview: typeof import('./src/components/figure-review/figure-review.vue')['default']
+    KnowledgeTeacher: typeof import('./src/components/knowledge-teacher/knowledge-teacher.vue')['default']
     MathText: typeof import('./src/components/math-text/math-text.vue')['default']
     SelfCheck: typeof import('./src/components/self-check/self-check.vue')['default']
     StatePanel: typeof import('./src/components/state-panel/state-panel.vue')['default']

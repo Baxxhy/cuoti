@@ -17,6 +17,24 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 describe('照片作答', () => {
+  it('已有答案时先展示识别建议，明确采纳前不覆盖学生文字', async () => {
+    const wrapper = setup({ modelValue: '我手动改过的答案' })
+    vi.mocked(uploadFile).mockResolvedValueOnce({
+      image_url: '/photo.jpg',
+      recognition: { final_answer: 'x=5', steps: ['3x=15'] },
+    })
+    await wrapper.find('button').trigger('click')
+    await pick({ tempFilePaths: ['photo.jpg'] })
+    expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+    expect(wrapper.text()).toContain('已填写的作答保留在输入框中')
+    await wrapper
+      .findAll('button')
+      .find((button) => button.text() === '使用识别文字')!
+      .trigger('click')
+    expect(wrapper.emitted('update:modelValue')).toEqual([['3x=15\nx=5']])
+    expect(wrapper.text()).not.toContain('保留我的作答')
+    wrapper.unmount()
+  })
   it('恢复已有照片不覆盖文字，忙碌时不能重新选图', async () => {
     const wrapper = setup({ modelValue: '我修改后的答案', disabled: true })
     ;(wrapper.vm as any).restore({

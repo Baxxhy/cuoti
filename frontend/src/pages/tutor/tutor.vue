@@ -884,6 +884,10 @@ async function sendQuestion() {
 
 onLoad((query) => {
   id.value = query.id
+  if (query.ask) {
+    askInput.value = String(query.ask).slice(0, 1000)
+    askOpen.value = true
+  }
   load()
 })
 </script>

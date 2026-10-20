@@ -3,6 +3,10 @@
     <app-header title="知识卡片" back back-fallback="/pages/learning/learning" />
     <view class="page-content">
       <view v-if="!code" class="library-search">
+        <button role="button" class="framework-entry" @click="openFramework">
+          按章节查看知识框架
+          <uni-icons type="right" size="16" aria-hidden="true" />
+        </button>
         <view class="search-row">
           <input
             v-model="query"
@@ -36,6 +40,7 @@
       />
       <template v-else-if="card">
         <text class="card-meta">{{ card.subject }} · {{ card.content?.grade || '通用' }}</text>
+        <text v-if="card.content?.grade_note" class="card-meta">{{ card.content.grade_note }}</text>
         <h2><math-text :text="card.name" inline /></h2>
         <math-text
           v-if="hasUsefulDefinition(card.content?.definition)"
@@ -57,6 +62,7 @@
           <h3>理解示例</h3>
           <math-text :text="card.content.worked_example" />
         </view>
+        <knowledge-teacher :key="card.code" :code="card.code" />
         <view v-for="section in relationSections" :key="section.key" class="knowledge-section">
           <template v-if="card[section.key]?.length">
             <h3>{{ section.title }}</h3>
@@ -73,8 +79,18 @@
           </template>
         </view>
         <button
+          v-if="questionId"
           role="button"
           class="primary-btn"
+          :disabled="explaining"
+          @click="explainWithQuestion"
+        >
+          {{ explaining ? '正在打开讲解…' : '结合原题讲解' }}
+        </button>
+        <text v-if="explainError" class="explain-error" role="alert">{{ explainError }}</text>
+        <button
+          role="button"
+          class="secondary-btn"
           @click="go(scopedQuestionURL({ subject: card.subject, search: card.name }))"
         >
           查看相关错题
@@ -120,9 +136,10 @@
 </template>
 <script setup>
 import MathText from '@/components/math-text/math-text.vue'
+import KnowledgeTeacher from '@/components/knowledge-teacher/knowledge-teacher.vue'
 import { ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
-import { getData } from '@/api/index.js'
+import { getData, postData } from '@/api/index.js'
 import { CORE_SUBJECTS as subjects, MIDDLE_SCHOOL_GRADES } from '@/constants/education.js'
 import { go } from '@/utils/navigation.js'
 import { scopedQuestionURL } from '@/utils/learning.js'
@@ -135,6 +152,9 @@ const query = ref(''),
   card = ref(null),
   loading = ref(true),
   error = ref('')
+const questionId = ref(''),
+  explaining = ref(false),
+  explainError = ref('')
 const gradeOptions = ['全部年级', '初中', '高中', ...MIDDLE_SCHOOL_GRADES]
 const relationSections = [
   { key: 'prerequisites', title: '先补这些知识' },
@@ -168,7 +188,29 @@ async function loadCard() {
   }
 }
 function openCard(value) {
-  go(`/pages/library/library?code=${encodeURIComponent(value)}`)
+  go(
+    `/pages/library/library?code=${encodeURIComponent(value)}${questionId.value ? `&question=${encodeURIComponent(questionId.value)}` : ''}`,
+  )
+}
+function openFramework() {
+  go(
+    `/pages/framework/framework${questionId.value ? `?question=${encodeURIComponent(questionId.value)}&subject=${encodeURIComponent(subject.value)}` : ''}`,
+  )
+}
+async function explainWithQuestion() {
+  if (explaining.value || !questionId.value || !card.value) return
+  explaining.value = true
+  explainError.value = ''
+  try {
+    const session = await postData('/tutor/sessions', { question_id: questionId.value })
+    go(
+      `/pages/tutor/tutor?id=${encodeURIComponent(session.id)}&ask=${encodeURIComponent(`请结合这道题讲解“${card.value.name}”，先解释概念，再说明这道题中怎样用。`)}`,
+    )
+  } catch (err) {
+    explainError.value = err.message || '讲解暂时无法打开，请稍后重试'
+  } finally {
+    explaining.value = false
+  }
 }
 function changeSubject(event) {
   subject.value = subjects[Number(event.detail.value) - 1] || ''
@@ -185,6 +227,7 @@ function resetSearch() {
   search()
 }
 onLoad((q) => {
+  questionId.value = q.question || ''
   code.value = q.code || ''
   query.value = q.q || ''
   subject.value = q.subject || ''
@@ -194,6 +237,25 @@ onLoad((q) => {
 })
 </script>
 <style scoped lang="scss">
+.framework-entry {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 12px;
+  padding: 10px 0;
+  min-height: 44px;
+  text-align: left;
+  background: transparent;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+.explain-error {
+  display: block;
+  margin: 12px 0;
+  color: var(--color-error);
+  font-size: 14px;
+}
 .search-row {
   display: flex;
   gap: 8px;

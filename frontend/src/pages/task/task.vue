@@ -239,8 +239,33 @@
               placeholder="输入答案或解题步骤"
               :maxlength="12000"
               :disabled="sending || !!pending"
+              :cursor="mathCursor"
+              :focus="mathFocus"
+              @input="rememberMathCursor"
+              @blur="rememberMathCursor"
               auto-height
             />
+            <view class="task-math-tools">
+              <button
+                role="button"
+                :disabled="sending || !!pending"
+                :aria-expanded="mathOpen"
+                @click="mathOpen = !mathOpen"
+              >
+                数学符号
+              </button>
+              <view v-if="mathOpen" class="task-math-keys">
+                <button
+                  v-for="key in mathKeys"
+                  :key="key.label"
+                  role="button"
+                  :disabled="sending || !!pending"
+                  @click="insertMath(key)"
+                >
+                  {{ key.label }}
+                </button>
+              </view>
+            </view>
             <button
               class="primary-btn"
               role="button"
@@ -431,7 +456,7 @@
 <script setup>
 import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import TeachingContent from '@/components/teaching-content/teaching-content.vue'
 import SelfCheck from '@/components/self-check/self-check.vue'
 import TaskHistory from '@/components/task-history/task-history.vue'
@@ -440,6 +465,7 @@ import FigureReview from '@/components/figure-review/figure-review.vue'
 import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData, postData, uploadFile } from '@/api/index.js'
 import { go, returnToQuestion } from '@/utils/navigation.js'
+import { mathKeys, insertMathText } from '@/utils/math-input.js'
 import { useAppStore } from '@/store/index.js'
 import {
   readTaskDraft,
@@ -450,6 +476,25 @@ import {
   advanceTaskDraft,
 } from '@/utils/task-draft.js'
 const store = useAppStore()
+const mathOpen = ref(false),
+  mathCursor = ref(-1),
+  mathFocus = ref(false)
+let inputCursor = null
+function rememberMathCursor(event) {
+  const cursor = event.detail?.cursor ?? event.target?.selectionStart
+  if (Number.isInteger(cursor)) inputCursor = cursor
+}
+async function insertMath(key) {
+  if (sending.value || pending.value) return
+  const result = insertMathText(answer.value, key, inputCursor, 12000)
+  if (!result) return
+  mathFocus.value = false
+  answer.value = result.value
+  inputCursor = result.cursor
+  await nextTick()
+  mathCursor.value = result.cursor
+  mathFocus.value = true
+}
 const draftWarning = ref(''),
   previousDraft = ref(null),
   showPreviousDraft = ref(false),
@@ -804,6 +849,32 @@ onHide(stop)
 onUnload(stop)
 </script>
 <style scoped lang="scss">
+.task-math-tools {
+  margin: 2px 0 8px;
+}
+.task-math-tools > button {
+  margin: 0;
+  padding: 8px 0;
+  min-height: 44px;
+  font-size: 13px;
+  text-align: left;
+  color: var(--color-text-secondary);
+  background: transparent;
+}
+.task-math-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.task-math-keys button {
+  margin: 0;
+  padding: 8px 12px;
+  min-height: 44px;
+  min-width: 44px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: var(--color-surface-subtle);
+}
 .task-page {
   padding-bottom: calc(24px + env(safe-area-inset-bottom));
 }

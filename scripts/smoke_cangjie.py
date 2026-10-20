@@ -187,6 +187,9 @@ def main() -> None:
                 ocr_edits(endpoint, env, query)
                 student_work(endpoint, env, query)
                 insights(endpoint, env, query)
+                from smoke_cangjie_personal_learning import personal_learning
+
+                env.update(personal_learning(endpoint, env, query))
                 from smoke_cangjie_experience import experience
 
                 experience(endpoint, env, query)

@@ -87,7 +87,7 @@ def _find_entries(value: object) -> list[PoolEntry]:
 
 
 class ApiPoolProvider:
-    def __init__(self, path: str | Path, allowed_hosts: set[str] | None = None):
+    def __init__(self, path: str | Path, allowed_hosts: set[str] | None = None, *, trust_env: bool = True):
         self.path = Path(path)
         payload = json.loads(self.path.read_text(encoding="utf-8"))
         self.entries = _find_entries(payload)
@@ -109,7 +109,7 @@ class ApiPoolProvider:
         self._lock = asyncio.Lock()
         self._probe_lock = asyncio.Lock()
         self._probed = False
-        self._client = httpx.AsyncClient(timeout=90)
+        self._client = httpx.AsyncClient(timeout=90, trust_env=trust_env)
 
     async def close(self) -> None:
         await self._client.aclose()

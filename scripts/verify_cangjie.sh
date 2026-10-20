@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PYTHONUNBUFFERED=1
 if [[ "${CANGJIE_VERIFY_BROWSER:-}" == "1" && -n "${CANGJIE_VERIFY_FOCUS:-}" ]]; then
   echo '完整浏览器验收不能启用聚焦模式；请清除 CANGJIE_VERIFY_FOCUS。' >&2
   exit 2

@@ -74,6 +74,12 @@ public func upgradeDatabase(): Unit {
             }
             db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('010_study_sessions', UTC_TIMESTAMP())")
         }
+        if (db.query("SELECT version FROM cangjie_schema_versions WHERE version = '012_personal_learning'").rows.isEmpty()) {
+            for (statement in String.fromUtf8(File.readFrom("schema/012_personal_learning.sql")).split(";")) {
+                if (!statement.trimAscii().isEmpty()) { db.query(statement) }
+            }
+            db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('012_personal_learning', UTC_TIMESTAMP())")
+        }
         if (db.query("SELECT version FROM cangjie_schema_versions WHERE version = '011_bank_browse_index'").rows.isEmpty()) {
             // Cover eligibility, ordered browsing and facets without reading large question bodies.
             if (db.query("SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='dataset_questions' AND INDEX_NAME='ix_bank_browse'").rows.isEmpty()) {

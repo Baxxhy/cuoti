@@ -259,6 +259,15 @@ def test_pool_rejects_non_allowed_provider(tmp_path: Path):
         ApiPoolProvider(path, allowed_hosts={"api.chat.csu.edu.cn"})
 
 
+def test_pool_can_ignore_environment_proxy_without_changing_entries(tmp_path: Path):
+    path = tmp_path / "direct-pool.json"
+    path.write_text(json.dumps({"entries": [{"base_url": "https://provider.example/v1", "key": "fixture-only", "model": "Qwen"}]}))
+    provider = ApiPoolProvider(path, trust_env=False)
+    assert provider._client._trust_env is False
+    assert len(provider.text_entries) == len(provider.vision_entries) == 1
+    asyncio.run(provider.close())
+
+
 def test_pool_ignores_disabled_entries(tmp_path: Path):
     path = tmp_path / "disabled-pool.json"
     path.write_text(

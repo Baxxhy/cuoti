@@ -217,6 +217,7 @@ check-final:
 	bash scripts/final.sh check
 
 verify-final:
+	.venv/bin/python scripts/compile_knowledge_content.py --check
 	npm --prefix frontend test
 	npm --prefix frontend run typecheck
 	npm --prefix frontend run build:h5

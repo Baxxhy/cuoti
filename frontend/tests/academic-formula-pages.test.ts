@@ -177,8 +177,12 @@ describe('学科内容跨页面公式渲染', () => {
         },
         turns: [{ id: 't1', role: 'assistant', content: formula }],
       },
-      { id: 's1' },
+      { id: 's1', ask: '请解释等式性质' },
     )
+    expect((page.find('.helper-bar input').element as HTMLInputElement).value).toBe(
+      '请解释等式性质',
+    )
+    expect(fake.postData).not.toHaveBeenCalled()
     expect(page.findAll('.answer-compare .mfrac')).toHaveLength(2)
     expect(page.find('.why-block .sqrt').exists()).toBe(true)
     await page.find('.history-toggle').trigger('click')

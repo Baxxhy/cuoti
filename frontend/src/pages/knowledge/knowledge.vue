@@ -43,7 +43,13 @@
       <template v-if="prerequisiteKnowledge.length">
         <view class="section-title">{{ hasFinding ? '可以先复习' : '相关基础' }}</view>
         <view class="knowledge-card">
-          <view v-for="name in visiblePrerequisites" :key="name" class="knowledge-row">
+          <button
+            role="button"
+            v-for="name in visiblePrerequisites"
+            :key="name"
+            class="knowledge-row"
+            @click="openKnowledgeCard(name)"
+          >
             <uni-icons
               aria-hidden="true"
               type="arrow-right"
@@ -51,7 +57,7 @@
               color="var(--color-primary)"
             />
             <math-text class="row-name" :text="name" inline />
-          </view>
+          </button>
           <button
             role="button"
             v-if="prerequisiteKnowledge.length > 2"
@@ -159,7 +165,7 @@ const primaryKnowledge = computed(() =>
 )
 function openKnowledgeCard(name) {
   go(
-    `/pages/library/library?q=${encodeURIComponent(name)}&subject=${encodeURIComponent(item.value?.subject || '')}`,
+    `/pages/library/library?q=${encodeURIComponent(name)}&subject=${encodeURIComponent(item.value?.subject || '')}&question=${encodeURIComponent(id.value)}`,
   )
 }
 const prerequisiteKnowledge = computed(() =>

@@ -51,6 +51,7 @@ from dialogue_compute import DialogueContext, finish_dialogue, prepare_dialogue
 from fastapi import FastAPI, HTTPException, Request
 from grading_compute import UnavailableGradingProvider, grade_answer
 from inequality_compute import format_solution, solution_set, source_inequality
+from knowledge_lesson_compute import explain_knowledge
 from learning_task_compute import Checkpoint, TaskAction, TaskContext
 from learning_workflow import run_learning_workflow
 from mastery_tracker import compute_aemt_cognition
@@ -81,6 +82,7 @@ class ComputeRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
     operation: Literal[
         "learning_task",
+        "knowledge_lesson",
         "normalize",
         "crop",
         "preprocess",
@@ -175,6 +177,7 @@ class ComputeRequest(BaseModel):
     dialogue_cards: list[dict[str, JsonValue]] = Field(
         default_factory=list, max_length=8
     )
+    knowledge_history: list[dict[str, JsonValue]] = Field(default_factory=list, max_length=3)
     adaptive_practice: AdaptivePracticeInput | None = None
     probe_provider: bool = False
     audio_base64: str = Field(default="", max_length=20 * 1024 * 1024)
@@ -272,6 +275,8 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
         )
     )
 
+    trust_env_proxy = os.environ.get("CANGJIE_AI_USE_ENV_PROXY", "true").lower() != "false"
+
     @asynccontextmanager
     async def lifespan(app):
         yield
@@ -315,12 +320,22 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
         except ValidationError:
             raise HTTPException(422, "计算输入格式不正确") from None
         try:
-            if data.operation == "learning_task":
+            if data.operation == "knowledge_lesson":
+                if app.state.provider is None:
+                    try:
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
+                    except (OSError, ValueError):
+                        pass
+                result = await explain_knowledge(
+                    app.state.provider or UnavailableGradingProvider(),
+                    data.dialogue_cards, data.subject, data.grade, data.text, data.knowledge_history,
+                )
+            elif data.operation == "learning_task":
                 if data.task_context is None:
                     raise ValueError("task context required")
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         pass
                 async with asyncio.timeout(data.task_budget_ms / 1000):
@@ -336,7 +351,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     raise ValueError("dialogue context required")
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         pass
                 dialogue_provider = app.state.provider or UnavailableGradingProvider()
@@ -361,7 +376,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "system_state":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         if data.probe_provider:
                             raise ApiPoolUnavailable("模型池尚未就绪") from None
@@ -441,7 +456,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "analyze":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         raise ApiPoolUnavailable("模型池尚未就绪") from None
                 with TemporaryDirectory(prefix="zhiwei-analysis-") as directory:
@@ -517,7 +532,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "grade_answer":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         pass
                 result = await grade_answer(
@@ -562,7 +577,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "practice_alignment":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         pass
                 result = await align_practice(
@@ -585,7 +600,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "generate_variant":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         raise ApiPoolUnavailable("模型池尚未就绪") from None
                 generated, verified, metadata = await generate_variant(
@@ -606,7 +621,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "teaching_brief":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         raise ApiPoolUnavailable("模型池尚未就绪") from None
                 brief = await build_adaptive_teaching_brief(
@@ -627,7 +642,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation in {"diagnose", "counterfactual"}:
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         raise ApiPoolUnavailable("模型池尚未就绪") from None
                 with TemporaryDirectory(prefix="zhiwei-diagnosis-") as directory:
@@ -701,7 +716,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     else:
                         if app.state.provider is None:
                             try:
-                                app.state.provider = ApiPoolProvider(pool)
+                                app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                             except (OSError, ValueError):
                                 raise ApiPoolUnavailable("模型池尚未就绪") from None
                         started = time.perf_counter()

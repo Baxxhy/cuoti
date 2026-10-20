@@ -1,5 +1,6 @@
-"""Local acceptance-only proxy: forwards real computation, can delay its reply."""
+"""Local acceptance proxy: real computation, delays, and explicitly controlled lesson output."""
 
+import asyncio
 import json
 import sys
 import threading
@@ -37,6 +38,7 @@ def main():
                 operation = value.get("operation")
                 question = value.get("task_context", {}).get("question_id")
                 task = value.get("learning_evidence", {}).get("learning_task_id")
+                knowledge_code = (value.get("dialogue_cards") or [{}])[0].get("code")
                 rule = next(
                     (
                         r
@@ -45,6 +47,7 @@ def main():
                         and (
                             (question and r.get("question_id") == question)
                             or (task and r.get("task_id") == task)
+                            or (knowledge_code and r.get("knowledge_code") == knowledge_code)
                         )
                     ),
                     None,
@@ -57,6 +60,26 @@ def main():
                         operation=operation,
                         task_budget_ms=value.get("task_budget_ms"),
                     )
+                if rule and rule.get("fixture_knowledge_lesson") and operation == "knowledge_lesson":
+                    # Controlled model output; real evidence building and Pydantic checks still run.
+                    project = Path(__file__).resolve().parents[1]
+                    sys.path[:0] = [str(project / "backend-algorithms"), str(project / "backend")]
+                    from knowledge_lesson_compute import explain_knowledge
+
+                    class LessonProvider:
+                        async def generate_structured(self, _prompt, schema, **_kwargs):
+                            return schema(explanation="受控模型讲解：等式两边进行相同运算，等式仍然成立。移项是两边同时加减同一项的简写。",
+                                key_points=["两边同时加减同一项"], check_question="两边同时减去3后怎样变化？", source_codes=[knowledge_code])
+
+                    result = asyncio.run(explain_knowledge(LessonProvider(), value["dialogue_cards"], value["subject"], value.get("grade", ""), value.get("text", "")))
+                    payload = json.dumps({"operation": operation, "result": result}).encode()
+                    time.sleep(min(5, max(0, float(rule.get("delay_seconds", 0)))))
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/json")
+                    self.send_header("Content-Length", str(len(payload)))
+                    self.end_headers()
+                    self.wfile.write(payload)
+                    return
                 try:
                     response = urlopen(
                         Request(

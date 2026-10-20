@@ -6,8 +6,8 @@ vi.mock('@dcloudio/uni-app', () => ({
     hooks.load = fn
   },
 }))
-vi.mock('../src/api/index.js', () => ({ getData: vi.fn() }))
-import { getData } from '../src/api/index.js'
+vi.mock('../src/api/index.js', () => ({ getData: vi.fn(), postData: vi.fn() }))
+import { getData, postData } from '../src/api/index.js'
 import Library from '../src/pages/library/library.vue'
 const setup = () =>
   mount(Library, {
@@ -24,6 +24,30 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 describe('知识库真实请求与返回', () => {
+  it('从错题进入知识卡后，讲解保留原题并带上明确提问', async () => {
+    const navigateTo = vi.fn()
+    vi.stubGlobal('uni', { navigateTo })
+    vi.mocked(getData).mockResolvedValue({
+      code: 'equation',
+      name: '等式性质',
+      subject: '数学',
+      content: {},
+    })
+    vi.mocked(postData).mockResolvedValue({ id: 'session-1' })
+    const wrapper = setup()
+    hooks.load({ code: 'equation', question: 'question-1' })
+    await flushPromises()
+    await wrapper
+      .findAll('button')
+      .find((button) => button.text() === '结合原题讲解')!
+      .trigger('click')
+    await flushPromises()
+    expect(postData).toHaveBeenCalledWith('/tutor/sessions', { question_id: 'question-1' })
+    const url = new URL(navigateTo.mock.calls[0][0].url, 'https://local.test')
+    expect(url.searchParams.get('id')).toBe('session-1')
+    expect(url.searchParams.get('ask')).toContain('等式性质')
+    wrapper.unmount()
+  })
   it('搜索结果进入知识详情，相关错题携带学科和知识名称', async () => {
     const navigateTo = vi.fn()
     vi.stubGlobal('uni', { navigateTo })

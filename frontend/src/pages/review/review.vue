@@ -2,6 +2,15 @@
   <view class="page learning-page">
     <app-header title="到期复习" back back-fallback="/pages/learning/learning" />
     <view class="page-content">
+      <button
+        role="button"
+        class="review-search-entry"
+        @click="go('/pages/review-search/review-search')"
+      >
+        <uni-icons type="search" size="20" aria-hidden="true" />
+        <text>查找复习题</text>
+        <uni-icons type="right" size="16" aria-hidden="true" />
+      </button>
       <state-panel v-if="loading" state="loading" />
       <state-panel v-else-if="error" state="error" :message="error" @retry="load" />
       <template v-else>
@@ -870,6 +879,22 @@ onUnload(leave)
 </script>
 
 <style scoped lang="scss">
+.review-search-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  background: var(--color-surface);
+  border-radius: 10px;
+  font-size: 15px;
+  text-align: left;
+}
+.review-search-entry text {
+  flex: 1;
+}
 .origin-unavailable {
   padding: 16px;
   background: var(--color-surface);

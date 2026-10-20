@@ -7,7 +7,10 @@
       maxlength="1200"
       :placeholder="placeholder"
       aria-label="我的作答"
-      @input="emit('update:modelValue', $event.detail.value)"
+      :cursor="answerCursor"
+      :focus="answerFocus"
+      @input="onInput"
+      @blur="rememberCursor"
     />
     <textarea
       v-if="showWorking"
@@ -47,13 +50,48 @@
         </view>
       </view>
       <text v-if="notice" class="upload-notice" role="status">{{ notice }}</text>
+      <view v-if="suggestedAnswer" class="recognition-suggestion">
+        <text>识别结果</text>
+        <math-text :text="suggestedAnswer" />
+        <text class="suggestion-caption">已填写的作答保留在输入框中。</text>
+        <view>
+          <button role="button" :disabled="disabled || uploading" @click="acceptRecognition">
+            使用识别文字
+          </button>
+          <button role="button" :disabled="disabled || uploading" @click="dismissRecognition">
+            保留我的作答
+          </button>
+        </view>
+      </view>
+    </view>
+    <view class="math-tools">
+      <button
+        role="button"
+        :disabled="uploading || disabled"
+        :aria-expanded="symbolsOpen"
+        @click="symbolsOpen = !symbolsOpen"
+      >
+        数学符号
+      </button>
+      <view v-if="symbolsOpen" class="math-keys">
+        <button
+          v-for="key in mathKeys"
+          :key="key.label"
+          role="button"
+          :disabled="uploading || disabled"
+          @click="insertSymbol(key)"
+        >
+          {{ key.label }}
+        </button>
+      </view>
     </view>
   </view>
 </template>
 
 <script setup>
-import { onBeforeUnmount, ref } from 'vue'
+import { nextTick, onBeforeUnmount, ref } from 'vue'
 import { uploadFile } from '@/api/index.js'
+import { mathKeys, insertMathText } from '@/utils/math-input.js'
 
 const props = defineProps({
   modelValue: { type: String, default: '' },
@@ -79,6 +117,41 @@ const imageUrl = ref(''),
 const uploading = ref(false),
   progress = ref(0),
   phase = ref('准备照片')
+const suggestedAnswer = ref(''),
+  suggestedWorking = ref(''),
+  symbolsOpen = ref(false),
+  answerCursor = ref(-1),
+  answerFocus = ref(false)
+let cursor = null
+function onInput(event) {
+  const position = event.detail?.cursor ?? event.target?.selectionStart
+  cursor = Number.isInteger(position) ? position : null
+  emit('update:modelValue', event.detail?.value ?? event.target?.value ?? '')
+}
+function rememberCursor(event) {
+  const position = event.detail?.cursor ?? event.target?.selectionStart
+  if (Number.isInteger(position)) cursor = position
+}
+async function insertSymbol(key) {
+  if (uploading.value || props.disabled) return
+  const result = insertMathText(props.modelValue, key, cursor)
+  if (!result) return
+  answerFocus.value = false
+  emit('update:modelValue', result.value)
+  cursor = result.cursor
+  await nextTick()
+  answerCursor.value = result.cursor
+  answerFocus.value = true
+}
+function acceptRecognition() {
+  if (props.disabled || uploading.value || !suggestedAnswer.value) return
+  emit('update:modelValue', suggestedAnswer.value)
+  if (suggestedWorking.value) emit('update:working', suggestedWorking.value)
+  suggestedAnswer.value = suggestedWorking.value = ''
+}
+function dismissRecognition() {
+  suggestedAnswer.value = suggestedWorking.value = ''
+}
 let active = true,
   timer
 
@@ -86,6 +159,7 @@ function notify() {
   emit('handwriting-change', { image_url: imageUrl.value, recognition: recognition.value })
 }
 function reset() {
+  suggestedAnswer.value = suggestedWorking.value = ''
   imageUrl.value = ''
   recognition.value = null
   status.value = ''
@@ -98,6 +172,7 @@ async function recognize({ tempFilePaths }) {
   const path = tempFilePaths?.[0]
   if (!path || !active) return
   uploading.value = true
+  suggestedAnswer.value = suggestedWorking.value = ''
   notice.value = ''
   emit('uploading-change', true)
   progress.value = 8
@@ -125,8 +200,13 @@ async function recognize({ tempFilePaths }) {
       : process || parsed.transcription
     imageUrl.value = data.image_url
     recognition.value = parsed
-    if (answer) emit('update:modelValue', answer)
-    if (steps.length) emit('update:working', steps.join('\n'))
+    if (answer && (props.modelValue.trim() || props.working.trim())) {
+      suggestedAnswer.value = answer
+      suggestedWorking.value = steps.join('\n')
+    } else {
+      if (answer) emit('update:modelValue', answer)
+      if (steps.length) emit('update:working', steps.join('\n'))
+    }
     status.value = !answer
       ? '没有识别到可用文字'
       : parsed.uncertain
@@ -159,6 +239,7 @@ onBeforeUnmount(() => {
   clearInterval(timer)
 })
 function restore(value) {
+  suggestedAnswer.value = suggestedWorking.value = ''
   if (uploading.value || !active) return
   imageUrl.value = value?.image_url || ''
   recognition.value = value?.recognition || null
@@ -169,6 +250,61 @@ defineExpose({ reset, restore })
 </script>
 
 <style scoped lang="scss">
+.math-tools {
+  margin: 4px 0;
+}
+.math-tools > button {
+  margin: 0;
+  padding: 8px 0;
+  min-height: 44px;
+  font-size: 13px;
+  text-align: left;
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+.math-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.math-keys button {
+  min-height: 44px;
+  min-width: 44px;
+  margin: 0;
+  padding: 8px 12px;
+  background: var(--color-surface-subtle);
+  color: var(--color-text-primary);
+  font-size: 15px;
+  border-radius: 8px;
+}
+.recognition-suggestion {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.recognition-suggestion > text {
+  display: block;
+  margin: 6px 0;
+}
+.suggestion-caption {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+.recognition-suggestion > view {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.recognition-suggestion button {
+  margin: 0;
+  padding: 8px 10px;
+  min-height: 44px;
+  font-size: 14px;
+  color: var(--color-primary);
+  background: var(--color-surface);
+}
 .written-answer > textarea {
   width: 100%;
   min-height: 120px;

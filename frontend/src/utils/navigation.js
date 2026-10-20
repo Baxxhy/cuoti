@@ -48,6 +48,8 @@ export function back(fallback) {
     'pages/bank/bank': '/pages/learning/learning',
     'pages/practice/practice': '/pages/learning/learning',
     'pages/analysis/analysis': '/pages/learning/learning',
+    'pages/framework/framework': '/pages/learning/learning',
+    'pages/review-search/review-search': '/pages/review/review',
     'pages/error-map/error-map': '/pages/learning/learning',
     'pages/task/task': '/pages/learning/learning',
     'pages/assignment/assignment': '/pages/learning/learning',
