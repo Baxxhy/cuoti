@@ -304,8 +304,8 @@ onUnload(() => {
   pointer-events: none;
 }
 .crop-box {
-  border: 5rpx solid #f59e0b;
-  background: rgba(245, 158, 11, 0.05);
+  border: 5rpx solid var(--color-primary);
+  background: transparent;
   box-shadow: 0 0 0 2000rpx rgba(0, 0, 0, 0.52);
 }
 .corner {
@@ -324,7 +324,7 @@ onUnload(() => {
   height: 30rpx;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: #f59e0b;
+  background: var(--color-primary);
   border: 5rpx solid #fff;
   box-sizing: border-box;
 }

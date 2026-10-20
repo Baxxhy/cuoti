@@ -327,8 +327,9 @@ onUnload(clear)
   margin: 14px 0;
 }
 .source-reason {
-  padding-left: 14px;
-  border-left: 2px solid var(--color-primary-border);
+  padding: 14px;
+  background: var(--color-surface);
+  border-radius: 10px;
   font-size: 14px;
 }
 .source-reason > text {

@@ -1,23 +1,6 @@
 <template>
   <view class="page home-page">
-    <view class="home-top">
-      <view class="home-top-copy">
-        <!-- #ifdef H5 -->
-        <component :is="'h1'" class="greeting">今日</component>
-        <!-- #endif -->
-        <!-- #ifndef H5 -->
-        <text class="greeting">今日</text>
-        <!-- #endif -->
-        <text class="today-copy">
-          {{
-            new Date().toLocaleDateString('zh-CN', {
-              month: 'long',
-              day: 'numeric',
-              weekday: 'long',
-            })
-          }}
-        </text>
-      </view>
+    <app-header title="今日">
       <button
         class="search-action"
         role="button"
@@ -30,9 +13,18 @@
       >
         <uni-icons aria-hidden="true" type="search" size="24" color="#55565B" />
       </button>
-    </view>
+    </app-header>
 
     <view class="page-content home-content">
+      <text class="today-copy">
+        {{
+          new Date().toLocaleDateString('zh-CN', {
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long',
+          })
+        }}
+      </text>
       <state-panel
         v-if="loading || error"
         :state="error ? 'error' : 'loading'"
@@ -475,23 +467,11 @@ onUnload(clear)
 </script>
 
 <style scoped lang="scss">
-.home-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: calc(20px + var(--status-bar-height, 0px)) var(--space-page) 8px;
-}
-.greeting {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.4;
-}
 .today-copy {
   display: block;
   color: var(--color-text-secondary);
   font-size: 13px;
-  margin-top: 4px;
+  margin-bottom: 16px;
 }
 .search-action {
   width: 44px;
@@ -507,8 +487,7 @@ onUnload(clear)
 .focus-card {
   padding: 22px;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-top: 1px solid var(--color-primary-border);
+  border: 0;
   border-radius: 12px;
 }
 .focus-title {
@@ -544,7 +523,7 @@ onUnload(clear)
   margin: 0;
   padding: 16px 12px;
   min-height: 64px;
-  border: 1px solid var(--color-border);
+  border: 0;
   border-radius: 12px;
   background: var(--color-surface);
   text-align: left;
@@ -645,9 +624,6 @@ onUnload(clear)
   color: var(--color-text-secondary);
 }
 @media (min-width: 1100px) {
-  .home-top {
-    padding-top: 28px;
-  }
   .home-content {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
@@ -656,7 +632,10 @@ onUnload(clear)
   }
   .focus-card {
     grid-column: 1;
-    grid-row: 1 / 3;
+  }
+  .today-copy {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
   }
   .home-secondary {
     margin-top: 0;

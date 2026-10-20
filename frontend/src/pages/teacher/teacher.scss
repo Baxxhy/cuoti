@@ -18,7 +18,7 @@
   .metric-card,
   .teacher-card {
     box-sizing: border-box;
-    border: 1rpx solid var(--color-border);
+    border: 0;
     border-radius: 20rpx;
     background: #fff;
     box-shadow: none;
@@ -154,14 +154,20 @@
     min-height: 78rpx;
     padding: 18rpx 20rpx;
     border: 1rpx solid #dce2ea;
-    border-radius: 14rpx;
+    border-radius: 12px;
     background: #fff;
     color: #101828;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.55;
   }
   .field textarea {
     min-height: 150rpx;
+  }
+  .field input:focus-within,
+  .field textarea:focus-within {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: none;
   }
   .empty-card {
     padding: 70rpx 30rpx;

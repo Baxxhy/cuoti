@@ -131,9 +131,7 @@ onMounted(load)
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 20px 16px;
-  background: var(--color-surface);
-  border-radius: 12px;
+  padding: 16px 0;
   margin-bottom: 24px;
 }
 .avatar {
@@ -144,8 +142,8 @@ onMounted(load)
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e8f2ff;
-  color: #176cbb;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
   font-size: 21px;
   font-weight: 500;
 }

@@ -762,6 +762,12 @@ onUnload(() => {
   line-height: 1.5;
   font-weight: 700;
 }
+.editor-title :deep(.paper-title-input:focus),
+.score-stepper:focus-within {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: none;
+}
 .delete-paper {
   flex: none;
   min-width: 44px;

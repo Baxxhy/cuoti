@@ -698,8 +698,8 @@ onUnload(leave)
   display: block;
   margin-top: 8px;
   padding: 8px 10px;
-  border-left: 1.5px solid var(--color-error);
-  background: #fff;
+  border-radius: 8px;
+  background: var(--color-error-soft);
   font-size: 14px;
 }
 .issue-reason {

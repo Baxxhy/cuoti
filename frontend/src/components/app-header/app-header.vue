@@ -7,7 +7,9 @@
       tabindex="0"
       aria-label="返回"
       @tap.stop="handleBack"
-      @keydown.enter="handleBack"
+      @keydown.enter.prevent="handleBack"
+      @keydown.space.prevent
+      @keyup.space.prevent="handleBack"
     >
       <uni-icons aria-hidden="true" type="left" size="24" color="var(--color-text-primary)" />
     </view>
@@ -43,9 +45,10 @@ function handleBack() {
 </script>
 <style scoped lang="scss">
 .app-header {
-  min-height: calc(64px + var(--status-bar-height, 0px));
-  padding: calc(10px + var(--status-bar-height, 0px)) var(--space-page) 10px;
-  display: flex;
+  min-height: calc(56px + var(--status-bar-height, 0px));
+  padding: calc(6px + var(--status-bar-height, 0px)) var(--space-page) 6px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) minmax(44px, auto);
   align-items: center;
   gap: 8px;
   background: var(--color-bg);
@@ -53,18 +56,22 @@ function handleBack() {
   z-index: 10;
 }
 .header-copy {
-  flex: 1;
+  grid-column: 2;
+  grid-row: 1;
   min-width: 0;
+  text-align: center;
 }
 .header-title {
   display: block;
   margin: 0;
-  font-size: 21px;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.035em;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .header-action {
+  grid-column: 1;
+  grid-row: 1;
   flex: none;
   width: 44px;
   min-height: 44px;
@@ -79,14 +86,17 @@ function handleBack() {
   background: var(--color-surface-subtle);
 }
 .header-extra {
+  grid-column: 3;
+  grid-row: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   min-height: 44px;
   flex-shrink: 0;
 }
 @media (min-width: 1100px) {
   .app-header {
-    padding-top: 28px;
+    padding-top: 20px;
     padding-bottom: 8px;
   }
 }

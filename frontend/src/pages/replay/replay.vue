@@ -277,7 +277,7 @@ onUnload(clear)
   font-size: 12px;
 }
 .replay-stage {
-  border-top: 2px solid var(--color-text-primary);
+  padding-top: 8px;
 }
 .replay-stage-top {
   display: flex;

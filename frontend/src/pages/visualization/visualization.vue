@@ -191,7 +191,6 @@ onLoad((q) => {
   padding: 22rpx;
   border-radius: 18rpx;
   background: var(--color-warning-soft);
-  border-left: 5rpx solid var(--color-warning);
 }
 .task text,
 .task b,

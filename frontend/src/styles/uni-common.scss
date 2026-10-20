@@ -118,7 +118,6 @@ textarea:focus-visible,
 }
 .practice-workspace .question-card {
   border: 0;
-  border-top: 2px solid var(--color-primary);
   border-radius: 0;
   padding: 24px 0;
   background: transparent;
@@ -303,10 +302,26 @@ textarea:focus-visible,
 }
 .field-input:focus,
 .field-textarea:focus,
-.field-picker:focus {
+.field-picker:focus,
+.field-input:focus-within,
+.field-textarea:focus-within,
+.field-picker:focus-within,
+.preference-select:focus,
+.paper-title-input:focus,
+.paper-score-input:focus {
   border-color: var(--color-primary);
   outline: none;
   box-shadow: none;
+}
+.uni-input-input,
+.uni-textarea-textarea,
+.paper-title-input,
+.paper-score-input {
+  caret-color: var(--color-primary);
+}
+.uni-input-input:focus,
+.uni-textarea-textarea:focus {
+  outline: none;
 }
 .field-textarea {
   min-height: 120px;

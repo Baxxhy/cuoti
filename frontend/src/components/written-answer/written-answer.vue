@@ -171,12 +171,12 @@ defineExpose({ reset, restore })
 <style scoped lang="scss">
 .written-answer > textarea {
   width: 100%;
-  min-height: 170rpx;
+  min-height: 120px;
   padding: 20rpx;
   border: 1rpx solid var(--color-border);
-  border-radius: 16rpx;
+  border-radius: 12px;
   background: var(--color-surface-subtle);
-  font-size: 27rpx;
+  font-size: 16px;
   line-height: 1.65;
 }
 .written-answer > .working {
@@ -184,10 +184,15 @@ defineExpose({ reset, restore })
   margin-top: 14rpx;
   background: #fff;
 }
+.written-answer > textarea:focus-within {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: none;
+}
 .handwriting-area {
   margin-top: 16rpx;
   padding: 18rpx;
-  border: 1rpx dashed var(--color-primary-border);
+  border: 0;
   border-radius: 14rpx;
   background: var(--color-primary-soft);
 }

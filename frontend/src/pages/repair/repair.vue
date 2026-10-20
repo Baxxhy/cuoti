@@ -197,16 +197,16 @@ onUnload(clear)
   font-variant-numeric: tabular-nums;
 }
 .repair-copy {
-  padding: 16px 0 12px 20px;
-  border-left: 1px solid var(--color-primary-border);
+  padding: 16px 0 12px;
   border-top: 1px solid var(--color-border);
 }
 .repair-step:first-child .repair-copy {
-  border-top: 2px solid var(--color-text-primary);
+  border-top: 0;
 }
 .repair-step.recommended .repair-copy {
-  border-left: 3px solid var(--color-primary);
-  padding-left: 18px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--color-primary-soft);
 }
 .repair-step.recommended .repair-step-heading small {
   color: var(--color-primary);

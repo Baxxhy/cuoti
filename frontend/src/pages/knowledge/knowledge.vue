@@ -348,7 +348,7 @@ button.knowledge-row {
 .work-quote {
   margin-top: 12px;
   padding: 14px;
-  border-left: 2px solid var(--color-primary);
+  border-radius: 10px;
   background: var(--color-bg);
 }
 .work-quote > text {

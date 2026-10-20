@@ -1173,8 +1173,8 @@ onUnload(leave)
 .option-quote {
   display: block;
   padding: 9px 10px;
-  border-left: 1.5px solid var(--color-border);
-  background: #fff;
+  border-radius: 8px;
+  background: var(--color-surface);
   font-size: 14px;
   line-height: 1.75;
 }
@@ -1183,8 +1183,8 @@ onUnload(leave)
   align-items: flex-start;
   gap: 8px;
   padding: 11px 10px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border: 0;
+  border-radius: 8px;
   background: #fff;
 }
 .thought-mark {
@@ -1202,10 +1202,10 @@ onUnload(leave)
   line-height: 1.75;
 }
 .student-thought {
-  border-left: 1.5px solid var(--color-error);
+  background: var(--color-error-soft);
 }
 .correct-thought {
-  border-left: 1.5px solid var(--color-primary);
+  background: var(--color-primary-soft);
 }
 .tutor-btn {
   margin-top: 14px;

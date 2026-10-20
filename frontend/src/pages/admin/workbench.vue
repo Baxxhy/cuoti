@@ -889,12 +889,17 @@ onUnmounted(() => clearInterval(timer))
   padding: 0 34px 48px;
 }
 .topbar {
-  min-height: 112px;
-  display: flex;
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--color-border);
   margin-bottom: 26px;
+}
+.topbar > view:first-child {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
 }
 .eyebrow,
 .page-title,
@@ -907,9 +912,9 @@ onUnmounted(() => clearInterval(timer))
   font-weight: 600;
 }
 .page-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-top: 5px;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 0;
 }
 .page-desc {
   font-size: 15px;
@@ -917,6 +922,9 @@ onUnmounted(() => clearInterval(timer))
   margin-top: 5px;
 }
 .service {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
   min-width: 210px;
   display: flex;
   align-items: center;
@@ -1281,7 +1289,6 @@ onUnmounted(() => clearInterval(timer))
 }
 .select-row.selected {
   background: var(--color-primary-soft);
-  box-shadow: inset 3px 0 var(--color-primary);
 }
 .select-row b,
 .select-row text {
@@ -1505,8 +1512,9 @@ onUnmounted(() => clearInterval(timer))
   margin: 6px 0;
 }
 .strategy {
-  padding-left: 18px;
-  border-left: 1px solid var(--color-primary-border);
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--color-primary-soft);
 }
 .strategy b {
   font-size: 15px;
@@ -1926,7 +1934,7 @@ onUnmounted(() => clearInterval(timer))
     font-size: 12px;
   }
   .page-title {
-    font-size: 22px;
+    font-size: 17px;
   }
   .page-desc {
     font-size: 13px;

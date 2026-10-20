@@ -219,36 +219,42 @@ onLoad(async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 43px;
+  min-height: 48px;
   box-sizing: border-box;
   padding: 9px 10px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: #fff;
   font-size: 14px;
 }
 .input {
   width: 100%;
-  height: 43px;
-  min-height: 43px;
+  height: 48px;
+  min-height: 48px;
   box-sizing: border-box;
   padding: 9px 10px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: #fff;
   color: var(--color-text-primary);
-  font-size: 14px;
+  font-size: 16px;
 }
 .textarea {
   width: 100%;
-  min-height: 70px;
+  min-height: 100px;
   box-sizing: border-box;
   padding: 10px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: #fff;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.75;
+}
+.input:focus-within,
+.textarea:focus-within {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: none;
 }
 .required,
 .error-text {

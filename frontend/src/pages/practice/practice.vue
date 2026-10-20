@@ -304,16 +304,13 @@ onLoad((query) => {
 }
 .result-card {
   margin-top: 20rpx;
-  border-left: 6rpx solid var(--color-warning);
   background: var(--color-warning-soft);
 }
 .result-card.correct {
-  border-left-color: var(--color-success);
   background: var(--color-success-soft);
 }
 .result-card.pending {
-  border-left-color: #718096;
-  background: #f4f6f8;
+  background: var(--color-surface-subtle);
 }
 .result-card b,
 .result-card text {

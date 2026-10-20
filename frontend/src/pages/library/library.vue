@@ -239,10 +239,10 @@ h3 {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 20px 24px;
+  padding: 16px 20px;
   margin: 12px 0;
   background: var(--color-surface);
-  border-radius: 20px;
+  border-radius: 12px;
   border: 0;
 }
 .knowledge-result text {

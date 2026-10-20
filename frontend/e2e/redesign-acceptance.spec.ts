@@ -189,6 +189,44 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
           timeout: 20_000,
         })
         await expect(page.locator('.state-panel .ghost-btn')).toHaveCount(0)
+        const heading = await page
+          .locator('h1')
+          .first()
+          .evaluate((el) => {
+            const style = getComputedStyle(el)
+            const frame = el.closest('.app-header, .topbar')
+            const rect = el.getBoundingClientRect()
+            const bounds = frame?.getBoundingClientRect()
+            return {
+              fontSize: parseFloat(style.fontSize),
+              fontWeight: Number(style.fontWeight),
+              alignment: style.textAlign,
+              centerOffset: bounds
+                ? Math.abs(rect.x + rect.width / 2 - (bounds.x + bounds.width / 2))
+                : null,
+            }
+          })
+        if (route !== 'login/login') {
+          expect(heading.fontSize, route).toBeLessThanOrEqual(18)
+          expect(heading.fontWeight, route).toBeLessThanOrEqual(600)
+          expect(heading.alignment, route).toBe('center')
+          expect(heading.centerOffset, route).not.toBeNull()
+          expect(heading.centerOffset!, route).toBeLessThanOrEqual(48)
+        }
+        const field = page
+          .locator(
+            'input:not([type="file"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]):not([disabled]), textarea:not([disabled]), select:not([disabled])',
+          )
+          .filter({ visible: true })
+          .first()
+        if (await field.count()) {
+          await field.focus()
+          expect(await field.evaluate((el) => getComputedStyle(el).outlineStyle), route).toBe(
+            'none',
+          )
+          await field.blur()
+          await page.evaluate(() => window.scrollTo(0, 0))
+        }
         expect(
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
           `${route} at ${width}`,
@@ -210,6 +248,7 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
           route,
           width,
           title: await page.locator('h1').first().innerText(),
+          heading,
           url: page.url().split('#')[1],
         })
       }

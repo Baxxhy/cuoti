@@ -823,8 +823,8 @@ onUnload(stop)
 .diagnosis-evidence {
   margin: 16px 0;
   padding: 16px;
-  background: var(--color-surface);
-  border-left: 3px solid var(--color-primary);
+  background: var(--color-primary-soft);
+  border-radius: var(--radius-card);
   font-size: 16px;
 }
 .answer-label {
@@ -852,6 +852,11 @@ onUnload(stop)
   border-radius: 10px;
   font-size: 16px;
   line-height: 1.6;
+}
+.answer-input:focus-within {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: none;
 }
 .secondary-actions {
   display: flex;

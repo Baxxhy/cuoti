@@ -172,15 +172,13 @@ onUnload(clear)
 </script>
 <style scoped lang="scss">
 .learning-settings {
-  margin-top: 32px;
+  margin-top: 8px;
   display: block;
   width: 100%;
   max-width: none;
 }
 .preference-field {
-  padding: 0 0 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 28px;
 }
 .field-label {
   display: block;

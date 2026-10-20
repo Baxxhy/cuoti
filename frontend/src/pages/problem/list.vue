@@ -1,6 +1,6 @@
 <template>
   <view class="page problem-page">
-    <app-header :title="purpose === 'practice' ? '选择要巩固的错题' : '错题本'">
+    <app-header :title="purpose === 'practice' ? '选择错题' : '错题本'">
       <button
         tabindex="0"
         role="button"
@@ -542,10 +542,9 @@ onShow(load)
   margin-top: 4rpx;
 }
 .empty-problems {
-  padding: 28px;
+  padding: 28px 0;
   margin-top: 24px;
-  background: var(--color-surface);
-  border-radius: 20px;
+  background: transparent;
   text-align: left;
 }
 .empty-problems > text {
@@ -572,6 +571,9 @@ onShow(load)
   flex: 1;
   min-width: 0;
   font-size: 15px;
+}
+.inline-search:focus-within {
+  border-color: var(--color-primary);
 }
 .search-button,
 .header-add {

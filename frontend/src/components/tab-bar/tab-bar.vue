@@ -1,7 +1,7 @@
 <template>
   <view class="custom-tab-bar" role="navigation" aria-label="主要导航">
     <view class="nav-brand">
-      <uni-icons aria-hidden="true" type="compose" size="25" color="var(--color-text-primary)" />
+      <uni-icons aria-hidden="true" type="compose" size="25" color="var(--color-primary)" />
       <text>错题帮</text>
     </view>
     <view
@@ -143,7 +143,7 @@ function switchPage(path) {
     align-items: center;
     gap: 10px;
     padding: 0 14px 36px;
-    color: var(--color-text-primary);
+    color: var(--color-brand-deep);
     font-size: 21px;
     font-weight: 650;
     letter-spacing: -0.04em;
@@ -159,11 +159,11 @@ function switchPage(path) {
     font-size: 14px;
   }
   .tab-item.active {
-    background: #e8e8ed;
-    color: var(--color-text-primary);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
   }
   .tab-item:hover {
-    background: #ededf0;
+    background: var(--color-primary-soft-hover);
   }
 }
 </style>

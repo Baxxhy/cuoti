@@ -193,7 +193,7 @@ const moreOpen = ref(false)
   margin: 0;
   padding: 14px 12px;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 0;
   border-radius: 12px;
   text-align: left;
   line-height: 1.5;
