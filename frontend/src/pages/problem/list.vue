@@ -1,6 +1,10 @@
 <template>
   <view class="page problem-page">
-    <app-header :title="purpose === 'practice' ? '选择错题' : '错题本'">
+    <app-header
+      :title="purpose === 'practice' ? '选择错题' : '错题本'"
+      :back="purpose === 'practice'"
+      back-fallback="/pages/learning/learning"
+    >
       <button
         tabindex="0"
         role="button"

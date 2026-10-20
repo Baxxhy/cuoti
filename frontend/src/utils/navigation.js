@@ -37,10 +37,25 @@ export function returnToQuestion(questionId) {
 
 export function back(fallback) {
   const pages = getCurrentPages()
-  if (pages.length > 1) uni.navigateBack()
-  else {
-    const route = (pages[0]?.route || '').replace(/^\//, '')
-    const home = route.startsWith('pages/teacher/')
+  const route = (pages[pages.length - 1]?.route || '').replace(/^\//, '')
+  const parents = {
+    'pages/detail/detail': '/pages/problem/list',
+    'pages/manual/manual': '/pages/capture/capture',
+    'pages/crop/crop': '/pages/capture/capture',
+    'pages/guardian/access': '/pages/profile/profile',
+    'pages/preferences/preferences': '/pages/profile/profile',
+    'pages/help/help': '/pages/profile/profile',
+    'pages/bank/bank': '/pages/learning/learning',
+    'pages/practice/practice': '/pages/learning/learning',
+    'pages/analysis/analysis': '/pages/learning/learning',
+    'pages/error-map/error-map': '/pages/learning/learning',
+    'pages/task/task': '/pages/learning/learning',
+    'pages/assignment/assignment': '/pages/learning/learning',
+    'pages/paper/paper-center': '/pages/learning/learning',
+  }
+  const home =
+    parents[route] ||
+    (route.startsWith('pages/teacher/')
       ? '/pages/teacher/dashboard'
       : route.startsWith('pages/guardian/')
         ? '/pages/guardian/home'
@@ -48,9 +63,10 @@ export function back(fallback) {
           ? '/pages/admin/workbench'
           : route === 'pages/register/register' || route === 'pages/forgot/forgot'
             ? '/pages/login/login'
-            : '/pages/index/index'
-    uni.reLaunch({ url: fallback || home })
-  }
+            : '/pages/index/index')
+  const returnToParent = () => uni.reLaunch({ url: fallback || home })
+  if (pages.length > 1) uni.navigateBack({ fail: returnToParent })
+  else returnToParent()
 }
 
 // Reuse an existing root when possible; cap stack growth when changing sections.

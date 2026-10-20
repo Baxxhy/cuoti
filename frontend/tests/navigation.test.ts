@@ -9,7 +9,10 @@ describe('返回导航', () => {
     ['pages/guardian/report', '/pages/guardian/home'],
     ['pages/system/system', '/pages/admin/workbench'],
     ['pages/forgot/forgot', '/pages/login/login'],
-    ['pages/detail/detail', '/pages/index/index'],
+    ['pages/detail/detail', '/pages/problem/list'],
+    ['pages/guardian/access', '/pages/profile/profile'],
+    ['pages/manual/manual', '/pages/capture/capture'],
+    ['pages/bank/bank', '/pages/learning/learning'],
   ])('直接打开 %s 后返回对应入口', (route, expected) => {
     const reLaunch = vi.fn()
     vi.stubGlobal('uni', { reLaunch, navigateBack: vi.fn() })
@@ -29,6 +32,17 @@ describe('返回导航', () => {
     back()
     expect(navigateBack).toHaveBeenCalledOnce()
     expect(reLaunch).not.toHaveBeenCalled()
+  })
+
+  it('返回历史失败时仍能回到指定入口', () => {
+    const reLaunch = vi.fn()
+    vi.stubGlobal('getCurrentPages', () => [
+      { route: 'pages/index/index' },
+      { route: 'pages/detail/detail' },
+    ])
+    vi.stubGlobal('uni', { reLaunch, navigateBack: ({ fail }) => fail() })
+    back('/pages/review/review')
+    expect(reLaunch).toHaveBeenCalledWith({ url: '/pages/review/review' })
   })
 })
 
