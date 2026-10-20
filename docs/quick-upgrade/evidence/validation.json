@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-20",
+  "runtime_code_commit": "910b189",
+  "scope": "ECED/AEMT/ARPP and one LangGraph learning workflow",
+  "commands": [
+    {
+      "command": "make verify-final",
+      "exit_code": 0,
+      "local_log": "/tmp/zhiwei-quick-upgrade-verify-delivery-v2.log",
+      "results": {
+        "frontend_tests": 261,
+        "frontend_files": 49,
+        "typecheck": "passed",
+        "build_h5": "passed",
+        "build_app_local": "passed",
+        "algorithm_tests": 668,
+        "cangjie_tests": 40,
+        "browser_tests": 59,
+        "skipped": 0,
+        "http_mysql_and_restart": "passed"
+      }
+    },
+    {
+      "command": "make check-final",
+      "exit_code": 0,
+      "local_log": "/tmp/zhiwei-quick-upgrade-check-final-delivery.log",
+      "checks": [
+        "business",
+        "mysql/schema",
+        "algorithms",
+        "frontend"
+      ]
+    },
+    {
+      "command": ".venv/bin/python -m pytest backend/tests",
+      "exit_code": 0,
+      "passed": 332,
+      "local_log": "/tmp/zhiwei-upgrade-compat-backend.log",
+      "evidence_reuse": "Compatibility backend code unchanged since this run."
+    },
+    {
+      "command": "Ruff on changed Python modules and test utilities",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check and local Markdown link validation",
+      "exit_code": 0
+    }
+  ],
+  "browser": {
+    "routes": 48,
+    "widths": [
+      375,
+      1280
+    ],
+    "renders": 96,
+    "runtime_errors": 0,
+    "horizontal_overflows": 0,
+    "rendering_evidence": "all-route-rendering.json",
+    "visually_inspected": [
+      "task-repair.png",
+      "task-completed.png",
+      "recommended-practice.png"
+    ]
+  },
+  "model_boundary": "Real frontend, Cangjie, MySQL and Python algorithms; controlled model/retrieval/voice upstream fixtures. No claim of real remote Qwen teaching quality or measured learning gain.",
+  "restrictions": {
+    "schema_migrations": false,
+    "new_model_training": false,
+    "production_data_or_api_pool_overwritten": false,
+    "business_database": "MySQL",
+    "business_authority": "Cangjie"
+  },
+  "known_limits": [
+    "Cold-start BKT/planner parameters, not fitted to students.",
+    "Daily time is estimated from completed items, not measured screen time.",
+    "Bank coverage is not a full junior/senior high curriculum.",
+    "App resources are built; no signed installer acceptance."
+  ]
+}

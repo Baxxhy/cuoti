@@ -1,6 +1,8 @@
 # 当前项目与智能体架构
 
-更新：2026-10-18。本文描述当前仓颉主线实现；产品范围与验收入口见 [最终产品基线](final/README.md) 和 [实施状态](final/IMPLEMENTATION_STATUS.md)。历史 Python 业务版保留兼容，不是当前主线的业务服务。
+更新：2026-10-20。本文描述当前仓颉主线实现；产品范围与验收入口见 [最终产品基线](final/README.md) 和 [实施状态](final/IMPLEMENTATION_STATUS.md)。历史 Python 业务版保留兼容，不是当前主线的业务服务。
+
+2026-10-20 增量：Python 算法服务已用单一 LangGraph 协调图接入 ECED 证据诊断、AEMT 辅助感知掌握追踪、ARPP 学习规划；仓颉仍掌管任务恢复与正式事务。详情见 [升级记录](QUICK_UPGRADE_REPORT.md)、[算法设计](ALGORITHM_DESIGN.md)及[工作流](AGENT_WORKFLOW.md)。
 
 ## 一、三层职责
 
