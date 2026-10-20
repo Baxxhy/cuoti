@@ -73,6 +73,8 @@ func studyBank(context: HttpContext, accounts: Accounts): JsonValue {
     if (subject.size>100 || band.size>100 || source.size>100 || search.size>300) { throw ApiError(422,"筛选条件过长") }
     let page=if (queryLast(form,"page").isEmpty()) { 1 } else { try { Int64.parse(queryLast(form,"page")) } catch (_: Exception) { throw ApiError(422,"页码无效") } }
     if (page<1 || page>10000) { throw ApiError(422,"页码无效") }
+    let seed=if (queryLast(form,"shuffle_seed").isEmpty()) { unixNow()%2147483647 } else { try { Int64.parse(queryLast(form,"shuffle_seed")) } catch (_: Exception) { throw ApiError(422,"随机顺序参数无效") } }
+    if (seed<0 || seed>2147483647) { throw ApiError(422,"随机顺序参数无效") }
     try (db=Database.fromEnvironment()) {
         let user=accounts.currentUser(context,db)
         let grade=bankStudentGrade(db,rowText(user,"id"))
@@ -84,7 +86,15 @@ func studyBank(context: HttpContext, accounts: Accounts): JsonValue {
         for (sourceRow in db.query("SELECT id,name FROM dataset_sources").rows) {
             sourceNames.put(rowText(sourceRow,"id"),JsonString(rowText(sourceRow,"name")))
         }
-        for (row in db.query("SELECT q.*"+browseWhere+(if (grade.startsWith("高")) { " ORDER BY q.subject,q.id" } else { " ORDER BY q.grade,q.subject,q.id" })+" LIMIT 20 OFFSET "+((page-1)*20).toString(),filters).rows) {
+        let paging=" LIMIT 20 OFFSET "+((page-1)*20).toString()
+        // Shuffle IDs, interleaving subjects so large English datasets cannot monopolize "all".
+        // The seeded per-ID key stays stable across pages and query execution plans.
+        let randomKey="CRC32(CONCAT(q.id,':',"+seed.toString()+"))"
+        let listing=if (subject.isEmpty()) {
+            "SELECT q.* FROM dataset_questions q JOIN (SELECT id,subject_rank,random_key FROM (SELECT q.id,ROW_NUMBER() OVER (PARTITION BY q.subject ORDER BY "+randomKey+",q.id) AS subject_rank,"+randomKey+" AS random_key"+browseWhere+") mixed ORDER BY subject_rank,random_key,id"+paging+") selected ON selected.id=q.id ORDER BY selected.subject_rank,selected.random_key,selected.id"
+        } else { "SELECT q.*"+browseWhere+(if (grade.startsWith("高")) { " ORDER BY q.subject,q.id" } else { " ORDER BY q.grade,q.subject,q.id" })+paging }
+        result.put("shuffle_seed",JsonInt(seed))
+        for (row in db.query(listing,filters).rows) {
             let value=rowJson("dataset_questions",row)
             value.put("source_name",sourceNames.get(rowText(row,"dataset_source_id")) ?? JsonString("题库")); items.add(bankQuestion(value,accounts))
         }

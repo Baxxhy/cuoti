@@ -238,7 +238,14 @@ const mode = ref('practice'),
   history = ref([]),
   search = ref('')
 const failedImages = ref({})
-const filters = ref({ subject: '', grade_band: '', source_id: '', search: '', page: 1 })
+const filters = ref({
+  subject: '',
+  grade_band: '',
+  source_id: '',
+  search: '',
+  page: 1,
+  shuffle_seed: Date.now() % 2147483647,
+})
 const practiceCount = ref(5)
 const count = ref(5),
   minutes = ref(20)
@@ -284,6 +291,8 @@ async function load() {
 }
 function setFilter(key, value) {
   filters.value[key] = value
+  if (key === 'subject' && value === '')
+    filters.value.shuffle_seed = (filters.value.shuffle_seed + 1) % 2147483647
   filters.value.page = 1
   load()
 }

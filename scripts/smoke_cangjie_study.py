@@ -400,6 +400,26 @@ def study(endpoint, env, query):
                 request(endpoint, "POST", "/api/v1/study-sessions", {"question_ids": [excluded_id]}, token=pupil_token, expected=422)
         request(endpoint, "POST", "/api/v1/study-sessions", {"source_id": grade_source, "count": len(allowed) + 1}, token=pupil_token, expected=422)
     print("School scopes passed: junior exact grades, senior all high-school grades, random/adaptive/exam, foreign-band IDs and insufficient counts", flush=True)
+    shuffle_source = insert("dataset_sources", key="shuffle-" + uuid4().hex, name="随机混排验收")
+    for subject in ["数学", "英语", "化学"]:
+        for position in range(25):
+            insert("dataset_questions", dataset_source_id=shuffle_source,
+                   source_item_id=subject + str(position), content_hash=uuid4().hex,
+                   subject=subject, grade="高中", grade_band="高中",
+                   question_text="随机混排样本" + str(position), question_type="single-choice",
+                   options=[{"key": "A", "text": "选项"}], answer=json.dumps("A"),
+                   has_answer=True, usable_for_practice=True, usable_for_auto_grade=True)
+    def shuffled(seed, page=1):
+        return request(endpoint, "GET", f"/api/v1/study-bank?source_id={shuffle_source}&shuffle_seed={seed}&page={page}", token=pupil_token)["questions"]
+    first, second = shuffled(17), shuffled(17, 2)
+    assert len(first) == len(second) == 20
+    assert {q["subject"] for q in first} == {"数学", "英语", "化学"}
+    assert max(sum(q["subject"] == subject for q in first) for subject in ["数学", "英语", "化学"]) == 7
+    assert [q["id"] for q in first] == [q["id"] for q in shuffled(17)]
+    assert not ({q["id"] for q in first} & {q["id"] for q in second})
+    assert [q["id"] for q in first] != [q["id"] for q in shuffled(29)]
+    request(endpoint, "GET", "/api/v1/study-bank?shuffle_seed=invalid", token=pupil_token, expected=422)
+    print("Random mixed bank passed: balanced subjects, repeatable seed, disjoint pagination and reshuffle", flush=True)
     return {
         "QA_STUDY_CHEM_SOURCE": chemical_source,
         "QA_STUDY_BLOCKED_SESSION": held["id"],

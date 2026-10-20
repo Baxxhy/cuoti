@@ -61,7 +61,18 @@ test('题库默认按学生学段和学科打开，明确选择后可以切换',
   await page.getByRole('button', { name: '全部', exact: true }).click()
   const allSubjects = await switched
   expect(new URL(allSubjects.url()).searchParams.get('grade_band')).toBe('高中')
-  expect((await allSubjects.json()).data.questions.every((q) => q.grade_band === '高中')).toBe(true)
+  const mixed = (await allSubjects.json()).data
+  expect(mixed.questions.every((q) => q.grade_band === '高中')).toBe(true)
+  expect(new Set(mixed.questions.map((q) => q.subject)).size).toBeGreaterThan(1)
+  const reshuffled = page.waitForResponse(
+    (r) =>
+      r.url().includes('/api/v1/study-bank?') &&
+      new URL(r.url()).searchParams.get('subject') === '',
+  )
+  await page.getByRole('button', { name: '全部', exact: true }).click()
+  const refreshed = (await (await reshuffled).json()).data
+  expect(refreshed.shuffle_seed).not.toBe(mixed.shuffle_seed)
+  expect(refreshed.questions.map((q) => q.id)).not.toEqual(mixed.questions.map((q) => q.id))
   const englishLoaded = page.waitForResponse(
     (r) =>
       r.url().includes('/api/v1/study-bank?') &&
