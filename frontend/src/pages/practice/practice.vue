@@ -32,7 +32,7 @@
         </view>
         <view class="card question-card">
           <text class="source">
-            {{ question.grade }} · {{ questionTypeLabel(question.question_type) }}
+            {{ questionTypeLabel(question.question_type) }}
           </text>
           <math-text class="question-stem" :text="question.stem" inline />
           <image
