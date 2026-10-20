@@ -229,6 +229,16 @@ def _plan(state: WorkflowState):
         if result.checkpoint.phase in {"repair", "done"}
         else None
     )
+    if result.checkpoint.phase == "repair" and result.student_view.diagnosis_evidence:
+        # A final erroneous step can align directly with the reference answer.
+        # Do not display that answer automatically and then score its repetition
+        # as unaided work. Full evidence stays in the server checkpoint/detail.
+        safe = result.student_view.diagnosis_evidence.model_copy(deep=True)
+        safe.evidence = [
+            item for item in safe.evidence if item.source in {"student_step", "rule"}
+        ]
+        safe.candidates = []
+        result.student_view.diagnosis_evidence = safe
     return {"result": result}
 
 

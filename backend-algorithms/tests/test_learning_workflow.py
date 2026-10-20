@@ -84,6 +84,15 @@ def test_verified_eced_location_drives_repair_instead_of_stale_default_index():
     assert repaired.traces[0].evidence["student_step_id"] == "s1"
 
 
+def test_repair_evidence_does_not_automatically_reveal_the_final_reference_answer():
+    result = run(student_steps=["2x=8", "x=5"])
+    assert any(
+        item.text == "x=4" for item in result.checkpoint.evidence_diagnosis.evidence
+    )
+    assert "x=4" not in result.student_view.model_dump_json()
+    assert result.student_view.diagnosis_evidence.candidates == []
+
+
 def test_revealed_answer_stays_assisted_even_after_a_hint():
     original = run(run().checkpoint, "answer", "11-3")
     revealed = run(original.checkpoint, "reveal")
