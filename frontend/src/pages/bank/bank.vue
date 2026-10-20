@@ -43,7 +43,7 @@
           </view>
         </scroll-view>
         <view class="filter-row">
-          <view class="bank-picker">{{ data?.grade || studentGrade }} · 按年级选题</view>
+          <view class="bank-picker">{{ data?.grade || studentGrade }}</view>
         </view>
       </view>
       <state-panel
@@ -115,7 +115,13 @@
             </button>
           </view>
           <view v-if="!data.questions.length" class="empty card">
-            <text>当前年级暂无符合条件的题目</text>
+            <text>
+              {{
+                filters.search || filters.source_id
+                  ? '没有找到符合条件的题目'
+                  : `暂无可用的${data.grade || studentGrade}${filters.subject}题目`
+              }}
+            </text>
           </view>
           <button
             role="button"
@@ -233,11 +239,7 @@ const filters = ref({ subject: '', grade_band: '', source_id: '', search: '', pa
 const practiceCount = ref(5)
 const count = ref(5),
   minutes = ref(20)
-const subjects = computed(() =>
-  [...new Set([filters.value.subject, ...(data.value?.facets || []).map((x) => x.subject)])].filter(
-    Boolean,
-  ),
-)
+const subjects = ['语文', '数学', '英语', '物理', '化学', '生物', '历史', '地理', '思想政治']
 const studentGrade = ref('')
 const visibleHistory = computed(() =>
   history.value.filter((x) => x.mode === mode.value).slice(0, 8),
