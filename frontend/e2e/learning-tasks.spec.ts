@@ -142,6 +142,7 @@ test('持久智能体：订正、刷新草稿、独立作答、离开恢复与�
   expect((payload.data || payload).items[0].question.id).toBe(plan.question_id)
   await expect(page).toHaveURL(/pages\/study-session\/study-session\?id=/)
   await expect(page.locator('.study-page')).toBeVisible()
+  await expect(page.locator('.question-workspace .question-stem')).toBeVisible()
   await page.screenshot({
     path: testInfo.outputPath('agent-recommended-practice.png'),
     fullPage: true,
