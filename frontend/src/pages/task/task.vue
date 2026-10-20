@@ -664,6 +664,7 @@ async function startRecommendation() {
       {
         mode: 'practice',
         question_ids: [plan.question_id],
+        learning_task_id: task.value.id,
         count: 1,
         selection_strategy: 'random',
         minutes: Math.max(1, plan.estimated_minutes || 3),

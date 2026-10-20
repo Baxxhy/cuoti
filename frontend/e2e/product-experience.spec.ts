@@ -28,7 +28,9 @@ test('产品闭环：MySQL学习方向、可追溯地图、按ID回放与真实�
     'true',
   )
   await page.goto('/#/pages/index/index')
-  await expect(page.locator('.home-direction')).toContainText('数学')
+  await expect(page.locator('.home-brand')).toHaveText('错题帮')
+  await expect(page.locator('.home-grade')).toHaveText('初一')
+  await expect(page.getByRole('button', { name: '学习设置', exact: true })).toHaveCount(0)
   await page.screenshot({ path: testInfo.outputPath('product-home-mobile.png'), fullPage: true })
   const sourcesResponse = page.waitForResponse((response) =>
     response.url().includes('/api/v1/analytics/error-sources'),

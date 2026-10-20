@@ -162,11 +162,18 @@ const relationSections = [
   { key: 'next_knowledge', title: '接下来可了解' },
 ]
 let requestId = 0
+let gradeInitialized = false
 async function search() {
   const current = ++requestId
   loading.value = true
   error.value = ''
   try {
+    if (!gradeInitialized) {
+      const preferences = await getData('/student-preferences')
+      if (current !== requestId) return
+      grade.value = gradeOptions.includes(preferences.grade) ? preferences.grade : ''
+      gradeInitialized = true
+    }
     const result = await getData(
       `/knowledge/cards?q=${encodeURIComponent(query.value)}&subject=${encodeURIComponent(subject.value)}&grade=${encodeURIComponent(grade.value)}`,
     )
@@ -218,10 +225,12 @@ function changeSubject(event) {
   search()
 }
 function changeGrade(event) {
+  gradeInitialized = true
   grade.value = Number(event.detail.value) ? gradeOptions[Number(event.detail.value)] : ''
   search()
 }
 function resetSearch() {
+  gradeInitialized = true
   query.value = ''
   subject.value = ''
   grade.value = ''
@@ -233,6 +242,7 @@ onLoad((q) => {
   query.value = q.q || ''
   subject.value = q.subject || ''
   grade.value = gradeOptions.includes(q.grade) && q.grade !== '全部年级' ? q.grade : ''
+  gradeInitialized = Boolean(q.grade)
   if (code.value) loadCard()
   else search()
 })

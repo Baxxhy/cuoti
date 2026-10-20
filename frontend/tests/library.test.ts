@@ -73,6 +73,35 @@ describe('知识库真实请求与返回', () => {
     expect(url.searchParams.get('subject')).toBe('数学')
     wrapper.unmount()
   })
+  it('首页进入默认使用个人年级，主动选择全部年级后不再覆盖', async () => {
+    vi.mocked(getData).mockImplementation(async (url) =>
+      url === '/student-preferences' ? { grade: '初一' } : [],
+    )
+    const wrapper = setup()
+    hooks.load({})
+    await flushPromises()
+    expect(getData).toHaveBeenLastCalledWith(
+      '/knowledge/cards?q=&subject=&grade=' + encodeURIComponent('初一'),
+    )
+    await wrapper.findAll('picker')[1].trigger('change', { detail: { value: 0 } })
+    await flushPromises()
+    expect(getData).toHaveBeenLastCalledWith('/knowledge/cards?q=&subject=&grade=')
+    expect(
+      vi.mocked(getData).mock.calls.filter(([url]) => url === '/student-preferences'),
+    ).toHaveLength(1)
+    wrapper.unmount()
+  })
+  it('从带年级的入口进入时保留指定范围', async () => {
+    vi.mocked(getData).mockResolvedValue([])
+    const wrapper = setup()
+    hooks.load({ grade: '初三' })
+    await flushPromises()
+    expect(getData).not.toHaveBeenCalledWith('/student-preferences')
+    expect(getData).toHaveBeenLastCalledWith(
+      '/knowledge/cards?q=&subject=&grade=' + encodeURIComponent('初三'),
+    )
+    wrapper.unmount()
+  })
   it('空态可清除条件，不制造示例卡片', async () => {
     vi.mocked(getData).mockResolvedValue([])
     const wrapper = setup()

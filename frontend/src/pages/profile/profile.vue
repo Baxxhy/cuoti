@@ -41,7 +41,12 @@
           </button>
           <view class="section-title"><text>使用与帮助</text></view>
           <view class="setting-list">
-            <view
+            <button
+              role="button"
+              tabindex="0"
+              @keydown.enter.prevent="go(item.url)"
+              @keydown.space.prevent
+              @keyup.space.prevent="go(item.url)"
               v-for="item in studentSettings"
               :key="item.url"
               class="setting-row"
@@ -52,11 +57,16 @@
                 <text class="setting-title">{{ item.title }}</text>
               </view>
               <uni-icons aria-hidden="true" type="right" size="22" color="#85868B" />
-            </view>
+            </button>
           </view>
         </template>
         <view v-else class="setting-list role-settings">
-          <view
+          <button
+            role="button"
+            tabindex="0"
+            @keydown.enter.prevent="go(item.url)"
+            @keydown.space.prevent
+            @keyup.space.prevent="go(item.url)"
             v-for="item in roleSettings"
             :key="item.url"
             class="setting-row"
@@ -67,7 +77,7 @@
               <text class="setting-title">{{ item.title }}</text>
             </view>
             <uni-icons aria-hidden="true" type="right" size="22" color="#85868B" />
-          </view>
+          </button>
         </view>
         <button role="button" class="secondary-btn logout-button" @click="store.logout()">
           退出登录
@@ -182,6 +192,12 @@ onMounted(load)
   background: var(--color-surface);
 }
 .setting-row {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+  line-height: 1.5;
   display: flex;
   align-items: center;
   gap: 16px;

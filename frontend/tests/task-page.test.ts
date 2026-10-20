@@ -111,6 +111,7 @@ describe('持久任务页面', () => {
       '/study-sessions',
       expect.objectContaining({
         question_ids: ['bank-next'],
+        learning_task_id: server.id,
         count: 1,
         mode: 'practice',
       }),

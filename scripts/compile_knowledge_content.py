@@ -38,6 +38,12 @@ def compile_content(check=False):
     explanations = json.loads((ROOT / "knowledge_explanations.json").read_text())
     for card in data["cards"]:
         content = card["content"]
+        # Keep persistent card IDs; align these introductory cards with the
+        # common six-three subject curriculum (PEP physics 8, chemistry 9).
+        if card["code"].startswith("curr.物理.初一."):
+            content["grade"] = "初二"
+        elif card["code"].startswith(("curr.化学.初一.", "curr.化学.初二.")):
+            content["grade"] = "初三"
         content["definition"] = explanations[card["name"]]
         # Remove earlier generated scaffolding; a generic process is not an example.
         content["worked_example"] = EXAMPLES.get(card["name"], "")

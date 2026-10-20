@@ -210,8 +210,21 @@ func studySessions(context: HttpContext, accounts: Accounts): JsonValue {
         if (strategy!="random" && strategy!="adaptive") { throw ApiError(422,"选题方式无效") }
         let selection=if (strategy=="adaptive" && mode=="practice" && ids.getItems().isEmpty()) { adaptivePracticeSelection(db,owner,subject,band,source,search,count,grade:grade) } else { JsonObject() }
         let selected=tutorArray(selection,"question_ids")
+        let taskId=schoolText(body,"learning_task_id","",36)
+        if (!taskId.isEmpty() && (mode!="practice" || ids.getItems().size!=1)) { throw ApiError(422,"请选择本次学习推荐的一道题") }
         return db.transaction<JsonValue>({ tx =>
-            let rows=if (!selected.getItems().isEmpty()) {
+            let rows=if (!taskId.isEmpty()) {
+                // Old mistakes keep their original learning context after the student advances a grade.
+                let task=taskRow(tx,taskId,owner)
+                let plan=tutorObject(tutorObject(task,"student_view"),"recommendation")
+                let requested=(editText(ids.getItems()[0],36,minimum:1,trim:true) as JsonString).getOrThrow().getValue()
+                if (tutorText(task,"status")!="completed" || tutorText(plan,"question_source")!="dataset" || tutorText(plan,"question_id")!=requested) { throw ApiError(409,"请从已完成的学习任务打开推荐题") }
+                let snapshot=taskSnapshot(tx,tutorText(task,"question_id"),owner)
+                if (!taskValidateVersion(tx,task,snapshot)) { throw ApiError(409,"原题已更新，请重新学习后获取推荐") }
+                let candidates=tx.query("SELECT * FROM dataset_questions WHERE id=?",[Some(requested)]).rows
+                if (candidates.isEmpty() || !usableRetrievalCandidate(tutorObject(snapshot,"question"),rowJson("dataset_questions",candidates[0]),"practice")) { throw ApiError(409,"推荐题已更新，请重新获取练习") }
+                candidates
+            } else if (!selected.getItems().isEmpty()) {
                 let picked=ArrayList<HashMap<String,Option<String>>>()
                 for (id in selected.getItems()) {
                     let params=ArrayList<Option<String>>(bankFilter(subject,band,source,search,grade:grade)); params.add(sqlValue(id))

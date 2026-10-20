@@ -206,7 +206,19 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
                 : null,
             }
           })
-        if (route !== 'login/login') {
+        if (route === 'index/index') {
+          await expect(page.locator('.home-brand')).toHaveText('错题帮')
+          expect(heading.fontSize, route).toBeLessThanOrEqual(20)
+          expect(heading.fontWeight, route).toBeLessThanOrEqual(600)
+          if (width < 1100) {
+            const brand = await page.locator('.home-brand').boundingBox()
+            const card = await page.locator('.focus-card').boundingBox()
+            expect(Math.abs(brand!.x - card!.x), route).toBeLessThanOrEqual(2)
+          } else {
+            await expect(page.locator('.nav-brand')).toBeVisible()
+            await expect(page.locator('.nav-brand')).toContainText('错题帮')
+          }
+        } else if (route !== 'login/login') {
           expect(heading.fontSize, route).toBeLessThanOrEqual(18)
           expect(heading.fontWeight, route).toBeLessThanOrEqual(600)
           expect(heading.alignment, route).toBe('center')

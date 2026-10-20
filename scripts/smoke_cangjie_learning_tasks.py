@@ -412,8 +412,21 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
         plan = done["student_view"]["recommendation"]
         assert plan["algorithm"] == "arpp-v1" and plan["action"] == "practice"
         assert plan["question_id"] == recommendation_id and plan["question_source"] == "dataset"
+        # An older-grade recommendation remains usable through its actual task,
+        # while ordinary bank selection and someone else's task stay scoped.
+        recommendation_body = {
+            "mode": "practice", "question_ids": [plan["question_id"]], "count": 1,
+            "learning_task_id": task["id"],
+        }
+        request(endpoint, "POST", "/api/v1/study-sessions", recommendation_body,
+                token=other, expected=404)
+        request(endpoint, "POST", "/api/v1/study-sessions",
+                recommendation_body | {"question_ids": [str(uuid4())]}, token=token, expected=409)
+        request(endpoint, "POST", "/api/v1/study-sessions",
+                recommendation_body | {"mode": "exam"}, token=token, expected=422)
         practice = request(endpoint, "POST", "/api/v1/study-sessions", {
             "mode": "practice", "question_ids": [plan["question_id"]], "count": 1,
+            "learning_task_id": task["id"],
             "minutes": plan["estimated_minutes"],
         }, token=token)
         assert practice["items"][0]["question"]["id"] == recommendation_id

@@ -355,3 +355,26 @@ test.describe('桌面布局', () => {
     expect(await page.evaluate(() => document.body.scrollWidth <= innerWidth)).toBe(true)
   })
 })
+
+test('知识卡片默认个人年级，个人中心入口可用键盘打开', async ({ page }) => {
+  await registerAndLogin(page)
+  const cards = page.waitForResponse((response) =>
+    response.url().includes('/api/v1/knowledge/cards?'),
+  )
+  await page.getByRole('button', { name: '知识卡片', exact: true }).click()
+  const response = await cards
+  expect(response.ok()).toBe(true)
+  expect(new URL(response.url()).searchParams.get('grade')).toBe('高一')
+  await expect(page.locator('.filter-button').last()).toContainText('高一')
+  await page.goto('/#/pages/profile/profile')
+  const entry = page.getByRole('button', { name: '家长查看权限', exact: true })
+  await entry.focus()
+  await expect(entry).toBeFocused()
+  await page.keyboard.press('Enter')
+  await expect(page).toHaveURL(/pages\/guardian\/access/)
+  await page.getByRole('button', { name: '返回', exact: true }).click()
+  const help = page.getByRole('button', { name: '使用指南', exact: true })
+  await help.focus()
+  await page.keyboard.press('Space')
+  await expect(page).toHaveURL(/pages\/help\/help/)
+})
