@@ -8,16 +8,7 @@
         <!-- #ifndef H5 -->
         <text class="home-brand">错题帮</text>
         <!-- #endif -->
-        <text class="today-copy">
-          {{ data?.grade ? data.grade + ' · ' : '' }}
-          {{
-            new Date().toLocaleDateString('zh-CN', {
-              month: 'long',
-              day: 'numeric',
-              weekday: 'long',
-            })
-          }}
-        </text>
+        <text v-if="data?.grade" class="home-grade">{{ data.grade }}</text>
       </view>
       <button
         class="search-action"
@@ -56,6 +47,9 @@
           </button>
         </view>
         <view class="focus-card">
+          <text class="focus-date">
+            {{ new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric' }) }}
+          </text>
           <template v-if="focusKind === 'task'">
             <math-text
               class="focus-title"
@@ -495,7 +489,7 @@ onUnload(clear)
   font-weight: 600;
   line-height: 1.4;
 }
-.today-copy {
+.home-grade {
   display: block;
   color: var(--color-text-secondary);
   font-size: 13px;
@@ -522,6 +516,13 @@ onUnload(clear)
   background: var(--color-surface);
   border: 0;
   border-radius: 12px;
+}
+.focus-date {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
 }
 .focus-title {
   display: block;
@@ -670,7 +671,7 @@ onUnload(clear)
     clip-path: inset(50%);
     white-space: nowrap;
   }
-  .today-copy {
+  .home-grade {
     margin-top: 0;
   }
   .home-content {
