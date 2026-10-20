@@ -55,7 +55,14 @@ test('学生甲：首次使用，改学习方向、读例题、录入与收藏�
     .fill('3x=17+2\nx=6')
   await page.getByText('保存并查看错题', { exact: true }).click()
   await expect(page).toHaveURL(/pages\/detail\/detail\?id=/)
+  const favoriteSaved = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'PATCH' &&
+      /\/questions\/[^/]+$/.test(new URL(response.url()).pathname),
+  )
   await page.getByText('收藏题目', { exact: true }).click()
+  expect((await favoriteSaved).ok()).toBe(true)
+  await expect(page.getByText('取消收藏', { exact: true })).toBeVisible()
   await page.reload()
   await expect(page.getByText('取消收藏', { exact: true })).toBeVisible()
   await page.goto('/#/pages/error-map/error-map')

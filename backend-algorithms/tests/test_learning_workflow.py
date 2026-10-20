@@ -43,6 +43,7 @@ def test_diagnose_repair_independent_transfer_and_next_recommendation():
         practice_candidates=[PlanCandidate(id="next-1", subject="数学", due=True)],
     )
     assert done.status == "completed"
+    assert done.student_view.diagnosis_evidence is None
     assert done.checkpoint.mastery_update.state.evidence_count == 2
     assert done.student_view.recommendation.action == "review"
     assert done.student_view.recommendation.question_id == "next-1"

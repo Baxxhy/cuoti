@@ -89,6 +89,11 @@ describe('持久任务页面', () => {
   it('完成后按推荐的实际题目创建练习并进入答题页', async () => {
     server.status = 'completed'
     server.student_view.input_kind = 'none'
+    server.student_view.diagnosis_evidence = {
+      verified: true,
+      reason: '这一步与原题的解不等价。',
+      evidence: [],
+    }
     server.student_view.recommendation = {
       action: 'practice',
       question_id: 'bank-next',
@@ -98,6 +103,7 @@ describe('持久任务页面', () => {
     }
     fake.postData.mockResolvedValue({ id: 'study-next' })
     const page = await make()
+    expect(page.text()).not.toContain('这一步与原题的解不等价。')
     const button = page.findAll('button').find((node) => node.text() === '练习推荐题')!
     await button.trigger('click')
     await flushPromises()

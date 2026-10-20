@@ -226,7 +226,7 @@ def _plan(state: WorkflowState):
     # reference answer through the independent/contrast answer-entry view.
     result.student_view.diagnosis_evidence = (
         result.checkpoint.evidence_diagnosis
-        if result.checkpoint.phase in {"repair", "done"}
+        if result.checkpoint.phase == "repair"
         else None
     )
     if result.checkpoint.phase == "repair" and result.student_view.diagnosis_evidence:

@@ -125,7 +125,7 @@ test('持久智能体：订正、刷新草稿、独立作答、离开恢复与�
       response.request().method() === 'GET' &&
       /\/learning-tasks\/[^/]+$/.test(new URL(response.url()).pathname),
   )
-  await page.goto(url)
+  await page.locator('.history-item').first().click()
   const plannedPayload = await (await plannedTask).json()
   const plan = (plannedPayload.data || plannedPayload).student_view.recommendation
   expect(plan.algorithm).toBe('arpp-v1')

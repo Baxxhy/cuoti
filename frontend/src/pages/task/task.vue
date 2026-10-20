@@ -92,7 +92,7 @@
             v-if="!task.student_view?.visualization"
             :blocks="task.student_view?.prompt_blocks || []"
           />
-          <view v-if="task.student_view?.recommendation" class="feedback">
+          <view v-if="task.student_view?.recommendation" class="recommendation-note">
             <text>{{ task.student_view.recommendation.reason }}</text>
             <button
               v-if="task.status === 'completed' && task.student_view.recommendation.question_id"
@@ -128,7 +128,13 @@
               查看相关知识
             </button>
           </view>
-          <view v-if="task.student_view?.diagnosis_evidence" class="feedback">
+          <view
+            v-if="
+              task.student_view?.diagnosis_evidence &&
+              task.exit_reason === 'diagnosis_needs_confirmation'
+            "
+            class="diagnosis-evidence"
+          >
             <text>
               {{ task.student_view.diagnosis_evidence.verified ? '步骤核验结果' : '需要核对' }}
             </text>
@@ -403,7 +409,9 @@
           </button>
           <button
             v-if="!canCancel"
-            class="primary-btn"
+            :class="
+              task.student_view?.recommendation?.question_id ? 'secondary-btn' : 'primary-btn'
+            "
             role="button"
             tabindex="0"
             @click="returnToQuestion(task.question_id)"
@@ -810,7 +818,9 @@ onUnload(stop)
   line-height: 1.5;
   margin-bottom: 14px;
 }
-.feedback {
+.feedback,
+.recommendation-note,
+.diagnosis-evidence {
   margin: 16px 0;
   padding: 16px;
   background: var(--color-surface);
