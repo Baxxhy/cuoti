@@ -1,0 +1,30 @@
+{
+  "before_seconds": 5.251,
+  "after": [
+    {
+      "route": "/study-bank",
+      "seconds": 0.723,
+      "total": 124394,
+      "rows": 20
+    },
+    {
+      "route": "/study-bank",
+      "seconds": 0.727,
+      "total": 124394,
+      "rows": 20
+    },
+    {
+      "route": "/study-bank?subject=%E6%95%B0%E5%AD%A6",
+      "seconds": 0.486,
+      "total": 24742,
+      "rows": 20
+    },
+    {
+      "route": "/study-bank?page=2",
+      "seconds": 0.787,
+      "total": 124394,
+      "rows": 20
+    }
+  ],
+  "counts_and_pagination_verified": true
+}

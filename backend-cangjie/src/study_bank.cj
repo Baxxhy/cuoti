@@ -27,7 +27,7 @@ func bankQuestion(value: JsonObject, accounts: Accounts): JsonObject {
 func bankFilter(subject: String, band: String, source: String, search: String): Array<Option<String>> {
     return [Some(subject),Some(subject),Some(band),Some(band),Some(source),Some(source),Some(search),Some("%"+search+"%")]
 }
-let bankWhere=" FROM dataset_questions q JOIN dataset_sources s ON s.id=q.dataset_source_id WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 AND (?='' OR q.subject=?) AND (?='' OR q.grade_band=?) AND (?='' OR q.dataset_source_id=?) AND (?='' OR q.question_text LIKE ?)"
+let bankWhere=" FROM dataset_questions q WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 AND (?='' OR q.subject=?) AND (?='' OR q.grade_band=?) AND (?='' OR q.dataset_source_id=?) AND (?='' OR q.question_text LIKE ?)"
 
 func studyBank(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"GET")
@@ -39,22 +39,26 @@ func studyBank(context: HttpContext, accounts: Accounts): JsonValue {
     try (db=Database.fromEnvironment()) {
         accounts.currentUser(context,db)
         let filters=bankFilter(subject,band,source,search)
-        let count=db.query("SELECT COUNT(*) AS total"+bankWhere,filters).rows[0]
+        let browseWhere=bankWhere.replace("dataset_questions q WHERE","dataset_questions q USE INDEX (ix_bank_browse) WHERE")
+        let count=db.query("SELECT COUNT(*) AS total"+browseWhere,filters).rows[0]
         let result=JsonObject(); result.put("total",JsonInt(Int64.parse(rowText(count,"total")))); result.put("page",JsonInt(page)); result.put("page_size",JsonInt(20))
         let items=JsonArray()
-        for (row in db.query("SELECT q.*"+bankWhere+" ORDER BY q.subject,q.id LIMIT 20 OFFSET "+((page-1)*20).toString(),filters).rows) {
+        let sourceNames=JsonObject()
+        for (sourceRow in db.query("SELECT id,name FROM dataset_sources").rows) {
+            sourceNames.put(rowText(sourceRow,"id"),JsonString(rowText(sourceRow,"name")))
+        }
+        for (row in db.query("SELECT q.*"+browseWhere+" ORDER BY q.subject,q.id LIMIT 20 OFFSET "+((page-1)*20).toString(),filters).rows) {
             let value=rowJson("dataset_questions",row)
-            let sources=db.query("SELECT name FROM dataset_sources WHERE id=?",[row["dataset_source_id"]]).rows
-            value.put("source_name",JsonString(if (sources.isEmpty()) { "题库" } else { rowText(sources[0],"name") })); items.add(bankQuestion(value,accounts))
+            value.put("source_name",sourceNames.get(rowText(row,"dataset_source_id")) ?? JsonString("题库")); items.add(bankQuestion(value,accounts))
         }
         result.put("questions",items)
         let facets=JsonArray()
-        for (row in db.query("SELECT q.subject,q.grade_band,COUNT(*) AS total FROM dataset_questions q WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 GROUP BY q.subject,q.grade_band ORDER BY q.subject,q.grade_band").rows) {
+        for (row in db.query("SELECT q.subject,q.grade_band,COUNT(*) AS total FROM dataset_questions q USE INDEX (ix_bank_browse) WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 GROUP BY q.subject,q.grade_band ORDER BY q.subject,q.grade_band").rows) {
             let item=JsonObject(); item.put("subject",JsonString(rowText(row,"subject"))); item.put("grade_band",JsonString(rowText(row,"grade_band"))); item.put("count",JsonInt(Int64.parse(rowText(row,"total")))); facets.add(item)
         }
         result.put("facets",facets)
         let sources=JsonArray()
-        for (row in db.query("SELECT s.id,s.name,COUNT(*) AS total FROM dataset_sources s JOIN dataset_questions q ON s.id=q.dataset_source_id WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 GROUP BY s.id,s.name ORDER BY s.name").rows) {
+        for (row in db.query("SELECT s.id,s.name,counts.total FROM (SELECT dataset_source_id,COUNT(*) AS total FROM dataset_questions USE INDEX (ix_bank_browse) WHERE usable_for_practice=1 AND usable_for_auto_grade=1 AND has_answer=1 GROUP BY dataset_source_id) counts JOIN dataset_sources s ON s.id=counts.dataset_source_id ORDER BY s.name").rows) {
             let item=JsonObject(); item.put("id",JsonString(rowText(row,"id"))); item.put("name",JsonString(rowText(row,"name"))); item.put("count",JsonInt(Int64.parse(rowText(row,"total")))); sources.add(item)
         }
         result.put("sources",sources); return result

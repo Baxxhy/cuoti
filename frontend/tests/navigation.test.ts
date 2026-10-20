@@ -40,7 +40,7 @@ describe('返回导航', () => {
       { route: 'pages/index/index' },
       { route: 'pages/detail/detail' },
     ])
-    vi.stubGlobal('uni', { reLaunch, navigateBack: ({ fail }) => fail() })
+    vi.stubGlobal('uni', { reLaunch, navigateBack: ({ fail }: { fail: () => void }) => fail() })
     back('/pages/review/review')
     expect(reLaunch).toHaveBeenCalledWith({ url: '/pages/review/review' })
   })

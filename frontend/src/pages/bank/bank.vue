@@ -28,10 +28,6 @@
           模拟考试
         </button>
       </view>
-      <view class="bank-count-row">
-        <text>{{ data?.total ?? '—' }} 道题</text>
-        <text>{{ filters.subject || '全部学科' }}</text>
-      </view>
       <view class="bank-filters">
         <scroll-view scroll-x :show-scrollbar="false">
           <view class="bank-subjects">
@@ -275,14 +271,9 @@ async function load() {
     const query = Object.entries(filters.value)
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join('&')
-    const [bank, records] = await Promise.allSettled([
-      getData(`/study-bank?${query}`, { silent: true }),
-      getData('/study-sessions', { silent: true }),
-    ])
+    const bank = await getData(`/study-bank?${query}`, { silent: true })
     if (current !== revision) return
-    if (bank.status !== 'fulfilled') throw bank.reason
-    data.value = bank.value
-    if (records.status === 'fulfilled') history.value = records.value
+    data.value = bank
   } catch (e) {
     if (current === revision) error.value = e.message || '题库暂时无法读取'
   } finally {
@@ -346,16 +337,17 @@ onLoad((query) => {
     minutes.value = Number(query.minutes)
   if (query.source_id) filters.value.source_id = query.source_id
 })
-onShow(load)
+onShow(() => {
+  load()
+  // History does not block the question list or reload on every filter change.
+  getData('/study-sessions', { silent: true })
+    .then((records) => {
+      history.value = records
+    })
+    .catch(() => {})
+})
 </script>
 <style scoped lang="scss">
-.bank-count-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  color: var(--color-text-secondary);
-  font-size: 13px;
-}
 .bank-switch {
   max-width: 360px;
   margin-bottom: 24px;
