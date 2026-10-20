@@ -11,7 +11,6 @@
         <!-- #ifndef H5 -->
         <text class="auth-title">错题帮</text>
         <!-- #endif -->
-        <text class="auth-description">把错题，变成会做的题。</text>
       </view>
       <view class="auth-form" role="form" aria-label="登录账号">
         <account-field
@@ -147,13 +146,6 @@ onMounted(restore)
   letter-spacing: 0.04em;
   color: var(--color-brand-deep);
 }
-.auth-description {
-  display: block;
-  margin-top: 12px;
-  color: var(--color-text-secondary);
-  font-size: 15px;
-  line-height: 1.6;
-}
 .auth-form :deep(.account-field:first-child) {
   margin-top: 0;
 }
@@ -217,10 +209,6 @@ onMounted(restore)
   }
   .auth-title {
     font-size: 56px;
-  }
-  .auth-description {
-    margin-top: 20px;
-    font-size: 18px;
   }
 }
 @media (max-height: 740px) and (max-width: 899px) {
