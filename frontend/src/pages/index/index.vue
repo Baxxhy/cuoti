@@ -202,9 +202,10 @@
             >
               <uni-icons
                 aria-hidden="true"
-                type="camera-filled"
-                size="22"
-                color="var(--color-surface)"
+                class="capture-icon"
+                type="camera"
+                size="26"
+                color="#ffffff"
               />
               <text>拍照或选择图片</text>
             </button>
@@ -506,6 +507,11 @@ onUnload(clear)
 .focus-card .primary-btn {
   margin-top: 22px;
   gap: 8px;
+}
+.capture-icon {
+  flex-shrink: 0;
+  font-weight: 400;
+  line-height: 1;
 }
 .home-secondary {
   margin-top: 18px;
