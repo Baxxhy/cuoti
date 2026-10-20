@@ -581,14 +581,14 @@ const diagnosis = computed(() => item.value?.diagnosis)
 const diagnosisState = computed(() => diagnosisView(item.value))
 const repairEvidenceNotice = computed(() => {
   const evidence = diagnosis.value?.counterfactual
-  if (evidence?.stale_after_correction) return '你已修正诊断，原有修复建议需要重新核对。'
-  if (evidence?.legacy_review_required) return '这是历史修复建议，请结合原题重新核对。'
+  if (evidence?.stale_after_correction) return '错因已修改，请重新核对订正建议。'
+  if (evidence?.legacy_review_required) return '这是之前的订正建议，请结合原题核对。'
   if (evidence?.verification_method === 'qwen_proposal_requires_review')
-    return '这是 AI 提出的诊断与修复建议，尚未经本地规则验证，请结合原题核对。'
+    return '以下是 AI 建议，尚未验证是否正确，请对照原题核对。'
   if (evidence?.preserved_prefix === false)
-    return '这份修复改动了前面正确的步骤，请保留原作答再核对。'
+    return '建议中改动了你前面正确的步骤，请对照原作答核对。'
   if (evidence?.reference_consistent && !evidence.root_cause_confirmed)
-    return '修复建议与参考过程一致，仍需结合原题核对。'
+    return '订正建议与参考解法一致，但错因仍需你确认。'
   return ''
 })
 

@@ -71,7 +71,7 @@
             <view class="replay-stage-top">
               <text>第 {{ index + 1 }} / {{ steps.length }} 步</text>
               <text :class="current.first ? 'status-warning' : ''">
-                {{ current.first ? '诊断指向的首次偏差' : '核对这一步' }}
+                {{ current.first ? '可能最早出错的一步' : '核对这一步' }}
               </text>
             </view>
             <view class="comparison-grid">
@@ -89,22 +89,22 @@
                   />
                 </template>
                 <text v-else class="editorial-description">
-                  没有可确认的步骤对应关系，不按行号猜测。可以补充过程，或在诊断页查看完整参考。
+                  暂时找不到对应的参考步骤。你可以补充解题过程，或查看完整解析。
                 </text>
               </view>
             </view>
             <view class="replay-explanation">
-              <text class="eyebrow">{{ current.first ? '为什么需要检查' : '已有的核对依据' }}</text>
+              <text class="eyebrow">{{ current.first ? '为什么需要检查' : '这一步的说明' }}</text>
               <math-text
                 :text="
                   current.reason ||
                   (current.first ? item.diagnosis?.root_misconception : '') ||
-                  '这一步尚无独立说明。未被标记不代表已经验证正确。'
+                  '这一步还没有分析结果，请对照参考解法检查。'
                 "
               />
             </view>
             <view v-if="current.evidence.length" class="evidence-caption">
-              来源：本次诊断的步骤对齐记录。{{
+              根据本次错因分析整理。{{
                 item.diagnosis?.user_confirmed ? '你已核对过诊断。' : '仍需结合原作答核对。'
               }}
             </view>

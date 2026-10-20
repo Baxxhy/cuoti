@@ -120,7 +120,7 @@
               {{ recommendedGroup.subject }} ·
               {{
                 recommendedGroup.sources.length > 1
-                  ? `${recommendedGroup.sources.length}道题中出现相同诊断线索`
+                  ? `${recommendedGroup.sources.length}道题有相似错因`
                   : '来自你最近的一道题'
               }}
             </text>

@@ -77,7 +77,7 @@
           <uni-icons aria-hidden="true" type="right" size="18" />
         </button>
         <button
-          aria-label="返回易错地图"
+          aria-label="查看易错地图"
           role="button"
           tabindex="0"
           class="disclosure-link"
@@ -86,7 +86,7 @@
           @keyup.space.prevent="go('/pages/error-map/error-map')"
           @click="go('/pages/error-map/error-map')"
         >
-          返回易错地图
+          查看易错地图
           <uni-icons aria-hidden="true" type="right" size="18" />
         </button>
       </template>
@@ -129,7 +129,7 @@ async function load() {
   error.value = ''
   notice.value = ''
   try {
-    if (!id.value) throw new Error('请从一道错题进入修复路线。')
+    if (!id.value) throw new Error('请先打开一道错题，再查看学习安排。')
     const [question, record] = await Promise.all([
       getData(`/questions/${encodeURIComponent(id.value)}`),
       getData(`/questions/${encodeURIComponent(id.value)}/journey`),
@@ -145,7 +145,7 @@ async function load() {
       journey.value = record
     }
   } catch (err) {
-    if (version === revision) error.value = err.message || '修复路线暂时无法读取'
+    if (version === revision) error.value = err.message || '学习安排暂时无法读取'
   } finally {
     if (version === revision) loading.value = false
   }

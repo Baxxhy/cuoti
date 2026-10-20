@@ -84,7 +84,7 @@ it('非规则证明的诊断修复明确显示待核对，不显示确定正确�
   const view = make(Diagnosis)
   await flushPromises()
   expect(view.text()).toContain('参考修正（待核对）')
-  expect(view.text()).toContain('尚未经本地规则验证')
+  expect(view.text()).toContain('尚未验证是否正确')
   expect(view.text()).toContain('根据原题核对已知条件。')
   expect(view.find('.summary-title').text()).toContain('单位错误')
   expect(view.find('.summary-title').text()).not.toContain('\\text')
@@ -373,7 +373,7 @@ it('参考一致的建议不冒充规则验证，保留学生核对提示', asyn
   })
   const view = make(Diagnosis)
   await flushPromises()
-  expect(view.find('.evidence-caption[role="status"]').text()).toContain('仍需结合原题核对')
+  expect(view.find('.evidence-caption[role="status"]').text()).toContain('错因仍需你确认')
 })
 
 it('历史验证标签和改动正确前缀的修复都明确需要核对', async () => {
@@ -387,7 +387,7 @@ it('历史验证标签和改动正确前缀的修复都明确需要核对', asyn
   })
   const view = make(Diagnosis)
   await flushPromises()
-  expect(view.find('.evidence-caption[role="status"]').text()).toContain('历史修复建议')
+  expect(view.find('.evidence-caption[role="status"]').text()).toContain('之前的订正建议')
   fake.getData.mockResolvedValue({
     ...base,
     diagnosis: {
@@ -398,7 +398,7 @@ it('历史验证标签和改动正确前缀的修复都明确需要核对', asyn
   })
   fake.hooks.show()
   await flushPromises()
-  expect(view.find('.evidence-caption[role="status"]').text()).toContain('改动了前面正确的步骤')
+  expect(view.find('.evidence-caption[role="status"]').text()).toContain('改动了你前面正确的步骤')
 })
 
 it('人工改到第二步后，按该步ID取参考，不沿用旧首错标记', async () => {
@@ -434,7 +434,7 @@ it('人工改到第二步后，按该步ID取参考，不沿用旧首错标记',
   await flushPromises()
   expect(view.find('.correct-thought').text()).toContain('x=4')
   expect(view.find('.correct-thought').text()).not.toContain('2x=8')
-  expect(view.find('.evidence-caption[role="status"]').text()).toContain('原有修复建议需要重新核对')
+  expect(view.find('.evidence-caption[role="status"]').text()).toContain('请重新核对订正建议')
 })
 
 it('人工改到没有ID对应证据的步骤时，不拿相同行号参考补造对应', async () => {

@@ -91,7 +91,7 @@
             </view>
             <view v-if="selected" class="map-evidence">
               <view class="evidence-heading">
-                <text class="eyebrow">{{ selected.subject }} · 诊断来源</text>
+                <text class="eyebrow">{{ selected.subject }} · 相关错题</text>
                 <math-text class="evidence-title" :text="selected.label" inline />
                 <text class="editorial-description">
                   {{
