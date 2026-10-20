@@ -205,7 +205,7 @@
                 class="capture-icon"
                 type="camera"
                 size="26"
-                color="var(--color-primary)"
+                color="#ffffff"
               />
               <text>拍照或选择图片</text>
             </button>
@@ -538,20 +538,15 @@ onUnload(clear)
   gap: 8px;
 }
 .capture-card {
-  padding: 24px;
-  background: var(--color-primary);
-  color: var(--color-surface);
-  border-radius: 20px;
+  padding: 20px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-radius: 12px;
 }
 .capture-card .primary-btn {
-  margin-top: 24px;
-  background: var(--color-surface);
-  color: var(--color-primary);
+  margin-top: 16px;
   font-size: 16px;
   font-weight: 600;
-}
-.capture-card .primary-btn:active {
-  background: var(--color-primary-soft);
 }
 .capture-icon {
   flex-shrink: 0;
