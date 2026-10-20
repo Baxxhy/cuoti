@@ -94,28 +94,49 @@ func lessonCards(db: Database, code: String): JsonArray {
     return result
 }
 
+// Import timestamps and internal row IDs do not change the teaching material.
+// Keep the content, subject and dependency roles in the version boundary.
+func lessonSourceVersion(cards: JsonArray): String {
+    let source=JsonArray()
+    for (value in cards.getItems()) {
+        let card=(value as JsonObject).getOrThrow(); let fields=JsonArray()
+        for (key in ["code","name","subject","content","retrieval_role","anchor_code"]) { fields.add(card.get(key) ?? JsonNull()) }
+        source.add(fields)
+    }
+    return sha256(source.toString().toArray())
+}
+
+func lessonVersionMatches(record: JsonObject, cards: JsonArray, prompt: String): Bool {
+    let suffix=":"+sha256(prompt.toArray()); let fingerprint=tutorText(record,"input_fingerprint")
+    // Old records remain readable and replayable when their original source is
+    // still provable; never silently upgrade an already-stale record.
+    return fingerprint==lessonSourceVersion(cards)+suffix || fingerprint==sha256(cards.toString().toArray())+suffix
+}
+
 func knowledgeLessons(context: HttpContext, accounts: Accounts): JsonValue {
     let parts=context.request.url.path.split("/"); let code=parts[parts.size-2]
     try (db=Database.fromEnvironment()) {
         let user=accounts.currentUser(context,db)
         if (context.request.method=="GET") {
-            let cards=lessonCards(db,code); let fingerprint=sha256(cards.toString().toArray()); let result=JsonArray()
+            let cards=lessonCards(db,code); let result=JsonArray()
             for (row in db.query("SELECT * FROM knowledge_lessons WHERE user_id=? AND knowledge_code=? ORDER BY created_at DESC,id DESC LIMIT 10",[user["id"],Some(code)]).rows) {
-                let item=lessonRow(row); item.put("source_current",JsonBool(rowText(row,"input_fingerprint").startsWith(fingerprint+":"))); result.add(item)
+                let item=lessonRow(row); let record=JsonObject(); record.put("input_fingerprint",JsonString(rowText(row,"input_fingerprint")))
+                item.put("source_current",JsonBool(lessonVersionMatches(record,cards,rowText(row,"prompt")))); result.add(item)
             }
             return result
         }
         requireMethod(context,"POST")
         let body=readJson(context); let prompt=stripWhitespace(schoolText(body,"prompt","",800)); let requestId=stripWhitespace(schoolText(body,"request_id","",80))
         if (requestId.isEmpty()) { throw ApiError(422,"缺少请求编号") }
-        let cards=lessonCards(db,code); let sourceHash=sha256(cards.toString().toArray()); let fingerprint=sourceHash+":"+sha256(prompt.toArray())
+        let cards=lessonCards(db,code); let sourceHash=lessonSourceVersion(cards); let fingerprint=sourceHash+":"+sha256(prompt.toArray())
         let previous=db.query("SELECT * FROM knowledge_lessons WHERE user_id=? AND request_id=?",[user["id"],Some(requestId)]).rows
         if (!previous.isEmpty()) {
-            if (rowText(previous[0],"knowledge_code")!=code || rowText(previous[0],"input_fingerprint")!=fingerprint) { throw ApiError(409,"这次提问或知识内容已变化，请重新提问") }
+            let record=JsonObject(); record.put("input_fingerprint",JsonString(rowText(previous[0],"input_fingerprint")))
+            if (rowText(previous[0],"knowledge_code")!=code || !lessonVersionMatches(record,cards,prompt)) { throw ApiError(409,"这次提问或知识内容已变化，请重新提问") }
             return lessonRow(previous[0])
         }
         let anchor=(cards.getItems()[0] as JsonObject).getOrThrow(); let input=JsonObject(); input.put("operation",JsonString("knowledge_lesson")); input.put("subject",anchor["subject"]); input.put("grade",JsonString(tutorText(tutorObject(anchor,"content"),"grade"))); input.put("text",JsonString(prompt)); input.put("dialogue_cards",cards)
-        let history=JsonArray(); let recent=db.query("SELECT prompt,result FROM knowledge_lessons WHERE user_id=? AND knowledge_code=? AND input_fingerprint LIKE ? ORDER BY created_at DESC,id DESC LIMIT 3",[user["id"],Some(code),Some(sourceHash+":%")]).rows
+        let history=JsonArray(); let recent=db.query("SELECT prompt,result FROM knowledge_lessons WHERE user_id=? AND knowledge_code=? AND (input_fingerprint LIKE ? OR input_fingerprint LIKE ?) ORDER BY created_at DESC,id DESC LIMIT 3",[user["id"],Some(code),Some(sourceHash+":%"),Some(sha256(cards.toString().toArray())+":%")]).rows
         for (index in 0..recent.size) {
             let row=recent[recent.size-1-index]; let result=(JsonValue.fromStr(rowText(row,"result")) as JsonObject).getOrThrow(); let turn=JsonObject(); turn.put("question",JsonString(rowText(row,"prompt"))); turn.put("explanation",JsonString(tutorText(result,"explanation"))); turn.put("check_question",JsonString(tutorText(result,"check_question"))); history.add(turn)
         }
@@ -124,10 +145,11 @@ func knowledgeLessons(context: HttpContext, accounts: Accounts): JsonValue {
         if ((result.get("can_update_learning") ?? JsonNull()).toString()!="false") { throw ApiError(503,"讲解结果未通过检查") }
         return db.transaction<JsonValue>({ tx =>
             let latest=lessonCards(tx,code)
-            if (sha256(latest.toString().toArray())!=sourceHash) { throw ApiError(409,"知识内容刚刚更新，请重新提问") }
+            if (lessonSourceVersion(latest)!=sourceHash) { throw ApiError(409,"知识内容刚刚更新，请重新提问") }
             tx.query("INSERT INTO knowledge_lessons (id,user_id,knowledge_code,request_id,input_fingerprint,prompt,result,created_at) VALUES (?,?,?,?,?,?,?,UTC_TIMESTAMP(6)) ON DUPLICATE KEY UPDATE id=id",[Some(newId()),user["id"],Some(code),Some(requestId),Some(fingerprint),Some(prompt),Some(result.toString())])
             let saved=tx.query("SELECT * FROM knowledge_lessons WHERE user_id=? AND request_id=?",[user["id"],Some(requestId)]).rows[0]
-            if (rowText(saved,"input_fingerprint")!=fingerprint || rowText(saved,"knowledge_code")!=code) { throw ApiError(409,"请求编号已用于其他提问") }
+            let savedRecord=JsonObject(); savedRecord.put("input_fingerprint",JsonString(rowText(saved,"input_fingerprint")))
+            if (!lessonVersionMatches(savedRecord,latest,prompt) || rowText(saved,"knowledge_code")!=code) { throw ApiError(409,"请求编号已用于其他提问") }
             return lessonRow(saved)
         })
     }

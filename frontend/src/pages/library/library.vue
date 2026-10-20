@@ -71,10 +71,11 @@
               v-for="related in card[section.key]"
               :key="related.code"
               class="card-link"
+              :aria-label="'查看' + related.name"
               @click="openCard(related.code)"
             >
               <math-text :text="related.name" inline />
-              <text>查看</text>
+              <uni-icons type="right" size="16" aria-hidden="true" />
             </button>
           </template>
         </view>
@@ -323,14 +324,19 @@ h3 {
 }
 .card-link {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 12px;
   min-height: 48px;
   padding: 12px;
   margin: 8px 0;
   background: white;
   font-size: 15px;
 }
-.card-link text {
-  color: var(--color-primary);
+.card-link :deep(.math-text) {
+  flex: 1;
+  width: auto;
+  margin: 0;
+  text-align: left;
 }
 </style>

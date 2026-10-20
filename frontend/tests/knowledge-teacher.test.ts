@@ -53,6 +53,24 @@ it('打开才读取历史；失败重试复用请求编号，成功后保留记�
   expect(page.text()).toContain('两边同时运算')
   expect(api.postData.mock.calls.every(([path]) => path.endsWith('/lessons'))).toBe(true)
 })
+it('来源冲突后保留问题，下一次提交使用新编号，避免反复撞上旧版本', async () => {
+  await open()
+  await page.find('textarea').setValue('为什么')
+  api.postData
+    .mockRejectedValueOnce(
+      Object.assign(new Error('知识内容已更新，请重新提问'), { statusCode: 409 }),
+    )
+    .mockResolvedValueOnce(lesson)
+  await send()
+  await flushPromises()
+  expect((page.find('textarea').element as HTMLTextAreaElement).value).toBe('为什么')
+  await send()
+  await flushPromises()
+  expect(api.postData.mock.calls[0][1].request_id).not.toBe(
+    api.postData.mock.calls[1][1].request_id,
+  )
+  expect(page.text()).toContain('两边同时运算')
+})
 it('知识卡切换后忽略迟到回答，不把上一张讲解带到新知识点', async () => {
   await open()
   let resolve: (value: any) => void

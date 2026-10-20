@@ -1,0 +1,186 @@
+{
+  "checked_at": "2026-10-20T15:24:07.719Z",
+  "real_model": true,
+  "controlled_model": false,
+  "source": "native HTTP → internal Python → ApiPoolProvider/Qwen",
+  "results": [
+    {
+      "code": "math.equation_property",
+      "prompt": "为什么把2x+3=11中的3移到右边会变成-3？请从等式两边的运算讲起。",
+      "elapsed_ms": 2533,
+      "lesson": {
+        "id": "26bc0068-14b5-4775-9768-88f9ae0b5a6b",
+        "knowledge_code": "math.equation_property",
+        "prompt": "为什么把2x+3=11中的3移到右边会变成-3？请从等式两边的运算讲起。",
+        "created_at": "2026-10-20 15:23:58.773533",
+        "result": {
+          "sources": [
+            {
+              "code": "math.equation_property",
+              "name": "等式基本性质",
+              "role": "anchor",
+              "formulas": [
+                "a=b ⇒ a+c=b+c"
+              ],
+              "definition": "等式两边同时加或减同一个数，等式仍成立；同时乘同一个数，或同除以一个不为0的数，也保持相等。解方程时需注意同乘0等操作可能丢失等价关系。",
+              "anchor_code": "",
+              "source_hash": "caa407d996b25e84bcd9ef90d276261f6367a7629b7f74f804750f2269265699"
+            }
+          ],
+          "key_points": [
+            "移项变号的本质是等式两边同时加减同一个数",
+            "处理加减项用加减法，处理乘除因子用乘除法",
+            "移项后需检查等式两边是否保持平衡"
+          ],
+          "explanation": "解方程 $2x+3=11$ 的核心依据是等式的基本性质：等式两边同时减去同一个数，等式仍然成立。为了消去左边的 $+3$，我们在两边同时减去 $3$。左边变为 $2x+3-3$，即 $2x$；右边变为 $11-3$。这一步操作保证了方程的等价性。\n\n所谓的“移项”，其实是上述“两边同时加减”操作的简化说法。当我们将左边的 $+3$ 移到右边时，为了保持平衡，它在右边必须表现为 $-3$。这是因为我们在左边减去了 $3$，为了抵消这个变化对等式的影响，右边也必须减去 $3$。所以，$2x+3=11$ 变为 $2x=11-3$，而不是 $2x=11+3$。\n\n常见的混淆点在于误以为“移项”是独立的规则，而忽略了其背后的运算逻辑。请记住，移项变号的本质是“等式两边同时减去该项”。如果忘记变号，比如写成 $2x=11+3$，就违反了等式基本性质，因为左边减了 $3$，右边却加了 $3$，等式不再平衡。",
+          "source_codes": [
+            "math.equation_property"
+          ],
+          "verification": "model_explanation",
+          "check_question": "如果在方程 $5x-2=8$ 中将 $-2$ 移到右边，右边应该变成什么？",
+          "can_update_learning": false
+        }
+      }
+    },
+    {
+      "code": "math.equation_property",
+      "prompt": "你刚才说两边减3，那能不能直接把3除过去？请针对这一步回答。",
+      "elapsed_ms": 1998,
+      "lesson": {
+        "id": "341cddbc-7c15-4ffb-b4ad-ad8af5a71ffa",
+        "knowledge_code": "math.equation_property",
+        "prompt": "你刚才说两边减3，那能不能直接把3除过去？请针对这一步回答。",
+        "created_at": "2026-10-20 15:24:00.811738",
+        "result": {
+          "sources": [
+            {
+              "code": "math.equation_property",
+              "name": "等式基本性质",
+              "role": "anchor",
+              "formulas": [
+                "a=b ⇒ a+c=b+c"
+              ],
+              "definition": "等式两边同时加或减同一个数，等式仍成立；同时乘同一个数，或同除以一个不为0的数，也保持相等。解方程时需注意同乘0等操作可能丢失等价关系。",
+              "anchor_code": "",
+              "source_hash": "caa407d996b25e84bcd9ef90d276261f6367a7629b7f74f804750f2269265699"
+            }
+          ],
+          "key_points": [
+            "处理加减项（如 $+3$）时，使用等式两边同时加减同一数的性质。",
+            "处理乘除因子（如 $2x$ 中的 $2$）时，才使用等式两边同时乘除同一数的性质。",
+            "移项变号的本质是等式两边同时加减，而非简单的符号翻转或运算改变。"
+          ],
+          "explanation": "不能直接把 $3$ “除过去”。在方程 $2x+3=11$ 中，$3$ 是与 $2x$ 相加的项，而不是与 $x$ 相乘的因子。根据等式的基本性质，要消去左边的 $+3$，必须在等式两边同时减去 $3$，即 $2x+3-3=11-3$，从而得到 $2x=8$。\n\n“除法”用于处理乘法关系。只有当未知数与一个数相乘时（例如 $2x=8$ 中的系数 $2$），我们才会在两边同时除以这个数。如果在加法步骤中错误地使用除法，比如试图计算 $11 \\div 3$，就混淆了加法逆运算（减法）与乘法逆运算（除法）的适用场景。\n\n常见的混淆点是将“移项”误解为“换边运算”。移项变号的本质是等式两边同时加减同一个数，而不是改变运算符号本身。请记住：处理加减项用加减法，处理乘除因子用乘除法。",
+          "source_codes": [
+            "math.equation_property"
+          ],
+          "verification": "model_explanation",
+          "check_question": "在方程 $3x-5=10$ 中，为了消去 $-5$，应该在等式两边同时做什么运算？",
+          "can_update_learning": false
+        }
+      }
+    },
+    {
+      "code": "curr.英语.高一.1",
+      "subject": "英语",
+      "prompt": "请说明这个知识点的适用条件，并给一个简短例子。",
+      "elapsed_ms": 3063,
+      "lesson": {
+        "id": "ffacdc7a-273c-420d-9baa-75bf16c27e9a",
+        "knowledge_code": "curr.英语.高一.1",
+        "prompt": "请说明这个知识点的适用条件，并给一个简短例子。",
+        "created_at": "2026-10-20 15:24:04.824156",
+        "result": {
+          "sources": [
+            {
+              "code": "curr.英语.高一.1",
+              "name": "时态语态综合",
+              "role": "anchor",
+              "formulas": [],
+              "definition": "时态体现动作与参照时间的关系，语态体现主语与动作的关系。解题时先理清时间线和动作完成情况，再判断主动或被动，最后检查动词形式及主谓一致。",
+              "anchor_code": "",
+              "source_hash": "6f0f5c7f8b4294cbab4d0444599a50f3d6ab033ff4460b6e260f2e160e240b13"
+            }
+          ],
+          "key_points": [
+            "先根据时间状语或上下文确定时态，再判断主语与动作的关系确定语态。",
+            "被动语态结构为“be动词+过去分词”，其中be动词需随所选时态变化。",
+            "检查主谓一致，确保be动词形式与主语单复数及人称匹配。"
+          ],
+          "explanation": "时态语态综合适用于所有涉及动词形式变化的语境，核心在于理清动作与参照时间的关系（时态）以及主语与动作的逻辑关系（语态）。解题时需遵循“先定时间线，再定主被动，最后查形式”的步骤。\n\n适用条件包括：任何需要表达动作发生时间（如过去、现在、将来）及动作状态（如进行、完成）的句子，且需明确主语是动作执行者还是承受者。例如，当句子强调动作对现在的影响且主语是承受者时，需使用现在完成时的被动语态。\n\n常见混淆点在于忽略时态对被动语态中助动词的影响。例如，学生常误用“is done”表示过去发生的被动动作，而正确形式应为“was done”。\n\n简短例子：The letter was written by Tom yesterday.（这封信是汤姆昨天写的。）此处“was written”体现了过去时态（yesterday）和被动语态（letter承受write动作）。",
+          "source_codes": [
+            "curr.英语.高一.1"
+          ],
+          "verification": "model_explanation",
+          "check_question": "在句子“The window broke by the boy”中，应如何修改以符合被动语态规则？",
+          "can_update_learning": false
+        }
+      }
+    },
+    {
+      "code": "curr.物理.高一.1",
+      "subject": "物理",
+      "prompt": "请讲清这个概念中容易混淆的条件。",
+      "elapsed_ms": 2804,
+      "lesson": {
+        "id": "83156237-83df-4320-a3b0-6982d46c61ff",
+        "knowledge_code": "curr.物理.高一.1",
+        "prompt": "请讲清这个概念中容易混淆的条件。",
+        "created_at": "2026-10-20 15:24:07.640601",
+        "result": {
+          "sources": [
+            {
+              "code": "curr.物理.高一.1",
+              "name": "运动学",
+              "role": "anchor",
+              "formulas": [],
+              "definition": "位置、位移、速度和加速度分别描述运动的不同方面。加速度的方向表示速度变化的方向，不一定与速度同向；匀变速公式只适用于相应条件下的运动区间。",
+              "anchor_code": "",
+              "source_hash": "269af9c8be621facaceb603fc993e604fedaf8050a84757d298d7f3a55f0ea2a"
+            }
+          ],
+          "key_points": [
+            "匀变速公式仅适用于加速度大小和方向均恒定的时间段。",
+            "若加速度发生变化，必须分段计算，不能跨阶段直接套用公式。",
+            "公式仅适用于直线运动，曲线运动需使用矢量分解或特定曲线运动规律。"
+          ],
+          "explanation": "上一轮我们讨论了加速度方向与速度方向的关系，这次我们聚焦于另一个极易混淆的条件：匀变速运动公式的适用范围。匀变速直线运动公式（如 $v = v_0 + at$ 和 $x = v_0t + \\frac{1}{2}at^2$）有一个严格的前提：加速度 $a$ 必须在整个计算的时间区间内保持大小和方向都不变。\n\n常见的错误是将这些公式应用于加速度变化的过程。例如，如果物体先做匀加速运动，随后加速度突然改变（如从 $2m/s^2$ 变为 $-1m/s^2$），你不能直接用初始速度和最终时间套用公式计算总位移。必须将运动过程拆分为两个独立的匀变速阶段，分别计算后再求和。\n\n判断能否使用公式的关键在于检查“加速度是否恒定”。只要加速度随时间变化，或者运动轨迹不是直线（即使加速度大小恒定，如匀速圆周运动），这些标量形式的匀变速直线运动公式均不适用。",
+          "source_codes": [
+            "curr.物理.高一.1"
+          ],
+          "verification": "model_explanation",
+          "check_question": "如果物体在前2秒加速度为 $2m/s^2$，后2秒加速度变为 $-1m/s^2$，能否直接用 $t=4s$ 代入 $x = v_0t + \\frac{1}{2}at^2$ 计算总位移？",
+          "can_update_learning": false
+        }
+      }
+    }
+  ],
+  "browser": {
+    "widths": [
+      360,
+      390,
+      768,
+      1280
+    ],
+    "errors": [],
+    "history_restore": true,
+    "request_replay": true,
+    "mastery_unchanged": true
+  },
+  "review": {
+    "scope": "项目自拟样本，由开发验收核对；不是学生试用或全科教学质量评估。",
+    "math_sample_sympy": {
+      "original_roots": [
+        "4"
+      ],
+      "subtract_both_sides_roots": [
+        "4"
+      ],
+      "equivalent": true,
+      "shortcut_division_rejected": true
+    },
+    "english_sample": "给出完整过去时被动语态例句，并解释时间线和动作承受者。",
+    "physics_sample": "说明恒定加速度的条件及加速度改变后的分段计算，避免把直线运动标量公式套用于曲线运动。",
+    "failure_recovery": "先前503、结构化字段格式失败及验收脚本定位问题保留在本地日志；本报告只登记最终成功样本。"
+  }
+}

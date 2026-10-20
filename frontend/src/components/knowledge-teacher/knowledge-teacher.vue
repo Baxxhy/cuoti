@@ -116,7 +116,12 @@ async function ask() {
     prompt.value = ''
     pending = null
   } catch (err) {
-    if (current(stamp, token)) error.value = err.message || '讲解暂时没有完成，问题已保留，请重试'
+    if (current(stamp, token)) {
+      // A source conflict cannot replay the old request; the next explicit
+      // submission starts a new one while keeping the student's question.
+      if (err.statusCode === 409) pending = null
+      error.value = err.message || '讲解暂时没有完成，问题已保留，请重试'
+    }
   } finally {
     if (stamp === revision) busy.value = false
   }

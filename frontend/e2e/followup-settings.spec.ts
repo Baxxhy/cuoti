@@ -1,5 +1,75 @@
 import { expect, test } from '@playwright/test'
 
+test('升年级后默认学习范围更新，原有错题与答案保留', async ({ page }, info) => {
+  const registration = await page.request.post('/api/v1/auth/register', {
+    data: {
+      email: `grade-${Date.now()}@example.test`,
+      password: 'Grade-123456',
+      grade: '初一',
+    },
+  })
+  expect(registration.ok()).toBe(true)
+  const actor = (await registration.json()).data
+  const headers = { Authorization: `Bearer ${actor.access_token}` }
+  const response = await page.request.post('/api/v1/questions/manual', {
+    headers,
+    data: {
+      subject: '数学',
+      grade: '初一',
+      question_text: '升年级前的错题：2x=6',
+      student_answer: 'x=2',
+    },
+  })
+  expect(response.ok()).toBe(true)
+  const question = (await response.json()).data
+  const original = (
+    await (await page.request.get(`/api/v1/questions/${question.id}`, { headers })).json()
+  ).data
+  await page.addInitScript(
+    (token) => localStorage.setItem('minddimension_access_token', token),
+    actor.access_token,
+  )
+  await page.goto('/#/pages/index/index')
+  await page.getByRole('button', { name: '学习设置', exact: true }).click()
+  await expect(page.getByLabel('当前年级', { exact: true })).toHaveValue('初一')
+  await page.getByLabel('当前年级', { exact: true }).selectOption('高一')
+  await expect(page.getByText('原有错题和学习记录会保留', { exact: true })).toBeVisible()
+  await page.getByLabel('当前学科', { exact: true }).selectOption('数学')
+  await page.getByRole('button', { name: '保存设置', exact: true }).click()
+  await expect(page.getByRole('status')).toContainText('已保存')
+  await page.reload()
+  await expect(page.getByLabel('当前年级', { exact: true })).toHaveValue('高一')
+  await expect(page.getByText('原有错题和学习记录会保留', { exact: true })).toHaveCount(0)
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.screenshot({ path: info.outputPath('grade-settings-mobile.png'), fullPage: true })
+  const viewport = page.viewportSize()!
+  for (const width of [360, 1280]) {
+    await page.setViewportSize({ width, height: 900 })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  }
+  await page.screenshot({ path: info.outputPath('grade-settings-desktop.png'), fullPage: true })
+  await page.setViewportSize(viewport)
+  await page.getByRole('button', { name: '返回', exact: true }).click()
+  await expect(page).toHaveURL(/pages\/profile\/profile/)
+  await expect(page.locator('.profile-meta')).toContainText('高一')
+  await page.getByRole('button', { name: '今日', exact: true }).click()
+  const bankLoaded = page.waitForResponse((response) =>
+    new URL(response.url()).pathname.endsWith('/study-bank'),
+  )
+  await page.getByRole('button', { name: '题库练习', exact: true }).click()
+  const bankResponse = await bankLoaded
+  expect(bankResponse.ok()).toBe(true)
+  expect(new URL(bankResponse.url()).searchParams.get('grade_band')).toBe('高中')
+  expect(new URL(bankResponse.url()).searchParams.get('subject')).toBe('数学')
+  await expect(page).toHaveURL(/pages\/bank\/bank/)
+  await page.goto('/#/pages/framework/framework')
+  await expect(page.locator('.framework-filters')).toContainText('高一')
+  const preserved = (
+    await (await page.request.get(`/api/v1/questions/${question.id}`, { headers })).json()
+  ).data
+  expect(preserved).toEqual(original)
+})
+
 test('学习设置控制真实题量，练习与考试主色一致，二级页可返回', async ({ page }, info) => {
   const response = await page.request.post('/api/v1/auth/register', {
     data: {

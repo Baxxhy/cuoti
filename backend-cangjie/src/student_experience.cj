@@ -45,8 +45,10 @@ func studentLearningPreferences(context: HttpContext, accounts: Accounts): JsonV
             let profile=rowJson("student_profiles",rows[0]); let preferences=tutorObject(profile,"preferences")
             let version=tutorNumber(preferences,"experience_version")
             if (method=="PATCH") {
-                taskStrict(body,["subject","minutes","goal","version"])
+                taskStrict(body,["grade","subject","minutes","goal","version"])
                 if (!((body.get("version") ?? JsonNull()) is JsonInt) || tutorNumber(body,"version")!=version) { throw ApiError(409,"学习方向已变化，请重新读取后保存") }
+                let grade=if (body.get("grade").isSome()) { textField(body,"grade",30) } else { tutorText(profile,"grade") }
+                if (body.get("grade").isSome() && !(["初一","初二","初三","高一","高二","高三"].contains(grade))) { throw ApiError(422,"请选择初一至高三的年级") }
                 let subject=textField(body,"subject",30)
                 if (!(["语文","数学","英语","物理","化学","生物","历史","地理","道德与法治","思想政治"].contains(subject))) { throw ApiError(422,"请选择支持的学科") }
                 let minutes=tutorNumber(body,"minutes")
@@ -54,7 +56,8 @@ func studentLearningPreferences(context: HttpContext, accounts: Accounts): JsonV
                 let goal=textField(body,"goal",30)
                 if (!(["understand","practice","review"].contains(goal))) { throw ApiError(422,"请选择学习目标") }
                 preferences.put("focus_subject",JsonString(subject)); preferences.put("daily_minutes",JsonInt(minutes)); preferences.put("focus_goal",JsonString(goal)); preferences.put("experience_version",JsonInt(version+1))
-                tx.query("UPDATE student_profiles SET preferences=?,updated_at=UTC_TIMESTAMP(6) WHERE user_id=?",[Some(preferences.toString()),user["id"]])
+                tx.query("UPDATE student_profiles SET grade=?,preferences=?,updated_at=UTC_TIMESTAMP(6) WHERE user_id=?",[Some(grade),Some(preferences.toString()),user["id"]])
+                profile.put("grade",JsonString(grade))
             }
             let result=JsonObject(); result.put("grade",profile["grade"]); result.put("subject",JsonString(tutorText(preferences,"focus_subject"))); result.put("minutes",JsonInt(if (tutorNumber(preferences,"daily_minutes")>0) { tutorNumber(preferences,"daily_minutes") } else { 10 })); result.put("goal",JsonString(if (tutorText(preferences,"focus_goal").isEmpty()) { "understand" } else { tutorText(preferences,"focus_goal") })); result.put("version",JsonInt(tutorNumber(preferences,"experience_version"))); return result
         })

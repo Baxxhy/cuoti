@@ -11,6 +11,42 @@
       <form v-else class="learning-settings" @submit.prevent="save">
         <view class="preference-field">
           <!-- #ifdef H5 -->
+          <component :is="'label'" for="current-grade" class="field-label">当前年级</component>
+          <component
+            :is="'select'"
+            id="current-grade"
+            class="preference-select"
+            :disabled="saving"
+            :value="form.grade"
+            @change="changeChoice('grade', $event.target.value)"
+          >
+            <component
+              :is="'option'"
+              v-if="!grades.includes(form.grade)"
+              :value="form.grade"
+              disabled
+            >
+              {{ form.grade || '请选择年级' }}
+            </component>
+            <component :is="'option'" v-for="grade in grades" :key="grade" :value="grade">
+              {{ grade }}
+            </component>
+          </component>
+          <!-- #endif -->
+          <!-- #ifndef H5 -->
+          <text class="field-label">当前年级</text>
+          <picker
+            :range="grades"
+            :disabled="saving"
+            @change="changeChoice('grade', grades[$event.detail.value])"
+          >
+            <view class="preference-select">{{ form.grade || '请选择年级' }}</view>
+          </picker>
+          <!-- #endif -->
+          <text v-if="form.grade !== loadedGrade" class="grade-note">原有错题和学习记录会保留</text>
+        </view>
+        <view class="preference-field">
+          <!-- #ifdef H5 -->
           <component :is="'label'" for="focus-subject" class="field-label">当前学科</component>
           <component
             :is="'select'"
@@ -98,8 +134,9 @@
 import { ref } from 'vue'
 import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData, patchData } from '@/api/index.js'
-import { CORE_SUBJECTS as subjects } from '@/constants/education.js'
-const form = ref({ subject: '', minutes: 10, goal: 'understand', version: 0 }),
+import { CORE_SUBJECTS as subjects, MIDDLE_SCHOOL_GRADES as grades } from '@/constants/education.js'
+const form = ref({ grade: '', subject: '', minutes: 10, goal: 'understand', version: 0 }),
+  loadedGrade = ref(''),
   loading = ref(true),
   error = ref(''),
   saveError = ref(''),
@@ -119,7 +156,10 @@ async function load() {
   saved.value = false
   try {
     const value = await getData('/student-preferences')
-    if (version === revision) form.value = value
+    if (version === revision) {
+      form.value = value
+      loadedGrade.value = value.grade
+    }
   } catch (err) {
     if (version === revision) error.value = err.message || '学习设置暂时无法读取'
   } finally {
@@ -139,8 +179,9 @@ async function save() {
   saved.value = false
   saveError.value = ''
   try {
-    const { subject, minutes, goal, version: sourceVersion } = form.value
+    const { grade, subject, minutes, goal, version: sourceVersion } = form.value
     const value = await patchData('/student-preferences', {
+      ...(grades.includes(grade) ? { grade } : {}),
       subject,
       minutes,
       goal,
@@ -148,6 +189,7 @@ async function save() {
     })
     if (version === revision) {
       form.value = value
+      loadedGrade.value = value.grade
       saved.value = true
     }
   } catch (err) {
@@ -162,7 +204,8 @@ async function save() {
 }
 function clear() {
   revision++
-  form.value = { subject: '', minutes: 10, goal: 'understand', version: 0 }
+  form.value = { grade: '', subject: '', minutes: 10, goal: 'understand', version: 0 }
+  loadedGrade.value = ''
   saving.value = false
   saved.value = false
 }
@@ -179,6 +222,12 @@ onUnload(clear)
 }
 .preference-field {
   margin-bottom: 28px;
+}
+.grade-note {
+  display: block;
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
 }
 .field-label {
   display: block;

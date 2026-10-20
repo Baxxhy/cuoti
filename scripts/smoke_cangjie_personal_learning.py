@@ -70,13 +70,17 @@ def personal_learning(endpoint, env, query):
     assert request(endpoint, "GET", "/api/v1/reviews/filters", token=token) == []
     request(endpoint, "POST", "/api/v1/reviews/filters", {**payload, "scope": "all"}, token, expected=422)
     path = f"/api/v1/knowledge/cards/{code}/lessons"
+    mastery_sql = "SELECT mastery_score,confidence,evidence_count,COALESCE(last_evidence_at,'') FROM mastery_states WHERE user_id='" + actor["id"] + "' ORDER BY id"
+    cognitive_sql = "SELECT COUNT(*) FROM cognitive_updates WHERE user_id='" + actor["id"] + "'"
+    learning_before = (query(env, mastery_sql), query(env, cognitive_sql))
     assert request(endpoint, "GET", path, token=token) == []
     request(endpoint, "POST", path, {"prompt": "解释等式的性质", "request_id": "offline-test"}, token, expected=503)
     assert request(endpoint, "GET", path, token=token) == []
     assert len(query(env, "SELECT id FROM mastery_states WHERE user_id='" + actor["id"] + "'").splitlines()) == 1
     control = Path(env["CANGJIE_TEST_BUDGET_STATE"])
     previous_control = control.read_text()
-    control.write_text(json.dumps({"rules": [{"operation": "knowledge_lesson", "knowledge_code": code, "key": "knowledge-lesson", "fixture_knowledge_lesson": True}]}))
+    rule = {"operation": "knowledge_lesson", "knowledge_code": code, "key": "knowledge-lesson", "fixture_knowledge_lesson": True, "expected_knowledge_history": 0}
+    control.write_text(json.dumps({"rules": [rule]}))
     try:
         body = {"prompt": "为什么移项变号？", "request_id": "validated-model-fixture"}
         generated = request(endpoint, "POST", path, body, token)
@@ -85,11 +89,30 @@ def personal_learning(endpoint, env, query):
         assert generated["result"]["can_update_learning"] is False
         current_history = request(endpoint, "GET", path, token=token)
         assert len(current_history) == 1 and current_history[0]["source_current"] is True
+        # A re-import touching only metadata must preserve the student's history and replay.
+        query(env, "UPDATE knowledge_points SET updated_at=TIMESTAMPADD(DAY,1,updated_at) WHERE id='" + card_id + "'")
+        assert request(endpoint, "GET", path, token=token)[0]["source_current"] is True, "metadata-only update invalidated an unchanged lesson"
+        assert request(endpoint, "POST", path, body, token)["id"] == generated["id"]
+        rule["expected_knowledge_history"] = 1
+        control.write_text(json.dumps({"rules": [rule]}))
+        followup = request(endpoint, "POST", path, {"prompt": "把刚才的移项讲简单些", "request_id": "validated-followup"}, token)
+        assert followup["id"] != generated["id"]
+        assert all(row["source_current"] for row in request(endpoint, "GET", path, token=token))
+        assert request(endpoint, "POST", path, body, token)["id"] == generated["id"]
+        events = [json.loads(line) for line in Path(env["CANGJIE_TEST_BUDGET_EVENTS"]).read_text().splitlines()]
+        assert sum(event.get("kind") == "accepted" and event.get("key") == "knowledge-lesson" for event in events) == 2
         request(endpoint, "POST", path, {**body, "prompt": "不同问题"}, token, expected=409)
         query(env, "UPDATE knowledge_points SET content=JSON_SET(content,'$.definition','等式两边同时加同一个数仍相等；此条已更新。') WHERE id='" + card_id + "'")
         assert request(endpoint, "GET", path, token=token)[0]["source_current"] is False
         request(endpoint, "POST", path, body, token, expected=409)
+        rule["expected_knowledge_history"] = 0
+        control.write_text(json.dumps({"rules": [rule]}))
+        refreshed = request(endpoint, "POST", path, {**body, "request_id": "fresh-source-request"}, token)
+        history_after_change = request(endpoint, "GET", path, token=token)
+        assert next(row for row in history_after_change if row["id"] == refreshed["id"])["source_current"] is True
+        assert all(not row["source_current"] for row in history_after_change if row["id"] in {generated["id"], followup["id"]})
         assert len(query(env, "SELECT id FROM mastery_states WHERE user_id='" + actor["id"] + "'").splitlines()) == 1
+        assert (query(env, mastery_sql), query(env, cognitive_sql)) == learning_before
     finally:
         control.write_text(previous_control)
     # Recorded response validates native history, isolation and stale-source marking.

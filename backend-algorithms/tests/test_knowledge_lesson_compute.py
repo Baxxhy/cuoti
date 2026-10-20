@@ -60,3 +60,48 @@ async def test_unknown_sources_are_rejected_and_missing_evidence_never_calls_mod
 def test_output_limits_are_real_constraints():
     with pytest.raises(ValueError):
         LessonDraft(explanation="内容" * 20, key_points=["x" * 241], check_question="说明这一步的依据？", source_codes=["equation"])
+
+
+@pytest.mark.asyncio
+async def test_malformed_paragraph_field_retries_once_without_relaxing_schema():
+    class MalformedFirst(Provider):
+        async def generate_structured(self, prompt, model, **kwargs):
+            result = await super().generate_structured(prompt, model, **kwargs)
+            if len(self.calls) == 1:
+                return {**result, "错误地作为字段名的第二段讲解": "额外内容"}
+            return model.model_validate(result)
+
+    provider = MalformedFirst()
+    result = await explain_knowledge(provider, cards(), "数学", "初一", "为什么移项变号？")
+    assert len(provider.calls) == 2
+    assert "format_correction" in provider.calls[1]
+    assert provider.calls[0]["sources"] == provider.calls[1]["sources"]
+    assert provider.calls[0]["student_question"] == provider.calls[1]["student_question"]
+    assert result["can_update_learning"] is False
+    assert "错误地作为字段名的第二段讲解" not in result
+
+
+@pytest.mark.asyncio
+async def test_repeated_invalid_output_is_rejected_after_two_attempts():
+    class Invalid(Provider):
+        async def generate_structured(self, prompt, model, **kwargs):
+            result = await super().generate_structured(prompt, model, **kwargs)
+            return model.model_validate({**result, "unexpected": "must reject"})
+
+    provider = Invalid()
+    with pytest.raises(ValueError):
+        await explain_knowledge(provider, cards(), "数学", "初一")
+    assert len(provider.calls) == 2
+
+
+@pytest.mark.asyncio
+async def test_transport_timeout_does_not_start_a_format_retry():
+    class Timeout(Provider):
+        async def generate_structured(self, prompt, model, **kwargs):
+            await super().generate_structured(prompt, model, **kwargs)
+            raise TimeoutError()
+
+    provider = Timeout()
+    with pytest.raises(TimeoutError):
+        await explain_knowledge(provider, cards(), "数学", "初一")
+    assert len(provider.calls) == 1

@@ -68,6 +68,7 @@ def release_inputs(endpoint, env, query):
         'minutes':[-1,0,1,5.5,30,True,False,None,'10',[],{}],
         'subject':['', ' ', '未设置', None,1,True,[],{}],
         'goal':['', 'other',None,1,True,[],{}],
+        'grade':['', ' ', '初四','大学',None,1,True,[],{}],
     }.items():
         for value in values:
             check('preferences-'+field+'-'+str(count), 'PATCH', preferences, {**base, field:value})

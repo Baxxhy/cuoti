@@ -93,6 +93,15 @@ def main() -> None:
                         assert error.headers["Allow"] == "GET"
             if (
                 env.get("CANGJIE_DB_NAME")
+                and env.get("CANGJIE_VERIFY_FOCUS") == "personal-learning"
+            ):
+                from smoke_cangjie_personal_learning import personal_learning
+
+                personal_learning(endpoint, env, query)
+                print("Focused personal learning checks passed; full acceptance is separate")
+                return
+            if (
+                env.get("CANGJIE_DB_NAME")
                 and env.get("CANGJIE_VERIFY_FOCUS") == "paper-export"
             ):
                 from smoke_cangjie_papers import export_readiness

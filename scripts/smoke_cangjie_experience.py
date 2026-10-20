@@ -53,6 +53,23 @@ def experience(endpoint, env, query):
     request(endpoint,'PATCH',path,{**body,'version':1,'minutes':5.5},token=token,expected=422)
     request(endpoint,'PATCH',path,{**body,'version':1,'subject':'不存在'},token=token,expected=422)
     request(endpoint,'PATCH',path,{**body,'version':1,'user_id':fixture['user']['id']},token=token,expected=422)
+    # Changing the current grade affects future recommendations, never old evidence.
+    before_question = request(endpoint,'GET','/api/v1/questions/'+qid,token=token)
+    for grade in ['初一','初二','初三','高一','高二','高三']:
+        saved = request(endpoint,'PATCH',path,{**body,'version':saved['version'],'grade':grade},token=token)
+        assert saved['grade'] == grade
+        assert request(endpoint,'GET',path,token=token) == saved
+        framework = request(endpoint,'GET','/api/v1/knowledge/framework',token=token)
+        assert framework['default_grade'] == grade
+        assert request(endpoint,'GET','/api/v1/dashboard',token=token)['grade'] == grade
+    for grade in ['大学','初四', '',None,1,True,[],{}]:
+        request(endpoint,'PATCH',path,{**body,'version':saved['version'],'grade':grade},token=token,expected=422)
+        assert request(endpoint,'GET',path,token=token) == saved
+    request(endpoint,'PATCH',path,{**body,'version':saved['version']-1,'grade':'初二'},token=token,expected=409)
+    assert request(endpoint,'GET','/api/v1/questions/'+qid,token=token) == before_question
+    # Old clients can still save other settings without a grade field.
+    old_client = request(endpoint,'PATCH',path,{**body,'version':saved['version']},token=token)
+    assert old_client['grade'] == '高三'
     projection='/api/v1/analytics/error-sources?days=90'
     request(endpoint,'GET',projection,expected=401)
     sources=request(endpoint,'GET',projection,token=token)
@@ -66,4 +83,4 @@ def experience(endpoint, env, query):
     request(endpoint,'DELETE','/api/v1/questions/'+qid,token=token)
     assert qid not in {source['id'] for source in request(endpoint,'GET',projection,token=token)['sources']}
     assert query(env,"SELECT COUNT(*) FROM cognitive_updates WHERE user_id='"+fixture['user']['id']+"'").strip()=='0'
-    print('Student experience passed: MySQL preferences/version conflict, bounded source projection, user isolation and archive removal; no learning evidence from reads/settings')
+    print('Student experience passed: six-grade settings/persistence/default scope, legacy payloads, unchanged old question/evidence, version conflict, bounded source projection and user isolation')

@@ -61,6 +61,8 @@ def main():
                         task_budget_ms=value.get("task_budget_ms"),
                     )
                 if rule and rule.get("fixture_knowledge_lesson") and operation == "knowledge_lesson":
+                    if "expected_knowledge_history" in rule:
+                        assert len(value.get("knowledge_history", [])) == rule["expected_knowledge_history"]
                     # Controlled model output; real evidence building and Pydantic checks still run.
                     project = Path(__file__).resolve().parents[1]
                     sys.path[:0] = [str(project / "backend-algorithms"), str(project / "backend")]
@@ -71,7 +73,7 @@ def main():
                             return schema(explanation="受控模型讲解：等式两边进行相同运算，等式仍然成立。移项是两边同时加减同一项的简写。",
                                 key_points=["两边同时加减同一项"], check_question="两边同时减去3后怎样变化？", source_codes=[knowledge_code])
 
-                    result = asyncio.run(explain_knowledge(LessonProvider(), value["dialogue_cards"], value["subject"], value.get("grade", ""), value.get("text", "")))
+                    result = asyncio.run(explain_knowledge(LessonProvider(), value["dialogue_cards"], value["subject"], value.get("grade", ""), value.get("text", ""), value.get("knowledge_history", [])))
                     payload = json.dumps({"operation": operation, "result": result}).encode()
                     time.sleep(min(5, max(0, float(rule.get("delay_seconds", 0)))))
                     self.send_response(200)

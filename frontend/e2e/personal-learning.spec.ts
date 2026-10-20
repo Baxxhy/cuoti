@@ -8,6 +8,48 @@ test.beforeEach(async ({ page }) => {
   )
 })
 
+// Explicit UI fixture: native source-version/persistence behavior is checked in
+// smoke_cangjie_personal_learning; this case checks student-visible recovery.
+test('知识讲解来源冲突：问题保留，重新发送可恢复且不会重复旧请求', async ({ page }, info) => {
+  const code = process.env.QA_PERSONAL_CODE || 'curr.数学.初一.2'
+  const submissions: any[] = []
+  await page.route('**/knowledge/cards/*/lessons', async (route) => {
+    if (route.request().method() !== 'POST') return route.continue()
+    submissions.push(route.request().postDataJSON())
+    if (submissions.length === 1)
+      return route.fulfill({ status: 409, json: { detail: '知识内容已更新，请重新提问' } })
+    await route.fulfill({
+      json: {
+        success: true,
+        error: null,
+        data: {
+          id: 'ui-fixture-lesson',
+          prompt: submissions[1].prompt,
+          result: {
+            explanation: '受控页面示例：等式两边同时加减同一个数，相等关系保持不变。',
+            key_points: ['两边做同样的运算'],
+            check_question: '同时减去3后有什么变化？',
+            sources: [{ code, name: '等式性质' }],
+            can_update_learning: false,
+          },
+        },
+      },
+    })
+  })
+  await page.goto('/#/pages/library/library?code=' + encodeURIComponent(code))
+  await page.getByRole('button', { name: 'AI 老师讲解', exact: true }).click()
+  const prompt = page.locator('.teacher-content textarea')
+  await prompt.fill('这一步为什么这样做？')
+  await page.getByRole('button', { name: '发送问题', exact: true }).click()
+  await expect(page.locator('.lesson-error')).toContainText('知识内容已更新')
+  await expect(prompt).toHaveValue('这一步为什么这样做？')
+  await page.getByRole('button', { name: '发送问题', exact: true }).click()
+  await expect(page.locator('.lesson')).toContainText('受控页面示例')
+  expect(submissions).toHaveLength(2)
+  expect(submissions[0].request_id).not.toBe(submissions[1].request_id)
+  await page.screenshot({ path: info.outputPath('source-conflict-ui-fixture.png'), fullPage: true })
+})
+
 test('复习检索覆盖未来安排，常用范围保存与恢复，切题草稿不丢失', async ({ page }, info) => {
   await page.goto('/#/pages/review-search/review-search')
   await expect(page.locator('.review-result')).toHaveCount(20)

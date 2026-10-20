@@ -4,6 +4,8 @@
 
 当前主线为 **uni-app 前端 → 仓颉业务后端/MySQL → Python 内部算法**。最终产品需求见 [新版总方案](docs/final/README.md)，实际实现与待验收项见 [实施进度](docs/final/IMPLEMENTATION_STATUS.md)。
 
+长期学习功能：复习题搜索与常用范围、按章节查知识框架、错题关联知识与 AI 老师追问、数学符号输入，以及升年级后的学习范围更新。实现与真实模型抽样见[个人学习系统验收](docs/final/PERSONAL_LEARNING_SYSTEM.md)。外部项目只借鉴机制，新增代码与知识提要由本项目编写。
+
 理解项目先看[当前项目与智能体架构](docs/ARCHITECTURE.md)：模块职责、错题学习闭环、持久任务时序和证据边界。当前收尾状态见[最终版续作记录](docs/final/FINALIZATION_2026_10_18.md)。
 
 最新AI内容与修复见[补充题型验收](docs/final/EXTENDED_AI_ACCEPTANCE_2026_10.md)；逐功能核对与原提交检查见[最终提交复核](docs/final/FINAL_SUBMISSION_AUDIT_2026_10.md)。历史批次的测试数量不代表当前版本。
