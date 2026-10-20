@@ -360,7 +360,7 @@ def study(endpoint, env, query):
     request(endpoint, "POST", "/api/v1/study-sessions", {"selection_strategy": "unknown"}, token=token, expected=422)
     print("Adaptive practice passed: native owner history, bounded candidate pool, Bayesian information-gain selection, hidden answers and persisted trace", flush=True)
     print("Format quarantine passed: no new practice/exam, masked old snapshots, excluded scoring and idempotent submission", flush=True)
-    # Every path must use the authenticated student's exact grade, not a client hint.
+    # Junior students keep exact grades; senior students share the entire high-school band.
     grade_source = insert("dataset_sources", key="grade-" + uuid4().hex, name="年级隔离验收")
     grade_ids = {}
     for grade in ["七年级", "八年级", "九年级", "高一", "高二", "高三", "初中", "高中", "小学", "拓展"]:
@@ -385,19 +385,21 @@ def study(endpoint, env, query):
         })
         pupil_token = pupil["access_token"]
         result = request(endpoint, "GET", "/api/v1/study-bank?source_id=" + grade_source + "&grade=%E9%AB%98%E4%B8%89", token=pupil_token)
-        assert result["grade"] == grade and result["total"] == 1
-        assert result["questions"][0]["id"] == grade_ids[stored]
+        allowed = {value for key, value in grade_ids.items() if key.startswith("高") or key.startswith("mislabelled-高")} if grade.startswith("高") else {grade_ids[stored]}
+        assert result["grade"] == grade and result["total"] == len(allowed)
+        assert {q["id"] for q in result["questions"]} == allowed
+        assert result["scope_label"] == ("高中" if grade.startswith("高") else grade)
         assert sum(f["count"] for f in result["facets"]) >= 1
         for mode, strategy in [("practice", "random"), ("practice", "adaptive"), ("exam", "random")]:
             session = request(endpoint, "POST", "/api/v1/study-sessions", {
-                "mode": mode, "selection_strategy": strategy, "source_id": grade_source, "count": 1, "grade": "高三",
+                "mode": mode, "selection_strategy": strategy, "source_id": grade_source, "count": len(allowed), "grade": "高三",
             }, token=pupil_token)
-            assert [item["question"]["id"] for item in session["items"]] == [grade_ids[stored]]
+            assert {item["question"]["id"] for item in session["items"]} == allowed
         for excluded, excluded_id in grade_ids.items():
-            if excluded != stored:
+            if excluded_id not in allowed:
                 request(endpoint, "POST", "/api/v1/study-sessions", {"question_ids": [excluded_id]}, token=pupil_token, expected=422)
-        request(endpoint, "POST", "/api/v1/study-sessions", {"source_id": grade_source, "count": 2}, token=pupil_token, expected=422)
-    print("Exact grades passed: six grades, aliases, random/adaptive/exam, forged hints, foreign IDs, unknown grades and insufficient counts", flush=True)
+        request(endpoint, "POST", "/api/v1/study-sessions", {"source_id": grade_source, "count": len(allowed) + 1}, token=pupil_token, expected=422)
+    print("School scopes passed: junior exact grades, senior all high-school grades, random/adaptive/exam, foreign-band IDs and insufficient counts", flush=True)
     return {
         "QA_STUDY_CHEM_SOURCE": chemical_source,
         "QA_STUDY_BLOCKED_SESSION": held["id"],

@@ -43,7 +43,7 @@
           </view>
         </scroll-view>
         <view class="filter-row">
-          <view class="bank-picker">{{ data?.grade || studentGrade }}</view>
+          <view class="bank-picker">{{ data?.scope_label || studentGrade }}</view>
         </view>
       </view>
       <state-panel
@@ -119,7 +119,7 @@
               {{
                 filters.search || filters.source_id
                   ? '没有找到符合条件的题目'
-                  : `暂无可用的${data.grade || studentGrade}${filters.subject}题目`
+                  : `暂无可用的${data.scope_label || studentGrade}${filters.subject}题目`
               }}
             </text>
           </view>
@@ -133,7 +133,10 @@
           >
             <view class="question-meta">
               <text class="subject-badge">{{ question.subject }}</text>
-              <text>{{ data.grade }} · {{ questionTypeLabel(question.question_type) }}</text>
+              <text>
+                {{ question.grade || question.grade_band }} ·
+                {{ questionTypeLabel(question.question_type) }}
+              </text>
               <uni-icons
                 aria-hidden="true"
                 class="question-arrow"

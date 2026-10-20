@@ -52,13 +52,19 @@ func bankLaterMath(grade: String): String {
         }
         return senior
     }
-    return if (grade=="高一") { college+"|导数|求导|数列|等差|等比|椭圆|双曲线|圆锥曲线|排列组合|二项式定理|随机变量|正态分布" } else { college }
+    return college
 }
 
 func bankFilter(subject: String, band: String, source: String, search: String, grade!: String): Array<Option<String>> {
-    return [Some(subject),Some(subject),Some(band),Some(band),Some(source),Some(source),Some(search),Some("%"+search+"%"),Some(grade),Some(bankGradeAlias(grade)),Some(bankLaterMath(grade))]
+    let params=ArrayList<Option<String>>([Some(subject),Some(subject),Some(band),Some(band),Some(source),Some(source),Some(search),Some("%"+search+"%")])
+    if (!grade.startsWith("高")) { params.add(Some(grade)); params.add(Some(bankGradeAlias(grade))); params.add(Some(bankLaterMath(grade))) }
+    return params.toArray()
 }
-let bankWhere=" FROM dataset_questions q USE INDEX (ix_bank_grade) WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 AND (?='' OR q.subject=?) AND (?='' OR q.grade_band=?) AND (?='' OR q.dataset_source_id=?) AND (?='' OR q.question_text LIKE ?) AND q.grade IN (?,?) AND (q.subject<>'数学' OR CONCAT(q.question_text,' ',COALESCE(q.options,''),' ',COALESCE(q.knowledge_points,'')) NOT REGEXP ?)"
+let bankWhere=" FROM dataset_questions q WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 AND (?='' OR q.subject=?) AND (?='' OR q.grade_band=?) AND (?='' OR q.dataset_source_id=?) AND (?='' OR q.question_text LIKE ?)"
+func bankScopedWhere(grade: String): String {
+    if (grade.startsWith("高")) { return bankWhere.replace("q WHERE","q USE INDEX (ix_bank_browse) WHERE")+" AND q.grade_band='高中'" }
+    return bankWhere.replace("q WHERE","q USE INDEX (ix_bank_grade) WHERE")+" AND q.grade IN (?,?) AND (q.subject<>'数学' OR CONCAT(q.question_text,' ',COALESCE(q.options,''),' ',COALESCE(q.knowledge_points,'')) NOT REGEXP ?)"
+}
 
 func studyBank(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"GET")
@@ -71,14 +77,14 @@ func studyBank(context: HttpContext, accounts: Accounts): JsonValue {
         let user=accounts.currentUser(context,db)
         let grade=bankStudentGrade(db,rowText(user,"id"))
         let filters=bankFilter(subject,band,source,search,grade:grade)
-        let browseWhere=bankWhere
-        let result=JsonObject(); result.put("page",JsonInt(page)); result.put("page_size",JsonInt(20)); result.put("grade",JsonString(grade))
+        let browseWhere=bankScopedWhere(grade)
+        let result=JsonObject(); result.put("page",JsonInt(page)); result.put("page_size",JsonInt(20)); result.put("grade",JsonString(grade)); result.put("scope_label",JsonString(if (grade.startsWith("高")) { "高中" } else { grade }))
         let items=JsonArray()
         let sourceNames=JsonObject()
         for (sourceRow in db.query("SELECT id,name FROM dataset_sources").rows) {
             sourceNames.put(rowText(sourceRow,"id"),JsonString(rowText(sourceRow,"name")))
         }
-        for (row in db.query("SELECT q.*"+browseWhere+" ORDER BY q.grade,q.subject,q.id LIMIT 20 OFFSET "+((page-1)*20).toString(),filters).rows) {
+        for (row in db.query("SELECT q.*"+browseWhere+(if (grade.startsWith("高")) { " ORDER BY q.subject,q.id" } else { " ORDER BY q.grade,q.subject,q.id" })+" LIMIT 20 OFFSET "+((page-1)*20).toString(),filters).rows) {
             let value=rowJson("dataset_questions",row)
             value.put("source_name",sourceNames.get(rowText(row,"dataset_source_id")) ?? JsonString("题库")); items.add(bankQuestion(value,accounts))
         }
@@ -199,17 +205,17 @@ func studySessions(context: HttpContext, accounts: Accounts): JsonValue {
                 let picked=ArrayList<HashMap<String,Option<String>>>()
                 for (id in selected.getItems()) {
                     let params=ArrayList<Option<String>>(bankFilter(subject,band,source,search,grade:grade)); params.add(sqlValue(id))
-                    for (row in tx.query("SELECT q.*"+bankWhere+" AND q.id=?",params.toArray()).rows) { picked.add(row) }
+                    for (row in tx.query("SELECT q.*"+bankScopedWhere(grade)+" AND q.id=?",params.toArray()).rows) { picked.add(row) }
                 }
                 picked
             } else if (ids.getItems().isEmpty()) {
-                tx.query("SELECT q.*"+bankWhere+" ORDER BY RAND() LIMIT "+count.toString(),bankFilter(subject,band,source,search,grade:grade)).rows
+                tx.query("SELECT q.*"+bankScopedWhere(grade)+" ORDER BY RAND() LIMIT "+count.toString(),bankFilter(subject,band,source,search,grade:grade)).rows
             } else {
                 let params=ArrayList<Option<String>>(bankFilter(subject,band,source,search,grade:grade))
                 params.add(Some((editText(ids.getItems()[0],36,minimum:1,trim:true) as JsonString).getOrThrow().getValue()))
-                tx.query("SELECT q.*"+bankWhere+" AND q.id=?",params.toArray()).rows
+                tx.query("SELECT q.*"+bankScopedWhere(grade)+" AND q.id=?",params.toArray()).rows
             }
-            if (rows.isEmpty() || (ids.getItems().isEmpty() && rows.size<count)) { throw ApiError(422,"当前年级可用题目不足，请减少题数或更换学科") }
+            if (rows.isEmpty() || (ids.getItems().isEmpty() && rows.size<count)) { throw ApiError(422,"当前范围可用题目不足，请减少题数或更换学科") }
             let id=newId(); let title=if (mode=="exam") { (if (subject.isEmpty()) { "综合" } else { subject })+"模拟试卷" } else { (if (subject.isEmpty()) { "题库" } else { subject })+"练习" }
             tx.query("INSERT INTO study_sessions (id,user_id,mode,title,subject,grade_band,status,duration_seconds,deadline_at,version,created_at,updated_at) VALUES (?,?,?,?,?,?,'active',?,IF(?='exam',TIMESTAMPADD(SECOND,?,UTC_TIMESTAMP(6)),NULL),1,UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[Some(id),Some(owner),Some(mode),Some(title),Some(subject),Some(band),Some((minutes*60).toString()),Some(mode),Some((minutes*60).toString())])
             var position: Int64=0
