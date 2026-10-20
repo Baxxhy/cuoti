@@ -2,18 +2,18 @@
   <view class="auth-shell">
     <view class="auth-page">
       <view class="auth-top">
-        <view class="auth-brand">
-          <uni-icons aria-hidden="true" type="compose" size="25" color="var(--color-primary)" />
-          <text>错题帮</text>
+        <view class="auth-brand-mark" aria-hidden="true">
+          <uni-icons type="compose" size="36" color="var(--color-surface)" />
         </view>
         <!-- #ifdef H5 -->
-        <component :is="'h1'" class="auth-title">登录账号</component>
+        <component :is="'h1'" class="auth-title">错题帮</component>
         <!-- #endif -->
         <!-- #ifndef H5 -->
-        <text class="auth-title">登录账号</text>
+        <text class="auth-title">错题帮</text>
         <!-- #endif -->
+        <text class="auth-description">把错题，变成会做的题。</text>
       </view>
-      <view class="auth-form">
+      <view class="auth-form" role="form" aria-label="登录账号">
         <account-field
           id="login-email"
           v-model="email"
@@ -113,33 +113,46 @@ onMounted(restore)
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 24px calc(48px + env(safe-area-inset-bottom));
+  padding: calc(64px + env(safe-area-inset-top)) 24px calc(48px + env(safe-area-inset-bottom));
   background: var(--color-bg);
 }
 .auth-page {
   width: 100%;
-  max-width: 380px;
+  max-width: 360px;
+  display: grid;
+  gap: 40px;
 }
-.auth-brand {
+.auth-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.auth-brand-mark {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--color-text-primary);
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 32px;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+  border-radius: 22px;
+  background: var(--color-primary);
 }
 .auth-title {
   display: block;
   margin: 0;
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  color: var(--color-text-primary);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--color-brand-deep);
 }
-.auth-form {
-  margin-top: 32px;
+.auth-description {
+  display: block;
+  margin-top: 12px;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
 }
 .auth-form :deep(.account-field:first-child) {
   margin-top: 0;
@@ -149,11 +162,18 @@ onMounted(restore)
 }
 .auth-form .primary-btn {
   margin-top: 28px;
+  min-height: 52px;
+}
+.auth-form .primary-btn[disabled] {
+  background: var(--color-primary-soft);
+  border-color: transparent;
+  color: var(--color-brand-deep);
+  opacity: 0.65;
 }
 .auth-links {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  gap: 32px;
   color: var(--color-primary);
   font-size: 14px;
   margin-top: 16px;
@@ -161,7 +181,7 @@ onMounted(restore)
 .auth-links button {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 48px;
   margin: 0;
   padding: 0;
   background: transparent;
@@ -176,15 +196,45 @@ onMounted(restore)
 @media (max-width: 480px) {
   .auth-shell {
     align-items: flex-start;
-    padding-top: calc(80px + env(safe-area-inset-top));
   }
 }
-@media (max-height: 600px) {
-  .auth-shell {
-    padding-top: 24px;
+@media (min-width: 900px) {
+  .auth-page {
+    max-width: 920px;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: center;
+    gap: 112px;
   }
-  .auth-brand {
-    margin-bottom: 24px;
+  .auth-top {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .auth-brand-mark {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 28px;
+    border-radius: 24px;
+  }
+  .auth-title {
+    font-size: 56px;
+  }
+  .auth-description {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+}
+@media (max-height: 740px) and (max-width: 899px) {
+  .auth-shell {
+    padding-top: calc(32px + env(safe-area-inset-top));
+  }
+  .auth-page {
+    gap: 32px;
+  }
+  .auth-brand-mark {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 20px;
   }
 }
 </style>
