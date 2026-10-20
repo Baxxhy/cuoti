@@ -27,6 +27,7 @@ page {
   --font-title: 21px;
   --font-body: 16px;
   --font-caption: 13px;
+  accent-color: var(--color-primary);
 }
 page {
   font-family:
@@ -60,9 +61,16 @@ uni-button::after,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
+.field-input:focus-visible,
+.field-textarea:focus-visible,
+.field-picker:focus-visible,
 [role='button']:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
+}
+::selection {
+  color: var(--color-text-primary);
+  background: var(--color-primary-border);
 }
 .page {
   width: 100%;
@@ -289,6 +297,7 @@ textarea:focus-visible,
   border-radius: 8px;
   background: #fff;
   color: var(--color-text-primary);
+  caret-color: var(--color-primary);
   font-size: 15px;
 }
 .field-input {
