@@ -86,6 +86,13 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 describe('持久任务页面', () => {
+  it('作答前不重复展示规划说明，保留题目与输入', async () => {
+    server.student_view.recommendation = { action: 'repair', reason: '先订正出错的这一步。' }
+    const page = await make()
+    expect(page.find('.recommendation-note').exists()).toBe(false)
+    expect(page.text()).toContain('写出下一行等式')
+    expect(page.find('textarea').exists()).toBe(true)
+  })
   it('完成后按推荐的实际题目创建练习并进入答题页', async () => {
     server.status = 'completed'
     server.student_view.input_kind = 'none'
@@ -118,6 +125,17 @@ describe('持久任务页面', () => {
       { silent: true },
     )
     expect(go).toHaveBeenCalledWith('/pages/study-session/study-session?id=study-next')
+  })
+  it('先修推荐用知识卡ID打开卡片详情，并携带原题上下文', async () => {
+    server.student_view.recommendation = {
+      action: 'prerequisite',
+      knowledge_card_ids: ['card-1'],
+      reason: '先回顾等式的性质。',
+    }
+    const page = await make()
+    const button = page.findAll('button').find((node) => node.text() === '查看相关知识')!
+    await button.trigger('click')
+    expect(go).toHaveBeenLastCalledWith('/pages/library/library?code=card-1&question=q1')
   })
   it('到期错题推荐返回本人的原题，确认分支提供真实诊断入口', async () => {
     server.status = 'completed'

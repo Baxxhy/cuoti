@@ -26,9 +26,12 @@
 </template>
 <script setup>
 import MathText from '@/components/math-text/math-text.vue'
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 const props = defineProps({ graph: Object })
 const emit = defineEmits(['select'])
+const instance = getCurrentInstance()
+let scaleX = 1,
+  scaleY = 1
 const selectedId = ref(''),
   points = ref([])
 const colors = {
@@ -49,10 +52,12 @@ function visibleData() {
   return { nodes: nodes.filter((node) => related.has(node.id)).slice(0, 8), links }
 }
 function draw() {
-  const ctx = uni.createCanvasContext('cognition-graph'),
+  const ctx = uni.createCanvasContext('cognition-graph', instance?.proxy),
     w = 350,
     h = 300,
     { nodes, links } = visibleData()
+  ctx.save?.()
+  ctx.scale?.(scaleX, scaleY)
   ctx.setFillStyle('#fff')
   ctx.fillRect(0, 0, w, h)
   points.value = nodes.map((node) => {
@@ -74,6 +79,7 @@ function draw() {
       ctx.stroke()
     }
   })
+  ctx.restore?.()
   ctx.draw()
 }
 function nodeStyle(point) {
@@ -88,7 +94,26 @@ function selectPoint(point) {
   emit('select', selectedId.value ? point : null)
   nextTick(draw)
 }
-onMounted(draw)
+function measure() {
+  const query = uni.createSelectorQuery?.()
+  if (!query) return draw()
+  query
+    .in(instance?.proxy)
+    .select('.graph-canvas')
+    .boundingClientRect((box) => {
+      if (box?.width && box?.height) {
+        scaleX = box.width / 350
+        scaleY = box.height / 300
+      }
+      draw()
+    })
+    .exec()
+}
+onMounted(() => {
+  measure()
+  uni.onWindowResize?.(measure)
+})
+onBeforeUnmount(() => uni.offWindowResize?.(measure))
 watch(
   () => props.graph,
   () => {
@@ -108,9 +133,8 @@ watch(
   overflow: hidden;
 }
 .graph-canvas {
-  width: 700rpx;
-  height: 600rpx;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
 }
 .graph-node {
   background: transparent;
@@ -124,7 +148,7 @@ watch(
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  transform: translate(-50%, -38%);
+  transform: translate(-50%, -26rpx);
   z-index: 2;
 }
 .node-dot {
@@ -152,6 +176,9 @@ watch(
   height: 68rpx;
   border-color: #dce8ff;
   box-shadow: 0 0 0 5rpx rgba(47, 107, 255, 0.18);
+}
+.graph-node.selected {
+  transform: translate(-50%, -34rpx);
 }
 .graph-node.selected .node-label {
   font-weight: 600;

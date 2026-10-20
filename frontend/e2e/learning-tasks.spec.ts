@@ -147,6 +147,25 @@ test('持久智能体：订正、刷新草稿、独立作答、离开恢复与�
     path: testInfo.outputPath('agent-recommended-practice.png'),
     fullPage: true,
   })
+  // The report must show the evidence saved by this learning flow, rather than
+  // only passing a route audit with an empty-state screenshot.
+  await page.goto('/#/pages/analysis/analysis')
+  await expect(page.locator('.progress-block')).toContainText('等式的性质')
+  await expect(page.locator('.change-line')).toContainText('学习记录估计')
+  await expect(page.locator('.report-empty')).toHaveCount(0)
+  for (const width of [375, 1280]) {
+    await page.setViewportSize({ width, height: 812 })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+    await page.screenshot({
+      path: testInfo.outputPath(`saved-learning-report-${width}.png`),
+      fullPage: true,
+    })
+  }
+  await page.getByRole('button', { name: '查看每日记录', exact: true }).click()
+  await expect(page.locator('.trend-bars > uni-view')).not.toHaveCount(0)
+  await page.getByRole('button', { name: /我的知识图谱/ }).click()
+  await expect(page.locator('.trend-panel')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: '用列表查看', exact: true })).toBeVisible()
 })
 
 test('原式函数图：参数可按按钮调整、退化有说明、观察刷新后保留', async ({ page }, testInfo) => {
@@ -330,4 +349,29 @@ test('不等式：诊断保留正确第一步，错误端点不判对，区间�
     items.some((item: any) => item.verdict === 'confirmed_correct' && item.phase === 'independent'),
   ).toBe(true)
   expect(items.some((item: any) => item.verdict === 'review_required')).toBe(true)
+})
+
+test('学习推荐的知识卡ID可打开具体卡片，并保留结合原题讲解入口', async ({ page, request }) => {
+  test.skip(!process.env.QA_TASK_EMAIL, '需要仓颉隔离任务账号')
+  const login = await request.post(process.env.ZHIWEI_API_URL + '/auth/login', {
+    data: { email: process.env.QA_TASK_EMAIL, password: process.env.QA_TASK_PASSWORD },
+  })
+  expect(login.ok()).toBe(true)
+  const token = (await login.json()).data.access_token
+  const response = await request.get(
+    process.env.ZHIWEI_API_URL + '/knowledge/cards?subject=' + encodeURIComponent('数学'),
+  )
+  expect(response.ok()).toBe(true)
+  const card = (await response.json()).data[0]
+  expect(card?.id).toBeTruthy()
+  await page.addInitScript(
+    (value) => localStorage.setItem('minddimension_access_token', value),
+    token,
+  )
+  await page.goto(
+    `/#/pages/library/library?code=${encodeURIComponent(card.id)}&question=${process.env.QA_TASK_QUESTION_ID}`,
+  )
+  await expect(page.locator('h2')).toHaveText(card.name)
+  await expect(page.getByRole('button', { name: '结合原题讲解', exact: true })).toBeVisible()
+  await expect(page.getByText('知识卡暂时无法加载', { exact: true })).toHaveCount(0)
 })

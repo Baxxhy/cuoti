@@ -87,7 +87,7 @@ export function repairRoute(item, journey) {
   return [
     {
       key: 'knowledge',
-      title: '回顾本题知识',
+      title: '回顾知识',
       detail: item.diagnosis?.missing_prerequisites?.length
         ? `先补：${item.diagnosis.missing_prerequisites.slice(0, 2).join('、')}`
         : '先看概念、条件与方法',
@@ -96,14 +96,14 @@ export function repairRoute(item, journey) {
     },
     {
       key: 'replay',
-      title: '核对出错的那一步',
+      title: '核对作答',
       detail: '对照当时的过程与诊断依据',
       url: `/pages/replay/replay?id=${id}`,
       state: item.diagnosis ? '可核对' : '待诊断',
     },
     {
       key: 'learn',
-      title: '订正，再独立完成',
+      title: '订正错题',
       detail: '先订正错处，再重新作答',
       url: '',
       state: completed('understanding')
@@ -116,7 +116,7 @@ export function repairRoute(item, journey) {
     },
     {
       key: 'practice',
-      title: '换一道题，检验方法',
+      title: '类似题练习',
       detail: '同类题与变式题分别练习',
       url: `/pages/practice/practice?id=${id}`,
       state: completed('transfer')
@@ -127,7 +127,7 @@ export function repairRoute(item, journey) {
     },
     {
       key: 'review',
-      title: '过几天，再独立回忆',
+      title: '后续复习',
       detail: journey?.review?.next_due_at ? '按已有复习安排继续' : '学习完成后查看复习安排',
       url:
         journey?.review?.due && journey.review.plan_id

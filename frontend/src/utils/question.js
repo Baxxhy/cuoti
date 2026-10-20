@@ -23,6 +23,8 @@ export function questionTypeLabel(questionType) {
   return (
     {
       'multiple-choice': '单选题',
+      'single-choice': '单选题',
+      single_choice: '单选题',
       choice: '单选题',
       multiple_choice: '多选题',
       'multiple-response': '多选题',

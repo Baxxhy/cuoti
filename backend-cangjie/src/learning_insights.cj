@@ -148,7 +148,7 @@ func readKnowledgeCard(context: HttpContext): JsonValue {
     let code = parts[parts.size-1]
     try (db = Database.fromEnvironment()) {
         return db.transaction<JsonValue>({ tx =>
-            let rows = tx.query("SELECT * FROM knowledge_points WHERE code=? LIMIT 1",[Some(code)]).rows
+            let rows = tx.query("SELECT * FROM knowledge_points WHERE code=? OR id=? LIMIT 1",[Some(code),Some(code)]).rows
             if (rows.isEmpty()) { throw ApiError(404,"知识卡不存在") }
             let result = rowJson("knowledge_points",rows[0]); let id = rows[0]["id"]
             for ((key,sql) in [("prerequisites","SELECT k.* FROM knowledge_relations r JOIN knowledge_points k ON k.id=r.target_id WHERE r.source_id=?"),("next_knowledge","SELECT k.* FROM knowledge_relations r JOIN knowledge_points k ON k.id=r.source_id WHERE r.target_id=?")]) {

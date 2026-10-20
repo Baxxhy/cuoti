@@ -33,6 +33,8 @@ describe('真实题目作答与识别恢复', () => {
     expect(choiceAnswer(['C', 'A', 'C', 'Z'], options)).toBe('A、C')
     expect(choiceAnswer([], options)).toBe('')
     expect(normalizeOptions(null)).toEqual([])
+    expect(questionTypeLabel('single-choice')).toBe('单选题')
+    expect(questionTypeLabel('single_choice')).toBe('单选题')
     for (const type of ['multiple_choice', '多选题', '多项选择题'])
       expect(isMultipleChoice(type)).toBe(true)
     expect(isMultipleChoice('choice')).toBe(false)

@@ -442,6 +442,12 @@ def insights(endpoint, env, query):
                     )
                     expected = await original["knowledge_card"](code=code, db=db)
                     assert actual == comparable(expected), (actual, expected)
+                    by_id = request(
+                        endpoint,
+                        "GET",
+                        "/api/v1/knowledge/cards/" + quote(actual["id"], safe=""),
+                    )
+                    assert by_id == actual
         finally:
             await engine.dispose()
 

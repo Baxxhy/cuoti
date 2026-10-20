@@ -599,7 +599,7 @@
               @keydown.space.prevent
               @keyup.space.prevent="askOpen = true"
             >
-              问小智老师
+              向 AI 提问
             </button>
             <button
               :aria-disabled="busy"

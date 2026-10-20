@@ -135,7 +135,7 @@
         >
           <view>
             <text>我的知识图谱</text>
-            <small>{{ graphSummary }}</small>
+            <small v-if="graphLoaded">{{ graphSummary }}</small>
           </view>
           <uni-icons
             aria-hidden="true"
@@ -158,7 +158,12 @@
               </text>
             </view>
           </scroll-view>
-          <state-panel v-if="graphError" state="error" :message="graphError" @retry="loadGraph" />
+          <state-panel
+            v-if="graphLoading || graphError"
+            :state="graphError ? 'error' : 'loading'"
+            :message="graphError"
+            @retry="loadGraph"
+          />
           <template v-else>
             <button
               tabindex="0"
@@ -241,7 +246,9 @@ import { go } from '@/utils/navigation.js'
 import { scopedQuestionURL } from '@/utils/learning.js'
 import { reportCauses, reportGraph, reportMastery, reportPointKey } from '@/utils/report.js'
 const error = ref(''),
-  graphError = ref('')
+  graphError = ref(''),
+  graphLoading = ref(false),
+  graphLoaded = ref(false)
 let graphRequest = 0
 let overviewRequest = 0
 const overview = ref({ summary: {}, mastery: [], misconceptions: [], trend: [] }),
@@ -304,14 +311,22 @@ function toggleRelations() {
 async function loadGraph() {
   const current = ++graphRequest
   graphError.value = ''
+  graphLoading.value = true
+  graphLoaded.value = false
+  graph.value = { nodes: [], links: [] }
   selected.value = null
   try {
     const result = await getData(
       `/analytics/cognition-graph?days=90${subject.value ? `&subject=${encodeURIComponent(subject.value)}` : ''}`,
     )
-    if (current === graphRequest) graph.value = reportGraph(result)
+    if (current === graphRequest) {
+      graph.value = reportGraph(result)
+      graphLoaded.value = true
+    }
   } catch (err) {
     if (current === graphRequest) graphError.value = err.message || '知识关系暂时无法加载'
+  } finally {
+    if (current === graphRequest) graphLoading.value = false
   }
 }
 function selectSubject(value) {
@@ -331,6 +346,8 @@ function clear() {
   graphRequest++
   overview.value = { summary: {}, mastery: [], misconceptions: [], trend: [] }
   graph.value = { nodes: [], links: [] }
+  graphLoading.value = false
+  graphLoaded.value = false
   selected.value = null
 }
 onHide(clear)

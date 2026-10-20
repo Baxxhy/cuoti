@@ -686,6 +686,10 @@ const percent = (v) => `${Math.round(Math.max(0, Math.min(1, Number(v || 0))) * 
       teaching: '针对教学',
       practice: '迁移练习',
       review: '复习巩固',
+      near_transfer: '类似题练习',
+      far_transfer: '综合练习',
+      teach_back: '理解检查',
+      finished: '已完成',
     })[s] ||
     s ||
     '未开始'
@@ -1080,11 +1084,13 @@ onUnmounted(() => clearInterval(timer))
   min-height: 190px;
   padding: 24px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 28px;
 }
 .donut {
+  flex-shrink: 0;
   width: 132px;
   height: 132px;
   border-radius: 50%;
@@ -1134,6 +1140,7 @@ onUnmounted(() => clearInterval(timer))
 }
 .legend text {
   color: var(--color-text-secondary);
+  white-space: nowrap;
 }
 .table-head,
 .student-row {

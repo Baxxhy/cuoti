@@ -10,11 +10,8 @@
       />
       <template v-else-if="item && journey">
         <view class="editorial-heading">
-          <text class="eyebrow">{{ item.subject }} · 学习进度</text>
-          <math-text
-            class="editorial-description"
-            :text="item.diagnosis?.root_misconception || '先核对题目与自己的作答，再逐步验证。'"
-          />
+          <text class="eyebrow">{{ item.subject }}</text>
+          <math-text class="editorial-description" :text="item.question_text || '这道错题'" />
         </view>
         <text v-if="notice" class="account-notice" role="alert">{{ notice }}</text>
         <view class="repair-timeline">
@@ -28,9 +25,17 @@
             <view class="repair-copy">
               <view class="repair-step-heading">
                 <math-text :text="step.title" inline />
-                <small>{{ step.recommended ? '建议先做 · ' : '' }}{{ step.state }}</small>
+                <small
+                  v-if="step.recommended || !['可回看', '可核对', '查看安排'].includes(step.state)"
+                >
+                  {{ step.recommended ? '建议先做 · ' : '' }}{{ step.state }}
+                </small>
               </view>
-              <math-text class="editorial-description" :text="step.detail" />
+              <math-text
+                v-if="step.key === 'knowledge' && item.diagnosis?.missing_prerequisites?.length"
+                class="editorial-description"
+                :text="step.detail"
+              />
               <button
                 role="button"
                 tabindex="0"
@@ -43,7 +48,12 @@
                 @click="openStep(step)"
               >
                 {{ actionLabel(step) }}
-                <uni-icons aria-hidden="true" type="right" size="18" />
+                <uni-icons
+                  aria-hidden="true"
+                  type="right"
+                  size="18"
+                  :color="step.recommended ? '#fff' : 'var(--color-primary)'"
+                />
               </button>
               <button
                 aria-label="试一道变式题"
@@ -62,7 +72,6 @@
             </view>
           </view>
         </view>
-        <text class="evidence-caption">完成作答后更新学习进度。</text>
         <button
           aria-label="查看学习记录"
           role="button"
@@ -182,16 +191,16 @@ onUnload(clear)
 </script>
 <style scoped lang="scss">
 .repair-timeline {
-  margin: 32px 0 24px;
+  margin: 16px 0 20px;
 }
 .repair-step {
   display: grid;
-  grid-template-columns: 52px minmax(0, 1fr);
+  grid-template-columns: 32px minmax(0, 1fr);
   position: relative;
 }
 .repair-number {
   padding-top: 20px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--color-primary);
   font-variant-numeric: tabular-nums;
@@ -218,9 +227,9 @@ onUnload(clear)
   gap: 8px 16px;
   margin-bottom: 8px;
 }
-.repair-step-heading > text {
-  font-size: 18px;
-  font-weight: 600;
+.repair-step-heading > .math-text {
+  font-size: 16px;
+  font-weight: 500;
 }
 .repair-step-heading small {
   font-size: 12px;
@@ -237,6 +246,12 @@ onUnload(clear)
   text-align: left;
   background: transparent;
   color: var(--color-primary);
+}
+.repair-step.recommended .route-action:not(.secondary-route) {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: #fff;
 }
 .secondary-route {
   color: var(--color-text-secondary);

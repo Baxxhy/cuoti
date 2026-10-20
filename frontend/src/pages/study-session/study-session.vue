@@ -108,11 +108,11 @@
         <template v-else-if="current">
           <view class="session-toolbar">
             <text>第 {{ currentIndex + 1 }} / {{ session.items.length }} 题</text>
-            <text class="save-status" role="status">
+            <text v-if="saving || !saved || answered > 0" class="save-status" role="status">
               {{ saving ? '正在保存…' : saved ? '作答已保存' : '有未保存作答' }}
             </text>
           </view>
-          <view class="answer-progress">
+          <view v-if="session.items.length > 1" class="answer-progress">
             <view :style="{ width: `${(answered / session.items.length) * 100}%` }" />
           </view>
           <view class="question-workspace card">
@@ -131,7 +131,7 @@
               <view class="question-category">
                 <text>{{ current.question.subject }}</text>
                 <text>{{ questionTypeLabel(current.question.question_type) }}</text>
-                <text>5 分</text>
+                <text v-if="session.mode === 'exam'">5 分</text>
               </view>
               <math-text class="question-stem" :text="current.question.question_text" inline />
               <image
@@ -175,7 +175,7 @@
               </view>
             </template>
           </view>
-          <view class="question-navigation">
+          <view v-if="session.items.length > 1" class="question-navigation">
             <button
               role="button"
               class="secondary-btn"
@@ -195,7 +195,7 @@
               <uni-icons aria-hidden="true" type="right" size="16" />
             </button>
           </view>
-          <view class="question-grid" aria-label="答题卡">
+          <view v-if="session.items.length > 1" class="question-grid" aria-label="答题卡">
             <button
               role="button"
               v-for="(item, index) in session.items"
@@ -208,9 +208,30 @@
             </button>
           </view>
           <view class="submit-row">
-            <text>已答 {{ answered }} / {{ session.items.length }} 题</text>
-            <button role="button" class="primary-btn" :disabled="submitting" @click="confirmSubmit">
-              {{ submitting ? '正在交卷判分…' : '交卷并查看结果' }}
+            <text v-if="session.items.length > 1">
+              已答 {{ answered }} / {{ session.items.length }} 题
+            </text>
+            <button
+              role="button"
+              class="primary-btn"
+              :disabled="
+                submitting ||
+                (session.mode === 'practice' &&
+                  session.items.length === 1 &&
+                  !current.unavailable &&
+                  !answered)
+              "
+              @click="confirmSubmit"
+            >
+              {{
+                submitting
+                  ? '正在批改…'
+                  : session.mode === 'practice' && session.items.length === 1
+                    ? current.unavailable
+                      ? '结束练习'
+                      : '提交答案'
+                    : '交卷并查看结果'
+              }}
             </button>
           </view>
         </template>
@@ -438,6 +459,7 @@ async function flush() {
 }
 function confirmSubmit() {
   if (submitting.value) return
+  if (session.value.mode === 'practice' && session.value.items.length === 1) return submit()
   uni.showModal({
     title: '确认交卷',
     content:
@@ -790,6 +812,14 @@ onUnload(() => {
   font-size: 14px;
   margin-top: 10px;
   color: var(--color-text-secondary);
+}
+.review-option > text {
+  flex: none;
+  white-space: nowrap;
+}
+.review-option > .math-text {
+  flex: 1;
+  width: auto;
 }
 .review-answers {
   display: grid;

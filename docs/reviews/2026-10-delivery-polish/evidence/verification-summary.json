@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-21",
+  "fullGate": {
+    "command": "make verify-final",
+    "log": ".runtime/delivery-polish-verify-final-3.log",
+    "exitCode": 0,
+    "frontend": 281,
+    "algorithms": 680,
+    "native": 43,
+    "browser": 66,
+    "skipped": 0
+  },
+  "finalFrontend": {
+    "logPrefix": ".runtime/delivery-*-complete-2.log",
+    "unitTests": 282,
+    "typecheck": "passed",
+    "h5Build": "passed",
+    "appResourcesBuild": "passed"
+  },
+  "additionalBrowser": {
+    "graphLoadingCases": 4,
+    "graphLayoutTests": 1,
+    "graphLayoutChecks": [
+      "375px",
+      "1280px after resize",
+      "selected node"
+    ],
+    "graphEndpointToleranceCSSPx": 2,
+    "modelRequests": 0
+  },
+  "allRouteTest": {
+    "title": "全站重构：全部路由在手机与桌面真实渲染，包含教师复核与管理员页面",
+    "routeCount": 50,
+    "widths": [
+      375,
+      1280
+    ],
+    "renderCount": 100,
+    "basis": "Full gate passed; redesign-acceptance.spec.ts asserts results.length === pages.length * 2 and no page errors. This is a derived validation summary, not a preserved raw screenshot manifest.",
+    "registeredRoutes": [
+      "pages/login/login",
+      "pages/register/register",
+      "pages/forgot/forgot",
+      "pages/index/index",
+      "pages/preferences/preferences",
+      "pages/replay/replay",
+      "pages/error-map/error-map",
+      "pages/repair/repair",
+      "pages/capture/capture",
+      "pages/crop/crop",
+      "pages/ocr/ocr",
+      "pages/manual/manual",
+      "pages/journey/journey",
+      "pages/detail/detail",
+      "pages/diagnosis/diagnosis",
+      "pages/task/task",
+      "pages/tutor/tutor",
+      "pages/visualization/visualization",
+      "pages/review/review",
+      "pages/review-search/review-search",
+      "pages/framework/framework",
+      "pages/assignment/assignment",
+      "pages/practice/practice",
+      "pages/problem/list",
+      "pages/search/search",
+      "pages/analysis/analysis",
+      "pages/knowledge/knowledge",
+      "pages/paper/paper-center",
+      "pages/profile/profile",
+      "pages/guardian/access",
+      "pages/guardian/home",
+      "pages/guardian/report",
+      "pages/teacher/dashboard",
+      "pages/teacher/classes",
+      "pages/teacher/class-detail",
+      "pages/teacher/student",
+      "pages/teacher/reviews",
+      "pages/teacher/review-detail",
+      "pages/teacher/plans",
+      "pages/teacher/questions",
+      "pages/teacher/question-edit",
+      "pages/teacher/assignment",
+      "pages/teacher/audit",
+      "pages/system/system",
+      "pages/admin/workbench",
+      "pages/learning/learning",
+      "pages/library/library",
+      "pages/help/help",
+      "pages/bank/bank",
+      "pages/study-session/study-session"
+    ]
+  },
+  "runtime": {
+    "businessPort": 8002,
+    "algorithmsPort": 8012,
+    "frontendPort": 5175,
+    "checkFinal": "four checks passed"
+  },
+  "modelEvidence": "Full gate uses controlled upstream fixtures; previous real Qwen samples are documented separately."
+}

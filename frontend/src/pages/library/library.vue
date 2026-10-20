@@ -117,11 +117,13 @@
           <small>
             <math-text
               :text="
-                item.subject +
-                ' · ' +
-                (item.content?.grade || '通用') +
-                ' · ' +
-                (item.content?.chapter || '知识卡')
+                [
+                  item.subject,
+                  item.content?.grade || '通用',
+                  item.content?.chapter !== item.name ? item.content?.chapter : '',
+                ]
+                  .filter(Boolean)
+                  .join(' · ')
               "
               inline
             />

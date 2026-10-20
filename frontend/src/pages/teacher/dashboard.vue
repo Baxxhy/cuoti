@@ -25,7 +25,12 @@
             v-for="item in metrics"
             :key="item.label"
             class="metric-card"
+            :role="item.url ? 'button' : undefined"
+            :tabindex="item.url ? 0 : undefined"
             @click="item.url && go(item.url)"
+            @keydown.enter.prevent="item.url && go(item.url)"
+            @keydown.space.prevent
+            @keyup.space.prevent="item.url && go(item.url)"
           >
             <text class="metric-value">{{ item.value }}</text>
             <text class="metric-label">{{ item.label }}</text>
@@ -49,7 +54,7 @@
             <view v-for="item in data.weak_points" :key="item.name" class="teacher-row">
               <view class="row-main">
                 <math-text class="row-title" :text="item.name" inline />
-                <text class="row-meta">班级掌握 {{ Math.round(item.score * 100) }}%</text>
+                <text class="row-meta">掌握估计 {{ Math.round(item.score * 100) }}%</text>
               </view>
             </view>
             <text v-if="!data.weak_points?.length" class="muted">暂无掌握证据</text>
@@ -59,7 +64,7 @@
             <view v-for="item in frequentErrors" :key="item.name" class="teacher-row">
               <view class="row-main">
                 <math-text class="row-title" :text="reportCauseLabel(item.name)" inline />
-                <text class="row-meta">出现概率 {{ Math.round(item.probability * 100) }}%</text>
+                <text class="row-meta">记录估计 {{ Math.round(item.probability * 100) }}%</text>
               </view>
             </view>
             <text v-if="!frequentErrors.length" class="muted">暂无错因记录</text>

@@ -2,17 +2,17 @@
   <view class="page review-search-page">
     <app-header title="查找复习题" back back-fallback="/pages/review/review" />
     <view class="page-content">
-      <form class="search-row" @submit.prevent="search()">
+      <view class="search-row" role="search">
         <input
           v-model="query"
           aria-label="搜索复习题"
-          placeholder="搜索题目、知识点或复习原因"
+          placeholder="搜索题目或知识点"
           confirm-type="search"
           maxlength="150"
           @confirm="search()"
         />
         <button role="button" class="small-btn" @click="search()">搜索</button>
-      </form>
+      </view>
       <view class="filter-row">
         <picker :range="scopes.map((item) => item.label)" @change="changeScope">
           <view class="filter-button">
@@ -83,8 +83,8 @@
           >
             查看全部待复习
           </button>
-          <button v-else role="button" class="secondary-btn" @click="go('/pages/capture/capture')">
-            录入错题
+          <button v-else role="button" class="secondary-btn" @click="go('/pages/problem/list')">
+            查看错题
           </button>
         </view>
         <button
@@ -402,8 +402,6 @@ onUnload(leave)
 .question-preview {
   display: block;
   margin: 12px 0;
-  max-height: 110px;
-  overflow: hidden;
   font-size: 16px;
 }
 .result-action {

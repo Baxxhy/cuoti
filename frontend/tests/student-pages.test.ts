@@ -55,7 +55,7 @@ describe('学生页面按需展开', () => {
     expect(cards[1].text()).toContain('这是完整题干的末尾。')
     expect(wrapper.find('.katex-display').exists()).toBe(false)
     expect(wrapper.find('.math-unparsed').exists()).toBe(false)
-    expect(cards[2].text()).toContain('题目正在整理中')
+    expect(cards[2].text()).toContain('待核对的题目')
     await cards[0].trigger('click')
     expect(mocks.go.mock.calls.at(-1)![0]).toContain('q-fraction')
   })

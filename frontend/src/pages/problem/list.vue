@@ -208,13 +208,16 @@
               @keyup.space.prevent="open(item)"
             >
               <view class="problem-meta">
-                <text>{{ item.subject }} · {{ item.grade }}</text>
+                <text>
+                  {{ item.subject }}
+                  <template v-if="item.grade">· {{ item.grade }}</template>
+                </text>
                 <text v-if="item.favorite">已收藏</text>
               </view>
               <view class="problem-body">
                 <math-text
                   class="problem-text"
-                  :text="item.question_text || '题目正在整理中'"
+                  :text="item.question_text || '待核对的题目'"
                   inline
                 />
                 <image

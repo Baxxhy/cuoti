@@ -10,19 +10,25 @@
         </button>
       </view>
       <view v-else-if="error" class="card empty-card">
-        <b>{{ missingTarget ? '先确认这道题的知识点' : '暂时没有匹配到合适题目' }}</b>
+        <b>{{ missingTarget ? '先确认这道题的知识点' : '暂时无法开始练习' }}</b>
         <text>{{ error }}</text>
         <button
           role="button"
           v-if="missingTarget"
-          class="secondary-btn"
+          class="primary-btn"
           @click="go(`/pages/detail/detail?id=${encodeURIComponent(mistakeId)}`)"
         >
           核对这道错题
         </button>
-        <button role="button" v-else class="secondary-btn" @click="loadQuestion()">重新匹配</button>
-        <button role="button" class="secondary-btn" @click="go('/pages/bank/bank')">
+        <button
+          role="button"
+          :class="missingTarget ? 'secondary-btn' : 'primary-btn'"
+          @click="go('/pages/bank/bank')"
+        >
           去题库选题
+        </button>
+        <button v-if="!missingTarget" role="button" class="secondary-btn" @click="loadQuestion()">
+          重新匹配
         </button>
       </view>
       <template v-else-if="question">
@@ -91,7 +97,7 @@
             掌握状态：{{ Math.round(result.mastery_before * 100) }}% →
             {{ Math.round(result.mastery * 100) }}%
           </text>
-          <text v-else-if="!result.can_update_learning">这次不会更新掌握度、错因或复习计划。</text>
+          <text v-else-if="!result.can_update_learning">本次作答已保存，暂不更新掌握情况。</text>
         </view>
         <button
           v-if="!result"
@@ -176,10 +182,8 @@ const displayAnswer = computed(() =>
 )
 const resultTitle = computed(() => {
   if (!result.value?.can_update_learning)
-    return result.value?.verdict === 'probably_correct'
-      ? '可能正确，暂不计入学习记录'
-      : '需要核对，暂不判对错'
-  return result.value?.correct ? '答对了，这个方法正在变稳' : '这次还需要再核对一步'
+    return result.value?.verdict === 'probably_correct' ? '答案还需核对' : '结果待核对'
+  return result.value?.correct ? '答对了' : '答案还不正确'
 })
 const handwritingContext = computed(() => ({
   context_type: 'practice',
@@ -339,13 +343,26 @@ onLoad((query) => {
   margin-top: 14rpx;
 }
 .empty-card {
-  text-align: center;
+  text-align: left;
+  padding: 20px;
+}
+.empty-card b {
+  font-size: 17px;
+  font-weight: 500;
+}
+.empty-card .primary-btn,
+.empty-card .secondary-btn {
+  min-height: 44px;
+  margin-top: 12px;
+  font-size: 15px;
 }
 .empty-card b,
 .empty-card text {
   display: block;
 }
 .empty-card text {
+  font-size: 14px;
+  line-height: 1.6;
   margin: 12rpx 0 22rpx;
   color: var(--color-text-secondary);
 }

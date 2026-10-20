@@ -62,9 +62,9 @@
             role="button"
             v-if="!plans.length"
             class="primary-btn"
-            @click="go('/pages/capture/capture')"
+            @click="go('/pages/problem/list')"
           >
-            录入错题
+            查看错题
           </button>
         </view>
 
@@ -1065,7 +1065,6 @@ onUnload(leave)
 }
 .today-summary {
   padding: 4px 0 24px;
-  border-bottom: 1px solid var(--color-border);
 }
 .today-summary > text,
 .today-summary > b {

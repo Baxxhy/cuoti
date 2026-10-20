@@ -634,9 +634,10 @@ h3 {
   letter-spacing: -0.02em;
 }
 .editorial-title {
-  font-size: 24px;
-  line-height: 1.35;
-  letter-spacing: -0.025em;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
 }
 @media (hover: hover) {
   .secondary-btn:hover,

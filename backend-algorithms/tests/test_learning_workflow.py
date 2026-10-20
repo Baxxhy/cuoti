@@ -1,9 +1,11 @@
 import asyncio
 
+import pytest
 from grading_compute import UnavailableGradingProvider
 from learning_planner import PlanCandidate
 from learning_task_compute import Checkpoint, TaskAction
 from learning_workflow import build_learning_graph, run_learning_workflow
+from mastery_tracker import KnowledgeState
 from test_learning_task_compute import context
 
 
@@ -123,3 +125,48 @@ def test_completing_current_task_consumes_the_remaining_goal_and_time():
     )
     assert done.student_view.recommendation.action == "stop"
     assert done.student_view.recommendation.question_id is None
+
+
+@pytest.mark.parametrize("has_snapshot", [False, True])
+def test_resumed_recommendation_uses_current_persisted_mastery(has_snapshot):
+    started = run()
+    repaired = run(started.checkpoint, "answer", "11-3")
+    original = run(repaired.checkpoint, "answer", "x=4")
+    done = run(original.checkpoint, "answer", "x=7")
+    snapshot = done.checkpoint.model_copy(deep=True)
+    if has_snapshot:
+        snapshot.mastery_update.state.mastery = 0.2
+    else:
+        snapshot.mastery_update = None
+    resumed = run(
+        snapshot,
+        "resume",
+        mastery_state=KnowledgeState(mastery=0.9),
+        practice_candidates=[
+            PlanCandidate(id="next-1", subject="数学", knowledge_points=["等式的性质"])
+        ],
+    )
+    assert resumed.attempt is None
+    ranking = resumed.student_view.recommendation.ranking
+    assert ranking[0]["components"]["weakness"] == pytest.approx(0.1)
+
+
+def test_current_answer_recommendation_uses_the_fresh_mastery_update():
+    started = run()
+    repaired = run(started.checkpoint, "answer", "11-3")
+    original = run(repaired.checkpoint, "answer", "x=4")
+    done = run(
+        original.checkpoint,
+        "answer",
+        "x=7",
+        mastery_state=KnowledgeState(mastery=0.4),
+        practice_candidates=[
+            PlanCandidate(id="next-1", subject="数学", knowledge_points=["等式的性质"])
+        ],
+    )
+    assert done.attempt is not None
+    updated = done.checkpoint.mastery_update.state.mastery
+    assert updated > 0.4
+    assert done.student_view.recommendation.ranking[0]["components"][
+        "weakness"
+    ] == pytest.approx(1 - updated)

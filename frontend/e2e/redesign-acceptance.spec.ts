@@ -5,7 +5,7 @@ import { randomUUID } from 'node:crypto'
 
 // All business data below is persisted by the isolated Cangjie/MySQL backend.
 // This suite does not intercept API routes or substitute model responses.
-test('全站重构：48条路由在手机与桌面真实渲染，包含教师复核与管理员页面', async ({
+test('全站重构：全部路由在手机与桌面真实渲染，包含教师复核与管理员页面', async ({
   browser,
   request,
 }, info) => {
@@ -252,6 +252,18 @@ test('全站重构：48条路由在手机与桌面真实渲染，包含教师复
               .evaluate((img: HTMLImageElement) => img.naturalWidth),
           ).toBeGreaterThan(0)
         }
+        if (route === 'teacher/dashboard') {
+          await expect(page.locator('.metric-value')).toHaveCount(4)
+          for (const value of await page.locator('.metric-value').all())
+            await expect(value).toHaveText(/^\d+$/)
+          await expect(page.getByText('快捷入口', { exact: true })).toBeVisible()
+        }
+        await page.evaluate(async () => {
+          await document.fonts.ready
+          await new Promise<void>((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+          )
+        })
         await page.screenshot({
           path: info.outputPath(`${route.replaceAll('/', '-')}-${width}.png`),
           fullPage: true,

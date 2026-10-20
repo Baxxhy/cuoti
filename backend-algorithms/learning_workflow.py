@@ -192,11 +192,14 @@ def _plan(state: WorkflowState):
     completed_now = result.status == "completed" and state["checkpoint"].phase != "done"
     remaining_goal = max(0, context.goal_remaining - int(completed_now))
     remaining_minutes = max(0, context.available_minutes - (3 if completed_now else 0))
-    mastery = (
-        result.checkpoint.mastery_update.state.mastery
-        if result.checkpoint.mastery_update
-        else 0.35
-    )
+    # A new answer uses _track's result; reopening a task uses the current
+    # persisted state, which may have changed through other learning sessions.
+    mastery_state = context.mastery_state
+    if result.checkpoint.mastery_update and (
+        result.attempt is not None or mastery_state is None
+    ):
+        mastery_state = result.checkpoint.mastery_update.state
+    mastery = (mastery_state or KnowledgeState()).mastery
     plan = plan_learning(
         PlannerInput(
             candidates=context.practice_candidates,

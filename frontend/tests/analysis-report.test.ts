@@ -33,6 +33,34 @@ function make() {
 }
 beforeEach(() => fake.getData.mockReset())
 afterEach(() => wrapper?.unmount())
+it('知识图谱未读取时不宣称为空，切换学科等待或失败时不显示旧关系', async () => {
+  fake.getData.mockResolvedValueOnce({ mastery: [], misconceptions: [], trend: [] })
+  const page = make()
+  await fake.hooks.show()
+  await flushPromises()
+  expect(page.find('.relation-toggle small').exists()).toBe(false)
+  let resolve: (value: any) => void = () => {}
+  fake.getData.mockReturnValueOnce(new Promise((done) => (resolve = done)))
+  await page.find('.relation-toggle').trigger('click')
+  expect(page.find('cognition-canvas-stub').exists()).toBe(false)
+  expect(page.find('state-panel-stub').attributes('state')).toBe('loading')
+  resolve({
+    mapped_question_count: 3,
+    nodes: [{ id: 'k', category: 'knowledge', name: '等式' }],
+    links: [],
+  })
+  await flushPromises()
+  expect(page.find('.relation-toggle small').text()).toContain('3 道错题关联到 1 个知识点')
+  let reject: (error: Error) => void = () => {}
+  fake.getData.mockReturnValueOnce(new Promise((_, fail) => (reject = fail)))
+  await page.findAll('.chip')[1].trigger('click')
+  expect(page.find('.relation-toggle small').exists()).toBe(false)
+  expect(page.find('cognition-canvas-stub').exists()).toBe(false)
+  reject(new Error('暂时无法加载'))
+  await flushPromises()
+  expect(page.find('state-panel-stub').attributes('state')).toBe('error')
+  expect(page.text()).not.toContain('暂无知识关系')
+})
 it('返回报告重新读取，离开后迟到结果不能恢复旧数据', async () => {
   let resolve: (value: any) => void = () => {}
   fake.getData.mockReturnValueOnce(

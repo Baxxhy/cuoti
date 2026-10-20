@@ -35,7 +35,7 @@
             <view class="list-main">
               <text class="list-title">{{ student.name }}</text>
               <text class="list-desc">
-                平均掌握 {{ Math.round(student.average_mastery * 100) }}%
+                掌握估计 {{ Math.round(student.average_mastery * 100) }}%
               </text>
               <view class="progress">
                 <view :style="{ width: student.average_mastery * 100 + '%' }" />
@@ -46,14 +46,24 @@
               <text>待复习</text>
             </view>
           </view>
-          <button
-            role="button"
-            class="secondary-btn unlink"
-            :disabled="busy"
-            @click="unlink(student)"
-          >
-            解除关联
-          </button>
+          <view class="student-actions">
+            <button
+              role="button"
+              class="report-link"
+              @click="go(`/pages/guardian/report?id=${student.id}`)"
+            >
+              查看报告
+              <uni-icons aria-hidden="true" type="right" size="14" />
+            </button>
+            <button
+              role="button"
+              class="secondary-btn unlink"
+              :disabled="busy"
+              @click="unlink(student)"
+            >
+              解除关联
+            </button>
+          </view>
         </view>
         <view v-if="!students.length" class="empty"><text>还没有可查看的学生档案</text></view>
         <text v-if="!students.length" class="access-note">
@@ -120,6 +130,7 @@ async function load() {
   padding: 28rpx;
   background: #fff;
   border-radius: 24rpx;
+  margin-bottom: 12px;
 }
 .student-link {
   display: flex;
@@ -135,8 +146,30 @@ async function load() {
 .review-pill {
   flex: none;
 }
-.unlink {
-  margin-top: 24rpx;
+.student-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+.student-actions button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  width: auto;
+  margin: 0;
+  padding: 8px 0;
+  background: transparent;
+  font-size: 14px;
+}
+.report-link {
+  color: var(--color-primary);
+}
+.student-actions .unlink {
+  color: var(--color-text-secondary);
+  font-size: 13px;
 }
 .access-note {
   display: block;
@@ -152,8 +185,8 @@ async function load() {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eaf7f2;
-  color: #008258;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
   font-size: 32rpx;
   font-weight: 700;
 }

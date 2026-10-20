@@ -65,7 +65,7 @@ func recommendPractice(context: HttpContext, accounts: Accounts): JsonValue {
         let checks=practiceAligned(db,question,preparation,ranked)
         let admitted=JsonArray()
         for (value in ranked.getItems()) { let row=(value as JsonObject).getOrThrow(); if (practiceAdmitted(checks,jsonText(tutorObject(row,"question"),"id"))) { admitted.add(row) } }
-        if (admitted.getItems().isEmpty()) { throw ApiError(404,"暂时没有找到能够确认匹配当前知识点的未做题目") }
+        if (admitted.getItems().isEmpty()) { throw ApiError(404,"当前知识点暂无未做的类似题，可以去题库选题。") }
         return db.transaction<JsonValue>({ tx =>
             let current=tx.query("SELECT * FROM questions WHERE id=? AND user_id=? AND status<>'archived' FOR UPDATE",[Some(id),Some(owner)]).rows
             if (current.isEmpty() || learningSourceFingerprint(tx,rowJson("questions",current[0]))!=fingerprint) { throw ApiError(409,"题目已修改，请重新获取推荐题") }

@@ -52,7 +52,6 @@
         @retry="load"
       />
       <template v-else>
-        <text class="framework-note">按章节查知识，点开可看公式、示例和前置知识。</text>
         <view v-for="group in visibleGroups" :key="group.key" class="chapter">
           <button
             role="button"

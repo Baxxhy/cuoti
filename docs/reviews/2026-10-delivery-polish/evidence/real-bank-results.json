@@ -1,0 +1,24 @@
+{
+  "status": 200,
+  "elapsed_ms": 2954,
+  "scope": "高中",
+  "total": 78061,
+  "returned": 20,
+  "subjects": [
+    "英语",
+    "数学",
+    "化学",
+    "生物",
+    "地理",
+    "历史",
+    "思想政治",
+    "物理",
+    "语文"
+  ],
+  "gradeLabelsHidden": true,
+  "widths": [
+    375,
+    1280
+  ],
+  "horizontalOverflow": false
+}

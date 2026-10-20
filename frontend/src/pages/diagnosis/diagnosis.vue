@@ -98,12 +98,14 @@
             />
           </view>
 
-          <view class="section-title"><text>正确判断</text></view>
+          <view class="section-title">
+            <text>{{ modelReviewPending ? '参考判断（待核对）' : '正确判断' }}</text>
+          </view>
           <view class="thought-card correct-thought">
             <view class="thought-mark">
               <uni-icons
                 aria-hidden="true"
-                type="checkmarkempty"
+                :type="modelReviewPending ? 'help' : 'checkmarkempty'"
                 size="20"
                 color="var(--color-primary)"
               />
@@ -755,6 +757,9 @@ const firstEvidence = computed(() => {
 })
 
 const studentThought = computed(() => {
+  const index = diagnosis.value?.first_error_step
+  const recorded = Number.isInteger(index) ? item.value?.student_steps?.[index]?.text : ''
+  if (String(recorded || '').trim()) return recorded
   const step = String(diagnosis.value?.first_error_text || '').trim()
   return step || '尚未定位到具体步骤，请结合本次作答核对。'
 })
@@ -781,11 +786,17 @@ const manualReference = computed(() => {
 const manualReferencePending = computed(() =>
   Boolean(diagnosis.value?.user_confirmed && !verifiedRepairText.value && !manualReference.value),
 )
-const modelReviewPending = computed(
-  () =>
-    diagnosis.value?.counterfactual?.verification_method === 'qwen_proposal_requires_review' &&
-    !verifiedRepairText.value,
-)
+const modelReviewPending = computed(() => {
+  const repair = diagnosis.value?.counterfactual
+  return Boolean(
+    repair &&
+      !verifiedRepairText.value &&
+      (repair.verification_method === 'qwen_proposal_requires_review' ||
+        repair.legacy_review_required ||
+        repair.stale_after_correction ||
+        repair.preserved_prefix === false),
+  )
+})
 
 const correctThought = computed(() => {
   if (verifiedRepairText.value) return verifiedRepairText.value

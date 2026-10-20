@@ -17,8 +17,15 @@ async function bank(page: Page, mode: string) {
   await expect(page.getByText('6 道题', { exact: true })).toHaveCount(0)
 }
 async function turnIn(page: Page) {
-  await page.getByRole('button', { name: '交卷并查看结果', exact: true }).click()
-  await page.getByText('交卷', { exact: true }).click()
+  const single = page.getByRole('button', { name: /^(提交答案|结束练习)$/ })
+  if (await single.count()) {
+    await expect(page.locator('.question-grid')).toHaveCount(0)
+    await expect(page.getByRole('button', { name: '上一题', exact: true })).toHaveCount(0)
+    await single.click()
+  } else {
+    await page.getByRole('button', { name: '交卷并查看结果', exact: true }).click()
+    await page.getByText('交卷', { exact: true }).click()
+  }
   await expect(page.locator('.result-summary')).toBeVisible({ timeout: 30000 })
 }
 test('题库独立于错题：真实来源、作答自动保存、刷新恢复、交卷后显示答案', async ({ page }, info) => {
@@ -51,6 +58,10 @@ test('题库独立于错题：真实来源、作答自动保存、刷新恢复�
   await expect(page.locator('.result-score > uni-text').first()).toHaveText('5')
   await expect(page.locator('.answer-review')).toHaveCount(1)
   await expect(page.locator('.answer-review')).toContainText('参考答案')
+  // The option label and its punctuation must stay on one line beside content.
+  for (const label of await page.locator('.review-option > uni-text').all()) {
+    expect((await label.boundingBox())!.height).toBeLessThan(30)
+  }
   await page.screenshot({ path: info.outputPath('practice-result.png'), fullPage: true })
   await page.reload()
   await expect(page.locator('.result-title')).toHaveText('练习完成')

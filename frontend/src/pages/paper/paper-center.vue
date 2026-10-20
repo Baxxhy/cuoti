@@ -102,10 +102,9 @@
           />
         </view>
         <view class="list-main">
-          <math-text class="list-title" :text="q.question_text || q.title" inline />
+          <math-text class="list-title" :text="q.question_text || '待核对的题目'" inline />
           <math-text class="list-desc" :text="candidateDescription(q)" inline />
           <text class="list-meta">
-            掌握 {{ Math.round((q.mastery_score || 0) * 100) }}% ·
             {{ errorTypeLabel(q.error_type) }}
           </text>
         </view>

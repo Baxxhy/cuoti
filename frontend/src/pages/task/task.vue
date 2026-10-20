@@ -90,7 +90,14 @@
             v-if="!task.student_view?.visualization"
             :blocks="task.student_view?.prompt_blocks || []"
           />
-          <view v-if="task.student_view?.recommendation" class="recommendation-note">
+          <view
+            v-if="
+              task.student_view?.recommendation &&
+              (task.status === 'completed' ||
+                task.student_view.recommendation.action === 'prerequisite')
+            "
+            class="recommendation-note"
+          >
             <text>{{ task.student_view.recommendation.reason }}</text>
             <button
               v-if="task.status === 'completed' && task.student_view.recommendation.question_id"
@@ -112,16 +119,8 @@
               class="secondary-btn"
               role="button"
               tabindex="0"
-              @keydown.enter.prevent="
-                go(
-                  `/pages/knowledge/knowledge?id=${task.student_view.recommendation.knowledge_card_ids[0]}`,
-                )
-              "
-              @click="
-                go(
-                  `/pages/knowledge/knowledge?id=${task.student_view.recommendation.knowledge_card_ids[0]}`,
-                )
-              "
+              @keydown.enter.prevent="openRecommendedKnowledge"
+              @click="openRecommendedKnowledge"
             >
               查看相关知识
             </button>
@@ -648,6 +647,13 @@ async function transmit(body) {
   } finally {
     sending.value = false
   }
+}
+function openRecommendedKnowledge() {
+  const cardId = task.value?.student_view?.recommendation?.knowledge_card_ids?.[0]
+  if (!cardId) return
+  go(
+    `/pages/library/library?code=${encodeURIComponent(cardId)}&question=${encodeURIComponent(task.value.question_id)}`,
+  )
 }
 async function startRecommendation() {
   const plan = task.value?.student_view?.recommendation

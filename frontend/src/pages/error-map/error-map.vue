@@ -388,10 +388,10 @@ onUnload(clear)
   }
 }
 .composed-empty {
-  padding: 28px;
-  margin-top: 24px;
+  padding: 20px;
+  margin-top: 16px;
   border: 0;
-  border-radius: 20px;
+  border-radius: 12px;
   background: var(--color-surface);
 }
 .composed-empty .disclosure-link {
