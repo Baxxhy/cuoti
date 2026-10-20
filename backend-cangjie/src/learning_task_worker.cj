@@ -6,6 +6,15 @@ func taskLeaseValid(task: JsonObject, lease: String): Bool {
     return tutorText(task,"status")=="running" && tutorText(task,"lease_token")==lease && !tutorFlag(task,"cancel_requested")
 }
 
+func taskPreparationFailure(db: Database, task: JsonObject, reason: String): Unit {
+    let view=taskStoppedView("暂时未能准备题目，内容已保留，可以重试")
+    let actions=JsonArray(); actions.add(JsonString("resume")); view.put("secondary_actions",actions)
+    let photo=tutorObject(tutorObject(task,"student_view"),"handwriting")
+    if (!photo.getFields().isEmpty()) { view.put("handwriting",photo) }
+    db.query("UPDATE learning_tasks SET status='failed',version=version+1,student_view=?,exit_reason=?,lease_token=NULL,lease_until=NULL,updated_at=UTC_TIMESTAMP(6) WHERE id=?",[Some(view.toString()),Some(reason),sqlValue(task["id"])])
+    db.query("UPDATE learning_task_actions SET status='failed',updated_at=UTC_TIMESTAMP(6) WHERE task_id=? AND status='pending'",[sqlValue(task["id"])])
+}
+
 func claimLearningTask(id: String, budget: TaskBudget): Option<JsonObject> {
     try (db=Database.fromEnvironment()) {
         let rows=db.query("SELECT user_id,question_id FROM learning_tasks WHERE id=?",[Some(id)]).rows
@@ -25,8 +34,15 @@ func claimLearningTask(id: String, budget: TaskBudget): Option<JsonObject> {
                 tx.query("UPDATE learning_task_actions SET status='failed',updated_at=UTC_TIMESTAMP(6) WHERE task_id=? AND status='pending'",[Some(id)])
                 return None
             }
-            let domain=taskContext(tx,source,owner); domain.put("source_snapshot_id",task["id"])
-            domain.put("action_id",JsonString(id+":"+tutorText(task,"active_request")))
+            var domain=JsonObject()
+            try {
+                domain=taskContext(tx,source,owner); domain.put("source_snapshot_id",task["id"])
+                domain.put("action_id",JsonString(id+":"+tutorText(task,"active_request")))
+            } catch (error: DatabaseException) {
+                taskPreparationFailure(tx,task,"prepare_database_"+error.code.toString()); return None
+            } catch (_: Exception) {
+                taskPreparationFailure(tx,task,"prepare_context_invalid"); return None
+            }
             try { budget.check("prepare") } catch (_: TaskBudgetExceeded) {
                 stopTaskAtLimit(tx,task,"prepare_budget"); return None
             }

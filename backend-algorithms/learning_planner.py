@@ -78,7 +78,13 @@ def plan_learning(
         )
 
     if data.minutes_remaining == 0 or data.goal_remaining == 0:
-        return simple("stop", "今天的学习量已完成，可以结束本轮学习。", 0)
+        return simple(
+            "stop",
+            "今天的学习量已完成，可以结束本轮学习。"
+            if data.goal_remaining == 0
+            else "这轮先到这里，剩下的内容可以下次继续。",
+            0,
+        )
     if not data.evidence_sufficient:
         return simple("explain", "先核对原题和作答，确认后再订正。")
     if data.prerequisite_missing:

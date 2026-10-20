@@ -14,6 +14,7 @@ func applyTaskAemt(db: Database, task: JsonObject, result: JsonObject, budget: T
     if (phase=="contrast" && verdict=="confirmed_correct" && !transferEligible && !tutorFlag(attempt,"assisted")) { return }
     let action=tutorObject(task,"pending_action")
     if (tutorText(action,"kind")!="answer" || tutorText(attempt,"answer")!=tutorText(action,"text")) { throw ApiError(503,"作答证据与提交不一致") }
+    if (tutorText(tutorObject(task,"checkpoint"),"phase")!=phase || tutorText(grading,"verdict")!=verdict || tutorFlag(grading,"correct")!=(verdict=="confirmed_correct")) { throw ApiError(503,"作答核验与当前步骤不一致") }
     let owner=tutorText(task,"user_id"); let questionId=tutorText(task,"question_id"); let requestId=tutorText(task,"active_request"); let taskId=tutorText(task,"id")
     if (!db.query("SELECT id FROM cognitive_updates WHERE user_id=? AND question_id=? AND entity_type='mastery' AND JSON_UNQUOTE(JSON_EXTRACT(evidence,'$.learning_task_id'))=? AND JSON_UNQUOTE(JSON_EXTRACT(evidence,'$.action_request_id'))=? LIMIT 1",[Some(owner),Some(questionId),Some(taskId),Some(requestId)]).rows.isEmpty()) { return }
     let rows=db.query("SELECT * FROM questions WHERE id=? AND user_id=?",[Some(questionId),Some(owner)]).rows

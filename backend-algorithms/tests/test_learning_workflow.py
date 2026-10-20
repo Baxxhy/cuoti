@@ -97,3 +97,19 @@ def test_independent_view_does_not_expose_reference_answer_via_evidence():
     independent = run(run().checkpoint, "answer", "11-3")
     assert independent.student_view.diagnosis_evidence is None
     assert "expected" not in independent.student_view.model_dump_json()
+
+
+def test_completing_current_task_consumes_the_remaining_goal_and_time():
+    started = run()
+    repaired = run(started.checkpoint, "answer", "11-3")
+    original = run(repaired.checkpoint, "answer", "x=4")
+    done = run(
+        original.checkpoint,
+        "answer",
+        "x=7",
+        goal_remaining=1,
+        available_minutes=3,
+        practice_candidates=[PlanCandidate(id="next-1", subject="数学")],
+    )
+    assert done.student_view.recommendation.action == "stop"
+    assert done.student_view.recommendation.question_id is None

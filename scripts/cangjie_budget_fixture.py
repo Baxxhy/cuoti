@@ -89,6 +89,13 @@ def main():
                     trace["tool_name"] = "delete_database"
                     result["result"]["traces"].append(trace)
                     payload = json.dumps(result).encode()
+                if rule and rule.get("invalid_aemt") and operation == "learning_task" and status == 200:
+                    result = json.loads(payload)
+                    attempt = result["result"]["attempt"]
+                    attempt.update(phase="independent", scope="original_question", verdict="confirmed_correct", assisted=False)
+                    attempt["grading"].update(verdict="confirmed_correct", correct=True, can_update_learning=True)
+                    result["result"]["learning_eligible"] = False
+                    payload = json.dumps(result).encode()
                 if rule:
                     time.sleep(min(50, max(0, float(rule.get("delay_seconds", 0)))))
                 try:

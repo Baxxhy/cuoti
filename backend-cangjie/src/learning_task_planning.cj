@@ -1,7 +1,16 @@
 package zhiwei
 
 import std.convert.*
+import std.collection.*
 import stdx.encoding.json.*
+
+func taskBankRow(row: HashMap<String,Option<String>>): JsonObject {
+    let base=HashMap<String,Option<String>>()
+    for ((key,value) in row) {
+        if (key!="recent_n" && key!="recent_pass") { base[key]=value }
+    }
+    return rowJson("dataset_questions",base)
+}
 
 // Fixed ordering keeps the optimistic source comparison deterministic.
 // Candidate IDs come only from the caller's due notebook or eligible bank.
@@ -14,7 +23,7 @@ func taskPlanCandidates(db: Database, owner: String, question: JsonObject, point
     }
     for (row in db.query("SELECT q.*,(SELECT COUNT(*) FROM study_session_items i JOIN study_sessions s ON s.id=i.session_id WHERE s.user_id=? AND s.created_at>=UTC_TIMESTAMP()-INTERVAL 7 DAY AND JSON_UNQUOTE(JSON_EXTRACT(i.snapshot,'$.id'))=q.id) AS recent_n,EXISTS(SELECT 1 FROM study_session_items i JOIN study_sessions s ON s.id=i.session_id WHERE s.user_id=? AND s.status='submitted' AND s.created_at>=UTC_TIMESTAMP()-INTERVAL 1 DAY AND JSON_UNQUOTE(JSON_EXTRACT(i.snapshot,'$.id'))=q.id AND JSON_EXTRACT(i.grading,'$.correct')=true AND JSON_EXTRACT(i.grading,'$.can_update_learning')=true) AS recent_pass FROM dataset_questions q WHERE q.subject=? AND q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 ORDER BY q.id LIMIT 200",[Some(owner),Some(owner),sqlValue(question["subject"])]).rows) {
         if (result.getItems().size>=200) { break }
-        let source=rowJson("dataset_questions",row)
+        let source=taskBankRow(row)
         if (!usableRetrievalCandidate(question,source,"practice")) { continue }
         var related=false
         for (raw in tutorArray(source,"knowledge_points").getItems()) {

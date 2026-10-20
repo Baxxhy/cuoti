@@ -189,6 +189,9 @@ def _plan(state: WorkflowState):
     result = state["result"].model_copy(deep=True)
     context = state["context"]
     points = context.knowledge_points
+    completed_now = result.status == "completed" and state["checkpoint"].phase != "done"
+    remaining_goal = max(0, context.goal_remaining - int(completed_now))
+    remaining_minutes = max(0, context.available_minutes - (3 if completed_now else 0))
     mastery = (
         result.checkpoint.mastery_update.state.mastery
         if result.checkpoint.mastery_update
@@ -205,8 +208,8 @@ def _plan(state: WorkflowState):
             prerequisite_missing=bool(context.prerequisite_card_ids),
             repeated_error=result.checkpoint.attempts >= 2,
             consecutive_failures=result.checkpoint.attempts,
-            minutes_remaining=context.available_minutes,
-            goal_remaining=context.goal_remaining,
+            minutes_remaining=remaining_minutes,
+            goal_remaining=remaining_goal,
             current_subject=context.subject,
             evidence_sufficient=result.exit_reason
             not in {"source_conflict", "round_budget"}

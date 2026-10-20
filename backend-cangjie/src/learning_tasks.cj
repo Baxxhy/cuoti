@@ -47,6 +47,7 @@ func taskPublic(task: JsonObject, accounts: Accounts): JsonObject {
     result.put("student_view",if (limited) { taskLimitView() } else { view })
     result.put("last_request_id",task["active_request"])
     result.put("current_action",JsonString(tutorText(tutorObject(task,"pending_action"),"kind")))
+    result.put("exit_reason",JsonString(tutorText(task,"exit_reason")))
     return result
 }
 
@@ -102,7 +103,7 @@ func taskContext(db: Database, snapshot: JsonObject, owner: String): JsonObject 
     let masteryRows=db.query("SELECT mastery_score,evidence_count,last_evidence_at FROM mastery_states WHERE user_id=? AND subject=? AND knowledge_point=? ORDER BY updated_at DESC,id DESC LIMIT 1",[Some(owner),sqlValue(question["subject"]),Some(learningKnowledgePoint(db,question))]).rows
     if (!masteryRows.isEmpty()) {
         let state=JsonObject(); let count=Int64.parse(rowText(masteryRows[0],"evidence_count")); state.put("mastery",JsonFloat(if (count>0) { Float64.parse(rowText(masteryRows[0],"mastery_score")) } else { 0.35 })); state.put("evidence_count",JsonInt(count))
-        state.put("last_effective_at",JsonString(rowText(masteryRows[0],"last_evidence_at")))
+        state.put("last_effective_at",JsonString(masteryRows[0]["last_evidence_at"] ?? ""))
         let counts=db.query("SELECT COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=false THEN 1 END) AS independent_count,COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=false AND JSON_UNQUOTE(JSON_EXTRACT(u.evidence,'$.aemt_event.verdict'))='confirmed_correct' THEN 1 END) AS independent_correct,COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=true THEN 1 END) AS hinted_count FROM cognitive_updates u JOIN questions q ON q.id=u.question_id WHERE u.user_id=? AND q.subject=? AND u.entity_type='mastery' AND u.entity_key=? AND JSON_EXTRACT(u.evidence,'$.aemt_event.solution_seen')=false",[Some(owner),sqlValue(question["subject"]),Some(learningKnowledgePoint(db,question))]).rows[0]
         for (key in ["independent_count","independent_correct","hinted_count"]) { state.put(key,JsonInt(Int64.parse(rowText(counts,key)))) }
         result.put("mastery_state",state)
@@ -111,7 +112,16 @@ func taskContext(db: Database, snapshot: JsonObject, owner: String): JsonObject 
     if (!profiles.isEmpty()) {
         let preferences=(JsonValue.fromStr(rowText(profiles[0],"preferences")) as JsonObject).getOrThrow()
         let minutes=tutorNumber(preferences,"daily_minutes")
-        if (minutes>0 && minutes<=120) { result.put("available_minutes",JsonInt(minutes)); result.put("goal_remaining",JsonInt(if (minutes<=5) { 3 } else if (minutes<=10) { 5 } else { 10 })) }
+        if (minutes>0 && minutes<=120) {
+            let goal=if (minutes<=5) { 3 } else if (minutes<=10) { 5 } else { 10 }
+            let completed=db.query("SELECT (SELECT COUNT(DISTINCT question_id) FROM learning_tasks WHERE user_id=? AND status='completed' AND updated_at>=UTC_DATE()) AS tasks,(SELECT COUNT(*) FROM study_session_items i JOIN study_sessions s ON s.id=i.session_id WHERE s.user_id=? AND s.status='submitted' AND s.submitted_at>=UTC_DATE() AND JSON_EXTRACT(i.grading,'$.can_update_learning')=true) AS practice",[Some(owner),Some(owner)]).rows[0]
+            let tasks=Int64.parse(rowText(completed,"tasks")); let practice=Int64.parse(rowText(completed,"practice")); let count=tasks+practice; let estimated=tasks*3+practice
+            // A transparent estimate, not a fabricated measurement of screen
+            // time. A correction reserves three minutes, a bank item one; the active task
+            // and actual next-item estimate are accounted for by the planner.
+            result.put("available_minutes",JsonInt(if (estimated>=minutes) { 0 } else { minutes-estimated }))
+            result.put("goal_remaining",JsonInt(if (count>=goal) { 0 } else { goal-count }))
+        }
     }
     applyTaskMemoryContext(result,learningMemory(db,owner,question))
     return result

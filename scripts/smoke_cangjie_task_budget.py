@@ -204,7 +204,7 @@ def task_budget(endpoint, env, query, token, state, create_question, create):
                 env,
                 f"SELECT COUNT(*) FROM cognitive_updates WHERE JSON_UNQUOTE(JSON_EXTRACT(evidence,'$.learning_task_id'))='{final['id']}'",
             )
-            == "2"
+            == str(int(before.split("\t")[1]) + 2)
         )
         assert (
             query(

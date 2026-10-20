@@ -146,6 +146,20 @@ def task_contract(endpoint, env, query, token, state, create_question, create):
             and not recovered["learning_applied"]
         )
         assert evidence() == before_learning
+        # A local repair cannot be relabeled as a complete independent answer
+        # by a corrupted algorithm reply. Validate against the persisted phase.
+        repair_question = create_question(77)
+        repair = wait_task(endpoint, create(repair_question)["id"], token)
+        rules([{"key": "invalid-aemt-phase", "operation": "learning_task",
+                "question_id": repair_question["id"], "invalid_aemt": True}])
+        forged_repair, _ = action(endpoint, repair, token, text="2x=74")
+        assert forged_repair["status"] == "failed" and not forged_repair["learning_applied"]
+        assert evidence() == before_learning
+        rules([])
+        retry, _ = action(endpoint, forged_repair, token, kind="resume")
+        retry, _ = action(endpoint, retry, token, text="2x=74")
+        assert retry["student_view"]["title"] == "重新作答"
+        assert evidence() == before_learning
         print(
             "Cangjie task contract passed: untrusted question, invalid plan fallback, forged action, native tool rejection, atomic rollback and recovery"
         )

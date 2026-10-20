@@ -4,7 +4,7 @@ test('持久智能体：订正、刷新草稿、独立作答、离开恢复与�
   page,
 }, testInfo) => {
   test.skip(!process.env.QA_TASK_QUESTION_ID, '需要仓颉隔离任务样本')
-  test.setTimeout(90_000)
+  test.setTimeout(120_000)
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/#/pages/login/login')
   await page.getByLabel('邮箱', { exact: true }).fill(process.env.QA_TASK_EMAIL!)
@@ -118,6 +118,34 @@ test('持久智能体：订正、刷新草稿、独立作答、离开恢复与�
   await page.goto('/#/pages/task/task')
   await expect(page.locator('.history-item').first()).toContainText('解方程')
   await expect(page.locator('.history-item').first()).toContainText('本次已完成')
+  // The new plan must start the actual selected bank question through the
+  // normal API, rather than only rendering a recommendation label.
+  const plannedTask = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'GET' &&
+      /\/learning-tasks\/[^/]+$/.test(new URL(response.url()).pathname),
+  )
+  await page.goto(url)
+  const plannedPayload = await (await plannedTask).json()
+  const plan = (plannedPayload.data || plannedPayload).student_view.recommendation
+  expect(plan.algorithm).toBe('arpp-v1')
+  expect(plan.question_source).toBe('dataset')
+  const recommendation = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'POST' &&
+      new URL(response.url()).pathname.endsWith('/study-sessions'),
+  )
+  await page.getByRole('button', { name: '练习推荐题', exact: true }).click()
+  const receipt = await recommendation
+  expect(receipt.status()).toBe(200)
+  const payload = await receipt.json()
+  expect((payload.data || payload).items[0].question.id).toBe(plan.question_id)
+  await expect(page).toHaveURL(/pages\/study-session\/study-session\?id=/)
+  await expect(page.locator('.study-page')).toBeVisible()
+  await page.screenshot({
+    path: testInfo.outputPath('agent-recommended-practice.png'),
+    fullPage: true,
+  })
 })
 
 test('原式函数图：参数可按按钮调整、退化有说明、观察刷新后保留', async ({ page }, testInfo) => {

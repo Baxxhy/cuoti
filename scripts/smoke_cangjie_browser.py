@@ -14,6 +14,7 @@ from smoke_cangjie_questions import query
 
 
 def browser(endpoint, env):
+    assert env["CANGJIE_DB_NAME"].startswith("zhiwei_cangjie_test_")
     project = Path(__file__).resolve().parents[1]
     before_learning = query(
         env,
@@ -91,6 +92,13 @@ def browser(endpoint, env):
     )
     insert("reference_steps", analysis_id=analysis, step_index=0, text="2x=8")
     insert("reference_steps", analysis_id=analysis, step_index=1, text="x=4")
+    recommendation_source=insert("dataset_sources", key="browser-arpp-"+uuid4().hex, name="推荐练习验收")
+    recommended_id=insert("dataset_questions", id="00000000-0000-4000-8000-000000000079",
+        dataset_source_id=recommendation_source, source_item_id="browser-arpp", content_hash=uuid4().hex,
+        subject="数学", grade="初一", grade_band="初中", question_type="综合题",
+        question_text="解方程：3x+2=20", answer=json.dumps("x=6"), solution="3x=18，x=6",
+        knowledge_points=["等式的性质"], options=[], image_paths=[],
+        has_answer=True, usable_for_practice=True, usable_for_auto_grade=True)
     insert(
         "diagnoses",
         question_id=question["id"],
@@ -280,6 +288,7 @@ def browser(endpoint, env):
         "QA_TASK_EMAIL": task_email,
         "QA_TASK_PASSWORD": task_password,
         "QA_TASK_QUESTION_ID": question["id"],
+        "QA_TASK_RECOMMENDED_ID": recommended_id,
         "ZHIWEI_BACKEND_PORT": str(urlsplit(endpoint).port),
         "ZHIWEI_BACKEND_URL": endpoint,
         "ZHIWEI_API_URL": endpoint + "/api/v1",

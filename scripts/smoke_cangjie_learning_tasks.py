@@ -64,6 +64,37 @@ def action(endpoint, task, token, kind="answer", text="", request_id=None):
     return wait_task(endpoint, value["id"], token), body
 
 
+def daily_goal(endpoint, env, query, bank_id):
+    actor = request(endpoint, "POST", "/api/v1/auth/register", {
+        "email": f"daily-agent-{uuid4().hex}@example.test", "password": "test-password-123", "grade": "初一", "name": "学习目标验收",
+    })
+    token = actor["access_token"]
+    request(endpoint, "PATCH", "/api/v1/student-preferences", {
+        "version": 0, "subject": "数学", "minutes": 5, "goal": "practice",
+    }, token=token)
+    for _ in range(3):
+        session = request(endpoint, "POST", "/api/v1/study-sessions", {
+            "mode": "practice", "question_ids": [bank_id], "count": 1,
+        }, token=token)
+        path = "/api/v1/study-sessions/" + session["id"]
+        saved = request(endpoint, "PATCH", path, {"version": session["version"], "answers": [
+            {"id": session["items"][0]["id"], "answer": "x=6"},
+        ]}, token=token)
+        submitted = request(endpoint, "POST", path + "/submit", {"version": saved["version"]}, token=token)
+        assert submitted["items"][0]["grading"]["can_update_learning"] is True
+    question = request(endpoint, "POST", "/api/v1/questions/manual", {
+        "subject": "数学", "grade": "初一", "question_text": "解方程：2x+3=11",
+        "student_answer": "x=7", "student_steps": ["2x=14", "x=7"],
+    }, token=token)
+    insert = fixture_insert(env, query)
+    insert("problem_analyses", question_id=question["id"], subject="数学", final_answer="x=4")
+    receipt = task_request(endpoint, "/api/v1/learning-tasks", token,
+                           {"question_id": question["id"], "request_id": str(uuid4())}, status=202)
+    task = wait_task(endpoint, receipt["id"], token)
+    assert task["student_view"]["recommendation"]["action"] == "stop"
+    print("Agent daily goal passed: real submitted practice consumes the configured goal; no extra automatic question")
+
+
 def learning_tasks(endpoint, env, query, token, other, state, started, release):
     insert = fixture_insert(env, query)
     owner = request(endpoint, "GET", "/api/v1/auth/me", token=token)["id"]
@@ -123,6 +154,8 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
         return value
 
     try:
+        if env.get("CANGJIE_VERIFY_FOCUS") in {None, "agent-upgrade"}:
+            daily_goal(endpoint, env, query, recommendation_id)
         # The user's two-blank fraction case traverses the actual durable worker.
         fraction = request(endpoint, "POST", "/api/v1/questions/manual", {
             "subject": "数学",
