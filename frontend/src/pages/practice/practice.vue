@@ -5,6 +5,9 @@
       <view v-if="loading" class="loading-panel">
         <state-panel state="loading" />
         <text class="loading-hint">正在挑选合适练习，首次匹配可能较慢</text>
+        <button role="button" class="secondary-btn" @click="go('/pages/bank/bank')">
+          去题库选题
+        </button>
       </view>
       <view v-else-if="error" class="card empty-card">
         <b>{{ missingTarget ? '先确认这道题的知识点' : '暂时没有匹配到合适题目' }}</b>
@@ -18,6 +21,9 @@
           核对这道错题
         </button>
         <button role="button" v-else class="secondary-btn" @click="loadQuestion()">重新匹配</button>
+        <button role="button" class="secondary-btn" @click="go('/pages/bank/bank')">
+          去题库选题
+        </button>
       </view>
       <template v-else-if="question">
         <view class="context-row">
@@ -203,13 +209,13 @@ async function loadQuestion(forceNew = false) {
     question.value = await postData(
       '/practice/recommend',
       { mistake_id: mistakeId.value, mode: mode.value, force_new: forceNew },
-      { timeout: 300000 },
+      { timeout: 300000, silent: true },
     )
     startedAt.value = Date.now()
   } catch (exc) {
     question.value = null
     missingTarget.value = exc?.statusCode === 422
-    error.value = exc?.message || '请确认真实题库检索服务已经启动'
+    error.value = exc?.message || '暂时无法匹配练习，请重试或去题库选题。'
   } finally {
     loading.value = false
   }

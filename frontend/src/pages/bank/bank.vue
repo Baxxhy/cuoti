@@ -3,24 +3,30 @@
     <app-header :title="mode === 'exam' ? '模拟考试' : '题库练习'" back />
     <view class="page-content">
       <view class="bank-switch segmented">
-        <view
+        <button
           :class="{ active: mode === 'practice' }"
+          :aria-pressed="mode === 'practice'"
           role="button"
           tabindex="0"
           @click="switchMode('practice')"
           @keydown.enter="switchMode('practice')"
+          @keydown.space.prevent
+          @keyup.space.prevent="switchMode('practice')"
         >
           题库练习
-        </view>
-        <view
+        </button>
+        <button
           :class="{ active: mode === 'exam' }"
+          :aria-pressed="mode === 'exam'"
           role="button"
           tabindex="0"
           @click="switchMode('exam')"
           @keydown.enter="switchMode('exam')"
+          @keydown.space.prevent
+          @keyup.space.prevent="switchMode('exam')"
         >
           模拟考试
-        </view>
+        </button>
       </view>
       <view class="bank-count-row">
         <text>{{ data?.total ?? '—' }} 道题</text>
@@ -150,23 +156,25 @@
                 color="var(--color-primary)"
               />
             </view>
-            <math-text
-              class="bank-question-text"
-              :text="question.preview_text || question.question_text"
-              inline
-            />
-            <view v-if="question.image_urls?.length" class="bank-question-images">
-              <image
-                v-for="(url, index) in question.image_urls"
-                :key="url"
-                :src="mediaUrl(url)"
-                mode="widthFix"
-                :alt="`题图 ${index + 1}`"
-                @error="failedImages[url] = true"
+            <view class="bank-question-preview">
+              <math-text
+                class="bank-question-text"
+                :text="question.preview_text || question.question_text"
+                inline
               />
-              <text v-if="question.image_urls.some((url) => failedImages[url])" class="image-error">
-                题图加载失败，请刷新重试
-              </text>
+              <view v-if="question.image_urls?.length" class="bank-question-images">
+                <image
+                  v-if="!failedImages[question.image_urls[0]]"
+                  :src="mediaUrl(question.image_urls[0])"
+                  mode="aspectFit"
+                  alt="题图预览"
+                  @error="failedImages[question.image_urls[0]] = true"
+                />
+                <text v-else class="image-error">预览暂不可用</text>
+                <text v-if="question.image_urls.length > 1" class="image-count">
+                  {{ question.image_urls.length }} 张题图
+                </text>
+              </view>
             </view>
           </button>
           <view v-if="data.total > 20" class="bank-paging">
@@ -460,8 +468,8 @@ onShow(load)
   display: block;
   width: 100%;
   margin: 12px 0;
-  padding: 22px 24px;
-  border-radius: 20px;
+  padding: 16px;
+  border-radius: var(--radius-card);
   background: #fff;
   text-align: left;
   line-height: 1.6;
@@ -470,7 +478,7 @@ onShow(load)
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   color: var(--color-text-secondary);
   font-size: 12px;
 }
@@ -482,20 +490,35 @@ onShow(load)
 }
 .bank-question-text {
   font-size: 16px;
-  display: block;
+  flex: 1;
+  min-width: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  max-height: 6.4em;
+}
+.bank-question-preview {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
 .bank-question-images {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 16px;
+  flex: 0 0 88px;
+  width: 88px;
+  gap: 4px;
 }
 .bank-question-images image {
   display: block;
-  width: 100%;
-  max-width: 440px;
-  height: auto;
-  border-radius: 8px;
+  width: 88px;
+  height: 88px;
+}
+.image-count {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  text-align: center;
 }
 .image-error {
   font-size: 12px;

@@ -81,12 +81,10 @@
         <template v-else>
           <math-text class="task-title" :text="taskTitle" inline />
           <view
-            v-if="
-              task.student_view?.feedback && !handwritingId && !task.student_view?.visualization
-            "
+            v-if="taskFeedback && !handwritingId && !task.student_view?.visualization"
             class="feedback"
           >
-            <math-text :text="learningFeedback(task.student_view.feedback)" />
+            <math-text :text="taskFeedback" />
           </view>
           <teaching-content
             v-if="!task.student_view?.visualization"
@@ -468,8 +466,21 @@ const id = ref(''),
 const taskTitle = computed(() =>
   task.value?.student_view?.title === '独立完成这道题'
     ? '重新作答'
-    : task.value?.student_view?.title,
+    : task.value?.student_view?.title === '换个条件，再试一次'
+      ? '再练一道'
+      : task.value?.student_view?.title,
 )
+const taskFeedback = computed(() => {
+  const view = task.value?.student_view
+  // This fixed transition repeats the heading; retain all actual answer feedback.
+  if (
+    task.value?.status === 'waiting_student' &&
+    view?.title === '换个条件，再试一次' &&
+    view?.feedback === '原题的结论已核对。现在换一个条件，独立试一次。'
+  )
+    return ''
+  return learningFeedback(view?.feedback)
+})
 const processing = computed(() => ['queued', 'running'].includes(task.value?.status))
 const retainedDraft = computed(() =>
   answer.value.trim() ? answer.value : previousDraft.value?.text || '',

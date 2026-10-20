@@ -503,7 +503,8 @@ textarea:focus-visible,
   border-radius: 8px;
   background: #eeeef0;
 }
-.segmented > view {
+.segmented > view,
+.segmented > button {
   flex: 1;
   min-height: 40px;
   display: flex;
@@ -515,7 +516,14 @@ textarea:focus-visible,
   font-size: 13px;
   text-align: center;
 }
-.segmented > view.active {
+.segmented > button {
+  margin: 0;
+  border: 0;
+  background: transparent;
+  line-height: 1.5;
+}
+.segmented > view.active,
+.segmented > button.active {
   background: #fff;
   color: var(--color-text-primary);
   font-weight: 600;
@@ -599,7 +607,8 @@ h3 {
   padding: 3px;
   border-radius: 10px;
 }
-.segmented > view {
+.segmented > view,
+.segmented > button {
   border-radius: 8px;
 }
 .chip {

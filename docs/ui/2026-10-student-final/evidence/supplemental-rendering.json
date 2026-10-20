@@ -1,0 +1,510 @@
+[
+  {
+    "run": "rendering.json",
+    "results": [
+      {
+        "route": "index/index",
+        "width": 375,
+        "title": "今日",
+        "overflow": false
+      },
+      {
+        "route": "problem/list",
+        "width": 375,
+        "title": "错题本",
+        "overflow": false
+      },
+      {
+        "route": "capture/capture",
+        "width": 375,
+        "title": "录入错题",
+        "overflow": false
+      },
+      {
+        "route": "manual/manual",
+        "width": 375,
+        "title": "手动录入",
+        "overflow": false
+      },
+      {
+        "route": "detail/detail",
+        "width": 375,
+        "title": "错题详情",
+        "overflow": false
+      },
+      {
+        "route": "diagnosis/diagnosis",
+        "width": 375,
+        "title": "错因诊断",
+        "overflow": false
+      },
+      {
+        "route": "replay/replay",
+        "width": 375,
+        "title": "错因回放",
+        "overflow": false
+      },
+      {
+        "route": "repair/repair",
+        "width": 375,
+        "title": "学习安排",
+        "overflow": false
+      },
+      {
+        "route": "journey/journey",
+        "width": 375,
+        "title": "学习记录",
+        "overflow": false
+      },
+      {
+        "route": "knowledge/knowledge",
+        "width": 375,
+        "title": "相关知识",
+        "overflow": false
+      },
+      {
+        "route": "practice/practice",
+        "width": 375,
+        "title": "类似题练习",
+        "overflow": false
+      },
+      {
+        "route": "task/task",
+        "width": 375,
+        "title": "错题订正",
+        "overflow": false
+      },
+      {
+        "route": "review/review",
+        "width": 375,
+        "title": "到期复习",
+        "overflow": false
+      },
+      {
+        "route": "learning/learning",
+        "width": 375,
+        "title": "学习",
+        "overflow": false
+      },
+      {
+        "route": "bank/bank",
+        "width": 375,
+        "title": "题库练习",
+        "overflow": false
+      },
+      {
+        "route": "library/library",
+        "width": 375,
+        "title": "知识卡片",
+        "overflow": false
+      },
+      {
+        "route": "analysis/analysis",
+        "width": 375,
+        "title": "学习报告",
+        "overflow": false
+      },
+      {
+        "route": "profile/profile",
+        "width": 375,
+        "title": "我的",
+        "overflow": false
+      },
+      {
+        "route": "preferences/preferences",
+        "width": 375,
+        "title": "学习设置",
+        "overflow": false
+      },
+      {
+        "route": "help/help",
+        "width": 375,
+        "title": "使用指南",
+        "overflow": false
+      },
+      {
+        "route": "index/index",
+        "width": 1280,
+        "title": "今日",
+        "overflow": false
+      },
+      {
+        "route": "problem/list",
+        "width": 1280,
+        "title": "错题本",
+        "overflow": false
+      },
+      {
+        "route": "capture/capture",
+        "width": 1280,
+        "title": "录入错题",
+        "overflow": false
+      },
+      {
+        "route": "manual/manual",
+        "width": 1280,
+        "title": "手动录入",
+        "overflow": false
+      },
+      {
+        "route": "detail/detail",
+        "width": 1280,
+        "title": "错题详情",
+        "overflow": false
+      },
+      {
+        "route": "diagnosis/diagnosis",
+        "width": 1280,
+        "title": "错因诊断",
+        "overflow": false
+      },
+      {
+        "route": "replay/replay",
+        "width": 1280,
+        "title": "错因回放",
+        "overflow": false
+      },
+      {
+        "route": "repair/repair",
+        "width": 1280,
+        "title": "学习安排",
+        "overflow": false
+      },
+      {
+        "route": "journey/journey",
+        "width": 1280,
+        "title": "学习记录",
+        "overflow": false
+      },
+      {
+        "route": "knowledge/knowledge",
+        "width": 1280,
+        "title": "相关知识",
+        "overflow": false
+      },
+      {
+        "route": "practice/practice",
+        "width": 1280,
+        "title": "类似题练习",
+        "overflow": false
+      },
+      {
+        "route": "task/task",
+        "width": 1280,
+        "title": "错题订正",
+        "overflow": false
+      },
+      {
+        "route": "review/review",
+        "width": 1280,
+        "title": "到期复习",
+        "overflow": false
+      },
+      {
+        "route": "learning/learning",
+        "width": 1280,
+        "title": "学习",
+        "overflow": false
+      },
+      {
+        "route": "bank/bank",
+        "width": 1280,
+        "title": "题库练习",
+        "overflow": false
+      },
+      {
+        "route": "library/library",
+        "width": 1280,
+        "title": "知识卡片",
+        "overflow": false
+      },
+      {
+        "route": "analysis/analysis",
+        "width": 1280,
+        "title": "学习报告",
+        "overflow": false
+      },
+      {
+        "route": "profile/profile",
+        "width": 1280,
+        "title": "我的",
+        "overflow": false
+      },
+      {
+        "route": "preferences/preferences",
+        "width": 1280,
+        "title": "学习设置",
+        "overflow": false
+      },
+      {
+        "route": "help/help",
+        "width": 1280,
+        "title": "使用指南",
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "run": "remaining/rendering.json",
+    "results": [
+      {
+        "route": "error-map/error-map",
+        "width": 375,
+        "title": "易错地图",
+        "overflow": false
+      },
+      {
+        "route": "crop/crop",
+        "width": 375,
+        "title": "框选题目",
+        "overflow": false
+      },
+      {
+        "route": "ocr/ocr",
+        "width": 375,
+        "title": "确认题目",
+        "overflow": false
+      },
+      {
+        "route": "tutor/tutor",
+        "width": 375,
+        "title": "AI 讲解",
+        "overflow": false
+      },
+      {
+        "route": "visualization/visualization",
+        "width": 375,
+        "title": "互动图解",
+        "overflow": false
+      },
+      {
+        "route": "assignment/assignment",
+        "width": 375,
+        "title": "我的作业",
+        "overflow": false
+      },
+      {
+        "route": "search/search",
+        "width": 375,
+        "title": "错题本",
+        "overflow": false
+      },
+      {
+        "route": "paper/paper-center",
+        "width": 375,
+        "title": "错题组卷",
+        "overflow": false
+      },
+      {
+        "route": "guardian/access",
+        "width": 375,
+        "title": "家长查看权限",
+        "overflow": false
+      },
+      {
+        "route": "bank/bank",
+        "width": 375,
+        "title": "题库练习",
+        "overflow": false
+      },
+      {
+        "route": "task/task",
+        "width": 375,
+        "title": "错题订正",
+        "overflow": false
+      },
+      {
+        "route": "error-map/error-map",
+        "width": 1280,
+        "title": "易错地图",
+        "overflow": false
+      },
+      {
+        "route": "crop/crop",
+        "width": 1280,
+        "title": "框选题目",
+        "overflow": false
+      },
+      {
+        "route": "ocr/ocr",
+        "width": 1280,
+        "title": "确认题目",
+        "overflow": false
+      },
+      {
+        "route": "tutor/tutor",
+        "width": 1280,
+        "title": "AI 讲解",
+        "overflow": false
+      },
+      {
+        "route": "visualization/visualization",
+        "width": 1280,
+        "title": "互动图解",
+        "overflow": false
+      },
+      {
+        "route": "assignment/assignment",
+        "width": 1280,
+        "title": "我的作业",
+        "overflow": false
+      },
+      {
+        "route": "search/search",
+        "width": 1280,
+        "title": "错题本",
+        "overflow": false
+      },
+      {
+        "route": "paper/paper-center",
+        "width": 1280,
+        "title": "错题组卷",
+        "overflow": false
+      },
+      {
+        "route": "guardian/access",
+        "width": 1280,
+        "title": "家长查看权限",
+        "overflow": false
+      },
+      {
+        "route": "bank/bank",
+        "width": 1280,
+        "title": "题库练习",
+        "overflow": false
+      },
+      {
+        "route": "task/task",
+        "width": 1280,
+        "title": "错题订正",
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "run": "compact-rendering.json",
+    "results": [
+      {
+        "route": "bank/bank",
+        "width": 375,
+        "title": "题库练习",
+        "overflow": false
+      },
+      {
+        "route": "study-session",
+        "width": 375,
+        "images": 1
+      },
+      {
+        "route": "task/task",
+        "width": 375,
+        "title": "错题订正",
+        "overflow": false
+      },
+      {
+        "route": "tutor/tutor",
+        "width": 375,
+        "title": "AI 讲解",
+        "overflow": false
+      },
+      {
+        "route": "bank/bank",
+        "width": 1280,
+        "title": "题库练习",
+        "overflow": false
+      },
+      {
+        "route": "study-session",
+        "width": 1280,
+        "images": 1
+      },
+      {
+        "route": "task/task",
+        "width": 1280,
+        "title": "错题订正",
+        "overflow": false
+      },
+      {
+        "route": "tutor/tutor",
+        "width": 1280,
+        "title": "AI 讲解",
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "run": "practice-rendering.json",
+    "results": [
+      {
+        "route": "practice/practice",
+        "width": 375,
+        "title": "类似题练习",
+        "overflow": false
+      },
+      {
+        "route": "practice/practice",
+        "width": 1280,
+        "title": "类似题练习",
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "run": "public-rendering.json",
+    "results": [
+      {
+        "route": "login/login",
+        "width": 375,
+        "title": "错题帮",
+        "overflow": false
+      },
+      {
+        "route": "register/register",
+        "width": 375,
+        "title": "创建账号",
+        "overflow": false
+      },
+      {
+        "route": "forgot/forgot",
+        "width": 375,
+        "title": "修改登录密码",
+        "overflow": false
+      },
+      {
+        "route": "login/login",
+        "width": 1280,
+        "title": "错题帮",
+        "overflow": false
+      },
+      {
+        "route": "register/register",
+        "width": 1280,
+        "title": "创建账号",
+        "overflow": false
+      },
+      {
+        "route": "forgot/forgot",
+        "width": 1280,
+        "title": "修改登录密码",
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "run": "practice-alternative.json",
+    "results": [
+      {
+        "route": "practice/practice",
+        "width": 375,
+        "title": "题库练习",
+        "overflow": false
+      }
+    ],
+    "errors": []
+  }
+]

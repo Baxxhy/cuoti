@@ -514,3 +514,19 @@ it('达到上限后旧输入只读保留，结束后回看本次记录仍可查�
   await flushPromises()
   expect(page.find('.retained-draft').text()).toContain('尚未提交的完整解题思路')
 })
+
+it('变式开始时省略重复引导，但保留后续判题反馈', async () => {
+  server.student_view = {
+    ...server.student_view,
+    title: '换个条件，再试一次',
+    feedback: '原题的结论已核对。现在换一个条件，独立试一次。',
+  }
+  const page = await make()
+  expect(page.find('.task-title').text()).toBe('再练一道')
+  expect(page.find('.feedback').exists()).toBe(false)
+  expect(page.find('textarea').exists()).toBe(true)
+  server.student_view.feedback = '两边同时除以2，得到 $x=1/2$。'
+  fake.hooks.show()
+  await flushPromises()
+  expect(page.find('.feedback').text()).toContain('两边同时除以2')
+})

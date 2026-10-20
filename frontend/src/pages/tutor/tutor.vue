@@ -1022,10 +1022,9 @@ onLoad((query) => {
 }
 .activity-card,
 .success-card {
-  padding: 15px;
+  padding: 16px;
   background: #fff;
-  border: 0.5px solid var(--color-border);
-  border-radius: 5px;
+  border-radius: var(--radius-card);
 }
 .answer-brief-heading {
   padding-bottom: 11px;
@@ -1137,10 +1136,10 @@ onLoad((query) => {
 }
 .secondary-btn {
   width: 100%;
-  height: 38px;
+  min-height: 44px;
   margin-top: 6px;
   border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 8px;
   background: #fff;
   color: var(--color-text-secondary);
   font-size: 12px;
@@ -1151,9 +1150,9 @@ onLoad((query) => {
   gap: 8px;
   margin-bottom: 11px;
   padding: 8px 9px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 6px;
-  background: var(--color-surface-subtle);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+  background: transparent;
 }
 .compact-answer-compare > view {
   flex: 1;
@@ -1400,7 +1399,7 @@ onLoad((query) => {
   align-items: center;
   padding: 7.5px 10px;
   border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 8px;
   background: #fff;
   color: var(--color-text-primary);
   font-size: 14px;
@@ -1643,7 +1642,7 @@ onLoad((query) => {
   min-height: 44px;
   margin: 0;
   border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 8px;
   background: #fff;
   color: #475467;
   font-size: 13px;
