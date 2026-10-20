@@ -89,7 +89,7 @@ test('修改密码：两次输入核对与失败保留，正确修改后重新�
   await expect(page.getByLabel('新密码', { exact: true })).toHaveValue(newPassword)
   await page.getByLabel('当前密码', { exact: true }).fill(oldPassword)
   await page.getByLabel('确认新密码', { exact: true }).press('Enter')
-  await expect(page.getByRole('heading', { name: '登录账号', exact: true })).toBeVisible()
+  await expect(page.getByRole('form', { name: '登录账号', exact: true })).toBeVisible()
   await page.getByLabel('邮箱', { exact: true }).fill(email)
   await page.getByLabel('密码', { exact: true }).fill(newPassword)
   await page.getByLabel('密码', { exact: true }).press('Enter')

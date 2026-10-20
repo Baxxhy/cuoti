@@ -31,7 +31,10 @@ async function login(page: Page, credentials: { email: string; password: string 
   await page.getByLabel('邮箱', { exact: true }).fill(credentials.email)
   await page.getByLabel('密码', { exact: true }).fill(credentials.password)
   await page.getByText('登录', { exact: true }).click()
-  await expect(page.getByRole('heading', { name: '登录账号', exact: true })).toHaveCount(0)
+  await expect(page).toHaveURL(
+    /#\/pages\/(?:index\/index|teacher\/dashboard|guardian\/home|admin\/workbench)(?:[?]|$)/,
+  )
+  await expect(page.getByRole('form', { name: '登录账号', exact: true })).toHaveCount(0)
 }
 async function manual(request: APIRequestContext, account: any, text = '界面验收：解方程2x+3=11') {
   const created = await data(
@@ -393,7 +396,7 @@ test.describe('角色页面操作', () => {
         page.getByText(role === 'teacher' ? '返回教师中心' : '返回家长中心', { exact: true }),
       ).toBeVisible()
       await button(page, '退出登录').click()
-      await expect(page.getByRole('heading', { name: '登录账号', exact: true })).toBeVisible()
+      await expect(page.getByRole('form', { name: '登录账号', exact: true })).toBeVisible()
     }
   })
 
@@ -564,7 +567,7 @@ test.describe('角色页面操作', () => {
     ).toBe(true)
     await button(page, '刷新数据').click()
     await button(page, '退出登录').click()
-    await expect(page.getByRole('heading', { name: '登录账号', exact: true })).toBeVisible()
+    await expect(page.getByRole('form', { name: '登录账号', exact: true })).toBeVisible()
   })
 })
 
@@ -589,7 +592,7 @@ test('注册和修改密码可实际完成，新旧密码状态正确', async ({
   await field(page, '新密码', 'UiAudit-new-123')
   await field(page, '确认新密码', 'UiAudit-new-123')
   await button(page, '修改密码').click()
-  await expect(page.getByRole('heading', { name: '登录账号', exact: true })).toBeVisible()
+  await expect(page.getByRole('form', { name: '登录账号', exact: true })).toBeVisible()
   const old = await request.post(API + '/auth/login', {
     data: { email, password: 'UiAudit-old-123' },
   })
