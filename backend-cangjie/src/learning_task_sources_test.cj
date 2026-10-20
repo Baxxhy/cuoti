@@ -7,6 +7,15 @@ import stdx.encoding.json.*
 @Test
 class TaskSourcesTest {
     @TestCase
+    func algorithmUpgradePreservesLegacyTaskFingerprint() {
+        let snapshot=JsonObject(); let question=JsonObject()
+        for (key in ["question_text","subject","grade","question_type","student_answer","options","knowledge_points","confirmed","status"]) { question.put(key,JsonString(key)) }
+        snapshot.put("question",question)
+        for (key in ["work","steps","assets","analysis","references","diagnosis"]) { snapshot.put(key,JsonArray()) }
+        let legacy=analysisFingerprint(snapshot); legacy.add(snapshot["references"]); legacy.add(snapshot["diagnosis"])
+        @Expect(taskFingerprint(snapshot),sha256(legacy.toString().toArray()))
+    }
+    @TestCase
     func mysqlJsonNumericRepresentationIsNotAChange() {
         let original=JsonValue.fromStr(##"{"steps":[{"id":"s1","confidence":1.0,"confirmed":true}]}"##)
         let stored=JsonValue.fromStr(##"{"steps":[{"confirmed":true,"confidence":1,"id":"s1"}]}"##)

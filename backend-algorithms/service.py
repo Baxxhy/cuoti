@@ -51,7 +51,9 @@ from dialogue_compute import DialogueContext, finish_dialogue, prepare_dialogue
 from fastapi import FastAPI, HTTPException, Request
 from grading_compute import UnavailableGradingProvider, grade_answer
 from inequality_compute import format_solution, solution_set, source_inequality
-from learning_task_compute import Checkpoint, TaskAction, TaskContext, execute_task
+from learning_task_compute import Checkpoint, TaskAction, TaskContext
+from learning_workflow import run_learning_workflow
+from mastery_tracker import compute_aemt_cognition
 from paper_export_compute import ExportQuestion, render_paper
 from practice_alignment import align_practice
 from pydantic import (
@@ -136,6 +138,7 @@ class ComputeRequest(BaseModel):
         default_factory=list, max_length=100
     )
     diagnosis: dict[str, JsonValue] = Field(default_factory=dict)
+    diagnostic_cards: list[dict[str, JsonValue]] = Field(default_factory=list, max_length=8)
 
     transfer_type: Literal["near", "far"] = "near"
     variant_references: list[VariantReference] = Field(
@@ -321,7 +324,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     except (OSError, ValueError):
                         pass
                 async with asyncio.timeout(data.task_budget_ms / 1000):
-                    task_result = await execute_task(
+                    task_result = await run_learning_workflow(
                         app.state.provider or UnavailableGradingProvider(),
                         data.task_context,
                         data.task_checkpoint,
@@ -427,7 +430,8 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     data.reference_solution,
                 )
             elif data.operation == "cognition_update":
-                mastery, misconception = compute_cognition(
+                compute = compute_aemt_cognition if "aemt_event" in data.learning_evidence else compute_cognition
+                mastery, misconception = compute(
                     data.mastery_values,
                     data.misconception_values,
                     data.learning_evidence,
@@ -645,6 +649,8 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                         students=data.student_records,
                         images=paths,
                         counterfactual_only=data.operation == "counterfactual",
+                        knowledge_cards=data.diagnostic_cards,
+                        grade=data.grade,
                     )
             elif data.operation == "validate_handwriting":
                 result = HandwrittenAnswerRecognition.model_validate(

@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { flushPromises, mount } from '@vue/test-utils'
 import TaskPage from '../src/pages/task/task.vue'
+import { go, returnToQuestion } from '../src/utils/navigation.js'
 const fake = vi.hoisted(() => ({
   getData: vi.fn(),
   postData: vi.fn(),
@@ -85,6 +86,57 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 describe('持久任务页面', () => {
+  it('完成后按推荐的实际题目创建练习并进入答题页', async () => {
+    server.status = 'completed'
+    server.student_view.input_kind = 'none'
+    server.student_view.recommendation = {
+      action: 'practice',
+      question_id: 'bank-next',
+      question_source: 'dataset',
+      reason: '练一道相关题，巩固刚才出错的知识。',
+      estimated_minutes: 3,
+    }
+    fake.postData.mockResolvedValue({ id: 'study-next' })
+    const page = await make()
+    const button = page.findAll('button').find((node) => node.text() === '练习推荐题')!
+    await button.trigger('click')
+    await flushPromises()
+    expect(fake.postData).toHaveBeenCalledWith(
+      '/study-sessions',
+      expect.objectContaining({
+        question_ids: ['bank-next'],
+        count: 1,
+        mode: 'practice',
+      }),
+      { silent: true },
+    )
+    expect(go).toHaveBeenCalledWith('/pages/study-session/study-session?id=study-next')
+  })
+  it('到期错题推荐返回本人的原题，确认分支提供真实诊断入口', async () => {
+    server.status = 'completed'
+    server.student_view.recommendation = {
+      action: 'review',
+      question_id: 'own-due',
+      question_source: 'notebook',
+      reason: '到了复习时间。',
+    }
+    const page = await make()
+    await page
+      .findAll('button')
+      .find((node) => node.text() === '开始复习')!
+      .trigger('click')
+    expect(returnToQuestion).toHaveBeenCalledWith('own-due')
+    server.status = 'needs_review'
+    server.exit_reason = 'diagnosis_needs_confirmation'
+    server.student_view.recommendation = null
+    await fake.hooks.show()
+    await flushPromises()
+    await page
+      .findAll('button')
+      .find((node) => node.text() === '核对原作答与错因')!
+      .trigger('click')
+    expect(go).toHaveBeenCalledWith('/pages/diagnosis/diagnosis?id=q1')
+  })
   it('默认只显示提示和拍照与辅助工具，展开不提交动作且换步骤后收起', async () => {
     server.student_view.secondary_actions = ['hint', 'visualize', 'reveal']
     const page = await make()

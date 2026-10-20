@@ -32,6 +32,13 @@ def task_figures(endpoint, env, query, token, other, state, create):
         token=token,
     )
     insert("problem_analyses", question_id=q["id"], subject="数学", final_answer="70")
+    # This suite checks diagram/handwriting tools after the student has
+    # confirmed the original work; unverified-diagnosis gating is checked in
+    # task_contract through the real diagnosis correction API.
+    insert("diagnoses", question_id=q["id"], first_error_step=0, error_type="calculation_error")
+    request(endpoint, "PATCH", "/api/v1/questions/" + q["id"] + "/diagnosis", {
+        "first_error_step": 0, "root_misconception": "内角和计算需要核对。",
+    }, token=token)
     task = wait_task(endpoint, create(q)["id"], token)
     output = io.BytesIO()
     image = Image.new("RGB", (100, 80), "white")

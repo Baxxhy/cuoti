@@ -142,6 +142,7 @@ def main() -> None:
                 "task-contract",
                 "practice-evidence",
                 "review-recovery",
+                "agent-upgrade",
             } and env.get("CANGJIE_DB_NAME"):
                 recovery = ingest(endpoint, env, query)
                 print(

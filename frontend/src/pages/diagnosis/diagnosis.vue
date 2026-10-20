@@ -10,6 +10,15 @@
       <text v-if="repairEvidenceNotice" class="evidence-caption" role="status">
         {{ repairEvidenceNotice }}
       </text>
+      <view v-if="diagnosis?.evidence_diagnosis && !diagnosis.user_confirmed" class="summary-card">
+        <text class="summary-kicker">
+          {{ diagnosis.evidence_diagnosis.verified ? '步骤核验结果' : '需要核对' }}
+        </text>
+        <math-text :text="diagnosis.evidence_diagnosis.reason" />
+        <text v-if="diagnosis.evidence_diagnosis.question" class="status-message">
+          {{ diagnosis.evidence_diagnosis.question }}
+        </text>
+      </view>
       <!-- =====================================================
            已有诊断
       ====================================================== -->

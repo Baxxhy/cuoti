@@ -27,6 +27,7 @@ from app.services.math_tools import (
     solve_text_equation,
 )
 from app.services.vision import save_original
+from error_diagnosis import EvidenceDiagnosis
 from figure_review import (
     FigureHandwritingRecognition,
     FigureReview,
@@ -37,6 +38,8 @@ from figure_review import (
 from grading_compute import grade_answer
 from learning_hint_compute import HINT_LIMIT, generate_hint
 from learning_memory_compute import LearningMemorySnapshot
+from learning_planner import LearningPlan, PlanCandidate
+from mastery_tracker import KnowledgeState, MasteryUpdate
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from task_visualization_compute import (
     Number,
@@ -87,6 +90,8 @@ class StudentView(StrictModel):
     hint_level: int = Field(default=0, ge=0, le=3)
     handwriting: HandwritingDraft | None = None
     visualization: TaskVisualization | None = None
+    diagnosis_evidence: EvidenceDiagnosis | None = None
+    recommendation: LearningPlan | None = None
 
 
 class TaskContext(StrictModel):
@@ -108,6 +113,8 @@ class TaskContext(StrictModel):
     student_steps: list[Text] = Field(default_factory=list, max_length=100)
     first_error_step: int = Field(default=0, ge=0, le=99)
     diagnosed_correct: bool = False
+    diagnosis_confirmed: bool = False
+    diagnosis_hypothesis: str = Field(default="", max_length=12000)
     knowledge_points: list[str] = Field(default_factory=list, max_length=100)
     cards: list[dict] = Field(default_factory=list, max_length=3)
     memory_snapshot: LearningMemorySnapshot | None = None
@@ -116,6 +123,12 @@ class TaskContext(StrictModel):
     memory_versions: dict[str, str] = Field(default_factory=dict, max_length=18)
     seen_contrasts: list[Text] = Field(default_factory=list, max_length=50)
     options: list[dict[str, str]] = Field(default_factory=list, max_length=26)
+    mastery_state: KnowledgeState | None = None
+    practice_candidates: list[PlanCandidate] = Field(default_factory=list, max_length=200)
+    available_minutes: int = Field(default=10, ge=0, le=120)
+    goal_remaining: int = Field(default=3, ge=0, le=20)
+    prerequisite_card_ids: list[str] = Field(default_factory=list, max_length=6)
+    action_id: str = Field(default="", max_length=100)
 
     @model_validator(mode="after")
     def memory_sources_match(self):
@@ -148,6 +161,7 @@ class Checkpoint(StrictModel):
     attempts: int = Field(default=0, ge=0, le=24)
     rounds: int = Field(default=0, ge=0, le=24)
     assistance: dict[Phase, bool] = Field(default_factory=dict)
+    revealed_phases: list[Phase] = Field(default_factory=list, max_length=4)
     hints: dict[Phase, list[Annotated[str, Field(max_length=1200)]]] = Field(
         default_factory=dict, max_length=4
     )
@@ -159,6 +173,10 @@ class Checkpoint(StrictModel):
     feedback: str = Field(default="", max_length=1200)
     visualization: TaskVisualization | None = None
     visual_open: bool = False
+    evidence_diagnosis: EvidenceDiagnosis | None = None
+    mastery_update: MasteryUpdate | None = None
+    next_recommendation: LearningPlan | None = None
+    workflow_version: str = Field(default="", max_length=30)
 
     @model_validator(mode="after")
     def bounded_hints(self):
@@ -1000,6 +1018,8 @@ async def execute_task(
         )
     if action.kind == "reveal":
         state.assistance[state.phase] = True
+        if state.phase not in state.revealed_phases:
+            state.revealed_phases.append(state.phase)
         expected = (
             state.contrast.expected
             if state.phase == "contrast" and state.contrast
@@ -1158,6 +1178,8 @@ async def execute_task(
                 state.repair_passed = True
                 state.phase = "independent"
                 state.assistance["independent"] = assisted
+                if "repair" in state.revealed_phases and "independent" not in state.revealed_phases:
+                    state.revealed_phases.append("independent")
                 state.feedback = "这一步订正好了。接下来独立完成原题，再核对最终答案。"
             elif phase == "independent":
                 state.independent_passed = True

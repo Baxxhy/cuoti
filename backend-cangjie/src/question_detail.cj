@@ -91,6 +91,7 @@ public func questionDetail(context: HttpContext, accounts: Accounts, id: String)
                     let kind = jsonText(entry, "kind")
                     if (kind == "step_alignment") { steps.getItems().add(entry) }
                     if (kind == "counterfactual_validation" && !found) { counterfactual = entry["metadata_json"]; found = true }
+                    if (kind == "eced_assessment") { object.put("evidence_diagnosis",entry["metadata_json"]) }
                 }
                 object.put("evidence", steps)
                 object.put("counterfactual", safeCounterfactual(counterfactual,diagnosis:Some(object)))

@@ -1,6 +1,7 @@
 package zhiwei
 
 import std.collection.*
+import std.convert.*
 import stdx.encoding.json.*
 import stdx.encoding.url.*
 import stdx.net.http.*
@@ -76,6 +77,8 @@ func taskContext(db: Database, snapshot: JsonObject, owner: String): JsonObject 
     let step=if (diagnosis.get("first_error_step").isSome() && !(diagnosis["first_error_step"] is JsonNull)) { tutorNumber(diagnosis,"first_error_step") } else { 0 }
     result.put("first_error_step",JsonInt(if (step<0 || step>99) { 0 } else { step }))
     result.put("diagnosed_correct",JsonBool(((diagnosis.get("first_error_step") ?? JsonNull()) is JsonNull) && ["exact","equivalent"].contains(tutorText(diagnosis,"error_type"))))
+    result.put("diagnosis_confirmed",JsonBool(tutorFlag(diagnosis,"user_confirmed")))
+    result.put("diagnosis_hypothesis",JsonString(tutorText(diagnosis,"root_misconception")))
     let points=tutorKnowledge(snapshot); result.put("knowledge_points",tutorStringArray(points)); let cards=JsonArray(); let seen=HashSet<String>()
     for (point in points) {
         if (cards.getItems().size>=3) { break }
@@ -85,9 +88,31 @@ func taskContext(db: Database, snapshot: JsonObject, owner: String): JsonObject 
         }
     }
     result.put("cards",cards)
+    let prerequisiteCards=JsonArray()
+    for (raw in tutorArray(diagnosis,"missing_prerequisites").getItems()) {
+        if (prerequisiteCards.getItems().size>=6) { break }
+        let label=(raw as JsonString).getOrThrow().getValue()
+        for (row in db.query("SELECT k.id FROM knowledge_points k JOIN mastery_states m ON m.subject=k.subject AND (m.knowledge_point=k.name OR m.knowledge_point=k.code) WHERE m.user_id=? AND k.subject=? AND (k.name=? OR k.code=?) AND m.evidence_count>0 AND m.mastery_score<0.3 ORDER BY k.id LIMIT 1",[Some(owner),sqlValue(question["subject"]),Some(label),Some(label)]).rows) { prerequisiteCards.add(JsonString(rowText(row,"id"))) }
+    }
+    result.put("prerequisite_card_ids",prerequisiteCards)
+    result.put("practice_candidates",taskPlanCandidates(db,owner,question,points))
     let seenContrasts=JsonArray()
     for (row in db.query("SELECT DISTINCT JSON_UNQUOTE(JSON_EXTRACT(t.checkpoint,'$.contrast.question')) AS prompt FROM learning_tasks t JOIN questions q ON q.id=t.question_id WHERE t.user_id=? AND q.subject=? AND (JSON_UNQUOTE(JSON_EXTRACT(t.checkpoint,'$.contrast_passed'))='true' OR JSON_UNQUOTE(JSON_EXTRACT(t.checkpoint,'$.assistance.contrast'))='true') AND JSON_EXTRACT(t.checkpoint,'$.contrast.question') IS NOT NULL ORDER BY prompt LIMIT 50",[Some(owner),sqlValue(question["subject"])]).rows) { seenContrasts.add(JsonString(rowText(row,"prompt"))) }
     result.put("seen_contrasts",seenContrasts)
+    let masteryRows=db.query("SELECT mastery_score,evidence_count,last_evidence_at FROM mastery_states WHERE user_id=? AND subject=? AND knowledge_point=? ORDER BY updated_at DESC,id DESC LIMIT 1",[Some(owner),sqlValue(question["subject"]),Some(learningKnowledgePoint(db,question))]).rows
+    if (!masteryRows.isEmpty()) {
+        let state=JsonObject(); let count=Int64.parse(rowText(masteryRows[0],"evidence_count")); state.put("mastery",JsonFloat(if (count>0) { Float64.parse(rowText(masteryRows[0],"mastery_score")) } else { 0.35 })); state.put("evidence_count",JsonInt(count))
+        state.put("last_effective_at",JsonString(rowText(masteryRows[0],"last_evidence_at")))
+        let counts=db.query("SELECT COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=false THEN 1 END) AS independent_count,COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=false AND JSON_UNQUOTE(JSON_EXTRACT(u.evidence,'$.aemt_event.verdict'))='confirmed_correct' THEN 1 END) AS independent_correct,COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=true THEN 1 END) AS hinted_count FROM cognitive_updates u JOIN questions q ON q.id=u.question_id WHERE u.user_id=? AND q.subject=? AND u.entity_type='mastery' AND u.entity_key=? AND JSON_EXTRACT(u.evidence,'$.aemt_event.solution_seen')=false",[Some(owner),sqlValue(question["subject"]),Some(learningKnowledgePoint(db,question))]).rows[0]
+        for (key in ["independent_count","independent_correct","hinted_count"]) { state.put(key,JsonInt(Int64.parse(rowText(counts,key)))) }
+        result.put("mastery_state",state)
+    }
+    let profiles=db.query("SELECT preferences FROM student_profiles WHERE user_id=?",[Some(owner)]).rows
+    if (!profiles.isEmpty()) {
+        let preferences=(JsonValue.fromStr(rowText(profiles[0],"preferences")) as JsonObject).getOrThrow()
+        let minutes=tutorNumber(preferences,"daily_minutes")
+        if (minutes>0 && minutes<=120) { result.put("available_minutes",JsonInt(minutes)); result.put("goal_remaining",JsonInt(if (minutes<=5) { 3 } else if (minutes<=10) { 5 } else { 10 })) }
+    }
     applyTaskMemoryContext(result,learningMemory(db,owner,question))
     return result
 }

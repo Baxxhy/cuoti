@@ -71,6 +71,9 @@ def diagnoses(endpoint, env, query, token, other, state, started, release):
             result["first_error_step"] == 0 and result["first_error_text"] == "2*x=10"
         )
         assert result["counterfactual"]["root_cause_confirmed"] is True
+        assert result["evidence_diagnosis"]["algorithm"] == "eced-v1"
+        assert result["evidence_diagnosis"]["verified"] is True
+        assert result["evidence_diagnosis"]["first_error_step"] == 0
         assert len(result["evidence"]) == 2
         assert (
             query(
@@ -89,6 +92,7 @@ def diagnoses(endpoint, env, query, token, other, state, started, release):
         read = request(endpoint, "GET", path + "/diagnosis", token=token)
         assert read["id"] == result["id"] and len(read["evidence"]) == 2
         assert read["counterfactual"] == result["counterfactual"]
+        assert read["evidence_diagnosis"] == result["evidence_diagnosis"]
         assert {row["reference_step_id"] for row in read["evidence"]} == {
             row["reference_step_id"] for row in result["evidence"]
         }
@@ -107,7 +111,7 @@ def diagnoses(endpoint, env, query, token, other, state, started, release):
                 env,
                 f"SELECT COUNT(*) FROM diagnosis_evidence e JOIN diagnoses d ON e.diagnosis_id=d.id WHERE d.question_id='{q['id']}'",
             )
-            == "6"
+            == "8"
         )
         query(env, f"UPDATE questions SET status='analyzed' WHERE id='{q['id']}'")
         query(
@@ -127,7 +131,7 @@ def diagnoses(endpoint, env, query, token, other, state, started, release):
                     env,
                     f"SELECT COUNT(*) FROM diagnosis_evidence e JOIN diagnoses d ON e.diagnosis_id=d.id WHERE d.question_id='{q['id']}'",
                 )
-                == "6"
+                == "8"
             )
             assert (
                 request(endpoint, "GET", path + "/diagnosis", token=token)["id"]

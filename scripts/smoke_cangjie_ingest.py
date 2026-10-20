@@ -397,6 +397,7 @@ def ingest(endpoint, env, query):
             "task-memory",
             "task-budget",
             "task-contract",
+            "agent-upgrade",
         }:
             other = request(
                 endpoint,
@@ -408,6 +409,8 @@ def ingest(endpoint, env, query):
                     "name": "照片隔离测试",
                 },
             )
+            if env.get("CANGJIE_VERIFY_FOCUS") == "agent-upgrade":
+                diagnoses(endpoint, env, query, token, other["access_token"], state, started, release)
             recovery = learning_tasks(
                 endpoint,
                 env,

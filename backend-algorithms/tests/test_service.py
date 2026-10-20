@@ -350,6 +350,13 @@ def test_learning_task_remaining_budget_cancels_instead_of_returning_late_result
             json={
                 "operation": "learning_task",
                 "task_budget_ms": 25,
+                # Resume an already diagnosed task so this checks cancellation
+                # of the provider, rather than spending the entire 25 ms on
+                # the graph's first symbolic diagnosis.
+                "task_checkpoint": {"evidence_diagnosis": {
+                    "reason": "原步骤已核验", "confidence_level": "verified",
+                    "verified": True, "next_action": "repair",
+                }},
                 "task_context": {
                     "question_id": "q1",
                     "question_text": "解方程2x+3=11",

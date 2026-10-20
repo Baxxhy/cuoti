@@ -69,6 +69,12 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
     owner = request(endpoint, "GET", "/api/v1/auth/me", token=token)["id"]
     state["learning_task"] = True
     state["mode"] = "good"
+    recommendation_source = insert("dataset_sources", key="arpp-" + uuid4().hex, name="ARPP闭环验收题库")
+    recommendation_id = insert("dataset_questions", dataset_source_id=recommendation_source,
+        source_item_id="arpp-single", content_hash=uuid4().hex, subject="数学", grade="初一", grade_band="初中",
+        question_text="解方程：2x+3=15", question_type="综合题", knowledge_points=["任务专用等式"],
+        answer=json.dumps("x=6"), solution="2x=12，x=6", options=[], image_paths=[],
+        has_answer=True, usable_for_practice=True, usable_for_auto_grade=True)
 
     def create_question(constant=11, question_text=None):
         q = request(
@@ -370,11 +376,22 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
         assert "x=7" not in json.dumps(contrasted, ensure_ascii=False)
         done, body = action(endpoint, contrasted, token, text="x=7")
         assert done["status"] == "completed" and done["learning_applied"]
+        plan = done["student_view"]["recommendation"]
+        assert plan["algorithm"] == "arpp-v1" and plan["action"] == "practice"
+        assert plan["question_id"] == recommendation_id and plan["question_source"] == "dataset"
+        practice = request(endpoint, "POST", "/api/v1/study-sessions", {
+            "mode": "practice", "question_ids": [plan["question_id"]], "count": 1,
+            "minutes": plan["estimated_minutes"],
+        }, token=token)
+        assert practice["items"][0]["question"]["id"] == recommendation_id
         evidence = query(
             env,
             f"SELECT COUNT(*) FROM cognitive_updates WHERE JSON_UNQUOTE(JSON_EXTRACT(evidence,'$.learning_task_id'))='{task['id']}'",
         )
-        assert evidence == "2"
+        # Independent original answer and verified transfer each update one
+        # mastery and one misconception record, in their own action transaction.
+        assert evidence == "4"
+        assert query(env, f"SELECT COUNT(*) FROM cognitive_updates WHERE entity_type='mastery' AND JSON_UNQUOTE(JSON_EXTRACT(evidence,'$.learning_task_id'))='{task['id']}' AND JSON_EXTRACT(evidence,'$.aemt_event.solution_seen')=false") == "2"
         task_request(
             endpoint,
             "/api/v1/learning-tasks/" + task["id"] + "/actions",
@@ -436,7 +453,7 @@ def learning_tasks(endpoint, env, query, token, other, state, started, release):
         assert (
             query(
                 env,
-                f"SELECT COUNT(*) FROM cognitive_updates WHERE JSON_UNQUOTE(JSON_EXTRACT(evidence,'$.learning_task_id')) IN ({task_ids})",
+                f"SELECT COUNT(*) FROM cognitive_updates WHERE JSON_UNQUOTE(JSON_EXTRACT(evidence,'$.learning_task_id')) IN ({task_ids}) AND JSON_UNQUOTE(JSON_EXTRACT(evidence,'$.aemt_event.scope'))='contrast_question'",
             )
             == "2"
         )

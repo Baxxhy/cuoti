@@ -92,6 +92,64 @@
             v-if="!task.student_view?.visualization"
             :blocks="task.student_view?.prompt_blocks || []"
           />
+          <view v-if="task.student_view?.recommendation" class="feedback">
+            <text>{{ task.student_view.recommendation.reason }}</text>
+            <button
+              v-if="task.status === 'completed' && task.student_view.recommendation.question_id"
+              class="primary-btn"
+              role="button"
+              tabindex="0"
+              :disabled="sending"
+              @click="startRecommendation"
+              @keydown.enter.prevent="startRecommendation"
+            >
+              {{ task.student_view.recommendation.action === 'review' ? '开始复习' : '练习推荐题' }}
+            </button>
+            <button
+              v-else-if="
+                (task.status === 'completed' ||
+                  task.student_view.recommendation.action === 'prerequisite') &&
+                task.student_view.recommendation.knowledge_card_ids?.length
+              "
+              class="secondary-btn"
+              role="button"
+              tabindex="0"
+              @keydown.enter.prevent="
+                go(
+                  `/pages/knowledge/knowledge?id=${task.student_view.recommendation.knowledge_card_ids[0]}`,
+                )
+              "
+              @click="
+                go(
+                  `/pages/knowledge/knowledge?id=${task.student_view.recommendation.knowledge_card_ids[0]}`,
+                )
+              "
+            >
+              查看相关知识
+            </button>
+          </view>
+          <view v-if="task.student_view?.diagnosis_evidence" class="feedback">
+            <text>
+              {{ task.student_view.diagnosis_evidence.verified ? '步骤核验结果' : '需要核对' }}
+            </text>
+            <math-text :text="task.student_view.diagnosis_evidence.reason" />
+            <view
+              v-for="(source, index) in task.student_view.diagnosis_evidence.evidence"
+              :key="index"
+            >
+              <math-text :text="source.text" />
+            </view>
+          </view>
+          <button
+            v-if="task.exit_reason === 'diagnosis_needs_confirmation'"
+            class="primary-btn"
+            role="button"
+            tabindex="0"
+            @click="go(`/pages/diagnosis/diagnosis?id=${task.question_id}`)"
+            @keydown.enter.prevent="go(`/pages/diagnosis/diagnosis?id=${task.question_id}`)"
+          >
+            核对原作答与错因
+          </button>
           <task-visualization
             v-if="task.student_view?.visualization"
             :packet="task.student_view.visualization"
@@ -523,6 +581,34 @@ async function transmit(body) {
     await load()
   } catch (err) {
     error.value = err.message || '连接中断，回答已保留，请核对提交状态'
+  } finally {
+    sending.value = false
+  }
+}
+async function startRecommendation() {
+  const plan = task.value?.student_view?.recommendation
+  if (!plan?.question_id || sending.value) return
+  if (plan.question_source === 'notebook') {
+    returnToQuestion(plan.question_id)
+    return
+  }
+  sending.value = true
+  error.value = ''
+  try {
+    const session = await postData(
+      '/study-sessions',
+      {
+        mode: 'practice',
+        question_ids: [plan.question_id],
+        count: 1,
+        selection_strategy: 'random',
+        minutes: Math.max(1, plan.estimated_minutes || 3),
+      },
+      { silent: true },
+    )
+    go(`/pages/study-session/study-session?id=${session.id}`)
+  } catch (err) {
+    error.value = err.message || '暂时无法开始，请重试'
   } finally {
     sending.value = false
   }
