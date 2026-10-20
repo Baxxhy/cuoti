@@ -51,7 +51,7 @@ test('题库默认按学生学段和学科打开，明确选择后可以切换',
   const bank = (await response.json()).data
   expect(bank.questions.length).toBeGreaterThan(0)
   expect(bank.questions.every((q) => q.subject === '数学' && q.grade_band === '高中')).toBe(true)
-  await expect(page.locator('.bank-picker')).toHaveText('高中')
+  await expect(page.locator('.bank-picker')).toHaveCount(0)
   await expect(page.getByRole('button', { name: '练 5 题', exact: true })).toBeVisible()
   const switched = page.waitForResponse(
     (r) =>

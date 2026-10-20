@@ -42,9 +42,6 @@
             </button>
           </view>
         </scroll-view>
-        <view class="filter-row">
-          <view class="bank-picker">{{ data?.scope_label || studentGrade }}</view>
-        </view>
       </view>
       <state-panel
         v-if="loading || error"
@@ -414,20 +411,6 @@ onShow(() => {
 .bank-subjects button.selected {
   background: var(--color-primary);
   color: #fff;
-}
-.filter-row {
-  display: flex;
-  gap: 12px;
-}
-.bank-picker {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 44px;
-  padding: 8px 14px;
-  background: #fff;
-  border-radius: 12px;
-  font-size: 13px;
 }
 .bank-search {
   display: flex;
