@@ -260,6 +260,8 @@ const visibleHistory = computed(() =>
   history.value.filter((x) => x.mode === mode.value).slice(0, 8),
 )
 let revision = 0
+let defaultsLoaded = false
+let initialQuery = {}
 function shortDate(value) {
   return String(value || '').slice(0, 10)
 }
@@ -268,6 +270,19 @@ async function load() {
   loading.value = true
   error.value = ''
   try {
+    if (!defaultsLoaded) {
+      const preferences = await getData('/student-preferences', { silent: true })
+      if (current !== revision) return
+      filters.value.subject = initialQuery.subject || preferences.subject || '数学'
+      filters.value.grade_band =
+        initialQuery.grade_band ||
+        (/^高/.test(preferences.grade || '')
+          ? '高中'
+          : /^初/.test(preferences.grade || '')
+            ? '初中'
+            : '')
+      defaultsLoaded = true
+    }
     const query = Object.entries(filters.value)
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join('&')
@@ -328,6 +343,7 @@ async function start(questionId) {
   }
 }
 onLoad((query) => {
+  initialQuery = query
   mode.value = query.mode === 'exam' ? 'exam' : 'practice'
   if (query.subject) filters.value.subject = query.subject
   if (query.grade_band) filters.value.grade_band = query.grade_band

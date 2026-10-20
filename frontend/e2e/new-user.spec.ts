@@ -39,6 +39,34 @@ test('真实新学生登录后有明确学习起点，且不伪造个人学习�
   await page.screenshot({ path: testInfo.outputPath('today-current.png'), fullPage: true })
 })
 
+test('题库默认按学生学段和学科打开，明确选择后可以切换', async ({ page }) => {
+  await registerAndLogin(page)
+  const loaded = page.waitForResponse((r) => r.url().includes('/api/v1/study-bank?'))
+  await page.getByRole('button', { name: '题库练习', exact: true }).click()
+  const response = await loaded
+  expect(response.ok()).toBe(true)
+  const url = new URL(response.url())
+  expect(url.searchParams.get('subject')).toBe('数学')
+  expect(url.searchParams.get('grade_band')).toBe('高中')
+  const bank = (await response.json()).data
+  expect(bank.questions.length).toBeGreaterThan(0)
+  expect(bank.questions.every((q) => q.subject === '数学' && q.grade_band === '高中')).toBe(true)
+  await expect(page.getByRole('button', { name: '练 5 题', exact: true })).toBeVisible()
+  const switched = page.waitForResponse(
+    (r) =>
+      r.url().includes('/api/v1/study-bank?') &&
+      new URL(r.url()).searchParams.get('subject') === '化学',
+  )
+  await page.getByRole('button', { name: '化学', exact: true }).click()
+  const chemistry = await switched
+  expect(new URL(chemistry.url()).searchParams.get('grade_band')).toBe('高中')
+  expect(
+    (await chemistry.json()).data.questions.every(
+      (q) => q.subject === '化学' && q.grade_band === '高中',
+    ),
+  ).toBe(true)
+})
+
 test('全部功能页：新学生核心入口显示真实空状态且没有运行异常', async ({ page }, testInfo) => {
   const pageErrors: string[] = []
   page.on('pageerror', (error) => pageErrors.push(error.message))
