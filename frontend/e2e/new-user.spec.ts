@@ -24,7 +24,6 @@ test('真实新学生登录后有明确学习起点，且不伪造个人学习�
   const brand = page.getByRole('heading', { name: '错题帮', exact: true })
   await expect(brand).toBeVisible()
   await expect(page.locator('.home-grade')).toHaveText('高一')
-  await expect(page.locator('.focus-card .focus-date')).toHaveText(/^\d{1,2}月\d{1,2}日$/)
   await expect(page.getByRole('heading', { name: '今日', exact: true })).toHaveCount(0)
   const brandBox = await brand.boundingBox()
   const cardBox = await page.locator('.focus-card').boundingBox()

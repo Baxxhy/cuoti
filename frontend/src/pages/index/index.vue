@@ -46,10 +46,7 @@
             重新读取学习建议
           </button>
         </view>
-        <view class="focus-card">
-          <text class="focus-date">
-            {{ new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric' }) }}
-          </text>
+        <view class="focus-card" :class="{ 'capture-card': focusKind === 'capture' }">
           <template v-if="focusKind === 'task'">
             <math-text
               class="focus-title"
@@ -208,7 +205,7 @@
                 class="capture-icon"
                 type="camera"
                 size="26"
-                color="#ffffff"
+                color="var(--color-primary)"
               />
               <text>拍照或选择图片</text>
             </button>
@@ -279,7 +276,8 @@
             @keyup.space.prevent="go('/pages/error-map/error-map')"
             @click="go('/pages/error-map/error-map')"
           >
-            <view>
+            <view class="entry-label">
+              <uni-icons aria-hidden="true" type="map" size="22" color="var(--color-primary)" />
               <text>易错地图</text>
             </view>
             <uni-icons aria-hidden="true" type="right" size="20" />
@@ -480,6 +478,9 @@ onUnload(clear)
 }
 .home-identity {
   min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .home-brand {
   display: block;
@@ -493,7 +494,9 @@ onUnload(clear)
   display: block;
   color: var(--color-text-secondary);
   font-size: 13px;
-  margin-top: 4px;
+  padding: 3px 9px;
+  background: var(--color-surface);
+  border-radius: 6px;
   line-height: 1.5;
 }
 .search-action {
@@ -505,7 +508,7 @@ onUnload(clear)
   justify-content: center;
   padding: 0;
   margin: 0;
-  background: var(--color-surface);
+  background: transparent;
   border-radius: 50%;
 }
 .search-action:active {
@@ -517,16 +520,9 @@ onUnload(clear)
   border: 0;
   border-radius: 12px;
 }
-.focus-date {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--color-text-secondary);
-  font-size: 12px;
-  line-height: 1.5;
-}
 .focus-title {
   display: block;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.5;
   overflow-wrap: anywhere;
@@ -541,13 +537,29 @@ onUnload(clear)
   margin-top: 22px;
   gap: 8px;
 }
+.capture-card {
+  padding: 24px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-radius: 20px;
+}
+.capture-card .primary-btn {
+  margin-top: 24px;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-size: 16px;
+  font-weight: 600;
+}
+.capture-card .primary-btn:active {
+  background: var(--color-primary-soft);
+}
 .capture-icon {
   flex-shrink: 0;
   font-weight: 400;
   line-height: 1;
 }
 .home-secondary {
-  margin-top: 18px;
+  margin-top: 24px;
 }
 .home-gateways {
   display: grid;
@@ -560,8 +572,8 @@ onUnload(clear)
   align-items: center;
   gap: 8px;
   margin: 0;
-  padding: 16px 12px;
-  min-height: 64px;
+  padding: 20px 16px;
+  min-height: 80px;
   border: 0;
   border-radius: 12px;
   background: var(--color-surface);
@@ -589,13 +601,15 @@ onUnload(clear)
   color: var(--color-text-primary);
   font-size: 15px;
   text-align: left;
-  border-bottom: 1px solid var(--color-border);
-  border-radius: 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-surface);
+  padding: 16px;
 }
 .entry-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 .home-direction {
   display: flex;
