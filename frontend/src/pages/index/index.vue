@@ -1,6 +1,23 @@
 <template>
   <view class="page home-page">
-    <app-header title="今日">
+    <view class="home-header">
+      <view class="home-identity">
+        <!-- #ifdef H5 -->
+        <component :is="'h1'" class="home-brand">错题帮</component>
+        <!-- #endif -->
+        <!-- #ifndef H5 -->
+        <text class="home-brand">错题帮</text>
+        <!-- #endif -->
+        <text class="today-copy">
+          {{
+            new Date().toLocaleDateString('zh-CN', {
+              month: 'long',
+              day: 'numeric',
+              weekday: 'long',
+            })
+          }}
+        </text>
+      </view>
       <button
         class="search-action"
         role="button"
@@ -11,20 +28,11 @@
         @keydown.space.prevent
         @keyup.space.prevent="go('/pages/search/search')"
       >
-        <uni-icons aria-hidden="true" type="search" size="24" color="#55565B" />
+        <uni-icons aria-hidden="true" type="search" size="24" color="var(--color-text-secondary)" />
       </button>
-    </app-header>
+    </view>
 
     <view class="page-content home-content">
-      <text class="today-copy">
-        {{
-          new Date().toLocaleDateString('zh-CN', {
-            month: 'long',
-            day: 'numeric',
-            weekday: 'long',
-          })
-        }}
-      </text>
       <state-panel
         v-if="loading || error"
         :state="error ? 'error' : 'loading'"
@@ -468,15 +476,35 @@ onUnload(clear)
 </script>
 
 <style scoped lang="scss">
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: calc(16px + var(--status-bar-height, 0px)) var(--space-page) 4px;
+}
+.home-identity {
+  min-width: 0;
+}
+.home-brand {
+  display: block;
+  margin: 0;
+  color: var(--color-brand-deep);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
 .today-copy {
   display: block;
   color: var(--color-text-secondary);
   font-size: 13px;
-  margin-bottom: 16px;
+  margin-top: 4px;
+  line-height: 1.5;
 }
 .search-action {
-  width: 44px;
-  height: 44px;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -484,6 +512,9 @@ onUnload(clear)
   margin: 0;
   background: var(--color-surface);
   border-radius: 50%;
+}
+.search-action:active {
+  background: var(--color-primary-soft);
 }
 .focus-card {
   padding: 22px;
@@ -630,6 +661,17 @@ onUnload(clear)
   color: var(--color-text-secondary);
 }
 @media (min-width: 1100px) {
+  .home-brand {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .today-copy {
+    margin-top: 0;
+  }
   .home-content {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
@@ -638,10 +680,6 @@ onUnload(clear)
   }
   .focus-card {
     grid-column: 1;
-  }
-  .today-copy {
-    grid-column: 1 / -1;
-    margin-bottom: 0;
   }
   .home-secondary {
     margin-top: 0;

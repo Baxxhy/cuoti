@@ -21,6 +21,12 @@ async function registerAndLogin(page: Page) {
 
 test('真实新学生登录后有明确学习起点，且不伪造个人学习记录', async ({ page }, testInfo) => {
   await registerAndLogin(page)
+  const brand = page.getByRole('heading', { name: '错题帮', exact: true })
+  await expect(brand).toBeVisible()
+  await expect(page.getByRole('heading', { name: '今日', exact: true })).toHaveCount(0)
+  const brandBox = await brand.boundingBox()
+  const cardBox = await page.locator('.focus-card').boundingBox()
+  expect(Math.abs(brandBox!.x - cardBox!.x)).toBeLessThan(2)
   await expect(page.locator('.focus-title')).toHaveText('录入错题')
   await expect(page.locator('.home-starter')).toContainText('知识卡片')
   await expect(page.getByRole('button', { name: '学习设置', exact: true })).toBeVisible()
