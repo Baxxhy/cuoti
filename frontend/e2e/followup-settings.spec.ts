@@ -30,6 +30,7 @@ test('升年级后默认学习范围更新，原有错题与答案保留', async
     actor.access_token,
   )
   await page.goto('/#/pages/index/index')
+  await expect(page.locator('.today-copy')).toContainText('初一')
   await page.getByRole('button', { name: '学习设置', exact: true }).click()
   await expect(page.getByLabel('当前年级', { exact: true })).toHaveValue('初一')
   await page.getByLabel('当前年级', { exact: true }).selectOption('高一')
@@ -53,6 +54,7 @@ test('升年级后默认学习范围更新，原有错题与答案保留', async
   await expect(page).toHaveURL(/pages\/profile\/profile/)
   await expect(page.locator('.profile-meta')).toContainText('高一')
   await page.getByRole('button', { name: '今日', exact: true }).click()
+  await expect(page.locator('.today-copy')).toContainText('高一')
   const bankLoaded = page.waitForResponse((response) =>
     new URL(response.url()).pathname.endsWith('/study-bank'),
   )

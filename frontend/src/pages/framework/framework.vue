@@ -132,7 +132,7 @@ const nodes = ref([]),
   opened = ref({}),
   loading = ref(true),
   error = ref('')
-const gradeOptions = ['全部年级', '初中', '高中', ...MIDDLE_SCHOOL_GRADES]
+const gradeOptions = ['全部年级', ...MIDDLE_SCHOOL_GRADES]
 const groups = computed(() =>
   frameworkGroups(nodes.value, {
     subject: subject.value,

@@ -156,7 +156,7 @@ const query = ref(''),
 const questionId = ref(''),
   explaining = ref(false),
   explainError = ref('')
-const gradeOptions = ['全部年级', '初中', '高中', ...MIDDLE_SCHOOL_GRADES]
+const gradeOptions = ['全部年级', ...MIDDLE_SCHOOL_GRADES]
 const relationSections = [
   { key: 'prerequisites', title: '先补这些知识' },
   { key: 'next_knowledge', title: '接下来可了解' },

@@ -23,6 +23,7 @@ test('真实新学生登录后有明确学习起点，且不伪造个人学习�
   await registerAndLogin(page)
   const brand = page.getByRole('heading', { name: '错题帮', exact: true })
   await expect(brand).toBeVisible()
+  await expect(page.locator('.today-copy')).toContainText('高一')
   await expect(page.getByRole('heading', { name: '今日', exact: true })).toHaveCount(0)
   const brandBox = await brand.boundingBox()
   const cardBox = await page.locator('.focus-card').boundingBox()

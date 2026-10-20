@@ -9,6 +9,7 @@
         <text class="home-brand">错题帮</text>
         <!-- #endif -->
         <text class="today-copy">
+          {{ data?.grade ? data.grade + ' · ' : '' }}
           {{
             new Date().toLocaleDateString('zh-CN', {
               month: 'long',
