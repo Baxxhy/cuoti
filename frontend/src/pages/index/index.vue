@@ -311,18 +311,6 @@
             />
           </button>
         </view>
-        <button
-          role="button"
-          class="home-direction"
-          aria-label="学习设置"
-          @click="go('/pages/preferences/preferences')"
-        >
-          <text>{{ preferences?.subject || '学习设置' }}</text>
-          <text>
-            学科、目标与时间
-            <uni-icons aria-hidden="true" type="right" size="15" />
-          </text>
-        </button>
         <view v-if="showFeedback && data.teacher_feedback" class="teacher-feedback">
           <view class="section-title"><text>教师反馈</text></view>
           <text class="feedback-conclusion">
@@ -606,19 +594,6 @@ onUnload(clear)
   align-items: center;
   gap: 12px;
 }
-.home-direction {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 48px;
-  gap: 12px;
-  padding: 12px 0;
-  margin: 12px 0 0;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  background: transparent;
-  text-align: left;
-}
 .task-list {
   margin-top: 12px;
 }
@@ -699,8 +674,7 @@ onUnload(clear)
   .teacher-feedback {
     grid-column: 1 / -1;
   }
-  .task-list,
-  .home-direction {
+  .task-list {
     grid-column: 2;
     margin-top: 0;
   }

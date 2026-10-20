@@ -30,7 +30,7 @@ test('真实新学生登录后有明确学习起点，且不伪造个人学习�
   expect(Math.abs(brandBox!.x - cardBox!.x)).toBeLessThan(2)
   await expect(page.locator('.focus-title')).toHaveText('录入错题')
   await expect(page.locator('.home-starter')).toContainText('知识卡片')
-  await expect(page.getByRole('button', { name: '学习设置', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: '学习设置', exact: true })).toHaveCount(0)
   await expect(page.locator('.focus-card .primary-btn')).toHaveCount(1)
   await expect(page.locator('.focus-card .primary-btn')).toHaveText('拍照或选择图片')
   await expect(page.getByRole('button', { name: '题库练习', exact: true })).toBeVisible()
