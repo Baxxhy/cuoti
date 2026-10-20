@@ -130,10 +130,7 @@
           >
             <view class="question-meta">
               <text class="subject-badge">{{ question.subject }}</text>
-              <text>
-                {{ question.grade || question.grade_band }} ·
-                {{ questionTypeLabel(question.question_type) }}
-              </text>
+              <text>{{ questionTypeLabel(question.question_type) }}</text>
               <uni-icons
                 aria-hidden="true"
                 class="question-arrow"
