@@ -95,7 +95,23 @@ test('模拟考试：抽取题库、计时、逐题作答与答题卡、交卷�
 
 test('化学题干与选项中的短公式连续排版，解析保留独立公式', async ({ page }, info) => {
   test.skip(!process.env.QA_STUDY_CHEM_SOURCE, '需要化学排版样本')
-  await page.goto(`/#/pages/bank/bank?source_id=${process.env.QA_STUDY_CHEM_SOURCE}`)
+  const registered = await page.request.post('/api/v1/auth/register', {
+    data: {
+      email: `chem-grade-${Date.now()}@example.test`,
+      password: 'Grade-Test-123',
+      name: '化学排版验收',
+      grade: '高二',
+    },
+  })
+  expect(registered.ok()).toBe(true)
+  const actor = (await registered.json()).data
+  await page.evaluate(
+    (token) => localStorage.setItem('minddimension_access_token', token),
+    actor.access_token,
+  )
+  await page.goto(
+    `/#/pages/bank/bank?subject=${encodeURIComponent('化学')}&source_id=${process.env.QA_STUDY_CHEM_SOURCE}`,
+  )
   await expect(page.locator('.bank-question')).toHaveCount(1)
   await expect(page.locator('.bank-question .katex-display')).toHaveCount(0)
   await page.locator('.bank-question').click()

@@ -314,7 +314,7 @@ def study(endpoint, env, query):
     blocked_source = insert("dataset_sources", key="format-" + uuid4().hex, name="不向学生显示的数据集")
     blocked_id = insert(
         "dataset_questions", dataset_source_id=blocked_source, source_item_id="broken",
-        content_hash="d" * 64, subject="数学", grade_band="初中",
+        content_hash="d" * 64, subject="数学", grade="初一", grade_band="初中",
         question_text=r"不应展示的坏公式 $$\overset{⇌}$$", question_type="multiple-choice",
         options=[{"key": "A", "text": "甲"}, {"key": "B", "text": "乙"}],
         answer=json.dumps("A"), has_answer=True, usable_for_practice=True, usable_for_auto_grade=True,
@@ -360,6 +360,44 @@ def study(endpoint, env, query):
     request(endpoint, "POST", "/api/v1/study-sessions", {"selection_strategy": "unknown"}, token=token, expected=422)
     print("Adaptive practice passed: native owner history, bounded candidate pool, Bayesian information-gain selection, hidden answers and persisted trace", flush=True)
     print("Format quarantine passed: no new practice/exam, masked old snapshots, excluded scoring and idempotent submission", flush=True)
+    # Every path must use the authenticated student's exact grade, not a client hint.
+    grade_source = insert("dataset_sources", key="grade-" + uuid4().hex, name="年级隔离验收")
+    grade_ids = {}
+    for grade in ["七年级", "八年级", "九年级", "高一", "高二", "高三", "初中", "高中", "小学", "拓展"]:
+        grade_ids[grade] = insert(
+            "dataset_questions", dataset_source_id=grade_source, source_item_id=grade,
+            content_hash=uuid4().hex, subject="数学", grade=grade,
+            grade_band="高中" if grade.startswith("高") else "初中" if grade in ["七年级", "八年级", "九年级", "初中"] else grade,
+            question_text="计算1+1", question_type="single-choice",
+            options=[{"key": "A", "text": "2"}, {"key": "B", "text": "3"}],
+            answer=json.dumps("A"), has_answer=True, usable_for_practice=True, usable_for_auto_grade=True,
+        )
+    for grade, text in [("七年级", "复数的虚部是什么"), ("八年级", "解一元二次方程"), ("九年级", "求向量的模"), ("高一", "求函数的导数"), ("高二", "求矩阵的特征值"), ("高三", "求不定积分")]:
+        grade_ids["mislabelled-" + grade] = insert(
+            "dataset_questions", dataset_source_id=grade_source, source_item_id="bad-" + grade,
+            content_hash=uuid4().hex, subject="数学", grade=grade, grade_band="高中" if grade.startswith("高") else "初中",
+            question_text=text, question_type="single-choice", options=[{"key": "A", "text": "2"}],
+            answer=json.dumps("A"), has_answer=True, usable_for_practice=True, usable_for_auto_grade=True,
+        )
+    for grade, stored in [("初一", "七年级"), ("初二", "八年级"), ("初三", "九年级"), ("高一", "高一"), ("高二", "高二"), ("高三", "高三")]:
+        pupil = request(endpoint, "POST", "/api/v1/auth/register", {
+            "email": "grade-" + uuid4().hex + "@example.test", "password": password, "name": "年级验收", "grade": grade,
+        })
+        pupil_token = pupil["access_token"]
+        result = request(endpoint, "GET", "/api/v1/study-bank?source_id=" + grade_source + "&grade=%E9%AB%98%E4%B8%89", token=pupil_token)
+        assert result["grade"] == grade and result["total"] == 1
+        assert result["questions"][0]["id"] == grade_ids[stored]
+        assert sum(f["count"] for f in result["facets"]) >= 1
+        for mode, strategy in [("practice", "random"), ("practice", "adaptive"), ("exam", "random")]:
+            session = request(endpoint, "POST", "/api/v1/study-sessions", {
+                "mode": mode, "selection_strategy": strategy, "source_id": grade_source, "count": 1, "grade": "高三",
+            }, token=pupil_token)
+            assert [item["question"]["id"] for item in session["items"]] == [grade_ids[stored]]
+        for excluded, excluded_id in grade_ids.items():
+            if excluded != stored:
+                request(endpoint, "POST", "/api/v1/study-sessions", {"question_ids": [excluded_id]}, token=pupil_token, expected=422)
+        request(endpoint, "POST", "/api/v1/study-sessions", {"source_id": grade_source, "count": 2}, token=pupil_token, expected=422)
+    print("Exact grades passed: six grades, aliases, random/adaptive/exam, forged hints, foreign IDs, unknown grades and insufficient counts", flush=True)
     return {
         "QA_STUDY_CHEM_SOURCE": chemical_source,
         "QA_STUDY_BLOCKED_SESSION": held["id"],

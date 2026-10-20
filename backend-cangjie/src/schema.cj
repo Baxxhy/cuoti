@@ -87,5 +87,11 @@ public func upgradeDatabase(): Unit {
             }
             db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('011_bank_browse_index', UTC_TIMESTAMP())")
         }
+        if (db.query("SELECT version FROM cangjie_schema_versions WHERE version = '013_bank_grade_index'").rows.isEmpty()) {
+            if (db.query("SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='dataset_questions' AND INDEX_NAME='ix_bank_grade'").rows.isEmpty()) {
+                db.query("ALTER TABLE dataset_questions ADD INDEX ix_bank_grade (usable_for_practice,usable_for_auto_grade,has_answer,grade,subject,id), ALGORITHM=INPLACE, LOCK=NONE")
+            }
+            db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('013_bank_grade_index', UTC_TIMESTAMP())")
+        }
     }
 }

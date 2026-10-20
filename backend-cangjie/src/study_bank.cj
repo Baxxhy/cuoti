@@ -24,10 +24,41 @@ func bankQuestion(value: JsonObject, accounts: Accounts): JsonObject {
     result.put("image_urls",images); return result
 }
 
-func bankFilter(subject: String, band: String, source: String, search: String): Array<Option<String>> {
-    return [Some(subject),Some(subject),Some(band),Some(band),Some(source),Some(source),Some(search),Some("%"+search+"%")]
+func bankGradeAlias(grade: String): String {
+    match (grade) {
+        case "初一" => "七年级"
+        case "初二" => "八年级"
+        case "初三" => "九年级"
+        case _ => grade
+    }
 }
-let bankWhere=" FROM dataset_questions q WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 AND (?='' OR q.subject=?) AND (?='' OR q.grade_band=?) AND (?='' OR q.dataset_source_id=?) AND (?='' OR q.question_text LIKE ?)"
+
+func bankStudentGrade(db: Database, owner: String): String {
+    let rows=db.query("SELECT grade FROM student_profiles WHERE user_id=?",[Some(owner)]).rows
+    let grade=if (rows.isEmpty()) { "" } else { rowText(rows[0],"grade") }
+    if (!(["初一","初二","初三","高一","高二","高三"].contains(grade))) { throw ApiError(422,"请先在学习设置中选择具体年级") }
+    return grade
+}
+
+// Conservative exclusion: source grade labels are necessary, not sufficient.
+// These rules reject obvious later-stage math; they never infer a grade for unlabelled data.
+func bankLaterMath(grade: String): String {
+    let college="微积分|不定积分|定积分|微分方程|偏导数|拉普拉斯|傅里叶|泰勒级数|矩阵|行列式|特征值"
+    if (grade.startsWith("初")) {
+        let senior=college+"|复数|虚数|共轭|导数|求导|向量|数列|对数|指数函数|椭圆|双曲线|圆锥曲线|排列组合|二项式定理|数学归纳|充分条件|必要条件|奇函数|偶函数|等差|等比|正态分布|随机变量|(^|[^a-zA-Z])(log|ln)([^a-zA-Z]|$)"
+        if (grade=="初一" || grade=="初二") {
+            let later=senior+"|二次函数|一元二次|反比例函数|三角函数|正弦|余弦|正切|圆周角|圆心角|相似三角形|(^|[^a-zA-Z])(sin|cos|tan)([^a-zA-Z]|$)"
+            return if (grade=="初一") { later+"|勾股|全等|二次根式|分式|一次函数|因式分解|完全平方|平方差" } else { later }
+        }
+        return senior
+    }
+    return if (grade=="高一") { college+"|导数|求导|数列|等差|等比|椭圆|双曲线|圆锥曲线|排列组合|二项式定理|随机变量|正态分布" } else { college }
+}
+
+func bankFilter(subject: String, band: String, source: String, search: String, grade!: String): Array<Option<String>> {
+    return [Some(subject),Some(subject),Some(band),Some(band),Some(source),Some(source),Some(search),Some("%"+search+"%"),Some(grade),Some(bankGradeAlias(grade)),Some(bankLaterMath(grade))]
+}
+let bankWhere=" FROM dataset_questions q USE INDEX (ix_bank_grade) WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 AND (?='' OR q.subject=?) AND (?='' OR q.grade_band=?) AND (?='' OR q.dataset_source_id=?) AND (?='' OR q.question_text LIKE ?) AND q.grade IN (?,?) AND (q.subject<>'数学' OR CONCAT(q.question_text,' ',COALESCE(q.options,''),' ',COALESCE(q.knowledge_points,'')) NOT REGEXP ?)"
 
 func studyBank(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"GET")
@@ -37,29 +68,38 @@ func studyBank(context: HttpContext, accounts: Accounts): JsonValue {
     let page=if (queryLast(form,"page").isEmpty()) { 1 } else { try { Int64.parse(queryLast(form,"page")) } catch (_: Exception) { throw ApiError(422,"页码无效") } }
     if (page<1 || page>10000) { throw ApiError(422,"页码无效") }
     try (db=Database.fromEnvironment()) {
-        accounts.currentUser(context,db)
-        let filters=bankFilter(subject,band,source,search)
-        let browseWhere=bankWhere.replace("dataset_questions q WHERE","dataset_questions q USE INDEX (ix_bank_browse) WHERE")
-        let count=db.query("SELECT COUNT(*) AS total"+browseWhere,filters).rows[0]
-        let result=JsonObject(); result.put("total",JsonInt(Int64.parse(rowText(count,"total")))); result.put("page",JsonInt(page)); result.put("page_size",JsonInt(20))
+        let user=accounts.currentUser(context,db)
+        let grade=bankStudentGrade(db,rowText(user,"id"))
+        let filters=bankFilter(subject,band,source,search,grade:grade)
+        let browseWhere=bankWhere
+        let result=JsonObject(); result.put("page",JsonInt(page)); result.put("page_size",JsonInt(20)); result.put("grade",JsonString(grade))
         let items=JsonArray()
         let sourceNames=JsonObject()
         for (sourceRow in db.query("SELECT id,name FROM dataset_sources").rows) {
             sourceNames.put(rowText(sourceRow,"id"),JsonString(rowText(sourceRow,"name")))
         }
-        for (row in db.query("SELECT q.*"+browseWhere+" ORDER BY q.subject,q.id LIMIT 20 OFFSET "+((page-1)*20).toString(),filters).rows) {
+        for (row in db.query("SELECT q.*"+browseWhere+" ORDER BY q.grade,q.subject,q.id LIMIT 20 OFFSET "+((page-1)*20).toString(),filters).rows) {
             let value=rowJson("dataset_questions",row)
             value.put("source_name",sourceNames.get(rowText(row,"dataset_source_id")) ?? JsonString("题库")); items.add(bankQuestion(value,accounts))
         }
         result.put("questions",items)
-        let facets=JsonArray()
-        for (row in db.query("SELECT q.subject,q.grade_band,COUNT(*) AS total FROM dataset_questions q USE INDEX (ix_bank_browse) WHERE q.usable_for_practice=1 AND q.usable_for_auto_grade=1 AND q.has_answer=1 GROUP BY q.subject,q.grade_band ORDER BY q.subject,q.grade_band").rows) {
-            let item=JsonObject(); item.put("subject",JsonString(rowText(row,"subject"))); item.put("grade_band",JsonString(rowText(row,"grade_band"))); item.put("count",JsonInt(Int64.parse(rowText(row,"total")))); facets.add(item)
+        // One eligibility scan supplies facets, sources and the unsearched count.
+        let facetCounts=HashMap<String,JsonObject>(); let sourceCounts=HashMap<String,Int64>()
+        var total: Int64=0
+        for (row in db.query("SELECT q.subject,q.grade_band,q.dataset_source_id,COUNT(*) AS total"+browseWhere+" GROUP BY q.subject,q.grade_band,q.dataset_source_id",bankFilter("","","","",grade:grade)).rows) {
+            let rowSubject=rowText(row,"subject"); let rowBand=rowText(row,"grade_band"); let rowSource=rowText(row,"dataset_source_id")
+            let amount=Int64.parse(rowText(row,"total")); let key=rowSubject+"|"+rowBand
+            let item=facetCounts.get(key) ?? JsonObject()
+            item.put("subject",JsonString(rowSubject)); item.put("grade_band",JsonString(rowBand)); item.put("count",JsonInt(tutorNumber(item,"count")+amount)); facetCounts[key]=item
+            sourceCounts[rowSource]=(sourceCounts.get(rowSource) ?? 0)+amount
+            if ((subject.isEmpty() || subject==rowSubject) && (band.isEmpty() || band==rowBand) && (source.isEmpty() || source==rowSource)) { total+=amount }
         }
-        result.put("facets",facets)
+        if (!search.isEmpty()) { total=Int64.parse(rowText(db.query("SELECT COUNT(*) AS total"+browseWhere,filters).rows[0],"total")) }
+        result.put("total",JsonInt(total))
+        let facets=JsonArray(); for ((_,item) in facetCounts) { facets.add(item) }; result.put("facets",facets)
         let sources=JsonArray()
-        for (row in db.query("SELECT s.id,s.name,counts.total FROM (SELECT dataset_source_id,COUNT(*) AS total FROM dataset_questions USE INDEX (ix_bank_browse) WHERE usable_for_practice=1 AND usable_for_auto_grade=1 AND has_answer=1 GROUP BY dataset_source_id) counts JOIN dataset_sources s ON s.id=counts.dataset_source_id ORDER BY s.name").rows) {
-            let item=JsonObject(); item.put("id",JsonString(rowText(row,"id"))); item.put("name",JsonString(rowText(row,"name"))); item.put("count",JsonInt(Int64.parse(rowText(row,"total")))); sources.add(item)
+        for ((id,amount) in sourceCounts) {
+            let item=JsonObject(); item.put("id",JsonString(id)); item.put("name",sourceNames.get(id) ?? JsonString("题库")); item.put("count",JsonInt(amount)); sources.add(item)
         }
         result.put("sources",sources); return result
     }
@@ -140,6 +180,7 @@ func studySessions(context: HttpContext, accounts: Accounts): JsonValue {
             let result=JsonArray()
             for (row in db.query("SELECT s.*,(SELECT COUNT(*) FROM study_session_items i WHERE i.session_id=s.id) AS question_count FROM study_sessions s WHERE s.user_id=? ORDER BY s.created_at DESC,s.id DESC LIMIT 50",[Some(owner)]).rows) { result.add(studySessionRow(row)) }; return result
         }
+        let grade=bankStudentGrade(db,owner)
         let body=readJson(context); let mode=schoolText(body,"mode","practice",20)
         if (mode!="practice" && mode!="exam") { throw ApiError(422,"请选择练习或模拟考试") }
         let subject=schoolText(body,"subject","",30); let band=schoolText(body,"grade_band","",30); let source=schoolText(body,"source_id","",36)
@@ -151,22 +192,24 @@ func studySessions(context: HttpContext, accounts: Accounts): JsonValue {
         if (ids.getItems().size>1) { throw ApiError(422,"单题练习请选择一道题") }
         let strategy=schoolText(body,"selection_strategy","random",20)
         if (strategy!="random" && strategy!="adaptive") { throw ApiError(422,"选题方式无效") }
-        let selection=if (strategy=="adaptive" && mode=="practice" && ids.getItems().isEmpty()) { adaptivePracticeSelection(db,owner,subject,band,source,search,count) } else { JsonObject() }
+        let selection=if (strategy=="adaptive" && mode=="practice" && ids.getItems().isEmpty()) { adaptivePracticeSelection(db,owner,subject,band,source,search,count,grade:grade) } else { JsonObject() }
         let selected=tutorArray(selection,"question_ids")
         return db.transaction<JsonValue>({ tx =>
             let rows=if (!selected.getItems().isEmpty()) {
                 let picked=ArrayList<HashMap<String,Option<String>>>()
                 for (id in selected.getItems()) {
-                    let params=ArrayList<Option<String>>(bankFilter(subject,band,source,search)); params.add(sqlValue(id))
+                    let params=ArrayList<Option<String>>(bankFilter(subject,band,source,search,grade:grade)); params.add(sqlValue(id))
                     for (row in tx.query("SELECT q.*"+bankWhere+" AND q.id=?",params.toArray()).rows) { picked.add(row) }
                 }
                 picked
             } else if (ids.getItems().isEmpty()) {
-                tx.query("SELECT q.*"+bankWhere+" ORDER BY RAND() LIMIT "+count.toString(),bankFilter(subject,band,source,search)).rows
+                tx.query("SELECT q.*"+bankWhere+" ORDER BY RAND() LIMIT "+count.toString(),bankFilter(subject,band,source,search,grade:grade)).rows
             } else {
-                tx.query("SELECT * FROM dataset_questions WHERE id=? AND usable_for_practice=1 AND usable_for_auto_grade=1 AND has_answer=1",[Some((editText(ids.getItems()[0],36,minimum:1,trim:true) as JsonString).getOrThrow().getValue())]).rows
+                let params=ArrayList<Option<String>>(bankFilter(subject,band,source,search,grade:grade))
+                params.add(Some((editText(ids.getItems()[0],36,minimum:1,trim:true) as JsonString).getOrThrow().getValue()))
+                tx.query("SELECT q.*"+bankWhere+" AND q.id=?",params.toArray()).rows
             }
-            if (rows.isEmpty() || (ids.getItems().isEmpty() && rows.size<count)) { throw ApiError(422,"当前范围题目不足，请减少题数或调整学科") }
+            if (rows.isEmpty() || (ids.getItems().isEmpty() && rows.size<count)) { throw ApiError(422,"当前年级可用题目不足，请减少题数或更换学科") }
             let id=newId(); let title=if (mode=="exam") { (if (subject.isEmpty()) { "综合" } else { subject })+"模拟试卷" } else { (if (subject.isEmpty()) { "题库" } else { subject })+"练习" }
             tx.query("INSERT INTO study_sessions (id,user_id,mode,title,subject,grade_band,status,duration_seconds,deadline_at,version,created_at,updated_at) VALUES (?,?,?,?,?,?,'active',?,IF(?='exam',TIMESTAMPADD(SECOND,?,UTC_TIMESTAMP(6)),NULL),1,UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[Some(id),Some(owner),Some(mode),Some(title),Some(subject),Some(band),Some((minutes*60).toString()),Some(mode),Some((minutes*60).toString())])
             var position: Int64=0

@@ -43,21 +43,7 @@
           </view>
         </scroll-view>
         <view class="filter-row">
-          <picker
-            :range="['全部学段', ...bands]"
-            :value="bandIndex"
-            @change="
-              setFilter(
-                'grade_band',
-                Number($event.detail.value) ? bands[Number($event.detail.value) - 1] : '',
-              )
-            "
-          >
-            <view class="bank-picker">
-              {{ filters.grade_band || '全部学段' }}
-              <uni-icons aria-hidden="true" type="bottom" size="13" />
-            </view>
-          </picker>
+          <view class="bank-picker">{{ data?.grade || studentGrade }} · 按年级选题</view>
         </view>
       </view>
       <state-panel
@@ -129,7 +115,7 @@
             </button>
           </view>
           <view v-if="!data.questions.length" class="empty card">
-            <text>当前范围暂无题目</text>
+            <text>当前年级暂无符合条件的题目</text>
           </view>
           <button
             role="button"
@@ -141,9 +127,7 @@
           >
             <view class="question-meta">
               <text class="subject-badge">{{ question.subject }}</text>
-              <text>
-                {{ question.grade_band }} · {{ questionTypeLabel(question.question_type) }}
-              </text>
+              <text>{{ data.grade }} · {{ questionTypeLabel(question.question_type) }}</text>
               <uni-icons
                 aria-hidden="true"
                 class="question-arrow"
@@ -249,13 +233,12 @@ const filters = ref({ subject: '', grade_band: '', source_id: '', search: '', pa
 const practiceCount = ref(5)
 const count = ref(5),
   minutes = ref(20)
-const subjects = computed(() => [...new Set((data.value?.facets || []).map((x) => x.subject))])
-const bands = computed(() =>
-  [...new Set((data.value?.facets || []).map((x) => x.grade_band))].filter(Boolean),
+const subjects = computed(() =>
+  [...new Set([filters.value.subject, ...(data.value?.facets || []).map((x) => x.subject)])].filter(
+    Boolean,
+  ),
 )
-const bandIndex = computed(() =>
-  filters.value.grade_band ? bands.value.indexOf(filters.value.grade_band) + 1 : 0,
-)
+const studentGrade = ref('')
 const visibleHistory = computed(() =>
   history.value.filter((x) => x.mode === mode.value).slice(0, 8),
 )
@@ -273,14 +256,13 @@ async function load() {
     if (!defaultsLoaded) {
       const preferences = await getData('/student-preferences', { silent: true })
       if (current !== revision) return
+      studentGrade.value = preferences.grade || ''
       filters.value.subject = initialQuery.subject || preferences.subject || '数学'
-      filters.value.grade_band =
-        initialQuery.grade_band ||
-        (/^高/.test(preferences.grade || '')
-          ? '高中'
-          : /^初/.test(preferences.grade || '')
-            ? '初中'
-            : '')
+      filters.value.grade_band = /^高/.test(preferences.grade || '')
+        ? '高中'
+        : /^初/.test(preferences.grade || '')
+          ? '初中'
+          : ''
       defaultsLoaded = true
     }
     const query = Object.entries(filters.value)

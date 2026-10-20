@@ -50,21 +50,17 @@ test('题库默认按学生学段和学科打开，明确选择后可以切换',
   expect(url.searchParams.get('grade_band')).toBe('高中')
   const bank = (await response.json()).data
   expect(bank.questions.length).toBeGreaterThan(0)
-  expect(bank.questions.every((q) => q.subject === '数学' && q.grade_band === '高中')).toBe(true)
+  expect(bank.questions.every((q) => q.subject === '数学' && q.grade === '高一')).toBe(true)
   await expect(page.getByRole('button', { name: '练 5 题', exact: true })).toBeVisible()
   const switched = page.waitForResponse(
     (r) =>
       r.url().includes('/api/v1/study-bank?') &&
-      new URL(r.url()).searchParams.get('subject') === '化学',
+      new URL(r.url()).searchParams.get('subject') === '',
   )
-  await page.getByRole('button', { name: '化学', exact: true }).click()
-  const chemistry = await switched
-  expect(new URL(chemistry.url()).searchParams.get('grade_band')).toBe('高中')
-  expect(
-    (await chemistry.json()).data.questions.every(
-      (q) => q.subject === '化学' && q.grade_band === '高中',
-    ),
-  ).toBe(true)
+  await page.getByRole('button', { name: '全部', exact: true }).click()
+  const allSubjects = await switched
+  expect(new URL(allSubjects.url()).searchParams.get('grade_band')).toBe('高中')
+  expect((await allSubjects.json()).data.questions.every((q) => q.grade === '高一')).toBe(true)
 })
 
 test('全部功能页：新学生核心入口显示真实空状态且没有运行异常', async ({ page }, testInfo) => {

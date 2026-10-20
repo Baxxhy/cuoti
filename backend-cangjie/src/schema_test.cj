@@ -15,7 +15,10 @@ class SchemaUpgradeTest {
                 for (table in ["practice_recommendations","dataset_practice_attempts"]) {
                     db.query("ALTER TABLE ${table} MODIFY created_at DATETIME NOT NULL, MODIFY updated_at DATETIME NOT NULL")
                 }
+                db.query("DELETE FROM cangjie_schema_versions WHERE version='013_bank_grade_index'")
                 upgradeDatabase(); upgradeDatabase()
+                @Expect(db.query("SELECT version FROM cangjie_schema_versions WHERE version='013_bank_grade_index'").rows.size,1)
+                @Expect(db.query("SELECT COLUMN_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='dataset_questions' AND INDEX_NAME='ix_bank_grade' AND COLUMN_NAME='grade'").rows.size,1)
                 @Expect(db.query("SELECT version FROM cangjie_schema_versions WHERE version='005_practice_precision'").rows.size,1)
                 @Expect(db.query("SELECT id FROM users WHERE id=?",[Some(id)]).rows.size,1)
                 for (table in ["practice_recommendations","dataset_practice_attempts"]) {
