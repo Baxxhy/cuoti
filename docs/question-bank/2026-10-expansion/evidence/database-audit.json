@@ -1,0 +1,162 @@
+{
+  "checked_at": "2026-10-20T17:08:23.140983+08:00",
+  "total": 135367,
+  "usable": 124394,
+  "sources": [
+    {
+      "source": "cmm-math",
+      "stored": 28069,
+      "usable": 20688,
+      "auto_grade": 20688
+    },
+    {
+      "source": "cmmu",
+      "stored": 1800,
+      "usable": 1468,
+      "auto_grade": 1468
+    },
+    {
+      "source": "gaokao",
+      "stored": 2811,
+      "usable": 1648,
+      "auto_grade": 1648
+    },
+    {
+      "source": "race",
+      "stored": 97687,
+      "usable": 97430,
+      "auto_grade": 97430
+    },
+    {
+      "source": "tal",
+      "stored": 5000,
+      "usable": 3160,
+      "auto_grade": 3160
+    }
+  ],
+  "coverage": [
+    {
+      "subject": "化学",
+      "grade_band": "初中",
+      "stored": 135,
+      "usable": 106
+    },
+    {
+      "subject": "化学",
+      "grade_band": "高中",
+      "stored": 263,
+      "usable": 206
+    },
+    {
+      "subject": "历史",
+      "grade_band": "初中",
+      "stored": 93,
+      "usable": 70
+    },
+    {
+      "subject": "历史",
+      "grade_band": "高中",
+      "stored": 496,
+      "usable": 362
+    },
+    {
+      "subject": "地理",
+      "grade_band": "初中",
+      "stored": 135,
+      "usable": 110
+    },
+    {
+      "subject": "地理",
+      "grade_band": "高中",
+      "stored": 184,
+      "usable": 110
+    },
+    {
+      "subject": "思想政治",
+      "grade_band": "初中",
+      "stored": 87,
+      "usable": 75
+    },
+    {
+      "subject": "思想政治",
+      "grade_band": "高中",
+      "stored": 470,
+      "usable": 383
+    },
+    {
+      "subject": "数学",
+      "grade_band": "初中",
+      "stored": 7454,
+      "usable": 5064
+    },
+    {
+      "subject": "数学",
+      "grade_band": "小学",
+      "stored": 16257,
+      "usable": 12254
+    },
+    {
+      "subject": "数学",
+      "grade_band": "拓展",
+      "stored": 273,
+      "usable": 156
+    },
+    {
+      "subject": "数学",
+      "grade_band": "高中",
+      "stored": 10316,
+      "usable": 7268
+    },
+    {
+      "subject": "物理",
+      "grade_band": "初中",
+      "stored": 135,
+      "usable": 110
+    },
+    {
+      "subject": "物理",
+      "grade_band": "高中",
+      "stored": 246,
+      "usable": 171
+    },
+    {
+      "subject": "生物",
+      "grade_band": "初中",
+      "stored": 135,
+      "usable": 110
+    },
+    {
+      "subject": "生物",
+      "grade_band": "高中",
+      "stored": 401,
+      "usable": 260
+    },
+    {
+      "subject": "英语",
+      "grade_band": "初中",
+      "stored": 28293,
+      "usable": 28278
+    },
+    {
+      "subject": "英语",
+      "grade_band": "高中",
+      "stored": 69728,
+      "usable": 69257
+    },
+    {
+      "subject": "语文",
+      "grade_band": "高中",
+      "stored": 266,
+      "usable": 44
+    }
+  ],
+  "quality": {
+    "duplicate": 756,
+    "format_review": 3108,
+    "manual_grade_only": 6996,
+    "missing_asset": 12,
+    "no_answer": 101,
+    "usable": 124394
+  },
+  "usable_single_option_questions": 0
+}

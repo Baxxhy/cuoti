@@ -150,7 +150,11 @@
                 color="var(--color-primary)"
               />
             </view>
-            <math-text class="bank-question-text" :text="question.question_text" inline />
+            <math-text
+              class="bank-question-text"
+              :text="question.preview_text || question.question_text"
+              inline
+            />
             <view v-if="question.image_urls?.length" class="bank-question-images">
               <image
                 v-for="(url, index) in question.image_urls"

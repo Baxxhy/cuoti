@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-SUBJECTIVE_TYPES = ("作文", "论述", "简答", "材料", "开放", "写作", "翻译")
+SUBJECTIVE_TYPES = ("主观", "作文", "论述", "简答", "材料", "开放", "写作", "翻译")
 
 
 def answer_present(answer: Any) -> bool:
@@ -25,7 +25,7 @@ def normalized_answer(answer: Any) -> str:
 
 
 def selection_answer_verified(answer: Any, options: list[dict[str, str]]) -> bool:
-    if not options or not answer_present(answer):
+    if len(options) < 2 or not answer_present(answer):
         return False
     valid = {str(item.get("key", "")).upper() for item in options}
     values = answer if isinstance(answer, list) else re.findall(r"[A-Z]", str(answer).upper())
@@ -63,13 +63,15 @@ def quality_flags(question: Any, project_root: Path) -> dict[str, Any]:
     )
     if not str(question.question_text or "").strip():
         status = "invalid"
+    elif metadata.get("duplicate_of"):
+        status = "duplicate"
     elif malformed:
         status = "format_review"
-    elif missing:
+    elif missing or metadata.get("asset_review"):
         status = "missing_asset"
     elif not has_answer:
         status = "no_answer"
-    elif not auto_grade:
+    elif not auto_grade or metadata.get("answer_review"):
         status = "manual_grade_only"
     else:
         status = "usable"

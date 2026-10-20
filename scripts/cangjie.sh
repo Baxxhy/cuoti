@@ -15,6 +15,13 @@ if [[ ! -f "$mysql_root/include/mysql/mysql.h" || ! -f "$mysql_root/include/open
   exit 1
 fi
 mkdir -p "$CANGJIE_MYSQL_NATIVE"
+# Bulk import launches many short-lived commands; reuse the already-built
+# native bridge unless its sources changed. Other build/run modes still rebuild.
+bridge="$CANGJIE_MYSQL_NATIVE/libzhiwei_mysql.so"
+if [[ ${1:-build} != question-bank-built || ! -f "$bridge" ||
+      "$project_dir/backend-cangjie/native/mysql_bridge.c" -nt "$bridge" ||
+      "$project_dir/backend-cangjie/native/crypto_bridge.c" -nt "$bridge" ||
+      "$project_dir/backend-cangjie/native/media_bridge.c" -nt "$bridge" ]]; then
 native_tmp=$(mktemp "$CANGJIE_MYSQL_NATIVE/.libzhiwei_mysql.XXXXXX.so")
 trap 'rm -f "$native_tmp"' EXIT
 cc -std=c11 -Wall -Wextra -Werror -fPIC -shared "$project_dir/backend-cangjie/native/mysql_bridge.c" \
@@ -24,10 +31,13 @@ cc -std=c11 -Wall -Wextra -Werror -fPIC -shared "$project_dir/backend-cangjie/na
   -L"$mysql_root/lib/x86_64-linux-gnu" -lmysqlclient -lcrypto -lpthread \
   -o "$native_tmp"
 mv -f "$native_tmp" "$CANGJIE_MYSQL_NATIVE/libzhiwei_mysql.so"
+fi
 export LD_LIBRARY_PATH="$CANGJIE_MYSQL_NATIVE:$mysql_root/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH:-}"
 export LD_LIBRARY_PATH="$CANGJIE_STDX_PATH:${LD_LIBRARY_PATH:-}"
 if [[ -n ${CANGJIE_OPENSSL_LIB_DIR:-} ]]; then
   export LD_LIBRARY_PATH="$CANGJIE_OPENSSL_LIB_DIR:$LD_LIBRARY_PATH"
+elif [[ -n ${CONDA_EXE:-} && -d "${CONDA_EXE%/bin/conda}/lib" ]]; then
+  export LD_LIBRARY_PATH="${CONDA_EXE%/bin/conda}/lib:$LD_LIBRARY_PATH"
 elif command -v conda >/dev/null; then
   export LD_LIBRARY_PATH="$(conda info --base)/lib:$LD_LIBRARY_PATH"
 fi

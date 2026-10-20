@@ -121,9 +121,13 @@ def test_format_review_blocks_only_the_reviewed_content_version(tmp_path: Path) 
     from app.services.question_quality import quality_flags
 
     question = SimpleNamespace(
-        question_text="保留的原始题干", question_type="单选题", answer="A",
+        question_text="保留的原始题干",
+        question_type="单选题",
+        answer="A",
         options=[{"key": "A", "text": "1"}, {"key": "B", "text": "2"}],
-        solution="", image_paths=[], content_hash="a" * 64,
+        solution="",
+        image_paths=[],
+        content_hash="a" * 64,
         source_metadata={"format_review": {"content_hash": "a" * 64, "fields": ["solution"]}},
     )
     flags = quality_flags(question, tmp_path)
@@ -147,12 +151,25 @@ def test_native_preparation_audits_new_source_before_import(tmp_path: Path, monk
     prepare = importlib.import_module("prepare_cangjie_question_bank")
     rows = []
     for item_id, text in [("good", r"在 $$\triangleABC$$ 中"), ("bad", r"坏公式 $$\overset{⇌}$$")]:
-        rows.append(NormalizedDatasetQuestion(
-            source_item_id=item_id, split="test", subject="数学", grade="初一",
-            grade_band="初中", title="题目", question_text=text, question_type="单选题",
-            options=[{"key": "A", "text": "1"}], answer="A", solution="",
-            knowledge_points=[], image_paths=[], difficulty="", source_metadata={},
-        ).finalize())
+        rows.append(
+            NormalizedDatasetQuestion(
+                source_item_id=item_id,
+                split="test",
+                subject="数学",
+                grade="初一",
+                grade_band="初中",
+                title="题目",
+                question_text=text,
+                question_type="单选题",
+                options=[{"key": "A", "text": "1"}, {"key": "B", "text": "2"}],
+                answer="A",
+                solution="",
+                knowledge_points=[],
+                image_paths=[],
+                difficulty="",
+                source_metadata={},
+            ).finalize()
+        )
     originals = [asdict(row) for row in rows]
     stored = []
 
@@ -163,7 +180,7 @@ def test_native_preparation_audits_new_source_before_import(tmp_path: Path, monk
         return {"stored": "2"}
 
     monkeypatch.setattr(prepare, "native", native)
-    monkeypatch.setattr(prepare, "normalized_records", lambda source: iter(rows))
+    monkeypatch.setattr(prepare, "normalized_records", lambda source, include_primary=False: iter(rows))
     prepare.import_records("cmmu")
     assert stored[0]["usable_for_practice"] is True
     assert stored[1]["quality_status"] == "format_review"
@@ -171,3 +188,57 @@ def test_native_preparation_audits_new_source_before_import(tmp_path: Path, monk
     assert stored[1]["source_metadata"]["format_review"]["fields"] == ["question"]
     assert stored[1]["question_text"] == originals[1]["question_text"]
     assert stored[1]["content_hash"] == originals[1]["content_hash"]
+
+
+def test_recover_missing_first_marker_and_spaced_choice_labels():
+    expected = [
+        {"key": "A", "text": "1"},
+        {"key": "B", "text": "2"},
+        {"key": "C", "text": "3"},
+        {"key": "D", "text": "4"},
+    ]
+    assert normalize_choice_options("1\nB. 2\nC. 3\nD. 4") == expected
+    assert normalize_choice_options("A. 1\nB . 2\nC . 3\nD. 4") == expected
+    assert normalize_choice_options("B. 2 C. 3 D. 4") == []
+
+
+def test_unparsed_or_incomplete_options_do_not_become_short_answer(tmp_path):
+    from app.services.question_quality import quality_flags
+
+    path = tmp_path / "cmm.jsonl"
+    rows = [
+        {
+            "id": "lost",
+            "level": "高一",
+            "question": "选择正确答案",
+            "options": "选项图片无法解析",
+            "answer": "A",
+        },
+        {
+            "id": "gap",
+            "level": "高一",
+            "question": "选择正确答案",
+            "options": "A. 甲 C. 丙 D. 丁",
+            "answer": "A",
+        },
+    ]
+    path.write_text("\n".join(json.dumps(row, ensure_ascii=False) for row in rows))
+    for row in iter_cmm_math(path):
+        assert row.source_metadata["answer_review"]
+        assert not quality_flags(row, tmp_path)["usable_for_auto_grade"]
+
+
+def test_math_multiselect_does_not_become_single_choice(tmp_path):
+    path = tmp_path / "cmm.jsonl"
+    path.write_text(
+        json.dumps(
+            {
+                "id": "multi",
+                "level": "高一",
+                "question": "选择正确答案",
+                "options": "A. 甲 B. 乙 C. 丙 D. 丁",
+                "answer": "ACD",
+            }
+        )
+    )
+    assert next(iter_cmm_math(path)).question_type == "多项选择题"

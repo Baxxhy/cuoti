@@ -165,6 +165,16 @@ def question_bank(env, query):
         env,
         f"UPDATE dataset_questions SET usable_for_practice=0,usable_for_auto_grade=0 WHERE id='{saved}'",
     )
+    for source_key in ("gaokao", "tal", "race"):
+        added = copy.deepcopy(payload)
+        added["source"] = {**source, "key": source_key}
+        added["questions"][0]["source_item_id"] = prefix + "-" + source_key
+        native(added)
+        exported = native({"operation": "export", "source": source_key})
+        assert len(exported) == 1 and exported[0]["question_text"] == row["question_text"]
+        native(added)
+        assert len(native({"operation": "export", "source": source_key})) == 1
+        query(env, f"UPDATE dataset_questions SET usable_for_practice=0,usable_for_auto_grade=0 WHERE id='{exported[0]['id']}'")
     print(
         "Cangjie question bank passed: native import/export, stable IDs, content update, validation, atomic batch rollback, format quarantine/CAS/reimport protection and no user mutation"
     )

@@ -11,6 +11,12 @@ func bankQuestion(value: JsonObject, accounts: Accounts): JsonObject {
     for (key in ["id","subject","grade","grade_band","title","question_text","question_type","options","difficulty","knowledge_points","source_name"]) {
         result.put(key,value.get(key) ?? JsonNull())
     }
+    // Reading passages stay complete in the question, while the bank lists
+    // the actual subquestion so a page does not repeat twenty long articles.
+    if (!tutorText(tutorObject(value,"source_metadata"),"passage_id").isEmpty()) {
+        let paragraphs=jsonText(value,"question_text").split("\n\n")
+        if (paragraphs.size>1) { result.put("preview_text",JsonString("阅读理解："+paragraphs[paragraphs.size-1])) }
+    }
     let images=JsonArray(); var index: Int64=0
     for (_ in tutorArray(value,"image_paths").getItems()) {
         images.add(JsonString(accounts.mediaUrl("/api/v1/practice/questions/"+jsonText(value,"id")+"/images/"+index.toString()))); index++

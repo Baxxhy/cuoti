@@ -9,9 +9,9 @@ import stdx.encoding.json.*
 func questionBankImport(db: Database, body: JsonObject): JsonObject {
     let source=(body["source"] as JsonObject).getOrThrow()
     let key=schoolText(source,"key","",80,nonempty:true)
-    if (key!="cmmu" && key!="cmm-math") { throw ApiError(422,"仅支持已配置的公开题源") }
+    if (key!="cmmu" && key!="cmm-math" && key!="gaokao" && key!="race" && key!="tal") { throw ApiError(422,"仅支持已配置的公开题源") }
     let rows=(body["questions"] as JsonArray).getOrThrow()
-    if (rows.getItems().isEmpty() || rows.getItems().size>100) { throw ApiError(422,"每批需要1至100道题") }
+    if (rows.getItems().isEmpty() || rows.getItems().size>500) { throw ApiError(422,"每批需要1至500道题") }
     let seen=HashSet<String>()
     let strings=[("source_item_id",190),("split",30),("subject",30),("grade",30),("grade_band",30),("title",255),("question_text",200000),("question_type",60),("solution",200000),("difficulty",30),("content_hash",64),("quality_status",30)]
     for (value in rows.getItems()) {

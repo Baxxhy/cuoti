@@ -1,0 +1,42 @@
+[
+  {
+    "source": "CMM-Math",
+    "count": 14560,
+    "session_id": "21ce3410-2c9f-4563-8a57-a0e1b5337a47",
+    "question_id": "000663fc-e937-4bdd-a092-3a82f35a1c1c",
+    "submitted_and_restored": true,
+    "seconds": 1.61
+  },
+  {
+    "source": "CMMU",
+    "count": 1468,
+    "session_id": "2e41b77b-7c73-440f-9a0b-6aaa9dc9fc04",
+    "question_id": "013fb371-edac-41f2-b572-4f8c455b9d8c",
+    "submitted_and_restored": true,
+    "seconds": 2.19
+  },
+  {
+    "source": "GAOKAO-Bench",
+    "count": 1648,
+    "session_id": "0e188c22-86ed-4b82-991e-499bd3a37587",
+    "question_id": "00af2bd4-e987-4b2b-9bad-96b0ebec5e69",
+    "submitted_and_restored": true,
+    "seconds": 0.99
+  },
+  {
+    "source": "RACE",
+    "count": 2889,
+    "session_id": "b91bb5e5-c40d-4324-809f-8a86303cca7e",
+    "question_id": "00173777-faf9-4a46-98b8-7bc13a0883c9",
+    "submitted_and_restored": true,
+    "seconds": 1.22
+  },
+  {
+    "source": "TAL-SCQ5K-CN",
+    "count": 3161,
+    "session_id": "9634ccec-68b9-4fd2-8136-0c307600b8de",
+    "question_id": "00207726-ab65-421f-bc56-973060338960",
+    "submitted_and_restored": true,
+    "seconds": 1.76
+  }
+]
