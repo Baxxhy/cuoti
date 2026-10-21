@@ -34,8 +34,19 @@ func recommendPractice(context: HttpContext, accounts: Accounts): JsonValue {
             if (rows.isEmpty()) { throw ApiError(404,"没有找到这道错题") }
             let question=rowJson("questions",rows[0]); let fingerprint=learningSourceFingerprint(tx,question)
             let setup=JsonObject(); setup.put("question",question); setup.put("fingerprint",JsonString(fingerprint))
-            let preparation=currentPracticePreparation(tx,question,mode)
-            if (tutorText(preparation,"target_knowledge_id").isEmpty()) { throw ApiError(422,"请先分析这道题，确认需要练习的知识点") }
+            let generatedRows=tx.query("SELECT v.* FROM variant_questions v JOIN tutor_sessions s ON s.id=v.session_id WHERE s.user_id=? AND v.question_id=? AND s.stage='standalone_practice' AND v.verified=1 ORDER BY v.created_at DESC LIMIT 20",[Some(owner),Some(id)]).rows
+            if (!generatedRows.isEmpty()) {
+                let version=practiceSourceVersion(tx,question)
+                for (row in generatedRows) {
+                    let item=rowJson("variant_questions",row); let meta=tutorObject(item,"generation_metadata")
+                    if (tutorText(meta,"mode")==mode && tutorText(meta,"source_version")==version) {
+                        setup.put("generate",JsonBool(true)); return setup
+                    }
+                }
+            }
+            var preparation=JsonObject()
+            try { preparation=currentPracticePreparation(tx,question,mode) } catch (_: ApiError) { () }
+
             setup.put("preparation",preparation)
             setup.put("source_version",JsonString(practiceSourceVersion(tx,question)))
             if (!force) {
@@ -61,6 +72,7 @@ func recommendPractice(context: HttpContext, accounts: Accounts): JsonValue {
             return setup
         })
         if (let Some(cached) <- setup.get("cached")) { return cached }
+        if (tutorFlag(setup,"generate")) { return generatedPractice(db,owner,tutorObject(setup,"question"),mode,force) }
         let question=tutorObject(setup,"question"); let fingerprint=jsonText(setup,"fingerprint")
         let preparation=tutorObject(setup,"preparation")
         let excluded=JsonArray(); let seen=HashSet<String>()
@@ -69,11 +81,16 @@ func recommendPractice(context: HttpContext, accounts: Accounts): JsonValue {
                 let qid=rowText(row,"dataset_question_id"); if (!seen.contains(qid)) { seen.add(qid); excluded.add(JsonString(qid)) }
             }
         }
-        let ranked=tutorArray(retrievalCandidates(db,question,preparation,excluded,"practice",mode),"ranked")
-        let checks=practiceAligned(db,question,preparation,ranked)
+        if (tutorText(preparation,"target_knowledge_id").isEmpty()) { return generatedPractice(db,owner,question,mode,force) }
+        var ranked=JsonArray(); var checked=JsonArray()
+        try {
+            ranked=tutorArray(retrievalCandidates(db,question,preparation,excluded,"practice",mode),"ranked")
+            checked=practiceAligned(db,question,preparation,ranked)
+        } catch (_: ApiError) { return generatedPractice(db,owner,question,mode,force) }
+        let checks=checked
         let admitted=JsonArray()
         for (value in ranked.getItems()) { let row=(value as JsonObject).getOrThrow(); if (practiceAdmitted(checks,jsonText(tutorObject(row,"question"),"id"))) { admitted.add(row) } }
-        if (admitted.getItems().isEmpty()) { throw ApiError(404,"当前知识点暂无未做的类似题，可以去题库选题。") }
+        if (admitted.getItems().isEmpty()) { return generatedPractice(db,owner,question,mode,force) }
         return db.transaction<JsonValue>({ tx =>
             let current=tx.query("SELECT * FROM questions WHERE id=? AND user_id=? AND status<>'archived' FOR UPDATE",[Some(id),Some(owner)]).rows
             if (current.isEmpty() || learningSourceFingerprint(tx,rowJson("questions",current[0]))!=fingerprint) { throw ApiError(409,"题目已修改，请重新获取推荐题") }

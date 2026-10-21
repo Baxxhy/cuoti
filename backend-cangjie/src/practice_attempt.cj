@@ -19,7 +19,10 @@ func attemptPractice(context: HttpContext, accounts: Accounts): JsonValue {
         return db.transaction<JsonValue>({ tx =>
             let mistakes=tx.query("SELECT * FROM questions WHERE id=? AND user_id=? AND status<>'archived' FOR UPDATE",[Some(mistakeId),Some(owner)]).rows
             if (mistakes.isEmpty()) { throw ApiError(404,"没有找到这道错题") }
-            let mistake=rowJson("questions",mistakes[0]); let questions=tx.query("SELECT * FROM dataset_questions WHERE id=? FOR UPDATE",[Some(id)]).rows
+            let mistake=rowJson("questions",mistakes[0])
+            let generated=tx.query("SELECT v.* FROM variant_questions v JOIN tutor_sessions s ON s.id=v.session_id WHERE v.id=? AND v.question_id=? AND s.user_id=? AND s.stage='standalone_practice' FOR UPDATE",[Some(id),Some(mistakeId),Some(owner)]).rows
+            if (!generated.isEmpty()) { validateTutorHandwriting(body,owner,id,kind: "practice"); return attemptGeneratedPractice(tx,owner,mistake,rowJson("variant_questions",generated[0]),mode,answer,duration) }
+            let questions=tx.query("SELECT * FROM dataset_questions WHERE id=? FOR UPDATE",[Some(id)]).rows
             if (questions.isEmpty() || rowText(questions[0],"usable_for_auto_grade")!="1") { throw ApiError(422,"这道题不能自动判分") }
             let question=rowJson("dataset_questions",questions[0])
             if (!tx.query("SELECT id FROM dataset_practice_attempts WHERE user_id=? AND mistake_id=? AND dataset_question_id=? AND mode=? FOR UPDATE",[Some(owner),Some(mistakeId),Some(id),Some(mode)]).rows.isEmpty()) { throw ApiError(409,"这道练习已经完成，请换一道题继续练习") }

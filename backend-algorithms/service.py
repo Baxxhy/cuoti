@@ -57,6 +57,7 @@ from learning_workflow import run_learning_workflow
 from mastery_tracker import compute_aemt_cognition
 from paper_export_compute import ExportQuestion, render_paper
 from practice_alignment import align_practice
+from practice_generation import UnavailablePracticeProvider, generate_practice
 from pydantic import (
     BaseModel,
     ConfigDict,
@@ -94,6 +95,7 @@ class ComputeRequest(BaseModel):
         "counterfactual",
         "teaching_brief",
         "generate_variant",
+        "generate_practice",
         "grade_answer",
         "recognize_handwriting",
         "validate_handwriting",
@@ -215,6 +217,7 @@ class ComputeRequest(BaseModel):
                 "counterfactual",
                 "teaching_brief",
                 "generate_variant",
+                "generate_practice",
             }
             and not self.text.strip()
         ):
@@ -597,12 +600,17 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                         data.variant_candidate, data.knowledge_points, data.text
                     )
                 }
-            elif data.operation == "generate_variant":
+            elif data.operation in {"generate_variant", "generate_practice"}:
                 if app.state.provider is None:
                     try:
                         app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
-                        raise ApiPoolUnavailable("模型池尚未就绪") from None
+                        if data.operation != "generate_practice":
+                            raise ApiPoolUnavailable("模型池尚未就绪") from None
+                if data.operation == "generate_practice":
+                    return {"operation": data.operation, "result": await generate_practice(
+                        app.state.provider or UnavailablePracticeProvider(), data.subject,
+                        data.transfer_type, data.text, data.question_type, data.knowledge_points)}
                 generated, verified, metadata = await generate_variant(
                     app.state.provider,
                     data.subject,
