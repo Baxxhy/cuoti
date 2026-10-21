@@ -58,7 +58,7 @@ export CANGJIE_RETRIEVAL_INFERENCE_URL="$CANGJIE_QDRANT_URL"
 printf '%s' '{"hits":[]}' > "$CANGJIE_TEST_RETRIEVAL_STATE"
 "$project_dir/.venv/bin/python" scripts/cangjie_retrieval_fixture.py "$CANGJIE_TEST_RETRIEVAL_PORT" "$CANGJIE_TEST_RETRIEVAL_STATE" > "$algorithm_tmp/retrieval.log" 2>&1 &
 retrieval_pid=$!
-PYTHONPATH="$project_dir/backend:$project_dir/backend-algorithms" "$project_dir/.venv/bin/python" -m pytest -q backend-algorithms/tests
+PYTHONPATH="$project_dir/backend-algorithms" "$project_dir/.venv/bin/python" -m pytest -q backend-algorithms/tests
 bash scripts/algorithms.sh > "$algorithm_tmp/service.log" 2>&1 &
 algorithm_pid=$!
 python - <<'PY'

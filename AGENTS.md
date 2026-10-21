@@ -1,20 +1,14 @@
 # 错题帮开发约定
 
-- 项目是本地单用户错题教学应用，功能正确优先。
-- 当前主线：前端使用 uni-app、Vue 3、TypeScript、uni-ui；仓颉承担业务后端与 MySQL 交互，Python/FastAPI 只提供内部算法计算。旧 Python 业务版保留为兼容入口。
-- 最终产品规格以 `docs/final/README.md` 为准，实施与验收进度见 `docs/final/IMPLEMENTATION_STATUS.md`。
-- 数据库只允许 MySQL，不添加 SQLite 回退。
-- API 池项目副本位于 `backend/config/api_pool.json`。
-- 逻辑模型固定为 `Qwen`。
-- AI 请求必须通过 ApiPoolProvider 轮询，不直接访问单个条目。
-- 不在日志、报错或报告中打印池内凭据。
-- 原始上传图片不得被清洁图覆盖。
-- 模型结构化输出必须通过 Pydantic 校验。
-- 数学结论尽量通过 SymPy 验证。
-- 前端不执行模型生成的 JavaScript，仅消费 VisualizationSpec JSON。
-- 页面数据必须来自后端和 MySQL；演示种子数据除外。
-- 后端测试：`pytest backend/tests`。
-- 前端测试：`npm --prefix frontend test`。
-- 完整检查：`make verify`。
-- 当前仓颉主线检查：`make verify-final`；`make verify` 继续检查保留的 Python 业务版。
-- 功能阶段完成后提交 Git，最终保持工作区干净。
+- 项目是本地学生个人错题应用，功能正确优先。
+- 唯一主线：uni-app/Vue 3/TypeScript 前端，仓颉业务服务与MySQL，Python/FastAPI内部算法计算。旧Python业务后端已删除，不重新引入。
+- 当前说明见 README.md、docs/final/README.md 与 docs/final/IMPLEMENTATION_STATUS.md。
+- 数据库只允许MySQL；Python算法服务不读写业务数据库。
+- API池配置位于 config/api_pool.json；逻辑模型固定Qwen，请求通过ApiPoolProvider轮询，不输出凭据。
+- 保留原始上传图片；结构化模型输出通过Pydantic校验，数学尽量通过SymPy验证。
+- 前端只消费VisualizationSpec JSON，不执行模型生成的JavaScript。
+- 页面数据来自仓颉后端和MySQL，演示种子除外。
+- 算法测试：PYTHONPATH=backend-algorithms .venv/bin/pytest backend-algorithms/tests。
+- 前端测试：npm --prefix frontend test。
+- 完整检查：make verify；make verify-final为同一检查入口。
+- 功能完成后提交Git，保持工作区干净。禁止为了清理空间丢弃其他工作树的改动、学生资料或数据库。

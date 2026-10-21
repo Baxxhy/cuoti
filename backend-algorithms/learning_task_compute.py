@@ -17,16 +17,8 @@ from tempfile import TemporaryDirectory
 from typing import Annotated, Literal
 
 import sympy as sp
-from app.providers.api_pool import ApiPoolUnavailable
-from app.schemas import HandwrittenAnswerRecognition
-from app.services.handwritten_answer import recognize_handwritten_answer
-from app.services.math_tools import (
-    compare_equivalence,
-    normalize_expression,
-    parse_math_expression,
-    solve_text_equation,
-)
-from app.services.vision import save_original
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
 from error_diagnosis import EvidenceDiagnosis
 from figure_review import (
     FigureHandwritingRecognition,
@@ -36,11 +28,20 @@ from figure_review import (
     review_figure,
 )
 from grading_compute import grade_answer
+from learning_core.providers.api_pool import ApiPoolUnavailable
+from learning_core.schemas import HandwrittenAnswerRecognition
+from learning_core.services.handwritten_answer import recognize_handwritten_answer
+from learning_core.services.math_tools import (
+    compare_equivalence,
+    normalize_expression,
+    parse_math_expression,
+    solve_text_equation,
+)
+from learning_core.services.vision import save_original
 from learning_hint_compute import HINT_LIMIT, generate_hint
 from learning_memory_compute import LearningMemorySnapshot
 from learning_planner import LearningPlan, PlanCandidate
 from mastery_tracker import KnowledgeState, MasteryUpdate
-from pydantic import BaseModel, ConfigDict, Field, model_validator
 from task_visualization_compute import (
     Number,
     TaskVisualization,

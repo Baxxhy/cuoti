@@ -3,11 +3,12 @@ import base64
 import io
 
 import pytest
-from app.schemas import HandwrittenAnswerRecognition
-from figure_review import FigureHandwritingRecognition, FigureObservation, review_figure
-from learning_task_compute import Checkpoint, TaskAction, TaskContext, execute_task
 from PIL import Image
 from pydantic import ValidationError
+
+from figure_review import FigureHandwritingRecognition, FigureObservation, review_figure
+from learning_core.schemas import HandwrittenAnswerRecognition
+from learning_task_compute import Checkpoint, TaskAction, TaskContext, execute_task
 
 SOURCE = "在三角形ABC中，∠A=50°，∠B=60°，求∠C。"
 

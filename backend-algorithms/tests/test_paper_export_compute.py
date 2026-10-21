@@ -4,6 +4,7 @@ import io
 
 from fastapi.testclient import TestClient
 from openpyxl import load_workbook
+
 from service import create_app
 
 
@@ -54,8 +55,9 @@ def test_paper_rendering_uses_original_export_and_safe_spreadsheet(tmp_path):
 
 
 def test_paper_renderer_includes_only_supplied_question_figures():
-    from paper_export_compute import ExportQuestion, render_paper
     from test_service import image_input
+
+    from paper_export_compute import ExportQuestion, render_paper
 
     question = ExportQuestion(question_text="观察题图", figure_images=[image_input()])
     rendered = render_paper("图形题", "question", [question])
@@ -65,6 +67,7 @@ def test_paper_renderer_includes_only_supplied_question_figures():
 
 def test_answer_export_rejects_missing_analysis_before_rendering():
     import pytest
+
     from paper_export_compute import ExportQuestion, render_paper
 
     with pytest.raises(ValueError, match="缺少答案或解析"):

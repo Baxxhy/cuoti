@@ -5,6 +5,8 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from typing import Annotated
 
+from pydantic import BaseModel, Field, JsonValue
+
 from agent_compute import (
     AgentMemorySnapshot,
     AgentPlan,
@@ -17,11 +19,10 @@ from agent_compute import (
     plan_agent_turn,
     verify_decision,
 )
-from app.services.ai_pipeline import generate_tutor_guidance
-from app.services.tutor_graph import ensure_fresh_tutor_reply, run_tutor_step
 from grounded_knowledge import build_knowledge_evidence
+from learning_core.services.ai_pipeline import generate_tutor_guidance
+from learning_core.services.tutor_graph import ensure_fresh_tutor_reply, run_tutor_step
 from learning_memory_compute import LearningMemorySnapshot
-from pydantic import BaseModel, Field, JsonValue
 
 Text = Annotated[str, Field(max_length=12000)]
 

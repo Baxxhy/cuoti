@@ -3,6 +3,9 @@ import base64
 import io
 
 import pytest
+from PIL import Image
+from pydantic import ValidationError
+
 from grading_compute import UnavailableGradingProvider
 from learning_task_compute import (
     Checkpoint,
@@ -15,8 +18,6 @@ from learning_task_compute import (
     make_contrast,
     verify_contrast,
 )
-from PIL import Image
-from pydantic import ValidationError
 
 
 def context(**extra):

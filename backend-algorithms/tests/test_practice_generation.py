@@ -1,8 +1,9 @@
 import asyncio
 
 import pytest
-from app.providers.api_pool import ApiPoolUnavailable
-from app.schemas import VariantOutput
+
+from learning_core.providers.api_pool import ApiPoolUnavailable
+from learning_core.schemas import VariantOutput
 from practice_generation import PracticeReview, generate_practice
 
 
@@ -71,6 +72,7 @@ def test_model_exercise_requires_independent_review(approved):
 
 def test_internal_endpoint_works_without_pool_for_checked_math(tmp_path):
     from fastapi.testclient import TestClient
+
     from service import create_app
 
     secret = "practice-service-test-" + "x" * 32

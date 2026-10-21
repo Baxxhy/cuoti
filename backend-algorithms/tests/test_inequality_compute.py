@@ -2,6 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 import sympy as sp
+
 from inequality_compute import (
     format_solution,
     grade_inequality,

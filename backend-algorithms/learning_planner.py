@@ -2,8 +2,9 @@
 
 from typing import Literal
 
-from adaptive_practice import PracticeCandidate, information_gain, skills
 from pydantic import BaseModel, ConfigDict, Field
+
+from adaptive_practice import PracticeCandidate, information_gain, skills
 
 Action = Literal[
     "explain", "hint", "repair", "prerequisite", "retry", "practice", "review", "stop"

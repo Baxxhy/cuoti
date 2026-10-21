@@ -4,10 +4,11 @@ import json
 import secrets
 
 import sympy as sp
-from app.providers.api_pool import ApiPoolUnavailable
-from app.schemas import VariantOutput
-from learning_task_compute import linear_source
 from pydantic import BaseModel, ConfigDict
+
+from learning_core.providers.api_pool import ApiPoolUnavailable
+from learning_core.schemas import VariantOutput
+from learning_task_compute import linear_source
 from variant_compute import generate_variant
 
 

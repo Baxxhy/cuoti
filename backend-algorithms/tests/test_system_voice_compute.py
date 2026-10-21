@@ -5,8 +5,9 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import httpx
-from app.providers.api_pool import ApiPoolProvider
 from fastapi.testclient import TestClient
+
+from learning_core.providers.api_pool import ApiPoolProvider
 from service import create_app
 
 SECRET = "system-voice-test-" + "x" * 32
@@ -99,7 +100,7 @@ def test_original_voice_provider_through_compute(tmp_path, monkeypatch):
             paths[-1].write_bytes(b"ID3-speech-fixture")
 
     app.state.voice_provider._model = Model()
-    monkeypatch.setattr("app.services.voice.edge_tts.Communicate", Speech)
+    monkeypatch.setattr("learning_core.services.voice.edge_tts.Communicate", Speech)
     with TestClient(app) as client:
         stt = client.post(
             "/v1/compute",

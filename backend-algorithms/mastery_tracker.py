@@ -7,8 +7,9 @@ one event per request in its existing task transaction. No database is opened.
 import math
 from typing import Literal
 
-from adaptive_practice import entropy, posterior
 from pydantic import BaseModel, ConfigDict, Field
+
+from adaptive_practice import entropy, posterior
 
 
 class MasteryConfig(BaseModel):
@@ -136,7 +137,7 @@ def compute_aemt_cognition(mastery_values, misconception_values, evidence, label
     Opt-in only: legacy evidence retains its original calculation. The native
     task transaction supplies the validated event and provides durable dedupe.
     """
-    from app.services.cognition_rules import compute_cognition
+    from learning_core.services.cognition_rules import compute_cognition
 
     event = AnswerEvidence.model_validate(evidence["aemt_event"])
     state = KnowledgeState(

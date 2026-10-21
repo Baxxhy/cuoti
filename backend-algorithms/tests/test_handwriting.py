@@ -2,10 +2,11 @@ import asyncio
 import json
 
 import httpx
-from app.providers.api_pool import ApiPoolProvider
 from fastapi.testclient import TestClient
-from service import create_app
 from test_service import HEADERS, SECRET, image_input
+
+from learning_core.providers.api_pool import ApiPoolProvider
+from service import create_app
 
 
 def test_handwriting_transcription_and_validation(tmp_path):

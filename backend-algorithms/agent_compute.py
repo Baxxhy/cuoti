@@ -1,4 +1,4 @@
-"""Database-free professional agent rules extracted from the retained Python runtime.
+"""Database-free tutoring agent planning, tools and evidence verification.
 
 Knowledge cards are selected by Cangjie and supplied as records. Planning, tool
 semantics, bounded symbolic checks and decision verification retain the original
@@ -13,10 +13,11 @@ import re
 from dataclasses import dataclass, field
 from typing import Any, Literal
 
-from app.providers.api_pool import ApiPoolProvider, ApiPoolUnavailable
-from app.services.math_tools import compare_equivalence
-from app.services.visualizations import recommended_visualization
 from pydantic import BaseModel, Field
+
+from learning_core.providers.api_pool import ApiPoolProvider, ApiPoolUnavailable
+from learning_core.services.math_tools import compare_equivalence
+from learning_core.services.visualizations import recommended_visualization
 
 ToolName = Literal[
     "knowledge_search",

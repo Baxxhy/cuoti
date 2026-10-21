@@ -3,8 +3,9 @@ import json
 import sys
 
 import httpx
-from app.providers.api_pool import ApiPoolProvider
 from fastapi.testclient import TestClient
+
+from learning_core.providers.api_pool import ApiPoolProvider
 from service import create_app
 
 SECRET = "variant-test-" + "x" * 32
@@ -75,10 +76,10 @@ def test_variant_generation_and_verified_fallback(tmp_path):
         assert result["generation"]["source"] == "qwen_with_retrieval"
         assert (
             not {
-                "app.db",
-                "app.models",
-                "app.config",
-                "app.services.practice_retrieval",
+                "learning_core.db",
+                "learning_core.models",
+                "learning_core.config",
+                "learning_core.services.practice_retrieval",
             }
             & sys.modules.keys()
         )

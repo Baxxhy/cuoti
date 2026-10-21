@@ -11,16 +11,13 @@ import { resolve, sep, extname } from "node:path";
 
 const root = realpathSync(resolve("frontend/dist/build/h5"));
 const upstream = new URL(
-  process.env.ZHIWEI_BACKEND_URL || "http://127.0.0.1:8001",
+  process.env.ZHIWEI_BACKEND_URL || "http://127.0.0.1:8002",
 );
 const port = Number(process.env.QA_BUILD_PORT || 8444);
 const live = await fetch(new URL("/livez", upstream));
 const identity = live.ok ? await live.json() : {};
-if (identity.service !== "zhiwei-cangjie") {
-  const info = await (await fetch(new URL("/openapi.json", upstream))).json();
-  if (info.info?.title !== "错题帮 API")
-    throw new Error("Preview requires this project backend");
-}
+if (identity.service !== "zhiwei-cangjie") throw new Error("Preview requires the Cangjie business service");
+
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript",

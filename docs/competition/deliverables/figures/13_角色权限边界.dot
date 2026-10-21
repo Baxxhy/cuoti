@@ -1,4 +1,0 @@
-digraph G {
-node [shape=plain,fontname="Noto Sans CJK SC"];
-matrix [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="14"><TR><TD>身份</TD><TD>可访问范围</TD><TD>服务端准入依据</TD></TR><TR><TD>学生</TD><TD>本人题目、作答、任务</TD><TD>当前身份与本人归属</TD></TR><TR><TD>家长</TD><TD>已关联学生学习摘要</TD><TD>有效关联关系</TD></TR><TR><TD>教师</TD><TD>本人班级、作业与复核</TD><TD>角色与班级归属</TD></TR><TR><TD>管理员</TD><TD>受控工作台与审计字段</TD><TD>专用权限与字段白名单</TD></TR></TABLE>>];
-}

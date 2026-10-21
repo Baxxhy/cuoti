@@ -5,8 +5,9 @@ import json
 import re
 from difflib import SequenceMatcher
 
-from app.providers.api_pool import ApiPoolUnavailable
 from pydantic import BaseModel, ConfigDict, Field
+
+from learning_core.providers.api_pool import ApiPoolUnavailable
 
 HINT_LIMIT = 3
 HINT_TIMEOUT_SECONDS = 12

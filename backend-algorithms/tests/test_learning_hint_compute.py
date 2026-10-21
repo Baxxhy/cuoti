@@ -2,6 +2,8 @@ import asyncio
 import json
 
 import pytest
+from pydantic import ValidationError
+
 from grading_compute import UnavailableGradingProvider
 from learning_hint_compute import GuidedHint, HintDraft
 from learning_task_compute import (
@@ -11,7 +13,6 @@ from learning_task_compute import (
     TaskContext,
     execute_task,
 )
-from pydantic import ValidationError
 
 QUESTION = r"若不论k为何值，直线$y=k(x-1)-\frac{k^2}{4}$与抛物线$y=ax^2+bx+c$有且仅有一个公共点，求a、b、c。"
 
@@ -203,6 +204,7 @@ def test_hint_generation_timeout_does_not_consume_level(monkeypatch):
 
 def test_compute_http_contract_roundtrips_hints_without_external_provider(tmp_path):
     from fastapi.testclient import TestClient
+
     from service import create_app
 
     secret = "hint-test-secret-" * 3

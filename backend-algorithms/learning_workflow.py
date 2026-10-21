@@ -7,12 +7,13 @@ mechanism. The graph has no database checkpointer, credentials or write tools.
 from types import SimpleNamespace
 from typing import TypedDict
 
+from langgraph.graph import END, START, StateGraph
+
 from diagnosis_alignment import polynomial_alignment
 from diagnosis_compute import StepRecord
 from error_diagnosis import assess_diagnosis
 from grounded_knowledge import build_knowledge_evidence
 from inequality_compute import inequality_alignment
-from langgraph.graph import END, START, StateGraph
 from learning_planner import PlannerInput, plan_learning
 from learning_task_compute import (
     Checkpoint,

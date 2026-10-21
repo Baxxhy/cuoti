@@ -1,5 +1,6 @@
-from app.services.pedagogy import SUBJECT_PEDAGOGY, evaluate_teach_back
 from fastapi.testclient import TestClient
+
+from learning_core.services.pedagogy import SUBJECT_PEDAGOGY, evaluate_teach_back
 from service import create_app
 
 

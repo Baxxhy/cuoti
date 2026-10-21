@@ -3,8 +3,9 @@ import json
 import sys
 
 import httpx
-from app.providers.api_pool import ApiPoolProvider
 from fastapi.testclient import TestClient
+
+from learning_core.providers.api_pool import ApiPoolProvider
 from service import create_app
 
 SECRET = "teaching-test-" + "x" * 32
@@ -92,7 +93,7 @@ def test_teaching_brief_boundary_and_fallback(tmp_path):
         assert brief["check"]["correct_answers"] == ["A"]
         assert brief["check"]["options"][0] == {"value": "A", "label": "A 零"}
         assert (
-            not {"app.db", "app.models", "app.main", "app.config"} & sys.modules.keys()
+            not {"learning_core.db", "learning_core.models", "app.main", "learning_core.config"} & sys.modules.keys()
         )
         for mode in ("vague", "invalid", "fail"):
             state["mode"] = mode

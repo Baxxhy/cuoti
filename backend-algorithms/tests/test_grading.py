@@ -2,8 +2,9 @@ import asyncio
 import json
 
 import httpx
-from app.providers.api_pool import ApiPoolProvider
 from fastapi.testclient import TestClient
+
+from learning_core.providers.api_pool import ApiPoolProvider
 from service import create_app
 
 SECRET = "grading-test-" + "x" * 32

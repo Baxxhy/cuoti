@@ -66,7 +66,7 @@ def main():
         "CANGJIE_BACKEND_PORT": free_port(8002),
         "CANGJIE_ALGORITHM_PORT": free_port(8012),
         "ZHIWEI_FRONTEND_PORT": free_port(5174),
-        "CANGJIE_API_POOL_PATH": str(PROJECT / "backend/config/api_pool.json"),
+        "CANGJIE_API_POOL_PATH": str(PROJECT / "config/api_pool.json"),
         "CANGJIE_QDRANT_COLLECTION": database + "_questions_v1",
     }
     # Fresh names only. Password travels through stdin, never process arguments.

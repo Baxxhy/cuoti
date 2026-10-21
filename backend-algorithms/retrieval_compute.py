@@ -13,8 +13,9 @@ from types import SimpleNamespace
 from typing import Any
 
 import httpx
-from app.services.question_mapping import normalized_grade
 from qdrant_client import QdrantClient, models
+
+from learning_core.services.question_mapping import normalized_grade
 
 settings = SimpleNamespace(
     retrieval_inference_url=os.environ.get(

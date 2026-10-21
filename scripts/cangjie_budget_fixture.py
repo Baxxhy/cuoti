@@ -65,7 +65,7 @@ def main():
                         assert len(value.get("knowledge_history", [])) == rule["expected_knowledge_history"]
                     # Controlled model output; real evidence building and Pydantic checks still run.
                     project = Path(__file__).resolve().parents[1]
-                    sys.path[:0] = [str(project / "backend-algorithms"), str(project / "backend")]
+                    sys.path[:0] = [str(project / "backend-algorithms"), str(project / "backend-algorithms")]
                     from knowledge_lesson_compute import explain_knowledge
 
                     class LessonProvider:

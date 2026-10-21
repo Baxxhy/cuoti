@@ -1,6 +1,7 @@
-from app.providers.api_pool import ApiPoolUnavailable
-from app.schemas import AnalysisOutput, DiagnosisOutput
 from fastapi.testclient import TestClient
+
+from learning_core.providers.api_pool import ApiPoolUnavailable
+from learning_core.schemas import AnalysisOutput, DiagnosisOutput
 from service import create_app
 
 SECRET = "inequality-test-" + "x" * 32

@@ -3,8 +3,9 @@
 import asyncio
 import json
 
-from grounded_knowledge import build_knowledge_evidence
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
+
+from grounded_knowledge import build_knowledge_evidence
 
 
 class LessonDraft(BaseModel):

@@ -1,4 +1,4 @@
-"""Pure variant algorithms extracted from the preserved Python version; no DB retrieval imports."""
+"""Pure variant generation and verification, without database access."""
 
 from __future__ import annotations
 
@@ -6,10 +6,11 @@ import re
 from dataclasses import asdict, dataclass
 from typing import Any
 
-from app.providers.api_pool import ApiPoolProvider, ApiPoolUnavailable
-from app.schemas import RecognitionOption, VariantOutput
-from app.services.math_tools import solve_text_equation, verify_equivalence
 from pydantic import BaseModel, ConfigDict, Field
+
+from learning_core.providers.api_pool import ApiPoolProvider, ApiPoolUnavailable
+from learning_core.schemas import RecognitionOption, VariantOutput
+from learning_core.services.math_tools import solve_text_equation, verify_equivalence
 
 
 class VariantReference(BaseModel):

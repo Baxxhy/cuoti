@@ -6,8 +6,9 @@ module never calls a model or treats an unverified model assertion as a rule.
 
 from typing import Literal
 
-from grounded_knowledge import KnowledgeEvidence
 from pydantic import BaseModel, ConfigDict, Field
+
+from grounded_knowledge import KnowledgeEvidence
 
 
 class EvidenceWeights(BaseModel):

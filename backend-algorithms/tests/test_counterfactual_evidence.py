@@ -2,8 +2,9 @@
 import asyncio
 
 import pytest
-from app.schemas import CounterfactualRepairProposal, DiagnosisOutput
-from app.services.counterfactual import _same_step, validate_first_error_counterfactual
+
+from learning_core.schemas import CounterfactualRepairProposal, DiagnosisOutput
+from learning_core.services.counterfactual import _same_step, validate_first_error_counterfactual
 
 
 class ProposalProvider:

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 project_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-export PYTHONPATH="$project_dir/backend:$project_dir/backend-algorithms"
+export PYTHONPATH="$project_dir/backend-algorithms"
 if [[ -z ${CANGJIE_ALGORITHM_SECRET:-} ]]; then
   echo '请设置独立的 CANGJIE_ALGORITHM_SECRET（至少 32 字符）' >&2
   exit 1

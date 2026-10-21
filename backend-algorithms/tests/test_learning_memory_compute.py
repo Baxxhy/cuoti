@@ -1,10 +1,11 @@
 import asyncio
 
 import pytest
+from pydantic import ValidationError
+
 from grading_compute import UnavailableGradingProvider
 from learning_memory_compute import LearningMemoryEntry, LearningMemorySnapshot
 from learning_task_compute import Checkpoint, TaskAction, TaskContext, execute_task
-from pydantic import ValidationError
 
 
 def entry(**change):

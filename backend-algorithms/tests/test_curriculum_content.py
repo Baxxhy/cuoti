@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
 
-from grounded_knowledge import build_knowledge_evidence
 from sympy import Rational, Symbol, expand, solve, sqrt
+
+from grounded_knowledge import build_knowledge_evidence
 
 
 def test_all_seed_cards_have_actual_teaching_content_and_no_fake_examples():

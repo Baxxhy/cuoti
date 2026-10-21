@@ -10,11 +10,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "backend"))
+sys.path.insert(0, str(ROOT / "backend-algorithms"))
 
 
 def download_voice() -> None:
-    from app.services.voice import VoiceProvider
+    from learning_core.services.voice import VoiceProvider
 
     provider = VoiceProvider()
     provider._load_model()

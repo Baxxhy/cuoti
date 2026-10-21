@@ -251,6 +251,6 @@ def accounts(endpoint, env):
     )
     assert original["name"] == changed["name"]
     print(
-        "Cangjie accounts passed: persistence, Python compatibility, permissions, reset, concurrency"
+        "Cangjie accounts passed: persistence, token/password contracts, permissions, reset, concurrency"
     )
     return refreshed["access_token"]

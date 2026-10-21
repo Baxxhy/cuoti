@@ -1,103 +1,12 @@
-"""Real HTTP/MySQL checks and differential checks against original Python routes.
+"""Real HTTP/MySQL checks for analytics, knowledge, graph and owner isolation."""
 
-Only selected functions are compiled from the original source. They use an
-explicit disposable test DB session, never the original backend or its settings.
-"""
-
-import ast
-import asyncio
-import re
-import sys
 from collections import Counter
 from datetime import datetime, timedelta, timezone
-from pathlib import Path
-from types import SimpleNamespace
 from urllib.parse import quote, urlencode
 from uuid import uuid4
 
 from smoke_cangjie_accounts import request
 from smoke_cangjie_detail import fixture_insert
-
-
-def original_routes():
-    project = Path(__file__).resolve().parents[1]
-    sys.path.insert(0, str(project / "backend"))
-    from app import models
-    from app.services.knowledge_base import search_knowledge_cards
-    from app.services.question_mapping import student_facing_topic
-    from sqlalchemy import func, select
-
-    names = {
-        "analytics",
-        "dashboard",
-        "cognition_graph",
-        "knowledge_cards",
-        "knowledge_card",
-        "learning_method_label",
-        "canonical_misconception_label",
-        "learner_text",
-        "question_display_key",
-    }
-    module = ast.parse((project / "backend/app/main.py").read_text())
-    functions = []
-    for node in module.body:
-        if (
-            isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
-            and node.name in names
-        ):
-            node.decorator_list = []
-            node.args.defaults = []
-            node.args.kw_defaults = [None] * len(node.args.kwonlyargs)
-            node.returns = None
-            for arg in (*node.args.args, *node.args.kwonlyargs):
-                arg.annotation = None
-            functions.append(node)
-    assert len(functions) == len(names)
-    namespace = {
-        **vars(models),
-        "select": select,
-        "func": func,
-        "datetime": datetime,
-        "timezone": timezone,
-        "timedelta": timedelta,
-        "re": re,
-        "search_knowledge_cards": search_knowledge_cards,
-        "student_facing_topic": student_facing_topic,
-        "row_dict": lambda row: {
-            column.name: getattr(row, column.name) for column in row.__table__.columns
-        },
-        "envelope": lambda data: data,
-    }
-    exec(  # noqa: S102 -- tracked local reference functions only
-        compile(
-            ast.Module(body=functions, type_ignores=[]),
-            "<original-insight-routes>",
-            "exec",
-        ),
-        namespace,
-    )
-    return namespace
-
-
-def comparable(value):
-    if isinstance(value, datetime):
-        return value.replace(tzinfo=timezone.utc).isoformat()
-    if isinstance(value, dict):
-        return {k: comparable(v) for k, v in value.items()}
-    if isinstance(value, list):
-        return [comparable(v) for v in value]
-    return value
-
-
-def graph_comparable(value):
-    value = comparable(value)
-    # Strategy sets and DB row order do not carry an API ordering guarantee.
-    value["nodes"] = sorted(value["nodes"], key=lambda node: node["id"])
-    value["links"] = sorted(
-        value["links"],
-        key=lambda edge: (edge["source"], edge["target"], edge["relation"]),
-    )
-    return value
 
 
 def insights(endpoint, env, query):
@@ -319,109 +228,18 @@ def insights(endpoint, env, query):
         updated_at=now,
     )
 
-    async def parity():
-        from sqlalchemy.engine import URL
-        from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-
-        original = original_routes()
-        engine = create_async_engine(
-            URL.create(
-                "mysql+asyncmy",
-                username=env["CANGJIE_DB_USER"],
-                password=env["CANGJIE_DB_PASSWORD"],
-                host=env["CANGJIE_DB_HOST"],
-                port=int(env["CANGJIE_DB_PORT"]),
-                database=env["CANGJIE_DB_NAME"],
-            )
-        )
-        try:
-            async with async_sessionmaker(engine)() as db:
-                for days in (2, 14, 365):
-                    expected = comparable(
-                        await original["analytics"](
-                            days=days, user=SimpleNamespace(id=owner), db=db
-                        )
-                    )
-                    for suffix in aliases:
-                        actual = request(
-                            endpoint,
-                            "GET",
-                            "/api/v1/analytics/" + suffix + "?days=" + str(days),
-                            token=token,
-                        )
-                        assert actual == expected, (suffix, actual, expected)
-                # The original graph does not order duplicate mastery rows. The
-                # analytics comparison above covers latest-row selection; remove
-                # the obsolete fixture before comparing graph and dashboard order.
-                await db.rollback()
-                query(
-                    env,
-                    f"DELETE FROM mastery_states WHERE user_id='{owner}' AND knowledge_point='一次函数' AND mastery_score<0.3",
-                )
-                expected_dashboard = comparable(
-                    await original["dashboard"](user=SimpleNamespace(id=owner), db=db)
-                )
-                actual_dashboard = request(
-                    endpoint, "GET", "/api/v1/dashboard", token=token
-                )
-                assert actual_dashboard == expected_dashboard, (
-                    actual_dashboard,
-                    expected_dashboard,
-                )
-                for subject in (None, "数学", "英语", "不存在的学科"):
-                    args = {"days": 90}
-                    if subject is not None:
-                        args["subject"] = subject
-                    expected = await original["cognition_graph"](
-                        subject=subject, days=90, user=SimpleNamespace(id=owner), db=db
-                    )
-                    actual = request(
-                        endpoint,
-                        "GET",
-                        "/api/v1/analytics/cognition-graph?" + urlencode(args),
-                        token=token,
-                    )
-                    assert graph_comparable(actual) == graph_comparable(expected), (
-                        actual,
-                        expected,
-                    )
-                for args in (
-                    {},
-                    {"q": "一次、移项"},
-                    {"subject": "数学", "grade": "初二"},
-                    {"misconception": "斜率错误"},
-                    {"q": "insights\u3000方程"},
-                    {"q": "' OR 1=1 --"},
-                ):
-                    expected = await original["knowledge_cards"](
-                        q=args.get("q", ""),
-                        subject=args.get("subject"),
-                        grade=args.get("grade"),
-                        misconception=args.get("misconception"),
-                        db=db,
-                    )
-                    actual = request(
-                        endpoint, "GET", "/api/v1/knowledge/cards?" + urlencode(args)
-                    )
-                    assert actual == comparable(expected), (actual, expected)
-                for code in ("insights_linear", "insights_equation", "中文编码"):
-                    actual = request(
-                        endpoint,
-                        "GET",
-                        "/api/v1/knowledge/cards/" + quote(code, safe=""),
-                    )
-                    expected = await original["knowledge_card"](code=code, db=db)
-                    assert actual == comparable(expected), (actual, expected)
-                    by_id = request(
-                        endpoint,
-                        "GET",
-                        "/api/v1/knowledge/cards/" + quote(actual["id"], safe=""),
-                    )
-                    assert by_id == actual
-        finally:
-            await engine.dispose()
-
-    asyncio.run(parity())
+    for days in (2, 14, 365):
+        replies = [request(endpoint, "GET", "/api/v1/analytics/" + suffix + "?days=" + str(days), token=token) for suffix in aliases]
+        assert all(reply == replies[0] for reply in replies)
+    for args in ({}, {"q": "一次、移项"}, {"subject": "数学", "grade": "初二"}, {"misconception": "斜率错误"}, {"q": "' OR 1=1 --"}):
+        cards = request(endpoint, "GET", "/api/v1/knowledge/cards?" + urlencode(args))
+        assert isinstance(cards, list)
+        if args.get("subject"):
+            assert all(card["subject"] == args["subject"] for card in cards)
+    for code in ("insights_linear", "insights_equation", "中文编码"):
+        found_card = request(endpoint, "GET", "/api/v1/knowledge/cards/" + quote(code, safe=""))
+        assert found_card["code"] == code
+        assert request(endpoint, "GET", "/api/v1/knowledge/cards/" + found_card["id"]) == found_card
     dashboard = request(endpoint, "GET", "/api/v1/dashboard", token=token)
     assert dashboard["weekly_questions"] == 1 and dashboard["streak_days"] == 1
     assert dashboard["today_reviews"] == 1
@@ -486,5 +304,5 @@ def insights(endpoint, env, query):
     )
     query(env, f"DELETE FROM knowledge_points WHERE id IN ({fixture_ids})")
     print(
-        "Cangjie insights passed: 5 routes, original Python parity, UTC trend, cards/relations, graph evidence, filters and owner isolation"
+        "Cangjie insights passed: 5 routes, native response contracts, UTC trend, cards/relations, graph evidence, filters and owner isolation"
     )

@@ -2,11 +2,12 @@
 
 import asyncio
 
-import diagnosis_compute as compute
 import pytest
-from app.schemas import DiagnosisOutput
-from app.services.ai_pipeline import diagnose_steps
+
+import diagnosis_compute as compute
 from diagnosis_compute import StepRecord
+from learning_core.schemas import DiagnosisOutput
+from learning_core.services.ai_pipeline import diagnose_steps
 
 
 @pytest.mark.parametrize(

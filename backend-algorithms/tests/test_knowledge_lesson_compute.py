@@ -1,6 +1,7 @@
 import json
 
 import pytest
+
 from knowledge_lesson_compute import LessonDraft, explain_knowledge
 
 

@@ -1,6 +1,8 @@
 import asyncio
 
 import pytest
+from pydantic import ValidationError
+
 from grading_compute import UnavailableGradingProvider
 from learning_task_compute import (
     Checkpoint,
@@ -10,7 +12,6 @@ from learning_task_compute import (
     execute_task,
     make_contrast,
 )
-from pydantic import ValidationError
 
 
 def context(**extra):

@@ -1,7 +1,5 @@
-"""Persisted journey projection, owner isolation and original Python parity."""
+"""Persisted journey projection, owner isolation."""
 
-import asyncio
-from datetime import datetime
 
 from smoke_cangjie_accounts import request
 from smoke_cangjie_detail import fixture_insert
@@ -167,57 +165,12 @@ def journey(endpoint, env, query, token, other):
         event["id"] != "session:" + foreign_session for event in result["events"]
     )
 
-    async def parity():
-        from app.models import Question
-        from app.services.learning_journey import get_learning_journey
-        from sqlalchemy import URL
-        from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-
-        engine = create_async_engine(
-            URL.create(
-                "mysql+asyncmy",
-                username=env["CANGJIE_DB_USER"],
-                password=env["CANGJIE_DB_PASSWORD"],
-                host=env["CANGJIE_DB_HOST"],
-                port=int(env["CANGJIE_DB_PORT"]),
-                database=env["CANGJIE_DB_NAME"],
-            )
-        )
-        try:
-            async with async_sessionmaker(engine)() as db:
-                for count in (2, 55):
-                    # Over 50 sessions: SQL history cap must match the original.
-                    for index in range(count):
-                        insert(
-                            "tutor_sessions",
-                            user_id=owner,
-                            question_id=qid,
-                            status="completed",
-                            state={},
-                            created_at=f"2026-02-01 00:00:{index:02d}",
-                            updated_at=f"2026-02-01 00:00:{index:02d}",
-                        )
-                    # External fixture writes need a fresh MySQL repeatable-read snapshot.
-                    await db.rollback()
-                    actual = read()
-                    expected = await get_learning_journey(
-                        db, await db.get(Question, qid)
-                    )
-                    assert (
-                        abs(
-                            (
-                                datetime.fromisoformat(actual.pop("generated_at"))
-                                - datetime.fromisoformat(expected.pop("generated_at"))
-                            ).total_seconds()
-                        )
-                        < 10
-                    )
-                    assert actual == expected, (actual, expected)
-                    assert len(actual["events"]) <= 30 and actual["history_limit"] == 50
-        finally:
-            await engine.dispose()
-
-    asyncio.run(parity())
+    for count in (2, 55):
+        for index in range(count):
+            insert("tutor_sessions", user_id=owner, question_id=qid, status="completed", state={}, created_at=f"2026-02-01 00:00:{index:02d}", updated_at=f"2026-02-01 00:00:{index:02d}")
+        actual = read()
+        assert len(actual["events"]) <= 30 and actual["history_limit"] == 50
+        assert all(event.get("id") != "session:" + foreign_session for event in actual["events"])
     query(
         env, f"UPDATE questions SET status='awaiting_crop',confirmed=0 WHERE id='{qid}'"
     )
@@ -230,5 +183,5 @@ def journey(endpoint, env, query, token, other):
     query(env, f"UPDATE questions SET status='archived' WHERE id='{qid}'")
     request(endpoint, "GET", path, token=token, expected=404)
     print(
-        "Cangjie journey passed: persisted stages, owner isolation, evidence filters, navigation, history limits and original Python parity"
+        "Cangjie journey passed: persisted stages, owner isolation, evidence filters, navigation, history limits"
     )

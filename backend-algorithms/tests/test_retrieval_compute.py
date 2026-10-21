@@ -1,15 +1,11 @@
 """Cross-process comparison with retained retrieval and HTTP compute boundaries."""
 
 import asyncio
-import json
-import os
-import subprocess
-import sys
-from pathlib import Path
 from types import SimpleNamespace
 
-import retrieval_compute as retrieval
 from fastapi.testclient import TestClient
+
+import retrieval_compute as retrieval
 from service import create_app
 
 
@@ -44,60 +40,14 @@ def snapshots():
     ]
 
 
-def test_reranker_matches_original_process(monkeypatch):
+def test_reranker_filters_completed_and_preserves_candidate_identity(monkeypatch):
     rows = snapshots()
-    code = """
-import asyncio,json,sys
-from dataclasses import asdict
-from types import SimpleNamespace
-from app.services import practice_retrieval as r
-rows=json.load(sys.stdin)
-r.bge_runtime.rerank=lambda query,documents:[0.6,0.7]
-result={}
-for mode in ("reinforce","variation"):
-    candidates=[r.RetrievalCandidate(SimpleNamespace(**row["question"]),row["source_dataset"],row["knowledge_points"],row["dense_rank"],row["sparse_rank"],row["fusion_rank"],row["fusion_score"]) for row in rows]
-    ranked=asyncio.run(r.rerank_candidates("query","解方程 2x+3=11","填空题",mode,candidates))
-    result[mode]=[{**asdict(item),"question":vars(item.question)} for item in ranked]
-print(json.dumps(result,ensure_ascii=False))
-"""
-    original = json.loads(
-        subprocess.check_output(
-            [sys.executable, "-c", code],
-            input=json.dumps(rows).encode(),
-            env={
-                **os.environ,
-                "PYTHONPATH": str(Path(__file__).resolve().parents[2] / "backend"),
-            },
-        )
-    )
     monkeypatch.setattr(retrieval.bge_runtime, "rerank", lambda _q, _d: [0.6, 0.7])
     for mode in ("reinforce", "variation"):
-        result = asyncio.run(
-            retrieval.rank_snapshots(
-                "query", "解方程 2x+3=11", "填空题", mode, rows, [], "practice"
-            )
-        )
-        for item in result["ranked"]:
-            item.pop("score_trace")
-        assert result["ranked"] == original[mode]
-    assert (
-        asyncio.run(
-            retrieval.rank_snapshots(
-                "query",
-                "解方程 2x+3=11",
-                "填空题",
-                "reinforce",
-                rows,
-                ["1", "2"],
-                "practice",
-            )
-        )["ranked"]
-        == []
-    )
-    assert (
-        not {"app.db", "app.models", "app.config", "app.services.practice_retrieval"}
-        & sys.modules.keys()
-    )
+        result = asyncio.run(retrieval.rank_snapshots("query", "解方程 2x+3=11", "填空题", mode, rows, [], "practice"))
+        assert {item["question"]["id"] for item in result["ranked"]} == {"1", "2"}
+        assert all(item["question"]["answer"] for item in result["ranked"])
+    assert asyncio.run(retrieval.rank_snapshots("query", "解方程 2x+3=11", "填空题", "reinforce", rows, ["1", "2"], "practice"))["ranked"] == []
 
 
 def test_compute_search_and_revalidation(monkeypatch, tmp_path):

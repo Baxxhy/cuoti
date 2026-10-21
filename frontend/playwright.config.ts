@@ -2,8 +2,8 @@ import { defineConfig, devices } from '@playwright/test'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 
-const frontendPort = process.env.ZHIWEI_FRONTEND_PORT || '5173'
-const backendPort = process.env.ZHIWEI_BACKEND_PORT || '8000'
+const frontendPort = process.env.ZHIWEI_FRONTEND_PORT || '5174'
+const backendPort = process.env.ZHIWEI_BACKEND_PORT || '8002'
 const frontendURL = process.env.ZHIWEI_FRONTEND_URL || `http://127.0.0.1:${frontendPort}`
 const backendURL = process.env.ZHIWEI_API_URL || `http://127.0.0.1:${backendPort}/api/v1`
 const builtH5 = process.env.ZHIWEI_TEST_BUILT_H5 === '1'
@@ -40,10 +40,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command:
-        process.env.ZHIWEI_BACKEND_KIND === 'cangjie'
-          ? 'bash scripts/cangjie.sh run'
-          : 'make backend',
+      command: 'bash scripts/cangjie.sh run',
       cwd: path.resolve('..'),
       url: `${backendURL}/system/health`,
       reuseExistingServer: true,

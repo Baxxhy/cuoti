@@ -1,12 +1,13 @@
 import asyncio
 
 import pytest
+from test_learning_task_compute import context
+
 from grading_compute import UnavailableGradingProvider
 from learning_planner import PlanCandidate
 from learning_task_compute import Checkpoint, TaskAction
 from learning_workflow import build_learning_graph, run_learning_workflow
 from mastery_tracker import KnowledgeState
-from test_learning_task_compute import context
 
 
 def run(checkpoint=None, kind="start", text="", **extra):

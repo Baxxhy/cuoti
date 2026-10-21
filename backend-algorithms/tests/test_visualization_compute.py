@@ -1,9 +1,10 @@
-from app.services.visualizations import (
+from fastapi.testclient import TestClient
+
+from learning_core.services.visualizations import (
     recommended_visualization,
     visualization_catalog,
     visualization_spec,
 )
-from fastapi.testclient import TestClient
 from service import create_app
 
 

@@ -8,8 +8,11 @@ from smoke_cangjie_detail import fixture_insert
 
 
 def visualizations(endpoint, env, query, token, other):
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
-    from app.services.visualizations import visualization_catalog, visualization_spec
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend-algorithms"))
+    from learning_core.services.visualizations import (
+        visualization_catalog,
+        visualization_spec,
+    )
 
     insert = fixture_insert(env, query)
     owner = request(endpoint, "GET", "/api/v1/auth/me", token=token)["id"]

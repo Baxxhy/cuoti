@@ -1,12 +1,6 @@
-"""Teach-back evaluation, completion idempotence, Python parity and atomic writes."""
+"""Teach-back evaluation, completion idempotence, completion invariants and atomic writes."""
 
-import ast
-import asyncio
 import json
-import sys
-from datetime import datetime, timedelta, timezone
-from pathlib import Path
-from types import SimpleNamespace
 
 from smoke_cangjie_accounts import request
 from smoke_cangjie_detail import fixture_insert
@@ -66,120 +60,12 @@ def tutor_completion(endpoint, env, query, token, other, state):
     def read(sid):
         return request(endpoint, "GET", f"/api/v1/tutor/sessions/{sid}", token=token)
 
-    project = Path(__file__).resolve().parents[1]
-    sys.path.insert(0, str(project / "backend"))
-    from app import models
-    from app.services.academic_text import repair_question_title
-    from app.services.cognition import cognition_target, update_cognition
-    from app.services.pedagogy import evaluate_teach_back
-    from app.services.timestamps import iso_timestamp
-    from app.services.tutor_state import canonical_tutor_stage
-    from fastapi import HTTPException
-    from sqlalchemy import URL, select
-    from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-
-    names = {
-        "finish_tutor",
-        "complete_tutor_learning",
-        "public_tutor_session",
-        "row_dict",
-        "record_agent_tool",
-    }
-    functions = []
-    for node in ast.parse((project / "backend/app/main.py").read_text()).body:
-        if (
-            isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
-            and node.name in names
-        ):
-            node.decorator_list = []
-            # Preserve pure defaults such as run_result=None; remove injected defaults.
-            if node.name == "finish_tutor":
-                node.args.defaults = []
-            node.returns = None
-            for arg in (*node.args.args, *node.args.kwonlyargs):
-                arg.annotation = None
-            functions.append(node)
-    assert len(functions) == len(names)
-    namespace = {
-        **vars(models),
-        "select": select,
-        "datetime": datetime,
-        "timezone": timezone,
-        "timedelta": timedelta,
-        "HTTPException": HTTPException,
-        "iso_timestamp": iso_timestamp,
-        "repair_question_title": repair_question_title,
-        "cognition_target": cognition_target,
-        "update_cognition": update_cognition,
-        "canonical_tutor_stage": canonical_tutor_stage,
-        "envelope": lambda value: value,
-    }
-    exec(  # noqa: S102 -- selected original functions, isolated test DB and outer rollback
-        compile(
-            ast.Module(body=functions, type_ignores=[]),
-            "<reference-tutor-completion>",
-            "exec",
-        ),
-        namespace,
-    )
-
-    async def reference(sid):
-        engine = create_async_engine(
-            URL.create(
-                "mysql+asyncmy",
-                username=env["CANGJIE_DB_USER"],
-                password=env["CANGJIE_DB_PASSWORD"],
-                host=env["CANGJIE_DB_HOST"],
-                port=int(env["CANGJIE_DB_PORT"]),
-                database=env["CANGJIE_DB_NAME"],
-            )
-        )
-        try:
-            async with engine.connect() as connection:
-                outer = await connection.begin()
-                try:
-                    async with AsyncSession(
-                        bind=connection,
-                        join_transaction_mode="create_savepoint",
-                        expire_on_commit=False,
-                    ) as db:
-                        return await namespace["finish_tutor"](
-                            session_id=sid,
-                            payload={},
-                            user=SimpleNamespace(id=owner),
-                            db=db,
-                        )
-                finally:
-                    await outer.rollback()
-        finally:
-            await engine.dispose()
-
-    def stable(value):
-        if isinstance(value, dict):
-            return {
-                k: stable(v)
-                for k, v in value.items()
-                if k
-                not in {"id", "created_at", "updated_at", "last_evidence_at", "due_at"}
-            }
-        if isinstance(value, list):
-            return [stable(v) for v in value]
-        return value
+    from learning_core.services.pedagogy import evaluate_teach_back
 
     def compared_finish(sid):
-        expected = asyncio.run(reference(sid))
         actual = call(sid, "finish", {})
-        assert stable(actual) == stable(expected), (actual, expected)
-        if actual["review"]:
-            assert (
-                abs(
-                    (
-                        datetime.fromisoformat(actual["review"]["due_at"])
-                        - datetime.fromisoformat(expected["review"]["due_at"])
-                    ).total_seconds()
-                )
-                < 15
-            )
+        assert actual["session"]["id"] == sid
+        assert actual["session"]["stage"] == "finished"
         return actual
 
     sid, _qid = session()
@@ -381,5 +267,5 @@ def tutor_completion(endpoint, env, query, token, other, state):
         state["teaching"] = False
         state["mode"] = "good"
     print(
-        "Cangjie teaching completion passed: original Python teach-back evaluation, transitions, finish parity, idempotence, private state, permissions and atomic rollback"
+        "Cangjie teaching completion passed: shared teach-back evaluation, transitions, finish invariants, idempotence, private state, permissions and atomic rollback"
     )

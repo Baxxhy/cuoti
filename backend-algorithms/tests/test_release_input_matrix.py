@@ -2,8 +2,9 @@
 from types import SimpleNamespace
 
 import pytest
-from diagnosis_alignment import polynomial_alignment
 from fastapi.testclient import TestClient
+
+from diagnosis_alignment import polynomial_alignment
 from inequality_compute import format_solution, grade_inequality, source_inequality
 from service import create_app
 

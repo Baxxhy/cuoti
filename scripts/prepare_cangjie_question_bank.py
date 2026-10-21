@@ -13,17 +13,21 @@ from pathlib import Path
 from types import SimpleNamespace
 
 PROJECT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT / "backend"))
+sys.path.insert(0, str(PROJECT / "backend-algorithms"))
 sys.path.insert(0, str(PROJECT / "backend-algorithms"))
 
-from app.services.public_question_sources import iter_gaokao, iter_race, iter_tal
-from app.services.question_bank_import import (
+from learning_core.services.public_question_sources import (
+    iter_gaokao,
+    iter_race,
+    iter_tal,
+)
+from learning_core.services.question_bank_import import (
     build_asset_index,
     iter_cmm_math,
     iter_cmmu,
 )
-from app.services.question_mapping import map_question, normalized_grade
-from app.services.question_quality import quality_flags
+from learning_core.services.question_mapping import map_question, normalized_grade
+from learning_core.services.question_quality import quality_flags
 from question_format_audit import audit_formats
 
 SOURCES = {

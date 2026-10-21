@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from app.services.cognition_rules import compute_cognition
+from learning_core.services.cognition_rules import compute_cognition
 
 
 def test_cognition_preserves_original_results():
@@ -21,6 +21,7 @@ def test_cognition_preserves_original_results():
 
 def test_cognition_internal_http_is_pure(tmp_path):
     from fastapi.testclient import TestClient
+
     from service import create_app
 
     secret = "cognition-internal-test-" + "x" * 32

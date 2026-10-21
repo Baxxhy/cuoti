@@ -5,15 +5,16 @@ from __future__ import annotations
 import asyncio
 from pathlib import Path
 
-from app.providers.api_pool import ApiPoolProvider
-from app.services.ai_pipeline import diagnose_steps
-from app.services.counterfactual import validate_first_error_counterfactual
-from app.services.diagnosis import align_steps
+from pydantic import BaseModel, ConfigDict, Field
+
 from diagnosis_alignment import polynomial_alignment, verify_polynomial_repair
 from error_diagnosis import assess_diagnosis
 from grounded_knowledge import build_knowledge_evidence
 from inequality_compute import inequality_alignment, verify_inequality_repair
-from pydantic import BaseModel, ConfigDict, Field
+from learning_core.providers.api_pool import ApiPoolProvider
+from learning_core.services.ai_pipeline import diagnose_steps
+from learning_core.services.counterfactual import validate_first_error_counterfactual
+from learning_core.services.diagnosis import align_steps
 
 
 class StepRecord(BaseModel):

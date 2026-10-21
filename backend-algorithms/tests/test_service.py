@@ -7,10 +7,11 @@ import sys
 
 import httpx
 import pytest
-import service
-from app.providers.api_pool import ApiPoolProvider
 from fastapi.testclient import TestClient
 from PIL import Image, ImageDraw
+
+import service
+from learning_core.providers.api_pool import ApiPoolProvider
 from service import create_app
 
 SECRET = "algorithm-test-secret-" + "x" * 32
@@ -71,7 +72,7 @@ def test_compute_boundary_and_images(tmp_path):
     with TestClient(app) as client:
         assert client.get("/livez").json()["database"] is False
         assert (
-            not {"app.db", "app.models", "app.main", "app.config"} & sys.modules.keys()
+            not {"learning_core.db", "learning_core.models", "app.main", "learning_core.config"} & sys.modules.keys()
         )
         assert client.post("/v1/compute", json={}).status_code == 401
         assert (
@@ -319,7 +320,7 @@ def test_analysis_schema_math_and_multimodal(tmp_path, monkeypatch):
         failed = compute(subject="物理")
         assert failed.status_code == 503 and "fixture-key" not in failed.text
         assert (
-            not {"app.db", "app.models", "app.main", "app.config"} & sys.modules.keys()
+            not {"learning_core.db", "learning_core.models", "app.main", "learning_core.config"} & sys.modules.keys()
         )
 
 

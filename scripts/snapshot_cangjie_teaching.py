@@ -5,11 +5,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "backend"))
-from app.schemas import TutorActivityDefinition
-from app.services.pedagogy import SUBJECT_PEDAGOGY
-from app.services.question_mapping import QUESTION_TYPE_LABELS
-from app.services.tutor_activities import activity_public, build_understanding_plan
+sys.path.insert(0, str(ROOT / "backend-algorithms"))
+from learning_core.schemas import TutorActivityDefinition
+from learning_core.services.pedagogy import SUBJECT_PEDAGOGY
+from learning_core.services.question_mapping import QUESTION_TYPE_LABELS
+from learning_core.services.tutor_activities import (
+    activity_public,
+    build_understanding_plan,
+)
 
 
 def write(path, value):
