@@ -28,6 +28,7 @@
     { "path": "pages/analysis/analysis", "style": { "navigationStyle": "custom" } },
     { "path": "pages/knowledge/knowledge", "style": { "navigationStyle": "custom" } },
     { "path": "pages/paper/paper-center", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/profile/edit", "style": { "navigationStyle": "custom" } },
     { "path": "pages/profile/profile", "style": { "navigationStyle": "custom" } },
     { "path": "pages/guardian/access", "style": { "navigationStyle": "custom" } },
     { "path": "pages/guardian/home", "style": { "navigationStyle": "custom" } },

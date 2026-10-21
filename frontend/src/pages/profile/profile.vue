@@ -23,23 +23,21 @@
               </template>
             </text>
             <text v-else class="profile-meta">{{ roleName }}</text>
+            <text class="profile-email">{{ store.user?.email }}</text>
           </view>
         </view>
-        <view class="section-title personal-heading"><text>个人信息</text></view>
-        <view class="personal-info">
-          <view class="info-row">
-            <text class="info-label">昵称</text>
-            <text class="info-value">{{ store.user?.name || '未设置' }}</text>
-          </view>
-          <view class="info-row">
-            <text class="info-label">邮箱</text>
-            <text class="info-value" selectable>{{ store.user?.email || '未设置' }}</text>
-          </view>
-          <view v-if="store.role === 'student'" class="info-row">
-            <text class="info-label">年级</text>
-            <text class="info-value">{{ dashboard.grade || store.user?.grade || '未设置' }}</text>
-          </view>
-        </view>
+        <button
+          class="edit-profile-link disclosure-link"
+          tabindex="0"
+          @keydown.enter.prevent="go('/pages/profile/edit')"
+          @keydown.space.prevent
+          @keyup.space.prevent="go('/pages/profile/edit')"
+          role="button"
+          @click="go('/pages/profile/edit')"
+        >
+          <text>编辑个人资料</text>
+          <uni-icons type="right" size="18" aria-hidden="true" />
+        </button>
         <template v-if="store.role === 'student'">
           <button
             aria-label="学习设置"
@@ -158,39 +156,16 @@ onUnload(() => revision++)
 </script>
 
 <style scoped lang="scss">
-.section-title.personal-heading {
-  margin-top: 0;
+.edit-profile-link {
+  margin-bottom: 12px;
 }
-.personal-info {
-  margin-bottom: 16px;
-  padding: 0 20px;
-  border-radius: 12px;
-  background: var(--color-surface);
-}
-.info-row {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  min-height: 52px;
-  padding: 12px 0;
-}
-.info-row + .info-row {
-  border-top: 1px solid var(--color-border);
-}
-.info-label {
-  flex: none;
-  font-size: 14px;
+.profile-email {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
   color: var(--color-text-secondary);
-}
-.info-value {
-  flex: 1;
-  min-width: 0;
-  text-align: right;
   overflow-wrap: anywhere;
-  font-size: 14px;
-  line-height: 1.5;
 }
-
 .student-profile {
   display: flex;
   align-items: center;
