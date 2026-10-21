@@ -190,7 +190,7 @@
                 </text>
               </view>
               <template v-if="attempts[activePlan.id].can_update_learning">
-                <text class="grade-prompt">现在回想，这道题对你来说有多难？</text>
+                <text class="grade-prompt">这道题掌握得怎么样？</text>
                 <view class="grade-grid">
                   <button
                     v-for="gradeItem in grades"
@@ -204,7 +204,7 @@
                     @keyup.space.prevent="grade(activePlan.id, gradeItem.value)"
                     @click="grade(activePlan.id, gradeItem.value)"
                   >
-                    {{ gradeItem.label }}
+                    <text>{{ gradeItem.label }}</text>
                   </button>
                 </view>
               </template>
@@ -1146,17 +1146,48 @@ onUnload(leave)
 }
 .grade-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12rpx;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 640px;
 }
 .grade-grid button {
-  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  min-height: 44px;
   margin: 0;
-  padding: 18rpx 8rpx;
+  padding: 0 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.grade-grid button::after {
+  border: 0;
+}
+.grade-grid button:not([disabled]):active {
   background: var(--color-primary-soft);
-  color: var(--color-primary-dark);
-  border-radius: 15rpx;
-  font-size: 24rpx;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.grade-grid button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.grade-grid button[disabled] {
+  opacity: 0.5;
+}
+@media (min-width: 600px) {
+  .grade-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 .reinforce-list {
   border-top: 1rpx solid var(--color-border);

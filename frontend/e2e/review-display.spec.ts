@@ -49,7 +49,7 @@ test('复习排版：过滤占位错因、渲染公式、紧凑拍照入口', as
       },
     }),
   )
-  for (const width of [375, 768]) {
+  for (const width of [375, 768, 1280]) {
     await page.setViewportSize({ width, height: 900 })
     await page.goto('/#/pages/review/review')
     await page.reload()
@@ -61,5 +61,34 @@ test('复习排版：过滤占位错因、渲染公式、紧凑拍照入口', as
       await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
     ).toBeTruthy()
     await page.screenshot({ path: info.outputPath(`review-${width}.png`), fullPage: true })
+    await page.route('**/api/v1/reviews/display-plan/attempt', (route) =>
+      route.fulfill({
+        json: {
+          data: {
+            attempt_id: 'display-attempt',
+            can_update_learning: true,
+            correct: true,
+            student_answer: '2',
+            expected_answer: '2',
+            feedback: '回答正确',
+          },
+        },
+      }),
+    )
+    await page.locator('.written-answer textarea').first().fill('2')
+    await page.getByRole('button', { name: '提交作答', exact: true }).click()
+    await expect(page.locator('.grade-grid')).toBeVisible()
+    const buttons = page.locator('.grade-grid [role="button"]')
+    await expect(buttons).toHaveCount(4)
+    for (const button of await buttons.all()) {
+      const box = await button.boundingBox()
+      const label = await button.locator('uni-text').boundingBox()
+      expect(box).toBeTruthy()
+      expect(label).toBeTruthy()
+      expect(Math.abs(box!.y + box!.height / 2 - label!.y - label!.height / 2)).toBeLessThan(2)
+      expect(Math.abs(box!.x + box!.width / 2 - label!.x - label!.width / 2)).toBeLessThan(2)
+      expect(box!.height).toBe(44)
+    }
+    await page.screenshot({ path: info.outputPath(`review-grade-${width}.png`), fullPage: true })
   }
 })
