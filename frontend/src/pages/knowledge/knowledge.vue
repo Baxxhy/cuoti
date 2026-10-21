@@ -5,7 +5,8 @@
       v-if="loading || error"
       :state="error ? 'error' : 'loading'"
       :message="error"
-      @retry="load"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
     />
     <view v-else-if="item" class="page-content">
       <view v-if="!primaryKnowledge.length" class="intro-card">

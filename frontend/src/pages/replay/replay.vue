@@ -1,12 +1,17 @@
 <template>
   <view class="page replay-page">
-    <app-header title="错因回放" back :back-fallback="`/pages/detail/detail?id=${id}`" />
+    <app-header
+      title="错因回放"
+      back
+      :back-fallback="id ? `/pages/detail/detail?id=${id}` : '/pages/problem/list'"
+    />
     <view class="page-content">
       <state-panel
         v-if="loading || error"
         :state="error ? 'error' : 'loading'"
         :message="error"
-        @retry="load"
+        :retry-text="!id ? '选择错题' : '重新加载'"
+        @retry="id ? load() : go('/pages/problem/list')"
       />
       <template v-else-if="item">
         <view class="editorial-heading">

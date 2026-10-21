@@ -401,11 +401,11 @@ const otherTasks = computed(() => {
   if (sourcesLoaded.value)
     rows.push({
       key: 'mistake',
-      title: '需要巩固',
+      title: '近期错因',
       detail: errorGroups(sources.value).length
-        ? `${new Set(errorGroups(sources.value).flatMap((group) => group.sources.map((item) => item.id))).size} 道错题待巩固`
-        : '暂无待巩固错题',
-      url: '/pages/problem/list',
+        ? `${new Set(errorGroups(sources.value).flatMap((group) => group.sources.map((item) => item.id))).size} 道关联错题`
+        : '暂无错因记录',
+      url: '/pages/error-map/error-map',
     })
   return rows.slice(0, 2)
 })

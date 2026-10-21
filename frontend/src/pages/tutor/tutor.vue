@@ -28,7 +28,13 @@
         进度
       </button>
     </app-header>
-    <state-panel v-if="!session" :state="error ? 'error' : 'loading'" @retry="load" />
+    <state-panel
+      v-if="!session"
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先选择一道错题' : undefined"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
+    />
 
     <template v-else>
       <view v-if="planOpen" class="stage-strip">
@@ -762,6 +768,7 @@ function resetActivityInput() {
 }
 
 async function load(preserveInput = false) {
+  if (!id.value) return
   try {
     const previousActivity = activity.value?.id
     session.value = await getData(`/tutor/sessions/${id.value}`)

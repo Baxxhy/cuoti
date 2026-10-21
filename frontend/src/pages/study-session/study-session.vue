@@ -16,7 +16,8 @@
         v-if="loading || loadError"
         :state="loadError ? 'error' : 'loading'"
         :message="loadError"
-        @retry="load"
+        :retry-text="!id ? '选择练习题' : '重新加载'"
+        @retry="id ? load() : go('/pages/bank/bank')"
       />
       <template v-else-if="session">
         <template v-if="session.status === 'submitted'">
@@ -341,6 +342,11 @@ function removeDraft() {
   } catch (_) {}
 }
 async function load() {
+  if (!id.value) {
+    loading.value = false
+    loadError.value = '请先选择练习题或创建考试'
+    return
+  }
   loading.value = true
   loadError.value = ''
   actionError.value = ''

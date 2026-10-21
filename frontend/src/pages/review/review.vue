@@ -8,7 +8,7 @@
         @click="go('/pages/review-search/review-search')"
       >
         <uni-icons type="search" size="20" aria-hidden="true" />
-        <text>查找复习题</text>
+        <text class="review-search-label">查找复习题</text>
         <uni-icons type="right" size="16" aria-hidden="true" />
       </button>
       <state-panel v-if="loading" state="loading" />
@@ -898,8 +898,12 @@ onUnload(leave)
   font-size: 15px;
   text-align: left;
 }
-.review-search-entry text {
+.review-search-label {
   flex: 1;
+  min-width: 0;
+}
+.review-search-entry :deep(.uni-icons) {
+  flex: none;
 }
 .origin-unavailable {
   padding: 16px;

@@ -27,7 +27,12 @@
         >
           去题库选题
         </button>
-        <button v-if="!missingTarget" role="button" class="secondary-btn" @click="loadQuestion()">
+        <button
+          v-if="!missingTarget && mistakeId"
+          role="button"
+          class="secondary-btn"
+          @click="loadQuestion()"
+        >
           重新匹配
         </button>
       </view>
@@ -226,6 +231,10 @@ function onHandwritingChange(value) {
   handwritingRecognition.value = value.recognition || null
 }
 async function loadQuestion(forceNew = false) {
+  if (!mistakeId.value) {
+    error.value = '请从错题详情选择类似题练习，也可以直接去题库选题。'
+    return
+  }
   if (loading.value) return
   loading.value = true
   error.value = ''

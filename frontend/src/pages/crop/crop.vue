@@ -55,7 +55,13 @@
         </text>
       </view>
     </view>
-    <state-panel v-else :state="error ? 'error' : 'loading'" @retry="load" />
+    <state-panel
+      v-else
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先上传题目图片' : undefined"
+      :retry-text="!id ? '录入错题' : '重新加载'"
+      @retry="id ? load() : uni.redirectTo({ url: '/pages/capture/capture' })"
+    />
   </view>
 </template>
 
@@ -197,6 +203,7 @@ function restoreProcessingState(data) {
 }
 
 async function load() {
+  if (!id.value) return
   if (loading) return
   loading = true
   error.value = false

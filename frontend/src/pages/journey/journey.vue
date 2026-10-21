@@ -2,7 +2,13 @@
   <view class="page journey-page">
     <app-header title="学习记录" back />
     <view class="page-content">
-      <state-panel v-if="!journey" :state="error ? 'error' : 'loading'" @retry="load" />
+      <state-panel
+        v-if="!journey"
+        :state="!id || error ? 'error' : 'loading'"
+        :message="!id ? '请先选择一道错题' : undefined"
+        :retry-text="!id ? '选择错题' : '重新加载'"
+        @retry="id ? load() : go('/pages/problem/list')"
+      />
       <template v-else>
         <view class="overview">
           <text class="subject-label">{{ journey.subject }}</text>
@@ -156,6 +162,7 @@ const taskSummary = computed(() => {
 })
 let loading = false
 async function load() {
+  if (!id.value) return
   if (!id.value || loading) return
   loading = true
   error.value = false

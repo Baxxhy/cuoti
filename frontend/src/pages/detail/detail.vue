@@ -27,7 +27,13 @@
         />
       </button>
     </app-header>
-    <state-panel v-if="!item" :state="error ? 'error' : 'loading'" @retry="load" />
+    <state-panel
+      v-if="!item"
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先选择一道错题' : undefined"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
+    />
     <view v-else class="page-content">
       <view class="detail-sections" aria-label="本题内容分区">
         <button
@@ -436,6 +442,7 @@ function optionText(option, index) {
     : `${option?.label || option?.key || String.fromCharCode(65 + index)}. ${option?.text || option?.content || option?.value || ''}`
 }
 async function load() {
+  if (!id.value) return
   if (!active || !id.value || loading) return
   const current = ++revision,
     questionId = id.value

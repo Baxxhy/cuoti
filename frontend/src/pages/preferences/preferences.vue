@@ -73,7 +73,7 @@
           <!-- #endif -->
         </view>
         <view class="preference-field">
-          <text class="field-label">今天想做什么</text>
+          <text class="field-label">优先学习内容</text>
           <view class="preference-options">
             <button
               role="button"

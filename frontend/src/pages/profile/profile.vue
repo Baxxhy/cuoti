@@ -89,7 +89,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
+import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'
 import { useAppStore } from '@/store/index.js'
 import { go } from '@/utils/navigation.js'
@@ -121,19 +122,24 @@ const roleSettings = computed(
       admin: [{ title: '系统状态', icon: 'gear', url: '/pages/system/system' }],
     })[store.role] || [],
 )
+let revision = 0
 async function load() {
+  const current = ++revision
   loading.value = true
   error.value = ''
   try {
     await store.loadUser()
-    if (store.role === 'student') dashboard.value = await getData('/dashboard')
+    const result = store.role === 'student' ? await getData('/dashboard') : {}
+    if (current === revision) dashboard.value = result
   } catch (err) {
-    error.value = err.message || '个人档案暂时无法加载，请重试'
+    if (current === revision) error.value = err.message || '个人档案暂时无法加载，请重试'
   } finally {
-    loading.value = false
+    if (current === revision) loading.value = false
   }
 }
-onMounted(load)
+onShow(load)
+onHide(() => revision++)
+onUnload(() => revision++)
 </script>
 
 <style scoped lang="scss">

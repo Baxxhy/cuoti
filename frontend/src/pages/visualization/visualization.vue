@@ -1,7 +1,13 @@
 <template>
   <view class="page">
     <app-header title="互动图解" back />
-    <state-panel v-if="!spec.type" :state="error ? 'error' : 'loading'" @retry="load" />
+    <state-panel
+      v-if="!spec.type"
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先选择一道错题' : undefined"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
+    />
     <view v-else class="page-content">
       <view class="question-context">
         <text>当前题目</text>
@@ -68,6 +74,7 @@
   </view>
 </template>
 <script setup>
+import { go } from '@/utils/navigation.js'
 import MathText from '@/components/math-text/math-text.vue'
 import VisualizationCanvas from '@/components/visualization-canvas/visualization-canvas.vue'
 import { reactive, ref } from 'vue'
@@ -86,6 +93,7 @@ function reset() {
   ;(spec.value.interactive_variables || []).forEach((v) => (values[v.name] = v.value))
 }
 async function load() {
+  if (!id.value) return
   error.value = false
   try {
     const data = await getData(`/tutor/sessions/${id.value}/visualization`)

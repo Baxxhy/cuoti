@@ -1,8 +1,19 @@
 <template>
   <view class="page confirm-page">
-    <app-header title="确认题目" back :back-fallback="`/pages/crop/crop?id=${id}`" />
+    <app-header
+      title="确认题目"
+      back
+      :back-fallback="id ? `/pages/crop/crop?id=${id}` : '/pages/capture/capture'"
+    />
 
-    <view v-if="processing" class="page-content">
+    <state-panel
+      v-if="!id"
+      state="error"
+      message="请先录入一道题目"
+      retry-text="录入错题"
+      @retry="uni.redirectTo({ url: '/pages/capture/capture' })"
+    />
+    <view v-else-if="processing" class="page-content">
       <state-panel state="loading" />
       <text class="notice">{{ processingStatus }}</text>
     </view>
@@ -307,6 +318,7 @@ function hydrate(data) {
 }
 
 async function load() {
+  if (!id.value) return
   if (loading) return
   loading = true
   error.value = false
