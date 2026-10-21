@@ -17,7 +17,6 @@ declare module 'vue' {
     QuestionContent: typeof import('./src/components/question-content/question-content.vue')['default']
     SelfCheck: typeof import('./src/components/self-check/self-check.vue')['default']
     StatePanel: typeof import('./src/components/state-panel/state-panel.vue')['default']
-    StudentReport: typeof import('./src/components/student-report/student-report.vue')['default']
     TabBar: typeof import('./src/components/tab-bar/tab-bar.vue')['default']
     TaskHistory: typeof import('./src/components/task-history/task-history.vue')['default']
     TaskVisualization: typeof import('./src/components/task-visualization/task-visualization.vue')['default']

@@ -5,7 +5,7 @@ export ZHIWEI_BACKEND_PORT ?= $(or $(shell sed -nE 's/^ZHIWEI_BACKEND_PORT=([0-9
 export ZHIWEI_FRONTEND_PORT ?= $(or $(shell sed -nE 's/^ZHIWEI_FRONTEND_PORT=([0-9]+)$$/\1/p' .env 2>/dev/null | tail -n 1),5173)
 export ZHIWEI_BACKEND_URL ?= http://127.0.0.1:$(ZHIWEI_BACKEND_PORT)
 
-.PHONY: install install-retrieval download-voice download-retrieval-models mysql retrieval migrate seed seed-knowledge fresh-student import-question-bank map-question-bank index-question-bank setup-question-bank backend frontend dev audit verify-adaptive-practice test test-backend test-frontend test-e2e build verify verify-services verify-local verify-recognition-concurrency verify-live-ai verify-retrieval verify-agent verify-knowledge verify-visualizations verify-voice verify-papers verify-parent-teacher verify-roles verify-pages validate-data verify-real-exams verify-diagnosis verify-database verify-functional verify-live completion-report verify-all
+.PHONY: install install-retrieval download-voice download-retrieval-models mysql retrieval migrate seed seed-knowledge fresh-student import-question-bank map-question-bank index-question-bank setup-question-bank backend frontend dev audit verify-adaptive-practice test test-backend test-frontend test-e2e build verify verify-services verify-local verify-recognition-concurrency verify-live-ai verify-retrieval verify-agent verify-knowledge verify-visualizations verify-voice verify-papers verify-pages validate-data verify-real-exams verify-diagnosis verify-database verify-functional verify-live completion-report verify-all
 
 install:
 	@conda env list | awk '{print $$1}' | grep -qx '$(CONDA_ENV)' || conda create -n $(CONDA_ENV) python=3.13 pip -y
@@ -112,10 +112,6 @@ verify-voice:
 verify-papers:
 	$(PYTHON) scripts/verify_papers.py
 
-verify-parent-teacher:
-	$(PYTHON) scripts/verify_parent_teacher.py
-
-verify-roles: verify-parent-teacher
 
 verify-pages:
 	$(PYTHON) scripts/verify_pages.py
@@ -164,7 +160,6 @@ verify-all:
 	$(MAKE) verify-visualizations
 	$(MAKE) verify-voice
 	$(MAKE) verify-papers
-	$(MAKE) verify-roles
 	$(MAKE) verify-pages
 	$(MAKE) verify-live
 	$(MAKE) completion-report ROUND=$${ROUND:-3}

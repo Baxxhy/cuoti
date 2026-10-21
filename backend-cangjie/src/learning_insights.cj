@@ -35,7 +35,6 @@ func learningMethodLabel(value: String): String {
         case "micro_activity" => "小步练习"
         case "assisted_progression" => "分步辅助练习"
         case "independent_dataset_practice" => "独立完成题库练习"
-        case "teacher_review" => "教师复核指导"
         case "incremental_hint" => "分层提示"
         case "understanding_check_prompt" => "理解检查"
         case "preserve_correct_part" => "保留正确部分再提示"

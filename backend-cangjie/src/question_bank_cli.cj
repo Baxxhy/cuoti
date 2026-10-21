@@ -8,7 +8,7 @@ import stdx.encoding.json.*
 // Deployment-only snapshots. No public HTTP route accepts dataset answers.
 func questionBankImport(db: Database, body: JsonObject): JsonObject {
     let source=(body["source"] as JsonObject).getOrThrow()
-    let key=schoolText(source,"key","",80,nonempty:true)
+    let key=optionalText(source,"key","",80,nonempty:true)
     if (key!="cmmu" && key!="cmm-math" && key!="gaokao" && key!="race" && key!="tal") { throw ApiError(422,"仅支持已配置的公开题源") }
     let rows=(body["questions"] as JsonArray).getOrThrow()
     if (rows.getItems().isEmpty() || rows.getItems().size>500) { throw ApiError(422,"每批需要1至500道题") }
@@ -16,7 +16,7 @@ func questionBankImport(db: Database, body: JsonObject): JsonObject {
     let strings=[("source_item_id",190),("split",30),("subject",30),("grade",30),("grade_band",30),("title",255),("question_text",200000),("question_type",60),("solution",200000),("difficulty",30),("content_hash",64),("quality_status",30)]
     for (value in rows.getItems()) {
         let item=(value as JsonObject).getOrThrow()
-        for ((field,limit) in strings) { schoolText(item,field,"",limit,nonempty:field=="source_item_id" || field=="subject" || field=="question_text" || field=="content_hash") }
+        for ((field,limit) in strings) { optionalText(item,field,"",limit,nonempty:field=="source_item_id" || field=="subject" || field=="question_text" || field=="content_hash") }
         let id=jsonText(item,"source_item_id")
         if (seen.contains(id)) { throw ApiError(422,"批次包含重复题目") }; seen.add(id)
         let hash=jsonText(item,"content_hash")
@@ -29,8 +29,8 @@ func questionBankImport(db: Database, body: JsonObject): JsonObject {
         if (tutorFlag(item,"usable_for_auto_grade") && !tutorFlag(item,"usable_for_practice")) { throw ApiError(422,"判题资格无效") }
         for (path in tutorArray(item,"image_paths").getItems()) { if (!(path is JsonString) || (path as JsonString).getOrThrow().getValue().contains("..")) { throw ApiError(422,"题目图片路径无效") } }
     }
-    let name=schoolText(source,"name","",160,nonempty:true); let version=schoolText(source,"version","",100,nonempty:true)
-    let homepage=schoolText(source,"homepage","",500); let license=schoolText(source,"license","",100); let localPath=schoolText(source,"local_path","",500)
+    let name=optionalText(source,"name","",160,nonempty:true); let version=optionalText(source,"version","",100,nonempty:true)
+    let homepage=optionalText(source,"homepage","",500); let license=optionalText(source,"license","",100); let localPath=optionalText(source,"local_path","",500)
     return db.transaction<JsonObject>({ tx =>
         tx.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,?,?,?,?,?,?,0,0,JSON_OBJECT(),UTC_TIMESTAMP(6),UTC_TIMESTAMP(6)) ON DUPLICATE KEY UPDATE name=VALUES(name),version=VALUES(version),homepage=VALUES(homepage),license=VALUES(license),local_path=VALUES(local_path)", [Some(newId()),Some(key),Some(name),Some(version),Some(homepage),Some(license),Some(localPath)])
         let sourceId=rowText(tx.query("SELECT id FROM dataset_sources WHERE `key`=? FOR UPDATE",[Some(key)]).rows[0],"id")
@@ -71,12 +71,12 @@ func questionBankImport(db: Database, body: JsonObject): JsonObject {
             let id=rowText(tx.query("SELECT id FROM dataset_questions WHERE dataset_source_id=? AND source_item_id=?",[Some(sourceId),sqlValue(item["source_item_id"])]).rows[0],"id")
             tx.query("DELETE FROM question_knowledge_links WHERE dataset_question_id=?",[Some(id)])
             for (entry in tutorArray(item,"links").getItems()) {
-                let link=(entry as JsonObject).getOrThrow(); let code=schoolText(link,"code","",100,nonempty:true)
+                let link=(entry as JsonObject).getOrThrow(); let code=optionalText(link,"code","",100,nonempty:true)
                 let cards=tx.query("SELECT id FROM knowledge_points WHERE code=? AND subject=?",[Some(code),sqlValue(item["subject"])]).rows
                 if (cards.isEmpty()) { throw ApiError(422,"知识卡不存在或学科不匹配") }
-                let role=schoolText(link,"role","",30,nonempty:true)
+                let role=optionalText(link,"role","",30,nonempty:true)
                 if (role!="primary" && role!="secondary") { throw ApiError(422,"知识映射角色无效") }
-                let confidence=Float64.parse(link["confidence"].toString()); let method=schoolText(link,"method","",50,nonempty:true)
+                let confidence=Float64.parse(link["confidence"].toString()); let method=optionalText(link,"method","",50,nonempty:true)
                 if (!(confidence>=0.0 && confidence<=1.0) || method!="offline_rules" && method!="subject_grade_fallback") { throw ApiError(422,"知识映射依据无效") }
                 tx.query("INSERT INTO question_knowledge_links (id,dataset_question_id,knowledge_point_id,role,confidence,mapping_method,created_at,updated_at) VALUES (?,?,?,?,?,?,UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[Some(newId()),Some(id),Some(rowText(cards[0],"id")),Some(role),Some(confidence.toString()),Some(method)])
             }
@@ -95,9 +95,9 @@ func questionBankFormatReview(db: Database, body: JsonObject): JsonObject {
     let seen=HashSet<String>()
     for (raw in rows.getItems()) {
         if (!(raw is JsonObject)) { throw ApiError(422,"核验记录无效") }
-        let item=(raw as JsonObject).getOrThrow(); let id=schoolText(item,"id","",36,nonempty:true)
+        let item=(raw as JsonObject).getOrThrow(); let id=optionalText(item,"id","",36,nonempty:true)
         if (seen.contains(id)) { throw ApiError(422,"核验记录重复") }; seen.add(id)
-        let hash=schoolText(item,"content_hash","",64,nonempty:true)
+        let hash=optionalText(item,"content_hash","",64,nonempty:true)
         if (hash.size!=64) { throw ApiError(422,"内容指纹无效") }
         for (byte in hash.toArray()) { if (!(byte>=48 && byte<=57 || byte>=97 && byte<=102)) { throw ApiError(422,"内容指纹无效") } }
         if (!(item["fields"] is JsonArray)) { throw ApiError(422,"核验字段无效") }
@@ -135,11 +135,11 @@ func questionBankCommand(): Int64 {
         if ((getVariable("CANGJIE_DB_NAME") ?? "").isEmpty()) { throw ApiError(422,"必须显式配置独立仓颉数据库") }
         try (db=Database.fromEnvironment()) {
             if (db.query("SELECT version FROM cangjie_schema_versions WHERE version='009_task_sources'").rows.size!=1) { throw ApiError(409,"请先初始化或升级仓颉数据库") }
-            let operation=schoolText(body,"operation","",30,nonempty:true)
+            let operation=optionalText(body,"operation","",30,nonempty:true)
             if (operation=="import") { println(questionBankImport(db,body).toString()); return 0 }
             if (operation=="review-format") { println(questionBankFormatReview(db,body).toString()); return 0 }
             if (operation=="audit-export") {
-                let after=schoolText(body,"after","",36); let output=JsonArray()
+                let after=optionalText(body,"after","",36); let output=JsonArray()
                 for (row in db.query("SELECT * FROM dataset_questions WHERE id>? ORDER BY id LIMIT 100",[Some(after)]).rows) { output.add(rowJson("dataset_questions",row)) }
                 println(output.toString()); return 0
             }
@@ -148,7 +148,7 @@ func questionBankCommand(): Int64 {
                 println(output.toString()); return 0
             }
             if (operation=="export") {
-                let source=schoolText(body,"source","",80,nonempty:true); let after=schoolText(body,"after","",36)
+                let source=optionalText(body,"source","",80,nonempty:true); let after=optionalText(body,"after","",36)
                 let rows=db.query("SELECT q.* FROM dataset_questions q JOIN dataset_sources s ON s.id=q.dataset_source_id WHERE s.`key`=? AND q.id>? AND q.usable_for_practice=1 ORDER BY q.id LIMIT 100",[Some(source),Some(after)]).rows
                 let output=JsonArray(); for (row in rows) { output.add(rowJson("dataset_questions",row)) }
                 println(output.toString()); return 0

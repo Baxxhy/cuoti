@@ -33,7 +33,7 @@ def local_users(endpoint, env, query):
         env,
         "SELECT (SELECT COUNT(*) FROM users),(SELECT COUNT(*) FROM student_profiles),(SELECT COUNT(*) FROM cognitive_updates)",
     )
-    for role in ("teacher", "guardian", "admin"):
+    for role in ("admin",):
         email = f"local-{role}-{uuid4().hex}@example.test"
         payload = {
             "email": email,
@@ -49,7 +49,7 @@ def local_users(endpoint, env, query):
         assert created["created"] is True and created["role"] == role
         assert native({**payload, "check_only": True})["existing_role"] == role
         duplicate = native(
-            {**payload, "role": "guardian", "password": "different-password"}, 1
+            {**payload, "role": "admin", "password": "different-password"}, 1
         )
         assert duplicate["code"] == 409
         logged = request(
@@ -66,12 +66,9 @@ def local_users(endpoint, env, query):
             {"email": email, "password": "different-password"},
             expected=401,
         )
-        route = {
-            "teacher": "/teachers/classes",
-            "guardian": "/guardians/students",
-            "admin": "/admin/workbench",
-        }[role]
-        request(endpoint, "GET", "/api/v1" + route, token=logged["access_token"])
+        request(
+            endpoint, "GET", "/api/v1/admin/workbench", token=logged["access_token"]
+        )
         assert (
             query(
                 env,
@@ -120,6 +117,26 @@ def local_users(endpoint, env, query):
         "/api/v1/questions/" + question["id"],
         token=student["access_token"],
     )
+    # Retired identities cannot use either a password login or an existing token.
+    for removed_role in ("teacher", "guardian"):
+        query(env, f"UPDATE users SET role='{removed_role}' WHERE id='{student['id']}'")
+        try:
+            request(
+                endpoint,
+                "GET",
+                "/api/v1/auth/me",
+                token=student["access_token"],
+                expected=401,
+            )
+            request(
+                endpoint,
+                "POST",
+                "/api/v1/auth/login",
+                {"email": student["email"], "password": secret},
+                expected=401,
+            )
+        finally:
+            query(env, f"UPDATE users SET role='student' WHERE id='{student['id']}'")
     bad = {
         "email": f"bad-{uuid4().hex}@example.test",
         "name": "无效配置",
@@ -129,6 +146,8 @@ def local_users(endpoint, env, query):
     for delta in (
         {"role": "student"},
         {"role": "root"},
+        {"role": "teacher"},
+        {"role": "guardian"},
         {"password": "short"},
         {"check_only": "true"},
         {"email": "invalid"},
@@ -162,7 +181,7 @@ def local_users(endpoint, env, query):
         "--email",
         wrapper_email,
         "--role",
-        "guardian",
+        "admin",
     ]
     check = subprocess.run(
         [*cmd, "--check"],
@@ -191,7 +210,7 @@ def local_users(endpoint, env, query):
     )
     first = [int(x) for x in counts.split()]
     last = [int(x) for x in after.split()]
-    assert last == [first[0] + 6, first[1] + 1, first[2]]
+    assert last == [first[0] + 4, first[1] + 1, first[2]]
     print(
-        "Cangjie local identities passed: native create/check, three roles/login, no overwrite, student record retention, invalid inputs, concurrent email collision and password-stdin wrapper"
+        "Cangjie local identities passed: native create/check, admin/login, no overwrite, student record retention, invalid inputs, concurrent email collision and password-stdin wrapper"
     )

@@ -52,10 +52,10 @@ func learningMemory(db: Database, owner: String, question: JsonObject): JsonObje
         let evidence=tutorObject(record,"evidence"); let strategy=tutorText(evidence,"strategy")
         let aemt=tutorObject(evidence,"aemt_event"); let aemtVerdict=tutorText(aemt,"verdict")
         let correct=tutorFlag(evidence,"near_transfer") || tutorFlag(evidence,"far_transfer") || (strategy=="aemt_assistance_aware" && aemtVerdict=="confirmed_correct")
-        let outcome=if (correct) { "correct" } else if (["independent_dataset_practice","teacher_review"].contains(strategy) || (strategy=="aemt_assistance_aware" && aemtVerdict=="confirmed_incorrect")) { "incorrect" } else { "unknown" }
-        let independence=if (strategy=="teacher_review") { "unknown" } else if (strategy=="assisted_progression" || tutorNumber(evidence,"hint_level")>0) { "assisted" } else { "independent" }
+        let outcome=if (correct) { "correct" } else if (strategy=="independent_dataset_practice" || (strategy=="aemt_assistance_aware" && aemtVerdict=="confirmed_incorrect")) { "incorrect" } else { "unknown" }
+        let independence=if (strategy=="assisted_progression" || tutorNumber(evidence,"hint_level")>0) { "assisted" } else { "independent" }
         let ref="cognitive:"+jsonText(record,"id"); let sources=memoryRefs([ref,"question:"+tutorText(record,"question_id")])
-        for ((key,prefix) in [("learning_task_id","task:"),("teacher_review_id","teacher_review:"),("practice_attempt_id","practice:"),("tutor_session_id","tutor:")]) { let id=tutorText(evidence,key); if (!id.isEmpty()) { sources.add(JsonString(prefix+id)) } }
+        for ((key,prefix) in [("learning_task_id","task:"),("practice_attempt_id","practice:"),("tutor_session_id","tutor:")]) { let id=tutorText(evidence,key); if (!id.isEmpty()) { sources.add(JsonString(prefix+id)) } }
         let scope=if (strategy=="aemt_assistance_aware" && tutorText(aemt,"scope")=="original_question") { "本次原题作答" } else { "本次迁移作答" }
         let summary=tutorText(record,"entity_key")+"：历史学习事件，"+if (outcome=="correct") { if (strategy=="aemt_assistance_aware") { scope+"正确" } else { "本次迁移判定正确" } } else if (outcome=="incorrect") { if (strategy=="aemt_assistance_aware") { scope+"有误" } else { "本次迁移作答有误" } } else { "结果尚不充分" }
         entries.add(memoryEntry("cognitive",record,tutorText(record,"question_id"),"verified_event",summary+"；不代表整个知识点掌握",90,tutorText(tutorObject(evidence,"memory_source"),"question_version"),sources,independence:independence,outcome:outcome)); updates.add(record)

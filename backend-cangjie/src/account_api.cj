@@ -45,7 +45,7 @@ public class Accounts {
         let token = authorization[7..].trimAscii()
         if (let Some(id) <- readToken(token, secret, None)) {
             let rows = db.query("SELECT * FROM users WHERE id = ?", [Some(id)]).rows
-            if (rows.size == 1 && readToken(token, secret, rows[0]["password_hash"]) == Some(id)) { return rows[0] }
+            if (rows.size == 1 && ["student","admin"].contains(rowText(rows[0],"role")) && readToken(token, secret, rows[0]["password_hash"]) == Some(id)) { return rows[0] }
         }
         throw ApiError(401, "请先使用账号和密码登录")
     }
@@ -91,7 +91,7 @@ public class Accounts {
         let password = textField(body, "password", 256, trim: false)
         try (db = Database.fromEnvironment()) {
             let rows = db.query("SELECT * FROM users WHERE email = ?", [Some(email)]).rows
-            if (rows.isEmpty() || !verifyPassword(password, rowText(rows[0], "password_hash"))) {
+            if (rows.isEmpty() || !["student","admin"].contains(rowText(rows[0],"role")) || !verifyPassword(password, rowText(rows[0], "password_hash"))) {
                 throw ApiError(401, "账号或密码不正确")
             }
             return session(rows[0])

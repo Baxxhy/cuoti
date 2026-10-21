@@ -4,10 +4,10 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth import hash_password
-from app.models import GuardianStudentLink, StudentProfile, User
+from app.models import StudentProfile, User
 from app.request_validation import RegisterRequest
 
-ROLES = ("student", "teacher", "guardian", "admin")
+ROLES = ("student", "admin")
 
 
 async def create_account(
@@ -28,22 +28,3 @@ async def create_account(
         db.add(StudentProfile(user_id=user.id, grade=fields.grade))
     await db.commit()
     return user
-
-
-async def link_guardian(db: AsyncSession, *, guardian_email: str, student_email: str) -> bool:
-    guardian = await db.scalar(select(User).where(User.email == guardian_email.strip().lower()))
-    student = await db.scalar(select(User).where(User.email == student_email.strip().lower()))
-    if guardian is None or guardian.role != "guardian":
-        raise ValueError("家长账号不存在或身份不符")
-    if student is None or student.role != "student":
-        raise ValueError("学生账号不存在或身份不符")
-    if await db.scalar(
-        select(GuardianStudentLink.id).where(
-            GuardianStudentLink.guardian_id == guardian.id,
-            GuardianStudentLink.student_id == student.id,
-        )
-    ):
-        return False
-    db.add(GuardianStudentLink(guardian_id=guardian.id, student_id=student.id))
-    await db.commit()
-    return True

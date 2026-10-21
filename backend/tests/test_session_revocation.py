@@ -17,7 +17,7 @@ class AccountDB:
 
 @pytest.mark.asyncio
 async def test_password_change_invalidates_all_existing_sessions():
-    account = User(id="student", password_hash="original-password-hash")
+    account = User(id="student", role="student", password_hash="original-password-hash")
     db = AccountDB(account)
     old = create_access_token(account.id, settings.auth_secret, credential=account.password_hash)
     assert await authenticated_account("Bearer " + old, db) is account
@@ -31,7 +31,7 @@ async def test_password_change_invalidates_all_existing_sessions():
 
 @pytest.mark.asyncio
 async def test_legacy_unbound_tokens_require_a_new_login():
-    account = User(id="student", password_hash="stored-hash")
+    account = User(id="student", role="student", password_hash="stored-hash")
     old = create_access_token(account.id, settings.auth_secret)
     with pytest.raises(HTTPException) as error:
         await authenticated_account("Bearer " + old, AccountDB(account))
@@ -46,3 +46,13 @@ def test_credentials_are_bound_without_exposing_the_stored_hash():
     assert "private-password-hash" not in decoded
     assert read_access_token(token, "test-secret", credential="private-password-hash") == "student"
     assert read_access_token(token, "test-secret", credential="other-hash") is None
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("role", ["teacher", "guardian"])
+async def test_removed_roles_cannot_restore_existing_sessions(role):
+    account = User(id="retired", role=role, password_hash="stored-hash")
+    token = create_access_token(account.id, settings.auth_secret, credential=account.password_hash)
+    with pytest.raises(HTTPException) as error:
+        await authenticated_account("Bearer " + token, AccountDB(account))
+    assert error.value.status_code == 401

@@ -7,7 +7,7 @@ import stdx.encoding.json.*
 func createLocalUser(body: JsonObject): JsonObject {
     let email=emailField(body)
     let role=textField(body,"role",30)
-    if (role!="teacher" && role!="guardian" && role!="admin") { throw ApiError(422,"本地命令只创建教师、家长或管理员账号；学生请使用注册页面") }
+    if (role!="admin") { throw ApiError(422,"本地维护命令只创建管理员账号；学生请使用注册页面") }
     let name=textField(body,"name",100)
     let flag=body.get("check_only").getOrDefault({ => JsonBool(false) })
     if (!(flag is JsonBool)) { throw ApiError(422,"check_only 必须是布尔值") }

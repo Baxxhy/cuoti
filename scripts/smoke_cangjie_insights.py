@@ -318,36 +318,6 @@ def insights(endpoint, env, query):
         state={},
         updated_at=now,
     )
-    class_id = insert("teacher_classes", teacher_id=other_id, name="测试班级")
-    assignment = insert(
-        "question_assignments", teacher_id=other_id, question_id=qid, class_id=class_id
-    )
-    insert("assignment_students", assignment_id=assignment, student_id=owner)
-    task = insert(
-        "teacher_review_tasks",
-        class_id=class_id,
-        student_id=owner,
-        question_id=qid,
-        source_id=str(uuid4()),
-    )
-    insert(
-        "teacher_review_results",
-        task_id=task,
-        teacher_id=other_id,
-        conclusion="correct",
-        reason="教师核对",
-        student_hint="请独立复习",
-        created_at=now,
-    )
-    insert(
-        "teacher_review_results",
-        task_id=task,
-        teacher_id=other_id,
-        conclusion="incorrect",
-        reason="已撤销的反馈",
-        revoked_at=now,
-        created_at="2099-01-01 00:00:00",
-    )
 
     async def parity():
         from sqlalchemy.engine import URL
@@ -454,11 +424,8 @@ def insights(endpoint, env, query):
     asyncio.run(parity())
     dashboard = request(endpoint, "GET", "/api/v1/dashboard", token=token)
     assert dashboard["weekly_questions"] == 1 and dashboard["streak_days"] == 1
-    assert (
-        dashboard["today_reviews"] == 1 and dashboard["teacher_assignment_count"] == 1
-    )
+    assert dashboard["today_reviews"] == 1
     assert dashboard["continue_learning"]["session_id"] == active_session
-    assert dashboard["teacher_feedback"]["reason"] == "教师核对"
     query(
         env,
         f"UPDATE tutor_sessions SET state=JSON_OBJECT('question_changed',TRUE) WHERE id='{active_session}'",

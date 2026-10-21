@@ -18,7 +18,6 @@ from uuid import uuid4
 from PIL import Image, ImageDraw
 from smoke_cangjie_accounts import request
 from smoke_cangjie_analysis import analysis
-from smoke_cangjie_assignments import assignments
 from smoke_cangjie_diagnosis import diagnoses
 from smoke_cangjie_journey import journey
 from smoke_cangjie_learning_tasks import learning_tasks
@@ -810,7 +809,6 @@ def ingest(endpoint, env, query):
         practice(endpoint, env, query, token, other["access_token"], state)
         retrieval(endpoint, env, query, token, other["access_token"], state)
         reviews(endpoint, env, query, token, other["access_token"], state)
-        assignments(endpoint, env, query, state)
         journey(endpoint, env, query, token, other["access_token"])
         for action in ("edit", "archive", "draft", "rollback"):
             started.clear()

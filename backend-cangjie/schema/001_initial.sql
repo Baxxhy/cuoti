@@ -1,4 +1,4 @@
--- Snapshot of backend/app/models.py at d2f5e61. New isolated Cangjie databases only.
+-- Student personal-learning schema. New isolated Cangjie databases only, without collaboration tables.
 
 CREATE TABLE dataset_sources (
 	`key` VARCHAR(80) NOT NULL,
@@ -91,17 +91,6 @@ CREATE INDEX ix_dataset_questions_subject ON dataset_questions (subject);
 CREATE INDEX ix_dataset_questions_usable_for_auto_grade ON dataset_questions (usable_for_auto_grade);
 
 CREATE INDEX ix_dataset_questions_usable_for_practice ON dataset_questions (usable_for_practice);
-
-CREATE TABLE guardian_student_links (
-	guardian_id VARCHAR(36) NOT NULL,
-	student_id VARCHAR(36) NOT NULL,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY(guardian_id) REFERENCES users (id),
-	FOREIGN KEY(student_id) REFERENCES users (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE knowledge_relations (
 	source_id VARCHAR(36) NOT NULL,
@@ -210,38 +199,6 @@ CREATE TABLE student_profiles (
 	PRIMARY KEY (id),
 	UNIQUE (user_id),
 	FOREIGN KEY(user_id) REFERENCES users (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE teacher_audit_logs (
-	teacher_id VARCHAR(36) NOT NULL,
-	action VARCHAR(80) NOT NULL,
-	target_type VARCHAR(50) NOT NULL,
-	target_id VARCHAR(36) NOT NULL,
-	before_json JSON NOT NULL,
-	after_json JSON NOT NULL,
-	reason TEXT NOT NULL,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY(teacher_id) REFERENCES users (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE INDEX ix_teacher_audit_logs_action ON teacher_audit_logs (action);
-
-CREATE INDEX ix_teacher_audit_logs_target_id ON teacher_audit_logs (target_id);
-
-CREATE INDEX ix_teacher_audit_logs_teacher_id ON teacher_audit_logs (teacher_id);
-
-CREATE TABLE teacher_classes (
-	teacher_id VARCHAR(36) NOT NULL,
-	name VARCHAR(100) NOT NULL,
-	grade VARCHAR(30) NOT NULL,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY(teacher_id) REFERENCES users (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE cognitive_updates (
@@ -440,29 +397,6 @@ CREATE TABLE question_assets (
 
 CREATE INDEX ix_question_assets_question_id ON question_assets (question_id);
 
-CREATE TABLE question_assignments (
-	teacher_id VARCHAR(36) NOT NULL,
-	question_id VARCHAR(36) NOT NULL,
-	class_id VARCHAR(36),
-	title VARCHAR(255) NOT NULL,
-	due_at DATETIME,
-	settings JSON NOT NULL,
-	status VARCHAR(30) NOT NULL,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY(teacher_id) REFERENCES users (id),
-	FOREIGN KEY(question_id) REFERENCES questions (id),
-	FOREIGN KEY(class_id) REFERENCES teacher_classes (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE INDEX ix_question_assignments_class_id ON question_assignments (class_id);
-
-CREATE INDEX ix_question_assignments_question_id ON question_assignments (question_id);
-
-CREATE INDEX ix_question_assignments_teacher_id ON question_assignments (teacher_id);
-
 CREATE TABLE question_knowledge_links (
 	dataset_question_id VARCHAR(36) NOT NULL,
 	knowledge_point_id VARCHAR(36) NOT NULL,
@@ -518,18 +452,6 @@ CREATE TABLE student_works (
 
 CREATE INDEX ix_student_works_question_id ON student_works (question_id);
 
-CREATE TABLE teacher_class_students (
-	class_id VARCHAR(36) NOT NULL,
-	student_id VARCHAR(36) NOT NULL,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	CONSTRAINT uq_teacher_class_student UNIQUE (class_id, student_id),
-	FOREIGN KEY(class_id) REFERENCES teacher_classes (id),
-	FOREIGN KEY(student_id) REFERENCES users (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 CREATE TABLE teacher_marks (
 	question_id VARCHAR(36) NOT NULL,
 	mark_type VARCHAR(50) NOT NULL,
@@ -545,65 +467,6 @@ CREATE TABLE teacher_marks (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX ix_teacher_marks_question_id ON teacher_marks (question_id);
-
-CREATE TABLE teacher_questions (
-	question_id VARCHAR(36) NOT NULL,
-	teacher_id VARCHAR(36) NOT NULL,
-	source_type VARCHAR(30) NOT NULL,
-	standard_answer TEXT NOT NULL,
-	reference_steps JSON NOT NULL,
-	scoring_points JSON NOT NULL,
-	difficulty VARCHAR(30) NOT NULL,
-	allow_auto_grade BOOL NOT NULL,
-	require_handwriting BOOL NOT NULL,
-	status VARCHAR(30) NOT NULL,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY(question_id) REFERENCES questions (id),
-	FOREIGN KEY(teacher_id) REFERENCES users (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE UNIQUE INDEX ix_teacher_questions_question_id ON teacher_questions (question_id);
-
-CREATE INDEX ix_teacher_questions_teacher_id ON teacher_questions (teacher_id);
-
-CREATE TABLE teacher_review_tasks (
-	class_id VARCHAR(36) NOT NULL,
-	student_id VARCHAR(36) NOT NULL,
-	question_id VARCHAR(36) NOT NULL,
-	source_type VARCHAR(30) NOT NULL,
-	source_id VARCHAR(36) NOT NULL,
-	status VARCHAR(30) NOT NULL,
-	reason_codes JSON NOT NULL,
-	ai_result JSON NOT NULL,
-	rule_result JSON NOT NULL,
-	confidence FLOAT NOT NULL,
-	has_conflict BOOL NOT NULL,
-	assigned_teacher_id VARCHAR(36),
-	version INTEGER NOT NULL,
-	learning_applied BOOL NOT NULL,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	CONSTRAINT uq_teacher_review_source UNIQUE (source_type, source_id),
-	FOREIGN KEY(class_id) REFERENCES teacher_classes (id),
-	FOREIGN KEY(student_id) REFERENCES users (id),
-	FOREIGN KEY(question_id) REFERENCES questions (id),
-	FOREIGN KEY(assigned_teacher_id) REFERENCES users (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE INDEX ix_teacher_review_tasks_class_id ON teacher_review_tasks (class_id);
-
-CREATE INDEX ix_teacher_review_tasks_question_id ON teacher_review_tasks (question_id);
-
-CREATE INDEX ix_teacher_review_tasks_source_id ON teacher_review_tasks (source_id);
-
-CREATE INDEX ix_teacher_review_tasks_status ON teacher_review_tasks (status);
-
-CREATE INDEX ix_teacher_review_tasks_student_id ON teacher_review_tasks (student_id);
 
 CREATE TABLE tutor_sessions (
 	user_id VARCHAR(36) NOT NULL,
@@ -664,24 +527,6 @@ CREATE TABLE agent_runs (
 	FOREIGN KEY(session_id) REFERENCES tutor_sessions (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE assignment_students (
-	assignment_id VARCHAR(36) NOT NULL,
-	student_id VARCHAR(36) NOT NULL,
-	status VARCHAR(30) NOT NULL,
-	latest_attempt_id VARCHAR(36),
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	CONSTRAINT uq_assignment_student UNIQUE (assignment_id, student_id),
-	FOREIGN KEY(assignment_id) REFERENCES question_assignments (id),
-	FOREIGN KEY(student_id) REFERENCES users (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE INDEX ix_assignment_students_assignment_id ON assignment_students (assignment_id);
-
-CREATE INDEX ix_assignment_students_student_id ON assignment_students (student_id);
-
 CREATE TABLE reference_steps (
 	analysis_id VARCHAR(36) NOT NULL,
 	step_index INTEGER NOT NULL,
@@ -736,36 +581,6 @@ CREATE TABLE student_steps (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX ix_student_steps_work_id ON student_steps (work_id);
-
-CREATE TABLE teacher_review_results (
-	task_id VARCHAR(36) NOT NULL,
-	teacher_id VARCHAR(36) NOT NULL,
-	conclusion VARCHAR(30) NOT NULL,
-	score FLOAT,
-	reason TEXT NOT NULL,
-	first_key_error TEXT NOT NULL,
-	error_type VARCHAR(80) NOT NULL,
-	propagated_error BOOL NOT NULL,
-	student_hint TEXT NOT NULL,
-	next_task TEXT NOT NULL,
-	mastered_steps JSON NOT NULL,
-	allow_learning_update BOOL NOT NULL,
-	evidence_snapshot JSON NOT NULL,
-	learning_snapshot JSON NOT NULL,
-	supersedes_id VARCHAR(36),
-	revoked_at DATETIME,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY(task_id) REFERENCES teacher_review_tasks (id),
-	FOREIGN KEY(teacher_id) REFERENCES users (id),
-	FOREIGN KEY(supersedes_id) REFERENCES teacher_review_results (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE INDEX ix_teacher_review_results_task_id ON teacher_review_results (task_id);
-
-CREATE INDEX ix_teacher_review_results_teacher_id ON teacher_review_results (teacher_id);
 
 CREATE TABLE tutor_turns (
 	session_id VARCHAR(36) NOT NULL,
@@ -852,32 +667,6 @@ CREATE TABLE agent_tool_calls (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX ix_agent_tool_calls_agent_run_id ON agent_tool_calls (agent_run_id);
-
-CREATE TABLE assignment_attempts (
-	assignment_student_id VARCHAR(36) NOT NULL,
-	student_id VARCHAR(36) NOT NULL,
-	question_id VARCHAR(36) NOT NULL,
-	answer TEXT NOT NULL,
-	steps JSON NOT NULL,
-	handwriting_asset_ref VARCHAR(500),
-	grading_details JSON NOT NULL,
-	verdict VARCHAR(30) NOT NULL,
-	status VARCHAR(30) NOT NULL,
-	version INTEGER NOT NULL,
-	id VARCHAR(36) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY(assignment_student_id) REFERENCES assignment_students (id),
-	FOREIGN KEY(student_id) REFERENCES users (id),
-	FOREIGN KEY(question_id) REFERENCES questions (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE INDEX ix_assignment_attempts_assignment_student_id ON assignment_attempts (assignment_student_id);
-
-CREATE INDEX ix_assignment_attempts_question_id ON assignment_attempts (question_id);
-
-CREATE INDEX ix_assignment_attempts_student_id ON assignment_attempts (student_id);
 
 CREATE TABLE diagnosis_evidence (
 	diagnosis_id VARCHAR(36) NOT NULL,

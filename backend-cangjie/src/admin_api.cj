@@ -6,7 +6,7 @@ import stdx.net.http.*
 func adminMetrics(db: Database, owner: String): JsonObject {
     let result=JsonObject()
     for ((key,table,extra) in [("questions","questions"," AND status<>'archived'"),("sessions","tutor_sessions",""),("pending_reviews","review_plans"," AND status='pending'")]) {
-        result.put(key,JsonInt(schoolCount(db,"SELECT COUNT(*) AS count FROM ${table} WHERE user_id=?${extra}",[Some(owner)])))
+        result.put(key,JsonInt(queryCount(db,"SELECT COUNT(*) AS count FROM ${table} WHERE user_id=?${extra}",[Some(owner)])))
     }
     return result
 }
@@ -52,7 +52,7 @@ func adminWorkbenchData(db: Database): JsonObject {
     let result=JsonObject(); result.put("generated_at",JsonString(rowText(db.query("SELECT DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%f+00:00') AS generated_at").rows[0],"generated_at")))
     let metrics=JsonObject()
     for ((key,table,condition) in [("students","users","role='student'"),("questions","questions","status<>'archived'"),("diagnoses","diagnoses","1=1"),("sessions","tutor_sessions","1=1"),("active_sessions","tutor_sessions","status='active'"),("agent_runs","agent_runs","1=1"),("cognitive_updates","cognitive_updates","1=1"),("pending_reviews","review_plans","status='pending'")]) {
-        metrics.put(key,JsonInt(schoolCount(db,"SELECT COUNT(*) AS count FROM ${table} WHERE ${condition}",[])))
+        metrics.put(key,JsonInt(queryCount(db,"SELECT COUNT(*) AS count FROM ${table} WHERE ${condition}",[])))
     }
     result.put("metrics",metrics); let students=JsonArray(); let sessions=JsonArray()
     for (row in db.query("SELECT * FROM users WHERE role='student' ORDER BY updated_at DESC,id DESC LIMIT 50").rows) {

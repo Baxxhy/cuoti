@@ -83,7 +83,7 @@ func dialogueKnowledge(db: Database, query: String, subject: String, grade: Stri
 func tutorDialogue(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"POST"); let parts=context.request.url.path.split("/"); let id=parts[parts.size-2]
     try (db=Database.fromEnvironment()) {
-        let user=accounts.currentUser(context,db); let body=readJson(context); let message=stripWhitespace(schoolText(body,"message","",12000))
+        let user=accounts.currentUser(context,db); let body=readJson(context); let message=stripWhitespace(optionalText(body,"message","",12000))
         if (message.isEmpty()) { throw ApiError(422,"请输入你的想法") }
         let snapshot=db.transaction<JsonObject>({ tx => dialogueSnapshot(tx,id,user["id"]) }); let input=JsonObject(); let domain=dialogueContext(snapshot,message)
         input.put("operation",JsonString("tutor_dialogue_prepare")); input.put("dialogue_context",domain); input.put("dialogue_memory_rows",snapshot["memory"])

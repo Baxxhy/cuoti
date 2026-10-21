@@ -41,6 +41,7 @@ async def authenticated_account(
     user = await db.get(User, user_id) if user_id else None
     if (
         user is None
+        or user.role not in ("student", "admin")
         or not user.password_hash
         or read_access_token(
             token,

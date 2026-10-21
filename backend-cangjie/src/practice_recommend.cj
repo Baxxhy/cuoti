@@ -27,7 +27,7 @@ func recommendPractice(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"POST")
     try (db=Database.fromEnvironment()) {
         let user=accounts.currentUser(context,db); let owner=rowText(user,"id"); let body=readJson(context)
-        let id=schoolText(body,"mistake_id","",100,nonempty: true); let mode=practiceMode(body)
+        let id=optionalText(body,"mistake_id","",100,nonempty: true); let mode=practiceMode(body)
         let debug=editBool(body.get("debug") ?? JsonBool(false)).getValue(); let force=editBool(body.get("force_new") ?? JsonBool(false)).getValue()
         let setup=db.transaction<JsonObject>({ tx =>
             let rows=tx.query("SELECT * FROM questions WHERE id=? AND user_id=? AND status<>'archived'",[Some(id),Some(owner)]).rows

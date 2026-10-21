@@ -27,13 +27,9 @@ public func uploadHandwriting(context: HttpContext, accounts: Accounts): JsonVal
     try (db = Database.fromEnvironment()) {
         let user = accounts.currentUser(context,db); let upload = readImageUpload(context)
         let kind = upload.fields.get("context_type") ?? ""; let id = upload.fields.get("context_id") ?? ""; let activityId = upload.fields.get("activity_id") ?? ""
-        if (kind != "tutor" && kind != "review" && kind != "assignment" && kind != "practice") { throw ApiError(422,"不支持的答题场景") }
+        if (kind != "tutor" && kind != "review" && kind != "practice") { throw ApiError(422,"不支持的答题场景") }
         let visible = db.transaction<JsonObject>({ tx =>
             if (kind == "practice") { return practiceHandwritingContext(tx,rowText(user,"id"),upload.fields.get("mistake_id") ?? "",id,upload.fields.get("mode") ?? "reinforce") }
-            if (kind == "assignment") {
-                let snapshot=assignmentContext(tx,id,requireStudent(user)); requireAssignmentPending(snapshot)
-                let question=tutorObject(snapshot,"question"); let result=JsonObject(); result.put("subject",question["subject"]); result.put("text",question["question_text"]); return result
-            }
             if (kind == "review") {
                 let plans = tx.query("SELECT * FROM review_plans WHERE id=? AND user_id=? AND status='pending'",[Some(id),user["id"]]).rows
                 if (plans.isEmpty()) { throw ApiError(404,"待复习题不存在") }

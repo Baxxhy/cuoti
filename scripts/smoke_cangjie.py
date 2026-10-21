@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 import secrets
 import socket
 import subprocess
@@ -19,8 +20,6 @@ from smoke_cangjie_list import question_list
 from smoke_cangjie_media import media
 from smoke_cangjie_ocr_edits import ocr_edits
 from smoke_cangjie_questions import manual_questions, query
-from smoke_cangjie_review_mutations import review_mutations
-from smoke_cangjie_school import school
 from smoke_cangjie_student_work import student_work
 
 
@@ -77,7 +76,7 @@ def main() -> None:
                 ("/api/v1/not-implemented", "GET", 404),
                 *[
                     (
-                        row["path"].replace("{session_id}", "removed-test-session"),
+                        re.sub(r"\{[^}]+\}", "removed-test-resource", row["path"]),
                         row["method"],
                         404,
                     )
@@ -194,7 +193,6 @@ def main() -> None:
                 question_bank(env, query)
                 local_users(endpoint, env, query)
                 token = accounts(endpoint, env)
-                review_mutations(endpoint, env, query)
                 manual_questions(endpoint, env, token)
                 question_list(endpoint, env, query)
                 question_edit(endpoint, env, query)
@@ -210,7 +208,6 @@ def main() -> None:
                 from smoke_cangjie_release_inputs import release_inputs
 
                 release_inputs(endpoint, env, query)
-                school(endpoint, env, query)
                 from smoke_cangjie_alignment import alignment
 
                 alignment(endpoint, env, query)

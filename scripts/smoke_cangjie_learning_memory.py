@@ -276,54 +276,6 @@ def learning_memory(
         target, entries = probe(target)
         assert note_ref not in entries
 
-        # Revoke a seeded review source; business revoke/regrade paths are covered
-        # separately by review_mutations. Here the reader uses the actual SQL state.
-        cls = insert(
-            "teacher_classes", teacher_id=foreign, name="记忆撤销测试", grade="初一"
-        )
-        review_task = insert(
-            "teacher_review_tasks",
-            class_id=cls,
-            student_id=owner,
-            question_id=source["id"],
-            source_id=str(uuid4()),
-            status="confirmed_correct",
-            learning_applied=True,
-        )
-        review = insert(
-            "teacher_review_results",
-            task_id=review_task,
-            teacher_id=foreign,
-            conclusion="confirmed_correct",
-            reason="来源校验测试",
-            allow_learning_update=True,
-        )
-        teacher_evidence = {
-            **update["evidence"],
-            "strategy": "teacher_review",
-            "teacher_review_id": review,
-        }
-        teacher_update = insert(
-            "cognitive_updates",
-            user_id=owner,
-            question_id=source["id"],
-            entity_type="mastery",
-            entity_key=update["entity_key"],
-            evidence=teacher_evidence,
-            updated_at=now(),
-            created_at=now(),
-        )
-        target, entries = probe(target)
-        teacher_ref = "cognitive:" + teacher_update
-        assert (
-            teacher_ref in entries and entries[teacher_ref]["independence"] == "unknown"
-        )
-        query(
-            env,
-            f"UPDATE teacher_review_results SET revoked_at=UTC_TIMESTAMP() WHERE id='{review}'",
-        )
-        target, entries = probe(target)
-        assert teacher_ref not in entries
         state["task_memory_foreign"] = True
         target = with_hint_budget(target)
         target, _ = action(endpoint, target, token, kind="hint")
@@ -381,7 +333,7 @@ def learning_memory(
         )
         observer = wait_task(endpoint, create(create_question(65))["id"], token)
         observer, entries = probe(observer)
-        assert event_ref not in entries and teacher_ref not in entries
+        assert event_ref not in entries
         stamps = update["evidence"]["memory_source"]
         assert "mastery:" + stamps["mastery_id"] not in entries
         assert "misconception:" + stamps["misconception_id"] not in entries

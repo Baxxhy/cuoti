@@ -332,7 +332,7 @@ def browser(endpoint, env):
     # Role identities exist only in this disposable database. Public registration
     # remains student-only; the fixture grants roles through its local DB access.
     roles = {}
-    for role in ("teacher", "guardian", "admin"):
+    for role in ("admin",):
         email = f"role-browser-{role}-{uuid4().hex}@example.test"
         password = "RoleBrowser-" + uuid4().hex
         user = request(
@@ -343,11 +343,6 @@ def browser(endpoint, env):
         )
         query(env, f"UPDATE users SET role='{role}' WHERE id='{user['id']}'")
         roles[role] = {"email": email, "password": password, "id": user["id"]}
-    insert(
-        "guardian_student_links",
-        guardian_id=roles["guardian"]["id"],
-        student_id=actor["id"],
-    )
     insert("tutor_sessions", user_id=actor["id"], question_id=question["id"])
     role_env = {"QA_ROLE_TESTS": "1"}
     for role, account in roles.items():

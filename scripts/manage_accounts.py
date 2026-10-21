@@ -15,13 +15,11 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
 
 from app.db import SessionLocal
-from app.services.account_setup import ROLES, create_account, link_guardian
+from app.services.account_setup import ROLES, create_account
 
 
 def parser() -> argparse.ArgumentParser:
-    root = argparse.ArgumentParser(
-        description="创建真实用户或建立家长关系；不覆盖已有账号"
-    )
+    root = argparse.ArgumentParser(description="创建独立账号；不覆盖已有账号")
     commands = root.add_subparsers(dest="command", required=True)
     create = commands.add_parser("create", help="创建独立账号，不导入演示数据")
     create.add_argument("--email", required=True)
@@ -33,9 +31,6 @@ def parser() -> argparse.ArgumentParser:
         action="store_true",
         help="从标准输入读取一行密码，不放到命令参数",
     )
-    link = commands.add_parser("link-guardian", help="将已有家长账号关联到已有学生")
-    link.add_argument("--guardian-email", required=True)
-    link.add_argument("--student-email", required=True)
     return root
 
 
@@ -60,11 +55,6 @@ async def execute(args: argparse.Namespace) -> None:
                 grade=args.grade,
             )
             print(f"账号已创建：{user.email}，身份：{user.role}")
-        else:
-            created = await link_guardian(
-                db, guardian_email=args.guardian_email, student_email=args.student_email
-            )
-            print("家长关系已建立" if created else "家长关系已存在，未重复添加")
 
 
 def main() -> int:

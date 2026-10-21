@@ -1,4 +1,4 @@
-"""The active contract and the student assignment chain survive route pruning."""
+"""The active student API contract excludes collaboration routes."""
 
 import ast
 import json
@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[2]
 def test_actual_python_routes_match_active_inventory():
     active = json.loads((ROOT / "docs/cangjie/routes.json").read_text())
     actual = set()
-    for source in ("main.py", "teacher_api.py", "learning_api.py"):
+    for source in ("main.py", "learning_api.py"):
         tree = ast.parse((ROOT / "backend/app" / source).read_text())
         for node in ast.walk(tree):
             if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
@@ -35,9 +35,7 @@ def test_actual_python_routes_match_active_inventory():
                 actual.add((decorator.func.attr.upper(), path))
     assert actual == {(row["method"], row["path"]) for row in active}
     retired = json.loads((ROOT / "docs/cangjie/routes_retired.json").read_text())
-    assert len(active) == 94 and len(retired) == 9
     assert not actual & {(row["method"], row["path"]) for row in retired}
-    assert len(actual) + len(retired) == 103
 
 
 @pytest.mark.asyncio
@@ -50,25 +48,3 @@ async def test_retired_routes_are_actually_unavailable():
             path = row["path"].replace("{session_id}", "removed-test-session")
             response = await client.request(row["method"], path)
             assert response.status_code == 404, (row["method"], path, response.status_code)
-
-
-def test_student_assignment_dependencies_are_retained():
-    active = {
-        (row["method"], row["path"]) for row in json.loads((ROOT / "docs/cangjie/routes.json").read_text())
-    }
-    required = {
-        ("POST", "/api/v1/teachers/classes"),
-        ("POST", "/api/v1/teachers/classes/{class_id}/students"),
-        ("GET", "/api/v1/teachers/questions"),
-        ("POST", "/api/v1/teachers/questions"),
-        ("POST", "/api/v1/teachers/assignments"),
-        ("GET", "/api/v1/teachers/assignments"),
-        ("GET", "/api/v1/students/assignments"),
-        ("POST", "/api/v1/students/assignments/{student_assignment_id}/attempts"),
-        ("GET", "/api/v1/teachers/reviews"),
-        ("GET", "/api/v1/teachers/reviews/{task_id}"),
-        ("POST", "/api/v1/teachers/reviews/{task_id}/decision"),
-        ("GET", "/api/v1/students/teacher-feedback"),
-        ("POST", "/api/v1/answers/handwriting"),
-    }
-    assert required <= active

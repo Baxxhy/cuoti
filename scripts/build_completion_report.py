@@ -29,7 +29,7 @@ def main() -> int:
     args = parser.parse_args()
     names = ["project_audit.json", "functional_data.json", "database_usage.json", "diagnosis.json",
              "agent_branches.json", "visualizations.json",
-             "knowledge_base.json", "voice.json", "papers.json", "parent_teacher.json", "pages.json", "live_e2e.json"]
+             "knowledge_base.json", "voice.json", "papers.json", "pages.json", "live_e2e.json"]
     evidence = {name.removesuffix(".json"): read(name) for name in names}
     try:
         provider = httpx.get("http://127.0.0.1:8000/api/v1/system/providers", timeout=20).json()["data"]
@@ -78,12 +78,10 @@ def main() -> int:
             "live_e2e": {k: evidence["live_e2e"].get(k) for k in ("case_count", "passed_count", "threshold")},
             "pages": {k: evidence["pages"].get(k) for k in ("route_count", "loads", "placeholder_hits", "page_errors")},
             "voice": {"stt": evidence["voice"].get("stt", {}), "tts": evidence["voice"].get("tts", {})},
-            "roles": {k: evidence["parent_teacher"].get(k) for k in ("guardian_student_count", "class_student_count")},
             "exports": papers,
         },
         "known_failures_and_repairs": round_notes, "evidence": evidence,
-        "accounts": ["1@1.com", "guardian@minddimension.local",
-                     "teacher@minddimension.local", "admin@minddimension.local"],
+        "accounts": ["1@1.com", "admin@minddimension.local"],
         "student_password": "123",
         "start_commands": ["make mysql migrate seed", "make dev"],
         "addresses": {"frontend": "http://127.0.0.1:5173", "backend": "http://127.0.0.1:8000",
@@ -105,7 +103,6 @@ def main() -> int:
 - Live E2E：{report['results']['live_e2e'].get('passed_count')}/6
 - 页面：学生端核心流程已按 375×812、390×844、430×932 三档手机视口验收
 - 语音：faster-whisper small + edge-tts 真实文件
-- 角色数据：家长 {report['results']['roles'].get('guardian_student_count')} 名学生，教师班级 {report['results']['roles'].get('class_student_count')} 人
 - 自动化测试：后端 pytest 42/42，前端 Vitest 10/10，Playwright 6/6，TypeScript、Ruff、生产构建均通过
 
 ## 实际补齐的功能
@@ -134,8 +131,6 @@ def main() -> int:
 
 - 启动：`make mysql migrate seed`，然后 `make dev`
 - 学生：`1@1.com`
-- 家长：`guardian@minddimension.local`
-- 教师：`teacher@minddimension.local`
 - 管理员：`admin@minddimension.local`
 - 学生账号密码：`123`；其余预置管理账号密码：`123456`
 - 前端：http://127.0.0.1:5173

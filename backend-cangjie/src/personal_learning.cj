@@ -126,7 +126,7 @@ func knowledgeLessons(context: HttpContext, accounts: Accounts): JsonValue {
             return result
         }
         requireMethod(context,"POST")
-        let body=readJson(context); let prompt=stripWhitespace(schoolText(body,"prompt","",800)); let requestId=stripWhitespace(schoolText(body,"request_id","",80))
+        let body=readJson(context); let prompt=stripWhitespace(optionalText(body,"prompt","",800)); let requestId=stripWhitespace(optionalText(body,"request_id","",80))
         if (requestId.isEmpty()) { throw ApiError(422,"缺少请求编号") }
         let cards=lessonCards(db,code); let sourceHash=lessonSourceVersion(cards); let fingerprint=sourceHash+":"+sha256(prompt.toArray())
         let previous=db.query("SELECT * FROM knowledge_lessons WHERE user_id=? AND request_id=?",[user["id"],Some(requestId)]).rows
@@ -165,7 +165,7 @@ func savedReviewFilters(context: HttpContext, accounts: Accounts, deleting: Bool
             db.query("DELETE FROM saved_review_filters WHERE id=? AND user_id=?",[Some(id),user["id"]]); let result=JsonObject(); result.put("deleted",JsonBool(true)); return result
         }
         if (context.request.method=="POST") {
-            let body=readJson(context); let name=stripWhitespace(schoolText(body,"name","",80)); let query=stripWhitespace(schoolText(body,"q","",300)); let subject=schoolText(body,"subject","",30); let scope=schoolText(body,"scope","pending",20)
+            let body=readJson(context); let name=stripWhitespace(optionalText(body,"name","",80)); let query=stripWhitespace(optionalText(body,"q","",300)); let subject=optionalText(body,"subject","",30); let scope=optionalText(body,"scope","pending",20)
             if (name.isEmpty() || !["pending","today","completed"].contains(scope)) { throw ApiError(422,"请填写名称并选择有效的复习范围") }
             db.transaction<Unit>({ tx =>
                 tx.query("SELECT id FROM users WHERE id=? FOR UPDATE",[user["id"]])

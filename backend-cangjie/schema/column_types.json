@@ -60,13 +60,6 @@
     "created_at": "datetime",
     "updated_at": "datetime"
   },
-  "guardian_student_links": {
-    "guardian_id": "string",
-    "student_id": "string",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
   "knowledge_relations": {
     "source_id": "string",
     "target_id": "string",
@@ -140,26 +133,6 @@
     "grade": "string",
     "learning_goal": "string",
     "preferences": "json",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
-  "teacher_audit_logs": {
-    "teacher_id": "string",
-    "action": "string",
-    "target_type": "string",
-    "target_id": "string",
-    "before_json": "json",
-    "after_json": "json",
-    "reason": "string",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
-  "teacher_classes": {
-    "teacher_id": "string",
-    "name": "string",
-    "grade": "string",
     "id": "string",
     "created_at": "datetime",
     "updated_at": "datetime"
@@ -290,18 +263,6 @@
     "created_at": "datetime",
     "updated_at": "datetime"
   },
-  "question_assignments": {
-    "teacher_id": "string",
-    "question_id": "string",
-    "class_id": "string",
-    "title": "string",
-    "due_at": "datetime",
-    "settings": "json",
-    "status": "string",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
   "question_knowledge_links": {
     "dataset_question_id": "string",
     "knowledge_point_id": "string",
@@ -332,13 +293,6 @@
     "created_at": "datetime",
     "updated_at": "datetime"
   },
-  "teacher_class_students": {
-    "class_id": "string",
-    "student_id": "string",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
   "teacher_marks": {
     "question_id": "string",
     "mark_type": "string",
@@ -346,40 +300,6 @@
     "bbox": "json",
     "confidence": "float",
     "source": "string",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
-  "teacher_questions": {
-    "question_id": "string",
-    "teacher_id": "string",
-    "source_type": "string",
-    "standard_answer": "string",
-    "reference_steps": "json",
-    "scoring_points": "json",
-    "difficulty": "string",
-    "allow_auto_grade": "bool",
-    "require_handwriting": "bool",
-    "status": "string",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
-  "teacher_review_tasks": {
-    "class_id": "string",
-    "student_id": "string",
-    "question_id": "string",
-    "source_type": "string",
-    "source_id": "string",
-    "status": "string",
-    "reason_codes": "json",
-    "ai_result": "json",
-    "rule_result": "json",
-    "confidence": "float",
-    "has_conflict": "bool",
-    "assigned_teacher_id": "string",
-    "version": "int",
-    "learning_applied": "bool",
     "id": "string",
     "created_at": "datetime",
     "updated_at": "datetime"
@@ -414,15 +334,6 @@
     "agent_name": "string",
     "status": "string",
     "result": "json",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
-  "assignment_students": {
-    "assignment_id": "string",
-    "student_id": "string",
-    "status": "string",
-    "latest_attempt_id": "string",
     "id": "string",
     "created_at": "datetime",
     "updated_at": "datetime"
@@ -463,27 +374,6 @@
     "confidence": "float",
     "source": "string",
     "user_confirmed": "bool",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
-  "teacher_review_results": {
-    "task_id": "string",
-    "teacher_id": "string",
-    "conclusion": "string",
-    "score": "float",
-    "reason": "string",
-    "first_key_error": "string",
-    "error_type": "string",
-    "propagated_error": "bool",
-    "student_hint": "string",
-    "next_task": "string",
-    "mastered_steps": "json",
-    "allow_learning_update": "bool",
-    "evidence_snapshot": "json",
-    "learning_snapshot": "json",
-    "supersedes_id": "string",
-    "revoked_at": "datetime",
     "id": "string",
     "created_at": "datetime",
     "updated_at": "datetime"
@@ -540,21 +430,6 @@
     "tool_name": "string",
     "input_json": "json",
     "output_json": "json",
-    "id": "string",
-    "created_at": "datetime",
-    "updated_at": "datetime"
-  },
-  "assignment_attempts": {
-    "assignment_student_id": "string",
-    "student_id": "string",
-    "question_id": "string",
-    "answer": "string",
-    "steps": "json",
-    "handwriting_asset_ref": "string",
-    "grading_details": "json",
-    "verdict": "string",
-    "status": "string",
-    "version": "int",
     "id": "string",
     "created_at": "datetime",
     "updated_at": "datetime"

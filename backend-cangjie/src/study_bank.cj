@@ -198,20 +198,20 @@ func studySessions(context: HttpContext, accounts: Accounts): JsonValue {
             for (row in db.query("SELECT s.*,(SELECT COUNT(*) FROM study_session_items i WHERE i.session_id=s.id) AS question_count FROM study_sessions s WHERE s.user_id=? ORDER BY s.created_at DESC,s.id DESC LIMIT 50",[Some(owner)]).rows) { result.add(studySessionRow(row)) }; return result
         }
         let grade=bankStudentGrade(db,owner)
-        let body=readJson(context); let mode=schoolText(body,"mode","practice",20)
+        let body=readJson(context); let mode=optionalText(body,"mode","practice",20)
         if (mode!="practice" && mode!="exam") { throw ApiError(422,"请选择练习或模拟考试") }
-        let subject=schoolText(body,"subject","",30); let band=schoolText(body,"grade_band","",30); let source=schoolText(body,"source_id","",36)
-        let search=schoolText(body,"search","",300)
+        let subject=optionalText(body,"subject","",30); let band=optionalText(body,"grade_band","",30); let source=optionalText(body,"source_id","",36)
+        let search=optionalText(body,"search","",300)
         let count=studyInteger(body.get("count") ?? JsonInt(5),1,20); let minutes=studyInteger(body.get("minutes") ?? JsonInt(15),1,180)
         let rawIds=body.get("question_ids") ?? JsonArray()
         if (!(rawIds is JsonArray)) { throw ApiError(422,"题目编号格式无效") }
         let ids=(rawIds as JsonArray).getOrThrow()
         if (ids.getItems().size>1) { throw ApiError(422,"单题练习请选择一道题") }
-        let strategy=schoolText(body,"selection_strategy","random",20)
+        let strategy=optionalText(body,"selection_strategy","random",20)
         if (strategy!="random" && strategy!="adaptive") { throw ApiError(422,"选题方式无效") }
         let selection=if (strategy=="adaptive" && mode=="practice" && ids.getItems().isEmpty()) { adaptivePracticeSelection(db,owner,subject,band,source,search,count,grade:grade) } else { JsonObject() }
         let selected=tutorArray(selection,"question_ids")
-        let taskId=schoolText(body,"learning_task_id","",36)
+        let taskId=optionalText(body,"learning_task_id","",36)
         if (!taskId.isEmpty() && (mode!="practice" || ids.getItems().size!=1)) { throw ApiError(422,"请选择本次学习推荐的一道题") }
         return db.transaction<JsonValue>({ tx =>
             let rows=if (!taskId.isEmpty()) {
@@ -313,7 +313,7 @@ func studySessionApi(context: HttpContext, accounts: Accounts): JsonValue {
                 if (answers.getItems().size!=current.getItems().size) { throw ApiError(422,"作答题目与试卷不一致") }
                 for (rawAnswer in answers.getItems()) {
                     if (!(rawAnswer is JsonObject)) { throw ApiError(422,"作答格式无效") }
-                    let answer=(rawAnswer as JsonObject).getOrThrow(); let itemId=schoolText(answer,"id","",36)
+                    let answer=(rawAnswer as JsonObject).getOrThrow(); let itemId=optionalText(answer,"id","",36)
                     if (!allowed.contains(itemId) || seen.contains(itemId)) { throw ApiError(422,"作答题目与试卷不一致") }; seen.add(itemId)
                     let clean=studyAnswer(answer.get("answer") ?? JsonNull())
                     tx.query("UPDATE study_session_items SET student_answer=? WHERE id=? AND session_id=?",[Some(clean.toString()),Some(itemId),Some(id)])

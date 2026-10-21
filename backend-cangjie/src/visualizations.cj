@@ -24,7 +24,7 @@ func sessionVisualization(context: HttpContext, accounts: Accounts): JsonValue {
         let user=accounts.currentUser(context,db); let body=if (writing) { readJson(context,defaultEmpty:true) } else { JsonObject() }
         let values=body.get("values") ?? JsonObject()
         if (!(values is JsonObject)) { throw ApiError(422,"演示参数格式不正确") }
-        let observation=schoolText(body,"observation","",12000)
+        let observation=optionalText(body,"observation","",12000)
         return db.transaction<JsonValue>({ tx =>
             let visible=visualizationContext(tx,id,rowText(user,"id")); let session=tutorObject(visible,"session"); let snapshot=tutorObject(visible,"snapshot")
             let question=tutorObject(snapshot,"question")

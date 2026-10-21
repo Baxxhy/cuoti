@@ -5,12 +5,9 @@ afterEach(() => vi.unstubAllGlobals())
 
 describe('返回导航', () => {
   it.each([
-    ['pages/teacher/classes', '/pages/teacher/dashboard'],
-    ['pages/guardian/report', '/pages/guardian/home'],
     ['pages/system/system', '/pages/admin/workbench'],
     ['pages/forgot/forgot', '/pages/login/login'],
     ['pages/detail/detail', '/pages/problem/list'],
-    ['pages/guardian/access', '/pages/profile/profile'],
     ['pages/manual/manual', '/pages/capture/capture'],
     ['pages/bank/bank', '/pages/learning/learning'],
   ])('直接打开 %s 后返回对应入口', (route, expected) => {
@@ -26,8 +23,8 @@ describe('返回导航', () => {
       reLaunch = vi.fn()
     vi.stubGlobal('uni', { reLaunch, navigateBack })
     vi.stubGlobal('getCurrentPages', () => [
-      { route: 'pages/teacher/classes' },
-      { route: 'pages/teacher/student' },
+      { route: 'pages/learning/learning' },
+      { route: 'pages/analysis/analysis' },
     ])
     back()
     expect(navigateBack).toHaveBeenCalledOnce()

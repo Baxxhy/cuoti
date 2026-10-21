@@ -77,7 +77,6 @@ def handwriting(endpoint, env, token, other, flow, state, kind="tutor"):
         answer_path = {
             "tutor": "/api/v1/tutor/sessions/" + flow["id"] + "/activity/answer",
             "review": "/api/v1/reviews/" + flow["id"] + "/attempt",
-            "assignment": "/api/v1/students/assignments/" + flow["id"] + "/attempts",
             "practice": "/api/v1/practice/attempt",
         }[kind]
         for fields in [

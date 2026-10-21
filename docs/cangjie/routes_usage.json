@@ -1,13 +1,13 @@
 {
   "baseline_routes": 103,
-  "active_routes": 94,
+  "active_routes": 69,
   "categories": {
     "existing_support": 1,
-    "independent_api": 15,
-    "removed": 9,
+    "independent_api": 9,
+    "removed": 34,
     "returned_media": 1,
     "script_workflow": 5,
-    "ui": 72
+    "ui": 53
   },
   "routes": [
     {
@@ -20,7 +20,7 @@
       "verification": "scripts/smoke_cangjie_accounts.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/store/index.js:31"
+          "frontend/src/store/index.js:29"
         ],
         "validation": [
           "scripts/functional_flow.py:34",
@@ -44,7 +44,7 @@
       "verification": "scripts/smoke_cangjie_accounts.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/store/index.js:24"
+          "frontend/src/store/index.js:22"
         ],
         "validation": [
           "scripts/check_live_alignment.py:39",
@@ -56,8 +56,6 @@
           "scripts/verify_agent_branches.py:30",
           "scripts/verify_knowledge_base.py:54",
           "scripts/verify_papers.py:21",
-          "scripts/verify_parent_teacher.py:19",
-          "scripts/verify_teacher_workspace.py:12",
           "scripts/verify_visualizations.py:53",
           "scripts/verify_voice.py:45"
         ],
@@ -76,7 +74,7 @@
       "verification": "scripts/smoke_cangjie_accounts.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/forgot/forgot.vue:87"
+          "frontend/src/pages/forgot/forgot.vue:86"
         ],
         "validation": [],
         "internal": []
@@ -94,8 +92,8 @@
       "verification": "scripts/smoke_cangjie_accounts.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/review/review.vue:518",
-          "frontend/src/store/index.js:38",
+          "frontend/src/pages/review/review.vue:542",
+          "frontend/src/store/index.js:36",
           "frontend/src/utils/task-entry.js:11"
         ],
         "validation": [
@@ -118,14 +116,16 @@
       "implementation": "backend-cangjie/src/account_api.cj",
       "verification": "scripts/smoke_cangjie_accounts.py",
       "usage_evidence": {
-        "ui": [],
+        "ui": [
+          "frontend/src/pages/profile/edit.vue:142"
+        ],
         "validation": [
           "scripts/smoke_local.py:36"
         ],
         "internal": []
       },
-      "usage_class": "independent_api",
-      "usage_reason": "账号改名能力；当前资料页没有编辑入口，不属于学生主页面必需接口。"
+      "usage_class": "ui",
+      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
     },
     {
       "method": "GET",
@@ -161,7 +161,7 @@
       ],
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/system/system.vue:105"
+          "frontend/src/pages/system/system.vue:108"
         ],
         "validation": [
           "scripts/functional_flow.py:36",
@@ -187,7 +187,7 @@
       ],
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/system/system.vue:114"
+          "frontend/src/pages/system/system.vue:117"
         ],
         "validation": [],
         "internal": []
@@ -226,7 +226,7 @@
       "verification": "scripts/smoke_cangjie_system_admin.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/admin/workbench.vue:656"
+          "frontend/src/pages/admin/workbench.vue:730"
         ],
         "validation": [
           "scripts/smoke_local.py:49"
@@ -246,7 +246,7 @@
       "verification": "scripts/smoke_cangjie_system_admin.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/admin/workbench.vue:667"
+          "frontend/src/pages/admin/workbench.vue:741"
         ],
         "validation": [],
         "internal": []
@@ -264,7 +264,7 @@
       "verification": "scripts/smoke_cangjie_system_admin.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/admin/workbench.vue:676"
+          "frontend/src/pages/admin/workbench.vue:750"
         ],
         "validation": [],
         "internal": []
@@ -282,11 +282,11 @@
       "verification": "scripts/smoke_cangjie_insights.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/index/index.vue:413",
-          "frontend/src/pages/manual/manual.vue:159",
-          "frontend/src/pages/profile/profile.vue:124",
-          "frontend/src/pages/review/review.vue:660",
-          "frontend/src/store/index.js:53"
+          "frontend/src/pages/index/index.vue:376",
+          "frontend/src/pages/manual/manual.vue:182",
+          "frontend/src/pages/profile/profile.vue:133",
+          "frontend/src/pages/review/review.vue:684",
+          "frontend/src/store/index.js:51"
         ],
         "validation": [
           "scripts/functional_flow.py:95",
@@ -309,7 +309,7 @@
       "verification": "scripts/smoke_cangjie_ingest.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/capture/capture.vue:104"
+          "frontend/src/pages/capture/capture.vue:112"
         ],
         "validation": [
           "backend/tests/test_learning_safety.py:686",
@@ -332,7 +332,7 @@
       "verification": "scripts/smoke_cangjie_list.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/problem/list.vue:355",
+          "frontend/src/pages/problem/list.vue:368",
           "frontend/src/utils/learning.js:82"
         ],
         "validation": [
@@ -357,16 +357,16 @@
       "verification": "scripts/smoke_cangjie_detail.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/crop/crop.vue:203",
-          "frontend/src/pages/crop/crop.vue:236",
-          "frontend/src/pages/crop/crop.vue:253",
-          "frontend/src/pages/detail/detail.vue:406",
-          "frontend/src/pages/diagnosis/diagnosis.vue:895",
-          "frontend/src/pages/knowledge/knowledge.vue:170",
-          "frontend/src/pages/ocr/ocr.vue:314",
-          "frontend/src/pages/ocr/ocr.vue:352",
-          "frontend/src/pages/repair/repair.vue:136",
-          "frontend/src/pages/replay/replay.vue:217"
+          "frontend/src/pages/crop/crop.vue:211",
+          "frontend/src/pages/crop/crop.vue:244",
+          "frontend/src/pages/crop/crop.vue:261",
+          "frontend/src/pages/detail/detail.vue:455",
+          "frontend/src/pages/diagnosis/diagnosis.vue:951",
+          "frontend/src/pages/knowledge/knowledge.vue:195",
+          "frontend/src/pages/ocr/ocr.vue:326",
+          "frontend/src/pages/ocr/ocr.vue:364",
+          "frontend/src/pages/repair/repair.vue:148",
+          "frontend/src/pages/replay/replay.vue:220"
         ],
         "validation": [
           "scripts/functional_flow.py:44",
@@ -388,7 +388,7 @@
       "verification": "scripts/smoke_cangjie_edit.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/detail/detail.vue:473"
+          "frontend/src/pages/detail/detail.vue:522"
         ],
         "validation": [],
         "internal": []
@@ -406,7 +406,7 @@
       "verification": "scripts/smoke_cangjie_ingest.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/crop/crop.vue:225"
+          "frontend/src/pages/crop/crop.vue:233"
         ],
         "validation": [],
         "internal": []
@@ -424,7 +424,7 @@
       "verification": "scripts/smoke_cangjie_questions.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/detail/detail.vue:510"
+          "frontend/src/pages/detail/detail.vue:559"
         ],
         "validation": [
           "scripts/smoke_local.py:74",
@@ -461,8 +461,8 @@
       "verification": "scripts/smoke_cangjie_ocr_edits.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/ocr/ocr.vue:435",
-          "frontend/src/pages/ocr/ocr.vue:450"
+          "frontend/src/pages/ocr/ocr.vue:447",
+          "frontend/src/pages/ocr/ocr.vue:462"
         ],
         "validation": [
           "scripts/functional_flow.py:51",
@@ -501,7 +501,7 @@
       "verification": "scripts/smoke_cangjie_ingest.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/detail/detail.vue:494"
+          "frontend/src/pages/detail/detail.vue:543"
         ],
         "validation": [],
         "internal": []
@@ -519,8 +519,9 @@
       "verification": "scripts/smoke_cangjie_analysis.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/diagnosis/diagnosis.vue:924",
-          "frontend/src/pages/ocr/ocr.vue:451"
+          "frontend/src/pages/diagnosis/diagnosis.vue:980",
+          "frontend/src/pages/ocr/ocr.vue:463",
+          "frontend/src/pages/paper/paper-center.vue:522"
         ],
         "validation": [
           "scripts/functional_flow.py:60",
@@ -557,8 +558,8 @@
       "verification": "scripts/smoke_cangjie_diagnosis.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/diagnosis/diagnosis.vue:926",
-          "frontend/src/pages/ocr/ocr.vue:452"
+          "frontend/src/pages/diagnosis/diagnosis.vue:982",
+          "frontend/src/pages/ocr/ocr.vue:464"
         ],
         "validation": [
           "scripts/functional_flow.py:61",
@@ -579,7 +580,7 @@
       "verification": "scripts/smoke_cangjie_diagnosis.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/diagnosis/diagnosis.vue:901"
+          "frontend/src/pages/diagnosis/diagnosis.vue:957"
         ],
         "validation": [],
         "internal": []
@@ -613,7 +614,7 @@
       "verification": "scripts/smoke_cangjie_diagnosis.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/diagnosis/diagnosis.vue:1007"
+          "frontend/src/pages/diagnosis/diagnosis.vue:1063"
         ],
         "validation": [],
         "internal": []
@@ -631,8 +632,8 @@
       "verification": "scripts/smoke_cangjie_detail.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/crop/crop.vue:241",
-          "frontend/src/pages/ocr/ocr.vue:343"
+          "frontend/src/pages/crop/crop.vue:249",
+          "frontend/src/pages/ocr/ocr.vue:355"
         ],
         "validation": [],
         "internal": []
@@ -650,7 +651,7 @@
       "verification": "scripts/smoke_cangjie_ingest.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/ocr/ocr.vue:329"
+          "frontend/src/pages/ocr/ocr.vue:341"
         ],
         "validation": [],
         "internal": []
@@ -673,10 +674,9 @@
       ],
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/assignment/assignment.vue:53",
-          "frontend/src/pages/practice/practice.vue:80",
-          "frontend/src/pages/review/review.vue:131",
-          "frontend/src/pages/tutor/tutor.vue:371"
+          "frontend/src/pages/practice/practice.vue:99",
+          "frontend/src/pages/review/review.vue:138",
+          "frontend/src/pages/tutor/tutor.vue:384"
         ],
         "validation": [],
         "internal": []
@@ -694,7 +694,7 @@
       "verification": "scripts/smoke_cangjie_tutor.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/tutor/tutor.vue:699"
+          "frontend/src/pages/tutor/tutor.vue:787"
         ],
         "validation": [
           "scripts/smoke_demo.py:95"
@@ -714,7 +714,8 @@
       "verification": "scripts/smoke_cangjie_tutor.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/detail/detail.vue:460"
+          "frontend/src/pages/detail/detail.vue:509",
+          "frontend/src/pages/library/library.vue:215"
         ],
         "validation": [
           "scripts/functional_flow.py:63",
@@ -742,7 +743,7 @@
       ],
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/tutor/tutor.vue:686"
+          "frontend/src/pages/tutor/tutor.vue:774"
         ],
         "validation": [
           "scripts/smoke_demo.py:79",
@@ -766,7 +767,7 @@
       ],
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/tutor/tutor.vue:794"
+          "frontend/src/pages/tutor/tutor.vue:882"
         ],
         "validation": [
           "scripts/functional_flow.py:64",
@@ -791,7 +792,7 @@
       "verification": "scripts/smoke_cangjie_tutor.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/tutor/tutor.vue:767"
+          "frontend/src/pages/tutor/tutor.vue:855"
         ],
         "validation": [
           "scripts/smoke_demo.py:83"
@@ -811,7 +812,7 @@
       "verification": "scripts/smoke_cangjie_tutor.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/tutor/tutor.vue:779"
+          "frontend/src/pages/tutor/tutor.vue:867"
         ],
         "validation": [],
         "internal": []
@@ -849,7 +850,7 @@
       "verification": "scripts/smoke_cangjie_visualizations.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/visualization/visualization.vue:74"
+          "frontend/src/pages/visualization/visualization.vue:99"
         ],
         "validation": [],
         "internal": []
@@ -867,7 +868,7 @@
       "verification": "scripts/smoke_cangjie_visualizations.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/visualization/visualization.vue:86"
+          "frontend/src/pages/visualization/visualization.vue:111"
         ],
         "validation": [
           "scripts/functional_flow.py:67",
@@ -986,9 +987,9 @@
       "verification": "scripts/smoke_cangjie_reviews.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/repair/repair.vue:142",
-          "frontend/src/pages/review/review.vue:519",
-          "frontend/src/pages/review/review.vue:755"
+          "frontend/src/pages/repair/repair.vue:154",
+          "frontend/src/pages/review/review.vue:543",
+          "frontend/src/pages/review/review.vue:779"
         ],
         "validation": [],
         "internal": []
@@ -1006,7 +1007,7 @@
       "verification": "scripts/smoke_cangjie_reviews.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/review/review.vue:740"
+          "frontend/src/pages/review/review.vue:764"
         ],
         "validation": [
           "scripts/functional_flow.py:87"
@@ -1026,7 +1027,7 @@
       "verification": "scripts/smoke_cangjie_reviews.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/review/review.vue:805"
+          "frontend/src/pages/review/review.vue:829"
         ],
         "validation": [
           "scripts/functional_flow.py:89"
@@ -1046,8 +1047,8 @@
       "verification": "scripts/smoke_cangjie_reviews.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/review/review.vue:657",
-          "frontend/src/pages/review/review.vue:811"
+          "frontend/src/pages/review/review.vue:681",
+          "frontend/src/pages/review/review.vue:835"
         ],
         "validation": [],
         "internal": []
@@ -1065,7 +1066,7 @@
       "verification": "scripts/smoke_cangjie_insights.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/library/library.vue:131"
+          "frontend/src/pages/library/library.vue:179"
         ],
         "validation": [
           "scripts/verify_knowledge_base.py:56",
@@ -1087,7 +1088,7 @@
       "verification": "scripts/smoke_cangjie_insights.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/library/library.vue:145"
+          "frontend/src/pages/library/library.vue:193"
         ],
         "validation": [],
         "internal": []
@@ -1105,7 +1106,7 @@
       "verification": "scripts/smoke_cangjie_insights.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/analysis/analysis.vue:276"
+          "frontend/src/pages/analysis/analysis.vue:261"
         ],
         "validation": [
           "scripts/check_live_alignment.py:47",
@@ -1127,7 +1128,7 @@
       "verification": "scripts/smoke_cangjie_insights.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/analysis/analysis.vue:301"
+          "frontend/src/pages/analysis/analysis.vue:281"
         ],
         "validation": [
           "scripts/verify_knowledge_base.py:76"
@@ -1147,7 +1148,7 @@
       "verification": "scripts/smoke_cangjie_papers.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/paper/paper-center.vue:348"
+          "frontend/src/pages/paper/paper-center.vue:418"
         ],
         "validation": [
           "scripts/functional_flow.py:91",
@@ -1171,7 +1172,7 @@
       "verification": "scripts/smoke_cangjie_papers.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/paper/paper-center.vue:321"
+          "frontend/src/pages/paper/paper-center.vue:391"
         ],
         "validation": [
           "scripts/verify_papers.py:23"
@@ -1191,9 +1192,9 @@
       "verification": "scripts/smoke_cangjie_papers.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/paper/paper-center.vue:303",
-          "frontend/src/pages/paper/paper-center.vue:355",
-          "frontend/src/pages/paper/paper-center.vue:396"
+          "frontend/src/pages/paper/paper-center.vue:373",
+          "frontend/src/pages/paper/paper-center.vue:425",
+          "frontend/src/pages/paper/paper-center.vue:466"
         ],
         "validation": [
           "scripts/smoke_local.py:93"
@@ -1213,8 +1214,9 @@
       "verification": "scripts/smoke_cangjie_papers.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/paper/paper-center.vue:368",
-          "frontend/src/pages/paper/paper-center.vue:457"
+          "frontend/src/pages/paper/paper-center.vue:438",
+          "frontend/src/pages/paper/paper-center.vue:529",
+          "frontend/src/pages/paper/paper-center.vue:551"
         ],
         "validation": [
           "scripts/smoke_local.py:78",
@@ -1237,7 +1239,7 @@
       "verification": "scripts/smoke_cangjie_papers.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/paper/paper-center.vue:389"
+          "frontend/src/pages/paper/paper-center.vue:459"
         ],
         "validation": [
           "scripts/verify_papers.py:36"
@@ -1257,7 +1259,7 @@
       "verification": "scripts/smoke_cangjie_papers.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/paper/paper-center.vue:425"
+          "frontend/src/pages/paper/paper-center.vue:495"
         ],
         "validation": [
           "scripts/smoke_local.py:90",
@@ -1278,7 +1280,7 @@
       "verification": "scripts/smoke_cangjie_papers.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/paper/paper-center.vue:443"
+          "frontend/src/pages/paper/paper-center.vue:536"
         ],
         "validation": [
           "scripts/functional_flow.py:93",
@@ -1355,107 +1357,6 @@
       "usage_reason": "语音验收脚本使用的独立专业能力；当前学生页面没有语音入口。保留算法，不追加页面。"
     },
     {
-      "method": "GET",
-      "path": "/api/v1/guardians/students",
-      "source": "backend/app/main.py",
-      "function": "guardian_students",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/guardian/home.vue:68"
-        ],
-        "validation": [
-          "scripts/verify_parent_teacher.py:26"
-        ],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/guardians/students/{student_id}/overview",
-      "source": "backend/app/main.py",
-      "function": "student_report",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/guardian/report.vue:37"
-        ],
-        "validation": [
-          "scripts/verify_parent_teacher.py:29"
-        ],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/students/{student_id}/report",
-      "source": "backend/app/main.py",
-      "function": "student_report",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/student.vue:112"
-        ],
-        "validation": [
-          "scripts/verify_parent_teacher.py:37"
-        ],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/classes",
-      "source": "backend/app/main.py",
-      "function": "teacher_classes",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/assignment.vue:113",
-          "frontend/src/pages/teacher/classes.vue:60"
-        ],
-        "validation": [
-          "scripts/verify_parent_teacher.py:33"
-        ],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/classes/{class_id}",
-      "source": "backend/app/main.py",
-      "function": "teacher_class",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/class-detail.vue:62"
-        ],
-        "validation": [
-          "scripts/verify_parent_teacher.py:35"
-        ],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
       "method": "POST",
       "path": "/api/v1/practice/recommend",
       "source": "backend/app/main.py",
@@ -1469,7 +1370,7 @@
       ],
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/practice/practice.vue:199"
+          "frontend/src/pages/practice/practice.vue:309"
         ],
         "validation": [
           "backend/tests/test_learning_safety.py:371",
@@ -1508,7 +1409,7 @@
       "verification": "scripts/smoke_cangjie_practice.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/practice/practice.vue:217"
+          "frontend/src/pages/practice/practice.vue:353"
         ],
         "validation": [
           "scripts/check_live_alignment.py:117",
@@ -1516,362 +1417,6 @@
           "scripts/check_live_practice.py:92",
           "scripts/check_live_practice.py:97"
         ],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/dashboard",
-      "source": "backend/app/teacher_api.py",
-      "function": "dashboard",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/teacher_dashboard.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/dashboard.vue:102"
-        ],
-        "validation": [
-          "scripts/verify_teacher_workspace.py:22",
-          "scripts/verify_teacher_workspace.py:24"
-        ],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/teachers/classes",
-      "source": "backend/app/teacher_api.py",
-      "function": "create_class",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/classes.vue:65"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/teachers/classes/{class_id}/students",
-      "source": "backend/app/teacher_api.py",
-      "function": "add_student",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/class-detail.vue:67"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "DELETE",
-      "path": "/api/v1/teachers/classes/{class_id}/students/{student_id}",
-      "source": "backend/app/teacher_api.py",
-      "function": "remove_student",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "independent_api",
-      "usage_reason": "教师移除成员并撤销班级报告/计划权限，有 HTTP 验证；当前班级页面只提供添加入口。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/reviews",
-      "source": "backend/app/teacher_api.py",
-      "function": "review_queue",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/assignment_reviews.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/reviews.vue:85"
-        ],
-        "validation": [
-          "scripts/verify_teacher_workspace.py:23"
-        ],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/reviews/{task_id}",
-      "source": "backend/app/teacher_api.py",
-      "function": "review_detail",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/assignment_reviews.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/review-detail.vue:183"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/teachers/reviews/{task_id}/decision",
-      "source": "backend/app/teacher_api.py",
-      "function": "decide_review",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/assignment_reviews.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/review-detail.vue:200"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/teachers/reviews/{task_id}/revoke",
-      "source": "backend/app/teacher_api.py",
-      "function": "revoke_review",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/review_mutations.cj",
-      "verification": "scripts/smoke_cangjie_review_mutations.py",
-      "usage_evidence": {
-        "ui": [],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "independent_api",
-      "usage_reason": "教师撤销已发布复核及其学习效果，有独立语义；当前页面未放撤销按钮，不等同 decision。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/teachers/reviews/{task_id}/regrade",
-      "source": "backend/app/teacher_api.py",
-      "function": "regrade_review",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/review_mutations.cj",
-      "verification": "scripts/smoke_cangjie_review_mutations.py",
-      "usage_evidence": {
-        "ui": [],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "independent_api",
-      "usage_reason": "教师重新判定既有复核，有独立语义；当前页面未提供按钮，不等同首次 decision。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/teachers/reviews/{task_id}/transfer",
-      "source": "backend/app/teacher_api.py",
-      "function": "transfer_review",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/review_mutations.cj",
-      "verification": "scripts/smoke_cangjie_review_mutations.py",
-      "usage_evidence": {
-        "ui": [],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "independent_api",
-      "usage_reason": "教师转交复核任务，有独立权限与审计语义；当前页面未提供按钮。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/questions",
-      "source": "backend/app/teacher_api.py",
-      "function": "teacher_questions",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/assignment_catalog.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/assignment.vue:114",
-          "frontend/src/pages/teacher/questions.vue:45"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/teachers/questions",
-      "source": "backend/app/teacher_api.py",
-      "function": "create_question",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/assignment_catalog.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/question-edit.vue:109"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/teachers/assignments",
-      "source": "backend/app/teacher_api.py",
-      "function": "create_assignment",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/assignment_catalog.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/assignment.vue:126"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/assignments",
-      "source": "backend/app/teacher_api.py",
-      "function": "assignments",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/assignment_catalog.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/assignment.vue:115"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/students/assignments",
-      "source": "backend/app/teacher_api.py",
-      "function": "student_assignments",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/student_assignments.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/assignment/assignment.vue:154"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "POST",
-      "path": "/api/v1/students/assignments/{student_assignment_id}/attempts",
-      "source": "backend/app/teacher_api.py",
-      "function": "submit_assignment",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/student_assignments.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/assignment/assignment.vue:170"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/students/teacher-feedback",
-      "source": "backend/app/teacher_api.py",
-      "function": "student_feedback",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/student_assignments.cj",
-      "verification": "scripts/smoke_cangjie_assignments.py",
-      "usage_evidence": {
-        "ui": [],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "independent_api",
-      "usage_reason": "独立反馈历史，返回结果与任务；首页/作业只返回相应摘要，不是完全相同的响应。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/students/{student_id}/plans",
-      "source": "backend/app/teacher_api.py",
-      "function": "student_plans",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/plans.vue:74"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "PATCH",
-      "path": "/api/v1/teachers/plans/{plan_id}",
-      "source": "backend/app/teacher_api.py",
-      "function": "update_plan",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/plans.vue:91"
-        ],
-        "validation": [],
-        "internal": []
-      },
-      "usage_class": "ui",
-      "usage_reason": "现有页面或组件存在直接 API 调用；保留。"
-    },
-    {
-      "method": "GET",
-      "path": "/api/v1/teachers/audit-logs",
-      "source": "backend/app/teacher_api.py",
-      "function": "audit_logs",
-      "status": "verified",
-      "implementation": "backend-cangjie/src/school_api.cj",
-      "verification": "scripts/smoke_cangjie_school.py",
-      "usage_evidence": {
-        "ui": [
-          "frontend/src/pages/teacher/audit.vue:45"
-        ],
-        "validation": [],
         "internal": []
       },
       "usage_class": "ui",
@@ -1887,7 +1432,8 @@
       "verification": "scripts/smoke_cangjie_questions.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/manual/manual.vue:139"
+          "frontend/src/pages/manual/manual.vue:162",
+          "frontend/src/pages/study-session/study-session.vue:554"
         ],
         "validation": [
           "scripts/check_live_practice.py:37",
@@ -1910,9 +1456,9 @@
       "verification": "scripts/smoke_cangjie_journey.py",
       "usage_evidence": {
         "ui": [
-          "frontend/src/pages/detail/detail.vue:407",
-          "frontend/src/pages/journey/journey.vue:163",
-          "frontend/src/pages/repair/repair.vue:137"
+          "frontend/src/pages/detail/detail.vue:456",
+          "frontend/src/pages/journey/journey.vue:170",
+          "frontend/src/pages/repair/repair.vue:149"
         ],
         "validation": [
           "scripts/smoke_demo.py:102",
@@ -2077,6 +1623,456 @@
       },
       "usage_class": "removed",
       "usage_reason": "与 overview 完全相同的响应；学习统计页面只使用 overview。"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guardians/students",
+      "source": "backend/app/main.py",
+      "function": "guardian_students",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guardians/students/{student_id}/overview",
+      "source": "backend/app/main.py",
+      "function": "student_report",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/students/{student_id}/report",
+      "source": "backend/app/main.py",
+      "function": "student_report",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/classes",
+      "source": "backend/app/main.py",
+      "function": "teacher_classes",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/classes/{class_id}",
+      "source": "backend/app/main.py",
+      "function": "teacher_class",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/dashboard",
+      "source": "backend/app/teacher_api.py",
+      "function": "dashboard",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/teacher_dashboard.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/classes",
+      "source": "backend/app/teacher_api.py",
+      "function": "create_class",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/classes/{class_id}/students",
+      "source": "backend/app/teacher_api.py",
+      "function": "add_student",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/teachers/classes/{class_id}/students/{student_id}",
+      "source": "backend/app/teacher_api.py",
+      "function": "remove_student",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/reviews",
+      "source": "backend/app/teacher_api.py",
+      "function": "review_queue",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/assignment_reviews.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/reviews/{task_id}",
+      "source": "backend/app/teacher_api.py",
+      "function": "review_detail",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/assignment_reviews.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/reviews/{task_id}/decision",
+      "source": "backend/app/teacher_api.py",
+      "function": "decide_review",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/assignment_reviews.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/reviews/{task_id}/revoke",
+      "source": "backend/app/teacher_api.py",
+      "function": "revoke_review",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/review_mutations.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/reviews/{task_id}/regrade",
+      "source": "backend/app/teacher_api.py",
+      "function": "regrade_review",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/review_mutations.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/reviews/{task_id}/transfer",
+      "source": "backend/app/teacher_api.py",
+      "function": "transfer_review",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/review_mutations.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/questions",
+      "source": "backend/app/teacher_api.py",
+      "function": "teacher_questions",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/assignment_catalog.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/questions",
+      "source": "backend/app/teacher_api.py",
+      "function": "create_question",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/assignment_catalog.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/teachers/assignments",
+      "source": "backend/app/teacher_api.py",
+      "function": "create_assignment",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/assignment_catalog.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/assignments",
+      "source": "backend/app/teacher_api.py",
+      "function": "assignments",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/assignment_catalog.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/students/assignments",
+      "source": "backend/app/teacher_api.py",
+      "function": "student_assignments",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/student_assignments.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/students/assignments/{student_assignment_id}/attempts",
+      "source": "backend/app/teacher_api.py",
+      "function": "submit_assignment",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/student_assignments.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/students/teacher-feedback",
+      "source": "backend/app/teacher_api.py",
+      "function": "student_feedback",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/student_assignments.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/students/{student_id}/plans",
+      "source": "backend/app/teacher_api.py",
+      "function": "student_plans",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/teachers/plans/{plan_id}",
+      "source": "backend/app/teacher_api.py",
+      "function": "update_plan",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/teachers/audit-logs",
+      "source": "backend/app/teacher_api.py",
+      "function": "audit_logs",
+      "status": "retired",
+      "implementation": "backend-cangjie/src/school_api.cj",
+      "verification": "scripts/smoke_cangjie.py",
+      "original_status": "verified",
+      "retirement_reason": "学生个人使用版移除教师与家长协作",
+      "usage_evidence": {
+        "ui": [],
+        "validation": [],
+        "internal": []
+      },
+      "usage_class": "removed",
+      "usage_reason": "学生个人使用版移除教师与家长协作"
     }
   ]
 }

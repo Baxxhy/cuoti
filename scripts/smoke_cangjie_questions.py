@@ -136,7 +136,7 @@ def manual_questions(endpoint, env, token):
     )
     request(endpoint, "POST", "/api/v1/questions/manual", payload, expected=401)
     # This explicit role mutation occurs only in the disposable test database.
-    query(env, "UPDATE users SET role='teacher' WHERE id='" + user_id + "'")
+    query(env, "UPDATE users SET role='admin' WHERE id='" + user_id + "'")
     try:
         request(
             endpoint,

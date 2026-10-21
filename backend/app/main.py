@@ -38,7 +38,6 @@ from app.media import SignedStaticFiles, sign_media_url
 from app.models import (
     AgentRun,
     AgentToolCall,
-    AssignmentStudent,
     Base,
     CognitiveUpdate,
     DatasetPracticeAttempt,
@@ -47,7 +46,6 @@ from app.models import (
     Diagnosis,
     DiagnosisEvidence,
     ExportJob,
-    GuardianStudentLink,
     KnowledgePoint,
     KnowledgeRelation,
     MasteryState,
@@ -60,7 +58,6 @@ from app.models import (
     ProcessingJob,
     Question,
     QuestionAsset,
-    QuestionAssignment,
     QuestionKnowledgeLink,
     ReferenceStep,
     ReviewPlan,
@@ -68,11 +65,7 @@ from app.models import (
     StudentProfile,
     StudentStep,
     StudentWork,
-    TeacherClass,
-    TeacherClassStudent,
     TeacherMark,
-    TeacherReviewResult,
-    TeacherReviewTask,
     TutorSession,
     TutorTurn,
     User,
@@ -169,7 +162,6 @@ from app.services.vision import (
 )
 from app.services.visualizations import recommended_visualization, visualization_catalog, visualization_spec
 from app.services.voice import voice_provider
-from app.teacher_api import create_teacher_router
 
 settings.upload_dir.mkdir(parents=True, exist_ok=True)
 Path("reports").mkdir(exist_ok=True)
@@ -199,7 +191,6 @@ def learning_method_label(value: str | None) -> str:
         "micro_activity": "小步练习",
         "assisted_progression": "分步辅助练习",
         "independent_dataset_practice": "独立完成题库练习",
-        "teacher_review": "教师复核指导",
         "incremental_hint": "分层提示",
         "understanding_check_prompt": "理解检查",
         "preserve_correct_part": "保留正确部分再提示",
@@ -491,7 +482,6 @@ app.mount(
     "/uploads", SignedStaticFiles(directory=settings.upload_dir, secret=settings.auth_secret), name="uploads"
 )
 app.mount("/reports", SignedStaticFiles(directory="reports", secret=settings.auth_secret), name="reports")
-app.include_router(create_teacher_router(provider))
 
 
 @app.exception_handler(ApiPoolUnavailable)
@@ -540,7 +530,11 @@ async def login(payload: dict = Body(...), db: AsyncSession = Depends(get_db)):
     payload = validated_payload(LoginRequest, payload)
     email = str(payload.get("email", "")).strip().lower()
     user = (await db.scalars(select(User).where(User.email == email))).first()
-    if user is None or not verify_password(str(payload.get("password", "")), user.password_hash):
+    if (
+        user is None
+        or user.role not in ("student", "admin")
+        or not verify_password(str(payload.get("password", "")), user.password_hash)
+    ):
         raise HTTPException(status_code=401, detail="账号或密码不正确")
     return envelope(
         {
@@ -580,8 +574,6 @@ async def update_me(
     return envelope(user_dict(user))
 
 
-
-
 @app.get("/api/v1/system/health")
 async def health():
     try:
@@ -603,8 +595,6 @@ async def health():
     )
 
 
-
-
 @app.get("/api/v1/system/providers")
 async def providers():
     return envelope(provider.health_check())
@@ -613,8 +603,6 @@ async def providers():
 @app.post("/api/v1/system/providers/probe")
 async def probe_provider():
     return envelope(await provider.probe())
-
-
 
 
 @app.get("/api/v1/system/voice")
@@ -788,43 +776,6 @@ async def dashboard(user: User = Depends(current_user), db: AsyncSession = Depen
             streak_days += 1
             expected_day -= timedelta(days=1)
     has_learning_data = bool(user_questions or review_count or mastery or misconceptions or continue_learning)
-    assignment_count = int(
-        await db.scalar(
-            select(func.count())
-            .select_from(AssignmentStudent)
-            .where(
-                AssignmentStudent.student_id == user.id,
-                AssignmentStudent.status == "pending",
-            )
-        )
-        or 0
-    )
-    teacher_feedback_row = (
-        await db.execute(
-            select(TeacherReviewResult, TeacherReviewTask)
-            .join(
-                TeacherReviewTask,
-                TeacherReviewTask.id == TeacherReviewResult.task_id,
-            )
-            .where(
-                TeacherReviewTask.student_id == user.id,
-                TeacherReviewResult.revoked_at.is_(None),
-            )
-            .order_by(TeacherReviewResult.created_at.desc())
-            .limit(1)
-        )
-    ).first()
-    teacher_feedback = None
-    if teacher_feedback_row:
-        feedback, feedback_task = teacher_feedback_row
-        teacher_feedback = {
-            "conclusion": feedback.conclusion,
-            "reason": feedback.reason,
-            "student_hint": feedback.student_hint,
-            "next_task": feedback.next_task,
-            "question_id": feedback_task.question_id,
-            "handled_at": feedback.created_at.isoformat(),
-        }
     return envelope(
         {
             "today_reviews": review_count or 0,
@@ -837,8 +788,6 @@ async def dashboard(user: User = Depends(current_user), db: AsyncSession = Depen
             ),
             "continue_learning": continue_learning,
             "discoveries": discoveries,
-            "teacher_assignment_count": assignment_count,
-            "teacher_feedback": teacher_feedback,
             "mastery": [row_dict(x) for x in mastery],
             "misconceptions": [
                 row_dict(item) | {"label": label} for (_, label), item in deduped_misconceptions.items()
@@ -2445,21 +2394,6 @@ async def answer_handwriting_context(
             raise HTTPException(422, "选择题请直接选择选项")
         return practice_question.subject, practice_question.question_text
 
-    if context_type == "assignment":
-        link = await db.get(AssignmentStudent, context_id)
-        if link is None or link.student_id != user.id:
-            raise HTTPException(404, "布置任务不存在")
-        assignment = await db.get(QuestionAssignment, link.assignment_id)
-        if assignment is None:
-            raise HTTPException(409, "布置记录已不存在")
-        can_repeat = link.status == "completed" and (assignment.settings or {}).get("allow_repeat", False)
-        if link.status != "pending" and not can_repeat:
-            raise HTTPException(409, "当前任务暂不能再次作答")
-        assignment_question = await db.get(Question, assignment.question_id)
-        if assignment_question is None:
-            raise HTTPException(409, "题目已不存在")
-        return assignment_question.subject, assignment_question.question_text
-
     if context_type == "review":
         plan = await db.get(ReviewPlan, context_id)
         if plan is None or plan.user_id != user.id or plan.status != "pending":
@@ -3233,8 +3167,6 @@ async def tutor_turn(session_id: str, payload: dict = Body(...), db: AsyncSessio
     )
     await db.commit()
     return envelope({"message": reply, "stage": session.stage, "hint_level": session.hint_level, **metadata})
-
-
 
 
 @app.post("/api/v1/tutor/sessions/{session_id}/advance")
@@ -4799,177 +4731,6 @@ async def synthesize_voice(
             "metadata": metadata,
         }
     )
-
-
-@app.get("/api/v1/guardians/students")
-async def guardian_students(user: User = Depends(current_user), db: AsyncSession = Depends(get_db)):
-    if user.role != "guardian":
-        raise HTTPException(status_code=403, detail="请使用家长账号登录")
-    links = list(
-        await db.scalars(select(GuardianStudentLink).where(GuardianStudentLink.guardian_id == user.id))
-    )
-    students = [await db.get(User, link.student_id) for link in links]
-    result = []
-    for student in students:
-        if student:
-            pending = int(
-                await db.scalar(
-                    select(func.count())
-                    .select_from(ReviewPlan)
-                    .where(ReviewPlan.user_id == student.id, ReviewPlan.status == "pending")
-                )
-                or 0
-            )
-            mastery = list(await db.scalars(select(MasteryState).where(MasteryState.user_id == student.id)))
-            result.append(
-                user_dict(student)
-                | {
-                    "pending_reviews": pending,
-                    "average_mastery": round(sum(item.mastery_score for item in mastery) / len(mastery), 3)
-                    if mastery
-                    else 0,
-                }
-            )
-    return envelope(result)
-
-
-@app.get("/api/v1/guardians/students/{student_id}/overview")
-@app.get("/api/v1/teachers/students/{student_id}/report")
-async def student_report(
-    student_id: str, account: User = Depends(current_user), db: AsyncSession = Depends(get_db)
-):
-    if account.role == "guardian":
-        allowed = await db.scalar(
-            select(func.count())
-            .select_from(GuardianStudentLink)
-            .where(
-                GuardianStudentLink.guardian_id == account.id,
-                GuardianStudentLink.student_id == student_id,
-            )
-        )
-    elif account.role == "teacher":
-        allowed = await db.scalar(
-            select(func.count())
-            .select_from(TeacherClassStudent)
-            .join(
-                TeacherClass,
-                TeacherClass.id == TeacherClassStudent.class_id,
-            )
-            .where(TeacherClass.teacher_id == account.id, TeacherClassStudent.student_id == student_id)
-        )
-    else:
-        raise HTTPException(status_code=403, detail="请使用家长或教师账号登录")
-    if not allowed:
-        raise HTTPException(status_code=403, detail="该学生未关联到当前账号")
-    student = await db.get(User, student_id)
-    if student is None:
-        raise HTTPException(404, "学生不存在")
-    mastery = [
-        row_dict(x) for x in await db.scalars(select(MasteryState).where(MasteryState.user_id == student_id))
-    ]
-    mistakes = [
-        row_dict(x)
-        for x in await db.scalars(select(MisconceptionState).where(MisconceptionState.user_id == student_id))
-    ]
-    question_count = int(
-        await db.scalar(select(func.count()).select_from(Question).where(Question.user_id == student_id)) or 0
-    )
-    completed_sessions = int(
-        await db.scalar(
-            select(func.count())
-            .select_from(TutorSession)
-            .where(TutorSession.user_id == student_id, TutorSession.status == "completed")
-        )
-        or 0
-    )
-    reviews = int(
-        await db.scalar(
-            select(func.count())
-            .select_from(ReviewRecord)
-            .join(ReviewPlan, ReviewPlan.id == ReviewRecord.plan_id)
-            .where(ReviewPlan.user_id == student_id)
-        )
-        or 0
-    )
-    recent = [
-        row_dict(item)
-        for item in await db.scalars(
-            select(CognitiveUpdate)
-            .where(CognitiveUpdate.user_id == student_id)
-            .order_by(CognitiveUpdate.created_at.desc())
-            .limit(10)
-        )
-    ]
-    weak = sorted(mastery, key=lambda item: item["mastery_score"])[:3]
-    suggestion = (
-        f"建议先巩固{weak[0]['knowledge_point']}，再用自己的话讲一遍解题方法。"
-        if weak
-        else "先完成一道错题学习，系统会给出更具体的建议。"
-    )
-    return envelope(
-        {
-            "student": user_dict(student),
-            "mastery": mastery,
-            "misconceptions": mistakes,
-            "summary": {
-                "questions": question_count,
-                "completed_sessions": completed_sessions,
-                "review_records": reviews,
-            },
-            "recent_updates": recent,
-            "suggestion": suggestion,
-        }
-    )
-
-
-@app.get("/api/v1/teachers/classes")
-async def teacher_classes(user: User = Depends(require_roles("teacher")), db: AsyncSession = Depends(get_db)):
-    result = []
-    for item in await db.scalars(select(TeacherClass).where(TeacherClass.teacher_id == user.id)):
-        count = int(
-            await db.scalar(
-                select(func.count())
-                .select_from(TeacherClassStudent)
-                .where(TeacherClassStudent.class_id == item.id)
-            )
-            or 0
-        )
-        result.append(row_dict(item) | {"student_count": count})
-    return envelope(result)
-
-
-@app.get("/api/v1/teachers/classes/{class_id}")
-async def teacher_class(
-    class_id: str, user: User = Depends(require_roles("teacher")), db: AsyncSession = Depends(get_db)
-):
-    item = await db.get(TeacherClass, class_id)
-    if item is None or item.teacher_id != user.id:
-        raise HTTPException(status_code=404, detail="没有找到这个班级")
-    links = list(
-        await db.scalars(select(TeacherClassStudent).where(TeacherClassStudent.class_id == class_id))
-    )
-    students = []
-    for link in links:
-        student = await db.get(User, link.student_id)
-        if student:
-            mastery = list(await db.scalars(select(MasteryState).where(MasteryState.user_id == student.id)))
-            active = list(
-                await db.scalars(
-                    select(MisconceptionState).where(
-                        MisconceptionState.user_id == student.id, MisconceptionState.status != "resolved"
-                    )
-                )
-            )
-            students.append(
-                user_dict(student)
-                | {
-                    "average_mastery": round(sum(value.mastery_score for value in mastery) / len(mastery), 3)
-                    if mastery
-                    else 0,
-                    "active_misconceptions": len(active),
-                }
-            )
-    return envelope(row_dict(item) | {"students": students})
 
 
 def _practice_grade_band(grade: str) -> str:

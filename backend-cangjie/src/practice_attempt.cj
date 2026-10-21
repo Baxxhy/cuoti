@@ -4,7 +4,7 @@ import stdx.encoding.json.*
 import stdx.net.http.*
 
 func practiceMode(body: JsonObject): String {
-    let mode=schoolText(body,"mode","",30)
+    let mode=optionalText(body,"mode","",30)
     if (mode!="reinforce" && mode!="variation") { throw ApiError(422,"请选择有效的练习模式") }
     return mode
 }
@@ -13,7 +13,7 @@ func attemptPractice(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"POST")
     try (db=Database.fromEnvironment()) {
         let user=accounts.currentUser(context,db); let body=readJson(context)
-        let owner=rowText(user,"id"); let mistakeId=schoolText(body,"mistake_id","",100); let id=schoolText(body,"question_id","",100); let mode=practiceMode(body)
+        let owner=rowText(user,"id"); let mistakeId=optionalText(body,"mistake_id","",100); let id=optionalText(body,"question_id","",100); let mode=practiceMode(body)
         let answer=body.get("student_answer") ?? { => throw ApiError(422,"请提交作答") }()
         let duration=paperInteger(body.get("duration_seconds") ?? JsonInt(0),0,7200)
         return db.transaction<JsonValue>({ tx =>

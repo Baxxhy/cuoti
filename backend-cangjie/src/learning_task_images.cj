@@ -12,7 +12,7 @@ func taskImage(db: Database, task: JsonObject, id: String): JsonObject {
 }
 
 func attachTaskImage(db: Database, task: JsonObject, body: JsonObject, event: JsonObject): Unit {
-    let id=schoolText(body,"handwriting_id","",36)
+    let id=optionalText(body,"handwriting_id","",36)
     if (id.isEmpty()) {
         if (body.get("handwriting_confirmed").isSome()) { throw ApiError(422,"核对标记缺少对应照片") }
         return

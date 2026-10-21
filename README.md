@@ -1,5 +1,7 @@
 # 错题帮
 
+2026-10-22：当前为学生个人使用版，教师/家长关联、班级作业与人工复核已移除。学生自己的错题、AI学习、练习、复习、报告和导出保留。
+
 当前目标是整个系统能启动、主要功能能实际使用，页面简单清楚；不开发备份恢复。使用、功能与支持边界见[系统运行与使用说明](docs/final/SYSTEM_DELIVERY.md)。
 
 当前主线为 **uni-app 前端 → 仓颉业务后端/MySQL → Python 内部算法**。最终产品需求见 [新版总方案](docs/final/README.md)，实际实现与待验收项见 [实施进度](docs/final/IMPLEMENTATION_STATUS.md)。
@@ -14,7 +16,7 @@
 
 本地启动：复制 `.env.cangjie.example` 为 `.env.cangjie` 并配置独立 MySQL（首次建表按[仓颉说明](backend-cangjie/README.md)显式执行），运行 `make dev-final`；`make check-final` 只检查服务就绪，Ctrl+C 停止本次启动的三个服务。启动器不创建数据库、不导入演示成绩、不探测付费模型。
 
-教师、家长和管理员使用专用本地账号：`bash scripts/local_user.sh --email 实际邮箱 --role guardian --name '家长姓名'`，密码交互输入；`--role`也支持`teacher/admin`。命令拒绝覆盖已有账号，详见[角色账号配置](docs/final/LOCAL_IDENTITIES.md)。
+学生通过注册页创建自己的账号，仅查看自己的错题与学习记录。管理员命令仅供本地维护使用，详见[本地维护账号](docs/final/LOCAL_IDENTITIES.md)。
 
 真实练习题库：按[仓颉题库准备说明](docs/final/QUESTION_BANK_IMPLEMENTATION.md)配置独立Qdrant集合，运行`make setup-question-bank-cangjie`；默认读取本地CMMU文件，仓颉负责MySQL，Python只清洗/映射和建立BGE索引。不调用下文保留的旧Python业务版导入命令向新库写数据。
 
@@ -149,19 +151,13 @@ make dev
 
 最后一条命令会同时启动 MySQL、Qdrant、BGE 推理服务、FastAPI 和 UniApp H5。下面各节解释每一步做了什么及故障处理方式。
 
-创建教师、家长和管理员账号由运营人员在服务器终端执行，密码交互输入且不显示。脚本拒绝覆盖已有账号，不重置密码或学习记录：
+创建本地维护管理员账号在服务器终端执行，密码交互输入且不显示。脚本拒绝覆盖已有账号，不重置密码或学习记录：
 
 ```bash
-conda run --no-capture-output -n minddimension python scripts/manage_accounts.py create --role teacher --email teacher@example.com --name 教师
-conda run --no-capture-output -n minddimension python scripts/manage_accounts.py create --role guardian --email guardian@example.com --name 家长
 conda run --no-capture-output -n minddimension python scripts/manage_accounts.py create --role admin --email admin@example.com --name 管理员
 ```
 
-学生从注册页建立账号。教师从班级页面添加学生。家长关系由运营人员核对后建立，重复执行不会重复添加：
-
-```bash
-conda run --no-capture-output -n minddimension python scripts/manage_accounts.py link-guardian --guardian-email guardian@example.com --student-email student@example.com
-```
+学生从注册页建立账号，不提供教师、家长关联。
 
 自动化环境可使用 `--password-stdin` 从标准输入读取密码，不把密码写进命令参数。`make seed` 与 `make fresh-student` 仅用于独立演示环境，后者会清空指定演示学生的数据，不用于真实用户初始化。
 
@@ -191,7 +187,7 @@ make seed-knowledge
 
 - MySQL 使用 `127.0.0.1:3307`，数据保存在 `mysql-data/`。该目录已被 Git 忽略。
 - 旧版 `.mysql-data/` 会在数据库停止后，由 `make mysql` 整体改名迁移为 `mysql-data/`；已有运行实例会继续复用。迁移保留所有表和日志，不删除 UNDO 文件。MySQL 8.0 的启动扫描会忽略隐藏目录，因此不要把数据目录改回以点开头的名称。
-- `make seed` 创建知识卡、家长、教师、管理员和演示数据。
+- `make seed` 创建知识卡、学生、维护管理员和演示数据。
 - `make fresh-student` 创建空白学生 `1@1.com / 123`；重复执行会清空这个学生已有的学习数据。
 - `scripts/start_mysql.sh` 需要当前用户能够执行 `runuser`、`chown` 和 `mysqld`。普通 Linux 主机可使用 `sudo make mysql`，但后续后端不要使用 sudo 启动。
 
@@ -266,14 +262,12 @@ make frontend
 
 ## 7. 登录账号
 
-下表为演示种子账号说明，不保证仓颉独立库已初始化全部账号。2026-10-17当前仓颉本地库已核验学生 `1@1.com` / `123` 可登录，该账号已有使用记录，不再称为空白账号；`e2e@minddimension.local` 在当前独立库未通过登录核验。新用户可直接注册；教师、家长和管理员按上文专用命令创建。不要把旧Python业务库的登录状态当作仓颉登录状态。
+下表为演示种子账号说明，不保证仓颉独立库已初始化全部账号。2026-10-17当前仓颉本地库已核验学生 `1@1.com` / `123` 可登录，该账号已有使用记录，不再称为空白账号；`e2e@minddimension.local` 在当前独立库未通过登录核验。新用户可直接注册；仅维护管理员按上文命令创建。不要把旧Python业务库的登录状态当作仓颉登录状态。
 
 | 身份 | 账号 | 密码 |
 |---|---|---|
 | 本地学生 | `1@1.com` | `123` |
 | 演示学生 | `e2e@minddimension.local` | `123456` |
-| 家长 | `guardian@minddimension.local` | `123456` |
-| 教师 | `teacher@minddimension.local` | `123456` |
 | 管理员 | `admin@minddimension.local` | `123456` |
 
 身份由登录账号在 MySQL 中的角色决定，个人中心不能随意切换身份。

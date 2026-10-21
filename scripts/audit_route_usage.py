@@ -199,26 +199,6 @@ NOTES = {
         "independent_api",
         "语音验收脚本使用的独立专业能力；当前学生页面没有语音入口。保留算法，不追加页面。",
     ),
-    "DELETE /api/v1/teachers/classes/{class_id}/students/{student_id}": (
-        "independent_api",
-        "教师移除成员并撤销班级报告/计划权限，有 HTTP 验证；当前班级页面只提供添加入口。",
-    ),
-    "POST /api/v1/teachers/reviews/{task_id}/revoke": (
-        "independent_api",
-        "教师撤销已发布复核及其学习效果，有独立语义；当前页面未放撤销按钮，不等同 decision。",
-    ),
-    "POST /api/v1/teachers/reviews/{task_id}/regrade": (
-        "independent_api",
-        "教师重新判定既有复核，有独立语义；当前页面未提供按钮，不等同首次 decision。",
-    ),
-    "POST /api/v1/teachers/reviews/{task_id}/transfer": (
-        "independent_api",
-        "教师转交复核任务，有独立权限与审计语义；当前页面未提供按钮。",
-    ),
-    "GET /api/v1/students/teacher-feedback": (
-        "independent_api",
-        "独立反馈历史，返回结果与任务；首页/作业只返回相应摘要，不是完全相同的响应。",
-    ),
     "GET /api/v1/papers/{paper_id}/download": (
         "script_workflow",
         "试卷验收脚本按 kind 下载最新导出；页面实际消费 exports[].url 中的 /reports 签名链接，不调用此接口。",
@@ -241,10 +221,6 @@ def publish(root, check=False):
         "POST /api/v1/jobs/{job_id}/retry": (
             "frontend/src/pages/ocr/ocr.vue",
             "/retry",
-        ),
-        "GET /api/v1/teachers/reviews": (
-            "frontend/src/pages/teacher/reviews.vue",
-            "/teachers/reviews${",
         ),
     }
     for row in rows:

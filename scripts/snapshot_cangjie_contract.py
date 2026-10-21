@@ -55,16 +55,6 @@ def main():
         "dataset_practice_attempts",
         "practice_recommendations",
         "review_records",
-        "assignment_attempts",
-        "teacher_questions",
-        "teacher_audit_logs",
-        "teacher_class_students",
-        "guardian_student_links",
-        "assignment_students",
-        "question_assignments",
-        "teacher_review_results",
-        "teacher_review_tasks",
-        "teacher_classes",
         "cognitive_updates",
         "misconception_states",
         "knowledge_relations",
@@ -81,21 +71,6 @@ def main():
         defaults[name] = row
     for filename, data in (
         ("schema/column_types.json", columns),
-        (
-            "schema/school_defaults.json",
-            {
-                name: defaults[name]
-                for name in (
-                    "questions",
-                    "teacher_questions",
-                    "question_assignments",
-                    "assignment_students",
-                    "assignment_attempts",
-                    "teacher_review_tasks",
-                    "teacher_review_results",
-                )
-            },
-        ),
         ("tests/detail_defaults.json", defaults),
         (
             "schema/error_taxonomy.json",

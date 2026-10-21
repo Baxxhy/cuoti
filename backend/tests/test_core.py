@@ -172,7 +172,6 @@ def test_password_hash_and_signed_login_token():
     [
         ("micro_activity", "小步练习"),
         ("independent_dataset_practice", "独立完成题库练习"),
-        ("teacher_review", "教师复核指导"),
     ],
 )
 def test_learning_strategy_codes_have_student_facing_labels(code, label):
@@ -1259,7 +1258,7 @@ def test_exports(tmp_path: Path):
 
 
 def test_all_business_tables_present():
-    assert len(Base.metadata.tables) == 48
+    assert len(Base.metadata.tables) == 38
     assert "users" in Base.metadata.tables
     assert "tutor_sessions" in Base.metadata.tables
     assert "teacher_marks" in Base.metadata.tables
@@ -1270,15 +1269,7 @@ def test_all_business_tables_present():
         Base.metadata.tables
     )
     assert "user_question_knowledge_links" in Base.metadata.tables
-    assert {
-        "teacher_questions",
-        "question_assignments",
-        "assignment_students",
-        "assignment_attempts",
-        "teacher_review_tasks",
-        "teacher_review_results",
-        "teacher_audit_logs",
-    } <= set(Base.metadata.tables)
+    assert not {"guardian_student_links", "teacher_classes", "question_assignments", "teacher_review_tasks"} & set(Base.metadata.tables)
 
 
 def dataset_question(**overrides):

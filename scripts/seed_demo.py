@@ -14,7 +14,6 @@ from app.auth import hash_password
 from app.db import SessionLocal
 from app.models import (
     Diagnosis,
-    GuardianStudentLink,
     MasteryState,
     MisconceptionState,
     ProblemAnalysis,
@@ -24,8 +23,6 @@ from app.models import (
     StudentProfile,
     StudentStep,
     StudentWork,
-    TeacherClass,
-    TeacherClassStudent,
     User,
 )
 
@@ -261,14 +258,7 @@ async def ensure_subject_practice_demo(
 
 async def seed() -> None:
     async with SessionLocal() as db:
-        guardian = await ensure_user(db, "guardian@minddimension.local", "学习家长", "guardian")
-        teacher = await ensure_user(db, "teacher@minddimension.local", "王老师", "teacher")
         await ensure_user(db, "admin@minddimension.local", "系统管理员", "admin")
-        classroom = await one(db, TeacherClass, TeacherClass.teacher_id == teacher.id,
-                              TeacherClass.name == "初二（1）班")
-        if classroom is None:
-            classroom = TeacherClass(teacher_id=teacher.id, name="初二（1）班")
-            db.add(classroom); await db.flush()
         student_ids = []
         for email, name, subject, knowledge, misconception, score in STUDENTS:
             student = await ensure_user(db, email, name, "student", password="123456")
@@ -291,14 +281,8 @@ async def seed() -> None:
                     error_type="ionic_split_error", first_error="把难溶的碳酸钙错误拆成了离子。",
                     final_answer="CaCO₃+2H⁺=Ca²⁺+CO₂↑+H₂O。",
                 )
-            if await one(db, GuardianStudentLink, GuardianStudentLink.guardian_id == guardian.id,
-                         GuardianStudentLink.student_id == student.id) is None:
-                db.add(GuardianStudentLink(guardian_id=guardian.id, student_id=student.id))
-            if await one(db, TeacherClassStudent, TeacherClassStudent.class_id == classroom.id,
-                         TeacherClassStudent.student_id == student.id) is None:
-                db.add(TeacherClassStudent(class_id=classroom.id, student_id=student.id))
         await db.commit()
-        print(f"demo_seed=ready students={len(student_ids)} class_id={classroom.id}")
+        print(f"demo_seed=ready students={len(student_ids)}")
 
 
 if __name__ == "__main__":

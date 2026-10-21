@@ -680,17 +680,14 @@ uni-button {
 
 /* uni-app's native button defaults load after application styles on H5. */
 .page button,
-.teacher-page button,
 .auth-shell button {
   line-height: 1.5;
 }
 .page button::after,
-.teacher-page button::after,
 .auth-shell button::after {
   border: 0;
 }
 .page .uni-icons,
-.teacher-page .uni-icons,
 .auth-shell .uni-icons {
   line-height: 1;
 }

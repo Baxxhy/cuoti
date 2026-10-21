@@ -1,7 +1,6 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { flushPromises, mount } from '@vue/test-utils'
 import Analysis from '../src/pages/analysis/analysis.vue'
-import Teacher from '../src/pages/teacher/student.vue'
 const fake = vi.hoisted(() => ({
   getData: vi.fn(),
   go: vi.fn(),
@@ -91,46 +90,4 @@ it('返回报告重新读取，离开后迟到结果不能恢复旧数据', asyn
   expect(destination.searchParams.get('subject')).toBe('物理')
   expect(destination.searchParams.get('search')).toBe('')
   expect(fake.getData).toHaveBeenCalledTimes(2)
-})
-
-it('教师返回学生详情时重新读取，离开后的旧报告不会恢复', async () => {
-  let resolve: (value: any) => void = () => {}
-  fake.getData.mockReturnValueOnce(
-    new Promise((done) => {
-      resolve = done
-    }),
-  )
-  wrapper = mount(Teacher, { global: { stubs: { 'app-header': true, 'state-panel': true } } })
-  fake.hooks.load({ id: 'student', class_id: 'class' })
-  fake.hooks.show()
-  fake.hooks.hide()
-  resolve({
-    student: { name: '旧学生' },
-    summary: {},
-    mastery: [],
-    misconceptions: [],
-    recent_updates: [],
-  })
-  await flushPromises()
-  expect(wrapper.find('.teacher-grid').exists()).toBe(false)
-  fake.getData.mockResolvedValueOnce({
-    student: { id: 'student' },
-    summary: { questions: 2 },
-    mastery: [
-      {
-        id: 'm',
-        subject: '化学',
-        knowledge_point: '化学方程式',
-        mastery_score: 0.4,
-        evidence_count: 2,
-      },
-    ],
-    misconceptions: [],
-    recent_updates: [],
-  })
-  await fake.hooks.show()
-  await flushPromises()
-  expect(wrapper.find('.metric-value').text()).toBe('2')
-  expect(wrapper.text()).toContain('化学方程式')
-  expect(fake.getData).toHaveBeenLastCalledWith('/teachers/students/student/report')
 })

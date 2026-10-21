@@ -15,7 +15,7 @@ func teachBackTutor(context: HttpContext,accounts: Accounts): JsonValue {
     requireMethod(context,"POST"); let parts=context.request.url.path.split("/"); let id=parts[parts.size-2]
     try (db=Database.fromEnvironment()) {
         let user=accounts.currentUser(context,db); let body=readJson(context)
-        let explanation=schoolText(body,"explanation","",12000)
+        let explanation=optionalText(body,"explanation","",12000)
         return db.transaction<JsonValue>({ tx =>
             let rows=tx.query("SELECT * FROM tutor_sessions WHERE id=? AND user_id=? FOR UPDATE",[Some(id),user["id"]]).rows
             if (rows.isEmpty()) { throw ApiError(404,"教学会话不存在或无权访问") }

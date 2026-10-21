@@ -167,7 +167,7 @@ public func learningTasks(context: HttpContext, accounts: Accounts): JsonValue {
         }
         requireMethod(context,"POST"); let body=readJson(context); taskStrict(body,["question_id","session_id","request_id"])
         let questionId=textField(body,"question_id",36); let requestId=textField(body,"request_id",80)
-        let sessionId=schoolText(body,"session_id","",36)
+        let sessionId=optionalText(body,"session_id","",36)
         let digest=sha256((questionId+"|"+sessionId).toArray())
         return db.transaction<JsonValue>({ tx =>
             let snapshot=taskSnapshot(tx,questionId,owner); let question=tutorObject(snapshot,"question")
@@ -236,7 +236,7 @@ public func learningTaskAction(context: HttpContext, accounts: Accounts, cancel!
             let kind=textField(body,"kind",30)
             if (!["answer","hint","reveal","resume","use_text","visualize","observe_visualization","close_visualization"].contains(kind)) { throw ApiError(422,"不支持的学习动作") }
             validateTaskVisualAction(task,body,kind,visualValues)
-            let text=if (kind=="observe_visualization") { textField(body,"text",1200) } else { schoolText(body,"text","",12000) }
+            let text=if (kind=="observe_visualization") { textField(body,"text",1200) } else { optionalText(body,"text","",12000) }
             if (["answer","observe_visualization"].contains(kind) && stripWhitespace(text).isEmpty()) { throw ApiError(422,"请先写下你的回答") }
             if (taskAtLimit(task)) { throw ApiError(409,"这次学习已到上限，请结束后回原题重开") }
             let event=JsonObject(); event.put("kind",JsonString(kind)); event.put("text",JsonString(text))

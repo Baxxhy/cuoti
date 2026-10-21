@@ -3,8 +3,8 @@ from unittest.mock import AsyncMock
 import pytest
 
 from app.auth import verify_password
-from app.models import GuardianStudentLink, StudentProfile, User
-from app.services.account_setup import create_account, link_guardian
+from app.models import StudentProfile
+from app.services.account_setup import create_account
 
 
 class SetupDB:
@@ -27,14 +27,14 @@ async def test_existing_account_is_never_overwritten():
     db = SetupDB(["existing-user"])
     with pytest.raises(ValueError, match="不会覆盖"):
         await create_account(
-            db, email="teacher@example.com", name="教师", role="teacher", password="A-valid-password"
+            db, email="teacher@example.com", name="教师", role="admin", password="A-valid-password"
         )
     assert not db.added
     db.commit.assert_not_awaited()
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize("role", ["student", "teacher", "guardian", "admin"])
+@pytest.mark.parametrize("role", ["student", "admin"])
 async def test_real_account_has_requested_role_hashed_password_and_only_student_profile(role):
     db = SetupDB([None])
     user = await create_account(
@@ -52,17 +52,11 @@ async def test_real_account_has_requested_role_hashed_password_and_only_student_
 
 
 @pytest.mark.asyncio
-async def test_guardian_link_is_idempotent_and_rejects_wrong_roles():
-    guardian = User(id="guardian", role="guardian")
-    student = User(id="student", role="student")
-    db = SetupDB([guardian, student, None])
-    assert await link_guardian(db, guardian_email="g@example.com", student_email="s@example.com")
-    assert isinstance(db.added[0], GuardianStudentLink)
-    db.commit.assert_awaited_once()
-    duplicate = SetupDB([guardian, student, "existing-link"])
-    assert not await link_guardian(duplicate, guardian_email="g@example.com", student_email="s@example.com")
-    assert not duplicate.added
-    wrong = SetupDB([User(role="teacher"), student])
-    with pytest.raises(ValueError, match="身份不符"):
-        await link_guardian(wrong, guardian_email="g@example.com", student_email="s@example.com")
-    assert not wrong.added
+@pytest.mark.parametrize("role", ["teacher", "guardian"])
+async def test_removed_identity_cannot_be_created(role):
+    db = SetupDB([])
+    with pytest.raises(ValueError, match="身份无效"):
+        await create_account(
+            db, email="removed@example.com", name="移除身份", role=role, password="A-valid-password"
+        )
+    assert not db.added

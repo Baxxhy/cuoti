@@ -107,15 +107,9 @@ const store = useAppStore(),
   dashboard = ref({}),
   loading = ref(true),
   error = ref('')
-const roleNames = { guardian: '家长中心', teacher: '教师中心', admin: '系统管理' }
+const roleNames = { admin: '系统管理' }
 const roleName = computed(() => roleNames[store.role] || '学习档案')
 const studentSettings = [
-  {
-    title: '家长查看权限',
-    desc: '授权或解除家长的报告查看权限',
-    icon: 'staff',
-    url: '/pages/guardian/access',
-  },
   {
     title: '使用指南',
     desc: '了解录入、诊断、练习与复习的区别',
@@ -126,8 +120,6 @@ const studentSettings = [
 const roleSettings = computed(
   () =>
     ({
-      guardian: [{ title: '返回家长中心', icon: 'staff', url: '/pages/guardian/home' }],
-      teacher: [{ title: '返回教师中心', icon: 'person', url: '/pages/teacher/classes' }],
       admin: [{ title: '系统状态', icon: 'gear', url: '/pages/system/system' }],
     })[store.role] || [],
 )

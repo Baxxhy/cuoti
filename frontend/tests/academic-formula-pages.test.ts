@@ -1,12 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { flushPromises, mount } from '@vue/test-utils'
-import TeacherQuestions from '../src/pages/teacher/questions.vue'
-import TeacherAssignment from '../src/pages/teacher/assignment.vue'
-import TeacherReview from '../src/pages/teacher/review-detail.vue'
 import Library from '../src/pages/library/library.vue'
 import Visualization from '../src/pages/visualization/visualization.vue'
 import Tutor from '../src/pages/tutor/tutor.vue'
-import StudentReport from '../src/components/student-report/student-report.vue'
 import CognitionCanvas from '../src/components/cognition-canvas/cognition-canvas.vue'
 
 const fake = vi.hoisted(() => ({
@@ -70,54 +66,6 @@ afterEach(() => {
 })
 
 describe('学科内容跨页面公式渲染', () => {
-  it('教师题库同时渲染标题和题干，文字中的HTML不执行', async () => {
-    const page = await show(TeacherQuestions, [
-      {
-        question: {
-          id: 'q1',
-          title: formula,
-          question_text: root + '<img src=x onerror=alert(1)>',
-        },
-        teacher_question: {},
-      },
-    ])
-    expect(page.find('.row-title .mfrac').exists()).toBe(true)
-    expect(page.find('.row-meta .sqrt').exists()).toBe(true)
-    expect(page.find('img[onerror]').exists()).toBe(false)
-  })
-  it('教师布置的题目选择列表渲染公式，选择后保留题目ID并收起', async () => {
-    fake.getData.mockImplementation(async (url: string) =>
-      url === '/teachers/questions'
-        ? [{ question: { id: 'q1', title: '简短标题', question_text: formula } }]
-        : [],
-    )
-    const page = mount(TeacherAssignment, { global })
-    wrappers.push(page)
-    await fake.hooks.show?.()
-    await flushPromises()
-    await page.find('.question-picker').trigger('click')
-    expect(page.find('.question-options .mfrac').exists()).toBe(true)
-    await page.find('.question-options button').trigger('click')
-    expect(page.find('.question-options').exists()).toBe(false)
-    expect(page.find('.question-picker .mfrac').exists()).toBe(true)
-    expect(page.find('.question-picker').attributes('aria-expanded')).toBe('false')
-  })
-  it('教师复核渲染题干、学生答案和步骤、参考与AI反馈', async () => {
-    const page = await show(
-      TeacherReview,
-      {
-        task: { version: 1, ai_result: { feedback: `检查 ${formula}`, evidence: [root] } },
-        question: { question_text: root },
-        attempt: { answer: formula, steps: [formula] },
-        teacher_question: { standard_answer: formula },
-        reference_steps: [{ id: 's1', text: formula }],
-      },
-      { id: 'r1' },
-    )
-    expect(page.findAll('.mfrac')).toHaveLength(5)
-    expect(page.findAll('.sqrt')).toHaveLength(2)
-    expect(page.text()).toContain('规则：未执行')
-  })
   it('知识卡名称、正文与相关基础都渲染公式', async () => {
     const page = await show(
       Library,
@@ -188,10 +136,7 @@ describe('学科内容跨页面公式渲染', () => {
     await page.find('.history-toggle').trigger('click')
     expect(page.find('.history-turn .mfrac').exists()).toBe(true)
   })
-  it('家长报告建议和图谱节点不会展示截断的公式源码', async () => {
-    const report = mount(StudentReport, { props: { data: { suggestion: formula } }, global })
-    wrappers.push(report)
-    expect(report.find('.report-suggestion .mfrac').exists()).toBe(true)
+  it('图谱节点不会展示截断的公式源码', async () => {
     const graph = mount(CognitionCanvas, {
       props: {
         graph: { nodes: [{ id: 'n1', category: 'knowledge', name: `比较 ${formula}` }], links: [] },

@@ -28,10 +28,7 @@ test('学生全路由：小屏布局、缺少题目时的反馈、个人资料�
   page.on('pageerror', (error) => errors.push(error.message))
   const routes = JSON.parse(readFileSync('src/pages.json', 'utf8'))
     .pages.map((item: any) => item.path)
-    .filter(
-      (route: string) =>
-        !/^pages\/(teacher|admin|guardian|system|login|register|forgot)\//.test(route),
-    )
+    .filter((route: string) => !/^pages\/(admin|system|login|register|forgot)\//.test(route))
   await page.setViewportSize({ width: 375, height: 812 })
   for (const route of routes) {
     await page.goto(`/#/${route}`)

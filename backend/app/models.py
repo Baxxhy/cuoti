@@ -42,26 +42,6 @@ class StudentProfile(IdTimeMixin, Base):
     preferences: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
 
 
-class GuardianStudentLink(IdTimeMixin, Base):
-    __tablename__ = "guardian_student_links"
-    guardian_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
-    student_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
-
-
-class TeacherClass(IdTimeMixin, Base):
-    __tablename__ = "teacher_classes"
-    teacher_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
-    name: Mapped[str] = mapped_column(String(100))
-    grade: Mapped[str] = mapped_column(String(30), default="")
-
-
-class TeacherClassStudent(IdTimeMixin, Base):
-    __tablename__ = "teacher_class_students"
-    __table_args__ = (UniqueConstraint("class_id", "student_id", name="uq_teacher_class_student"),)
-    class_id: Mapped[str] = mapped_column(ForeignKey("teacher_classes.id"))
-    student_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
-
-
 class Question(IdTimeMixin, Base):
     __tablename__ = "questions"
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
@@ -78,104 +58,6 @@ class Question(IdTimeMixin, Base):
     options: Mapped[list[Any]] = mapped_column(JSON, default=list)
     question_type: Mapped[str] = mapped_column(String(50), default="综合题")
     knowledge_points: Mapped[list[Any]] = mapped_column(JSON, default=list)
-
-
-class TeacherQuestion(IdTimeMixin, Base):
-    __tablename__ = "teacher_questions"
-    question_id: Mapped[str] = mapped_column(ForeignKey("questions.id"), unique=True, index=True)
-    teacher_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
-    source_type: Mapped[str] = mapped_column(String(30), default="manual")
-    standard_answer: Mapped[str] = mapped_column(Text, default="")
-    reference_steps: Mapped[list[Any]] = mapped_column(JSON, default=list)
-    scoring_points: Mapped[list[Any]] = mapped_column(JSON, default=list)
-    difficulty: Mapped[str] = mapped_column(String(30), default="")
-    allow_auto_grade: Mapped[bool] = mapped_column(Boolean, default=True)
-    require_handwriting: Mapped[bool] = mapped_column(Boolean, default=False)
-    status: Mapped[str] = mapped_column(String(30), default="draft")
-
-
-class QuestionAssignment(IdTimeMixin, Base):
-    __tablename__ = "question_assignments"
-    teacher_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
-    question_id: Mapped[str] = mapped_column(ForeignKey("questions.id"), index=True)
-    class_id: Mapped[str | None] = mapped_column(ForeignKey("teacher_classes.id"), nullable=True, index=True)
-    title: Mapped[str] = mapped_column(String(255), default="练习任务")
-    due_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-    settings: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-    status: Mapped[str] = mapped_column(String(30), default="active")
-
-
-class AssignmentStudent(IdTimeMixin, Base):
-    __tablename__ = "assignment_students"
-    __table_args__ = (UniqueConstraint("assignment_id", "student_id", name="uq_assignment_student"),)
-    assignment_id: Mapped[str] = mapped_column(ForeignKey("question_assignments.id"), index=True)
-    student_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
-    status: Mapped[str] = mapped_column(String(30), default="pending")
-    latest_attempt_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
-
-
-class AssignmentAttempt(IdTimeMixin, Base):
-    __tablename__ = "assignment_attempts"
-    assignment_student_id: Mapped[str] = mapped_column(ForeignKey("assignment_students.id"), index=True)
-    student_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
-    question_id: Mapped[str] = mapped_column(ForeignKey("questions.id"), index=True)
-    answer: Mapped[str] = mapped_column(Text, default="")
-    steps: Mapped[list[Any]] = mapped_column(JSON, default=list)
-    handwriting_asset_ref: Mapped[str | None] = mapped_column(String(500), nullable=True)
-    grading_details: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-    verdict: Mapped[str] = mapped_column(String(30), default="review_required")
-    status: Mapped[str] = mapped_column(String(30), default="submitted")
-    version: Mapped[int] = mapped_column(Integer, default=1)
-
-
-class TeacherReviewTask(IdTimeMixin, Base):
-    __tablename__ = "teacher_review_tasks"
-    __table_args__ = (UniqueConstraint("source_type", "source_id", name="uq_teacher_review_source"),)
-    class_id: Mapped[str] = mapped_column(ForeignKey("teacher_classes.id"), index=True)
-    student_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
-    question_id: Mapped[str] = mapped_column(ForeignKey("questions.id"), index=True)
-    source_type: Mapped[str] = mapped_column(String(30), default="assignment_attempt")
-    source_id: Mapped[str] = mapped_column(String(36), index=True)
-    status: Mapped[str] = mapped_column(String(30), default="pending", index=True)
-    reason_codes: Mapped[list[Any]] = mapped_column(JSON, default=list)
-    ai_result: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-    rule_result: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-    confidence: Mapped[float] = mapped_column(Float, default=0.0)
-    has_conflict: Mapped[bool] = mapped_column(Boolean, default=False)
-    assigned_teacher_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True)
-    version: Mapped[int] = mapped_column(Integer, default=1)
-    learning_applied: Mapped[bool] = mapped_column(Boolean, default=False)
-
-
-class TeacherReviewResult(IdTimeMixin, Base):
-    __tablename__ = "teacher_review_results"
-    task_id: Mapped[str] = mapped_column(ForeignKey("teacher_review_tasks.id"), index=True)
-    teacher_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
-    conclusion: Mapped[str] = mapped_column(String(30))
-    score: Mapped[float | None] = mapped_column(Float, nullable=True)
-    reason: Mapped[str] = mapped_column(Text)
-    first_key_error: Mapped[str] = mapped_column(Text, default="")
-    error_type: Mapped[str] = mapped_column(String(80), default="")
-    propagated_error: Mapped[bool] = mapped_column(Boolean, default=False)
-    student_hint: Mapped[str] = mapped_column(Text, default="")
-    next_task: Mapped[str] = mapped_column(Text, default="")
-    mastered_steps: Mapped[list[Any]] = mapped_column(JSON, default=list)
-    allow_learning_update: Mapped[bool] = mapped_column(Boolean, default=False)
-    evidence_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-    learning_snapshot: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-    supersedes_id: Mapped[str | None] = mapped_column(ForeignKey("teacher_review_results.id"), nullable=True)
-    revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-
-
-class TeacherAuditLog(IdTimeMixin, Base):
-    __tablename__ = "teacher_audit_logs"
-    teacher_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
-    action: Mapped[str] = mapped_column(String(80), index=True)
-    target_type: Mapped[str] = mapped_column(String(50))
-    target_id: Mapped[str] = mapped_column(String(36), index=True)
-    before_json: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-    after_json: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-    reason: Mapped[str] = mapped_column(Text, default="")
 
 
 class QuestionAsset(IdTimeMixin, Base):

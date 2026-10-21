@@ -281,14 +281,10 @@
             v-for="task in otherTasks"
             :key="task.key"
             class="task-row"
-            @click="task.key === 'feedback' ? (showFeedback = !showFeedback) : go(task.url)"
-            @keydown.enter.prevent="
-              task.key === 'feedback' ? (showFeedback = !showFeedback) : go(task.url)
-            "
+            @click="go(task.url)"
+            @keydown.enter.prevent="go(task.url)"
             @keydown.space.prevent
-            @keyup.space.prevent="
-              task.key === 'feedback' ? (showFeedback = !showFeedback) : go(task.url)
-            "
+            @keyup.space.prevent="go(task.url)"
           >
             <view class="list-main">
               <math-text class="task-name" :text="task.title" inline />
@@ -301,29 +297,6 @@
               color="var(--color-text-secondary)"
             />
           </button>
-        </view>
-        <view v-if="showFeedback && data.teacher_feedback" class="teacher-feedback">
-          <view class="section-title"><text>教师反馈</text></view>
-          <text class="feedback-conclusion">
-            {{
-              data.teacher_feedback.conclusion === 'confirmed_correct'
-                ? '老师已确认正确'
-                : '老师建议继续修改'
-            }}
-          </text>
-          <math-text class="feedback-detail" :text="data.teacher_feedback.reason" inline />
-          <math-text
-            v-if="data.teacher_feedback.student_hint"
-            class="feedback-detail"
-            :text="' 提示：' + data.teacher_feedback.student_hint"
-            inline
-          />
-          <math-text
-            v-if="data.teacher_feedback.next_task"
-            class="feedback-detail"
-            :text="' 下一步：' + data.teacher_feedback.next_task"
-            inline
-          />
         </view>
       </template>
     </view>
@@ -374,7 +347,6 @@ const focusKind = computed(() => {
   if (preferences.value?.subject) return 'starter'
   return 'capture'
 })
-const showFeedback = ref(false)
 const otherTasks = computed(() => {
   const rows = []
   if (hasTodayReviews.value && focusKind.value !== 'review')
@@ -384,8 +356,6 @@ const otherTasks = computed(() => {
       detail: `${data.value.today_reviews} 道题待复习`,
       url: '/pages/review/review',
     })
-  if (data.value?.teacher_feedback)
-    rows.push({ key: 'feedback', title: '老师有新反馈', detail: '查看建议，再继续修改' })
   return rows.slice(0, 2)
 })
 
@@ -625,21 +595,6 @@ onUnload(clear)
   font-size: 13px;
   color: var(--color-warning);
 }
-.teacher-feedback {
-  padding: 16px;
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  background: var(--color-surface);
-}
-.feedback-conclusion,
-.feedback-detail {
-  display: block;
-  font-size: 14px;
-}
-.feedback-detail {
-  margin-top: 8px;
-  color: var(--color-text-secondary);
-}
 @media (min-width: 1100px) {
   .home-brand {
     position: absolute;
@@ -664,8 +619,7 @@ onUnload(clear)
   .home-secondary {
     margin-top: 0;
   }
-  .home-partial-error,
-  .teacher-feedback {
+  .home-partial-error {
     grid-column: 1 / -1;
   }
   .task-list {
