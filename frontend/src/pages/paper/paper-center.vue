@@ -186,16 +186,7 @@
             <b><math-text :text="item.question?.question_text" inline /></b>
             <view class="score-edit">
               <text class="score-label">分值</text>
-              <view class="score-stepper">
-                <button
-                  role="button"
-                  class="score-step"
-                  :aria-label="`第${index + 1}题减1分`"
-                  :disabled="busy || !!openingPaper || Number(item.score) <= 1"
-                  @click="changeScore(item, -1)"
-                >
-                  <uni-icons aria-hidden="true" type="minus" size="16" color="currentColor" />
-                </button>
+              <view class="score-field">
                 <!-- #ifdef H5 -->
                 <component
                   :is="'input'"
@@ -221,15 +212,6 @@
                   max="100"
                 />
                 <!-- #endif -->
-                <button
-                  role="button"
-                  class="score-step"
-                  :aria-label="`第${index + 1}题加1分`"
-                  :disabled="busy || !!openingPaper || Number(item.score) >= 100"
-                  @click="changeScore(item, 1)"
-                >
-                  <uni-icons aria-hidden="true" type="plus" size="16" color="currentColor" />
-                </button>
               </view>
               <text class="score-unit">分</text>
             </view>
@@ -360,16 +342,6 @@ function candidateDescription(question) {
       !['null', 'undefined'].includes(value.trim().toLowerCase()),
   )
   return `${question.subject || '学科待确认'} · ${points.length ? points.join('、') : '知识点待分析'}`
-}
-function changeScore(item, delta) {
-  if (busy.value || openingPaper.value) return
-  const value = Number(item.score)
-  if (!Number.isInteger(value) || value < 1 || value > 100) {
-    actionError.value = '请输入1至100之间的整数分值。'
-    return
-  }
-  item.score = Math.max(1, Math.min(100, value + delta))
-  actionError.value = ''
 }
 async function reviewQuestion(item) {
   if (busy.value || openingPaper.value) return
@@ -762,7 +734,7 @@ onUnload(() => {
   font-weight: 700;
 }
 .editor-title :deep(.paper-title-input:focus),
-.score-stepper:focus-within {
+.score-field:focus-within {
   border-color: var(--color-primary);
   outline: none;
   box-shadow: none;
@@ -806,8 +778,8 @@ onUnload(() => {
 .score-edit {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 6px;
+  margin-top: 4px;
   color: var(--color-text-secondary);
   font-size: 13px;
 }
@@ -815,56 +787,27 @@ onUnload(() => {
 .score-unit {
   flex: none;
 }
-.score-stepper {
+.score-field {
   display: flex;
   align-items: center;
-  height: 38px;
-  padding: 2px;
-  border: 1px solid #e3e7ed;
-  border-radius: 10px;
-  background: #f7f9fc;
-}
-.score-step {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: 32px;
-  min-height: 32px;
-  height: 32px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 7px;
-  background: transparent;
-  color: #64748b;
-}
-.score-step::after {
-  border: 0;
-}
-.score-step:not([disabled]):hover {
-  background: #eaf1ff;
-  color: var(--color-primary);
-}
-.score-step[disabled] {
-  opacity: 0.3;
+  border-bottom: 1px solid var(--color-border);
 }
 .score-edit :deep(.paper-score-input) {
   box-sizing: border-box;
   flex: none;
-  width: 40px;
-  height: 32px;
-  min-height: 32px;
+  width: 44px;
+  height: 36px;
+  min-height: 36px;
   padding: 0;
   border: 0;
   border-radius: 0;
   background: transparent;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
-  line-height: 32px;
+  line-height: 36px;
   text-align: center;
-  color: #243247;
+  color: var(--color-text-primary);
   appearance: textfield;
   -moz-appearance: textfield;
 }

@@ -220,18 +220,16 @@ it('空知识点和空年级显示待分析，不把null或undefined拼进界面
   expect(page.find('.candidate .list-desc').text()).not.toMatch(/null|undefined/)
 })
 
-it('分值调节器居中输入、增减和直接输入均能更新总分，并遵守边界', async () => {
+it('直接输入分值更新总分，不显示加减按钮', async () => {
   await make()
   await open()
-  await page.find('[aria-label="第1题加1分"]').trigger('click')
-  expect((page.find('.paper-score-input').element as HTMLInputElement).value).toBe('11')
-  expect(page.find('.total-score').text()).toContain('11')
-  await page.find('[aria-label="第1题减1分"]').trigger('click')
-  expect((page.find('.paper-score-input').element as HTMLInputElement).value).toBe('10')
+  expect(page.find('.score-step').exists()).toBe(false)
+  await page.find('.paper-score-input').setValue('13')
+  expect(page.find('.total-score').text()).toContain('13')
   await page.find('.paper-score-input').setValue('100')
-  expect(page.find('[aria-label="第1题加1分"]').attributes('disabled')).toBeDefined()
+  expect(page.find('.total-score').text()).toContain('100')
   await page.find('.paper-score-input').setValue('1')
-  expect(page.find('[aria-label="第1题减1分"]').attributes('disabled')).toBeDefined()
+  expect(page.find('.total-score').text()).toContain('1')
 })
 
 it('导出答案前补齐缺失解析，刷新知识点后才请求PDF，不重复分析已有题目', async () => {
