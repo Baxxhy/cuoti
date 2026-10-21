@@ -280,7 +280,12 @@
               <uni-icons aria-hidden="true" type="map" size="22" color="var(--color-primary)" />
               <text>易错地图</text>
             </view>
-            <uni-icons aria-hidden="true" type="right" size="20" />
+            <view class="map-summary">
+              <text v-if="sourcesLoaded" class="map-count">
+                {{ relatedQuestionCount ? `${relatedQuestionCount} 道关联错题` : '暂无错因记录' }}
+              </text>
+              <uni-icons aria-hidden="true" type="right" size="20" />
+            </view>
           </button>
         </view>
         <view v-if="otherTasks.length" class="task-list">
@@ -366,6 +371,11 @@ const recommendedGroup = computed(() =>
     (group) => !preferences.value?.subject || group.subject === preferences.value.subject,
   ),
 )
+const relatedQuestionCount = computed(
+  () =>
+    new Set(errorGroups(sources.value).flatMap((group) => group.sources.map((item) => item.id)))
+      .size,
+)
 const gradeLabel = computed(() => data.value?.grade || store.user?.grade || '年级未设置')
 const hasTodayReviews = computed(() => Number(data.value?.today_reviews || 0) > 0)
 const focusKind = computed(() => {
@@ -397,15 +407,6 @@ const otherTasks = computed(() => {
       title: '我的作业',
       detail: `${data.value.teacher_assignment_count} 项待完成`,
       url: '/pages/assignment/assignment',
-    })
-  if (sourcesLoaded.value)
-    rows.push({
-      key: 'mistake',
-      title: '近期错因',
-      detail: errorGroups(sources.value).length
-        ? `${new Set(errorGroups(sources.value).flatMap((group) => group.sources.map((item) => item.id))).size} 道关联错题`
-        : '暂无错因记录',
-      url: '/pages/error-map/error-map',
     })
   return rows.slice(0, 2)
 })
@@ -593,6 +594,16 @@ onUnload(clear)
   border-radius: 12px;
   background: var(--color-surface);
   padding: 16px;
+}
+.map-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+}
+.map-count {
+  font-size: 13px;
+  color: var(--color-text-secondary);
 }
 .entry-label {
   display: flex;
