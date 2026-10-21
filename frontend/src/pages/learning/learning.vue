@@ -75,61 +75,40 @@
           <uni-icons aria-hidden="true" type="right" size="17" color="var(--color-text-tertiary)" />
         </button>
       </view>
-      <view class="records-group">
+      <view class="learning-heading"><text>学习记录</text></view>
+      <view class="record-shortcuts">
         <button
-          aria-label="学习记录"
-          tabindex="0"
+          v-for="(item, index) in learningRecordEntries"
+          :key="item.url"
           role="button"
-          class="record-link"
-          :aria-expanded="moreOpen"
-          @click="moreOpen = !moreOpen"
-          @keydown.enter.prevent="moreOpen = !moreOpen"
+          tabindex="0"
+          class="record-shortcut"
+          :aria-label="item.title"
+          @click="go(item.url)"
+          @keydown.enter.prevent="go(item.url)"
           @keydown.space.prevent
-          @keyup.space.prevent="moreOpen = !moreOpen"
+          @keyup.space.prevent="go(item.url)"
         >
-          <text>学习记录</text>
           <uni-icons
             aria-hidden="true"
-            :type="moreOpen ? 'top' : 'bottom'"
-            size="18"
+            :type="['compose', 'calendar', 'star'][index]"
+            size="23"
             color="var(--color-text-secondary)"
           />
+          <text>{{ item.title }}</text>
         </button>
-        <view v-if="moreOpen" class="feature-list secondary-list">
-          <button
-            tabindex="0"
-            role="button"
-            v-for="item in learningRecordEntries"
-            :key="item.url"
-            class="feature-link"
-            @click="go(item.url)"
-            @keydown.enter.prevent="go(item.url)"
-            @keydown.space.prevent
-            @keyup.space.prevent="go(item.url)"
-          >
-            <text>{{ item.title }}</text>
-            <uni-icons
-              aria-hidden="true"
-              type="right"
-              size="18"
-              color="var(--color-text-secondary)"
-            />
-          </button>
-        </view>
       </view>
     </view>
     <tab-bar current="learning" />
   </view>
 </template>
 <script setup>
-import { ref } from 'vue'
 import {
   studyEntries,
   learningPrimaryEntries,
   learningRecordEntries,
 } from '@/constants/learning.js'
 import { go } from '@/utils/navigation.js'
-const moreOpen = ref(false)
 const analysisEntries = [
   { title: '易错地图', icon: 'map', url: '/pages/error-map/error-map' },
   { title: '知识关系', icon: 'link', url: '/pages/analysis/analysis?relations=1' },
@@ -210,8 +189,7 @@ const analysisEntries = [
 .learning-gateway > :last-child {
   display: none;
 }
-.analysis-list,
-.records-group {
+.analysis-list {
   background: var(--color-surface);
   border-radius: 12px;
   padding: 0 16px;
@@ -241,36 +219,33 @@ const analysisEntries = [
   width: 24px;
   flex: none;
 }
-.record-link {
+.record-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 8px 0;
+  background: var(--color-surface);
+  border-radius: 12px;
+}
+.record-shortcut {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 8px;
   width: 100%;
-  min-height: 52px;
+  min-width: 0;
+  min-height: 80px;
   margin: 0;
-  padding: 12px 0;
+  padding: 12px 4px;
   background: transparent;
-  color: var(--color-text-secondary);
-  border-radius: 0;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: left;
-}
-.secondary-list {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  border-top: 1px solid var(--color-border);
-}
-.secondary-list .feature-link {
-  justify-content: space-between;
-  min-height: 50px;
-  font-size: 15px;
   color: var(--color-text-primary);
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 8px;
 }
 .analysis-link:active,
-.secondary-list .feature-link:active {
+.record-shortcut:active {
   background: var(--color-primary-soft);
 }
 </style>

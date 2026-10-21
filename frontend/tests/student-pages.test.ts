@@ -60,16 +60,14 @@ describe('学生页面按需展开', () => {
     expect(mocks.go.mock.calls.at(-1)![0]).toContain('q-fraction')
   })
 
-  it('学习中心先显示四种方式，记录展开后仍能进入原页面', async () => {
+  it('学习中心保留四种方式，三个记录入口直接可用', async () => {
     const wrapper = mount(Learning, { global })
     wrappers.push(wrapper)
     expect(wrapper.findAll('.feature-link')).toHaveLength(4)
-    expect(wrapper.text()).not.toContain('复习记录')
-    await button(wrapper, '学习记录').trigger('click')
+    expect(wrapper.findAll('.record-shortcut')).toHaveLength(3)
     await button(wrapper, '复习记录').trigger('click')
     expect(mocks.go).toHaveBeenCalledWith('/pages/review/review?history=1')
-    await button(wrapper, '学习记录').trigger('click')
-    expect(wrapper.text()).not.toContain('复习记录')
+
     await wrapper.findAll('.feature-link')[2].trigger('keydown', { key: 'Enter' })
     expect(mocks.go).toHaveBeenCalledWith('/pages/paper/paper-center')
   })

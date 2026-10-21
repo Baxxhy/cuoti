@@ -97,10 +97,8 @@ test('学习入口分工：知识关系直达图谱，报告无重复地图，�
   for (const width of [375, 1280]) {
     await page.setViewportSize({ width, height: 900 })
     await page.goto('/#/pages/learning/learning')
-    const records = page.getByRole('button', { name: '学习记录', exact: true })
-    if ((await records.getAttribute('aria-expanded')) === 'false') await records.click()
-    await expect(page.locator('.secondary-list')).toContainText('订正记录')
-    await expect(page.locator('.secondary-list')).not.toContainText(/我的作业|知识关系/)
+    await expect(page.locator('.record-shortcuts')).toContainText('订正记录')
+    await expect(page.locator('.record-shortcuts')).not.toContainText(/我的作业|知识关系/)
     await expect(page.getByRole('button', { name: '知识关系', exact: true })).toHaveCount(1)
     await page.screenshot({
       path: info.outputPath(`learning-navigation-${width}.png`),
