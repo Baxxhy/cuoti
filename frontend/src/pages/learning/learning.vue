@@ -51,88 +51,71 @@
         </button>
       </view>
       <view class="learning-heading"><text>学习分析</text></view>
-      <view class="learning-featured">
+      <view class="analysis-list">
         <button
-          aria-label="易错地图"
-          role="button"
-          tabindex="0"
-          class="disclosure-link"
-          @keydown.enter.prevent="go('/pages/error-map/error-map')"
-          @keydown.space.prevent
-          @keyup.space.prevent="go('/pages/error-map/error-map')"
-          @click="go('/pages/error-map/error-map')"
-        >
-          <uni-icons aria-hidden="true" type="map" size="22" color="var(--color-primary)" />
-          <view class="feature-copy">
-            <text>易错地图</text>
-          </view>
-          <uni-icons aria-hidden="true" type="right" size="20" />
-        </button>
-      </view>
-      <button
-        role="button"
-        tabindex="0"
-        class="record-link"
-        @click="go('/pages/analysis/analysis?relations=1')"
-        @keydown.enter.prevent="go('/pages/analysis/analysis?relations=1')"
-        @keydown.space.prevent
-        @keyup.space.prevent="go('/pages/analysis/analysis?relations=1')"
-      >
-        <text>知识关系</text>
-        <uni-icons aria-hidden="true" type="right" size="18" color="var(--color-text-secondary)" />
-      </button>
-      <button
-        aria-label="学习报告"
-        tabindex="0"
-        role="button"
-        class="record-link"
-        @click="go('/pages/analysis/analysis')"
-        @keydown.enter.prevent="go('/pages/analysis/analysis')"
-        @keydown.space.prevent
-        @keyup.space.prevent="go('/pages/analysis/analysis')"
-      >
-        <text>学习报告</text>
-        <uni-icons aria-hidden="true" type="right" size="18" color="var(--color-text-secondary)" />
-      </button>
-      <button
-        aria-label="学习记录"
-        tabindex="0"
-        role="button"
-        class="record-link"
-        :aria-expanded="moreOpen"
-        @click="moreOpen = !moreOpen"
-        @keydown.enter.prevent="moreOpen = !moreOpen"
-        @keydown.space.prevent
-        @keyup.space.prevent="moreOpen = !moreOpen"
-      >
-        <text>学习记录</text>
-        <uni-icons
-          aria-hidden="true"
-          :type="moreOpen ? 'top' : 'bottom'"
-          size="18"
-          color="var(--color-text-secondary)"
-        />
-      </button>
-      <view v-if="moreOpen" class="feature-list secondary-list">
-        <button
-          tabindex="0"
-          role="button"
-          v-for="item in learningRecordEntries"
+          v-for="item in analysisEntries"
           :key="item.url"
-          class="feature-link"
+          class="analysis-link"
+          role="button"
+          tabindex="0"
+          :aria-label="item.title"
           @click="go(item.url)"
           @keydown.enter.prevent="go(item.url)"
           @keydown.space.prevent
           @keyup.space.prevent="go(item.url)"
         >
-          <text>{{ item.title }}</text>
+          <uni-icons
+            class="analysis-icon"
+            aria-hidden="true"
+            :type="item.icon"
+            size="21"
+            color="var(--color-primary)"
+          />
+          <text class="analysis-label">{{ item.title }}</text>
+          <uni-icons aria-hidden="true" type="right" size="17" color="var(--color-text-tertiary)" />
+        </button>
+      </view>
+      <view class="records-group">
+        <button
+          aria-label="学习记录"
+          tabindex="0"
+          role="button"
+          class="record-link"
+          :aria-expanded="moreOpen"
+          @click="moreOpen = !moreOpen"
+          @keydown.enter.prevent="moreOpen = !moreOpen"
+          @keydown.space.prevent
+          @keyup.space.prevent="moreOpen = !moreOpen"
+        >
+          <text>学习记录</text>
           <uni-icons
             aria-hidden="true"
-            type="right"
+            :type="moreOpen ? 'top' : 'bottom'"
             size="18"
             color="var(--color-text-secondary)"
           />
         </button>
+        <view v-if="moreOpen" class="feature-list secondary-list">
+          <button
+            tabindex="0"
+            role="button"
+            v-for="item in learningRecordEntries"
+            :key="item.url"
+            class="feature-link"
+            @click="go(item.url)"
+            @keydown.enter.prevent="go(item.url)"
+            @keydown.space.prevent
+            @keyup.space.prevent="go(item.url)"
+          >
+            <text>{{ item.title }}</text>
+            <uni-icons
+              aria-hidden="true"
+              type="right"
+              size="18"
+              color="var(--color-text-secondary)"
+            />
+          </button>
+        </view>
       </view>
     </view>
     <tab-bar current="learning" />
@@ -147,6 +130,11 @@ import {
 } from '@/constants/learning.js'
 import { go } from '@/utils/navigation.js'
 const moreOpen = ref(false)
+const analysisEntries = [
+  { title: '易错地图', icon: 'map', url: '/pages/error-map/error-map' },
+  { title: '知识关系', icon: 'link', url: '/pages/analysis/analysis?relations=1' },
+  { title: '学习报告', icon: 'bars', url: '/pages/analysis/analysis' },
+]
 </script>
 <style scoped lang="scss">
 .learning-heading {
@@ -222,31 +210,67 @@ const moreOpen = ref(false)
 .learning-gateway > :last-child {
   display: none;
 }
-.learning-featured {
-  margin-bottom: 12px;
+.analysis-list,
+.records-group {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 0 16px;
+  margin-bottom: 16px;
 }
-.learning-featured .disclosure-link {
+.analysis-link {
+  display: flex;
+  align-items: center;
   gap: 12px;
+  width: 100%;
+  min-height: 54px;
+  padding: 12px 0;
+  margin: 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  text-align: left;
+  border-radius: 0;
+}
+.analysis-link + .analysis-link {
+  border-top: 1px solid var(--color-border);
+}
+.analysis-label {
+  flex: 1;
+  font-size: 15px;
+}
+.analysis-icon {
+  width: 24px;
+  flex: none;
 }
 .record-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 56px;
+  min-height: 52px;
   margin: 0;
   padding: 12px 0;
   background: transparent;
+  color: var(--color-text-secondary);
   border-radius: 0;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 500;
   text-align: left;
 }
 .secondary-list {
-  margin-top: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid var(--color-border);
 }
 .secondary-list .feature-link {
   justify-content: space-between;
+  min-height: 50px;
   font-size: 15px;
+  color: var(--color-text-primary);
+}
+.analysis-link:active,
+.secondary-list .feature-link:active {
+  background: var(--color-primary-soft);
 }
 </style>
