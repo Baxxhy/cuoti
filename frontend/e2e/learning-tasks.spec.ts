@@ -111,7 +111,13 @@ test('持久智能体：订正、刷新草稿、独立作答、离开恢复与�
   await expect(page.locator('.saved-note')).toContainText('除系数后代回')
   await page.screenshot({ path: testInfo.outputPath('task-self-check.png'), fullPage: true })
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  const journey = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).pathname ===
+      `/api/v1/questions/${process.env.QA_TASK_QUESTION_ID}/journey`,
+  )
   await page.goto(`/#/pages/journey/journey?id=${process.env.QA_TASK_QUESTION_ID}`)
+  expect((await journey).ok()).toBe(true)
   await expect(page.locator('.task-records')).toContainText('变式练习已完成')
   await page.getByRole('button', { name: /自检要点（1）/ }).click()
   await expect(page.locator('.self-check-item')).toContainText('除系数后代回')

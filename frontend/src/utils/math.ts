@@ -1,5 +1,6 @@
 import katex from 'katex'
 import 'katex/contrib/mhchem'
+import { stripImageMarkers } from './question-content'
 
 // Match empty display pairs too: adjacent $$x$$$$y$$ must not swallow prose.
 // Escaped currency dollars are consumed before looking for formula delimiters.
@@ -80,6 +81,32 @@ function repairImportedTex(tex: string) {
   })
 }
 
+// A coordinate list may wrap between complete tuples, never within a fraction,
+// command argument or nested pair. This changes layout only, not source data.
+function breakCoordinateList(tex: string) {
+  if (tex.includes('\\begin')) return tex
+  let braces = 0
+  let pairs = 0
+  let result = ''
+  let previous = ''
+  for (let index = 0; index < tex.length; index++) {
+    const char = tex[index]
+    const escaped = index > 0 && tex[index - 1] === '\\'
+    if (!escaped) {
+      if (char === '{') braces++
+      if (char === '}') braces = Math.max(0, braces - 1)
+      if (char === '(' || char === '[') pairs++
+      if (char === ')' || char === ']') pairs = Math.max(0, pairs - 1)
+    }
+    result += char
+    if (char === ',' && braces === 0 && pairs === 0 && /[)\]]/.test(previous)) {
+      result += '\\allowbreak '
+    }
+    if (!/\s/.test(char)) previous = char
+  }
+  return result
+}
+
 function escapedProse(text: string) {
   // Heading commands carry prose; bare TeX must not leak into student text.
   const source = text.replace(/\\section\*?\{([^{}]*)\}/g, '$1')
@@ -89,7 +116,7 @@ function escapedProse(text: string) {
   return splitProse(source)
     .map(({ prose, text: part }) => {
       if (prose || !/\\[A-Za-z]+/.test(part)) {
-        return escapeHtml(part.replace(/\\([%&#])/g, '$1'))
+        return escapeHtml(part.replace(/\\([%&#])/g, '$1')).replace(/&lt;br\s*\/?&gt;/gi, '<br>')
       }
       const renderBareFormula = (tex: string, displayMode = false) => {
         try {
@@ -159,10 +186,17 @@ function renderDelimitedMath(value: string | null | undefined, inline = false) {
       continue
     }
     try {
-      output += katex.renderToString(tex, { ...options, displayMode })
+      output += katex.renderToString(inline ? breakCoordinateList(tex) : tex, {
+        ...options,
+        displayMode,
+      })
     } catch {
       try {
-        output += katex.renderToString(repairImportedTex(tex), { ...options, displayMode })
+        const repaired = repairImportedTex(tex)
+        output += katex.renderToString(inline ? breakCoordinateList(repaired) : repaired, {
+          ...options,
+          displayMode,
+        })
       } catch {
         // A broken fragment must not replace the surrounding question with a
         // red KaTeX error, or disappear. Preserve exact, escaped source instead.
@@ -194,8 +228,7 @@ function splitProse(value: string) {
   return parts
 }
 
-export function renderMathText(value: string | null | undefined, inline = false) {
-  const source = String(value ?? '')
+function renderMathFragment(source: string, inline = false) {
   const rendered = renderDelimitedMath(source, inline)
   if (!source.includes('$$')) return rendered
   const fragments = source.split('$$')
@@ -220,4 +253,63 @@ export function renderMathText(value: string | null | undefined, inline = false)
     .join('')
   // Accept only a fully renderable recovery; otherwise retain exact source.
   return recovered.includes('class="math-unparsed"') ? rendered : recovered
+}
+
+// Pipes inside formulas (e.g. $|x|$) and escaped pipes belong to the cell.
+function tableCells(line: string) {
+  const protectedText: string[] = []
+  const protectedLine = line.replace(
+    /\\\||\$\$[^\n]*?\$\$|\$[^$\n]*?\$|\\\([^\n]*?\\\)|\\\[[^\n]*?\\\]/g,
+    (part) => `\u0000${protectedText.push(part) - 1}\u0000`,
+  )
+  const cells = protectedLine.trim().split('|')
+  if (cells[0] === '') cells.shift()
+  if (cells[cells.length - 1] === '') cells.pop()
+  return cells.map((cell) =>
+    cell.trim().replace(/\u0000(\d+)\u0000/g, (token, index: string) => {
+      const part = protectedText[Number(index)] ?? token
+      return part === '\\|' ? '|' : part
+    }),
+  )
+}
+
+export function renderMathText(value: string | null | undefined, inline = false) {
+  const source = stripImageMarkers(String(value ?? ''))
+  const lines = source.split('\n')
+  let output = ''
+  let start = 0
+  for (let index = 0; index + 1 < lines.length; index++) {
+    if (!lines[index].includes('|')) continue
+    const headers = tableCells(lines[index])
+    const separator = tableCells(lines[index + 1])
+    if (
+      headers.length < 1 ||
+      separator.length !== headers.length ||
+      !separator.every((cell) => /^:?-{3,}:?$/.test(cell))
+    )
+      continue
+    const rows: string[][] = []
+    let end = index + 2
+    while (end < lines.length && lines[end].includes('|')) {
+      const cells = tableCells(lines[end])
+      if (cells.length !== headers.length) break
+      rows.push(cells)
+      end++
+    }
+    if (!rows.length) continue
+    output += renderMathFragment(lines.slice(start, index).join('\n'), inline)
+    const rowHtml = (cells: string[], tag: 'th' | 'td') =>
+      '<tr>' +
+      cells.map((cell) => `<${tag}>${renderMathFragment(cell, true)}</${tag}>`).join('') +
+      '</tr>'
+    output +=
+      '<div class="math-table"><table class="question-table"><thead>' +
+      rowHtml(headers, 'th') +
+      '</thead><tbody>' +
+      rows.map((row) => rowHtml(row, 'td')).join('') +
+      '</tbody></table></div>'
+    start = end
+    index = end - 1
+  }
+  return output + renderMathFragment(lines.slice(start).join('\n'), inline)
 }

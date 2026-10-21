@@ -1,0 +1,153 @@
+{
+  "audited_asset_records": 9763,
+  "newly_quarantined": 87,
+  "original_text_answers_paths_hashes_unchanged": true,
+  "browser": [
+    {
+      "sample": "screenshot",
+      "width": 360,
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "sample": "screenshot",
+      "width": 390,
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "sample": "screenshot",
+      "width": 768,
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "sample": "screenshot",
+      "width": 1280,
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "sample": "options",
+      "width": 360,
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "sample": "options",
+      "width": 390,
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "sample": "options",
+      "width": 768,
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "sample": "options",
+      "width": 1280,
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "sample": "table",
+      "width": 360,
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "sample": "table",
+      "width": 390,
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "sample": "table",
+      "width": 768,
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "sample": "table",
+      "width": 1280,
+      "images": 0,
+      "overflow": false
+    }
+  ],
+  "compiled_h5_browser": [
+    {
+      "sample": "screenshot",
+      "width": 360,
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "sample": "screenshot",
+      "width": 390,
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "sample": "screenshot",
+      "width": 768,
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "sample": "screenshot",
+      "width": 1280,
+      "images": 1,
+      "overflow": false
+    },
+    {
+      "sample": "options",
+      "width": 360,
+      "images": 3,
+      "overflow": false
+    },
+    {
+      "sample": "options",
+      "width": 390,
+      "images": 3,
+      "overflow": false
+    },
+    {
+      "sample": "options",
+      "width": 768,
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "sample": "options",
+      "width": 1280,
+      "images": 4,
+      "overflow": false
+    },
+    {
+      "sample": "table",
+      "width": 360,
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "sample": "table",
+      "width": 390,
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "sample": "table",
+      "width": 768,
+      "images": 0,
+      "overflow": false
+    },
+    {
+      "sample": "table",
+      "width": 1280,
+      "images": 0,
+      "overflow": false
+    }
+  ]
+}

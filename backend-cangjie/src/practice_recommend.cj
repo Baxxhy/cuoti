@@ -7,10 +7,18 @@ import stdx.net.http.*
 func practicePayload(accounts: Accounts, question: JsonObject, mode: String, trace: JsonObject, points: JsonArray): JsonObject {
     let result=JsonObject(); result.put("question_id",question["id"])
     for (key in ["subject","grade","question_type"]) { result.put(key,question[key]) }
-    result.put("stem",question["question_text"]); let images=JsonArray()
-    for (index in 0..tutorArray(question,"image_paths").getItems().size) { images.add(JsonString(accounts.mediaUrl("/api/v1/practice/questions/${jsonText(question,"id")}/images/${index}"))) }
-    result.put("images",images); let input=JsonObject(); input.put("operation",JsonString("normalize_options")); input.put("raw_options",question["options"])
-    result.put("options",algorithmCompute(input)["options"]); result.put("knowledge_points",points)
+    result.put("stem",question["question_text"])
+    let pictures=datasetQuestionImages(question,accounts)
+    result.put("images",pictures["image_urls"])
+    let input=JsonObject(); input.put("operation",JsonString("normalize_options")); input.put("raw_options",question["options"])
+    let options=tutorArray(algorithmCompute(input),"options"); let pictured=tutorArray(pictures,"options")
+    for (i in 0..options.getItems().size) {
+        if (i<pictured.getItems().size) {
+            let urls=tutorArray((pictured[i] as JsonObject).getOrThrow(),"image_urls")
+            if (!urls.getItems().isEmpty()) { (options[i] as JsonObject).getOrThrow().put("image_urls",urls) }
+        }
+    }
+    result.put("options",options); result.put("knowledge_points",points)
     let names=tutorArray(trace,"knowledge_match"); let name=if (names.getItems().isEmpty()) { "关键方法" } else { tutorAnswerText(names[0]) }
     result.put("recommendation",JsonString("这道题会继续检查你需要加强的${name}。")); result.put("mode",JsonString(mode)); return result
 }

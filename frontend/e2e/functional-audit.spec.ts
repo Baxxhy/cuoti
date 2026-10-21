@@ -541,7 +541,11 @@ test.describe('角色页面操作', () => {
   })
 
   test('管理员手机四个分区、学生详情、会话详情和退出可操作且不溢出', async ({ page }) => {
+    const workbench = page.waitForResponse(
+      (response) => new URL(response.url()).pathname === '/api/v1/admin/workbench',
+    )
     await login(page, roleAccount('admin'))
+    expect((await workbench).ok()).toBe(true)
     await expect(page.locator('.nav-item')).toHaveCount(4)
     for (const label of ['全局概览', '学生画像', '智能体轨迹', '系统状态']) {
       await page.locator('.nav-item').filter({ hasText: label }).click()

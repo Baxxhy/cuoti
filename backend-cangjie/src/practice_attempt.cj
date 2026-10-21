@@ -57,7 +57,9 @@ func attemptPractice(context: HttpContext, accounts: Accounts): JsonValue {
             }
             let result=JsonObject(); result.put("correct",if (decisive) { grading["correct"] } else { JsonNull() })
             for (key in ["verdict","can_update_learning","confidence","evidence","feedback"]) { result.put(key,grading[key]) }
-            result.put("answer",question["answer"]); result.put("solution",question["solution"]); result.put("mastery_before",before); result.put("mastery",mastery); result.put("grading_method",grading["method"]); return result
+            result.put("answer",question["answer"]); result.put("solution",question["solution"])
+            for ((key,value) in datasetSolutionImages(question,accounts).getFields()) { result.put(key,value) }
+            result.put("mastery_before",before); result.put("mastery",mastery); result.put("grading_method",grading["method"]); return result
         })
     }
     throw ApiError(503,"数据库暂时不可用")

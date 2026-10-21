@@ -17,11 +17,8 @@ func bankQuestion(value: JsonObject, accounts: Accounts): JsonObject {
         let paragraphs=jsonText(value,"question_text").split("\n\n")
         if (paragraphs.size>1) { result.put("preview_text",JsonString("阅读理解："+paragraphs[paragraphs.size-1])) }
     }
-    let images=JsonArray(); var index: Int64=0
-    for (_ in tutorArray(value,"image_paths").getItems()) {
-        images.add(JsonString(accounts.mediaUrl("/api/v1/practice/questions/"+jsonText(value,"id")+"/images/"+index.toString()))); index++
-    }
-    result.put("image_urls",images); return result
+    for ((key,item) in datasetQuestionImages(value,accounts).getFields()) { result.put(key,item) }
+    return result
 }
 
 func bankGradeAlias(grade: String): String {
@@ -160,7 +157,10 @@ func studyDetail(db: Database, value: JsonObject, accounts: Accounts): JsonObjec
         else { let question=JsonObject(); question.put("subject",snapshot["subject"]); question.put("question_type",snapshot["question_type"]); publicItem.put("question",question) }
         if (submitted) {
             publicItem.put("grading",item["grading"])
-            if (available) { publicItem.put("answer",snapshot["answer"]); publicItem.put("solution",snapshot["solution"]) }
+            if (available) {
+                publicItem.put("answer",snapshot["answer"]); publicItem.put("solution",snapshot["solution"])
+                for ((key,value) in datasetSolutionImages(snapshot,accounts).getFields()) { publicItem.put(key,value) }
+            }
         }
         items.add(publicItem)
     }
@@ -168,6 +168,7 @@ func studyDetail(db: Database, value: JsonObject, accounts: Accounts): JsonObjec
 }
 
 func studyQuestionAvailable(db: Database, snapshot: JsonObject, lock!: Bool=false): Bool {
+    if (tutorFlag(datasetImageLayout(snapshot),"review")) { return false }
     if (jsonText(snapshot,"quality_status")=="format_review") { return false }
     let rows=db.query("SELECT quality_status,source_metadata FROM dataset_questions WHERE id=?"+if (lock) { " FOR SHARE" } else { "" },[Some(jsonText(snapshot,"id"))]).rows
     if (rows.isEmpty()) { return true }
@@ -239,6 +240,9 @@ func studySessions(context: HttpContext, accounts: Accounts): JsonValue {
                 tx.query("SELECT q.*"+bankScopedWhere(grade)+" AND q.id=?",params.toArray()).rows
             }
             if (rows.isEmpty() || (ids.getItems().isEmpty() && rows.size<count)) { throw ApiError(422,"当前范围可用题目不足，请减少题数或更换学科") }
+            for (row in rows) {
+                if (tutorFlag(datasetImageLayout(rowJson("dataset_questions",row)),"review")) { throw ApiError(422,"题图需要核对，请选择其他题目") }
+            }
             let id=newId(); let title=if (mode=="exam") { (if (subject.isEmpty()) { "综合" } else { subject })+"模拟试卷" } else { (if (subject.isEmpty()) { "题库" } else { subject })+"练习" }
             tx.query("INSERT INTO study_sessions (id,user_id,mode,title,subject,grade_band,status,duration_seconds,deadline_at,version,created_at,updated_at) VALUES (?,?,?,?,?,?,'active',?,IF(?='exam',TIMESTAMPADD(SECOND,?,UTC_TIMESTAMP(6)),NULL),1,UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[Some(id),Some(owner),Some(mode),Some(title),Some(subject),Some(band),Some((minutes*60).toString()),Some(mode),Some((minutes*60).toString())])
             var position: Int64=0

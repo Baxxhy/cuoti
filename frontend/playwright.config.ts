@@ -6,6 +6,7 @@ const frontendPort = process.env.ZHIWEI_FRONTEND_PORT || '5173'
 const backendPort = process.env.ZHIWEI_BACKEND_PORT || '8000'
 const frontendURL = process.env.ZHIWEI_FRONTEND_URL || `http://127.0.0.1:${frontendPort}`
 const backendURL = process.env.ZHIWEI_API_URL || `http://127.0.0.1:${backendPort}/api/v1`
+const builtH5 = process.env.ZHIWEI_TEST_BUILT_H5 === '1'
 const bundledBrowser = path.resolve('.playwright-browsers/chromium-1234/chrome-linux64/chrome')
 const executablePath =
   process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ||
@@ -14,7 +15,10 @@ const bundledLibraries = path.resolve('.playwright-libs/root/usr/lib/x86_64-linu
 
 export default defineConfig({
   testDir: './e2e',
+  globalSetup: './e2e/environment-setup.ts',
   timeout: 60_000,
+  // Keep browser acceptance responsive on shared disks.
+  workers: process.env.PLAYWRIGHT_WORKERS ? Number(process.env.PLAYWRIGHT_WORKERS) : 2,
   use: {
     baseURL: frontendURL,
     ignoreHTTPSErrors: process.env.QA_PREVIEW_HTTPS === '1',
@@ -47,7 +51,10 @@ export default defineConfig({
       env: { CI: '1' },
     },
     {
-      command: `pnpm run dev:h5 --host 127.0.0.1 --port ${frontendPort} --strictPort`,
+      command: builtH5
+        ? 'node scripts/serve_build_preview.mjs'
+        : `pnpm run dev:h5 --host 127.0.0.1 --port ${frontendPort} --strictPort`,
+      cwd: builtH5 ? path.resolve('..') : undefined,
       url: frontendURL,
       ignoreHTTPSErrors: process.env.QA_PREVIEW_HTTPS === '1',
       reuseExistingServer: true,
@@ -57,6 +64,7 @@ export default defineConfig({
         CHOKIDAR_USEPOLLING: 'true',
         CHOKIDAR_INTERVAL: '500',
         ZHIWEI_BACKEND_URL: new URL(backendURL).origin,
+        QA_BUILD_PORT: frontendPort,
       },
     },
   ],

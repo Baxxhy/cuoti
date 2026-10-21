@@ -55,6 +55,19 @@ def quality_flags(question: Any, project_root: Path) -> dict[str, Any]:
     answer_verified = selection_answer_verified(question.answer, question.options or [])
     auto_grade = can_auto_grade(question.question_type, question.answer, question.options or [])
     metadata = getattr(question, "source_metadata", None) or {}
+    public_markers = str(question.question_text or "").count("<ImageHere>") + sum(
+        str(option.get("text") or "").count("<ImageHere>") for option in (question.options or [])
+    )
+    markers = (
+        public_markers
+        + str(question.answer or "").count("<ImageHere>")
+        + str(question.solution or "").count("<ImageHere>")
+    )
+    image_count = len(question.image_paths or [])
+    image_layout_review = (
+        markers != image_count
+        and (markers > 0 or bool(metadata.get("has_visual")))
+    )
     review = metadata.get("format_review", {}) if isinstance(metadata, dict) else {}
     malformed = (
         isinstance(review, dict)
@@ -67,7 +80,7 @@ def quality_flags(question: Any, project_root: Path) -> dict[str, Any]:
         status = "duplicate"
     elif malformed:
         status = "format_review"
-    elif missing or metadata.get("asset_review"):
+    elif missing or metadata.get("asset_review") or image_layout_review:
         status = "missing_asset"
     elif not has_answer:
         status = "no_answer"

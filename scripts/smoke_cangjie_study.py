@@ -385,7 +385,7 @@ def study(endpoint, env, query):
         })
         pupil_token = pupil["access_token"]
         result = request(endpoint, "GET", "/api/v1/study-bank?source_id=" + grade_source + "&grade=%E9%AB%98%E4%B8%89", token=pupil_token)
-        allowed = {value for key, value in grade_ids.items() if key.startswith("高") or key.startswith("mislabelled-高")} if grade.startswith("高") else {grade_ids[stored]}
+        allowed = {value for key, value in grade_ids.items() if key.startswith(("高", "mislabelled-高"))} if grade.startswith("高") else {grade_ids[stored]}
         assert result["grade"] == grade and result["total"] == len(allowed)
         assert {q["id"] for q in result["questions"]} == allowed
         assert result["scope_label"] == ("高中" if grade.startswith("高") else grade)
@@ -420,7 +420,41 @@ def study(endpoint, env, query):
     assert [q["id"] for q in first] != [q["id"] for q in shuffled(29)]
     request(endpoint, "GET", "/api/v1/study-bank?shuffle_seed=invalid", token=pupil_token, expected=422)
     print("Random mixed bank passed: balanced subjects, repeatable seed, disjoint pagination and reshuffle", flush=True)
+    # Figures from OCR sources are interleaved with question/options/solutions.
+    # Keep a real, signed PNG for each role and verify the pre-submit boundary.
+    from PIL import Image, ImageDraw
+
+    figure_source = insert("dataset_sources", key="figure-layout-" + uuid4().hex, name="图片排版验收")
+    image_root = Path(env["CANGJIE_QUESTION_BANK_ROOT"])
+    image_root.mkdir(parents=True, exist_ok=True)
+    figure_paths = []
+    for index, label in enumerate(["QUESTION", "OPTION A", "SOLUTION 1", "SOLUTION 2"]):
+        file = image_root / f"figure-layout-{index}.png"
+        picture = Image.new("RGB", (180, 100), "#eff4fd")
+        ImageDraw.Draw(picture).text((12, 40), label, fill="#30343c")
+        picture.save(file)
+        figure_paths.append(str(file))
+    figure_id = insert(
+        "dataset_questions", dataset_source_id=figure_source, source_item_id="figure-layout",
+        content_hash="f" * 64, subject="数学", grade="初一", grade_band="初中",
+        question_text="如图，计算 $1+1$。<ImageHere>选择正确的选项图。", question_type="single-choice",
+        options=[{"key": "A", "text": "<ImageHere>"}, {"key": "B", "text": "3"}],
+        answer=json.dumps("A"), solution="第一步<ImageHere>第二步<ImageHere>",
+        image_paths=figure_paths, source_metadata={"has_visual": True},
+        has_answer=True, usable_for_practice=True, usable_for_auto_grade=True,
+    )
+    public = request(endpoint, "GET", "/api/v1/study-bank?source_id=" + figure_source, token=token)["questions"][0]
+    assert len(public["image_urls"]) == 1 and len(public["options"][0]["image_urls"]) == 1
+    assert len(public["preview_image_urls"]) == 2
+    assert "/images/2" not in json.dumps(public) and "/images/3" not in json.dumps(public)
+    figure_session = request(endpoint, "POST", "/api/v1/study-sessions", {"question_ids": [figure_id]}, token=token)
+    item_id = figure_session["items"][0]["id"]
+    saved = request(endpoint, "PATCH", "/api/v1/study-sessions/" + figure_session["id"], {"version": figure_session["version"], "answers": [{"id": item_id, "answer": ["A"]}]}, token=token)
+    graded = request(endpoint, "POST", "/api/v1/study-sessions/" + figure_session["id"] + "/submit", {"version": saved["version"]}, token=token)
+    assert len(graded["items"][0]["solution_image_urls"]) == 2
+    print("Dataset figures passed: stem/option images are public; solution figures appear only after submission", flush=True)
     return {
+        "QA_STUDY_FIGURE_SOURCE": figure_source,
         "QA_STUDY_CHEM_SOURCE": chemical_source,
         "QA_STUDY_BLOCKED_SESSION": held["id"],
         "QA_STUDY_EMAIL": email,

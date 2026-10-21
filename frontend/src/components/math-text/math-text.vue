@@ -74,6 +74,26 @@ const needsReview = computed(() => html.value.includes('class="math-unparsed"'))
   overflow-y: hidden;
 }
 
+.math-text:deep(.question-table) {
+  border-collapse: collapse;
+  white-space: normal;
+  margin: 8px 0;
+  font-size: inherit;
+}
+
+.math-text:deep(.question-table th),
+.math-text:deep(.question-table td) {
+  border: 1px solid #dce0e8;
+  padding: 6px 8px;
+  text-align: center;
+  min-width: 28px;
+}
+
+.math-text:deep(.question-table th) {
+  background: #f5f7fa;
+  font-weight: 500;
+}
+
 .math-text:deep(.math-table::-webkit-scrollbar) {
   height: 5px;
 }

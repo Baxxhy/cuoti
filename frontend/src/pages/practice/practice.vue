@@ -40,12 +40,10 @@
           <text class="source">
             {{ questionTypeLabel(question.question_type) }}
           </text>
-          <math-text class="question-stem" :text="question.stem" inline />
-          <image
-            v-for="image in question.images || []"
-            :key="image"
-            :src="mediaUrl(image)"
-            mode="widthFix"
+          <question-content
+            class="question-stem"
+            :text="question.stem"
+            :images="question.images || []"
           />
           <checkbox-group
             v-if="multiple && options.length"
@@ -59,7 +57,13 @@
                 :disabled="submitting || !!result"
                 color="var(--color-primary)"
               />
-              <math-text class="option-text" :text="`${option.label}. ${option.text}`" inline />
+              <question-content
+                class="option-text"
+                :text="`${option.label}. ${option.text}`"
+                :images="option.image_urls || []"
+                :image-label="`选项${option.label}配图`"
+                :previewable="!!result"
+              />
             </label>
           </checkbox-group>
           <radio-group v-else-if="options.length" @change="answer = $event.detail.value">
@@ -70,7 +74,13 @@
                 :disabled="submitting || !!result"
                 color="var(--color-primary)"
               />
-              <math-text class="option-text" :text="`${option.label}. ${option.text}`" inline />
+              <question-content
+                class="option-text"
+                :text="`${option.label}. ${option.text}`"
+                :images="option.image_urls || []"
+                :image-label="`选项${option.label}配图`"
+                :previewable="!!result"
+              />
             </label>
           </radio-group>
           <template v-else>
@@ -92,7 +102,21 @@
         >
           <b>{{ resultTitle }}</b>
           <math-text :text="learningFeedback(result.feedback)" inline />
-          <math-text v-if="result.answer" class="reference" :text="`参考答案：${displayAnswer}`" />
+          <question-content
+            v-if="result.answer || result.answer_image_urls?.length"
+            class="reference"
+            :text="`参考答案：${displayAnswer}`"
+            :images="result.answer_image_urls || []"
+            image-label="答案图"
+          />
+          <question-content
+            v-if="result.solution || result.solution_image_urls?.length"
+            class="reference"
+            :text="result.solution"
+            :images="result.solution_image_urls || []"
+            image-label="解析图"
+            :inline="false"
+          />
           <text v-if="result.mastery !== undefined && result.mastery !== null">
             掌握状态：{{ Math.round(result.mastery_before * 100) }}% →
             {{ Math.round(result.mastery * 100) }}%
@@ -141,11 +165,12 @@
 <script setup>
 import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
+import QuestionContent from '@/components/question-content/question-content.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 
 import { computed, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
-import { mediaUrl, postData } from '@/api/index.js'
+import { postData } from '@/api/index.js'
 import { go } from '@/utils/navigation.js'
 import {
   choiceAnswer,
@@ -307,6 +332,9 @@ onLoad((query) => {
 .option-text {
   flex: 1;
   line-height: 1.6;
+}
+.option :deep(.content-image) {
+  max-width: 180px;
 }
 .question-card :deep(.written-answer) {
   display: block;

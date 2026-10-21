@@ -230,3 +230,54 @@ it('裸矩阵的外层括号不与环境拆开', () => {
   expect(html).toContain('math-table')
   expect(html).not.toContain('math-unparsed')
 })
+
+describe('题库数据表格', () => {
+  it('窄屏坐标列表在完整坐标之间允许换行，分数和嵌套括号保持完整', () => {
+    const html = renderMathText('$A(-1,-2),B(-3,-1),C(-2,-3)$', true)
+    expect(html.match(/class="mspace allowbreak"/g)).toHaveLength(2)
+    expect(html).not.toContain('math-unparsed')
+    for (const text of ['$f((1,2),(3,4))$', '$\\frac{(1,2),(3,4)}{2}$']) {
+      expect(renderMathText(text, true)).not.toContain('allowbreak')
+    }
+  })
+  it('支持单列表格及源数据中的换行标记', () => {
+    const html = renderMathText('| 程序 |\n| --- |\n| INPUT $x$ <br> END |')
+    expect(html).toContain('<table')
+    expect(html.match(/<td>/g)).toHaveLength(1)
+    expect(html).toContain('<br>')
+    expect(html).not.toContain('&lt;br')
+  })
+  it('表头、数据和公式显示为表格，保留前后题句', () => {
+    const html = renderMathText(
+      '如下表\n| $x$ | 2 | 4 |\n| :---: | --- | --- |\n| $y$ | 3 | 5 |\n求函数关系。',
+    )
+    expect(html).toContain('<table class="question-table">')
+    expect(html.match(/<th>/g)).toHaveLength(3)
+    expect(html.match(/<td>/g)).toHaveLength(3)
+    expect(html.match(/class="katex"/g)).toHaveLength(2)
+    expect(html).toContain('如下表')
+    expect(html).toContain('求函数关系。')
+    expect(html).not.toContain(':---:')
+  })
+  it('绝对值和转义竖线不拆成列，表格中的 HTML 仍转义', () => {
+    const html = renderMathText(
+      '| 项目 | 值 |\n| --- | --- |\n| $|x|$ | <img src=x> |\n| A\\|B | 2 |',
+    )
+    expect(html.match(/<td>/g)).toHaveLength(4)
+    expect(html).toContain('class="katex"')
+    expect(html).toContain('A|B')
+    expect(html).toContain('&lt;img')
+    expect(html).not.toContain('<img')
+  })
+  it('表格中的范数双竖线保留原始数学命令', () => {
+    const html = renderMathText('| 项目 | 值 |\n| --- | --- |\n| $\\|v\\|$ | 2 |')
+    expect(html.match(/<td>/g)).toHaveLength(2)
+    expect(html).toContain('\\|v\\|')
+    expect(html).not.toContain('math-unparsed')
+  })
+  it('普通竖线文本及残缺表格保持原文，不猜测题目数据', () => {
+    for (const source of ['A | B', '| A | B |\n| --- | --- |', '| A | B |\n| --- | --- |\n| 1 |']) {
+      expect(renderMathText(source)).not.toContain('<table')
+    }
+  })
+})

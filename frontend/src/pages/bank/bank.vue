@@ -125,7 +125,7 @@
             v-for="question in data.questions"
             :key="question.id"
             class="bank-question"
-            :disabled="busy"
+            :disabled="busy || question.image_layout_review"
             @click="start(question.id)"
           >
             <view class="question-meta">
@@ -145,20 +145,21 @@
                 :text="question.preview_text || question.question_text"
                 inline
               />
-              <view v-if="question.image_urls?.length" class="bank-question-images">
+              <view v-if="questionImageUrls(question).length" class="bank-question-images">
                 <image
-                  v-if="!failedImages[question.image_urls[0]]"
-                  :src="mediaUrl(question.image_urls[0])"
+                  v-if="!failedImages[questionImageUrls(question)[0]]"
+                  :src="mediaUrl(questionImageUrls(question)[0])"
                   mode="aspectFit"
                   alt="题图预览"
-                  @error="failedImages[question.image_urls[0]] = true"
+                  @error="failedImages[questionImageUrls(question)[0]] = true"
                 />
                 <text v-else class="image-error">预览暂不可用</text>
-                <text v-if="question.image_urls.length > 1" class="image-count">
-                  {{ question.image_urls.length }} 张题图
+                <text v-if="questionImageUrls(question).length > 1" class="image-count">
+                  {{ questionImageUrls(question).length }} 张题图
                 </text>
               </view>
             </view>
+            <text v-if="question.image_layout_review" class="image-error">题图待核对</text>
           </button>
           <view v-if="data.total > 20" class="bank-paging">
             <button role="button" :disabled="filters.page <= 1" @click="changePage(-1)">
@@ -223,6 +224,7 @@ import { onLoad, onShow } from '@dcloudio/uni-app'
 import { getData, postData, mediaUrl } from '@/api/index.js'
 import { go } from '@/utils/navigation.js'
 import { questionTypeLabel } from '@/utils/question.js'
+import { questionImageUrls } from '@/utils/question-content'
 const mode = ref('practice'),
   data = ref(null),
   loading = ref(false),

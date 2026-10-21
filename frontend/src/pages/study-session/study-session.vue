@@ -53,22 +53,22 @@
             </view>
             <text v-if="item.unavailable" class="unavailable-note">此题已暂停使用</text>
             <template v-else>
-              <math-text :text="item.question.question_text" inline />
+              <question-content
+                :text="item.question.question_text"
+                :images="item.question.image_urls || []"
+              />
               <view
                 v-for="option in normalizeOptions(item.question.options)"
                 :key="option.label"
                 class="review-option"
               >
                 <text>{{ option.label }}.</text>
-                <math-text :text="option.text" inline />
+                <question-content
+                  :text="option.text"
+                  :images="option.image_urls || []"
+                  :image-label="`选项${option.label}配图`"
+                />
               </view>
-              <image
-                v-for="url in item.question.image_urls || []"
-                :key="url"
-                :src="mediaUrl(url)"
-                mode="widthFix"
-                class="question-image"
-              />
               <view class="review-answers">
                 <view>
                   <text class="answer-label">我的答案</text>
@@ -76,10 +76,21 @@
                 </view>
                 <view>
                   <text class="answer-label">参考答案</text>
-                  <math-text :text="answerText(item.answer)" inline />
+                  <question-content
+                    :text="answerText(item.answer)"
+                    :images="item.answer_image_urls || []"
+                    image-label="答案图"
+                  />
                 </view>
               </view>
-              <math-text v-if="item.solution" class="reference-solution" :text="item.solution" />
+              <question-content
+                v-if="item.solution || item.solution_image_urls?.length"
+                class="reference-solution"
+                :text="item.solution"
+                :images="item.solution_image_urls || []"
+                image-label="解析图"
+                :inline="false"
+              />
               <math-text
                 v-if="item.grading?.feedback"
                 class="grading-feedback"
@@ -91,7 +102,7 @@
                 v-if="
                   item.grading?.can_update_learning &&
                   item.grading?.correct === false &&
-                  !item.question.image_urls?.length
+                  !questionImageUrls(item.question).length
                 "
                 class="small-btn add-mistake"
                 :disabled="adding === item.id || added.has(item.id)"
@@ -133,13 +144,10 @@
                 <text>{{ questionTypeLabel(current.question.question_type) }}</text>
                 <text v-if="session.mode === 'exam'">5 分</text>
               </view>
-              <math-text class="question-stem" :text="current.question.question_text" inline />
-              <image
-                v-for="url in current.question.image_urls || []"
-                :key="url"
-                :src="mediaUrl(url)"
-                mode="widthFix"
-                class="question-image"
+              <question-content
+                class="question-stem"
+                :text="current.question.question_text"
+                :images="current.question.image_urls || []"
               />
               <view v-if="options.length" class="answer-options">
                 <button
@@ -152,7 +160,12 @@
                   @click="select(option.label)"
                 >
                   <text class="option-letter">{{ option.label }}</text>
-                  <math-text :text="option.text" inline />
+                  <question-content
+                    :text="option.text"
+                    :images="option.image_urls || []"
+                    :image-label="`选项${option.label}配图`"
+                    :previewable="false"
+                  />
                   <uni-icons
                     aria-hidden="true"
                     v-if="selected(option.label)"
@@ -264,9 +277,11 @@
 <script setup>
 import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
+import QuestionContent from '@/components/question-content/question-content.vue'
+import { questionImageUrls } from '@/utils/question-content'
 import { computed, ref } from 'vue'
 import { onLoad, onHide, onUnload } from '@dcloudio/uni-app'
-import { getData, patchData, postData, mediaUrl } from '@/api/index.js'
+import { getData, patchData, postData } from '@/api/index.js'
 import { go } from '@/utils/navigation.js'
 import { normalizeOptions, isMultipleChoice, questionTypeLabel } from '@/utils/question.js'
 const id = ref(''),
@@ -682,6 +697,10 @@ onUnload(() => {
   flex: 1;
   min-width: 0;
 }
+.answer-options :deep(.content-image),
+.review-option :deep(.content-image) {
+  max-width: 180px;
+}
 .option-letter {
   display: flex;
   align-items: center;
@@ -817,7 +836,7 @@ onUnload(() => {
   flex: none;
   white-space: nowrap;
 }
-.review-option > .math-text {
+.review-option > .question-content {
   flex: 1;
   width: auto;
 }

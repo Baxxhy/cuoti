@@ -140,6 +140,36 @@ def test_format_review_blocks_only_the_reviewed_content_version(tmp_path: Path) 
     assert quality_flags(question, tmp_path)["usable_for_practice"] is True
 
 
+def test_mixed_source_figures_require_a_complete_layout_before_admission(tmp_path: Path) -> None:
+    from types import SimpleNamespace
+
+    from app.services.question_quality import quality_flags
+
+    for name in ["q.png", "answer.png"]:
+        (tmp_path / name).write_bytes(b"test-image")
+    question = SimpleNamespace(
+        question_text="如图<ImageHere>求值",
+        question_type="单选题",
+        answer="A",
+        options=[{"key": "A", "text": "1"}, {"key": "B", "text": "2"}],
+        solution="解析<ImageHere>",
+        image_paths=["q.png", "answer.png"],
+        source_metadata={"has_visual": True},
+    )
+    assert quality_flags(question, tmp_path)["usable_for_practice"]
+    question.image_paths = ["q.png"]
+    assert quality_flags(question, tmp_path)["quality_status"] == "missing_asset"
+    question.question_text = "题目"
+    question.solution = "无图片占位说明"
+    assert not quality_flags(question, tmp_path)["usable_for_practice"]
+    # A legacy dataset with an ordinary question attachment keeps its contract.
+    question.source_metadata = {}
+    assert quality_flags(question, tmp_path)["usable_for_practice"]
+    question.image_paths = []
+    question.solution = "解析<ImageHere>"
+    assert quality_flags(question, tmp_path)["quality_status"] == "missing_asset"
+
+
 def test_native_preparation_audits_new_source_before_import(tmp_path: Path, monkeypatch) -> None:
     import copy
     import importlib

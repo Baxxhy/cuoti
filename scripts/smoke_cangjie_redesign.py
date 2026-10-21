@@ -25,6 +25,16 @@ def redesign_fixture(endpoint, env, query):
     insert("reference_steps", analysis_id=analysis, step_index=1, text="x=4")
     insert("diagnoses", question_id=question["id"], first_error_step=0,
            error_type="sign_error", root_misconception="移项需要改变符号")
+    # The graph layout check needs a persisted, recent relation, not just an
+    # analysis label. Fixture defaults are intentionally outside the 90-day view.
+    point = insert("knowledge_points", code="route.graph." + uuid4().hex,
+                   subject="数学", name="图谱布局验收知识点", content={"grade": "初一"})
+    insert("user_question_knowledge_links", user_id=actor["id"], question_id=question["id"],
+           knowledge_point_id=point, role="primary", confidence=1,
+           mapping_method="fixture", evidence_text="受控图谱布局验收",
+           created_at=query(env, "SELECT UTC_TIMESTAMP()").strip())
+    graph = request(endpoint, "GET", "/api/v1/analytics/cognition-graph", token=actor["access_token"])
+    assert graph["mapped_question_count"] == 1 and graph["links"]
     # A controlled illustration for the same equation, served through real media URLs.
     relative = Path("uploads") / "questions" / question["id"] / "route-figure.png"
     destination = Path(env["CANGJIE_MEDIA_ROOT"]) / relative
