@@ -1,6 +1,6 @@
 <template>
   <view class="page report-page">
-    <app-header title="学习报告" back />
+    <app-header :title="relationsMode ? '知识关系' : '学习报告'" back />
     <view class="page-content">
       <state-panel
         v-if="loading || error"
@@ -9,142 +9,125 @@
         @retry="load"
       />
       <template v-else>
-        <view
-          v-if="!progressItem && !attentionItem && !stableItem && !trend.length"
-          class="report-empty"
-        >
-          <text class="empty-title">还没有学习报告</text>
-          <button
-            tabindex="0"
-            role="button"
-            class="small-btn"
-            @click="go('/pages/problem/list')"
-            @keydown.enter.prevent="go('/pages/problem/list')"
-            @keydown.space.prevent
-            @keyup.space.prevent="go('/pages/problem/list')"
+        <template v-if="!relationsMode">
+          <view
+            v-if="!progressItem && !attentionItem && !stableItem && !trend.length"
+            class="report-empty"
           >
-            查看我的错题
-          </button>
-        </view>
-        <view v-if="progressItem" class="report-block progress-block">
-          <text class="block-label">{{ progressItem.subject }} · 近期学习</text>
-          <template v-if="progressItem">
-            <math-text class="block-title" :text="progressItem.knowledge_point" inline />
-            <view class="change-line">
-              <b>{{ Math.round(progressItem.mastery_score * 100) }}%</b>
-              <text>学习记录估计</text>
-            </view>
-            <text class="block-detail"></text>
-            <button
-              class="primary-btn"
-              role="button"
-              @click="go(scopedQuestionURL({ subject: progressItem.subject || '' }))"
-            >
-              查看{{ progressItem.subject }}错题
-            </button>
-          </template>
-          <text v-else class="muted">完成学习后，这里会显示实际掌握记录。</text>
-        </view>
-
-        <view v-if="attentionItem" class="report-block attention-block">
-          <text class="block-label">{{ attentionItem.subject }} · 最需要注意</text>
-          <template v-if="attentionItem">
-            <math-text class="block-title" :text="attentionItem.label" />
-            <text class="block-detail"></text>
+            <text class="empty-title">还没有学习报告</text>
             <button
               tabindex="0"
               role="button"
-              class="secondary-btn"
-              @click="
-                go(
-                  scopedQuestionURL({
-                    subject: attentionItem.subject || '',
-                    search: attentionItem.search,
-                  }),
-                )
-              "
-              @keydown.enter.prevent="
-                go(
-                  scopedQuestionURL({
-                    subject: attentionItem.subject || '',
-                    search: attentionItem.search,
-                  }),
-                )
-              "
+              class="small-btn"
+              @click="go('/pages/problem/list')"
+              @keydown.enter.prevent="go('/pages/problem/list')"
               @keydown.space.prevent
-              @keyup.space.prevent="
-                go(
-                  scopedQuestionURL({
-                    subject: attentionItem.subject || '',
-                    search: attentionItem.search,
-                  }),
-                )
-              "
+              @keyup.space.prevent="go('/pages/problem/list')"
             >
-              查看相关错题
+              查看我的错题
             </button>
-          </template>
-          <text v-else class="muted">目前没有集中出现的错因。</text>
-        </view>
+          </view>
+          <view v-if="progressItem" class="report-block progress-block">
+            <text class="block-label">{{ progressItem.subject }} · 近期学习</text>
+            <template v-if="progressItem">
+              <math-text class="block-title" :text="progressItem.knowledge_point" inline />
+              <view class="change-line">
+                <b>{{ Math.round(progressItem.mastery_score * 100) }}%</b>
+                <text>学习记录估计</text>
+              </view>
+              <text class="block-detail"></text>
+              <button
+                class="primary-btn"
+                role="button"
+                @click="go(scopedQuestionURL({ subject: progressItem.subject || '' }))"
+              >
+                查看{{ progressItem.subject }}错题
+              </button>
+            </template>
+            <text v-else class="muted">完成学习后，这里会显示实际掌握记录。</text>
+          </view>
 
-        <view v-if="stableItem" class="report-block stable-block">
-          <text class="block-label">{{ stableItem.subject }} · 正在稳定</text>
-          <template v-if="stableItem">
-            <math-text class="block-title" :text="stableItem.knowledge_point" inline />
-            <text class="stable-score">
-              学习记录估计 {{ Math.round(stableItem.mastery_score * 100) }}%
-            </text>
-            <text class="block-detail"></text>
-          </template>
-          <text v-else class="muted">掌握度达到较稳定状态后会显示在这里。</text>
-        </view>
+          <view v-if="attentionItem" class="report-block attention-block">
+            <text class="block-label">{{ attentionItem.subject }} · 最需要注意</text>
+            <template v-if="attentionItem">
+              <math-text class="block-title" :text="attentionItem.label" />
+              <text class="block-detail"></text>
+              <button
+                tabindex="0"
+                role="button"
+                class="secondary-btn"
+                @click="
+                  go(
+                    scopedQuestionURL({
+                      subject: attentionItem.subject || '',
+                      search: attentionItem.search,
+                    }),
+                  )
+                "
+                @keydown.enter.prevent="
+                  go(
+                    scopedQuestionURL({
+                      subject: attentionItem.subject || '',
+                      search: attentionItem.search,
+                    }),
+                  )
+                "
+                @keydown.space.prevent
+                @keyup.space.prevent="
+                  go(
+                    scopedQuestionURL({
+                      subject: attentionItem.subject || '',
+                      search: attentionItem.search,
+                    }),
+                  )
+                "
+              >
+                查看相关错题
+              </button>
+            </template>
+            <text v-else class="muted">目前没有集中出现的错因。</text>
+          </view>
 
-        <button
-          tabindex="0"
-          role="button"
-          v-if="trend.length"
-          class="record-toggle"
-          :aria-expanded="showTrend"
-          @click="toggleTrend"
-          @keydown.enter.prevent="toggleTrend"
-          @keydown.space.prevent
-          @keyup.space.prevent="toggleTrend"
-        >
-          {{ showTrend ? '收起每日记录' : '查看每日记录' }}
-        </button>
-        <view v-if="trend.length && showTrend" class="trend-panel">
-          <text class="muted">不同日期涉及的知识点可能不同。</text>
-          <view class="trend-bars">
-            <view v-for="point in trend" :key="point.date">
-              <view :style="{ height: Math.max(8, point.score * 1.4) + 'rpx' }" />
-              <text>{{ point.date?.slice(5) }}</text>
+          <view v-if="stableItem" class="report-block stable-block">
+            <text class="block-label">{{ stableItem.subject }} · 正在稳定</text>
+            <template v-if="stableItem">
+              <math-text class="block-title" :text="stableItem.knowledge_point" inline />
+              <text class="stable-score">
+                学习记录估计 {{ Math.round(stableItem.mastery_score * 100) }}%
+              </text>
+              <text class="block-detail"></text>
+            </template>
+            <text v-else class="muted">掌握度达到较稳定状态后会显示在这里。</text>
+          </view>
+
+          <button
+            tabindex="0"
+            role="button"
+            v-if="trend.length"
+            class="record-toggle"
+            :aria-expanded="showTrend"
+            @click="toggleTrend"
+            @keydown.enter.prevent="toggleTrend"
+            @keydown.space.prevent
+            @keyup.space.prevent="toggleTrend"
+          >
+            {{ showTrend ? '收起每日记录' : '查看每日记录' }}
+          </button>
+          <view v-if="trend.length && showTrend" class="trend-panel">
+            <text class="muted">不同日期涉及的知识点可能不同。</text>
+            <view class="trend-bars">
+              <view v-for="point in trend" :key="point.date">
+                <view :style="{ height: Math.max(8, point.score * 1.4) + 'rpx' }" />
+                <text>{{ point.date?.slice(5) }}</text>
+              </view>
             </view>
+            <text v-if="!trend.length" class="muted">完成练习后显示趋势</text>
           </view>
-          <text v-if="!trend.length" class="muted">完成练习后显示趋势</text>
-        </view>
-
-        <button
-          tabindex="0"
-          role="button"
-          class="relation-toggle"
-          :aria-expanded="showRelations"
-          @click="toggleRelations"
-          @keydown.enter.prevent="toggleRelations"
-          @keydown.space.prevent
-          @keyup.space.prevent="toggleRelations"
-        >
-          <view>
-            <text>我的知识图谱</text>
-            <small v-if="graphLoaded">{{ graphSummary }}</small>
+        </template>
+        <template v-if="relationsMode">
+          <view class="relation-summary">
+            <text v-if="graphLoaded">{{ graphSummary }}</text>
           </view>
-          <uni-icons
-            aria-hidden="true"
-            :type="showRelations ? 'top' : 'bottom'"
-            size="22"
-            color="#72809A"
-          />
-        </button>
-        <template v-if="showRelations">
           <scroll-view scroll-x class="filter-scroll">
             <view class="chip-row">
               <text
@@ -217,19 +200,6 @@
           </view>
         </template>
       </template>
-      <button
-        aria-label="易错地图"
-        role="button"
-        tabindex="0"
-        class="disclosure-link"
-        @keydown.enter.prevent="go('/pages/error-map/error-map')"
-        @keydown.space.prevent
-        @keyup.space.prevent="go('/pages/error-map/error-map')"
-        @click="go('/pages/error-map/error-map')"
-      >
-        易错地图
-        <uni-icons aria-hidden="true" type="right" size="18" />
-      </button>
     </view>
   </view>
 </template>
@@ -255,7 +225,7 @@ const overview = ref({ summary: {}, mastery: [], misconceptions: [], trend: [] }
   graph = ref({ nodes: [], links: [] }),
   selected = ref(null),
   subject = ref(''),
-  showRelations = ref(false),
+  relationsMode = ref(false),
   showTrend = ref(false),
   graphList = ref(false),
   loading = ref(true)
@@ -299,14 +269,6 @@ async function load() {
 }
 function toggleTrend() {
   showTrend.value = !showTrend.value
-  if (showTrend.value) showRelations.value = false
-}
-function toggleRelations() {
-  showRelations.value = !showRelations.value
-  if (showRelations.value) {
-    showTrend.value = false
-    loadGraph()
-  }
 }
 async function loadGraph() {
   const current = ++graphRequest
@@ -335,11 +297,14 @@ function selectSubject(value) {
 }
 onLoad((q) => {
   subject.value = q.subject ? decodeURIComponent(q.subject) : ''
-  showRelations.value = q.relations === '1'
+  relationsMode.value = q.relations === '1'
 })
 onShow(async () => {
-  const current = await load()
-  if (current && showRelations.value) await loadGraph()
+  if (relationsMode.value) {
+    loading.value = false
+    error.value = ''
+    await loadGraph()
+  } else await load()
 })
 function clear() {
   overviewRequest++
@@ -355,6 +320,11 @@ onUnload(clear)
 </script>
 
 <style scoped lang="scss">
+.relation-summary {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
 .graph-list-item {
   display: block;
   width: 100%;
@@ -374,12 +344,6 @@ onUnload(clear)
   text-align: left;
   font-size: 16px;
   margin: 12px 0;
-}
-.relation-toggle {
-  width: 100%;
-  text-align: left;
-  background: transparent;
-  border-radius: 0;
 }
 
 .report-empty {
@@ -503,28 +467,6 @@ onUnload(clear)
   font-size: 18rpx;
   color: var(--color-text-secondary);
   margin-top: 7rpx;
-}
-.relation-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 34rpx;
-  padding: 24rpx 0;
-  border-top: 1rpx solid var(--color-border);
-  border-bottom: 1rpx solid var(--color-border);
-}
-.relation-toggle text,
-.relation-toggle small {
-  display: block;
-}
-.relation-toggle text {
-  font-size: 29rpx;
-  font-weight: 600;
-}
-.relation-toggle small {
-  font-size: 22rpx;
-  color: var(--color-text-secondary);
-  margin-top: 3rpx;
 }
 .filter-scroll {
   white-space: nowrap;

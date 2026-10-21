@@ -75,3 +75,53 @@ test('学生全路由：小屏布局、缺少题目时的反馈、个人资料�
   await expect(page.locator('.profile-meta')).toContainText('初三')
   expect(errors).toEqual([])
 })
+
+test('学习入口分工：知识关系直达图谱，报告无重复地图，记录不含作业', async ({
+  page,
+  request,
+}, info) => {
+  const response = await request.post(`${API}/auth/register`, {
+    data: {
+      email: `navigation-${Date.now()}@example.test`,
+      password: 'Navigation-123',
+      name: '导航验收',
+      grade: '初二',
+    },
+  })
+  expect(response.ok()).toBeTruthy()
+  const body = await response.json()
+  await page.addInitScript(
+    (value) => localStorage.setItem('minddimension_access_token', value),
+    (body.data || body).access_token,
+  )
+  for (const width of [375, 1280]) {
+    await page.setViewportSize({ width, height: 900 })
+    await page.goto('/#/pages/learning/learning')
+    const records = page.getByRole('button', { name: '学习记录', exact: true })
+    if ((await records.getAttribute('aria-expanded')) === 'false') await records.click()
+    await expect(page.locator('.secondary-list')).toContainText('订正记录')
+    await expect(page.locator('.secondary-list')).not.toContainText(/我的作业|知识关系/)
+    await expect(page.getByRole('button', { name: '知识关系', exact: true })).toHaveCount(1)
+    await page.screenshot({
+      path: info.outputPath(`learning-navigation-${width}.png`),
+      fullPage: true,
+    })
+    await page.getByRole('button', { name: '知识关系', exact: true }).click()
+    await expect(page.getByRole('heading', { name: '知识关系', exact: true })).toBeVisible()
+    await expect(page.getByRole('button', { name: '用列表查看', exact: true })).toBeVisible()
+    await expect(page.locator('.report-block, .report-empty')).toHaveCount(0)
+    await page.screenshot({
+      path: info.outputPath(`knowledge-relations-${width}.png`),
+      fullPage: true,
+    })
+    await page.getByRole('button', { name: '返回', exact: true }).click()
+    await page.getByRole('button', { name: '学习报告', exact: true }).click()
+    await expect(page.getByRole('heading', { name: '学习报告', exact: true })).toBeVisible()
+    await expect(page.locator('.report-empty')).toBeVisible()
+    await expect(page.getByRole('button', { name: '易错地图', exact: true })).toHaveCount(0)
+    await expect(page.locator('.relation-summary')).toHaveCount(0)
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+    ).toBeTruthy()
+  }
+})

@@ -50,6 +50,7 @@
           <uni-icons aria-hidden="true" type="right" size="17" color="var(--color-primary)" />
         </button>
       </view>
+      <view class="learning-heading"><text>学习分析</text></view>
       <view class="learning-featured">
         <button
           aria-label="易错地图"
@@ -69,6 +70,18 @@
         </button>
       </view>
       <button
+        role="button"
+        tabindex="0"
+        class="record-link"
+        @click="go('/pages/analysis/analysis?relations=1')"
+        @keydown.enter.prevent="go('/pages/analysis/analysis?relations=1')"
+        @keydown.space.prevent
+        @keyup.space.prevent="go('/pages/analysis/analysis?relations=1')"
+      >
+        <text>知识关系</text>
+        <uni-icons aria-hidden="true" type="right" size="18" color="var(--color-text-secondary)" />
+      </button>
+      <button
         aria-label="学习报告"
         tabindex="0"
         role="button"
@@ -82,7 +95,7 @@
         <uni-icons aria-hidden="true" type="right" size="18" color="var(--color-text-secondary)" />
       </button>
       <button
-        aria-label="记录与作业"
+        aria-label="学习记录"
         tabindex="0"
         role="button"
         class="record-link"
@@ -92,7 +105,7 @@
         @keydown.space.prevent
         @keyup.space.prevent="moreOpen = !moreOpen"
       >
-        <text>记录与作业</text>
+        <text>学习记录</text>
         <uni-icons
           aria-hidden="true"
           :type="moreOpen ? 'top' : 'bottom'"

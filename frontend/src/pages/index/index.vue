@@ -100,20 +100,6 @@
               开始复习
             </button>
           </template>
-          <template v-else-if="focusKind === 'assignment'">
-            <text class="focus-title">{{ data.teacher_assignment_count }} 项作业待完成</text>
-            <button
-              tabindex="0"
-              role="button"
-              class="primary-btn"
-              @click="go('/pages/assignment/assignment')"
-              @keydown.enter.prevent="go('/pages/assignment/assignment')"
-              @keydown.space.prevent
-              @keyup.space.prevent="go('/pages/assignment/assignment')"
-            >
-              查看任务
-            </button>
-          </template>
           <template v-else-if="focusKind === 'repair'">
             <math-text class="focus-title" :text="recommendedGroup.label" inline />
             <text class="focus-next">
@@ -384,7 +370,6 @@ const focusKind = computed(() => {
     return 'starter'
   if (data.value?.continue_learning) return 'continue'
   if (hasTodayReviews.value) return 'review'
-  if (data.value?.teacher_assignment_count) return 'assignment'
   if (recommendedGroup.value) return 'repair'
   if (preferences.value?.subject) return 'starter'
   return 'capture'
@@ -401,13 +386,6 @@ const otherTasks = computed(() => {
     })
   if (data.value?.teacher_feedback)
     rows.push({ key: 'feedback', title: '老师有新反馈', detail: '查看建议，再继续修改' })
-  if (data.value?.teacher_assignment_count && focusKind.value !== 'assignment')
-    rows.push({
-      key: 'assignment',
-      title: '我的作业',
-      detail: `${data.value.teacher_assignment_count} 项待完成`,
-      url: '/pages/assignment/assignment',
-    })
   return rows.slice(0, 2)
 })
 
