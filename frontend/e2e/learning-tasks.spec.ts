@@ -170,6 +170,9 @@ test('持久智能体：订正、刷新草稿、独立作答、离开恢复与�
   await page.getByRole('button', { name: '查看每日记录', exact: true }).click()
   await expect(page.locator('.trend-bars > uni-view')).not.toHaveCount(0)
   await page.goto('/#/pages/analysis/analysis?relations=1')
+  // A browser hash change alone reuses the same uni-app page instance.
+  // Reload verifies the actual deep link, as navigation from the learning hub does.
+  await page.reload()
   await expect(page.locator('.trend-panel')).toHaveCount(0)
   await expect(page.getByRole('button', { name: '用列表查看', exact: true })).toBeVisible()
 })

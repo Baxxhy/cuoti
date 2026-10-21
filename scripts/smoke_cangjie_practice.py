@@ -185,8 +185,38 @@ def practice(endpoint, env, query, token, other, state):
     before = query(
         env, f"SELECT COUNT(*) FROM cognitive_updates WHERE question_id='{mid}'"
     )
+    exposure_qid = insert(
+        "dataset_questions",
+        dataset_source_id=source,
+        source_item_id="exposure",
+        subject=mistake["subject"],
+        grade_band="初中",
+        question_text="求解 3x=15",
+        question_type="填空题",
+        answer=json.dumps("x=5"),
+        has_answer=True,
+        solution="3x=15，x=5",
+        usable_for_practice=True,
+        usable_for_auto_grade=True,
+        content_hash=uuid4().hex,
+    )
+    insert(
+        "practice_recommendations",
+        user_id=owner,
+        mistake_id=mid,
+        dataset_question_id=exposure_qid,
+        mode="reinforce",
+        retrieval_trace={
+            "source_question_fingerprint": fingerprint,
+            "target_knowledge_id": knowledge,
+        },
+    )
     undecided = request(
-        endpoint, "POST", route, {**base, "student_answer": ""}, token=token
+        endpoint,
+        "POST",
+        route,
+        {**base, "question_id": exposure_qid, "student_answer": ""},
+        token=token,
     )
     assert (
         undecided["correct"] is None
@@ -260,7 +290,30 @@ def practice(endpoint, env, query, token, other, state):
     from smoke_cangjie_learning_memory import practice_memory
 
     practice_memory(endpoint, env, query, token, state, mid, qid, insert)
+    repeated = request(endpoint, "POST", route, base, token=token)
+    assert repeated == result, {
+        key: (result.get(key), repeated.get(key))
+        for key in result.keys() | repeated.keys()
+        if result.get(key) != repeated.get(key)
+    }
+    assert (
+        query(
+            env,
+            f"SELECT COUNT(*) FROM dataset_practice_attempts WHERE mistake_id='{mid}' AND dataset_question_id='{qid}'",
+        )
+        == "1"
+    )
+
+    query(
+        env,
+        f"UPDATE dataset_questions SET solution=CONCAT(solution,'补充') WHERE id='{qid}'",
+    )
     request(endpoint, "POST", route, base, token=token, expected=409)
+    solution_hex = b"3x=15\nx=5".hex()
+    query(
+        env,
+        f"UPDATE dataset_questions SET solution=CONVERT(0x{solution_hex} USING utf8mb4) WHERE id='{qid}'",
+    )
     query(
         env,
         f"UPDATE dataset_questions SET options=JSON_ARRAY(JSON_OBJECT('key','A','text','甲'),JSON_OBJECT('key','B','text','乙')),answer=JSON_ARRAY('A','B') WHERE id='{qid}'",
@@ -294,6 +347,25 @@ def practice(endpoint, env, query, token, other, state):
             f"SELECT JSON_TYPE(student_answer) FROM dataset_practice_attempts WHERE mistake_id='{mid}' AND mode='variation'",
         )
         == "ARRAY"
+    )
+    updates_before = query(
+        env, f"SELECT COUNT(*) FROM cognitive_updates WHERE question_id='{mid}'"
+    )
+    assisted = request(
+        endpoint,
+        "POST",
+        route,
+        {**base, "question_id": exposure_qid, "student_answer": "x=5"},
+        token=token,
+    )
+    assert (
+        assisted["correct"]
+        and assisted["mastery"] is None
+        and assisted["learning_note"]
+    )
+    assert (
+        query(env, f"SELECT COUNT(*) FROM cognitive_updates WHERE question_id='{mid}'")
+        == updates_before
     )
     query(env, f"DELETE FROM dataset_practice_attempts WHERE mistake_id='{mid}'")
     query(env, f"UPDATE questions SET student_answer='changed' WHERE id='{mid}'")

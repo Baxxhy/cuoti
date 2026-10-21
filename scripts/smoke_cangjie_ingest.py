@@ -97,14 +97,16 @@ def ingest(endpoint, env, query):
                 body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
                 assert body["model"] == "Qwen"
                 content = body["messages"][-1]["content"]
-                answer_grader = (
-                    "中学作业判题老师" in body["messages"][0]["content"]
-                    and isinstance(content, str)
-                )
+                answer_grader = "中学作业判题老师" in body["messages"][0][
+                    "content"
+                ] and isinstance(content, str)
                 review_grader = (
                     "中学作业判题老师" in body["messages"][0]["content"]
                     and isinstance(content, str)
                     and "题目：解方程：3x+2=17\n" in content
+                )
+                generation_request = isinstance(content, str) and any(
+                    marker in content for marker in ("根据原题生成", "核对以下练习")
                 )
                 pictures = (
                     [
@@ -117,6 +119,7 @@ def ingest(endpoint, env, query):
                 )
                 if (
                     answer_grader
+                    or generation_request
                     or state.get("analysis")
                     or state.get("diagnosing")
                     or state.get("teaching")
@@ -173,7 +176,9 @@ def ingest(endpoint, env, query):
                     else:
                         assert "中学个性化教师" in system_prompt
                         state["dialogue_images"] = len(pictures)
-                        state["dialogue_source_context"] = json.dumps(content, ensure_ascii=False)
+                        state["dialogue_source_context"] = json.dumps(
+                            content, ensure_ascii=False
+                        )
                         selected_result = state["dialogue_reply"]
                 if not state.get("handwriting") and any(
                     name in body["messages"][0]["content"]
@@ -239,15 +244,22 @@ def ingest(endpoint, env, query):
                         "confidence": 0.99,
                     }
                 state["calls"] += 1
-                if state["mode"] == "block" and not (answer_grader and not review_grader):
+                if state["mode"] == "block" and not (
+                    answer_grader and not review_grader
+                ):
                     started.set()
                     assert release.wait(15)
                 # Unconfigured semantic samples keep the previous unavailable
                 # fallback; do not manufacture correctness or an OCR image error.
-                if (answer_grader and not review_grader) or state["mode"] == "fail" or (
-                    state.get("restart_only_handwriting")
-                    and "手写作答转写器" not in body["messages"][0]["content"]
-                    and not review_grader
+                if (
+                    (generation_request and not state.get("variant"))
+                    or (answer_grader and not review_grader)
+                    or state["mode"] == "fail"
+                    or (
+                        state.get("restart_only_handwriting")
+                        and "手写作答转写器" not in body["messages"][0]["content"]
+                        and not review_grader
+                    )
                 ):
                     status, result = 503, {"error": "simulated unavailable"}
                 else:
@@ -410,7 +422,16 @@ def ingest(endpoint, env, query):
                 },
             )
             if env.get("CANGJIE_VERIFY_FOCUS") == "agent-upgrade":
-                diagnoses(endpoint, env, query, token, other["access_token"], state, started, release)
+                diagnoses(
+                    endpoint,
+                    env,
+                    query,
+                    token,
+                    other["access_token"],
+                    state,
+                    started,
+                    release,
+                )
             recovery = learning_tasks(
                 endpoint,
                 env,

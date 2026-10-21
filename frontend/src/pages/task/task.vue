@@ -89,11 +89,17 @@
           <teaching-content
             v-if="!task.student_view?.visualization"
             :blocks="task.student_view?.prompt_blocks || []"
+            :selectable="canChoose"
+            :answer="answer"
+            :disabled="sending || !!pending"
+            @choose="answer = $event"
           />
           <view
             v-if="
               task.student_view?.recommendation &&
-              (task.status === 'completed' ||
+              ((task.status === 'completed' &&
+                (task.student_view.recommendation.question_id ||
+                  task.student_view.recommendation.knowledge_card_ids?.length)) ||
                 task.student_view.recommendation.action === 'prerequisite')
             "
             class="recommendation-note"
@@ -197,7 +203,7 @@
                 </button>
               </view>
             </view>
-            <text class="answer-label" id="task-answer-label">我的作答</text>
+            <text v-if="!canChoose" class="answer-label" id="task-answer-label">我的作答</text>
             <view v-if="handwritingId" class="photo-note">
               <text>
                 {{
@@ -231,6 +237,7 @@
               <figure-review :rows="task.student_view.handwriting?.figure_review || []" />
             </view>
             <textarea
+              v-if="!canChoose"
               v-model="answer"
               class="answer-input"
               aria-label="我的作答"
@@ -244,7 +251,7 @@
               @blur="rememberMathCursor"
               auto-height
             />
-            <view class="task-math-tools">
+            <view v-if="!canChoose" class="task-math-tools">
               <button
                 role="button"
                 :disabled="sending || !!pending"
@@ -357,7 +364,7 @@
               @click="showMoreWays = !showMoreWays"
               @keydown.enter.prevent="showMoreWays = !showMoreWays"
             >
-              {{ showMoreWays ? '收起辅助工具' : '拍照与辅助工具' }}
+              {{ showMoreWays ? '收起辅助工具' : canChoose ? '答案与辅助工具' : '拍照与辅助工具' }}
             </button>
           </view>
           <view
@@ -366,10 +373,10 @@
             :id="`task-help-${task.id}`"
             class="more-ways"
             role="region"
-            aria-label="拍照与辅助工具"
+            :aria-label="canChoose ? '答案与辅助工具' : '拍照与辅助工具'"
           >
             <button
-              v-if="task.student_view?.input_kind === 'text' && canCancel"
+              v-if="task.student_view?.input_kind === 'text' && canCancel && !canChoose"
               class="text-action"
               role="button"
               tabindex="0"
@@ -440,6 +447,18 @@
             @keydown.enter.prevent="returnToQuestion(task.question_id)"
           >
             回到原题
+          </button>
+          <button
+            v-if="task.status === 'completed' && !task.student_view?.recommendation?.question_id"
+            class="secondary-btn"
+            role="button"
+            tabindex="0"
+            @click="go(`/pages/practice/practice?id=${encodeURIComponent(task.question_id)}`)"
+            @keydown.enter.prevent="
+              go(`/pages/practice/practice?id=${encodeURIComponent(task.question_id)}`)
+            "
+          >
+            练一道类似题
           </button>
           <self-check
             v-if="['completed', 'stale'].includes(task.status)"
@@ -535,10 +554,19 @@ const handwritingId = ref(''),
 const canCancel = computed(() =>
   ['queued', 'running', 'waiting_student', 'needs_review', 'failed'].includes(task.value?.status),
 )
+const canChoose = computed(
+  () =>
+    task.value?.student_view?.input_kind === 'text' &&
+    canCancel.value &&
+    !handwritingId.value &&
+    (task.value?.student_view?.prompt_blocks || []).some(
+      (block) => block.kind === 'question' && block.options?.length,
+    ),
+)
 const moreWaysAvailable = computed(
   () =>
     !task.value?.student_view?.visualization &&
-    ((task.value?.student_view?.input_kind === 'text' && canCancel.value) ||
+    ((task.value?.student_view?.input_kind === 'text' && canCancel.value && !canChoose.value) ||
       task.value?.student_view?.secondary_actions?.some((kind) =>
         ['visualize', 'reveal'].includes(kind),
       )),

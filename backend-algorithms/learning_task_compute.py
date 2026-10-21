@@ -69,6 +69,7 @@ class ContentBlock(StrictModel):
     kind: Literal["text", "formula", "question"]
     text: Text
     options: list[dict[str, str]] = Field(default_factory=list, max_length=26)
+    question_type: str = Field(default="", max_length=60)
 
 
 class HandwritingDraft(StrictModel):
@@ -125,7 +126,9 @@ class TaskContext(StrictModel):
     seen_contrasts: list[Text] = Field(default_factory=list, max_length=50)
     options: list[dict[str, str]] = Field(default_factory=list, max_length=26)
     mastery_state: KnowledgeState | None = None
-    practice_candidates: list[PlanCandidate] = Field(default_factory=list, max_length=200)
+    practice_candidates: list[PlanCandidate] = Field(
+        default_factory=list, max_length=200
+    )
     available_minutes: int = Field(default=10, ge=0, le=120)
     goal_remaining: int = Field(default=3, ge=0, le=20)
     prerequisite_card_ids: list[str] = Field(default_factory=list, max_length=6)
@@ -441,7 +444,14 @@ def view_for(context: TaskContext, state: Checkpoint) -> StudentView:
         blocks.append(ContentBlock(kind="question", text=display))
         title = "换个条件，再试一次"
     else:
-        blocks.append(ContentBlock(kind="question", text=context.question_text, options=context.options))
+        blocks.append(
+            ContentBlock(
+                kind="question",
+                text=context.question_text,
+                options=context.options,
+                question_type=context.question_type,
+            )
+        )
         title = "重新作答"
     visual_available = task_visual(context, state) is not None
     return StudentView(
@@ -660,20 +670,28 @@ def verified_linear_hint(context: TaskContext, state: Checkpoint, level: int, dr
         equivalent = sp.simplify((wc - wb) / wa - (c - b) / a) == 0
         if not equivalent:
             if level >= 2:
-                operation = f"减去 ${sp.latex(b)}$" if b >= 0 else f"加上 ${sp.latex(-b)}$"
+                operation = (
+                    f"减去 ${sp.latex(b)}$" if b >= 0 else f"加上 ${sp.latex(-b)}$"
+                )
                 if b == 0:
                     operation = f"除以 ${sp.latex(a)}$"
                 return (
                     f"回到原式 ${left}={sp.latex(c)}$，先把草稿中不等价的变形放在一旁。"
                     f"为了保持等式成立，左右两边都要{operation}。\n\n"
-                    + ("先不要心算：你能把左右两边各自的运算完整写在一行吗？"
-                       if level == 2 else "把这一行左边、右边分别化简，再检查两边是否用了同一个运算。你能先写出右边未化简的算式吗？")
+                    + (
+                        "先不要心算：你能把左右两边各自的运算完整写在一行吗？"
+                        if level == 2
+                        else "把这一行左边、右边分别化简，再检查两边是否用了同一个运算。你能先写出右边未化简的算式吗？"
+                    )
                 )
             return (
                 f"原式是 ${left}={sp.latex(c)}$。等式像平衡的天平，两边做相同运算才能保持相等；"
                 "你草稿中的等式与原式解不同，先停在这次变形。\n\n"
-                + (f"要消去左边的常数 ${sp.latex(b)}$，两边需要同时减去哪个数？先把右边的运算写出来，可以吗？"
-                   if b != 0 else f"要把未知数的系数变为1，两边应同时除以 ${sp.latex(a)}$；右边的除法算式怎么写？")
+                + (
+                    f"要消去左边的常数 ${sp.latex(b)}$，两边需要同时减去哪个数？先把右边的运算写出来，可以吗？"
+                    if b != 0
+                    else f"要把未知数的系数变为1，两边应同时除以 ${sp.latex(a)}$；右边的除法算式怎么写？"
+                )
             )
         if wb == 0:
             if wa == 1:
@@ -1179,7 +1197,10 @@ async def execute_task(
                 state.repair_passed = True
                 state.phase = "independent"
                 state.assistance["independent"] = assisted
-                if "repair" in state.revealed_phases and "independent" not in state.revealed_phases:
+                if (
+                    "repair" in state.revealed_phases
+                    and "independent" not in state.revealed_phases
+                ):
                     state.revealed_phases.append("independent")
                 state.feedback = "这一步订正好了。接下来独立完成原题，再核对最终答案。"
             elif phase == "independent":

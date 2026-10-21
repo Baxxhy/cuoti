@@ -91,3 +91,23 @@ def test_internal_endpoint_works_without_pool_for_checked_math(tmp_path):
         assert response.status_code == 200
         assert response.json()["operation"] == "generate_practice"
         assert response.json()["result"]["verified"]
+
+
+def test_local_next_question_changes_even_when_randomness_repeats(monkeypatch):
+    import practice_generation
+
+    monkeypatch.setattr(practice_generation.secrets, "randbelow", lambda _: 0)
+    first = asyncio.run(
+        generate_practice(Offline(), "数学", "near", "解方程：2x+3=11", "综合题", [])
+    )
+    second = asyncio.run(
+        generate_practice(
+            Offline(),
+            "数学",
+            "near",
+            "解方程：2x+3=11\n选项：[]\n此前练习：" + first["variant"]["question_text"],
+            "综合题",
+            [],
+        )
+    )
+    assert first["variant"]["question_text"] != second["variant"]["question_text"]

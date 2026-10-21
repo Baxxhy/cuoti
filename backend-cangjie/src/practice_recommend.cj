@@ -53,17 +53,25 @@ func recommendPractice(context: HttpContext, accounts: Accounts): JsonValue {
                 let previous=tx.query("SELECT * FROM practice_recommendations WHERE user_id=? AND mistake_id=? AND mode=? ORDER BY created_at DESC LIMIT 1",[Some(owner),Some(id),Some(mode)]).rows
                 if (!previous.isEmpty()) {
                     let saved=rowJson("practice_recommendations",previous[0]); let trace=tutorObject(saved,"retrieval_trace"); let qid=jsonText(saved,"dataset_question_id")
-                    let attempted=tx.query("SELECT id FROM dataset_practice_attempts WHERE user_id=? AND mistake_id=? AND dataset_question_id=? AND mode=? LIMIT 1",[Some(owner),Some(id),Some(qid),Some(mode)]).rows
+                    let attempted=tx.query("SELECT * FROM dataset_practice_attempts WHERE user_id=? AND mistake_id=? AND dataset_question_id=? AND mode=? ORDER BY created_at DESC,id DESC LIMIT 1",[Some(owner),Some(id),Some(qid),Some(mode)]).rows
                     let questions=tx.query("SELECT * FROM dataset_questions WHERE id=?",[Some(qid)]).rows
-                    if (tutorText(trace,"source_question_fingerprint")==fingerprint && tutorText(trace,"target_knowledge_id")==tutorText(preparation,"target_knowledge_id") && attempted.isEmpty() && !questions.isEmpty() && usableRetrievalCandidate(question,rowJson("dataset_questions",questions[0]),"practice")) {
+                    if (tutorText(trace,"source_question_fingerprint")==fingerprint && tutorText(trace,"target_knowledge_id")==tutorText(preparation,"target_knowledge_id") && !questions.isEmpty() && usableRetrievalCandidate(question,rowJson("dataset_questions",questions[0]),"practice")) {
                         let selected=rowJson("dataset_questions",questions[0])
                         var valid=practiceProofValid(tx,question,preparation,selected,trace)
                         if (!valid) {
                             let checks=practiceAligned(tx,question,preparation,practiceCandidate(selected)); valid=practiceAdmitted(checks,qid)
                             if (valid) { savePracticeProof(tx,question,preparation,selected,trace,practiceAlignmentMethod(checks,qid)); tx.query("UPDATE practice_recommendations SET retrieval_trace=?,updated_at=UTC_TIMESTAMP(6) WHERE id=?",[Some(trace.toString()),sqlValue(saved["id"])]) }
                         }
+                        if (valid && !attempted.isEmpty()) {
+                            let details=tutorObject(rowJson("dataset_practice_attempts",attempted[0]),"grading_details")
+                            valid=!tutorObject(details,"practice_receipt").getFields().isEmpty() && jsonEquivalent(tutorObject(tutorObject(details,"alignment_proof"),"context"),practiceProofContext(tx,question,preparation,selected))
+                        }
                         if (valid) {
                             let result=practicePayload(accounts,selected,mode,trace,tutorArray(selected,"knowledge_points"))
+                            if (!attempted.isEmpty()) {
+                                let record=rowJson("dataset_practice_attempts",attempted[0]); let receipt=tutorObject(tutorObject(record,"grading_details"),"practice_receipt")
+                                if (!receipt.getFields().isEmpty()) { result.put("previous_result",refreshedPracticeReceipt(accounts,selected,receipt)); result.put("previous_answer",record["student_answer"]) }
+                            }
                             if (debug) { result.put("debug",trace) }; setup.put("cached",result); return setup
                         }
                     }

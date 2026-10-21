@@ -519,7 +519,9 @@ test.describe('角色页面操作', () => {
     }
     await page.setViewportSize({ width: 360, height: 800 })
     await login(page, account)
-    await page.getByText('查看任务', { exact: true }).click()
+    await expect(page.getByText('查看任务', { exact: true })).toHaveCount(0)
+    // Retained collaboration is tested through its explicit deep link; student home stays focused.
+    await page.goto('/#/pages/assignment/assignment')
     await expect(page.locator('.assignment-card')).toHaveCount(2)
     await expect(page.locator('.written-answer textarea:visible')).toHaveCount(1)
     const first = page.locator('.assignment-card').filter({ hasText: '第一项：移项练习' })
@@ -682,7 +684,8 @@ test.describe('教师与学生协作', () => {
     })
     const studentPage = await studentContext.newPage()
     await login(studentPage, account)
-    await studentPage.getByText('查看任务', { exact: true }).click()
+    await expect(studentPage.getByText('查看任务', { exact: true })).toHaveCount(0)
+    await studentPage.goto('/#/pages/assignment/assignment')
     await expect(studentPage.getByText(assignmentName, { exact: true })).toBeVisible()
     await studentPage.locator('.written-answer textarea').fill('x=2')
     await button(studentPage, '提交作答').click()
@@ -777,7 +780,7 @@ test('学习分类、知识检索与跨页多题组卷保持范围', async ({ pa
   for (const name of ['到期复习', '类似题练习', '错题组卷', '知识框架']) {
     await expect(page.getByRole('button', { name, exact: true })).toBeVisible()
   }
-  await expect(page.getByRole('button', { name: '复习记录', exact: true })).not.toBeVisible()
+  await expect(page.getByRole('button', { name: '复习记录', exact: true })).toBeVisible()
   await page.screenshot({ path: testInfo.outputPath('learning-center.png'), fullPage: true })
   await page.getByRole('button', { name: '知识框架', exact: true }).focus()
   await page.keyboard.press('Enter')

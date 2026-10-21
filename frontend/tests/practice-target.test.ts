@@ -1,8 +1,19 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { flushPromises, mount } from '@vue/test-utils'
 import Practice from '../src/pages/practice/practice.vue'
-const fake = vi.hoisted(() => ({ postData: vi.fn(), go: vi.fn(), load: (_: any) => {} }))
-vi.mock('@dcloudio/uni-app', () => ({ onLoad: (fn: any) => (fake.load = fn) }))
+const fake = vi.hoisted(() => ({
+  postData: vi.fn(),
+  go: vi.fn(),
+  load: (_: any) => {},
+  leave: () => {},
+}))
+vi.mock('@dcloudio/uni-app', () => ({
+  onLoad: (fn: any) => (fake.load = fn),
+  onUnload: (fn: any) => (fake.leave = fn),
+}))
+vi.mock('../src/store/index.js', () => ({
+  useAppStore: () => ({ user: { id: 'student' }, loadUser: vi.fn() }),
+}))
 vi.mock('../src/api/index.js', () => ({ postData: fake.postData, mediaUrl: (x: string) => x }))
 vi.mock('../src/utils/navigation.js', () => ({ go: fake.go }))
 let wrapper: ReturnType<typeof mount> | undefined
@@ -25,6 +36,11 @@ function make() {
   return wrapper
 }
 beforeEach(() => {
+  const storage = new Map()
+  vi.stubGlobal('uni', {
+    getStorageSync: (key: string) => storage.get(key),
+    setStorageSync: (key: string, value: unknown) => storage.set(key, value),
+  })
   fake.postData.mockReset()
   fake.go.mockReset()
 })
@@ -56,7 +72,8 @@ it('旧推荐被拒绝时可重新匹配，不显示已判对或掌握更新', a
   )
   await page.find('.primary-btn').trigger('click')
   await flushPromises()
-  expect(page.text()).toContain('重新匹配')
+  expect(page.text()).toContain('重新获取练习')
+  expect((page.find('textarea').element as HTMLTextAreaElement).value).toBe('x=4')
   expect(page.find('.result-card').exists()).toBe(false)
 })
 it('普通网络失败仍保留当前作答', async () => {
@@ -74,4 +91,46 @@ it('普通网络失败仍保留当前作答', async () => {
   await page.find('.primary-btn').trigger('click')
   await flushPromises()
   expect((page.find('textarea').element as HTMLTextAreaElement).value).toBe('x=4')
+})
+
+it('刷新恢复同一道题的草稿，换题后不沿用旧答案', async () => {
+  const question = { question_id: 'first', subject: '数学', stem: '3x=12', options: [] }
+  fake.postData.mockResolvedValue(question)
+  let page = make()
+  await flushPromises()
+  await page.find('textarea').setValue('x=4')
+  fake.leave()
+  page.unmount()
+  page = make()
+  await flushPromises()
+  expect((page.find('textarea').element as HTMLTextAreaElement).value).toBe('x=4')
+  fake.leave()
+  page.unmount()
+  fake.postData.mockResolvedValue({ ...question, question_id: 'second', stem: '3x=15' })
+  page = make()
+  await flushPromises()
+  expect((page.find('textarea').element as HTMLTextAreaElement).value).toBe('')
+})
+
+it('判分后显示已提交答案，收起输入与拍照，避免修改后的文字与原判分混淆', async () => {
+  fake.postData.mockResolvedValueOnce({
+    question_id: 'q',
+    subject: '数学',
+    stem: '3x=12',
+    options: [],
+  })
+  const page = make()
+  await flushPromises()
+  await page.find('textarea').setValue('x=4')
+  fake.postData.mockResolvedValueOnce({
+    correct: true,
+    can_update_learning: true,
+    feedback: '答对了。',
+    answer: 'x=4',
+  })
+  await page.find('.primary-btn').trigger('click')
+  await flushPromises()
+  expect(page.find('textarea').exists()).toBe(false)
+  expect(page.find('.submitted-answer').text()).toContain('x=4')
+  expect(page.find('.result-card').text()).toContain('答对了')
 })

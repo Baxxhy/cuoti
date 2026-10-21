@@ -98,7 +98,9 @@ def main() -> None:
                 from smoke_cangjie_personal_learning import personal_learning
 
                 personal_learning(endpoint, env, query)
-                print("Focused personal learning checks passed; full acceptance is separate")
+                print(
+                    "Focused personal learning checks passed; full acceptance is separate"
+                )
                 return
             if (
                 env.get("CANGJIE_DB_NAME")
@@ -165,6 +167,9 @@ def main() -> None:
                 from smoke_cangjie_alignment import alignment
 
                 alignment(endpoint, env, query)
+                from smoke_cangjie_generated_practice import generated_practice
+
+                generated_practice(endpoint, env, query)
                 return
             if (
                 env.get("CANGJIE_DB_NAME")
@@ -209,6 +214,9 @@ def main() -> None:
                 from smoke_cangjie_alignment import alignment
 
                 alignment(endpoint, env, query)
+                from smoke_cangjie_generated_practice import generated_practice
+
+                generated_practice(endpoint, env, query)
                 recovery = ingest(endpoint, env, query)
                 from smoke_cangjie_study import study
 

@@ -92,13 +92,29 @@ def browser(endpoint, env):
     )
     insert("reference_steps", analysis_id=analysis, step_index=0, text="2x=8")
     insert("reference_steps", analysis_id=analysis, step_index=1, text="x=4")
-    recommendation_source=insert("dataset_sources", key="browser-arpp-"+uuid4().hex, name="推荐练习验收")
-    recommended_id=insert("dataset_questions", id="00000000-0000-4000-8000-000000000079",
-        dataset_source_id=recommendation_source, source_item_id="browser-arpp", content_hash=uuid4().hex,
-        subject="数学", grade="初一", grade_band="初中", question_type="综合题",
-        question_text="解方程：3x+2=20", answer=json.dumps("x=6"), solution="3x=18，x=6",
-        knowledge_points=["等式的性质"], options=[], image_paths=[],
-        has_answer=True, usable_for_practice=True, usable_for_auto_grade=True)
+    recommendation_source = insert(
+        "dataset_sources", key="browser-arpp-" + uuid4().hex, name="推荐练习验收"
+    )
+    recommended_id = insert(
+        "dataset_questions",
+        id="00000000-0000-4000-8000-000000000079",
+        dataset_source_id=recommendation_source,
+        source_item_id="browser-arpp",
+        content_hash=uuid4().hex,
+        subject="数学",
+        grade="初一",
+        grade_band="初中",
+        question_type="综合题",
+        question_text="解方程：3x+2=20",
+        answer=json.dumps("x=6"),
+        solution="3x=18，x=6",
+        knowledge_points=["等式的性质"],
+        options=[],
+        image_paths=[],
+        has_answer=True,
+        usable_for_practice=True,
+        usable_for_auto_grade=True,
+    )
     insert(
         "diagnoses",
         question_id=question["id"],
@@ -231,6 +247,88 @@ def browser(endpoint, env):
         env,
         f"UPDATE learning_tasks SET checkpoint=JSON_SET(checkpoint,'$.rounds',24) WHERE id='{budget_task['id']}'",
     )
+    # Exercise selection and legacy option hydration against native tasks.
+    choices = [
+        {"label": label, "text": text}
+        for label, text in zip(
+            "ABCD",
+            [
+                r"$\{x|-2\le x<1\}$",
+                r"$\{x|-2<x\le1\}$",
+                r"$\{x|x\ge-2\}$",
+                r"\{x|x<1\}",
+            ],
+        )
+    ]
+    option_question = request(
+        endpoint,
+        "POST",
+        "/api/v1/questions/manual",
+        {
+            "question_text": r"已知集合 $M=\{x|x+2\ge0\},N=\{x|x-1<0\}$，则 $M\cap N=$（ ）",
+            "subject": "数学",
+            "grade": "高一",
+            "question_type": "单选题",
+            "options": choices,
+            "student_answer": "D",
+        },
+        token=token,
+    )
+    insert(
+        "problem_analyses",
+        question_id=option_question["id"],
+        subject="数学",
+        final_answer="A",
+        verified=True,
+    )
+    from PIL import Image, ImageDraw
+
+    image_path = "uploads/options-browser-figure.png"
+    image_file = Path(env["CANGJIE_MEDIA_ROOT"]) / image_path
+    image_file.parent.mkdir(parents=True, exist_ok=True)
+    diagram = Image.new("RGB", (320, 90), "white")
+    draw = ImageDraw.Draw(diagram)
+    draw.line((20, 45, 300, 45), fill="black", width=2)
+    draw.line((75, 45, 235, 45), fill="#426dcc", width=4)
+    draw.ellipse((70, 40, 80, 50), fill="#426dcc")
+    draw.ellipse((230, 40, 240, 50), fill="white", outline="#426dcc", width=2)
+    draw.text((70, 62), "-2", fill="black")
+    draw.text((232, 62), "1", fill="black")
+    diagram.save(image_file)
+    insert(
+        "question_assets",
+        question_id=option_question["id"],
+        kind="question_figure",
+        path=image_path,
+    )
+    option_task = wait_task(
+        endpoint,
+        task_request(
+            endpoint,
+            "/api/v1/learning-tasks",
+            token,
+            {"question_id": option_question["id"], "request_id": str(uuid4())},
+            status=202,
+        )["id"],
+        token,
+    )
+    query(
+        env,
+        "UPDATE learning_tasks SET student_view=JSON_REMOVE(student_view,'$.prompt_blocks[0].options') WHERE id='"
+        + option_task["id"]
+        + "'",
+    )
+    options_fixture = Path(env["CANGJIE_MEDIA_ROOT"]) / "options-browser.json"
+    options_fixture.write_text(
+        json.dumps(
+            {
+                "token": token,
+                "question_id": option_question["id"],
+                "task_id": option_task["id"],
+                "figure": True,
+            }
+        )
+    )
     # Role identities exist only in this disposable database. Public registration
     # remains student-only; the fixture grants roles through its local DB access.
     roles = {}
@@ -257,9 +355,11 @@ def browser(endpoint, env):
         role_env[f"QA_{role.upper()}_PASSWORD"] = account["password"]
     from smoke_cangjie_clear_entry import clear_entry_fixture
     from smoke_cangjie_experience import experience_fixtures
+
     experience = experience_fixtures(endpoint, env, query)
     clear_question, clear_token = clear_entry_fixture(endpoint, env, query)
     from smoke_cangjie_personas import persona_fixtures
+
     personas = persona_fixtures(endpoint, env, query)
     from smoke_cangjie_redesign import redesign_fixture
 
@@ -270,11 +370,12 @@ def browser(endpoint, env):
         **route_env,
         **personas,
         "ZHIWEI_BACKEND_KIND": "cangjie",
+        "QA_OPTIONS_FIXTURE": str(options_fixture),
         "QA_ENTRY_CLEAR_QUESTION_ID": clear_question,
         "QA_ENTRY_CLEAR_TOKEN": clear_token,
-        "QA_EXPERIENCE_EMAIL": experience['user']['email'],
-        "QA_EXPERIENCE_PASSWORD": experience['password'],
-        "QA_EXPERIENCE_QUESTION_ID": experience['ids'][0],
+        "QA_EXPERIENCE_EMAIL": experience["user"]["email"],
+        "QA_EXPERIENCE_PASSWORD": experience["password"],
+        "QA_EXPERIENCE_QUESTION_ID": experience["ids"][0],
         "QA_BUDGET_EMAIL": budget_email,
         "QA_BUDGET_PASSWORD": budget_password,
         "QA_BUDGET_QUESTION_ID": budget_question["id"],

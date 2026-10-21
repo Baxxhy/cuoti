@@ -57,3 +57,40 @@ it('原题作答显示完整选项，切换到无选项的变式不沿用原题�
   await wrapper.setProps({ blocks: [{ kind: 'question', text: '解方程：$x+1=2$' }] })
   expect(wrapper.findAll('.question-option')).toHaveLength(0)
 })
+
+it('选择题可以点选，多选答案按题目选项顺序提交，切换题目不会带入旧选项', async () => {
+  const wrapper = mount(TeachingContent, {
+    props: {
+      selectable: true,
+      answer: '',
+      blocks: [
+        {
+          kind: 'question',
+          question_type: '多选题',
+          text: '选出正确选项',
+          options: [
+            { label: 'A', text: '选项甲' },
+            { label: 'B', text: '选项乙' },
+          ],
+        },
+      ],
+    },
+  })
+  await wrapper.find('checkbox-group').trigger('change', { detail: { value: ['B', 'A'] } })
+  expect(wrapper.emitted('choose')?.[0]).toEqual(['A、B'])
+  await wrapper.setProps({
+    blocks: [
+      {
+        kind: 'question',
+        question_type: '单选题',
+        text: '选出正确选项',
+        options: [
+          { label: 'A', text: '选项甲' },
+          { label: 'B', text: '选项乙' },
+        ],
+      },
+    ],
+  })
+  await wrapper.find('radio-group').trigger('change', { detail: { value: 'B' } })
+  expect(wrapper.emitted('choose')?.[1]).toEqual(['B'])
+})

@@ -13,16 +13,62 @@
         >
           {{ expanded.includes(index) ? '收起这段说明' : '展开这段说明' }}
         </button>
-        <math-text v-if="!foldable(block) || expanded.includes(index)" :text="block.text" />
+        <question-content
+          v-if="block.kind === 'question'"
+          :text="block.text"
+          :images="block.images || []"
+        />
+        <math-text v-else-if="!foldable(block) || expanded.includes(index)" :text="block.text" />
         <view v-if="block.kind === 'question'" class="question-options">
-          <view
-            v-for="option in normalizeOptions(block.options)"
-            :key="option.label"
-            class="question-option"
+          <checkbox-group
+            v-if="selectable && isMultipleChoice(block.question_type) && block.options?.length"
+            @change="$emit('choose', choiceAnswer($event.detail.value, block.options))"
           >
-            <text class="option-label">{{ option.label }}</text>
-            <math-text :text="option.text" inline />
-          </view>
+            <text class="choice-instruction">多选题</text>
+            <label
+              v-for="option in normalizeOptions(block.options)"
+              :key="option.label"
+              class="question-option selectable-option"
+            >
+              <checkbox
+                :value="option.label"
+                :checked="answer.split('、').includes(option.label)"
+                :disabled="disabled"
+                color="var(--color-primary)"
+              />
+              <text class="option-label">{{ option.label }}</text>
+              <math-text :text="option.text" inline />
+            </label>
+          </checkbox-group>
+          <radio-group
+            v-else-if="selectable && block.options?.length"
+            @change="$emit('choose', $event.detail.value)"
+          >
+            <label
+              v-for="option in normalizeOptions(block.options)"
+              :key="option.label"
+              class="question-option selectable-option"
+            >
+              <radio
+                :value="option.label"
+                :checked="answer === option.label"
+                :disabled="disabled"
+                color="var(--color-primary)"
+              />
+              <text class="option-label">{{ option.label }}</text>
+              <math-text :text="option.text" inline />
+            </label>
+          </radio-group>
+          <template v-else>
+            <view
+              v-for="option in normalizeOptions(block.options)"
+              :key="option.label"
+              class="question-option"
+            >
+              <text class="option-label">{{ option.label }}</text>
+              <math-text :text="option.text" inline />
+            </view>
+          </template>
         </view>
       </view>
     </template>
@@ -30,9 +76,16 @@
 </template>
 <script setup>
 import { ref, watch } from 'vue'
-import { normalizeOptions } from '@/utils/question.js'
+import { normalizeOptions, isMultipleChoice, choiceAnswer } from '@/utils/question.js'
 import MathText from '@/components/math-text/math-text.vue'
-const props = defineProps({ blocks: { type: Array, default: () => [] } })
+import QuestionContent from '@/components/question-content/question-content.vue'
+const props = defineProps({
+  blocks: { type: Array, default: () => [] },
+  selectable: Boolean,
+  disabled: Boolean,
+  answer: { type: String, default: '' },
+})
+defineEmits(['choose'])
 const allowed = ['text', 'formula', 'question']
 const expanded = ref([])
 const foldable = (block) => block.kind !== 'question' && String(block.text || '').length > 160
@@ -51,6 +104,15 @@ watch(
 <style scoped lang="scss">
 .question-options {
   margin-top: 12px;
+}
+.selectable-option {
+  min-height: 48px;
+  align-items: center;
+  padding: 8px 0;
+}
+.choice-instruction {
+  font-size: 13px;
+  color: var(--color-text-secondary);
 }
 .question-option {
   display: flex;

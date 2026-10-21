@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
-const API = 'http://127.0.0.1:8002/api/v1'
+const API =
+  process.env.ZHIWEI_API_URL ||
+  `http://127.0.0.1:${process.env.ZHIWEI_BACKEND_PORT || '8000'}/api/v1`
 test('个人资料编辑、持久保存及邮箱修改验证', async ({ page, request }, info) => {
   const suffix = Date.now()
   const email = `profile-${suffix}@example.test`

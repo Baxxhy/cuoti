@@ -111,7 +111,8 @@ test.describe('教师复核的学生可见结果', () => {
         }),
       )
       await pupil.goto('/#/pages/index/index')
-      await pupil.getByText('查看任务', { exact: true }).click()
+      await expect(pupil.getByText('查看任务', { exact: true })).toHaveCount(0)
+      await pupil.goto('/#/pages/assignment/assignment')
       const card = pupil.locator('.assignment-card').filter({ hasText: title })
       if ((await card.locator('.assignment-header').getAttribute('aria-expanded')) !== 'true')
         await card.locator('.assignment-header').click()

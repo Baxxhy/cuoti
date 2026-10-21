@@ -20,7 +20,15 @@ func generatedPractice(db: Database, owner: String, question: JsonObject, mode: 
         let item=rowJson("variant_questions",row); let meta=tutorObject(item,"generation_metadata")
         if (tutorText(meta,"source_version")==version && tutorText(meta,"mode")==mode && tutorFlag(item,"verified")) {
             if (previous.isNone()) { previous=Some(item) }
-            if (!force && db.query("SELECT id FROM variant_attempts WHERE variant_id=? AND user_id=? LIMIT 1",[sqlValue(item["id"]),Some(owner)]).rows.isEmpty()) { return generatedPracticePayload(question,item) }
+            if (!force) {
+                let result=generatedPracticePayload(question,item)
+                let sessions=db.query("SELECT state FROM tutor_sessions WHERE id=?",[sqlValue(item["session_id"])]).rows
+                if (!sessions.isEmpty()) {
+                    let state=(JsonValue.fromStr(rowText(sessions[0],"state")) as JsonObject).getOrThrow()
+                    if (let Some(receipt) <- state.get("receipt")) { result.put("previous_result",receipt); result.put("previous_answer",state["answer"]) }
+                }
+                return result
+            }
         }
     }
     let input=JsonObject(); input.put("operation",JsonString("generate_practice"))
@@ -55,19 +63,23 @@ func attemptGeneratedPractice(db: Database, owner: String, mistake: JsonObject, 
     if (tutorText(meta,"mode")!=mode || tutorText(meta,"source_version")!=practiceSourceVersion(db,mistake)) { throw ApiError(409,"原题或练习目标已更新，请重新获取练习") }
     let input=JsonObject(); input.put("operation",JsonString("grade_answer")); input.put("text",variant["question_text"]); input.put("answer",answer); input.put("expected",variant["answer"])
     input.put("subject",mistake["subject"]); input.put("question_type",meta["question_type"]); input.put("options",tutorArray(meta,"options")); input.put("reference_solution",variant["reference_solution"])
+    let states=db.query("SELECT state FROM tutor_sessions WHERE id=? FOR UPDATE",[sqlValue(variant["session_id"])]).rows
+    let previousState=if (states.isEmpty()) { JsonObject() } else { (JsonValue.fromStr(rowText(states[0],"state")) as JsonObject).getOrThrow() }
+    if (jsonEquivalent(previousState.get("answer") ?? JsonNull(),answer) && tutorFlag(tutorObject(previousState,"receipt"),"can_update_learning")) { return tutorObject(previousState,"receipt") }
     let grading=algorithmCompute(input); let decisive=tutorFlag(grading,"can_update_learning") && tutorFlag(variant,"verified")
+    let answerSeen=tutorFlag(previousState,"answer_revealed")
     let prior=db.query("SELECT id FROM variant_attempts WHERE variant_id=? AND user_id=? LIMIT 1",[Some(id),Some(owner)]).rows
     let point=learningKnowledgePoint(db,mistake)
     let old=db.query("SELECT mastery_score FROM mastery_states WHERE user_id=? AND subject=? AND knowledge_point=? LIMIT 1",[Some(owner),sqlValue(mistake["subject"]),Some(point)]).rows
     let before: JsonValue=if (old.isEmpty()) { JsonFloat(0.0) } else { rowJson("mastery_states",old[0])["mastery_score"] }
-    let saved=JsonObject(); saved.put("answer",answer); saved.put("grading",grading); saved.put("duration_seconds",JsonInt(duration))
+    let saved=JsonObject(); saved.put("answer",answer); saved.put("grading",grading); saved.put("duration_seconds",JsonInt(duration)); saved.put("answer_revealed",JsonBool(true))
     db.query("UPDATE tutor_sessions SET state=?,updated_at=UTC_TIMESTAMP() WHERE id=?",[Some(saved.toString()),sqlValue(variant["session_id"])])
     var mastery: JsonValue=JsonNull()
     if (decisive) {
         let aid=newId()
         db.query("INSERT INTO variant_attempts (id,variant_id,user_id,answer,correct,elapsed_seconds,hint_level,created_at,updated_at) VALUES (?,?,?,?,?,?,0,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[Some(aid),Some(id),Some(owner),Some(tutorAnswerText(answer)),sqlValue(grading["correct"]),Some(duration.toString())])
         // Repeated cached exercises remain usable but do not inflate mastery.
-        if (prior.isEmpty()) {
+        if (prior.isEmpty() && !answerSeen) {
             let evidence=JsonObject(); evidence.put(if (mode=="reinforce") { "near_transfer" } else { "far_transfer" },grading["correct"]); evidence.put("hint_level",JsonInt(0)); evidence.put("strategy",JsonString("generated_practice")); evidence.put("variant_id",JsonString(id)); evidence.put("practice_attempt_id",JsonString(aid))
             mastery=tutorObject(applyLearningEvidence(db,owner,mistake,evidence),"mastery_after").get("mastery_score") ?? JsonNull()
         }
@@ -75,6 +87,9 @@ func attemptGeneratedPractice(db: Database, owner: String, mistake: JsonObject, 
     let result=JsonObject()
     for (key in ["verdict","confidence","evidence","feedback"]) { result.put(key,grading[key]) }
     result.put("correct",if (decisive) { grading["correct"] } else { JsonNull() }); result.put("can_update_learning",JsonBool(decisive))
+    if (answerSeen) { result.put("learning_note",JsonString("已看过参考答案，这次练习不重复计入掌握情况。")) }
     result.put("answer",variant["answer"]); result.put("solution",variant["explanation"]); result.put("mastery_before",before); result.put("mastery",mastery); result.put("grading_method",grading["method"])
+    saved.put("receipt",result)
+    db.query("UPDATE tutor_sessions SET state=?,updated_at=UTC_TIMESTAMP() WHERE id=?",[Some(saved.toString()),sqlValue(variant["session_id"])])
     return result
 }

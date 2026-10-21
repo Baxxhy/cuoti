@@ -35,9 +35,8 @@ test('知识图谱：实际连线对齐节点，缩放和聚焦后仍然对齐',
   const pageErrors: string[] = []
   page.on('pageerror', (error) => pageErrors.push(error.message))
   await page.setViewportSize({ width: 375, height: 812 })
-  await page.goto('/#/pages/analysis/analysis')
-  await expect(page.locator('.relation-toggle small')).toHaveCount(0)
-  await page.locator('.relation-toggle').click()
+  await page.goto('/#/pages/analysis/analysis?relations=1')
+  await expect(page.getByRole('heading', { name: '知识关系', exact: true })).toBeVisible()
   await expect(page.locator('.graph-node').first()).toBeVisible()
   const verifyLines = async () => {
     await expect

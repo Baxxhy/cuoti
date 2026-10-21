@@ -83,3 +83,9 @@ func servePracticeImage(context: HttpContext, accounts: Accounts): Unit {
     } catch (error: ApiError) { let body=JsonObject(); body.put("detail",JsonString(error.message)); jsonResponse(context,body,status: error.status) }
     catch (_: Exception) { let body=JsonObject(); body.put("detail",JsonString("图片暂时不可用")); jsonResponse(context,body,status: 503) }
 }
+
+// Persist the result, but renew expiring image links whenever it is read.
+func refreshedPracticeReceipt(accounts: Accounts, question: JsonObject, receipt: JsonObject): JsonObject {
+    for ((key,value) in datasetSolutionImages(question,accounts).getFields()) { receipt.put(key,value) }
+    return receipt
+}

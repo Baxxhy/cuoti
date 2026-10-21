@@ -86,6 +86,22 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 describe('持久任务页面', () => {
+  it('完成后没有题库推荐时仍可主动练类似题，不展示无用的无题提示', async () => {
+    server.status = 'completed'
+    server.student_view.input_kind = 'none'
+    server.student_view.recommendation = {
+      action: 'stop',
+      reason: '暂时没有符合学科和时间要求的练习题。',
+    }
+    const page = await make()
+    expect(page.find('.recommendation-note').exists()).toBe(false)
+    await page
+      .findAll('button')
+      .find((node) => node.text() === '练一道类似题')!
+      .trigger('click')
+    expect(go).toHaveBeenCalledWith('/pages/practice/practice?id=q1')
+  })
+
   it('作答前不重复展示规划说明，保留题目与输入', async () => {
     server.student_view.recommendation = { action: 'repair', reason: '先订正出错的这一步。' }
     const page = await make()

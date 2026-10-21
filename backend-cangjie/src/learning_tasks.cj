@@ -40,6 +40,11 @@ func taskPublic(task: JsonObject, accounts: Accounts): JsonObject {
     let result=JsonObject()
     for (key in ["id","question_id","session_id","status","version","step_id","input_fingerprint","student_view","created_at","updated_at","learning_applied"]) { result.put(key,task[key]) }
     let view=(JsonValue.fromStr(task["student_view"].toString()) as JsonObject).getOrThrow()
+    for (raw in tutorArray(view,"prompt_blocks").getItems()) {
+        let block=(raw as JsonObject).getOrThrow(); let images=JsonArray()
+        for (path in tutorArray(block,"images").getItems()) { let raw=tutorAnswerText(path); images.add(JsonString(accounts.mediaUrl(if (raw.startsWith("/")) { raw } else { "/"+raw }))) }
+        if (!images.getItems().isEmpty()) { block.put("images",images) }
+    }
     let draft=tutorObject(view,"handwriting")
     if (!tutorText(draft,"image_url").isEmpty()) { draft.put("image_url",JsonString(accounts.mediaUrl(tutorText(draft,"image_url")))); view.put("handwriting",draft) }
     let limited=taskAtLimit(task) && ["waiting_student","needs_review","failed"].contains(tutorText(task,"status"))
@@ -64,7 +69,13 @@ func taskValidateVersion(db: Database, task: JsonObject, snapshot: JsonObject): 
         for (raw in tutorArray(view,"prompt_blocks").getItems()) {
             let block=(raw as JsonObject).getOrThrow()
             if (tutorText(block,"kind")=="question" && tutorText(block,"text")==tutorText(question,"question_text") && tutorText(tutorObject(task,"checkpoint"),"phase")!="contrast") {
-                block.put("options",tutorArray(question,"options"))
+                block.put("options",tutorArray(question,"options")); block.put("question_type",question["question_type"])
+                let figures=JsonArray()
+                for (asset in tutorArray(snapshot,"assets").getItems()) {
+                    let figure=(asset as JsonObject).getOrThrow()
+                    if (tutorText(figure,"kind")=="question_figure") { figures.add(figure["path"]) }
+                }
+                block.put("images",figures)
             }
         }
         task.put("student_view",view)

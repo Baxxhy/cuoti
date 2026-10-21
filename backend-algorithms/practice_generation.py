@@ -35,6 +35,9 @@ def local_practice(subject, text):
             secrets.randbelow(19) - 9,
         )
         c = a * x + b
+        while f"解方程：${a}x+{b}={c}$" in text:
+            x += 1
+            c = a * x + b
         variable = sp.Symbol("x")
         assert sp.solve(a * variable + b - c, variable) == [x]
         return VariantOutput(
@@ -51,10 +54,6 @@ def local_practice(subject, text):
 
 async def generate_practice(provider, subject, transfer, text, question_type, points):
     local = local_practice(subject, text)
-    for _ in range(4):
-        if local is None or local.question_text not in text:
-            break
-        local = local_practice(subject, text)
     if local is not None and transfer == "near":
         return {
             "variant": local.model_dump(mode="json"),

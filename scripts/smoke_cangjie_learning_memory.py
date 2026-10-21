@@ -451,7 +451,7 @@ def practice_memory(endpoint, env, query, token, state, mistake_id, dataset_id, 
         )
         saved_details = query(
             env,
-            f"SELECT grading_details FROM dataset_practice_attempts WHERE id='{attempt_id}'",
+            f"SELECT HEX(grading_details) FROM dataset_practice_attempts WHERE id='{attempt_id}'",
         )
         query(
             env,
@@ -466,7 +466,7 @@ def practice_memory(endpoint, env, query, token, state, mistake_id, dataset_id, 
         finally:
             query(
                 env,
-                f"UPDATE dataset_practice_attempts SET grading_details=CONVERT(0x{saved_details.encode().hex()} USING utf8mb4) WHERE id='{attempt_id}'",
+                f"UPDATE dataset_practice_attempts SET grading_details=CONVERT(0x{saved_details} USING utf8mb4) WHERE id='{attempt_id}'",
             )
         task, _ = action(endpoint, task, token, kind="hint")
         assert "cognitive:" + update_id in state["task_memory_context"]["memory_refs"]

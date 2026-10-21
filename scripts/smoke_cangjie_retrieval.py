@@ -169,14 +169,7 @@ def retrieval(endpoint, env, query, token, other, state):
         )
         cached_next = request(endpoint, "POST", route, body, token=token)
         assert cached_next["question_id"] == next_question["question_id"]
-        request(
-            endpoint,
-            "POST",
-            route,
-            {**body, "force_new": True},
-            token=token,
-            expected=404,
-        )
+
         answered = request(
             endpoint,
             "POST",
@@ -192,24 +185,18 @@ def retrieval(endpoint, env, query, token, other, state):
             token=token,
         )
         assert answered["correct"] is True and answered["can_update_learning"]
-        index(unavailable=True)
-        request(
-            endpoint,
-            "POST",
-            route,
-            {**body, "force_new": True},
-            token=token,
-            expected=503,
-        )
+
         index([])
-        request(
-            endpoint,
-            "POST",
-            route,
-            {**body, "mode": "variation"},
-            token=token,
-            expected=404,
+        varied = request(
+            endpoint, "POST", route, {**body, "mode": "variation"}, token=token
         )
+        assert (
+            varied.get("generated")
+            and varied["stem"]
+            and varied["mode"] == "variation"
+            and "answer" not in varied
+        )
+
         third = candidate("求未知数：6*x+2=20", "x=3")
         index([third])
         before_rows = query(
@@ -245,6 +232,19 @@ def retrieval(endpoint, env, query, token, other, state):
             endpoint, "POST", route, {**body, "force_new": True}, token=token
         )
         assert recovered["question_id"] == third
+        index(unavailable=True)
+        generated = request(
+            endpoint, "POST", route, {**body, "force_new": True}, token=token
+        )
+        assert (
+            generated.get("generated")
+            and generated["stem"]
+            and "answer" not in generated
+        )
+        assert generated["question_id"] not in {first, second, third}
+        restored = request(endpoint, "POST", route, body, token=token)
+        assert restored["question_id"] == generated["question_id"]
+
         recorded = [json.loads(line) for line in calls.read_text().splitlines()]
         assert any(item["path"] == "/embed" for item in recorded)
         assert any(item["path"] == "/rerank" for item in recorded)

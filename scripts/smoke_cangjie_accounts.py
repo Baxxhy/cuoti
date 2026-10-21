@@ -110,11 +110,21 @@ def accounts(endpoint, env):
     request(endpoint, "POST", "/api/v1/auth/login", raw=b"[]", expected=422)
     request(endpoint, "POST", "/api/v1/auth/login", raw=b"x" * 65537, expected=413)
     request(endpoint, "GET", "/api/v1/auth/login", expected=405)
+    request(
+        endpoint,
+        "PATCH",
+        "/api/v1/auth/me",
+        {"name": "不应保存", "role": "admin"},
+        token=token,
+        expected=422,
+    )
+    unchanged = request(endpoint, "GET", "/api/v1/auth/me", token=token)
+    assert unchanged["name"] == user["name"] and unchanged["role"] == "student"
     changed = request(
         endpoint,
         "PATCH",
         "/api/v1/auth/me",
-        {"name": "新名字 ' OR 1=1 --", "role": "admin"},
+        {"name": "新名字 ' OR 1=1 --"},
         token=token,
     )
     assert changed["name"] == "新名字 ' OR 1=1 --" and changed["role"] == "student"
@@ -220,11 +230,19 @@ def accounts(endpoint, env):
     )
     other = next(item for item in results if isinstance(item, dict))
     assert other["id"] != user["id"]
+    request(
+        endpoint,
+        "PATCH",
+        "/api/v1/auth/me",
+        {"id": user["id"], "name": "不应保存", "role": "teacher"},
+        token=other["access_token"],
+        expected=422,
+    )
     isolated = request(
         endpoint,
         "PATCH",
         "/api/v1/auth/me",
-        {"id": user["id"], "name": "第二个账户", "role": "teacher"},
+        {"name": "第二个账户"},
         token=other["access_token"],
     )
     assert isolated["id"] == other["id"] and isolated["role"] == "student"
