@@ -25,12 +25,9 @@
     />
     <view v-if="allowHandwriting" class="handwriting-area">
       <view class="heading">
-        <view>
-          <b>手写过程</b>
-          <text>拍照后可核对文字</text>
-        </view>
         <button role="button" v-if="!imageUrl" :disabled="uploading || disabled" @click="choose">
-          {{ uploading ? '正在识别…' : '拍照或选图' }}
+          <uni-icons type="camera" size="19" color="currentColor" aria-hidden="true" />
+          {{ uploading ? '正在识别…' : '拍照上传作答' }}
         </button>
       </view>
       <view v-if="uploading" class="parsing">
@@ -306,8 +303,9 @@ defineExpose({ reset, restore })
   background: var(--color-surface);
 }
 .written-answer > textarea {
+  box-sizing: border-box;
   width: 100%;
-  min-height: 120px;
+  min-height: 104px;
   padding: 20rpx;
   border: 1rpx solid var(--color-border);
   border-radius: 12px;
@@ -327,10 +325,10 @@ defineExpose({ reset, restore })
 }
 .handwriting-area {
   margin-top: 16rpx;
-  padding: 18rpx;
+  padding: 0;
   border: 0;
   border-radius: 14rpx;
-  background: var(--color-primary-soft);
+  background: transparent;
 }
 .heading {
   display: flex;
@@ -352,14 +350,17 @@ defineExpose({ reset, restore })
 }
 .heading button,
 .preview button {
-  min-height: 60rpx;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
   margin: 0;
   padding: 0 16rpx;
-  border: 1rpx solid var(--color-primary-border);
+  border: 0;
   border-radius: 11rpx;
   background: #fff;
   color: var(--color-primary-hover);
-  font-size: 21rpx;
+  font-size: 14px;
 }
 .parsing {
   margin-top: 16rpx;
@@ -373,6 +374,7 @@ defineExpose({ reset, restore })
   align-items: center;
   gap: 10rpx;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .track {
   height: 10rpx;

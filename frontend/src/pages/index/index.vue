@@ -358,6 +358,7 @@ const loading = ref(true)
 const error = ref('')
 const preferences = ref(null),
   sources = ref([]),
+  sourcesLoaded = ref(false),
   partialError = ref('')
 let revision = 0
 const recommendedGroup = computed(() =>
@@ -397,11 +398,13 @@ const otherTasks = computed(() => {
       detail: `${data.value.teacher_assignment_count} 项待完成`,
       url: '/pages/assignment/assignment',
     })
-  if (data.value?.misconceptions?.length)
+  if (sourcesLoaded.value)
     rows.push({
       key: 'mistake',
       title: '需要巩固',
-      detail: data.value.misconceptions[0].label,
+      detail: errorGroups(sources.value).length
+        ? `${new Set(errorGroups(sources.value).flatMap((group) => group.sources.map((item) => item.id))).size} 道错题待巩固`
+        : '暂无待巩固错题',
       url: '/pages/problem/list',
     })
   return rows.slice(0, 2)
@@ -430,6 +433,7 @@ async function load() {
     if (dashboard.status === 'rejected') throw dashboard.reason
     data.value = dashboard.value
     preferences.value = preferenceResult.status === 'fulfilled' ? preferenceResult.value : null
+    sourcesLoaded.value = sourceResult.status === 'fulfilled'
     sources.value = sourceResult.status === 'fulfilled' ? sourceResult.value?.sources || [] : []
     if (tasks.status === 'rejected') partialError.value = '上次的订正暂时无法读取。'
     else if (preferenceResult.status === 'rejected' || sourceResult.status === 'rejected')
@@ -451,6 +455,7 @@ function clear() {
   taskFocus.value = null
   preferences.value = null
   sources.value = []
+  sourcesLoaded.value = false
 }
 onHide(clear)
 onUnload(clear)
@@ -510,9 +515,9 @@ onUnload(clear)
 }
 .focus-title {
   display: block;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.5;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
   overflow-wrap: anywhere;
 }
 .focus-next {

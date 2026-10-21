@@ -2,7 +2,7 @@ import { ERROR_TYPE_LABELS } from '@/constants/education.js'
 
 export function reportCauseLabel(value) {
   const raw = String(value || '').trim()
-  if (!raw || ['unknown', 'unclassified', 'exact', 'equivalent', 'branch_solution'].includes(raw))
+  if (!raw || ['unknown', 'unclassified', 'exact', 'equivalent', 'branch_solution'].includes(raw.toLowerCase()))
     return ''
   return /^[a-z][a-z0-9_]*$/i.test(raw) ? ERROR_TYPE_LABELS[raw] || '' : raw
 }

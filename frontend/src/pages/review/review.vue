@@ -339,14 +339,19 @@
           />
         </button>
         <view v-if="showReinforce" class="reinforce-list">
-          <view v-for="item in dashboard.misconceptions?.slice(0, 4)" :key="item.label">
-            <text>{{ item.label }}</text>
-            <small>从相关错题继续练习</small>
+          <view
+            v-for="item in reportCauses(dashboard.misconceptions || []).slice(0, 4)"
+            :key="item.label"
+          >
+            <math-text :text="item.label" class="reinforce-reason" />
+
             <button role="button" class="row-action" @click="go('/pages/problem/list')">
               查看错题
             </button>
           </view>
-          <text v-if="!dashboard.misconceptions?.length" class="muted">当前没有集中出现的错因</text>
+          <text v-if="!reportCauses(dashboard.misconceptions || []).length" class="muted">
+            暂无需要巩固的错因
+          </text>
         </view>
 
         <button
@@ -407,6 +412,7 @@
 </template>
 
 <script setup>
+import { reportCauses } from '@/utils/report.js'
 import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
@@ -1157,13 +1163,15 @@ onUnload(leave)
 }
 .reinforce-list > view {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 4rpx;
   padding: 20rpx 2rpx;
   border-bottom: 1rpx solid var(--color-border);
 }
-.reinforce-list > view > text:first-child {
-  font-size: 27rpx;
+.reinforce-reason {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.7;
 }
 .reinforce-list small {
   grid-row: 2;
