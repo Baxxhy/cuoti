@@ -18,12 +18,8 @@
             <text class="profile-name">{{ store.user?.name || '当前用户' }}</text>
             <text v-if="store.role === 'student'" class="profile-meta">
               {{ dashboard.grade || store.user?.grade || '年级未设置' }}
-              <template v-if="dashboard.streak_days">
-                · 连续学习 {{ dashboard.streak_days }} 天
-              </template>
             </text>
             <text v-else class="profile-meta">{{ roleName }}</text>
-            <text class="profile-email">{{ store.user?.email }}</text>
           </view>
         </view>
         <button
@@ -159,13 +155,7 @@ onUnload(() => revision++)
 .edit-profile-link {
   margin-bottom: 12px;
 }
-.profile-email {
-  display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  overflow-wrap: anywhere;
-}
+
 .student-profile {
   display: flex;
   align-items: center;

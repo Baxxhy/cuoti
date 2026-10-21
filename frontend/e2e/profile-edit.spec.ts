@@ -28,10 +28,10 @@ test('个人资料编辑、持久保存及邮箱修改验证', async ({ page, re
   await page.screenshot({ path: info.outputPath('edit.png'), fullPage: true })
   await page.getByRole('button', { name: '返回', exact: true }).click()
   await expect(page.locator('.profile-name')).toHaveText('新的昵称')
-  await expect(page.locator('.profile-email')).toHaveText(nextEmail)
+  await expect(page.locator('.student-profile')).not.toContainText(nextEmail)
   await expect(page.locator('.profile-meta')).toContainText('初三')
   await page.reload()
-  await expect(page.locator('.profile-email')).toHaveText(nextEmail)
+  await expect(page.locator('.student-profile')).not.toContainText(nextEmail)
   await page.screenshot({ path: info.outputPath('profile.png'), fullPage: true })
   expect(
     (await request.post(API + '/auth/login', { data: { email: nextEmail, password } })).ok(),
