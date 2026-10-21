@@ -68,6 +68,7 @@ class StrictModel(BaseModel):
 class ContentBlock(StrictModel):
     kind: Literal["text", "formula", "question"]
     text: Text
+    options: list[dict[str, str]] = Field(default_factory=list, max_length=26)
 
 
 class HandwritingDraft(StrictModel):
@@ -440,7 +441,7 @@ def view_for(context: TaskContext, state: Checkpoint) -> StudentView:
         blocks.append(ContentBlock(kind="question", text=display))
         title = "换个条件，再试一次"
     else:
-        blocks.append(ContentBlock(kind="question", text=context.question_text))
+        blocks.append(ContentBlock(kind="question", text=context.question_text, options=context.options))
         title = "重新作答"
     visual_available = task_visual(context, state) is not None
     return StudentView(

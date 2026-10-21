@@ -36,3 +36,24 @@ describe('受控教学内容块', () => {
     page.unmount()
   })
 })
+
+it('原题作答显示完整选项，切换到无选项的变式不沿用原题选项', async () => {
+  const wrapper = mount(TeachingContent, {
+    props: {
+      blocks: [
+        {
+          kind: 'question',
+          text: '求集合的交集',
+          options: [
+            { label: 'A', text: String.raw`$\{x|-2\le x<1\}$` },
+            { label: 'D', text: String.raw`\{x|x<1\}` },
+          ],
+        },
+      ],
+    },
+  })
+  expect(wrapper.findAll('.question-option')).toHaveLength(2)
+  expect(wrapper.findAll('.question-option .katex')).toHaveLength(2)
+  await wrapper.setProps({ blocks: [{ kind: 'question', text: '解方程：$x+1=2$' }] })
+  expect(wrapper.findAll('.question-option')).toHaveLength(0)
+})

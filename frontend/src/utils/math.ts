@@ -107,6 +107,11 @@ function breakCoordinateList(tex: string) {
   return result
 }
 
+// Escaped braces are enough to identify a standalone set even without TeX commands.
+function hasBareMath(text: string) {
+  return /\\[A-Za-z]+/.test(text) || /\\\{[^\n]*\\\}/.test(text)
+}
+
 function escapedProse(text: string) {
   // Heading commands carry prose; bare TeX must not leak into student text.
   const source = text.replace(/\\section\*?\{([^{}]*)\}/g, '$1')
@@ -115,7 +120,7 @@ function escapedProse(text: string) {
   }
   return splitProse(source)
     .map(({ prose, text: part }) => {
-      if (prose || !/\\[A-Za-z]+/.test(part)) {
+      if (prose || !hasBareMath(part)) {
         return escapeHtml(part.replace(/\\([%&#])/g, '$1')).replace(/&lt;br\s*\/?&gt;/gi, '<br>')
       }
       const renderBareFormula = (tex: string, displayMode = false) => {
@@ -132,7 +137,7 @@ function escapedProse(text: string) {
       const renderLines = (value: string) =>
         value
           .split('\n')
-          .map((line) => (/\\[A-Za-z]+/.test(line) ? renderBareFormula(line) : escapeHtml(line)))
+          .map((line) => (hasBareMath(line) ? renderBareFormula(line) : escapeHtml(line)))
           .join('\n')
       // Tables belong on a separate row, with their own horizontal viewport.
       // Otherwise a question's answer brackets get vertically centered on it.

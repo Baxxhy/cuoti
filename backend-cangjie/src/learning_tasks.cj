@@ -57,7 +57,19 @@ func taskStoppedView(message: String): JsonObject {
 
 func taskValidateVersion(db: Database, task: JsonObject, snapshot: JsonObject): Bool {
     let question=tutorObject(snapshot,"question")
-    if (tutorText(task,"input_fingerprint")==taskFingerprint(snapshot) && tutorText(question,"status")!="archived" && tutorFlag(question,"confirmed")) { return true }
+    if (tutorText(task,"input_fingerprint")==taskFingerprint(snapshot) && tutorText(question,"status")!="archived" && tutorFlag(question,"confirmed")) {
+        // Older persisted views contain only the stem. Restore options only for
+        // the unchanged original question, never for a generated contrast.
+        let view=tutorObject(task,"student_view")
+        for (raw in tutorArray(view,"prompt_blocks").getItems()) {
+            let block=(raw as JsonObject).getOrThrow()
+            if (tutorText(block,"kind")=="question" && tutorText(block,"text")==tutorText(question,"question_text") && tutorText(tutorObject(task,"checkpoint"),"phase")!="contrast") {
+                block.put("options",tutorArray(question,"options"))
+            }
+        }
+        task.put("student_view",view)
+        return true
+    }
     if (tutorText(task,"status")!="cancelled" && tutorText(task,"status")!="stale") {
         let view=taskStoppedView("题目或学习依据已更新，请回原题重新开始")
         db.query("UPDATE learning_tasks SET status='stale',version=version+1,lease_token=NULL,lease_until=NULL,student_view=?,exit_reason='input_changed',updated_at=UTC_TIMESTAMP(6) WHERE id=?",[Some(view.toString()),sqlValue(task["id"])])

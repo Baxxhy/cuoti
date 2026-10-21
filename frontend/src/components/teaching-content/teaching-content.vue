@@ -14,12 +14,23 @@
           {{ expanded.includes(index) ? '收起这段说明' : '展开这段说明' }}
         </button>
         <math-text v-if="!foldable(block) || expanded.includes(index)" :text="block.text" />
+        <view v-if="block.kind === 'question'" class="question-options">
+          <view
+            v-for="option in normalizeOptions(block.options)"
+            :key="option.label"
+            class="question-option"
+          >
+            <text class="option-label">{{ option.label }}</text>
+            <math-text :text="option.text" inline />
+          </view>
+        </view>
       </view>
     </template>
   </view>
 </template>
 <script setup>
 import { ref, watch } from 'vue'
+import { normalizeOptions } from '@/utils/question.js'
 import MathText from '@/components/math-text/math-text.vue'
 const props = defineProps({ blocks: { type: Array, default: () => [] } })
 const allowed = ['text', 'formula', 'question']
@@ -38,6 +49,22 @@ watch(
 )
 </script>
 <style scoped lang="scss">
+.question-options {
+  margin-top: 12px;
+}
+.question-option {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 0;
+}
+.option-label {
+  flex: 0 0 20px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .content-block {
   margin: 12px 0;
   font-size: 16px;

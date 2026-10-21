@@ -417,3 +417,14 @@ def test_independent_multi_blank_fraction_answer_does_not_stall_on_tex_format():
     assert result.attempt["verdict"] == "confirmed_correct"
     assert result.attempt["grading"]["can_update_learning"]
     assert not result.learning_eligible  # No invented contrast proof of mastery.
+
+
+def test_original_view_preserves_options_but_local_repair_does_not():
+    from learning_task_compute import view_for
+    choices = [{"label": "A", "text": r"$\{x|-2\le x<1\}$"},
+               {"label": "D", "text": r"\{x|x<1\}"}]
+    ctx = context(options=choices)
+    original = view_for(ctx, Checkpoint(phase="independent"))
+    assert original.prompt_blocks[0].options == choices
+    repair = view_for(ctx, Checkpoint(phase="repair"))
+    assert all(not block.options for block in repair.prompt_blocks)

@@ -281,3 +281,13 @@ describe('题库数据表格', () => {
     }
   })
 })
+
+it('OCR 无分隔符集合正常渲染，同时保留不等号含义与转义安全', () => {
+  for (const tex of [String.raw`\{x|x<1\}`, String.raw`\{x|x>1\}`]) {
+    const html = renderMathText(tex)
+    expect(html).toContain('class="katex"')
+    expect(html).not.toContain('math-unparsed')
+  }
+  expect(renderMathText('文本 <script>alert(1)</script>')).not.toContain('<script>')
+  expect(renderMathText('普通文本')).not.toContain('class="katex"')
+})
