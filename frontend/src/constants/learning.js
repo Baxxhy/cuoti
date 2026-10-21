@@ -33,7 +33,7 @@ export const learningRecordEntries = [
   { title: '订正记录', url: '/pages/task/task' },
   { title: '复习记录', url: '/pages/review/review?history=1' },
   { title: '重点收藏', url: '/pages/problem/list?favorite=1' },
-  { title: '教师任务', url: '/pages/assignment/assignment' },
+  { title: '我的作业', url: '/pages/assignment/assignment' },
   { title: '知识关系', url: '/pages/analysis/analysis?relations=1' },
 ]
 // Shared navigation inventory, also used to validate registered destinations.

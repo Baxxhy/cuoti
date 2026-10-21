@@ -101,7 +101,7 @@
             </button>
           </template>
           <template v-else-if="focusKind === 'assignment'">
-            <text class="focus-title">{{ data.teacher_assignment_count }} 项教师任务待完成</text>
+            <text class="focus-title">{{ data.teacher_assignment_count }} 项作业待完成</text>
             <button
               tabindex="0"
               role="button"
@@ -393,7 +393,7 @@ const otherTasks = computed(() => {
   if (data.value?.teacher_assignment_count && focusKind.value !== 'assignment')
     rows.push({
       key: 'assignment',
-      title: '教师任务',
+      title: '我的作业',
       detail: `${data.value.teacher_assignment_count} 项待完成`,
       url: '/pages/assignment/assignment',
     })
