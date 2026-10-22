@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><title>辅助感知更新</title><desc>错题帮科研技术插图。文字、形状、图标和连线为可编辑矢量；算例为机制演示。</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#344054"/></marker></defs>
+<rect x="0" y="0" width="1200" height="800" rx="0" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="30" y="53.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">实际行为</text>
+<text x="467" y="53.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">作答检查</text>
+<text x="866" y="53.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">估计结果</text>
+<rect x="30" y="105" width="290" height="80" rx="8" fill="#EAF3FB" stroke="#344054" stroke-width="2"/>
+<text x="175.0" y="155.5" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="400" text-anchor="middle">独立作答</text>
+<rect x="30" y="245" width="290" height="80" rx="8" fill="#EAF3FB" stroke="#344054" stroke-width="2"/>
+<text x="175.0" y="295.5" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="400" text-anchor="middle">提示后作答</text>
+<polyline points="320,145 452,145" fill="none" stroke="#344054" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="340" y="126.4" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">w = 1</text>
+<polyline points="320,285 452,285" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="333" y="263.6" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="24" font-weight="400" text-anchor="start">w = 0.35</text>
+<rect x="455" y="96" width="275" height="261" rx="12" fill="#FFF1DE" stroke="none" stroke-width="2"/>
+<g transform="translate(475 116) scale(1.5833333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="m9 12 2 2 4-4"/>
+</g>
+<text x="525" y="144.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">可采用的作答</text>
+<text x="480" y="195.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">原题未变</text>
+<text x="480" y="241.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">学生确认</text>
+<text x="480" y="287.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">判题可靠</text>
+<polyline points="730,220 805,220" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="810" y="95" width="360" height="262" rx="12" fill="#EBF5EE" stroke="none" stroke-width="2"/>
+<g transform="translate(830 115) scale(1.5833333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M12 16v5"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M16 14.639V21"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M20 10.656V21"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M4 18.463V21"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M8 14.656V21"/>
+</g>
+<text x="880" y="143.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">贝叶斯更新</text>
+<text x="990" y="197.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="400" text-anchor="middle">p → p′ → p″</text>
+<text x="836" y="260.4" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">w = 1 → 0.914</text>
+<text x="836" y="314.4" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">w = 0.35 → 0.608</text>
+<text x="780" y="405.6" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="24" font-weight="400" text-anchor="start">先验 0.35，非选择题正确作答</text>
+<polyline points="590,357 590,425" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="480" y="461.3" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="start">未通过：待核对</text>
+<polyline points="28,499 1171,499" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="30" y="546" width="290" height="80" rx="8" fill="#F1ECFA" stroke="#344054" stroke-width="2"/>
+<text x="175.0" y="596.5" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="400" text-anchor="middle">看过完整答案</text>
+<polyline points="320,586 810,586" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="452" y="564.3" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="start">不计独立答对</text>
+<rect x="810" y="546" width="360" height="80" rx="8" fill="#F1ECFA" stroke="#344054" stroke-width="2"/>
+<text x="990.0" y="596.15" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="29" font-weight="400" text-anchor="middle">保留求助记录</text>
+<rect x="30" y="684" width="290" height="80" rx="8" fill="#F1ECFA" stroke="#344054" stroke-width="2"/>
+<text x="175.0" y="734.5" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="400" text-anchor="middle">局部订正</text>
+<polyline points="320,724 810,724" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="452" y="701.3" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="start">记录当前修复</text>
+<rect x="810" y="684" width="360" height="80" rx="8" fill="#F1ECFA" stroke="#344054" stroke-width="2"/>
+<text x="990.0" y="734.15" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="29" font-weight="400" text-anchor="middle">保留订正记录</text>
+</svg>

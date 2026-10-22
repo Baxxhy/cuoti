@@ -1,0 +1,60 @@
+4245:  Test Files  52 passed (52)
+4246:       Tests  290 passed (290)
+4465: DONE  Build complete.
+4686: DONE  Build complete.
+4708: 690 passed, 1 warning in 33.67s
+5038: Summary: TOTAL: 46
+5039:     PASSED: 46, SKIPPED: 0, ERROR: 0
+5046: Summary: TOTAL: 46
+5047:     PASSED: 46, SKIPPED: 0, ERROR: 0
+5051: Cangjie media passed: signature expiry, Unicode paths, confinement, ranges, HEAD, ETag, streaming and disconnect cleanup
+5052: Cangjie question bank passed: native import/export, stable IDs, content update, validation, atomic batch rollback, format quarantine/CAS/reimport protection and no user mutation
+5053: Cangjie local identities passed: native create/check, admin/login, no overwrite, student record retention, invalid inputs, concurrent email collision and password-stdin wrapper
+5054: Cangjie accounts passed: persistence, token/password contracts, permissions, reset, concurrency
+5055: Cangjie manual questions passed: MySQL persistence, work/steps, choices, owner and role checks
+5056: Cangjie detail passed: typed fields, ownership, OCR preference, evidence, ordered steps, jobs, crop and signed URLs
+5057: Cangjie archive passed: ownership, SQL binding, rollback, concurrent repeat, review cancellation and retained work
+5058: Cangjie list passed: owner isolation, filtering, taxonomy, Unicode deduplication, ordering, learning and job summaries
+5059: Cangjie edit passed: validation, field whitelist, metadata preservation, invalidation, history, rollback and concurrent edits
+5060: Cangjie OCR edits passed: permissions, revision ordering, history, invalidation, choice normalization and atomic confirmation
+5061: Cangjie student work passed: ownership, validation, rollback, history, invalidation, cancellation and concurrent latest revision
+5062: Cangjie insights passed: 5 routes, native response contracts, UTC trend, cards/relations, graph evidence, filters and owner isolation
+5066: Cangjie practice alignment passed: high-ranked distractor rejected, legacy cache rejected, changed candidate rejected, no learning writes on rejection, aligned attempt retained and missing target explicit
+5068: Cangjie crop passed: geometry, original preservation, concurrent reuse, changed bounds, rollback and archive
+5069: Cangjie recognition passed: ownership, crop requirement, concurrent reuse, synchronous OCR and async reprocess
+5070: Cangjie analysis passed: permissions, confirmation, multimodal input, math, knowledge links, rollback and stale-result protection
+5071: Cangjie diagnosis passed: authorization, automatic analysis, evidence, knowledge upsert, latest history, rollback, answer-only and stale-input protection
+5072: Cangjie tutor start passed: full/compressed modes, private keys, atomic writes, ownership and stale inputs
+5073: Cangjie teaching completion passed: shared teach-back evaluation, transitions, finish invariants, idempotence, private state, permissions and atomic rollback
+5074: Cangjie visualizations passed: original configuration, parameter save, observation, reads, ownership and atomic rollback
+5075: Cangjie independent variant attempts passed: grading, remediation, transfer completion, uncertain results, owner and stage checks
+5076: Cangjie papers passed: filters, deduplication, scores, edit rollback, ownership, PDF/answer/Excel exports and downloads
+5077: Cangjie system/admin passed: real state, admin scope, native response contracts, traces and sensitive-field filtering
+5078: Cangjie voice passed: actual HTTP/storage, transcript update, audio URLs, TTS, failed records, checksums and owner isolation
+5079: Cangjie tutor dialogue passed: original branches/tools, long-term memory, real knowledge lookup, images, stage guards, no chat mastery, ownership and atomic writes
+5081: Cangjie task contract passed: untrusted question, invalid plan fallback, forged action, native tool rejection, atomic rollback and recovery
+5082: Cangjie task deadline passed: 202 receipt, bounded wait, valid late result ignored and recovery
+5083: Cangjie task budget rollback passed: shared deadline after final SQL, no partial evidence and single recovery update
+5084: Cangjie task limits passed: 24 rounds, 72 executions, replay, retained history and explicit restart
+5085: Cangjie task sources passed: immutable records, original step IDs, private history, stale source retention, honest legacy capture and atomic creation rollback
+5086: Cangjie learning memory passed: typed facts/estimates/self-reports, user/subject/TTL gates, real source versions, wrong review vs easy rating, edit/delete/revoke invalidation, in-flight rollback, rule history choice and reference audit
+5087: Cangjie self-checks passed: confirmation, CRUD, retries, ownership, versions, audit rollback, no mastery writes, private history and stale journey projection
+5088: Cangjie task visuals passed: source binding, numeric controls, self-report/no mastery, assistance, replay/key order, CAS/ownership, atomic rollback and stale rejection
+5089: Cangjie task handwriting passed: async receipts, original bytes, strict owner/step, idempotent upload, editable OCR confirmation, audit rollback, same-image resume and scoped grading
+5090: Cangjie task figures passed: typed source check, original bytes, private candidate provenance, retained review, client forgery rejected and no independent learning after assistance
+5091: Cangjie learning tasks passed: async checkpoints, dynamic replan, symbolic scope, actions/idempotency, cancellation, stale inputs, evidence gate, rollback and private views
+5092: Cangjie practice memory passed: actual attempt provenance, dataset version invalidation and restored identical source
+5093: Cangjie practice passed: original fingerprint, signed images, path confinement, handwriting, grading, evidence, stale guards and rollback
+5094: Cangjie retrieval passed: BGE/Qdrant/reranker HTTP, native candidates, filtering, cache, exclusions, practice submission, variant revalidation, rollback and unavailable fallback
+5095: Cangjie reviews passed: today's list, hidden answer, restored/replayed receipts, source versions, superseded attempts, grading, intervals, history and owner isolation
+5096: Cangjie journey passed: persisted stages, owner isolation, evidence filters, navigation, history limits
+5097: Cangjie ingest passed: multipart, limits, original preservation, Qwen pipeline, assets, rollback, stale edit/archive protection
+5098: Study bank passed: real sources/filtering, hidden answers, owner isolation, validation, durable drafts/CAS, frozen snapshots, idempotent grading, server deadlines, empty answers and no fabricated mastery
+5099: Adaptive practice passed: native owner history, bounded candidate pool, Bayesian information-gain selection, hidden answers and persisted trace
+5103: Mistake import passed: wrong image question, source ownership, complete figures, original answer, idempotency and refresh state
+5113: Cangjie public knowledge passed: original content, repeat-safe IDs/relations and no student learning writes
+5448:   71 passed (4.2m)
+5449: Cangjie browser passed: existing frontend flows used isolated native backend
+5450: Cangjie HTTP smoke passed: liveness, database readiness, methods, missing route
+5451: Cangjie media passed: signature expiry, Unicode paths, confinement, ranges, HEAD, ETag, streaming and disconnect cleanup
+5452: Cangjie HTTP smoke passed: liveness, database readiness, methods, missing route

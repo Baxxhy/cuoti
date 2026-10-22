@@ -1,0 +1,6 @@
+原日志：/tmp/cuoti-chem-layout-final-targeted.log
+SHA256：739224d87069d111ae59927bcbabea821eac82e9598d360b806e2598fd59222d
+已核对：3 files passed；56 tests passed。
+math.test.ts 49 tests；math-text.test.ts 2 tests；question-content.test.ts 5 tests。
+Start at 13:55:40；Duration 1.56s。
+此记录为既有局部测试摘录，不是本轮重新执行结果。

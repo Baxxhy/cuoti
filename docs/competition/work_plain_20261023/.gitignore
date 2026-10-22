@@ -1,0 +1,9 @@
+word_previews/
+unused_figures/
+*_raw.docx
+existing_figures.jpg
+reference_*.txt
+参考材料目录抽取.txt
+错题帮_*.txt
+__pycache__/
+.~lock.*

@@ -1,0 +1,2 @@
+1: 375px: original chemistry stem/options/solution passed {"height":590.546875,"reactionHeight":22,"subscripts":5,"charges":0}
+2: 1280px: original chemistry stem/options/solution passed {"height":244.984375,"reactionHeight":22,"subscripts":5,"charges":0}

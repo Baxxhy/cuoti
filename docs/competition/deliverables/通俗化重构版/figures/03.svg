@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><title>系统架构</title><desc>错题帮科研技术插图。文字、形状、图标和连线为可编辑矢量；算例为机制演示。</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#344054"/></marker></defs>
+<rect x="0" y="0" width="1200" height="800" rx="0" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<rect x="30" y="28" width="1140" height="107" rx="12" fill="#EAF3FB" stroke="none" stroke-width="2"/>
+<g transform="translate(50 48) scale(1.5833333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect xmlns="http://www.w3.org/2000/svg" width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M12 18h.01"/>
+</g>
+<text x="100" y="76.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">客户端</text>
+<text x="650" y="95.6" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="34" font-weight="600" text-anchor="middle">uni-app / Vue 3</text>
+<polyline points="590,135 590,180" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="680,180 680,135" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="30" y="185" width="1140" height="155" rx="12" fill="#FFF1DE" stroke="none" stroke-width="2"/>
+<g transform="translate(50 205) scale(1.5833333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect xmlns="http://www.w3.org/2000/svg" width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+  <rect xmlns="http://www.w3.org/2000/svg" width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+  <line xmlns="http://www.w3.org/2000/svg" x1="6" x2="6.01" y1="6" y2="6"/>
+  <line xmlns="http://www.w3.org/2000/svg" x1="6" x2="6.01" y1="18" y2="18"/>
+</g>
+<text x="100" y="233.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">仓颉业务服务</text>
+<text x="85" y="303.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">账号与权限</text>
+<text x="380" y="303.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">任务与状态</text>
+<text x="700" y="303.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">检查与保存</text>
+<text x="1000" y="303.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">业务接口</text>
+<rect x="480" y="403" width="690" height="181" rx="12" fill="#EBF5EE" stroke="none" stroke-width="2"/>
+<text x="550" y="451.8" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">Python / FastAPI</text>
+<text x="512" y="498.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">诊断 · 掌握 · 规划</text>
+<text x="512" y="549.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">LangGraph 单协调器</text>
+<polyline points="760,340 760,403" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="538" y="377.4" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">内部计算请求</text>
+<polyline points="1010,403 1010,340" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="1033" y="378.4" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">计算结果</text>
+<polyline points="145,340 145,657" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="365,340 365,657" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="30" y="481.6" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="24" font-weight="400" text-anchor="start">业务读写</text>
+<text x="250" y="481.6" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="24" font-weight="400" text-anchor="start">资源管理</text>
+<path d="M42 683 V747 C42 774 247 774 247 747 V683" fill="#EAF3FB" stroke="#344054" stroke-width="2"/><ellipse cx="144.5" cy="683" rx="102.5" ry="20" fill="#EAF3FB" stroke="#344054" stroke-width="2"/>
+<text x="144.5" y="736.2" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="middle">MySQL</text>
+<rect x="278" y="665" width="210" height="101" rx="8" fill="#EAF3FB" stroke="#344054" stroke-width="2"/>
+<g transform="translate(294 694) scale(1.5)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
+</g>
+<text x="340" y="719.3" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="start">文件资源</text>
+<polyline points="650,584 650,665" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="1040,584 1040,665" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="530" y="665" width="290" height="101" rx="8" fill="#EAF3FB" stroke="#344054" stroke-width="2"/>
+<text x="675.0" y="725.3000000000001" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">Qdrant / BGE</text>
+<rect x="900" y="665" width="270" height="101" rx="8" fill="#F1ECFA" stroke="#344054" stroke-width="2"/>
+<text x="1035.0" y="726.0" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="400" text-anchor="middle">Qwen</text>
+<text x="540" y="626.4" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">检索</text>
+<text x="1064" y="624.6" fill="#000000" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="24" font-weight="400" text-anchor="start">模型调用</text>
+</svg>
