@@ -596,3 +596,113 @@ it('人工修正仍有本步有效修复证明时，保留已验证的具体做�
   expect(view.findAll('.section-title').map((node) => node.text())).toContain('这一步应该怎么改')
   expect(view.text()).not.toContain('暂无与你标记步骤对应的参考')
 })
+
+for (const hasAnalysis of [false, true]) {
+  it(`进入诊断页自动分析，有解析=${hasAnalysis}，无需第二次点击且不重复生成解析`, async () => {
+    const source = { ...base, analysis: hasAnalysis ? base.analysis : null }
+    const completed = {
+      ...base,
+      diagnosis: { error_type: 'exact', first_error_step: null, counterfactual: {} },
+    }
+    fake.getData.mockReset().mockResolvedValueOnce(source).mockResolvedValue(completed)
+    let finish: () => void = () => {}
+    fake.postData.mockReset().mockImplementation(
+      () =>
+        new Promise<void>((resolve) => {
+          finish = resolve
+        }),
+    )
+    const view = make(Diagnosis)
+    await flushPromises()
+    expect(fake.postData).toHaveBeenCalledExactlyOnceWith(
+      '/questions/question-1/diagnose',
+      {},
+      { silent: true, timeout: 180000 },
+    )
+    expect(view.text()).toContain('正在分析错因')
+    expect(view.text()).not.toContain('生成本题解析')
+    expect(view.find('.empty-card button').exists()).toBe(false)
+    finish()
+    await flushPromises()
+    expect(view.text()).toContain('当前诊断未发现错误')
+    expect(view.text()).not.toContain('正在分析错因')
+    expect(fake.postData).toHaveBeenCalledTimes(1)
+  })
+}
+
+it('自动分析失败时准确显示失败和重试，不在页面显示时无限重发', async () => {
+  fake.getData.mockReset().mockResolvedValue(base)
+  fake.postData.mockReset().mockRejectedValueOnce(new Error('学习服务暂时繁忙'))
+  const view = make(Diagnosis)
+  await flushPromises()
+  expect(view.text()).toContain('分析未完成')
+  expect(view.text()).toContain('学习服务暂时繁忙')
+  expect(view.text()).not.toContain('正在分析错因')
+  fake.hooks.hide()
+  fake.hooks.show()
+  await flushPromises()
+  expect(fake.postData).toHaveBeenCalledTimes(1)
+  fake.getData.mockResolvedValue({
+    ...base,
+    diagnosis: { error_type: 'exact', first_error_step: null, counterfactual: {} },
+  })
+  fake.postData.mockResolvedValueOnce({})
+  await view.find('.empty-card button').trigger('click')
+  await flushPromises()
+  expect(fake.postData).toHaveBeenCalledTimes(2)
+  expect(view.text()).toContain('当前诊断未发现错误')
+})
+
+it('分析中离开再返回不重复发请求，完成后自动读回结果', async () => {
+  const source = { ...base, analysis: null }
+  fake.getData.mockReset().mockResolvedValue(source)
+  let finish: () => void = () => {}
+  fake.postData.mockReset().mockImplementation(
+    () =>
+      new Promise<void>((resolve) => {
+        finish = resolve
+      }),
+  )
+  const view = make(Diagnosis)
+  await flushPromises()
+  fake.hooks.hide()
+  fake.hooks.show()
+  await flushPromises()
+  expect(fake.postData).toHaveBeenCalledTimes(1)
+  fake.getData.mockResolvedValue({
+    ...base,
+    diagnosis: { error_type: 'exact', first_error_step: null, counterfactual: {} },
+  })
+  finish()
+  await flushPromises()
+  expect(view.text()).toContain('当前诊断未发现错误')
+  expect(fake.postData).toHaveBeenCalledTimes(1)
+})
+
+it('没有作答时自动生成解析，不虚构错因；未确认题目不发分析请求', async () => {
+  fake.getData
+    .mockReset()
+    .mockResolvedValueOnce({ ...base, student_answer: '', student_steps: [], analysis: null })
+    .mockResolvedValue({
+      ...base,
+      student_answer: '',
+      student_steps: [],
+      analysis: { final_answer: 'x=4' },
+    })
+  fake.postData.mockReset().mockResolvedValue({})
+  const view = make(Diagnosis)
+  await flushPromises()
+  expect(fake.postData).toHaveBeenCalledExactlyOnceWith(
+    '/questions/question-1/analyze',
+    {},
+    { silent: true, timeout: 180000 },
+  )
+  expect(view.text()).toContain('先看这道题怎么做')
+  view.unmount()
+  fake.getData.mockResolvedValue({ ...base, confirmed: false, analysis: null })
+  fake.postData.mockClear()
+  const unconfirmed = make(Diagnosis)
+  await flushPromises()
+  expect(fake.postData).not.toHaveBeenCalled()
+  expect(unconfirmed.text()).toContain('请先确认题目')
+})

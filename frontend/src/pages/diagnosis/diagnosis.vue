@@ -28,7 +28,23 @@
       <!-- =====================================================
            已有诊断
       ====================================================== -->
-      <template v-if="diagnosis && hasStudentWork">
+      <view
+        v-if="generating || generationError"
+        class="empty-card"
+        role="status"
+        aria-live="polite"
+      >
+        <text class="empty-title">
+          {{ generating ? (hasStudentWork ? '正在分析错因' : '正在生成本题解析') : '分析未完成' }}
+        </text>
+        <text class="empty-desc">
+          {{ generating ? '分析完成后会自动展示结果，请稍候。' : generationError }}
+        </text>
+        <button v-if="!generating" role="button" class="primary-btn" @click="generate">
+          重新分析
+        </button>
+      </view>
+      <template v-else-if="diagnosis && hasStudentWork">
         <!-- 仅有选择答案时，不能凭空编造学生的解题步骤。 -->
         <template v-if="diagnosisState.kind !== 'finding'">
           <view class="summary-card">
@@ -505,10 +521,21 @@
       </template>
 
       <view v-else class="empty-card">
-        <text class="empty-title">正在整理本题解析</text>
-        <text class="empty-desc">题目解析完成后，会在这里展示正确思路。</text>
-        <button role="button" class="primary-btn" :disabled="busy" @click="generate">
-          {{ busy ? '正在分析…' : '生成本题解析' }}
+        <text class="empty-title">{{ item.confirmed ? '尚未生成解析' : '请先确认题目' }}</text>
+        <text class="empty-desc">
+          {{
+            item.confirmed
+              ? '重新分析后，会在这里展示结果。'
+              : '核对题干与作答并保存后，即可开始分析。'
+          }}
+        </text>
+        <button
+          role="button"
+          class="primary-btn"
+          :disabled="busy"
+          @click="item.confirmed ? generate() : go(`/pages/ocr/ocr?id=${id}`)"
+        >
+          {{ item.confirmed ? '重新分析' : '核对题目' }}
         </button>
       </view>
       <button
@@ -564,6 +591,8 @@ const editing = ref(false)
 const correctionError = ref('')
 
 const busy = ref(false)
+const generating = ref(false)
+const generationError = ref('')
 const entryError = ref('')
 let active = false,
   revision = 0
@@ -940,7 +969,7 @@ function stepCaption(step, index) {
    加载
 ========================================================= */
 
-async function load() {
+async function load(autoGenerate = true) {
   if (!active || !id.value) return
   const current = ++revision,
     questionId = id.value
@@ -951,6 +980,14 @@ async function load() {
     const next = await getData(`/questions/${questionId}`)
     if (!active || current !== revision) return
     item.value = next
+    const needsAnalysis =
+      next?.confirmed && (hasStudentWork.value ? !next.diagnosis : !solutionAvailable.value)
+    if (needsAnalysis) {
+      if (autoGenerate && !generationError.value) await generate()
+      else if (!autoGenerate) generationError.value = '分析结果暂未就绪，请重新分析。'
+      return
+    }
+    generationError.value = ''
     if (next?.diagnosis && !next.diagnosis.counterfactual) {
       verifying.value = true
       try {
@@ -972,18 +1009,22 @@ async function load() {
 ========================================================= */
 
 async function generate() {
-  if (busy.value) return
+  if (busy.value || !active || !item.value?.confirmed) return
   busy.value = true
-  const current = revision,
-    questionId = id.value
+  generating.value = true
+  generationError.value = ''
+  const questionId = id.value
+  const operation = hasStudentWork.value ? 'diagnose' : 'analyze'
   try {
-    await postData(`/questions/${questionId}/analyze`, {})
-    if (!active || current !== revision) return
-    await postData(`/questions/${questionId}/diagnose`, {})
-    if (active && current === revision) await load()
+    // The diagnosis endpoint creates a missing analysis itself. One request
+    // also keeps an existing reference explanation intact.
+    await postData(`/questions/${questionId}/${operation}`, {}, { silent: true, timeout: 180000 })
+    if (active && id.value === questionId) await load(false)
   } catch (err) {
-    if (active) uni.showToast({ title: err.message || '分析未完成，请重试', icon: 'none' })
+    if (active && id.value === questionId)
+      generationError.value = err.message || '分析未完成，请重试。'
   } finally {
+    generating.value = false
     busy.value = false
   }
 }

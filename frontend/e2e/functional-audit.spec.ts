@@ -636,9 +636,42 @@ test('最终手机布局：窄屏页面、筛选草稿和详情分区保持可�
   await expect(page.getByText('我当时的答案', { exact: true })).toBeVisible()
 })
 
-test('本题知识：未分析时不虚构错因，并能进入明确的分析操作', async ({ page, request }) => {
+test('本题知识：点击分析后自动启动，进度、失败重试和结果保持一致', async ({ page, request }) => {
   const account = await student(request)
   const question = await manual(request, account, '解方程：2x+3=11')
+  let calls = 0
+  let finished = false
+  let release: () => void = () => {}
+  const pending = new Promise<void>((resolve) => {
+    release = resolve
+  })
+  await page.route(`**/api/v1/questions/${question.id}/diagnose`, async (route) => {
+    calls++
+    if (calls === 1) {
+      await pending
+      await route.fulfill({ status: 503, json: { detail: '学习服务暂时繁忙，请重试。' } })
+    } else {
+      finished = true
+      await route.fulfill({ json: { data: {} } })
+    }
+  })
+  await page.route(`**/api/v1/questions/${question.id}`, async (route) => {
+    const response = await route.fetch()
+    const body = await response.json()
+    if (finished)
+      body.data = {
+        ...body.data,
+        analysis: { final_answer: 'x=4' },
+        reference_steps: [{ id: 'ref', text: '2x=8，x=4' }],
+        diagnosis: {
+          first_error_step: 0,
+          error_type: 'sign_error',
+          root_misconception: '移项时要改变符号。',
+          counterfactual: {},
+        },
+      }
+    await route.fulfill({ response, json: body })
+  })
   await login(page, account)
   await page.goto(`/#/pages/detail/detail?id=${question.id}`)
   await page.getByRole('button', { name: '解析与练习', exact: true }).click()
@@ -649,5 +682,13 @@ test('本题知识：未分析时不虚构错因，并能进入明确的分析�
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
   await page.getByRole('button', { name: '分析这道题', exact: true }).click()
   await expect(page).toHaveURL(/diagnosis\/diagnosis/)
-  await expect(button(page, '生成本题解析')).toBeVisible()
+  await expect(page.getByText('正在分析错因', { exact: true })).toBeVisible()
+  await expect(button(page, '生成本题解析')).toHaveCount(0)
+  expect(calls).toBe(1)
+  release()
+  await expect(page.getByText('分析未完成', { exact: true })).toBeVisible()
+  await expect(page.getByText('正在分析错因', { exact: true })).toHaveCount(0)
+  await page.getByRole('button', { name: '重新分析', exact: true }).click()
+  await expect(page.getByText('移项时要改变符号。', { exact: true }).first()).toBeVisible()
+  expect(calls).toBe(2)
 })
