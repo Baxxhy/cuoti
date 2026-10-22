@@ -4,7 +4,7 @@
     <view class="page-content">
       <view v-if="loading" class="loading-panel">
         <state-panel state="loading" />
-        <text class="loading-hint">正在准备类似题，题库不足时会为你生成新题</text>
+        <text class="loading-hint">正在准备类似题</text>
         <button role="button" class="secondary-btn" @click="go('/pages/bank/bank')">
           去题库选题
         </button>
