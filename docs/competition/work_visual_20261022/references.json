@@ -1,0 +1,162 @@
+[
+  {
+    "number": 1,
+    "author": "ROEDIGER H L, KARPICKE J D",
+    "title": "Test-enhanced learning: taking memory tests improves long-term retention",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16507066/",
+    "metadata": "[J]. Psychological Science, 2006, 17(3): 249–255.",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 2,
+    "author": "DUNLOSKY J, RAWSON K A, MARSH E J, et al.",
+    "title": "Improving Students’ Learning With Effective Learning Techniques: Promising Directions From Cognitive and Educational Psychology",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26173288/",
+    "metadata": "[J]. Psychological Science in the Public Interest, 2013, 14(1): 4–58.",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 3,
+    "author": "CEPEDA N J, PASHLER H, VUL E, et al.",
+    "title": "Distributed practice in verbal recall tasks: A review and quantitative synthesis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16719566/",
+    "metadata": "[J]. Psychological Bulletin, 2006, 132(3): 354–380.",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 4,
+    "author": "ABDELRAHMAN G, WANG Q, NUNES B P",
+    "title": "Knowledge Tracing: A Survey",
+    "url": "https://arxiv.org/abs/2201.06953",
+    "metadata": "[EB/OL]. arXiv:2201.06953, 2022 [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 5,
+    "author": "YAO S, ZHAO J, YU D, et al.",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "url": "https://arxiv.org/abs/2210.03629",
+    "metadata": "[EB/OL]. arXiv:2210.03629, 2022 [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 6,
+    "author": "LEWIS P, PEREZ E, PIKTUS A, et al.",
+    "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    "url": "https://arxiv.org/abs/2005.11401",
+    "metadata": "[EB/OL]. arXiv:2005.11401, 2020 [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 7,
+    "author": "仓颉编程语言",
+    "title": "仓颉编程语言文档",
+    "url": "https://cangjie-lang.cn/docs",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 8,
+    "author": "PYDANTIC",
+    "title": "Models",
+    "url": "https://pydantic.dev/docs/validation/latest/concepts/models/",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 9,
+    "author": "SYMPY",
+    "title": "Solveset",
+    "url": "https://docs.sympy.org/latest/modules/solvers/solveset.html",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 10,
+    "author": "LANGCHAIN",
+    "title": "LangGraph persistence",
+    "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 11,
+    "author": "ORACLE",
+    "title": "MySQL 8.0 Reference Manual: InnoDB Transaction Model",
+    "url": "https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-model.html",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 12,
+    "author": "DCLOUD",
+    "title": "uni-app App工程",
+    "url": "https://uniapp.dcloud.net.cn/tutorial/app-base.html",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 13,
+    "author": "VUE.JS",
+    "title": "Introduction",
+    "url": "https://vuejs.org/guide/introduction.html",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 14,
+    "author": "FASTAPI",
+    "title": "Features",
+    "url": "https://fastapi.tiangolo.com/features/",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 15,
+    "author": "QDRANT",
+    "title": "Hybrid Queries",
+    "url": "https://qdrant.tech/documentation/search/hybrid-queries/",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 16,
+    "author": "CHEN J, XIAO S, ZHANG P, et al.",
+    "title": "M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation",
+    "url": "https://arxiv.org/abs/2402.03216",
+    "metadata": "[EB/OL]. arXiv:2402.03216, 2024 [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 17,
+    "author": "ANKI",
+    "title": "Deck Options",
+    "url": "https://docs.ankiweb.net/manual/deck-options",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 18,
+    "author": "PHOTOMATH",
+    "title": "Photomath: Math Explained",
+    "url": "https://www.photomath.com/",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 19,
+    "author": "MICROSOFT",
+    "title": "Playwright: Assertions",
+    "url": "https://playwright.dev/docs/test-assertions",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  },
+  {
+    "number": 20,
+    "author": "PYTEST",
+    "title": "How to use fixtures",
+    "url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+    "metadata": "[EB/OL]. [2026-10-22].",
+    "checked": "2026-10-22"
+  }
+]

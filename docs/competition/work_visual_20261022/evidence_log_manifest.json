@@ -1,0 +1,47 @@
+[
+  {
+    "path": "/tmp/cuoti-three-fixes-verify.log",
+    "bytes": 317161,
+    "sha256": "64902dec758c8e31f2960bec2b4ae90a13a5bec9e64fcad2b7cac2ae8865fab4",
+    "selected_summary": [
+      " Test Files  52 passed (52)",
+      "      Tests  290 passed (290)",
+      "690 passed, 1 warning in 33.67s",
+      "  71 passed (4.2m)",
+      "Cangjie browser passed: existing frontend flows used isolated native backend"
+    ]
+  },
+  {
+    "path": "/tmp/cuoti-chem-layout-front.log",
+    "bytes": 228220,
+    "sha256": "028920476d5d4039a58c205b3cbec0608f60fdb4bc5dfdf98d79fe0130c69227",
+    "selected_summary": [
+      " Test Files  52 passed (52)",
+      "      Tests  299 passed (299)"
+    ]
+  },
+  {
+    "path": "/tmp/cuoti-chem-layout-build.log",
+    "bytes": 17098,
+    "sha256": "120ca446340836fc724626efdedf0474775ac48b6ccd26877c459d8b9d5603a2",
+    "selected_summary": []
+  },
+  {
+    "path": "/tmp/cuoti-chem-layout-browser.log",
+    "bytes": 249,
+    "sha256": "2037b48991758ed08031d29513b57023d3e5b1c61ec6dd368f715a6c77d4d758",
+    "selected_summary": [
+      "375px: original chemistry stem/options/solution passed {\"height\":590.546875,\"reactionHeight\":22,\"subscripts\":5,\"charges\":0}",
+      "1280px: original chemistry stem/options/solution passed {\"height\":244.984375,\"reactionHeight\":22,\"subscripts\":5,\"charges\":0}"
+    ]
+  },
+  {
+    "path": "/tmp/cuoti-chem-layout-final-targeted.log",
+    "bytes": 837,
+    "sha256": "739224d87069d111ae59927bcbabea821eac82e9598d360b806e2598fd59222d",
+    "selected_summary": [
+      " Test Files  3 passed (3)",
+      "      Tests  56 passed (56)"
+    ]
+  }
+]

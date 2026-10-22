@@ -1,0 +1,137 @@
+[
+  {
+    "section": "1.1 设计目标",
+    "characters": 1163,
+    "prose_paragraphs": 7
+  },
+  {
+    "section": "1.2 系统架构",
+    "characters": 1211,
+    "prose_paragraphs": 7
+  },
+  {
+    "section": "1.3 技术选型",
+    "characters": 1211,
+    "prose_paragraphs": 6
+  },
+  {
+    "section": "1.4 模块划分",
+    "characters": 1112,
+    "prose_paragraphs": 6
+  },
+  {
+    "section": "2.1 错因定位算法",
+    "characters": 2566,
+    "prose_paragraphs": 18
+  },
+  {
+    "section": "2.2 掌握更新算法",
+    "characters": 2655,
+    "prose_paragraphs": 18
+  },
+  {
+    "section": "2.3 学习规划算法",
+    "characters": 2250,
+    "prose_paragraphs": 16
+  },
+  {
+    "section": "2.4 习题生成算法",
+    "characters": 2409,
+    "prose_paragraphs": 14
+  },
+  {
+    "section": "3.1 协同架构",
+    "characters": 1081,
+    "prose_paragraphs": 8
+  },
+  {
+    "section": "3.2 工作流设计",
+    "characters": 1461,
+    "prose_paragraphs": 11
+  },
+  {
+    "section": "3.3 工具调用",
+    "characters": 1186,
+    "prose_paragraphs": 7
+  },
+  {
+    "section": "3.4 状态管理",
+    "characters": 1541,
+    "prose_paragraphs": 9
+  },
+  {
+    "section": "4.1 数据模型",
+    "characters": 1559,
+    "prose_paragraphs": 7
+  },
+  {
+    "section": "4.2 数据关联",
+    "characters": 972,
+    "prose_paragraphs": 8
+  },
+  {
+    "section": "4.3 版本管理",
+    "characters": 1527,
+    "prose_paragraphs": 9
+  },
+  {
+    "section": "4.4 学习记忆",
+    "characters": 1369,
+    "prose_paragraphs": 8
+  },
+  {
+    "section": "5.1 前端实现",
+    "characters": 1749,
+    "prose_paragraphs": 12
+  },
+  {
+    "section": "5.2 业务服务",
+    "characters": 2129,
+    "prose_paragraphs": 12
+  },
+  {
+    "section": "5.3 算法服务",
+    "characters": 1911,
+    "prose_paragraphs": 11
+  },
+  {
+    "section": "5.4 安全与容错",
+    "characters": 3053,
+    "prose_paragraphs": 18
+  },
+  {
+    "section": "5.5 部署方案",
+    "characters": 1798,
+    "prose_paragraphs": 10
+  },
+  {
+    "section": "6.1 测试环境",
+    "characters": 1029,
+    "prose_paragraphs": 6
+  },
+  {
+    "section": "6.2 功能测试",
+    "characters": 1704,
+    "prose_paragraphs": 7
+  },
+  {
+    "section": "6.3 算法验证",
+    "characters": 1709,
+    "prose_paragraphs": 9
+  },
+  {
+    "section": "6.4 测试分析",
+    "characters": 752,
+    "prose_paragraphs": 6
+  },
+  {
+    "section": "7.1 系统总结",
+    "characters": 481,
+    "prose_paragraphs": 4
+  },
+  {
+    "section": "7.2 改进方向",
+    "characters": 771,
+    "prose_paragraphs": 6
+  }
+]

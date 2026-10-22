@@ -1,0 +1,19 @@
+{
+  "product": {
+    "bibliography_entries": 20,
+    "all_entries_cited_in_body": true,
+    "all_links_checked_online": "2026-10-22"
+  },
+  "system": {
+    "bibliography_entries": 20,
+    "all_entries_cited_in_body": true,
+    "all_links_checked_online": "2026-10-22"
+  },
+  "figures": {
+    "replaced_mechanism_figures": 10,
+    "unchanged_runtime_screenshots": 11,
+    "independent_prompts_saved": 10,
+    "reference_images_used": false
+  },
+  "previous_word_files_unchanged": true
+}
