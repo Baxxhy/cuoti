@@ -376,6 +376,17 @@ function nextQuestion() {
 }
 function switchMode() {
   mode.value = mode.value === 'reinforce' ? 'variation' : 'reinforce'
+  // #ifdef H5
+  // Keep refresh/deep-link recovery on the mode the student actually selected.
+  const [route, query = ''] = window.location.hash.split('?')
+  const params = new URLSearchParams(query)
+  params.set('mode', mode.value)
+  window.history.replaceState(
+    window.history.state,
+    '',
+    `${window.location.pathname}${window.location.search}${route}?${params.toString()}`,
+  )
+  // #endif
   loadQuestion(true)
 }
 watch(answer, savePracticeDraft)

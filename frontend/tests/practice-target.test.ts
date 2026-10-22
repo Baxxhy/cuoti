@@ -17,7 +17,7 @@ vi.mock('../src/store/index.js', () => ({
 vi.mock('../src/api/index.js', () => ({ postData: fake.postData, mediaUrl: (x: string) => x }))
 vi.mock('../src/utils/navigation.js', () => ({ go: fake.go }))
 let wrapper: ReturnType<typeof mount> | undefined
-function make() {
+function make(query: { id: string; mode?: string } = { id: 'source' }) {
   wrapper = mount(Practice, {
     global: {
       stubs: {
@@ -32,7 +32,7 @@ function make() {
       },
     },
   })
-  fake.load({ id: 'source' })
+  fake.load(query)
   return wrapper
 }
 beforeEach(() => {
@@ -133,4 +133,43 @@ it('判分后显示已提交答案，收起输入与拍照，避免修改后的�
   expect(page.find('textarea').exists()).toBe(false)
   expect(page.find('.submitted-answer').text()).toContain('x=4')
   expect(page.find('.result-card').text()).toContain('答对了')
+})
+
+it('切到变式后刷新仍请求变式并恢复已判定结果', async () => {
+  window.history.replaceState({}, '', '/#/pages/practice/practice?id=source')
+  const question = { question_id: 'q', subject: '数学', stem: '3x=12', options: [] }
+  const receipt = { correct: true, can_update_learning: true, answer: 'x=4' }
+  fake.postData.mockResolvedValueOnce(question).mockResolvedValueOnce(receipt)
+  let page = make()
+  await flushPromises()
+  await page.find('textarea').setValue('x=4')
+  await page.find('.primary-btn').trigger('click')
+  await flushPromises()
+  fake.postData.mockResolvedValueOnce({ ...question, question_id: 'variation' })
+  await page.findAll('button').find((x) => x.text() === '换个问法试试')!.trigger('click')
+  await flushPromises()
+  expect(window.location.hash).toContain('mode=variation')
+  expect(fake.postData).toHaveBeenLastCalledWith(
+    '/practice/recommend',
+    { mistake_id: 'source', mode: 'variation', force_new: true },
+    expect.any(Object),
+  )
+  fake.leave()
+  page.unmount()
+  fake.postData.mockResolvedValueOnce({
+    ...question,
+    question_id: 'variation',
+    previous_answer: 'x=4',
+    previous_result: receipt,
+  })
+  const query = Object.fromEntries(new URLSearchParams(window.location.hash.split('?')[1]))
+  page = make(query as { id: string; mode: string })
+  await flushPromises()
+  expect(fake.postData).toHaveBeenLastCalledWith(
+    '/practice/recommend',
+    { mistake_id: 'source', mode: 'variation', force_new: false },
+    expect.any(Object),
+  )
+  expect(page.find('.result-card').text()).toContain('答对了')
+  expect(page.find('.submitted-answer').text()).toContain('x=4')
 })

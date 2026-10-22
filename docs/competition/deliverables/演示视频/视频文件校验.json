@@ -1,0 +1,26 @@
+[
+  {
+    "mode": "landscape",
+    "file": "错题帮_完整作品演示_手机实录.mp4",
+    "seconds": 1015.33,
+    "bytes": 35120233,
+    "sha256": "76d0b2ec92db7abe7bd89b27137ac02cb820a80503a8cd1eadfe906638603751",
+    "chapters": 59,
+    "caption_segments": 197,
+    "full_decode": "passed",
+    "mean_db": -21.5,
+    "peak_db": -4.1
+  },
+  {
+    "mode": "portrait",
+    "file": "错题帮_手机竖屏完整演示.mp4",
+    "seconds": 1015.33,
+    "bytes": 52085541,
+    "sha256": "5b48936be7f30be4e063395d5a2ddae00a7d79de2462168df6651fbbff44624f",
+    "chapters": 59,
+    "caption_segments": 211,
+    "full_decode": "passed",
+    "mean_db": -21.5,
+    "peak_db": -4.1
+  }
+]
