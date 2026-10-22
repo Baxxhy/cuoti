@@ -120,6 +120,8 @@ async def diagnose_steps(
             "先检查学生每一步在题目条件下是否成立，再定位首次实质错误。"
             "答案和路径都正确时error_type填exact，first_error_step填null，root_misconception留空。"
             "缺条件时明确指出条件不足，不补造条件；无法定位时下标填null且error_type填unknown。"
+            "有学生答案或步骤时，即使无法定位步骤，也必须根据实际作答给出答案层面的分析和具体检查点，"
+            "不要说无法分析错因或要求重新补充已经提供的答案；只能把推测的思路称为可能错因。"
         )
         instruction += "error_type优先从本学科类别中选取：" + json.dumps(
             {"exact": "作答和路径正确", "unknown": "证据不足", **pedagogy_for(subject).error_taxonomy},
@@ -127,9 +129,9 @@ async def diagnose_steps(
         )
         if student_answer and not student:
             instruction += (
-                "学生只提交了选择答案，没有提交解题步骤。不要虚构‘第几步’或学生的推理过程；"
+                "学生只提交了答案，没有提交解题步骤。不要虚构‘第几步’或学生的推理过程；"
                 "必须围绕学生实际选出的第一个错误选项说明：该选项内容、题目中的对应条件、二者为何冲突，"
-                "并在recommended_strategy中给出判断这个选项的正确方法。"
+                "并在recommended_strategy中说明正确答案及其题干依据，不能只复述学生选错的选项。"
             )
         paths = [path for path in (visual_paths or []) if path.is_file()]
         result = (

@@ -207,7 +207,12 @@ afterEach(() => page?.unmount())
 it('未诊断和待核对记录不会被称为已经确定的错因', () => {
   expect(diagnosisView(base).kind).toBe('missing')
   expect(
-    diagnosisView({ ...base, diagnosis: { error_type: 'unknown', first_error_step: null } }).kind,
+    diagnosisView({
+      ...base,
+      student_answer: '',
+      student_steps: [],
+      diagnosis: { error_type: 'unknown', first_error_step: null },
+    }).kind,
   ).toBe('review')
   expect(
     diagnosisView({
@@ -221,6 +226,77 @@ it('未诊断和待核对记录不会被称为已经确定的错因', () => {
   ).toBeNull()
   for (const code of ['exact', 'equivalent', 'branch_solution'])
     expect(reportCauseLabel(code)).toBe('')
+})
+
+const englishChoice = {
+  ...base,
+  subject: '英语',
+  question_type: '单项选择题',
+  student_answer: 'B',
+  student_steps: [],
+  options: [
+    { label: 'B', text: 'care about the future of the world' },
+    { label: 'D', text: 'expect more people to think of others' },
+  ],
+  analysis: { final_answer: 'D' },
+  reference_steps: [
+    { text: "分析选项B：'care about the future of the world'（关心世界的未来）" },
+    { text: 'D：作者通过志愿服务经历呼吁读者关心和帮助他人。' },
+  ],
+  diagnosis: {
+    error_type: 'unknown',
+    first_error_step: null,
+    root_misconception: '可能把世界会变得不同的愿景当作写作目的，忽略了帮助他人的核心意图。',
+    recommended_strategy: '结合结尾的呼吁判断作者的写作目的。',
+    evidence_diagnosis: {
+      verified: false,
+      confidence_level: 'insufficient',
+      reason: '现有作答不足以确定具体错因。',
+      question: '请补充你的原始作答。',
+    },
+  },
+}
+
+it('英语仅选B也展示可能错因，旧证据不再要求补交已有答案，正确判断围绕D', async () => {
+  fake.getData.mockResolvedValue(englishChoice)
+  const view = make(Diagnosis)
+  await flushPromises()
+  expect(view.text()).toContain('帮助他人的核心意图')
+  expect(view.text()).toContain('可能错因')
+  expect(view.text()).not.toContain('不足以确定')
+  expect(view.text()).not.toContain('补充你的原始作答')
+  expect(view.find('.correct-thought').text()).toContain('D. expect more people to think of others')
+  expect(view.find('.correct-thought').text()).toContain('呼吁读者关心和帮助他人')
+  expect(view.find('.correct-thought').text()).not.toContain('分析选项B')
+})
+
+it('仅有答案且模型未给具体原因时保留分析入口和可操作的检查点', async () => {
+  fake.getData.mockResolvedValue({
+    ...englishChoice,
+    diagnosis: { ...englishChoice.diagnosis, root_misconception: '无法确定具体错因' },
+    reference_steps: [englishChoice.reference_steps[0]],
+  })
+  const view = make(Diagnosis)
+  await flushPromises()
+  expect(view.text()).not.toContain('无法确定')
+  expect(view.text()).toContain('检查本次作答是否用全题目条件')
+  expect(view.find('.correct-thought').text()).toContain('D. expect more people to think of others')
+  expect(view.find('.correct-thought').text()).not.toContain('分析选项B')
+})
+
+it('选择题实际答案优先于矛盾的旧诊断类型，不把正确答案当成错误', () => {
+  expect(diagnosisView({ ...englishChoice, student_answer: 'D' }).kind).toBe('clear')
+  expect(diagnosisView({ ...englishChoice, diagnosis: { error_type: 'exact' } }).kind).toBe(
+    'finding',
+  )
+})
+
+it('没有作答时不展示旧的错因结论', async () => {
+  fake.getData.mockResolvedValue({ ...englishChoice, student_answer: '', student_steps: [] })
+  const view = make(Diagnosis)
+  await flushPromises()
+  expect(view.text()).not.toContain('帮助他人的核心意图')
+  expect(view.text()).toContain('还没有你的作答过程')
 })
 
 it('未发现错误的知识页不指责学生，返回原题而不创建重复教学会话', async () => {

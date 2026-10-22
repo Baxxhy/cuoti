@@ -158,9 +158,12 @@ async def compute_diagnosis(
         "counterfactual": counterfactual,
         "logical_model": "Qwen",
         "evidence_diagnosis": assess_diagnosis(
-            students=students, references=references, alignment=alignment,
+            students=students,
+            references=references,
+            alignment=alignment,
             diagnosis=diagnosis,
-            knowledge=build_knowledge_evidence(knowledge_cards or [],subject,grade),
+            student_answer=student_answer,
+            knowledge=build_knowledge_evidence(knowledge_cards or [], subject, grade),
         ).model_dump(mode="json"),
     }
     if diagnosis is not None and not counterfactual_only:

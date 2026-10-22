@@ -66,6 +66,44 @@ def test_missing_steps_cannot_locate_error():
     assert result.first_error_step is None and result.next_action == "confirm_question"
 
 
+def test_choice_answer_is_work_without_inventing_a_step_or_rule_proof():
+    reason = "可能把世界变得不同的愿景当作写作目的，忽略了作者呼吁帮助他人的意图。"
+    result = assess_diagnosis(
+        students=[],
+        references=[],
+        alignment=[],
+        student_answer="B",
+        diagnosis=SimpleNamespace(error_type="unknown", root_misconception=reason),
+    )
+    assert result.reason == reason
+    assert result.first_error_step is None and not result.verified
+    assert result.confidence_level == "needs_confirmation"
+    assert result.next_action == "repair" and not result.question
+    assert result.evidence[0].text == "B"
+    assert result.evidence[0].source == "student_answer"
+
+
+def test_existing_work_gets_actionable_analysis_even_if_model_reason_is_empty():
+    for answer, students in [("B", []), (None, [StepRecord(id="s", text="x=7")])]:
+        result = assess_diagnosis(
+            students=students,
+            references=[],
+            alignment=[],
+            student_answer=answer,
+            diagnosis=SimpleNamespace(
+                error_type="unknown", root_misconception="无法确定错因"
+            ),
+        )
+        assert "检查本次作答" in result.reason
+        assert result.confidence_level != "insufficient" and not result.question
+
+
+def test_missing_work_still_requires_an_answer():
+    result = assess([], students=[])
+    assert result.confidence_level == "insufficient"
+    assert "还没有你的作答" in result.reason
+
+
 def test_unverified_prefix_blocks_first_error_certainty():
     result = assess(
         [

@@ -449,9 +449,22 @@ def study(endpoint, env, query):
     assert "/images/2" not in json.dumps(public) and "/images/3" not in json.dumps(public)
     figure_session = request(endpoint, "POST", "/api/v1/study-sessions", {"question_ids": [figure_id]}, token=token)
     item_id = figure_session["items"][0]["id"]
-    saved = request(endpoint, "PATCH", "/api/v1/study-sessions/" + figure_session["id"], {"version": figure_session["version"], "answers": [{"id": item_id, "answer": ["A"]}]}, token=token)
+    saved = request(endpoint, "PATCH", "/api/v1/study-sessions/" + figure_session["id"], {"version": figure_session["version"], "answers": [{"id": item_id, "answer": ["B"]}]}, token=token)
     graded = request(endpoint, "POST", "/api/v1/study-sessions/" + figure_session["id"] + "/submit", {"version": saved["version"]}, token=token)
     assert len(graded["items"][0]["solution_image_urls"]) == 2
+    payload = {"study_session_id": figure_session["id"], "study_item_id": item_id}
+    request(endpoint, "POST", "/api/v1/questions/manual", payload, token=foreign, expected=404)
+    added = request(endpoint, "POST", "/api/v1/questions/manual", payload, token=token)
+    repeated = request(endpoint, "POST", "/api/v1/questions/manual", payload, token=token)
+    assert added["id"] == repeated["id"]
+    detail = request(endpoint, "GET", "/api/v1/questions/" + added["id"], token=token)
+    assert detail["student_answer"] == "B"
+    assert len(detail["options"]) == 2 and len(detail["question_figures"]) == 2
+    assert "1+1" in detail["question_text"]
+    assert all(asset["path"].startswith("uploads/" + added["id"] + "/") for asset in detail["question_figures"])
+    restored = request(endpoint, "GET", "/api/v1/study-sessions/" + figure_session["id"], token=token)
+    assert restored["items"][0]["mistake_id"] == added["id"]
+    print("Mistake import passed: wrong image question, source ownership, complete figures, original answer, idempotency and refresh state", flush=True)
     print("Dataset figures passed: stem/option images are public; solution figures appear only after submission", flush=True)
     return {
         "QA_STUDY_FIGURE_SOURCE": figure_source,

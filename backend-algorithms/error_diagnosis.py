@@ -21,7 +21,9 @@ class EvidenceWeights(BaseModel):
 
 
 class DiagnosisEvidence(BaseModel):
-    source: Literal["student_step", "reference_step", "rule", "knowledge"]
+    source: Literal[
+        "student_step", "student_answer", "reference_step", "rule", "knowledge"
+    ]
     source_id: str
     text: str
     verified: bool = False
@@ -57,6 +59,7 @@ def assess_diagnosis(
     references,
     alignment,
     diagnosis=None,
+    student_answer: str | None = None,
     knowledge: list[KnowledgeEvidence] | None = None,
     weights: EvidenceWeights | None = None,
 ) -> EvidenceDiagnosis:
@@ -207,8 +210,39 @@ def assess_diagnosis(
             verified=True,
             next_action="retry",
         )
+    # An answer is real work even when there is no written solution path.
+    # Explain the answer-level hypothesis without inventing a step or proof.
+    if str(student_answer or "").strip() or any(step.text.strip() for step in students):
+        error_type = str(getattr(diagnosis, "error_type", "unknown") or "unknown")
+        correct = error_type in {"exact", "equivalent"}
+        reason = str(getattr(diagnosis, "root_misconception", "") or "").strip()
+        if not reason or any(
+            word in reason for word in ("无法分析", "无法确定", "不足以", "证据不足")
+        ):
+            reason = (
+                "本次作答未发现错误，可以对照参考解析检查判断依据。"
+                if correct
+                else (
+                    "请对照参考答案，检查本次作答是否用全题目条件，以及结论是否符合题意。"
+                )
+            )
+        return EvidenceDiagnosis(
+            error_type=error_type,
+            reason=reason,
+            evidence=[
+                DiagnosisEvidence(
+                    source="student_answer",
+                    source_id="student_answer",
+                    text=str(student_answer).strip(),
+                )
+            ]
+            if str(student_answer or "").strip()
+            else [],
+            confidence_level="needs_confirmation",
+            next_action="retry" if correct else "repair",
+        )
     return EvidenceDiagnosis(
-        reason="现有作答不足以确定具体错因。",
+        reason="还没有你的作答，请先完成这道题。",
         confidence_level="insufficient",
         next_action="confirm_work" if students else "confirm_question",
         question="请补充你从哪一步开始不确定，以及对应的计算过程。"

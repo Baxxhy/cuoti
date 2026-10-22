@@ -156,6 +156,8 @@ func studyDetail(db: Database, value: JsonObject, accounts: Accounts): JsonObjec
         if (available) { publicItem.put("question",bankQuestion(snapshot,accounts)) }
         else { let question=JsonObject(); question.put("subject",snapshot["subject"]); question.put("question_type",snapshot["question_type"]); publicItem.put("question",question) }
         if (submitted) {
+            let added=db.query("SELECT id FROM questions WHERE user_id=? AND status<>'archived' AND JSON_CONTAINS(tags,JSON_QUOTE(?)) LIMIT 1",[sqlValue(value["user_id"]),Some("study-item:"+jsonText(item,"id"))]).rows
+            publicItem.put("mistake_id",if (added.isEmpty()) { JsonNull() } else { JsonString(rowText(added[0],"id")) })
             publicItem.put("grading",item["grading"])
             if (available) {
                 publicItem.put("answer",snapshot["answer"]); publicItem.put("solution",snapshot["solution"])

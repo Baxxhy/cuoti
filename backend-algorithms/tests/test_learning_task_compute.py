@@ -196,6 +196,28 @@ def test_incorrect_observation_causes_bounded_replan_after_zero_hit():
     assert result.traces[1].validation == "rejected"
     assert result.traces[2].planner_source == "verification"
     assert result.attempt["verdict"] == "confirmed_incorrect"
+    assert "本次作答不正确" in result.student_view.feedback
+    assert "还没有核对上" not in result.student_view.feedback
+
+
+def test_wrong_choice_is_explicit_on_first_and_repeated_corrections():
+    ctx = context(
+        subject="物理",
+        question_text="平抛运动落地速度的方向？",
+        question_type="单选题",
+        expected="B",
+        student_steps=[],
+        reference_steps=[],
+        options=[{"label": "A", "text": "30度"}, {"label": "B", "text": "45度"}],
+    )
+    state = Checkpoint(phase="independent")
+    for _ in range(3):
+        result = step(state, "answer", "A", ctx=ctx)
+        assert result.attempt["verdict"] == "confirmed_incorrect"
+        assert "本次作答不正确" in result.student_view.feedback
+        assert "核对上" not in result.student_view.feedback
+        assert not result.learning_eligible
+        state = result.checkpoint
 
 
 def test_hint_exposure_on_contrast_prevents_independent_learning_update():
@@ -409,9 +431,13 @@ def test_probably_correct_is_reviewable_feedback_not_a_confirmed_wrong_answer(
 
 
 def test_independent_multi_blank_fraction_answer_does_not_stall_on_tex_format():
-    ctx = context(question_text=r"在 $\frac{1}{5}$、$\frac{1}{6}$、$\frac{1}{10}$ 中，最大和最小的是？",
-                  expected=r"$\frac{1}{5}$，$\frac{1}{10}$", question_type="填空题",
-                  student_steps=[], reference_steps=["分子相同，分母越小分数越大。"])
+    ctx = context(
+        question_text=r"在 $\frac{1}{5}$、$\frac{1}{6}$、$\frac{1}{10}$ 中，最大和最小的是？",
+        expected=r"$\frac{1}{5}$，$\frac{1}{10}$",
+        question_type="填空题",
+        student_steps=[],
+        reference_steps=["分子相同，分母越小分数越大。"],
+    )
     result = step(Checkpoint(phase="independent"), "answer", "1/5,1/10", ctx=ctx)
     assert result.status == "completed"
     assert result.checkpoint.independent_passed
@@ -422,8 +448,11 @@ def test_independent_multi_blank_fraction_answer_does_not_stall_on_tex_format():
 
 def test_original_view_preserves_options_but_local_repair_does_not():
     from learning_task_compute import view_for
-    choices = [{"label": "A", "text": r"$\{x|-2\le x<1\}$"},
-               {"label": "D", "text": r"\{x|x<1\}"}]
+
+    choices = [
+        {"label": "A", "text": r"$\{x|-2\le x<1\}$"},
+        {"label": "D", "text": r"\{x|x<1\}"},
+    ]
     ctx = context(options=choices)
     original = view_for(ctx, Checkpoint(phase="independent"))
     assert original.prompt_blocks[0].options == choices

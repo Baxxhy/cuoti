@@ -100,16 +100,18 @@
               />
               <button
                 role="button"
-                v-if="
-                  item.grading?.can_update_learning &&
-                  item.grading?.correct === false &&
-                  !questionImageUrls(item.question).length
-                "
+                v-if="item.grading?.correct === false"
                 class="small-btn add-mistake"
-                :disabled="adding === item.id || added.has(item.id)"
+                :disabled="!!adding || added.has(item.id) || !!item.mistake_id"
                 @click="addMistake(item)"
               >
-                {{ added.has(item.id) ? '已加入错题本' : '加入错题本' }}
+                {{
+                  added.has(item.id) || item.mistake_id
+                    ? '已加入错题本'
+                    : adding === item.id
+                      ? '正在加入…'
+                      : '加入错题本'
+                }}
               </button>
             </template>
           </view>
@@ -279,7 +281,6 @@
 import { learningFeedback } from '@/utils/learning-feedback.js'
 import MathText from '@/components/math-text/math-text.vue'
 import QuestionContent from '@/components/question-content/question-content.vue'
-import { questionImageUrls } from '@/utils/question-content'
 import { computed, ref } from 'vue'
 import { onLoad, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData, patchData, postData } from '@/api/index.js'
@@ -547,27 +548,15 @@ function verdict(item) {
         : '未作答'
 }
 async function addMistake(item) {
-  if (adding.value || added.value.has(item.id)) return
+  if (adding.value || added.value.has(item.id) || item.mistake_id) return
   adding.value = item.id
   actionError.value = ''
   try {
     await postData(
       '/questions/manual',
       {
-        question_text: item.question.question_text,
-        subject: item.question.subject,
-        grade: item.question.grade || item.question.grade_band,
-        question_type: normalizeOptions(item.question.options).length
-          ? isMultipleChoice(item.question.question_type)
-            ? '多选题'
-            : '单选题'
-          : '综合题',
-        options: normalizeOptions(item.question.options).map(({ label, text }) => ({
-          label,
-          text,
-        })),
-        student_answer: answerText(item.student_answer),
-        student_steps: [],
+        study_session_id: id.value,
+        study_item_id: item.id,
       },
       { silent: true },
     )

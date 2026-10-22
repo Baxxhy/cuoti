@@ -104,6 +104,20 @@ test('模拟考试：抽取题库、计时、逐题作答与答题卡、交卷�
   }
 })
 
+test('带图错题可以加入错题本，刷新后仍显示已加入', async ({ page }) => {
+  test.skip(!process.env.QA_STUDY_FIGURE_SOURCE, '需要带图题库样本')
+  await page.goto(`/#/pages/bank/bank?source_id=${process.env.QA_STUDY_FIGURE_SOURCE}`)
+  await page.locator('.bank-question').first().click()
+  await page.locator('.answer-options uni-button, .answer-options button').nth(1).click()
+  await expect(page.getByRole('status')).toHaveText('作答已保存')
+  await turnIn(page)
+  await expect(page.locator('.answer-review .verdict')).toHaveText('需要订正')
+  await page.getByRole('button', { name: '加入错题本', exact: true }).click()
+  await expect(page.getByRole('button', { name: '已加入错题本', exact: true })).toBeVisible()
+  await page.reload()
+  await expect(page.getByRole('button', { name: '已加入错题本', exact: true })).toBeVisible()
+})
+
 test('化学题干与选项中的短公式连续排版，解析保留独立公式', async ({ page }, info) => {
   test.skip(!process.env.QA_STUDY_CHEM_SOURCE, '需要化学排版样本')
   const registered = await page.request.post('/api/v1/auth/register', {

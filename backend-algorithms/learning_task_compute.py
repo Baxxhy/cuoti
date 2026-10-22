@@ -1257,10 +1257,18 @@ async def execute_task(
         elif state.attempts >= 3:
             status = "needs_review"
             state.feedback = (
-                "这一步连续几次还没核对上。先要一点提示，或回看原题后再试。"
+                "本次作答不正确。已经连续尝试几次，建议先查看提示，再修改答案。"
             )
         else:
             await support(provider, context, state, traces, explicit_hint=False)
+            if verdict == "confirmed_incorrect":
+                advice = state.feedback
+                if advice in {
+                    "这次结果还没有核对上，请检查条件和运算后再提交。",
+                    "这一步还没有核对上。可以先要一点提示，再重新写一次。",
+                }:
+                    advice = "可以先查看提示，再检查题目条件和你的判断。"
+                state.feedback = "本次作答不正确，请修改后重试。\n\n" + advice
     if state.visualization and state.visualization.source_phase != state.phase:
         state.visualization = None
         state.visual_open = False

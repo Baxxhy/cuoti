@@ -121,7 +121,10 @@ def _diagnose(state: WorkflowState):
 def _confirm(state: WorkflowState):
     checkpoint = state["checkpoint"].model_copy(deep=True)
     diagnosis = checkpoint.evidence_diagnosis
-    checkpoint.feedback = diagnosis.question
+    message = diagnosis.question or (
+        diagnosis.reason + "请补充这一步用到的题目条件或判断依据，再继续订正。"
+    )
+    checkpoint.feedback = message
     # Resume rechecks the context; confirmed edits create a new version through
     # the original question page and Cangjie's existing source checks.
     checkpoint.evidence_diagnosis = None
@@ -131,7 +134,7 @@ def _confirm(state: WorkflowState):
             student_view=StudentView(
                 title="先核对原作答",
                 input_kind="none",
-                prompt_blocks=[ContentBlock(kind="text", text=diagnosis.question)],
+                prompt_blocks=[ContentBlock(kind="text", text=message)],
                 primary_action="查看原题",
                 secondary_actions=[],
                 diagnosis_evidence=diagnosis,

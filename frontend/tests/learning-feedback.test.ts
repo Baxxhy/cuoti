@@ -9,3 +9,11 @@ test('旧判题回执去掉系统说明，数学答案和教学解释保持原�
   expect(learningFeedback('选项与标准答案一致。')).toBe('选对了。')
   expect(learningFeedback('两边同时除以2，得到 $x=1/2$。')).toBe('两边同时除以2，得到 $x=1/2$。')
 })
+
+test('历史订正判错提示明确表达错误，待核验反馈保持区别', () => {
+  expect(learningFeedback('这次结果还没有核对上，请检查条件和运算后再提交。')).toContain(
+    '本次作答不正确',
+  )
+  const pending = '这次作答还需要核对。内容已保留，可以补充依据或回到原题检查。'
+  expect(learningFeedback(pending)).toBe(pending)
+})

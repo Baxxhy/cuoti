@@ -16,13 +16,13 @@
       <text v-if="repairEvidenceNotice" class="evidence-caption" role="status">
         {{ repairEvidenceNotice }}
       </text>
-      <view v-if="diagnosis?.evidence_diagnosis && !diagnosis.user_confirmed" class="summary-card">
+      <view v-if="evidenceSummary" class="summary-card">
         <text class="summary-kicker">
-          {{ diagnosis.evidence_diagnosis.verified ? '步骤核验结果' : '需要核对' }}
+          {{ evidenceSummary.title }}
         </text>
-        <math-text :text="diagnosis.evidence_diagnosis.reason" />
-        <text v-if="diagnosis.evidence_diagnosis.question" class="status-message">
-          {{ diagnosis.evidence_diagnosis.question }}
+        <math-text :text="evidenceSummary.reason" />
+        <text v-if="evidenceSummary.question" class="status-message">
+          {{ evidenceSummary.question }}
         </text>
       </view>
       <!-- =====================================================
@@ -95,7 +95,7 @@
           </view>
           <view class="reason-card">
             <math-text class="option-quote" :text="focusOptionText" />
-            <text class="analysis-lead">AI 判断</text>
+            <text class="analysis-lead">可能错因</text>
             <math-text
               v-for="(line, index) in choiceReasonLines"
               :key="index"
@@ -105,7 +105,7 @@
           </view>
 
           <view class="section-title">
-            <text>{{ modelReviewPending ? '参考判断（待核对）' : '正确判断' }}</text>
+            <text>正确答案与判断依据</text>
           </view>
           <view class="thought-card correct-thought">
             <view class="thought-mark">
@@ -540,7 +540,12 @@ import { getData, patchData, postData } from '@/api/index.js'
 import { ERROR_TYPE_LABELS, errorTypeLabel } from '@/constants/education.js'
 
 import { go } from '@/utils/navigation.js'
-import { diagnosisView } from '@/utils/diagnosis.js'
+import {
+  diagnosisView,
+  diagnosisReason,
+  diagnosisEvidenceView,
+  choiceCorrectionText,
+} from '@/utils/diagnosis.js'
 import { requestLearningTask } from '@/utils/task-entry.js'
 
 /* =========================================================
@@ -587,6 +592,7 @@ const correction = reactive({
 
 const diagnosis = computed(() => item.value?.diagnosis)
 const diagnosisState = computed(() => diagnosisView(item.value))
+const evidenceSummary = computed(() => diagnosisEvidenceView(item.value))
 const repairEvidenceNotice = computed(() => {
   const evidence = diagnosis.value?.counterfactual
   if (evidence?.stale_after_correction) return '错因已修改，请重新核对订正建议。'
@@ -767,7 +773,7 @@ const studentThought = computed(() => {
   const recorded = Number.isInteger(index) ? item.value?.student_steps?.[index]?.text : ''
   if (String(recorded || '').trim()) return recorded
   const step = String(diagnosis.value?.first_error_text || '').trim()
-  return step || '尚未定位到具体步骤，请结合本次作答核对。'
+  return step || String(item.value?.student_answer || '').trim() || '请结合本次作答核对。'
 })
 
 const verifiedRepairText = computed(() => {
@@ -806,6 +812,8 @@ const modelReviewPending = computed(() => {
 
 const correctThought = computed(() => {
   if (verifiedRepairText.value) return verifiedRepairText.value
+  if (!hasStudentSteps.value && finalAnswer.value)
+    return `参考答案：${finalAnswer.value}。${diagnosis.value?.recommended_strategy || ''}`
   const evidence = { ...firstEvidence.value, ...firstEvidence.value?.metadata_json }
   if (diagnosis.value?.user_confirmed) {
     return manualReference.value?.text || '暂无与你标记步骤对应的参考，请结合原题重新核对。'
@@ -825,9 +833,7 @@ const correctThought = computed(() => {
 })
 
 const choiceReasonLines = computed(() => {
-  const reason = String(diagnosis.value?.root_misconception || '')
-    .replace(/\s+/g, ' ')
-    .trim()
+  const reason = diagnosisReason(item.value).replace(/\s+/g, ' ').trim()
   if (reason && !/没有完整说明|规则还没有掌握牢|需要重新检查/.test(reason)) {
     return reason
       .split(/[。；;！!]/)
@@ -843,17 +849,11 @@ const choiceReasonLines = computed(() => {
 })
 
 const choiceCorrection = computed(() => {
-  const reference = solutionSteps.value.find((step) =>
-    new RegExp(`(?:选项)?${focusOptionLabel.value}[^。；;]*`).test(step),
-  )
-  if (reference) return conciseText(reference, '判断选项时，要逐条核对题目条件。', 120)
-  return diagnosis.value?.recommended_strategy || '判断选项时，要逐条核对题目条件。'
+  return choiceCorrectionText(item.value, correctOptionLabels.value)
 })
 
 const reasonLines = computed(() => {
-  const raw = String(diagnosis.value?.root_misconception || '')
-    .replace(/\s+/g, ' ')
-    .trim()
+  const raw = diagnosisReason(item.value).replace(/\s+/g, ' ').trim()
   if (!raw) return ['这一步的规则还没有掌握牢。']
 
   const misconception = raw.match(/^对(.+?)理解不深[，,]\s*误以为(.+?)[。.]?$/)
