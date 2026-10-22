@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><title>研究问题与方案</title><desc>错题帮科研技术插图。文字、形状、图标和连线为可编辑矢量；算例为机制演示。</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#344054"/></marker></defs>
+<rect x="0" y="0" width="1200" height="800" rx="0" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="38" y="52.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">研究问题</text>
+<text x="365" y="52.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">关键方法</text>
+<text x="850" y="52.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">可观察证据</text>
+<rect x="26" y="90" width="1148" height="208" rx="12" fill="#EAF3FB" stroke="none" stroke-width="2"/>
+<rect x="26" y="325" width="1148" height="208" rx="12" fill="#EBF5EE" stroke="none" stroke-width="2"/>
+<rect x="26" y="560" width="1148" height="208" rx="12" fill="#F1ECFA" stroke="none" stroke-width="2"/>
+<g transform="translate(48 116) scale(1.6666666666666667)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="m21 21-4.34-4.34"/>
+  <circle xmlns="http://www.w3.org/2000/svg" cx="11" cy="11" r="8"/>
+</g>
+<text x="105" y="146.0" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="600" text-anchor="start">过程缺依据</text>
+<text x="52" y="201.0" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="400" text-anchor="start">2x + 3 = 11</text>
+<text x="52" y="245.0" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="400" text-anchor="start">2x = 11 + 3</text>
+<polyline points="300,194 364,194" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="466" cy="194" r="70" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="466" y="177.1" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="29" font-weight="600" text-anchor="middle">{4} ≠ {7}</text>
+<text x="466" y="221.4" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="middle">解集比较</text>
+<polyline points="536,194 620,194" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="638" y="173.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">定位实际步骤</text>
+<text x="638" y="219.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">引用原作答</text>
+<polyline points="812,194 864,194" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="886" y="130" width="240" height="122" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="1006.0" y="201.5" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="400" text-anchor="middle">首步不等价</text>
+<g transform="translate(48 352) scale(1.6666666666666667)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M13 21h8"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="m15 5 4 4"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>
+</g>
+<text x="105" y="382.0" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="600" text-anchor="start">答对缺情境</text>
+<text x="52" y="437.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">提示后完成</text>
+<text x="52" y="481.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">独立重新作答</text>
+<polyline points="300,428 364,428" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M380 356 H712 L740 384 V506 H380 Z M712 356 V384 H740" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="400" y="399.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="start">条件对照</text>
+<polyline points="396,418 724,418" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="400" y="466.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="400" text-anchor="start">2x − 3 = 11</text>
+<polyline points="740,428 865,428" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<g transform="translate(890 382) scale(1.5)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M20 6 9 17l-5-5"/>
+</g>
+<text x="941" y="414.6" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="34" font-weight="600" text-anchor="start">x = 7</text>
+<text x="890" y="471.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">记录独立回答</text>
+<g transform="translate(48 588) scale(1.6666666666666667)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M8 2v3"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M16 2v3"/>
+  <rect xmlns="http://www.w3.org/2000/svg" x="3" y="3" width="18" height="18" rx="2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M3 9h18"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M8 13h.01"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M12 13h.01"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M16 13h.01"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M8 17h.01"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M12 17h.01"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M16 17h.01"/>
+</g>
+<text x="105" y="618.0" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="600" text-anchor="start">训练缺接续</text>
+<text x="52" y="672.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">到期错题</text>
+<text x="52" y="716.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="start">可用时间</text>
+<polyline points="300,663 365,663" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="405" cy="660" r="34" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="405" y="669.4" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="middle">复习</text>
+<circle cx="550" cy="660" r="34" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="550" y="669.4" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="middle">作答</text>
+<circle cx="695" cy="660" r="34" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="695" y="669.4" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="middle">反馈</text>
+<polyline points="435,660 520,660" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="580,660 665,660" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="728,660 862,660" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M885 616 V706 C885 733 1125 733 1125 706 V616" fill="#FFFFFF" stroke="#344054" stroke-width="2"/><ellipse cx="1005.0" cy="616" rx="120.0" ry="20" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="1005.0" y="682.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="middle">学习记录</text>
+</svg>

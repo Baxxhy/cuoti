@@ -1,0 +1,111 @@
+{
+  "错题帮_系统说明文档_插图优化版.docx": [
+    {
+      "embedded": "word/media/image9.png",
+      "source": "figures/screenshots/self-check-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image13.png",
+      "source": "figures/screenshots/map-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image5.png",
+      "source": "figures/screenshots/diagnosis-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image6.png",
+      "source": "figures/screenshots/repair-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image11.png",
+      "source": "figures/screenshots/practice-next-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image12.png",
+      "source": "figures/screenshots/today-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image8.png",
+      "source": "figures/screenshots/contrast-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image7.png",
+      "source": "figures/screenshots/independent-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image10.png",
+      "source": "figures/screenshots/practice-result-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image4.png",
+      "source": "figures/07.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image3.png",
+      "source": "figures/05.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image2.png",
+      "source": "figures/02.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image1.png",
+      "source": "figures/01.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image14.png",
+      "source": "figures/screenshots/review-answer-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image15.png",
+      "source": "figures/screenshots/review-feedback-history-mobile.png",
+      "pixel_exact": true
+    }
+  ],
+  "错题帮_系统设计文档_插图优化版.docx": [
+    {
+      "embedded": "word/media/image6.png",
+      "source": "figures/10.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image5.png",
+      "source": "figures/09.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image4.png",
+      "source": "figures/08.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image3.png",
+      "source": "figures/06.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image2.png",
+      "source": "figures/04.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image1.png",
+      "source": "figures/03.png",
+      "pixel_exact": true
+    }
+  ]
+}

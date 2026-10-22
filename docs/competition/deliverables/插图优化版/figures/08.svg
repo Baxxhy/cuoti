@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><title>任务协同</title><desc>错题帮科研技术插图。文字、形状、图标和连线为可编辑矢量；算例为机制演示。</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#344054"/></marker></defs>
+<rect x="0" y="0" width="1200" height="800" rx="0" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<rect x="25" y="24" width="275" height="748" rx="12" fill="#EAF3FB" stroke="none" stroke-width="2"/>
+<g transform="translate(45 44) scale(1.5833333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle xmlns="http://www.w3.org/2000/svg" cx="12" cy="8" r="5"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M20 21a8 8 0 0 0-16 0"/>
+</g>
+<text x="95" y="72.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">学生</text>
+<rect x="330" y="24" width="355" height="748" rx="12" fill="#FFF1DE" stroke="none" stroke-width="2"/>
+<g transform="translate(350 44) scale(1.5833333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect xmlns="http://www.w3.org/2000/svg" width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+  <rect xmlns="http://www.w3.org/2000/svg" width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+  <line xmlns="http://www.w3.org/2000/svg" x1="6" x2="6.01" y1="6" y2="6"/>
+  <line xmlns="http://www.w3.org/2000/svg" x1="6" x2="6.01" y1="18" y2="18"/>
+</g>
+<text x="400" y="72.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">仓颉业务</text>
+<rect x="715" y="24" width="460" height="748" rx="12" fill="#EBF5EE" stroke="none" stroke-width="2"/>
+<g transform="translate(735 44) scale(1.5833333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M12 20v2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M12 2v2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M17 20v2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M17 2v2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M2 12h2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M2 17h2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M2 7h2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M20 12h2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M20 17h2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M20 7h2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M7 20v2"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M7 2v2"/>
+  <rect xmlns="http://www.w3.org/2000/svg" x="4" y="4" width="16" height="16" rx="2"/>
+  <rect xmlns="http://www.w3.org/2000/svg" x="8" y="8" width="8" height="8" rx="1"/>
+</g>
+<text x="785" y="72.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">Python 计算</text>
+<rect x="45" y="127" width="235" height="75" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="162.5" y="173.95000000000002" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="middle">提交真实动作</text>
+<rect x="350" y="127" width="315" height="75" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="507.5" y="173.95000000000002" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="middle">受理与读取检查点</text>
+<polyline points="280,165 350,165" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="778" y="127" width="335" height="73" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="945.5" y="173.29999999999998" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">证据诊断</text>
+<polyline points="665,165 778,165" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="778" y="255" width="335" height="73" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="945.5" y="301.3" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">动作处理</text>
+<polyline points="945,200 945,255" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="778" y="382" width="335" height="73" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="945.5" y="428.3" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">掌握更新</text>
+<polyline points="945,328 945,382" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="778" y="508" width="335" height="73" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="945.5" y="554.3000000000001" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">学习规划</text>
+<polyline points="945,455 945,508" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="778,291 745,291 745,354 818,354" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="829" y="359.5" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="25" font-weight="400" text-anchor="start">工具反馈</text>
+<polyline points="1000,355 1090,355 1090,328" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="1113,163 1150,163 1150,623 540,623 540,571" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="954" y="667.5" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="25" font-weight="400" text-anchor="start">证据不足</text>
+<rect x="350" y="490" width="315" height="81" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="507.5" y="539.9499999999999" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="middle">校验与事务提交</text>
+<polyline points="778,547 665,547" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="350" y="665" width="315" height="75" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="507.5" y="712.3000000000001" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">保存检查点</text>
+<polyline points="507,571 507,665" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="45" y="665" width="235" height="75" rx="8" fill="#F1ECFA" stroke="#344054" stroke-width="2"/>
+<text x="162.5" y="712.3000000000001" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">等待新动作</text>
+<polyline points="350,702 280,702" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="65,665 65,252 162,252 162,202" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="89" y="362.4" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">恢复后继续</text>
+<text x="754" y="729.4" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">返回后结束本次调用</text>
+</svg>

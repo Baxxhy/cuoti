@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><title>来源关联</title><desc>错题帮科研技术插图。文字、形状、图标和连线为可编辑矢量；算例为机制演示。</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#344054"/></marker></defs>
+<rect x="0" y="0" width="1200" height="800" rx="0" fill="#FFFFFF" stroke="none" stroke-width="2"/>
+<text x="28" y="52.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">(a) 学习对象关联</text>
+<text x="653" y="52.8" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="32" font-weight="600" text-anchor="start">(b) 来源版本演化</text>
+<rect x="25" y="85" width="553" height="681" rx="12" fill="#EAF3FB" stroke="none" stroke-width="2"/>
+<rect x="621" y="85" width="553" height="681" rx="12" fill="#F1ECFA" stroke="none" stroke-width="2"/>
+<g transform="translate(81 109) scale(1.875)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle xmlns="http://www.w3.org/2000/svg" cx="12" cy="8" r="5"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M20 21a8 8 0 0 0-16 0"/>
+</g>
+<text x="146" y="142.0" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="30" font-weight="600" text-anchor="start">学生</text>
+<polyline points="220,142 359,142" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M363 103 H519 L547 131 V247 H363 Z M519 103 V131 H547" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="383" y="146.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="start">当前题目</text>
+<polyline points="379,165 531,165" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="383" y="208.4" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="26" font-weight="400" text-anchor="start">来源标识</text>
+<polyline points="455,247 455,292 114,292 114,345" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="455,292 295,292 295,345" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="455,292 455,345" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M44 352 H161 L189 380 V499 H44 Z M161 352 V380 H189" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="64" y="395.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="start">原图</text>
+<polyline points="60,414 173,414" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(95 429) scale(1.8333333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M14 2v5a1 1 0 0 0 1 1h5"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M10 9H8"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M16 13H8"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M16 17H8"/>
+</g>
+<path d="M218 352 H365 L393 380 V499 H218 Z M365 352 V380 H393" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="238" y="395.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="start">实际作答</text>
+<polyline points="234,414 377,414" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<g transform="translate(269 429) scale(1.8333333333333333)" fill="none" stroke="#344054" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path xmlns="http://www.w3.org/2000/svg" d="M13 21h8"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="m15 5 4 4"/>
+  <path xmlns="http://www.w3.org/2000/svg" d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>
+</g>
+<rect x="405" y="352" width="145" height="147" rx="8" fill="#EBF5EE" stroke="#344054" stroke-width="2"/>
+<text x="477.5" y="434.95" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="middle">学习任务</text>
+<polyline points="477,499 477,540 168,540 168,595" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="477,540 477,595" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M61 602 H248 L276 630 V737 H61 Z M248 602 V630 H276" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="81" y="645.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="start">来源快照</text>
+<polyline points="77,664 260,664" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M350 623 V711 C350 738 550 738 550 711 V623" fill="#EBF5EE" stroke="#344054" stroke-width="2"/><ellipse cx="450.0" cy="623" rx="100.0" ry="20" fill="#EBF5EE" stroke="#344054" stroke-width="2"/>
+<text x="450.0" y="688.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="middle">学习事件</text>
+<path d="M649 120 H843 L871 148 V307 H649 Z M843 120 V148 H871" fill="#EAF3FB" stroke="#344054" stroke-width="2"/>
+<text x="669" y="163.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="start">v1</text>
+<polyline points="665,182 855,182" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="669" y="224.5" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="25" font-weight="400" text-anchor="start">2x + 3 = 11</text>
+<path d="M925 120 H1119 L1147 148 V307 H925 Z M1119 120 V148 H1147" fill="#EBF5EE" stroke="#344054" stroke-width="2"/>
+<text x="945" y="163.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="start">v2</text>
+<polyline points="941,182 1131,182" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="945" y="224.5" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="25" font-weight="400" text-anchor="start">2x − 3 = 11</text>
+<polyline points="871,209 925,209" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="874" y="181.6" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="24" font-weight="400" text-anchor="start">编辑</text>
+<polyline points="760,307 760,386" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="1036,307 1036,386" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M650 393 H843 L871 421 V538 H650 Z M843 393 V421 H871" fill="#EAF3FB" stroke="#344054" stroke-width="2"/>
+<text x="670" y="436.2" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="600" text-anchor="start">冻结快照</text>
+<polyline points="666,455 855,455" fill="none" stroke="#8390A1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="925" y="393" width="222" height="145" rx="8" fill="#FFF1DE" stroke="#344054" stroke-width="2"/>
+<text x="1036.0" y="475.3" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">重新核验</text>
+<polyline points="760,538 760,623" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<polyline points="1036,538 1036,623" fill="none" stroke="#344054" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="649" y="630" width="223" height="91" rx="8" fill="#FFFFFF" stroke="#344054" stroke-width="2"/>
+<text x="760.5" y="685.3000000000001" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="28" font-weight="400" text-anchor="middle">历史保留</text>
+<rect x="925" y="630" width="222" height="91" rx="8" fill="#EBF5EE" stroke="#344054" stroke-width="2"/>
+<text x="1036.0" y="684.9499999999999" fill="#344054" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="27" font-weight="400" text-anchor="middle">当前有效结果</text>
+</svg>

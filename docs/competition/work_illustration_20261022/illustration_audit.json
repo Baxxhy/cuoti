@@ -1,0 +1,225 @@
+{
+  "figures": {
+    "01.svg": {
+      "editable_text_labels": 25,
+      "minimum_font_px": 26,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "02.svg": {
+      "editable_text_labels": 27,
+      "minimum_font_px": 24,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "03.svg": {
+      "editable_text_labels": 20,
+      "minimum_font_px": 24,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "04.svg": {
+      "editable_text_labels": 18,
+      "minimum_font_px": 27,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "05.svg": {
+      "editable_text_labels": 23,
+      "minimum_font_px": 24,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "06.svg": {
+      "editable_text_labels": 30,
+      "minimum_font_px": 24,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "07.svg": {
+      "editable_text_labels": 17,
+      "minimum_font_px": 25,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "08.svg": {
+      "editable_text_labels": 16,
+      "minimum_font_px": 25,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "09.svg": {
+      "editable_text_labels": 19,
+      "minimum_font_px": 24,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    },
+    "10.svg": {
+      "editable_text_labels": 24,
+      "minimum_font_px": 24,
+      "text_overlap": false,
+      "connector_crossing_text": false,
+      "out_of_bounds": false,
+      "raster_nodes": 0,
+      "external_dependencies": 0,
+      "png_pixels": [
+        3000,
+        2000
+      ]
+    }
+  },
+  "documents": {
+    "错题帮_系统说明文档_插图优化版.docx": {
+      "original_unchanged": true,
+      "body_unchanged_except_approved_figure_explanations": true,
+      "paragraphs_revised": 2,
+      "references": 20,
+      "sha256": "6e31f50657246b4d017bbef4a2ccba993cfc3a4eb39d674af07a1d9c22537b54"
+    },
+    "错题帮_系统设计文档_插图优化版.docx": {
+      "original_unchanged": true,
+      "body_unchanged_except_approved_figure_explanations": true,
+      "paragraphs_revised": 0,
+      "references": 20,
+      "sha256": "d0df00009d880a93361e6c2d618436e6fc609fa0a8c564e2fc86c28e8cf107a8"
+    }
+  },
+  "screenshots": {
+    "contrast-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "d64d9d99113f4e85dc08d74958a4baae7cc626ba8b08396e88ed883a16266748"
+    },
+    "diagnosis-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "f1e988662b3d5bb7b8e92c6b39dbe47432f2bf34623c2675cddb5c1e352b5bd9"
+    },
+    "independent-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "f3552c165cf7a852e4b6b672b4abf638dfed13f425d769f04263546ff95bcb8a"
+    },
+    "map-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "442949a2cf28be1be2a348ad1b8d63864289b553ac334c8d3dcc89f0ed3ed165"
+    },
+    "practice-next-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "4451bc320b30addc398b110bdf21760bb40a9af9663c52832841a034dfcbe8a7"
+    },
+    "practice-result-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "14843df0219027da2ef87a7db06895e7a8218fcfb75a05e7497438d79a025660"
+    },
+    "repair-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "ca7092112ad91e592651dcef58a539e333ce7a378fd876af429adbfc9415b0a8"
+    },
+    "review-answer-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "f8f829171e944d2f73e876b20777fe321b9fa89bde853d1de9abd722deb8b2c2"
+    },
+    "review-feedback-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "1804bfb2ba2b93271364e0eee5b7c348b1594245939315ef6a21614c5f3b5720"
+    },
+    "self-check-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "5cf32687daf5605a4af85387ee32dbb0b2563be9711f8b2a81d4c8f20ebd31db"
+    },
+    "today-history-mobile.png": {
+      "byte_exact_to_original": true,
+      "sha256": "7811691c0e8997dac8e8896fc325def8922fa40ce3ab683fa22b527095488be9"
+    }
+  },
+  "manual_visual_review": {
+    "all_79_pages_rendered_and_contact_sheet_scanned": true,
+    "technical_figure_pages_opened_individually": {
+      "系统说明": [
+        5,
+        8,
+        10,
+        13
+      ],
+      "系统设计": [
+        5,
+        9,
+        15,
+        21,
+        27,
+        38
+      ]
+    },
+    "issues_fixed": [
+      "版本/时间上下标缺字改用ASCII",
+      "架构图边线穿过文字",
+      "异步返回连线与事务节点相接产生歧义",
+      "补题图失败支路穿字",
+      "对象标题与折角拥挤",
+      "反馈图标标签位置",
+      "概率示意改为可复算数值"
+    ],
+    "remaining_visual_blockers": []
+  }
+}
