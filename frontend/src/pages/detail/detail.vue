@@ -64,12 +64,17 @@
         >
           查看原图
         </button>
-        <math-text class="question-text" :text="item.question_text || '题干等待核对'" />
+        <math-text
+          class="question-text"
+          :text="item.question_text || '题干等待核对'"
+          :subject="item.subject"
+        />
         <view v-if="item.options?.length" class="question-options">
           <math-text
             v-for="(option, index) in item.options"
             :key="index"
             :text="optionText(option, index)"
+            :subject="item.subject"
           />
         </view>
         <image

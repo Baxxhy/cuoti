@@ -158,6 +158,58 @@ function escapedProse(text: string) {
     .join('')
 }
 
+function unwrapFormulaGroup(value: string) {
+  const text = value.trim()
+  if (!text.startsWith('{') || !text.endsWith('}')) return text
+  let depth = 0
+  for (let index = 0; index < text.length; index++) {
+    if (text[index] === '{') depth++
+    if (text[index] === '}') depth--
+    if (depth === 0 && index < text.length - 1) return text
+  }
+  return depth === 0 ? text.slice(1, -1) : text
+}
+
+const ELEMENTS = new Set(
+  'H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og'.split(
+    ' ',
+  ),
+)
+
+// Some imported chemistry records wrap each lost subscript in a new display
+// pair: $${PbO}$$$${2}$$. Join only adjacent, explicitly grouped fragments.
+// Ordinary adjacent variables and unpaired delimiters keep the existing parser.
+function joinImportedFormulaFragments(source: string, subject: string) {
+  return source.replace(/(?:\$\$(?:(?!\$\$)[\s\S])*?\$\$){2,}/g, (run) => {
+    const fragments = [...run.matchAll(/\$\$([\s\S]*?)\$\$/g)].map((match) => match[1])
+    if (!fragments.every((part) => part.trim().startsWith('{') && part.trim().endsWith('}')))
+      return run
+    const parts = fragments.map(unwrapFormulaGroup)
+    const tex = parts.join('')
+    const normalized = tex.replace(/_\{(\d+)\}/g, '$1')
+    const uncharged = normalized.replace(/\^\{\d*[+-]\}/g, '')
+    const atoms = uncharged.match(/[A-Z][a-z]?/g) || []
+    const chemical =
+      subject === '化学' &&
+      /^(?:[A-Z][a-z]?|e|\d+|[+()=～\s.])+$/.test(uncharged) &&
+      atoms.every((atom) => ELEMENTS.has(atom)) &&
+      (new Set(atoms).size >= 2 || atoms.some((atom) => atom.length > 1)) &&
+      parts.some((part) => /^\d+$/.test(part))
+    // mhchem distinguishes reaction separators from ionic charges by spaces.
+    // Keep explicitly supplied charges intact when spacing those separators.
+    const formula = chemical
+      ? normalized
+          .split('～')
+          .map(
+            (part) =>
+              `\\ce{${part.replace(/\^\{\d*[+-]\}|[+=]/g, (token) => (token.startsWith('^') ? token : ` ${token} `))}}`,
+          )
+          .join('\\sim ')
+      : fragments.join('')
+    return `$$${formula}$$`
+  })
+}
+
 function renderDelimitedMath(value: string | null | undefined, inline = false) {
   const source = String(value ?? '')
     // Repair the known JSON \f decoding issue without changing other controls.
@@ -181,7 +233,17 @@ function renderDelimitedMath(value: string | null | undefined, inline = false) {
       output += escapeHtml(tex)
       continue
     }
-    const displayMode = !inline && (match[1] !== undefined || match[2] !== undefined)
+    const before = source.slice(source.lastIndexOf('\n', index - 1) + 1, index)
+    const lineEnd = source.indexOf('\n', cursor)
+    const after = source.slice(cursor, lineEnd < 0 ? source.length : lineEnd)
+    const standalone = !before.trim() && !after.trim()
+    const introducedEquation =
+      /[：:]\s*$/.test(before) && /[=→⇌]|\\(?:rightarrow|rightleftharpoons)/.test(tex)
+    // Imported $$ often surrounds a short formula inside a sentence. Keep it
+    // inline there; explicit \[...\], separate equations and tables stay blocks.
+    const displayMode =
+      !inline &&
+      (match[2] !== undefined || (match[1] !== undefined && (standalone || introducedEquation)))
     const englishPhrase =
       /^[A-Za-z\s'’.,!?;:-]+$/.test(tex) &&
       /\s/.test(tex.trim()) &&
@@ -278,8 +340,8 @@ function tableCells(line: string) {
   )
 }
 
-export function renderMathText(value: string | null | undefined, inline = false) {
-  const source = stripImageMarkers(String(value ?? ''))
+export function renderMathText(value: string | null | undefined, inline = false, subject = '') {
+  const source = joinImportedFormulaFragments(stripImageMarkers(String(value ?? '')), subject)
   const lines = source.split('\n')
   let output = ''
   let start = 0

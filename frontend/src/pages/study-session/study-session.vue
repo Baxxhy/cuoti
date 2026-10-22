@@ -56,6 +56,7 @@
             <template v-else>
               <question-content
                 :text="item.question.question_text"
+                :subject="item.question.subject"
                 :images="item.question.image_urls || []"
               />
               <view
@@ -66,6 +67,7 @@
                 <text>{{ option.label }}.</text>
                 <question-content
                   :text="option.text"
+                  :subject="item.question.subject"
                   :images="option.image_urls || []"
                   :image-label="`选项${option.label}配图`"
                 />
@@ -79,6 +81,7 @@
                   <text class="answer-label">参考答案</text>
                   <question-content
                     :text="answerText(item.answer)"
+                    :subject="item.question.subject"
                     :images="item.answer_image_urls || []"
                     image-label="答案图"
                   />
@@ -88,6 +91,7 @@
                 v-if="item.solution || item.solution_image_urls?.length"
                 class="reference-solution"
                 :text="item.solution"
+                :subject="item.question.subject"
                 :images="item.solution_image_urls || []"
                 image-label="解析图"
                 :inline="false"
@@ -149,6 +153,7 @@
               </view>
               <question-content
                 class="question-stem"
+                :subject="current.question.subject"
                 :text="current.question.question_text"
                 :images="current.question.image_urls || []"
               />
@@ -165,6 +170,7 @@
                   <text class="option-letter">{{ option.label }}</text>
                   <question-content
                     :text="option.text"
+                    :subject="current.question.subject"
                     :images="option.image_urls || []"
                     :image-label="`选项${option.label}配图`"
                     :previewable="false"

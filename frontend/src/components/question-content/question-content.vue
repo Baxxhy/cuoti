@@ -1,7 +1,12 @@
 <template>
   <view class="question-content">
     <template v-for="(block, index) in blocks" :key="index">
-      <math-text v-if="block.kind === 'text'" :text="block.text" :inline="inline" />
+      <math-text
+        v-if="block.kind === 'text'"
+        :text="block.text"
+        :inline="inline"
+        :subject="subject"
+      />
       <view v-else-if="block.kind === 'missing'" class="image-status" role="alert">
         {{ imageLabel }}缺失，请核对题目
       </view>
@@ -38,9 +43,10 @@ const props = withDefaults(
     images?: string[]
     imageLabel?: string
     inline?: boolean
+    subject?: string
     previewable?: boolean
   }>(),
-  { text: '', images: () => [], imageLabel: '题图', inline: true, previewable: true },
+  { text: '', images: () => [], imageLabel: '题图', inline: true, previewable: true, subject: '' },
 )
 const blocks = computed(() => questionContentBlocks(props.text || '', props.images))
 const failed = ref<Record<string, boolean>>({}),

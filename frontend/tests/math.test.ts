@@ -291,3 +291,54 @@ it('OCR 无分隔符集合正常渲染，同时保留不等号含义与转义安
   expect(renderMathText('文本 <script>alert(1)</script>')).not.toContain('<script>')
   expect(renderMathText('普通文本')).not.toContain('class="katex"')
 })
+
+describe('化学题干与解析的连续排版', () => {
+  it('解析中的短 display 标记遵循句子，不把每个化学式变成独立段落', () => {
+    const source = 'Ⅰ中$${a(PbO_{2})}$$为正极，$${b(Pb)}$$为负极；$${PbSO_{4}}$$变为$${PbO_{2}}$$。'
+    const html = renderMathText(source, false, '化学')
+    expect(html.match(/class="katex"/g)).toHaveLength(4)
+    expect(html).not.toContain('katex-display')
+    expect(html).not.toContain('math-unparsed')
+    expect(html).toContain('为正极')
+    expect(html).toContain('<msub>')
+  })
+
+  it('题库拆开的元素和数字拼回同一反应式，正确区分下标和系数', () => {
+    const source =
+      '总反应式中$${Pb+PbO}$$$${2}$$$${+2H}$$$${2}$$$${SO}$$$${4}$$$${=2H}$$$${2}$$$${O+2PbSO}$$$${4}$$，电子转移。'
+    const html = renderMathText(source, false, '化学')
+    expect(html.match(/class="katex"/g)).toHaveLength(1)
+    expect(html).toContain(String.raw`\ce{Pb + PbO2 + 2H2SO4 = 2H2O + 2PbSO4}`)
+    expect(html).not.toContain('<msup>')
+    expect(html.match(/<msub>/g)?.length).toBeGreaterThanOrEqual(5)
+    expect(html).not.toContain('katex-display')
+    expect(html).not.toContain('math-unparsed')
+  })
+
+  it('带电荷和既有下标的连续碎片保持符号，不按任意数字猜改数学公式', () => {
+    const html = renderMathText(
+      '硫酸与电子$${2H}$$$${2}$$$${SO}$$$${_{4}～}$$$${2e^{-}}$$对应。',
+      false,
+      '化学',
+    )
+    expect(html.match(/class="katex"/g)).toHaveLength(1)
+    expect(html).toContain(String.raw`\ce{2H2SO4}\sim \ce{2e^{-}}`)
+    expect(html.match(/<msub>/g)).toHaveLength(2)
+    expect(html.match(/<msup>/g)).toHaveLength(1)
+    expect(html).not.toContain('math-unparsed')
+    expect(renderMathText('字母$${C}$$$${2}$$表示系数。')).not.toContain('\\ce')
+    expect(renderMathText('数学中$${H}$$$${2}$$$${O}$$相乘。', false, '数学')).not.toContain('\\ce')
+    const grouped = renderMathText('数学中$${x^{2}}$$$${^{3}}$$。', false, '数学')
+    expect(grouped).not.toContain('math-unparsed')
+    expect(grouped).toContain('{x^{2}}{^{3}}')
+  })
+
+  it('有意独立展示的公式、反应式和显式块公式继续保持块级排版', () => {
+    for (const source of [
+      '推导如下\n$$x^2+1=0$$\n继续分析',
+      '电极反应为：$${PbSO_{4}+2H_{2}O-2e^{-}=PbO_{2}+4H^{+}+SO_{4}^{2-}}$$故A正确。',
+      String.raw`独立公式：\[Cu^{2+}\]`,
+    ])
+      expect(renderMathText(source, false, '化学')).toContain('katex-display')
+  })
+})

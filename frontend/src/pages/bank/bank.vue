@@ -142,6 +142,7 @@
             <view class="bank-question-preview">
               <math-text
                 class="bank-question-text"
+                :subject="question.subject"
                 :text="question.preview_text || question.question_text"
                 inline
               />

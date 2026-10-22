@@ -14,14 +14,16 @@ const props = withDefaults(
   defineProps<{
     text?: string | null
     inline?: boolean
+    subject?: string
   }>(),
   {
     text: '',
     inline: false,
+    subject: '',
   },
 )
 
-const html = computed(() => renderMathText(props.text, props.inline))
+const html = computed(() => renderMathText(props.text, props.inline, props.subject))
 const needsReview = computed(() => html.value.includes('class="math-unparsed"'))
 </script>
 
