@@ -1,0 +1,44 @@
+{
+  "项目说明文档": {
+    "paragraphs": 109,
+    "table_cells": 93,
+    "headings": 28,
+    "figure_captions": 11,
+    "source_coverage_complete": true,
+    "linked_references_preserved": 5,
+    "sequential_captions": true,
+    "sha256": "a8cd20580eec0ac3cbe74f99adab384ca7555f8030cc1bae8ffa13d6bf43d9e4"
+  },
+  "系统设计文档": {
+    "paragraphs": 173,
+    "table_cells": 315,
+    "headings": 34,
+    "figure_captions": 6,
+    "source_coverage_complete": true,
+    "linked_references_preserved": 0,
+    "sequential_captions": true,
+    "sha256": "4ebb000530029fa29aaf73219fe4ca93f939c3c03575e1efdefeb6fd875473fd"
+  },
+  "preserved_originals": [
+    {
+      "name": "错题帮_系统设计文档_参赛定稿.docx",
+      "sha256": "6c290153401122b432d6c7e537859e1c017a94d94a9cb7984c8cb03bce4ad72e",
+      "matches_d963059": true
+    },
+    {
+      "name": "错题帮_系统设计文档_参赛定稿.md",
+      "sha256": "394c262677f2a8905d251342d3ef61f1ffa779f23b9593b089f74e013b43eb67",
+      "matches_d963059": true
+    },
+    {
+      "name": "错题帮_项目说明文档_参赛定稿.docx",
+      "sha256": "53ae51137b66eadc35682e9a8c67f048dcdd5a95e3b29fd64b7985a456d8d9fb",
+      "matches_d963059": true
+    },
+    {
+      "name": "错题帮_项目说明文档_参赛定稿.md",
+      "sha256": "30d7a481677b1624dc13d0b0e1716f32007d458da5cb2380d28b1a84f7f16e3c",
+      "matches_d963059": true
+    }
+  ]
+}

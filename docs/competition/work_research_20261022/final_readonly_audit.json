@@ -1,0 +1,30 @@
+{
+  "错题帮_项目说明文档_研究重构版.docx": {
+    "sha256": "a8cd20580eec0ac3cbe74f99adab384ca7555f8030cc1bae8ffa13d6bf43d9e4",
+    "editable_text_black": true,
+    "effective_font_runs_checked": 631,
+    "fonts": [
+      "SimSun",
+      "SimHei"
+    ],
+    "no_headers_footers": true,
+    "no_appendix": true,
+    "full_grid_tables": true,
+    "centered_captions": true,
+    "source_baseline": "71894bf"
+  },
+  "错题帮_系统设计文档_研究重构版.docx": {
+    "sha256": "4ebb000530029fa29aaf73219fe4ca93f939c3c03575e1efdefeb6fd875473fd",
+    "editable_text_black": true,
+    "effective_font_runs_checked": 1394,
+    "fonts": [
+      "SimSun",
+      "SimHei"
+    ],
+    "no_headers_footers": true,
+    "no_appendix": true,
+    "full_grid_tables": true,
+    "centered_captions": true,
+    "source_baseline": "71894bf"
+  }
+}

@@ -1,0 +1,83 @@
+[
+  {
+    "path": "/root/.codex/attachments/3ec43fc9-d135-464f-9c32-f69f92b33369/项目测试文档v1.8.docx",
+    "sha256": "094530a6437a7502d12839f1b6cafe9586a0c90a4c02b949ab7a7855f7b9e4c2",
+    "duplicate": false,
+    "paragraphs": 325,
+    "tables": 31,
+    "characters": 45150
+  },
+  {
+    "path": "/root/.codex/attachments/3ec43fc9-d135-464f-9c32-f69f92b33369/项目开发文档v1.7.docx",
+    "sha256": "8e5f1083a88f4365130c7831574da4d0ff7272516c65cab1fdaa61e4a44ec2e3",
+    "duplicate": false,
+    "paragraphs": 743,
+    "tables": 57,
+    "characters": 96673
+  },
+  {
+    "path": "/root/.codex/attachments/3ec43fc9-d135-464f-9c32-f69f92b33369/设计及创新性分析报告_v2.1.docx",
+    "sha256": "59172aaf2a2a57ae4647efbcecfe18116a040e79327fcfe3c5f969d5375dab27",
+    "duplicate": false,
+    "paragraphs": 235,
+    "tables": 3,
+    "characters": 23594
+  },
+  {
+    "path": "/root/.codex/attachments/3ec43fc9-d135-464f-9c32-f69f92b33369/技术研究报告v1.6.docx",
+    "sha256": "16ccfb46568b9a533ec19181b8b20ba0efbfb508af7a27b2e177134c8f1c933d",
+    "duplicate": false,
+    "paragraphs": 255,
+    "tables": 8,
+    "characters": 21123
+  },
+  {
+    "path": "/root/.codex/attachments/3ec43fc9-d135-464f-9c32-f69f92b33369/项目计划书-错题全都队-v3.7.docx",
+    "sha256": "02d97c83e84fe9422ef6f57250e312cbe4e5071fabd2ab9a303113478ba17548",
+    "duplicate": false,
+    "paragraphs": 392,
+    "tables": 29,
+    "characters": 44458
+  },
+  {
+    "path": "/root/.codex/attachments/d15518ea-98c3-465e-9576-ebad30dcd597/项目测试文档v1.8.docx",
+    "sha256": "094530a6437a7502d12839f1b6cafe9586a0c90a4c02b949ab7a7855f7b9e4c2",
+    "duplicate": true
+  },
+  {
+    "path": "/root/.codex/attachments/d15518ea-98c3-465e-9576-ebad30dcd597/项目开发文档v1.7.docx",
+    "sha256": "8e5f1083a88f4365130c7831574da4d0ff7272516c65cab1fdaa61e4a44ec2e3",
+    "duplicate": true
+  },
+  {
+    "path": "/root/.codex/attachments/d15518ea-98c3-465e-9576-ebad30dcd597/设计及创新性分析报告_v2.1.docx",
+    "sha256": "59172aaf2a2a57ae4647efbcecfe18116a040e79327fcfe3c5f969d5375dab27",
+    "duplicate": true
+  },
+  {
+    "path": "/root/.codex/attachments/d15518ea-98c3-465e-9576-ebad30dcd597/技术研究报告v1.6.docx",
+    "sha256": "16ccfb46568b9a533ec19181b8b20ba0efbfb508af7a27b2e177134c8f1c933d",
+    "duplicate": true
+  },
+  {
+    "path": "/root/.codex/attachments/d15518ea-98c3-465e-9576-ebad30dcd597/项目计划书-错题全都队-v3.7.docx",
+    "sha256": "02d97c83e84fe9422ef6f57250e312cbe4e5071fabd2ab9a303113478ba17548",
+    "duplicate": true
+  },
+  {
+    "path": "docs/competition/deliverables/错题帮_项目说明文档_重写终稿.docx",
+    "sha256": "59e8d6a82ae1c7c8aca2bf228beb8eccccb2cadaa1e6a9df5b0637a66f6f0d67",
+    "duplicate": false,
+    "paragraphs": 183,
+    "tables": 8,
+    "characters": 20128
+  },
+  {
+    "path": "docs/competition/deliverables/错题帮_系统设计文档_重写终稿.docx",
+    "sha256": "bd1c9e1bc02560fb855bc1be1b24793737e58b1d036c49acee1c7bca0338a0be",
+    "duplicate": false,
+    "paragraphs": 205,
+    "tables": 14,
+    "characters": 22926
+  }
+]
