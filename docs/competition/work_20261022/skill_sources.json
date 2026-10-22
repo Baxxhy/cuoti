@@ -1,0 +1,22 @@
+{
+  "technical-writing": {
+    "commit": "5d8ef7a8de5435cc5a03367678b86fc9dd2a078f",
+    "entry": "/tmp/cuoti-writing-skills/technical-writing/skills/technical-writing/SKILL.md",
+    "entry_sha256": "623cef98acaff58fc6fb75efe2251503eb2ef8e0d39d899cdd770ac58a05f199"
+  },
+  "document-specialist-skill": {
+    "commit": "1eb1d3932702704cccb28624803171dc43f669ea",
+    "entry": "/tmp/cuoti-writing-skills/document-specialist-skill/skills/documentation-specialist/SKILL.md",
+    "entry_sha256": "e22a3fc9a6b2a7493d7375574d2bbc15f58415c0fd99e5b456ade701276af8a8"
+  },
+  "technical-writer": {
+    "commit": "85e53729dd959a2795d593d6769068e342cf3486",
+    "entry": "/tmp/cuoti-writing-skills/technical-writer/plugins/technical-writer/skills/reviewing-technical-prose/SKILL.md",
+    "entry_sha256": "657c897a2487c82977cabea4b0068e2a1d872126e94035e98ba182696555cbdd"
+  },
+  "manuscript-writing": {
+    "commit": "fbc5bda2d336de0fcb0dd8a06e171acbe2418233",
+    "entry": "/tmp/cuoti-writing-skills/manuscript-writing/SKILL.md",
+    "entry_sha256": "45f95a05281ed62425741ed81115a6a3ab910f814d1b22dcbfcc0fd4a1e3d690"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "zip": "错题帮_仓颉杯参赛文档最终版.zip",
+  "sha256": "e127598e37a1dbd33979755b8fec9863dfbb849016199cce8991e25eb793eb06",
+  "bytes": 22927897,
+  "files": [
+    {
+      "path": "figures/01.png",
+      "sha256": "0df00b1e3b2c51145202dea3d5b22d1dd4a2ec65f77d8f7168a9125360168364"
+    },
+    {
+      "path": "figures/01_prompt.txt",
+      "sha256": "341f892c0c0152231d05500dd5c823aa0988cc58e145de5fbd22677946308d09"
+    },
+    {
+      "path": "figures/02.png",
+      "sha256": "8f7fee0de82344df6ffe34eee75fb1b77dafed7c9890a5a839a805353ea79797"
+    },
+    {
+      "path": "figures/02_prompt.txt",
+      "sha256": "b8e04c22985c5a53d18ba514f200968ae184bb93e6bdc9d4fb40964080467c95"
+    },
+    {
+      "path": "figures/03.png",
+      "sha256": "295dfe0652baa01ad3a721df119fada7097bcf5122398299134fd3e544b86801"
+    },
+    {
+      "path": "figures/03_prompt.txt",
+      "sha256": "3ee505fdfccb59b3b92625132ed87872846f4ad37c0cc5ed01135b02f3ce129d"
+    },
+    {
+      "path": "figures/04.png",
+      "sha256": "cfc19456620914614c00673942be939ac755c3e4b7a16b771f0989079be7f2fa"
+    },
+    {
+      "path": "figures/04_prompt.txt",
+      "sha256": "322e1adb6759891bc473d8d4742759cd3031cc2bd339731d68521c59cf0b8f93"
+    },
+    {
+      "path": "figures/05.png",
+      "sha256": "55e1b8745994339038ab6b687d4291ec5082e7b7dbe66c581900ca96cd36b36d"
+    },
+    {
+      "path": "figures/05_prompt.txt",
+      "sha256": "bad6fdf6425e58cccd2a5327e1dce34a9be7a0ce59ac7b64913c15a8e653c07b"
+    },
+    {
+      "path": "figures/06.png",
+      "sha256": "560242d52b7d3f69b5475263716ba276972d86c0dc4f525152cca860f9d1b179"
+    },
+    {
+      "path": "figures/06_prompt.txt",
+      "sha256": "cddd5dccb647d55c8e650da9492c2b539f7751f6da8bead8bf038f28f615dbe7"
+    },
+    {
+      "path": "figures/07.png",
+      "sha256": "bfd2d9729fca161714e189c24c4fc7d08347d7879fdca52ad8b7313131b14226"
+    },
+    {
+      "path": "figures/07_prompt.txt",
+      "sha256": "65152c50e99c1987942196c810af4fce1bb2b12dcf799125ca69b42d7ea7fa1b"
+    },
+    {
+      "path": "figures/08.png",
+      "sha256": "947e8532f3ae061874e194bcfb100d5d1eeaa14f90406f8f2978eb8c74b8702f"
+    },
+    {
+      "path": "figures/08_prompt.txt",
+      "sha256": "c3de510b323deffc2165ec2581245712cea6ec666a065af664a18ee9de4655e6"
+    },
+    {
+      "path": "figures/09.png",
+      "sha256": "2c56a5187899a8d3035ddfac3dd121501c16a1b75d3ecb904d4d95112b19fdac"
+    },
+    {
+      "path": "figures/09_prompt.txt",
+      "sha256": "1ed480756a60b0f4df6417d448f6cbc472c2218357bcf8e470046fa83eaad8c2"
+    },
+    {
+      "path": "figures/10.png",
+      "sha256": "c1fda426f47a868cfd96adb700f4c9dabd26292d554f4b477169d8606917911b"
+    },
+    {
+      "path": "figures/10_prompt.txt",
+      "sha256": "ee53126f767d5ce9a69d86e59fa6f1a0445b4f0cace52351374bd5177259acc7"
+    },
+    {
+      "path": "figures/screenshots/diagnosis-history-mobile.png",
+      "sha256": "f1e988662b3d5bb7b8e92c6b39dbe47432f2bf34623c2675cddb5c1e352b5bd9"
+    },
+    {
+      "path": "figures/screenshots/practice-next-history-mobile.png",
+      "sha256": "4451bc320b30addc398b110bdf21760bb40a9af9663c52832841a034dfcbe8a7"
+    },
+    {
+      "path": "figures/screenshots/practice-result-history-mobile.png",
+      "sha256": "14843df0219027da2ef87a7db06895e7a8218fcfb75a05e7497438d79a025660"
+    },
+    {
+      "path": "figures/screenshots/repair-history-mobile.png",
+      "sha256": "ca7092112ad91e592651dcef58a539e333ce7a378fd876af429adbfc9415b0a8"
+    },
+    {
+      "path": "figures/图表说明.md",
+      "sha256": "d8f26bdacf082d5465efb07472be9eb0da089cd57e45447445f3fec4ca7066c2"
+    },
+    {
+      "path": "交付说明.md",
+      "sha256": "e8fad25e69d6ee06a4f1dbf2ac2d8994260543934463569ae3e88f54d1db2d9a"
+    },
+    {
+      "path": "证据与来源.md",
+      "sha256": "fd51f4300dd8247dc6cd9fc2a8cdf7b4293e4ee399e7cf9030db5c737fa1da5a"
+    },
+    {
+      "path": "运行与依赖说明.md",
+      "sha256": "2580c3756302beb1bf00d6e14a31ca157ea80e78365b944f3d6c129f87e7960f"
+    },
+    {
+      "path": "错题帮_系统设计文档_重写终稿.docx",
+      "sha256": "6a5414e06f84d9c81d452138eb2df154083303e3ccc3b59c4d30500d6ed4b9f7"
+    },
+    {
+      "path": "错题帮_系统设计文档_重写终稿.md",
+      "sha256": "ac4a252e3ae52c4334fd62ba3dc5eeee480a0637789461e69f36c9ff0c1e6753"
+    },
+    {
+      "path": "错题帮_项目说明文档_重写终稿.docx",
+      "sha256": "e466ba5e46fc7ab36f50e7727dbfc4b9e2a1de7776825d7aac9227b8f30f85dc"
+    },
+    {
+      "path": "错题帮_项目说明文档_重写终稿.md",
+      "sha256": "850345f8c8d14364667a8395f1a4450b79eac3a9e5679a3d7f6c83c966edb278"
+    }
+  ],
+  "count": 32,
+  "crc_and_byte_comparison": true,
+  "no_internal_review_or_secrets": true,
+  "local_md_links_exist": true
+}

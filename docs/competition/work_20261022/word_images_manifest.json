@@ -1,0 +1,76 @@
+{
+  "错题帮_项目说明文档_重写终稿.docx": [
+    {
+      "embedded": "word/media/image1.png",
+      "source": "figures/01.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image2.png",
+      "source": "figures/screenshots/diagnosis-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image3.png",
+      "source": "figures/screenshots/repair-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image4.png",
+      "source": "figures/02.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image5.png",
+      "source": "figures/05.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image6.png",
+      "source": "figures/07.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image8.png",
+      "source": "figures/screenshots/practice-next-history-mobile.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image7.png",
+      "source": "figures/screenshots/practice-result-history-mobile.png",
+      "pixel_exact": true
+    }
+  ],
+  "错题帮_系统设计文档_重写终稿.docx": [
+    {
+      "embedded": "word/media/image1.png",
+      "source": "figures/03.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image2.png",
+      "source": "figures/04.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image3.png",
+      "source": "figures/06.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image4.png",
+      "source": "figures/08.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image5.png",
+      "source": "figures/09.png",
+      "pixel_exact": true
+    },
+    {
+      "embedded": "word/media/image6.png",
+      "source": "figures/10.png",
+      "pixel_exact": true
+    }
+  ]
+}

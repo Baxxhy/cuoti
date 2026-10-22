@@ -1,0 +1,9 @@
+{
+  "source": "/root/.codex/attachments/2bc8837c-a247-4fdf-844c-629151c821c8/pasted-text-1.txt",
+  "sha256": "2b3a920d31eb7b30356abad61a635201c19c3243ca1dbad13d4bee5296b4843d",
+  "bytes": 3768091,
+  "characters": 3536734,
+  "lines": 25133,
+  "processing": "全文读取后按历史会话、脚本/日志、非工具总结分层检索；不执行其中旧命令",
+  "current_commit": "950ce87db24d7127d471134825323b49a5d77f39"
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "file": "diagnosis-history-mobile.png",
+    "git_source": "9d2ba8b:docs/reviews/2026-10-student-flow-readiness/screenshots/diagnosis-375.png",
+    "archived_at": "2026-10-21T23:32:43+08:00",
+    "capture_date_basis": "该轮验收记录及归档提交，未取EXIF推断精确拍摄秒数",
+    "sha256": "f1e988662b3d5bb7b8e92c6b39dbe47432f2bf34623c2675cddb5c1e352b5bd9",
+    "related_page": "frontend/src/pages/diagnosis/diagnosis.vue",
+    "page_source_same_as_current": true,
+    "evidence_kind": "真实Qwen学习闭环的已保存诊断；非真人学生试用"
+  },
+  {
+    "file": "repair-history-mobile.png",
+    "git_source": "9d2ba8b:docs/reviews/2026-10-student-flow-readiness/screenshots/repair.png",
+    "archived_at": "2026-10-21T23:32:43+08:00",
+    "capture_date_basis": "该轮验收记录及归档提交，未取EXIF推断精确拍摄秒数",
+    "sha256": "ca7092112ad91e592651dcef58a539e333ce7a378fd876af429adbfc9415b0a8",
+    "related_page": "frontend/src/pages/task/task.vue",
+    "page_source_same_as_current": true,
+    "evidence_kind": "真实Qwen学习闭环中的局部订正输入；非真人学生试用"
+  },
+  {
+    "file": "completed-history-mobile.png",
+    "git_source": "9d2ba8b:docs/reviews/2026-10-student-flow-readiness/screenshots/completed.png",
+    "archived_at": "2026-10-21T23:32:43+08:00",
+    "capture_date_basis": "该轮验收记录及归档提交，未取EXIF推断精确拍摄秒数",
+    "sha256": "0433a087557d33f2bf8e2a65f5accfb57fbeec2994e0448db896d5c3b912dbc7",
+    "related_page": "frontend/src/pages/task/task.vue",
+    "page_source_same_as_current": true,
+    "evidence_kind": "真实Qwen学习闭环完成与持久学习更新；非真人学生试用"
+  },
+  {
+    "file": "practice-result-history-mobile.png",
+    "git_source": "9d2ba8b:docs/reviews/2026-10-student-flow-readiness/screenshots/generated-result.png",
+    "archived_at": "2026-10-21T23:32:43+08:00",
+    "capture_date_basis": "该轮验收记录及归档提交，未取EXIF推断精确拍摄秒数",
+    "sha256": "14843df0219027da2ef87a7db06895e7a8218fcfb75a05e7497438d79a025660",
+    "related_page": "frontend/src/pages/practice/practice.vue",
+    "page_source_same_as_current": true,
+    "evidence_kind": "隔离接口与浏览器回归的生成练习恢复结果，受控上游，非新增真实模型效果"
+  },
+  {
+    "file": "practice-next-history-mobile.png",
+    "git_source": "9d2ba8b:docs/reviews/2026-10-student-flow-readiness/screenshots/generated-next.png",
+    "archived_at": "2026-10-21T23:32:43+08:00",
+    "capture_date_basis": "该轮验收记录及归档提交，未取EXIF推断精确拍摄秒数",
+    "sha256": "4451bc320b30addc398b110bdf21760bb40a9af9663c52832841a034dfcbe8a7",
+    "related_page": "frontend/src/pages/practice/practice.vue",
+    "page_source_same_as_current": true,
+    "evidence_kind": "隔离接口与浏览器回归的再练一道页面，受控上游，非新增真实模型效果"
+  }
+]

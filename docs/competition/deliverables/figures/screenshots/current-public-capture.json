@@ -1,0 +1,32 @@
+[
+  {
+    "file": "login-current-mobile.png",
+    "route": "login/login",
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "errors": [],
+    "source": "current public page; no login; no API interception; no model request",
+    "captured_at": "2026-10-22T02:08:27.697Z"
+  },
+  {
+    "file": "login-current-desktop.png",
+    "route": "login/login",
+    "width": 1280,
+    "height": 900,
+    "overflow": false,
+    "errors": [],
+    "source": "current public page; no login; no API interception; no model request",
+    "captured_at": "2026-10-22T02:08:28.735Z"
+  },
+  {
+    "file": "register-current-mobile.png",
+    "route": "register/register",
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "errors": [],
+    "source": "current public page; no login; no API interception; no model request",
+    "captured_at": "2026-10-22T02:08:29.408Z"
+  }
+]
