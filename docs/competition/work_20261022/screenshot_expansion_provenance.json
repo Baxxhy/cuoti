@@ -1,0 +1,58 @@
+[
+  {
+    "file": "today-history-mobile.png",
+    "source_commit": "9d2ba8b",
+    "source_path": "docs/final/screenshots/release-today.png",
+    "sha256": "7811691c0e8997dac8e8896fc325def8922fa40ce3ab683fa22b527095488be9",
+    "usage": "今日继续入口",
+    "scope": "历史浏览器运行归档；本轮未重新运行对应学习动作；不代表同一学生连续过程"
+  },
+  {
+    "file": "independent-history-mobile.png",
+    "source_commit": "9d2ba8b",
+    "source_path": "docs/reviews/2026-10-student-flow-readiness/screenshots/task-375.png",
+    "sha256": "f3552c165cf7a852e4b6b672b4abf638dfed13f425d769f04263546ff95bcb8a",
+    "usage": "集合题重新作答",
+    "scope": "历史浏览器运行归档；本轮未重新运行对应学习动作；不代表同一学生连续过程"
+  },
+  {
+    "file": "contrast-history-mobile.png",
+    "source_commit": "9d2ba8b",
+    "source_path": "docs/final/screenshots/task-contrast.png",
+    "sha256": "d64d9d99113f4e85dc08d74958a4baae7cc626ba8b08396e88ed883a16266748",
+    "usage": "方程条件对照",
+    "scope": "历史浏览器运行归档；本轮未重新运行对应学习动作；不代表同一学生连续过程"
+  },
+  {
+    "file": "self-check-history-mobile.png",
+    "source_commit": "9d2ba8b",
+    "source_path": "docs/final/screenshots/task-self-check.png",
+    "sha256": "5cf32687daf5605a4af85387ee32dbb0b2563be9711f8b2a81d4c8f20ebd31db",
+    "usage": "完成后的自检要点",
+    "scope": "历史浏览器运行归档；本轮未重新运行对应学习动作；不代表同一学生连续过程"
+  },
+  {
+    "file": "map-history-mobile.png",
+    "source_commit": "9d2ba8b",
+    "source_path": "docs/final/screenshots/hardening-error-map.png",
+    "sha256": "442949a2cf28be1be2a348ad1b8d63864289b553ac334c8d3dcc89f0ed3ed165",
+    "usage": "个人易错地图",
+    "scope": "历史浏览器运行归档；本轮未重新运行对应学习动作；不代表同一学生连续过程"
+  },
+  {
+    "file": "review-answer-history-mobile.png",
+    "source_commit": "9d2ba8b",
+    "source_path": "docs/final/screenshots/review-writing.png",
+    "sha256": "f8f829171e944d2f73e876b20777fe321b9fa89bde853d1de9abd722deb8b2c2",
+    "usage": "复习独立回答",
+    "scope": "历史浏览器运行归档；本轮未重新运行对应学习动作；不代表同一学生连续过程"
+  },
+  {
+    "file": "review-feedback-history-mobile.png",
+    "source_commit": "9d2ba8b",
+    "source_path": "docs/final/screenshots/review-result.png",
+    "sha256": "1804bfb2ba2b93271364e0eee5b7c348b1594245939315ef6a21614c5f3b5720",
+    "usage": "复习反馈与自评",
+    "scope": "历史浏览器运行归档；本轮未重新运行对应学习动作；不代表同一学生连续过程"
+  }
+]

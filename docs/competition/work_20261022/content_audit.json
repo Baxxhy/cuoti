@@ -1,23 +1,23 @@
 {
   "项目说明文档": {
-    "paragraphs": 121,
-    "table_cells": 174,
+    "paragraphs": 123,
+    "table_cells": 165,
     "headings": 29,
-    "figure_captions": 6,
+    "figure_captions": 11,
     "source_coverage_complete": true,
     "linked_references_preserved": 10,
     "sequential_captions": true,
-    "sha256": "e466ba5e46fc7ab36f50e7727dbfc4b9e2a1de7776825d7aac9227b8f30f85dc"
+    "sha256": "59e8d6a82ae1c7c8aca2bf228beb8eccccb2cadaa1e6a9df5b0637a66f6f0d67"
   },
   "系统设计文档": {
-    "paragraphs": 149,
+    "paragraphs": 151,
     "table_cells": 279,
     "headings": 31,
-    "figure_captions": 6,
+    "figure_captions": 7,
     "source_coverage_complete": true,
     "linked_references_preserved": 6,
     "sequential_captions": true,
-    "sha256": "6a5414e06f84d9c81d452138eb2df154083303e3ccc3b59c4d30500d6ed4b9f7"
+    "sha256": "bd1c9e1bc02560fb855bc1be1b24793737e58b1d036c49acee1c7bca0338a0be"
   },
   "preserved_originals": [
     {
