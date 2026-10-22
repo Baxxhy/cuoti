@@ -1,0 +1,19 @@
+{
+  "file": "错题帮_参赛演示_三步学习版.mp4",
+  "seconds": 319.74,
+  "bytes": 12086397,
+  "sha256": "efcb6366c88aebf82cebf7ba54da5a1fd39e57a7908d7dc4a4423964dfb0b33c",
+  "resolution": "1920x1080",
+  "fps": 25,
+  "audio": "AAC / 48000 Hz / stereo",
+  "chapters": 6,
+  "subtitle_segments": 62,
+  "max_volume_dbfs": -4.2,
+  "mean_volume_dbfs": -21.9,
+  "full_decode": "passed",
+  "script_subtitle_match": "passed",
+  "source_ranges": "passed",
+  "previous_full_films_preserved": "passed",
+  "account_seconds": 8.0,
+  "intro_seconds": 45
+}
