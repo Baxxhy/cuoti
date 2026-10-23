@@ -87,7 +87,7 @@ def draw(F):
  for x,t in [(440,'MySQL'),(710,'原图与文件')]:
   f.box(x-105,510,210,70,t,'#FFFFFF',round=3,size=25)
  f.path('M365,235 L350,235 L350,495 L440,495 L440,510');f.path('M830,235 L848,235 L848,495 L710,495 L710,510')
- f.box(935,180,225,100,'Qwen 服务','#E4DDF5',round=20);f.box(935,395,225,100,['检索资源','Qdrant / BGE'],'#E4F2EF',round=2,size=24)
+ f.box(935,180,225,100,'AI 服务','#E4DDF5',round=20);f.box(935,395,225,100,['检索资源','Qdrant / BGE'],'#E4F2EF',round=2,size=24)
  f.path('M830,400 L900,400 L900,230 L935,230');f.path('M830,420 L895,420 L895,445 L935,445')
  f.save('17-deployment')
  # Validation matrix: evidence mapping, no numeric outcome invented.

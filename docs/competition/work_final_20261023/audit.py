@@ -55,6 +55,8 @@ for item in manifest:
   assert result['has_real_toc_field'] and result['all_references_cited'] and result['reference_numbers_contiguous']
   assert all(x['matches'] for x in tocrows) and len(tocrows)==len(layout[item['key']]['headings']),tocrows
   assert result['reopened_sha_matches']
+  assert not re.search(r'qwen|通义千问',txt,re.I)
+  result['generic_ai_model_naming']=True
   assert len(drawings)==sum(len(x['sources']) for x in item['figures'])
   figure_numbers=[int(re.match(r'图(\d+)',x['caption'])[1]) for x in item['figures']]
   assert figure_numbers==list(range(1,len(figure_numbers)+1))

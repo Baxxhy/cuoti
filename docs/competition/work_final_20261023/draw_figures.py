@@ -58,7 +58,7 @@ f.box(50,240,760,135,['仓颉业务服务','身份与权限 · 任务状态 · �
 f.box(50,460,760,135,['Python / FastAPI 算法服务','诊断 · 判题 · 掌握更新 · 规划与补题'],PURPLE)
 f.line(430,155,430,240);f.text(550,205,'业务接口',23);f.line(430,375,430,460);f.text(560,425,'内部算法接口',23)
 f.box(905,225,245,150,['MySQL','原图与文件资源'],GREEN,size=25);f.line(810,305,905,305)
-f.box(905,440,245,195,['Qwen 模型','Qdrant 索引','BGE 表示与重排'],ORANGE,size=25);f.line(810,530,905,530)
+f.box(905,440,245,195,['AI 模型','Qdrant 索引','BGE 表示与重排'],ORANGE,size=25);f.line(810,530,905,530)
 f.text(600,680,'箭头表示调用方向；算法结果返回仓颉后保存',24);f.save('03')
 # Evidence diagnosis mechanism and two cases.
 f=F();f.text(55,53,'(a) 诊断资格与首错判断',29,True,anchor='start')

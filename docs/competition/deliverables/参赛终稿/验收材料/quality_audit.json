@@ -12,7 +12,7 @@
   "documents": {
     "product": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_项目说明文档_最终版.docx",
-      "sha256": "f97f39168013c161883387bc6ace2604d5139b104c81dbc812a7b36283664376",
+      "sha256": "a7b937f6f05043a31e9bdb31224cadfe3dd1aaf875def7f8270360b8cb1e2ccf",
       "pages": 30,
       "word_paragraphs": 191,
       "tables": 5,
@@ -296,12 +296,13 @@
       "has_real_toc_field": true,
       "unresolved_tokens": [],
       "reopened_sha_matches": true,
+      "generic_ai_model_naming": true,
       "figure_numbers_contiguous": true,
       "figure_references_resolve": true
     },
     "system": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_系统设计文档_最终版.docx",
-      "sha256": "6153bcacb8586ba44094cb3496d6e1783f616d66faf8da4e1e173a8c2c2a51a3",
+      "sha256": "cfbfe46d2b97b729284eb750f2690509845f74020394ee077dd7e217cfa3bc6f",
       "pages": 60,
       "word_paragraphs": 393,
       "tables": 13,
@@ -667,6 +668,7 @@
       "has_real_toc_field": true,
       "unresolved_tokens": [],
       "reopened_sha_matches": true,
+      "generic_ai_model_naming": true,
       "figure_numbers_contiguous": true,
       "figure_references_resolve": true
     }

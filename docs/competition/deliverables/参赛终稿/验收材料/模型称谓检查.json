@@ -1,0 +1,11 @@
+{
+  "scope": "当前正式Word、Markdown、技术图及视频旁白字幕制作材料；历史原件与原始测试日志保留",
+  "video_text_files_checked": 236,
+  "video_named_model_hits": [],
+  "video_visual_check": [
+    "short/qa/15-architecture-0.png",
+    "edit/quality/contact-4.png"
+  ],
+  "video_reencoded": false,
+  "naming": "AI / LLM"
+}
