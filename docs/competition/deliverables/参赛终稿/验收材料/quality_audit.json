@@ -12,7 +12,7 @@
   "documents": {
     "product": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_项目说明文档_最终版.docx",
-      "sha256": "245eff9298c514a1d44060f1b5982ea08e88bfdf8ab5fab9bbc5083e0e9b7197",
+      "sha256": "f74ebdffaa51b55a6be6a699d09e4a75c0db3b5fbbd9d85f714e0ce248ff0ec8",
       "pages": 30,
       "word_paragraphs": 191,
       "tables": 5,
@@ -225,8 +225,8 @@
         },
         {
           "title": "应用与验证",
-          "toc_page": 19,
-          "actual_page": 19,
+          "toc_page": 18,
+          "actual_page": 18,
           "matches": true
         },
         {
@@ -299,7 +299,7 @@
     },
     "system": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_系统设计文档_最终版.docx",
-      "sha256": "dd4bfee532f1f172e427f13779d224e26b1c3a7e02a2239a8e5bb12168b7adad",
+      "sha256": "9b2b09d9b338acfd439e79e7a5b8744a3b8d040b10ddf79c67dfbae1f00f56b1",
       "pages": 48,
       "word_paragraphs": 331,
       "tables": 12,
