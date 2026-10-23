@@ -3,7 +3,7 @@ import math
 from PIL import Image, ImageDraw
 
 BG='#F6F8FC';INK='#17263F';BLUE='#2454CE';MUTED='#52647B'
-SKIN='#F2CFB1';HAIR='#283449';SHIRT='#6E89A7';WOOD='#D9C4A7'
+SKIN='#F2CFB1';HAIR='#283449';SHIRT='#6E94D5';WOOD='#DCE6F7'
 
 def ease(x):
     x=max(0,min(1,x));return x*x*(3-2*x)
@@ -66,11 +66,11 @@ class StudentIntro:
 
     def room(self,d):
         d.ellipse((276,875,1644,924),fill='#E6EBF2')
-        d.rounded_rectangle((290,513,395,809),radius=27,fill='#D6E2DE',outline='#B8CCC5',width=3)
-        self.line(d,[(325,794),(316,894)],'#95ACA3',12)
-        self.line(d,[(512,796),(529,894)],'#95ACA3',12)
-        self.line(d,[(566,782),(541,888)],'#AE9679',15)
-        self.line(d,[(1545,782),(1571,888)],'#AE9679',15)
+        d.rounded_rectangle((290,513,395,809),radius=27,fill='#E5EDFC',outline='#BECEEB',width=3)
+        self.line(d,[(325,794),(316,894)],'#819AC3',12)
+        self.line(d,[(512,796),(529,894)],'#819AC3',12)
+        self.line(d,[(566,782),(541,888)],'#91A7CA',15)
+        self.line(d,[(1545,782),(1571,888)],'#91A7CA',15)
         # A schoolbag sits beside the chair.
         d.rounded_rectangle((222,748,317,864),radius=22,fill='#9BAEB6',outline='#728995',width=3)
         d.arc((242,721,295,775),180,360,fill='#728995',width=7)
@@ -83,7 +83,7 @@ class StudentIntro:
         self.line(d,[(402,710),(401,803),(441,877)],'#4B607C',38)
         self.line(d,[(576,874),(625,874)],HAIR,18)
         self.line(d,[(432,886),(477,886)],HAIR,18)
-        d.rounded_rectangle((355,489,539,735),radius=47,fill=SHIRT,outline='#526E8D',width=3)
+        d.rounded_rectangle((355,489,539,735),radius=47,fill=SHIRT,outline='#4B72AD',width=3)
         d.polygon([(418,492),(448,520),(477,491)],fill='#EEF3F8')
         d.line((448,521,448,700),fill='#A9BECE',width=3)
         d.rounded_rectangle((466,590,518,637),radius=7,outline='#A9BECE',width=2)
@@ -105,12 +105,12 @@ class StudentIntro:
         else:d.arc((hx+19,hy+43,hx+45,hy+63),15,155,fill='#AA7462',width=3)
 
     def desktop(self,d):
-        d.polygon([(535,726),(1621,726),(1681,782),(497,782)],fill=WOOD,outline='#BEA586')
-        d.line((509,783,1666,783),fill='#AF9577',width=5)
+        d.polygon([(535,726),(1621,726),(1681,782),(497,782)],fill=WOOD,outline='#A9BCDC')
+        d.line((509,783,1666,783),fill='#8DA6CE',width=5)
         # Two stacked textbooks and a pencil cup ground the scene.
-        d.rounded_rectangle((1375,686,1550,719),radius=5,fill='#8CA59F',outline='#6D8982',width=2)
-        d.line((1392,709,1540,709),fill='#E9F0E9',width=7)
-        d.rounded_rectangle((1390,655,1559,689),radius=5,fill='#C3B296',outline='#AA9676',width=2)
+        d.rounded_rectangle((1375,686,1550,719),radius=5,fill='#7FA1D4',outline='#5D82BD',width=2)
+        d.line((1392,709,1540,709),fill='#EFF4FF',width=7)
+        d.rounded_rectangle((1390,655,1559,689),radius=5,fill='#B4C8E9',outline='#91A9D0',width=2)
         d.rounded_rectangle((1570,659,1631,724),radius=8,fill='#A4B7CD')
         for x,tilt in [(1582,-9),(1601,4),(1620,10)]:
             d.line((x,676,x+tilt,615),fill=INK,width=5)
@@ -124,7 +124,7 @@ class StudentIntro:
         if phase==3:wx=805+38*math.sin(t*2.7);wy=658+12*math.sin(t*2.7)
         if phase==4:wx=790+20*math.sin(t*2);wy=649+12*math.cos(t*2)
         self.line(d,[(512,527),(610,630),(wx-16,wy)],SHIRT,36)
-        self.line(d,[(516,532),(611,635),(wx-18,wy+2)],'#526E8D',3)
+        self.line(d,[(516,532),(611,635),(wx-18,wy+2)],'#4B72AD',3)
         d.ellipse((wx-21,wy-15,wx+17,wy+14),fill=SKIN,outline='#D7AE91',width=2)
         self.line(d,[(wx-7,wy-27),(wx+24,wy+20)],'#324A72',7)
         d.polygon([(wx+20,wy+15),(wx+28,wy+26),(wx+27,wy+12)],fill='#AE8967')
@@ -144,7 +144,9 @@ class StudentIntro:
             sheet=self.paper('回看自己的步骤',['3x + 2 = 17','3x = 17 + 2','x = 19/3'],highlight=True)
             im.paste(sheet,(1036,344),sheet)
             # A hand-drawn circle is traced around the erroneous sign.
-            d.arc((1367,498,1432,557),-45,-45+min(359,u*150),fill='#C96358',width=4)
+            sign_x=1036+39+self.font(35).getlength('3x = 17 ')
+            sign_w=self.font(35).getlength('+')
+            d.arc((sign_x-8,505,sign_x+sign_w+8,551),-45,-45+min(359,u*150),fill='#C96358',width=4)
         elif phase==2:
             old=self.paper('刚看过的题目',['3x + 2 = 17','x = 5'],width=430,height=320)
             x=1017-int(105*ease(u/1.1));im.paste(old,(x,365),old)
@@ -173,8 +175,8 @@ class StudentIntro:
             self.text_at(d,(1392,391),'错题帮',32,True,BLUE)
             card=self.paper('数学',['3x + 2 = 17'],width=225,height=178)
             im.paste(card,(1365,468),card)
-            d.ellipse((1453,716,1506,769),fill='#E5F0E9',outline='#87AA94',width=2)
-            d.line((1466,742,1476,751,1494,731),fill='#517C60',width=5)
+            d.ellipse((1453,716,1506,769),fill='#E5EDFC',outline='#8DA9D8',width=2)
+            d.line((1466,742,1476,751,1494,731),fill=BLUE,width=5)
             progress=(u%2.4)/2.4
             px=int(760+650*ease(progress));py=int(655-144*math.sin(progress*math.pi/2))
             fly=self.paper('我的题目',['3x + 2 = 17'],width=210,height=158)

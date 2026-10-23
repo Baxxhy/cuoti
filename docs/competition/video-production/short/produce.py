@@ -12,7 +12,7 @@ O=WORK/'short';O.mkdir(exist_ok=True)
 V=O/'voices';V.mkdir(exist_ok=True)
 D=ROOT/'docs/competition/deliverables/演示视频/比赛精简版';D.mkdir(parents=True,exist_ok=True)
 FF=imageio_ffmpeg.get_ffmpeg_exe()
-MOVIE_NAME='错题帮_参赛演示_写实封面版.mp4'
+MOVIE_NAME='错题帮_参赛演示_蓝色卡通版.mp4'
 SCENES=json.loads((HERE/'storyboard.json').read_text())
 CLIPS={c['id']:c for c in json.loads((WORK/'take2/clips.json').read_text())}
 RAW=Path((WORK/'take2/raw-path.txt').read_text().strip())
@@ -117,7 +117,7 @@ Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
 
 @lru_cache(maxsize=1)
 def intro_animation():
-    from realistic_intro import StudentIntro
+    from cartoon_intro import StudentIntro
     intro=next(s for s in SCENES if s['id']=='intro')
     return StudentIntro(font,intro['text'],json.loads((V/'intro.json').read_text())['words'])
 

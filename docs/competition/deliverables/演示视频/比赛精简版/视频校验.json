@@ -1,8 +1,8 @@
 {
-  "file": "错题帮_参赛演示_写实封面版.mp4",
+  "file": "错题帮_参赛演示_蓝色卡通版.mp4",
   "seconds": 307.3,
-  "bytes": 18278402,
-  "sha256": "e3c32510e42309f441a8f583935dc5248ff8371f79aaae0835b39b83d05db0dc",
+  "bytes": 11933289,
+  "sha256": "35f8a013c31b4e368398bfe2dcdcecc31f0041e2ca4bfc68d8013238295a2c26",
   "resolution": "1920x1080",
   "fps": 25,
   "audio": "AAC / 48000 Hz / stereo",
@@ -24,7 +24,7 @@
         2.45,
         3.15
       ],
-      "changed_photographic_pixels": 12121
+      "changed_character_pixels": 5378
     },
     {
       "beat": 1,
@@ -32,7 +32,7 @@
         10.592291,
         11.292291
       ],
-      "changed_photographic_pixels": 23232
+      "changed_character_pixels": 4369
     },
     {
       "beat": 2,
@@ -40,7 +40,7 @@
         15.748541,
         16.448541
       ],
-      "changed_photographic_pixels": 27618
+      "changed_character_pixels": 8314
     },
     {
       "beat": 3,
@@ -48,7 +48,7 @@
         20.051458,
         20.751458
       ],
-      "changed_photographic_pixels": 12263
+      "changed_character_pixels": 4067
     },
     {
       "beat": 4,
@@ -56,10 +56,11 @@
         28.8495,
         29.5495
       ],
-      "changed_photographic_pixels": 7162
+      "changed_character_pixels": 8221
     }
   ],
-  "cover_first_frame_mae": 1.5146426504629629,
-  "opening_visuals": "generated photographic scenes with camera movement",
-  "removed_overlay_checks": "passed"
+  "cover_first_frame_mae": 0.6060971257716049,
+  "opening_visuals": "blue cartoon student with writing and page-turn animation",
+  "removed_overlay_checks": "passed",
+  "cover_intro_body_palette": "matched: #F6F8FC / #17263F / #2454CE"
 }
