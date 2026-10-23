@@ -12,6 +12,7 @@ from typing import Any
 from xml.sax.saxutils import escape
 
 from openpyxl import Workbook
+from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 from openpyxl.comments import Comment
 from openpyxl.drawing.image import Image as SheetImage
 from openpyxl.styles import Alignment
@@ -150,6 +151,11 @@ def build_excel(path: Path, rows: list[dict[str, Any]]) -> Path:
     for index, row in enumerate(rows, 2):
         for column, key in enumerate(("question", "subject", "misconception", "mastery", "review"), 1):
             value = row.get(key, "")
+            if isinstance(value, str):
+                # Match the frontend's repair of JSON-decoded LaTeX \\frac.
+                value = re.sub(r"\x0c(?=rac\b)", r"\\f", value)
+                if ILLEGAL_CHARACTERS_RE.search(value):
+                    raise ValueError("导出文字含有无效控制字符，请编辑相关题目或错因后重试")
             cell = ws.cell(index, column, value)
             cell.alignment = Alignment(vertical="top", wrap_text=True)
             if isinstance(value, str) and re.search(r"\$|\\[A-Za-z(\[]", value):

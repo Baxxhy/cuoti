@@ -1,10 +1,11 @@
 {
-  "entries": [
+  "apis": [
     {
-      "base_url": "https://your-provider.example/v1",
-      "api_key": "",
-      "model": "Qwen",
-      "disabled": true
+      "name": "xiaojing",
+      "provider": "xiaojing",
+      "base_url": "https://open.xiaojingai.com/v1",
+      "api_key_env": "XIAOJING_API_KEY",
+      "model": "gpt-6-luna"
     }
   ]
 }

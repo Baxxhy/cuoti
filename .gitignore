@@ -41,3 +41,7 @@ reports/*.xlsx
 
 # Source archives are not part of the final repository
 /*.zip
+
+# Local competition delivery archives and private review credentials
+/docs/competition/deliverables/程序包/*.zip
+/docs/competition/deliverables/程序包/*评审专用*
