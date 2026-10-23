@@ -44,3 +44,6 @@ reports/*.xlsx
 
 # Large runnable submission archives are delivered locally, not stored in Git.
 /docs/competition/deliverables/程序包/*.zip
+
+# Private judging packages and their companion files must stay local.
+/docs/competition/deliverables/程序包/*评审专用*
