@@ -1,0 +1,26 @@
+{
+  "reference": "/root/.codex/attachments/24b7291c-0754-4e35-b075-e1f203336c08/题醐灌顶队_错题帮_项目文档(1).docx",
+  "sha256": "b61993bc9b0424c38a58bfaabcfbf68ec834703ad7f2bb3fca159b79e5b0576a",
+  "reference_images": [
+    "image1.png",
+    "image2.png",
+    "image3.png",
+    "image4.png"
+  ],
+  "primary_style_reference": [
+    "image1.png",
+    "image3.png"
+  ],
+  "reference_use": "仅配色、层次、留白、线性图标；不采用技术内容",
+  "figures": 18,
+  "explanatory_footers_removed": true,
+  "captions_preserved": true,
+  "screenshots_unchanged": true,
+  "word_pages": {
+    "product": 30,
+    "system": 60
+  },
+  "rendered_pages": 90,
+  "figure_pages_visually_checked": 24,
+  "color_and_document_audit": "passed"
+}

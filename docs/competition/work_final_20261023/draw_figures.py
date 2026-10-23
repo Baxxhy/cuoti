@@ -4,11 +4,12 @@ from html import escape
 import cairosvg,json,re
 from PIL import ImageFont
 O=Path(__file__).resolve().parent.parent/'deliverables/参赛终稿/figures';O.mkdir(exist_ok=True)
-BLUE='#E8EFF6';GREEN='#E9F2EC';ORANGE='#F7EDDF';PURPLE='#EEEAF5';LINE='#596575'
+BLUE='#E8EFF6';GREEN='#E9F2EC';ORANGE='#E9E4F7';PURPLE='#EEEAF5';LINE='#596575'
 class F:
  def __init__(self):
   self.parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720"><defs><marker id="arr" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7" fill="#596575"/></marker></defs><rect width="1200" height="720" fill="white"/>']
  def text(self,x,y,t,size=27,bold=False,anchor='middle'):
+  if t in {'学习问题由同一道题及其前后作答联系起来', '排序分用于比较依据，首错资格另由规则与前序决定', '硬约束与到期组优先于分数', '排序分比较依据；首错判断还需要此前各步成立', '题目与作答过程为示意材料', '下方三个表名省略 learning_ 前缀', '题库来源与生成来源分别保留；检索相似度不等于技能一致', '同一起点0.35：独立答对0.914；提示答对0.608；答案曝光0.350', '箭头表示调用方向；算法结果返回仓颉后保存', '来源版本识别材料，任务版本识别进度；旧快照用于历史解释', '显示内容 → 受控规格；业务写入 → 仓颉接口', '箭头：调用方向    圆柱：数据存储    叠页：文件资源', '错误理解、所需帮助与后续表现，是三个不同的学习问题', '先验 p=0.35；默认规则演算，不代表学生实验结果', '新回答触发下一次调用；等待期间没有后台代答'}:return
   chunks=[]
   for part in re.split(r'([\u2e80-\u9fff\uff00-\uffef]+)',t):
    if not part:continue
@@ -136,4 +137,6 @@ redraw(F)
 from engineering_figures import draw
 draw(F)
 
+from reference_redraw import redraw as reference_redraw
+reference_redraw(F)
 print('18 editable SVG figures exported')

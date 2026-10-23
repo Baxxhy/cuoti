@@ -1284,7 +1284,7 @@
     ],
     "rendered": false,
     "pdf_created": false,
-    "sha256": "6ae120eac68f308f08d829e805cc2046e7ba947208b45b7bcc5d99c5a41f8c4d"
+    "sha256": "2dc53ad23c11de1b17265dd1e665f9ed7beffdaad71f9e99da18798a556e5297"
   },
   "system": {
     "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_系统设计文档_最终版.docx",
@@ -2644,7 +2644,7 @@
         "page": 32
       },
       {
-        "text": "任务表的关联。 图10选择与任务执行直接相关的数据表，展示主记录和明细记录的关系。主任务通过用户和题目建立归属，动作表记录学生提交，步骤表记录工具执行，创建请求表用于识别同一次任务创建请求。图中保留必要键名，便于将设计与表结构核对。",
+        "text": "任务表的关联。 图10选择与任务执行直接相关的数据表，展示主记录和明细记录的关系。主任务通过用户和题目建立归属，动作表记录学生提交，步骤表记录工具执行，创建请求表用于识别同一次任务创建请求。图中保留必要键名，便于将设计与表结构核对。PK表示主键，FK表示外键；下方三个表名省略learning_前缀。",
         "style": "Standard",
         "page": 32
       },
@@ -3611,6 +3611,6 @@
     ],
     "rendered": false,
     "pdf_created": false,
-    "sha256": "cd2faa5d2e116c332785a822d57629b3538014f1d2cc4411216120bee39323ce"
+    "sha256": "9f939cdd38da20600a3a3cefcdf99bf9eab39af226ce8c40286bae2266314961"
   }
 }
