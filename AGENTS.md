@@ -4,7 +4,7 @@
 - 唯一主线：uni-app/Vue 3/TypeScript 前端，仓颉业务服务与MySQL，Python/FastAPI内部算法计算。旧Python业务后端已删除，不重新引入。
 - 当前说明见 README.md、docs/final/README.md 与 docs/final/IMPLEMENTATION_STATUS.md。
 - 数据库只允许MySQL；Python算法服务不读写业务数据库。
-- API池配置位于 config/api_pool.json；逻辑模型固定Qwen，请求通过ApiPoolProvider轮询，不输出凭据。
+- API池配置位于 config/api_pool.json；当前模型为xiaojing的gpt-6-luna（兼容旧Qwen配置），请求通过ApiPoolProvider轮询，不输出凭据。
 - 保留原始上传图片；结构化模型输出通过Pydantic校验，数学尽量通过SymPy验证。
 - 前端只消费VisualizationSpec JSON，不执行模型生成的JavaScript。
 - 页面数据来自仓颉后端和MySQL，演示种子除外。

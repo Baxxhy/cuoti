@@ -5,6 +5,7 @@ import base64
 import hashlib
 import io
 import json
+import os
 import re
 import time
 from dataclasses import dataclass, field
@@ -60,6 +61,8 @@ def _find_entries(value: object) -> list[PoolEntry]:
                 (node.get(k) for k in ("base_url", "url", "endpoint", "api_base") if node.get(k)), None
             )
             credential = next((node.get(k) for k in ("key", "api_key", "token") if node.get(k)), None)
+            if not credential and isinstance(node.get("api_key_env"), str):
+                credential = os.environ.get(node["api_key_env"])
             model = next((node.get(k) for k in MODEL_KEYS if node.get(k)), None)
             if (
                 isinstance(base_url, str)
@@ -96,9 +99,12 @@ class ApiPoolProvider:
         ]
         if invalid_hosts:
             raise ValueError(f"API池包含非许可提供商: count={len(invalid_hosts)}")
-        invalid_models = [entry.entry_id for entry in self.entries if entry.model != LOGICAL_MODEL]
+        invalid_models = [entry.entry_id for entry in self.entries if entry.model not in {LOGICAL_MODEL, "gpt-6-luna"}]
         if invalid_models:
-            raise ValueError(f"API池包含非{LOGICAL_MODEL}模型配置: count={len(invalid_models)}")
+            raise ValueError(f"API池包含不支持的模型配置: count={len(invalid_models)}")
+        if len({entry.model for entry in self.entries}) != 1:
+            raise ValueError("同一API池必须使用相同模型")
+        self.logical_model = self.entries[0].model
         self.text_entries = self.entries.copy()
         self.vision_entries = self.entries.copy()
         self.state = PoolState()
@@ -154,13 +160,15 @@ class ApiPoolProvider:
         request_payload: dict[str, Any] = {
             "model": entry.model,
             "messages": messages,
-            "temperature": 0.1,
         }
+        if entry.model == "Qwen":
+            request_payload["temperature"] = 0.1
         if json_mode:
             request_payload["response_format"] = {"type": "json_object"}
             # 当前Qwen结构化任务不需要长推理。vLLM默认思考会把输出额度消耗在reasoning，
             # 导致content为空并显著拖慢拍题识别。
-            request_payload["chat_template_kwargs"] = {"enable_thinking": False}
+            if entry.model == "Qwen":
+                request_payload["chat_template_kwargs"] = {"enable_thinking": False}
             request_payload["max_tokens"] = 2048
         headers = {"Authorization": f"Bearer {entry.credential}", "Content-Type": "application/json"}
         response: httpx.Response | None = None
@@ -337,7 +345,7 @@ class ApiPoolProvider:
 
     def health_check(self) -> dict[str, Any]:
         return {
-            "logical_model": LOGICAL_MODEL,
+            "logical_model": self.logical_model,
             "actual_models": sorted({e.model for e in self.entries}),
             "total_entries": len(self.entries),
             "unique_keys": len({e.credential for e in self.entries}),

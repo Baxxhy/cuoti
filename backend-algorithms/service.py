@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import base64
 import hashlib
+import json
 import os
 import secrets
 import time
@@ -279,6 +280,26 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
         )
     )
 
+    def configured_model():
+        if app.state.provider is not None and hasattr(app.state.provider, "logical_model"):
+            return app.state.provider.logical_model
+        try:
+            config = json.loads(pool.read_text())
+            def models(value):
+                if isinstance(value, dict):
+                    if value.get("disabled") is True:
+                        return []
+                    if isinstance(value.get("model"), str):
+                        return [value["model"]]
+                    return [m for child in value.values() for m in models(child)]
+                if isinstance(value, list):
+                    return [m for child in value for m in models(child)]
+                return []
+            active = models(config)
+            return active[0] if active else "unconfigured"
+        except (OSError, ValueError):
+            return "unconfigured"
+
     trust_env_proxy = os.environ.get("CANGJIE_AI_USE_ENV_PROXY", "true").lower() != "false"
 
     @asynccontextmanager
@@ -302,7 +323,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
         return {
             "service": "zhiwei-algorithms",
             "database": False,
-            "logical_model": "Qwen",
+            "logical_model": configured_model(),
         }
 
     @app.post("/v1/compute")
@@ -386,7 +407,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                             raise ApiPoolUnavailable("模型池尚未就绪") from None
                 if app.state.provider is None:
                     health = {
-                        "logical_model": "Qwen",
+                        "logical_model": configured_model(),
                         "actual_models": [],
                         "total_entries": 0,
                         "unique_keys": 0,
@@ -531,7 +552,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     result = {
                         "analysis": analysis.model_dump(mode="json"),
                         "reference_math_valid": valid_steps,
-                        "logical_model": "Qwen",
+                        "logical_model": configured_model(),
                     }
             elif data.operation == "grade_answer":
                 if app.state.provider is None:
@@ -625,7 +646,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     "variant": generated.model_dump(mode="json"),
                     "verified": verified,
                     "generation": metadata.model_dump(),
-                    "logical_model": "Qwen",
+                    "logical_model": configured_model(),
                 }
             elif data.operation == "teaching_brief":
                 if app.state.provider is None:
@@ -646,7 +667,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                 )
                 result = {
                     "brief": brief.model_dump(mode="json"),
-                    "logical_model": "Qwen",
+                    "logical_model": configured_model(),
                 }
             elif data.operation in {"diagnose", "counterfactual"}:
                 if app.state.provider is None:
@@ -740,7 +761,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                                 "operation": data.operation,
                                 "result": {
                                     "recognition": recognition.model_dump(mode="json"),
-                                    "logical_model": "Qwen",
+                                    "logical_model": configured_model(),
                                 },
                             }
                         recognition = await recognize_cropped_question(
@@ -752,7 +773,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                         )
                         result = {
                             "recognition": recognition.model_dump(mode="json"),
-                            "logical_model": "Qwen",
+                            "logical_model": configured_model(),
                             "duration_ms": duration,
                             "assets": [
                                 {
