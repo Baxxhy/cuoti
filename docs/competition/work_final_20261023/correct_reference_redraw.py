@@ -23,7 +23,8 @@ def redraw(F):
     f.parts.append(f'<circle cx="{x+10}" cy="{y+i*22+8}" r="3" fill="#2681DA"/>')
  def card(f,x,y,w,h,title,sub,c='#EAF3FE',kind='paper'):
   rect(f,x,y,w,h,c);f.parts.append(f'<rect x="{x}" y="{y+12}" width="5" height="{h-24}" fill="#267CDD"/>')
-  icon(f,x+20,y+25,kind);f.text(x+w/2+25,y+48,title,28,True);f.text(x+w/2+25,y+90,sub,24)
+  icon(f,x+20,y+25,kind);f.text(x+w/2+25,y+48 if sub else y+h/2+10,title,28,True)
+  if sub:f.text(x+w/2+25,y+90,sub,24)
  def db(f,x,y,w,h,title):
   f.parts.append(f'<path d="M{x},{y+15} v{h-30} C{x},{y+h+8} {x+w},{y+h+8} {x+w},{y+h-15} V{y+15}" fill="#E2F4EF" stroke="#51A895" stroke-width="2"/><ellipse cx="{x+w/2}" cy="{y+15}" rx="{w/2}" ry="15" fill="#D6EEE7" stroke="#51A895" stroke-width="2"/>');f.text(x+w/2,y+h/2+12,title,26,True)
  # Background: three needs orbit the same student problem, not a proposed algorithm.
@@ -52,9 +53,9 @@ def redraw(F):
  finish(f,'01')
  # Architecture: nested runtime tiers with actual service boundaries and storage icons.
  f=F();f.text(600,47,'系统组成与调用关系',32,True)
- card(f,45,95,760,125,'uni-app 学生端','Vue 页面 · 多端复用','#E4F0FD',kind='device')
- card(f,45,285,760,140,'仓颉业务服务','身份与归属 · 任务控制 · 数据保存','#E7F3FC',kind='server')
- card(f,45,505,760,150,'Python 算法服务','错因定位 · 掌握评估 · 学习规划 · 补题','#E2F3ED',kind='server')
+ card(f,45,95,760,125,'uni-app 学生端','','#E4F0FD',kind='device')
+ card(f,45,285,760,140,'仓颉业务服务','','#E7F3FC',kind='server')
+ card(f,45,505,760,150,'Python 算法服务','','#E2F3ED',kind='server')
  f.line(425,220,425,285);f.text(550,266,'业务请求',24)
  f.line(425,425,425,505);f.text(550,478,'内部计算',24)
  db(f,940,270,220,95,'MySQL');icon(f,950,392,'paper');f.text(1090,440,'原图与文件',25)

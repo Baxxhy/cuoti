@@ -21,13 +21,13 @@
   },
   {
     "path": "figures/03.png",
-    "sha256": "497d4e0346d5bba2efcb6e783a41eaf2f1441aaafc122fcd4a13ba00b5529177",
-    "bytes": 260481
+    "sha256": "4a723e5d51d589e6a1c487944f9beb549f002061f92579219cc82239728917d1",
+    "bytes": 189979
   },
   {
     "path": "figures/03.svg",
-    "sha256": "c73d1537307636aa7341cfe67bd9d53570a5a91d46136ab7a9fd03c8e9ce4997",
-    "bytes": 7093
+    "sha256": "94128ce7e60279ef7c01e5fcad963e6eb687ed74b3c2edbfc37accc0e62511a3",
+    "bytes": 4998
   },
   {
     "path": "figures/04.png",
@@ -81,13 +81,13 @@
   },
   {
     "path": "figures/09.png",
-    "sha256": "dfeb92c219d450ef08a1ef2bc555aa88770c37d8c3a6a26e13465572ea96fd5c",
-    "bytes": 308655
+    "sha256": "e84e1e3230ff5e1ca81f89ff45472e07fc44e96aab0e892e1c860b1701318ab8",
+    "bytes": 309276
   },
   {
     "path": "figures/09.svg",
-    "sha256": "f3dd673d80c33fa6984c20a908045b14775181e64c091fe4f09ab3ee2f3a23bd",
-    "bytes": 6910
+    "sha256": "4d81ad38d178ba379d0e0ce33eb44dec32fd4a002e803ce748a9d5f3f98630c6",
+    "bytes": 6403
   },
   {
     "path": "figures/10.png",
@@ -111,13 +111,13 @@
   },
   {
     "path": "figures/12-components.png",
-    "sha256": "8856d321e9fea0db1b32900efdccc6ba2923c872c561372aedefa07476b55784",
-    "bytes": 204998
+    "sha256": "3f2787f3dba88cc233f342af0f97c93706cabd557cbc69cdaccb72fabead9869",
+    "bytes": 136429
   },
   {
     "path": "figures/12-components.svg",
-    "sha256": "39b49a3c2bbd4147bbf28adc1941da6fb4eeaf434f22471240c71304fc9601bf",
-    "bytes": 5630
+    "sha256": "680e5b5e0d9e3a770ae0a5bb996482e5ed5367a53cf4aa688c302445bf8f52d8",
+    "bytes": 3282
   },
   {
     "path": "figures/13-states.png",
@@ -131,13 +131,13 @@
   },
   {
     "path": "figures/14-relations.png",
-    "sha256": "72588908d8b6597b599a2c4d3d523a0d5b3e6c1230bab2267eacd47773e4391d",
-    "bytes": 157247
+    "sha256": "75433a932f68e322e62c1f00988ecf21dbfd36da981dc542257209f67c2f9539",
+    "bytes": 145963
   },
   {
     "path": "figures/14-relations.svg",
-    "sha256": "797d97aec494bc3bfea34d7bc36dc546a63309d9003691ef711ca2e065f936d6",
-    "bytes": 6628
+    "sha256": "ce59fc22786a5de4cffb60c6caa2bfb7ee9fbd1ebeda007c4c677ab159a412eb",
+    "bytes": 5362
   },
   {
     "path": "figures/15-navigation.png",
@@ -241,13 +241,13 @@
   },
   {
     "path": "终稿修改说明.md",
-    "sha256": "5509c25e64d7c65e5c6fec70c65d1b2e6dbd9fc7e033572ac8fccee3f4b410c3",
-    "bytes": 5849
+    "sha256": "a9cc4ce1097ce01cc963d9cceca6b5f61e996bad4ccc65d10ec936c956e8d8b0",
+    "bytes": 6359
   },
   {
     "path": "错题帮_系统设计文档_最终版.docx",
-    "sha256": "cfbfe46d2b97b729284eb750f2690509845f74020394ee077dd7e217cfa3bc6f",
-    "bytes": 3277565
+    "sha256": "52924d087241e23bc1996774c5fbc83ccd5755c76c106d92f7e538a24806321b",
+    "bytes": 3128375
   },
   {
     "path": "错题帮_系统设计文档_最终版.md",
@@ -256,8 +256,8 @@
   },
   {
     "path": "错题帮_项目说明文档_最终版.docx",
-    "sha256": "a7b937f6f05043a31e9bdb31224cadfe3dd1aaf875def7f8270360b8cb1e2ccf",
-    "bytes": 1688768
+    "sha256": "13ff819424d411b7e1cdcf68a77549a01865237cf2f0f5a9e1285ef5d577ea42",
+    "bytes": 1618379
   },
   {
     "path": "错题帮_项目说明文档_最终版.md",
@@ -281,7 +281,7 @@
   },
   {
     "path": "验收材料/quality_audit.json",
-    "sha256": "d6434e0029a25a251a7f3ed0f3850ca3b1560a9cab03feaceb3e1723ed77965c",
+    "sha256": "d803252667a96aa661dabcc6f1bb9ca31435216900f4560051d0e64edeba0d14",
     "bytes": 18924
   },
   {

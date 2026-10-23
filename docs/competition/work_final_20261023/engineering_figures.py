@@ -19,11 +19,11 @@ def draw(F):
  # Dependency as packages and interface connectors, jade.
  f=F();f.text(600,52,'业务模块与算法入口',32,True)
  def package(x,y,w,h,title,body):
-  rect(f,x,y,w,h,'#F0F7F3');rect(f,x,y-22,145,22,'#BFD8C8');f.text(x+w/2,y+45,title,28,True)
+  rect(f,x,y,w,h,'#F0F7F3');rect(f,x,y-22,145,22,'#BFD8C8');f.text(x+w/2,y+45 if body else y+h/2+10,title,28,True)
   for i,t in enumerate(body):f.text(x+w/2,y+92+i*36,t,24)
- package(55,110,310,195,'题目业务',['录入 · 编辑 · 分析','原图与题目保存'])
- package(445,110,310,195,'学习业务',['任务 · 练习 · 复习','进度与作答保存'])
- package(835,110,310,195,'账户与资源',['身份 · 归属 · 文件','公共访问检查'])
+ package(55,110,310,195,'题目业务',[])
+ package(445,110,310,195,'学习业务',[])
+ package(835,110,310,195,'账户与资源',[])
  rect(f,55,390,1090,65,'#D0E4D8');f.text(600,432,'仓颉算法客户端',29,True)
  for x in [210,600]:f.line(x,305,x,390)
  f.line(835,208,755,208,False);f.text(795,183,'检查',22)
@@ -51,7 +51,7 @@ def draw(F):
  entity(435,315,330,'learning_tasks',['PK  id','FK  user_id / question_id'])
  f.path('M205,250 L205,390 L435,390',False);f.text(225,285,'1',23);f.text(405,368,'多',23)
  f.path('M995,250 L995,390 L765,390',False);f.text(975,285,'1',23);f.text(795,368,'多',23)
- for x,title,row in [(55,'task_actions','请求 · 动作 · 结果'),(435,'task_steps','工具 · 核验 · 轨迹'),(815,'task_requests','请求编号 · 内容摘要')]:
+ for x,title,row in [(55,'task_actions','学生提交记录'),(435,'task_steps','工具执行记录'),(815,'task_requests','请求去重记录')]:
   entity(x,550,330,title,['FK  task_id',row])
   f.path(f'M600,465 L600,510 L{x+165},510 L{x+165},550',False)
  f.text(660,495,'1 → 多',22)
