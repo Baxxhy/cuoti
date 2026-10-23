@@ -128,7 +128,12 @@ for x,t in zip(xs,['学生与前端','仓颉工作器','Python算法','MySQL']):
 for y,a,b,t in [(135,150,480,'提交动作'),(205,480,1080,'受理并保存请求'),(280,480,810,'读取快照后调用'),(365,810,480,'返回算法结果'),(490,480,1080,'核对来源、版本与租约'),(565,480,1080,'通过后事务提交'),(640,480,150,'返回已保存状态')]:f.line(a,y,b,y);f.text((a+b)/2,y-14,t,23)
 f.box(580,395,540,40,'原题编辑或取消 → 旧结果拒绝提交',ORANGE,size=22)
 f.save('10')
-print('10 editable SVG figures exported')
+
 
 from varied_figures import redraw
 redraw(F)
+
+from engineering_figures import draw
+draw(F)
+
+print('18 editable SVG figures exported')

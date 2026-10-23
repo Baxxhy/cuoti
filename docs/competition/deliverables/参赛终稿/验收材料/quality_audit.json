@@ -12,7 +12,7 @@
   "documents": {
     "product": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_项目说明文档_最终版.docx",
-      "sha256": "54eefb60479680e11865d109625a5f8af1750bb9c88df1e336ef7a1e1fc82ef0",
+      "sha256": "6ae120eac68f308f08d829e805cc2046e7ba947208b45b7bcc5d99c5a41f8c4d",
       "pages": 30,
       "word_paragraphs": 191,
       "tables": 5,
@@ -295,16 +295,18 @@
       "all_references_cited": true,
       "has_real_toc_field": true,
       "unresolved_tokens": [],
-      "reopened_sha_matches": true
+      "reopened_sha_matches": true,
+      "figure_numbers_contiguous": true,
+      "figure_references_resolve": true
     },
     "system": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_系统设计文档_最终版.docx",
-      "sha256": "ae863b1a99997f21492e8d49d591f9dcfc93f763408c24b9eeba36601a867f13",
-      "pages": 48,
-      "word_paragraphs": 331,
-      "tables": 12,
-      "embedded_images": 8,
-      "figure_groups": 8,
+      "sha256": "cd2faa5d2e116c332785a822d57629b3538014f1d2cc4411216120bee39323ce",
+      "pages": 60,
+      "word_paragraphs": 393,
+      "tables": 13,
+      "embedded_images": 16,
+      "figure_groups": 16,
       "references": 18,
       "bad_colors": [],
       "fonts": {
@@ -339,15 +341,23 @@
           "centered": true
         },
         {
+          "caption": "图2 学生核心用例",
+          "centered": true
+        },
+        {
           "caption": "表2 核心业务要求",
           "centered": true
         },
         {
-          "caption": "图2 原步骤核对与首错判断",
+          "caption": "图3 业务模块与计算入口",
           "centered": true
         },
         {
-          "caption": "图3 作答条件与掌握更新",
+          "caption": "图4 原步骤核对与首错判断",
+          "centered": true
+        },
+        {
+          "caption": "图5 作答条件与掌握更新",
           "centered": true
         },
         {
@@ -355,15 +365,15 @@
           "centered": true
         },
         {
-          "caption": "图4 当前任务处理与后续选题",
+          "caption": "图6 当前任务处理与后续选题",
           "centered": true
         },
         {
-          "caption": "图5 类似题检索与生成检查",
+          "caption": "图7 类似题检索与生成检查",
           "centered": true
         },
         {
-          "caption": "图6 学生动作与本题工作流",
+          "caption": "图8 学生动作与本题工作流",
           "centered": true
         },
         {
@@ -375,11 +385,19 @@
           "centered": true
         },
         {
+          "caption": "图9 任务执行状态与停止条件",
+          "centered": true
+        },
+        {
           "caption": "表6 主要数据对象",
           "centered": true
         },
         {
-          "caption": "图7 题目关联与编辑后的处理",
+          "caption": "图10 学习任务的核心表关系",
+          "centered": true
+        },
+        {
+          "caption": "图11 题目关联与编辑后的处理",
           "centered": true
         },
         {
@@ -387,11 +405,15 @@
           "centered": true
         },
         {
-          "caption": "图8 异步计算与结果保存",
+          "caption": "图12 异步计算与结果保存",
           "centered": true
         },
         {
           "caption": "表8 中断与异常处理",
+          "centered": true
+        },
+        {
+          "caption": "图13 学生页面的导航组织",
           "centered": true
         },
         {
@@ -403,11 +425,27 @@
           "centered": true
         },
         {
+          "caption": "图14 请求检查与服务边界",
+          "centered": true
+        },
+        {
           "caption": "表11 运行检查对象",
           "centered": true
         },
         {
+          "caption": "图15 本地运行的部署关系",
+          "centered": true
+        },
+        {
           "caption": "表12 算法机制与反向情境",
+          "centered": true
+        },
+        {
+          "caption": "表13 关键记录的验收口径",
+          "centered": true
+        },
+        {
+          "caption": "图16 验证对象与结论范围",
           "centered": true
         }
       ],
@@ -444,182 +482,182 @@
         },
         {
           "title": "核心算法",
-          "toc_page": 10,
-          "actual_page": 10,
+          "toc_page": 13,
+          "actual_page": 13,
           "matches": true
         },
         {
           "title": "错因定位算法",
-          "toc_page": 10,
-          "actual_page": 10,
+          "toc_page": 13,
+          "actual_page": 13,
           "matches": true
         },
         {
           "title": "掌握更新算法",
-          "toc_page": 12,
-          "actual_page": 12,
-          "matches": true
-        },
-        {
-          "title": "学习规划算法",
           "toc_page": 15,
           "actual_page": 15,
           "matches": true
         },
         {
+          "title": "学习规划算法",
+          "toc_page": 18,
+          "actual_page": 18,
+          "matches": true
+        },
+        {
           "title": "习题补充算法",
-          "toc_page": 17,
-          "actual_page": 17,
-          "matches": true
-        },
-        {
-          "title": "智能体设计",
-          "toc_page": 19,
-          "actual_page": 19,
-          "matches": true
-        },
-        {
-          "title": "协调架构",
-          "toc_page": 19,
-          "actual_page": 19,
-          "matches": true
-        },
-        {
-          "title": "工作流设计",
           "toc_page": 20,
           "actual_page": 20,
           "matches": true
         },
         {
-          "title": "工具与会话",
+          "title": "智能体设计",
+          "toc_page": 22,
+          "actual_page": 22,
+          "matches": true
+        },
+        {
+          "title": "协调架构",
+          "toc_page": 22,
+          "actual_page": 22,
+          "matches": true
+        },
+        {
+          "title": "工作流设计",
           "toc_page": 23,
           "actual_page": 23,
           "matches": true
         },
         {
+          "title": "工具与会话",
+          "toc_page": 26,
+          "actual_page": 26,
+          "matches": true
+        },
+        {
           "title": "任务状态",
-          "toc_page": 25,
-          "actual_page": 25,
-          "matches": true
-        },
-        {
-          "title": "数据设计",
-          "toc_page": 27,
-          "actual_page": 27,
-          "matches": true
-        },
-        {
-          "title": "数据关联",
-          "toc_page": 27,
-          "actual_page": 27,
-          "matches": true
-        },
-        {
-          "title": "版本管理",
           "toc_page": 28,
           "actual_page": 28,
           "matches": true
         },
         {
-          "title": "异步提交",
-          "toc_page": 30,
-          "actual_page": 30,
+          "title": "数据设计",
+          "toc_page": 31,
+          "actual_page": 31,
           "matches": true
         },
         {
-          "title": "学习记忆",
-          "toc_page": 33,
-          "actual_page": 33,
+          "title": "数据关联",
+          "toc_page": 31,
+          "actual_page": 31,
           "matches": true
         },
         {
-          "title": "系统实现",
-          "toc_page": 33,
-          "actual_page": 33,
-          "matches": true
-        },
-        {
-          "title": "前端实现",
+          "title": "版本管理",
           "toc_page": 34,
           "actual_page": 34,
           "matches": true
         },
         {
-          "title": "业务服务",
+          "title": "异步提交",
           "toc_page": 35,
           "actual_page": 35,
           "matches": true
         },
         {
-          "title": "算法服务",
+          "title": "学习记忆",
           "toc_page": 38,
           "actual_page": 38,
           "matches": true
         },
         {
-          "title": "安全容错",
-          "toc_page": 40,
-          "actual_page": 40,
+          "title": "系统实现",
+          "toc_page": 38,
+          "actual_page": 38,
           "matches": true
         },
         {
-          "title": "部署方案",
-          "toc_page": 41,
-          "actual_page": 41,
+          "title": "前端实现",
+          "toc_page": 39,
+          "actual_page": 39,
           "matches": true
         },
         {
-          "title": "系统验证",
+          "title": "业务服务",
           "toc_page": 42,
           "actual_page": 42,
           "matches": true
         },
         {
+          "title": "算法服务",
+          "toc_page": 46,
+          "actual_page": 46,
+          "matches": true
+        },
+        {
+          "title": "安全容错",
+          "toc_page": 48,
+          "actual_page": 48,
+          "matches": true
+        },
+        {
+          "title": "部署方案",
+          "toc_page": 50,
+          "actual_page": 50,
+          "matches": true
+        },
+        {
+          "title": "系统验证",
+          "toc_page": 53,
+          "actual_page": 53,
+          "matches": true
+        },
+        {
           "title": "算法机制",
-          "toc_page": 43,
-          "actual_page": 43,
+          "toc_page": 53,
+          "actual_page": 53,
           "matches": true
         },
         {
           "title": "业务一致性",
-          "toc_page": 44,
-          "actual_page": 44,
+          "toc_page": 54,
+          "actual_page": 54,
           "matches": true
         },
         {
           "title": "功能流程",
-          "toc_page": 45,
-          "actual_page": 45,
+          "toc_page": 56,
+          "actual_page": 56,
           "matches": true
         },
         {
           "title": "验证分析",
-          "toc_page": 45,
-          "actual_page": 45,
+          "toc_page": 58,
+          "actual_page": 58,
           "matches": true
         },
         {
           "title": "总结与展望",
-          "toc_page": 46,
-          "actual_page": 46,
+          "toc_page": 58,
+          "actual_page": 58,
           "matches": true
         },
         {
           "title": "系统成果",
-          "toc_page": 46,
-          "actual_page": 46,
+          "toc_page": 58,
+          "actual_page": 58,
           "matches": true
         },
         {
           "title": "改进方向",
-          "toc_page": 46,
-          "actual_page": 46,
+          "toc_page": 58,
+          "actual_page": 58,
           "matches": true
         },
         {
           "title": "参考文献",
-          "toc_page": 48,
-          "actual_page": 48,
+          "toc_page": 60,
+          "actual_page": 60,
           "matches": true
         }
       ],
@@ -628,7 +666,9 @@
       "all_references_cited": true,
       "has_real_toc_field": true,
       "unresolved_tokens": [],
-      "reopened_sha_matches": true
+      "reopened_sha_matches": true,
+      "figure_numbers_contiguous": true,
+      "figure_references_resolve": true
     }
   },
   "figures": [
@@ -670,6 +710,38 @@
     },
     {
       "file": "10.svg",
+      "nonblack_labels": []
+    },
+    {
+      "file": "11-usecases.svg",
+      "nonblack_labels": []
+    },
+    {
+      "file": "12-components.svg",
+      "nonblack_labels": []
+    },
+    {
+      "file": "13-states.svg",
+      "nonblack_labels": []
+    },
+    {
+      "file": "14-relations.svg",
+      "nonblack_labels": []
+    },
+    {
+      "file": "15-navigation.svg",
+      "nonblack_labels": []
+    },
+    {
+      "file": "16-boundaries.svg",
+      "nonblack_labels": []
+    },
+    {
+      "file": "17-deployment.svg",
+      "nonblack_labels": []
+    },
+    {
+      "file": "18-validation.svg",
       "nonblack_labels": []
     }
   ],

@@ -56,6 +56,11 @@ for item in manifest:
   assert all(x['matches'] for x in tocrows) and len(tocrows)==len(layout[item['key']]['headings']),tocrows
   assert result['reopened_sha_matches']
   assert len(drawings)==sum(len(x['sources']) for x in item['figures'])
+  figure_numbers=[int(re.match(r'图(\d+)',x['caption'])[1]) for x in item['figures']]
+  assert figure_numbers==list(range(1,len(figure_numbers)+1))
+  assert set(map(int,re.findall(r'图(\d+)',body)))==set(figure_numbers)
+  result['figure_numbers_contiguous']=True
+  result['figure_references_resolve']=True
   assert all(fonts[k].get('eastAsia')==('SimSun' if k=='Normal' else 'SimHei') for k in fonts)
 for p in sorted((O/'figures').glob('*.svg')):
  r=E.fromstring(p.read_bytes());bad=[e.text for e in r.xpath('//*[local-name()="text"]') if e.get('fill') not in ('#000000','black')]

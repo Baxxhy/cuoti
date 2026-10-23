@@ -94,7 +94,7 @@
   {
     "key": "system",
     "name": "错题帮_系统设计文档_最终版",
-    "characters": 32566,
+    "characters": 39040,
     "figures": [
       {
         "caption": "图1 系统组成与调用方向",
@@ -103,45 +103,93 @@
         ]
       },
       {
-        "caption": "图2 原步骤核对与首错判断",
+        "caption": "图2 学生核心用例",
+        "sources": [
+          "figures/11-usecases.png"
+        ]
+      },
+      {
+        "caption": "图3 业务模块与计算入口",
+        "sources": [
+          "figures/12-components.png"
+        ]
+      },
+      {
+        "caption": "图4 原步骤核对与首错判断",
         "sources": [
           "figures/04.png"
         ]
       },
       {
-        "caption": "图3 作答条件与掌握更新",
+        "caption": "图5 作答条件与掌握更新",
         "sources": [
           "figures/05.png"
         ]
       },
       {
-        "caption": "图4 当前任务处理与后续选题",
+        "caption": "图6 当前任务处理与后续选题",
         "sources": [
           "figures/06.png"
         ]
       },
       {
-        "caption": "图5 类似题检索与生成检查",
+        "caption": "图7 类似题检索与生成检查",
         "sources": [
           "figures/07.png"
         ]
       },
       {
-        "caption": "图6 学生动作与本题工作流",
+        "caption": "图8 学生动作与本题工作流",
         "sources": [
           "figures/08.png"
         ]
       },
       {
-        "caption": "图7 题目关联与编辑后的处理",
+        "caption": "图9 任务执行状态与停止条件",
+        "sources": [
+          "figures/13-states.png"
+        ]
+      },
+      {
+        "caption": "图10 学习任务的核心表关系",
+        "sources": [
+          "figures/14-relations.png"
+        ]
+      },
+      {
+        "caption": "图11 题目关联与编辑后的处理",
         "sources": [
           "figures/09.png"
         ]
       },
       {
-        "caption": "图8 异步计算与结果保存",
+        "caption": "图12 异步计算与结果保存",
         "sources": [
           "figures/10.png"
+        ]
+      },
+      {
+        "caption": "图13 学生页面的导航组织",
+        "sources": [
+          "figures/15-navigation.png"
+        ]
+      },
+      {
+        "caption": "图14 请求检查与服务边界",
+        "sources": [
+          "figures/16-boundaries.png"
+        ]
+      },
+      {
+        "caption": "图15 本地运行的部署关系",
+        "sources": [
+          "figures/17-deployment.png"
+        ]
+      },
+      {
+        "caption": "图16 验证对象与结论范围",
+        "sources": [
+          "figures/18-validation.png"
         ]
       }
     ],
@@ -157,7 +205,8 @@
       "表9 核心业务接口",
       "表10 复习后的间隔规则",
       "表11 运行检查对象",
-      "表12 算法机制与反向情境"
+      "表12 算法机制与反向情境",
+      "表13 关键记录的验收口径"
     ],
     "references": [
       "policy",

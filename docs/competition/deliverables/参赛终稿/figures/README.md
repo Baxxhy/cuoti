@@ -24,3 +24,9 @@
 新增构图源：docs/competition/work_final_20261023/varied_figures.py，由draw_figures.py调用。图标均为本项目绘制的简单SVG几何图形，无外部图标文件依赖。
 
 表达参考：[C4图形记法](https://c4model.com/diagrams/notation)、[C4部署图与图标建议](https://c4model.com/diagrams/deployment)、[Material Icons官方指南](https://google.github.io/material-design-icons/)。参考组件辨识、图例和线性表达，不复制参考项目架构。
+
+## 详细设计新增工程图
+
+新增11—18号图源：用例、模块依赖、执行状态、表关系、导航、请求边界、部署和验证矩阵。对应系统文档中的图2、图3、图9、图10、图13—图16；文件编号是稳定资源名，文中图号按阅读顺序排列。
+
+新增图由engineering_figures.py维护，draw_figures.py统一导出。各图分别采用麦色、玉绿、灰紫、钢蓝、陶粉、冰蓝及橄榄色，按用途选择构图。全部标签保持纯黑色。
