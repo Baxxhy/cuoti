@@ -1,19 +1,63 @@
 {
-  "file": "错题帮_参赛演示_三步学习版.mp4",
-  "seconds": 319.74,
-  "bytes": 12086397,
-  "sha256": "efcb6366c88aebf82cebf7ba54da5a1fd39e57a7908d7dc4a4423964dfb0b33c",
+  "file": "错题帮_参赛演示_动画修订版.mp4",
+  "seconds": 305.3,
+  "bytes": 11808616,
+  "sha256": "a6e628f3e5f53138cceaff211174bb047cf145f67282cd8acd60a8a58a922909",
   "resolution": "1920x1080",
   "fps": 25,
   "audio": "AAC / 48000 Hz / stereo",
   "chapters": 6,
-  "subtitle_segments": 62,
-  "max_volume_dbfs": -4.2,
-  "mean_volume_dbfs": -21.9,
+  "subtitle_segments": 60,
+  "max_volume_dbfs": -4.3,
+  "mean_volume_dbfs": -22.1,
   "full_decode": "passed",
   "script_subtitle_match": "passed",
   "source_ranges": "passed",
   "previous_full_films_preserved": "passed",
-  "account_seconds": 8.0,
-  "intro_seconds": 45
+  "account_seconds": 5.32,
+  "intro_seconds": 32.48,
+  "chinese_font": "Noto Sans CJK SC",
+  "intro_motion": [
+    {
+      "beat": 0,
+      "seconds": [
+        0.45,
+        1.15
+      ],
+      "changed_character_pixels": 7298
+    },
+    {
+      "beat": 1,
+      "seconds": [
+        8.592291,
+        9.292291
+      ],
+      "changed_character_pixels": 2265
+    },
+    {
+      "beat": 2,
+      "seconds": [
+        13.748541,
+        14.448541
+      ],
+      "changed_character_pixels": 3174
+    },
+    {
+      "beat": 3,
+      "seconds": [
+        18.051458,
+        18.751458
+      ],
+      "changed_character_pixels": 7257
+    },
+    {
+      "beat": 4,
+      "seconds": [
+        26.8495,
+        27.5495
+      ],
+      "changed_character_pixels": 7835
+    }
+  ],
+  "removed_overlay_checks": "passed"
 }

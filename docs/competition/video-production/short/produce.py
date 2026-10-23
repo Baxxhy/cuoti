@@ -12,6 +12,7 @@ O=WORK/'short';O.mkdir(exist_ok=True)
 V=O/'voices';V.mkdir(exist_ok=True)
 D=ROOT/'docs/competition/deliverables/演示视频/比赛精简版';D.mkdir(parents=True,exist_ok=True)
 FF=imageio_ffmpeg.get_ffmpeg_exe()
+MOVIE_NAME='错题帮_参赛演示_动画修订版.mp4'
 SCENES=json.loads((HERE/'storyboard.json').read_text())
 CLIPS={c['id']:c for c in json.loads((WORK/'take2/clips.json').read_text())}
 RAW=Path((WORK/'take2/raw-path.txt').read_text().strip())
@@ -21,7 +22,8 @@ STEPS=['拍题诊断','订正训练','复习巩固']
 @lru_cache(maxsize=60)
 def font(size,bold=False):
     name='NotoSansCJK-Bold.ttc' if bold else 'NotoSansCJK-Regular.ttc'
-    return ImageFont.truetype('/usr/share/fonts/opentype/noto/'+name,size)
+    # TTC index 2 is Simplified Chinese; index 0 selects Japanese glyph forms.
+    return ImageFont.truetype('/usr/share/fonts/opentype/noto/'+name,size,index=2)
 def duration(p):
     r=subprocess.run([FF,'-i',str(p)],capture_output=True,text=True)
     m=re.search(r'Duration: (\d+):(\d+):([\d.]+)',r.stderr)
@@ -113,16 +115,16 @@ Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
     events=[f'Dialogue: 0,{ass_time(a)},{ass_time(b)},Voice,,0,0,0,,{{\\pos({x},{y})\\fad(70,70)}}{text}' for a,b,text in cues]
     dest.write_text(header+'\n'.join(events)+'\n');return cues
 
+@lru_cache(maxsize=1)
+def intro_animation():
+    from student_animation import StudentIntro
+    intro=next(s for s in SCENES if s['id']=='intro')
+    return StudentIntro(font,intro['text'],json.loads((V/'intro.json').read_text())['words'])
+
 def background(s):
     im=Image.new('RGB',(1920,1080),BG);d=ImageDraw.Draw(im)
-    d.rectangle((0,0,13,1080),fill=BLUE)
     txt(d,(110,53),'错题帮',38,True,BLUE)
     txt(d,(110,117),'2026“仓颉杯”智能编程大赛',25,False,MUTED)
-    for i,label in enumerate(STEPS):
-        active=s['stage']==i+1;x=110+i*345
-        d.ellipse((x,232,x+42,274),fill=BLUE if active else '#E4EAF4')
-        txt(d,(x+13,237),str(i+1),23,True,'white' if active else MUTED)
-        txt(d,(x+60,234),label,31,active,INK if active else MUTED)
     txt(d,(110,355),s['title'],78,True)
     yy=500
     for line in lines(s['detail'],980,39):txt(d,(114,yy),line,39,False,MUTED);yy+=58
@@ -131,42 +133,15 @@ def background(s):
         txt(d,(114,708+i*37),line,25,False,BLUE)
     d.rounded_rectangle((1206,42,1662,1030),radius=26,fill='white',outline='#CCD7E7',width=3)
     txt(d,(1725,65),'手机端',25,True,BLUE)
-    txt(d,(114,1013),'学生使用情境  ·  浏览器手机视口实录',24,False,MUTED)
     return im
 
 def motion(s,t,total):
+    if s['id']=='intro':
+        return intro_animation().frame(t,total)
     im=Image.new('RGB',(1920,1080),BG);d=ImageDraw.Draw(im)
     txt(d,(110,50),'错题帮  /  2026“仓颉杯”智能编程大赛',28,True,BLUE)
     d.line((110,110,1810,110),fill='#DAE3F0',width=2)
-    if s['id']=='intro':
-        if t<6:
-            shift=int(42*max(0,1-t/1.5)**3)
-            txt(d,(110-shift,235),'错题帮',142,True)
-            txt(d,(117,456),'从错题记录，到持续学习',52)
-            txt(d,(119,614),'初二学生小林的学习情境',32,False,MUTED)
-        elif t<37:
-            txt(d,(110,170),'错题抄下来了，真的学会了吗？',69,True)
-            panels=[('定位不清','看过解析','仍说不清自己的偏差'),('理解不稳','当时看懂','换个条件又卡住'),('复习无序','越积越多','考前不知道从哪开始')]
-            for i,(a,b,c) in enumerate(panels):
-                x=110+i*580;y=365+int(25*max(0,1-(t-6-i*.55)/1.3)**3)
-                d.rounded_rectangle((x,y,x+530,y+400),radius=14,fill=['#EAF0FC','#EEF3F0','#F4F0E9'][i])
-                txt(d,(x+34,y+31),f'0{i+1}',38,True,BLUE)
-                txt(d,(x+34,y+112),a,51,True)
-                txt(d,(x+34,y+222),b,31,False,MUTED)
-                txt(d,(x+34,y+280),c,31,False,MUTED)
-        else:
-            txt(d,(110,177),'从学生的困惑，走向三步学习',68,True)
-            for i,label in enumerate(STEPS):
-                x=145+i*585;y=425
-                radius=58+int(4*math.sin(min(1,(t-37-i*.4))*math.pi))
-                d.ellipse((x,y,x+radius*2,y+radius*2),fill='#E5EDFC',outline='#B9CAE7',width=2)
-                txt(d,(x+43,y+24),str(i+1),48,True,BLUE)
-                txt(d,(x-17,y+165),label,53,True)
-                if i<2:
-                    d.line((x+185,y+58,x+435,y+58),fill='#B9CAE7',width=3)
-                    d.polygon([(x+435,y+58),(x+420,y+50),(x+420,y+66)],fill='#B9CAE7')
-            txt(d,(110,807),'下面，从一道真实录入的数学错题开始。',36,False,MUTED)
-    elif s['id']=='architecture':
+    if s['id']=='architecture':
         txt(d,(110,164),s['title'],68,True)
         blocks=[(110,'学生端','uni-app / Vue 3',['录入与作答','任务与学习记录']),(710,'业务与数据','仓颉服务 + MySQL',['业务状态与资格校验','学习数据的统一管理']),(1310,'智能计算','Python / FastAPI',['诊断、规划与判定工具','检索与模型计算'])]
         for x,title,tech,body in blocks:
@@ -183,13 +158,14 @@ def motion(s,t,total):
             d.ellipse((x,615,x+65,680),fill='#E5EDFC')
             txt(d,(x+22,624),str(i+1),31,True,BLUE);txt(d,(x+94,618),label,43,True)
         txt(d,(115,809),'从一道错题，开始下一次学习。',36,False,MUTED)
-    txt(d,(110,1025),'学生为演示角色  ·  中文合成旁白',23,False,MUTED)
     return im
 
 def render(only=None):
     manifest=[]
     for s in SCENES:
-        key=s['id'];voice=V/(key+'.mp3');length=max(s['seconds'],duration(voice)+1.1)
+        key=s['id'];voice=V/(key+'.mp3')
+        padding=.6 if key in ('intro','account') else 1.1
+        length=max(s['seconds'],duration(voice)+padding)
         assert length<=55,(key,length)
         sub=O/(key+'.ass');cues=write_ass(s,sub,not s['shots'])
         dest=O/(key+'.mp4')
@@ -250,9 +226,9 @@ def finish():
         m+=['[CHAPTER]','TIMEBASE=1/1000',f'START={round(g["start"]*1000)}',f'END={round(g["end"]*1000)}','title='+g['title']]
         chapters.append(f'{int(g["start"]//60):02}:{int(g["start"]%60):02}  {g["title"]}')
     meta.write_text('\n'.join(m)+'\n')
-    dest=D/'错题帮_参赛演示_三步学习版.mp4'
+    dest=D/MOVIE_NAME
     run([FF,'-y','-f','concat','-safe','0','-i',str(listing),'-i',str(meta),'-map','0:v','-map','0:a','-map_metadata','1','-map_chapters','1','-c:v','copy','-af','aresample=async=1:first_pts=0','-ar','48000','-ac','2','-c:a','aac','-b:a','160k','-movflags','+faststart',str(dest)],O/'final.log')
-    (D/'错题帮_参赛演示_三步学习版.srt').write_text('\n'.join(subtitles),encoding='utf-8-sig')
+    (D/Path(MOVIE_NAME).with_suffix('.srt')).write_text('\n'.join(subtitles),encoding='utf-8-sig')
     (D/'章节导航.txt').write_text('\n'.join(chapters)+'\n')
     (O/'final-timeline.json').write_text(json.dumps(entries,ensure_ascii=False,indent=2)+'\n')
     (D/'讲解稿.md').write_text('# 错题帮参赛演示讲解稿\n\n'+'\n\n'.join('## '+s['title']+'\n\n'+s['text'] for s in SCENES)+'\n')

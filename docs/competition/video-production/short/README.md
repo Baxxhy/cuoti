@@ -4,6 +4,8 @@
 
 `storyboard.json`保存新旁白、三步阶段、镜头区间和必要说明。`produce.py`从原始手机浏览器录像取材，重新制作动画、背景、字幕与音轨；`check_delivery.py`检查成片并生成说明及交付包。它们不修改业务数据和程序配置。
 
+`student_animation.py`绘制写题、翻页、错题堆叠和题目进入手机的连续场景，切换点来自配音词时间。绘图明确使用Noto Sans CJK SC简体字形集，主体去除重复导航、左侧竖条和底部说明。当前主文件名为《错题帮_参赛演示_动画修订版.mp4》。
+
 在项目根目录按顺序执行：
 
 1. `.venv/bin/python docs/competition/video-production/short/produce.py voices`
