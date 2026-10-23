@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-23",
+  "sources": {
+    "errors": {
+      "url": "https://www.annualreviews.org/content/journals/10.1146/annurev-psych-010416-044022",
+      "title": "Learning from Errors"
+    },
+    "feedback": {
+      "url": "https://journals.sagepub.com/doi/10.3102/003465430298487",
+      "title": "The Power of Feedback"
+    },
+    "formative": {
+      "url": "https://journals.sagepub.com/doi/10.3102/0034654307313795",
+      "title": "Focus on Formative Feedback"
+    },
+    "self_explain": {
+      "url": "https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog1803_3",
+      "title": "Eliciting Self-Explanations Improves Understanding"
+    },
+    "dkt": {
+      "url": "https://arxiv.org/abs/1506.05908",
+      "title": "Deep Knowledge Tracing"
+    },
+    "akt": {
+      "url": "https://arxiv.org/abs/2007.12324",
+      "title": "Context-Aware Attentive Knowledge Tracing"
+    },
+    "process": {
+      "url": "https://arxiv.org/abs/2305.20050",
+      "title": "Let’s Verify Step by Step"
+    },
+    "dpr": {
+      "url": "https://arxiv.org/abs/2004.04906",
+      "title": "Dense Passage Retrieval for Open-Domain Question Answering"
+    },
+    "rag_survey": {
+      "url": "https://arxiv.org/abs/2312.10997",
+      "title": "Retrieval-Augmented Generation for Large Language Models: A Survey"
+    },
+    "bandits": {
+      "url": "https://arxiv.org/abs/1310.3174",
+      "title": "Multi-Armed Bandits for Intelligent Tutoring Systems"
+    },
+    "tutoring": {
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/00461520.2011.611369",
+      "title": "The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems"
+    },
+    "toolformer": {
+      "url": "https://arxiv.org/abs/2302.04761",
+      "title": "Toolformer: Language Models Can Teach Themselves to Use Tools"
+    }
+  },
+  "sections": {
+    "product": [
+      "1.1 项目背景",
+      "2.2 分析与订正",
+      "2.3 讲解与练习",
+      "3.1 错因定位",
+      "3.2 掌握评估",
+      "3.3 学习规划",
+      "3.4 习题补充",
+      "4.3 算法服务",
+      "6.3 后续工作"
+    ],
+    "system": [
+      "1.1 设计目标",
+      "2.1 错因定位算法",
+      "2.2 掌握更新算法",
+      "2.3 学习规划算法",
+      "2.4 习题补充算法",
+      "3.3 工具与会话",
+      "4.4 学习记忆"
+    ]
+  },
+  "scope": "新增论文书目信息及摘要/公开正文核验；引用仅支持对应研究介绍，不替代项目测试证据。"
+}

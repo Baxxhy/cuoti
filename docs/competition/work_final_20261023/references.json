@@ -22,5 +22,17 @@
   "policy": "中共中央, 国务院. [教育强国建设规划纲要（2024—2035年）](https://www.moe.gov.cn/jyb_xxgk/moe_1777/moe_1778/202501/t20250119_1176193.html)[EB/OL]. (2025-01-19)[2026-10-23].",
   "digital": "教育部等九部门. [关于加快推进教育数字化的意见](https://www.moe.gov.cn/srcsite/A01/s7048/202504/t20250416_1187476.html)[EB/OL]. 教办〔2025〕3号, (2025-04-11)[2026-10-23].",
   "project": "错题帮项目组. 错题帮源码及实施记录[CP]. 本地核对版本d01d7428c24180c9b767aa88e26c7dd732ee90b3，README.md与docs/final/IMPLEMENTATION_STATUS.md，2026-10-23。",
-  "ai_education": "教育部, 国家发展改革委, 工业和信息化部, 科技部, 国家数据局. [关于印发《“人工智能+教育”行动计划》的通知](https://www.moe.gov.cn/srcsite/A16/s3342/202604/t20260410_1433240.html)[EB/OL]. 教科信〔2026〕1号, (2026-04-02)[2026-10-23]."
+  "ai_education": "教育部, 国家发展改革委, 工业和信息化部, 科技部, 国家数据局. [关于印发《“人工智能+教育”行动计划》的通知](https://www.moe.gov.cn/srcsite/A16/s3342/202604/t20260410_1433240.html)[EB/OL]. 教科信〔2026〕1号, (2026-04-02)[2026-10-23].",
+  "errors": "METCALFE J. [Learning from Errors](https://www.annualreviews.org/content/journals/10.1146/annurev-psych-010416-044022)[J]. Annual Review of Psychology, 2017, 68: 465–489.",
+  "feedback": "HATTIE J, TIMPERLEY H. [The Power of Feedback](https://journals.sagepub.com/doi/10.3102/003465430298487)[J]. Review of Educational Research, 2007, 77(1): 81–112.",
+  "formative": "SHUTE V J. [Focus on Formative Feedback](https://journals.sagepub.com/doi/10.3102/0034654307313795)[J]. Review of Educational Research, 2008, 78(1): 153–189.",
+  "self_explain": "CHI M T H, DE LEEUW N, CHIU M H, et al.. [Eliciting Self-Explanations Improves Understanding](https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog1803_3)[J]. Cognitive Science, 1994, 18(3): 439–477.",
+  "dkt": "PIECH C, SPENCER J, HUANG J, et al.. [Deep Knowledge Tracing](https://arxiv.org/abs/1506.05908)[EB/OL]. arXiv:1506.05908, 2015 [2026-10-23].",
+  "akt": "GHOSH A, HEFFERNAN N, LAN A S. [Context-Aware Attentive Knowledge Tracing](https://arxiv.org/abs/2007.12324)[EB/OL]. arXiv:2007.12324, 2020 [2026-10-23].",
+  "process": "LIGHTMAN H, KOSARAJU V, BURDA Y, et al.. [Let’s Verify Step by Step](https://arxiv.org/abs/2305.20050)[EB/OL]. arXiv:2305.20050, 2023 [2026-10-23].",
+  "dpr": "KARPUKHIN V, OGUZ B, MIN S, et al.. [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906)[EB/OL]. arXiv:2004.04906, 2020 [2026-10-23].",
+  "rag_survey": "GAO Y, XIONG Y, GAO X, et al.. [Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/abs/2312.10997)[EB/OL]. arXiv:2312.10997, 2023 [2026-10-23].",
+  "bandits": "CLEMENT B, ROY D, OUDEYER P Y, et al.. [Multi-Armed Bandits for Intelligent Tutoring Systems](https://arxiv.org/abs/1310.3174)[J]. Journal of Educational Data Mining, 2015, 7(2): 20–48.",
+  "tutoring": "VANLEHN K. [The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems](https://www.tandfonline.com/doi/abs/10.1080/00461520.2011.611369)[J]. Educational Psychologist, 2011, 46(4): 197–221.",
+  "toolformer": "SCHICK T, DWIVEDI-YU J, DESSÌ R, et al.. [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761)[EB/OL]. arXiv:2302.04761, 2023 [2026-10-23]."
 }

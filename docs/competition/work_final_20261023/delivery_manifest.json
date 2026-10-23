@@ -241,28 +241,28 @@
   },
   {
     "path": "终稿修改说明.md",
-    "sha256": "a9cc4ce1097ce01cc963d9cceca6b5f61e996bad4ccc65d10ec936c956e8d8b0",
-    "bytes": 6359
+    "sha256": "7165c2f7d255902e64fc5366d94d23454520ea1b4daae76d6ec0e5b16dbcf79e",
+    "bytes": 7010
   },
   {
     "path": "错题帮_系统设计文档_最终版.docx",
-    "sha256": "52924d087241e23bc1996774c5fbc83ccd5755c76c106d92f7e538a24806321b",
-    "bytes": 3128375
+    "sha256": "5be6c31957a970147a9136358b7d16542f9bd6ff2c86d62fcf07b78ee2ef2c00",
+    "bytes": 3130908
   },
   {
     "path": "错题帮_系统设计文档_最终版.md",
-    "sha256": "83f74b9a42caf5a49809b911781f73b0444ded53754ef019aaf1ecfbf57f668e",
-    "bytes": 99994
+    "sha256": "a124e8252dd7340b0174e5de4bbd1cc95ee35337d083c35730a3816634b9c51c",
+    "bytes": 104615
   },
   {
     "path": "错题帮_项目说明文档_最终版.docx",
-    "sha256": "13ff819424d411b7e1cdcf68a77549a01865237cf2f0f5a9e1285ef5d577ea42",
-    "bytes": 1618379
+    "sha256": "69db93bb29883a544e2f52fa415cf548635a14dc65913859c677d61ab9bca69e",
+    "bytes": 1620882
   },
   {
     "path": "错题帮_项目说明文档_最终版.md",
-    "sha256": "97f3c2f6eda41c64de1abcb877b5d8493e2c35b8bdd0da274a707ba243ba3d90",
-    "bytes": 42568
+    "sha256": "e437c01475f93493949205a8453f89ed950ac9712798698bbcb78b41e4915296",
+    "bytes": 47201
   },
   {
     "path": "验收材料/algorithm_review_host.log",
@@ -281,8 +281,8 @@
   },
   {
     "path": "验收材料/quality_audit.json",
-    "sha256": "d803252667a96aa661dabcc6f1bb9ca31435216900f4560051d0e64edeba0d14",
-    "bytes": 18924
+    "sha256": "bddac62e8d48286cdb849edaacddcc62cd7ae1c129e05d160e49c70ac854c7dc",
+    "bytes": 18926
   },
   {
     "path": "验收材料/历史证据索引.json",
@@ -303,6 +303,11 @@
     "path": "验收材料/文献补充核查.md",
     "sha256": "307f5e688dad6d74f36fb878116093e1068abf03030fb1bf190277e46ab34d6c",
     "bytes": 1367
+  },
+  {
+    "path": "验收材料/新增论文引用核验.json",
+    "sha256": "aba6156eb5476f1d0ec54a01608ac3454cd4b24f6358880fb036e6febd340b73",
+    "bytes": 2496
   },
   {
     "path": "验收材料/模型称谓检查.json",

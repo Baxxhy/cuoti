@@ -12,13 +12,13 @@
   "documents": {
     "product": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_项目说明文档_最终版.docx",
-      "sha256": "13ff819424d411b7e1cdcf68a77549a01865237cf2f0f5a9e1285ef5d577ea42",
-      "pages": 30,
-      "word_paragraphs": 191,
+      "sha256": "69db93bb29883a544e2f52fa415cf548635a14dc65913859c677d61ab9bca69e",
+      "pages": 31,
+      "word_paragraphs": 212,
       "tables": 5,
       "embedded_images": 14,
       "figure_groups": 8,
-      "references": 20,
+      "references": 32,
       "bad_colors": [],
       "fonts": {
         "Normal": {
@@ -129,8 +129,8 @@
         },
         {
           "title": "功能与使用",
-          "toc_page": 7,
-          "actual_page": 7,
+          "toc_page": 8,
+          "actual_page": 8,
           "matches": true
         },
         {
@@ -141,32 +141,32 @@
         },
         {
           "title": "分析与订正",
-          "toc_page": 8,
-          "actual_page": 8,
-          "matches": true
-        },
-        {
-          "title": "讲解与练习",
           "toc_page": 9,
           "actual_page": 9,
           "matches": true
         },
         {
-          "title": "考试与复习",
+          "title": "讲解与练习",
           "toc_page": 10,
           "actual_page": 10,
+          "matches": true
+        },
+        {
+          "title": "考试与复习",
+          "toc_page": 11,
+          "actual_page": 11,
           "matches": true
         },
         {
           "title": "知识与资料",
-          "toc_page": 10,
-          "actual_page": 10,
+          "toc_page": 11,
+          "actual_page": 11,
           "matches": true
         },
         {
           "title": "技术特色",
-          "toc_page": 11,
-          "actual_page": 11,
+          "toc_page": 12,
+          "actual_page": 12,
           "matches": true
         },
         {
@@ -177,116 +177,116 @@
         },
         {
           "title": "掌握评估",
-          "toc_page": 13,
-          "actual_page": 13,
+          "toc_page": 14,
+          "actual_page": 14,
           "matches": true
         },
         {
           "title": "学习规划",
-          "toc_page": 14,
-          "actual_page": 14,
-          "matches": true
-        },
-        {
-          "title": "习题补充",
-          "toc_page": 14,
-          "actual_page": 14,
-          "matches": true
-        },
-        {
-          "title": "系统实现",
           "toc_page": 15,
           "actual_page": 15,
           "matches": true
         },
         {
-          "title": "项目技术",
+          "title": "习题补充",
+          "toc_page": 15,
+          "actual_page": 15,
+          "matches": true
+        },
+        {
+          "title": "系统实现",
           "toc_page": 16,
           "actual_page": 16,
           "matches": true
         },
         {
-          "title": "前端与业务",
+          "title": "项目技术",
           "toc_page": 17,
           "actual_page": 17,
+          "matches": true
+        },
+        {
+          "title": "前端与业务",
+          "toc_page": 18,
+          "actual_page": 18,
           "matches": true
         },
         {
           "title": "算法服务",
-          "toc_page": 17,
-          "actual_page": 17,
+          "toc_page": 18,
+          "actual_page": 18,
           "matches": true
         },
         {
           "title": "运行与使用",
-          "toc_page": 18,
-          "actual_page": 18,
-          "matches": true
-        },
-        {
-          "title": "应用与验证",
-          "toc_page": 18,
-          "actual_page": 18,
-          "matches": true
-        },
-        {
-          "title": "诊断订正案例",
           "toc_page": 19,
           "actual_page": 19,
           "matches": true
         },
         {
-          "title": "独立作答案例",
+          "title": "应用与验证",
           "toc_page": 20,
           "actual_page": 20,
           "matches": true
         },
         {
-          "title": "连续练习案例",
+          "title": "诊断订正案例",
+          "toc_page": 20,
+          "actual_page": 20,
+          "matches": true
+        },
+        {
+          "title": "独立作答案例",
           "toc_page": 21,
           "actual_page": 21,
           "matches": true
         },
         {
+          "title": "连续练习案例",
+          "toc_page": 22,
+          "actual_page": 22,
+          "matches": true
+        },
+        {
           "title": "任务继续与复习",
-          "toc_page": 23,
-          "actual_page": 23,
+          "toc_page": 24,
+          "actual_page": 24,
           "matches": true
         },
         {
           "title": "工程验证",
-          "toc_page": 25,
-          "actual_page": 25,
+          "toc_page": 26,
+          "actual_page": 26,
           "matches": true
         },
         {
           "title": "成果与计划",
-          "toc_page": 26,
-          "actual_page": 26,
-          "matches": true
-        },
-        {
-          "title": "当前成果",
-          "toc_page": 26,
-          "actual_page": 26,
-          "matches": true
-        },
-        {
-          "title": "使用价值",
           "toc_page": 27,
           "actual_page": 27,
           "matches": true
         },
         {
-          "title": "后续工作",
+          "title": "当前成果",
+          "toc_page": 27,
+          "actual_page": 27,
+          "matches": true
+        },
+        {
+          "title": "使用价值",
           "toc_page": 28,
           "actual_page": 28,
           "matches": true
         },
         {
-          "title": "参考文献",
+          "title": "后续工作",
           "toc_page": 29,
           "actual_page": 29,
+          "matches": true
+        },
+        {
+          "title": "参考文献",
+          "toc_page": 30,
+          "actual_page": 30,
           "matches": true
         }
       ],
@@ -302,13 +302,13 @@
     },
     "system": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_系统设计文档_最终版.docx",
-      "sha256": "52924d087241e23bc1996774c5fbc83ccd5755c76c106d92f7e538a24806321b",
-      "pages": 60,
-      "word_paragraphs": 393,
+      "sha256": "5be6c31957a970147a9136358b7d16542f9bd6ff2c86d62fcf07b78ee2ef2c00",
+      "pages": 62,
+      "word_paragraphs": 413,
       "tables": 13,
       "embedded_images": 16,
       "figure_groups": 16,
-      "references": 18,
+      "references": 30,
       "bad_colors": [],
       "fonts": {
         "Normal": {
@@ -519,8 +519,8 @@
         },
         {
           "title": "协调架构",
-          "toc_page": 22,
-          "actual_page": 22,
+          "toc_page": 23,
+          "actual_page": 23,
           "matches": true
         },
         {
@@ -537,8 +537,8 @@
         },
         {
           "title": "任务状态",
-          "toc_page": 28,
-          "actual_page": 28,
+          "toc_page": 29,
+          "actual_page": 29,
           "matches": true
         },
         {
@@ -561,104 +561,104 @@
         },
         {
           "title": "异步提交",
-          "toc_page": 35,
-          "actual_page": 35,
+          "toc_page": 36,
+          "actual_page": 36,
           "matches": true
         },
         {
           "title": "学习记忆",
-          "toc_page": 38,
-          "actual_page": 38,
-          "matches": true
-        },
-        {
-          "title": "系统实现",
-          "toc_page": 38,
-          "actual_page": 38,
-          "matches": true
-        },
-        {
-          "title": "前端实现",
           "toc_page": 39,
           "actual_page": 39,
           "matches": true
         },
         {
+          "title": "系统实现",
+          "toc_page": 40,
+          "actual_page": 40,
+          "matches": true
+        },
+        {
+          "title": "前端实现",
+          "toc_page": 40,
+          "actual_page": 40,
+          "matches": true
+        },
+        {
           "title": "业务服务",
-          "toc_page": 42,
-          "actual_page": 42,
+          "toc_page": 43,
+          "actual_page": 43,
           "matches": true
         },
         {
           "title": "算法服务",
-          "toc_page": 46,
-          "actual_page": 46,
+          "toc_page": 47,
+          "actual_page": 47,
           "matches": true
         },
         {
           "title": "安全容错",
-          "toc_page": 48,
-          "actual_page": 48,
+          "toc_page": 49,
+          "actual_page": 49,
           "matches": true
         },
         {
           "title": "部署方案",
-          "toc_page": 50,
-          "actual_page": 50,
+          "toc_page": 51,
+          "actual_page": 51,
           "matches": true
         },
         {
           "title": "系统验证",
-          "toc_page": 53,
-          "actual_page": 53,
-          "matches": true
-        },
-        {
-          "title": "算法机制",
-          "toc_page": 53,
-          "actual_page": 53,
-          "matches": true
-        },
-        {
-          "title": "业务一致性",
           "toc_page": 54,
           "actual_page": 54,
           "matches": true
         },
         {
+          "title": "算法机制",
+          "toc_page": 54,
+          "actual_page": 54,
+          "matches": true
+        },
+        {
+          "title": "业务一致性",
+          "toc_page": 55,
+          "actual_page": 55,
+          "matches": true
+        },
+        {
           "title": "功能流程",
-          "toc_page": 56,
-          "actual_page": 56,
+          "toc_page": 57,
+          "actual_page": 57,
           "matches": true
         },
         {
           "title": "验证分析",
-          "toc_page": 58,
-          "actual_page": 58,
+          "toc_page": 59,
+          "actual_page": 59,
           "matches": true
         },
         {
           "title": "总结与展望",
-          "toc_page": 58,
-          "actual_page": 58,
+          "toc_page": 59,
+          "actual_page": 59,
           "matches": true
         },
         {
           "title": "系统成果",
-          "toc_page": 58,
-          "actual_page": 58,
+          "toc_page": 59,
+          "actual_page": 59,
           "matches": true
         },
         {
           "title": "改进方向",
-          "toc_page": 58,
-          "actual_page": 58,
+          "toc_page": 59,
+          "actual_page": 59,
           "matches": true
         },
         {
           "title": "参考文献",
-          "toc_page": 60,
-          "actual_page": 60,
+          "toc_page": 61,
+          "actual_page": 61,
           "matches": true
         }
       ],

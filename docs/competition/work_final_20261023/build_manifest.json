@@ -2,7 +2,7 @@
   {
     "key": "product",
     "name": "错题帮_项目说明文档_最终版",
-    "characters": 17614,
+    "characters": 20650,
     "figures": [
       {
         "caption": "图1 中学生错题学习问题链",
@@ -70,12 +70,22 @@
       "policy",
       "digital",
       "ai_education",
+      "errors",
+      "feedback",
       "retrieval_learning",
       "spacing",
       "techniques",
       "photomath",
       "anki",
+      "formative",
+      "self_explain",
+      "process",
+      "dkt",
+      "akt",
       "knowledge_tracing",
+      "bandits",
+      "dpr",
+      "rag_survey",
       "rag",
       "uniapp",
       "vue",
@@ -86,7 +96,9 @@
       "qdrant",
       "bge",
       "project",
-      "react"
+      "toolformer",
+      "react",
+      "tutoring"
     ],
     "raw": "/root/Baxxhy/zhiwei/docs/competition/work_final_20261023/错题帮_项目说明文档_最终版_raw.docx",
     "final": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_项目说明文档_最终版.docx"
@@ -94,7 +106,7 @@
   {
     "key": "system",
     "name": "错题帮_系统设计文档_最终版",
-    "characters": 39066,
+    "characters": 42098,
     "figures": [
       {
         "caption": "图1 系统组成与调用方向",
@@ -212,6 +224,8 @@
       "policy",
       "digital",
       "ai_education",
+      "errors",
+      "tutoring",
       "retrieval_learning",
       "spacing",
       "cangjie",
@@ -222,9 +236,19 @@
       "qdrant",
       "bge",
       "langgraph",
+      "feedback",
+      "formative",
+      "process",
+      "dkt",
+      "akt",
       "knowledge_tracing",
+      "bandits",
+      "dpr",
+      "rag_survey",
       "rag",
       "react",
+      "toolformer",
+      "self_explain",
       "anki",
       "techniques"
     ],
