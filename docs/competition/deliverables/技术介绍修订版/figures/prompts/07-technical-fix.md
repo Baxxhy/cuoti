@@ -1,0 +1,1 @@
+Edit only the central validation area of this diagram. Replace central heading with '准入检查'. Replace the labels '技能', '答案', '年级', '完整性' with '学科', '技能', '可作答', '完整性' respectively. This checks eligibility, NOT correctness of the answer for every retrieved question. Preserve all other composition, arrows, text, colors. Every text black, no tiny explanatory sublabels.
