@@ -1,0 +1,193 @@
+[
+  {
+    "key": "product",
+    "name": "错题帮_项目说明文档_技术介绍版",
+    "characters": 18516,
+    "figures": [
+      {
+        "caption": "图1 中学生错题学习问题链",
+        "sources": [
+          "figures/00-background.png"
+        ]
+      },
+      {
+        "caption": "图2 错题学习与后续反馈",
+        "sources": [
+          "figures/01.png"
+        ]
+      },
+      {
+        "caption": "图3 系统组成与服务分工",
+        "sources": [
+          "figures/03.png"
+        ]
+      },
+      {
+        "caption": "图4 原作答诊断与局部订正",
+        "sources": [
+          "figures/screenshots/diagnosis-history-mobile.png",
+          "figures/screenshots/repair-history-mobile.png"
+        ]
+      },
+      {
+        "caption": "图5 独立作答与学习自检",
+        "sources": [
+          "figures/screenshots/independent-history-mobile.png",
+          "figures/screenshots/contrast-history-mobile.png",
+          "figures/screenshots/self-check-history-mobile.png"
+        ]
+      },
+      {
+        "caption": "图6 已保存结果与下一道练习",
+        "sources": [
+          "figures/screenshots/practice-result-history-mobile.png",
+          "figures/screenshots/practice-next-history-mobile.png"
+        ]
+      },
+      {
+        "caption": "图7 学习入口与易错地图",
+        "sources": [
+          "figures/screenshots/today-history-mobile.png",
+          "figures/screenshots/map-history-mobile.png"
+        ]
+      },
+      {
+        "caption": "图8 复习作答与难度自评",
+        "sources": [
+          "figures/screenshots/review-answer-history-mobile.png",
+          "figures/screenshots/review-feedback-history-mobile.png"
+        ]
+      }
+    ],
+    "tables": [
+      "表1 主要使用场景",
+      "表2 工程验证记录",
+      "表3 当前实现状态"
+    ],
+    "references": [
+      "policy",
+      "digital",
+      "ai_education",
+      "retrieval_learning",
+      "spacing",
+      "techniques",
+      "photomath",
+      "anki",
+      "knowledge_tracing",
+      "rag",
+      "uniapp",
+      "vue",
+      "cangjie",
+      "fastapi",
+      "pydantic",
+      "sympy",
+      "langgraph",
+      "mysql",
+      "qdrant",
+      "bge",
+      "project",
+      "react",
+      "pytest",
+      "playwright"
+    ],
+    "raw": "/root/Baxxhy/zhiwei/docs/competition/work_technology_20261023/错题帮_项目说明文档_技术介绍版_raw.docx",
+    "final": "/root/Baxxhy/zhiwei/docs/competition/deliverables/技术介绍版/错题帮_项目说明文档_技术介绍版.docx"
+  },
+  {
+    "key": "system",
+    "name": "错题帮_系统设计文档_技术介绍版",
+    "characters": 34280,
+    "figures": [
+      {
+        "caption": "图1 系统组成与调用方向",
+        "sources": [
+          "figures/03.png"
+        ]
+      },
+      {
+        "caption": "图2 原步骤核对与首错判断",
+        "sources": [
+          "figures/04.png"
+        ]
+      },
+      {
+        "caption": "图3 作答条件与掌握更新",
+        "sources": [
+          "figures/05.png"
+        ]
+      },
+      {
+        "caption": "图4 当前任务处理与后续选题",
+        "sources": [
+          "figures/06.png"
+        ]
+      },
+      {
+        "caption": "图5 类似题检索与生成检查",
+        "sources": [
+          "figures/07.png"
+        ]
+      },
+      {
+        "caption": "图6 学生动作与本题工作流",
+        "sources": [
+          "figures/08.png"
+        ]
+      },
+      {
+        "caption": "图7 题目关联与编辑后的处理",
+        "sources": [
+          "figures/09.png"
+        ]
+      },
+      {
+        "caption": "图8 异步计算与结果保存",
+        "sources": [
+          "figures/10.png"
+        ]
+      }
+    ],
+    "tables": [
+      "表1 核心业务要求",
+      "表2 技术与依赖范围",
+      "表3 掌握更新演算",
+      "表4 复习后的间隔规则",
+      "表5 工具输入与返回",
+      "表6 学习任务状态",
+      "表7 主要数据对象",
+      "表8 版本与请求标识",
+      "表9 中断与异常处理",
+      "表10 核心业务接口",
+      "表11 运行检查对象",
+      "表12 已有测试批次",
+      "表13 关键规则与反向检查"
+    ],
+    "references": [
+      "policy",
+      "digital",
+      "ai_education",
+      "retrieval_learning",
+      "spacing",
+      "project",
+      "cangjie",
+      "uniapp",
+      "vue",
+      "fastapi",
+      "pydantic",
+      "sympy",
+      "mysql",
+      "qdrant",
+      "bge",
+      "langgraph",
+      "knowledge_tracing",
+      "rag",
+      "anki",
+      "react",
+      "pytest",
+      "playwright",
+      "techniques"
+    ],
+    "raw": "/root/Baxxhy/zhiwei/docs/competition/work_technology_20261023/错题帮_系统设计文档_技术介绍版_raw.docx",
+    "final": "/root/Baxxhy/zhiwei/docs/competition/deliverables/技术介绍版/错题帮_系统设计文档_技术介绍版.docx"
+  }
+]

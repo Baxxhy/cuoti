@@ -1,0 +1,10 @@
+reference.txt
+image*.png
+contact-*.jpg
+word_previews/
+*_raw.docx
+.~lock.*
+__pycache__/
+rejected/
+pages-*.jpg
+media
