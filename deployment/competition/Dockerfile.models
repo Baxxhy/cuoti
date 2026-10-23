@@ -1,0 +1,3 @@
+FROM cuoti-submission:runtime-20261023
+COPY payload/ /opt/
+HEALTHCHECK --interval=20s --timeout=5s --start-period=600s CMD /opt/python/bin/python3.13 -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/readyz',timeout=3)" || exit 1

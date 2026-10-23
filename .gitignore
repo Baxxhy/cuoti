@@ -41,3 +41,6 @@ reports/*.xlsx
 
 # Source archives are not part of the final repository
 /*.zip
+
+# Large runnable submission archives are delivered locally, not stored in Git.
+/docs/competition/deliverables/程序包/*.zip
