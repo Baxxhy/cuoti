@@ -1,12 +1,16 @@
 <template>
   <view class="page learning-page">
-    <app-header
-      title="到期复习"
-      :subtitle="loading ? '正在读取复习安排' : `${plans.length} 道待复习`"
-      back
-      back-fallback="/pages/learning/learning"
-    />
+    <app-header title="到期复习" back back-fallback="/pages/learning/learning" />
     <view class="page-content">
+      <button
+        role="button"
+        class="review-search-entry"
+        @click="go('/pages/review-search/review-search')"
+      >
+        <uni-icons type="search" size="20" aria-hidden="true" />
+        <text class="review-search-label">查找复习题</text>
+        <uni-icons type="right" size="16" aria-hidden="true" />
+      </button>
       <state-panel v-if="loading" state="loading" />
       <state-panel v-else-if="error" state="error" :message="error" @retry="load" />
       <template v-else>
@@ -42,11 +46,10 @@
             @keydown.space.prevent
             @keyup.space.prevent="openMissingOriginal"
           >
-            去原题继续学习
+            返回原题
           </button>
         </view>
         <view v-if="!activePlan && !originUnavailable" class="today-summary">
-          <text class="summary-label">独立回忆，再看反馈</text>
           <b>{{ plans.length ? `${plans.length} 道复习等待完成` : '今天没有待复习题目' }}</b>
           <text>
             {{
@@ -55,15 +58,19 @@
                 : '复习会根据你的学习记录安排。'
             }}
           </text>
-          <button v-if="!plans.length" class="primary-btn" @click="go('/pages/capture/capture')">
-            录入错题
+          <button
+            role="button"
+            v-if="!plans.length"
+            class="primary-btn"
+            @click="go('/pages/problem/list')"
+          >
+            查看错题
           </button>
         </view>
 
         <template v-if="activePlan">
-          <text class="eyebrow review-route-caption">修复的最后一步 · 先回想，再核对</text>
           <view class="section-title">
-            <text>独立回忆，再看反馈</text>
+            <text>今日复习</text>
             <text
               class="section-link"
               role="status"
@@ -88,7 +95,7 @@
               :src="figure.url"
               mode="widthFix"
             />
-            <text class="review-reason">{{ friendlyReason(activePlan.reason) }}</text>
+            <math-text class="review-reason" :text="friendlyReason(activePlan.reason)" inline />
             <template v-if="!attempts[activePlan.id]">
               <checkbox-group
                 v-if="multiple && options.length"
@@ -100,7 +107,7 @@
                     :value="option.label"
                     :checked="selectedOptions.includes(option.label)"
                     :disabled="!!busy"
-                    color="#002FA7"
+                    color="var(--color-primary)"
                   />
                   <math-text :text="`${option.label}. ${option.text}`" />
                 </label>
@@ -114,19 +121,19 @@
                     :value="option.label"
                     :checked="answers[activePlan.id] === option.label"
                     :disabled="!!busy"
-                    color="#002FA7"
+                    color="var(--color-primary)"
                   />
                   <math-text :text="`${option.label}. ${option.text}`" />
                 </label>
               </radio-group>
               <view v-else class="field">
-                <text class="field-label">独立写下答案或关键步骤</text>
+                <text class="field-label">我的作答</text>
                 <written-answer
                   :key="activePlan.id"
                   :disabled="!!busy"
                   ref="writtenAnswer"
                   v-model="answers[activePlan.id]"
-                  placeholder="先回忆，不要急着看答案……"
+                  placeholder="输入答案或关键步骤"
                   :allow-handwriting="allowsHandwriting"
                   upload-url="/answers/handwriting"
                   :upload-data="handwritingContext"
@@ -134,9 +141,6 @@
                   @uploading-change="uploadingHandwriting = $event"
                 />
               </view>
-              <text v-if="!answers[activePlan.id]?.trim()" class="disabled-help">
-                请先填写你的答案
-              </text>
               <button
                 class="primary-btn"
                 :aria-disabled="
@@ -157,7 +161,7 @@
                     ? '正在判定…'
                     : uploadingHandwriting
                       ? '正在解析手写答案…'
-                      : '提交并判定'
+                      : '提交作答'
                 }}
               </button>
             </template>
@@ -171,13 +175,14 @@
               >
                 <view class="result-title">
                   <uni-icons
+                    aria-hidden="true"
                     :type="attemptIcon(attempts[activePlan.id])"
                     size="24"
                     :color="attemptColor(attempts[activePlan.id])"
                   />
                   <b>{{ attemptTitle(attempts[activePlan.id]) }}</b>
                 </view>
-                <text>{{ attempts[activePlan.id].feedback }}</text>
+                <math-text :text="learningFeedback(attempts[activePlan.id].feedback)" inline />
                 <small>参考答案</small>
                 <math-text :text="attempts[activePlan.id].expected_answer" />
                 <text v-if="!attempts[activePlan.id].can_update_learning">
@@ -185,7 +190,7 @@
                 </text>
               </view>
               <template v-if="attempts[activePlan.id].can_update_learning">
-                <text class="grade-prompt">现在回想，这道题对你来说有多难？</text>
+                <text class="grade-prompt">这道题掌握得怎么样？</text>
                 <view class="grade-grid">
                   <button
                     v-for="gradeItem in grades"
@@ -199,11 +204,12 @@
                     @keyup.space.prevent="grade(activePlan.id, gradeItem.value)"
                     @click="grade(activePlan.id, gradeItem.value)"
                   >
-                    {{ gradeItem.label }}
+                    <text>{{ gradeItem.label }}</text>
                   </button>
                 </view>
               </template>
               <button
+                role="button"
                 v-else
                 class="secondary-btn"
                 :disabled="!!busy"
@@ -227,7 +233,7 @@
               </button>
               <view v-if="showPrevious">
                 <text class="previous-hint">题目或参考已更新，请核对后再使用旧文字。</text>
-                <text class="previous-text" selectable>{{ previousDraft.text }}</text>
+                <math-text class="previous-text" selectable :text="previousDraft.text" inline />
                 <button
                   v-if="!answers[activePlan.id]?.trim()"
                   class="secondary-btn use-previous"
@@ -278,7 +284,9 @@
             <view v-if="actionError" class="review-error" role="alert">
               <text>{{ actionError }}</text>
               <text>当前内容已保留，可以重试；题目有更新时请重新读取。</text>
-              <button class="secondary-btn" :disabled="!!busy" @click="load">重新读取复习</button>
+              <button role="button" class="secondary-btn" :disabled="!!busy" @click="load">
+                重新读取复习
+              </button>
             </view>
           </view>
           <view v-if="plans.length > 1" class="review-queue" aria-label="复习题目切换">
@@ -331,12 +339,19 @@
           />
         </button>
         <view v-if="showReinforce" class="reinforce-list">
-          <view v-for="item in dashboard.misconceptions?.slice(0, 4)" :key="item.label">
-            <text>{{ item.label }}</text>
-            <small>从相关错题继续练习</small>
-            <button class="row-action" @click="go('/pages/problem/list')">查看错题</button>
+          <view
+            v-for="item in reportCauses(dashboard.misconceptions || []).slice(0, 4)"
+            :key="item.label"
+          >
+            <math-text :text="item.label" class="reinforce-reason" />
+
+            <button role="button" class="row-action" @click="go('/pages/problem/list')">
+              查看错题
+            </button>
           </view>
-          <text v-if="!dashboard.misconceptions?.length" class="muted">当前没有集中出现的错因</text>
+          <text v-if="!reportCauses(dashboard.misconceptions || []).length" class="muted">
+            暂无需要巩固的错因
+          </text>
         </view>
 
         <button
@@ -360,14 +375,20 @@
           <view v-for="item in history.slice(0, 8)" :key="item.id" class="list-card">
             <view class="history-score" :class="{ correct: item.correct }">
               <uni-icons
+                aria-hidden="true"
                 :type="item.correct ? 'checkmarkempty' : 'reload'"
                 size="22"
                 color="var(--color-text-secondary)"
               />
             </view>
             <view class="list-main">
-              <text class="list-title">{{ item.question?.question_text || '复习题目' }}</text>
+              <math-text
+                class="list-title"
+                :text="item.question?.question_text || '复习题目'"
+                inline
+              />
               <button
+                role="button"
                 v-if="item.question?.id && item.question.status !== 'archived'"
                 class="history-link"
                 @click="go(`/pages/detail/detail?id=${item.question.id}`)"
@@ -383,7 +404,7 @@
         </view>
         <view v-if="secondaryError" class="review-error" role="alert">
           <text>{{ secondaryError }}</text>
-          <button class="secondary-btn" @click="loadSecondary()">重新读取记录</button>
+          <button role="button" class="secondary-btn" @click="loadSecondary()">重新读取记录</button>
         </view>
       </template>
     </view>
@@ -391,6 +412,9 @@
 </template>
 
 <script setup>
+import { reportCauses } from '@/utils/report.js'
+import { learningFeedback } from '@/utils/learning-feedback.js'
+import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 
 import { computed, nextTick, reactive, ref, watch } from 'vue'
@@ -861,6 +885,26 @@ onUnload(leave)
 </script>
 
 <style scoped lang="scss">
+.review-search-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  background: var(--color-surface);
+  border-radius: 10px;
+  font-size: 15px;
+  text-align: left;
+}
+.review-search-label {
+  flex: 1;
+  min-width: 0;
+}
+.review-search-entry :deep(.uni-icons) {
+  flex: none;
+}
 .origin-unavailable {
   padding: 16px;
   background: var(--color-surface);
@@ -1031,7 +1075,6 @@ onUnload(leave)
 }
 .today-summary {
   padding: 4px 0 24px;
-  border-bottom: 1px solid var(--color-border);
 }
 .today-summary > text,
 .today-summary > b {
@@ -1107,30 +1150,63 @@ onUnload(leave)
 }
 .grade-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12rpx;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 640px;
 }
 .grade-grid button {
-  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  min-height: 44px;
   margin: 0;
-  padding: 18rpx 8rpx;
+  padding: 0 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.grade-grid button::after {
+  border: 0;
+}
+.grade-grid button:not([disabled]):active {
   background: var(--color-primary-soft);
-  color: var(--color-primary-dark);
-  border-radius: 15rpx;
-  font-size: 24rpx;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.grade-grid button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.grade-grid button[disabled] {
+  opacity: 0.5;
+}
+@media (min-width: 600px) {
+  .grade-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 .reinforce-list {
   border-top: 1rpx solid var(--color-border);
 }
 .reinforce-list > view {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 4rpx;
   padding: 20rpx 2rpx;
   border-bottom: 1rpx solid var(--color-border);
 }
-.reinforce-list > view > text:first-child {
-  font-size: 27rpx;
+.reinforce-reason {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.7;
 }
 .reinforce-list small {
   grid-row: 2;

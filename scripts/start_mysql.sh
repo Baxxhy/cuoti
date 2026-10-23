@@ -37,5 +37,4 @@ if ! mysqladmin --socket="$RUN_DIR/mysqld.sock" -uroot ping >/dev/null 2>&1; the
   echo "MySQL 尚未就绪；请检查 $DATA_DIR/error.log。" >&2
   exit 1
 fi
-mysql --socket="$RUN_DIR/mysqld.sock" -uroot -e "CREATE DATABASE IF NOT EXISTS minddimension CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; CREATE USER IF NOT EXISTS 'minddimension'@'localhost' IDENTIFIED WITH mysql_native_password BY 'minddimension'; GRANT ALL PRIVILEGES ON minddimension.* TO 'minddimension'@'localhost'; FLUSH PRIVILEGES;"
 echo "mysql=ready port=3307"

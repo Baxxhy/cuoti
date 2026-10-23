@@ -8,7 +8,7 @@
       tabindex="0"
       @keydown.enter.prevent="toggle"
     >
-      之前的过程
+      作答记录
       <text>{{ open ? '收起' : '展开' }}</text>
     </button>
     <view v-if="open">
@@ -34,7 +34,7 @@
           @keydown.enter.prevent="sourceOpen = !sourceOpen"
           @click="sourceOpen = !sourceOpen"
         >
-          本次学习的题目 {{ sourceOpen ? '收起' : '查看' }}
+          查看本次题目 {{ sourceOpen ? '收起' : '查看' }}
         </button>
         <view v-if="sourceOpen">
           <math-text :text="sourceQuestion.question_text" />
@@ -62,11 +62,14 @@
           <math-text :text="item.source.student_step_text" />
         </view>
         <text class="muted">{{ statusLabel(item) }}</text>
-        <teaching-content v-if="item.feedback" :blocks="[{ kind: 'text', text: item.feedback }]" />
+        <teaching-content
+          v-if="item.feedback"
+          :blocks="[{ kind: 'text', text: learningFeedback(item.feedback) }]"
+        />
         <view v-if="item.visualization" class="visual-record">
-          <text>{{ item.visualization.title }}</text>
+          <math-text :text="item.visualization.title" inline />
           <math-text :text="`$${item.visualization.relation_tex}$`" />
-          <text class="muted">{{ item.visualization.controls }}</text>
+          <math-text class="muted" :text="item.visualization.controls" inline />
         </view>
         <button
           v-if="item.handwriting_image_url"
@@ -79,11 +82,13 @@
           查看当时的照片
         </button>
       </view>
-      <text v-if="hasMore" class="muted">仅显示最近50条动作。</text>
+      <text v-if="hasMore" class="muted">显示最近 50 条记录。</text>
     </view>
   </view>
 </template>
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
+import MathText from '@/components/math-text/math-text.vue'
 import { ref, watch } from 'vue'
 import { getData } from '@/api/index.js'
 import TeachingContent from '@/components/teaching-content/teaching-content.vue'
@@ -129,13 +134,13 @@ const kindLabel = (kind) =>
     reveal: '查看参考答案',
     resume: '继续核对',
     use_text: '改用文字作答',
-    visualize: '用图看看',
+    visualize: '查看图解',
     observe_visualization: '记录图示观察',
     close_visualization: '收起图示',
     recognize_handwriting: '识别作答照片',
   })[kind] || '学习动作'
 const phaseLabel = (phase) =>
-  ({ repair: '局部订正', independent: '原题独立作答', contrast: '条件对照' })[phase] || ''
+  ({ repair: '错处订正', independent: '原题重做', contrast: '变式练习' })[phase] || ''
 function statusLabel(item) {
   if (item.status !== 'applied')
     return (

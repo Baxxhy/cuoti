@@ -12,22 +12,31 @@
         <view class="student-profile">
           <view class="avatar">
             <text v-if="store.user?.name">{{ store.user.name.slice(0, 1) }}</text>
-            <uni-icons v-else type="person" size="28" color="#55565B" />
+            <uni-icons aria-hidden="true" v-else type="person" size="28" color="#55565B" />
           </view>
           <view class="list-main">
             <text class="profile-name">{{ store.user?.name || '当前用户' }}</text>
             <text v-if="store.role === 'student'" class="profile-meta">
               {{ dashboard.grade || store.user?.grade || '年级未设置' }}
-              <template v-if="dashboard.streak_days">
-                · 连续学习 {{ dashboard.streak_days }} 天
-              </template>
             </text>
             <text v-else class="profile-meta">{{ roleName }}</text>
           </view>
         </view>
+        <button
+          class="edit-profile-link disclosure-link"
+          tabindex="0"
+          @keydown.enter.prevent="go('/pages/profile/edit')"
+          @keydown.space.prevent
+          @keyup.space.prevent="go('/pages/profile/edit')"
+          role="button"
+          @click="go('/pages/profile/edit')"
+        >
+          <text>编辑个人资料</text>
+          <uni-icons type="right" size="18" aria-hidden="true" />
+        </button>
         <template v-if="store.role === 'student'">
           <button
-            aria-label="学习方向"
+            aria-label="学习设置"
             role="button"
             tabindex="0"
             class="disclosure-link"
@@ -36,41 +45,52 @@
             @keyup.space.prevent="go('/pages/preferences/preferences')"
             @click="go('/pages/preferences/preferences')"
           >
-            学习方向
-            <uni-icons type="right" size="18" />
+            学习设置
+            <uni-icons aria-hidden="true" type="right" size="18" />
           </button>
           <view class="section-title"><text>使用与帮助</text></view>
           <view class="setting-list">
-            <view
+            <button
+              role="button"
+              tabindex="0"
+              @keydown.enter.prevent="go(item.url)"
+              @keydown.space.prevent
+              @keyup.space.prevent="go(item.url)"
               v-for="item in studentSettings"
               :key="item.url"
               class="setting-row"
               @click="go(item.url)"
             >
-              <uni-icons :type="item.icon" size="24" color="#55565B" />
+              <uni-icons aria-hidden="true" :type="item.icon" size="24" color="#55565B" />
               <view class="list-main">
                 <text class="setting-title">{{ item.title }}</text>
-                <text class="setting-desc">{{ item.desc }}</text>
               </view>
-              <uni-icons type="right" size="22" color="#85868B" />
-            </view>
+              <uni-icons aria-hidden="true" type="right" size="22" color="#85868B" />
+            </button>
           </view>
         </template>
         <view v-else class="setting-list role-settings">
-          <view
+          <button
+            role="button"
+            tabindex="0"
+            @keydown.enter.prevent="go(item.url)"
+            @keydown.space.prevent
+            @keyup.space.prevent="go(item.url)"
             v-for="item in roleSettings"
             :key="item.url"
             class="setting-row"
             @click="go(item.url)"
           >
-            <uni-icons :type="item.icon" size="24" color="#55565B" />
+            <uni-icons aria-hidden="true" :type="item.icon" size="24" color="#55565B" />
             <view class="list-main">
               <text class="setting-title">{{ item.title }}</text>
             </view>
-            <uni-icons type="right" size="22" color="#85868B" />
-          </view>
+            <uni-icons aria-hidden="true" type="right" size="22" color="#85868B" />
+          </button>
         </view>
-        <button class="secondary-btn logout-button" @click="store.logout()">退出登录</button>
+        <button role="button" class="secondary-btn logout-button" @click="store.logout()">
+          退出登录
+        </button>
       </template>
     </view>
     <tab-bar v-if="store.role === 'student'" current="profile" />
@@ -78,7 +98,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
+import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'
 import { useAppStore } from '@/store/index.js'
 import { go } from '@/utils/navigation.js'
@@ -86,71 +107,65 @@ const store = useAppStore(),
   dashboard = ref({}),
   loading = ref(true),
   error = ref('')
-const roleNames = { guardian: '家长中心', teacher: '教师中心', admin: '系统管理' }
+const roleNames = { admin: '系统管理' }
 const roleName = computed(() => roleNames[store.role] || '学习档案')
 const studentSettings = [
-  {
-    title: '家长查看权限',
-    desc: '授权或解除家长的报告查看权限',
-    icon: 'staff',
-    url: '/pages/guardian/access',
-  },
   {
     title: '使用指南',
     desc: '了解录入、诊断、练习与复习的区别',
     icon: 'help',
     url: '/pages/help/help',
   },
-  {
-    title: '学习中心',
-    desc: '复习巩固、专项备考、知识与学情',
-    icon: 'book',
-    url: '/pages/learning/learning',
-  },
 ]
 const roleSettings = computed(
   () =>
     ({
-      guardian: [{ title: '返回家长中心', icon: 'staff', url: '/pages/guardian/home' }],
-      teacher: [{ title: '返回教师中心', icon: 'person', url: '/pages/teacher/classes' }],
       admin: [{ title: '系统状态', icon: 'gear', url: '/pages/system/system' }],
     })[store.role] || [],
 )
+let revision = 0
 async function load() {
+  const current = ++revision
   loading.value = true
   error.value = ''
   try {
     await store.loadUser()
-    if (store.role === 'student') dashboard.value = await getData('/dashboard')
+    const result = store.role === 'student' ? await getData('/dashboard') : {}
+    if (current === revision) dashboard.value = result
   } catch (err) {
-    error.value = err.message || '个人档案暂时无法加载，请重试'
+    if (current === revision) error.value = err.message || '个人档案暂时无法加载，请重试'
   } finally {
-    loading.value = false
+    if (current === revision) loading.value = false
   }
 }
-onMounted(load)
+onShow(load)
+onHide(() => revision++)
+onUnload(() => revision++)
 </script>
 
 <style scoped lang="scss">
+.edit-profile-link {
+  margin-bottom: 12px;
+}
+
 .student-profile {
   display: flex;
   align-items: center;
-  gap: 22rpx;
-  padding: 16rpx 0 30rpx;
-  border-bottom: 1rpx solid var(--color-border);
+  gap: 20px;
+  padding: 16px 0;
+  margin-bottom: 24px;
 }
 .avatar {
-  width: 88rpx;
-  height: 88rpx;
+  width: 64px;
+  height: 64px;
   flex: none;
-  border: 1rpx solid var(--color-border);
-  border-radius: 16rpx;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-surface);
-  color: var(--color-text-primary);
-  font-size: 34rpx;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 21px;
   font-weight: 500;
 }
 .profile-name,
@@ -158,56 +173,67 @@ onMounted(load)
   display: block;
 }
 .profile-name {
-  font-size: 34rpx;
-  line-height: 1.4;
+  font-size: 23px;
+  line-height: 1.35;
   font-weight: 600;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
 }
 .profile-meta {
-  font-size: 24rpx;
+  font-size: 13px;
   color: var(--color-text-secondary);
-  margin-top: 6rpx;
+  margin-top: 6px;
+}
+.disclosure-link {
+  padding: 18px 24px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-surface);
 }
 .section-title {
-  margin: 34rpx 0 12rpx;
+  margin: 28px 24px 10px;
 }
 .section-title > text:first-child {
-  font-size: 25rpx;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
   color: var(--color-text-secondary);
 }
 .setting-list {
-  border-top: 1rpx solid var(--color-border);
+  padding: 0 24px;
+  border-radius: 12px;
+  background: var(--color-surface);
 }
 .setting-row {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+  line-height: 1.5;
   display: flex;
   align-items: center;
-  gap: 20rpx;
-  min-height: 120rpx;
-  padding: 22rpx 0;
-  border-bottom: 1rpx solid var(--color-border);
+  gap: 16px;
+  min-height: 64px;
+  padding: 16px 0;
+  cursor: pointer;
 }
-.setting-title,
-.setting-desc {
-  display: block;
+.setting-row + .setting-row {
+  border-top: 1px solid var(--color-border);
 }
 .setting-title {
-  font-size: 28rpx;
-  font-weight: 500;
-}
-.setting-desc {
-  font-size: 24rpx;
-  color: var(--color-text-secondary);
-  margin-top: 4rpx;
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
 }
 .role-settings {
-  margin-top: 30rpx;
+  margin-top: 24px;
 }
 .logout-button {
-  margin-top: 48rpx;
-  border: 1rpx solid var(--color-border);
+  margin-top: 24px;
   background: var(--color-surface);
-  color: var(--color-text-secondary);
-  font-size: 27rpx;
-  font-weight: 500;
+  color: var(--color-error);
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 12px;
 }
 </style>

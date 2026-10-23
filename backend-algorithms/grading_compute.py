@@ -3,9 +3,9 @@
 import asyncio
 import re
 
-from app.providers.api_pool import ApiPoolUnavailable
-from app.services.grading import grade_answer as original_grade_answer
 from inequality_compute import grade_inequality
+from learning_core.providers.api_pool import ApiPoolUnavailable
+from learning_core.services.grading import grade_answer as original_grade_answer
 
 
 def angular_answer(value):

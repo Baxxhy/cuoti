@@ -2,7 +2,6 @@
   <view class="page detail-page">
     <app-header
       title="错题详情"
-      :subtitle="item ? `${item.subject} · ${item.grade} · ${topic}` : ''"
       back
       :back-fallback="
         reviewReturnId
@@ -20,10 +19,21 @@
         @keydown.space.prevent
         @keyup.space.prevent="showActions"
       >
-        <uni-icons type="more-filled" size="23" color="var(--color-text-secondary)" />
+        <uni-icons
+          aria-hidden="true"
+          type="more-filled"
+          size="23"
+          color="var(--color-text-secondary)"
+        />
       </button>
     </app-header>
-    <state-panel v-if="!item" :state="error ? 'error' : 'loading'" @retry="load" />
+    <state-panel
+      v-if="!item"
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先选择一道错题' : undefined"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
+    />
     <view v-else class="page-content">
       <view class="detail-sections" aria-label="本题内容分区">
         <button
@@ -41,34 +51,6 @@
           {{ tab.label }}
         </button>
       </view>
-      <view v-if="item.diagnosis" class="detail-evidence-entries">
-        <button
-          aria-label="错因回放"
-          role="button"
-          tabindex="0"
-          class="disclosure-link"
-          @keydown.enter.prevent="go(`/pages/replay/replay?id=${id}`)"
-          @keydown.space.prevent
-          @keyup.space.prevent="go(`/pages/replay/replay?id=${id}`)"
-          @click="go(`/pages/replay/replay?id=${id}`)"
-        >
-          错因回放
-          <uni-icons type="right" size="18" />
-        </button>
-        <button
-          aria-label="本题修复路线"
-          role="button"
-          tabindex="0"
-          class="disclosure-link"
-          @keydown.enter.prevent="go(`/pages/repair/repair?id=${id}`)"
-          @keydown.space.prevent
-          @keyup.space.prevent="go(`/pages/repair/repair?id=${id}`)"
-          @click="go(`/pages/repair/repair?id=${id}`)"
-        >
-          本题修复路线
-          <uni-icons type="right" size="18" />
-        </button>
-      </view>
       <view v-if="section === 'question'" class="question-section">
         <button
           tabindex="0"
@@ -82,17 +64,31 @@
         >
           查看原图
         </button>
-        <math-text class="question-text" :text="item.question_text || '题干等待核对'" />
+        <math-text
+          class="question-text"
+          :text="item.question_text || '题干等待核对'"
+          :subject="item.subject"
+        />
         <view v-if="item.options?.length" class="question-options">
           <math-text
             v-for="(option, index) in item.options"
             :key="index"
             :text="optionText(option, index)"
+            :subject="item.subject"
           />
         </view>
+        <image
+          v-for="figure in item.question_figures || []"
+          :key="figure.id || figure.url"
+          class="detail-figure"
+          :src="figure.url"
+          mode="widthFix"
+          :aria-label="figure.description || '题目配图'"
+          @click="preview(figure.url)"
+        />
         <view class="answer-grid">
           <view>
-            <text>当时的答案</text>
+            <text>我当时的答案</text>
             <math-text class="student-answer" :text="item.student_answer || '未填写'" />
           </view>
           <view v-if="showAnswer && item.analysis?.final_answer">
@@ -102,6 +98,27 @@
         </view>
       </view>
 
+      <view v-if="section === 'question' && item.reference_steps?.length" class="secondary-content">
+        <view class="fold-row" @click="toggle('reference')">
+          <text>参考步骤</text>
+          <uni-icons
+            aria-hidden="true"
+            :type="opened === 'reference' ? 'top' : 'bottom'"
+            size="18"
+            color="var(--color-text-tertiary)"
+          />
+        </view>
+        <view v-if="opened === 'reference'" class="fold-body">
+          <view
+            v-for="(step, index) in item.reference_steps"
+            :key="step.id || index"
+            class="step-row"
+          >
+            <i>{{ index + 1 }}</i>
+            <math-text :text="step.text" />
+          </view>
+        </view>
+      </view>
       <view v-if="section === 'question'" class="detail-tools">
         <button
           tabindex="0"
@@ -128,42 +145,47 @@
           @keydown.space.prevent
           @keyup.space.prevent="!busy && toggleFavorite"
         >
-          {{ item.favorite ? '取消收藏' : '收藏重点题' }}
+          {{ item.favorite ? '取消收藏' : '收藏题目' }}
         </button>
       </view>
-      <view v-if="section === 'learn' && item.diagnosis" class="issue-section">
-        <text class="section-kicker">{{ diagnosisState.title }}</text>
-        <text v-if="firstErrorTitle" class="issue-title">{{ firstErrorTitle }}</text>
+      <view v-if="section !== 'records' && item.diagnosis" class="issue-section">
+        <text class="section-kicker">
+          {{ diagnosisState.kind === 'finding' ? '错因' : diagnosisState.title }}
+        </text>
+        <math-text v-if="firstErrorTitle" class="issue-title" :text="firstErrorTitle" inline />
         <math-text
-          v-if="diagnosisState.kind === 'finding'"
+          v-if="diagnosisState.kind === 'finding' && item.diagnosis.first_error_text"
           class="issue-formula"
           :text="item.diagnosis.first_error_text"
         />
-        <text class="issue-reason">
-          {{
+        <math-text
+          class="issue-reason"
+          :text="
             diagnosisState.kind === 'finding'
               ? item.diagnosis.root_misconception
               : diagnosisState.message
-          }}
-        </text>
+          "
+          inline
+        />
         <text class="text-action" @click="go(`/pages/diagnosis/diagnosis?id=${id}`)">
           查看错因
-          <uni-icons type="right" size="16" color="var(--color-primary)" />
+          <uni-icons aria-hidden="true" type="right" size="16" color="var(--color-primary)" />
         </text>
       </view>
 
-      <text class="detail-status">
+      <text v-if="!item.confirmed || !item.diagnosis" class="detail-status">
         {{
           !item.confirmed
             ? '先核对题目与当时的作答'
             : item.diagnosis
               ? diagnosisState.kind === 'finding'
-                ? '接下来，解决这个卡点'
-                : '继续学习，再独立验证'
+                ? '可以开始订正'
+                : '可以开始练习'
               : '先找出这道题的错因'
         }}
       </text>
       <button
+        v-if="section !== 'records'"
         :aria-disabled="busy"
         :tabindex="busy ? -1 : 0"
         role="button"
@@ -176,12 +198,12 @@
       >
         {{
           busy
-            ? '正在准备…'
-            : item.analysis && item.diagnosis
-              ? diagnosisState.kind === 'finding'
-                ? '继续解决'
-                : '继续学习'
-              : journey?.next_action?.label || '继续学习'
+            ? '正在打开…'
+            : !item.confirmed
+              ? '核对题目'
+              : !item.analysis || !item.diagnosis
+                ? '分析错因'
+                : '订正这道题'
         }}
       </button>
       <button
@@ -197,18 +219,53 @@
         修改录入内容
       </button>
       <text v-if="entryError" class="account-notice" role="alert">{{ entryError }}</text>
-      <view v-if="section === 'learn'" class="learning-tools">
-        <text class="section-kicker">围绕这道题</text>
+      <view v-if="section === 'learn' && item.diagnosis" class="detail-evidence-entries">
+        <button
+          aria-label="错因回放"
+          role="button"
+          tabindex="0"
+          class="disclosure-link"
+          @keydown.enter.prevent="go(`/pages/replay/replay?id=${id}`)"
+          @keydown.space.prevent
+          @keyup.space.prevent="go(`/pages/replay/replay?id=${id}`)"
+          @click="go(`/pages/replay/replay?id=${id}`)"
+        >
+          错因回放
+          <uni-icons aria-hidden="true" type="right" size="18" />
+        </button>
+        <button
+          aria-label="学习安排"
+          role="button"
+          tabindex="0"
+          class="disclosure-link"
+          @keydown.enter.prevent="go(`/pages/repair/repair?id=${id}`)"
+          @keydown.space.prevent
+          @keyup.space.prevent="go(`/pages/repair/repair?id=${id}`)"
+          @click="go(`/pages/repair/repair?id=${id}`)"
+        >
+          学习安排
+          <uni-icons aria-hidden="true" type="right" size="18" />
+        </button>
+      </view>
+      <view
+        v-if="section === 'learn'"
+        class="learning-tools"
+        :class="{ 'without-practice': !item.diagnosis }"
+      >
         <button
           class="tool-row"
           role="button"
           tabindex="0"
           :disabled="busy"
           @click="continueLegacyLearning"
-          @keydown.enter.prevent="continueLegacyLearning"
+          @keydown.enter.prevent="!busy && continueLegacyLearning()"
+          @keydown.space.prevent
+          @keyup.space.prevent="!busy && continueLegacyLearning()"
         >
-          完整引导学习
-          <small>跟着提示回顾方法与练习</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons aria-hidden="true" type="chat" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">AI 讲解</text>
         </button>
         <button
           tabindex="0"
@@ -220,8 +277,10 @@
           @keydown.space.prevent
           @keyup.space.prevent="go(`/pages/practice/practice?id=${id}`)"
         >
-          针对练习
-          <small>从真实题库练一道</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons aria-hidden="true" type="compose" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">类似题练习</text>
         </button>
         <button
           tabindex="0"
@@ -232,8 +291,10 @@
           @keydown.space.prevent
           @keyup.space.prevent="go(`/pages/diagnosis/diagnosis?id=${id}`)"
         >
-          诊断与纠正
-          <small>核对错因，修正不符合实际的判断</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons aria-hidden="true" type="search" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">核对错因</text>
         </button>
         <button
           tabindex="0"
@@ -244,8 +305,10 @@
           @keydown.space.prevent
           @keyup.space.prevent="go(`/pages/knowledge/knowledge?id=${id}`)"
         >
-          本题知识
-          <small>概念、前置知识与错因关系</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons aria-hidden="true" type="map" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">相关知识</text>
         </button>
         <button
           tabindex="0"
@@ -256,8 +319,10 @@
           @keydown.space.prevent
           @keyup.space.prevent="go(paperURL({ subject: item.subject, ids: [id] }))"
         >
-          加入专项试卷
-          <small>选择更多题目，编排和导出</small>
+          <view class="tool-icon" aria-hidden="true">
+            <uni-icons aria-hidden="true" type="list" size="25" color="var(--color-primary)" />
+          </view>
+          <text class="tool-label">用这道题组卷</text>
         </button>
       </view>
 
@@ -267,9 +332,11 @@
         @click="go(`/pages/journey/journey?id=${id}`)"
       >
         <text class="section-kicker">学习档案</text>
-        <text class="journey-copy">
-          {{ journey?.summary || '查看这道题的诊断、练习和复习记录。' }}
-        </text>
+        <math-text
+          class="journey-copy"
+          :text="journey?.summary || '查看这道题的诊断、练习和复习记录。'"
+          inline
+        />
         <view class="learning-path" v-if="journey">
           <view
             v-for="(step, index) in journey.stages"
@@ -278,6 +345,7 @@
           >
             <i>
               <uni-icons
+                aria-hidden="true"
                 v-if="step.completed"
                 type="checkmarkempty"
                 size="16"
@@ -290,7 +358,7 @@
         </view>
         <text class="text-action">
           查看学习记录
-          <uni-icons type="right" size="16" color="var(--color-primary)" />
+          <uni-icons aria-hidden="true" type="right" size="16" color="var(--color-primary)" />
         </text>
       </view>
 
@@ -298,6 +366,7 @@
         <view class="fold-row" @click="toggle('student')">
           <text>我的完整步骤</text>
           <uni-icons
+            aria-hidden="true"
             :type="opened === 'student' ? 'top' : 'bottom'"
             size="18"
             color="var(--color-text-tertiary)"
@@ -314,34 +383,17 @@
           </view>
           <text v-if="!item.student_steps?.length" class="muted">还没有识别到完整步骤</text>
         </view>
-        <view class="fold-row" @click="toggle('reference')">
-          <text>参考步骤</text>
-          <uni-icons
-            :type="opened === 'reference' ? 'top' : 'bottom'"
-            size="18"
-            color="var(--color-text-tertiary)"
-          />
-        </view>
-        <view v-if="opened === 'reference'" class="fold-body">
-          <view
-            v-for="(step, index) in item.reference_steps"
-            :key="step.id || index"
-            class="step-row"
-          >
-            <i>{{ index + 1 }}</i>
-            <math-text :text="step.text" />
-          </view>
-        </view>
         <view class="fold-row" @click="toggle('knowledge')">
           <text>知识点</text>
           <uni-icons
+            aria-hidden="true"
             :type="opened === 'knowledge' ? 'top' : 'bottom'"
             size="18"
             color="var(--color-text-tertiary)"
           />
         </view>
         <view v-if="opened === 'knowledge'" class="fold-body chip-row">
-          <text v-for="kp in knowledge" :key="kp" class="tag">{{ kp }}</text>
+          <math-text v-for="kp in knowledge" :key="kp" class="tag" :text="kp" inline />
         </view>
       </view>
     </view>
@@ -349,6 +401,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { originalQuestionImage, questionPreviewImages } from '@/utils/question-assets.js'
 import { computed, ref } from 'vue'
 import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'
@@ -358,9 +411,9 @@ import { paperURL } from '@/utils/learning.js'
 import { requestLearningTask } from '@/utils/task-entry.js'
 import { diagnosisView } from '@/utils/diagnosis.js'
 const detailSections = [
-  { key: 'question', label: '题目' },
-  { key: 'learn', label: '学与练' },
-  { key: 'records', label: '记录' },
+  { key: 'question', label: '题目与错因' },
+  { key: 'learn', label: '解析与练习' },
+  { key: 'records', label: '学习记录' },
 ]
 const section = ref('question')
 const reviewReturnId = ref('')
@@ -394,6 +447,7 @@ function optionText(option, index) {
     : `${option?.label || option?.key || String.fromCharCode(65 + index)}. ${option?.text || option?.content || option?.value || ''}`
 }
 async function load() {
+  if (!id.value) return
   if (!active || !id.value || loading) return
   const current = ++revision,
     questionId = id.value
@@ -586,6 +640,12 @@ onUnload(leave)
 .question-section {
   padding-top: 2px;
 }
+.detail-figure {
+  display: block;
+  width: 100%;
+  margin: 16px 0;
+  border-radius: 8px;
+}
 .question-image {
   width: 100%;
   max-height: 180px;
@@ -624,7 +684,7 @@ onUnload(leave)
   display: block;
   margin-bottom: 4px;
   color: var(--color-text-secondary);
-  font-size: 12px;
+  font-size: 13px;
 }
 .answer-grid :deep(.math-text) {
   font-size: 14px;
@@ -636,7 +696,7 @@ onUnload(leave)
 .section-kicker {
   display: block;
   color: var(--color-text-secondary);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
 }
 .issue-title {
@@ -650,8 +710,8 @@ onUnload(leave)
   display: block;
   margin-top: 8px;
   padding: 8px 10px;
-  border-left: 1.5px solid var(--color-error);
-  background: #fff;
+  border-radius: 8px;
+  background: var(--color-error-soft);
   font-size: 14px;
 }
 .issue-reason {
@@ -665,7 +725,7 @@ onUnload(leave)
   display: flex;
   align-items: center;
   gap: 3px;
-  min-height: 28px;
+  min-height: 44px;
   margin-top: 6px;
   color: var(--color-primary);
   font-size: 13px;
@@ -686,7 +746,7 @@ onUnload(leave)
   position: relative;
   flex: 1;
   color: var(--color-text-tertiary);
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
 }
 .learning-path > view::after {
@@ -727,7 +787,7 @@ onUnload(leave)
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 38px;
+  min-height: 44px;
   margin: 4px 0 0;
   padding: 5px 0;
   background: transparent;
@@ -767,7 +827,7 @@ onUnload(leave)
   height: 20px;
   color: var(--color-text-tertiary);
   font-style: normal;
-  font-size: 12px;
+  font-size: 13px;
 }
 .step-row :deep(.math-text) {
   font-size: 13px;
@@ -780,22 +840,61 @@ onUnload(leave)
   gap: 12px;
 }
 .learning-tools {
-  margin-top: 18px;
+  display: grid;
+  gap: 0;
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border);
 }
-.tool-row {
-  display: block;
+.tool-row,
+.tool-row:last-child,
+.without-practice .tool-row:last-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   width: 100%;
-  text-align: left;
-  background: white;
-  padding: 14px 0;
-  border-radius: 0;
+  min-height: 60px;
+  margin: 0;
+  padding: 10px 0;
+  border: 0;
   border-bottom: 1px solid var(--color-border);
-  font-size: 16px;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
 }
-.tool-row small {
-  display: block;
-  margin-top: 4px;
+.tool-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+}
+.tool-label {
+  font-size: 15px;
+}
+.tool-row[disabled] {
+  opacity: 0.5;
+}
+.detail-evidence-entries {
+  gap: 16px;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.question-section {
+  background: var(--color-surface);
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+.issue-section {
+  padding: 18px 0;
+}
+.detail-tools {
+  gap: 16px;
+}
+.detail-tools .quiet-action {
+  width: auto;
+  flex: 1;
   color: var(--color-text-secondary);
-  font-size: 13px;
 }
 </style>

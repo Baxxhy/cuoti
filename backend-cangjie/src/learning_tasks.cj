@@ -1,6 +1,7 @@
 package zhiwei
 
 import std.collection.*
+import std.convert.*
 import stdx.encoding.json.*
 import stdx.encoding.url.*
 import stdx.net.http.*
@@ -39,6 +40,11 @@ func taskPublic(task: JsonObject, accounts: Accounts): JsonObject {
     let result=JsonObject()
     for (key in ["id","question_id","session_id","status","version","step_id","input_fingerprint","student_view","created_at","updated_at","learning_applied"]) { result.put(key,task[key]) }
     let view=(JsonValue.fromStr(task["student_view"].toString()) as JsonObject).getOrThrow()
+    for (raw in tutorArray(view,"prompt_blocks").getItems()) {
+        let block=(raw as JsonObject).getOrThrow(); let images=JsonArray()
+        for (path in tutorArray(block,"images").getItems()) { let raw=tutorAnswerText(path); images.add(JsonString(accounts.mediaUrl(if (raw.startsWith("/")) { raw } else { "/"+raw }))) }
+        if (!images.getItems().isEmpty()) { block.put("images",images) }
+    }
     let draft=tutorObject(view,"handwriting")
     if (!tutorText(draft,"image_url").isEmpty()) { draft.put("image_url",JsonString(accounts.mediaUrl(tutorText(draft,"image_url")))); view.put("handwriting",draft) }
     let limited=taskAtLimit(task) && ["waiting_student","needs_review","failed"].contains(tutorText(task,"status"))
@@ -46,6 +52,7 @@ func taskPublic(task: JsonObject, accounts: Accounts): JsonObject {
     result.put("student_view",if (limited) { taskLimitView() } else { view })
     result.put("last_request_id",task["active_request"])
     result.put("current_action",JsonString(tutorText(tutorObject(task,"pending_action"),"kind")))
+    result.put("exit_reason",JsonString(tutorText(task,"exit_reason")))
     return result
 }
 
@@ -55,7 +62,25 @@ func taskStoppedView(message: String): JsonObject {
 
 func taskValidateVersion(db: Database, task: JsonObject, snapshot: JsonObject): Bool {
     let question=tutorObject(snapshot,"question")
-    if (tutorText(task,"input_fingerprint")==taskFingerprint(snapshot) && tutorText(question,"status")!="archived" && tutorFlag(question,"confirmed")) { return true }
+    if (tutorText(task,"input_fingerprint")==taskFingerprint(snapshot) && tutorText(question,"status")!="archived" && tutorFlag(question,"confirmed")) {
+        // Older persisted views contain only the stem. Restore options only for
+        // the unchanged original question, never for a generated contrast.
+        let view=tutorObject(task,"student_view")
+        for (raw in tutorArray(view,"prompt_blocks").getItems()) {
+            let block=(raw as JsonObject).getOrThrow()
+            if (tutorText(block,"kind")=="question" && tutorText(block,"text")==tutorText(question,"question_text") && tutorText(tutorObject(task,"checkpoint"),"phase")!="contrast") {
+                block.put("options",tutorArray(question,"options")); block.put("question_type",question["question_type"])
+                let figures=JsonArray()
+                for (asset in tutorArray(snapshot,"assets").getItems()) {
+                    let figure=(asset as JsonObject).getOrThrow()
+                    if (tutorText(figure,"kind")=="question_figure") { figures.add(figure["path"]) }
+                }
+                block.put("images",figures)
+            }
+        }
+        task.put("student_view",view)
+        return true
+    }
     if (tutorText(task,"status")!="cancelled" && tutorText(task,"status")!="stale") {
         let view=taskStoppedView("题目或学习依据已更新，请回原题重新开始")
         db.query("UPDATE learning_tasks SET status='stale',version=version+1,lease_token=NULL,lease_until=NULL,student_view=?,exit_reason='input_changed',updated_at=UTC_TIMESTAMP(6) WHERE id=?",[Some(view.toString()),sqlValue(task["id"])])
@@ -76,6 +101,8 @@ func taskContext(db: Database, snapshot: JsonObject, owner: String): JsonObject 
     let step=if (diagnosis.get("first_error_step").isSome() && !(diagnosis["first_error_step"] is JsonNull)) { tutorNumber(diagnosis,"first_error_step") } else { 0 }
     result.put("first_error_step",JsonInt(if (step<0 || step>99) { 0 } else { step }))
     result.put("diagnosed_correct",JsonBool(((diagnosis.get("first_error_step") ?? JsonNull()) is JsonNull) && ["exact","equivalent"].contains(tutorText(diagnosis,"error_type"))))
+    result.put("diagnosis_confirmed",JsonBool(tutorFlag(diagnosis,"user_confirmed")))
+    result.put("diagnosis_hypothesis",JsonString(tutorText(diagnosis,"root_misconception")))
     let points=tutorKnowledge(snapshot); result.put("knowledge_points",tutorStringArray(points)); let cards=JsonArray(); let seen=HashSet<String>()
     for (point in points) {
         if (cards.getItems().size>=3) { break }
@@ -85,9 +112,40 @@ func taskContext(db: Database, snapshot: JsonObject, owner: String): JsonObject 
         }
     }
     result.put("cards",cards)
+    let prerequisiteCards=JsonArray()
+    for (raw in tutorArray(diagnosis,"missing_prerequisites").getItems()) {
+        if (prerequisiteCards.getItems().size>=6) { break }
+        let label=(raw as JsonString).getOrThrow().getValue()
+        for (row in db.query("SELECT k.id FROM knowledge_points k JOIN mastery_states m ON m.subject=k.subject AND (m.knowledge_point=k.name OR m.knowledge_point=k.code) WHERE m.user_id=? AND k.subject=? AND (k.name=? OR k.code=?) AND m.evidence_count>0 AND m.mastery_score<0.3 ORDER BY k.id LIMIT 1",[Some(owner),sqlValue(question["subject"]),Some(label),Some(label)]).rows) { prerequisiteCards.add(JsonString(rowText(row,"id"))) }
+    }
+    result.put("prerequisite_card_ids",prerequisiteCards)
+    result.put("practice_candidates",taskPlanCandidates(db,owner,question,points))
     let seenContrasts=JsonArray()
     for (row in db.query("SELECT DISTINCT JSON_UNQUOTE(JSON_EXTRACT(t.checkpoint,'$.contrast.question')) AS prompt FROM learning_tasks t JOIN questions q ON q.id=t.question_id WHERE t.user_id=? AND q.subject=? AND (JSON_UNQUOTE(JSON_EXTRACT(t.checkpoint,'$.contrast_passed'))='true' OR JSON_UNQUOTE(JSON_EXTRACT(t.checkpoint,'$.assistance.contrast'))='true') AND JSON_EXTRACT(t.checkpoint,'$.contrast.question') IS NOT NULL ORDER BY prompt LIMIT 50",[Some(owner),sqlValue(question["subject"])]).rows) { seenContrasts.add(JsonString(rowText(row,"prompt"))) }
     result.put("seen_contrasts",seenContrasts)
+    let masteryRows=db.query("SELECT mastery_score,evidence_count,last_evidence_at FROM mastery_states WHERE user_id=? AND subject=? AND knowledge_point=? ORDER BY updated_at DESC,id DESC LIMIT 1",[Some(owner),sqlValue(question["subject"]),Some(learningKnowledgePoint(db,question))]).rows
+    if (!masteryRows.isEmpty()) {
+        let state=JsonObject(); let count=Int64.parse(rowText(masteryRows[0],"evidence_count")); state.put("mastery",JsonFloat(if (count>0) { Float64.parse(rowText(masteryRows[0],"mastery_score")) } else { 0.35 })); state.put("evidence_count",JsonInt(count))
+        state.put("last_effective_at",JsonString(masteryRows[0]["last_evidence_at"] ?? ""))
+        let counts=db.query("SELECT COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=false THEN 1 END) AS independent_count,COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=false AND JSON_UNQUOTE(JSON_EXTRACT(u.evidence,'$.aemt_event.verdict'))='confirmed_correct' THEN 1 END) AS independent_correct,COUNT(CASE WHEN JSON_EXTRACT(u.evidence,'$.aemt_event.hint_used')=true THEN 1 END) AS hinted_count FROM cognitive_updates u JOIN questions q ON q.id=u.question_id WHERE u.user_id=? AND q.subject=? AND u.entity_type='mastery' AND u.entity_key=? AND JSON_EXTRACT(u.evidence,'$.aemt_event.solution_seen')=false",[Some(owner),sqlValue(question["subject"]),Some(learningKnowledgePoint(db,question))]).rows[0]
+        for (key in ["independent_count","independent_correct","hinted_count"]) { state.put(key,JsonInt(Int64.parse(rowText(counts,key)))) }
+        result.put("mastery_state",state)
+    }
+    let profiles=db.query("SELECT preferences FROM student_profiles WHERE user_id=?",[Some(owner)]).rows
+    if (!profiles.isEmpty()) {
+        let preferences=(JsonValue.fromStr(rowText(profiles[0],"preferences")) as JsonObject).getOrThrow()
+        let minutes=tutorNumber(preferences,"daily_minutes")
+        if (minutes>0 && minutes<=120) {
+            let goal=if (minutes<=5) { 3 } else if (minutes<=10) { 5 } else { 10 }
+            let completed=db.query("SELECT (SELECT COUNT(DISTINCT question_id) FROM learning_tasks WHERE user_id=? AND status='completed' AND updated_at>=UTC_DATE()) AS tasks,(SELECT COUNT(*) FROM study_session_items i JOIN study_sessions s ON s.id=i.session_id WHERE s.user_id=? AND s.status='submitted' AND s.submitted_at>=UTC_DATE() AND JSON_EXTRACT(i.grading,'$.can_update_learning')=true) AS practice",[Some(owner),Some(owner)]).rows[0]
+            let tasks=Int64.parse(rowText(completed,"tasks")); let practice=Int64.parse(rowText(completed,"practice")); let count=tasks+practice; let estimated=tasks*3+practice
+            // A transparent estimate, not a fabricated measurement of screen
+            // time. A correction reserves three minutes, a bank item one; the active task
+            // and actual next-item estimate are accounted for by the planner.
+            result.put("available_minutes",JsonInt(if (estimated>=minutes) { 0 } else { minutes-estimated }))
+            result.put("goal_remaining",JsonInt(if (count>=goal) { 0 } else { goal-count }))
+        }
+    }
     applyTaskMemoryContext(result,learningMemory(db,owner,question))
     return result
 }
@@ -102,14 +160,14 @@ public func learningTasks(context: HttpContext, accounts: Accounts): JsonValue {
             for (row in db.query("SELECT * FROM learning_tasks WHERE user_id=? AND (?='' OR question_id=?) ORDER BY updated_at DESC,id DESC LIMIT 50",[Some(owner),Some(questionId),Some(questionId)]).rows) {
                 let item=taskPublic(rowJson("learning_tasks",row),accounts)
                 let titles=db.query("SELECT question_text FROM questions WHERE id=?",[row["question_id"]]).rows
-                item.put("question_title",JsonString(if (titles.isEmpty()) { "本题学习" } else { shortTitle(rowText(titles[0],"question_text"),60) }))
+                item.put("question_title",JsonString(if (titles.isEmpty()) { "本题学习" } else { academicSummary(rowText(titles[0],"question_text"),60) }))
                 result.add(item)
             }
             return result
         }
         requireMethod(context,"POST"); let body=readJson(context); taskStrict(body,["question_id","session_id","request_id"])
         let questionId=textField(body,"question_id",36); let requestId=textField(body,"request_id",80)
-        let sessionId=schoolText(body,"session_id","",36)
+        let sessionId=optionalText(body,"session_id","",36)
         let digest=sha256((questionId+"|"+sessionId).toArray())
         return db.transaction<JsonValue>({ tx =>
             let snapshot=taskSnapshot(tx,questionId,owner); let question=tutorObject(snapshot,"question")
@@ -178,7 +236,7 @@ public func learningTaskAction(context: HttpContext, accounts: Accounts, cancel!
             let kind=textField(body,"kind",30)
             if (!["answer","hint","reveal","resume","use_text","visualize","observe_visualization","close_visualization"].contains(kind)) { throw ApiError(422,"不支持的学习动作") }
             validateTaskVisualAction(task,body,kind,visualValues)
-            let text=if (kind=="observe_visualization") { textField(body,"text",1200) } else { schoolText(body,"text","",12000) }
+            let text=if (kind=="observe_visualization") { textField(body,"text",1200) } else { optionalText(body,"text","",12000) }
             if (["answer","observe_visualization"].contains(kind) && stripWhitespace(text).isEmpty()) { throw ApiError(422,"请先写下你的回答") }
             if (taskAtLimit(task)) { throw ApiError(409,"这次学习已到上限，请结束后回原题重开") }
             let event=JsonObject(); event.put("kind",JsonString(kind)); event.put("text",JsonString(text))

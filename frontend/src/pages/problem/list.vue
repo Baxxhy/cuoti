@@ -1,8 +1,9 @@
 <template>
   <view class="page problem-page">
     <app-header
-      :title="purpose === 'practice' ? '选择要巩固的错题' : '错题本'"
-      :subtitle="purpose === 'practice' ? '选题后进入对应的针对练习' : '整理题目，找到下一步'"
+      :title="purpose === 'practice' ? '选择错题' : '错题本'"
+      :back="purpose === 'practice'"
+      back-fallback="/pages/learning/learning"
     >
       <button
         tabindex="0"
@@ -110,7 +111,10 @@
             :value="stageCodes.indexOf(draft.stage)"
             @change="draft.stage = stageCodes[Number($event.detail.value)]"
           >
-            <view class="filter-control">{{ stageLabels[stageCodes.indexOf(draft.stage)] }} ▾</view>
+            <view class="filter-control">
+              {{ stageLabels[stageCodes.indexOf(draft.stage)] }}
+              <uni-icons aria-hidden="true" type="bottom" size="14" />
+            </view>
           </picker>
           <button
             tabindex="0"
@@ -143,7 +147,10 @@
             :value="groupCodes.indexOf(draft.group)"
             @change="draft.group = groupCodes[Number($event.detail.value)]"
           >
-            <view class="filter-control">{{ groupLabels[groupCodes.indexOf(draft.group)] }} ▾</view>
+            <view class="filter-control">
+              {{ groupLabels[groupCodes.indexOf(draft.group)] }}
+              <uni-icons aria-hidden="true" type="bottom" size="14" />
+            </view>
           </picker>
         </view>
         <view class="sheet-actions">
@@ -183,7 +190,7 @@
       <template v-else>
         <view v-for="group in groups" :key="group.key" class="problem-group">
           <view v-if="group.title" class="group-heading">
-            <b>{{ group.title }}</b>
+            <b><math-text :text="group.title" inline /></b>
             <text>
               {{ group.subject }} · {{ group.grade || '未设置年级' }} · {{ group.items.length }} 道
             </text>
@@ -201,11 +208,18 @@
               @keyup.space.prevent="open(item)"
             >
               <view class="problem-meta">
-                <text>{{ item.subject }} · {{ item.grade }}</text>
+                <text>
+                  {{ item.subject }}
+                  <template v-if="item.grade">· {{ item.grade }}</template>
+                </text>
                 <text v-if="item.favorite">已收藏</text>
               </view>
               <view class="problem-body">
-                <text class="problem-text">{{ item.question_text || '题目正在整理中' }}</text>
+                <math-text
+                  class="problem-text"
+                  :text="item.question_text || '待核对的题目'"
+                  inline
+                />
                 <image
                   v-if="item.thumbnail_url"
                   :src="mediaUrl(item.thumbnail_url)"
@@ -220,9 +234,7 @@
         </view>
         <view v-if="!visible.length" class="empty empty-problems">
           <text>{{ hasFilters ? '没有符合条件的错题' : '还没有错题' }}</text>
-          <text class="empty-hint">
-            {{ hasFilters ? '试试减少筛选条件，或换个关键词。' : '拍下题目与作答，开始学习。' }}
-          </text>
+          <text v-if="hasFilters" class="empty-hint">试试减少筛选条件，或换个关键词。</text>
           <button
             tabindex="0"
             role="button"
@@ -255,6 +267,7 @@
 </template>
 <script setup>
 import { computed, reactive, ref, watch } from 'vue'
+import MathText from '@/components/math-text/math-text.vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { questionRoute } from '@/utils/question.js'
 import { getData, mediaUrl } from '@/api/index.js'
@@ -425,7 +438,7 @@ onShow(load)
   gap: 14rpx;
   padding: 0 22rpx;
   border: 1rpx solid var(--color-border);
-  border-radius: 12rpx;
+  border-radius: 12px;
   background: var(--color-surface);
   color: var(--color-text-secondary);
   font-size: 25rpx;
@@ -470,12 +483,13 @@ onShow(load)
   display: block;
   width: 100%;
   text-align: left;
-  background: transparent;
-  border-radius: 0;
+  background: var(--color-surface);
+  border-radius: 20px;
+  margin: 12px 0;
   line-height: 1.6;
 
-  padding: 24rpx 0;
-  border-bottom: 1rpx solid var(--color-border);
+  padding: 20px 24px;
+  border: 0;
 }
 .problem-meta {
   display: flex;
@@ -512,12 +526,8 @@ onShow(load)
 .problem-text {
   flex: 1;
   min-width: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.9;
   font-weight: 500;
   color: var(--color-text-primary);
 }
@@ -539,7 +549,9 @@ onShow(load)
   margin-top: 4rpx;
 }
 .empty-problems {
-  padding: 84rpx 12rpx;
+  padding: 28px 0;
+  margin-top: 24px;
+  background: transparent;
   text-align: left;
 }
 .empty-problems > text {
@@ -566,6 +578,9 @@ onShow(load)
   flex: 1;
   min-width: 0;
   font-size: 15px;
+}
+.inline-search:focus-within {
+  border-color: var(--color-primary);
 }
 .search-button,
 .header-add {

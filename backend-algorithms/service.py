@@ -13,46 +13,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Annotated, Literal
 
-from app.providers.api_pool import ApiPoolProvider, ApiPoolUnavailable
-from app.schemas import (
-    AnalysisOutput,
-    HandwrittenAnswerRecognition,
-    VariantOutput,
-    VisualizationPayload,
-)
-from app.services.ai_pipeline import analyze_question
-from app.services.cognition_rules import compute_cognition
-from app.services.diagnosis import equation_equivalent
-from app.services.handwritten_answer import recognize_handwritten_answer
-from app.services.image_recognition import recognize_cropped_question
-from app.services.math_tools import (
-    compare_equivalence,
-    solve_text_equation,
-)
-from app.services.pedagogy import evaluate_teach_back
-from app.services.question_bank_import import normalize_choice_options
-from app.services.tutor_activities import build_adaptive_teaching_brief
-from app.services.vision import (
-    MAX_UPLOAD_BYTES,
-    crop_image,
-    persist_recognition_regions,
-    preprocess_image,
-    save_original,
-)
-from app.services.visualizations import (
-    recommended_visualization,
-    visualization_catalog,
-    visualization_spec,
-)
-from app.services.voice import VoiceProvider
-from diagnosis_compute import StepRecord, compute_diagnosis
-from dialogue_compute import DialogueContext, finish_dialogue, prepare_dialogue
 from fastapi import FastAPI, HTTPException, Request
-from grading_compute import UnavailableGradingProvider, grade_answer
-from inequality_compute import format_solution, solution_set, source_inequality
-from learning_task_compute import Checkpoint, TaskAction, TaskContext, execute_task
-from paper_export_compute import ExportQuestion, render_paper
-from practice_alignment import align_practice
 from pydantic import (
     BaseModel,
     ConfigDict,
@@ -61,6 +22,51 @@ from pydantic import (
     ValidationError,
     model_validator,
 )
+
+from adaptive_practice import AdaptivePracticeInput, select_practice
+from diagnosis_compute import StepRecord, compute_diagnosis
+from dialogue_compute import DialogueContext, finish_dialogue, prepare_dialogue
+from grading_compute import UnavailableGradingProvider, grade_answer
+from inequality_compute import format_solution, solution_set, source_inequality
+from knowledge_lesson_compute import explain_knowledge
+from learning_core.providers.api_pool import ApiPoolProvider, ApiPoolUnavailable
+from learning_core.schemas import (
+    AnalysisOutput,
+    HandwrittenAnswerRecognition,
+    VariantOutput,
+    VisualizationPayload,
+)
+from learning_core.services.ai_pipeline import analyze_question
+from learning_core.services.cognition_rules import compute_cognition
+from learning_core.services.diagnosis import equation_equivalent
+from learning_core.services.handwritten_answer import recognize_handwritten_answer
+from learning_core.services.image_recognition import recognize_cropped_question
+from learning_core.services.math_tools import (
+    compare_equivalence,
+    solve_text_equation,
+)
+from learning_core.services.pedagogy import evaluate_teach_back
+from learning_core.services.question_bank_import import normalize_choice_options
+from learning_core.services.tutor_activities import build_adaptive_teaching_brief
+from learning_core.services.vision import (
+    MAX_UPLOAD_BYTES,
+    crop_image,
+    persist_recognition_regions,
+    preprocess_image,
+    save_original,
+)
+from learning_core.services.visualizations import (
+    recommended_visualization,
+    visualization_catalog,
+    visualization_spec,
+)
+from learning_core.services.voice import VoiceProvider
+from learning_task_compute import Checkpoint, TaskAction, TaskContext
+from learning_workflow import run_learning_workflow
+from mastery_tracker import compute_aemt_cognition
+from paper_export_compute import ExportQuestion, render_paper
+from practice_alignment import align_practice
+from practice_generation import UnavailablePracticeProvider, generate_practice
 from retrieval_compute import prepare_query, rank_snapshots, search_index
 from variant_compute import (
     VariantReference,
@@ -78,6 +84,7 @@ class ComputeRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
     operation: Literal[
         "learning_task",
+        "knowledge_lesson",
         "normalize",
         "crop",
         "preprocess",
@@ -89,6 +96,7 @@ class ComputeRequest(BaseModel):
         "counterfactual",
         "teaching_brief",
         "generate_variant",
+        "generate_practice",
         "grade_answer",
         "recognize_handwriting",
         "validate_handwriting",
@@ -101,6 +109,7 @@ class ComputeRequest(BaseModel):
         "voice_synthesize",
         "tutor_dialogue_prepare",
         "tutor_dialogue_finish",
+        "adaptive_practice",
         "retrieval_prepare",
         "retrieval_search",
         "retrieval_rank",
@@ -134,6 +143,7 @@ class ComputeRequest(BaseModel):
         default_factory=list, max_length=100
     )
     diagnosis: dict[str, JsonValue] = Field(default_factory=dict)
+    diagnostic_cards: list[dict[str, JsonValue]] = Field(default_factory=list, max_length=8)
 
     transfer_type: Literal["near", "far"] = "near"
     variant_references: list[VariantReference] = Field(
@@ -168,8 +178,10 @@ class ComputeRequest(BaseModel):
     )
     dialogue_preparation: dict[str, JsonValue] = Field(default_factory=dict)
     dialogue_cards: list[dict[str, JsonValue]] = Field(
-        default_factory=list, max_length=3
+        default_factory=list, max_length=8
     )
+    knowledge_history: list[dict[str, JsonValue]] = Field(default_factory=list, max_length=3)
+    adaptive_practice: AdaptivePracticeInput | None = None
     probe_provider: bool = False
     audio_base64: str = Field(default="", max_length=20 * 1024 * 1024)
     audio_suffix: Literal[".webm", ".wav", ".mp3", ".m4a", ".ogg", ".mp4"] = ".webm"
@@ -206,6 +218,7 @@ class ComputeRequest(BaseModel):
                 "counterfactual",
                 "teaching_brief",
                 "generate_variant",
+                "generate_practice",
             }
             and not self.text.strip()
         ):
@@ -262,9 +275,11 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
         raise ValueError("CANGJIE_ALGORITHM_SECRET 至少需要 32 字符")
     pool = pool_path or Path(
         os.environ.get(
-            "CANGJIE_API_POOL_PATH", str(PROJECT / "backend/config/api_pool.json")
+            "CANGJIE_API_POOL_PATH", str(PROJECT / "config/api_pool.json")
         )
     )
+
+    trust_env_proxy = os.environ.get("CANGJIE_AI_USE_ENV_PROXY", "true").lower() != "false"
 
     @asynccontextmanager
     async def lifespan(app):
@@ -309,16 +324,26 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
         except ValidationError:
             raise HTTPException(422, "计算输入格式不正确") from None
         try:
-            if data.operation == "learning_task":
+            if data.operation == "knowledge_lesson":
+                if app.state.provider is None:
+                    try:
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
+                    except (OSError, ValueError):
+                        pass
+                result = await explain_knowledge(
+                    app.state.provider or UnavailableGradingProvider(),
+                    data.dialogue_cards, data.subject, data.grade, data.text, data.knowledge_history,
+                )
+            elif data.operation == "learning_task":
                 if data.task_context is None:
                     raise ValueError("task context required")
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         pass
                 async with asyncio.timeout(data.task_budget_ms / 1000):
-                    task_result = await execute_task(
+                    task_result = await run_learning_workflow(
                         app.state.provider or UnavailableGradingProvider(),
                         data.task_context,
                         data.task_checkpoint,
@@ -330,7 +355,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     raise ValueError("dialogue context required")
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         pass
                 dialogue_provider = app.state.provider or UnavailableGradingProvider()
@@ -348,10 +373,14 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                         data.dialogue_cards,
                         [decode_image(item) for item in data.images_base64],
                     )
+            elif data.operation == "adaptive_practice":
+                if data.adaptive_practice is None:
+                    raise ValueError("adaptive practice input required")
+                result = select_practice(data.adaptive_practice)
             elif data.operation == "system_state":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         if data.probe_provider:
                             raise ApiPoolUnavailable("模型池尚未就绪") from None
@@ -420,7 +449,8 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     data.reference_solution,
                 )
             elif data.operation == "cognition_update":
-                mastery, misconception = compute_cognition(
+                compute = compute_aemt_cognition if "aemt_event" in data.learning_evidence else compute_cognition
+                mastery, misconception = compute(
                     data.mastery_values,
                     data.misconception_values,
                     data.learning_evidence,
@@ -430,7 +460,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "analyze":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         raise ApiPoolUnavailable("模型池尚未就绪") from None
                 with TemporaryDirectory(prefix="zhiwei-analysis-") as directory:
@@ -506,7 +536,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "grade_answer":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         pass
                 result = await grade_answer(
@@ -551,7 +581,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "practice_alignment":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         pass
                 result = await align_practice(
@@ -571,12 +601,17 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                         data.variant_candidate, data.knowledge_points, data.text
                     )
                 }
-            elif data.operation == "generate_variant":
+            elif data.operation in {"generate_variant", "generate_practice"}:
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
-                        raise ApiPoolUnavailable("模型池尚未就绪") from None
+                        if data.operation != "generate_practice":
+                            raise ApiPoolUnavailable("模型池尚未就绪") from None
+                if data.operation == "generate_practice":
+                    return {"operation": data.operation, "result": await generate_practice(
+                        app.state.provider or UnavailablePracticeProvider(), data.subject,
+                        data.transfer_type, data.text, data.question_type, data.knowledge_points)}
                 generated, verified, metadata = await generate_variant(
                     app.state.provider,
                     data.subject,
@@ -595,7 +630,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation == "teaching_brief":
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         raise ApiPoolUnavailable("模型池尚未就绪") from None
                 brief = await build_adaptive_teaching_brief(
@@ -616,7 +651,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             elif data.operation in {"diagnose", "counterfactual"}:
                 if app.state.provider is None:
                     try:
-                        app.state.provider = ApiPoolProvider(pool)
+                        app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                     except (OSError, ValueError):
                         raise ApiPoolUnavailable("模型池尚未就绪") from None
                 with TemporaryDirectory(prefix="zhiwei-diagnosis-") as directory:
@@ -638,6 +673,8 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                         students=data.student_records,
                         images=paths,
                         counterfactual_only=data.operation == "counterfactual",
+                        knowledge_cards=data.diagnostic_cards,
+                        grade=data.grade,
                     )
             elif data.operation == "validate_handwriting":
                 result = HandwrittenAnswerRecognition.model_validate(
@@ -688,7 +725,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
                     else:
                         if app.state.provider is None:
                             try:
-                                app.state.provider = ApiPoolProvider(pool)
+                                app.state.provider = ApiPoolProvider(pool, trust_env=trust_env_proxy)
                             except (OSError, ValueError):
                                 raise ApiPoolUnavailable("模型池尚未就绪") from None
                         started = time.perf_counter()

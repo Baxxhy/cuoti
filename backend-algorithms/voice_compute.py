@@ -5,7 +5,7 @@ import hashlib
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from app.services.voice import VoiceProvider
+from learning_core.services.voice import VoiceProvider
 
 
 class VoiceComputeError(RuntimeError):

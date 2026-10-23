@@ -1,5 +1,9 @@
 <template>
   <view class="custom-tab-bar" role="navigation" aria-label="主要导航">
+    <view class="nav-brand">
+      <uni-icons aria-hidden="true" type="compose" size="25" color="var(--color-primary)" />
+      <text>错题帮</text>
+    </view>
     <view
       v-for="item in left"
       :key="item.path"
@@ -13,6 +17,7 @@
       @keydown.enter="switchPage(item.path)"
     >
       <uni-icons
+        aria-hidden="true"
         :type="item.icon"
         size="24"
         :color="current === item.key ? 'var(--color-primary)' : 'var(--color-text-secondary)'"
@@ -30,6 +35,7 @@
       @keydown.enter="switchPage('/pages/capture/capture')"
     >
       <uni-icons
+        aria-hidden="true"
         type="camera-filled"
         size="24"
         :color="current === 'capture' ? 'var(--color-primary)' : 'var(--color-text-secondary)'"
@@ -49,6 +55,7 @@
       @keydown.enter="switchPage(item.path)"
     >
       <uni-icons
+        aria-hidden="true"
         :type="item.icon"
         size="24"
         :color="current === item.key ? 'var(--color-primary)' : 'var(--color-text-secondary)'"
@@ -80,8 +87,8 @@ function switchPage(path) {
   bottom: 0;
   max-width: 960px;
   margin: 0 auto;
-  min-height: 66px;
-  padding: 5px 12px calc(5px + env(safe-area-inset-bottom));
+  min-height: 72px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
   background: #fff;
   display: flex;
   align-items: center;
@@ -90,19 +97,23 @@ function switchPage(path) {
   border-top: 1px solid var(--color-border);
   z-index: 99;
 }
+.nav-brand {
+  display: none;
+}
 .tab-item {
   flex: 1;
   max-width: 150px;
-  min-height: 54px;
+  min-height: 52px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 4px;
   color: var(--color-text-secondary);
   font-size: 11px;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: background-color 160ms ease;
 }
 .tab-item.active {
   color: var(--color-primary);
@@ -111,10 +122,48 @@ function switchPage(path) {
 .tab-item:active {
   background: var(--color-bg);
 }
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
   .custom-tab-bar {
-    border-left: 1px solid var(--color-border);
-    border-right: 1px solid var(--color-border);
+    top: 0;
+    bottom: 0;
+    right: auto;
+    left: max(0px, calc((100vw - 1180px) / 2));
+    width: 216px;
+    max-width: none;
+    padding: 48px 20px;
+    border: 0;
+    background: var(--color-bg);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px 36px;
+    color: var(--color-brand-deep);
+    font-size: 21px;
+    font-weight: 650;
+    letter-spacing: -0.04em;
+  }
+  .tab-item {
+    flex: none;
+    max-width: none;
+    min-height: 48px;
+    padding: 0 16px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 13px;
+    font-size: 14px;
+  }
+  .tab-item.active {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+  .tab-item:hover {
+    background: var(--color-primary-soft-hover);
   }
 }
 </style>

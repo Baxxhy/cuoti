@@ -1,30 +1,34 @@
 <template>
   <view class="page journey-page">
-    <app-header title="错题学习档案" back />
+    <app-header title="学习记录" back />
     <view class="page-content">
-      <state-panel v-if="!journey" :state="error ? 'error' : 'loading'" @retry="load" />
+      <state-panel
+        v-if="!journey"
+        :state="!id || error ? 'error' : 'loading'"
+        :message="!id ? '请先选择一道错题' : undefined"
+        :retry-text="!id ? '选择错题' : '重新加载'"
+        @retry="id ? load() : go('/pages/problem/list')"
+      />
       <template v-else>
         <view class="overview">
           <text class="subject-label">{{ journey.subject }}</text>
           <math-text class="question-copy" :text="journey.question_text" />
-          <text class="summary">{{ journey.summary }}</text>
           <view class="evidence-labels">
-            <text>{{ journey.verification.label }}</text>
+            <text>{{ journey.verification.verified ? '参考答案已校验' : '参考答案待核对' }}</text>
             <text>
-              {{ journey.verification.diagnosis_confirmed ? '诊断已人工确认' : '诊断可继续核对' }}
+              {{ journey.verification.diagnosis_confirmed ? '错因已核对' : '错因待核对' }}
             </text>
           </view>
         </view>
         <view class="next-card">
           <text class="next-heading">下一步</text>
-          <text class="summary">{{ journey.next_action.reason }}</text>
-          <button class="primary-btn" @click="go(journey.next_action.url)">
+          <button role="button" class="primary-btn" @click="go(journey.next_action.url)">
             {{ journey.next_action.label }}
           </button>
         </view>
-        <view v-if="journey.learning_tasks" class="task-records">
-          <text class="next-heading">订正与对照</text>
-          <text class="summary">{{ taskSummary }}</text>
+        <view v-if="journey.learning_tasks?.items?.length" class="task-records">
+          <text class="next-heading">订正进度</text>
+          <math-text class="summary" :text="taskSummary" inline />
           <button
             class="record-action"
             @click="go(`/pages/task/task?id=${journey.learning_tasks.items[0].id}`)"
@@ -77,6 +81,7 @@
           >
             <view class="stage-index">
               <uni-icons
+                aria-hidden="true"
                 v-if="stage.completed"
                 type="checkmarkempty"
                 size="18"
@@ -85,21 +90,21 @@
               <template v-else>{{ index + 1 }}</template>
             </view>
             <view class="stage-copy">
-              <text>{{ stage.label }}</text>
-              <small>{{ stage.detail }}</small>
+              <text>{{ stageTitle(stage) }}</text>
+              <small v-if="stage.completed"><math-text :text="stage.detail" inline /></small>
             </view>
-            <text class="stage-status">{{ stage.completed ? '有证据' : '待验证' }}</text>
+            <text class="stage-status">{{ stage.completed ? '已完成' : '待完成' }}</text>
           </view>
         </view>
 
         <view class="evidence-stats">
           <view>
             <b>{{ journey.practice.correct }} / {{ journey.practice.verified_attempts }}</b>
-            <text>题库有效作答中答对</text>
+            <text>练习答对 / 已判定</text>
           </view>
           <view>
             <b>{{ journey.review.completed }}</b>
-            <text>已完成的有效复习</text>
+            <text>已完成复习</text>
           </view>
         </view>
         <text v-if="journey.practice.pending" class="muted note">
@@ -117,7 +122,7 @@
             <view class="event-dot" />
             <view>
               <view class="event-title">
-                <b>{{ event.title }}</b>
+                <b><math-text :text="event.title" inline /></b>
                 <small>{{ formatDate(event.time) }}</small>
               </view>
               <math-text class="event-detail" :text="event.detail" />
@@ -127,11 +132,11 @@
         <text class="muted note">
           统计基于这道题最近
           {{ journey.history_limit }}
-          条各类记录。规则校验不替代人工判断；长期掌握需要复习证据。
+          条记录。
         </text>
         <view class="summary-actions">
-          <button @click="copySummary">复制学习摘要</button>
-          <button @click="go(`/pages/detail/detail?id=${id}`)">回到错题详情</button>
+          <button role="button" @click="copySummary">复制学习摘要</button>
+          <button role="button" @click="go(`/pages/detail/detail?id=${id}`)">回到错题详情</button>
         </view>
       </template>
     </view>
@@ -139,6 +144,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'
@@ -149,13 +155,14 @@ const id = ref(''),
 const showNotes = ref(false)
 const taskSummary = computed(() => {
   const progress = journey.value?.learning_tasks
-  if (progress?.near_transfer) return '本次对照已独立完成，仍需复习确认。'
-  if (progress?.original_independent) return '已有原题独立作答记录，对照仍待确认。'
-  if (progress?.repair_verified) return '已核对局部步骤，整题仍需独立确认。'
-  return '过程已保存，以各次实际核对结果为准。'
+  if (progress?.near_transfer) return '变式练习已完成，等待复习。'
+  if (progress?.original_independent) return '原题已完成，可继续练习类似题。'
+  if (progress?.repair_verified) return '错处已订正，接着重新作答。'
+  return '订正尚未完成。'
 })
 let loading = false
 async function load() {
+  if (!id.value) return
   if (!id.value || loading) return
   loading = true
   error.value = false
@@ -167,6 +174,17 @@ async function load() {
   } finally {
     loading = false
   }
+}
+function stageTitle(stage) {
+  return (
+    {
+      confirmed: '核对题目',
+      diagnosed: '找到错因',
+      understanding: '理解检查',
+      transfer: '类似题检验',
+      review: '后续复习',
+    }[stage.key] || stage.label
+  )
 }
 function formatDate(value) {
   if (!value) return ''
@@ -184,7 +202,10 @@ function copySummary() {
     '错题帮 · 学习摘要',
     data.question_text,
     data.summary,
-    ...data.stages.map((stage) => `${stage.completed ? '✓' : '○'} ${stage.label}：${stage.detail}`),
+    ...data.stages.map(
+      (stage) =>
+        `${stage.completed ? '已完成' : '未完成'} ${stageTitle(stage)}${stage.completed ? '：' + stage.detail : ''}`,
+    ),
     `下一步：${data.next_action.label}`,
     `生成时间：${formatDate(data.generated_at)}`,
   ].join('\n')

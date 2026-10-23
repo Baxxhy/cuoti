@@ -2,26 +2,7 @@
   <view class="page">
     <app-header title="学习" />
     <view class="page-content">
-      <view class="learning-featured">
-        <text class="eyebrow">从错题，到自己的方法</text>
-        <text class="editorial-title">这次，解决反复卡住的地方。</text>
-        <button
-          aria-label="个人易错地图 找到线索，回到原题，再沿路线修复"
-          role="button"
-          tabindex="0"
-          class="disclosure-link"
-          @keydown.enter.prevent="go('/pages/error-map/error-map')"
-          @keydown.space.prevent
-          @keyup.space.prevent="go('/pages/error-map/error-map')"
-          @click="go('/pages/error-map/error-map')"
-        >
-          <view>
-            <text>个人易错地图</text>
-            <small>找到线索，回到原题，再沿路线修复</small>
-          </view>
-          <uni-icons type="right" size="20" />
-        </button>
-      </view>
+      <view class="learning-heading"><text>错题巩固</text></view>
       <view class="feature-list">
         <button
           tabindex="0"
@@ -36,13 +17,18 @@
           @keyup.space.prevent="go(item.url)"
         >
           <view class="feature-icon">
-            <uni-icons :type="item.icon" size="24" color="var(--color-primary)" />
+            <uni-icons
+              aria-hidden="true"
+              :type="item.icon"
+              size="24"
+              color="var(--color-primary)"
+            />
           </view>
           <view class="feature-copy">
             <text>{{ item.title }}</text>
-            <text>{{ item.description }}</text>
           </view>
           <uni-icons
+            aria-hidden="true"
             class="feature-arrow"
             type="right"
             size="18"
@@ -50,51 +36,66 @@
           />
         </button>
       </view>
-      <button
-        aria-label="学习回顾"
-        tabindex="0"
-        role="button"
-        class="record-link"
-        @click="go('/pages/analysis/analysis')"
-        @keydown.enter.prevent="go('/pages/analysis/analysis')"
-        @keydown.space.prevent
-        @keyup.space.prevent="go('/pages/analysis/analysis')"
-      >
-        <text>学习回顾</text>
-        <uni-icons type="right" size="18" color="var(--color-text-secondary)" />
-      </button>
-      <button
-        aria-label="更多记录与任务"
-        tabindex="0"
-        role="button"
-        class="record-link"
-        :aria-expanded="moreOpen"
-        @click="moreOpen = !moreOpen"
-        @keydown.enter.prevent="moreOpen = !moreOpen"
-        @keydown.space.prevent
-        @keyup.space.prevent="moreOpen = !moreOpen"
-      >
-        <text>更多记录与任务</text>
-        <uni-icons
-          :type="moreOpen ? 'top' : 'bottom'"
-          size="18"
-          color="var(--color-text-secondary)"
-        />
-      </button>
-      <view v-if="moreOpen" class="feature-list secondary-list">
+      <view class="learning-heading"><text>练习与考试</text></view>
+      <view class="learning-gateways">
         <button
-          tabindex="0"
           role="button"
-          v-for="item in learningRecordEntries"
+          v-for="entry in studyEntries"
+          :key="entry.url"
+          :class="['learning-gateway', entry.tone]"
+          @click="go(entry.url)"
+        >
+          <uni-icons aria-hidden="true" :type="entry.icon" size="30" color="var(--color-primary)" />
+          <text>{{ entry.title }}</text>
+          <uni-icons aria-hidden="true" type="right" size="17" color="var(--color-primary)" />
+        </button>
+      </view>
+      <view class="learning-heading"><text>学习分析</text></view>
+      <view class="analysis-list">
+        <button
+          v-for="item in analysisEntries"
           :key="item.url"
-          class="feature-link"
+          class="analysis-link"
+          role="button"
+          tabindex="0"
+          :aria-label="item.title"
           @click="go(item.url)"
           @keydown.enter.prevent="go(item.url)"
           @keydown.space.prevent
           @keyup.space.prevent="go(item.url)"
         >
+          <uni-icons
+            class="analysis-icon"
+            aria-hidden="true"
+            :type="item.icon"
+            size="21"
+            color="var(--color-primary)"
+          />
+          <text class="analysis-label">{{ item.title }}</text>
+          <uni-icons aria-hidden="true" type="right" size="17" color="var(--color-text-tertiary)" />
+        </button>
+      </view>
+      <view class="learning-heading"><text>学习记录</text></view>
+      <view class="record-shortcuts">
+        <button
+          v-for="(item, index) in learningRecordEntries"
+          :key="item.url"
+          role="button"
+          tabindex="0"
+          class="record-shortcut"
+          :aria-label="item.title"
+          @click="go(item.url)"
+          @keydown.enter.prevent="go(item.url)"
+          @keydown.space.prevent
+          @keyup.space.prevent="go(item.url)"
+        >
+          <uni-icons
+            aria-hidden="true"
+            :type="['compose', 'calendar', 'star'][index]"
+            size="23"
+            color="var(--color-text-secondary)"
+          />
           <text>{{ item.title }}</text>
-          <uni-icons type="right" size="18" color="var(--color-text-secondary)" />
         </button>
       </view>
     </view>
@@ -102,118 +103,149 @@
   </view>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { learningPrimaryEntries, learningRecordEntries } from '@/constants/learning.js'
+import {
+  studyEntries,
+  learningPrimaryEntries,
+  learningRecordEntries,
+} from '@/constants/learning.js'
 import { go } from '@/utils/navigation.js'
-const moreOpen = ref(false)
+const analysisEntries = [
+  { title: '易错地图', icon: 'map', url: '/pages/error-map/error-map' },
+  { title: '知识关系', icon: 'link', url: '/pages/analysis/analysis?relations=1' },
+  { title: '学习报告', icon: 'bars', url: '/pages/analysis/analysis' },
+]
 </script>
 <style scoped lang="scss">
-.learning-featured {
-  margin-bottom: 28px;
-  border-top: 2px solid var(--color-text-primary);
-  padding-top: 20px;
-}
-.learning-featured .disclosure-link small {
-  display: block;
+.learning-heading {
+  margin: 8px 0 12px;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--color-text-secondary);
-  font-size: 13px;
-  margin-top: 6px;
 }
 .feature-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  padding: 0 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  margin-bottom: 24px;
 }
 .feature-link {
-  position: relative;
-  width: 100%;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 16px;
-  min-height: 164px;
-  padding: 20px 16px;
-  margin: 0;
-  text-align: left;
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  background: var(--color-surface);
-  line-height: 1.5;
-  font-size: 16px;
-}
-.feature-icon {
-  width: 44px;
-  height: 44px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  background: var(--color-primary-soft);
+  width: 100%;
+  gap: 12px;
+  min-height: 60px;
+  padding: 12px 0;
+  margin: 0;
+  text-align: left;
+  background: transparent;
+  border-radius: 0;
 }
-.feature-arrow {
-  position: absolute;
-  top: 20px;
-  right: 16px;
+.feature-link + .feature-link {
+  border-top: 1px solid var(--color-border);
 }
-.feature-link::after,
-.record-link::after {
-  border: 0;
-}
-.feature-link:active {
-  background: var(--color-primary-soft);
+.feature-icon {
+  flex: none;
+  width: 28px;
+  display: flex;
+  align-items: center;
 }
 .feature-copy {
   flex: 1;
   min-width: 0;
-  width: 100%;
-  overflow-wrap: anywhere;
-}
-.feature-copy text {
-  display: block;
-  font-size: 18px;
-  color: var(--color-text-primary);
-}
-.feature-copy text + text {
-  font-size: 14px;
-  margin-top: 4px;
-  color: var(--color-text-secondary);
-}
-.record-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 52px;
-  padding: 12px 0;
-  margin-top: 12px;
-  text-align: left;
-  background: transparent;
   font-size: 16px;
 }
-.secondary-list {
-  display: block;
-  margin-top: 8px;
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  overflow: hidden;
+.feature-arrow {
+  flex: none;
 }
-.secondary-list .feature-link {
-  flex-direction: row;
+.learning-gateways {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.learning-gateway {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-height: 52px;
-  padding: 14px 16px;
+  gap: 10px;
+  width: 100%;
+  min-height: 64px;
+  margin: 0;
+  padding: 14px 12px;
+  background: var(--color-surface);
   border: 0;
+  border-radius: 12px;
+  text-align: left;
+  line-height: 1.5;
+}
+.learning-gateway > text:not(.uni-icons) {
+  flex: 1;
+  font-size: 15px;
+}
+.learning-gateway .uni-icons {
+  flex: none;
+  line-height: 1;
+}
+.learning-gateway > :last-child {
+  display: none;
+}
+.analysis-list {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+.analysis-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 54px;
+  padding: 12px 0;
+  margin: 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  text-align: left;
   border-radius: 0;
 }
-.secondary-list .feature-link + .feature-link {
+.analysis-link + .analysis-link {
   border-top: 1px solid var(--color-border);
 }
-@media (max-width: 320px) {
-  .feature-list {
-    grid-template-columns: 1fr;
-  }
+.analysis-label {
+  flex: 1;
+  font-size: 15px;
+}
+.analysis-icon {
+  width: 24px;
+  flex: none;
+}
+.record-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 8px 0;
+  background: var(--color-surface);
+  border-radius: 12px;
+}
+.record-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 80px;
+  margin: 0;
+  padding: 12px 4px;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 8px;
+}
+.analysis-link:active,
+.record-shortcut:active {
+  background: var(--color-primary-soft);
 }
 </style>

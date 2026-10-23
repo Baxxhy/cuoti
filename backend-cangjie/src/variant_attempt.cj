@@ -7,7 +7,7 @@ func variantAttempt(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"POST"); let parts=context.request.url.path.split("/"); let id=parts[parts.size-2]
     try (db=Database.fromEnvironment()) {
         let user=accounts.currentUser(context,db); let body=readJson(context)
-        let answer=schoolText(body,"answer","",12000)
+        let answer=optionalText(body,"answer","",12000)
         let elapsedValue=editNumber(body.get("elapsed_seconds") ?? JsonInt(0))
         if (elapsedValue<0.0 || elapsedValue>2147483647.0) { throw ApiError(422,"作答时长无效") }
         return db.transaction<JsonValue>({ tx =>

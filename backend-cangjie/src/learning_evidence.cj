@@ -47,7 +47,3 @@ func applyLearningEvidence(db: Database, owner: String, question: JsonObject, ev
     for ((kind,key,oldValue,newValue) in [("mastery",point,mastery["mastery_score"],nextMastery["mastery_score"]),("misconception",code,mistake["probability"],nextMistake["probability"])]) { db.query("INSERT INTO cognitive_updates (id,user_id,question_id,entity_type,entity_key,old_value,new_value,evidence,reason,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[Some(newId()),Some(owner),Some(questionId),Some(kind),Some(key),sqlValue(oldValue),sqlValue(newValue),Some(evidence.toString()),sqlValue(nextMastery["update_reason"])]) }
     let result=JsonObject(); result.put("mastery_before",beforeMastery); result.put("misconception_before",beforeMistake); result.put("mastery_after",rowJson("mastery_states",db.query("SELECT * FROM mastery_states WHERE id=?",[Some(masteryId)]).rows[0])); result.put("misconception_after",rowJson("misconception_states",db.query("SELECT * FROM misconception_states WHERE id=?",[Some(mistakeId)]).rows[0])); return result
 }
-
-func applyAssignmentLearning(db: Database, owner: String, question: JsonObject, correct: Bool, sourceId: String): JsonObject {
-    let evidence=JsonObject(); evidence.put("near_transfer",JsonBool(correct)); evidence.put("hint_level",JsonInt(0)); evidence.put("strategy",JsonString("teacher_review")); evidence.put("teacher_review_id",JsonString(sourceId)); return applyLearningEvidence(db,owner,question,evidence)
-}

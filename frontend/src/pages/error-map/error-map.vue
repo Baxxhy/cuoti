@@ -1,14 +1,8 @@
 <template>
   <view class="page error-map-page">
-    <app-header title="个人易错地图" subtitle="每个线索，都能回到原题核对" back />
+    <app-header title="易错地图" back />
     <view class="page-content">
-      <view class="editorial-heading map-heading">
-        <text class="eyebrow">最近90天 · 本人的有效题目</text>
-        <text class="editorial-title">把重复的问题，连起来看。</text>
-        <text class="editorial-description">
-          按已有诊断归组，不预测考试失分，也不把一次错误当作固定弱项。
-        </text>
-      </view>
+      <view class="map-heading"><text class="evidence-caption">最近 90 天</text></view>
       <scroll-view scroll-x class="map-filters">
         <view class="map-filter-row">
           <button
@@ -35,10 +29,8 @@
       />
       <template v-else>
         <view v-if="!groups.length" class="composed-empty">
-          <text class="editorial-title">先留下可以核对的线索</text>
-          <text class="editorial-description">
-            当前范围还没有明确错因。录入真实作答并完成诊断后，再来看它们的联系。
-          </text>
+          <text class="editorial-title">还没有错因记录</text>
+          <text class="editorial-description">完成错题诊断后显示。</text>
           <button
             role="button"
             tabindex="0"
@@ -66,7 +58,7 @@
         </view>
         <template v-else>
           <view class="map-summary">
-            <text>{{ groups.length }} 类诊断线索</text>
+            <text>{{ groups.length }} 类常见错因</text>
             <text>{{ sourceCount }} 道关联题目</text>
           </view>
           <view class="evidence-map-layout">
@@ -84,15 +76,13 @@
                 @keyup.space.prevent="selectedKey = group.key"
                 @click="selectedKey = group.key"
               >
-                <text class="node-number">{{ String(i + 1).padStart(2, '0') }}</text>
+                <text class="node-number">{{ i + 1 }}</text>
                 <view class="node-copy">
-                  <text>{{ group.label }}</text>
+                  <math-text :text="group.label" inline />
                   <small>
                     {{ group.subject }} ·
                     {{
-                      group.sources.length > 1
-                        ? `${group.sources.length}道题中重复出现`
-                        : '1道题中的线索'
+                      group.sources.length > 1 ? `${group.sources.length}道题中重复出现` : '1 道题'
                     }}
                   </small>
                 </view>
@@ -101,18 +91,18 @@
             </view>
             <view v-if="selected" class="map-evidence">
               <view class="evidence-heading">
-                <text class="eyebrow">{{ selected.subject }} · 诊断来源</text>
-                <text class="evidence-title">{{ selected.label }}</text>
+                <text class="eyebrow">{{ selected.subject }} · 相关错题</text>
+                <math-text class="evidence-title" :text="selected.label" inline />
                 <text class="editorial-description">
                   {{
                     selected.due
                       ? `${selected.due}道关联题已有到期复习安排。`
-                      : '先核对原题，再决定从哪里修复。'
+                      : '选择一道题，看看当时错在哪里。'
                   }}
                 </text>
               </view>
               <view v-if="selected.points.length" class="point-labels">
-                <text v-for="point in selected.points" :key="point">{{ point }}</text>
+                <math-text v-for="point in selected.points" :key="point" :text="point" inline />
               </view>
               <view v-for="source in selected.sources" :key="source.id" class="map-source">
                 <text class="eyebrow">
@@ -133,7 +123,7 @@
                     @keydown.space.prevent
                     @keyup.space.prevent="go(`/pages/detail/detail?id=${source.id}`)"
                   >
-                    原题与原图
+                    查看原题
                   </button>
                   <button
                     role="button"
@@ -153,7 +143,7 @@
                     @keyup.space.prevent="go(`/pages/repair/repair?id=${source.id}`)"
                     @click="go(`/pages/repair/repair?id=${source.id}`)"
                   >
-                    查看修复路线
+                    查看学习安排
                   </button>
                   <button
                     role="button"
@@ -171,19 +161,15 @@
             </view>
           </view>
         </template>
-        <text class="evidence-caption map-boundary">
-          {{
-            truncated
-              ? '当前最多读取最近200道已诊断题目，当前地图并非全部历史。'
-              : '来源：当前题目版本的最新诊断。'
-          }}
-          未定位的错因不归入具体分类；已修复的历史诊断仍可回看，是否保持要通过复习验证。
+        <text v-if="truncated" class="evidence-caption map-boundary">
+          仅显示最近 200 道已诊断题目
         </text>
       </template>
     </view>
   </view>
 </template>
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'
@@ -251,7 +237,7 @@ onUnload(clear)
   padding: 10px 16px;
   font-size: 14px;
   background: transparent;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .map-filter-row button.active {
   background: var(--color-primary-soft);
@@ -285,9 +271,9 @@ onUnload(clear)
   text-align: left;
 }
 .map-node.selected {
-  color: var(--color-primary);
-  background: var(--color-primary-soft);
-  box-shadow: inset 3px 0 var(--color-primary);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border-radius: 14px;
 }
 .node-number {
   font-size: 13px;
@@ -317,7 +303,7 @@ onUnload(clear)
 .evidence-title {
   display: block;
   margin: 8px 0;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 650;
 }
 .point-labels {
@@ -341,8 +327,9 @@ onUnload(clear)
   margin: 14px 0;
 }
 .source-reason {
-  padding-left: 14px;
-  border-left: 2px solid var(--color-primary-border);
+  padding: 14px;
+  background: var(--color-surface);
+  border-radius: 10px;
   font-size: 14px;
 }
 .source-reason > text {
@@ -399,5 +386,15 @@ onUnload(clear)
   .node-number {
     display: none;
   }
+}
+.composed-empty {
+  padding: 20px;
+  margin-top: 16px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+.composed-empty .disclosure-link {
+  border: 0;
 }
 </style>

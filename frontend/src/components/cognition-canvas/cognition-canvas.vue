@@ -14,7 +14,7 @@
       @click.stop="selectPoint(point)"
     >
       <view class="node-dot" />
-      <text>{{ shortName(point.name) }}</text>
+      <math-text class="node-label" :text="point.name" inline />
     </button>
     <text v-if="!graph?.nodes?.length" class="graph-empty">
       完成错题学习后，这里会形成知识与错因关系
@@ -25,9 +25,13 @@
   </view>
 </template>
 <script setup>
-import { nextTick, onMounted, ref, watch } from 'vue'
+import MathText from '@/components/math-text/math-text.vue'
+import { getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 const props = defineProps({ graph: Object })
 const emit = defineEmits(['select'])
+const instance = getCurrentInstance()
+let scaleX = 1,
+  scaleY = 1
 const selectedId = ref(''),
   points = ref([])
 const colors = {
@@ -48,10 +52,12 @@ function visibleData() {
   return { nodes: nodes.filter((node) => related.has(node.id)).slice(0, 8), links }
 }
 function draw() {
-  const ctx = uni.createCanvasContext('cognition-graph'),
+  const ctx = uni.createCanvasContext('cognition-graph', instance?.proxy),
     w = 350,
     h = 300,
     { nodes, links } = visibleData()
+  ctx.save?.()
+  ctx.scale?.(scaleX, scaleY)
   ctx.setFillStyle('#fff')
   ctx.fillRect(0, 0, w, h)
   points.value = nodes.map((node) => {
@@ -73,11 +79,8 @@ function draw() {
       ctx.stroke()
     }
   })
+  ctx.restore?.()
   ctx.draw()
-}
-function shortName(value) {
-  const text = String(value || '')
-  return text.length > 9 ? `${text.slice(0, 9)}…` : text
 }
 function nodeStyle(point) {
   return {
@@ -91,7 +94,26 @@ function selectPoint(point) {
   emit('select', selectedId.value ? point : null)
   nextTick(draw)
 }
-onMounted(draw)
+function measure() {
+  const query = uni.createSelectorQuery?.()
+  if (!query) return draw()
+  query
+    .in(instance?.proxy)
+    .select('.graph-canvas')
+    .boundingClientRect((box) => {
+      if (box?.width && box?.height) {
+        scaleX = box.width / 350
+        scaleY = box.height / 300
+      }
+      draw()
+    })
+    .exec()
+}
+onMounted(() => {
+  measure()
+  uni.onWindowResize?.(measure)
+})
+onBeforeUnmount(() => uni.offWindowResize?.(measure))
 watch(
   () => props.graph,
   () => {
@@ -111,9 +133,8 @@ watch(
   overflow: hidden;
 }
 .graph-canvas {
-  width: 700rpx;
-  height: 600rpx;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
 }
 .graph-node {
   background: transparent;
@@ -127,7 +148,7 @@ watch(
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  transform: translate(-50%, -38%);
+  transform: translate(-50%, -26rpx);
   z-index: 2;
 }
 .node-dot {
@@ -138,7 +159,7 @@ watch(
   border: 6rpx solid #fff;
   box-shadow: 0 2rpx 8rpx rgba(15, 23, 42, 0.18);
 }
-.graph-node text {
+.graph-node .node-label {
   display: block;
   max-width: 190rpx;
   margin-top: 5rpx;
@@ -147,7 +168,7 @@ watch(
   background: rgba(255, 255, 255, 0.9);
   color: #334155;
   font-size: 20rpx;
-  line-height: 1.25;
+  line-height: 1.8;
   text-align: center;
 }
 .graph-node.selected .node-dot {
@@ -156,7 +177,10 @@ watch(
   border-color: #dce8ff;
   box-shadow: 0 0 0 5rpx rgba(47, 107, 255, 0.18);
 }
-.graph-node.selected text {
+.graph-node.selected {
+  transform: translate(-50%, -34rpx);
+}
+.graph-node.selected .node-label {
   font-weight: 600;
   color: #172b4d;
 }

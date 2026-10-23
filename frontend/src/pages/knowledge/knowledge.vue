@@ -1,33 +1,37 @@
 <template>
   <view class="page knowledge-page">
-    <app-header
-      title="本题知识"
-      :subtitle="item ? `${item.subject} · ${item.grade || ''}` : ''"
-      back
-    />
+    <app-header title="相关知识" back />
     <state-panel
       v-if="loading || error"
       :state="error ? 'error' : 'loading'"
       :message="error"
-      @retry="load"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
     />
     <view v-else-if="item" class="page-content">
-      <view class="intro-card">
-        <text class="eyebrow">围绕本题，学清一个知识点</text>
+      <view v-if="!primaryKnowledge.length" class="intro-card">
         <math-text class="intro-title" :text="primaryKnowledge[0] || '先核对本题内容'" inline />
         <text class="intro-desc">{{ state.message }}</text>
       </view>
 
       <view class="section-title">本题涉及</view>
       <view class="knowledge-card">
-        <view v-for="(name, index) in visibleKnowledge" :key="name" class="knowledge-row">
+        <button
+          role="button"
+          v-for="(name, index) in visibleKnowledge"
+          :key="name"
+          class="knowledge-row"
+          @click="openKnowledgeCard(name)"
+        >
           <text class="node-number">{{ String(index + 1).padStart(2, '0') }}</text>
           <math-text class="row-name" :text="name" inline />
-        </view>
+          <uni-icons aria-hidden="true" type="right" size="16" color="var(--color-text-tertiary)" />
+        </button>
         <text v-if="!primaryKnowledge.length" class="empty-text">
           尚未确定知识点，先核对原题并完成分析。
         </text>
         <button
+          role="button"
           v-if="primaryKnowledge.length > 3"
           class="expand-btn"
           :aria-expanded="showAllKnowledge"
@@ -40,11 +44,23 @@
       <template v-if="prerequisiteKnowledge.length">
         <view class="section-title">{{ hasFinding ? '可以先复习' : '相关基础' }}</view>
         <view class="knowledge-card">
-          <view v-for="name in visiblePrerequisites" :key="name" class="knowledge-row">
-            <uni-icons type="arrow-right" size="18" color="var(--color-primary)" />
-            <math-text class="row-name" :text="name" inline />
-          </view>
           <button
+            role="button"
+            v-for="name in visiblePrerequisites"
+            :key="name"
+            class="knowledge-row"
+            @click="openKnowledgeCard(name)"
+          >
+            <uni-icons
+              aria-hidden="true"
+              type="arrow-right"
+              size="18"
+              color="var(--color-primary)"
+            />
+            <math-text class="row-name" :text="name" inline />
+          </button>
+          <button
+            role="button"
             v-if="prerequisiteKnowledge.length > 2"
             class="expand-btn"
             :aria-expanded="showAllPrerequisites"
@@ -58,6 +74,7 @@
       <view class="diagnosis-card" :class="{ finding: hasFinding }">
         <view class="diagnosis-head">
           <uni-icons
+            aria-hidden="true"
             :type="state.kind === 'clear' ? 'checkmarkempty' : 'info'"
             size="20"
             color="var(--color-primary)"
@@ -75,6 +92,7 @@
             inline
           />
           <button
+            role="button"
             v-if="item.diagnosis.first_error_text"
             class="expand-btn"
             :aria-expanded="showWork"
@@ -103,10 +121,12 @@
             ? '分析这道题'
             : state.kind === 'missing' || state.kind === 'review'
               ? '核对本次作答'
-              : '回到本题学习'
+              : '开始错题订正'
         }}
       </button>
-      <button v-if="hasFinding" class="secondary-btn" @click="openDiagnosis">核对诊断</button>
+      <button role="button" v-if="hasFinding" class="secondary-btn" @click="openDiagnosis">
+        核对诊断
+      </button>
     </view>
   </view>
 </template>
@@ -144,6 +164,11 @@ const primaryKnowledge = computed(() =>
     ...(item.value?.knowledge_points || []),
   ]),
 )
+function openKnowledgeCard(name) {
+  go(
+    `/pages/library/library?q=${encodeURIComponent(name)}&subject=${encodeURIComponent(item.value?.subject || '')}&question=${encodeURIComponent(id.value)}`,
+  )
+}
 const prerequisiteKnowledge = computed(() =>
   unique([
     ...(hasFinding.value ? item.value?.diagnosis?.missing_prerequisites || [] : []),
@@ -166,11 +191,11 @@ async function load() {
   item.value = null
   showAllKnowledge.value = showAllPrerequisites.value = showWork.value = false
   try {
-    if (!id.value) throw new Error('请从具体题目打开本题知识')
+    if (!id.value) throw new Error('请从具体题目打开相关知识')
     const value = await getData(`/questions/${encodeURIComponent(id.value)}`)
     if (active && revision === current) item.value = value
   } catch (err) {
-    if (active && revision === current) error.value = err.message || '本题知识暂时无法加载，请重试'
+    if (active && revision === current) error.value = err.message || '相关知识暂时无法加载，请重试'
   } finally {
     if (active && revision === current) loading.value = false
   }
@@ -200,6 +225,14 @@ onUnload(leave)
 </script>
 
 <style scoped lang="scss">
+button.knowledge-row {
+  width: 100%;
+  margin: 0;
+  background: transparent;
+  text-align: left;
+  border-radius: 0;
+  min-height: 52px;
+}
 .knowledge-page {
   min-height: 100vh;
   background: var(--color-bg);
@@ -218,7 +251,7 @@ onUnload(leave)
 }
 .intro-title {
   margin-top: 12px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1.4;
 }
@@ -322,7 +355,7 @@ onUnload(leave)
 .work-quote {
   margin-top: 12px;
   padding: 14px;
-  border-left: 2px solid var(--color-primary);
+  border-radius: 10px;
   background: var(--color-bg);
 }
 .work-quote > text {

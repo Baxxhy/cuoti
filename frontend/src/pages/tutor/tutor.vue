@@ -1,10 +1,6 @@
 <template>
   <view class="tutor-page">
-    <app-header
-      title="本题学习"
-      :subtitle="session?.knowledge_title || '正在准备今天的学习任务'"
-      back
-    >
+    <app-header title="AI 讲解" back>
       <button
         tabindex="0"
         role="button"
@@ -32,7 +28,13 @@
         进度
       </button>
     </app-header>
-    <state-panel v-if="!session" :state="error ? 'error' : 'loading'" @retry="load" />
+    <state-panel
+      v-if="!session"
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先选择一道错题' : undefined"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
+    />
 
     <template v-else>
       <view v-if="planOpen" class="stage-strip">
@@ -48,6 +50,7 @@
         >
           <i>
             <uni-icons
+              aria-hidden="true"
               v-if="index < visibleStageIndex"
               type="checkmarkempty"
               size="14"
@@ -62,7 +65,7 @@
       <scroll-view scroll-y class="task-scroll">
         <view class="task-content">
           <view v-if="questionOpen" class="question-context">
-            <math-text :text="session.question?.text || '题目暂时无法读取'" />
+            <math-text :text="session.question?.text || '题目暂时无法读取'" inline />
             <button
               tabindex="0"
               role="button"
@@ -92,28 +95,36 @@
           </button>
           <view v-if="session.stage !== 'finished' && !activity" class="teacher-intro">
             <text>小智老师</text>
-            <b>{{ introText }}</b>
+            <b><math-text :text="introText" inline /></b>
           </view>
 
           <view v-if="activity" class="activity-card">
             <template v-if="isAnswerReveal">
               <view class="answer-brief-heading">
-                <text>{{ answerReveal.topic }}</text>
-                <b>先把这次选错的地方看清</b>
+                <math-text :text="answerReveal.topic" inline />
+                <b>答案对照</b>
               </view>
               <view class="answer-compare">
                 <view>
                   <text>你的答案</text>
-                  <b class="student-answer">{{ answerReveal.student_answer }}</b>
+                  <b class="student-answer">
+                    <math-text :text="answerReveal.student_answer" inline />
+                  </b>
                 </view>
                 <view>
                   <text>正确答案</text>
-                  <b class="correct-answer">{{ answerReveal.correct_answer }}</b>
+                  <b class="correct-answer">
+                    <math-text :text="answerReveal.correct_answer" inline />
+                  </b>
                 </view>
               </view>
               <view class="why-block">
-                <b>为什么是{{ answerReveal.correct_answer }}？</b>
-                <text v-if="answerReveal.key_explanation">{{ answerReveal.key_explanation }}</text>
+                <b><math-text :text="'为什么是' + answerReveal.correct_answer + '？'" inline /></b>
+                <math-text
+                  v-if="answerReveal.key_explanation"
+                  :text="answerReveal.key_explanation"
+                  inline
+                />
                 <view v-if="answerReveal.option_explanations?.length" class="option-explanations">
                   <view
                     v-for="item in answerReveal.option_explanations"
@@ -121,7 +132,7 @@
                     :class="{ correct: item.correct }"
                   >
                     <i>{{ item.label }}</i>
-                    <text>{{ item.text }}</text>
+                    <math-text :text="item.text" inline />
                     <b v-if="item.correct">正确</b>
                   </view>
                 </view>
@@ -138,7 +149,7 @@
                   @keydown.space.prevent
                   @keyup.space.prevent="!busy && acknowledgeBrief('understood')"
                 >
-                  已懂，练一道
+                  开始练习
                 </button>
                 <button
                   :aria-disabled="busy"
@@ -161,22 +172,19 @@
                 v-if="answerReveal.correct_answer && session.stage === 'understanding'"
                 class="compact-answer-compare"
               >
-                <text>
-                  你的答案
-                  <b>{{ answerReveal.student_answer }}</b>
-                </text>
+                <view>
+                  <text>你的答案</text>
+                  <b><math-text :text="answerReveal.student_answer" inline /></b>
+                </view>
                 <i />
-                <text>
-                  正确答案
-                  <b>{{ answerReveal.correct_answer }}</b>
-                </text>
+                <view>
+                  <text>正确答案</text>
+                  <b><math-text :text="answerReveal.correct_answer" inline /></b>
+                </view>
               </view>
-              <view class="activity-meta">
-                <text>{{ activity.title }}</text>
-                <text>
-                  第 {{ Math.min(activity.attempt, activity.max_attempts) }} /
-                  {{ activity.max_attempts }} 次
-                </text>
+              <view v-if="!activity.teaching || activity.attempt > 1" class="activity-meta">
+                <math-text v-if="!activity.teaching" :text="activity.title" inline />
+                <text v-if="activity.attempt > 1">第 {{ activity.attempt }} 次作答</text>
               </view>
 
               <view
@@ -190,7 +198,7 @@
                   class="cube-cell"
                   :style="{ left: `${cell.x * 25}%`, top: `${cell.y * 33.333}%` }"
                 >
-                  {{ cell.label }}
+                  <math-text :text="cell.label" inline />
                 </view>
               </view>
               <image
@@ -203,7 +211,7 @@
 
               <view v-if="activity.teaching" class="teaching-note">
                 <view class="teaching-heading">
-                  <text>{{ activity.teaching_title || '先看这个关键点' }}</text>
+                  <math-text :text="activity.teaching_title || activity.title" inline />
                   <button
                     tabindex="0"
                     role="button"
@@ -248,7 +256,7 @@
                 </view>
               </view>
 
-              <math-text class="activity-question" :text="activity.question" />
+              <math-text class="activity-question" :text="activity.question" inline />
 
               <view v-if="grading" class="grading-state" aria-live="polite">
                 <view class="grading-spinner" />
@@ -273,13 +281,14 @@
                 >
                   <i>
                     <uni-icons
+                      aria-hidden="true"
                       v-if="selectedOptions.includes(option.value)"
                       type="checkmarkempty"
                       size="17"
                       color="#FFFFFF"
                     />
                   </i>
-                  <math-text class="option-label" :text="option.label" />
+                  <math-text class="option-label" :text="option.label" inline />
                 </button>
                 <button
                   :aria-disabled="busy"
@@ -316,7 +325,11 @@
 
               <view v-else class="answer-area">
                 <view v-if="activity.type === 'teach_back'" class="speaking-help">
-                  <text class="starter">{{ activity.sentence_starter || '我会先看……' }}</text>
+                  <math-text
+                    class="starter"
+                    :text="activity.sentence_starter || '我会先看……'"
+                    inline
+                  />
                   <view class="keyword-row">
                     <button
                       tabindex="0"
@@ -328,7 +341,7 @@
                       @keydown.space.prevent
                       @keyup.space.prevent="appendKeyword(keyword)"
                     >
-                      {{ keyword }}
+                      <math-text :text="keyword" inline />
                     </button>
                   </view>
                 </view>
@@ -410,7 +423,12 @@
 
           <view v-else-if="understandingPassed" class="success-card">
             <view class="success-check">
-              <uni-icons type="checkmarkempty" size="25" color="var(--color-primary)" />
+              <uni-icons
+                aria-hidden="true"
+                type="checkmarkempty"
+                size="25"
+                color="var(--color-primary)"
+              />
             </view>
             <b>已经抓住这个关键点</b>
             <text>接下来只用一句自己的话说清楚，不需要复述完整答案。</text>
@@ -431,12 +449,20 @@
 
           <view v-else-if="session.stage === 'finished'" class="success-card finish-card">
             <view class="success-check">
-              <uni-icons type="checkmarkempty" size="25" color="var(--color-primary)" />
+              <uni-icons
+                aria-hidden="true"
+                type="checkmarkempty"
+                size="25"
+                color="var(--color-primary)"
+              />
             </view>
             <b>
-              {{ session.state?.transfer_insufficient ? '本轮学习已完成' : '已经基本修复这个问题' }}
+              {{ session.state?.transfer_insufficient ? '本轮学习已完成' : '本次学习完成' }}
             </b>
-            <text>{{ session.completion_summary || '掌握状态和后续复习已经更新。' }}</text>
+            <math-text
+              :text="session.completion_summary || '掌握状态和后续复习已经更新。'"
+              inline
+            />
             <text v-if="session.assisted" class="assisted-note">
               这次有小智老师帮助，之后会更早安排复习。
             </text>
@@ -473,7 +499,61 @@
                 :class="['history-turn', turn.role]"
               >
                 <text>{{ turn.role === 'assistant' ? '小智老师' : '我' }}</text>
-                <view>{{ turn.content }}</view>
+                <view>
+                  <math-text
+                    :text="
+                      turn.role === 'assistant' ? learningFeedback(turn.content) : turn.content
+                    "
+                    inline
+                  />
+                  <view
+                    v-if="
+                      turn.role === 'assistant' && turn.metadata_json?.knowledge_sources?.length
+                    "
+                    class="knowledge-sources"
+                  >
+                    <button
+                      role="button"
+                      class="source-toggle"
+                      @click="sourceOpen[turn.id] = !sourceOpen[turn.id]"
+                      tabindex="0"
+                      :aria-expanded="Boolean(sourceOpen[turn.id])"
+                      @keydown.enter.prevent="sourceOpen[turn.id] = !sourceOpen[turn.id]"
+                      @keydown.space.prevent
+                      @keyup.space.prevent="sourceOpen[turn.id] = !sourceOpen[turn.id]"
+                    >
+                      参考知识
+                      <uni-icons
+                        aria-hidden="true"
+                        :type="sourceOpen[turn.id] ? 'top' : 'bottom'"
+                        size="14"
+                      />
+                    </button>
+                    <template v-if="sourceOpen[turn.id]">
+                      <button
+                        v-for="source in turn.metadata_json.knowledge_sources"
+                        :key="source.code"
+                        role="button"
+                        class="source-link"
+                        tabindex="0"
+                        @keydown.enter.prevent="
+                          go('/pages/library/library?code=' + encodeURIComponent(source.code))
+                        "
+                        @keydown.space.prevent
+                        @keyup.space.prevent="
+                          go('/pages/library/library?code=' + encodeURIComponent(source.code))
+                        "
+                        @click="
+                          go('/pages/library/library?code=' + encodeURIComponent(source.code))
+                        "
+                      >
+                        {{ source.name }}
+                        <text v-if="source.role === 'prerequisite'">先修</text>
+                        <uni-icons aria-hidden="true" type="right" size="14" />
+                      </button>
+                    </template>
+                  </view>
+                </view>
               </view>
             </view>
           </view>
@@ -525,7 +605,7 @@
               @keydown.space.prevent
               @keyup.space.prevent="askOpen = true"
             >
-              问小智老师
+              向 AI 提问
             </button>
             <button
               :aria-disabled="busy"
@@ -552,11 +632,14 @@
 </template>
 
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
+import MathText from '@/components/math-text/math-text.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 
 import { computed, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { getData, postData } from '@/api/index.js'
+import { go } from '@/utils/navigation.js'
 
 const id = ref('')
 const session = ref(null)
@@ -567,6 +650,7 @@ const figureFailed = ref(false)
 const selectedOptions = ref([])
 const activityAnswer = ref('')
 const activityWorking = ref('')
+const sourceOpen = ref({})
 const historyOpen = ref(false)
 const questionOpen = ref(false)
 const planOpen = ref(false)
@@ -580,7 +664,10 @@ const teachingExpanded = ref(false)
 const feedbackExpanded = ref(false)
 const stages = ['理解', '讲清', '练习', '迁移']
 
-const activity = computed(() => session.value?.activity || null)
+const activity = computed(() => {
+  const value = session.value?.activity
+  return value ? { ...value, feedback: learningFeedback(value.feedback) } : null
+})
 const answerReveal = computed(() => session.value?.answer_reveal || {})
 const teachingMode = computed(() => session.value?.teaching_policy?.mode || 'full')
 const isCompressed = computed(() => teachingMode.value === 'compressed')
@@ -681,6 +768,7 @@ function resetActivityInput() {
 }
 
 async function load(preserveInput = false) {
+  if (!id.value) return
   try {
     const previousActivity = activity.value?.id
     session.value = await getData(`/tutor/sessions/${id.value}`)
@@ -803,6 +891,10 @@ async function sendQuestion() {
 
 onLoad((query) => {
   id.value = query.id
+  if (query.ask) {
+    askInput.value = String(query.ask).slice(0, 1000)
+    askOpen.value = true
+  }
   load()
 })
 </script>
@@ -941,20 +1033,19 @@ onLoad((query) => {
 }
 .activity-card,
 .success-card {
-  padding: 15px;
+  padding: 16px;
   background: #fff;
-  border: 0.5px solid var(--color-border);
-  border-radius: 5px;
+  border-radius: var(--radius-card);
 }
 .answer-brief-heading {
   padding-bottom: 11px;
   border-bottom: 0.5px solid var(--color-border);
 }
-.answer-brief-heading text,
+.answer-brief-heading > .math-text,
 .answer-brief-heading b {
   display: block;
 }
-.answer-brief-heading text {
+.answer-brief-heading > .math-text {
   color: var(--color-text-secondary);
   font-size: 12px;
 }
@@ -1003,7 +1094,7 @@ onLoad((query) => {
   display: block;
   font-size: 14px;
 }
-.why-block > text {
+.why-block > .math-text {
   display: block;
   margin-top: 4.5px;
   color: var(--color-text-secondary);
@@ -1034,7 +1125,7 @@ onLoad((query) => {
   font-size: 12px;
   font-weight: 650;
 }
-.option-explanations text {
+.option-explanations .math-text {
   flex: 1;
   color: var(--color-text-secondary);
   font-size: 12px;
@@ -1056,10 +1147,10 @@ onLoad((query) => {
 }
 .secondary-btn {
   width: 100%;
-  height: 38px;
+  min-height: 44px;
   margin-top: 6px;
   border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 8px;
   background: #fff;
   color: var(--color-text-secondary);
   font-size: 12px;
@@ -1070,11 +1161,11 @@ onLoad((query) => {
   gap: 8px;
   margin-bottom: 11px;
   padding: 8px 9px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 6px;
-  background: var(--color-surface-subtle);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+  background: transparent;
 }
-.compact-answer-compare text {
+.compact-answer-compare > view {
   flex: 1;
   color: var(--color-text-secondary);
   font-size: 12px;
@@ -1085,7 +1176,7 @@ onLoad((query) => {
   color: var(--color-text-primary);
   font-size: 14px;
 }
-.compact-answer-compare text:last-child b {
+.compact-answer-compare > view:last-child b {
   color: var(--color-primary);
 }
 .compact-answer-compare i {
@@ -1099,7 +1190,7 @@ onLoad((query) => {
   justify-content: space-between;
   margin-bottom: 11px;
 }
-.activity-meta text:first-child {
+.activity-meta > .math-text:first-child {
   font-size: 12px;
   font-weight: 600;
   color: var(--color-primary-hover);
@@ -1143,11 +1234,10 @@ onLoad((query) => {
   min-width: 0;
   box-sizing: border-box;
   overflow: hidden;
-  padding: 10px 11px;
-  margin-bottom: 9px;
-  border-left: 1.5px solid var(--color-border);
-  background: var(--color-surface-subtle);
-  border-radius: 5px;
+  padding: 8px 0;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
 }
 .teaching-heading {
   display: flex;
@@ -1155,15 +1245,16 @@ onLoad((query) => {
   justify-content: space-between;
   gap: 8px;
 }
-.teaching-heading text {
-  font-size: 12px;
-  color: var(--color-text-secondary);
+.teaching-heading > .math-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
 }
 .teaching-heading button {
   flex: none;
-  min-height: 26px;
+  min-height: 44px;
   margin: 0;
-  padding: 0 7px;
+  padding: 8px 10px;
   border: 0.5px solid var(--color-border);
   border-radius: 5px;
   background: #fff;
@@ -1319,7 +1410,7 @@ onLoad((query) => {
   align-items: center;
   padding: 7.5px 10px;
   border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 8px;
   background: #fff;
   color: var(--color-text-primary);
   font-size: 14px;
@@ -1469,13 +1560,15 @@ onLoad((query) => {
   font-weight: 700;
 }
 .success-card b,
-.success-card > text {
+.success-card > text,
+.success-card > .math-text {
   display: block;
 }
 .success-card b {
   font-size: 16px;
 }
-.success-card > text {
+.success-card > text,
+.success-card > .math-text {
   margin-top: 5px;
   color: var(--color-text-secondary);
   font-size: 12px;
@@ -1560,7 +1653,7 @@ onLoad((query) => {
   min-height: 44px;
   margin: 0;
   border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border-radius: 8px;
   background: #fff;
   color: #475467;
   font-size: 13px;
@@ -1616,5 +1709,33 @@ onLoad((query) => {
     padding-left: max(32px, calc((100% - 756px) / 2));
     padding-right: max(32px, calc((100% - 756px) / 2));
   }
+}
+</style>
+
+<style scoped lang="scss">
+.knowledge-sources {
+  margin-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+.source-toggle,
+.source-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 0;
+  text-align: left;
+  color: var(--color-primary);
+  background: transparent;
+  font-size: 13px;
+}
+.source-link > text {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+.source-link .uni-icons {
+  margin-left: auto;
 }
 </style>

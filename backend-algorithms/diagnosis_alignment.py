@@ -8,8 +8,9 @@ import re
 from types import SimpleNamespace
 
 import sympy as sp
-from app.services.diagnosis import classify_error
-from app.services.math_tools import normalize_expression, parse_math_expression
+
+from learning_core.services.diagnosis import classify_error
+from learning_core.services.math_tools import normalize_expression, parse_math_expression
 
 
 def equation(value):

@@ -3,7 +3,7 @@
     <app-header title="创建账号" back back-fallback="/pages/login/login" />
 
     <view class="page-content">
-      <view class="card">
+      <view class="account-form">
         <account-field
           id="register-name"
           v-model="form.name"
@@ -18,7 +18,7 @@
           label="邮箱"
           inputmode="email"
           autocomplete="username"
-          placeholder="student@example.com"
+          placeholder="请输入邮箱"
         />
         <account-field
           id="register-password"
@@ -128,10 +128,11 @@ async function submit() {
 
 <style scoped>
 .page-content {
-  max-width: 500px;
+  max-width: 408px;
+  padding-top: 28px;
 }
-.card {
-  padding: 24px;
+.account-form {
+  padding: 0;
 }
 .field:first-child {
   margin-top: 0;

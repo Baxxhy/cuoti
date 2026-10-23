@@ -1,14 +1,7 @@
 <template>
   <view class="page preferences-page">
-    <app-header title="学习方向" back />
+    <app-header title="学习设置" back />
     <view class="page-content">
-      <view class="editorial-heading">
-        <text class="eyebrow">你的选择，随时可改</text>
-        <text class="editorial-title">今天，先照顾眼前的目标。</text>
-        <text class="editorial-description">
-          选择当前学科和节奏。它们用于组织入口，不代表能力测评。
-        </text>
-      </view>
       <state-panel
         v-if="loading || error"
         :state="error ? 'error' : 'loading'"
@@ -16,6 +9,42 @@
         @retry="load"
       />
       <form v-else class="learning-settings" @submit.prevent="save">
+        <view class="preference-field">
+          <!-- #ifdef H5 -->
+          <component :is="'label'" for="current-grade" class="field-label">当前年级</component>
+          <component
+            :is="'select'"
+            id="current-grade"
+            class="preference-select"
+            :disabled="saving"
+            :value="form.grade"
+            @change="changeChoice('grade', $event.target.value)"
+          >
+            <component
+              :is="'option'"
+              v-if="!grades.includes(form.grade)"
+              :value="form.grade"
+              disabled
+            >
+              {{ form.grade || '请选择年级' }}
+            </component>
+            <component :is="'option'" v-for="grade in grades" :key="grade" :value="grade">
+              {{ grade }}
+            </component>
+          </component>
+          <!-- #endif -->
+          <!-- #ifndef H5 -->
+          <text class="field-label">当前年级</text>
+          <picker
+            :range="grades"
+            :disabled="saving"
+            @change="changeChoice('grade', grades[$event.detail.value])"
+          >
+            <view class="preference-select">{{ form.grade || '请选择年级' }}</view>
+          </picker>
+          <!-- #endif -->
+          <text v-if="form.grade !== loadedGrade" class="grade-note">原有错题和学习记录会保留</text>
+        </view>
         <view class="preference-field">
           <!-- #ifdef H5 -->
           <component :is="'label'" for="focus-subject" class="field-label">当前学科</component>
@@ -44,7 +73,7 @@
           <!-- #endif -->
         </view>
         <view class="preference-field">
-          <text class="field-label">今天想做什么</text>
+          <text class="field-label">优先学习内容</text>
           <view class="preference-options">
             <button
               role="button"
@@ -63,8 +92,8 @@
             </button>
           </view>
         </view>
-        <view class="preference-field">
-          <text class="field-label">建议学习节奏</text>
+        <view v-if="form.goal === 'practice'" class="preference-field">
+          <text class="field-label">预计学习时间</text>
           <view class="preference-options">
             <button
               role="button"
@@ -82,12 +111,9 @@
               {{ minutes }} 分钟
             </button>
           </view>
-          <text class="evidence-caption">这是你选择的节奏，可以提前结束，不据此判断学习表现。</text>
         </view>
         <text v-if="saveError" class="account-notice" role="alert">{{ saveError }}</text>
-        <text v-if="saved" class="saved-preferences" role="status">
-          已保存。返回今日后，会按新的学科组织学习入口。
-        </text>
+        <text v-if="saved" class="saved-preferences" role="status">已保存</text>
         <button
           role="button"
           tabindex="0"
@@ -98,20 +124,7 @@
           @keyup.space.prevent="save"
           @click="save"
         >
-          {{ saving ? '正在保存…' : '保存学习方向' }}
-        </button>
-        <button
-          aria-label="返回今日"
-          role="button"
-          tabindex="0"
-          class="disclosure-link"
-          @keydown.enter.prevent="go('/pages/index/index', { replace: true })"
-          @keydown.space.prevent
-          @keyup.space.prevent="go('/pages/index/index', { replace: true })"
-          @click="go('/pages/index/index', { replace: true })"
-        >
-          返回今日
-          <uni-icons aria-hidden="true" type="right" size="18" />
+          {{ saving ? '正在保存…' : '保存设置' }}
         </button>
       </form>
     </view>
@@ -121,9 +134,9 @@
 import { ref } from 'vue'
 import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData, patchData } from '@/api/index.js'
-import { go } from '@/utils/navigation.js'
-import { CORE_SUBJECTS as subjects } from '@/constants/education.js'
-const form = ref({ subject: '', minutes: 10, goal: 'understand', version: 0 }),
+import { CORE_SUBJECTS as subjects, MIDDLE_SCHOOL_GRADES as grades } from '@/constants/education.js'
+const form = ref({ grade: '', subject: '', minutes: 10, goal: 'understand', version: 0 }),
+  loadedGrade = ref(''),
   loading = ref(true),
   error = ref(''),
   saveError = ref(''),
@@ -143,9 +156,12 @@ async function load() {
   saved.value = false
   try {
     const value = await getData('/student-preferences')
-    if (version === revision) form.value = value
+    if (version === revision) {
+      form.value = value
+      loadedGrade.value = value.grade
+    }
   } catch (err) {
-    if (version === revision) error.value = err.message || '学习方向暂时无法读取'
+    if (version === revision) error.value = err.message || '学习设置暂时无法读取'
   } finally {
     if (version === revision) loading.value = false
   }
@@ -163,8 +179,9 @@ async function save() {
   saved.value = false
   saveError.value = ''
   try {
-    const { subject, minutes, goal, version: sourceVersion } = form.value
+    const { grade, subject, minutes, goal, version: sourceVersion } = form.value
     const value = await patchData('/student-preferences', {
+      ...(grades.includes(grade) ? { grade } : {}),
       subject,
       minutes,
       goal,
@@ -172,13 +189,14 @@ async function save() {
     })
     if (version === revision) {
       form.value = value
+      loadedGrade.value = value.grade
       saved.value = true
     }
   } catch (err) {
     if (version === revision)
       saveError.value =
         err.statusCode === 409
-          ? '另一页面已修改学习方向。请返回再进入，核对最新设置；当前选择仍保留。'
+          ? '另一页面已修改学习设置。请返回再进入，核对最新设置；当前选择仍保留。'
           : err.message || '保存失败，请重试'
   } finally {
     if (version === revision) saving.value = false
@@ -186,7 +204,8 @@ async function save() {
 }
 function clear() {
   revision++
-  form.value = { subject: '', minutes: 10, goal: 'understand', version: 0 }
+  form.value = { grade: '', subject: '', minutes: 10, goal: 'understand', version: 0 }
+  loadedGrade.value = ''
   saving.value = false
   saved.value = false
 }
@@ -196,11 +215,19 @@ onUnload(clear)
 </script>
 <style scoped lang="scss">
 .learning-settings {
-  margin-top: 32px;
-  max-width: 560px;
+  margin-top: 8px;
+  display: block;
+  width: 100%;
+  max-width: none;
 }
 .preference-field {
   margin-bottom: 28px;
+}
+.grade-note {
+  display: block;
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
 }
 .field-label {
   display: block;
@@ -214,7 +241,7 @@ onUnload(clear)
   min-height: 48px;
   padding: 12px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--color-surface);
   color: var(--color-text-primary);
   font-size: 16px;
@@ -223,15 +250,16 @@ onUnload(clear)
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 .preference-options button {
   margin: 0;
   padding: 12px;
   min-height: 48px;
   border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: var(--color-bg);
   color: var(--color-text-primary);
+  border-radius: 12px;
   font-size: 14px;
 }
 .preference-options button.selected {
@@ -244,5 +272,8 @@ onUnload(clear)
   margin-bottom: 16px;
   color: var(--color-success);
   font-size: 14px;
+}
+.preferences-page {
+  max-width: 760px;
 }
 </style>

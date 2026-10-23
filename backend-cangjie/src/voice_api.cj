@@ -50,10 +50,10 @@ func synthesizeVoice(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"POST")
     try (db=Database.fromEnvironment()) {
         let user=accounts.currentUser(context,db); let owner=rowText(user,"id"); let body=readJson(context)
-        let text=stripWhitespace(schoolText(body,"text","",12000))
+        let text=stripWhitespace(optionalText(body,"text","",12000))
         if (text.isEmpty()) { throw ApiError(400,"朗读文本不能为空") }
-        let questionId=if ((body.get("question_id") ?? JsonNull()) is JsonNull) { "" } else { schoolText(body,"question_id","",36) }; validateVoiceContext(db,owner,questionId,"")
-        let input=JsonObject(); input.put("operation",JsonString("voice_synthesize")); input.put("text",JsonString(text)); input.put("voice",JsonString(schoolText(body,"voice","zh-CN-XiaoxiaoNeural",100)))
+        let questionId=if ((body.get("question_id") ?? JsonNull()) is JsonNull) { "" } else { optionalText(body,"question_id","",36) }; validateVoiceContext(db,owner,questionId,"")
+        let input=JsonObject(); input.put("operation",JsonString("voice_synthesize")); input.put("text",JsonString(text)); input.put("voice",JsonString(optionalText(body,"voice","zh-CN-XiaoxiaoNeural",100)))
         let computed=algorithmCompute(input); let data=fromBase64String(jsonText(computed,"audio_base64")).getOrThrow()
         if (data.isEmpty() || data.size>64*1024*1024 || sha256(data)!=jsonText(computed,"sha256")) { throw ApiError(502,"语音合成结果无效") }
         let metadata=tutorObject(computed,"metadata"); let path="uploads/voice/${owner}/tts-${newId()}.mp3"; writeMedia(path,data)

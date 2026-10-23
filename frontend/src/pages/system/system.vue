@@ -1,6 +1,6 @@
 <template>
   <view class="page">
-    <app-header title="系统与智能服务" subtitle="识别、模型和线路状态" back />
+    <app-header title="系统与智能服务" back />
     <view class="page-content">
       <state-panel v-if="!provider" :state="error ? 'error' : 'loading'" @retry="load" />
       <template v-else>
@@ -32,12 +32,15 @@
         <view class="capability-grid">
           <view>
             <uni-icons
-              :type="provider.vision_entries > 0 ? 'checkbox-filled' : 'circle'"
+              aria-hidden="true"
+              :type="provider.vision_entries > 0 ? 'settings' : 'circle'"
               size="36"
-              :color="provider.vision_entries > 0 ? '#10b981' : '#94a3b8'"
+              :color="
+                provider.vision_entries > 0 ? 'var(--color-primary)' : 'var(--color-text-secondary)'
+              "
             />
             <b>图片识别</b>
-            <text>{{ provider.vision_entries > 0 ? '可用' : '待检查' }}</text>
+            <text>{{ provider.vision_entries > 0 ? '已配置' : '未配置' }}</text>
           </view>
         </view>
         <view class="section-title"><text>当前智能模型</text></view>
@@ -48,9 +51,9 @@
           <view class="rotation">
             <text>文本位置 {{ provider.text_cursor ?? 0 }}</text>
             <text>图片位置 {{ provider.vision_cursor ?? 0 }}</text>
-            <text>最近状态 {{ provider.last_status || '尚未调用' }}</text>
+            <text>最近状态 {{ statusLabel }}</text>
           </view>
-          <button class="primary-btn" :disabled="probing" @click="probe">
+          <button role="button" class="primary-btn" :disabled="probing" @click="probe">
             {{ probing ? '正在检查线路…' : '重新检查智能服务' }}
           </button>
         </view>
@@ -64,7 +67,7 @@
               placeholder="http://192.168.1.10:8002/api/v1"
             />
           </view>
-          <button class="secondary-btn" @click="saveApi">保存 App 地址</button>
+          <button role="button" class="secondary-btn" @click="saveApi">保存 App 地址</button>
         </view>
       </template>
     </view>
@@ -135,11 +138,11 @@ onMounted(load)
   gap: 20rpx;
   padding: 30rpx;
   border-radius: 24rpx;
-  background: #0f5138;
-  color: #fff;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
 }
 .system-status.warn {
-  background: #991b1b;
+  background: var(--color-surface);
 }
 .system-status text,
 .system-status b {
@@ -157,8 +160,10 @@ onMounted(load)
   width: 30rpx;
   height: 30rpx;
   border-radius: 50%;
-  background: #34d399;
-  box-shadow: 0 0 0 14rpx rgba(52, 211, 153, 0.18);
+  background: var(--color-primary);
+}
+.system-status.warn .pulse {
+  background: var(--color-error);
 }
 .system-grid {
   display: grid;

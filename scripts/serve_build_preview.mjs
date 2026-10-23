@@ -1,4 +1,4 @@
-// Local QA server for the compiled H5 artifact. It never serves repository files.
+// Static H5 server for the compiled H5 artifact. It never serves repository files.
 import http from "node:http";
 import https from "node:https";
 import {
@@ -11,12 +11,13 @@ import { resolve, sep, extname } from "node:path";
 
 const root = realpathSync(resolve("frontend/dist/build/h5"));
 const upstream = new URL(
-  process.env.ZHIWEI_BACKEND_URL || "http://127.0.0.1:8001",
+  process.env.ZHIWEI_BACKEND_URL || "http://127.0.0.1:8002",
 );
-const port = Number(process.env.QA_BUILD_PORT || 8444);
-const info = await (await fetch(new URL("/openapi.json", upstream))).json();
-if (info.info?.title !== "错题帮 API")
-  throw new Error("Preview requires this project backend");
+const port = Number(process.env.ZHIWEI_PREVIEW_PORT || 8444);
+const live = await fetch(new URL("/livez", upstream));
+const identity = live.ok ? await live.json() : {};
+if (identity.service !== "zhiwei-cangjie") throw new Error("Preview requires the Cangjie business service");
+
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript",
@@ -77,8 +78,8 @@ function handle(req, res) {
     res.end("Not found");
   }
 }
-const cert = process.env.QA_BUILD_CERT,
-  key = process.env.QA_BUILD_KEY;
+const cert = process.env.ZHIWEI_PREVIEW_CERT,
+  key = process.env.ZHIWEI_PREVIEW_KEY;
 const server =
   cert && key
     ? https.createServer(

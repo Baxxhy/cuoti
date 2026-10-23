@@ -11,11 +11,16 @@
       @keydown.space.prevent
       @keyup.space.prevent="opened = !opened"
     >
-      <uni-icons type="images" size="18" color="var(--color-primary)" />
+      <uni-icons aria-hidden="true" type="images" size="18" color="var(--color-primary)" />
       <text class="figure-toggle-label">
         {{ opened ? '收起图形标注' : `查看图形标注 · ${rows.length}` }}
       </text>
-      <uni-icons :type="opened ? 'top' : 'bottom'" size="16" color="var(--color-text-secondary)" />
+      <uni-icons
+        aria-hidden="true"
+        :type="opened ? 'top' : 'bottom'"
+        size="16"
+        color="var(--color-text-secondary)"
+      />
     </button>
     <view v-if="opened" class="figure-body">
       <text class="figure-intro">
@@ -28,7 +33,7 @@
             {{ labels[row.status] || '待核对' }}
           </text>
         </view>
-        <text class="figure-message">{{ row.message }}</text>
+        <math-text class="figure-message" :text="row.message" inline />
         <view v-if="showBasis" class="figure-basis">
           <text>照片转写</text>
           <math-text :text="row.evidence_quote" inline />

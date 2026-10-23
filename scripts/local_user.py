@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1]
-ROLES = {"teacher": "教师", "guardian": "家长", "admin": "管理员"}
+ROLES = {"admin": "管理员"}
 
 
 def native(payload):
@@ -37,7 +37,7 @@ def native(payload):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="创建专用教师、家长或管理员账号，不更改已有账号"
+        description="创建专用本地管理员账号，不更改已有账号"
     )
     parser.add_argument("--email", required=True)
     parser.add_argument("--role", required=True, choices=ROLES)

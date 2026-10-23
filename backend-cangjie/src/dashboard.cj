@@ -67,19 +67,11 @@ func learningDashboard(context: HttpContext, accounts: Accounts): JsonValue {
             }
             let profiles=tx.query("SELECT grade FROM student_profiles WHERE user_id=? LIMIT 1",[user["id"]]).rows
             let grade: JsonValue=if (profiles.isEmpty()) { JsonString("初二") } else if (let Some(value) <- profiles[0]["grade"]) { JsonString(value) } else { JsonNull() }
-            let assignments=Int64.parse(rowText(tx.query("SELECT COUNT(*) AS count FROM assignment_students WHERE student_id=? AND status='pending'",[user["id"]]).rows[0],"count"))
-            let feedbacks=tx.query("SELECT r.*,t.question_id FROM teacher_review_results r JOIN teacher_review_tasks t ON t.id=r.task_id WHERE t.student_id=? AND r.revoked_at IS NULL ORDER BY r.created_at DESC,r.id DESC LIMIT 1",[user["id"]]).rows
-            var feedback: JsonValue=JsonNull()
-            if (!feedbacks.isEmpty()) {
-                let row=feedbacks[0]; let item=JsonObject()
-                for (key in ["conclusion","reason","student_hint","next_task","question_id"]) { item.put(key,if (let Some(value) <- row[key]) { JsonString(value) } else { JsonNull() }) }
-                item.put("handled_at",JsonString(rowText(row,"created_at").replace(" ","T"))); feedback=item
-            }
             let hasData=!questions.isEmpty() || reviewCount>0 || !mastery.getItems().isEmpty() || !mistakes.getItems().isEmpty() || !(continuation is JsonNull)
             var minutes: Int64=0
             if (hasData) { minutes=reviewCount+if (continuation is JsonNull) { 2 } else { 5 }; if (minutes<3) { minutes=3 } }
             let result=JsonObject(); result.put("today_reviews",JsonInt(reviewCount)); result.put("weekly_questions",JsonInt(uniqueQuestions.size)); result.put("mastered_points",JsonInt(mastered)); result.put("streak_days",JsonInt(streak)); result.put("grade",grade); result.put("estimated_minutes",JsonInt(minutes))
-            result.put("continue_learning",continuation); result.put("discoveries",discoveries); result.put("teacher_assignment_count",JsonInt(assignments)); result.put("teacher_feedback",feedback); result.put("mastery",mastery); result.put("misconceptions",mistakes)
+            result.put("continue_learning",continuation); result.put("discoveries",discoveries); result.put("mastery",mastery); result.put("misconceptions",mistakes)
             result.put("ai_suggestion",JsonString(if (hasData) { "先弄懂最常出错的一步，再完成一道相似题。" } else { "拍下第一道错题，我会从你的解题步骤开始分析。" }))
             return result
         })

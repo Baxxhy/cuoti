@@ -46,7 +46,7 @@ export const taskStatusLabel = (status) =>
   ({
     queued: '正在准备',
     running: '正在核对',
-    waiting_student: '等你完成这一步',
+    waiting_student: '等待作答',
     needs_review: '还需要核对',
     failed: '可以稍后继续',
     completed: '本次已完成',
@@ -63,7 +63,8 @@ export function reconcileTaskDraft(value, task) {
   const changed = draft.step_id !== task.step_id
   if (own) {
     if (!['queued', 'running'].includes(task.status)) {
-      if (task.status !== 'failed' && pending.kind === 'answer') draft.text = ''
+      if (!['failed', 'needs_review'].includes(task.status) && pending.kind === 'answer')
+        draft.text = ''
       draft.pending = null
     }
     draft.step_id = task.step_id

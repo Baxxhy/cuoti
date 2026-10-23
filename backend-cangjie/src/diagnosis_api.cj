@@ -9,18 +9,24 @@ func diagnosisSnapshot(db: Database, id: String, owner: Option<String>): JsonObj
     let result = analysisSnapshot(db,id,owner)
     result.put("references",queryArray(db,"reference_steps","SELECT r.* FROM reference_steps r JOIN problem_analyses a ON r.analysis_id = a.id WHERE a.question_id = ? ORDER BY r.step_index,r.id",id))
     result.put("diagnosis",firstJson(queryArray(db,"diagnoses","SELECT * FROM diagnoses WHERE question_id = ? ORDER BY created_at DESC,id DESC LIMIT 1",id)))
+    let question=tutorObject(result,"question")
+    result.put("diagnostic_cards",dialogueKnowledge(db,tutorText(question,"question_text"),tutorText(question,"subject"),tutorText(question,"grade")))
     return result
 }
 
 func diagnosisFingerprint(snapshot: JsonObject): JsonArray {
     let value = analysisFingerprint(snapshot)
     value.getItems().add(snapshot["references"]); value.getItems().add(snapshot["diagnosis"])
+    // Learning-task snapshots predate retrieval cards. Preserve their original
+    // fingerprint representation so an upgrade does not invalidate saved work.
+    if (let Some(cards) <- snapshot.get("diagnostic_cards")) { value.getItems().add(cards) }
     return value
 }
 
 func diagnosisInput(snapshot: JsonObject, includeImages!: Bool = true): JsonObject {
     let question = (snapshot["question"] as JsonObject).getOrThrow()
     let input = JsonObject(); input.put("operation",JsonString("diagnose")); input.put("text",question["question_text"])
+    input.put("diagnostic_cards",snapshot.get("diagnostic_cards") ?? JsonArray()); input.put("grade",JsonString(tutorText(question,"grade")))
     for (key in ["subject","question_type","student_answer","options"]) { input.put(key,question[key]) }
     for ((source,target) in [("references","reference_steps"),("steps","student_records")]) {
         let values = JsonArray()
@@ -80,6 +86,15 @@ func saveDiagnosticEvidence(db: Database, diagnosisId: String, snapshot: JsonObj
     record.put("propagated",JsonBool(editNumber(counter.get("recovered_steps") ?? JsonInt(0)) > 0.0))
     record.put("math_valid",counter["root_cause_confirmed"])
     insertDiagnosisEvidence(db,diagnosisId,"counterfactual_validation",jsonText(counter,"conclusion"),record,counter)
+    let assessment=tutorObject(computed,"evidence_diagnosis")
+    if (!tutorText(assessment,"algorithm").isEmpty()) {
+        let source=JsonObject()
+        for (key in ["reference_step_id","student_step_id"]) { source.put(key,JsonNull()) }
+        source.put("alignment",JsonString("evidence_assessment"))
+        for (key in ["equivalent","uses_condition","is_first_error","propagated","math_valid"]) { source.put(key,JsonBool(false)) }
+        source.put("math_valid",JsonBool(tutorFlag(assessment,"verified")))
+        insertDiagnosisEvidence(db,diagnosisId,"eced_assessment",tutorText(assessment,"reason"),source,assessment)
+    }
 }
 
 public func diagnoseQuestion(context: HttpContext, accounts: Accounts): JsonValue {
@@ -105,6 +120,7 @@ public func diagnoseQuestion(context: HttpContext, accounts: Accounts): JsonValu
             tx.query("UPDATE questions SET status = 'diagnosed',updated_at = UTC_TIMESTAMP() WHERE id = ?",[Some(id)])
             let result = rowJson("diagnoses",tx.query("SELECT * FROM diagnoses WHERE id = ?",[Some(diagnosisId)]).rows[0])
             result.put("evidence",computed["alignment"]); result.put("counterfactual",computed["counterfactual"])
+            result.put("evidence_diagnosis",computed.get("evidence_diagnosis") ?? JsonNull())
             return result
         })
     }

@@ -37,6 +37,7 @@ public func createManualQuestion(context: HttpContext, accounts: Accounts): Json
         let user = accounts.currentUser(context, db)
         if (rowText(user, "role") != "student") { throw ApiError(403, "请使用学生账号记录错题") }
         let body = readJson(context, maxBytes: 8 * 1024 * 1024)
+        let source = studyMistakeSource(db,rowText(user,"id"),body)
         let text = textField(body, "question_text", 12000)
         let subject = textField(body, "subject", 30, fallback: Some("数学"))
         let kind = textField(body, "question_type", 50, fallback: Some("综合题"))
@@ -85,7 +86,14 @@ public func createManualQuestion(context: HttpContext, accounts: Accounts): Json
         let id = newId()
         let workId = newId()
         let studentGrade = grade
-        db.transaction<Unit>({ tx =>
+        let copied=ArrayList<String>()
+        let savedId=try { db.transaction<String>({ tx =>
+            let itemId=optionalText(body,"study_item_id","",36)
+            if (!source.getFields().isEmpty()) {
+                ownedStudy(tx,optionalText(body,"study_session_id","",36),rowText(user,"id"),lock:true)
+                let previous=tx.query("SELECT id FROM questions WHERE user_id=? AND status<>'archived' AND JSON_CONTAINS(tags,JSON_QUOTE(?)) LIMIT 1",[user["id"],Some("study-item:"+itemId)]).rows
+                if (!previous.isEmpty()) { return rowText(previous[0],"id") }
+            }
             tx.query("INSERT INTO questions (id,user_id,subject,grade,title,question_text,student_answer,status,confirmed,favorite,tags,formulas,options,question_type,knowledge_points,created_at,updated_at) VALUES (?,?,?,?,?,?,?,'confirmed',1,0,JSON_ARRAY(),JSON_ARRAY(),?,?,JSON_ARRAY(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",
                 [Some(id), user["id"], Some(subject), studentGrade, Some(title.toString()), Some(text),
                  if (answer.isEmpty()) { None } else { Some(answer) }, Some(validatedOptions.toString()), Some(kind)])
@@ -97,10 +105,18 @@ public func createManualQuestion(context: HttpContext, accounts: Accounts): Json
                     [Some(newId()), Some(workId), Some(index.toString()), Some(step), Some(step), Some(step),
                      Some(if (step.contains("=")) { step } else { "" })])
             }
-            ()
-        })
+            if (!source.getFields().isEmpty()) {
+                let tags=JsonArray(); tags.add(JsonString("study-item:"+itemId))
+                tx.query("UPDATE questions SET tags=?,knowledge_points=? WHERE id=?",[Some(tags.toString()),Some(tutorArray(source,"knowledge_points").toString()),Some(id)])
+                copyStudyFigures(tx,id,source,copied)
+            }
+            return id
+        }) } catch (error: Exception) {
+            for (path in copied) { try { removeMedia(path) } catch (_: Exception) {} }
+            throw error
+        }
         let result = JsonObject()
-        result.put("id", JsonString(id))
+        result.put("id", JsonString(savedId))
         result.put("status", JsonString("confirmed"))
         return result
     }

@@ -1,27 +1,34 @@
 <template>
   <view class="page capture-page">
-    <app-header title="录入错题" subtitle="拍下题目，保留自己的作答" />
+    <app-header title="录入错题" />
     <view class="page-content">
-      <view class="capture-zone" :class="{ 'capture-zone-selected': imagePath }" @click="choose">
+      <button
+        role="button"
+        class="capture-zone"
+        :class="{ 'capture-zone-selected': imagePath }"
+        :disabled="busy"
+        aria-label="选择错题图片"
+        @click="choose"
+      >
         <template v-if="imagePath">
           <image class="preview-image" :src="imagePath" mode="aspectFit" />
           <view class="preview-hint">
-            <uni-icons type="camera" size="18" color="#FFFFFF" />
+            <uni-icons aria-hidden="true" type="camera" size="18" color="#FFFFFF" />
             <text>重新选择图片</text>
           </view>
         </template>
         <template v-else>
-          <uni-icons type="camera" size="44" color="var(--color-primary)" />
-          <text class="capture-title">拍下这道题</text>
-          <text class="capture-desc">拍清题目、选项和你的解题过程。</text>
+          <uni-icons aria-hidden="true" type="camera" size="44" color="var(--color-primary)" />
+          <text class="capture-title">添加图片</text>
         </template>
-      </view>
+      </button>
       <button
+        role="button"
         class="primary-btn capture-primary-btn"
         :disabled="busy"
         @click="imagePath ? upload() : choose()"
       >
-        {{ busy ? '正在上传…' : imagePath ? '下一步：选择题目范围' : '拍照或选择图片' }}
+        {{ busy ? '正在上传…' : imagePath ? '框选题目' : '拍照或选择图片' }}
       </button>
       <text
         v-if="status"
@@ -38,15 +45,16 @@
         :disabled="busy"
         @click="uni.navigateTo({ url: '/pages/manual/manual' })"
       >
-        <uni-icons type="compose" size="19" color="var(--color-text-secondary)" />
-        <text class="manual-entry-label">没有图片？手动录入</text>
-        <uni-icons type="right" size="16" color="var(--color-text-tertiary)" />
+        <uni-icons
+          aria-hidden="true"
+          type="compose"
+          size="19"
+          color="var(--color-text-secondary)"
+        />
+        <text class="manual-entry-label">手动录入</text>
+        <uni-icons aria-hidden="true" type="right" size="16" color="var(--color-text-tertiary)" />
       </button>
-      <view class="capture-tips">
-        <text class="tips-heading">拍摄小提示</text>
-        <text>一次拍一道题，保留完整的条件和配图。</text>
-        <text>把原来的答案、草稿一起拍下，方便找出错因。</text>
-      </view>
+      <text class="capture-note">请保留完整题目与原始作答。</text>
     </view>
     <tab-bar current="capture" />
   </view>
@@ -68,7 +76,7 @@ function choose() {
   uni.chooseImage({
     count: 1,
 
-    sizeType: ['compressed'],
+    sizeType: ['original'],
 
     sourceType: ['camera', 'album'],
 
@@ -82,7 +90,7 @@ function choose() {
 
       imagePath.value = path
 
-      status.value = '照片已拍好，请确认后进入下一步'
+      status.value = '图片已选好'
     },
 
     fail: () => {
@@ -129,16 +137,17 @@ async function upload() {
 .capture-zone {
   position: relative;
   width: 100%;
-  height: 210px;
+  height: 220px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 0.5px solid var(--color-border);
-  border-radius: 6px;
-  background: #fff;
+  margin: 0;
+  border: 1px dashed var(--color-primary-border);
+  border-radius: 12px;
+  background: var(--color-surface);
 }
 .capture-zone-selected {
   height: 240px;
@@ -230,5 +239,12 @@ async function upload() {
   color: var(--color-text-primary);
   font-weight: 500;
   font-size: 13px;
+}
+.capture-note {
+  display: block;
+  margin: 24px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-secondary);
 }
 </style>

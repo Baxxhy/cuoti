@@ -1,9 +1,9 @@
 .env
 .env.cangjie
-backend/config/api_pool.json
+config/api_pool.json
 dist-final/
 frontend/.env.*.local
-.venv/
+.venv
 __pycache__/
 .pytest_cache/
 .mypy_cache/
@@ -39,5 +39,5 @@ reports/*.xlsx
 *.pyc
 *.egg-info/
 
-# Local source archive retained outside version control
-/code.zip
+# Source archives are not part of the final repository
+/*.zip

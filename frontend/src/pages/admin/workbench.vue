@@ -9,20 +9,22 @@
         </view>
       </view>
       <view class="readonly">
-        <uni-icons type="info-filled" size="18" color="#2E69FC" />
+        <uni-icons aria-hidden="true" type="info-filled" size="18" color="var(--color-primary)" />
         <text>只读模式</text>
       </view>
       <view class="nav-list">
         <button
+          role="button"
           v-for="item in navItems"
           :key="item.key"
           :class="['nav-item', { active: section === item.key }]"
           @click="section = item.key"
         >
           <uni-icons
+            aria-hidden="true"
             :type="item.icon"
             size="22"
-            :color="section === item.key ? '#2E69FC' : '#667085'"
+            :color="section === item.key ? 'var(--color-primary)' : 'var(--color-text-secondary)'"
           />
           <text>{{ item.label }}</text>
         </button>
@@ -30,12 +32,17 @@
       <view class="sidebar-foot">
         <text>数据更新于</text>
         <b>{{ clock(workbench?.generated_at) }}</b>
-        <button @click="refresh">
-          <uni-icons type="reload" size="18" color="#2E69FC" />
+        <button role="button" @click="refresh">
+          <uni-icons aria-hidden="true" type="reload" size="18" color="var(--color-primary)" />
           刷新数据
         </button>
-        <button @click="logout">
-          <uni-icons type="person-filled" size="18" color="#667085" />
+        <button role="button" @click="logout">
+          <uni-icons
+            aria-hidden="true"
+            type="person-filled"
+            size="18"
+            color="var(--color-text-secondary)"
+          />
           退出登录
         </button>
       </view>
@@ -44,9 +51,12 @@
     <view class="main-area">
       <view class="topbar">
         <view>
-          <text class="eyebrow">管理员只读工作台</text>
+          <!-- #ifdef H5 -->
+          <component :is="'h1'" class="page-title">{{ currentTitle }}</component>
+          <!-- #endif -->
+          <!-- #ifndef H5 -->
           <text class="page-title">{{ currentTitle }}</text>
-          <text class="page-desc">{{ descriptions[section] }}</text>
+          <!-- #endif -->
         </view>
         <view class="service">
           <span :class="serviceClass" />
@@ -58,20 +68,20 @@
       </view>
 
       <view v-if="loading && !workbench" class="state">
-        <uni-icons type="spinner-cycle" size="44" color="#2E69FC" />
+        <uni-icons aria-hidden="true" type="spinner-cycle" size="44" color="var(--color-primary)" />
         <b>正在加载工作台</b>
         <text>正在读取学习数据，请稍候</text>
       </view>
       <view v-else-if="error && !workbench" class="state">
-        <uni-icons type="info-filled" size="44" color="#D92D20" />
+        <uni-icons aria-hidden="true" type="info-filled" size="44" color="#D92D20" />
         <b>暂时无法读取数据</b>
         <text>{{ error }}</text>
-        <button class="retry" @click="refresh">重新加载</button>
+        <button role="button" class="retry" @click="refresh">重新加载</button>
       </view>
 
       <template v-else-if="workbench">
         <view v-if="error" class="warning">
-          <uni-icons type="info-filled" size="18" color="#D97706" />
+          <uni-icons aria-hidden="true" type="info-filled" size="18" color="#D97706" />
           <text>{{ error }}，当前展示上次成功读取的数据。</text>
         </view>
 
@@ -79,7 +89,12 @@
           <view class="metric-grid">
             <view v-for="metric in metricCards" :key="metric.key" class="metric-card">
               <view class="icon-box">
-                <uni-icons :type="metric.icon" size="24" color="#2E69FC" />
+                <uni-icons
+                  aria-hidden="true"
+                  :type="metric.icon"
+                  size="24"
+                  color="var(--color-primary)"
+                />
               </view>
               <text>{{ metric.label }}</text>
               <b>{{ metric.value }}</b>
@@ -89,22 +104,29 @@
 
           <view class="overview-grid">
             <view class="card loop-panel">
-              <heading title="学习数据闭环" subtitle="从错题录入到主动复习的真实运行数据" />
+              <heading title="学习数据闭环" />
               <view class="learning-loop">
                 <template v-for="(item, index) in learningLoop" :key="item.key">
                   <view class="loop-step">
-                    <view><uni-icons :type="item.icon" size="25" color="#2E69FC" /></view>
+                    <view>
+                      <uni-icons
+                        aria-hidden="true"
+                        :type="item.icon"
+                        size="25"
+                        color="var(--color-primary)"
+                      />
+                    </view>
                     <b>{{ item.value }}</b>
                     <text>{{ item.label }}</text>
                   </view>
                   <view v-if="index < learningLoop.length - 1" class="loop-line">
-                    <uni-icons type="arrowright" size="20" color="#AFC8FF" />
+                    <uni-icons aria-hidden="true" type="arrowright" size="20" color="#AFC8FF" />
                   </view>
                 </template>
               </view>
             </view>
             <view class="card distribution-panel">
-              <heading title="会话状态分布" subtitle="教学智能体会话完成情况" />
+              <heading title="会话状态分布" />
               <view class="distribution">
                 <view class="donut" :style="donutStyle">
                   <view>
@@ -130,7 +152,7 @@
 
           <view class="overview-grid lower">
             <view class="card">
-              <heading title="最近学生" subtitle="点击查看长期学习画像" />
+              <heading title="最近学生" />
               <view class="table-head">
                 <text>学生</text>
                 <text>年级</text>
@@ -138,6 +160,7 @@
                 <text>会话</text>
               </view>
               <button
+                role="button"
                 v-for="student in workbench.students.slice(0, 7)"
                 :key="student.id"
                 class="student-row"
@@ -154,8 +177,9 @@
               <empty-view v-if="!workbench.students.length" text="尚无学生数据" />
             </view>
             <view class="card">
-              <heading title="最近教学会话" subtitle="查看智能体如何做出教学决策" />
+              <heading title="最近教学会话" />
               <button
+                role="button"
                 v-for="item in workbench.sessions.slice(0, 7)"
                 :key="item.id"
                 class="session-row"
@@ -163,17 +187,18 @@
               >
                 <view :class="['session-icon', item.status === 'active' ? 'active' : 'done']">
                   <uni-icons
+                    aria-hidden="true"
                     type="chat-filled"
                     size="21"
-                    :color="item.status === 'active' ? '#2E69FC' : '#168A45'"
+                    :color="item.status === 'active' ? 'var(--color-primary)' : '#168A45'"
                   />
                 </view>
                 <view>
-                  <b>{{ item.question_title }}</b>
+                  <b><math-text :text="item.question_title" inline /></b>
                   <text>{{ item.student_name }} · {{ stageName(item.stage) }}</text>
                 </view>
                 <small>{{ clock(item.updated_at) }}</small>
-                <uni-icons type="right" size="18" color="#98A2B3" />
+                <uni-icons aria-hidden="true" type="right" size="18" color="#98A2B3" />
               </button>
               <empty-view v-if="!workbench.sessions.length" text="尚无教学会话" />
             </view>
@@ -184,6 +209,7 @@
           <view class="card side-list">
             <heading title="学生列表" :subtitle="`共 ${workbench.students.length} 名学生`" />
             <button
+              role="button"
               v-for="student in workbench.students"
               :key="student.id"
               :class="['select-row', { selected: selectedStudentId === student.id }]"
@@ -194,13 +220,13 @@
                 <b>{{ student.name }}</b>
                 <text>{{ student.grade }} · {{ student.question_count }} 道错题</text>
               </view>
-              <uni-icons type="right" size="18" color="#98A2B3" />
+              <uni-icons aria-hidden="true" type="right" size="18" color="#98A2B3" />
             </button>
             <empty-view v-if="!workbench.students.length" text="尚无学生数据" />
           </view>
           <view class="detail">
             <view v-if="!studentDetail" class="state compact">
-              <uni-icons type="person-filled" size="42" color="#AFC8FF" />
+              <uni-icons aria-hidden="true" type="person-filled" size="42" color="#AFC8FF" />
               <b>请选择一名学生</b>
               <text>查看知识掌握、常见误区和复习安排</text>
             </view>
@@ -232,14 +258,14 @@
               </view>
               <view class="detail-grid">
                 <view class="card">
-                  <heading title="知识掌握" subtitle="根据练习证据形成的掌握估计" />
+                  <heading title="知识掌握" />
                   <view
                     v-for="item in studentDetail.mastery"
                     :key="`${item.subject}-${item.knowledge_point}`"
                     class="progress-row"
                   >
                     <view>
-                      <b>{{ item.knowledge_point }}</b>
+                      <b><math-text :text="item.knowledge_point" inline /></b>
                       <text>{{ item.subject }} · {{ item.evidence_count }} 条证据</text>
                     </view>
                     <strong>{{ percent(item.score) }}</strong>
@@ -251,17 +277,17 @@
                   />
                 </view>
                 <view class="card">
-                  <heading title="高频误区" subtitle="近期最需要关注的错误模式" />
+                  <heading title="高频误区" />
                   <view
                     v-for="item in studentDetail.misconceptions"
                     :key="item.code"
                     class="risk-row"
                   >
                     <view class="risk-icon">
-                      <uni-icons type="info-filled" size="20" color="#D97706" />
+                      <uni-icons aria-hidden="true" type="info-filled" size="20" color="#D97706" />
                     </view>
                     <view>
-                      <b>{{ item.label }}</b>
+                      <b><math-text :text="item.label" inline /></b>
                       <text>{{ item.evidence_count }} 条学习证据</text>
                       <view class="risk-progress">
                         <view :style="{ width: percent(item.probability) }" />
@@ -276,14 +302,19 @@
                 </view>
               </view>
               <view class="card">
-                <heading title="复习计划" subtitle="系统根据遗忘风险自动安排" />
+                <heading title="复习计划" />
                 <view class="review-grid">
                   <view v-for="item in studentDetail.reviews" :key="item.id" class="review">
                     <view class="calendar">
-                      <uni-icons type="calendar-filled" size="22" color="#2E69FC" />
+                      <uni-icons
+                        aria-hidden="true"
+                        type="calendar-filled"
+                        size="22"
+                        color="var(--color-primary)"
+                      />
                     </view>
                     <view>
-                      <b>{{ item.reason }}</b>
+                      <b><math-text :text="item.reason" inline /></b>
                       <text>{{ fullTime(item.due_at) }}</text>
                     </view>
                     <span>{{ reviewStatus(item.status) }}</span>
@@ -299,6 +330,7 @@
           <view class="card side-list">
             <heading title="教学会话" :subtitle="`最近 ${workbench.sessions.length} 条记录`" />
             <button
+              role="button"
               v-for="item in workbench.sessions"
               :key="item.id"
               :class="['select-row', { selected: selectedSessionId === item.id }]"
@@ -306,22 +338,23 @@
             >
               <view :class="['session-icon', item.status === 'active' ? 'active' : 'done']">
                 <uni-icons
+                  aria-hidden="true"
                   type="chat-filled"
                   size="19"
-                  :color="item.status === 'active' ? '#2E69FC' : '#168A45'"
+                  :color="item.status === 'active' ? 'var(--color-primary)' : '#168A45'"
                 />
               </view>
               <view>
-                <b>{{ item.question_title }}</b>
+                <b><math-text :text="item.question_title" inline /></b>
                 <text>{{ item.student_name }} · {{ stageName(item.stage) }}</text>
               </view>
-              <uni-icons type="right" size="18" color="#98A2B3" />
+              <uni-icons aria-hidden="true" type="right" size="18" color="#98A2B3" />
             </button>
             <empty-view v-if="!workbench.sessions.length" text="尚无教学会话" />
           </view>
           <view class="detail">
             <view v-if="!sessionDetail" class="state compact">
-              <uni-icons type="chat-filled" size="42" color="#AFC8FF" />
+              <uni-icons aria-hidden="true" type="chat-filled" size="42" color="#AFC8FF" />
               <b>请选择一个教学会话</b>
               <text>查看智能体的观察、决策、行动和认知更新</text>
             </view>
@@ -333,7 +366,7 @@
                 </view>
                 <view>
                   <text>当前题目</text>
-                  <b>{{ sessionDetail.question?.title || '未命名题目' }}</b>
+                  <b><math-text :text="sessionDetail.question?.title || '未命名题目'" inline /></b>
                 </view>
                 <view>
                   <text>教学阶段</text>
@@ -346,26 +379,41 @@
               </view>
               <view class="diagnosis">
                 <view class="diagnosis-icon">
-                  <uni-icons type="search" size="28" color="#2E69FC" />
+                  <uni-icons
+                    aria-hidden="true"
+                    type="search"
+                    size="28"
+                    color="var(--color-primary)"
+                  />
                 </view>
                 <view>
                   <text>智能体观察到的错因</text>
-                  <b>{{ sessionDetail.diagnosis?.root_misconception || '该会话暂无错因诊断' }}</b>
+                  <b>
+                    <math-text
+                      :text="sessionDetail.diagnosis?.root_misconception || '该会话暂无错因诊断'"
+                      inline
+                    />
+                  </b>
                   <p>
-                    {{ sessionDetail.diagnosis?.first_error_text || '尚未定位具体首错步骤' }}
+                    <math-text
+                      :text="sessionDetail.diagnosis?.first_error_text || '尚未定位具体首错步骤'"
+                      inline
+                    />
                   </p>
                 </view>
                 <view class="strategy">
                   <text>采用的教学策略</text>
-                  <b>{{ sessionDetail.diagnosis?.recommended_strategy || '根据对话动态选择' }}</b>
+                  <b>
+                    <math-text
+                      :text="sessionDetail.diagnosis?.recommended_strategy || '根据对话动态选择'"
+                      inline
+                    />
+                  </b>
                 </view>
               </view>
               <view class="trace-grid">
                 <view class="card">
-                  <heading
-                    title="可验证智能体轨迹"
-                    subtitle="观察 → 计划 → 工具行动 → 证据核验，全程不展示模型内部思维链"
-                  />
+                  <heading title="可验证智能体轨迹" />
                   <view
                     v-for="(event, index) in sessionDetail.trace"
                     :key="event.id"
@@ -378,14 +426,19 @@
                     <view class="trace-card">
                       <view class="trace-head">
                         <view>
-                          <uni-icons type="paperplane-filled" size="20" color="#2E69FC" />
+                          <uni-icons
+                            aria-hidden="true"
+                            type="paperplane-filled"
+                            size="20"
+                            color="var(--color-primary)"
+                          />
                           <b>{{ event.agent }}</b>
                         </view>
                         <text>{{ clock(event.time) }}</text>
                       </view>
                       <view class="decision">
                         <span>教学决策</span>
-                        <b>{{ event.decision }}</b>
+                        <b><math-text :text="event.decision" inline /></b>
                         <em
                           v-if="event.verification?.status"
                           :class="['verify-badge', event.verification.status]"
@@ -393,19 +446,23 @@
                           {{ verificationName(event.verification.status) }}
                         </em>
                       </view>
-                      <p>{{ event.goal || '根据当前学习状态推进下一步教学' }}</p>
+                      <p>
+                        <math-text :text="event.goal || '根据当前学习状态推进下一步教学'" inline />
+                      </p>
                       <view
                         v-if="event.observation?.memory_summary"
                         class="agent-block memory-block"
                       >
                         <label>长期记忆</label>
-                        <text>{{ event.observation.memory_summary }}</text>
+                        <math-text :text="event.observation.memory_summary" inline />
                         <small>{{ event.observation.memory_count || 0 }} 条可追溯证据</small>
                       </view>
                       <view v-if="event.plan?.steps?.length" class="agent-block">
                         <label>执行计划</label>
                         <ol>
-                          <li v-for="step in event.plan.steps" :key="step">{{ step }}</li>
+                          <li v-for="step in event.plan.steps" :key="step">
+                            <math-text :text="step" inline />
+                          </li>
                         </ol>
                       </view>
                       <view v-for="action in event.actions" :key="action.id" class="tool">
@@ -413,7 +470,12 @@
                         <text>{{ compactJson(action.output) }}</text>
                       </view>
                       <view v-if="event.verification?.evidence_refs?.length" class="evidence">
-                        <uni-icons type="checkbox-filled" size="17" color="#168A45" />
+                        <uni-icons
+                          aria-hidden="true"
+                          type="checkbox-filled"
+                          size="17"
+                          color="#168A45"
+                        />
                         <text>证据：{{ event.verification.evidence_refs.join(' · ') }}</text>
                       </view>
                     </view>
@@ -421,19 +483,19 @@
                   <empty-view v-if="!sessionDetail.trace.length" text="该会话尚未记录智能体轨迹" />
                 </view>
                 <view class="card cognition">
-                  <heading title="认知变化" subtitle="本次学习对长期认知状态的影响" />
+                  <heading title="认知变化" />
                   <view
                     v-for="item in sessionDetail.cognitive_updates"
                     :key="item.id"
                     class="cognition-row"
                   >
                     <view>
-                      <b>{{ item.entity_key }}</b>
+                      <b><math-text :text="item.entity_key" inline /></b>
                       <span :class="item.new_value >= item.old_value ? 'up' : 'down'">
                         {{ signedDelta(item) }}
                       </span>
                     </view>
-                    <text>{{ item.reason || '认知状态变化' }}</text>
+                    <math-text :text="item.reason || '认知状态变化'" inline />
                     <view class="compare-label">
                       <span>学习前 {{ percent(item.old_value) }}</span>
                       <span>学习后 {{ percent(item.new_value) }}</span>
@@ -456,14 +518,21 @@
         <view v-else class="system-grid">
           <view v-for="item in systemCards" :key="item.label" class="system-card">
             <view :class="['system-icon', item.tone]">
-              <uni-icons :type="item.icon" size="28" :color="item.color" />
+              <uni-icons aria-hidden="true" :type="item.icon" size="28" :color="item.color" />
             </view>
             <text>{{ item.label }}</text>
             <b>{{ item.value }}</b>
             <span>{{ item.status }}</span>
           </view>
           <view class="card access">
-            <view><uni-icons type="info-filled" size="28" color="#2E69FC" /></view>
+            <view>
+              <uni-icons
+                aria-hidden="true"
+                type="info-filled"
+                size="28"
+                color="var(--color-primary)"
+              />
+            </view>
             <view>
               <b>只读访问</b>
               <p>工作台只查询学生学习数据，不修改答案、诊断、教学会话、认知模型或系统配置。</p>
@@ -477,6 +546,7 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, defineComponent, h, onMounted, onUnmounted, ref } from 'vue'
 import { getData } from '@/api/index.js'
 import { roleHome, useAppStore } from '@/store/index.js'
@@ -562,7 +632,7 @@ const metricCards = computed(() => [
 const learningLoop = computed(() => buildLearningLoop(workbench.value?.metrics)),
   sessionDistribution = computed(() => buildSessionDistribution(workbench.value?.metrics))
 const donutStyle = computed(() => ({
-  background: `conic-gradient(var(--color-primary) 0 ${sessionDistribution.value.activePercent * 3.6}deg,#E8EEFC ${sessionDistribution.value.activePercent * 3.6}deg 360deg)`,
+  background: `conic-gradient(var(--color-primary) 0 ${sessionDistribution.value.activePercent * 3.6}deg,#E8EEFC ${sessionDistribution.value.activePercent * 3.6}deg 360deg)`, // taste-skill-ignore: flat chart segments encode actual active/completed session shares.
 }))
 const providerStatus = computed(
     () =>
@@ -588,7 +658,7 @@ const systemCards = computed(() => [
     status: providerStatus.value,
     icon: 'chat-filled',
     tone: 'primary',
-    color: '#2E69FC',
+    color: 'var(--color-primary)',
   },
   {
     label: '文本线路',
@@ -596,7 +666,7 @@ const systemCards = computed(() => [
     status: '可用线路',
     icon: 'paperplane-filled',
     tone: 'primary',
-    color: '#2E69FC',
+    color: 'var(--color-primary)',
   },
   {
     label: '视觉线路',
@@ -604,7 +674,7 @@ const systemCards = computed(() => [
     status: '可用线路',
     icon: 'image',
     tone: 'primary',
-    color: '#2E69FC',
+    color: 'var(--color-primary)',
   },
 ])
 const percent = (v) => `${Math.round(Math.max(0, Math.min(1, Number(v || 0))) * 100)}%`,
@@ -616,6 +686,10 @@ const percent = (v) => `${Math.round(Math.max(0, Math.min(1, Number(v || 0))) * 
       teaching: '针对教学',
       practice: '迁移练习',
       review: '复习巩固',
+      near_transfer: '类似题练习',
+      far_transfer: '综合练习',
+      teach_back: '理解检查',
+      finished: '已完成',
     })[s] ||
     s ||
     '未开始'
@@ -819,12 +893,17 @@ onUnmounted(() => clearInterval(timer))
   padding: 0 34px 48px;
 }
 .topbar {
-  min-height: 112px;
-  display: flex;
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--color-border);
   margin-bottom: 26px;
+}
+.topbar > view:first-child {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
 }
 .eyebrow,
 .page-title,
@@ -837,9 +916,9 @@ onUnmounted(() => clearInterval(timer))
   font-weight: 600;
 }
 .page-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-top: 5px;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 0;
 }
 .page-desc {
   font-size: 15px;
@@ -847,6 +926,9 @@ onUnmounted(() => clearInterval(timer))
   margin-top: 5px;
 }
 .service {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
   min-width: 210px;
   display: flex;
   align-items: center;
@@ -1002,11 +1084,13 @@ onUnmounted(() => clearInterval(timer))
   min-height: 190px;
   padding: 24px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 28px;
 }
 .donut {
+  flex-shrink: 0;
   width: 132px;
   height: 132px;
   border-radius: 50%;
@@ -1056,6 +1140,7 @@ onUnmounted(() => clearInterval(timer))
 }
 .legend text {
   color: var(--color-text-secondary);
+  white-space: nowrap;
 }
 .table-head,
 .student-row {
@@ -1211,7 +1296,6 @@ onUnmounted(() => clearInterval(timer))
 }
 .select-row.selected {
   background: var(--color-primary-soft);
-  box-shadow: inset 3px 0 var(--color-primary);
 }
 .select-row b,
 .select-row text {
@@ -1220,8 +1304,8 @@ onUnmounted(() => clearInterval(timer))
 .profile {
   padding: 26px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #2e69fc, #1746b3);
-  color: #fff;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   gap: 18px;
@@ -1230,7 +1314,7 @@ onUnmounted(() => clearInterval(timer))
   width: 64px;
   height: 64px;
   border-radius: 20px;
-  background: #ffffff2e;
+  background: var(--color-surface-subtle);
   display: grid;
   place-items: center;
   font-size: 27px;
@@ -1435,8 +1519,9 @@ onUnmounted(() => clearInterval(timer))
   margin: 6px 0;
 }
 .strategy {
-  padding-left: 18px;
-  border-left: 1px solid var(--color-primary-border);
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--color-primary-soft);
 }
 .strategy b {
   font-size: 15px;
@@ -1856,7 +1941,7 @@ onUnmounted(() => clearInterval(timer))
     font-size: 12px;
   }
   .page-title {
-    font-size: 22px;
+    font-size: 17px;
   }
   .page-desc {
     font-size: 13px;

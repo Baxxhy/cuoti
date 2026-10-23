@@ -1,6 +1,6 @@
 <template>
   <view class="page task-page">
-    <app-header :title="id ? '本题学习' : '学习记录'" back>
+    <app-header :title="id ? '错题订正' : '订正记录'" back>
       <button
         v-if="task && canCancel && !task.restart_required"
         class="text-action"
@@ -45,7 +45,7 @@
           @click="go(`/pages/task/task?id=${item.id}`)"
           @keydown.enter.prevent="go(`/pages/task/task?id=${item.id}`)"
         >
-          <text class="history-title">{{ item.question_title || '本题学习' }}</text>
+          <math-text class="history-title" :text="item.question_title || '错题订正'" inline />
           <text class="muted">{{ taskStatusLabel(item.status) }}</text>
         </button>
       </template>
@@ -79,19 +79,86 @@
           <text class="muted">可以离开，稍后从这里继续。</text>
         </view>
         <template v-else>
-          <text class="task-title">{{ task.student_view?.title }}</text>
+          <math-text class="task-title" :text="taskTitle" inline />
           <view
-            v-if="
-              task.student_view?.feedback && !handwritingId && !task.student_view?.visualization
-            "
+            v-if="taskFeedback && !handwritingId && !task.student_view?.visualization"
             class="feedback"
           >
-            <math-text :text="task.student_view.feedback" />
+            <math-text :text="taskFeedback" />
           </view>
           <teaching-content
             v-if="!task.student_view?.visualization"
             :blocks="task.student_view?.prompt_blocks || []"
+            :selectable="canChoose"
+            :answer="answer"
+            :disabled="sending || !!pending"
+            @choose="answer = $event"
           />
+          <view
+            v-if="
+              task.student_view?.recommendation &&
+              ((task.status === 'completed' &&
+                (task.student_view.recommendation.question_id ||
+                  task.student_view.recommendation.knowledge_card_ids?.length)) ||
+                task.student_view.recommendation.action === 'prerequisite')
+            "
+            class="recommendation-note"
+          >
+            <text>{{ task.student_view.recommendation.reason }}</text>
+            <button
+              v-if="task.status === 'completed' && task.student_view.recommendation.question_id"
+              class="primary-btn"
+              role="button"
+              tabindex="0"
+              :disabled="sending"
+              @click="startRecommendation"
+              @keydown.enter.prevent="startRecommendation"
+            >
+              {{ task.student_view.recommendation.action === 'review' ? '开始复习' : '练习推荐题' }}
+            </button>
+            <button
+              v-else-if="
+                (task.status === 'completed' ||
+                  task.student_view.recommendation.action === 'prerequisite') &&
+                task.student_view.recommendation.knowledge_card_ids?.length
+              "
+              class="secondary-btn"
+              role="button"
+              tabindex="0"
+              @keydown.enter.prevent="openRecommendedKnowledge"
+              @click="openRecommendedKnowledge"
+            >
+              查看相关知识
+            </button>
+          </view>
+          <view
+            v-if="
+              task.student_view?.diagnosis_evidence &&
+              task.exit_reason === 'diagnosis_needs_confirmation'
+            "
+            class="diagnosis-evidence"
+          >
+            <text>
+              {{ task.student_view.diagnosis_evidence.verified ? '步骤核验结果' : '需要核对' }}
+            </text>
+            <math-text :text="task.student_view.diagnosis_evidence.reason" />
+            <view
+              v-for="(source, index) in task.student_view.diagnosis_evidence.evidence"
+              :key="index"
+            >
+              <math-text :text="source.text" />
+            </view>
+          </view>
+          <button
+            v-if="task.exit_reason === 'diagnosis_needs_confirmation'"
+            class="primary-btn"
+            role="button"
+            tabindex="0"
+            @click="go(`/pages/diagnosis/diagnosis?id=${task.question_id}`)"
+            @keydown.enter.prevent="go(`/pages/diagnosis/diagnosis?id=${task.question_id}`)"
+          >
+            核对原作答与错因
+          </button>
           <task-visualization
             v-if="task.student_view?.visualization"
             :packet="task.student_view.visualization"
@@ -136,7 +203,7 @@
                 </button>
               </view>
             </view>
-            <text class="answer-label">写下你的回答</text>
+            <text v-if="!canChoose" class="answer-label" id="task-answer-label">我的作答</text>
             <view v-if="handwritingId" class="photo-note">
               <text>
                 {{
@@ -170,14 +237,41 @@
               <figure-review :rows="task.student_view.handwriting?.figure_review || []" />
             </view>
             <textarea
+              v-if="!canChoose"
               v-model="answer"
               class="answer-input"
-              aria-label="写下你的回答"
-              placeholder="可以写算式，也可以补充依据"
+              aria-label="我的作答"
+              aria-labelledby="task-answer-label"
+              placeholder="输入答案或解题步骤"
               :maxlength="12000"
               :disabled="sending || !!pending"
+              :cursor="mathCursor"
+              :focus="mathFocus"
+              @input="rememberMathCursor"
+              @blur="rememberMathCursor"
               auto-height
             />
+            <view v-if="!canChoose" class="task-math-tools">
+              <button
+                role="button"
+                :disabled="sending || !!pending"
+                :aria-expanded="mathOpen"
+                @click="mathOpen = !mathOpen"
+              >
+                数学符号
+              </button>
+              <view v-if="mathOpen" class="task-math-keys">
+                <button
+                  v-for="key in mathKeys"
+                  :key="key.label"
+                  role="button"
+                  :disabled="sending || !!pending"
+                  @click="insertMath(key)"
+                >
+                  {{ key.label }}
+                </button>
+              </view>
+            </view>
             <button
               class="primary-btn"
               role="button"
@@ -194,7 +288,7 @@
                     : '正在保存…'
                   : handwritingId
                     ? '确认文字并提交'
-                    : '提交'
+                    : '提交作答'
               }}
             </button>
             <button
@@ -246,7 +340,7 @@
               @click="send('hint')"
               @keydown.enter.prevent="send('hint')"
             >
-              给点提示
+              {{ task.student_view?.hint_level ? '下一条提示' : '查看提示' }}
             </button>
             <button
               v-if="task.student_view?.secondary_actions?.includes('resume')"
@@ -270,7 +364,7 @@
               @click="showMoreWays = !showMoreWays"
               @keydown.enter.prevent="showMoreWays = !showMoreWays"
             >
-              {{ showMoreWays ? '收起更多方式' : '更多方式' }}
+              {{ showMoreWays ? '收起辅助工具' : canChoose ? '答案与辅助工具' : '拍照与辅助工具' }}
             </button>
           </view>
           <view
@@ -279,10 +373,10 @@
             :id="`task-help-${task.id}`"
             class="more-ways"
             role="region"
-            aria-label="更多作答与学习方式"
+            :aria-label="canChoose ? '答案与辅助工具' : '拍照与辅助工具'"
           >
             <button
-              v-if="task.student_view?.input_kind === 'text' && canCancel"
+              v-if="task.student_view?.input_kind === 'text' && canCancel && !canChoose"
               class="text-action"
               role="button"
               tabindex="0"
@@ -301,7 +395,7 @@
               @click="openVisual"
               @keydown.enter.prevent="openVisual"
             >
-              用图看看
+              查看图解
             </button>
             <button
               v-if="task.student_view?.secondary_actions?.includes('reveal')"
@@ -344,13 +438,27 @@
           </button>
           <button
             v-if="!canCancel"
-            class="primary-btn"
+            :class="
+              task.student_view?.recommendation?.question_id ? 'secondary-btn' : 'primary-btn'
+            "
             role="button"
             tabindex="0"
             @click="returnToQuestion(task.question_id)"
             @keydown.enter.prevent="returnToQuestion(task.question_id)"
           >
             回到原题
+          </button>
+          <button
+            v-if="task.status === 'completed' && !task.student_view?.recommendation?.question_id"
+            class="secondary-btn"
+            role="button"
+            tabindex="0"
+            @click="go(`/pages/practice/practice?id=${encodeURIComponent(task.question_id)}`)"
+            @keydown.enter.prevent="
+              go(`/pages/practice/practice?id=${encodeURIComponent(task.question_id)}`)
+            "
+          >
+            练一道类似题
           </button>
           <self-check
             v-if="['completed', 'stale'].includes(task.status)"
@@ -364,7 +472,9 @@
   </view>
 </template>
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { learningFeedback } from '@/utils/learning-feedback.js'
+import MathText from '@/components/math-text/math-text.vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import TeachingContent from '@/components/teaching-content/teaching-content.vue'
 import SelfCheck from '@/components/self-check/self-check.vue'
 import TaskHistory from '@/components/task-history/task-history.vue'
@@ -373,6 +483,7 @@ import FigureReview from '@/components/figure-review/figure-review.vue'
 import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData, postData, uploadFile } from '@/api/index.js'
 import { go, returnToQuestion } from '@/utils/navigation.js'
+import { mathKeys, insertMathText } from '@/utils/math-input.js'
 import { useAppStore } from '@/store/index.js'
 import {
   readTaskDraft,
@@ -383,6 +494,25 @@ import {
   advanceTaskDraft,
 } from '@/utils/task-draft.js'
 const store = useAppStore()
+const mathOpen = ref(false),
+  mathCursor = ref(-1),
+  mathFocus = ref(false)
+let inputCursor = null
+function rememberMathCursor(event) {
+  const cursor = event.detail?.cursor ?? event.target?.selectionStart
+  if (Number.isInteger(cursor)) inputCursor = cursor
+}
+async function insertMath(key) {
+  if (sending.value || pending.value) return
+  const result = insertMathText(answer.value, key, inputCursor, 12000)
+  if (!result) return
+  mathFocus.value = false
+  answer.value = result.value
+  inputCursor = result.cursor
+  await nextTick()
+  mathCursor.value = result.cursor
+  mathFocus.value = true
+}
 const draftWarning = ref(''),
   previousDraft = ref(null),
   showPreviousDraft = ref(false),
@@ -396,6 +526,24 @@ const id = ref(''),
   answer = ref(''),
   pending = ref(null),
   sending = ref(false)
+const taskTitle = computed(() =>
+  task.value?.student_view?.title === '独立完成这道题'
+    ? '重新作答'
+    : task.value?.student_view?.title === '换个条件，再试一次'
+      ? '再练一道'
+      : task.value?.student_view?.title,
+)
+const taskFeedback = computed(() => {
+  const view = task.value?.student_view
+  // This fixed transition repeats the heading; retain all actual answer feedback.
+  if (
+    task.value?.status === 'waiting_student' &&
+    view?.title === '换个条件，再试一次' &&
+    view?.feedback === '原题的结论已核对。现在换一个条件，独立试一次。'
+  )
+    return ''
+  return learningFeedback(view?.feedback)
+})
 const processing = computed(() => ['queued', 'running'].includes(task.value?.status))
 const retainedDraft = computed(() =>
   answer.value.trim() ? answer.value : previousDraft.value?.text || '',
@@ -406,10 +554,19 @@ const handwritingId = ref(''),
 const canCancel = computed(() =>
   ['queued', 'running', 'waiting_student', 'needs_review', 'failed'].includes(task.value?.status),
 )
+const canChoose = computed(
+  () =>
+    task.value?.student_view?.input_kind === 'text' &&
+    canCancel.value &&
+    !handwritingId.value &&
+    (task.value?.student_view?.prompt_blocks || []).some(
+      (block) => block.kind === 'question' && block.options?.length,
+    ),
+)
 const moreWaysAvailable = computed(
   () =>
     !task.value?.student_view?.visualization &&
-    ((task.value?.student_view?.input_kind === 'text' && canCancel.value) ||
+    ((task.value?.student_view?.input_kind === 'text' && canCancel.value && !canChoose.value) ||
       task.value?.student_view?.secondary_actions?.some((kind) =>
         ['visualize', 'reveal'].includes(kind),
       )),
@@ -519,6 +676,42 @@ async function transmit(body) {
     sending.value = false
   }
 }
+function openRecommendedKnowledge() {
+  const cardId = task.value?.student_view?.recommendation?.knowledge_card_ids?.[0]
+  if (!cardId) return
+  go(
+    `/pages/library/library?code=${encodeURIComponent(cardId)}&question=${encodeURIComponent(task.value.question_id)}`,
+  )
+}
+async function startRecommendation() {
+  const plan = task.value?.student_view?.recommendation
+  if (!plan?.question_id || sending.value) return
+  if (plan.question_source === 'notebook') {
+    returnToQuestion(plan.question_id)
+    return
+  }
+  sending.value = true
+  error.value = ''
+  try {
+    const session = await postData(
+      '/study-sessions',
+      {
+        mode: 'practice',
+        question_ids: [plan.question_id],
+        learning_task_id: task.value.id,
+        count: 1,
+        selection_strategy: 'random',
+        minutes: Math.max(1, plan.estimated_minutes || 3),
+      },
+      { silent: true },
+    )
+    go(`/pages/study-session/study-session?id=${session.id}`)
+  } catch (err) {
+    error.value = err.message || '暂时无法开始，请重试'
+  } finally {
+    sending.value = false
+  }
+}
 function send(kind) {
   if (
     sending.value ||
@@ -530,7 +723,7 @@ function send(kind) {
     return
   transmit({
     kind,
-    text: kind === 'answer' ? answer.value : '',
+    text: kind === 'answer' || kind === 'hint' ? answer.value : '',
     version: task.value.version,
     step_id: task.value.step_id,
     input_fingerprint: task.value.input_fingerprint,
@@ -606,7 +799,7 @@ function retryPending() {
 function openVisual() {
   if (sending.value || pending.value || processing.value) return
   uni.showModal({
-    title: '用图看看',
+    title: '查看图解',
     content: '这次会记录为辅助学习。',
     confirmText: '查看',
     success: ({ confirm }) => {
@@ -691,6 +884,32 @@ onHide(stop)
 onUnload(stop)
 </script>
 <style scoped lang="scss">
+.task-math-tools {
+  margin: 2px 0 8px;
+}
+.task-math-tools > button {
+  margin: 0;
+  padding: 8px 0;
+  min-height: 44px;
+  font-size: 13px;
+  text-align: left;
+  color: var(--color-text-secondary);
+  background: transparent;
+}
+.task-math-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.task-math-keys button {
+  margin: 0;
+  padding: 8px 12px;
+  min-height: 44px;
+  min-width: 44px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: var(--color-surface-subtle);
+}
 .task-page {
   padding-bottom: calc(24px + env(safe-area-inset-bottom));
 }
@@ -699,7 +918,7 @@ onUnload(stop)
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .text-action {
   min-height: 48px;
@@ -711,16 +930,18 @@ onUnload(stop)
 }
 .task-title {
   display: block;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
-.feedback {
+.feedback,
+.recommendation-note,
+.diagnosis-evidence {
   margin: 16px 0;
   padding: 16px;
-  background: var(--color-surface);
-  border-left: 3px solid var(--color-primary);
+  background: var(--color-primary-soft);
+  border-radius: var(--radius-card);
   font-size: 16px;
 }
 .answer-label {
@@ -741,13 +962,18 @@ onUnload(stop)
 }
 .answer-input {
   width: 100%;
-  min-height: 96px;
+  min-height: 132px;
   padding: 16px;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border: 1px solid var(--color-primary-border);
+  border-radius: 10px;
   font-size: 16px;
   line-height: 1.6;
+}
+.answer-input:focus-within {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: none;
 }
 .secondary-actions {
   display: flex;

@@ -1,8 +1,19 @@
 <template>
   <view class="page confirm-page">
-    <app-header title="确认题目" back :back-fallback="`/pages/crop/crop?id=${id}`" />
+    <app-header
+      title="确认题目"
+      back
+      :back-fallback="id ? `/pages/crop/crop?id=${id}` : '/pages/capture/capture'"
+    />
 
-    <view v-if="processing" class="page-content">
+    <state-panel
+      v-if="!id"
+      state="error"
+      message="请先录入一道题目"
+      retry-text="录入错题"
+      @retry="uni.redirectTo({ url: '/pages/capture/capture' })"
+    />
+    <view v-else-if="processing" class="page-content">
       <state-panel state="loading" />
       <text class="notice">{{ processingStatus }}</text>
     </view>
@@ -15,7 +26,7 @@
     />
     <state-panel v-else-if="!item" state="loading" />
     <template v-else>
-      <view v-if="item.assets?.length" class="question-image">
+      <view v-if="cropAsset" class="question-image">
         <image
           v-if="cropAsset && !imageError"
           :src="cropAsset.url"
@@ -64,7 +75,7 @@
             class="content-editor question-editor"
             auto-height
           />
-          <math-text v-else class="question-text" :text="form.question_text" />
+          <math-text v-else class="question-text" :text="form.question_text" inline />
           <view v-if="questionFigures.length" class="question-figures">
             <image
               v-for="figure in questionFigures"
@@ -95,13 +106,13 @@
               class="option-row"
             >
               <text class="option-label">{{ optionLabel(option, index) }}</text>
-              <math-text :text="optionValue(option)" />
+              <math-text :text="optionValue(option)" inline />
             </view>
           </view>
         </view>
 
         <view v-if="hasAnswer || editing" class="content-section">
-          <text class="section-label">你的答案</text>
+          <text class="section-label">我当时的答案</text>
           <textarea
             v-if="editing"
             v-model="form.student_answer"
@@ -113,7 +124,7 @@
 
         <view class="content-section working-section">
           <view class="section-heading">
-            <text class="section-label">你的解题过程</text>
+            <text class="section-label">我当时的步骤</text>
             <text v-if="hasWorking && !editing" class="section-action" @click="editing = true">
               修改
             </text>
@@ -140,12 +151,11 @@
           </view>
           <view v-else class="working-empty">
             <text>暂未发现解题过程</text>
-            <text>可以使用文字补充</text>
           </view>
           <view class="working-actions">
-            <button class="working-action" @click="addTextStep">
-              <uni-icons type="compose" size="22" color="var(--color-primary)" />
-              <text>添加文字</text>
+            <button role="button" class="working-action" @click="addTextStep">
+              <uni-icons aria-hidden="true" type="compose" size="22" color="var(--color-primary)" />
+              <text>添加解题步骤</text>
             </button>
           </view>
         </view>
@@ -168,10 +178,11 @@
 
       <view class="confirm-actions">
         <view class="confirm-actions-inner">
-          <text class="edit-action" @click="toggleEditing">
-            {{ editing ? '预览修改' : '内容有误？修改' }}
-          </text>
+          <button role="button" class="edit-action" @click="toggleEditing">
+            {{ editing ? '预览修改' : '修改内容' }}
+          </button>
           <button
+            role="button"
             class="primary-btn"
             :disabled="busy || !form.question_text.trim()"
             @click="editOnly ? saveChanges() : confirm()"
@@ -307,6 +318,7 @@ function hydrate(data) {
 }
 
 async function load() {
+  if (!id.value) return
   if (loading) return
   loading = true
   error.value = false

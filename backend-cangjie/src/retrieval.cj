@@ -11,6 +11,7 @@ func retrievalGrade(grade: String, band: String): String {
 }
 
 func usableRetrievalCandidate(source: JsonObject, candidate: JsonObject, kind: String): Bool {
+    if (tutorFlag(datasetImageLayout(candidate),"review")) { return false }
     if (tutorText(source,"subject")!=tutorText(candidate,"subject") || !tutorFlag(candidate,"usable_for_practice") || !tutorFlag(candidate,"has_answer") || stripWhitespace(tutorAnswerText(candidate["answer"])).isEmpty()) { return false }
     if (kind=="practice" && !tutorFlag(candidate,"usable_for_auto_grade")) { return false }
     let raw=tutorText(source,"grade"); let band=if (raw.startsWith("高")) { "高中" } else { "初中" }

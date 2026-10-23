@@ -19,30 +19,6 @@ export function containedImageBounds(
   return { left: (containerWidth - width) / 2, top: (containerHeight - height) / 2, width, height }
 }
 
-export function normalizedPoint(x: number, y: number, bounds: ImageBounds) {
-  return {
-    x: clamp((x - bounds.left) / bounds.width),
-    y: clamp((y - bounds.top) / bounds.height),
-  }
-}
-
-export function createCropBox(
-  start: { x: number; y: number },
-  end: { x: number; y: number },
-): CropBox {
-  const left = Math.min(start.x, end.x)
-  const top = Math.min(start.y, end.y)
-  return { x: left, y: top, width: Math.abs(end.x - start.x), height: Math.abs(end.y - start.y) }
-}
-
-export function moveCropBox(initial: CropBox, dx: number, dy: number): CropBox {
-  return {
-    ...initial,
-    x: clamp(initial.x + dx, 0, 1 - initial.width),
-    y: clamp(initial.y + dy, 0, 1 - initial.height),
-  }
-}
-
 export function resizeCropBox(
   initial: CropBox,
   handle: CropHandle,

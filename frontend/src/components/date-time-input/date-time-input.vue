@@ -6,7 +6,9 @@
     <picker mode="time" :value="timeValue" @change="changeTime($event.detail.value)">
       <view class="date-time-field">{{ timeValue || '选择时间' }}</view>
     </picker>
-    <button v-if="clearable && modelValue" @click="emit('update:modelValue', '')">清除</button>
+    <button role="button" v-if="clearable && modelValue" @click="emit('update:modelValue', '')">
+      清除
+    </button>
   </view>
 </template>
 <script setup>

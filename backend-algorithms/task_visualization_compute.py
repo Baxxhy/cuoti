@@ -7,8 +7,9 @@ import re
 from typing import Annotated, Literal
 
 import sympy as sp
-from app.services.math_tools import normalize_expression, parse_math_expression
 from pydantic import BaseModel, ConfigDict, Field
+
+from learning_core.services.math_tools import normalize_expression, parse_math_expression
 
 
 class StrictVisualModel(BaseModel):

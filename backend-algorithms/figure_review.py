@@ -5,8 +5,9 @@ from pathlib import Path
 from typing import Annotated, Literal
 
 import sympy as sp
-from app.schemas import HandwrittenAnswerRecognition
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+
+from learning_core.schemas import HandwrittenAnswerRecognition
 
 Point = Annotated[str, Field(pattern=r"^[A-Z]$")]
 

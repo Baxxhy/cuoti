@@ -6,8 +6,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Literal
 
-from app.services.export import build_excel, build_pdf
 from pydantic import BaseModel, Field, JsonValue
+
+from learning_core.services.export import build_excel, build_pdf
 
 
 class ExportQuestion(BaseModel):

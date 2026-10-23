@@ -2,11 +2,17 @@
   <view class="auth-shell">
     <view class="auth-page">
       <view class="auth-top">
-        <text class="auth-brand">错题帮</text>
-        <text class="auth-title">欢迎回来</text>
-        <text class="auth-subtitle">登录账号，继续你的学习。</text>
+        <view class="auth-brand-mark" aria-hidden="true">
+          <uni-icons type="compose" size="36" color="var(--color-surface)" />
+        </view>
+        <!-- #ifdef H5 -->
+        <component :is="'h1'" class="auth-title">错题帮</component>
+        <!-- #endif -->
+        <!-- #ifndef H5 -->
+        <text class="auth-title">错题帮</text>
+        <!-- #endif -->
       </view>
-      <view class="auth-form">
+      <view class="auth-form" role="form" aria-label="登录账号">
         <account-field
           id="login-email"
           v-model="email"
@@ -53,6 +59,7 @@
             注册账号
           </button>
           <button
+            class="auth-password-link"
             role="button"
             tabindex="0"
             @click="go('/pages/forgot/forgot')"
@@ -102,58 +109,71 @@ onMounted(restore)
 .auth-shell {
   min-height: 100vh;
   min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(64px + env(safe-area-inset-top)) 24px calc(48px + env(safe-area-inset-bottom));
+  background: var(--color-bg);
 }
 .auth-page {
-  min-height: 100vh;
-  min-height: 100dvh;
   width: 100%;
-  max-width: 460px;
-  margin: 0 auto;
-  padding: calc(72px + env(safe-area-inset-top)) 28px calc(40px + env(safe-area-inset-bottom));
-  background: #fff;
+  max-width: 360px;
+  display: grid;
+  gap: 40px;
 }
 .auth-top {
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
-.auth-brand {
-  display: block;
-  color: var(--color-primary);
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 36px;
-}
-.auth-title,
-.auth-subtitle {
-  display: block;
+.auth-brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+  border-radius: 22px;
+  background: var(--color-primary);
 }
 .auth-title {
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--color-text-primary);
+  display: block;
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--color-brand-deep);
 }
-.auth-subtitle {
-  font-size: 14px;
-  color: var(--color-text-secondary);
-  margin-top: 8px;
+.auth-form :deep(.account-field:first-child) {
+  margin-top: 0;
 }
-.auth-form {
-  margin-top: 32px;
+.auth-form :deep(.field-input:not(:focus)) {
+  border-color: var(--color-border);
 }
 .auth-form .primary-btn {
   margin-top: 28px;
+  min-height: 52px;
+}
+.auth-form .primary-btn[disabled] {
+  background: var(--color-primary-soft);
+  border-color: transparent;
+  color: var(--color-brand-deep);
+  opacity: 0.65;
 }
 .auth-links {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  gap: 32px;
   color: var(--color-primary);
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 16px;
 }
 .auth-links button {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 48px;
   margin: 0;
   padding: 0;
   background: transparent;
@@ -162,24 +182,47 @@ onMounted(restore)
   text-align: left;
   cursor: pointer;
 }
-@media (min-width: 768px) {
+.auth-links .auth-password-link {
+  color: var(--color-text-secondary);
+}
+@media (max-width: 480px) {
   .auth-shell {
-    padding: 64px 24px;
-  }
-  .auth-page {
-    min-height: 0;
-    margin: 0 auto;
-    padding: 40px;
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
+    align-items: flex-start;
   }
 }
-@media (max-height: 600px) {
+@media (min-width: 900px) {
   .auth-page {
-    padding-top: 28px;
+    max-width: 920px;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: center;
+    gap: 112px;
   }
-  .auth-brand {
-    margin-bottom: 24px;
+  .auth-top {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .auth-brand-mark {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 28px;
+    border-radius: 24px;
+  }
+  .auth-title {
+    font-size: 56px;
+  }
+}
+@media (max-height: 740px) and (max-width: 899px) {
+  .auth-shell {
+    padding-top: calc(32px + env(safe-area-inset-top));
+  }
+  .auth-page {
+    gap: 32px;
+  }
+  .auth-brand-mark {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 20px;
   }
 }
 </style>

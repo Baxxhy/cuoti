@@ -15,6 +15,13 @@ if [[ ! -f "$mysql_root/include/mysql/mysql.h" || ! -f "$mysql_root/include/open
   exit 1
 fi
 mkdir -p "$CANGJIE_MYSQL_NATIVE"
+# Bulk import launches many short-lived commands; reuse the already-built
+# native bridge unless its sources changed. Other build/run modes still rebuild.
+bridge="$CANGJIE_MYSQL_NATIVE/libzhiwei_mysql.so"
+if [[ ${1:-build} != question-bank-built || ! -f "$bridge" ||
+      "$project_dir/backend-cangjie/native/mysql_bridge.c" -nt "$bridge" ||
+      "$project_dir/backend-cangjie/native/crypto_bridge.c" -nt "$bridge" ||
+      "$project_dir/backend-cangjie/native/media_bridge.c" -nt "$bridge" ]]; then
 native_tmp=$(mktemp "$CANGJIE_MYSQL_NATIVE/.libzhiwei_mysql.XXXXXX.so")
 trap 'rm -f "$native_tmp"' EXIT
 cc -std=c11 -Wall -Wextra -Werror -fPIC -shared "$project_dir/backend-cangjie/native/mysql_bridge.c" \
@@ -24,10 +31,13 @@ cc -std=c11 -Wall -Wextra -Werror -fPIC -shared "$project_dir/backend-cangjie/na
   -L"$mysql_root/lib/x86_64-linux-gnu" -lmysqlclient -lcrypto -lpthread \
   -o "$native_tmp"
 mv -f "$native_tmp" "$CANGJIE_MYSQL_NATIVE/libzhiwei_mysql.so"
+fi
 export LD_LIBRARY_PATH="$CANGJIE_MYSQL_NATIVE:$mysql_root/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH:-}"
 export LD_LIBRARY_PATH="$CANGJIE_STDX_PATH:${LD_LIBRARY_PATH:-}"
 if [[ -n ${CANGJIE_OPENSSL_LIB_DIR:-} ]]; then
   export LD_LIBRARY_PATH="$CANGJIE_OPENSSL_LIB_DIR:$LD_LIBRARY_PATH"
+elif [[ -n ${CONDA_EXE:-} && -d "${CONDA_EXE%/bin/conda}/lib" ]]; then
+  export LD_LIBRARY_PATH="${CONDA_EXE%/bin/conda}/lib:$LD_LIBRARY_PATH"
 elif command -v conda >/dev/null; then
   export LD_LIBRARY_PATH="$(conda info --base)/lib:$LD_LIBRARY_PATH"
 fi
@@ -44,7 +54,6 @@ fi
 cd "$project_dir/backend-cangjie"
 case "${1:-build}" in
   build) cjpm build ;;
-  test) cjpm test ;;
   run) cjpm build && exec ./target/release/bin/main ;;
   run-built) exec ./target/release/bin/main ;;
   create-user-built) exec ./target/release/bin/main --create-local-user ;;
@@ -52,5 +61,5 @@ case "${1:-build}" in
   seed-knowledge) cjpm build && exec ./target/release/bin/main --seed-knowledge ;;
   upgrade-db) cjpm build && exec ./target/release/bin/main --upgrade-db ;;
   init-db) cjpm build && exec ./target/release/bin/main --init-db ;;
-  *) echo '用法：bash scripts/cangjie.sh [build|test|run|init-db|upgrade-db|seed-knowledge|create-user-built|question-bank-built]' >&2; exit 2 ;;
+  *) echo '用法：bash scripts/cangjie.sh [build|run|init-db|upgrade-db|seed-knowledge|create-user-built|question-bank-built]' >&2; exit 2 ;;
 esac

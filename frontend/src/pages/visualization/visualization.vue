@@ -1,24 +1,30 @@
 <template>
   <view class="page">
-    <app-header title="本题互动演示" subtitle="用图形理解当前这道题" back />
-    <state-panel v-if="!spec.type" :state="error ? 'error' : 'loading'" @retry="load" />
+    <app-header title="互动图解" back />
+    <state-panel
+      v-if="!spec.type"
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先选择一道错题' : undefined"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
+    />
     <view v-else class="page-content">
       <view class="question-context">
         <text>当前题目</text>
-        <b>{{ question.question_text }}</b>
+        <b><math-text :text="question.question_text" inline /></b>
       </view>
       <view class="card">
         <view class="visual-picker">
           <view>
             <text class="hint">本题演示</text>
-            <b>{{ spec.title }}</b>
+            <b><math-text :text="spec.title" inline /></b>
           </view>
         </view>
-        <text class="visual-goal">{{ spec.teaching_goal }}</text>
+        <math-text class="visual-goal" :text="spec.teaching_goal" inline />
         <visualization-canvas :spec="spec" :values="values" />
         <view v-for="variable in spec.interactive_variables" :key="variable.name" class="control">
           <view>
-            <text>{{ variable.label || variable.name }}</text>
+            <math-text :text="variable.label || variable.name" inline />
             <b>{{ values[variable.name] }}</b>
           </view>
           <slider
@@ -26,15 +32,24 @@
             :min="variable.min"
             :max="variable.max"
             :step="variable.step || 1"
-            activeColor="#002FA7"
+            activeColor="var(--color-primary)"
             @changing="values[variable.name] = $event.detail.value"
             @change="values[variable.name] = $event.detail.value"
           />
         </view>
         <view class="task">
           <text>试一试</text>
-          <b>{{ spec.student_task }}</b>
-          <small>观察重点：{{ spec.expected_observation }}</small>
+          <b><math-text :text="spec.student_task" inline /></b>
+          <button
+            role="button"
+            v-if="spec.expected_observation"
+            class="observation-toggle"
+            :aria-expanded="showObservation"
+            @click="showObservation = !showObservation"
+          >
+            {{ showObservation ? '收起观察提示' : '查看观察提示' }}
+          </button>
+          <math-text v-if="showObservation" :text="spec.expected_observation" inline />
         </view>
       </view>
       <view class="card">
@@ -42,21 +57,30 @@
         <textarea
           v-model="observation"
           class="field-textarea"
-          placeholder="写下图形或数值的变化…"
+          aria-label="图解观察"
+          placeholder="写下图形或数值的变化"
         />
         <text v-if="!observation.trim()" class="disabled-help">先写下你的观察，再继续教学</text>
-        <button class="primary-btn" :disabled="busy || !observation.trim() || !id" @click="save">
-          {{ busy ? '正在保存…' : '保存并继续' }}
+        <button
+          role="button"
+          class="primary-btn"
+          :disabled="busy || !observation.trim() || !id"
+          @click="save"
+        >
+          {{ busy ? '正在保存…' : '保存观察并返回' }}
         </button>
       </view>
     </view>
   </view>
 </template>
 <script setup>
+import { go } from '@/utils/navigation.js'
+import MathText from '@/components/math-text/math-text.vue'
 import VisualizationCanvas from '@/components/visualization-canvas/visualization-canvas.vue'
 import { reactive, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { getData, postData } from '@/api/index.js'
+const showObservation = ref(false)
 const id = ref(''),
   spec = ref({}),
   question = ref({}),
@@ -69,6 +93,7 @@ function reset() {
   ;(spec.value.interactive_variables || []).forEach((v) => (values[v.name] = v.value))
 }
 async function load() {
+  if (!id.value) return
   error.value = false
   try {
     const data = await getData(`/tutor/sessions/${id.value}/visualization`)
@@ -99,6 +124,15 @@ onLoad((q) => {
 })
 </script>
 <style scoped lang="scss">
+.observation-toggle {
+  margin: 8px 0 0;
+  padding: 10px 0;
+  min-height: 44px;
+  font-size: 14px;
+  color: var(--color-primary);
+  background: transparent;
+  text-align: left;
+}
 .question-context {
   padding: 24rpx;
   margin-bottom: 18rpx;
@@ -165,7 +199,6 @@ onLoad((q) => {
   padding: 22rpx;
   border-radius: 18rpx;
   background: var(--color-warning-soft);
-  border-left: 5rpx solid var(--color-warning);
 }
 .task text,
 .task b,

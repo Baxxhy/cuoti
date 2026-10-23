@@ -13,7 +13,8 @@ func memoryQuestionVersion(db: Database, question: JsonObject): String {
     data.add(queryArray(db,"question_assets","SELECT * FROM question_assets WHERE question_id=? AND kind IN ('crop','question_figure') ORDER BY created_at,id",id))
     data.add(firstJson(queryArray(db,"problem_analyses","SELECT * FROM problem_analyses WHERE question_id=? ORDER BY created_at,id LIMIT 1",id)))
     data.add(queryArray(db,"reference_steps","SELECT r.* FROM reference_steps r JOIN problem_analyses a ON a.id=r.analysis_id WHERE a.question_id=? ORDER BY r.step_index,r.id",id))
-    data.add(queryArray(db,"teacher_questions","SELECT * FROM teacher_questions WHERE question_id=? ORDER BY id",id))
+    // Keep the v1 source-stamp shape for existing personal learning records.
+    data.add(JsonArray())
     return sha256(data.toString().toArray())
 }
 
@@ -43,10 +44,14 @@ func memoryUpdateValid(db: Database, update: JsonObject, owner: String, subject:
     let question=memoryQuestion(db,tutorText(update,"question_id"),subject)
     if (question.getFields().isEmpty() || tutorText(source,"question_version")!=memoryQuestionVersion(db,question)) { return false }
     let strategy=tutorText(evidence,"strategy")
-    if (strategy=="teacher_review") {
-        return !db.query("SELECT r.id FROM teacher_review_results r JOIN teacher_review_tasks t ON t.id=r.task_id WHERE r.id=? AND t.student_id=? AND t.question_id=? AND r.revoked_at IS NULL AND r.allow_learning_update=1 AND t.learning_applied=1",[Some(tutorText(evidence,"teacher_review_id")),Some(owner),sqlValue(question["id"])]).rows.isEmpty()
-    }
     if (tutorText(question,"user_id")!=owner) { return false }
+    if (strategy=="aemt_assistance_aware") {
+        let rows=db.query("SELECT a.result,t.input_fingerprint FROM learning_task_actions a JOIN learning_tasks t ON t.id=a.task_id WHERE t.id=? AND t.user_id=? AND t.question_id=? AND a.request_id=? AND a.status='applied'",[Some(tutorText(evidence,"learning_task_id")),Some(owner),sqlValue(question["id"]),Some(tutorText(evidence,"action_request_id"))]).rows
+        if (rows.isEmpty() || rowText(rows[0],"input_fingerprint")!=taskFingerprint(taskSnapshot(db,jsonText(question,"id"),owner,lock:false))) { return false }
+        let result=(JsonValue.fromStr(rowText(rows[0],"result")) as JsonObject).getOrThrow(); let attempt=tutorObject(result,"attempt"); let event=tutorObject(evidence,"aemt_event")
+        let verdict=tutorText(attempt,"verdict")
+        return ["confirmed_correct","confirmed_incorrect"].contains(verdict) && tutorText(event,"verdict")==verdict && tutorFlag(tutorObject(attempt,"grading"),"can_update_learning") && !tutorFlag(event,"solution_seen") && ["original_question","contrast_question"].contains(tutorText(event,"scope"))
+    }
     if (strategy=="verified_condition_contrast") {
         let rows=db.query("SELECT * FROM learning_tasks WHERE id=? AND user_id=? AND question_id=? AND status='completed' AND learning_applied=1",[Some(tutorText(evidence,"learning_task_id")),Some(owner),sqlValue(question["id"])]).rows
         if (rows.isEmpty()) { return false }

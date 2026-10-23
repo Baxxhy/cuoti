@@ -1,12 +1,14 @@
 <template>
   <view class="page home-page">
-    <view class="home-top">
-      <view class="home-top-copy">
-        <text class="greeting">{{ greeting }}，{{ store.user?.name || '同学' }}</text>
-        <text class="today-copy">
-          {{ gradeLabel }}
-          <template v-if="data">· {{ todaySummary }}</template>
-        </text>
+    <view class="home-header">
+      <view class="home-identity">
+        <!-- #ifdef H5 -->
+        <component :is="'h1'" class="home-brand">错题帮</component>
+        <!-- #endif -->
+        <!-- #ifndef H5 -->
+        <text class="home-brand">错题帮</text>
+        <!-- #endif -->
+        <text v-if="data?.grade" class="home-grade">{{ data.grade }}</text>
       </view>
       <button
         class="search-action"
@@ -18,7 +20,7 @@
         @keydown.space.prevent
         @keyup.space.prevent="go('/pages/search/search')"
       >
-        <uni-icons type="search" size="24" color="#55565B" />
+        <uni-icons aria-hidden="true" type="search" size="24" color="var(--color-text-secondary)" />
       </button>
     </view>
 
@@ -30,27 +32,6 @@
         @retry="load"
       />
       <template v-else-if="data">
-        <button
-          role="button"
-          tabindex="0"
-          class="home-direction"
-          @keydown.enter.prevent="go('/pages/preferences/preferences')"
-          @keydown.space.prevent
-          @keyup.space.prevent="go('/pages/preferences/preferences')"
-          @click="go('/pages/preferences/preferences')"
-        >
-          <text>
-            {{
-              preferences?.subject
-                ? `${preferences.subject} · ${goalLabel} · 约${preferences.minutes}分钟`
-                : '选择今天的学习方向'
-            }}
-          </text>
-          <text>
-            调整
-            <uni-icons type="right" size="15" />
-          </text>
-        </button>
         <view v-if="partialError" class="home-partial-error" role="status">
           <text>{{ partialError }}</text>
           <button
@@ -65,13 +46,13 @@
             重新读取学习建议
           </button>
         </view>
-        <view class="focus-card">
-          <text class="focus-label">{{ focusKind === 'capture' ? '记录错题' : '当前任务' }}</text>
+        <view class="focus-card" :class="{ 'capture-card': focusKind === 'capture' }">
           <template v-if="focusKind === 'task'">
-            <text class="focus-title">
-              {{ taskFocus.student_view?.title || '继续解决上次那一步' }}
-            </text>
-            <text class="focus-next">你的回答和学习位置已经保存。</text>
+            <math-text
+              class="focus-title"
+              :text="taskFocus.question_title || '上次的错题还没完成'"
+              inline
+            />
             <button
               class="primary-btn"
               role="button"
@@ -79,12 +60,16 @@
               @click="go(`/pages/task/task?id=${taskFocus.id}`)"
               @keydown.enter.prevent="go(`/pages/task/task?id=${taskFocus.id}`)"
             >
-              继续这一步
+              继续订正
             </button>
           </template>
           <template v-else-if="focusKind === 'continue'">
-            <text class="focus-title">{{ data.continue_learning.knowledge_point }}</text>
-            <text class="focus-next">下一步：{{ data.continue_learning.next_step }}</text>
+            <math-text class="focus-title" :text="data.continue_learning.knowledge_point" inline />
+            <math-text
+              class="focus-next"
+              :text="'下一步：' + data.continue_learning.next_step"
+              inline
+            />
             <button
               tabindex="0"
               role="button"
@@ -98,12 +83,11 @@
                 go(`/pages/tutor/tutor?id=${data.continue_learning.session_id}`)
               "
             >
-              继续学习
+              继续讲解
             </button>
           </template>
           <template v-else-if="focusKind === 'review'">
             <text class="focus-title">今天有 {{ data.today_reviews }} 道题待复习</text>
-            <text class="focus-next">再做一次，看看是否真正掌握。</text>
             <button
               tabindex="0"
               role="button"
@@ -116,30 +100,15 @@
               开始复习
             </button>
           </template>
-          <template v-else-if="focusKind === 'assignment'">
-            <text class="focus-title">{{ data.teacher_assignment_count }} 项教师任务待完成</text>
-            <text class="focus-next">查看老师安排的练习。</text>
-            <button
-              tabindex="0"
-              role="button"
-              class="primary-btn"
-              @click="go('/pages/assignment/assignment')"
-              @keydown.enter.prevent="go('/pages/assignment/assignment')"
-              @keydown.space.prevent
-              @keyup.space.prevent="go('/pages/assignment/assignment')"
-            >
-              查看任务
-            </button>
-          </template>
           <template v-else-if="focusKind === 'repair'">
-            <text class="focus-title">先核对：{{ recommendedGroup.label }}</text>
+            <math-text class="focus-title" :text="recommendedGroup.label" inline />
             <text class="focus-next">
               {{ recommendedGroup.subject }} ·
               {{
                 recommendedGroup.sources.length > 1
-                  ? `${recommendedGroup.sources.length}道题中出现相同诊断线索`
+                  ? `${recommendedGroup.sources.length}道题有相似错因`
                   : '来自你最近的一道题'
-              }}。先回放，再沿路线修复。
+              }}
             </text>
             <button
               role="button"
@@ -152,14 +121,48 @@
               @keyup.space.prevent="go(`/pages/repair/repair?id=${recommendedGroup.sources[0].id}`)"
               @click="go(`/pages/repair/repair?id=${recommendedGroup.sources[0].id}`)"
             >
-              查看这次修复路线
+              查看学习安排
+            </button>
+          </template>
+          <template v-else-if="focusKind === 'starter' && preferences.goal === 'practice'">
+            <text class="focus-title">{{ preferences.subject }}练习</text>
+            <text class="focus-next">
+              {{ practiceSize(preferences.minutes) }} 道题 · {{ preferences.minutes }} 分钟
+            </text>
+            <button
+              role="button"
+              class="primary-btn"
+              @click="go(preferredPracticeUrl(preferences, gradeLabel))"
+              tabindex="0"
+              @keydown.enter.prevent="go(preferredPracticeUrl(preferences, gradeLabel))"
+              @keydown.space.prevent
+              @keyup.space.prevent="go(preferredPracticeUrl(preferences, gradeLabel))"
+            >
+              开始练习
+            </button>
+          </template>
+          <template v-else-if="focusKind === 'starter' && preferences.goal === 'review'">
+            <text class="focus-title">
+              {{
+                hasTodayReviews
+                  ? '今天有 ' + data.today_reviews + ' 道题待复习'
+                  : '今天没有待复习题目'
+              }}
+            </text>
+            <button
+              role="button"
+              class="primary-btn"
+              tabindex="0"
+              @click="go('/pages/review/review')"
+              @keydown.enter.prevent="go('/pages/review/review')"
+              @keydown.space.prevent
+              @keyup.space.prevent="go('/pages/review/review')"
+            >
+              {{ hasTodayReviews ? '开始复习' : '查看复习安排' }}
             </button>
           </template>
           <template v-else-if="focusKind === 'starter'">
-            <text class="focus-title">从{{ preferences.subject }}的一小段开始</text>
-            <text class="focus-next">
-              按{{ gradeLabel }}查看已有知识卡和例题。先选正在学的内容，不用先录入错题。
-            </text>
+            <text class="focus-title">{{ preferences.subject }}</text>
             <button
               role="button"
               tabindex="0"
@@ -169,12 +172,11 @@
               @keyup.space.prevent="openKnowledge"
               @click="openKnowledge"
             >
-              选择知识与例题
+              查看知识卡片
             </button>
           </template>
           <template v-else>
-            <text class="focus-title">从一道做错的题开始</text>
-            <text class="focus-next">拍下题目和解题步骤，找出出错的地方。</text>
+            <text class="focus-title">录入错题</text>
             <button
               tabindex="0"
               role="button"
@@ -184,76 +186,94 @@
               @keydown.space.prevent
               @keyup.space.prevent="go('/pages/capture/capture')"
             >
-              <uni-icons type="camera-filled" size="22" color="var(--color-surface)" />
-              <text>录入错题</text>
+              <uni-icons
+                aria-hidden="true"
+                class="capture-icon"
+                type="camera"
+                size="26"
+                color="#ffffff"
+              />
+              <text>拍照或选择图片</text>
             </button>
           </template>
         </view>
 
-        <view v-if="focusKind === 'capture'" class="home-starter">
-          <text class="starter-heading">没带错题，也能开始。</text>
-          <text class="starter-copy">选当前学科，先回顾一个知识点和例题。</text>
-          <button
-            aria-label="选择学习方向"
-            role="button"
-            tabindex="0"
-            class="disclosure-link"
-            @keydown.enter.prevent="go('/pages/preferences/preferences')"
-            @keydown.space.prevent
-            @keyup.space.prevent="go('/pages/preferences/preferences')"
-            @click="go('/pages/preferences/preferences')"
-          >
-            选择学习方向
-            <uni-icons type="right" size="18" />
-          </button>
-        </view>
-
-        <view class="home-actions">
-          <button
-            tabindex="0"
-            role="button"
-            class="quiet-action"
-            @click="chooseTask"
-            @keydown.enter.prevent="chooseTask"
-            @keydown.space.prevent
-            @keyup.space.prevent="chooseTask"
-          >
-            换个任务
-          </button>
-          <button
-            tabindex="0"
-            role="button"
-            class="quiet-action"
-            @click="go('/pages/manual/manual')"
-            @keydown.enter.prevent="go('/pages/manual/manual')"
-            @keydown.space.prevent
-            @keyup.space.prevent="go('/pages/manual/manual')"
-          >
-            手动录入
-          </button>
-        </view>
-        <button
-          role="button"
-          tabindex="0"
-          class="home-map-entry"
-          aria-label="个人易错地图"
-          @keydown.enter.prevent="go('/pages/error-map/error-map')"
-          @keydown.space.prevent
-          @keyup.space.prevent="go('/pages/error-map/error-map')"
-          @click="go('/pages/error-map/error-map')"
-        >
-          <view>
-            <text>个人易错地图</text>
-            <small>
-              {{
-                recommendedGroup
-                  ? '从真实诊断线索，找到值得修复的地方'
-                  : '留下作答与诊断，再看问题之间的联系'
-              }}
-            </small>
+        <view class="home-secondary">
+          <view class="home-gateways">
+            <button
+              role="button"
+              v-for="entry in studyEntries"
+              :key="entry.url"
+              class="study-gateway"
+              @click="
+                go(
+                  entry.url.includes('mode=practice') && preferences?.subject
+                    ? preferredPracticeUrl(preferences, gradeLabel)
+                    : entry.url,
+                )
+              "
+            >
+              <uni-icons
+                aria-hidden="true"
+                :type="entry.icon"
+                size="23"
+                color="var(--color-primary)"
+              />
+              <text>{{ entry.title }}</text>
+              <uni-icons
+                aria-hidden="true"
+                type="right"
+                size="16"
+                color="var(--color-text-tertiary)"
+              />
+            </button>
           </view>
-          <uni-icons type="right" size="20" />
-        </button>
+          <view v-if="focusKind === 'capture'" class="home-starter">
+            <button
+              aria-label="知识卡片"
+              role="button"
+              tabindex="0"
+              class="disclosure-link"
+              @keydown.enter.prevent="openKnowledge"
+              @keydown.space.prevent
+              @keyup.space.prevent="openKnowledge"
+              @click="openKnowledge"
+            >
+              <view class="entry-label">
+                <uni-icons
+                  aria-hidden="true"
+                  type="wallet"
+                  size="22"
+                  color="var(--color-primary)"
+                />
+                <text>知识卡片</text>
+              </view>
+              <uni-icons aria-hidden="true" type="right" size="18" />
+            </button>
+          </view>
+
+          <button
+            role="button"
+            tabindex="0"
+            class="home-map-entry"
+            aria-label="易错地图"
+            @keydown.enter.prevent="go('/pages/error-map/error-map')"
+            @keydown.space.prevent
+            @keyup.space.prevent="go('/pages/error-map/error-map')"
+            @click="go('/pages/error-map/error-map')"
+          >
+            <view class="entry-label">
+              <uni-icons aria-hidden="true" type="map" size="22" color="var(--color-primary)" />
+              <text>易错地图</text>
+            </view>
+            <view class="map-summary">
+              <text v-if="sourcesLoaded" class="map-count">
+                {{ relatedQuestionCount ? `${relatedQuestionCount} 道关联错题` : '暂无错因记录' }}
+              </text>
+              <uni-icons aria-hidden="true" type="right" size="20" />
+            </view>
+          </button>
+        </view>
         <view v-if="otherTasks.length" class="task-list">
           <button
             tabindex="0"
@@ -261,38 +281,22 @@
             v-for="task in otherTasks"
             :key="task.key"
             class="task-row"
-            @click="task.key === 'feedback' ? (showFeedback = !showFeedback) : go(task.url)"
-            @keydown.enter.prevent="
-              task.key === 'feedback' ? (showFeedback = !showFeedback) : go(task.url)
-            "
+            @click="go(task.url)"
+            @keydown.enter.prevent="go(task.url)"
             @keydown.space.prevent
-            @keyup.space.prevent="
-              task.key === 'feedback' ? (showFeedback = !showFeedback) : go(task.url)
-            "
+            @keyup.space.prevent="go(task.url)"
           >
             <view class="list-main">
-              <text class="task-name">{{ task.title }}</text>
-              <text class="task-detail">{{ task.detail }}</text>
+              <math-text class="task-name" :text="task.title" inline />
+              <math-text class="task-detail" :text="task.detail" inline />
             </view>
-            <uni-icons type="right" size="22" color="var(--color-text-secondary)" />
+            <uni-icons
+              aria-hidden="true"
+              type="right"
+              size="22"
+              color="var(--color-text-secondary)"
+            />
           </button>
-        </view>
-        <view v-if="showFeedback && data.teacher_feedback" class="teacher-feedback">
-          <view class="section-title"><text>教师反馈</text></view>
-          <text class="feedback-conclusion">
-            {{
-              data.teacher_feedback.conclusion === 'confirmed_correct'
-                ? '老师已确认正确'
-                : '老师建议继续修改'
-            }}
-          </text>
-          <text class="feedback-detail">{{ data.teacher_feedback.reason }}</text>
-          <text v-if="data.teacher_feedback.student_hint" class="feedback-detail">
-            提示：{{ data.teacher_feedback.student_hint }}
-          </text>
-          <text v-if="data.teacher_feedback.next_task" class="feedback-detail">
-            下一步：{{ data.teacher_feedback.next_task }}
-          </text>
         </view>
       </template>
     </view>
@@ -301,12 +305,15 @@
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, ref } from 'vue'
 import { onShow, onHide, onUnload } from '@dcloudio/uni-app'
 import { getData } from '@/api/index.js'
 import { go } from '@/utils/navigation.js'
 import { useAppStore } from '@/store/index.js'
 import { errorGroups } from '@/utils/repair.js'
+import { studyEntries } from '@/constants/learning.js'
+import { practiceSize, preferredPracticeUrl } from '@/utils/study-preferences.js'
 
 const store = useAppStore()
 const data = ref(null)
@@ -315,6 +322,7 @@ const loading = ref(true)
 const error = ref('')
 const preferences = ref(null),
   sources = ref([]),
+  sourcesLoaded = ref(false),
   partialError = ref('')
 let revision = 0
 const recommendedGroup = computed(() =>
@@ -322,28 +330,23 @@ const recommendedGroup = computed(() =>
     (group) => !preferences.value?.subject || group.subject === preferences.value.subject,
   ),
 )
-const goalLabel = computed(
+const relatedQuestionCount = computed(
   () =>
-    ({ understand: '弄懂一道题', practice: '巩固一类题', review: '复习学过的内容' })[
-      preferences.value?.goal
-    ] || '按自己的节奏学习',
+    new Set(errorGroups(sources.value).flatMap((group) => group.sources.map((item) => item.id)))
+      .size,
 )
-const greeting = computed(() => {
-  const hour = new Date().getHours()
-  return hour < 12 ? '早上好' : hour < 18 ? '下午好' : '晚上好'
-})
 const gradeLabel = computed(() => data.value?.grade || store.user?.grade || '年级未设置')
 const hasTodayReviews = computed(() => Number(data.value?.today_reviews || 0) > 0)
 const focusKind = computed(() => {
   if (taskFocus.value) return 'task'
+  if (preferences.value?.subject && ['review', 'practice'].includes(preferences.value.goal))
+    return 'starter'
   if (data.value?.continue_learning) return 'continue'
   if (hasTodayReviews.value) return 'review'
-  if (data.value?.teacher_assignment_count) return 'assignment'
   if (recommendedGroup.value) return 'repair'
   if (preferences.value?.subject) return 'starter'
   return 'capture'
 })
-const showFeedback = ref(false)
 const otherTasks = computed(() => {
   const rows = []
   if (hasTodayReviews.value && focusKind.value !== 'review')
@@ -353,47 +356,7 @@ const otherTasks = computed(() => {
       detail: `${data.value.today_reviews} 道题待复习`,
       url: '/pages/review/review',
     })
-  if (data.value?.teacher_feedback)
-    rows.push({ key: 'feedback', title: '老师有新反馈', detail: '查看建议，再继续修改' })
-  if (data.value?.teacher_assignment_count && focusKind.value !== 'assignment')
-    rows.push({
-      key: 'assignment',
-      title: '教师任务',
-      detail: `${data.value.teacher_assignment_count} 项待完成`,
-      url: '/pages/assignment/assignment',
-    })
-  if (data.value?.misconceptions?.length)
-    rows.push({
-      key: 'mistake',
-      title: '需要巩固',
-      detail: data.value.misconceptions[0].label,
-      url: '/pages/problem/list',
-    })
   return rows.slice(0, 2)
-})
-function chooseTask() {
-  const choices = []
-  if (hasTodayReviews.value) choices.push({ title: '到期复习', url: '/pages/review/review' })
-  if (data.value?.teacher_assignment_count)
-    choices.push({ title: '教师任务', url: '/pages/assignment/assignment' })
-  choices.push(
-    { title: '练一类题', url: '/pages/problem/list?purpose=practice' },
-    { title: '查知识', url: '/pages/library/library' },
-    { title: '录入错题', url: '/pages/capture/capture' },
-  )
-  const options = choices.slice(0, 3)
-  uni.showActionSheet({
-    itemList: options.map((x) => x.title),
-    success: ({ tapIndex }) => go(options[tapIndex]?.url),
-  })
-}
-const todaySummary = computed(() => {
-  if (taskFocus.value) return '有一步学习待继续'
-  if (data.value?.continue_learning) return '有一段学习待继续'
-  if (hasTodayReviews.value) return `${data.value.today_reviews} 道题待复习`
-  if (data.value?.teacher_assignment_count)
-    return `${data.value.teacher_assignment_count} 项教师任务`
-  return '从适合自己的起点开始'
 })
 
 function openKnowledge() {
@@ -419,11 +382,11 @@ async function load() {
     if (dashboard.status === 'rejected') throw dashboard.reason
     data.value = dashboard.value
     preferences.value = preferenceResult.status === 'fulfilled' ? preferenceResult.value : null
+    sourcesLoaded.value = sourceResult.status === 'fulfilled'
     sources.value = sourceResult.status === 'fulfilled' ? sourceResult.value?.sources || [] : []
-    if (tasks.status === 'rejected')
-      partialError.value = '上次任务暂时无法读取，可以重试或选择其他学习入口。'
+    if (tasks.status === 'rejected') partialError.value = '上次的订正暂时无法读取。'
     else if (preferenceResult.status === 'rejected' || sourceResult.status === 'rejected')
-      partialError.value = '部分学习建议暂时无法读取，其他功能仍可使用。'
+      partialError.value = '部分学习记录暂时无法读取。'
     taskFocus.value =
       (tasks.status === 'fulfilled' ? tasks.value || [] : []).find((task) =>
         ['queued', 'running', 'waiting_student', 'needs_review', 'failed'].includes(task.status),
@@ -441,188 +404,175 @@ function clear() {
   taskFocus.value = null
   preferences.value = null
   sources.value = []
+  sourcesLoaded.value = false
 }
 onHide(clear)
 onUnload(clear)
 </script>
 
 <style scoped lang="scss">
-.home-top {
+.home-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20rpx;
-  padding: calc(20px + var(--status-bar-height, 0px)) var(--space-page) 16px;
-  background: var(--color-surface);
-  border-bottom: 1rpx solid var(--color-border);
+  gap: 16px;
+  padding: calc(16px + var(--status-bar-height, 0px)) var(--space-page) 4px;
 }
-.home-top-copy {
-  flex: 1;
+.home-identity {
   min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.greeting,
-.today-copy {
+.home-brand {
   display: block;
+  margin: 0;
+  color: var(--color-brand-deep);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
 }
-.greeting {
-  font-size: 38rpx;
-  line-height: 1.35;
-  font-weight: 650;
-}
-.today-copy {
-  margin-top: 8rpx;
+.home-grade {
+  display: block;
   color: var(--color-text-secondary);
-  font-size: 24rpx;
+  font-size: 13px;
+  padding: 3px 9px;
+  background: var(--color-surface);
+  border-radius: 6px;
   line-height: 1.5;
 }
 .search-action {
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  width: 80rpx;
-  height: 80rpx;
-  min-width: 44px;
-  min-height: 44px;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12rpx;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border-radius: 50%;
 }
 .search-action:active {
-  background: var(--color-bg);
-}
-.home-content {
-  padding-top: 28rpx;
+  background: var(--color-primary-soft);
 }
 .focus-card {
-  padding: 40rpx;
+  padding: 22px;
   background: var(--color-surface);
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-primary);
-  border-radius: 8px;
-}
-.focus-label,
-.focus-title,
-.focus-next {
-  display: block;
-}
-.focus-label {
-  font-size: 13px;
-  color: var(--color-text-secondary);
+  border: 0;
+  border-radius: 12px;
 }
 .focus-title {
-  margin-top: 16rpx;
-  font-size: 28px;
-  text-wrap: balance;
-  font-weight: 650;
-  line-height: 1.45;
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 .focus-next {
-  margin-top: 12rpx;
+  display: block;
   font-size: 14px;
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  margin-top: 8px;
 }
 .focus-card .primary-btn {
-  background: var(--color-primary);
-  color: var(--color-surface);
-  border: 1px solid var(--color-primary);
-  border-radius: 8px;
-  height: auto;
-  min-height: 48px;
-  margin-top: 24rpx;
-  gap: 12rpx;
-  font-size: 28rpx;
+  margin-top: 22px;
+  gap: 8px;
 }
-.focus-card .primary-btn:active {
-  background: var(--color-primary-active);
+.capture-card {
+  padding: 20px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-radius: 12px;
 }
-.home-direction {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  width: 100%;
-  padding: 12px 0 20px;
-  min-height: 48px;
-  text-align: left;
-  background: transparent;
-  font-size: 13px;
-  color: var(--color-text-secondary);
+.capture-card .primary-btn {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 600;
 }
-.home-direction > text:last-child {
+.capture-icon {
   flex-shrink: 0;
-  color: var(--color-primary);
+  font-weight: 400;
+  line-height: 1;
 }
-.home-starter {
-  margin: 28px 0;
+.home-secondary {
+  margin-top: 24px;
 }
-.starter-heading {
-  display: block;
-  font-size: 18px;
-  font-weight: 600;
+.home-gateways {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
-.starter-copy {
-  display: block;
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--color-text-secondary);
-}
-.home-map-entry {
+.study-gateway {
+  line-height: 1.5;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  width: 100%;
+  gap: 8px;
+  margin: 0;
+  padding: 20px 16px;
   min-height: 80px;
-  margin: 20px 0 0;
-  padding: 20px 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  background: transparent;
-  border-radius: 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-surface);
   text-align: left;
 }
-.home-map-entry text {
-  display: block;
-  font-size: 17px;
-  font-weight: 600;
+.study-gateway .uni-icons {
+  flex: none;
+  line-height: 1;
 }
-.home-map-entry small {
-  display: block;
-  margin-top: 6px;
+.study-gateway > text:not(.uni-icons) {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+}
+.home-map-entry,
+.home-starter .disclosure-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 58px;
+  margin: 10px 0 0;
+  padding: 12px 0;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 15px;
+  text-align: left;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-surface);
+  padding: 16px;
+}
+.map-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+}
+.map-count {
   font-size: 13px;
   color: var(--color-text-secondary);
 }
-.home-partial-error {
-  display: block;
-  margin-bottom: 16px;
-  font-size: 13px;
-  color: var(--color-warning);
-}
-.section-title {
-  margin: 30rpx 0 10rpx;
-}
-.section-title > text:first-child {
-  font-size: 27rpx;
-  font-weight: 600;
+.entry-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .task-list {
-  border-top: 1rpx solid var(--color-border);
+  margin-top: 12px;
 }
 .task-row {
   display: flex;
   align-items: center;
-  gap: 18rpx;
+  gap: 12px;
   width: 100%;
-  text-align: left;
+  min-height: 64px;
+  padding: 14px 0;
   margin: 0;
-  background: transparent;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
   border-radius: 0;
-  min-height: 56px;
-  padding: 20rpx 0;
-  border-bottom: 1rpx solid var(--color-border);
+  background: transparent;
 }
 .list-main {
   flex: 1;
@@ -633,40 +583,57 @@ onUnload(clear)
   display: block;
 }
 .task-name {
-  font-size: 28rpx;
-  font-weight: 500;
+  font-size: 15px;
 }
 .task-detail {
-  font-size: 24rpx;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
-  margin-top: 4rpx;
-}
-.teacher-feedback {
-  margin-top: 24rpx;
-  padding-bottom: 24rpx;
-  border-bottom: 1rpx solid var(--color-border);
-}
-.feedback-conclusion,
-.feedback-detail {
-  display: block;
-  font-size: 25rpx;
-  line-height: 1.65;
-}
-.feedback-conclusion {
-  font-weight: 500;
-}
-.feedback-detail {
-  margin-top: 6rpx;
+  margin-top: 3px;
+  font-size: 13px;
   color: var(--color-text-secondary);
 }
-.home-actions {
-  display: flex;
-  gap: 12px;
-  margin: 8px 0 16px;
+.home-partial-error {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--color-warning);
 }
-.home-actions .quiet-action {
-  flex: 1;
-  margin: 0;
+@media (min-width: 1100px) {
+  .home-brand {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .home-grade {
+    margin-top: 0;
+  }
+  .home-content {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .focus-card {
+    grid-column: 1;
+  }
+  .home-secondary {
+    margin-top: 0;
+  }
+  .home-partial-error {
+    grid-column: 1 / -1;
+  }
+  .task-list {
+    grid-column: 2;
+    margin-top: 0;
+  }
+}
+@media (max-width: 360px) {
+  .study-gateway {
+    gap: 6px;
+    padding: 14px 10px;
+  }
+  .study-gateway > :last-child {
+    display: none;
+  }
 }
 </style>

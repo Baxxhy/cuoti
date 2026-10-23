@@ -6,6 +6,15 @@ func taskLeaseValid(task: JsonObject, lease: String): Bool {
     return tutorText(task,"status")=="running" && tutorText(task,"lease_token")==lease && !tutorFlag(task,"cancel_requested")
 }
 
+func taskPreparationFailure(db: Database, task: JsonObject, reason: String): Unit {
+    let view=taskStoppedView("暂时未能准备题目，内容已保留，可以重试")
+    let actions=JsonArray(); actions.add(JsonString("resume")); view.put("secondary_actions",actions)
+    let photo=tutorObject(tutorObject(task,"student_view"),"handwriting")
+    if (!photo.getFields().isEmpty()) { view.put("handwriting",photo) }
+    db.query("UPDATE learning_tasks SET status='failed',version=version+1,student_view=?,exit_reason=?,lease_token=NULL,lease_until=NULL,updated_at=UTC_TIMESTAMP(6) WHERE id=?",[Some(view.toString()),Some(reason),sqlValue(task["id"])])
+    db.query("UPDATE learning_task_actions SET status='failed',updated_at=UTC_TIMESTAMP(6) WHERE task_id=? AND status='pending'",[sqlValue(task["id"])])
+}
+
 func claimLearningTask(id: String, budget: TaskBudget): Option<JsonObject> {
     try (db=Database.fromEnvironment()) {
         let rows=db.query("SELECT user_id,question_id FROM learning_tasks WHERE id=?",[Some(id)]).rows
@@ -25,7 +34,15 @@ func claimLearningTask(id: String, budget: TaskBudget): Option<JsonObject> {
                 tx.query("UPDATE learning_task_actions SET status='failed',updated_at=UTC_TIMESTAMP(6) WHERE task_id=? AND status='pending'",[Some(id)])
                 return None
             }
-            let domain=taskContext(tx,source,owner); domain.put("source_snapshot_id",task["id"])
+            var domain=JsonObject()
+            try {
+                domain=taskContext(tx,source,owner); domain.put("source_snapshot_id",task["id"])
+                domain.put("action_id",JsonString(id+":"+tutorText(task,"active_request")))
+            } catch (error: DatabaseException) {
+                taskPreparationFailure(tx,task,"prepare_database_"+error.code.toString()); return None
+            } catch (_: Exception) {
+                taskPreparationFailure(tx,task,"prepare_context_invalid"); return None
+            }
             try { budget.check("prepare") } catch (_: TaskBudgetExceeded) {
                 stopTaskAtLimit(tx,task,"prepare_budget"); return None
             }
@@ -52,9 +69,10 @@ func taskFailure(id: String, owner: String, questionId: String, lease: String, r
     } catch (_: Exception) { /* No upstream or database credentials enter logs. Lease expiry permits recovery. */ }
 }
 
-func saveLearningTaskResult(db: Database, task: JsonObject, result: JsonObject, budget: TaskBudget, memory: JsonObject): Unit {
+func saveLearningTaskResult(db: Database, task: JsonObject, result: JsonObject, budget: TaskBudget, memory: JsonObject, domain: JsonObject): Unit {
     let id=jsonText(task,"id"); let owner=jsonText(task,"user_id"); let requestId=jsonText(task,"active_request"); let traces=tutorArray(result,"traces").getItems()
     if (traces.size>3 || !["waiting_student","needs_review","completed"].contains(jsonText(result,"status"))) { throw ApiError(503,"学习任务结果格式不正确") }
+    validateTaskRecommendation(result,domain)
     let manifest=JsonArray(); let validRefs=JsonArray()
     for (raw in tutorArray(memory,"entries").getItems()) {
         let entry=(raw as JsonObject).getOrThrow(); let item=JsonObject()
@@ -108,12 +126,15 @@ func saveLearningTaskResult(db: Database, task: JsonObject, result: JsonObject, 
         if (jsonText(answer,"phase")!="contrast" || jsonText(answer,"verdict")!="confirmed_correct" || tutorFlag(answer,"assisted") || !tutorFlag(grading,"can_update_learning") || !tutorFlag(state,"contrast_passed")) { throw ApiError(503,"学习证据未达到更新条件") }
         let question=rowJson("questions",db.query("SELECT * FROM questions WHERE id=? AND user_id=?",[sqlValue(task["question_id"]),Some(owner)]).rows[0])
         let evidence=JsonObject(); evidence.put("near_transfer",JsonBool(true)); evidence.put("hint_level",JsonInt(0)); evidence.put("strategy",JsonString("verified_condition_contrast")); evidence.put("learning_task_id",JsonString(id)); evidence.put("action_request_id",JsonString(requestId))
-        budget.check("before_learning"); applyLearningEvidence(db,owner,question,evidence,computeTimeoutSeconds:budget.timeoutSeconds(5,reserveSeconds:1)); budget.check("after_learning")
+        if (tutorText(state,"workflow_version")!="langgraph-learning-v1") {
+            budget.check("before_learning"); applyLearningEvidence(db,owner,question,evidence,computeTimeoutSeconds:budget.timeoutSeconds(5,reserveSeconds:1)); budget.check("after_learning")
+        }
         // A single contrast is near-transfer evidence, never a claim of full mastery.
         if (db.query("SELECT id FROM review_plans WHERE user_id=? AND question_id=? AND status='pending' LIMIT 1",[Some(owner),sqlValue(task["question_id"])]).rows.isEmpty()) {
             db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()+INTERVAL 3 DAY,3,'单条件对照已独立完成，稍后再确认稳定性','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[Some(newId()),Some(owner),sqlValue(task["question_id"])])
         }
     }
+    applyTaskAemt(db,task,result,budget,eligible)
     if (requestId!="__initial__") {
         db.query("UPDATE learning_task_actions SET result=?,status='applied',updated_at=UTC_TIMESTAMP(6) WHERE task_id=? AND request_id=? AND status='pending'",[Some(result.toString()),Some(id),Some(requestId)])
     }
@@ -147,9 +168,10 @@ func runLearningTask(id: String): Unit {
                 let snapshot=taskSnapshot(tx,stableQuestion,stableOwner); let current=taskRow(tx,id,stableOwner,lock:true)
                 if (!taskLeaseValid(current,stableLease) || !taskValidateVersion(tx,current,snapshot)) { return }
                 let domain=taskContext(tx,taskSource(tx,current,snapshot),stableOwner); domain.put("source_snapshot_id",current["id"])
+                domain.put("action_id",JsonString(id+":"+tutorText(current,"active_request")))
                 if (!jsonEquivalent(prepared["context"],domain)) { throw ApiError(409,"学习依据已更新，需要重新核对") }
                 budget.check("validated")
-                saveLearningTaskResult(tx,current,result,budget,tutorObject(domain,"memory_snapshot")); budget.check("before_commit"); ()
+                saveLearningTaskResult(tx,current,result,budget,tutorObject(domain,"memory_snapshot"),domain); budget.check("before_commit"); ()
             })
         }
     } catch (error: TaskBudgetExceeded) { if (!lease.isEmpty()) { taskFailure(id,owner,questionId,lease,reason:"budget_"+error.stage) } }

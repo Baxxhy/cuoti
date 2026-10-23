@@ -27,5 +27,14 @@ public func rowJson(table: String, row: HashMap<String, Option<String>>): JsonOb
             result.put(key, parsed)
         } else { result.put(key, JsonNull()) }
     }
+    if (table == "questions" && row.contains("title") && row.contains("question_text")) {
+        let title = rowText(row, "title"); let text = rowText(row, "question_text")
+        // Historical auto-titles may be a truncated prefix inside a TeX formula.
+        // Repair the response from the original question without changing stored data.
+        if (!title.isEmpty() && text != title && text.startsWith(title) &&
+            (title.contains("$") || title.contains("\\"))) {
+            result.put("title", JsonString(text))
+        }
+    }
     return result
 }

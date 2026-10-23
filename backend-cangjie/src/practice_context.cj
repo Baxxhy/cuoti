@@ -44,6 +44,14 @@ func practiceServed(db: Database, owner: String, mistake: JsonObject, questionId
 
 func practiceHandwritingContext(db: Database, owner: String, mistakeId: String, questionId: String, mode: String): JsonObject {
     let mistakes=db.query("SELECT * FROM questions WHERE id=? AND user_id=?",[Some(mistakeId),Some(owner)]).rows
+    let generated=db.query("SELECT v.* FROM variant_questions v JOIN tutor_sessions s ON s.id=v.session_id WHERE v.id=? AND v.question_id=? AND s.user_id=? AND s.stage='standalone_practice'",[Some(questionId),Some(mistakeId),Some(owner)]).rows
+    if (!mistakes.isEmpty() && !generated.isEmpty()) {
+        let variant=rowJson("variant_questions",generated[0]); let meta=tutorObject(variant,"generation_metadata")
+        let mistake=rowJson("questions",mistakes[0])
+        if (tutorText(meta,"mode")!=mode || tutorText(meta,"source_version")!=practiceSourceVersion(db,mistake)) { throw ApiError(409,"原题已更新，请重新获取练习") }
+        if (!tutorArray(meta,"options").getItems().isEmpty()) { throw ApiError(422,"选择题请直接选择选项") }
+        let result=JsonObject(); result.put("subject",mistake["subject"]); result.put("text",variant["question_text"]); return result
+    }
     let questions=db.query("SELECT * FROM dataset_questions WHERE id=?",[Some(questionId)]).rows
     if (mistakes.isEmpty() || questions.isEmpty()) { throw ApiError(404,"没有找到这道练习题") }
     let question=rowJson("dataset_questions",questions[0]); practiceServed(db,owner,rowJson("questions",mistakes[0]),questionId,mode)
@@ -74,4 +82,10 @@ func servePracticeImage(context: HttpContext, accounts: Accounts): Unit {
         serveMedia(context,accounts,storageRoot: Some(root),storagePath: Some(relative[root.size+1..]))
     } catch (error: ApiError) { let body=JsonObject(); body.put("detail",JsonString(error.message)); jsonResponse(context,body,status: error.status) }
     catch (_: Exception) { let body=JsonObject(); body.put("detail",JsonString("图片暂时不可用")); jsonResponse(context,body,status: 503) }
+}
+
+// Persist the result, but renew expiring image links whenever it is read.
+func refreshedPracticeReceipt(accounts: Accounts, question: JsonObject, receipt: JsonObject): JsonObject {
+    for ((key,value) in datasetSolutionImages(question,accounts).getFields()) { receipt.put(key,value) }
+    return receipt
 }

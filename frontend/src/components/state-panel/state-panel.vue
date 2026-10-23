@@ -6,9 +6,9 @@
       :content-text="{ contentrefresh: '正在加载' }"
     />
     <template v-else>
-      <uni-icons type="info-filled" size="28" color="#94a3b8" />
+      <uni-icons aria-hidden="true" type="info-filled" size="28" color="#94a3b8" />
       <text>{{ message || '暂时无法加载' }}</text>
-      <button class="ghost-btn" @click="$emit('retry')">{{ retryText }}</button>
+      <button role="button" class="ghost-btn" @click="$emit('retry')">{{ retryText }}</button>
     </template>
   </view>
 </template>

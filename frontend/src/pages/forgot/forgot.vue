@@ -2,15 +2,14 @@
   <view class="page">
     <app-header title="修改登录密码" back back-fallback="/pages/login/login" />
     <view class="page-content">
-      <view class="card">
-        <text class="muted">验证当前密码后，为账号设置新密码。</text>
+      <view class="account-form">
         <account-field
           id="change-email"
           v-model="email"
           label="账号邮箱"
           inputmode="email"
           autocomplete="username"
-          placeholder="student@example.com"
+          placeholder="请输入邮箱"
         />
         <account-field
           id="change-current"
@@ -106,6 +105,10 @@ async function submit() {
 
 <style scoped>
 .page-content {
-  max-width: 500px;
+  max-width: 408px;
+  padding-top: 28px;
+}
+.account-form > :first-child {
+  margin-top: 0;
 }
 </style>

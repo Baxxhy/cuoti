@@ -5,9 +5,10 @@ import re
 from typing import Literal
 
 import sympy as sp
-from app.services.math_tools import normalize_expression, parse_math_expression
-from learning_task_compute import domain_risk, linear_source
 from pydantic import BaseModel, ConfigDict, Field
+
+from learning_core.services.math_tools import normalize_expression, parse_math_expression
+from learning_task_compute import domain_risk, linear_source
 
 
 def linear_task(text: str) -> bool:

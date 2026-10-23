@@ -45,7 +45,7 @@ public class Accounts {
         let token = authorization[7..].trimAscii()
         if (let Some(id) <- readToken(token, secret, None)) {
             let rows = db.query("SELECT * FROM users WHERE id = ?", [Some(id)]).rows
-            if (rows.size == 1 && readToken(token, secret, rows[0]["password_hash"]) == Some(id)) { return rows[0] }
+            if (rows.size == 1 && ["student","admin"].contains(rowText(rows[0],"role")) && readToken(token, secret, rows[0]["password_hash"]) == Some(id)) { return rows[0] }
         }
         throw ApiError(401, "请先使用账号和密码登录")
     }
@@ -91,7 +91,7 @@ public class Accounts {
         let password = textField(body, "password", 256, trim: false)
         try (db = Database.fromEnvironment()) {
             let rows = db.query("SELECT * FROM users WHERE email = ?", [Some(email)]).rows
-            if (rows.isEmpty() || !verifyPassword(password, rowText(rows[0], "password_hash"))) {
+            if (rows.isEmpty() || !["student","admin"].contains(rowText(rows[0],"role")) || !verifyPassword(password, rowText(rows[0], "password_hash"))) {
                 throw ApiError(401, "账号或密码不正确")
             }
             return session(rows[0])
@@ -132,11 +132,28 @@ public class Accounts {
             let user = currentUser(context, db)
             if (context.request.method == "PATCH") {
                 let body = readJson(context)
-                if (body.get("name").isSome()) {
-                    let name = textField(body, "name", 100)
-                    db.query("UPDATE users SET name = ?, updated_at = UTC_TIMESTAMP() WHERE id = ?", [Some(name), user["id"]])
+                taskStrict(body,["name","email","grade","current_password"])
+                let name=if (body.get("name").isSome()) { textField(body,"name",100) } else { rowText(user,"name") }
+                let email=if (body.get("email").isSome()) { emailField(body) } else { rowText(user,"email") }
+                let grade=if (body.get("grade").isSome()) { textField(body,"grade",30) } else { "" }
+                if (!grade.isEmpty() && (rowText(user,"role")!="student" || !["初一","初二","初三","高一","高二","高三"].contains(grade))) { throw ApiError(422,"请选择有效年级") }
+                try {
+                    return db.transaction<JsonValue>({ tx =>
+                        let current=tx.query("SELECT * FROM users WHERE id=? FOR UPDATE",[user["id"]]).rows[0]
+                        if (email!=rowText(current,"email")) {
+                            let password=textField(body,"current_password",256,trim:false)
+                            if (!verifyPassword(password,rowText(current,"password_hash"))) { throw ApiError(422,"当前密码不正确，邮箱未修改") }
+                        }
+                        tx.query("UPDATE users SET name=?,email=?,updated_at=UTC_TIMESTAMP() WHERE id=?",[Some(name),Some(email),user["id"]])
+                        if (!grade.isEmpty()) {
+                            tx.query("UPDATE student_profiles SET grade=?,preferences=JSON_SET(COALESCE(preferences,JSON_OBJECT()),'$.experience_version',COALESCE(JSON_EXTRACT(preferences,'$.experience_version'),0)+1),updated_at=UTC_TIMESTAMP() WHERE user_id=?",[Some(grade),user["id"]])
+                        }
+                        userJson(tx.query("SELECT * FROM users WHERE id=?",[user["id"]]).rows[0])
+                    })
+                } catch (error: DatabaseException) {
+                    if (error.code==1062) { throw ApiError(409,"这个邮箱已被使用，请换一个邮箱") }
+                    throw error
                 }
-                return userJson(db.query("SELECT * FROM users WHERE id = ?", [user["id"]]).rows[0])
             }
             return userJson(user)
         }

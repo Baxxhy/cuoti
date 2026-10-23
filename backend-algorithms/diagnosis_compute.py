@@ -5,13 +5,16 @@ from __future__ import annotations
 import asyncio
 from pathlib import Path
 
-from app.providers.api_pool import ApiPoolProvider
-from app.services.ai_pipeline import diagnose_steps
-from app.services.counterfactual import validate_first_error_counterfactual
-from app.services.diagnosis import align_steps
-from diagnosis_alignment import polynomial_alignment, verify_polynomial_repair
-from inequality_compute import inequality_alignment, verify_inequality_repair
 from pydantic import BaseModel, ConfigDict, Field
+
+from diagnosis_alignment import polynomial_alignment, verify_polynomial_repair
+from error_diagnosis import assess_diagnosis
+from grounded_knowledge import build_knowledge_evidence
+from inequality_compute import inequality_alignment, verify_inequality_repair
+from learning_core.providers.api_pool import ApiPoolProvider
+from learning_core.services.ai_pipeline import diagnose_steps
+from learning_core.services.counterfactual import validate_first_error_counterfactual
+from learning_core.services.diagnosis import align_steps
 
 
 class StepRecord(BaseModel):
@@ -32,6 +35,8 @@ async def compute_diagnosis(
     students: list[StepRecord],
     images: list[Path],
     counterfactual_only: bool = False,
+    knowledge_cards: list[dict] | None = None,
+    grade: str = "",
 ) -> dict:
     alignment = await asyncio.to_thread(
         align_steps, references, students, subject, text
@@ -152,6 +157,14 @@ async def compute_diagnosis(
         "alignment": alignment,
         "counterfactual": counterfactual,
         "logical_model": "Qwen",
+        "evidence_diagnosis": assess_diagnosis(
+            students=students,
+            references=references,
+            alignment=alignment,
+            diagnosis=diagnosis,
+            student_answer=student_answer,
+            knowledge=build_knowledge_evidence(knowledge_cards or [], subject, grade),
+        ).model_dump(mode="json"),
     }
     if diagnosis is not None and not counterfactual_only:
         result["diagnosis"] = diagnosis.model_dump(mode="json")

@@ -3,14 +3,19 @@
     <app-header title="手动录入" back />
     <view class="page-content">
       <view class="form-section">
-        <text class="intro">填写完整题目和原来的作答。含图形的题目建议拍照录入。</text>
+        <text class="intro">含图形的题目请用拍照录入。</text>
         <view class="metadata">
           <view class="field">
             <text class="field-label">学科</text>
             <picker :range="subjects" @change="subject = subjects[Number($event.detail.value)]">
               <view class="picker-value">
                 {{ subject }}
-                <uni-icons type="bottom" size="16" color="var(--color-text-tertiary)" />
+                <uni-icons
+                  aria-hidden="true"
+                  type="bottom"
+                  size="16"
+                  color="var(--color-text-tertiary)"
+                />
               </view>
             </picker>
           </view>
@@ -27,7 +32,12 @@
           >
             <view class="picker-value">
               {{ questionType }}
-              <uni-icons type="bottom" size="16" color="var(--color-text-tertiary)" />
+              <uni-icons
+                aria-hidden="true"
+                type="bottom"
+                size="16"
+                color="var(--color-text-tertiary)"
+              />
             </view>
           </picker>
         </view>
@@ -41,7 +51,8 @@
             class="textarea"
             maxlength="12000"
             auto-height
-            placeholder="请输入完整题干，支持数学公式。"
+            aria-label="完整题目"
+            placeholder="输入题目，公式可用 x²、1/2 等写法"
           />
         </view>
         <view v-if="isChoice" class="field">
@@ -60,6 +71,7 @@
               :placeholder="`填写选项 ${optionLabel(index)}`"
             />
             <button
+              role="button"
               v-if="options.length > 2"
               class="option-remove"
               @click="options.splice(index, 1)"
@@ -67,7 +79,12 @@
               删除
             </button>
           </view>
-          <button v-if="options.length < 8" class="secondary-btn" @click="options.push('')">
+          <button
+            role="button"
+            v-if="options.length < 8"
+            class="secondary-btn"
+            @click="options.push('')"
+          >
             添加选项
           </button>
         </view>
@@ -78,7 +95,8 @@
             class="textarea"
             maxlength="6000"
             auto-height
-            placeholder="填写原来的答案，没有作答可留空"
+            aria-label="我当时的答案"
+            placeholder="未作答可留空"
           />
         </view>
         <view class="field">
@@ -89,14 +107,19 @@
             class="textarea"
             maxlength="12000"
             auto-height
+            aria-label="我的解题步骤"
             placeholder="每行输入一个解题步骤"
           />
         </view>
         <text v-if="error" class="error-text" role="alert">{{ error }}</text>
-        <button class="primary-btn" :disabled="busy || !questionText.trim()" @click="save">
+        <button
+          role="button"
+          class="primary-btn"
+          :disabled="busy || !questionText.trim()"
+          @click="save"
+        >
           {{ busy ? '正在保存…' : '保存并查看错题' }}
         </button>
-        <text class="muted help">保存后可开始错因诊断。补充解题步骤，有助于定位错误。</text>
       </view>
     </view>
   </view>
@@ -196,36 +219,42 @@ onLoad(async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 43px;
+  min-height: 48px;
   box-sizing: border-box;
   padding: 9px 10px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: #fff;
   font-size: 14px;
 }
 .input {
   width: 100%;
-  height: 43px;
-  min-height: 43px;
+  height: 48px;
+  min-height: 48px;
   box-sizing: border-box;
   padding: 9px 10px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: #fff;
   color: var(--color-text-primary);
-  font-size: 14px;
+  font-size: 16px;
 }
 .textarea {
   width: 100%;
-  min-height: 70px;
+  min-height: 100px;
   box-sizing: border-box;
   padding: 10px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   background: #fff;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.75;
+}
+.input:focus-within,
+.textarea:focus-within {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: none;
 }
 .required,
 .error-text {

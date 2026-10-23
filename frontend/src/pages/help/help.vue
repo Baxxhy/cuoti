@@ -1,11 +1,11 @@
 <template>
   <view class="page">
-    <app-header title="使用指南" subtitle="知道每个功能何时用" back />
+    <app-header title="使用指南" back />
     <view class="page-content">
       <view v-for="section in sections" :key="section.title" class="help-section">
         <h2>{{ section.title }}</h2>
         <text>{{ section.content }}</text>
-        <button v-if="section.url" class="secondary-btn" @click="go(section.url)">
+        <button role="button" v-if="section.url" class="secondary-btn" @click="go(section.url)">
           {{ section.action }}
         </button>
       </view>
@@ -37,7 +37,7 @@ const sections = [
   {
     title: '怎样判断是否学会',
     content:
-      '看完解析、收藏、完成对话或导出试卷，都不代表掌握。学习档案记录理解检查、独立练习和复习证据；使用提示或判题待核对时，仍需继续验证。',
+      '看完解析后，试着不看提示重新做一遍，再通过类似题和后续复习巩固。学习记录会保留作答结果；判题待核对时，先确认答案再继续。',
   },
   {
     title: '考前集中整理',
@@ -54,7 +54,7 @@ const sections = [
   {
     title: '遇到问题怎么办',
     content:
-      '加载失败可重试；提交失败时先保留当前作答再重试。题目和原作答修改后，旧的学习结果可能不再适用，请按新的题目重新验证。',
+      '加载失败可重试；提交失败时先保留当前作答再重试。题目和原作答修改后，请按修改后的题目重新作答。',
   },
 ]
 </script>

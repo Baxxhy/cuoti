@@ -3,31 +3,48 @@
     <app-header :title="hasStudentWork ? '错因诊断' : '本题解析'" back />
 
     <!-- 加载 / 错误 -->
-    <state-panel v-if="!item" :state="error ? 'error' : 'loading'" @retry="load" />
+    <state-panel
+      v-if="!item"
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先选择一道错题' : undefined"
+      :retry-text="!id ? '选择错题' : '重新加载'"
+      @retry="id ? load() : go('/pages/problem/list')"
+    />
 
     <view v-else class="page-content">
-      <button
-        aria-label="逐步回放这次作答"
-        role="button"
-        tabindex="0"
-        v-if="diagnosis && hasStudentWork"
-        class="disclosure-link"
-        @keydown.enter.prevent="go(`/pages/replay/replay?id=${id}`)"
-        @keydown.space.prevent
-        @keyup.space.prevent="go(`/pages/replay/replay?id=${id}`)"
-        @click="go(`/pages/replay/replay?id=${id}`)"
-      >
-        逐步回放这次作答
-        <uni-icons type="right" size="18" />
-      </button>
       <text v-if="entryError" class="account-notice" role="alert">{{ entryError }}</text>
       <text v-if="repairEvidenceNotice" class="evidence-caption" role="status">
         {{ repairEvidenceNotice }}
       </text>
+      <view v-if="evidenceSummary" class="summary-card">
+        <text class="summary-kicker">
+          {{ evidenceSummary.title }}
+        </text>
+        <math-text :text="evidenceSummary.reason" />
+        <text v-if="evidenceSummary.question" class="status-message">
+          {{ evidenceSummary.question }}
+        </text>
+      </view>
       <!-- =====================================================
            已有诊断
       ====================================================== -->
-      <template v-if="diagnosis && hasStudentWork">
+      <view
+        v-if="generating || generationError"
+        class="empty-card"
+        role="status"
+        aria-live="polite"
+      >
+        <text class="empty-title">
+          {{ generating ? (hasStudentWork ? '正在分析错因' : '正在生成本题解析') : '分析未完成' }}
+        </text>
+        <text class="empty-desc">
+          {{ generating ? '分析完成后会自动展示结果，请稍候。' : generationError }}
+        </text>
+        <button v-if="!generating" role="button" class="primary-btn" @click="generate">
+          重新分析
+        </button>
+      </view>
+      <template v-else-if="diagnosis && hasStudentWork">
         <!-- 仅有选择答案时，不能凭空编造学生的解题步骤。 -->
         <template v-if="diagnosisState.kind !== 'finding'">
           <view class="summary-card">
@@ -46,7 +63,7 @@
             @keydown.space.prevent
             @keyup.space.prevent="continueFromSummary"
           >
-            {{ busy ? '正在准备…' : diagnosisState.kind === 'clear' ? '继续学习' : '查看本题知识' }}
+            {{ busy ? '正在准备…' : diagnosisState.kind === 'clear' ? '重新作答' : '查看相关知识' }}
           </button>
           <button
             v-if="diagnosisState.kind === 'clear'"
@@ -56,9 +73,14 @@
             @click="openKnowledgeGraph"
             @keydown.enter.prevent="openKnowledgeGraph"
           >
-            查看本题知识
+            查看相关知识
           </button>
-          <button class="secondary-btn" :aria-expanded="showPath" @click="showPath = !showPath">
+          <button
+            role="button"
+            class="secondary-btn"
+            :aria-expanded="showPath"
+            @click="showPath = !showPath"
+          >
             {{ showPath ? '收起参考过程' : '查看参考过程' }}
           </button>
           <view v-if="showPath" class="solution-card">
@@ -72,11 +94,15 @@
           <view class="answer-summary-card">
             <view class="answer-row">
               <text class="answer-label">你的作答</text>
-              <text class="answer-value">{{ studentAnswer }}</text>
+              <math-text class="answer-value" :text="studentAnswer" inline />
             </view>
             <view class="answer-row correct-answer-row">
               <text class="answer-label">正确答案</text>
-              <text class="answer-value correct-answer">{{ finalAnswer || '待确认' }}</text>
+              <math-text
+                class="answer-value correct-answer"
+                :text="finalAnswer || '待确认'"
+                inline
+              />
             </view>
           </view>
 
@@ -85,7 +111,7 @@
           </view>
           <view class="reason-card">
             <math-text class="option-quote" :text="focusOptionText" />
-            <text class="analysis-lead">AI 判断</text>
+            <text class="analysis-lead">可能错因</text>
             <math-text
               v-for="(line, index) in choiceReasonLines"
               :key="index"
@@ -94,10 +120,17 @@
             />
           </view>
 
-          <view class="section-title"><text>正确判断</text></view>
+          <view class="section-title">
+            <text>正确答案与判断依据</text>
+          </view>
           <view class="thought-card correct-thought">
             <view class="thought-mark">
-              <uni-icons type="checkmarkempty" size="20" color="var(--color-primary)" />
+              <uni-icons
+                aria-hidden="true"
+                :type="modelReviewPending ? 'help' : 'checkmarkempty'"
+                size="20"
+                color="var(--color-primary)"
+              />
             </view>
             <math-text class="thought-text" :text="choiceCorrection" />
           </view>
@@ -113,7 +146,7 @@
             @keydown.space.prevent
             @keyup.space.prevent="startLearning"
           >
-            {{ busy ? '正在准备…' : '修正这个问题' }}
+            {{ busy ? '正在准备…' : '开始订正' }}
           </button>
 
           <text class="more-label">补充信息</text>
@@ -121,6 +154,7 @@
             <view class="secondary-row" @click="showPath = !showPath">
               <view><text class="secondary-title">查看完整解题过程</text></view>
               <uni-icons
+                aria-hidden="true"
                 :type="showPath ? 'top' : 'bottom'"
                 size="18"
                 color="var(--color-text-tertiary)"
@@ -137,6 +171,7 @@
             <view class="secondary-row detail-row" @click="showDetails = !showDetails">
               <view><text class="secondary-title">查看 AI 判断依据</text></view>
               <uni-icons
+                aria-hidden="true"
                 :type="showDetails ? 'top' : 'bottom'"
                 size="18"
                 color="var(--color-text-tertiary)"
@@ -183,7 +218,12 @@
 
           <view class="thought-card student-thought">
             <view class="thought-mark">
-              <uni-icons type="closeempty" size="20" color="var(--color-error)" />
+              <uni-icons
+                aria-hidden="true"
+                type="closeempty"
+                size="20"
+                color="var(--color-error)"
+              />
             </view>
             <math-text class="thought-text" :text="studentThought" />
           </view>
@@ -220,6 +260,7 @@
           <view class="thought-card correct-thought">
             <view class="thought-mark">
               <uni-icons
+                aria-hidden="true"
                 :type="manualReferencePending || modelReviewPending ? 'help' : 'checkmarkempty'"
                 size="20"
                 color="var(--color-primary)"
@@ -240,7 +281,7 @@
             @keydown.space.prevent
             @keyup.space.prevent="startLearning"
           >
-            {{ busy ? '正在准备…' : '开始修正错误' }}
+            {{ busy ? '正在准备…' : '开始订正' }}
           </button>
 
           <!-- =====================================================
@@ -256,6 +297,7 @@
               </view>
 
               <uni-icons
+                aria-hidden="true"
                 :type="showPath ? 'top' : 'bottom'"
                 size="18"
                 color="var(--color-text-tertiary)"
@@ -326,6 +368,7 @@
               </view>
 
               <uni-icons
+                aria-hidden="true"
                 :type="showDetails ? 'top' : 'bottom'"
                 size="18"
                 color="var(--color-text-tertiary)"
@@ -365,7 +408,12 @@
 
             <view class="secondary-row detail-row" @click="openKnowledgeGraph">
               <view><text class="secondary-title">知识关联</text></view>
-              <uni-icons type="right" size="18" color="var(--color-text-tertiary)" />
+              <uni-icons
+                aria-hidden="true"
+                type="right"
+                size="18"
+                color="var(--color-text-tertiary)"
+              />
             </view>
           </view>
         </template>
@@ -429,7 +477,7 @@
           <text v-if="correctionError" class="account-notice" role="alert">
             {{ correctionError }}
           </text>
-          <button class="primary-btn" :disabled="busy" @click="saveCorrection">
+          <button role="button" class="primary-btn" :disabled="busy" @click="saveCorrection">
             {{ busy ? '正在保存…' : '保存修正' }}
           </button>
         </view>
@@ -473,17 +521,43 @@
       </template>
 
       <view v-else class="empty-card">
-        <text class="empty-title">正在整理本题解析</text>
-        <text class="empty-desc">题目解析完成后，会在这里展示正确思路。</text>
-        <button class="primary-btn" :disabled="busy" @click="generate">
-          {{ busy ? '正在分析…' : '生成本题解析' }}
+        <text class="empty-title">{{ item.confirmed ? '尚未生成解析' : '请先确认题目' }}</text>
+        <text class="empty-desc">
+          {{
+            item.confirmed
+              ? '重新分析后，会在这里展示结果。'
+              : '核对题干与作答并保存后，即可开始分析。'
+          }}
+        </text>
+        <button
+          role="button"
+          class="primary-btn"
+          :disabled="busy"
+          @click="item.confirmed ? generate() : go(`/pages/ocr/ocr?id=${id}`)"
+        >
+          {{ item.confirmed ? '重新分析' : '核对题目' }}
         </button>
       </view>
+      <button
+        aria-label="错因回放"
+        role="button"
+        tabindex="0"
+        v-if="diagnosis && hasStudentWork"
+        class="disclosure-link"
+        @keydown.enter.prevent="go(`/pages/replay/replay?id=${id}`)"
+        @keydown.space.prevent
+        @keyup.space.prevent="go(`/pages/replay/replay?id=${id}`)"
+        @click="go(`/pages/replay/replay?id=${id}`)"
+      >
+        错因回放
+        <uni-icons aria-hidden="true" type="right" size="18" />
+      </button>
     </view>
   </view>
 </template>
 
 <script setup>
+import MathText from '@/components/math-text/math-text.vue'
 import { computed, reactive, ref } from 'vue'
 
 import { onLoad, onShow, onHide, onUnload } from '@dcloudio/uni-app'
@@ -493,7 +567,12 @@ import { getData, patchData, postData } from '@/api/index.js'
 import { ERROR_TYPE_LABELS, errorTypeLabel } from '@/constants/education.js'
 
 import { go } from '@/utils/navigation.js'
-import { diagnosisView } from '@/utils/diagnosis.js'
+import {
+  diagnosisView,
+  diagnosisReason,
+  diagnosisEvidenceView,
+  choiceCorrectionText,
+} from '@/utils/diagnosis.js'
 import { requestLearningTask } from '@/utils/task-entry.js'
 
 /* =========================================================
@@ -512,6 +591,8 @@ const editing = ref(false)
 const correctionError = ref('')
 
 const busy = ref(false)
+const generating = ref(false)
+const generationError = ref('')
 const entryError = ref('')
 let active = false,
   revision = 0
@@ -540,16 +621,17 @@ const correction = reactive({
 
 const diagnosis = computed(() => item.value?.diagnosis)
 const diagnosisState = computed(() => diagnosisView(item.value))
+const evidenceSummary = computed(() => diagnosisEvidenceView(item.value))
 const repairEvidenceNotice = computed(() => {
   const evidence = diagnosis.value?.counterfactual
-  if (evidence?.stale_after_correction) return '你已修正诊断，原有修复建议需要重新核对。'
-  if (evidence?.legacy_review_required) return '这是历史修复建议，请结合原题重新核对。'
+  if (evidence?.stale_after_correction) return '错因已修改，请重新核对订正建议。'
+  if (evidence?.legacy_review_required) return '这是之前的订正建议，请结合原题核对。'
   if (evidence?.verification_method === 'qwen_proposal_requires_review')
-    return '这是 AI 提出的诊断与修复建议，尚未经本地规则验证，请结合原题核对。'
+    return '以下是 AI 建议，尚未验证是否正确，请对照原题核对。'
   if (evidence?.preserved_prefix === false)
-    return '这份修复改动了前面正确的步骤，请保留原作答再核对。'
+    return '建议中改动了你前面正确的步骤，请对照原作答核对。'
   if (evidence?.reference_consistent && !evidence.root_cause_confirmed)
-    return '修复建议与参考过程一致，仍需结合原题核对。'
+    return '订正建议与参考解法一致，但错因仍需你确认。'
   return ''
 })
 
@@ -716,8 +798,11 @@ const firstEvidence = computed(() => {
 })
 
 const studentThought = computed(() => {
+  const index = diagnosis.value?.first_error_step
+  const recorded = Number.isInteger(index) ? item.value?.student_steps?.[index]?.text : ''
+  if (String(recorded || '').trim()) return recorded
   const step = String(diagnosis.value?.first_error_text || '').trim()
-  return step || '尚未定位到具体步骤，请结合本次作答核对。'
+  return step || String(item.value?.student_answer || '').trim() || '请结合本次作答核对。'
 })
 
 const verifiedRepairText = computed(() => {
@@ -742,14 +827,22 @@ const manualReference = computed(() => {
 const manualReferencePending = computed(() =>
   Boolean(diagnosis.value?.user_confirmed && !verifiedRepairText.value && !manualReference.value),
 )
-const modelReviewPending = computed(
-  () =>
-    diagnosis.value?.counterfactual?.verification_method === 'qwen_proposal_requires_review' &&
-    !verifiedRepairText.value,
-)
+const modelReviewPending = computed(() => {
+  const repair = diagnosis.value?.counterfactual
+  return Boolean(
+    repair &&
+      !verifiedRepairText.value &&
+      (repair.verification_method === 'qwen_proposal_requires_review' ||
+        repair.legacy_review_required ||
+        repair.stale_after_correction ||
+        repair.preserved_prefix === false),
+  )
+})
 
 const correctThought = computed(() => {
   if (verifiedRepairText.value) return verifiedRepairText.value
+  if (!hasStudentSteps.value && finalAnswer.value)
+    return `参考答案：${finalAnswer.value}。${diagnosis.value?.recommended_strategy || ''}`
   const evidence = { ...firstEvidence.value, ...firstEvidence.value?.metadata_json }
   if (diagnosis.value?.user_confirmed) {
     return manualReference.value?.text || '暂无与你标记步骤对应的参考，请结合原题重新核对。'
@@ -769,9 +862,7 @@ const correctThought = computed(() => {
 })
 
 const choiceReasonLines = computed(() => {
-  const reason = String(diagnosis.value?.root_misconception || '')
-    .replace(/\s+/g, ' ')
-    .trim()
+  const reason = diagnosisReason(item.value).replace(/\s+/g, ' ').trim()
   if (reason && !/没有完整说明|规则还没有掌握牢|需要重新检查/.test(reason)) {
     return reason
       .split(/[。；;！!]/)
@@ -787,17 +878,11 @@ const choiceReasonLines = computed(() => {
 })
 
 const choiceCorrection = computed(() => {
-  const reference = solutionSteps.value.find((step) =>
-    new RegExp(`(?:选项)?${focusOptionLabel.value}[^。；;]*`).test(step),
-  )
-  if (reference) return conciseText(reference, '判断选项时，要逐条核对题目条件。', 120)
-  return diagnosis.value?.recommended_strategy || '判断选项时，要逐条核对题目条件。'
+  return choiceCorrectionText(item.value, correctOptionLabels.value)
 })
 
 const reasonLines = computed(() => {
-  const raw = String(diagnosis.value?.root_misconception || '')
-    .replace(/\s+/g, ' ')
-    .trim()
+  const raw = diagnosisReason(item.value).replace(/\s+/g, ' ').trim()
   if (!raw) return ['这一步的规则还没有掌握牢。']
 
   const misconception = raw.match(/^对(.+?)理解不深[，,]\s*误以为(.+?)[。.]?$/)
@@ -832,9 +917,9 @@ const repairTips = computed(() => {
 })
 
 function conciseText(value, fallback, limit = 42) {
-  const text = String(value || '')
-    .replace(/\s+/g, ' ')
-    .trim()
+  const source = String(value || '')
+  if (/[$\\]/.test(source)) return source || fallback
+  const text = source.replace(/\s+/g, ' ').trim()
   if (!text) return fallback
   const firstSentence = text.split(/[。；;！!]/)[0].trim()
   return firstSentence.length > limit ? `${firstSentence.slice(0, limit)}…` : firstSentence
@@ -884,7 +969,7 @@ function stepCaption(step, index) {
    加载
 ========================================================= */
 
-async function load() {
+async function load(autoGenerate = true) {
   if (!active || !id.value) return
   const current = ++revision,
     questionId = id.value
@@ -895,6 +980,14 @@ async function load() {
     const next = await getData(`/questions/${questionId}`)
     if (!active || current !== revision) return
     item.value = next
+    const needsAnalysis =
+      next?.confirmed && (hasStudentWork.value ? !next.diagnosis : !solutionAvailable.value)
+    if (needsAnalysis) {
+      if (autoGenerate && !generationError.value) await generate()
+      else if (!autoGenerate) generationError.value = '分析结果暂未就绪，请重新分析。'
+      return
+    }
+    generationError.value = ''
     if (next?.diagnosis && !next.diagnosis.counterfactual) {
       verifying.value = true
       try {
@@ -916,18 +1009,22 @@ async function load() {
 ========================================================= */
 
 async function generate() {
-  if (busy.value) return
+  if (busy.value || !active || !item.value?.confirmed) return
   busy.value = true
-  const current = revision,
-    questionId = id.value
+  generating.value = true
+  generationError.value = ''
+  const questionId = id.value
+  const operation = hasStudentWork.value ? 'diagnose' : 'analyze'
   try {
-    await postData(`/questions/${questionId}/analyze`, {})
-    if (!active || current !== revision) return
-    await postData(`/questions/${questionId}/diagnose`, {})
-    if (active && current === revision) await load()
+    // The diagnosis endpoint creates a missing analysis itself. One request
+    // also keeps an existing reference explanation intact.
+    await postData(`/questions/${questionId}/${operation}`, {}, { silent: true, timeout: 180000 })
+    if (active && id.value === questionId) await load(false)
   } catch (err) {
-    if (active) uni.showToast({ title: err.message || '分析未完成，请重试', icon: 'none' })
+    if (active && id.value === questionId)
+      generationError.value = err.message || '分析未完成，请重试。'
   } finally {
+    generating.value = false
     busy.value = false
   }
 }
@@ -1134,8 +1231,8 @@ onUnload(leave)
 .option-quote {
   display: block;
   padding: 9px 10px;
-  border-left: 1.5px solid var(--color-border);
-  background: #fff;
+  border-radius: 8px;
+  background: var(--color-surface);
   font-size: 14px;
   line-height: 1.75;
 }
@@ -1144,8 +1241,8 @@ onUnload(leave)
   align-items: flex-start;
   gap: 8px;
   padding: 11px 10px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4px;
+  border: 0;
+  border-radius: 8px;
   background: #fff;
 }
 .thought-mark {
@@ -1163,10 +1260,10 @@ onUnload(leave)
   line-height: 1.75;
 }
 .student-thought {
-  border-left: 1.5px solid var(--color-error);
+  background: var(--color-error-soft);
 }
 .correct-thought {
-  border-left: 1.5px solid var(--color-primary);
+  background: var(--color-primary-soft);
 }
 .tutor-btn {
   margin-top: 14px;

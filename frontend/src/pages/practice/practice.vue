@@ -1,50 +1,55 @@
 <template>
   <view class="page practice-workspace">
-    <app-header title="针对练习" subtitle="围绕本题知识点练一练" back />
+    <app-header title="类似题练习" back />
     <view class="page-content">
-      <button
-        aria-label="本题修复路线"
-        v-if="mistakeId"
-        class="disclosure-link"
-        role="button"
-        tabindex="0"
-        @click="go(`/pages/repair/repair?id=${mistakeId}`)"
-        @keydown.enter.prevent="go(`/pages/repair/repair?id=${mistakeId}`)"
-      >
-        本题修复路线
-        <uni-icons type="right" size="18" />
-      </button>
       <view v-if="loading" class="loading-panel">
         <state-panel state="loading" />
-        <text class="loading-hint">正在挑选合适练习，首次匹配可能较慢</text>
+        <text class="loading-hint">正在准备类似题</text>
+        <button role="button" class="secondary-btn" @click="go('/pages/bank/bank')">
+          去题库选题
+        </button>
       </view>
       <view v-else-if="error" class="card empty-card">
-        <b>{{ missingTarget ? '先确认这道题的知识点' : '暂时没有匹配到合适题目' }}</b>
+        <b>{{ missingTarget ? '先确认这道题的知识点' : '暂时无法开始练习' }}</b>
         <text>{{ error }}</text>
         <button
+          role="button"
           v-if="missingTarget"
-          class="secondary-btn"
+          class="primary-btn"
           @click="go(`/pages/detail/detail?id=${encodeURIComponent(mistakeId)}`)"
         >
           核对这道错题
         </button>
-        <button v-else class="secondary-btn" @click="loadQuestion()">重新匹配</button>
+        <button
+          role="button"
+          :class="missingTarget ? 'secondary-btn' : 'primary-btn'"
+          @click="go('/pages/bank/bank')"
+        >
+          去题库选题
+        </button>
+        <button
+          v-if="!missingTarget && mistakeId"
+          role="button"
+          class="secondary-btn"
+          @click="loadQuestion()"
+        >
+          重新匹配
+        </button>
       </view>
       <template v-else-if="question">
+        <text v-if="draftNotice" class="practice-notice" role="status">{{ draftNotice }}</text>
         <view class="context-row">
           <text>{{ question.subject }}</text>
           <text>{{ modeLabel }}</text>
         </view>
         <view class="card question-card">
           <text class="source">
-            {{ question.grade }} · {{ questionTypeLabel(question.question_type) }}
+            {{ questionTypeLabel(question.question_type) }}
           </text>
-          <math-text class="question-stem" :text="question.stem" inline />
-          <image
-            v-for="image in question.images || []"
-            :key="image"
-            :src="mediaUrl(image)"
-            mode="widthFix"
+          <question-content
+            class="question-stem"
+            :text="question.stem"
+            :images="question.images || []"
           />
           <checkbox-group
             v-if="multiple && options.length"
@@ -56,9 +61,15 @@
                 :value="option.label"
                 :checked="selectedOptions.includes(option.label)"
                 :disabled="submitting || !!result"
-                color="#002FA7"
+                color="var(--color-primary)"
               />
-              <math-text class="option-text" :text="`${option.label}. ${option.text}`" inline />
+              <question-content
+                class="option-text"
+                :text="`${option.label}. ${option.text}`"
+                :images="option.image_urls || []"
+                :image-label="`选项${option.label}配图`"
+                :previewable="!!result"
+              />
             </label>
           </checkbox-group>
           <radio-group v-else-if="options.length" @change="answer = $event.detail.value">
@@ -67,13 +78,21 @@
                 :value="option.label"
                 :checked="answer === option.label"
                 :disabled="submitting || !!result"
-                color="#002FA7"
+                color="var(--color-primary)"
               />
-              <math-text class="option-text" :text="`${option.label}. ${option.text}`" inline />
+              <question-content
+                class="option-text"
+                :text="`${option.label}. ${option.text}`"
+                :images="option.image_urls || []"
+                :image-label="`选项${option.label}配图`"
+                :previewable="!!result"
+              />
             </label>
           </radio-group>
           <template v-else>
             <written-answer
+              v-if="!result"
+              :disabled="submitting"
               ref="writtenAnswer"
               v-model="answer"
               placeholder="写下答案和关键步骤"
@@ -82,6 +101,18 @@
               @handwriting-change="onHandwritingChange"
               @uploading-change="uploadingHandwriting = $event"
             />
+            <view v-else class="submitted-answer">
+              <text class="submitted-label">我的作答</text>
+              <math-text :text="answer" inline />
+              <button
+                v-if="handwritingImage"
+                role="button"
+                class="text-action"
+                @click="previewHandwriting"
+              >
+                查看作答照片
+              </button>
+            </view>
           </template>
         </view>
         <view
@@ -90,14 +121,33 @@
           :class="{ correct: result.correct === true, pending: !result.can_update_learning }"
         >
           <b>{{ resultTitle }}</b>
-          <text>{{ result.feedback }}</text>
-          <math-text v-if="result.answer" class="reference" :text="`参考答案：${displayAnswer}`" />
-          <text v-if="result.mastery !== undefined && result.mastery !== null">
+          <math-text v-if="resultFeedback" :text="resultFeedback" inline />
+          <question-content
+            v-if="result.answer || result.answer_image_urls?.length"
+            class="reference"
+            :text="`参考答案：${displayAnswer}`"
+            :images="result.answer_image_urls || []"
+            image-label="答案图"
+          />
+          <question-content
+            v-if="result.solution || result.solution_image_urls?.length"
+            class="reference"
+            :text="result.solution"
+            :images="result.solution_image_urls || []"
+            image-label="解析图"
+            :inline="false"
+          />
+          <text v-if="result.learning_note">{{ result.learning_note }}</text>
+          <text v-else-if="result.mastery !== undefined && result.mastery !== null">
             掌握状态：{{ Math.round(result.mastery_before * 100) }}% →
             {{ Math.round(result.mastery * 100) }}%
           </text>
-          <text v-else-if="!result.can_update_learning">这次不会更新掌握度、错因或复习计划。</text>
+          <text v-else-if="!result.can_update_learning">本次作答已保存，暂不更新掌握情况。</text>
         </view>
+        <text v-if="submitError" class="practice-error" role="alert">{{ submitError }}</text>
+        <button v-if="staleQuestion" role="button" class="secondary-btn" @click="loadQuestion()">
+          重新获取练习
+        </button>
         <button
           v-if="!result"
           role="button"
@@ -110,26 +160,44 @@
         </button>
         <button v-else role="button" class="primary-btn" @click="nextQuestion">再练一道</button>
         <button
+          role="button"
           v-if="result && !result.can_update_learning"
           class="secondary-btn switch-mode"
           @click="result = null"
         >
           修改后重新提交
         </button>
-        <button v-if="result" class="secondary-btn switch-mode" @click="switchMode">
+        <button role="button" v-if="result" class="secondary-btn switch-mode" @click="switchMode">
           {{ mode === 'reinforce' ? '换个问法试试' : '再做一道类似的' }}
         </button>
       </template>
+      <button
+        aria-label="学习安排"
+        v-if="mistakeId"
+        class="disclosure-link"
+        role="button"
+        tabindex="0"
+        @click="go(`/pages/repair/repair?id=${mistakeId}`)"
+        @keydown.enter.prevent="go(`/pages/repair/repair?id=${mistakeId}`)"
+      >
+        学习安排
+        <uni-icons aria-hidden="true" type="right" size="18" />
+      </button>
     </view>
   </view>
 </template>
 
 <script setup>
+import { learningFeedback } from '@/utils/learning-feedback.js'
+import MathText from '@/components/math-text/math-text.vue'
+import QuestionContent from '@/components/question-content/question-content.vue'
 import WrittenAnswer from '@/components/written-answer/written-answer.vue'
 
-import { computed, ref } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
-import { mediaUrl, postData } from '@/api/index.js'
+import { computed, ref, watch, nextTick } from 'vue'
+import { onLoad, onUnload } from '@dcloudio/uni-app'
+import { postData, mediaUrl } from '@/api/index.js'
+import { useAppStore } from '@/store/index.js'
+import { readTaskDraft, saveTaskDraft } from '@/utils/task-draft.js'
 import { go } from '@/utils/navigation.js'
 import {
   choiceAnswer,
@@ -137,6 +205,25 @@ import {
   normalizeOptions,
   questionTypeLabel,
 } from '@/utils/question.js'
+const store = useAppStore()
+const staleQuestion = ref(false)
+const submitError = ref(''),
+  draftNotice = ref('')
+let active = true,
+  restoringDraft = false
+const practiceDraftId = () => `practice:${mistakeId.value}:${mode.value}`
+const questionStamp = () =>
+  JSON.stringify([question.value?.question_id, question.value?.stem, question.value?.options])
+function savePracticeDraft() {
+  if (!active || restoringDraft || loading.value || !question.value || !store.user?.id) return
+  const saved = saveTaskDraft(store.user.id, practiceDraftId(), {
+    fingerprint: questionStamp(),
+    text: result.value?.can_update_learning ? '' : answer.value,
+    image: result.value ? '' : handwritingImage.value,
+    recognition: result.value ? null : handwritingRecognition.value,
+  })
+  if (!saved) draftNotice.value = '本机暂时无法保存草稿，请先提交再离开。'
+}
 const mistakeId = ref(''),
   mode = ref('reinforce'),
   question = ref(null),
@@ -166,10 +253,16 @@ const displayAnswer = computed(() =>
 )
 const resultTitle = computed(() => {
   if (!result.value?.can_update_learning)
-    return result.value?.verdict === 'probably_correct'
-      ? '可能正确，暂不计入学习记录'
-      : '需要核对，暂不判对错'
-  return result.value?.correct ? '答对了，这个方法正在变稳' : '这次还需要再核对一步'
+    return result.value?.verdict === 'probably_correct' ? '答案还需核对' : '结果待核对'
+  return result.value?.correct ? '答对了' : '答案还不正确'
+})
+const resultFeedback = computed(() => {
+  const feedback = learningFeedback(result.value?.feedback)
+  return String(feedback || '')
+    .replace(/[。！.!]/g, '')
+    .trim() === resultTitle.value
+    ? ''
+    : feedback
 })
 const handwritingContext = computed(() => ({
   context_type: 'practice',
@@ -177,6 +270,13 @@ const handwritingContext = computed(() => ({
   mistake_id: mistakeId.value,
   mode: mode.value,
 }))
+function previewHandwriting() {
+  if (handwritingImage.value)
+    uni.previewImage({
+      urls: [mediaUrl(handwritingImage.value)],
+      current: mediaUrl(handwritingImage.value),
+    })
+}
 function resetHandwriting() {
   writtenAnswer.value?.reset()
   handwritingImage.value = ''
@@ -185,36 +285,72 @@ function resetHandwriting() {
 function onHandwritingChange(value) {
   handwritingImage.value = value.image_url || ''
   handwritingRecognition.value = value.recognition || null
+  savePracticeDraft()
 }
 async function loadQuestion(forceNew = false) {
+  if (!mistakeId.value) {
+    error.value = '请从错题详情选择类似题练习，也可以直接去题库选题。'
+    return
+  }
   if (loading.value) return
+  savePracticeDraft()
   loading.value = true
   error.value = ''
+  submitError.value = ''
+  staleQuestion.value = false
+  draftNotice.value = ''
   missingTarget.value = false
   answer.value = ''
   selectedOptions.value = []
   result.value = null
   resetHandwriting()
   try {
-    question.value = await postData(
+    if (!store.user) await store.loadUser()
+    const next = await postData(
       '/practice/recommend',
       { mistake_id: mistakeId.value, mode: mode.value, force_new: forceNew },
-      { timeout: 300000 },
+      { timeout: 300000, silent: true },
     )
+    if (!active) return
+    question.value = next
+    if (!forceNew && next.previous_result) {
+      result.value = next.previous_result
+      answer.value = typeof next.previous_answer === 'string' ? next.previous_answer : ''
+      selectedOptions.value = answer.value.split('、').filter(Boolean)
+      draftNotice.value = '已恢复上次的作答结果。'
+    } else if (!forceNew) {
+      const draft = readTaskDraft(store.user.id, practiceDraftId(), questionStamp())
+      restoringDraft = true
+      answer.value = draft.text || ''
+      selectedOptions.value = answer.value.split('、').filter(Boolean)
+      handwritingImage.value = draft.image || ''
+      handwritingRecognition.value = draft.recognition || null
+      await nextTick()
+      if (handwritingImage.value)
+        writtenAnswer.value?.restore({
+          image_url: handwritingImage.value,
+          recognition: handwritingRecognition.value,
+        })
+      restoringDraft = false
+      if (answer.value) draftNotice.value = '已恢复未提交的作答。'
+    }
     startedAt.value = Date.now()
   } catch (exc) {
+    if (!active) return
     question.value = null
     missingTarget.value = exc?.statusCode === 422
-    error.value = exc?.message || '请确认真实题库检索服务已经启动'
+    error.value = exc?.message || '暂时无法匹配练习，请重试或去题库选题。'
   } finally {
     loading.value = false
   }
 }
 async function submit() {
-  if (submitting.value || !answer.value.trim()) return
+  if (submitting.value || uploadingHandwriting.value || !question.value || !answer.value.trim())
+    return
   submitting.value = true
+  submitError.value = ''
   try {
-    result.value = await postData('/practice/attempt', {
+    const receipt = await postData('/practice/attempt', {
       question_id: question.value.question_id,
       student_answer: answer.value,
       mistake_id: mistakeId.value,
@@ -223,8 +359,14 @@ async function submit() {
       handwriting_image_url: handwritingImage.value,
       handwriting_recognition: handwritingRecognition.value,
     })
+    if (!active) return
+    result.value = receipt
+    savePracticeDraft()
   } catch (exc) {
-    if (exc?.statusCode === 409) error.value = exc.message || '学习目标已变化，请重新匹配练习'
+    if (active) {
+      submitError.value = exc.message || '提交失败，答案已保留，请重试。'
+      staleQuestion.value = exc?.statusCode === 409
+    }
   } finally {
     submitting.value = false
   }
@@ -234,8 +376,24 @@ function nextQuestion() {
 }
 function switchMode() {
   mode.value = mode.value === 'reinforce' ? 'variation' : 'reinforce'
+  // #ifdef H5
+  // Keep refresh/deep-link recovery on the mode the student actually selected.
+  const [route, query = ''] = window.location.hash.split('?')
+  const params = new URLSearchParams(query)
+  params.set('mode', mode.value)
+  window.history.replaceState(
+    window.history.state,
+    '',
+    `${window.location.pathname}${window.location.search}${route}?${params.toString()}`,
+  )
+  // #endif
   loadQuestion(true)
 }
+watch(answer, savePracticeDraft)
+onUnload(() => {
+  savePracticeDraft()
+  active = false
+})
 onLoad((query) => {
   mistakeId.value = query.id
   mode.value = query.mode === 'variation' ? 'variation' : 'reinforce'
@@ -244,6 +402,29 @@ onLoad((query) => {
 </script>
 
 <style scoped lang="scss">
+.submitted-answer {
+  padding: 12px 0;
+}
+.submitted-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+.practice-error,
+.practice-notice {
+  display: block;
+  margin: 12px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.practice-error {
+  color: var(--color-error);
+}
+.practice-notice {
+  color: var(--color-text-secondary);
+}
+
 .loading-panel {
   text-align: center;
 }
@@ -294,22 +475,22 @@ onLoad((query) => {
   flex: 1;
   line-height: 1.6;
 }
+.option :deep(.content-image) {
+  max-width: 180px;
+}
 .question-card :deep(.written-answer) {
   display: block;
   margin-top: 22rpx;
 }
 .result-card {
   margin-top: 20rpx;
-  border-left: 6rpx solid var(--color-warning);
   background: var(--color-warning-soft);
 }
 .result-card.correct {
-  border-left-color: var(--color-success);
   background: var(--color-success-soft);
 }
 .result-card.pending {
-  border-left-color: #718096;
-  background: #f4f6f8;
+  background: var(--color-surface-subtle);
 }
 .result-card b,
 .result-card text {
@@ -332,13 +513,26 @@ onLoad((query) => {
   margin-top: 14rpx;
 }
 .empty-card {
-  text-align: center;
+  text-align: left;
+  padding: 20px;
+}
+.empty-card b {
+  font-size: 17px;
+  font-weight: 500;
+}
+.empty-card .primary-btn,
+.empty-card .secondary-btn {
+  min-height: 44px;
+  margin-top: 12px;
+  font-size: 15px;
 }
 .empty-card b,
 .empty-card text {
   display: block;
 }
 .empty-card text {
+  font-size: 14px;
+  line-height: 1.6;
   margin: 12rpx 0 22rpx;
   color: var(--color-text-secondary);
 }

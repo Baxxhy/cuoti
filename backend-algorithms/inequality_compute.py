@@ -5,7 +5,8 @@ from dataclasses import dataclass
 from types import SimpleNamespace
 
 import sympy as sp
-from app.services.math_tools import normalize_expression, parse_math_expression
+
+from learning_core.services.math_tools import normalize_expression, parse_math_expression
 
 
 def clean(value):

@@ -9,7 +9,7 @@ if [[ -f .env.cangjie ]]; then
   set +a
 fi
 if [[ ${1:-start} == check ]]; then
-  exec "$project_dir/.venv/bin/python" scripts/check_final.py
+  exec "$project_dir/.venv/bin/python" scripts/health.py
 fi
 if [[ ${1:-start} != start ]]; then
   echo '用法：bash scripts/final.sh [start|check]' >&2
@@ -22,7 +22,7 @@ fi
 export CANGJIE_BACKEND_PORT=${CANGJIE_BACKEND_PORT:-8002}
 export CANGJIE_ALGORITHM_PORT=${CANGJIE_ALGORITHM_PORT:-8012}
 export CANGJIE_ALGORITHM_URL="http://127.0.0.1:$CANGJIE_ALGORITHM_PORT"
-export ZHIWEI_FRONTEND_PORT=${ZHIWEI_FRONTEND_PORT:-5174}
+export ZHIWEI_FRONTEND_PORT=${ZHIWEI_FRONTEND_PORT:-5175}
 export ZHIWEI_BACKEND_URL="http://127.0.0.1:$CANGJIE_BACKEND_PORT"
 mkdir -p .runtime
 if [[ -z ${CANGJIE_ALGORITHM_SECRET:-} ]]; then
@@ -61,6 +61,6 @@ setsid bash scripts/cangjie.sh run-built &
 children+=("$!")
 setsid npm --prefix frontend run dev:h5 -- --port "$ZHIWEI_FRONTEND_PORT" --strictPort &
 children+=("$!")
-echo "最终架构已启动；前端 http://127.0.0.1:$ZHIWEI_FRONTEND_PORT。Ctrl+C 停止本次服务。"
-echo '另一个终端运行 make check-final 检查就绪；不会隐式初始化库或调用模型。'
+echo "错题帮已启动；前端 http://127.0.0.1:$ZHIWEI_FRONTEND_PORT。Ctrl+C 停止本次服务。"
+echo '另一个终端运行 make check 检查就绪；不会隐式初始化库或调用模型。'
 wait -n "${children[@]}"

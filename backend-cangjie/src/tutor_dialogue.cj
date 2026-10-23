@@ -25,6 +25,10 @@ func dialogueContext(snapshot: JsonObject, message: String): JsonObject {
     let question=tutorObject(snapshot,"question"); let analysis=tutorObject(snapshot,"analysis"); let session=tutorObject(snapshot,"session"); let state=tutorObject(session,"state")
     let result=JsonObject(); result.put("memory_snapshot",snapshot["memory_snapshot"])
     for (key in ["subject","question_type","question_text","student_answer","knowledge_points"]) { result.put(key,question[key]) }
+    let points=JsonArray(); let labels=HashSet<String>()
+    for (container in [question,analysis]) { for (point in tutorArray(container,"knowledge_points").getItems()) { let label=point.toString(); if (!labels.contains(label) && points.getItems().size<10) { points.add(point); labels.add(label) } } }
+    result.put("knowledge_points",points)
+    result.put("grade",JsonString(tutorText(question,"grade")))
     result.put("final_answer",JsonString(tutorText(analysis,"final_answer"))); result.put("reference_steps",tutorStringArray(tutorRowTexts(snapshot["references"]))); result.put("student_steps",tutorStringArray(tutorRowTexts(snapshot["steps"])))
     result.put("student_message",JsonString(message)); result.put("turn_count",JsonInt(tutorNumber(session,"turn_count")+1)); result.put("hint_level",session["hint_level"])
     result.put("repeated_count",JsonInt(if (message==tutorText(state,"last_message")) { tutorNumber(state,"repeated_count")+1 } else { 0 }))
@@ -33,34 +37,58 @@ func dialogueContext(snapshot: JsonObject, message: String): JsonObject {
     let input=JsonObject(); input.put("role",JsonString("user")); input.put("content",JsonString(message)); recent.add(input); result.put("recent_turns",recent); return result
 }
 
-func dialogueKnowledge(db: Database, query: String, subject: String): JsonArray {
-    let words=ArrayList<String>(); let word=StringBuilder()
-    for (rune in query.runes()) {
-        let builder=StringBuilder(); builder.append(rune); let character=builder.toString()
-        if (pythonWhitespace.contains(character) || character=="，" || character=="、") { if (runeCount(word.toString())>=2 && words.size<5) { words.add(word.toString()) }; word.reset() }
-        else { word.append(rune) }
+func dialogueCardScore(card: JsonObject, query: String, grade: String): Int64 {
+    let content=tutorObject(card,"content"); let level=tutorText(content,"grade")
+    if (grade.startsWith("初") && level.startsWith("高")) { return 0 }
+    let text=knowledgeLabel(query); var score: Int64=0
+    for (label in [jsonText(card,"name"),jsonText(card,"code")]) {
+        let key=knowledgeLabel(label); if (runeCount(key)>=2 && text.contains(key)) { score=100+runeCount(key) }
     }
-    if (runeCount(word.toString())>=2 && words.size<5) { words.add(word.toString()) }
-    let sql=StringBuilder(); sql.append("SELECT * FROM knowledge_points WHERE subject=?"); let params=ArrayList<Option<String>>([Some(subject)])
-    if (!words.isEmpty()) {
-        sql.append(" AND (")
-        for (index in 0..words.size) { if (index>0) { sql.append(" OR ") }; sql.append("(name LIKE ? OR code LIKE ? OR CAST(content AS CHAR) LIKE ?)"); for (_ in 0..3) { params.add(Some("%"+words[index]+"%")) } }
-        sql.append(")")
+    for (value in tutorArray(content,"related_knowledge").getItems()) {
+        if (let Some(alias) <- (value as JsonString)) {
+            let key=knowledgeLabel(alias.getValue()); if (runeCount(key)>=2 && text.contains(key) && score==0) { score=runeCount(key) }
+        }
     }
-    sql.append(" ORDER BY subject,code LIMIT 3"); var rows=db.query(sql.toString(),params.toArray()).rows
-    if (rows.isEmpty()) { rows=db.query("SELECT * FROM knowledge_points WHERE subject=? ORDER BY subject,code LIMIT 3",[Some(subject)]).rows }
-    let result=JsonArray(); for (row in rows) { result.add(rowJson("knowledge_points",row)) }; return result
+    return score
+}
+
+func dialogueKnowledge(db: Database, query: String, subject: String, grade: String): JsonArray {
+    let available=db.query("SELECT * FROM knowledge_points WHERE subject=? ORDER BY code LIMIT 200",[Some(subject)]).rows
+    let rows=ArrayList<HashMap<String,Option<String>>>()
+    let consumed=HashSet<String>()
+    for (_ in 0..3) {
+        var best: Int64=0; var selected: Int64 = -1
+        for (index in 0..available.size) {
+            let card=rowJson("knowledge_points",available[index]); let score=dialogueCardScore(card,query,grade)
+            if (!consumed.contains(jsonText(card,"id")) && score>best) { best=score; selected=index }
+        }
+        if (selected<0) { break }; rows.add(available[selected]); consumed.add(rowText(available[selected],"id"))
+    }
+    let result=JsonArray(); let seen=HashSet<String>()
+    for (row in rows) {
+        let card=rowJson("knowledge_points",row); card.put("retrieval_role",JsonString("anchor")); result.add(card); seen.add(jsonText(card,"code"))
+    }
+    // Seed relation source is the current topic, target is its prerequisite.
+    for (row in rows) {
+        let anchor=rowJson("knowledge_points",row)
+        for (dependency in db.query("SELECT k.* FROM knowledge_relations r JOIN knowledge_points k ON r.target_id=k.id WHERE r.source_id=? AND r.relation_type='prerequisite' AND k.subject=? ORDER BY k.code LIMIT 2",[sqlValue(anchor["id"]),Some(subject)]).rows) {
+            let card=rowJson("knowledge_points",dependency); let code=jsonText(card,"code")
+            if (result.getItems().size>=8 || seen.contains(code)) { continue }
+            card.put("retrieval_role",JsonString("prerequisite")); card.put("anchor_code",anchor["code"]); result.add(card); seen.add(code)
+        }
+    }
+    return result
 }
 
 func tutorDialogue(context: HttpContext, accounts: Accounts): JsonValue {
     requireMethod(context,"POST"); let parts=context.request.url.path.split("/"); let id=parts[parts.size-2]
     try (db=Database.fromEnvironment()) {
-        let user=accounts.currentUser(context,db); let body=readJson(context); let message=stripWhitespace(schoolText(body,"message","",12000))
+        let user=accounts.currentUser(context,db); let body=readJson(context); let message=stripWhitespace(optionalText(body,"message","",12000))
         if (message.isEmpty()) { throw ApiError(422,"请输入你的想法") }
         let snapshot=db.transaction<JsonObject>({ tx => dialogueSnapshot(tx,id,user["id"]) }); let input=JsonObject(); let domain=dialogueContext(snapshot,message)
         input.put("operation",JsonString("tutor_dialogue_prepare")); input.put("dialogue_context",domain); input.put("dialogue_memory_rows",snapshot["memory"])
         let preparation=algorithmCompute(input); let plan=tutorObject(preparation,"plan"); let knowledge=tutorText(plan,"tool_name")=="knowledge_search"
-        let cards=if (knowledge) { dialogueKnowledge(db,jsonText(preparation,"knowledge_query"),jsonText(domain,"subject")) } else { JsonArray() }
+        let cards=if (knowledge) { dialogueKnowledge(db,jsonText(preparation,"knowledge_query"),jsonText(domain,"subject"),jsonText(domain,"grade")) } else { JsonArray() }
         input.put("operation",JsonString("tutor_dialogue_finish")); input.put("dialogue_preparation",preparation); input.put("dialogue_cards",cards)
         let images=JsonArray(); let seen=HashSet<String>()
         for (value in tutorArray(snapshot,"assets").getItems()) {
@@ -72,7 +100,7 @@ func tutorDialogue(context: HttpContext, accounts: Accounts): JsonValue {
         return db.transaction<JsonValue>({ tx =>
             let current=dialogueSnapshot(tx,id,user["id"])
             if (!jsonEquivalent(snapshot,current)) { throw ApiError(409,"题目、会话或学习记录已变化，请刷新后重试") }
-            if (knowledge && !jsonEquivalent(cards,dialogueKnowledge(tx,jsonText(preparation,"knowledge_query"),jsonText(domain,"subject")))) { throw ApiError(409,"知识卡已更新，请重试") }
+            if (knowledge && !jsonEquivalent(cards,dialogueKnowledge(tx,jsonText(preparation,"knowledge_query"),jsonText(domain,"subject"),jsonText(domain,"grade")))) { throw ApiError(409,"知识卡已更新，请重试") }
             let session=tutorObject(current,"session"); let state=tutorObject(session,"state"); let stage=jsonText(session,"stage"); let graph=tutorObject(computed,"graph"); let agent=tutorObject(computed,"agent"); let tool=tutorObject(agent,"tool"); let verification=tutorObject(agent,"verification")
             state.put("last_message",JsonString(message)); state.put("repeated_count",domain["repeated_count"])
             for (key in ["branch","strategy","next_goal","mastery_proven"]) { state.put(key,graph[key]) }
@@ -82,7 +110,7 @@ func tutorDialogue(context: HttpContext, accounts: Accounts): JsonValue {
             tx.query("UPDATE tutor_sessions SET stage=?,turn_count=?,hint_level=?,state=?,updated_at=UTC_TIMESTAMP() WHERE id=?",[Some(stage),sqlValue(domain["turn_count"]),sqlValue(graph["hint_level"]),Some(state.toString()),Some(id)])
             let userMeta=JsonObject(); userMeta.put("input_stage",JsonString(stage)); let metadata=JsonObject()
             for (key in ["branch","strategy","next_goal","mastery_proven"]) { metadata.put(key,graph[key]) }
-            metadata.put("tool_name",plan["tool_name"]); metadata.put("decision_verified",verification["status"]); metadata.put("planner_status",agent["planner_status"])
+            metadata.put("knowledge_sources",computed.get("knowledge_sources") ?? JsonArray()); metadata.put("tool_name",plan["tool_name"]); metadata.put("decision_verified",verification["status"]); metadata.put("planner_status",agent["planner_status"])
             for ((role,text,meta) in [("user",message,userMeta),("assistant",jsonText(computed,"reply"),metadata)]) { tx.query("INSERT INTO tutor_turns (id,session_id,role,content,stage,metadata_json,created_at,updated_at) VALUES (?,?,?,?,?,?,UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[Some(newId()),Some(id),Some(role),Some(text),Some(stage),Some(meta.toString())]) }
             let output=tutorObject(tool,"evidence"); output.put("stage",JsonString(stage)); output.put("next_goal",graph["next_goal"]); output.put("executed",tool["executed"])
             let details=JsonObject(); details.put("memory_manifest",memoryAuditManifest(tutorObject(snapshot,"memory_snapshot"))); for (key in ["observation","plan","verification","planner_status"]) { details.put(key,agent[key]) }

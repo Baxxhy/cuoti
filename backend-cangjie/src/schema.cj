@@ -68,5 +68,30 @@ public func upgradeDatabase(): Unit {
             }
             db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('009_task_sources', UTC_TIMESTAMP())")
         }
+        if (db.query("SELECT version FROM cangjie_schema_versions WHERE version = '010_study_sessions'").rows.isEmpty()) {
+            for (statement in String.fromUtf8(File.readFrom("schema/010_study_sessions.sql")).split(";")) {
+                if (!statement.trimAscii().isEmpty()) { db.query(statement) }
+            }
+            db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('010_study_sessions', UTC_TIMESTAMP())")
+        }
+        if (db.query("SELECT version FROM cangjie_schema_versions WHERE version = '012_personal_learning'").rows.isEmpty()) {
+            for (statement in String.fromUtf8(File.readFrom("schema/012_personal_learning.sql")).split(";")) {
+                if (!statement.trimAscii().isEmpty()) { db.query(statement) }
+            }
+            db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('012_personal_learning', UTC_TIMESTAMP())")
+        }
+        if (db.query("SELECT version FROM cangjie_schema_versions WHERE version = '011_bank_browse_index'").rows.isEmpty()) {
+            // Cover eligibility, ordered browsing and facets without reading large question bodies.
+            if (db.query("SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='dataset_questions' AND INDEX_NAME='ix_bank_browse'").rows.isEmpty()) {
+                db.query("ALTER TABLE dataset_questions ADD INDEX ix_bank_browse (usable_for_practice,usable_for_auto_grade,has_answer,subject,id,grade_band,dataset_source_id), ALGORITHM=INPLACE, LOCK=NONE")
+            }
+            db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('011_bank_browse_index', UTC_TIMESTAMP())")
+        }
+        if (db.query("SELECT version FROM cangjie_schema_versions WHERE version = '013_bank_grade_index'").rows.isEmpty()) {
+            if (db.query("SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='dataset_questions' AND INDEX_NAME='ix_bank_grade'").rows.isEmpty()) {
+                db.query("ALTER TABLE dataset_questions ADD INDEX ix_bank_grade (usable_for_practice,usable_for_auto_grade,has_answer,grade,subject,id), ALGORITHM=INPLACE, LOCK=NONE")
+            }
+            db.query("INSERT IGNORE INTO cangjie_schema_versions VALUES ('013_bank_grade_index', UTC_TIMESTAMP())")
+        }
     }
 }

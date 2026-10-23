@@ -1,6 +1,6 @@
 <template>
   <view class="page crop-page">
-    <app-header title="框选题目" subtitle="拖动四角调整识别范围" back />
+    <app-header title="框选题目" back />
     <view v-if="question" class="crop-content">
       <movable-area class="crop-stage">
         <image :src="original" mode="aspectFit" @load="onImageLoad" />
@@ -33,13 +33,14 @@
 
       <view class="crop-panel">
         <button
+          role="button"
           class="secondary-btn"
           :disabled="busy || !!pendingJob || jobCancelled"
           @click="Object.assign(box, { x: 0, y: 0, w: 1, h: 1 })"
         >
           选择整张图片
         </button>
-        <button class="primary-btn" :disabled="busy" @click="submit">
+        <button role="button" class="primary-btn" :disabled="busy" @click="submit">
           {{
             busy ? status : jobCancelled ? '返回错题本' : pendingJob ? '查看识别结果' : '开始识别'
           }}
@@ -54,7 +55,13 @@
         </text>
       </view>
     </view>
-    <state-panel v-else :state="error ? 'error' : 'loading'" @retry="load" />
+    <state-panel
+      v-else
+      :state="!id || error ? 'error' : 'loading'"
+      :message="!id ? '请先上传题目图片' : undefined"
+      :retry-text="!id ? '录入错题' : '重新加载'"
+      @retry="id ? load() : uni.redirectTo({ url: '/pages/capture/capture' })"
+    />
   </view>
 </template>
 
@@ -196,6 +203,7 @@ function restoreProcessingState(data) {
 }
 
 async function load() {
+  if (!id.value) return
   if (loading) return
   loading = true
   error.value = false
@@ -303,8 +311,8 @@ onUnload(() => {
   pointer-events: none;
 }
 .crop-box {
-  border: 5rpx solid #f59e0b;
-  background: rgba(245, 158, 11, 0.05);
+  border: 5rpx solid var(--color-primary);
+  background: transparent;
   box-shadow: 0 0 0 2000rpx rgba(0, 0, 0, 0.52);
 }
 .corner {
@@ -323,7 +331,7 @@ onUnload(() => {
   height: 30rpx;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: #f59e0b;
+  background: var(--color-primary);
   border: 5rpx solid #fff;
   box-sizing: border-box;
 }

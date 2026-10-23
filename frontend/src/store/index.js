@@ -5,8 +5,6 @@ import { getData, postData } from '../api/index.js'
 
 export const roleHome = (role) =>
   ({
-    guardian: '/pages/guardian/home',
-    teacher: '/pages/teacher/dashboard',
     admin: '/pages/admin/workbench',
   })[role] || '/pages/index/index'
 

@@ -16,7 +16,7 @@ def main():
     config = PROJECT / ".env.cangjie"
     if config.exists() or config.is_symlink():
         raise RuntimeError(
-            "已有 .env.cangjie，未修改；请使用 make dev-final 启动或检查现有配置"
+            "已有 .env.cangjie，未修改；请使用 make dev 启动或检查现有配置"
         )
     database = "zhiwei_cangjie_local"
     user = "zhiwei_cj_local"
@@ -65,8 +65,8 @@ def main():
         "CANGJIE_DB_PASSWORD": password,
         "CANGJIE_BACKEND_PORT": free_port(8002),
         "CANGJIE_ALGORITHM_PORT": free_port(8012),
-        "ZHIWEI_FRONTEND_PORT": free_port(5174),
-        "CANGJIE_API_POOL_PATH": str(PROJECT / "backend/config/api_pool.json"),
+        "ZHIWEI_FRONTEND_PORT": free_port(5175),
+        "CANGJIE_API_POOL_PATH": str(PROJECT / "config/api_pool.json"),
         "CANGJIE_QDRANT_COLLECTION": database + "_questions_v1",
     }
     # Fresh names only. Password travels through stdin, never process arguments.
@@ -103,7 +103,7 @@ def main():
             )
     print("本地独立库、知识卡和私有配置已准备，未导入演示学生或成绩。")
     print(
-        "运行 make dev-final；前端 http://127.0.0.1:" + settings["ZHIWEI_FRONTEND_PORT"]
+        "运行 make dev；前端 http://127.0.0.1:" + settings["ZHIWEI_FRONTEND_PORT"]
     )
 
 

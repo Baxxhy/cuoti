@@ -7,80 +7,97 @@
       tabindex="0"
       aria-label="返回"
       @tap.stop="handleBack"
-      @keydown.enter="handleBack"
+      @keydown.enter.prevent="handleBack"
+      @keydown.space.prevent
+      @keyup.space.prevent="handleBack"
     >
-      <uni-icons type="left" size="24" color="var(--color-text-primary)" />
+      <uni-icons aria-hidden="true" type="left" size="24" color="var(--color-text-primary)" />
     </view>
     <view class="header-copy">
-      <text class="header-title">{{ title }}</text>
-      <text v-if="subtitle" class="header-subtitle">{{ subtitle }}</text>
+      <!-- #ifdef H5 -->
+      <component :is="'h1'" class="header-title">
+        <math-text v-if="hasMath" :text="title" inline />
+        <template v-else>{{ title }}</template>
+      </component>
+      <!-- #endif -->
+      <!-- #ifndef H5 -->
+      <view v-if="hasMath" class="header-title"><math-text :text="title" inline /></view>
+      <text v-else class="header-title">{{ title }}</text>
+      <!-- #endif -->
     </view>
     <view v-if="$slots.default" class="header-extra"><slot /></view>
   </view>
 </template>
 <script setup>
+import { computed } from 'vue'
+import MathText from '@/components/math-text/math-text.vue'
 import { back as goBack } from '@/utils/navigation.js'
 const props = defineProps({
   title: { type: String, required: true },
-  subtitle: String,
   back: Boolean,
   gradient: Boolean,
   backFallback: String,
 })
+const hasMath = computed(() => /[$\\]/.test(props.title))
 function handleBack() {
   goBack(props.backFallback)
 }
 </script>
 <style scoped lang="scss">
 .app-header {
-  min-height: calc(64px + var(--status-bar-height, 0px));
-  padding: calc(12px + var(--status-bar-height, 0px)) var(--space-page) 12px;
-  flex-shrink: 0;
-  display: flex;
+  min-height: calc(56px + var(--status-bar-height, 0px));
+  padding: calc(6px + var(--status-bar-height, 0px)) var(--space-page) 6px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) minmax(44px, auto);
   align-items: center;
-  gap: 10px;
-  background: #fff;
-  border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  gap: 8px;
+  background: var(--color-bg);
+  position: relative;
+  z-index: 10;
+}
+.header-copy {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  text-align: center;
+}
+.header-title {
+  display: block;
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .header-action {
-  width: 48px;
-  min-height: 48px;
+  grid-column: 1;
+  grid-row: 1;
+  flex: none;
+  width: 44px;
+  min-height: 44px;
   margin-left: -10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
 }
 .header-action:active {
-  background: var(--color-bg);
-}
-.header-copy {
-  flex: 1;
-  min-width: 0;
-}
-.header-title,
-.header-subtitle {
-  display: block;
-}
-.header-title {
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-.header-subtitle {
-  font-size: 12px;
-  color: var(--color-text-secondary);
-  margin-top: 3px;
+  background: var(--color-surface-subtle);
 }
 .header-extra {
+  grid-column: 3;
+  grid-row: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   min-height: 44px;
   flex-shrink: 0;
+}
+@media (min-width: 1100px) {
+  .app-header {
+    padding-top: 20px;
+    padding-bottom: 8px;
+  }
 }
 </style>

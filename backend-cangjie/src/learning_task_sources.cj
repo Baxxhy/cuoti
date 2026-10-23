@@ -43,7 +43,8 @@ func taskAttemptSource(db: Database, task: JsonObject, phase: String): JsonObjec
     if (phase=="repair") {
         let steps=tutorArray(source,"steps").getItems()
         if (!steps.isEmpty()) {
-            let first=tutorNumber(tutorObject(source,"diagnosis"),"first_error_step")
+            let assessment=tutorObject(tutorObject(task,"checkpoint"),"evidence_diagnosis")
+            let first=if (tutorFlag(assessment,"verified") && assessment.get("first_error_step").isSome() && !(assessment["first_error_step"] is JsonNull)) { tutorNumber(assessment,"first_error_step") } else { tutorNumber(tutorObject(source,"diagnosis"),"first_error_step") }
             let index=if (first<0 || first>99) { 0 } else if (first>=steps.size) { steps.size-1 } else { first }
             let step=(steps[index] as JsonObject).getOrThrow()
             result.put("student_step_id",step["id"]); result.put("step_index",JsonInt(index)); result.put("student_step_text",step["text"])

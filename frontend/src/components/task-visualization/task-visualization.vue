@@ -2,7 +2,7 @@
   <view class="task-visualization">
     <template v-if="visual">
       <view class="visual-heading">
-        <text>{{ visual.spec.title }}</text>
+        <math-text :text="visual.spec.title" inline />
         <button
           class="text-action"
           role="button"
@@ -21,9 +21,9 @@
         :values="values"
         :canvas-id="`task-visual-${taskId}`"
       />
-      <text class="muted" role="status">{{ controlSummary }}</text>
+      <math-text class="muted" role="status" :text="controlSummary" inline />
       <view v-for="v in visual.spec.interactive_variables" :key="v.name" class="visual-control">
-        <text>{{ v.label }}：{{ displayNumber(values[v.name]) }}</text>
+        <math-text :text="v.label + '：' + displayNumber(values[v.name])" inline />
         <view class="control-buttons">
           <button
             class="text-action"
