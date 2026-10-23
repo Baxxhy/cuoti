@@ -1,0 +1,23 @@
+{
+  "name": "错题帮可运行程序包",
+  "date": "2026-10-23",
+  "platform": "linux/amd64",
+  "source_commit": "899b0f60705aafac8ed415ee72278ff1e1559b77",
+  "images": [
+    {
+      "tags": [
+        "cuoti-submission:20261023"
+      ],
+      "id": "sha256:5b50c82cf452298e546739e212be7a065bea313fa8d266ea19bb5651ebf96eb0",
+      "size": 9514691981
+    },
+    {
+      "tags": [
+        "cuoti-qdrant:20261023"
+      ],
+      "id": "sha256:92c4050629efe895f87dafd2830f1cd4d0532bc9967b777cab979ebda71612b3",
+      "size": 188681386
+    }
+  ],
+  "private_data_included": false
+}
