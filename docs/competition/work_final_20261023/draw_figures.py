@@ -140,3 +140,6 @@ draw(F)
 from reference_redraw import redraw as reference_redraw
 reference_redraw(F)
 print('18 editable SVG figures exported')
+
+from correct_reference_redraw import redraw as corrected_redraw
+corrected_redraw(F)

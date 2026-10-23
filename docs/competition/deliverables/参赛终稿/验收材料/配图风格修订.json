@@ -1,17 +1,26 @@
 {
-  "reference": "/root/.codex/attachments/24b7291c-0754-4e35-b075-e1f203336c08/题醐灌顶队_错题帮_项目文档(1).docx",
-  "sha256": "b61993bc9b0424c38a58bfaabcfbf68ec834703ad7f2bb3fca159b79e5b0576a",
+  "reference": "/root/.codex/attachments/e37287a3-6fbb-4639-b53d-de5d88faccba/题醐灌顶队_错题帮_项目文档.docx",
+  "sha256": "04fb2a8f6650f14c2acb404ede8222e181472171e17effe892277334725afe29",
   "reference_images": [
     "image1.png",
     "image2.png",
     "image3.png",
-    "image4.png"
+    "image4.png",
+    "image5.png",
+    "image6.png",
+    "image7.png",
+    "image8.png",
+    "image9.png",
+    "image10.png"
   ],
   "primary_style_reference": [
     "image1.png",
-    "image3.png"
+    "image2.png",
+    "image7.png",
+    "image8.png",
+    "image9.png"
   ],
-  "reference_use": "仅配色、层次、留白、线性图标；不采用技术内容",
+  "reference_use": "用户更正后的参考；采用蓝色主线、青绿反馈、中心节点和线性图标的视觉表达，不移植技术内容",
   "figures": 18,
   "explanatory_footers_removed": true,
   "captions_preserved": true,
@@ -21,6 +30,17 @@
     "system": 60
   },
   "rendered_pages": 90,
-  "figure_pages_visually_checked": 24,
-  "color_and_document_audit": "passed"
+  "color_and_document_audit": "passed",
+  "superseded_reference": "/root/.codex/attachments/24b7291c-0754-4e35-b075-e1f203336c08/题醐灌顶队_错题帮_项目文档(1).docx",
+  "redesigned_figures": [
+    "00-background",
+    "01",
+    "03"
+  ],
+  "figure_pages_visually_checked": [
+    "product:4",
+    "product:12",
+    "product:15",
+    "system:5"
+  ]
 }
