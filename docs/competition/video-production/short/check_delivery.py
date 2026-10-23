@@ -30,7 +30,7 @@ def audit():
         a,b=sec(a),sec(b);assert a>=end-.002 and b>a and b<=seconds+.03;end=b
     first=next(s for s in timeline if s['id']=='intro');account=next(s for s in timeline if s['id']=='account')
     assert 25<=first['actual_seconds']<=38 and account['actual_seconds']<=6
-    assert .5<=first['actual_seconds']-duration(V/'intro.mp3')<=.75
+    assert 2.5<=first['actual_seconds']-duration(V/'intro.mp3')<=2.75
     assert font(44).getname()[0]=='Noto Sans CJK SC'
     assert font(44,True).getname()[0]=='Noto Sans CJK SC'
     assert {s['stage'] for s in timeline if s['shots']}=={0,1,2,3}
@@ -56,8 +56,8 @@ def audit():
     # Check that both previously delivered full films remain byte-for-byte intact.
     old=json.loads((D.parent/'视频文件校验.json').read_text())
     for entry in old:assert hashlib.sha256((D.parent/entry['file']).read_bytes()).hexdigest()==entry['sha256']
-    # Measure motion on the actual encoded character/arm area, excluding titles
-    # and subtitles. Compare frames within every narrative beat.
+    # Check photographic camera movement in the encoded image region.
+    # This proves crop movement, not actual human/body animation.
     motion=[]
     for i,start in enumerate(intro_animation().starts):
         samples=[]
@@ -65,9 +65,15 @@ def audit():
             path=Q/f'intro-action-{i}-{j}.png'
             subprocess.run([FF,'-v','error','-y','-ss',str(t),'-i',str(movie),'-frames:v','1',str(path)],check=True)
             samples.append(np.asarray(Image.open(path).convert('RGB')).astype(np.int16))
-        changed=int(np.count_nonzero(np.max(np.abs(samples[0][500:738,480:925]-samples[1][500:738,480:925]),axis=2)>20))
+        changed=int(np.count_nonzero(np.max(np.abs(samples[0][200:820,1000:1850]-samples[1][200:820,1000:1850]),axis=2)>20))
         assert changed>400,(i,changed)
-        motion.append(dict(beat=i,seconds=[start+.45,start+1.15],changed_character_pixels=changed))
+        motion.append(dict(beat=i,seconds=[start+.45,start+1.15],changed_photographic_pixels=changed))
+    # The separately delivered poster must actually appear at the movie opening.
+    first_frame=Q/'cover-first-frame.png'
+    subprocess.run([FF,'-v','error','-y','-i',str(movie),'-frames:v','1',str(first_frame)],check=True)
+    expected=np.asarray(intro_animation().cover).astype('int16')
+    actual=np.asarray(Image.open(first_frame).convert('RGB')).astype('int16')
+    cover_mae=float(np.abs(expected-actual).mean());assert cover_mae<4,cover_mae
     sheets=[[],[]]
     for n,c in enumerate(timeline):
         for j,fraction in enumerate([.52,.91]):
@@ -81,7 +87,7 @@ def audit():
         im=Image.new('RGB',(1920,1224),'#D9E1EE')
         for n,tile in enumerate(tiles):im.paste(tile,((n%4)*480,(n//4)*306))
         im.save(Q/f'contact-{j}.png')
-    result=dict(file=movie.name,seconds=seconds,bytes=movie.stat().st_size,sha256=hashlib.sha256(movie.read_bytes()).hexdigest(),resolution='1920x1080',fps=25,audio='AAC / 48000 Hz / stereo',chapters=6,subtitle_segments=len(ranges),max_volume_dbfs=peak,mean_volume_dbfs=mean,full_decode='passed',script_subtitle_match='passed',source_ranges='passed',previous_full_films_preserved='passed',account_seconds=account['actual_seconds'],intro_seconds=first['actual_seconds'],chinese_font=font(44).getname()[0],intro_motion=motion,removed_overlay_checks='passed')
+    result=dict(file=movie.name,seconds=seconds,bytes=movie.stat().st_size,sha256=hashlib.sha256(movie.read_bytes()).hexdigest(),resolution='1920x1080',fps=25,audio='AAC / 48000 Hz / stereo',chapters=6,subtitle_segments=len(ranges),max_volume_dbfs=peak,mean_volume_dbfs=mean,full_decode='passed',script_subtitle_match='passed',source_ranges='passed',previous_full_films_preserved='passed',account_seconds=account['actual_seconds'],intro_seconds=first['actual_seconds'],chinese_font=font(44).getname()[0],intro_motion=motion,cover_first_frame_mae=cover_mae,opening_visuals='generated photographic scenes with camera movement',removed_overlay_checks='passed')
     (D/'视频校验.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(result,ensure_ascii=False),flush=True)
 
@@ -97,11 +103,11 @@ def package():
         if groups and groups[-1]['name']==key:groups[-1]['end']=c['film_end']
         else:groups.append(dict(name=key,start=c['film_start'],end=c['film_end']))
     table='\n'.join(f'| {g["name"]} | {clock(g["start"])}–{clock(g["end"])} |' for g in groups)
-    readme=f'''# 错题帮参赛演示：动画修订版
+    readme=f'''# 错题帮参赛演示：写实封面版
 
 当前推荐文件：《{MOVIE_NAME}》。片长{human}（{qa['seconds']}秒），1920×1080，25帧/秒，H.264视频与AAC双声道音频；约{qa['bytes']/1048576:.1f} MiB。
 
-开场以人物写题、翻看解析、试卷堆叠及题目进入手机的连续场景说明学习需求。各幕跟随旁白的词时间切换，标题保持固定；开场音轨结束后直接进入账号镜头。
+视频前2秒显示正式封面，随后以写实学习场景、作答特写和错题整理场景呈现需求。开场画面采用内置图片生成工具制作的虚构情境照片，通过缓慢推近和短溶解转场剪辑；人物没有真实运动，不作为学生实验或真人拍摄证据。末幕的产品屏幕来自真实浏览器截图。开场音轨结束后直接进入账号镜头。
 
 | 内容 | 时间 |
 |---|---|
@@ -118,7 +124,7 @@ def package():
 
 ## 用户标注的六处画面
 
-1. 原卡片式开场改成学生书桌场景，人物会动笔、翻页，纸张会落下叠起并进入手机。标题固定显示，场景动作持续推进。
+1. 原卡通人物全部退出成片；开场使用三张写实生成的学习情境图，镜头推近、场景切换与旁白同步。正式封面作为视频前2秒，同时单独交付PNG。
 2. 删除“学生使用情境 · 浏览器手机视口实录”底部说明。
 3. 删除主体画面上方重复的三步导航。
 4. 删除画面及封面左侧蓝色竖条。
@@ -131,7 +137,7 @@ def package():
 
 旁白直接说明学生的上传、核对、订正、作答和回顾操作，使用“哪一步做错了”等具体表达；捕题段落围绕学生实际操作展开。已删除抽象的错误定位措辞、原图后台保存说明和对比句式。使用anti-defensive-writing技能整理表达，并保留演示任务预置、待核对与辅助使用记录的真实范围。
 
-开场按配音逐词时间切换五个场景。开场音轨长{duration(V/'intro.mp3'):.2f}秒，画面长{qa['intro_seconds']:.2f}秒，随后直接进入账号操作；账号段约{qa['account_seconds']:.2f}秒。
+封面停留2秒，开场按配音逐词时间切换五个叙事段落。写实素材的完整提示词保存于制作目录assets中。开场音轨长{duration(V/'intro.mp3'):.2f}秒，画面长{qa['intro_seconds']:.2f}秒，随后直接进入账号操作；账号段约{qa['account_seconds']:.2f}秒。
 
 ## 赛事依据
 
@@ -146,7 +152,7 @@ def package():
 ## 实际验证
 
 - 全片解码、视频音轨格式、峰值、6个章节、字幕顺序及字幕与旁白全文一致性检查通过。
-- 五个开场场景分别从成片抽取两帧，在人物手臂区域检测到实际动作变化；比较区域避开标题和字幕。
+- 五个开场段落分别抽取两帧，在照片区域检测镜头推近导致的像素变化，比较区域避开标题和字幕；另检查视频第一帧与正式封面的一致性。该检测不表示人物真实运动。
 - 主体背景的左侧边缘和底部说明区域已检查；字体常规与粗体均为简体中文。
 - 每组主体镜头另抽取中段与末段检查，原始录像与镜头区间保留。
 - 原16分55秒的两份影片SHA-256保持不变；本轮修改限于视频、字幕和交付材料。
@@ -154,23 +160,15 @@ def package():
 数据与文件摘要见《视频校验.json》。
 '''
     (D/'赛事对照与验收.md').write_text(compliance)
-    im=Image.new('RGB',(1920,1080),BG);d=ImageDraw.Draw(im)
-    txt(d,(110,60),'错题帮  /  2026“仓颉杯”智能编程大赛',29,True,BLUE)
-    txt(d,(110,233),'从一道错题',90,True);txt(d,(110,363),'走完三步学习',90,True)
-    for i,(a,b) in enumerate([('拍题诊断','找出做错的步骤'),('订正训练','重新作答与验证'),('复习巩固','回顾、检验与继续学习')]):
-        y=563+i*105;txt(d,(116,y),str(i+1).zfill(2),34,True,BLUE);txt(d,(190,y-4),a,40,True);txt(d,(418,y+6),b,28,False,MUTED)
-    shot=Image.open(WORK/'take2/05-photo-confirm.png').convert('RGB');shot.thumbnail((432,936))
-    d.rounded_rectangle((1225,40,1681,1030),radius=26,fill='white',outline='#CCD7E7',width=3);im.paste(shot,(1237,64))
-    txt(d,(115,966),human+'  ·  情景动画与核心流程演示',31,False,BLUE)
-    im.save(D/'视频封面.png')
+    intro_animation().cover.save(D/'视频封面.png')
     (D/'.gitignore').write_text('*.zip\n')
     parent=D.parent/'README.md';ptext=parent.read_text()
-    ptext=re.sub(r'当前推荐观看.*?(?=\n\n本目录的)',f'当前推荐观看[动画修订版](比赛精简版/README.md)：约{human}，开场为连续人物场景动画；主体按学生三步组织，移除重复导航、竖条和底部说明，文字使用简体中文字体。',ptext,flags=re.S)
+    ptext=re.sub(r'当前推荐观看.*?(?=\n\n本目录的)',f'当前推荐观看[写实封面版](比赛精简版/README.md)：约{human}，前2秒为正式封面，开场采用写实情境与镜头运动；主体保留真实操作演示，文字使用简体中文字体。',ptext,flags=re.S)
     parent.write_text(ptext)
     archive=D/(Path(MOVIE_NAME).stem+'_交付包.zip')
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=5) as z:
         for p in sorted(D.iterdir()):
-            if p.is_file() and not p.name.startswith('.') and p.suffix!='.zip':z.write(p,p.name)
+            if p.is_file() and not p.name.startswith('.') and p.suffix!='.zip' and (p.suffix not in ['.mp4','.srt'] or p.stem==Path(MOVIE_NAME).stem):z.write(p,p.name)
     with zipfile.ZipFile(archive) as z:assert z.testzip() is None
     print('packaged',archive,flush=True)
 

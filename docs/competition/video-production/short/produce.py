@@ -12,7 +12,7 @@ O=WORK/'short';O.mkdir(exist_ok=True)
 V=O/'voices';V.mkdir(exist_ok=True)
 D=ROOT/'docs/competition/deliverables/演示视频/比赛精简版';D.mkdir(parents=True,exist_ok=True)
 FF=imageio_ffmpeg.get_ffmpeg_exe()
-MOVIE_NAME='错题帮_参赛演示_动画修订版.mp4'
+MOVIE_NAME='错题帮_参赛演示_写实封面版.mp4'
 SCENES=json.loads((HERE/'storyboard.json').read_text())
 CLIPS={c['id']:c for c in json.loads((WORK/'take2/clips.json').read_text())}
 RAW=Path((WORK/'take2/raw-path.txt').read_text().strip())
@@ -75,7 +75,7 @@ def captions(s):
         text=html.unescape(w['text']);at=s['text'].find(text,cursor)
         assert at>=0,(s['id'],text,cursor)
         token=s['text'][cursor:at+len(text)];cursor=at+len(text)
-        tokens.append(dict(text=token,start=w['start']+.45,end=w['end']+.45))
+        tokens.append(dict(text=token,start=w['start']+.45+(2 if s['id']=='intro' else 0),end=w['end']+.45+(2 if s['id']=='intro' else 0)))
     if cursor<len(s['text']):tokens[-1]['text']+=s['text'][cursor:]
     groups=[];part=[]
     for token in tokens:
@@ -117,7 +117,7 @@ Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text
 
 @lru_cache(maxsize=1)
 def intro_animation():
-    from student_animation import StudentIntro
+    from realistic_intro import StudentIntro
     intro=next(s for s in SCENES if s['id']=='intro')
     return StudentIntro(font,intro['text'],json.loads((V/'intro.json').read_text())['words'])
 
@@ -164,7 +164,7 @@ def render(only=None):
     manifest=[]
     for s in SCENES:
         key=s['id'];voice=V/(key+'.mp3')
-        padding=.6 if key in ('intro','account') else 1.1
+        padding=2.6 if key=='intro' else (.6 if key=='account' else 1.1)
         length=max(s['seconds'],duration(voice)+padding)
         assert length<=55,(key,length)
         sub=O/(key+'.ass');cues=write_ass(s,sub,not s['shots'])
@@ -178,7 +178,7 @@ def render(only=None):
                 p=subprocess.Popen(cmd,stdin=subprocess.PIPE,stderr=log)
                 for n in range(math.ceil(length*25)):p.stdin.write(motion(s,n/25,length).tobytes())
                 p.stdin.close();assert p.wait()==0,key
-            cmd=[FF,'-y','-i',str(silent),'-i',str(voice),'-vf','ass='+str(sub),'-af','adelay=450|450,loudnorm=I=-16:TP=-1.5:LRA=9,aresample=48000,apad','-t',str(length),'-r','25','-c:v','libx264','-threads','4','-preset','fast','-crf','19','-pix_fmt','yuv420p','-ar','48000','-ac','2','-c:a','aac','-b:a','160k',str(dest)]
+            cmd=[FF,'-y','-i',str(silent),'-i',str(voice),'-vf','ass='+str(sub),'-af',f'adelay={2450 if key=="intro" else 450}|{2450 if key=="intro" else 450},loudnorm=I=-16:TP=-1.5:LRA=9,aresample=48000,apad','-t',str(length),'-r','25','-c:v','libx264','-threads','4','-preset','fast','-crf','19','-pix_fmt','yuv420p','-ar','48000','-ac','2','-c:a','aac','-b:a','160k',str(dest)]
         else:
             bg=O/(key+'-bg.png');background(s).save(bg)
             cmd=[FF,'-y','-filter_complex_threads','2','-loop','1','-framerate','25','-i',str(bg),'-i',str(voice)]
