@@ -12,7 +12,7 @@
   "documents": {
     "product": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_项目说明文档_最终版.docx",
-      "sha256": "f74ebdffaa51b55a6be6a699d09e4a75c0db3b5fbbd9d85f714e0ce248ff0ec8",
+      "sha256": "54eefb60479680e11865d109625a5f8af1750bb9c88df1e336ef7a1e1fc82ef0",
       "pages": 30,
       "word_paragraphs": 191,
       "tables": 5,
@@ -299,7 +299,7 @@
     },
     "system": {
       "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/参赛终稿/错题帮_系统设计文档_最终版.docx",
-      "sha256": "9b2b09d9b338acfd439e79e7a5b8744a3b8d040b10ddf79c67dfbae1f00f56b1",
+      "sha256": "ae863b1a99997f21492e8d49d591f9dcfc93f763408c24b9eeba36601a867f13",
       "pages": 48,
       "word_paragraphs": 331,
       "tables": 12,

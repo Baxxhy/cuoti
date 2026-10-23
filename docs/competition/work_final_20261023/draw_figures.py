@@ -129,3 +129,6 @@ for y,a,b,t in [(135,150,480,'提交动作'),(205,480,1080,'受理并保存请�
 f.box(580,395,540,40,'原题编辑或取消 → 旧结果拒绝提交',ORANGE,size=22)
 f.save('10')
 print('10 editable SVG figures exported')
+
+from varied_figures import redraw
+redraw(F)
