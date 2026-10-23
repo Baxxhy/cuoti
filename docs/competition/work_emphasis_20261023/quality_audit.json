@@ -1,0 +1,766 @@
+{
+  "originals": [
+    {
+      "path": "docs/competition/deliverables/插图优化版/错题帮_系统说明文档_插图优化版.docx",
+      "unchanged": true
+    },
+    {
+      "path": "docs/competition/deliverables/插图优化版/错题帮_系统设计文档_插图优化版.docx",
+      "unchanged": true
+    },
+    {
+      "path": "docs/competition/deliverables/图文修订版/错题帮_系统说明文档_图文修订版.docx",
+      "unchanged": true
+    },
+    {
+      "path": "docs/competition/deliverables/图文修订版/错题帮_系统设计文档_图文修订版.docx",
+      "unchanged": true
+    },
+    {
+      "path": "docs/competition/deliverables/通俗化重构版/错题帮_项目说明文档_通俗化重构终稿.docx",
+      "unchanged": true
+    },
+    {
+      "path": "docs/competition/deliverables/通俗化重构版/错题帮_系统设计文档_通俗化重构终稿.docx",
+      "unchanged": true
+    },
+    {
+      "path": "/root/.codex/attachments/b84ab075-64ff-4749-92ed-008482ece776/题醐灌顶队_错题帮_项目文档.docx",
+      "unchanged": true
+    }
+  ],
+  "documents": {
+    "product": {
+      "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/重点标注版/错题帮_项目说明文档_重点标注版.docx",
+      "sha256": "cd9f24b2e22ff1f1c8dc64c26731b6942c59ace3e1afaa2fa81b8a92ebc19470",
+      "pages": 28,
+      "word_paragraphs": 186,
+      "tables": 3,
+      "embedded_images": 14,
+      "figure_groups": 8,
+      "references": 21,
+      "bad_colors": [],
+      "fonts": {
+        "Normal": {
+          "ascii": "SimSun",
+          "hAnsi": "SimSun",
+          "eastAsia": "SimSun",
+          "cs": "SimSun"
+        },
+        "Heading1": {
+          "ascii": "SimHei",
+          "hAnsi": "SimHei",
+          "eastAsia": "SimHei",
+          "cs": "SimHei"
+        },
+        "Heading2": {
+          "ascii": "SimHei",
+          "hAnsi": "SimHei",
+          "eastAsia": "SimHei",
+          "cs": "SimHei"
+        }
+      },
+      "headers_footers": [],
+      "all_tables_full_grid": true,
+      "captions": [
+        {
+          "caption": "图1 中学生错题学习问题链",
+          "centered": true
+        },
+        {
+          "caption": "表1 主要使用场景",
+          "centered": true
+        },
+        {
+          "caption": "图2 错题学习与后续反馈",
+          "centered": true
+        },
+        {
+          "caption": "图3 系统组成与服务分工",
+          "centered": true
+        },
+        {
+          "caption": "图4 原作答诊断与局部订正",
+          "centered": true
+        },
+        {
+          "caption": "图5 独立作答与学习自检",
+          "centered": true
+        },
+        {
+          "caption": "图6 已保存结果与下一道练习",
+          "centered": true
+        },
+        {
+          "caption": "图7 学习入口与易错地图",
+          "centered": true
+        },
+        {
+          "caption": "图8 复习作答与难度自评",
+          "centered": true
+        },
+        {
+          "caption": "表2 工程验证记录",
+          "centered": true
+        },
+        {
+          "caption": "表3 当前实现状态",
+          "centered": true
+        }
+      ],
+      "toc": [
+        {
+          "title": "项目概述",
+          "toc_page": 3,
+          "actual_page": 3,
+          "matches": true
+        },
+        {
+          "title": "项目背景",
+          "toc_page": 3,
+          "actual_page": 3,
+          "matches": true
+        },
+        {
+          "title": "学生需求",
+          "toc_page": 5,
+          "actual_page": 5,
+          "matches": true
+        },
+        {
+          "title": "现有工具",
+          "toc_page": 6,
+          "actual_page": 6,
+          "matches": true
+        },
+        {
+          "title": "产品定位",
+          "toc_page": 6,
+          "actual_page": 6,
+          "matches": true
+        },
+        {
+          "title": "功能与使用",
+          "toc_page": 7,
+          "actual_page": 7,
+          "matches": true
+        },
+        {
+          "title": "录入与核对",
+          "toc_page": 7,
+          "actual_page": 7,
+          "matches": true
+        },
+        {
+          "title": "分析与订正",
+          "toc_page": 8,
+          "actual_page": 8,
+          "matches": true
+        },
+        {
+          "title": "讲解与练习",
+          "toc_page": 9,
+          "actual_page": 9,
+          "matches": true
+        },
+        {
+          "title": "考试与复习",
+          "toc_page": 9,
+          "actual_page": 9,
+          "matches": true
+        },
+        {
+          "title": "知识与资料",
+          "toc_page": 10,
+          "actual_page": 10,
+          "matches": true
+        },
+        {
+          "title": "产品特色",
+          "toc_page": 11,
+          "actual_page": 11,
+          "matches": true
+        },
+        {
+          "title": "对照原始作答",
+          "toc_page": 12,
+          "actual_page": 12,
+          "matches": true
+        },
+        {
+          "title": "区分作答条件",
+          "toc_page": 12,
+          "actual_page": 12,
+          "matches": true
+        },
+        {
+          "title": "衔接后续训练",
+          "toc_page": 13,
+          "actual_page": 13,
+          "matches": true
+        },
+        {
+          "title": "保留学习过程",
+          "toc_page": 13,
+          "actual_page": 13,
+          "matches": true
+        },
+        {
+          "title": "系统实现",
+          "toc_page": 14,
+          "actual_page": 14,
+          "matches": true
+        },
+        {
+          "title": "前端与业务",
+          "toc_page": 15,
+          "actual_page": 15,
+          "matches": true
+        },
+        {
+          "title": "智能计算",
+          "toc_page": 16,
+          "actual_page": 16,
+          "matches": true
+        },
+        {
+          "title": "运行与使用",
+          "toc_page": 16,
+          "actual_page": 16,
+          "matches": true
+        },
+        {
+          "title": "应用与验证",
+          "toc_page": 17,
+          "actual_page": 17,
+          "matches": true
+        },
+        {
+          "title": "诊断订正案例",
+          "toc_page": 17,
+          "actual_page": 17,
+          "matches": true
+        },
+        {
+          "title": "独立作答案例",
+          "toc_page": 19,
+          "actual_page": 19,
+          "matches": true
+        },
+        {
+          "title": "连续练习案例",
+          "toc_page": 20,
+          "actual_page": 20,
+          "matches": true
+        },
+        {
+          "title": "任务继续与复习",
+          "toc_page": 21,
+          "actual_page": 21,
+          "matches": true
+        },
+        {
+          "title": "工程验证",
+          "toc_page": 23,
+          "actual_page": 23,
+          "matches": true
+        },
+        {
+          "title": "成果与计划",
+          "toc_page": 24,
+          "actual_page": 24,
+          "matches": true
+        },
+        {
+          "title": "当前成果",
+          "toc_page": 24,
+          "actual_page": 24,
+          "matches": true
+        },
+        {
+          "title": "使用价值",
+          "toc_page": 25,
+          "actual_page": 25,
+          "matches": true
+        },
+        {
+          "title": "后续工作",
+          "toc_page": 26,
+          "actual_page": 26,
+          "matches": true
+        },
+        {
+          "title": "参考文献",
+          "toc_page": 27,
+          "actual_page": 27,
+          "matches": true
+        }
+      ],
+      "toc_direct_numbering_count": 0,
+      "reference_numbers_contiguous": true,
+      "all_references_cited": true,
+      "has_real_toc_field": true,
+      "unresolved_tokens": [],
+      "reopened_sha_matches": true
+    },
+    "system": {
+      "file": "/root/Baxxhy/zhiwei/docs/competition/deliverables/重点标注版/错题帮_系统设计文档_重点标注版.docx",
+      "sha256": "328df995e1d621d8b0da938e70add77050310a6ab5f3b649dfb15ee70a946657",
+      "pages": 50,
+      "word_paragraphs": 345,
+      "tables": 13,
+      "embedded_images": 8,
+      "figure_groups": 8,
+      "references": 23,
+      "bad_colors": [],
+      "fonts": {
+        "Normal": {
+          "ascii": "SimSun",
+          "hAnsi": "SimSun",
+          "eastAsia": "SimSun",
+          "cs": "SimSun"
+        },
+        "Heading1": {
+          "ascii": "SimHei",
+          "hAnsi": "SimHei",
+          "eastAsia": "SimHei",
+          "cs": "SimHei"
+        },
+        "Heading2": {
+          "ascii": "SimHei",
+          "hAnsi": "SimHei",
+          "eastAsia": "SimHei",
+          "cs": "SimHei"
+        }
+      },
+      "headers_footers": [],
+      "all_tables_full_grid": true,
+      "captions": [
+        {
+          "caption": "表1 核心业务要求",
+          "centered": true
+        },
+        {
+          "caption": "图1 系统组成与调用方向",
+          "centered": true
+        },
+        {
+          "caption": "表2 技术与依赖范围",
+          "centered": true
+        },
+        {
+          "caption": "图2 原步骤核对与首错判断",
+          "centered": true
+        },
+        {
+          "caption": "图3 作答条件与掌握更新",
+          "centered": true
+        },
+        {
+          "caption": "表3 掌握更新演算",
+          "centered": true
+        },
+        {
+          "caption": "图4 当前任务处理与后续选题",
+          "centered": true
+        },
+        {
+          "caption": "图5 类似题检索与生成检查",
+          "centered": true
+        },
+        {
+          "caption": "表4 复习后的间隔规则",
+          "centered": true
+        },
+        {
+          "caption": "图6 学生动作与本题工作流",
+          "centered": true
+        },
+        {
+          "caption": "表5 工具输入与返回",
+          "centered": true
+        },
+        {
+          "caption": "表6 学习任务状态",
+          "centered": true
+        },
+        {
+          "caption": "表7 主要数据对象",
+          "centered": true
+        },
+        {
+          "caption": "图7 题目关联与编辑后的处理",
+          "centered": true
+        },
+        {
+          "caption": "表8 版本与请求标识",
+          "centered": true
+        },
+        {
+          "caption": "图8 异步计算与结果保存",
+          "centered": true
+        },
+        {
+          "caption": "表9 中断与异常处理",
+          "centered": true
+        },
+        {
+          "caption": "表10 核心业务接口",
+          "centered": true
+        },
+        {
+          "caption": "表11 运行检查对象",
+          "centered": true
+        },
+        {
+          "caption": "表12 已有测试批次",
+          "centered": true
+        },
+        {
+          "caption": "表13 关键规则与反向检查",
+          "centered": true
+        }
+      ],
+      "toc": [
+        {
+          "title": "设计需求",
+          "toc_page": 4,
+          "actual_page": 4,
+          "matches": true
+        },
+        {
+          "title": "设计背景",
+          "toc_page": 4,
+          "actual_page": 4,
+          "matches": true
+        },
+        {
+          "title": "业务要求",
+          "toc_page": 5,
+          "actual_page": 5,
+          "matches": true
+        },
+        {
+          "title": "质量要求",
+          "toc_page": 6,
+          "actual_page": 6,
+          "matches": true
+        },
+        {
+          "title": "范围与依据",
+          "toc_page": 7,
+          "actual_page": 7,
+          "matches": true
+        },
+        {
+          "title": "总体架构",
+          "toc_page": 7,
+          "actual_page": 7,
+          "matches": true
+        },
+        {
+          "title": "服务分工",
+          "toc_page": 7,
+          "actual_page": 7,
+          "matches": true
+        },
+        {
+          "title": "技术选择",
+          "toc_page": 8,
+          "actual_page": 8,
+          "matches": true
+        },
+        {
+          "title": "请求与结果",
+          "toc_page": 10,
+          "actual_page": 10,
+          "matches": true
+        },
+        {
+          "title": "数据与资源",
+          "toc_page": 10,
+          "actual_page": 10,
+          "matches": true
+        },
+        {
+          "title": "错题处理",
+          "toc_page": 11,
+          "actual_page": 11,
+          "matches": true
+        },
+        {
+          "title": "材料采集",
+          "toc_page": 11,
+          "actual_page": 11,
+          "matches": true
+        },
+        {
+          "title": "题目分析",
+          "toc_page": 12,
+          "actual_page": 12,
+          "matches": true
+        },
+        {
+          "title": "错因定位",
+          "toc_page": 12,
+          "actual_page": 12,
+          "matches": true
+        },
+        {
+          "title": "订正与重做",
+          "toc_page": 15,
+          "actual_page": 15,
+          "matches": true
+        },
+        {
+          "title": "训练与复习",
+          "toc_page": 15,
+          "actual_page": 15,
+          "matches": true
+        },
+        {
+          "title": "掌握更新",
+          "toc_page": 15,
+          "actual_page": 15,
+          "matches": true
+        },
+        {
+          "title": "任务选择",
+          "toc_page": 18,
+          "actual_page": 18,
+          "matches": true
+        },
+        {
+          "title": "类似题补充",
+          "toc_page": 20,
+          "actual_page": 20,
+          "matches": true
+        },
+        {
+          "title": "练习与考试",
+          "toc_page": 22,
+          "actual_page": 22,
+          "matches": true
+        },
+        {
+          "title": "复习与知识",
+          "toc_page": 24,
+          "actual_page": 24,
+          "matches": true
+        },
+        {
+          "title": "智能体执行",
+          "toc_page": 25,
+          "actual_page": 25,
+          "matches": true
+        },
+        {
+          "title": "协调方式",
+          "toc_page": 25,
+          "actual_page": 25,
+          "matches": true
+        },
+        {
+          "title": "本题工作流",
+          "toc_page": 26,
+          "actual_page": 26,
+          "matches": true
+        },
+        {
+          "title": "工具与反馈",
+          "toc_page": 27,
+          "actual_page": 27,
+          "matches": true
+        },
+        {
+          "title": "教学会话",
+          "toc_page": 29,
+          "actual_page": 29,
+          "matches": true
+        },
+        {
+          "title": "后台任务",
+          "toc_page": 30,
+          "actual_page": 30,
+          "matches": true
+        },
+        {
+          "title": "数据与异常",
+          "toc_page": 31,
+          "actual_page": 31,
+          "matches": true
+        },
+        {
+          "title": "数据关系",
+          "toc_page": 31,
+          "actual_page": 31,
+          "matches": true
+        },
+        {
+          "title": "版本与修改",
+          "toc_page": 33,
+          "actual_page": 33,
+          "matches": true
+        },
+        {
+          "title": "保存与恢复",
+          "toc_page": 35,
+          "actual_page": 35,
+          "matches": true
+        },
+        {
+          "title": "学习记忆",
+          "toc_page": 38,
+          "actual_page": 38,
+          "matches": true
+        },
+        {
+          "title": "实现与部署",
+          "toc_page": 38,
+          "actual_page": 38,
+          "matches": true
+        },
+        {
+          "title": "前端实现",
+          "toc_page": 38,
+          "actual_page": 38,
+          "matches": true
+        },
+        {
+          "title": "服务接口",
+          "toc_page": 40,
+          "actual_page": 40,
+          "matches": true
+        },
+        {
+          "title": "账号与文件",
+          "toc_page": 41,
+          "actual_page": 41,
+          "matches": true
+        },
+        {
+          "title": "部署与移动端",
+          "toc_page": 42,
+          "actual_page": 42,
+          "matches": true
+        },
+        {
+          "title": "系统验证",
+          "toc_page": 43,
+          "actual_page": 43,
+          "matches": true
+        },
+        {
+          "title": "验证方法",
+          "toc_page": 43,
+          "actual_page": 43,
+          "matches": true
+        },
+        {
+          "title": "既有测试",
+          "toc_page": 44,
+          "actual_page": 44,
+          "matches": true
+        },
+        {
+          "title": "关键检查",
+          "toc_page": 45,
+          "actual_page": 45,
+          "matches": true
+        },
+        {
+          "title": "结果分析",
+          "toc_page": 47,
+          "actual_page": 47,
+          "matches": true
+        },
+        {
+          "title": "总结与计划",
+          "toc_page": 47,
+          "actual_page": 47,
+          "matches": true
+        },
+        {
+          "title": "系统成果",
+          "toc_page": 47,
+          "actual_page": 47,
+          "matches": true
+        },
+        {
+          "title": "改进顺序",
+          "toc_page": 48,
+          "actual_page": 48,
+          "matches": true
+        },
+        {
+          "title": "参考文献",
+          "toc_page": 49,
+          "actual_page": 49,
+          "matches": true
+        }
+      ],
+      "toc_direct_numbering_count": 0,
+      "reference_numbers_contiguous": true,
+      "all_references_cited": true,
+      "has_real_toc_field": true,
+      "unresolved_tokens": [],
+      "reopened_sha_matches": true
+    }
+  },
+  "figures": [
+    {
+      "file": "05.svg",
+      "nonblack_labels": []
+    }
+  ],
+  "cross_document": {
+    "identical_long_paragraphs": [],
+    "foreign_project_terms": []
+  },
+  "screenshots": [
+    {
+      "file": "review-answer-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "today-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "self-check-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "practice-result-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "diagnosis-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "independent-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "map-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "practice-next-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "review-feedback-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "repair-history-mobile.png",
+      "unchanged": true
+    },
+    {
+      "file": "contrast-history-mobile.png",
+      "unchanged": true
+    }
+  ]
+}
