@@ -12,7 +12,7 @@ O=WORK/'short';O.mkdir(exist_ok=True)
 V=O/'voices';V.mkdir(exist_ok=True)
 D=ROOT/'docs/competition/deliverables/演示视频/比赛精简版';D.mkdir(parents=True,exist_ok=True)
 FF=imageio_ffmpeg.get_ffmpeg_exe()
-MOVIE_NAME='错题帮_参赛演示_产品封面版.mp4'
+MOVIE_NAME='错题帮_参赛演示_品牌封面版.mp4'
 SCENES=json.loads((HERE/'storyboard.json').read_text())
 CLIPS={c['id']:c for c in json.loads((WORK/'take2/clips.json').read_text())}
 RAW=Path((WORK/'take2/raw-path.txt').read_text().strip())
