@@ -105,11 +105,11 @@ def package():
         if groups and groups[-1]['name']==key:groups[-1]['end']=c['film_end']
         else:groups.append(dict(name=key,start=c['film_start'],end=c['film_end']))
     table='\n'.join(f'| {g["name"]} | {clock(g["start"])}–{clock(g["end"])} |' for g in groups)
-    readme=f'''# 错题帮参赛演示：蓝色卡通版
+    readme=f'''# 错题帮参赛演示：产品封面版
 
 当前推荐文件：《{MOVIE_NAME}》。片长{human}（{qa['seconds']}秒），1920×1080，25帧/秒，H.264视频与AAC双声道音频；约{qa['bytes']/1048576:.1f} MiB。
 
-视频前2秒显示正式封面，封面与开场使用同一名卡通学生。开场保留动笔、翻页、错题堆叠及题目进入手机的连续动画，场景切换与旁白同步；背景、标题、服装和书桌统一采用主体演示的浅蓝与深蓝配色。开场音轨结束后直接进入账号镜头。
+视频前2秒显示产品封面，使用错因定位、互动订正和易错地图三张真实界面展示核心能力；封面不含卡通人物。开场保留动笔、翻页、错题堆叠及题目进入手机的连续动画，场景切换与旁白同步；背景、标题、服装和书桌统一采用主体演示的浅蓝与深蓝配色。开场音轨结束后直接进入账号镜头。
 
 | 内容 | 时间 |
 |---|---|
@@ -126,7 +126,7 @@ def package():
 
 ## 用户标注的六处画面
 
-1. 按最新要求恢复此前的卡通学生和连续动作，封面使用同一人物。人物服装、书桌和学习道具统一为蓝色系，背景和标题采用主体演示的颜色。正式封面作为视频前2秒，同时单独交付PNG。
+1. 封面移除卡通人物，以错因定位、互动订正及易错地图的真实截图呈现产品能力。后续开场保留卡通学生与连续动作。全片统一蓝色系，正式封面作为视频前2秒，同时单独交付PNG。
 2. 删除“学生使用情境 · 浏览器手机视口实录”底部说明。
 3. 删除主体画面上方重复的三步导航。
 4. 删除画面及封面左侧蓝色竖条。
@@ -165,7 +165,7 @@ def package():
     intro_animation().cover.save(D/'视频封面.png')
     (D/'.gitignore').write_text('*.zip\n')
     parent=D.parent/'README.md';ptext=parent.read_text()
-    ptext=re.sub(r'当前推荐观看.*?(?=\n\n本目录的)',f'当前推荐观看[蓝色卡通版](比赛精简版/README.md)：约{human}，前2秒为正式封面，开场恢复卡通学生及连续动作，全片采用统一的浅蓝与深蓝配色；主体保留真实操作演示，文字使用简体中文字体。',ptext,flags=re.S)
+    ptext=re.sub(r'当前推荐观看.*?(?=\n\n本目录的)',f'当前推荐观看[产品封面版](比赛精简版/README.md)：约{human}，前2秒为三张真实界面构成的产品封面，后续保留卡通学生及连续动作，全片采用统一的浅蓝与深蓝配色；主体保留真实操作演示，文字使用简体中文字体。',ptext,flags=re.S)
     parent.write_text(ptext)
     archive=D/(Path(MOVIE_NAME).stem+'_交付包.zip')
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=5) as z:

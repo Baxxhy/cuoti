@@ -1,8 +1,8 @@
 {
-  "file": "错题帮_参赛演示_蓝色卡通版.mp4",
+  "file": "错题帮_参赛演示_产品封面版.mp4",
   "seconds": 307.3,
-  "bytes": 11933289,
-  "sha256": "35f8a013c31b4e368398bfe2dcdcecc31f0041e2ca4bfc68d8013238295a2c26",
+  "bytes": 11971848,
+  "sha256": "a62eac66dc4ae6142e327aa7db579efadb1c9d42df4a3e7177bba8c55c722d61",
   "resolution": "1920x1080",
   "fps": 25,
   "audio": "AAC / 48000 Hz / stereo",
@@ -24,7 +24,7 @@
         2.45,
         3.15
       ],
-      "changed_character_pixels": 5378
+      "changed_character_pixels": 5373
     },
     {
       "beat": 1,
@@ -59,7 +59,7 @@
       "changed_character_pixels": 8221
     }
   ],
-  "cover_first_frame_mae": 0.6060971257716049,
+  "cover_first_frame_mae": 0.7481328768004115,
   "opening_visuals": "blue cartoon student with writing and page-turn animation",
   "removed_overlay_checks": "passed",
   "cover_intro_body_palette": "matched: #F6F8FC / #17263F / #2454CE"
