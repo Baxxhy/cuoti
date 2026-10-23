@@ -1,0 +1,97 @@
+{
+  "independent": {
+    "algorithm": "aemt-v1",
+    "state": {
+      "mastery": 0.913956834532374,
+      "evidence_count": 1,
+      "independent_count": 1,
+      "independent_correct": 1,
+      "hinted_count": 0,
+      "solution_count": 0,
+      "last_event_id": "document-example",
+      "last_effective_at": ""
+    },
+    "changed": true,
+    "reason": "独立作答正确，增加掌握证据。",
+    "evidence_weight": 1.0,
+    "uncertainty": 0.4231226591280837,
+    "forgetting_risk": 0.08604316546762603,
+    "event_id": "document-example"
+  },
+  "hint": {
+    "algorithm": "aemt-v1",
+    "state": {
+      "mastery": 0.608192876435375,
+      "evidence_count": 1,
+      "independent_count": 0,
+      "independent_correct": 0,
+      "hinted_count": 1,
+      "solution_count": 0,
+      "last_event_id": "document-example",
+      "last_effective_at": ""
+    },
+    "changed": true,
+    "reason": "借助提示完成，按较弱证据更新。",
+    "evidence_weight": 0.35,
+    "uncertainty": 0.9659558522283058,
+    "forgetting_risk": 0.391807123564625,
+    "event_id": "document-example"
+  },
+  "revealed": {
+    "algorithm": "aemt-v1",
+    "state": {
+      "mastery": 0.35,
+      "evidence_count": 0,
+      "independent_count": 0,
+      "independent_correct": 0,
+      "hinted_count": 0,
+      "solution_count": 1,
+      "last_event_id": "document-example",
+      "last_effective_at": ""
+    },
+    "changed": true,
+    "reason": "本次看过完整答案，记录辅助学习，不增加掌握证据。",
+    "evidence_weight": 0.0,
+    "uncertainty": 0.934068055375491,
+    "forgetting_risk": 0.65,
+    "event_id": "document-example"
+  },
+  "wrong": {
+    "algorithm": "aemt-v1",
+    "state": {
+      "mastery": 0.053639846743295014,
+      "evidence_count": 1,
+      "independent_count": 1,
+      "independent_correct": 0,
+      "hinted_count": 0,
+      "solution_count": 0,
+      "last_event_id": "document-example",
+      "last_effective_at": ""
+    },
+    "changed": true,
+    "reason": "本次作答错误，需要继续检查薄弱步骤。",
+    "evidence_weight": 1.0,
+    "uncertainty": 0.3016620306303372,
+    "forgetting_risk": 0.946360153256705,
+    "event_id": "document-example"
+  },
+  "delayed": {
+    "algorithm": "aemt-v1",
+    "state": {
+      "mastery": 0.9561150294275361,
+      "evidence_count": 1,
+      "independent_count": 1,
+      "independent_correct": 1,
+      "hinted_count": 0,
+      "solution_count": 0,
+      "last_event_id": "document-example",
+      "last_effective_at": ""
+    },
+    "changed": true,
+    "reason": "间隔后独立答对类似题，增加保持与迁移证据。",
+    "evidence_weight": 1.25,
+    "uncertainty": 0.25982950216720957,
+    "forgetting_risk": 0.04388497057246388,
+    "event_id": "document-example"
+  }
+}

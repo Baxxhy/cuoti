@@ -1,0 +1,125 @@
+[
+  {
+    "source": "/tmp/cuoti-three-fixes-verify.log",
+    "sha256": "64902dec758c8e31f2960bec2b4ae90a13a5bec9e64fcad2b7cac2ae8865fab4",
+    "available": true,
+    "summary": [
+      {
+        "line": 4245,
+        "text": " Test Files  52 passed (52)"
+      },
+      {
+        "line": 4246,
+        "text": "      Tests  290 passed (290)"
+      },
+      {
+        "line": 4248,
+        "text": "   Duration  17.15s (transform 3.23s, setup 0ms, collect 9.87s, tests 4.27s, environment 34.97s, prepare 6.58s)"
+      },
+      {
+        "line": 4465,
+        "text": "DONE  Build complete."
+      },
+      {
+        "line": 4686,
+        "text": "DONE  Build complete."
+      },
+      {
+        "line": 4708,
+        "text": "690 passed, 1 warning in 33.67s"
+      },
+      {
+        "line": 4709,
+        "text": "cjpm build success"
+      },
+      {
+        "line": 5109,
+        "text": "cjpm build success"
+      },
+      {
+        "line": 5111,
+        "text": "cjpm build success"
+      },
+      {
+        "line": 5448,
+        "text": "  71 passed (4.2m)"
+      },
+      {
+        "line": 5038,
+        "text": "Summary: TOTAL: 46"
+      },
+      {
+        "line": 5039,
+        "text": "PASSED: 46, SKIPPED: 0, ERROR: 0"
+      }
+    ]
+  },
+  {
+    "source": "/tmp/cuoti-chem-layout-front.log",
+    "sha256": "028920476d5d4039a58c205b3cbec0608f60fdb4bc5dfdf98d79fe0130c69227",
+    "available": true,
+    "summary": [
+      {
+        "line": 4238,
+        "text": " Test Files  52 passed (52)"
+      },
+      {
+        "line": 4239,
+        "text": "      Tests  299 passed (299)"
+      },
+      {
+        "line": 4241,
+        "text": "   Duration  14.52s (transform 4.36s, setup 0ms, collect 12.27s, tests 4.59s, environment 25.42s, prepare 4.67s)"
+      }
+    ]
+  },
+  {
+    "source": "/tmp/cuoti-chem-layout-final-targeted.log",
+    "sha256": "739224d87069d111ae59927bcbabea821eac82e9598d360b806e2598fd59222d",
+    "available": true,
+    "summary": [
+      {
+        "line": 17,
+        "text": " Test Files  3 passed (3)"
+      },
+      {
+        "line": 18,
+        "text": "      Tests  56 passed (56)"
+      },
+      {
+        "line": 20,
+        "text": "   Duration  1.56s (transform 780ms, setup 0ms, collect 1.58s, tests 219ms, environment 1.47s, prepare 342ms)"
+      }
+    ]
+  },
+  {
+    "source": "/tmp/cuoti-chem-layout-browser.log",
+    "sha256": "2037b48991758ed08031d29513b57023d3e5b1c61ec6dd368f715a6c77d4d758",
+    "available": true,
+    "summary": [
+      {
+        "line": 1,
+        "text": "375px: original chemistry stem/options/solution passed {\"height\":590.546875,\"reactionHeight\":22,\"subscripts\":5,\"charges\":0}"
+      },
+      {
+        "line": 2,
+        "text": "1280px: original chemistry stem/options/solution passed {\"height\":244.984375,\"reactionHeight\":22,\"subscripts\":5,\"charges\":0}"
+      }
+    ]
+  },
+  {
+    "source": "/tmp/cuoti-chem-layout-build.log",
+    "sha256": "120ca446340836fc724626efdedf0474775ac48b6ccd26877c459d8b9d5603a2",
+    "available": true,
+    "summary": [
+      {
+        "line": 209,
+        "text": "DONE  Build complete."
+      },
+      {
+        "line": 430,
+        "text": "DONE  Build complete."
+      }
+    ]
+  }
+]

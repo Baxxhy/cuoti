@@ -1,0 +1,18 @@
+[
+  {
+    "path": "docs/competition/deliverables/技术介绍修订版/错题帮_项目说明文档_技术介绍修订版.docx",
+    "sha256": "f2110a1154735748f81a97b534a2d777f196c97b9db904afbf791e428902d55a",
+    "paragraphs": 194,
+    "tables": 3,
+    "images": 14,
+    "chars": 17633
+  },
+  {
+    "path": "docs/competition/deliverables/图文修订版/错题帮_系统设计文档_图文修订版.docx",
+    "sha256": "cdc41d78ceaaba2b8e7134fcddfe296f5eab0ecfd5b765374ce9e6f41c49f9ce",
+    "paragraphs": 371,
+    "tables": 22,
+    "images": 6,
+    "chars": 46448
+  }
+]

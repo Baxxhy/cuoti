@@ -1,0 +1,232 @@
+[
+  {
+    "path": "figures/00-background.png",
+    "sha256": "32e1ba0d9cbf7279a60a8ecb2bed45d9fe82ba6a8e9c708b8633e2819b4855b4",
+    "bytes": 286306
+  },
+  {
+    "path": "figures/00-background.svg",
+    "sha256": "488a93358a51b6c53aaa1cc060175b1f1f9ee6e24d591fec22cd29ee48a3cc1c",
+    "bytes": 3524
+  },
+  {
+    "path": "figures/01.png",
+    "sha256": "8fde8066c9a079eaa831d8348208903a5649d682a3da3c5d75dc9c6fe0f74bf1",
+    "bytes": 296214
+  },
+  {
+    "path": "figures/01.svg",
+    "sha256": "cd41dacdb19d7c4d8522b43d7bc21bfacbb2952dfa3aa448d6797945a02d4825",
+    "bytes": 5255
+  },
+  {
+    "path": "figures/03.png",
+    "sha256": "9dfdf78ce1ce4975362d9e6fe22d57d2471adb58396d8bad532bfa6d64f7739e",
+    "bytes": 278122
+  },
+  {
+    "path": "figures/03.svg",
+    "sha256": "387ae4b395be310850ded85aa3c224e225399e08f442c300520450a1cdbc2513",
+    "bytes": 5213
+  },
+  {
+    "path": "figures/04.png",
+    "sha256": "651c6df55c618ed32893671d5aa4d308a85df51184548fc98dcd5dfef82da03d",
+    "bytes": 378088
+  },
+  {
+    "path": "figures/04.svg",
+    "sha256": "d83ae6d832898679a58807c61ad82674258c0423a353238832657be2a0bd36d1",
+    "bytes": 5424
+  },
+  {
+    "path": "figures/05.png",
+    "sha256": "984ad1a98cbcf817877770199e1140c7035bfb4b03843a618259a9962b3d5ed0",
+    "bytes": 313345
+  },
+  {
+    "path": "figures/05.svg",
+    "sha256": "6e8061f55ba0709301204a502d573225f532d477c0b573fdc9c9324b80bee1a5",
+    "bytes": 6148
+  },
+  {
+    "path": "figures/06.png",
+    "sha256": "9fb693abbf8cea4191f433c151f02673e3b2b49ee129754e14c58828842841ec",
+    "bytes": 325108
+  },
+  {
+    "path": "figures/06.svg",
+    "sha256": "37f9b3b85ac821098cd72ebc3a4e21bfe10f81c3b3be2aa206419b349e8c00f4",
+    "bytes": 5051
+  },
+  {
+    "path": "figures/07.png",
+    "sha256": "83b0b241ce56d2305b08ae9c474463b9015da64471a1c23b89506672b5a95afe",
+    "bytes": 336797
+  },
+  {
+    "path": "figures/07.svg",
+    "sha256": "6bfc8069372fd2965a0e18c64fea686f3c56e49ce1d428250eceaf126efd9caf",
+    "bytes": 4283
+  },
+  {
+    "path": "figures/08.png",
+    "sha256": "337b6a87456bb26d576352e8424ff26c22988ed43724823d8a6cc2aa57edbde0",
+    "bytes": 274587
+  },
+  {
+    "path": "figures/08.svg",
+    "sha256": "0eea48b0630a74bec92b7fbd18d7a435587b0129514b22e7cce70d505512cceb",
+    "bytes": 4166
+  },
+  {
+    "path": "figures/09.png",
+    "sha256": "33e0fb5652bcded2057d39bea6e999959d6efef981e7225925a328b31917cffd",
+    "bytes": 342324
+  },
+  {
+    "path": "figures/09.svg",
+    "sha256": "3ee8c1b9fdd7f4105d23d09ac0f08ad17eecbec719e81b20344d2e73729d89f1",
+    "bytes": 5404
+  },
+  {
+    "path": "figures/10.png",
+    "sha256": "38c4092dd6224ab4659a82cddc6d4411966a659838284bb27565a5822bff21a3",
+    "bytes": 193288
+  },
+  {
+    "path": "figures/10.svg",
+    "sha256": "24c08799f772ac256bb09901341933b42958b0ce507020ae3448724606254acc",
+    "bytes": 3569
+  },
+  {
+    "path": "figures/README.md",
+    "sha256": "2f5be6d5886870681358c94d9369ee0100982ff737070721e2a096ef9a6de97f",
+    "bytes": 874
+  },
+  {
+    "path": "figures/screenshots/contrast-history-mobile.png",
+    "sha256": "d64d9d99113f4e85dc08d74958a4baae7cc626ba8b08396e88ed883a16266748",
+    "bytes": 99185
+  },
+  {
+    "path": "figures/screenshots/diagnosis-history-mobile.png",
+    "sha256": "f1e988662b3d5bb7b8e92c6b39dbe47432f2bf34623c2675cddb5c1e352b5bd9",
+    "bytes": 54411
+  },
+  {
+    "path": "figures/screenshots/independent-history-mobile.png",
+    "sha256": "f3552c165cf7a852e4b6b672b4abf638dfed13f425d769f04263546ff95bcb8a",
+    "bytes": 133923
+  },
+  {
+    "path": "figures/screenshots/map-history-mobile.png",
+    "sha256": "442949a2cf28be1be2a348ad1b8d63864289b553ac334c8d3dcc89f0ed3ed165",
+    "bytes": 91738
+  },
+  {
+    "path": "figures/screenshots/practice-next-history-mobile.png",
+    "sha256": "4451bc320b30addc398b110bdf21760bb40a9af9663c52832841a034dfcbe8a7",
+    "bytes": 74572
+  },
+  {
+    "path": "figures/screenshots/practice-result-history-mobile.png",
+    "sha256": "14843df0219027da2ef87a7db06895e7a8218fcfb75a05e7497438d79a025660",
+    "bytes": 129387
+  },
+  {
+    "path": "figures/screenshots/repair-history-mobile.png",
+    "sha256": "ca7092112ad91e592651dcef58a539e333ce7a378fd876af429adbfc9415b0a8",
+    "bytes": 29723
+  },
+  {
+    "path": "figures/screenshots/review-answer-history-mobile.png",
+    "sha256": "f8f829171e944d2f73e876b20777fe321b9fa89bde853d1de9abd722deb8b2c2",
+    "bytes": 110107
+  },
+  {
+    "path": "figures/screenshots/review-feedback-history-mobile.png",
+    "sha256": "1804bfb2ba2b93271364e0eee5b7c348b1594245939315ef6a21614c5f3b5720",
+    "bytes": 138039
+  },
+  {
+    "path": "figures/screenshots/self-check-history-mobile.png",
+    "sha256": "5cf32687daf5605a4af85387ee32dbb0b2563be9711f8b2a81d4c8f20ebd31db",
+    "bytes": 95874
+  },
+  {
+    "path": "figures/screenshots/today-history-mobile.png",
+    "sha256": "7811691c0e8997dac8e8896fc325def8922fa40ce3ab683fa22b527095488be9",
+    "bytes": 33447
+  },
+  {
+    "path": "终稿修改说明.md",
+    "sha256": "401d8f429613fb0defd76c59d2fae941336dd076d7fff1e0af5673afe0f5c0da",
+    "bytes": 6476
+  },
+  {
+    "path": "错题帮_系统设计文档_最终版.docx",
+    "sha256": "dd4bfee532f1f172e427f13779d224e26b1c3a7e02a2239a8e5bb12168b7adad",
+    "bytes": 2319700
+  },
+  {
+    "path": "错题帮_系统设计文档_最终版.md",
+    "sha256": "afa4efad4fb73045319d1030dfd715f0c2a8460278505ea2c9508eee76462323",
+    "bytes": 81712
+  },
+  {
+    "path": "错题帮_项目说明文档_最终版.docx",
+    "sha256": "245eff9298c514a1d44060f1b5982ea08e88bfdf8ab5fab9bbc5083e0e9b7197",
+    "bytes": 1743804
+  },
+  {
+    "path": "错题帮_项目说明文档_最终版.md",
+    "sha256": "49e0587f8b2f4fa74cc90c2e737da2c8c570ad66a92f3221f74a20d8399a5e07",
+    "bytes": 42838
+  },
+  {
+    "path": "验收材料/algorithm_review_host.log",
+    "sha256": "d3007c589b097edc2e0d8c51745abdf25a7186ba05456e2f1125cab4975f97e0",
+    "bytes": 622
+  },
+  {
+    "path": "验收材料/frontend_mode_review.log",
+    "sha256": "829b62f7573c33da5bb3daaaf573091cd59f0b5d786372288a62734eca94fb2e",
+    "bytes": 54791
+  },
+  {
+    "path": "验收材料/mastery_examples.json",
+    "sha256": "8f3c3f0ea9b0fe013662ac1128ca2dbc9f96d495d050cbde36e2952bccd56b49",
+    "bytes": 2777
+  },
+  {
+    "path": "验收材料/quality_audit.json",
+    "sha256": "a782ce03cc32989103e509507094f831182758df2ce013064829f46999a2a4ab",
+    "bytes": 17126
+  },
+  {
+    "path": "验收材料/历史证据索引.json",
+    "sha256": "1f22aca36427595f6d2f747e5d9ee518d5e907a6d2d41834f87b3be1aa5155f1",
+    "bytes": 3202
+  },
+  {
+    "path": "验收材料/图表复核.md",
+    "sha256": "6958f55fddb5fcacdadca4abd4efada4b934e7f3c3070f9ebcf2db1540530564",
+    "bytes": 855
+  },
+  {
+    "path": "验收材料/完成审计.md",
+    "sha256": "23d0499597d4ef7a003be7232f4a624d058684e553393ce70a5b469d969e11af",
+    "bytes": 2965
+  },
+  {
+    "path": "验收材料/文献补充核查.md",
+    "sha256": "307f5e688dad6d74f36fb878116093e1068abf03030fb1bf190277e46ab34d6c",
+    "bytes": 1367
+  },
+  {
+    "path": "验收材料/阶段审计.md",
+    "sha256": "442e011abe42212b58077ad7ff556d8da51c4bd09cf90f915afbd03d6623b783",
+    "bytes": 3802
+  }
+]
