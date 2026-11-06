@@ -366,21 +366,21 @@ onUnload(clear)
   margin-top: 20px;
 }
 .report-block {
-  padding: 15.0px 0;
-  border-bottom: 0.5px solid var(--color-border);
+  padding: 0.9375rem 0;
+  border-bottom: 0.03125rem solid var(--color-border);
 }
 .report-block:first-child {
-  padding-top: 2.0px;
+  padding-top: 0.125rem;
 }
 .report-block.progress-block {
-  padding: 14.0px;
-  margin-bottom: 11.0px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 12.0px;
+  padding: 0.875rem;
+  margin-bottom: 0.6875rem;
+  border: 0.03125rem solid var(--color-border);
+  border-radius: 0.75rem;
   background: var(--color-primary-soft);
 }
 .progress-block .primary-btn {
-  margin-top: 12.0px;
+  margin-top: 0.75rem;
 }
 .block-label,
 .block-title,
@@ -389,7 +389,7 @@ onUnload(clear)
   display: block;
 }
 .block-label {
-  font-size: 11.5px;
+  font-size: 0.71875rem;
   color: var(--color-text-secondary);
   font-weight: 600;
 }
@@ -397,57 +397,57 @@ onUnload(clear)
   color: #9a6416;
 }
 .attention-block .block-title {
-  font-size: 15.0px;
+  font-size: 0.9375rem;
   line-height: 1.6;
 }
 .block-title {
-  font-size: 18.0px;
+  font-size: 1.125rem;
   font-weight: 650;
-  margin-top: 3.5px;
+  margin-top: 0.21875rem;
 }
 .block-detail {
-  font-size: 13.0px;
+  font-size: 0.8125rem;
   line-height: 1.7;
   color: var(--color-text-secondary);
-  margin-top: 5.0px;
+  margin-top: 0.3125rem;
 }
 .change-line {
   display: flex;
   align-items: center;
-  gap: 5.0px;
-  margin-top: 6.0px;
+  gap: 0.3125rem;
+  margin-top: 0.375rem;
 }
 .change-line b {
-  font-size: 26.0px;
+  font-size: 1.625rem;
   font-weight: 700;
 }
 .change-line b:last-of-type {
   color: var(--color-primary);
 }
 .change-line > span {
-  padding: 2.5px 6.0px;
-  border-radius: 499.5px;
+  padding: 0.15625rem 0.375rem;
+  border-radius: 31.21875rem;
   background: var(--color-primary-soft);
   color: var(--color-primary);
-  font-size: 10.5px;
+  font-size: 0.65625rem;
 }
 .stable-score {
-  font-size: 12.5px;
+  font-size: 0.78125rem;
   color: var(--color-primary);
-  margin-top: 4.0px;
+  margin-top: 0.25rem;
 }
 .trend-panel {
-  padding: 12.0px 6.0px;
+  padding: 0.75rem 0.375rem;
   background: #fff;
-  border: 0.5px solid var(--color-border);
+  border: 0.03125rem solid var(--color-border);
   border-radius: 10px;
 }
 .trend-bars {
-  height: 105.0px;
+  height: 6.5625rem;
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
-  gap: 4.0px;
+  gap: 0.25rem;
 }
 .trend-bars > div {
   flex: 1;
@@ -459,36 +459,36 @@ onUnload(clear)
 }
 .trend-bars > div > div {
   width: 60%;
-  max-width: 15.0px;
-  border-radius: 3.5px 3.5px 0 0;
+  max-width: 0.9375rem;
+  border-radius: 0.21875rem 0.21875rem 0 0;
   background: var(--color-primary);
 }
 .trend-bars span {
-  font-size: 9.0px;
+  font-size: 0.5625rem;
   color: var(--color-text-secondary);
-  margin-top: 3.5px;
+  margin-top: 0.21875rem;
 }
 .filter-scroll {
   white-space: nowrap;
-  margin: 10.0px 0 4.0px;
+  margin: 0.625rem 0 0.25rem;
 }
 .node-detail {
-  margin-top: 8.0px;
-  padding: 12.0px;
-  border-radius: 11.0px;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.6875rem;
   background: #fff;
-  border: 0.5px solid var(--color-border);
+  border: 0.03125rem solid var(--color-border);
 }
 .node-detail b,
 .node-detail > span:last-of-type {
   display: block;
 }
 .node-detail b {
-  font-size: 14.5px;
-  margin-top: 5.0px;
+  font-size: 0.90625rem;
+  margin-top: 0.3125rem;
 }
 .node-detail > span:last-of-type {
   color: var(--color-text-secondary);
-  margin-top: 2.5px;
+  margin-top: 0.15625rem;
 }
 </style>

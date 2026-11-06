@@ -1027,14 +1027,14 @@ onUnload(leave)
 .review-figure {
   display: block;
   width: 100%;
-  margin-top: 9.0px;
+  margin-top: 0.5625rem;
 }
 .review-option {
   display: flex;
   align-items: flex-start;
-  gap: 7.0px;
-  padding: 10.0px 0;
-  border-bottom: 0.5px solid var(--color-border);
+  gap: 0.4375rem;
+  padding: 0.625rem 0;
+  border-bottom: 0.03125rem solid var(--color-border);
 }
 .review-option :deep(.math-text) {
   flex: 1;
@@ -1045,8 +1045,8 @@ onUnload(leave)
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12.0px 0;
-  border-bottom: 0.5px solid var(--color-border);
+  padding: 0.75rem 0;
+  border-bottom: 0.03125rem solid var(--color-border);
 }
 .continue-row span,
 .continue-row b,
@@ -1054,17 +1054,17 @@ onUnload(leave)
   display: block;
 }
 .continue-row > div > span {
-  font-size: 11.0px;
+  font-size: 0.6875rem;
   color: var(--color-primary);
 }
 .continue-row b {
-  font-size: 15.0px;
-  margin-top: 1.5px;
+  font-size: 0.9375rem;
+  margin-top: 0.09375rem;
 }
 .continue-row small {
-  font-size: 11.5px;
+  font-size: 0.71875rem;
   color: var(--color-text-secondary);
-  margin-top: 1.5px;
+  margin-top: 0.09375rem;
 }
 .row-action {
   background: transparent;
@@ -1072,7 +1072,7 @@ onUnload(leave)
   margin: 0;
   padding: 8px;
   color: var(--color-primary);
-  font-size: 12.0px;
+  font-size: 0.75rem;
 }
 .today-summary {
   padding: 4px 0 24px;
@@ -1082,43 +1082,43 @@ onUnload(leave)
   display: block;
 }
 .summary-label {
-  font-size: 11.5px;
+  font-size: 0.71875rem;
   color: var(--color-primary);
   font-weight: 600;
 }
 .today-summary b {
-  font-size: 17.0px;
-  margin-top: 3.0px;
+  font-size: 1.0625rem;
+  margin-top: 0.1875rem;
 }
 .today-summary > b + span {
-  font-size: 12.0px;
+  font-size: 0.75rem;
   color: var(--color-text-secondary);
-  margin-top: 4.0px;
+  margin-top: 0.25rem;
 }
 .review-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--color-text-secondary);
-  font-size: 11.0px;
+  font-size: 0.6875rem;
 }
 .review-question {
   display: block;
-  font-size: 15.0px;
+  font-size: 0.9375rem;
   font-weight: 500;
   line-height: 1.7;
-  margin-top: 10.0px;
+  margin-top: 0.625rem;
 }
 .review-reason {
   display: block;
   color: var(--color-text-secondary);
-  font-size: 11.5px;
-  margin-top: 5.0px;
+  font-size: 0.71875rem;
+  margin-top: 0.3125rem;
 }
 .answer-result {
-  margin-top: 12.0px;
-  padding: 12.0px;
-  border-radius: 10.0px;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.625rem;
   background: var(--color-error-soft);
   color: #8f3030;
 }
@@ -1133,13 +1133,13 @@ onUnload(leave)
 .result-title {
   display: flex;
   align-items: center;
-  gap: 5.0px;
+  gap: 0.3125rem;
 }
 .answer-result > span,
 .answer-result small,
 .answer-result strong {
   display: block;
-  margin-top: 5.0px;
+  margin-top: 0.3125rem;
 }
 .answer-result strong {
   white-space: pre-wrap;
@@ -1147,7 +1147,7 @@ onUnload(leave)
 .grade-prompt {
   display: block;
   font-weight: 600;
-  margin: 12.0px 0 6.0px;
+  margin: 0.75rem 0 0.375rem;
 }
 .grade-grid {
   display: grid;
@@ -1195,14 +1195,14 @@ onUnload(leave)
   }
 }
 .reinforce-list {
-  border-top: 0.5px solid var(--color-border);
+  border-top: 0.03125rem solid var(--color-border);
 }
 .reinforce-list > div {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 2.0px;
-  padding: 10.0px 1.0px;
-  border-bottom: 0.5px solid var(--color-border);
+  gap: 0.125rem;
+  padding: 0.625rem 0.0625rem;
+  border-bottom: 0.03125rem solid var(--color-border);
 }
 .reinforce-reason {
   min-width: 0;
@@ -1212,7 +1212,7 @@ onUnload(leave)
 .reinforce-list small {
   grid-row: 2;
   color: var(--color-text-secondary);
-  font-size: 11.0px;
+  font-size: 0.6875rem;
 }
 .reinforce-list .row-action {
   background: transparent;
@@ -1232,18 +1232,18 @@ onUnload(leave)
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 19.0px;
-  padding: 12.0px 0;
-  border-top: 0.5px solid var(--color-border);
-  font-size: 14.5px;
+  margin-top: 1.1875rem;
+  padding: 0.75rem 0;
+  border-top: 0.03125rem solid var(--color-border);
+  font-size: 0.90625rem;
 }
 .history-score {
-  width: 32.0px;
-  height: 32.0px;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9.0px;
+  border-radius: 0.5625rem;
   background: var(--color-error-soft);
   color: var(--color-error);
   font-weight: 600;

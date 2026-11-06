@@ -1,0 +1,56 @@
+/* Browser equivalents of the original H5 control defaults. */
+* { margin: 0; -webkit-tap-highlight-color: transparent; }
+button {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  background: #f8f8f8;
+}
+.primary-btn, .secondary-btn, .danger-btn { width: 100%; }
+.web-input {
+  display: block;
+  font-size: 16px;
+  line-height: 1.4em;
+  height: 1.4em;
+  min-height: 1.4em;
+  overflow: hidden;
+}
+.web-textarea {
+  display: block;
+  position: relative;
+  width: 300px;
+  height: 150px;
+  font-size: 16px;
+  line-height: normal;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.web-input > input, .web-textarea > textarea {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-indent: inherit;
+  text-transform: inherit;
+  text-shadow: inherit;
+}
+.web-input > input::placeholder,.web-textarea > textarea::placeholder {color:gray;opacity:1;}
+.web-textarea > textarea {resize:none;white-space:inherit;word-break:inherit;}

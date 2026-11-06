@@ -288,18 +288,18 @@ onUnload(() => {
 
 <style scoped lang="scss">
 .crop-content {
-  padding-bottom: 15.0px;
+  padding-bottom: 0.9375rem;
 }
 .crop-stage {
   width: 100%;
   height: 55vh;
-  max-height: 520.0px;
+  max-height: 32.5rem;
   background: #10241d;
   position: relative;
   overflow: hidden;
   touch-action: none;
 }
-.crop-stage image {
+.crop-stage img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -307,14 +307,14 @@ onUnload(() => {
   pointer-events: none;
 }
 .crop-box {
-  border: 2.5px solid var(--color-primary);
+  border: 0.15625rem solid var(--color-primary);
   background: transparent;
-  box-shadow: 0 0 0 1000.0px rgba(0, 0, 0, 0.52);
+  box-shadow: 0 0 0 62.5rem rgba(0, 0, 0, 0.52);
 }
 .corner {
   position: absolute;
-  width: 38.0px;
-  height: 38.0px;
+  width: 2.375rem;
+  height: 2.375rem;
   background: transparent;
   touch-action: none;
 }
@@ -323,50 +323,50 @@ onUnload(() => {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 15.0px;
-  height: 15.0px;
+  width: 0.9375rem;
+  height: 0.9375rem;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: var(--color-primary);
-  border: 2.5px solid #fff;
+  border: 0.15625rem solid #fff;
   box-sizing: border-box;
 }
 .lt {
-  left: -19.0px;
-  top: -19.0px;
+  left: -1.1875rem;
+  top: -1.1875rem;
 }
 .rt {
-  right: -19.0px;
-  top: -19.0px;
+  right: -1.1875rem;
+  top: -1.1875rem;
 }
 .lb {
-  left: -19.0px;
-  bottom: -19.0px;
+  left: -1.1875rem;
+  bottom: -1.1875rem;
 }
 .rb {
-  right: -19.0px;
-  bottom: -19.0px;
+  right: -1.1875rem;
+  bottom: -1.1875rem;
 }
 .crop-panel {
-  margin: -5.0px 12.0px 0;
-  padding: 14.0px 15.0px 15.0px;
+  margin: -0.3125rem 0.75rem 0;
+  padding: 0.875rem 0.9375rem 0.9375rem;
   background: #fff;
-  border-radius: 14.0px;
+  border-radius: 0.875rem;
   position: relative;
   z-index: 2;
-  box-shadow: 0 4.0px 15.0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.1);
 }
 .crop-help {
   display: block;
   text-align: center;
   color: var(--color-text-secondary);
-  font-size: 12.0px;
+  font-size: 0.75rem;
 }
 .processing-hint {
   display: block;
-  margin-top: 8.0px;
+  margin-top: 0.5rem;
   text-align: center;
   color: var(--color-text-secondary);
-  font-size: 11.0px;
+  font-size: 0.6875rem;
 }
 </style>

@@ -1659,7 +1659,7 @@ onLoad((query) => {
   color: #475467;
   font-size: 13px;
 }
-.helper-bar input {
+.helper-bar .web-input {
   flex: 1;
   height: 44px;
   padding: 0 9px;

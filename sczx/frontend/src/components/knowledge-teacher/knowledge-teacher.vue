@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
 .teacher-content {
   padding-bottom: 16px;
 }
-.teacher-content textarea {
+.teacher-content .web-textarea {
   width: 100%;
   min-height: 90px;
   margin: 16px 0 12px;

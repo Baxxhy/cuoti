@@ -31,7 +31,7 @@ window.addEventListener('hashchange', () => {
   currentUrl.value = locationUrl()
   if (pages.at(-1)?.$page.fullPath !== currentUrl.value) pages = [parsePage(currentUrl.value)]
 })
-export const notice = shallowRef('')
+export const notice = shallowRef(null)
 let noticeTimer
 function result(options, value) { options.success?.(value); options.complete?.(value); return value }
 function failed(options, error) { options.fail?.(error); options.complete?.(error) }
@@ -49,9 +49,9 @@ export const browser = {
     window.history.go(-delta)
   },
   showToast(o) {
-    notice.value = String(o.title || '')
+    notice.value = {title:String(o.title || ''),icon:o.icon||'success'}
     clearTimeout(noticeTimer)
-    noticeTimer = setTimeout(() => { notice.value = '' }, o.duration || 2600)
+    noticeTimer = setTimeout(() => { notice.value = null }, o.duration ?? 1500)
   },
   showModal(o) {
     const confirm = o.showCancel === false ? (window.alert(o.content || o.title || ''), true) : window.confirm([o.title, o.content].filter(Boolean).join('\n'))

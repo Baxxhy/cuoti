@@ -1,8 +1,8 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
 import { browser, parsePage, getBrowserPages, currentUrl } from '../src/platform/browser.js'
-import { WebInput, WebPicker, WebImage, WebMovable, WebCheckboxGroup, WebCheckbox } from '../src/platform/components.js'
+import { WebInput, WebTextarea, WebPicker, WebImage, WebMovable, WebCheckboxGroup, WebCheckbox } from '../src/platform/components.js'
 import routes from '../src/routes.json'
 import { readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -59,6 +59,22 @@ describe('Web runtime preserves original page contracts',()=>{
   await date.find('input').setValue('2026-11-08')
   expect(date.emitted('change')[0][0].detail.value).toBe('2026-11-08')
   date.unmount()
+ })
+ it('restores requested text cursor without moving it back during later typing',async()=>{
+  const wrapper=mount(WebTextarea,{attachTo:document.body,props:{modelValue:'ab',focus:true,cursor:1,autoHeight:true}})
+  await nextTick()
+  const field=wrapper.find('textarea')
+  expect(document.activeElement).toBe(field.element)
+  expect(field.element.selectionStart).toBe(1)
+  await field.setValue('abc')
+  await wrapper.setProps({modelValue:'abc'})
+  expect(field.element.selectionStart).toBe(3)
+  expect(wrapper.emitted('input')[0][0].detail.cursor).toBe(3)
+  await wrapper.setProps({cursor:2})
+  expect(field.element.selectionStart).toBe(2)
+  await field.trigger('blur')
+  expect(wrapper.emitted('blur')[0][0].detail.cursor).toBe(2)
+  wrapper.unmount()
  })
  it('reports image dimensions used by the existing crop algorithm',async()=>{
   const image=mount(WebImage,{props:{src:'/test.png'}})

@@ -126,11 +126,11 @@ watch(
 </script>
 <style scoped>
 .graph-wrap {
-  height: 300.0px;
+  height: 18.75rem;
   position: relative;
   background: #fff;
-  border: 0.5px solid var(--color-border);
-  border-radius: 14.0px;
+  border: 0.03125rem solid var(--color-border);
+  border-radius: 0.875rem;
   overflow: hidden;
 }
 .graph-canvas {
@@ -143,43 +143,43 @@ watch(
   margin: 0;
   padding: 0;
   position: absolute;
-  width: 95.0px;
-  min-height: 54.0px;
+  width: 5.9375rem;
+  min-height: 3.375rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  transform: translate(-50%, -13.0px);
+  transform: translate(-50%, -0.8125rem);
   z-index: 2;
 }
 .node-dot {
-  width: 26.0px;
-  height: 26.0px;
+  width: 1.625rem;
+  height: 1.625rem;
   border-radius: 50%;
   background: var(--node-color);
-  border: 3.0px solid #fff;
-  box-shadow: 0 1.0px 4.0px rgba(15, 23, 42, 0.18);
+  border: 0.1875rem solid #fff;
+  box-shadow: 0 0.0625rem 0.25rem rgba(15, 23, 42, 0.18);
 }
 .graph-node .node-label {
   display: block;
-  max-width: 95.0px;
-  margin-top: 2.5px;
-  padding: 1.0px 2.5px;
-  border-radius: 3.5px;
+  max-width: 5.9375rem;
+  margin-top: 0.15625rem;
+  padding: 0.0625rem 0.15625rem;
+  border-radius: 0.21875rem;
   background: rgba(255, 255, 255, 0.9);
   color: #334155;
-  font-size: 10.0px;
+  font-size: 0.625rem;
   line-height: 1.8;
   text-align: center;
 }
 .graph-node.selected .node-dot {
-  width: 34.0px;
-  height: 34.0px;
+  width: 2.125rem;
+  height: 2.125rem;
   border-color: #dce8ff;
-  box-shadow: 0 0 0 2.5px rgba(47, 107, 255, 0.18);
+  box-shadow: 0 0 0 0.15625rem rgba(47, 107, 255, 0.18);
 }
 .graph-node.selected {
-  transform: translate(-50%, -17.0px);
+  transform: translate(-50%, -1.0625rem);
 }
 .graph-node.selected .node-label {
   font-weight: 600;
@@ -188,23 +188,23 @@ watch(
 .graph-empty {
   position: absolute;
   inset: 0;
-  padding: 50.0px 25.0px;
+  padding: 3.125rem 1.5625rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: var(--color-text-secondary);
-  font-size: 12.0px;
+  font-size: 0.75rem;
 }
 .graph-tip {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 7.0px;
+  bottom: 0.4375rem;
   z-index: 3;
   text-align: center;
   color: var(--color-text-secondary);
-  font-size: 10.5px;
+  font-size: 0.65625rem;
   pointer-events: none;
 }
 </style>

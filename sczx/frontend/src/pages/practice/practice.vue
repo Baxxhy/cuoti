@@ -430,44 +430,44 @@ onLoad((query) => {
 .loading-hint {
   display: block;
   color: var(--color-text-secondary);
-  font-size: 12.5px;
+  font-size: 0.78125rem;
   line-height: 1.6;
 }
 .context-row {
   display: flex;
-  gap: 6.0px;
-  margin-bottom: 9.0px;
+  gap: 0.375rem;
+  margin-bottom: 0.5625rem;
 }
 .context-row span {
-  padding: 4.0px 7.0px;
-  border: 0.5px solid var(--color-border);
-  border-radius: 499.5px;
+  padding: 0.25rem 0.4375rem;
+  border: 0.03125rem solid var(--color-border);
+  border-radius: 31.21875rem;
   color: var(--color-text-secondary);
-  font-size: 10.5px;
+  font-size: 0.65625rem;
 }
 .question-card .source {
   display: block;
   color: var(--color-text-secondary);
-  font-size: 10.5px;
-  margin-bottom: 6.0px;
+  font-size: 0.65625rem;
+  margin-bottom: 0.375rem;
 }
 .question-stem {
-  font-size: 16.0px;
+  font-size: 1rem;
   line-height: 1.7;
   font-weight: 500;
 }
-.question-card image {
+.question-card img {
   width: 100%;
-  margin-top: 9.0px;
+  margin-top: 0.5625rem;
 }
 .option {
   display: flex;
   align-items: center;
-  gap: 6.0px;
-  padding: 9.0px 0;
-  border-bottom: 0.5px solid var(--color-border);
-  font-size: 15.0px;
-  min-height: 44.0px;
+  gap: 0.375rem;
+  padding: 0.5625rem 0;
+  border-bottom: 0.03125rem solid var(--color-border);
+  font-size: 0.9375rem;
+  min-height: 2.75rem;
   box-sizing: border-box;
 }
 .option-text {
@@ -479,10 +479,10 @@ onLoad((query) => {
 }
 .question-card :deep(.written-answer) {
   display: block;
-  margin-top: 11.0px;
+  margin-top: 0.6875rem;
 }
 .result-card {
-  margin-top: 10.0px;
+  margin-top: 0.625rem;
   background: var(--color-warning-soft);
 }
 .result-card.correct {
@@ -496,20 +496,20 @@ onLoad((query) => {
   display: block;
 }
 .result-card b {
-  font-size: 14.0px;
+  font-size: 0.875rem;
 }
 .result-card span {
-  margin-top: 5.0px;
+  margin-top: 0.3125rem;
   color: var(--color-text-secondary);
   line-height: 1.6;
 }
 .reference {
-  margin-top: 5.0px;
+  margin-top: 0.3125rem;
   color: var(--color-text-primary) !important;
   line-height: 1.6;
 }
 .switch-mode {
-  margin-top: 7.0px;
+  margin-top: 0.4375rem;
 }
 .empty-card {
   text-align: left;
@@ -532,7 +532,7 @@ onLoad((query) => {
 .empty-card span {
   font-size: 14px;
   line-height: 1.6;
-  margin: 6.0px 0 11.0px;
+  margin: 0.375rem 0 0.6875rem;
   color: var(--color-text-secondary);
 }
 </style>

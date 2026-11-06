@@ -303,38 +303,38 @@ defineExpose({ reset, restore })
   color: var(--color-primary);
   background: var(--color-surface);
 }
-.written-answer > textarea {
+.written-answer > .web-textarea {
   box-sizing: border-box;
   width: 100%;
   min-height: 104px;
-  padding: 10.0px;
-  border: 0.5px solid var(--color-border);
+  padding: 0.625rem;
+  border: 0.03125rem solid var(--color-border);
   border-radius: 12px;
   background: var(--color-surface-subtle);
   font-size: 16px;
   line-height: 1.65;
 }
 .written-answer > .working {
-  min-height: 52.0px;
-  margin-top: 7.0px;
+  min-height: 3.25rem;
+  margin-top: 0.4375rem;
   background: #fff;
 }
-.written-answer > textarea:focus-within {
+.written-answer > .web-textarea:focus-within {
   border-color: var(--color-primary);
   outline: none;
   box-shadow: none;
 }
 .handwriting-area {
-  margin-top: 8.0px;
+  margin-top: 0.5rem;
   padding: 0;
   border: 0;
-  border-radius: 7.0px;
+  border-radius: 0.4375rem;
   background: transparent;
 }
 .heading {
   display: flex;
   align-items: center;
-  gap: 8.0px;
+  gap: 0.5rem;
 }
 .heading > div {
   flex: 1;
@@ -345,9 +345,9 @@ defineExpose({ reset, restore })
   display: block;
 }
 .heading span {
-  margin-top: 1.5px;
+  margin-top: 0.09375rem;
   color: var(--color-text-secondary);
-  font-size: 10.0px;
+  font-size: 0.625rem;
 }
 .heading button,
 .preview button {
@@ -356,32 +356,32 @@ defineExpose({ reset, restore })
   gap: 6px;
   min-height: 44px;
   margin: 0;
-  padding: 0 8.0px;
+  padding: 0 0.5rem;
   border: 0;
-  border-radius: 5.5px;
+  border-radius: 0.34375rem;
   background: #fff;
   color: var(--color-primary-hover);
   font-size: 14px;
 }
 .parsing {
-  margin-top: 8.0px;
-  padding: 8.0px;
-  border-radius: 6.0px;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
   background: #fff;
 }
 .parsing > div:first-child,
 .preview > div {
   display: flex;
   align-items: center;
-  gap: 5.0px;
+  gap: 0.3125rem;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 .track {
-  height: 5.0px;
-  margin-top: 6.0px;
+  height: 0.3125rem;
+  margin-top: 0.375rem;
   overflow: hidden;
-  border-radius: 499.5px;
+  border-radius: 31.21875rem;
   background: #dce7ff;
 }
 .track > div {
@@ -390,27 +390,27 @@ defineExpose({ reset, restore })
 }
 .parsing > span {
   display: block;
-  margin-top: 5.0px;
+  margin-top: 0.3125rem;
   color: var(--color-text-secondary);
-  font-size: 9.5px;
+  font-size: 0.59375rem;
 }
-.preview image {
+.preview img {
   display: block;
   width: 100%;
-  max-height: 210.0px;
-  margin: 7.0px 0;
-  border-radius: 5.0px;
+  max-height: 13.125rem;
+  margin: 0.4375rem 0;
+  border-radius: 0.3125rem;
 }
 .preview span {
   flex: 1;
   color: var(--color-text-secondary);
-  font-size: 10.0px;
+  font-size: 0.625rem;
 }
 .upload-notice {
   display: block;
-  margin-top: 6.0px;
+  margin-top: 0.375rem;
   color: var(--color-text-secondary);
-  font-size: 11.5px;
+  font-size: 0.71875rem;
   line-height: 1.6;
 }
 </style>

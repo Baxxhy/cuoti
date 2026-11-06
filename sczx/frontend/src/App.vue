@@ -9,18 +9,24 @@ const page=computed(()=>pages[parsePage(currentUrl.value).route])
 <template>
   <component v-if="page" :is="page" :key="currentUrl" />
   <main v-else class="page-content"><h1>页面不存在</h1><a href="#/pages/index/index">返回首页</a></main>
-  <div v-if="notice" class="web-toast" role="alert">{{notice}}</div>
+  <div v-if="notice" class="web-toast" :class="{'web-toast-symbol':notice.icon!=='none'}" role="alert">
+    <WebIcon v-if="notice.icon!=='none'" type="checkmarkempty" size="55" color="#fff" class="web-toast-success-icon" />
+    <span class="web-toast-text">{{notice.title}}</span>
+  </div>
 </template>
 <style lang="scss">
+@import './styles/platform-controls.scss';
 @import './styles/uni-common.scss';
 @font-face {font-family:SczxIcons;src:url('./platform/uniicons.ttf') format('truetype');font-display:swap}
 html,body,#app {margin:0;min-height:100%;width:100%}
-body {font-family:-apple-system,BlinkMacSystemFont,'Microsoft YaHei',sans-serif;background:var(--color-bg);color:var(--color-text-primary)}
-button,input,textarea,select {font:inherit;box-sizing:border-box}
 button {cursor:pointer;line-height:1.4}
 button:disabled {cursor:default}
 .web-icon {font-family:SczxIcons!important;display:inline-block;line-height:1;vertical-align:middle;font-style:normal}
-.web-toast {position:fixed;left:50%;bottom:90px;transform:translateX(-50%);max-width:85vw;padding:12px 20px;background:#252a34;color:white;border-radius:8px;z-index:10000}
+.web-toast {position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);max-width:80%;text-align:center;line-height:normal;font-size:16px;z-index:999;pointer-events:none}
+.web-toast-text {display:inline-block;vertical-align:middle;padding:10px 20px;border-radius:5px;font-size:13px;line-height:normal;color:#fff;background:rgba(17,17,17,.7);text-align:center;max-width:100%;word-break:break-word;white-space:normal}
+.web-toast-symbol {width:8em;background:rgba(17,17,17,.7);border-radius:5px;color:#fff}
+.web-toast-symbol .web-toast-success-icon {display:block;margin:15px auto 0}
+.web-toast-symbol .web-toast-text {display:block;font-size:16px;padding:0;margin:0 0 15px;background:none}
 .web-picker {position:relative}
 .web-picker-control {position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
 .web-loading {padding:18px;text-align:center;color:var(--color-text-secondary)}

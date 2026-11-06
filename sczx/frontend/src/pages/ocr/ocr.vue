@@ -492,7 +492,7 @@ onUnload(() => {
   padding: 12px 16px 0;
   background: var(--color-bg);
 }
-.question-image image {
+.question-image img {
   display: block;
   width: 100%;
   border: 0.5px solid var(--color-border);
@@ -548,7 +548,7 @@ onUnload(() => {
   border-right: 1px solid var(--color-text-tertiary);
   border-bottom: 1px solid var(--color-text-tertiary);
   transform: rotate(45deg);
-  margin-top: -2.5px;
+  margin-top: -0.15625rem;
 }
 .content-section {
   padding: 14px 0;
@@ -563,7 +563,7 @@ onUnload(() => {
   gap: 7px;
   margin-top: 11px;
 }
-.question-figures image {
+.question-figures img {
   display: block;
   width: 100%;
   border: 0.5px solid var(--color-border);
@@ -659,8 +659,8 @@ onUnload(() => {
   color: var(--color-text-primary);
   font-size: 14px;
 }
-.option-edit input,
-.teacher-mark input {
+.option-edit .web-input,
+.teacher-mark .web-input {
   flex: 1;
   min-height: 34px;
   padding: 5px 8px;

@@ -135,23 +135,23 @@ onLoad((q) => {
   text-align: left;
 }
 .question-context {
-  padding: 12.0px;
-  margin-bottom: 9.0px;
-  border-radius: 11.0px;
+  padding: 0.75rem;
+  margin-bottom: 0.5625rem;
+  border-radius: 0.6875rem;
   background: var(--color-primary-soft);
-  border: 0.5px solid var(--color-primary-border);
+  border: 0.03125rem solid var(--color-primary-border);
 }
 .question-context span,
 .question-context b {
   display: block;
 }
 .question-context span {
-  font-size: 11.0px;
+  font-size: 0.6875rem;
   color: var(--color-primary);
 }
 .question-context b {
-  margin-top: 4.0px;
-  font-size: 13.5px;
+  margin-top: 0.25rem;
+  font-size: 0.84375rem;
   line-height: 1.6;
   color: var(--color-text-primary);
   font-weight: 600;
@@ -160,45 +160,45 @@ onLoad((q) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10.0px;
+  padding: 0.625rem;
   background: var(--color-primary-soft);
-  border-radius: 9.0px;
-  margin-bottom: 9.0px;
+  border-radius: 0.5625rem;
+  margin-bottom: 0.5625rem;
 }
 .visual-picker span,
 .visual-picker b {
   display: block;
 }
 .visual-picker b {
-  font-size: 14.5px;
+  font-size: 0.90625rem;
   color: var(--color-primary);
-  margin-top: 2.0px;
+  margin-top: 0.125rem;
   font-weight: 600;
 }
 .visual-goal {
   display: block;
   color: var(--color-text-secondary);
-  font-size: 12.0px;
-  margin: 9.0px 0;
+  font-size: 0.75rem;
+  margin: 0.5625rem 0;
 }
 .control {
-  margin-top: 12.0px;
+  margin-top: 0.75rem;
 }
 .control > div {
   display: flex;
   justify-content: space-between;
-  font-size: 12.0px;
+  font-size: 0.75rem;
 }
 .control b {
   color: var(--color-primary);
 }
 .control slider {
-  margin: 2.5px 0;
+  margin: 0.15625rem 0;
 }
 .task {
-  margin-top: 13.0px;
-  padding: 11.0px;
-  border-radius: 9.0px;
+  margin-top: 0.8125rem;
+  padding: 0.6875rem;
+  border-radius: 0.5625rem;
   background: var(--color-warning-soft);
 }
 .task span,
@@ -208,15 +208,15 @@ onLoad((q) => {
 }
 .task span {
   color: #9a6416;
-  font-size: 11.0px;
+  font-size: 0.6875rem;
 }
 .task b {
-  margin-top: 3.5px;
+  margin-top: 0.21875rem;
   font-weight: 600;
 }
 .task small {
   color: #6f4a14;
-  font-size: 10.5px;
-  margin-top: 3.5px;
+  font-size: 0.65625rem;
+  margin-top: 0.21875rem;
 }
 </style>

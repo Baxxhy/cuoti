@@ -215,7 +215,7 @@ onUnload(leave)
   border: 1px solid var(--color-border);
   border-radius: 12px;
 }
-.framework-search input {
+.framework-search .web-input {
   flex: 1;
   min-width: 0;
   min-height: 44px;

@@ -491,27 +491,27 @@ watch(() => [props.spec, JSON.stringify(props.values)], draw, { deep: true })
 
 <style scoped>
 .visual-stage {
-  min-height: 250.0px;
-  border-radius: 11.0px;
+  min-height: 15.625rem;
+  border-radius: 0.6875rem;
   background: #fff;
   overflow: hidden;
 }
 .visual-legend {
-  padding: 0 12.0px 12.0px;
+  padding: 0 0.75rem 0.75rem;
 }
 .legend-row {
   display: flex;
-  gap: 8.0px;
+  gap: 0.5rem;
   align-items: baseline;
-  margin-top: 6.0px;
+  margin-top: 0.375rem;
 }
 .legend-number {
   flex: none;
   color: #2f6bff;
 }
 .visual-canvas {
-  width: 330.0px;
-  height: 230.0px;
+  width: 20.625rem;
+  height: 14.375rem;
   max-width: 100%;
 }
 </style>

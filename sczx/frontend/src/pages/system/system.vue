@@ -136,9 +136,9 @@ onMounted(load)
 .system-status {
   display: flex;
   align-items: center;
-  gap: 10.0px;
-  padding: 15.0px;
-  border-radius: 12.0px;
+  gap: 0.625rem;
+  padding: 0.9375rem;
+  border-radius: 0.75rem;
   background: var(--color-surface);
   color: var(--color-text-primary);
 }
@@ -150,16 +150,16 @@ onMounted(load)
   display: block;
 }
 .system-status span {
-  font-size: 11.0px;
+  font-size: 0.6875rem;
   opacity: 0.7;
 }
 .system-status b {
-  font-size: 17.0px;
-  margin-top: 2.0px;
+  font-size: 1.0625rem;
+  margin-top: 0.125rem;
 }
 .pulse {
-  width: 15.0px;
-  height: 15.0px;
+  width: 0.9375rem;
+  height: 0.9375rem;
   border-radius: 50%;
   background: var(--color-primary);
 }
@@ -169,75 +169,75 @@ onMounted(load)
 .system-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 7.5px;
-  margin-top: 10.0px;
+  gap: 0.46875rem;
+  margin-top: 0.625rem;
 }
 .system-grid div {
   text-align: center;
-  padding: 12.5px 4.0px;
+  padding: 0.78125rem 0.25rem;
   background: #fff;
-  border-radius: 10.0px;
+  border-radius: 0.625rem;
 }
 .system-grid b,
 .system-grid span {
   display: block;
 }
 .system-grid b {
-  font-size: 19.0px;
+  font-size: 1.1875rem;
 }
 .system-grid span {
-  font-size: 10.5px;
+  font-size: 0.65625rem;
   color: #94a3b8;
 }
 .capability-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6.0px;
+  gap: 0.375rem;
 }
 .capability-grid div {
   text-align: center;
-  padding: 11.0px 4.0px;
+  padding: 0.6875rem 0.25rem;
   background: #fff;
-  border-radius: 9.0px;
+  border-radius: 0.5625rem;
 }
 .capability-grid b,
 .capability-grid span {
   display: block;
 }
 .capability-grid b {
-  font-size: 11.5px;
-  margin-top: 4.0px;
+  font-size: 0.71875rem;
+  margin-top: 0.25rem;
 }
 .capability-grid span {
-  font-size: 9.0px;
+  font-size: 0.5625rem;
   color: #94a3b8;
-  margin-top: 2.0px;
+  margin-top: 0.125rem;
 }
 .model-card > b,
 .model-card > span {
   display: block;
 }
 .model-card > b {
-  font-size: 17.0px;
-  margin-top: 9.0px;
+  font-size: 1.0625rem;
+  margin-top: 0.5625rem;
   color: #0f172a;
 }
 .model-card > span:nth-child(3) {
   color: #64748b;
-  font-size: 11.5px;
-  margin-top: 4.0px;
+  font-size: 0.71875rem;
+  margin-top: 0.25rem;
 }
 .rotation {
   display: flex;
-  gap: 5.0px;
+  gap: 0.3125rem;
   flex-wrap: wrap;
-  margin-top: 10.0px;
+  margin-top: 0.625rem;
 }
 .rotation span {
-  padding: 4.5px 7.5px;
+  padding: 0.28125rem 0.46875rem;
   background: #f1f5f9;
-  border-radius: 5.0px;
+  border-radius: 0.3125rem;
   color: #64748b;
-  font-size: 10.0px;
+  font-size: 0.625rem;
 }
 </style>

@@ -601,10 +601,10 @@ onUnload(() => {
   padding-top: 4px;
 }
 .range-filter {
-  margin-top: 11.0px;
-  padding: 10.0px;
+  margin-top: 0.6875rem;
+  padding: 0.625rem;
   background: var(--color-bg);
-  border-radius: 9.0px;
+  border-radius: 0.5625rem;
 }
 .range-filter > div {
   display: flex;
@@ -614,43 +614,43 @@ onUnload(() => {
   color: var(--color-primary);
 }
 .range-filter > span {
-  font-size: 10.5px;
+  font-size: 0.65625rem;
   color: var(--color-text-secondary);
 }
 .range-filter slider {
-  margin: 1.5px 0;
+  margin: 0.09375rem 0;
 }
 .due-toggle {
   display: flex;
   align-items: center;
-  gap: 7.0px;
-  margin-top: 12.0px;
+  gap: 0.4375rem;
+  margin-top: 0.75rem;
 }
 .due-toggle > div {
-  width: 38.0px;
-  height: 21.0px;
-  padding: 2.5px;
+  width: 2.375rem;
+  height: 1.3125rem;
+  padding: 0.15625rem;
   background: var(--color-border);
-  border-radius: 15.0px;
+  border-radius: 0.9375rem;
 }
 .due-toggle > div.on {
   background: var(--color-primary);
 }
 .due-toggle i {
   display: block;
-  width: 16.0px;
-  height: 16.0px;
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
   background: #fff;
   transition: 0.2s;
 }
 .due-toggle .on i {
-  transform: translateX(17.0px);
+  transform: translateX(1.0625rem);
 }
 .candidate {
   display: flex;
-  gap: 9.0px;
-  padding: 12.5px;
+  gap: 0.5625rem;
+  padding: 0.78125rem;
   background: #fff;
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -661,11 +661,11 @@ onUnload(() => {
   background: var(--color-primary-soft);
 }
 .checkbox {
-  width: 21.0px;
-  height: 21.0px;
+  width: 1.3125rem;
+  height: 1.3125rem;
   flex: none;
-  border: 1.0px solid var(--color-border);
-  border-radius: 5.0px;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: 0.3125rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -675,24 +675,24 @@ onUnload(() => {
   border-color: var(--color-primary);
 }
 .paper-icon {
-  width: 35.0px;
-  height: 35.0px;
-  border-radius: 9.0px;
+  width: 2.1875rem;
+  height: 2.1875rem;
+  border-radius: 0.5625rem;
   background: var(--color-bg);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .paper-editor {
-  margin-top: 12.5px;
-  padding: 14.0px;
+  margin-top: 0.78125rem;
+  padding: 0.875rem;
   border-radius: 10px;
   border: 1px solid var(--color-border);
   background: #fff;
 }
 .editor-title {
   display: flex;
-  gap: 7.5px;
+  gap: 0.46875rem;
   align-items: center;
 }
 .editor-title :deep(.paper-title-input) {
@@ -734,13 +734,13 @@ onUnload(() => {
 .paper-item {
   display: grid;
   grid-template-columns: 24px minmax(0, 1fr) 44px;
-  gap: 6.0px;
-  padding: 10.0px 0;
+  gap: 0.375rem;
+  padding: 0.625rem 0;
   border-bottom: 1px solid var(--color-border);
 }
 .item-index {
-  width: 21.0px;
-  height: 21.0px;
+  width: 1.3125rem;
+  height: 1.3125rem;
   border-radius: 50%;
   background: var(--color-primary-soft);
   color: var(--color-primary);
@@ -813,7 +813,7 @@ onUnload(() => {
   flex-direction: column;
   gap: 8px;
   color: var(--color-primary);
-  font-size: 15.0px;
+  font-size: 0.9375rem;
 }
 .sort button {
   display: flex;
@@ -853,38 +853,38 @@ onUnload(() => {
 }
 .total-score {
   text-align: right;
-  margin-top: 9.0px;
+  margin-top: 0.5625rem;
   color: var(--color-text-secondary);
 }
 .total-score b {
-  font-size: 16.0px;
+  font-size: 1rem;
   color: var(--color-primary);
 }
 .export-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 110px), 1fr));
-  gap: 5.0px;
-  margin-top: 10.0px;
+  gap: 0.3125rem;
+  margin-top: 0.625rem;
 }
 .export-grid button {
   min-width: 0;
   min-height: 44px;
-  padding: 9.0px 2.5px;
+  padding: 0.5625rem 0.15625rem;
   margin: 0;
   background: var(--color-primary-soft);
   color: var(--color-primary);
   font-size: 14px;
   line-height: 1.6;
-  border-radius: 7.0px;
+  border-radius: 0.4375rem;
 }
 .download-row {
   display: flex;
   align-items: center;
-  gap: 6.5px;
-  margin-top: 8.0px;
-  padding: 9.0px;
+  gap: 0.40625rem;
+  margin-top: 0.5rem;
+  padding: 0.5625rem;
   background: var(--color-bg);
-  border-radius: 7.5px;
+  border-radius: 0.46875rem;
 }
 .download-row span {
   flex: 1;

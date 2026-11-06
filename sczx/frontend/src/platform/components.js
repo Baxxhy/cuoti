@@ -1,11 +1,43 @@
-import { h, defineComponent, provide, inject, ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { h, defineComponent, provide, inject, ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { fontData } from './icons.js'
 const eventValue = (event, value) => ({ detail: { value }, target: event.target, preventDefault: () => event.preventDefault(), stopPropagation: () => event.stopPropagation() })
 function field(tag) {
- return defineComponent({ inheritAttrs:false, props:{modelValue:[String,Number],value:[String,Number],password:Boolean}, emits:['input','change','confirm','update:modelValue'],
- setup(props,{attrs,emit}) {return()=>h(tag,{...attrs,type:props.password?'password':attrs.type,value:props.modelValue??props.value??'',
- onInput:e=>{emit('update:modelValue',e.target.value);emit('input',eventValue(e,e.target.value))},
- onChange:e=>emit('change',eventValue(e,e.target.value)),onKeydown:e=>{if(e.key==='Enter')emit('confirm',eventValue(e,e.target.value))}},tag==='textarea'?undefined:undefined)} })
+ return defineComponent({inheritAttrs:false,
+ props:{modelValue:[String,Number],value:[String,Number],password:Boolean,focus:Boolean,cursor:{type:Number,default:-1},autoHeight:Boolean},
+ emits:['input','change','confirm','focus','blur','update:modelValue'],
+ setup(props,{attrs,emit}) {
+  const host=ref(null),control=ref(null)
+  let observer,lastWidth=-1
+  function resize(){
+   if(tag!=='textarea'||!props.autoHeight||!host.value||!control.value)return
+   const css=getComputedStyle(host.value),number=k=>parseFloat(css[k])||0
+   const extra=number('paddingTop')+number('paddingBottom')+number('borderTopWidth')+number('borderBottomWidth')
+   control.value.style.height='0px'
+   const content=Math.max(number('minHeight'),control.value.value?control.value.scrollHeight:(number('lineHeight')||number('fontSize')*1.2))
+   host.value.style.height=(content+extra)+'px';control.value.style.height=content+'px'
+  }
+  function selection(){
+   if(!control.value)return
+   if(props.focus)control.value.focus()
+   if(props.cursor>=0)try{control.value.setSelectionRange(props.cursor,props.cursor)}catch{}
+  }
+  onMounted(()=>{nextTick(()=>{resize();selection()});document.fonts?.ready.then(resize);if(typeof ResizeObserver!=='undefined'){observer=new ResizeObserver(entries=>{const width=entries[0].contentRect.width;if(width!==lastWidth){lastWidth=width;resize()}});observer.observe(host.value)}})
+  onBeforeUnmount(()=>observer?.disconnect())
+  watch(()=>props.modelValue??props.value,()=>nextTick(resize))
+  watch(()=>[props.focus,props.cursor],selection,{flush:'post'})
+  function event(e){return {...eventValue(e,e.target.value),detail:{value:e.target.value,cursor:e.target.selectionStart}}}
+  return()=>{
+   const {class:classes,style,...rest}=attrs
+   const type=props.password?'password':rest.type==='digit'?'text':rest.type
+   return h('div',{ref:host,class:[tag==='textarea'?'web-textarea':'web-input',classes],style,onClick:e=>{if(e.target===host.value&&!rest.disabled){control.value?.focus();rest.onClick?.(e)}}},[
+    h(tag,{...rest,ref:control,class:tag==='textarea'?'uni-textarea-textarea':'uni-input-input',type,inputmode:rest.inputmode||(rest.type==='digit'?'decimal':undefined),value:props.modelValue??props.value??'',
+     onInput:e=>{emit('update:modelValue',e.target.value);emit('input',event(e));resize()},
+     onChange:e=>emit('change',event(e)),onFocus:e=>emit('focus',event(e)),onBlur:e=>emit('blur',event(e)),
+     onKeydown:e=>{rest.onKeydown?.(e);if(e.key==='Enter')emit('confirm',event(e))}})
+   ])
+  }
+ }
+ })
 }
 export const WebInput=field('input'),WebTextarea=field('textarea')
 export const WebImage=defineComponent({inheritAttrs:false,props:{src:String,mode:String},emits:['load','error'],setup(p,{attrs,emit}){return()=>h('img',{...attrs,src:p.src,style:[{objectFit:p.mode==='aspectFill'?'cover':'contain',height:p.mode==='widthFix'?'auto':undefined},attrs.style],onLoad:e=>emit('load',{detail:{width:e.target.naturalWidth,height:e.target.naturalHeight}}),onError:e=>emit('error',e)})}})

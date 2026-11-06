@@ -274,7 +274,7 @@ onLoad((q) => {
   gap: 8px;
   align-items: center;
 }
-.search-row input {
+.search-row .web-input {
   flex: 1;
   min-width: 0;
   min-height: 48px;

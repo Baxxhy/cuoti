@@ -290,7 +290,7 @@ onMounted(() => nextTick(labelInput))
   font-size: 16px;
   margin: 16px 0 8px;
 }
-textarea {
+.web-textarea {
   width: 100%;
   min-height: 72px;
   padding: 12px;

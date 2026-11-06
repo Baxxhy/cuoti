@@ -268,7 +268,7 @@ watch(
   line-height: 1.6;
   margin: 12px 0;
 }
-textarea {
+.web-textarea {
   width: 100%;
   min-height: 96px;
   padding: 12px;

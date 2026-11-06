@@ -328,7 +328,7 @@ onUnload(leave)
   align-items: center;
   gap: 8px;
 }
-.range-form input {
+.range-form .web-input {
   flex: 1;
   min-width: 0;
   min-height: 44px;
@@ -364,7 +364,7 @@ onUnload(leave)
   border-radius: 12px;
   border: 1px solid var(--color-border);
 }
-.search-row input {
+.search-row .web-input {
   flex: 1;
   min-width: 0;
   min-height: 44px;

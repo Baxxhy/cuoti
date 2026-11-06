@@ -22,12 +22,12 @@ defineEmits(['retry'])
 </script>
 <style scoped>
 .state-panel {
-  min-height: 160.0px;
+  min-height: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10.0px;
+  gap: 0.625rem;
   color: var(--color-text-secondary);
 }
 .ghost-btn {
@@ -35,6 +35,6 @@ defineEmits(['retry'])
   background: var(--color-primary-soft);
   color: var(--color-primary);
   border: 0;
-  font-size: 13.0px;
+  font-size: 0.8125rem;
 }
 </style>

@@ -430,28 +430,28 @@ onShow(load)
 }
 
 .problem-content {
-  padding-top: 12.0px;
+  padding-top: 0.75rem;
 }
 .inline-search {
-  min-height: 42.0px;
+  min-height: 2.625rem;
   display: flex;
   align-items: center;
-  gap: 7.0px;
-  padding: 0 11.0px;
-  border: 0.5px solid var(--color-border);
+  gap: 0.4375rem;
+  padding: 0 0.6875rem;
+  border: 0.03125rem solid var(--color-border);
   border-radius: 12px;
   background: var(--color-surface);
   color: var(--color-text-secondary);
-  font-size: 12.5px;
+  font-size: 0.78125rem;
 }
 .subject-scroll {
   white-space: nowrap;
-  margin-top: 8.0px;
-  border-bottom: 0.5px solid var(--color-border);
+  margin-top: 0.5rem;
+  border-bottom: 0.03125rem solid var(--color-border);
 }
 .subject-tabs {
   display: flex;
-  gap: 15.0px;
+  gap: 0.9375rem;
   white-space: nowrap;
 }
 .subject-tab {
@@ -461,13 +461,13 @@ onShow(load)
   line-height: 1.5;
 
   flex: none;
-  min-height: 44.0px;
+  min-height: 2.75rem;
   display: inline-flex;
   align-items: center;
-  border-bottom: 1.5px solid transparent;
+  border-bottom: 0.09375rem solid transparent;
   color: var(--color-text-secondary);
-  font-size: 13.0px;
-  padding: 0 2.0px;
+  font-size: 0.8125rem;
+  padding: 0 0.125rem;
 }
 .subject-tab.active {
   border-bottom-color: var(--color-primary);
@@ -476,8 +476,8 @@ onShow(load)
 }
 .list-count {
   display: block;
-  padding: 11.0px 0 2.0px;
-  font-size: 11.5px;
+  padding: 0.6875rem 0 0.125rem;
+  font-size: 0.71875rem;
   color: var(--color-text-secondary);
 }
 .problem-card {
@@ -496,8 +496,8 @@ onShow(load)
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8.0px;
-  font-size: 11.0px;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
   color: var(--color-text-secondary);
 }
 .mastery-status {
@@ -505,23 +505,23 @@ onShow(load)
 }
 .problem-topic {
   display: block;
-  margin-top: 5.0px;
-  font-size: 14.5px;
+  margin-top: 0.3125rem;
+  font-size: 0.90625rem;
   font-weight: 600;
   line-height: 1.5;
 }
 .problem-body {
   display: flex;
-  gap: 10.0px;
+  gap: 0.625rem;
   align-items: flex-start;
-  margin-top: 4.0px;
+  margin-top: 0.25rem;
 }
-.problem-body image {
-  width: 54.0px;
-  height: 44.0px;
+.problem-body img {
+  width: 3.375rem;
+  height: 2.75rem;
   flex: none;
-  border: 0.5px solid var(--color-border);
-  border-radius: 4.0px;
+  border: 0.03125rem solid var(--color-border);
+  border-radius: 0.25rem;
   background: var(--color-surface);
 }
 .problem-text {
@@ -533,8 +533,8 @@ onShow(load)
   color: var(--color-text-primary);
 }
 .problem-facts {
-  margin-top: 7.0px;
-  font-size: 11.5px;
+  margin-top: 0.4375rem;
+  font-size: 0.71875rem;
   line-height: 1.6;
   color: var(--color-text-secondary);
 }
@@ -547,7 +547,7 @@ onShow(load)
   text-overflow: ellipsis;
 }
 .review-due {
-  margin-top: 2.0px;
+  margin-top: 0.125rem;
 }
 .empty-problems {
   padding: 28px 0;
@@ -556,17 +556,17 @@ onShow(load)
   text-align: left;
 }
 .empty-problems > span {
-  margin-top: 7.0px;
-  font-size: 14.0px;
+  margin-top: 0.4375rem;
+  font-size: 0.875rem;
   color: var(--color-text-primary);
 }
 .empty-problems .empty-hint {
-  font-size: 12.5px;
+  font-size: 0.78125rem;
   color: var(--color-text-secondary);
-  margin-top: 3.0px;
+  margin-top: 0.1875rem;
 }
 .empty-problems .small-btn {
-  margin-top: 13.0px;
+  margin-top: 0.8125rem;
 }
 
 .problem-card::after,
@@ -575,7 +575,7 @@ onShow(load)
 .header-add::after {
   border: 0;
 }
-.inline-search input {
+.inline-search .web-input {
   flex: 1;
   min-width: 0;
   font-size: 15px;
