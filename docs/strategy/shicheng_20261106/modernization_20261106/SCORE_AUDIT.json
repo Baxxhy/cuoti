@@ -1,0 +1,261 @@
+{
+  "rounds": {
+    "1": {
+      "snapshot_sha256": "62213d01f8cb2dade5de8f5bcfb0e7011057fb473f868a5de5414780b39c8a81",
+      "reviews": {
+        "frontier": {
+          "scores": [
+            92,
+            85,
+            91,
+            87,
+            85,
+            88
+          ],
+          "overall": "88.1",
+          "declared_overall": "88.1",
+          "sha256": "3ad93c5c2632551a01c01fcbf15d918bb71dc565ef4459ba5b02d6ba54bb640e"
+        },
+        "architecture": {
+          "scores": [
+            91,
+            87,
+            88,
+            85,
+            86,
+            85
+          ],
+          "overall": "87.2",
+          "declared_overall": "87.2",
+          "sha256": "c34638e5b19beba0df599d05bbc28c1fa85f5140db58e6cb86f0a7b17784b90c"
+        },
+        "pedagogy": {
+          "scores": [
+            92,
+            88,
+            89,
+            90,
+            87,
+            88
+          ],
+          "overall": "89.1",
+          "declared_overall": "89.1",
+          "sha256": "5a6d39ee8efb672ca9e8ad3c94dea11709675bce8a43371dc48dff81cfbacbdb"
+        },
+        "memory": {
+          "scores": [
+            94,
+            91,
+            93,
+            91,
+            89,
+            91
+          ],
+          "overall": "91.6",
+          "declared_overall": "91.6",
+          "sha256": "482e1f740c124cbf6b1a7ba7bdd0063dbfcd9288e5aef8f35cc90ddeccbc8acb"
+        },
+        "product": {
+          "scores": [
+            94,
+            91,
+            92,
+            92,
+            89,
+            92
+          ],
+          "overall": "91.8",
+          "declared_overall": "91.8",
+          "sha256": "bf756df76d208c818de8edf4f9d88ba974ec6e04851cf196908cf8483db9b1cb"
+        },
+        "delivery": {
+          "scores": [
+            93,
+            90,
+            91,
+            89,
+            85,
+            86
+          ],
+          "overall": "89.3",
+          "declared_overall": "89.3",
+          "sha256": "35ad497dbcdfa4881e95218e0e4bcbbc372af199576e31b863768f01b2b63ff3"
+        }
+      }
+    },
+    "2": {
+      "snapshot_sha256": "89de3b82ae5eaef9b13754b2ea62544b1300f95738c19eb95c6137f202fb39a6",
+      "reviews": {
+        "frontier": {
+          "scores": [
+            92,
+            89,
+            92,
+            91,
+            90,
+            91
+          ],
+          "overall": "90.8",
+          "declared_overall": "90.8",
+          "sha256": "30bbe0ebf1e737e5c2520b40b8f39879c790fcbf1ddef21899e55381fd7301e8"
+        },
+        "architecture": {
+          "scores": [
+            91,
+            90,
+            90,
+            90,
+            89,
+            90
+          ],
+          "overall": "90.1",
+          "declared_overall": "90.1",
+          "sha256": "acb7e9073c1f36b24d004549282f5c35a9ec92567e58bbd5defbe74748144ed2"
+        },
+        "pedagogy": {
+          "scores": [
+            92,
+            91,
+            93,
+            92,
+            90,
+            92
+          ],
+          "overall": "91.7",
+          "declared_overall": "91.7",
+          "sha256": "b3d970c4296821c84d3bb38d595066aa260b069d9586d797d4353bda17253e08"
+        },
+        "memory": {
+          "scores": [
+            94,
+            93,
+            94,
+            93,
+            93,
+            94
+          ],
+          "overall": "93.5",
+          "declared_overall": "93.5",
+          "sha256": "2471873bb75fba694d99472859c3f7434790653ac29750602f3585d2314db1a4"
+        },
+        "product": {
+          "scores": [
+            94,
+            93,
+            95,
+            94,
+            93,
+            95
+          ],
+          "overall": "94.0",
+          "declared_overall": "94.0",
+          "sha256": "e3357f840c4923668d95e076b59b5353db9cae9c582f9e4a978b8751d94c8b05"
+        },
+        "delivery": {
+          "scores": [
+            93,
+            92,
+            93,
+            92,
+            91,
+            92
+          ],
+          "overall": "92.2",
+          "declared_overall": "92.3",
+          "sha256": "24451484f4ddbcec448f9a9ca73d3e706d292720dbbc582af4eb341d48e8caa7"
+        }
+      }
+    },
+    "3": {
+      "snapshot_sha256": "ec0818ea7736bbf1f144254137e58a78e0f37a3a9ba6424ef9586cef061c5b9f",
+      "reviews": {
+        "frontier": {
+          "scores": [
+            92,
+            92,
+            92,
+            93,
+            93,
+            93
+          ],
+          "overall": "92.5",
+          "declared_overall": "92.5",
+          "sha256": "8ab956cdd752404b9a1b0a72773d23b97ec5160bb11186018bd53a920a8ea0a7"
+        },
+        "architecture": {
+          "scores": [
+            92,
+            93,
+            93,
+            93,
+            92,
+            93
+          ],
+          "overall": "92.7",
+          "declared_overall": "92.7",
+          "sha256": "fd23d4829f269d7264d50abf8172a15f79cb75708140d5a60638ebb4494f0179"
+        },
+        "pedagogy": {
+          "scores": [
+            92,
+            92,
+            93,
+            92,
+            93,
+            93
+          ],
+          "overall": "92.5",
+          "declared_overall": "92.5",
+          "sha256": "8394dc4c37f090a9413ca3fd2d15be8839b617266404eeca0576f71ebdfbf92b"
+        },
+        "memory": {
+          "scores": [
+            94,
+            94,
+            94,
+            95,
+            95,
+            94
+          ],
+          "overall": "94.3",
+          "declared_overall": "94.3",
+          "sha256": "e79ec81165746e024dd1c0073effa83d172e805266ef58c376b4409c47ced4f4"
+        },
+        "product": {
+          "scores": [
+            94,
+            94,
+            95,
+            95,
+            94,
+            95
+          ],
+          "overall": "94.5",
+          "declared_overall": "94.5",
+          "sha256": "cfed53de3ddd514b15c2b0083097c6f52cf7723d04edadda0500e52a8a0ec8f2"
+        },
+        "delivery": {
+          "scores": [
+            93,
+            92,
+            94,
+            94,
+            92,
+            94
+          ],
+          "overall": "93.1",
+          "declared_overall": "93.1",
+          "sha256": "c557b8879307befc5f0b7f72288dec2f34ef9b0fb6a6b506f2b3f010a8ca6e28"
+        }
+      }
+    }
+  },
+  "table_arithmetic_corrections": [
+    [
+      2,
+      "delivery",
+      "92.3",
+      "92.2"
+    ]
+  ]
+}
