@@ -21,12 +21,12 @@ const page=computed(()=>pages[parsePage(currentUrl.value).route])
 html,body,#app {margin:0;min-height:100%;width:100%}
 button {cursor:pointer;line-height:1.4}
 button:disabled {cursor:default}
-.web-icon {font-family:SczxIcons!important;display:inline-block;line-height:1;vertical-align:middle;font-style:normal}
-.web-toast {position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);max-width:80%;text-align:center;line-height:normal;font-size:16px;z-index:999;pointer-events:none}
-.web-toast-text {display:inline-block;vertical-align:middle;padding:10px 20px;border-radius:5px;font-size:13px;line-height:normal;color:#fff;background:rgba(17,17,17,.7);text-align:center;max-width:100%;word-break:break-word;white-space:normal}
+.web-icon {font-family:SczxIcons!important;display:inline-block;vertical-align:middle;font-style:normal}
+.web-toast {font-family:initial;color:initial;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);max-width:80%;text-align:center;line-height:normal;font-size:16px;z-index:999;pointer-events:none}
+.web-toast-text {box-sizing:content-box;display:inline-block;vertical-align:middle;padding:10px 20px;border-radius:5px;font-size:13px;line-height:normal;color:#fff;background:rgba(17,17,17,.7);text-align:center;max-width:100%;word-break:break-word;white-space:normal}
 .web-toast-symbol {width:8em;background:rgba(17,17,17,.7);border-radius:5px;color:#fff}
 .web-toast-symbol .web-toast-success-icon {display:block;margin:15px auto 0}
-.web-toast-symbol .web-toast-text {display:block;font-size:16px;padding:0;margin:0 0 15px;background:none}
+.web-toast-symbol .web-toast-text {box-sizing:content-box;display:block;font-size:16px;padding:0;margin:0 0 15px;background:none}
 .web-picker {position:relative}
 .web-picker-control {position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
 .web-loading {padding:18px;text-align:center;color:var(--color-text-secondary)}
