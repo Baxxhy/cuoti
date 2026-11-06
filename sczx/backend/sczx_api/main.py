@@ -25,6 +25,7 @@ from .tutor_variants import tutor_variant
 from .tutor_navigation import navigate_tutor
 from .tutor_teach_back import teach_back
 from .tutor_completion import finish_tutor
+from .tutor_answer import answer_activity
 
 from . import accounts
 from .database import Database
@@ -217,6 +218,11 @@ async def tutor_teach_back(request: Request):
 @app.post('/api/v1/tutor/sessions/{session_id}/finish')
 async def tutor_finish(request: Request):
     return envelope(await finish_tutor(request))
+
+
+@app.post('/api/v1/tutor/sessions/{session_id}/activity/answer')
+async def tutor_answer(request: Request):
+    return envelope(await answer_activity(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

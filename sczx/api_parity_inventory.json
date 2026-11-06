@@ -436,9 +436,11 @@
   {
     "path": "/api/v1/tutor/sessions/{session_id}/activity/answer",
     "source": "backend-cangjie/src/main.cj:84",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from tutor_answer.cj/tutor_transfer.cj; isolated full/compressed success, far-failure, help and ungradable flow acceptance passed; real model/browser and additional retry branches pending"
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/advance",

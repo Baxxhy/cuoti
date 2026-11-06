@@ -674,3 +674,74 @@ def test_tutor_finish_evidence_review_and_idempotency(client,monkeypatch):
         assert len(evidence['memory_source']['question_version'])==64
         assert evidence['tutor_session_id']==session['id']
         assert db.query('SELECT COUNT(*) AS n FROM review_plans WHERE question_id=?',[question_id]).rows[0]['n']=='1'
+
+
+def test_tutor_activity_full_and_compressed_learning_flows(client,monkeypatch):
+    import json
+    from sczx_api import analysis,tutor_start,tutor_answer,tutor_transfer,tutor_variants,tutor_teach_back,learning_evidence
+    user=client.post('/api/v1/auth/register',json={'email':'activity@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    record={'subject':'数学','problem_type':'方程','known_conditions':['x+1=2'],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    monkeypatch.setattr(tutor_answer,'compute',lambda p:{'correct':True,'can_update_learning':True,'feedback':'对'})
+    monkeypatch.setattr(tutor_teach_back,'compute',lambda p:{'passed':True,'matched_concepts':['方程'],'feedback':'依据清楚'})
+    monkeypatch.setattr(tutor_variants,'variant_retrieval',lambda *args:{'references':[],'status':'unavailable'})
+    def variant(p):
+        if p['operation']=='validate_variant':return {'valid':True}
+        return {'variant':{'question_text':'解方程x+2=4','answer':'2','explanation':'两边减2','reference_solution':['x=4-2','x=2'],'options':[]},'generation':{},'verified':True}
+    monkeypatch.setattr(tutor_variants,'compute',variant)
+    def grade(p):return {'correct':p['answer']=='2','can_update_learning':p['answer']!='unreliable','feedback':'核对计算'}
+    monkeypatch.setattr(tutor_transfer,'compute',grade)
+    def cognition(p,timeout=200):
+        return {'mastery':{**p['mastery_values'],'mastery_score':.6,'confidence':.7,'evidence_count':1,'update_reason':'受控验收'},'misconception':{**p['misconception_values'],'probability':.3,'evidence_count':2}}
+    monkeypatch.setattr(learning_evidence,'compute',cognition)
+    brief={'topic':'方程','correct_answer':'A','key_explanation':'移项','option_explanations':[],'check':{'id':'target-check','type':'single_choice','title':'核对','question':'哪个条件','options':[],'correct_answers':['A'],'hint':'看条件'}}
+    monkeypatch.setattr(tutor_start,'compute',lambda p:{'brief':brief})
+    for compressed,fail_far in [(False,True),(False,False),(True,False)]:
+        body={'question_text':'解方程x+1=2','student_steps':['x=3']}
+        if compressed:body.update(question_type='单选题',options=[{'label':'A','text':'1'},{'label':'B','text':'3'}])
+        question_id=client.post('/api/v1/questions/manual',headers=headers,json=body).json()['data']['id']
+        assert client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers).status_code==200
+        started=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id})
+        assert started.status_code==200,started.text
+        value=started.json()['data'];path='/api/v1/tutor/sessions/'+value['id']
+        def answer(value,text,**extra):
+            result=client.post(path+'/activity/answer',headers=headers,json={'activity_id':value['activity']['id'],'answer':text,**extra})
+            assert result.status_code==200,result.text
+            return result.json()['data']
+        assert client.post(path+'/activity/answer',headers=headers,json={'activity_id':'stale','answer':'x'}).status_code==409
+        assert client.post(path+'/activity/answer',headers=headers,json={'activity_id':value['activity']['id'],'answer':'x','elapsed_seconds':-1}).status_code==422
+        assert client.post(path+'/activity/answer',headers=headers,json={'activity_id':value['activity']['id'],'answer':'x','handwriting_recognition':{}}).status_code==422
+        if compressed:
+            value=answer(value,'continue')
+            assert value['stage']=='near_transfer'
+        else:
+            value=answer(value,'key');value=answer(value,'reference')
+            assert value['stage_status']=='passed' and value['activity'] is None
+            assert client.post(path+'/advance',headers=headers,json={'target_stage':'teach_back'}).status_code==200
+            value=client.get(path,headers=headers).json()['data']
+            value=answer(value,'两边同时减1，等式仍成立')
+            assert value['stage']=='near_transfer'
+        # Help is recorded but does not spend an attempt; ungradable input also leaves attempts unchanged.
+        if fail_far:
+            value=answer(value,'不会写')
+            assert value['assisted'] is True and '可以按这个顺序写' in value['turns'][-1]['content']
+            assert value['turns'][-2]['metadata_json']['attempt_consumed'] is False
+            value=answer(value,'unreliable')
+            with Database.from_environment() as db:
+                state=json.loads(db.query('SELECT state FROM tutor_sessions WHERE id=?',[value['id']]).rows[0]['state'])
+                assert state['near_attempts']==0
+                assert db.query('SELECT COUNT(*) AS n FROM variant_attempts a JOIN variant_questions v ON a.variant_id=v.id WHERE v.session_id=?',[value['id']]).rows[0]['n']=='0'
+        value=answer(value,'2')
+        if not compressed:
+            assert value['stage']=='far_transfer'
+            value=answer(value,'wrong' if fail_far else '2')
+            if fail_far:value=answer(value,'wrong')
+        assert value['stage']=='finished' and value['status']=='completed' and value['activity'] is None
+        assert value['state']['mastery_proven'] is (not compressed and not fail_far)
+        finished=client.post(path+'/finish',headers=headers).json()['data']
+        assert finished['review']['interval_days']==(1 if fail_far else 15)
+        with Database.from_environment() as db:
+            assert db.query('SELECT COUNT(*) AS n FROM review_plans WHERE question_id=?',[question_id]).rows[0]['n']=='1'
+            assert len(db.query('SELECT id FROM cognitive_updates WHERE question_id=?',[question_id]).rows)==2
+        assert client.post(path+'/activity/answer',headers=headers,json={'activity_id':'done','answer':'2'}).status_code==409
