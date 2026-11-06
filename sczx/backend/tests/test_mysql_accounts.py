@@ -408,3 +408,72 @@ def test_signed_media_head_ranges_etag_and_symlink_rejection(client, tmp_path, m
     (tmp_path / 'uploads' / 'link.png').symlink_to(outside)
     link = media_url('/uploads/link.png', os.environ['SCZX_AUTH_SECRET'])
     assert client.get(link).status_code == 404
+
+
+def test_analysis_diagnosis_evidence_and_work_invalidation(client, monkeypatch):
+    import json
+    from sczx_api import analysis, diagnosis
+    from sczx_api.security import new_id
+    user = client.post('/api/v1/auth/register', json={'email': 'analysis@example.com', 'password': 'secret'}).json()['data']
+    headers = {'Authorization': 'Bearer ' + user['access_token']}
+    question = client.post('/api/v1/questions/manual', headers=headers, json={'question_text': '一元一次方程x+1=2', 'student_answer': '3', 'student_steps': ['x=3']}).json()['data']
+    question_id = question['id']; path = '/api/v1/questions/' + question_id
+    card_id = new_id()
+    with Database.from_environment() as db:
+        db.query("INSERT INTO knowledge_points (id,code,subject,name,content,created_at,updated_at) VALUES (?,?,'数学','一元一次方程',?,UTC_TIMESTAMP(),UTC_TIMESTAMP())", [card_id, 'sczx.equation', json.dumps({'grade': '初一', 'related_knowledge': ['方程']})])
+    record = {'subject': '数学', 'problem_type': '方程', 'known_conditions': ['x+1=2'], 'goal': '求x', 'knowledge_points': ['一元一次方程'], 'prerequisites': [], 'final_answer': '1', 'answer_verified': True, 'reference_steps': ['x+1=2', 'x=1']}
+    monkeypatch.setattr(analysis, 'compute', lambda payload: {'analysis': record, 'reference_math_valid': [True, True]})
+    result = client.post(path + '/analyze', headers=headers)
+    assert result.status_code == 200, result.text
+    assert result.json()['data']['verified'] is True and result.json()['data']['reference_steps'] == record['reference_steps']
+    detail = client.get(path, headers=headers).json()['data']
+    assert detail['status'] == 'analyzed' and len(detail['reference_steps']) == 2
+    with Database.from_environment() as db:
+        links = db.query('SELECT role,mapping_method FROM user_question_knowledge_links WHERE question_id=?', [question_id]).rows
+        assert links == [{'role': 'primary', 'mapping_method': 'exact_label'}]
+    def compute(payload):
+        assert payload['diagnostic_cards'][0]['id'] == card_id
+        entry = {'index': 0, 'reference_step_id': payload['reference_steps'][0]['id'], 'student_step_id': payload['student_records'][0]['id'], 'reference_text': 'x+1=2', 'student_text': 'x=3', 'alignment': 'calculation_error', 'equivalent': False, 'uses_condition': True, 'is_first_error': True, 'propagated': False, 'math_valid': False}
+        return {'diagnosis': {'first_error_step': 0, 'first_error_text': 'x=3', 'error_type': 'calculation_error', 'root_misconception': '移项计算错误', 'propagated_errors': [], 'strategy_candidates': [], 'confidence': .9, 'error_location': '第一步', 'missing_prerequisites': ['方程'], 'recommended_strategy': '移项'}, 'alignment': [entry], 'counterfactual': {'status': 'partial', 'suspected_step': 0, 'root_cause_confirmed': False, 'recovered_steps': 0, 'conclusion': '需核对'}, 'evidence_diagnosis': {'algorithm': 'test', 'verified': False, 'reason': '测试证据'}}
+    monkeypatch.setattr(diagnosis, 'compute', compute)
+    diagnosed = client.post(path + '/diagnose', headers=headers)
+    assert diagnosed.status_code == 200, diagnosed.text
+    value = diagnosed.json()['data']
+    assert value['error_type'] == 'calculation_error' and len(value['evidence']) == 1
+    stored = client.get(path + '/diagnosis', headers=headers).json()['data']
+    assert stored['id'] == value['id'] and len(stored['evidence']) == 1
+    assert stored['evidence_diagnosis']['algorithm'] == 'test'
+    assert stored['counterfactual']['conclusion'] == '需核对'
+    cached = client.post(path + '/diagnosis/counterfactual', headers=headers)
+    assert cached.status_code == 200 and cached.json()['data']['conclusion'] == '需核对'
+    assert client.patch(path + '/diagnosis', headers=headers, json={'first_error_step': 99}).status_code == 422
+    assert client.patch(path + '/diagnosis', headers=headers, json={'error_type': 'made_up'}).status_code == 422
+    corrected = client.patch(path + '/diagnosis', headers=headers, json={'first_error_step': 0, 'root_misconception': '学生修正原因', 'confidence': '0.8'})
+    assert corrected.status_code == 200, corrected.text
+    assert corrected.json()['data']['user_confirmed'] is True
+    assert corrected.json()['data']['first_error_text'] == 'x=3'
+    assert client.patch(path + '/diagnosis', headers=headers, json={'error_type': 'exact', 'first_error_step': 0}).status_code == 422
+    cleared = client.patch(path + '/diagnosis', headers=headers, json={'error_type': 'equivalent'})
+    assert cleared.status_code == 200 and cleared.json()['data']['first_error_step'] is None
+    stale_counter = client.post(path + '/diagnosis/counterfactual', headers=headers).json()['data']
+    assert stale_counter['stale_after_correction'] is True
+    assert stale_counter['verification_method'] == 'previous_diagnosis_evidence'
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM diagnosis_evidence WHERE diagnosis_id=?', [value['id']]).rows[0]['n'] == '3'
+    def invalid_evidence(payload):
+        result = compute(payload); result['alignment'][0]['student_step_id'] = new_id(); return result
+    monkeypatch.setattr(diagnosis, 'compute', invalid_evidence)
+    rejected = client.post(path + '/diagnose', headers=headers)
+    assert rejected.status_code == 503 and rejected.json()['detail'] == '诊断证据不属于当前作答'
+    assert client.get(path + '/diagnosis', headers=headers).json()['data']['id'] == value['id']
+    def stale_analysis(payload):
+        with Database.from_environment() as db:
+            db.query("UPDATE questions SET student_answer='改了答案' WHERE id=?", [question_id])
+        return {'analysis': record, 'reference_math_valid': [True, True]}
+    monkeypatch.setattr(analysis, 'compute', stale_analysis)
+    assert client.post(path + '/analyze', headers=headers).status_code == 409
+    work = client.post(path + '/student-work', headers=headers, json={'answer': '1', 'explanation': '重新作答', 'steps': ['x = 1']})
+    assert work.status_code == 200 and work.json()['data']['explanation'] == '重新作答'
+    detail = client.get(path, headers=headers).json()['data']
+    assert detail['analysis'] is None and detail['diagnosis'] is None and detail['status'] == 'confirmed'
+    assert detail['student_answer'] == '1' and detail['student_steps'][0]['text'] == 'x = 1'

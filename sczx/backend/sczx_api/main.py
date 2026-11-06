@@ -16,6 +16,9 @@ from .jobs import get_job, retry_job
 from .crop import crop_question, start_recognition
 from .ocr_edits import save_ocr_edits
 from .media import serve_media
+from .analysis import analyze_question, submit_work
+from .diagnosis import diagnose_question, get_diagnosis
+from .diagnosis_edit import correct_diagnosis, counterfactual_question
 
 from . import accounts
 from .database import Database
@@ -147,6 +150,32 @@ async def draft(request: Request):
 @app.post('/api/v1/questions/{question_id}/confirm')
 async def confirm(request: Request):
     return envelope(await save_ocr_edits(request, True))
+
+
+@app.post('/api/v1/questions/{question_id}/analyze')
+async def analyze(request: Request):
+    return envelope(await analyze_question(request))
+
+
+@app.post('/api/v1/questions/{question_id}/student-work')
+async def student_work(request: Request):
+    return envelope(await submit_work(request))
+
+
+@app.post('/api/v1/questions/{question_id}/diagnose')
+async def diagnose(request: Request):
+    return envelope(await diagnose_question(request))
+
+
+@app.api_route('/api/v1/questions/{question_id}/diagnosis', methods=['GET', 'PATCH'])
+async def diagnosis(request: Request):
+    handler = get_diagnosis if request.method == 'GET' else correct_diagnosis
+    return envelope(await handler(request))
+
+
+@app.post('/api/v1/questions/{question_id}/diagnosis/counterfactual')
+async def counterfactual(request: Request):
+    return envelope(await counterfactual_question(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

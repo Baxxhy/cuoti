@@ -162,16 +162,20 @@
   {
     "path": "/api/v1/questions/{question_id}/analyze",
     "source": "backend-cangjie/src/main.cj:46",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/student-work",
     "source": "backend-cangjie/src/main.cj:47",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
   },
   {
     "path": "/api/v1/reviews/today",
@@ -470,23 +474,30 @@
   {
     "path": "/api/v1/questions/{question_id}/diagnose",
     "source": "backend-cangjie/src/main.cj:90",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/diagnosis",
     "source": "backend-cangjie/src/main.cj:91",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/diagnosis/counterfactual",
     "source": "backend-cangjie/src/main.cj:92",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
   },
   {
     "path": "/api/v1/questions/ingest",
