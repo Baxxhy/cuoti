@@ -14,7 +14,7 @@ from .security import new_id
 from .storage import write_media, remove_media
 
 
-async def read_upload(request, include_fields=False):
+async def read_upload(request, include_fields=False, audio=False):
     header = Message(); header['content-type'] = request.headers.get('content-type', '')
     if header.get_content_type() != 'multipart/form-data': raise HTTPException(422, '请选择上传图片')
     boundary = header.get_param('boundary') or ''
@@ -49,7 +49,9 @@ async def read_upload(request, include_fields=False):
                     else: raise HTTPException(422, '处理方式无效')
         if file is None: raise HTTPException(422, '缺少图片')
         image = await file.read()
-        if not image: raise HTTPException(422, '图片为空，请重新选择图片')
+        if not image:
+            if audio: raise HTTPException(400, '音频文件为空')
+            raise HTTPException(422, '图片为空，请重新选择图片')
         if len(image) > 15 * 1024 * 1024: raise HTTPException(413, '图片不能超过 15 MB')
         filename = file.filename or '上传错题'
         if len(filename) > 255: raise HTTPException(422, '文件名称过长')

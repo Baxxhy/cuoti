@@ -39,6 +39,9 @@ from .review_search import search_reviews, saved_filters
 from .study_bank import study_bank
 from .practice_images import serve_practice_image
 from .study_sessions import sessions, session_api
+from .knowledge_lessons import personal_framework, knowledge_lessons
+from .system import system_api
+from .voice import transcribe, synthesize
 
 from . import accounts
 from .database import Database
@@ -356,6 +359,46 @@ async def study_session(request: Request):
 @app.post('/api/v1/study-sessions/{session_id}/submit')
 async def submit_study(request: Request):
     return envelope(await session_api(request, submitting=True))
+
+
+@app.get('/api/v1/knowledge/framework')
+async def knowledge_framework(request: Request):
+    return envelope(await personal_framework(request))
+
+
+@app.api_route('/api/v1/knowledge/cards/{code}/lessons', methods=['GET', 'POST'])
+async def lessons(request: Request):
+    return envelope(await knowledge_lessons(request))
+
+
+@app.get('/api/v1/system/health')
+async def system_health():
+    return envelope(await system_api('health'))
+
+
+@app.get('/api/v1/system/providers')
+async def system_providers():
+    return envelope(await system_api('providers'))
+
+
+@app.post('/api/v1/system/providers/probe')
+async def system_probe():
+    return envelope(await system_api('probe'))
+
+
+@app.get('/api/v1/system/voice')
+async def system_voice():
+    return envelope(await system_api('voice'))
+
+
+@app.post('/api/v1/voice/transcribe')
+async def voice_transcribe(request: Request):
+    return envelope(await transcribe(request))
+
+
+@app.post('/api/v1/voice/synthesize')
+async def voice_synthesize(request: Request):
+    return envelope(await synthesize(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

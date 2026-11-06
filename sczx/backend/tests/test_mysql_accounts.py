@@ -1292,3 +1292,126 @@ def test_study_sessions_save_submit_timeout_and_adaptive_selection(client,monkey
     assert rejected.status_code==409 and '判分未保存' in rejected.json()['detail']
     persisted=client.get(concurrent_path,headers=headers).json()['data']
     assert persisted['status']=='active' and persisted['results'] is None and persisted['items'][0]['student_answer']=='新的答案'
+
+
+def test_personal_framework_and_versioned_knowledge_lessons(client,monkeypatch):
+    import json
+    from fastapi import HTTPException
+    from sczx_api import knowledge_lessons
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'lessons@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'lessons-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']};anchor_id,prereq_id=new_id(),new_id()
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'知识框架关联题'}).json()['data']['id']
+    with Database.from_environment() as db:
+        for card_id,code,name in [(anchor_id,'sczx.lesson.anchor','专用知识点'),(prereq_id,'sczx.lesson.base','专用先修')]:
+            db.query("INSERT INTO knowledge_points (id,code,subject,name,content,created_at,updated_at) VALUES (?,?,'数学',?,?,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[card_id,code,name,json.dumps({'grade':'初二','chapter':'第一章','definition':'原定义'})])
+        db.query("INSERT INTO knowledge_relations (id,source_id,target_id,relation_type,created_at,updated_at) VALUES (?,?,?,'prerequisite',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),anchor_id,prereq_id])
+        db.query("INSERT INTO user_question_knowledge_links (id,user_id,question_id,knowledge_point_id,role,confidence,mapping_method,evidence_text,created_at,updated_at) VALUES (?,?,?,?,'primary',1,'exact_label','测试关联',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),user['id'],question_id,anchor_id])
+        db.query("UPDATE student_profiles SET preferences=JSON_OBJECT('focus_subject','物理') WHERE user_id=?",[user['id']])
+    framework=client.get('/api/v1/knowledge/framework',headers=headers)
+    assert framework.status_code==200,framework.text
+    value=framework.json()['data'];node=next(n for n in value['nodes'] if n['code']=='sczx.lesson.anchor')
+    assert node['question_count']==1 and node['grade']=='初二' and node['chapter']=='第一章'
+    assert value['default_subject']=='物理' and value['default_grade']=='初二'
+    assert {'code':'sczx.lesson.anchor','prerequisite_code':'sczx.lesson.base'} in value['relations']
+    other_node=next(n for n in client.get('/api/v1/knowledge/framework',headers=outsider).json()['data']['nodes'] if n['code']=='sczx.lesson.anchor')
+    assert other_node['question_count']==0 and other_node['mastery'] is None
+    calls=[]
+    def compute(payload,timeout=200):
+        calls.append(payload)
+        assert timeout==30 and payload['dialogue_cards'][1]['retrieval_role']=='prerequisite'
+        return {'explanation':'依据定义逐步说明','check_question':'你能举例吗','can_update_learning':False}
+    monkeypatch.setattr(knowledge_lessons,'compute',compute)
+    url='/api/v1/knowledge/cards/sczx.lesson.anchor/lessons';body={'request_id':'lesson-1','prompt':' 为什么这样理解 '}
+    assert client.post(url,headers=headers,json={'prompt':'缺少编号'}).status_code==422
+    first=client.post(url,headers=headers,json=body)
+    assert first.status_code==200,first.text
+    saved=first.json()['data'];assert saved['prompt']=='为什么这样理解'
+    assert client.post(url,headers=headers,json=body).json()['data']['id']==saved['id'] and len(calls)==1
+    assert client.post(url,headers=headers,json={**body,'prompt':'不同问题'}).status_code==409
+    second=client.post(url,headers=headers,json={'request_id':'lesson-2','prompt':'再举一个例子'})
+    assert second.status_code==200 and calls[-1]['knowledge_history'][0]['question']=='为什么这样理解'
+    assert client.get(url,headers=outsider).json()['data']==[]
+    assert all(item['source_current'] is True for item in client.get(url,headers=headers).json()['data'])
+    with Database.from_environment() as db:
+        db.query('UPDATE knowledge_points SET updated_at=UTC_TIMESTAMP()+INTERVAL 1 DAY WHERE id=?',[anchor_id])
+    assert client.post(url,headers=headers,json=body).json()['data']['id']==saved['id']
+    with Database.from_environment() as db:
+        db.query("UPDATE knowledge_points SET content=JSON_SET(content,'$.definition','新定义') WHERE id=?",[anchor_id])
+    assert client.post(url,headers=headers,json=body).status_code==409
+    assert all(item['source_current'] is False for item in client.get(url,headers=headers).json()['data'])
+    third=client.post(url,headers=headers,json={'request_id':'lesson-3','prompt':'新定义怎么理解'})
+    assert third.status_code==200 and calls[-1]['knowledge_history']==[]
+    def unsafe(payload,timeout=200):return {'can_update_learning':True}
+    monkeypatch.setattr(knowledge_lessons,'compute',unsafe)
+    assert client.post(url,headers=headers,json={'request_id':'unsafe','prompt':'不能凭讲解加分'}).status_code==503
+    def stale(payload,timeout=200):
+        with Database.from_environment() as db:db.query("UPDATE knowledge_points SET content=JSON_SET(content,'$.definition','再次更新') WHERE id=?",[anchor_id])
+        return {'explanation':'旧来源的结果','can_update_learning':False}
+    monkeypatch.setattr(knowledge_lessons,'compute',stale)
+    assert client.post(url,headers=headers,json={'request_id':'stale','prompt':'生成期间变更'}).status_code==409
+    def offline(payload,timeout=200):raise HTTPException(503,'controlled')
+    monkeypatch.setattr(knowledge_lessons,'compute',offline)
+    unavailable=client.post(url,headers=headers,json={'request_id':'offline','prompt':'暂不可用'})
+    assert unavailable.status_code==503 and '可以先查看知识卡' in unavailable.json()['detail']
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM knowledge_lessons WHERE user_id=?',[user['id']]).rows[0]['n']=='3'
+        assert db.query('SELECT COUNT(*) AS n FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['n']=='0'
+        db.query("UPDATE questions SET status='archived' WHERE id=?",[question_id])
+    node=next(n for n in client.get('/api/v1/knowledge/framework',headers=headers).json()['data']['nodes'] if n['code']=='sczx.lesson.anchor')
+    assert node['question_count']==0
+
+
+def test_system_and_voice_context_files_failure_and_cleanup(client,tmp_path,monkeypatch):
+    import base64,hashlib
+    from fastapi import HTTPException
+    from sczx_api import system,voice
+    calls=[]
+    def system_compute(p):
+        calls.append(p)
+        return {'provider':{'last_status':'ready','vision_entries':2},'voice':{'stt':'available','tts':'available'}}
+    monkeypatch.setattr(system,'compute',system_compute)
+    assert client.get('/api/v1/system/health').json()['data']=={'status':'healthy','database':'mysql','ai':'ready','image_recognition':True}
+    assert client.get('/api/v1/system/providers').json()['data']['last_status']=='ready'
+    assert client.post('/api/v1/system/providers/probe').status_code==200 and calls[-1]['probe_provider'] is True
+    assert client.get('/api/v1/system/voice').json()['data']['tts']=='available'
+    user=client.post('/api/v1/auth/register',json={'email':'voice@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'voice-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'语音作答题'}).json()['data']['id']
+    with Database.from_environment() as db:work_id=db.query('SELECT id FROM student_works WHERE question_id=?',[question_id]).rows[0]['id']
+    monkeypatch.setenv('SCZX_MEDIA_ROOT',str(tmp_path/'media'));audio=b'controlled-audio'
+    def compute(p):
+        if p['operation']=='voice_transcribe':return {'text':'我的解题说明','metadata':{'model':'test-stt','duration_ms':12}}
+        return {'audio_base64':base64.b64encode(audio).decode(),'sha256':hashlib.sha256(audio).hexdigest(),'metadata':{'model':'test-tts','duration_ms':10}}
+    monkeypatch.setattr(voice,'compute',compute)
+    assert client.post('/api/v1/voice/synthesize',headers=headers,json={'text':' '}).status_code==400
+    assert client.post('/api/v1/voice/synthesize',headers=outsider,json={'text':'朗读','question_id':question_id}).status_code==404
+    spoken=client.post('/api/v1/voice/synthesize',headers=headers,json={'text':' 等式两边同时减一 ','question_id':question_id})
+    assert spoken.status_code==200,spoken.text
+    assert spoken.json()['data']['text']=='等式两边同时减一' and spoken.json()['data']['browser_fallback'] is False
+    assert client.get(spoken.json()['data']['audio_url']).content==audio
+    url=f'/api/v1/voice/transcribe?question_id={question_id}&work_id={work_id}'
+    files={'file':('voice.ogg',b'original-voice','audio/ogg')}
+    transcribed=client.post(url,headers=headers,files=files)
+    assert transcribed.status_code==200,transcribed.text
+    data=transcribed.json()['data']
+    assert data['editable'] is True and data['bytes']==14 and data['audio_path'].endswith('.ogg')
+    assert client.get(data['audio_url']).content==b'original-voice'
+    with Database.from_environment() as db:assert db.query('SELECT explanation FROM student_works WHERE id=?',[work_id]).rows[0]['explanation']=='我的解题说明'
+    assert client.post(url,headers=outsider,files=files).status_code==404
+    assert client.post(url,headers=headers,files={'file':('empty.webm',b'','audio/webm')}).status_code==400
+    def offline(p):raise HTTPException(503,'controlled unavailable')
+    monkeypatch.setattr(voice,'compute',offline)
+    before=set((tmp_path/'media').rglob('*.*'))
+    failed=client.post(url,headers=headers,files=files)
+    assert failed.status_code==502 and '转写失败' in failed.json()['detail']
+    assert len(set((tmp_path/'media').rglob('*.*'))-before)==1
+    with Database.from_environment() as db:
+        assert db.query("SELECT COUNT(*) AS n FROM voice_records WHERE user_id=? AND status='failed'",[user['id']]).rows[0]['n']=='1'
+    def bad_duration(p):
+        result=compute(p);result['metadata']['duration_ms']=-1;return result
+    monkeypatch.setattr(voice,'compute',bad_duration);before=set((tmp_path/'media').rglob('*.*'))
+    assert client.post('/api/v1/voice/synthesize',headers=headers,json={'text':'测试回滚'}).status_code==422
+    assert set((tmp_path/'media').rglob('*.*'))==before

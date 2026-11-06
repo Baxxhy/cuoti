@@ -106,9 +106,11 @@
   {
     "path": "/api/v1/knowledge/framework",
     "source": "backend-cangjie/src/main.cj:38",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "isolated framework/lesson versioning/history/idempotency/ownership acceptance passed; real model/browser parity pending"
   },
   {
     "path": "/api/v1/knowledge/cards/{code}",
@@ -122,9 +124,12 @@
   {
     "path": "/api/v1/knowledge/cards/{code}/lessons",
     "source": "backend-cangjie/src/main.cj:40",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "POST"
+    ],
+    "parity": "isolated framework/lesson versioning/history/idempotency/ownership acceptance passed; real model/browser parity pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/ocr",
@@ -337,30 +342,38 @@
   {
     "path": "/api/v1/system/health",
     "source": "backend-cangjie/src/main.cj:64",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
   },
   {
     "path": "/api/v1/system/providers",
     "source": "backend-cangjie/src/main.cj:65",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
   },
   {
     "path": "/api/v1/system/providers/probe",
     "source": "backend-cangjie/src/main.cj:66",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
   },
   {
     "path": "/api/v1/system/voice",
     "source": "backend-cangjie/src/main.cj:67",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
   },
   {
     "path": "/api/v1/admin/workbench",
@@ -386,16 +399,20 @@
   {
     "path": "/api/v1/voice/transcribe",
     "source": "backend-cangjie/src/main.cj:71",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
   },
   {
     "path": "/api/v1/voice/synthesize",
     "source": "backend-cangjie/src/main.cj:72",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
   },
   {
     "path": "/api/v1/papers",
