@@ -103,10 +103,13 @@ def main():
                 assert compatibility.returncode==0,compatibility.stdout+'\n'+compatibility.stderr
                 report['checks'].append('controlled login/register/image-picker browser compatibility')
                 if os.environ.get('SCZX_RUN_E2E')=='1':
-                    acceptance=subprocess.run(['node',str(ROOT/'frontend/node_modules/@playwright/test/cli.js'),'test','--config',str(ROOT/'frontend/playwright.config.js')],cwd=ROOT,env={**env,'SCZX_WEB_URL':base,'SCZX_API_URL':base+'/api/v1','SCZX_E2E_OUTPUT':str(artifacts/'e2e')},capture_output=True,text=True,timeout=300)
+                    acceptance_args=['node',str(ROOT/'frontend/node_modules/@playwright/test/cli.js'),'test','--config',str(ROOT/'frontend/playwright.config.js')]
+                    if os.environ.get('SCZX_E2E_GREP'):acceptance_args.extend(['--grep',os.environ['SCZX_E2E_GREP']])
+                    report['e2e_scope']=os.environ.get('SCZX_E2E_GREP','all migrated cases')
+                    acceptance=subprocess.run(acceptance_args,cwd=ROOT,env={**env,'SCZX_WEB_URL':base,'SCZX_API_URL':base+'/api/v1','SCZX_E2E_OUTPUT':str(artifacts/'e2e')},capture_output=True,text=True,timeout=300)
                     (artifacts/'e2e.log').write_text(acceptance.stdout+'\n'+acceptance.stderr)
                     assert acceptance.returncode==0,acceptance.stdout+'\n'+acceptance.stderr
-                    report['checks'].append('original account/profile/new-user browser acceptance on Python/MySQL')
+                    report['checks'].append('migrated browser acceptance on Python/MySQL')
                 with Database.from_environment() as db:
                     assert db.query('SELECT evidence_count FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['evidence_count']=='2'
                 report['checks'].append('two objective learning observations persisted')

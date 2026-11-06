@@ -42,7 +42,7 @@ try{
     if(!['GET','HEAD'].includes(intercept.request().method()))writes.push({method:intercept.request().method(),path:url.pathname})
     if(url.pathname==='/api/v1/auth/me'){data={...user,role:/pages\/(admin|system)\//.test(route)?'admin':'student'};if(anonymous)status=401}
     else if(url.pathname==='/api/v1/learning-tasks/ui-task')data=route.includes('ui_repair')?{...task,status:'waiting_student',learning_applied:false,student_view:{title:'先订正这一步',feedback:'',prompt_blocks:[{kind:'question',text:'解方程 2x+3=11'}],input_kind:'text',secondary_actions:['hint','visualize']}}:task
-    else if(url.pathname==='/api/v1/questions/ui-question')data={id:'ui-question',subject:'数学',grade:'初二',question_text:'解方程 2x+3=11。',student_answer:'x=7',student_steps:[],assets:route.includes('ui_preview')?[{kind:'original',url:service.base+'/ui-preview-a.png'},{kind:'crop',url:service.base+'/ui-preview-b.png'}]:[],options:[],knowledge_points:['一元一次方程'],analysis:null,diagnosis:null}
+    else if(url.pathname==='/api/v1/questions/ui-question')data={id:'ui-question',subject:'数学',grade:'初二',question_text:'解方程 2x+3=11。',student_answer:'x=7',student_steps:[],assets:(route.includes('ui_preview')||route.includes('ui_crop'))?[{kind:'original',url:service.base+'/ui-preview-a.png'},{kind:'crop',url:service.base+'/ui-preview-b.png'}]:[],options:[],knowledge_points:['一元一次方程'],analysis:null,diagnosis:null}
     else if(url.pathname==='/api/v1/questions/ui-question/journey')data={stages:[],summary:'尚未开始学习'}
     else if(url.pathname.endsWith('/self-check'))data={version:0,source_current:true,can_save:true,note:null}
     else if(url.pathname.endsWith('/history'))data={items:[],has_more:false,source_question:null}
@@ -78,11 +78,17 @@ try{
     const title=page.locator('.header-title:visible')
     if(await title.textContent()!=='使用指南')throw new Error(name+': stale page stack overrides the address after reload')
    }
+   if(route.includes('ui_crop')){
+    const handle=await page.locator('.corner.rb').boundingBox()
+    await page.mouse.move(handle.x+handle.width/2,handle.y+handle.height/2);await page.mouse.down();await page.mouse.move(handle.x+handle.width/2-25,handle.y+handle.height/2-20,{steps:8});await page.mouse.up()
+    const box=await page.locator('.crop-box').boundingBox()
+    await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+box.width/2+10,box.y+box.height/2+8,{steps:8});await page.mouse.up()
+   }
    await page.evaluate(()=>document.fonts.ready)
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})
    const snapshot=await page.evaluate(()=>{
     const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color']
-    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
+    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img,.crop-stage,.crop-box')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
      const r=e.getBoundingClientRect(),css=getComputedStyle(e)
      return {tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
     })

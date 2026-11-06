@@ -71,8 +71,9 @@ export const WebCheckboxGroup=group(true),WebRadioGroup=group(false),WebCheckbox
 export const WebMovableArea=defineComponent({setup(_, {attrs,slots}){return()=>h('div',{...attrs,style:[{position:'relative',overflow:'hidden'},attrs.style]},slots.default?.())}})
 export const WebMovable=defineComponent({inheritAttrs:false,props:{x:{type:Number,default:0},y:{type:Number,default:0},disabled:Boolean,direction:String},emits:['change'],setup(p,{attrs,slots,emit}){
  let start=null
- function move(e){if(!start)return;emit('change',{detail:{source:'touch',x:start.x+e.clientX-start.clientX,y:start.y+e.clientY-start.clientY}})}
- function end(){start=null;window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',end)}
+ function move(e){if(!start||p.disabled||e.pointerId!==start.pointerId)return;emit('change',{detail:{source:'touch',x:Number((start.x+e.clientX-start.clientX).toFixed(1)),y:Number((start.y+e.clientY-start.clientY).toFixed(1))}})}
+ function end(e){if(e&&start&&e.pointerId!==start.pointerId)return;start=null;window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',end);window.removeEventListener('pointercancel',end)}
  onBeforeUnmount(end)
- return()=>h('div',{...attrs,style:[attrs.style,{position:'absolute',left:p.x+'px',top:p.y+'px',touchAction:'none'}],onPointerdown:e=>{if(p.disabled||e.target!==e.currentTarget)return;e.preventDefault();start={x:p.x,y:p.y,clientX:e.clientX,clientY:e.clientY};window.addEventListener('pointermove',move);window.addEventListener('pointerup',end)}},slots.default?.())
+ watch(()=>p.disabled,disabled=>{if(disabled)end()})
+ return()=>h('div',{...attrs,style:[{boxSizing:'content-box',display:'inline-block',width:'10px',height:'10px',cursor:'grab'},attrs.style,{position:'absolute',left:0,top:0,transform:`translate3d(${Number(p.x.toFixed(1))}px,${Number(p.y.toFixed(1))}px,0)`,touchAction:'none'}],onPointerdown:e=>{if(p.disabled||start||e.target!==e.currentTarget)return;e.preventDefault();start={pointerId:e.pointerId,x:p.x,y:p.y,clientX:e.clientX,clientY:e.clientY};window.addEventListener('pointermove',move);window.addEventListener('pointerup',end);window.addEventListener('pointercancel',end)}},slots.default?.())
 }})
