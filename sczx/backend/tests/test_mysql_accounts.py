@@ -1203,3 +1203,92 @@ def test_study_bank_grade_shuffle_public_images_and_facets(client,tmp_path,monke
     with Database.from_environment() as db:db.query("UPDATE student_profiles SET grade='高一' WHERE user_id=?",[user['id']])
     senior_bank=client.get('/api/v1/study-bank',headers=headers).json()['data']
     assert senior_bank['scope_label']=='高中' and [q['id'] for q in senior_bank['questions']]==[senior]
+
+
+def test_study_sessions_save_submit_timeout_and_adaptive_selection(client,monkeypatch):
+    import json,hashlib
+    from sczx_api import study_sessions,adaptive_practice
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'study-session@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'study-session-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']};source_id=new_id();question_ids=[]
+    with Database.from_environment() as db:
+        db.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,'sczx-session-test','会话测试题','1','','public','',5,5,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[source_id])
+        for index in range(5):
+            item_id=new_id();question_ids.append(item_id)
+            db.query("INSERT INTO dataset_questions (id,dataset_source_id,source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade,created_at,updated_at) VALUES (?,?,?,'test','数学','初二','初中','基础计算',?,'综合题',JSON_ARRAY(),JSON_QUOTE('1'),'解题过程',JSON_ARRAY('基础运算'),JSON_ARRAY(),'medium',?,JSON_OBJECT(),1,1,1,'ready',1,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[item_id,source_id,str(index),f'基础运算题{index}',hashlib.sha256(str(index).encode()).hexdigest()])
+    monkeypatch.setattr(study_sessions,'compute',lambda p,timeout=200:{'correct':p['answer']=='1','can_update_learning':True,'feedback':'已判定'})
+    url='/api/v1/study-sessions'
+    assert client.post(url,headers=headers,json={'count':True}).status_code==422
+    assert client.post(url,headers=headers,json={'question_ids':question_ids[:2]}).status_code==422
+    created=client.post(url,headers=headers,json={'question_ids':[question_ids[0]],'source_id':source_id})
+    assert created.status_code==200,created.text
+    session=created.json()['data'];path=url+'/'+session['id'];item_id=session['items'][0]['id']
+    assert session['question_count']==1 and 'answer' not in session['items'][0] and 'answer' not in session['items'][0]['question']
+    assert client.get(path,headers=outsider).status_code==404
+    payload={'version':1,'answers':[{'id':item_id,'answer':'wrong'}]}
+    saved=client.patch(path,headers=headers,json=payload)
+    assert saved.status_code==200 and saved.json()['data']['version']==2
+    assert client.patch(path,headers=headers,json=payload).status_code==409
+    assert client.patch(path,headers=headers,json={'version':2,'answers':[{'id':item_id,'answer':['A','A']}]}).status_code==422
+    assert client.post(path+'/submit',headers=headers,json={'version':1}).status_code==409
+    submitted=client.post(path+'/submit',headers=headers,json={'version':2})
+    assert submitted.status_code==200,submitted.text
+    result=submitted.json()['data'];assert result['status']=='submitted' and result['results']['score']==0
+    assert result['items'][0]['answer']=='1' and result['items'][0]['grading']['correct'] is False
+    assert client.post(path+'/submit',headers=headers,json={'version':1}).json()['data']['results']==result['results']
+    assert client.patch(path,headers=headers,json={'version':3,'answers':[{'id':item_id,'answer':'1'}]}).status_code==409
+    # User explicitly adds the marked-wrong item; session grading itself does not manufacture a mistake.
+    with Database.from_environment() as db:assert db.query('SELECT COUNT(*) AS n FROM questions WHERE user_id=?',[user['id']]).rows[0]['n']=='0'
+    mistake=client.post('/api/v1/questions/manual',headers=headers,json={'study_session_id':session['id'],'study_item_id':item_id})
+    assert mistake.status_code==200,mistake.text
+    assert client.get(path,headers=headers).json()['data']['items'][0]['mistake_id']==mistake.json()['data']['id']
+    exam=client.post(url,headers=headers,json={'mode':'exam','source_id':source_id,'count':3,'minutes':1}).json()['data']
+    exam_path=url+'/'+exam['id'];assert 0<exam['remaining_seconds']<=60
+    answers=[{'id':item['id'],'answer':'1' if index==0 else None} for index,item in enumerate(exam['items'])]
+    assert client.patch(exam_path,headers=headers,json={'version':1,'answers':answers}).status_code==200
+    excluded_id=exam['items'][1]['question']['id']
+    with Database.from_environment() as db:
+        db.query("UPDATE dataset_questions SET quality_status='format_review' WHERE id=?",[excluded_id])
+        db.query('UPDATE study_sessions SET deadline_at=UTC_TIMESTAMP(6)-INTERVAL 1 SECOND WHERE id=?',[exam['id']])
+    assert client.patch(exam_path,headers=headers,json={'version':2,'answers':answers}).status_code==409
+    finished=client.post(exam_path+'/submit',headers=headers,json={'version':2})
+    assert finished.status_code==200,finished.text
+    summary=finished.json()['data']['results']
+    assert summary=={'correct':1,'pending':0,'excluded':1,'answered':1,'total':3,'score':5,'max_score':10}
+    assert finished.json()['data']['items'][1]['unavailable'] is True and 'answer' not in finished.json()['data']['items'][1]
+    seen=[]
+    def select(payload):
+        domain=payload['adaptive_practice'];seen.append(domain)
+        return {'question_ids':[q['id'] for q in domain['candidates'][:domain['count']]],'method':'controlled'}
+    monkeypatch.setattr(adaptive_practice,'compute',select)
+    adaptive=client.post(url,headers=headers,json={'selection_strategy':'adaptive','source_id':source_id,'count':2})
+    assert adaptive.status_code==200,adaptive.text
+    assert adaptive.json()['data']['question_count']==2 and seen[0]['observations']
+    monkeypatch.setattr(adaptive_practice,'compute',lambda p:{'question_ids':['outside-pool','outside-pool']})
+    assert client.post(url,headers=headers,json={'selection_strategy':'adaptive','source_id':source_id,'count':2}).status_code==503
+    assert client.get(url,headers=outsider).json()['data']==[]
+    assert len(client.get(url,headers=headers).json()['data'])==3
+    from concurrent.futures import ThreadPoolExecutor
+    from threading import Event
+    chosen=next(q for q in question_ids if q!=excluded_id)
+    concurrent=client.post(url,headers=headers,json={'question_ids':[chosen]}).json()['data']
+    concurrent_path=url+'/'+concurrent['id'];concurrent_item=concurrent['items'][0]['id']
+    assert client.patch(concurrent_path,headers=headers,json={'version':1,'answers':[{'id':concurrent_item,'answer':'1'}]}).status_code==200
+    started,release=Event(),Event()
+    def blocking_grade(payload,timeout=200):
+        started.set()
+        assert release.wait(10),'concurrent save must run while computation waits'
+        return {'correct':True,'can_update_learning':True,'feedback':'旧判分'}
+    monkeypatch.setattr(study_sessions,'compute',blocking_grade)
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        pending=executor.submit(client.post,concurrent_path+'/submit',headers=headers,json={'version':2})
+        try:
+            assert started.wait(10)
+            updated=client.patch(concurrent_path,headers=headers,json={'version':2,'answers':[{'id':concurrent_item,'answer':'新的答案'}]})
+            assert updated.status_code==200,updated.text
+        finally:release.set()
+        rejected=pending.result(timeout=10)
+    assert rejected.status_code==409 and '判分未保存' in rejected.json()['detail']
+    persisted=client.get(concurrent_path,headers=headers).json()['data']
+    assert persisted['status']=='active' and persisted['results'] is None and persisted['items'][0]['student_answer']=='新的答案'

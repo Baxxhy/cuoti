@@ -9,7 +9,12 @@ from .rows import row_json
 from .tutor_variants import data_snapshot
 
 
-def task_snapshot(db,question_id,owner):
+def task_snapshot(db,question_id,owner,lock=False):
+    if lock:
+        rows=db.query('SELECT id FROM questions WHERE id=? AND user_id=? FOR UPDATE',[question_id,owner]).rows
+        if not rows:
+            from fastapi import HTTPException
+            raise HTTPException(404,'题目不存在或无权访问')
     value=data_snapshot(db,question_id,owner)
     def rows(table,sql):return query_array(db,table,sql,question_id)
     works=rows('student_works','SELECT * FROM student_works WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1')

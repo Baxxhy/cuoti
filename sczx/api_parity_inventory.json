@@ -275,23 +275,31 @@
   {
     "path": "/api/v1/study-sessions",
     "source": "backend-cangjie/src/main.cj:57",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "POST"
+    ],
+    "parity": "ported original practice/exam/save/submit/adaptive rules; isolated session acceptance passed; genuine concurrent save/submit conflict acceptance passed; task recommendation branch/browser/model pending"
   },
   {
     "path": "/api/v1/study-sessions/{session_id}",
     "source": "backend-cangjie/src/main.cj:58",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "parity": "ported original practice/exam/save/submit/adaptive rules; isolated session acceptance passed; genuine concurrent save/submit conflict acceptance passed; task recommendation branch/browser/model pending"
   },
   {
     "path": "/api/v1/study-sessions/{session_id}/submit",
     "source": "backend-cangjie/src/main.cj:59",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported original practice/exam/save/submit/adaptive rules; isolated session acceptance passed; genuine concurrent save/submit conflict acceptance passed; task recommendation branch/browser/model pending"
   },
   {
     "path": "/api/v1/practice/recommend",

@@ -38,6 +38,7 @@ from .reviews import list_reviews, attempt_review, grade_review
 from .review_search import search_reviews, saved_filters
 from .study_bank import study_bank
 from .practice_images import serve_practice_image
+from .study_sessions import sessions, session_api
 
 from . import accounts
 from .database import Database
@@ -340,6 +341,21 @@ async def bank(request: Request):
 @app.api_route('/api/v1/practice/questions/{question_id}/images/{image_index}', methods=['GET', 'HEAD'])
 async def practice_image(request: Request):
     return await serve_practice_image(request)
+
+
+@app.api_route('/api/v1/study-sessions', methods=['GET', 'POST'])
+async def study_sessions(request: Request):
+    return envelope(await sessions(request))
+
+
+@app.api_route('/api/v1/study-sessions/{session_id}', methods=['GET', 'PATCH'])
+async def study_session(request: Request):
+    return envelope(await session_api(request))
+
+
+@app.post('/api/v1/study-sessions/{session_id}/submit')
+async def submit_study(request: Request):
+    return envelope(await session_api(request, submitting=True))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])
