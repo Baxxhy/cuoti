@@ -1044,3 +1044,109 @@ def test_knowledge_search_unicode_filters_and_relations(client):
     assert card.status_code==200 and card.json()['data']['prerequisites'][0]['id']==first
     assert client.get('/api/v1/knowledge/cards/'+first).json()['data']['next_knowledge'][0]['id']==second
     assert client.get('/api/v1/knowledge/cards/missing-card').status_code==404
+
+
+def test_review_attempt_receipts_supersession_grading_and_source_changes(client,monkeypatch):
+    from sczx_api import analysis,reviews
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'reviews@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'reviews-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'x+1=2','student_answer':'原来的答案'}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers)
+    plan_id=new_id()
+    with Database.from_environment() as db:
+        db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL 1 DAY,1,'again','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[plan_id,user['id'],question_id])
+    due=client.get('/api/v1/reviews/today',headers=headers)
+    assert due.status_code==200,due.text
+    plan=due.json()['data'][0];version=plan['source_version']
+    assert 'student_answer' not in plan['question'] and '1 天后' in plan['reason']
+    calls=[]
+    def compute(p):
+        calls.append(p);decisive=p['answer']!='maybe';correct=p['answer']=='1'
+        return {'correct':correct,'can_update_learning':decisive,'verdict':'review_required' if not decisive else 'confirmed_correct' if correct else 'confirmed_incorrect','score':1.0 if correct else 0.0,'feedback':'核对计算','matched_points':[]}
+    monkeypatch.setattr(reviews,'compute',compute)
+    path='/api/v1/reviews/'+plan_id
+    assert client.post(path+'/attempt',headers=outsider,json={'answer':'1'}).status_code==404
+    assert client.post(path+'/attempt',headers=headers,json={'answer':'1','source_version':'old'}).status_code==409
+    request={'answer':'maybe','request_id':'attempt-one','source_version':version}
+    first=client.post(path+'/attempt',headers=headers,json=request)
+    assert first.status_code==200,first.text
+    uncertain=first.json()['data'];assert uncertain['correct'] is None and uncertain['can_update_learning'] is False
+    assert client.post(path+'/attempt',headers=headers,json=request).json()['data']['attempt_id']==uncertain['attempt_id'] and len(calls)==1
+    assert client.post(path+'/attempt',headers=headers,json={**request,'answer':'1'}).status_code==409
+    assert client.post(path+'/grade',headers=headers,json={'attempt_id':uncertain['attempt_id'],'grade':'easy'}).status_code==409
+    current=client.post(path+'/attempt',headers=headers,json={'answer':'1','request_id':'attempt-two','source_version':version}).json()['data']
+    assert current['correct'] is True
+    assert client.post(path+'/attempt',headers=headers,json=request).status_code==409
+    assert client.post(path+'/grade',headers=headers,json={'attempt_id':uncertain['attempt_id']}).status_code==409
+    due=client.get('/api/v1/reviews/today',headers=headers).json()['data'][0]
+    assert due['pending_attempt']['attempt_id']==current['attempt_id']
+    assert client.post(path+'/grade',headers=headers,json={'attempt_id':current['attempt_id'],'grade':'invalid'}).status_code==422
+    graded=client.post(path+'/grade',headers=headers,json={'attempt_id':current['attempt_id'],'grade':'good'})
+    assert graded.status_code==200,graded.text
+    next_plan=graded.json()['data']['next_plan']
+    assert next_plan['interval_days']==7 and graded.json()['data']['record']['correct'] is True
+    assert client.post(path+'/grade',headers=headers,json={'attempt_id':current['attempt_id']}).status_code==409
+    history=client.get('/api/v1/reviews/history',headers=headers).json()['data']
+    assert len(history)==1 and history[0]['grade']=='good' and history[0]['question']['id']==question_id
+    from sczx_api.learning_memory import learning_memory
+    from sczx_api.rows import row_json
+    with Database.from_environment() as db:
+        source=row_json('questions',db.query('SELECT * FROM questions WHERE id=?',[question_id]).rows[0])
+        events=[e for e in learning_memory(db,user['id'],source)['snapshot']['entries'] if e['kind']=='review_record']
+        assert len(events)==1 and events[0]['outcome']=='correct' and events[0]['classification']=='verified_event'
+    assert client.get('/api/v1/reviews/history',headers=outsider).json()['data']==[]
+    for answer,grade,days in [('0','easy',4),('1','hard',2),('0','again',1)]:
+        path='/api/v1/reviews/'+next_plan['id']
+        attempt=client.post(path+'/attempt',headers=headers,json={'answer':answer}).json()['data']
+        result=client.post(path+'/grade',headers=headers,json={'attempt_id':attempt['attempt_id'],'grade':grade})
+        assert result.status_code==200,result.text
+        next_plan=result.json()['data']['next_plan'];assert next_plan['interval_days']==days
+    path='/api/v1/reviews/'+next_plan['id']
+    attempt=client.post(path+'/attempt',headers=headers,json={'answer':'1'}).json()['data']
+    with Database.from_environment() as db:db.query("UPDATE questions SET student_answer='新作答' WHERE id=?",[question_id])
+    assert client.post(path+'/grade',headers=headers,json={'attempt_id':attempt['attempt_id']}).status_code==409
+    with Database.from_environment() as db:
+        source=row_json('questions',db.query('SELECT * FROM questions WHERE id=?',[question_id]).rows[0])
+        assert not [e for e in learning_memory(db,user['id'],source)['snapshot']['entries'] if e['kind']=='review_record']
+
+
+def test_review_search_paging_and_saved_filter_limits(client):
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'review-search@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'review-search-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'计算x%表达式','student_answer':'不能提前显示'}).json()['data']['id']
+    with Database.from_environment() as db:
+        for _ in range(24):db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL 1 DAY,1,'需巩固','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),user['id'],question_id])
+    response=client.get('/api/v1/reviews/search',headers=headers,params={'q':'x%','scope':'today','subject':'数学'})
+    assert response.status_code==200,response.text
+    value=response.json()['data']
+    assert value['total']==24 and len(value['items'])==20 and value['page_size']==20
+    assert 'student_answer' not in value['items'][0] and value['items'][0]['is_due'] is True
+    assert value['items'][0]['grade']==''
+    page=client.get('/api/v1/reviews/search?page=2',headers=headers).json()['data']
+    assert len(page['items'])==4 and page['total']==24
+    assert client.get('/api/v1/reviews/search?scope=completed',headers=headers).json()['data']['total']==0
+    assert client.get('/api/v1/reviews/search?subject=英语',headers=headers).json()['data']['total']==0
+    assert client.get('/api/v1/reviews/search',headers=outsider).json()['data']['total']==0
+    for query in ['scope=invalid','page=0','page=10001','page=1.5','q='+'字'*101]:
+        assert client.get('/api/v1/reviews/search?'+query,headers=headers).status_code==422
+    url='/api/v1/reviews/filters';body={'name':' 方程复习 ','q':' x% ','subject':'数学','scope':'today'}
+    first=client.post(url,headers=headers,json=body)
+    assert first.status_code==200,first.text
+    item=first.json()['data'][0]
+    assert item['name']=='方程复习' and item['q']=='x%'
+    assert client.post(url,headers=headers,json=body).json()['data']==[item]
+    assert client.get(url,headers=outsider).json()['data']==[]
+    for index in range(19):assert client.post(url,headers=headers,json={'name':f'范围{index}'}).status_code==200
+    full=client.get(url,headers=headers).json()['data']
+    assert len(full)==20
+    assert client.post(url,headers=headers,json={'name':'超出上限'}).status_code==409
+    assert len(client.post(url,headers=headers,json=body).json()['data'])==20
+    assert client.delete(url+'/'+item['id'],headers=outsider).status_code==404
+    assert client.delete(url+'/'+item['id'],headers=headers).json()['data']=={'deleted':True}
+    assert len(client.get(url,headers=headers).json()['data'])==19

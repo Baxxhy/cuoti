@@ -34,6 +34,8 @@ from .dashboard import dashboard
 from .insights import analytics, error_sources
 from .knowledge import knowledge_cards, read_knowledge_card
 from .cognition_graph import cognition_graph
+from .reviews import list_reviews, attempt_review, grade_review
+from .review_search import search_reviews, saved_filters
 
 from . import accounts
 from .database import Database
@@ -291,6 +293,41 @@ async def card(request: Request):
 @app.get('/api/v1/analytics/cognition-graph')
 async def student_cognition_graph(request: Request):
     return envelope(await cognition_graph(request))
+
+
+@app.get('/api/v1/reviews/today')
+async def today_reviews(request: Request):
+    return envelope(await list_reviews(request))
+
+
+@app.get('/api/v1/reviews/history')
+async def review_history(request: Request):
+    return envelope(await list_reviews(request, history=True))
+
+
+@app.post('/api/v1/reviews/{plan_id}/attempt')
+async def review_attempt(request: Request):
+    return envelope(await attempt_review(request))
+
+
+@app.post('/api/v1/reviews/{plan_id}/grade')
+async def review_grade(request: Request):
+    return envelope(await grade_review(request))
+
+
+@app.get('/api/v1/reviews/search')
+async def review_search(request: Request):
+    return envelope(await search_reviews(request))
+
+
+@app.api_route('/api/v1/reviews/filters', methods=['GET', 'POST'])
+async def review_filters(request: Request):
+    return envelope(await saved_filters(request))
+
+
+@app.delete('/api/v1/reviews/filters/{filter_id}')
+async def delete_review_filter(request: Request):
+    return envelope(await saved_filters(request, deleting=True))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

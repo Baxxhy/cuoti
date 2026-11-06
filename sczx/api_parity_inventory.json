@@ -192,51 +192,66 @@
   {
     "path": "/api/v1/reviews/today",
     "source": "backend-cangjie/src/main.cj:48",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
   },
   {
     "path": "/api/v1/reviews/search",
     "source": "backend-cangjie/src/main.cj:49",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
   },
   {
     "path": "/api/v1/reviews/filters",
     "source": "backend-cangjie/src/main.cj:50",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "POST"
+    ],
+    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
   },
   {
     "path": "/api/v1/reviews/filters/{filter_id}",
     "source": "backend-cangjie/src/main.cj:51",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "DELETE"
+    ],
+    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
   },
   {
     "path": "/api/v1/reviews/history",
     "source": "backend-cangjie/src/main.cj:52",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
   },
   {
     "path": "/api/v1/reviews/{plan_id}/attempt",
     "source": "backend-cangjie/src/main.cj:53",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
   },
   {
     "path": "/api/v1/reviews/{plan_id}/grade",
     "source": "backend-cangjie/src/main.cj:54",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
   },
   {
     "path": "/api/v1/practice/questions/{question_id}/images/{image_index}",
