@@ -1,0 +1,70 @@
+import { expect, test } from '@playwright/test'
+
+test('两台设备使用同一任务：远端推进后旧草稿隔离，历史仍对应原作答', async ({
+  page,
+  browser,
+}, testInfo) => {
+  expect(process.env.QA_DRAFT_QUESTION_ID, '需要隔离学习样本').toBeTruthy()
+  await page.goto('/#/pages/login/login')
+  await page.getByLabel('邮箱', { exact: true }).fill(process.env.QA_DRAFT_EMAIL!)
+  await page.getByLabel('密码', { exact: true }).fill(process.env.QA_DRAFT_PASSWORD!)
+  await page.getByText('登录', { exact: true }).click()
+  await expect(page).toHaveURL(/pages\/index\/index/)
+  await page.goto(`/#/pages/detail/detail?id=${process.env.QA_DRAFT_QUESTION_ID}`)
+  await page.getByRole('button', { name: '订正这道题', exact: true }).click()
+  await expect(page.getByText('先订正这一步', { exact: true })).toBeVisible()
+  const taskURL = page.url()
+  await page.locator('.answer-input textarea, textarea.answer-input').fill('11-3')
+  const remoteContext = await browser.newContext({
+    storageState: await page.context().storageState(),
+    viewport: { width: 390, height: 844 },
+  })
+  try {
+    const remote = await remoteContext.newPage()
+    await remote.goto(taskURL)
+    await expect(remote.getByText('先订正这一步', { exact: true })).toBeVisible()
+    await remote.locator('.answer-input textarea, textarea.answer-input').fill('2x=8')
+    await remote.getByRole('button', { name: '提交作答', exact: true }).click()
+    await expect(remote.getByText('重新作答', { exact: true })).toBeVisible()
+    await page.reload()
+    await expect(page.getByText('重新作答', { exact: true })).toBeVisible()
+    await expect(page.locator('.answer-input textarea, textarea.answer-input')).toHaveValue('')
+    await expect(page.locator('[role="alert"]')).toContainText('旧草稿已单独保留')
+    await page.getByRole('button', { name: /上一步草稿/ }).click()
+    await expect(page.locator('.previous-draft')).toContainText('11-3')
+    await page.screenshot({ path: testInfo.outputPath('task-draft-conflict.png'), fullPage: true })
+    await page.getByRole('button', { name: /作答记录/ }).click()
+    await expect(page.locator('.source-step')).toContainText('对应原作答第1步')
+    await expect(page.locator('.source-step')).toContainText('2x=11+3')
+    await page.getByRole('button', { name: /查看本次题目/ }).click()
+    await expect(page.locator('.task-history')).toContainText('解方程：2x+3=11')
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  } finally {
+    await remoteContext.close()
+  }
+})
+
+test('学习推荐的知识卡ID可打开具体卡片，并保留结合原题讲解入口', async ({ page, request }) => {
+  expect(process.env.QA_TASK_EMAIL, '需要隔离学习样本').toBeTruthy()
+  const login = await request.post(process.env.SCZX_API_URL + '/auth/login', {
+    data: { email: process.env.QA_TASK_EMAIL, password: process.env.QA_TASK_PASSWORD },
+  })
+  expect(login.ok()).toBe(true)
+  const token = (await login.json()).data.access_token
+  const response = await request.get(
+    process.env.SCZX_API_URL + '/knowledge/cards?subject=' + encodeURIComponent('数学'),
+  )
+  expect(response.ok()).toBe(true)
+  const card = (await response.json()).data[0]
+  expect(card?.id).toBeTruthy()
+  await page.addInitScript(
+    (value) => localStorage.setItem('minddimension_access_token', JSON.stringify(value)),
+    token,
+  )
+  await page.goto(
+    `/#/pages/library/library?code=${encodeURIComponent(card.id)}&question=${process.env.QA_TASK_QUESTION_ID}`,
+  )
+  await expect(page.locator('h2')).toHaveText(card.name)
+  await expect(page.getByRole('button', { name: '结合原题讲解', exact: true })).toBeVisible()
+  await expect(page.getByText('知识卡暂时无法加载', { exact: true })).toHaveCount(0)
+})

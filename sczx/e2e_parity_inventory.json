@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 57,
+  "migrated_count": 60,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -253,8 +253,9 @@
       "file": "learning-tasks.spec.ts",
       "line": 210,
       "name": "两台设备使用同一任务：远端推进后旧草稿隔离，历史仍对应原作答",
-      "migration": "not_yet_copied",
-      "full_title": "两台设备使用同一任务：远端推进后旧草稿隔离，历史仍对应原作答"
+      "migration": "copied_case",
+      "full_title": "两台设备使用同一任务：远端推进后旧草稿隔离，历史仍对应原作答",
+      "migrated_file": "learning-tasks.spec.ts"
     },
     {
       "file": "learning-tasks.spec.ts",
@@ -281,8 +282,9 @@
       "file": "learning-tasks.spec.ts",
       "line": 363,
       "name": "学习推荐的知识卡ID可打开具体卡片，并保留结合原题讲解入口",
-      "migration": "not_yet_copied",
-      "full_title": "学习推荐的知识卡ID可打开具体卡片，并保留结合原题讲解入口"
+      "migration": "copied_case",
+      "full_title": "学习推荐的知识卡ID可打开具体卡片，并保留结合原题讲解入口",
+      "migrated_file": "learning-tasks.spec.ts"
     },
     {
       "file": "new-user.spec.ts",
@@ -546,8 +548,9 @@
       "file": "task-entry.spec.ts",
       "line": 3,
       "name": "学习入口：丢失回执可重试，诊断与详情恢复同一任务，完整讲解仍可进入",
-      "migration": "not_yet_copied",
-      "full_title": "学习入口：丢失回执可重试，诊断与详情恢复同一任务，完整讲解仍可进入"
+      "migration": "copied_case",
+      "full_title": "学习入口：丢失回执可重试，诊断与详情恢复同一任务，完整讲解仍可进入",
+      "migrated_file": "task-entry.spec.ts"
     },
     {
       "file": "task-entry.spec.ts",

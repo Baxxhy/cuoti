@@ -22,7 +22,7 @@ from sczx_api.database import Database
 from sczx_api.schema import initialize_database
 from sczx_api.security import new_id
 from sczx_api.knowledge_seed import seed_public_knowledge
-from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_clear_entry
+from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_task_entry
 
 
 def port():
@@ -198,7 +198,12 @@ def main():
                 report['checks'].append('controlled login/register/image-picker browser compatibility')
                 if os.environ.get('SCZX_RUN_E2E')=='1':
                     env['QA_OPTIONS_FIXTURE']=seed_option_task(http,base,artifacts,env)
-                    env.update(seed_clear_entry(http,base))
+                    clear_entry=seed_task_entry(http,base)
+                    env.update(clear_entry)
+                    env.update(QA_TASK_EMAIL='clear-entry-browser@example.test',QA_TASK_PASSWORD='Clear-entry-browser-123',QA_TASK_QUESTION_ID=clear_entry['QA_ENTRY_CLEAR_QUESTION_ID'])
+                    env.update(seed_task_entry(http,base,wrong=True))
+                    draft_entry=seed_task_entry(http,base,wrong=True,identity='draft-entry')
+                    env.update(QA_DRAFT_EMAIL='draft-entry-browser@example.test',QA_DRAFT_PASSWORD='Clear-entry-browser-123',QA_DRAFT_QUESTION_ID=draft_entry['QA_ENTRY_QUESTION_ID'])
                     acceptance_args=['node',str(ROOT/'frontend/node_modules/@playwright/test/cli.js'),'test','--config',str(ROOT/'frontend/playwright.config.js')]
                     if os.environ.get('SCZX_E2E_GREP'):acceptance_args.extend(['--grep',os.environ['SCZX_E2E_GREP']])
                     report['e2e_scope']=os.environ.get('SCZX_E2E_GREP','all migrated cases')
