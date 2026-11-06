@@ -2,6 +2,7 @@
 import { computed, defineAsyncComponent } from 'vue'
 import { currentUrl, notice, parsePage } from './platform/browser.js'
 import routes from './routes.json'
+import WebDialogs from './platform/WebDialogs.vue'
 const modules=import.meta.glob('./pages/**/*.vue')
 const pages=Object.fromEntries(routes.map(path=>[path,defineAsyncComponent(modules[`./${path}.vue`])]))
 const page=computed(()=>pages[parsePage(currentUrl.value).route])
@@ -9,6 +10,7 @@ const page=computed(()=>pages[parsePage(currentUrl.value).route])
 <template>
   <component v-if="page" :is="page" :key="currentUrl" />
   <main v-else class="page-content"><h1>页面不存在</h1><a href="#/pages/index/index">返回首页</a></main>
+  <WebDialogs />
   <div v-if="notice" class="web-toast" :class="{'web-toast-symbol':notice.icon!=='none'}" role="alert">
     <WebIcon v-if="notice.icon!=='none'" type="checkmarkempty" size="55" color="#fff" class="web-toast-success-icon" />
     <span class="web-toast-text">{{notice.title}}</span>

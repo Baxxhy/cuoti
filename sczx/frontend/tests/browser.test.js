@@ -1,14 +1,15 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
 import { h, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
-import { browser, parsePage, getBrowserPages, currentUrl } from '../src/platform/browser.js'
+import { browser, parsePage, getBrowserPages, currentUrl, modalState, actionSheetState } from '../src/platform/browser.js'
 import { WebInput, WebTextarea, WebPicker, WebImage, WebMovable, WebCheckboxGroup, WebCheckbox } from '../src/platform/components.js'
 import routes from '../src/routes.json'
+import WebDialogs from '../src/platform/WebDialogs.vue'
 import { readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 
 beforeEach(()=>{localStorage.clear();vi.spyOn(window,'scrollTo').mockImplementation(()=>{})})
-afterEach(()=>{vi.restoreAllMocks()})
+afterEach(()=>{modalState.value=null;actionSheetState.value=null;vi.restoreAllMocks()})
 describe('Web runtime preserves original page contracts',()=>{
  it('keeps all 36 original routes and real Vue pages',()=>{
   const original=JSON.parse(readFileSync(path.resolve('../reference/frontend/src/pages.json'))).pages.map(x=>x.path)
@@ -42,6 +43,44 @@ describe('Web runtime preserves original page contracts',()=>{
   expect(getBrowserPages()).toHaveLength(2)
   expect(currentUrl.value).toBe('/pages/ocr/ocr?id=q1')
   expect(parsePage('/pages/detail/detail?id=hello%20world').options.id).toBe('hello world')
+ })
+ it('keeps modal decisions asynchronous and cancellation leaves the action untouched',async()=>{
+  const success=vi.fn(),complete=vi.fn()
+  const wrapper=mount(WebDialogs)
+  browser.showModal({title:'移出错题本',content:'保留历史记录',confirmText:'移出',success,complete})
+  expect(success).not.toHaveBeenCalled()
+  await nextTick()
+  expect(wrapper.find('[role="dialog"]').text()).toContain('保留历史记录')
+  await wrapper.find('.uni-modal__btn_default').trigger('click')
+  expect(success).toHaveBeenCalledWith({confirm:false,cancel:true,errMsg:'showModal:ok'})
+  expect(complete).toHaveBeenCalledTimes(1)
+  expect(modalState.value).toBeNull()
+  const promise=browser.showModal({editable:true,content:'旧内容',showCancel:false})
+  await nextTick()
+  expect(wrapper.find('.uni-modal__btn_default').exists()).toBe(false)
+  await wrapper.find('textarea').setValue('新内容')
+  await wrapper.find('.uni-modal__btn_primary').trigger('click')
+  await expect(promise).resolves.toEqual({confirm:true,cancel:false,content:'新内容',errMsg:'showModal:ok'})
+  wrapper.unmount()
+ })
+ it('selects an action before opening its confirmation and cancels sheets on Escape',async()=>{
+  const wrapper=mount(WebDialogs)
+  const chosen=vi.fn(({tapIndex})=>browser.showModal({title:'确认第'+tapIndex+'项',success:vi.fn()}))
+  browser.showActionSheet({itemList:['修改题目','移出错题本'],success:chosen})
+  await nextTick()
+  await wrapper.findAll('.web-sheet-items [role="button"]')[1].trigger('click')
+  expect(chosen).toHaveBeenCalledWith({tapIndex:1,errMsg:'showActionSheet:ok'})
+  expect(actionSheetState.value).toBeNull()
+  expect(wrapper.find('[role="dialog"]').text()).toContain('确认第1项')
+  modalState.value=null
+  const fail=vi.fn(),complete=vi.fn()
+  browser.showActionSheet({itemList:['修改题目'],fail,complete})
+  await nextTick()
+  window.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}))
+  expect(fail).toHaveBeenCalledWith({errMsg:'showActionSheet:fail cancel'})
+  expect(complete).toHaveBeenCalledTimes(1)
+  expect(actionSheetState.value).toBeNull()
+  wrapper.unmount()
  })
  it('converts native typing into the original detail.value event',async()=>{
   const wrapper=mount(WebInput,{props:{modelValue:'',maxlength:30}})

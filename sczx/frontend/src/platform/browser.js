@@ -35,6 +35,35 @@ export const notice = shallowRef(null)
 let noticeTimer
 function result(options, value) { options.success?.(value); options.complete?.(value); return value }
 function failed(options, error) { options.fail?.(error); options.complete?.(error) }
+export const modalState = shallowRef(null)
+export const actionSheetState = shallowRef(null)
+function openPopup(state, options, defaults) {
+  const callbacks = ['success','fail','complete'].some(key => typeof options[key] === 'function')
+  let resolve, reject
+  const promise = callbacks ? undefined : new Promise((ok, no) => { resolve=ok; reject=no })
+  state.value = {...defaults,...options,_resolve:resolve,_reject:reject}
+  return promise
+}
+export function closeModal(confirm, content='') {
+  const options=modalState.value
+  if(!options)return
+  modalState.value=null
+  const value={confirm,cancel:!confirm,errMsg:'showModal:ok'}
+  if(confirm&&options.editable)value.content=content
+  result(options,value);options._resolve?.(value)
+}
+export function closeActionSheet(index=-1) {
+  const options=actionSheetState.value
+  if(!options)return
+  actionSheetState.value=null
+  if(index>=0&&index<options.itemList.length){
+    const value={tapIndex:index,errMsg:'showActionSheet:ok'}
+    result(options,value);options._resolve?.(value)
+  }else{
+    const error={errMsg:'showActionSheet:fail cancel'}
+    failed(options,error);options._reject?.(error)
+  }
+}
 const files = new Map()
 
 export const browser = {
@@ -54,14 +83,10 @@ export const browser = {
     noticeTimer = setTimeout(() => { notice.value = null }, o.duration ?? 1500)
   },
   showModal(o) {
-    const confirm = o.showCancel === false ? (window.alert(o.content || o.title || ''), true) : window.confirm([o.title, o.content].filter(Boolean).join('\n'))
-    return result(o, { confirm, cancel: !confirm })
+    return openPopup(modalState,o,{title:'',content:'',showCancel:true,cancelText:'取消',confirmText:'确定',cancelColor:'#000',confirmColor:'#007aff',editable:false,placeholderText:''})
   },
   showActionSheet(o) {
-    const choice = window.prompt(o.itemList.map((s, i) => `${i + 1}. ${s}`).join('\n'), '1')
-    const index = Number(choice) - 1
-    if (choice !== null && Number.isInteger(index) && index >= 0 && index < o.itemList.length) result(o, { tapIndex: index })
-    else failed(o, new Error('已取消'))
+    return openPopup(actionSheetState,o,{itemColor:'#000',title:''})
   },
   request(o) {
     const controller = new AbortController()

@@ -47,11 +47,12 @@ try{
    })
    await page.goto(service.base+'/#/'+route,{waitUntil:'networkidle'})
    if(route.includes('ui_filled')){const fields=page.locator('textarea');await fields.nth(0).fill('解方程 2x+3=11。\n先移项，再求出未知数。');await fields.nth(1).fill('x=7');await fields.nth(2).fill(Array.from({length:10},(_,i)=>'第'+(i+1)+'步：保留自己的计算过程。').join('\n'));await page.waitForTimeout(100)}
+   if(route.includes('ui_modal')){await page.getByText('拍照与辅助工具',{exact:true}).click();await page.getByText('查看图解',{exact:true}).click()}
    await page.evaluate(()=>document.fonts.ready)
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})
    const snapshot=await page.evaluate(()=>{
     const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color']
-    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
+    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
      const r=e.getBoundingClientRect(),css=getComputedStyle(e)
      return {tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
     })
@@ -70,13 +71,15 @@ try{
    })
    const key=route.replaceAll('/','-').replaceAll('?','-').replaceAll('=','-')+'-'+width
    await page.screenshot({path:path.join(artifacts,key+'-'+name+'.png')})
-   results.push({name,route,width,url:page.url().split('#')[1],errors,...snapshot})
+   let popupDismissed
+   if(route.includes('ui_modal')){await page.locator('.uni-modal__btn_default').click();await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-modal:visible').count()===0}
+   results.push({name,route,width,popupDismissed,url:page.url().split('#')[1],errors,...snapshot})
    await context.close()
   }
  }
  const comparisons=results.filter(r=>r.name==='original').map(a=>{
   const b=results.find(r=>r.name==='vue'&&r.route===a.route&&r.width===a.width)
-  return {route:a.route,width:a.width,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items}
+  return {route:a.route,width:a.width,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed}
  })
  fs.writeFileSync(path.join(artifacts,'report.json'),JSON.stringify(comparisons,null,2)+'\n')
  console.log(JSON.stringify({artifacts,cases:comparisons.length,textDifferences:comparisons.filter(c=>!c.textEqual).length,pageErrors:comparisons.filter(c=>c.originalErrors.length||c.vueErrors.length).length}))
