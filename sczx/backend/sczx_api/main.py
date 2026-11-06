@@ -19,6 +19,7 @@ from .media import serve_media
 from .analysis import analyze_question, submit_work
 from .diagnosis import diagnose_question, get_diagnosis
 from .diagnosis_edit import correct_diagnosis, counterfactual_question
+from .tutor_start import start_tutor
 
 from . import accounts
 from .database import Database
@@ -176,6 +177,11 @@ async def diagnosis(request: Request):
 @app.post('/api/v1/questions/{question_id}/diagnosis/counterfactual')
 async def counterfactual(request: Request):
     return envelope(await counterfactual_question(request))
+
+
+@app.post('/api/v1/tutor/sessions')
+async def tutor_start(request: Request):
+    return envelope(await start_tutor(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

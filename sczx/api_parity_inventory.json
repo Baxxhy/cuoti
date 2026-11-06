@@ -467,9 +467,11 @@
   {
     "path": "/api/v1/tutor/sessions",
     "source": "backend-cangjie/src/main.cj:89",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "opening session ported: full/compressed policies, state/turn/tool persistence; reading/answering/continuation endpoints pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/diagnose",

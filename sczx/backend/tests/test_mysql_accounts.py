@@ -477,3 +477,42 @@ def test_analysis_diagnosis_evidence_and_work_invalidation(client, monkeypatch):
     detail = client.get(path, headers=headers).json()['data']
     assert detail['analysis'] is None and detail['diagnosis'] is None and detail['status'] == 'confirmed'
     assert detail['student_answer'] == '1' and detail['student_steps'][0]['text'] == 'x = 1'
+
+
+def test_tutor_start_full_and_compressed_state_persistence(client, monkeypatch):
+    import json
+    from sczx_api import analysis, tutor_start
+    user=client.post('/api/v1/auth/register',json={'email':'tutor-start@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    question=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程x+1=2','student_steps':['x=3']}).json()['data']
+    question_id=question['id']; path='/api/v1/questions/'+question_id
+    assert client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).status_code==409
+    record={'subject':'数学','problem_type':'方程','known_conditions':['x+1=2'],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda payload:{'analysis':record,'reference_math_valid':[True]})
+    assert client.post(path+'/analyze',headers=headers).status_code==200
+    response=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id})
+    assert response.status_code==200,response.text
+    full=response.json()['data']
+    assert full['stage']=='understanding' and full['teaching_policy']['mode']=='full'
+    assert full['activity']['id']=='understanding-1' and full['activity']['options']
+    assert 'correct_answers' not in full['activity'] and 'understanding_plan' not in full['state']
+    assert full['turns'][0]['role']=='assistant' and full['question']['id']==question_id
+    with Database.from_environment() as db:
+        saved=json.loads(db.query('SELECT state FROM tutor_sessions WHERE id=?',[full['id']]).rows[0]['state'])
+        assert saved['understanding_plan'][0]['correct_answers']==['key']
+        assert db.query('SELECT COUNT(*) AS n FROM agent_runs WHERE session_id=?',[full['id']]).rows[0]['n']=='1'
+    with Database.from_environment() as db:
+        db.query("UPDATE questions SET question_type='单选题',options=? WHERE id=?",[json.dumps([{'label':'A','text':'1'},{'label':'B','text':'3'}]),question_id])
+    brief={'topic':'方程','correct_answer':'A','key_explanation':'移项','option_explanations':[],'check':{'id':'check','type':'single_choice','title':'核对','question':'选哪项','options':[],'correct_answers':['A']}}
+    monkeypatch.setattr(tutor_start,'compute',lambda payload:{'brief':brief})
+    response=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id})
+    assert response.status_code==200,response.text
+    compressed=response.json()['data']
+    assert compressed['teaching_policy']['mode']=='compressed' and compressed['activity']['id']=='answer-reveal'
+    assert compressed['answer_reveal']['correct_answer']=='A'
+    assert 'teaching_brief' not in compressed['state']
+    def stale_brief(payload):
+        with Database.from_environment() as db: db.query("UPDATE questions SET student_answer='changed' WHERE id=?",[question_id])
+        return {'brief':brief}
+    monkeypatch.setattr(tutor_start,'compute',stale_brief)
+    assert client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).status_code==409
