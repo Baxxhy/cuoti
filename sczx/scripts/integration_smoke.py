@@ -22,7 +22,7 @@ from sczx_api.database import Database
 from sczx_api.schema import initialize_database
 from sczx_api.security import new_id
 from sczx_api.knowledge_seed import seed_public_knowledge
-from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_task_entry,seed_function_entry,seed_experience,seed_inequality,seed_personas,seed_route_content,prepare_figure_photo,seed_figure_task
+from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_task_entry,seed_function_entry,seed_experience,seed_inequality,seed_personas,seed_route_content,prepare_figure_photo,seed_figure_task,source as seed_source,question as seed_question
 
 
 def port():
@@ -83,8 +83,13 @@ def main():
                     os.environ['SCZX_QUESTION_BANK_ROOT']=env['SCZX_QUESTION_BANK_ROOT']
             if os.environ.get('SCZX_RUN_E2E')=='1':
                 figure_photo,figure_normalized=prepare_figure_photo(artifacts)
+                linear_photo=artifacts/'linear-answer.png';linear_normalized=artifacts/'linear-answer-normalized.jpg'
+                prepared_photo=subprocess.run(['node',str(ROOT/'scripts/prepare_handwriting.mjs'),str(linear_photo)],cwd=ROOT,env=env,capture_output=True,text=True,timeout=30)
+                assert prepared_photo.returncode==0,prepared_photo.stdout+'\n'+prepared_photo.stderr
+                from PIL import Image
+                with Image.open(linear_photo) as image:image.convert('RGB').save(linear_normalized,format='JPEG',quality=94)
                 fixture_port=port()
-                spawn('model-fixture',[str(ROOT/'.venv/bin/python'),str(ROOT/'scripts/model_fixture.py'),'--port',str(fixture_port),'--events',str(artifacts/'model-fixture-events.jsonl'),'--figure-image',str(figure_normalized)],ROOT,env)
+                spawn('model-fixture',[str(ROOT/'.venv/bin/python'),str(ROOT/'scripts/model_fixture.py'),'--port',str(fixture_port),'--events',str(artifacts/'model-fixture-events.jsonl'),'--figure-image',str(figure_normalized),'--linear-image',str(linear_normalized)],ROOT,env)
                 deadline=time.monotonic()+10
                 with httpx.Client(trust_env=False) as fixture_http:
                     while True:
@@ -95,9 +100,10 @@ def main():
                         time.sleep(.1)
                     for rejected in ['unknown prompt','AnswerGradeOutput\n题目：3x+2=17\n标准答案：x=5\n学生作答：3x=18\nx=5\n请判断','AnswerGradeOutput\n题目：3x+2=17\n标准答案：x=5\n学生作答：3x=15\nx=5\n但x=9\n请判断']:
                         assert fixture_http.post(f'http://127.0.0.1:{fixture_port}/v1/chat/completions',json={'messages':[{'role':'user','content':rejected}]}).status_code==503
-                    for content in ['FigureHandwritingRecognition 在三角形ABC中，∠A=50°，∠B=60°，求∠C。',[{'type':'text','text':'FigureHandwritingRecognition 在三角形ABC中，∠A=50°，∠B=60°，求∠C。'},{'type':'image_url','image_url':{'url':'data:image/jpeg;base64,AAAA'}}]]:
+                    for content in ['HandwrittenAnswerRecognition 当前题目：解方程：2x+3=11','FigureHandwritingRecognition 在三角形ABC中，∠A=50°，∠B=60°，求∠C。',[{'type':'text','text':'FigureHandwritingRecognition 在三角形ABC中，∠A=50°，∠B=60°，求∠C。'},{'type':'image_url','image_url':{'url':'data:image/jpeg;base64,AAAA'}}]]:
                         assert fixture_http.post(f'http://127.0.0.1:{fixture_port}/v1/chat/completions',json={'messages':[{'role':'user','content':content}]}).status_code==503
-                report['checks'].append('controlled model rejects unknown and contradictory process prompts and unmatched figure images')
+                    assert fixture_http.post(f'http://127.0.0.1:{fixture_port}/v1/chat/completions',json={'messages':[{'role':'user','content':[{'type':'text','text':'HandwrittenAnswerRecognition 当前题目：解方程：2x+3=11'},{'type':'image_url','image_url':{'url':'data:image/jpeg;base64,AAAA'}}]}]}).status_code==503
+                report['checks'].append('controlled model rejects unknown and contradictory process prompts and unmatched handwriting images')
                 pool=artifacts/'fixture-model-pool.json'
                 pool.write_text(json.dumps([{'base_url':f'http://127.0.0.1:{fixture_port}/v1','api_key':'local-test-only','model':'Qwen'}]))
                 env['SCZX_API_POOL_PATH']=str(pool)
@@ -207,9 +213,13 @@ def main():
                     env.update(seed_inequality(http,base))
                     env.update(seed_personas(http,base))
                     env.update(seed_figure_task(http,base,figure_photo))
+                    learning_entry=seed_task_entry(http,base,wrong=True,identity='learning')
+                    env.update(QA_TASK_EMAIL='learning-browser@example.test',QA_TASK_PASSWORD='Clear-entry-browser-123',QA_TASK_QUESTION_ID=learning_entry['QA_ENTRY_QUESTION_ID'])
+                    with Database.from_environment() as db:
+                        learning_source=seed_source(db,'sczx-learning-recommendation','等式后续练习')
+                        seed_question(db,learning_source,'解方程：2x+7=13',[],'x=3','2x=6，x=3',question_type='综合题',knowledge_points=['等式的性质'],source_item_id='learning-recommendation')
                     clear_entry=seed_task_entry(http,base)
                     env.update(clear_entry)
-                    env.update(QA_TASK_EMAIL='clear-entry-browser@example.test',QA_TASK_PASSWORD='Clear-entry-browser-123',QA_TASK_QUESTION_ID=clear_entry['QA_ENTRY_CLEAR_QUESTION_ID'])
                     env.update(seed_task_entry(http,base,wrong=True))
                     draft_entry=seed_task_entry(http,base,wrong=True,identity='draft-entry')
                     env.update(QA_DRAFT_EMAIL='draft-entry-browser@example.test',QA_DRAFT_PASSWORD='Clear-entry-browser-123',QA_DRAFT_QUESTION_ID=draft_entry['QA_ENTRY_QUESTION_ID'])
@@ -226,7 +236,7 @@ def main():
                     events=artifacts/'model-fixture-events.jsonl'
                     fixture_events=[json.loads(line) for line in events.read_text().splitlines()] if events.exists() else []
                     report['controlled_grades']=sum(row.get('fixture')=='review-process' for row in fixture_events)
-                    report['controlled_transcriptions']=sum(row.get('fixture')=='figure-transcription' for row in fixture_events)
+                    report['controlled_transcriptions']=sum(row.get('fixture') in ['figure-transcription','linear-transcription'] for row in fixture_events)
                     if not os.environ.get('SCZX_E2E_GREP') or '到期复习' in os.environ['SCZX_E2E_GREP']:assert report['controlled_grades']>=1
                 with Database.from_environment() as db:
                     assert db.query('SELECT evidence_count FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['evidence_count']=='2'

@@ -207,3 +207,180 @@ test('作答图形：候选关系折叠、核对依据、刷新保留与辅助�
   expect(response.ok()).toBeTruthy()
   expect((await response.json()).data.learning_applied).toBe(false)
 })
+
+test('持久智能体：订正、刷新草稿、独立作答、离开恢复与对照题真实完成', async ({
+  page,
+}, testInfo) => {
+  expect(process.env.QA_TASK_QUESTION_ID, '需要隔离学习任务样本').toBeTruthy()
+  test.setTimeout(120_000)
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/#/pages/login/login')
+  await page.getByLabel('邮箱', { exact: true }).fill(process.env.QA_TASK_EMAIL!)
+  await page.getByLabel('密码', { exact: true }).fill(process.env.QA_TASK_PASSWORD!)
+  await page.getByText('登录', { exact: true }).click()
+  await expect(page).toHaveURL(/pages\/index\/index/)
+  await page.goto(`/#/pages/detail/detail?id=${process.env.QA_TASK_QUESTION_ID}`)
+  await page.getByRole('button', { name: '订正这道题', exact: true }).click()
+  await expect(page).toHaveURL(/pages\/task\/task\?id=/)
+  const url = page.url()
+  await expect(page.getByText('先订正这一步', { exact: true })).toBeVisible()
+  await page.locator('.answer-input textarea, textarea.answer-input').fill('11-3')
+  await page.screenshot({ path: testInfo.outputPath('task-repair.png'), fullPage: true })
+  await page.reload()
+  await expect(page.locator('.answer-input textarea, textarea.answer-input')).toHaveValue('11-3')
+  await page.getByRole('button', { name: '提交作答', exact: true }).click()
+  await expect(page.getByText('重新作答', { exact: true })).toBeVisible()
+  const png = await page.evaluate(() => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 120
+    canvas.height = 60
+    const context = canvas.getContext('2d')!
+    context.fillStyle = 'red'
+    context.fillRect(0, 0, 120, 60)
+    context.fillStyle = 'black'
+    context.font = '20px sans-serif'
+    context.fillText('x=4', 10, 35)
+    return canvas.toDataURL('image/png').split(',')[1]
+  })
+  await expect(page.getByRole('button', { name: '拍照或选图作答', exact: true })).not.toBeVisible()
+  await page.getByRole('button', { name: '拍照与辅助工具', exact: true }).click()
+  const chooser = page.waitForEvent('filechooser')
+  const handwritingReceipt = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'POST' &&
+      /\/learning-tasks\/[^/]+\/handwriting$/.test(new URL(response.url()).pathname),
+  )
+  await page.getByRole('button', { name: '拍照或选图作答', exact: true }).click()
+  await (
+    await chooser
+  ).setFiles({ name: 'my-working.png', mimeType: 'image/png', buffer: Buffer.from(png, 'base64') })
+  expect((await handwritingReceipt).status()).toBe(202)
+  // Upload is asynchronous; the worker and the page's polling reach the editable checkpoint later.
+  await expect(page.getByRole('button', { name: '确认文字并提交', exact: true })).toBeVisible({
+    timeout: 15_000,
+  })
+  await expect(page.locator('.photo-note')).toContainText('部分字迹不清晰')
+  await page.reload()
+  await expect(page.locator('.answer-input textarea, textarea.answer-input')).toHaveValue('x=4')
+  await page.locator('.answer-input textarea, textarea.answer-input').fill('x = 4')
+  await page.screenshot({ path: testInfo.outputPath('task-handwriting.png'), fullPage: true })
+  await page.getByRole('button', { name: '拍照与辅助工具', exact: true }).click()
+  await page.getByRole('button', { name: '查看图解', exact: true }).click()
+  await page.getByText('查看', { exact: true }).last().click()
+  await expect(page.locator('.task-visualization')).toBeVisible()
+  await page.getByRole('button', { name: '增大两边同时减去', exact: true }).click()
+  await page.getByRole('button', { name: '增大两边同时减去', exact: true }).click()
+  await page
+    .getByRole('textbox', { name: '图示观察', exact: true })
+    .fill('两边同时减去2，等式关系仍保持。')
+  await page.getByRole('button', { name: '保存观察', exact: true }).click()
+  await expect(page.getByText('已保存这次观察。', { exact: true })).toBeVisible()
+  await page.reload()
+  await expect(page.locator('.task-visualization')).toContainText('等式两边同时减去2')
+  await page.screenshot({ path: testInfo.outputPath('task-visualization.png'), fullPage: true })
+  await page.getByRole('button', { name: '收起图示', exact: true }).click()
+  await expect(page.locator('.answer-input textarea, textarea.answer-input')).toHaveValue('x = 4')
+  await page.getByRole('button', { name: '确认文字并提交', exact: true }).click()
+  await expect(page.getByText('再练一道', { exact: true })).toBeVisible()
+  await expect(page.locator('body')).not.toContainText('x=7')
+  await page.goto('/#/pages/index/index')
+  await page.getByRole('button', { name: '继续订正', exact: true }).click()
+  await expect(page).toHaveURL(url)
+  await expect(page.getByText('再练一道', { exact: true })).toBeVisible()
+  await page.screenshot({ path: testInfo.outputPath('task-contrast.png'), fullPage: true })
+  await page.getByRole('button', { name: /作答记录/ }).click()
+  await expect(page.locator('.task-history')).toContainText('11-3')
+  await expect(page.locator('body')).not.toContainText('x=7')
+  await page.locator('.answer-input textarea, textarea.answer-input').fill('x=7')
+  await page.getByRole('button', { name: '提交作答', exact: true }).click()
+  await expect(page.getByText('本次学习完成', { exact: true })).toBeVisible()
+  await page.getByRole('button', { name: /自检要点/ }).click()
+  await page
+    .getByRole('textbox', { name: '自检要点', exact: true })
+    .fill('移项先检查符号，再代回原式。')
+  await page.getByRole('button', { name: '确认保存', exact: true }).click()
+  await expect(page.locator('.saved-note')).toContainText('移项先检查符号')
+  await page.reload()
+  await page.getByRole('button', { name: /自检要点/ }).click()
+  await expect(page.locator('.saved-note')).toContainText('移项先检查符号')
+  await page.getByRole('button', { name: '编辑', exact: true }).click()
+  await page
+    .getByRole('textbox', { name: '自检要点', exact: true })
+    .fill('移项检查符号，除系数后代回。')
+  await page.getByRole('button', { name: '确认保存', exact: true }).click()
+  await expect(page.locator('.saved-note')).toContainText('除系数后代回')
+  await page.getByRole('button', { name: '删除要点', exact: true }).click()
+  await page.getByText('删除', { exact: true }).last().click()
+  await expect(page.locator('.saved-note')).toHaveCount(0)
+  await page
+    .getByRole('textbox', { name: '自检要点', exact: true })
+    .fill('移项检查符号，除系数后代回。')
+  await page.getByRole('button', { name: '确认保存', exact: true }).click()
+  await expect(page.locator('.saved-note')).toContainText('除系数后代回')
+  await page.screenshot({ path: testInfo.outputPath('task-self-check.png'), fullPage: true })
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  const journey = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).pathname ===
+      `/api/v1/questions/${process.env.QA_TASK_QUESTION_ID}/journey`,
+  )
+  await page.goto(`/#/pages/journey/journey?id=${process.env.QA_TASK_QUESTION_ID}`)
+  expect((await journey).ok()).toBe(true)
+  await expect(page.locator('.task-records')).toContainText('变式练习已完成')
+  await page.getByRole('button', { name: /自检要点（1）/ }).click()
+  await expect(page.locator('.self-check-item')).toContainText('除系数后代回')
+  await page.goto('/#/pages/task/task')
+  await expect(page.locator('.history-item').first()).toContainText('解方程')
+  await expect(page.locator('.history-item').first()).toContainText('本次已完成')
+  // The new plan must start the actual selected bank question through the
+  // normal API, rather than only rendering a recommendation label.
+  const plannedTask = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'GET' &&
+      /\/learning-tasks\/[^/]+$/.test(new URL(response.url()).pathname),
+  )
+  await page.locator('.history-item').first().click()
+  const plannedPayload = await (await plannedTask).json()
+  const plan = (plannedPayload.data || plannedPayload).student_view.recommendation
+  expect(plan.algorithm).toBe('arpp-v1')
+  expect(plan.question_source).toBe('dataset')
+  const recommendation = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'POST' &&
+      new URL(response.url()).pathname.endsWith('/study-sessions'),
+  )
+  await page.getByRole('button', { name: '练习推荐题', exact: true }).click()
+  const receipt = await recommendation
+  expect(receipt.status()).toBe(200)
+  const payload = await receipt.json()
+  expect((payload.data || payload).items[0].question.id).toBe(plan.question_id)
+  await expect(page).toHaveURL(/pages\/study-session\/study-session\?id=/)
+  await expect(page.locator('.study-page')).toBeVisible()
+  await expect(page.locator('.question-workspace .question-stem')).toBeVisible()
+  await page.screenshot({
+    path: testInfo.outputPath('agent-recommended-practice.png'),
+    fullPage: true,
+  })
+  // The report must show the evidence saved by this learning flow, rather than
+  // only passing a route audit with an empty-state screenshot.
+  await page.goto('/#/pages/analysis/analysis')
+  await expect(page.locator('.progress-block')).toContainText('等式的性质')
+  await expect(page.locator('.change-line')).toContainText('学习记录估计')
+  await expect(page.locator('.report-empty')).toHaveCount(0)
+  for (const width of [375, 1280]) {
+    await page.setViewportSize({ width, height: 812 })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+    await page.screenshot({
+      path: testInfo.outputPath(`saved-learning-report-${width}.png`),
+      fullPage: true,
+    })
+  }
+  await page.getByRole('button', { name: '查看每日记录', exact: true }).click()
+  await expect(page.locator('.trend-bars > div')).not.toHaveCount(0)
+  await page.goto('/#/pages/analysis/analysis?relations=1')
+  // Reload verifies the actual deep link from a fresh browser entry.
+  // Reload verifies the actual deep link, as navigation from the learning hub does.
+  await page.reload()
+  await expect(page.locator('.trend-panel')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: '用列表查看', exact: true })).toBeVisible()
+})
