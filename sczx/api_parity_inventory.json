@@ -418,16 +418,20 @@
   {
     "path": "/api/v1/tutor/sessions/{session_id}/teach-back",
     "source": "backend-cangjie/src/main.cj:82",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated teach-back acceptance; completion evidence/review/idempotency acceptance passed, full activity loop pending"
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/finish",
     "source": "backend-cangjie/src/main.cj:83",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated teach-back acceptance; completion evidence/review/idempotency acceptance passed, full activity loop pending"
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/activity/answer",

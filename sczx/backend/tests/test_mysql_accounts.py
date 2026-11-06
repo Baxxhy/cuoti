@@ -584,3 +584,93 @@ def test_tutor_resume_legacy_stages_and_variant_validation(client,monkeypatch):
         stored['near_variant_id']=None
         db.query('UPDATE tutor_sessions SET state=? WHERE id=?',[json.dumps(stored),session['id']])
     assert client.post(path+'/variant',headers=headers).status_code==409
+
+
+def test_teach_back_retry_assistance_pass_and_transaction_rollback(client,monkeypatch):
+    import json
+    from sczx_api import analysis,tutor_teach_back,tutor_variants
+    user=client.post('/api/v1/auth/register',json={'email':'teach-back@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程x+1=2','student_steps':['x=3']}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':['x+1=2'],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda payload:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers)
+    def start():
+        session=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).json()['data']
+        return session,'/api/v1/tutor/sessions/'+session['id']
+    session,path=start()
+    assert client.post(path+'/teach-back',headers=headers,json={'explanation':'移项'}).status_code==409
+    with Database.from_environment() as db:
+        db.query("UPDATE tutor_sessions SET stage='teach_back' WHERE id=?",[session['id']])
+    assessment={'passed':False,'feedback':'请补充依据','matched_concepts':[]}
+    monkeypatch.setattr(tutor_teach_back,'compute',lambda payload:assessment)
+    first=client.post(path+'/teach-back',headers=headers,json={'explanation':'先算答案'})
+    assert first.status_code==200,first.text
+    assert first.json()['data']=={'passed':False,'assisted':False,'branch':'teach_back_fail','stage':'teach_back','feedback':'请补充依据','next_goal':'补充一个关键理由'}
+    def unavailable(payload):raise RuntimeError('controlled unavailable')
+    monkeypatch.setattr(tutor_variants,'compute',unavailable)
+    monkeypatch.setattr(tutor_variants,'variant_retrieval',lambda *args:{'references':[],'status':'unavailable'})
+    # The API sanitizes a failed computation; its transaction must preserve retry count and turns.
+    with Database.from_environment() as db:
+        before=db.query('SELECT COUNT(*) AS n FROM tutor_turns WHERE session_id=?',[session['id']]).rows[0]['n']
+    with pytest.raises(RuntimeError,match='controlled unavailable'):
+        client.post(path+'/teach-back',headers=headers,json={'explanation':'还是不明白'})
+    with Database.from_environment() as db:
+        state=json.loads(db.query('SELECT state FROM tutor_sessions WHERE id=?',[session['id']]).rows[0]['state'])
+        assert state['teach_back_attempts']==1
+        assert db.query('SELECT COUNT(*) AS n FROM tutor_turns WHERE session_id=?',[session['id']]).rows[0]['n']==before
+    def generate(payload):
+        return {'variant':{'question_text':'解方程x+2=4','answer':'2','explanation':'移项','reference_solution':['x=2'],'options':[]},'generation':{},'verified':True}
+    monkeypatch.setattr(tutor_variants,'compute',generate)
+    second=client.post(path+'/teach-back',headers=headers,json={'explanation':'还是不明白'})
+    assert second.status_code==200,second.text
+    assert second.json()['data']['stage']=='near_transfer' and second.json()['data']['assisted'] is True
+    with Database.from_environment() as db:
+        state=json.loads(db.query('SELECT state FROM tutor_sessions WHERE id=?',[session['id']]).rows[0]['state'])
+        assert state['teach_back'] is False and state['assisted'] is True and state['teach_back_attempts']==2
+        assert state['near_variant_id']
+    passed_session,passed_path=start()
+    with Database.from_environment() as db:
+        db.query("UPDATE tutor_sessions SET stage='teach_back' WHERE id=?",[passed_session['id']])
+    assessment.update(passed=True,feedback='讲清楚了',matched_concepts=['方程'])
+    passed=client.post(passed_path+'/teach-back',headers=headers,json={'explanation':'两边同时减1，等式仍成立'})
+    assert passed.status_code==200 and passed.json()['data']['passed'] is True
+    assert passed.json()['data']['assisted'] is False and passed.json()['data']['stage']=='near_transfer'
+    assert client.post(passed_path+'/teach-back',headers=headers,json={'explanation':12}).status_code==422
+
+
+def test_tutor_finish_evidence_review_and_idempotency(client,monkeypatch):
+    import json
+    from sczx_api import analysis,learning_evidence
+    user=client.post('/api/v1/auth/register',json={'email':'finish@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程x+1=2','student_steps':['x=1']}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':['x+1=2'],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda payload:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers)
+    session=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).json()['data']
+    path='/api/v1/tutor/sessions/'+session['id']
+    assert client.post(path+'/finish',headers=headers).status_code==409
+    def cognition(payload,timeout=200):
+        assert payload['operation']=='cognition_update' and payload['learning_evidence']['far_transfer'] is True
+        return {'mastery':{**payload['mastery_values'],'mastery_score':.8,'confidence':.7,'evidence_count':1,'near_transfer_rate':1.,'far_transfer_rate':1.,'forgetting_risk':.2,'update_reason':'独立练习通过'},'misconception':{**payload['misconception_values'],'probability':.2,'evidence_count':2,'related_question_count':1,'status':'improving'}}
+    monkeypatch.setattr(learning_evidence,'compute',cognition)
+    with Database.from_environment() as db:
+        db.query("UPDATE tutor_sessions SET stage='finished',state=JSON_SET(state,'$.teach_back',CAST('true' AS JSON),'$.near_transfer',CAST('true' AS JSON),'$.far_transfer',CAST('true' AS JSON)) WHERE id=?",[session['id']])
+    completed=client.post(path+'/finish',headers=headers)
+    assert completed.status_code==200,completed.text
+    result=completed.json()['data']
+    assert result['session']['status']=='completed' and result['session']['state']['mastery_proven'] is True
+    assert result['mastery']['knowledge_point']=='方程'
+    assert result['review']['interval_days']==15
+    repeat=client.post(path+'/finish',headers=headers)
+    assert repeat.status_code==200 and repeat.json()['data']['mastery'] is None
+    assert repeat.json()['data']['review']['id']==result['review']['id']
+    with Database.from_environment() as db:
+        updates=db.query('SELECT evidence FROM cognitive_updates WHERE question_id=?',[question_id]).rows
+        assert len(updates)==2
+        evidence=json.loads(updates[0]['evidence'])
+        assert evidence['memory_source']['rule_version']=='learning-memory-v1'
+        assert len(evidence['memory_source']['question_version'])==64
+        assert evidence['tutor_session_id']==session['id']
+        assert db.query('SELECT COUNT(*) AS n FROM review_plans WHERE question_id=?',[question_id]).rows[0]['n']=='1'

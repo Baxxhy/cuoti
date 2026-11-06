@@ -23,6 +23,8 @@ from .tutor_start import start_tutor
 from .tutor_read import read_tutor
 from .tutor_variants import tutor_variant
 from .tutor_navigation import navigate_tutor
+from .tutor_teach_back import teach_back
+from .tutor_completion import finish_tutor
 
 from . import accounts
 from .database import Database
@@ -205,6 +207,16 @@ async def tutor_advance(request: Request):
 @app.post('/api/v1/tutor/sessions/{session_id}/rewind')
 async def tutor_rewind(request: Request):
     return envelope(await navigate_tutor(request, True))
+
+
+@app.post('/api/v1/tutor/sessions/{session_id}/teach-back')
+async def tutor_teach_back(request: Request):
+    return envelope(await teach_back(request))
+
+
+@app.post('/api/v1/tutor/sessions/{session_id}/finish')
+async def tutor_finish(request: Request):
+    return envelope(await finish_tutor(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])
