@@ -121,3 +121,18 @@ def seed_task_entry(http,base,wrong=False,identity=None):
         assert task['status']=='waiting_student',task
         return {'QA_ENTRY_QUESTION_ID':qid,'QA_ENTRY_TOKEN':token,'QA_ENTRY_TASK_ID':task['id']}
     return {'QA_ENTRY_CLEAR_QUESTION_ID':qid,'QA_ENTRY_CLEAR_TOKEN':token}
+
+
+def seed_function_entry(http,base):
+    from sczx_api.database import Database
+    email,password='visual-browser@example.test','Visual-browser-123'
+    response=http.post(base+'/api/v1/auth/register',json={'email':email,'password':password,'grade':'初三'})
+    assert response.status_code==200,response.text
+    token=response.json()['data']['access_token']
+    response=http.post(base+'/api/v1/questions/manual',headers={'Authorization':'Bearer '+token},json={'question_text':'函数：y=x^2-2x+1','subject':'数学','grade':'初三'})
+    assert response.status_code==200,response.text
+    qid=response.json()['data']['id']
+    with Database.from_environment() as db:
+        insert(db,'problem_analyses',dict(id=new_id(),question_id=qid,subject='数学',problem_type='函数',known_conditions=[],goal='求顶点',knowledge_points=['二次函数'],prerequisites=[],final_answer='顶点(1,0)',verified=1,raw_result={'fixture':True}))
+        insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='',first_error_step=0,first_error_text='',root_misconception='顶点式的参数关系',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
+    return {'QA_VISUAL_EMAIL':email,'QA_VISUAL_PASSWORD':password,'QA_VISUAL_QUESTION_ID':qid}

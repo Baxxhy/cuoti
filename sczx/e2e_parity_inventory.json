@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 60,
+  "migrated_count": 61,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -246,8 +246,9 @@
       "file": "learning-tasks.spec.ts",
       "line": 180,
       "name": "原式函数图：参数可按按钮调整、退化有说明、观察刷新后保留",
-      "migration": "not_yet_copied",
-      "full_title": "原式函数图：参数可按按钮调整、退化有说明、观察刷新后保留"
+      "migration": "copied_case",
+      "full_title": "原式函数图：参数可按按钮调整、退化有说明、观察刷新后保留",
+      "migrated_file": "learning-tasks.spec.ts"
     },
     {
       "file": "learning-tasks.spec.ts",
