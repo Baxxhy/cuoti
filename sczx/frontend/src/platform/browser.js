@@ -35,6 +35,7 @@ export const notice = shallowRef(null)
 let noticeTimer
 function result(options, value) { options.success?.(value); options.complete?.(value); return value }
 function failed(options, error) { options.fail?.(error); options.complete?.(error) }
+export const imagePreviewState = shallowRef(null)
 export const modalState = shallowRef(null)
 export const actionSheetState = shallowRef(null)
 function openPopup(state, options, defaults) {
@@ -145,13 +146,16 @@ export const browser = {
     input.click()
   },
   previewImage(o) {
-    const urls = o.urls || []
-    const overlay = document.createElement('dialog')
-    const image = document.createElement('img')
-    image.src = typeof o.current === 'string' ? o.current : urls[o.current || 0]
-    image.style.cssText = 'max-width:90vw;max-height:88vh;object-fit:contain'
-    overlay.appendChild(image); document.body.appendChild(overlay)
-    overlay.onclick = () => overlay.close(); overlay.onclose = () => overlay.remove(); overlay.showModal()
+    const urls=(o.urls||[]).map(url=>url?new URL(url,location.href).href:'')
+    const requested=typeof o.current==='string'?urls.indexOf(new URL(o.current,location.href).href):o.current
+    const index=Number.isInteger(requested)&&requested>=0&&requested<urls.length?requested:0
+    imagePreviewState.value={urls,index}
+    return result(o,{errMsg:'previewImage:ok'})
+  },
+  closePreviewImage(o={}) {
+    if(!imagePreviewState.value)return failed(o,{errMsg:'closePreviewImage:fail'})
+    imagePreviewState.value=null
+    return result(o,{errMsg:'closePreviewImage:ok'})
   },
   setClipboardData(o) { navigator.clipboard.writeText(o.data).then(() => result(o, {})).catch(e => failed(o, e)) },
   getSystemInfoSync() { return { windowWidth: window.innerWidth, windowHeight: window.innerHeight, pixelRatio: window.devicePixelRatio || 1, platform: 'web' } },

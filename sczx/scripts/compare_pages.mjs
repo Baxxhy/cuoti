@@ -36,12 +36,13 @@ try{
    await context.addInitScript(({name,anonymous})=>{if(!anonymous)localStorage.setItem('minddimension_access_token',name==='original'?'ui-token':JSON.stringify('ui-token'))},{name,anonymous})
    const page=await context.newPage();const errors=[];const writes=[]
    page.on('pageerror',e=>errors.push(e.message))
+   await page.route('**/ui-preview-*.png',async intercept=>{const second=intercept.request().url().includes('-b.');await intercept.fulfill({contentType:'image/svg+xml',body:`<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><rect width="640" height="360" fill="${second?'#e8d8b0':'#bdd8ed'}"/><path d="M80 280 L320 60 L560 280 Z" fill="none" stroke="#3157a8" stroke-width="8"/></svg>`})})
    await page.route('**/api/v1/**',async intercept=>{
     const url=new URL(intercept.request().url());let data,status=200
     if(!['GET','HEAD'].includes(intercept.request().method()))writes.push({method:intercept.request().method(),path:url.pathname})
     if(url.pathname==='/api/v1/auth/me'){data={...user,role:/pages\/(admin|system)\//.test(route)?'admin':'student'};if(anonymous)status=401}
     else if(url.pathname==='/api/v1/learning-tasks/ui-task')data=route.includes('ui_repair')?{...task,status:'waiting_student',learning_applied:false,student_view:{title:'先订正这一步',feedback:'',prompt_blocks:[{kind:'question',text:'解方程 2x+3=11'}],input_kind:'text',secondary_actions:['hint','visualize']}}:task
-    else if(url.pathname==='/api/v1/questions/ui-question')data={id:'ui-question',subject:'数学',grade:'初二',question_text:'解方程 2x+3=11。',student_answer:'x=7',student_steps:[],assets:[],options:[],knowledge_points:['一元一次方程'],analysis:null,diagnosis:null}
+    else if(url.pathname==='/api/v1/questions/ui-question')data={id:'ui-question',subject:'数学',grade:'初二',question_text:'解方程 2x+3=11。',student_answer:'x=7',student_steps:[],assets:route.includes('ui_preview')?[{kind:'original',url:service.base+'/ui-preview-a.png'},{kind:'crop',url:service.base+'/ui-preview-b.png'}]:[],options:[],knowledge_points:['一元一次方程'],analysis:null,diagnosis:null}
     else if(url.pathname==='/api/v1/questions/ui-question/journey')data={stages:[],summary:'尚未开始学习'}
     else if(url.pathname.endsWith('/self-check'))data={version:0,source_current:true,can_save:true,note:null}
     else if(url.pathname.endsWith('/history'))data={items:[],has_more:false,source_question:null}
@@ -52,11 +53,12 @@ try{
    if(route.includes('ui_filled')){const fields=page.locator('textarea');await fields.nth(0).fill('解方程 2x+3=11。\n先移项，再求出未知数。');await fields.nth(1).fill('x=7');await fields.nth(2).fill(Array.from({length:10},(_,i)=>'第'+(i+1)+'步：保留自己的计算过程。').join('\n'));await page.waitForTimeout(100)}
    if(route.includes('ui_modal')){await page.getByText('拍照与辅助工具',{exact:true}).click();await page.getByText('查看图解',{exact:true}).click()}
    if(route.includes('ui_sheet')||route.includes('ui_remove')){await page.getByLabel('更多操作',{exact:true}).click();await page.waitForTimeout(350);if(route.includes('ui_remove'))await page.getByText('移出错题本',{exact:true}).click()}
+   if(route.includes('ui_preview')){await page.getByText('查看原图',{exact:true}).click();await page.waitForTimeout(400)}
    await page.evaluate(()=>document.fonts.ready)
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})
    const snapshot=await page.evaluate(()=>{
     const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color']
-    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
+    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
      const r=e.getBoundingClientRect(),css=getComputedStyle(e)
      return {tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
     })
@@ -78,7 +80,15 @@ try{
    let popupDismissed
    if(route.includes('ui_modal')||route.includes('ui_remove')){await page.locator('.uni-modal__btn_default').click();await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-modal:visible').count()===0}
    if(route.includes('ui_sheet')){await page.locator(name==='original'?'.uni-actionsheet__mask':'.web-popup-mask').click({position:{x:1,y:1}});await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-actionsheet_toggle:visible').count()===0}
-   if(/ui_modal|ui_sheet|ui_remove/.test(route)){if(!popupDismissed)throw new Error(name+': popup did not dismiss');if(writes.length)throw new Error(name+': cancellation issued a write request')}
+   if(route.includes('ui_preview')){
+    await page.mouse.move(width-15,(width===390?844:900)/2)
+    await page.locator(name==='original'?'.uni-swiper-navigation-next':'.web-preview-navigation.is-next').click()
+    await page.waitForTimeout(650)
+    const switched=await page.evaluate(()=>[...document.querySelectorAll('#u-a-p img,.web-image-preview img')].some(img=>{const r=img.getBoundingClientRect();return img.src.includes('ui-preview-b.png')&&Math.abs(r.x+r.width/2-innerWidth/2)<2}))
+    if(!switched)throw new Error(name+': gallery did not switch to second image')
+    await page.screenshot({path:path.join(artifacts,key+'-'+name+'-second.png')})
+    await page.keyboard.press('Escape');await page.waitForTimeout(100);popupDismissed=await page.locator(name==='original'?'#u-a-p img':'.web-image-preview').count()===0}
+   if(/ui_modal|ui_sheet|ui_remove|ui_preview/.test(route)){if(!popupDismissed)throw new Error(name+': popup did not dismiss');if(writes.length)throw new Error(name+': cancellation issued a write request')}
    results.push({name,route,width,popupDismissed,writes,url:page.url().split('#')[1],errors,...snapshot})
    await context.close()
   }

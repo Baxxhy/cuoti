@@ -1,15 +1,16 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
 import { h, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
-import { browser, parsePage, getBrowserPages, currentUrl, modalState, actionSheetState } from '../src/platform/browser.js'
+import { browser, parsePage, getBrowserPages, currentUrl, modalState, actionSheetState, imagePreviewState } from '../src/platform/browser.js'
 import { WebInput, WebTextarea, WebPicker, WebImage, WebMovable, WebCheckboxGroup, WebCheckbox } from '../src/platform/components.js'
 import routes from '../src/routes.json'
 import WebDialogs from '../src/platform/WebDialogs.vue'
+import WebImagePreview from '../src/platform/WebImagePreview.vue'
 import { readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 
 beforeEach(()=>{localStorage.clear();vi.spyOn(window,'scrollTo').mockImplementation(()=>{})})
-afterEach(()=>{modalState.value=null;actionSheetState.value=null;vi.restoreAllMocks()})
+afterEach(()=>{modalState.value=null;actionSheetState.value=null;imagePreviewState.value=null;vi.restoreAllMocks()})
 describe('Web runtime preserves original page contracts',()=>{
  it('keeps all 36 original routes and real Vue pages',()=>{
   const original=JSON.parse(readFileSync(path.resolve('../reference/frontend/src/pages.json'))).pages.map(x=>x.path)
@@ -80,6 +81,55 @@ describe('Web runtime preserves original page contracts',()=>{
   expect(fail).toHaveBeenCalledWith({errMsg:'showActionSheet:fail cancel'})
   expect(complete).toHaveBeenCalledTimes(1)
   expect(actionSheetState.value).toBeNull()
+  wrapper.unmount()
+ })
+ it('opens the selected image, switches within gallery bounds and restores scrolling on close',async()=>{
+  const wrapper=mount(WebImagePreview)
+  document.body.style.overflow='auto'
+  const success=vi.fn()
+  browser.previewImage({urls:['https://example.test/a.png','https://example.test/b.png'],current:'https://example.test/b.png',success})
+  await nextTick()
+  expect(success).toHaveBeenCalledWith({errMsg:'previewImage:ok'})
+  expect(document.body.style.overflow).toBe('hidden')
+  expect(wrapper.find('img').attributes('src')).toBe('https://example.test/b.png')
+  await wrapper.find('[aria-label="下一张"]').trigger('click')
+  expect(imagePreviewState.value.index).toBe(1)
+  await wrapper.find('[aria-label="上一张"]').trigger('click')
+  expect(wrapper.find('img').attributes('src')).toBe('https://example.test/a.png')
+  window.dispatchEvent(new KeyboardEvent('keyup',{key:'Escape'}))
+  await nextTick()
+  expect(wrapper.find('[role="dialog"]').exists()).toBe(false)
+  expect(document.body.style.overflow).toBe('auto')
+  wrapper.unmount()
+ })
+ it('swipes between images without treating the drag as a close tap',async()=>{
+  const wrapper=mount(WebImagePreview)
+  browser.previewImage({urls:['https://example.test/a.png','https://example.test/b.png'],current:99})
+  await nextTick()
+  expect(imagePreviewState.value.index).toBe(0)
+  const overlay=wrapper.find('[role="dialog"]')
+  await overlay.trigger('pointerdown',{pointerId:1,clientX:250,clientY:100})
+  await overlay.trigger('pointermove',{pointerId:1,clientX:100,clientY:100})
+  await overlay.trigger('pointerup',{pointerId:1,clientX:100,clientY:100})
+  await overlay.trigger('click')
+  expect(imagePreviewState.value.index).toBe(1)
+  await wrapper.find('[aria-label="关闭图片预览"]').trigger('click')
+  expect(imagePreviewState.value).toBeNull()
+  wrapper.unmount()
+ })
+ it('limits a two-pointer pinch to the original one-to-four scale range',async()=>{
+  const wrapper=mount(WebImagePreview)
+  browser.previewImage({urls:['https://example.test/a.png']})
+  await nextTick()
+  const overlay=wrapper.find('[role="dialog"]')
+  await overlay.trigger('pointerdown',{pointerId:1,clientX:100,clientY:100})
+  await overlay.trigger('pointerdown',{pointerId:2,clientX:200,clientY:100})
+  await overlay.trigger('pointermove',{pointerId:2,clientX:1000,clientY:100})
+  expect(wrapper.find('img').attributes('style')).toContain('scale(4)')
+  await overlay.trigger('pointermove',{pointerId:2,clientX:110,clientY:100})
+  expect(wrapper.find('img').attributes('style')).toContain('scale(1)')
+  browser.closePreviewImage()
+  await nextTick()
   wrapper.unmount()
  })
  it('converts native typing into the original detail.value event',async()=>{
