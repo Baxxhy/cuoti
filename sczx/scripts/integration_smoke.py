@@ -21,6 +21,7 @@ sys.path.insert(0,str(ROOT/'backend'))
 from sczx_api.database import Database
 from sczx_api.schema import initialize_database
 from sczx_api.security import new_id
+from browser_fixtures import seed_rendering
 
 
 def port():
@@ -63,8 +64,10 @@ def main():
                     db.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,'sczx-study-browser','练习验收题库','1','','fixture','',6,6,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[study_source])
                     for index in range(6):
                         stem=f'独立题库验收{index}: 1+1等于多少？'
-                        db.query("INSERT INTO dataset_questions (id,dataset_source_id,source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade,created_at,updated_at) VALUES (?,?,?,'test','数学','高一','高中','独立题库验收',?,'multiple-choice',JSON_ARRAY(JSON_OBJECT('key','A','text','2'),JSON_OBJECT('key','B','text','3')),JSON_QUOTE('A'),'1+1=2',JSON_ARRAY('基础运算'),JSON_ARRAY(),'medium',?,JSON_OBJECT(),1,1,1,'ready',1,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),study_source,str(index),stem,hashlib.sha256(stem.encode()).hexdigest()])
+                        db.query("INSERT INTO dataset_questions (id,dataset_source_id,source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade,created_at,updated_at) VALUES (?,?,?,'test','数学','初一','初中','独立题库验收',?,'multiple-choice',JSON_ARRAY(JSON_OBJECT('key','A','text','2'),JSON_OBJECT('key','B','text','3')),JSON_QUOTE('A'),'1+1=2',JSON_ARRAY('基础运算'),JSON_ARRAY(),'medium',?,JSON_OBJECT(),1,1,1,'ready',1,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),study_source,str(index),stem,hashlib.sha256(stem.encode()).hexdigest()])
                     env.update(QA_STUDY_SOURCE=study_source,QA_STUDY_EMAIL='study-browser@example.test',QA_STUDY_PASSWORD='Study-browser-123')
+                    env.update(seed_rendering(db,artifacts/'question-bank-images'))
+                    os.environ['SCZX_QUESTION_BANK_ROOT']=env['SCZX_QUESTION_BANK_ROOT']
             algorithm_port,backend_port,web_port=port(),port(),port()
             env.update(SCZX_ALGORITHM_URL=f'http://127.0.0.1:{algorithm_port}',SCZX_BACKEND_URL=f'http://127.0.0.1:{backend_port}')
             python=str(ROOT/'.venv/bin/python')
@@ -85,8 +88,12 @@ def main():
                     assert response.status_code==expected,(path,response.status_code,response.text)
                     return response.json()['data']
                 if os.environ.get('SCZX_RUN_E2E')=='1':
-                    actor=http.post(base+'/api/v1/auth/register',json={'email':env['QA_STUDY_EMAIL'],'password':env['QA_STUDY_PASSWORD'],'grade':'高一'})
+                    actor=http.post(base+'/api/v1/auth/register',json={'email':env['QA_STUDY_EMAIL'],'password':env['QA_STUDY_PASSWORD'],'grade':'初一'})
                     assert actor.status_code==200,actor.text
+                    held=http.post(base+'/api/v1/study-sessions',headers={'Authorization':'Bearer '+actor.json()['data']['access_token']},json={'mode':'practice','question_ids':[env['QA_STUDY_BLOCKED_QUESTION']]})
+                    assert held.status_code==200,held.text
+                    env['QA_STUDY_BLOCKED_SESSION']=held.json()['data']['id']
+                    with Database.from_environment() as db:db.query("UPDATE dataset_questions SET quality_status='format_review',usable_for_practice=0,usable_for_auto_grade=0 WHERE id=?",[env['QA_STUDY_BLOCKED_QUESTION']])
                     review_response=http.post(base+'/api/v1/auth/register',json={'email':'review-browser@example.test','password':'Review-browser-123','grade':'初一'})
                     assert review_response.status_code==200,review_response.text
                     reviewer=review_response.json()['data'];review_headers={'Authorization':'Bearer '+reviewer['access_token']};review_ids=[]
