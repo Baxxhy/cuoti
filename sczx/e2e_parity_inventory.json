@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 64,
+  "migrated_count": 68,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -277,8 +277,9 @@
       "file": "learning-tasks.spec.ts",
       "line": 313,
       "name": "不等式：诊断保留正确第一步，错误端点不判对，区间答案可提交完成",
-      "migration": "not_yet_copied",
-      "full_title": "不等式：诊断保留正确第一步，错误端点不判对，区间答案可提交完成"
+      "migration": "copied_case",
+      "full_title": "不等式：诊断保留正确第一步，错误端点不判对，区间答案可提交完成",
+      "migrated_file": "learning-tasks.spec.ts"
     },
     {
       "file": "learning-tasks.spec.ts",
@@ -531,22 +532,25 @@
       "file": "student-personas.spec.ts",
       "line": 22,
       "name": "学生甲：首次使用，改学习方向、读例题、录入与收藏，刷新后记录相符",
-      "migration": "not_yet_copied",
-      "full_title": "学生甲：首次使用，改学习方向、读例题、录入与收藏，刷新后记录相符"
+      "migration": "copied_case",
+      "full_title": "学生甲：首次使用，改学习方向、读例题、录入与收藏，刷新后记录相符",
+      "migrated_file": "student-personas.spec.ts"
     },
     {
       "file": "student-personas.spec.ts",
       "line": 76,
       "name": "学生乙：核对首错，人工修正第1步，回放与易错地图同步且不串题",
-      "migration": "not_yet_copied",
-      "full_title": "学生乙：核对首错，人工修正第1步，回放与易错地图同步且不串题"
+      "migration": "copied_case",
+      "full_title": "学生乙：核对首错，人工修正第1步，回放与易错地图同步且不串题",
+      "migrated_file": "student-personas.spec.ts"
     },
     {
       "file": "student-personas.spec.ts",
       "line": 142,
       "name": "学生丙：多题到期时从本题路线进入本题复习，草稿往返和评价只影响本题",
-      "migration": "not_yet_copied",
-      "full_title": "学生丙：多题到期时从本题路线进入本题复习，草稿往返和评价只影响本题"
+      "migration": "copied_case",
+      "full_title": "学生丙：多题到期时从本题路线进入本题复习，草稿往返和评价只影响本题",
+      "migrated_file": "student-personas.spec.ts"
     },
     {
       "file": "task-entry.spec.ts",

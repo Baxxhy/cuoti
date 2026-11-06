@@ -22,7 +22,7 @@ from sczx_api.database import Database
 from sczx_api.schema import initialize_database
 from sczx_api.security import new_id
 from sczx_api.knowledge_seed import seed_public_knowledge
-from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_task_entry,seed_function_entry,seed_experience
+from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_task_entry,seed_function_entry,seed_experience,seed_inequality,seed_personas
 
 
 def port():
@@ -200,6 +200,8 @@ def main():
                     env['QA_OPTIONS_FIXTURE']=seed_option_task(http,base,artifacts,env)
                     env.update(seed_function_entry(http,base))
                     env.update(seed_experience(http,base))
+                    env.update(seed_inequality(http,base))
+                    env.update(seed_personas(http,base))
                     clear_entry=seed_task_entry(http,base)
                     env.update(clear_entry)
                     env.update(QA_TASK_EMAIL='clear-entry-browser@example.test',QA_TASK_PASSWORD='Clear-entry-browser-123',QA_TASK_QUESTION_ID=clear_entry['QA_ENTRY_CLEAR_QUESTION_ID'])

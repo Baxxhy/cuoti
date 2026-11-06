@@ -138,10 +138,10 @@ def seed_function_entry(http,base):
     return {'QA_VISUAL_EMAIL':email,'QA_VISUAL_PASSWORD':password,'QA_VISUAL_QUESTION_ID':qid}
 
 
-def seed_experience(http,base):
+def seed_experience(http,base,identity="experience"):
     """Original error-source/replay samples, persisted in disposable MySQL."""
     from sczx_api.database import Database
-    email,password='experience-browser@example.test','Experience-browser-123'
+    email,password=identity+'-browser@example.test','Experience-browser-123'
     response=http.post(base+'/api/v1/auth/register',json={'email':email,'password':password,'grade':'初一'})
     assert response.status_code==200,response.text
     token=response.json()['data']['access_token'];ids=[]
@@ -155,4 +155,53 @@ def seed_experience(http,base):
             insert(db,'diagnoses',dict(id=diagnosis,question_id=qid,error_type='sign_error',first_error_step=0,first_error_text='',root_misconception='移项时应改变符号',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
             step=db.query('SELECT s.id FROM student_steps s JOIN student_works w ON w.id=s.work_id WHERE w.question_id=? ORDER BY s.step_index LIMIT 1',[qid]).rows[0]['id']
             insert(db,'diagnosis_evidence',dict(id=new_id(),diagnosis_id=diagnosis,kind='step_alignment',student_step_id=step,reference_step_id=reference,content='移项符号核对',alignment='',equivalent=0,uses_condition=0,is_first_error=0,propagated=0,math_valid=0,metadata_json={'student_step_id':step,'reference_step_id':reference,'reason':'等式两边应同时减去3','is_first_error':True}))
-    return {'QA_EXPERIENCE_EMAIL':email,'QA_EXPERIENCE_PASSWORD':password,'QA_EXPERIENCE_QUESTION_ID':ids[0]}
+    return {'QA_EXPERIENCE_EMAIL':email,'QA_EXPERIENCE_PASSWORD':password,'QA_EXPERIENCE_QUESTION_ID':ids[0],'QA_EXPERIENCE_QUESTION_2':ids[1]}
+
+
+def seed_inequality(http,base):
+    from sczx_api.database import Database
+    import time
+    response=http.post(base+'/api/v1/auth/register',json={'email':'inequality-browser@example.test','password':'Inequality-browser-123','grade':'高一'})
+    assert response.status_code==200,response.text
+    token=response.json()['data']['access_token'];headers={'Authorization':'Bearer '+token}
+    response=http.post(base+'/api/v1/questions/manual',headers=headers,json={'question_text':'解不等式：x^2-5x+6≤0，写出解集。','subject':'数学','grade':'高一','student_answer':'x≤2或x≥3','student_steps':['(x-2)(x-3)≤0','x≤2或x≥3']})
+    assert response.status_code==200,response.text
+    qid=response.json()['data']['id'];analysis=new_id()
+    with Database.from_environment() as db:
+        insert(db,'problem_analyses',dict(id=analysis,question_id=qid,subject='数学',problem_type='不等式',known_conditions=['x^2-5x+6≤0'],goal='求解集',knowledge_points=['一元二次不等式'],prerequisites=[],final_answer='x ∈ [2, 3]',verified=1,raw_result={'fixture':True}))
+        for index,text in enumerate(['(x-2)(x-3)≤0','2≤x≤3']):insert(db,'reference_steps',dict(id=new_id(),analysis_id=analysis,step_index=index,text=text,explanation='',math_valid=1,uses_condition=0))
+        insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='invalid_transformation',first_error_step=1,first_error_text='x≤2或x≥3',root_misconception='乘积小于等于零时，需要核对两根之间的范围与端点。',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
+    response=http.post(base+'/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'inequality-browser'})
+    assert response.status_code==202,response.text
+    task=response.json()['data'];deadline=time.monotonic()+55
+    while task['status'] in ['queued','running']:
+        assert time.monotonic()<deadline,task
+        time.sleep(.2)
+        response=http.get(base+'/api/v1/learning-tasks/'+task['id'],headers=headers)
+        assert response.status_code==200,response.text
+        task=response.json()['data']
+    assert task['status']=='waiting_student',task
+    return {'QA_INEQUALITY_QUESTION_ID':qid,'QA_INEQUALITY_TASK_ID':task['id'],'QA_INEQUALITY_TOKEN':token}
+
+
+def seed_personas(http,base):
+    from sczx_api.database import Database
+    repair=seed_experience(http,base,identity='persona-repair')
+    with Database.from_environment() as db:
+        diagnosis=db.query('SELECT id FROM diagnoses WHERE question_id=?',[repair['QA_EXPERIENCE_QUESTION_ID']]).rows[0]['id']
+        db.query('UPDATE diagnoses SET recommended_strategy=? WHERE id=?',['等式两边先减去3。',diagnosis])
+        insert(db,'diagnosis_evidence',dict(id=new_id(),diagnosis_id=diagnosis,kind='counterfactual_validation',content='人工修正关联的隔离证据夹具',alignment='',equivalent=0,uses_condition=0,is_first_error=0,propagated=0,math_valid=0,metadata_json={'suspected_step':0,'status':'confirmed','root_cause_confirmed':True,'corrected_step':'2x=8','verification_method':'reference_repair_sympy_check','validation_scope':'polynomial_real_solution_set_and_preserved_prefix'}))
+    email,password='persona-review-browser@example.test','Persona-review-123'
+    response=http.post(base+'/api/v1/auth/register',json={'email':email,'password':password,'grade':'初一'})
+    assert response.status_code==200,response.text
+    actor=response.json()['data'];ids=[];plans=[]
+    for index,(stem,answer,correct,wrong) in enumerate([('解方程：2x+3=11','x=4','2x=8','2x=11+3'),('解方程：3x+2=17','x=5','3x=15','3x=17+2')]):
+        response=http.post(base+'/api/v1/questions/manual',headers={'Authorization':'Bearer '+actor['access_token']},json={'question_text':stem,'student_answer':'x=7','student_steps':[wrong,'x=7'],'subject':'数学','grade':'初一'})
+        assert response.status_code==200,response.text
+        qid=response.json()['data']['id'];ids.append(qid);analysis,plan=new_id(),new_id();plans.append(plan)
+        with Database.from_environment() as db:
+            insert(db,'problem_analyses',dict(id=analysis,question_id=qid,subject='数学',problem_type='方程',known_conditions=[],goal='求x',knowledge_points=['等式的性质'],prerequisites=[],final_answer=answer,verified=1,raw_result={'fixture':True}))
+            for step,text in enumerate([correct,answer]):insert(db,'reference_steps',dict(id=new_id(),analysis_id=analysis,step_index=step,text=text,explanation='',math_valid=1,uses_condition=0))
+            insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='sign_error',first_error_step=0,first_error_text='',root_misconception='移项需要改变符号',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
+            insert(db,'review_plans',dict(id=plan,user_id=actor['id'],question_id=qid,due_at=f'2026-01-0{index+1} 00:00:00',interval_days=1,status='pending',reason='again'))
+    return {'QA_PERSONA_REPAIR_EMAIL':repair['QA_EXPERIENCE_EMAIL'],'QA_PERSONA_REPAIR_PASSWORD':repair['QA_EXPERIENCE_PASSWORD'],'QA_PERSONA_REPAIR_QUESTION_1':repair['QA_EXPERIENCE_QUESTION_ID'],'QA_PERSONA_REPAIR_QUESTION_2':repair['QA_EXPERIENCE_QUESTION_2'],'QA_PERSONA_REVIEW_EMAIL':email,'QA_PERSONA_REVIEW_PASSWORD':password,'QA_PERSONA_REVIEW_QUESTION_1':ids[0],'QA_PERSONA_REVIEW_QUESTION_2':ids[1],'QA_PERSONA_REVIEW_PLAN_2':plans[1]}

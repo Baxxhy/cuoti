@@ -123,3 +123,53 @@ test('学习达到上限后可结束回原题并创建新任务，原记录保�
   await page.goto(`/#/pages/task/task?id=${process.env.QA_BUDGET_TASK_ID}`)
   await expect(page.getByText('已结束', { exact: true })).toBeVisible()
 })
+
+test('不等式：诊断保留正确第一步，错误端点不判对，区间答案可提交完成', async ({
+  page,
+  request,
+}) => {
+  expect(process.env.QA_INEQUALITY_TASK_ID, '需要隔离不等式样本').toBeTruthy()
+  const headers = { Authorization: `Bearer ${process.env.QA_INEQUALITY_TOKEN}` }
+  await page.addInitScript(
+    (token) => localStorage.setItem('minddimension_access_token', JSON.stringify(token)),
+    process.env.QA_INEQUALITY_TOKEN!,
+  )
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto(`/#/pages/diagnosis/diagnosis?id=${process.env.QA_INEQUALITY_QUESTION_ID}`)
+  await expect(page.locator('.summary-title')).toContainText('第 2 步')
+  await expect(page.locator('.student-thought')).toContainText('x≤2或x≥3')
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.goto(`/#/pages/task/task?id=${process.env.QA_INEQUALITY_TASK_ID}`)
+  await expect(page.getByText('重新作答', { exact: true })).toBeVisible()
+  await page.locator('.answer-input textarea, textarea.answer-input').fill('(x-2)(x-3)≤0')
+  await page.getByRole('button', { name: '提交作答', exact: true }).click()
+  await expect(page.locator('.feedback')).toContainText('取值范围')
+  await expect(page.getByText('本次学习完成', { exact: true })).toHaveCount(0)
+  await page.getByRole('button', { name: '继续核对', exact: true }).click()
+  await page.locator('.answer-input textarea, textarea.answer-input').fill('[2,3)')
+  await page.getByRole('button', { name: '提交作答', exact: true }).click()
+  await expect
+    .poll(async () => {
+      const response = await request.get(
+        `${process.env.SCZX_API_URL}/learning-tasks/${process.env.QA_INEQUALITY_TASK_ID}/history`,
+        { headers },
+      )
+      return (await response.json()).data.items.some(
+        (item: any) => item.verdict === 'confirmed_incorrect',
+      )
+    })
+    .toBe(true)
+  await expect(page.getByText('本次学习完成', { exact: true })).toHaveCount(0)
+  await page.locator('.answer-input textarea, textarea.answer-input').fill('2≤x≤3')
+  await page.getByRole('button', { name: '提交作答', exact: true }).click()
+  await expect(page.getByText('本次学习完成', { exact: true })).toBeVisible()
+  const response = await request.get(
+    `${process.env.SCZX_API_URL}/learning-tasks/${process.env.QA_INEQUALITY_TASK_ID}/history`,
+    { headers },
+  )
+  const items = (await response.json()).data.items
+  expect(
+    items.some((item: any) => item.verdict === 'confirmed_correct' && item.phase === 'independent'),
+  ).toBe(true)
+  expect(items.some((item: any) => item.verdict === 'review_required')).toBe(true)
+})
