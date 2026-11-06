@@ -1,6 +1,7 @@
 """Isolated rendering fixtures matching the original study smoke samples."""
 import hashlib
 import json
+from pathlib import Path
 from PIL import Image,ImageDraw
 from sczx_api.security import new_id
 
@@ -60,3 +61,34 @@ def seed_personal_learning(db,owner,question_ids):
     result={'explanation':'受控历史讲解','key_points':['两边同时运算'],'check_question':'为什么要同时运算？','sources':[{'name':'等式的性质'}]}
     db.query('INSERT INTO knowledge_lessons (id,user_id,knowledge_code,request_id,input_fingerprint,prompt,result,created_at) VALUES (?,?,?,?,?,?,?,UTC_TIMESTAMP(6))',[new_id(),owner,code,'fixture-history','old','历史提问',json.dumps(result,ensure_ascii=False)])
     return {'QA_PERSONAL_QUESTION':question_ids[0],'QA_PERSONAL_PLAN':first_plan,'QA_PERSONAL_CODE':code}
+
+
+def seed_option_task(http,base,artifacts,env):
+    """Create a real task then remove its option projection to test legacy hydration."""
+    import time
+    from sczx_api.database import Database
+    registered=http.post(base+'/api/v1/auth/register',json={'email':'options-browser@example.test','password':'Options-browser-123','grade':'高一'})
+    assert registered.status_code==200,registered.text
+    actor=registered.json()['data'];headers={'Authorization':'Bearer '+actor['access_token']}
+    choices=[{'label':label,'text':text} for label,text in zip('ABCD',[r'$\{x|-2\le x<1\}$',r'$\{x|-2<x\le1\}$',r'$\{x|x\ge-2\}$',r'\{x|x<1\}'])]
+    created=http.post(base+'/api/v1/questions/manual',headers=headers,json={'question_text':r'已知集合 $M=\{x|x+2\ge0\},N=\{x|x-1<0\}$，则 $M\cap N=$（ ）','subject':'数学','grade':'高一','question_type':'单选题','options':choices,'student_answer':'D'})
+    assert created.status_code==200,created.text
+    qid=created.json()['data']['id'];path='uploads/options-browser-figure.png';image_file=Path(env['SCZX_MEDIA_ROOT'])/path
+    image_file.parent.mkdir(parents=True,exist_ok=True)
+    image=Image.new('RGB',(320,90),'white');draw=ImageDraw.Draw(image);draw.line((20,45,300,45),fill='black',width=2);draw.line((75,45,235,45),fill='#426dcc',width=4);draw.ellipse((70,40,80,50),fill='#426dcc');draw.ellipse((230,40,240,50),fill='white',outline='#426dcc',width=2);draw.text((70,62),'-2',fill='black');draw.text((232,62),'1',fill='black');image.save(image_file)
+    with Database.from_environment() as db:
+        insert(db,'problem_analyses',dict(id=new_id(),question_id=qid,subject='数学',problem_type='集合',known_conditions=[],goal='选择交集',knowledge_points=[],prerequisites=[],final_answer='A',verified=1,raw_result={'fixture':True}))
+        insert(db,'question_assets',dict(id=new_id(),question_id=qid,kind='question_figure',path=path,sha256=hashlib.sha256(image_file.read_bytes()).hexdigest(),bbox=[]))
+    response=http.post(base+'/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'options-browser'})
+    assert response.status_code==202,response.text
+    task=response.json()['data'];deadline=time.monotonic()+55
+    while task['status'] in ['queued','running']:
+        assert time.monotonic()<deadline,task
+        time.sleep(.2)
+        response=http.get(base+'/api/v1/learning-tasks/'+task['id'],headers=headers)
+        assert response.status_code==200,response.text
+        task=response.json()['data']
+    assert task['status']=='waiting_student',task
+    with Database.from_environment() as db:db.query("UPDATE learning_tasks SET student_view=JSON_REMOVE(student_view,'$.prompt_blocks[0].options') WHERE id=?",[task['id']])
+    fixture=artifacts/'options-browser.json';fixture.write_text(json.dumps({'token':actor['access_token'],'question_id':qid,'task_id':task['id'],'figure':True}))
+    return str(fixture)

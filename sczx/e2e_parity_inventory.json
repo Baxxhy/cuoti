@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 55,
+  "migrated_count": 56,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -422,8 +422,9 @@
       "file": "question-options-display.spec.ts",
       "line": 3,
       "name": "集合选项在确认题目和旧订正任务中完整渲染",
-      "migration": "not_yet_copied",
-      "full_title": "集合选项在确认题目和旧订正任务中完整渲染"
+      "migration": "copied_case",
+      "full_title": "集合选项在确认题目和旧订正任务中完整渲染",
+      "migrated_file": "question-options-display.spec.ts"
     },
     {
       "file": "recovery.spec.ts",
