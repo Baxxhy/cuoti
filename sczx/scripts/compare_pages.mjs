@@ -86,11 +86,16 @@ try{
    }
    await page.evaluate(()=>document.fonts.ready)
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})
+   if(name==='vue'&&process.env.SCZX_COMPARE_VUE_CSS)await page.addStyleTag({content:process.env.SCZX_COMPARE_VUE_CSS})
    const snapshot=await page.evaluate(()=>{
-    const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color']
+    const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color','alignContent','alignItems','justifyContent','appearance','wordSpacing','whiteSpace','fontVariantNumeric']
     const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img,.crop-stage,.crop-box')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
      const r=e.getBoundingClientRect(),css=getComputedStyle(e)
-     return {tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
+     const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let textNode
+     while((textNode=walker.nextNode())&&!textNode.textContent.trim()){}
+     let textBox=null
+     if(textNode){const range=document.createRange();range.selectNodeContents(textNode);const b=range.getBoundingClientRect();textBox=[b.x,b.y,b.width,b.height].map(v=>Math.round(v*100)/100)}
+     return {textBox,tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
     })
     const words=[]
     function visit(node){
@@ -125,7 +130,7 @@ try{
  }
  const comparisons=results.filter(r=>r.name==='original').map(a=>{
   const b=results.find(r=>r.name==='vue'&&r.route===a.route&&r.width===a.width)
-  return {route:a.route,width:a.width,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,originalWrites:a.writes,vueWrites:b.writes}
+  return {route:a.route,width:a.width,vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,originalWrites:a.writes,vueWrites:b.writes}
  })
  fs.writeFileSync(path.join(artifacts,'report.json'),JSON.stringify(comparisons,null,2)+'\n')
  console.log(JSON.stringify({artifacts,cases:comparisons.length,textDifferences:comparisons.filter(c=>!c.textEqual).length,pageErrors:comparisons.filter(c=>c.originalErrors.length||c.vueErrors.length).length}))

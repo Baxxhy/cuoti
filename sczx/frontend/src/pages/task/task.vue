@@ -889,6 +889,10 @@ onUnload(stop)
   margin: 2px 0 8px;
 }
 .task-math-tools > button {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
   margin: 0;
   padding: 8px 0;
   min-height: 44px;
@@ -922,6 +926,9 @@ onUnload(stop)
   margin-bottom: 14px;
 }
 .text-action {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   min-height: 48px;
   margin: 0;
   padding: 12px 6px;
@@ -989,6 +996,7 @@ onUnload(stop)
   border-top: 1px solid var(--color-border);
 }
 .more-ways .text-action {
+  justify-content: flex-start;
   width: 100%;
   text-align: left;
 }
