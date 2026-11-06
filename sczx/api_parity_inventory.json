@@ -287,9 +287,12 @@
   {
     "path": "/api/v1/tutor/sessions/{session_id}/visualization",
     "source": "backend-cangjie/src/main.cj:63",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "POST"
+    ],
+    "parity": "ported from current visualizations.cj; original Python spec/Pydantic and isolated MySQL persistence/ownership acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/system/health",
@@ -401,16 +404,20 @@
   {
     "path": "/api/v1/visualizations/types",
     "source": "backend-cangjie/src/main.cj:79",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current visualizations.cj; original Python spec/Pydantic and isolated MySQL persistence/ownership acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/visualizations/{visualization_id}",
     "source": "backend-cangjie/src/main.cj:80",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current visualizations.cj; original Python spec/Pydantic and isolated MySQL persistence/ownership acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/turns",

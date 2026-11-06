@@ -28,6 +28,7 @@ from .tutor_completion import finish_tutor
 from .tutor_answer import answer_activity
 from .handwriting import upload_handwriting
 from .variant_attempt import variant_attempt
+from .visualizations import session_visualization, visualization_types, read_visualization
 
 from . import accounts
 from .database import Database
@@ -235,6 +236,21 @@ async def handwriting(request: Request):
 @app.post('/api/v1/variants/{variant_id}/attempt')
 async def variant_answer(request: Request):
     return envelope(await variant_attempt(request))
+
+
+@app.api_route('/api/v1/tutor/sessions/{session_id}/visualization', methods=['GET', 'POST'])
+async def tutor_visualization(request: Request):
+    return envelope(await session_visualization(request))
+
+
+@app.get('/api/v1/visualizations/types')
+async def visual_types():
+    return envelope(await visualization_types())
+
+
+@app.get('/api/v1/visualizations/{visualization_id}')
+async def visual_read(request: Request):
+    return envelope(await read_visualization(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

@@ -674,6 +674,15 @@ def test_tutor_finish_evidence_review_and_idempotency(client,monkeypatch):
         assert len(evidence['memory_source']['question_version'])==64
         assert evidence['tutor_session_id']==session['id']
         assert db.query('SELECT COUNT(*) AS n FROM review_plans WHERE question_id=?',[question_id]).rows[0]['n']=='1'
+        from sczx_api.memory_sources import update_valid
+        from sczx_api.rows import row_json
+        update=row_json('cognitive_updates',db.query("SELECT * FROM cognitive_updates WHERE question_id=? AND entity_type='mastery'",[question_id]).rows[0])
+        assert update_valid(db,update,user['id'],'数学') is True
+        assert update_valid(db,update,'another-user','数学') is False
+        db.query("UPDATE questions SET title='仅改标题' WHERE id=?",[question_id])
+        assert update_valid(db,update,user['id'],'数学') is True
+        db.query("UPDATE questions SET student_answer='已改变答案' WHERE id=?",[question_id])
+        assert update_valid(db,update,user['id'],'数学') is False
 
 
 def test_tutor_activity_full_and_compressed_learning_flows(client,monkeypatch):
@@ -846,3 +855,46 @@ def test_direct_variant_attempt_uncertain_retry_and_completion(client,monkeypatc
     assert far.json()['data']['stage']=='finished' and far.json()['data']['mastery'] is not None
     with Database.from_environment() as db:
         assert db.query('SELECT interval_days FROM review_plans WHERE question_id=?',[question_id]).rows[0]['interval_days']=='3'
+
+
+def test_visualization_uses_original_specs_and_persists_observations(client,monkeypatch):
+    from sczx_api import analysis,visualizations
+    from pathlib import Path
+    monkeypatch.syspath_prepend(str(Path('sczx/algorithms').resolve()))
+    from learning_core.services.visualizations import recommended_visualization,visualization_spec,visualization_catalog
+    from learning_core.schemas import VisualizationPayload
+    def compute(payload):
+        kind=recommended_visualization(payload['subject'],payload['question_type'],payload['teach_back_points'])
+        spec=None
+        if kind:
+            raw=visualization_spec(kind);raw['parameters'].update(payload['visualization_values'])
+            spec=VisualizationPayload.model_validate(raw).model_dump(mode='json')
+        return {'catalog':visualization_catalog(),'spec':spec}
+    monkeypatch.setattr(visualizations,'compute',compute)
+    catalog=client.get('/api/v1/visualizations/types')
+    assert catalog.status_code==200 and catalog.json()['data']==visualization_catalog()
+    user=client.post('/api/v1/auth/register',json={'email':'visual@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'visual-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程x+1=2','student_steps':['x=3']}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['一元一次方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers)
+    session=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).json()['data']
+    path='/api/v1/tutor/sessions/'+session['id']+'/visualization'
+    assert client.get(path,headers=outsider).status_code==404
+    response=client.get(path,headers=headers)
+    assert response.status_code==200,response.text
+    assert response.json()['data']['spec']['type']=='equation_balance'
+    assert client.post(path,headers=headers,json={'values':[]}).status_code==422
+    saved=client.post(path,headers=headers,json={'values':{},'observation':'等式两边做相同操作仍然平衡'})
+    assert saved.status_code==200,saved.text
+    visual=saved.json()['data']
+    detail=client.get('/api/v1/visualizations/'+visual['id'],headers=headers)
+    assert detail.status_code==200 and detail.json()['data']['interactions'][0]['observation']=='等式两边做相同操作仍然平衡'
+    assert client.get('/api/v1/visualizations/'+visual['id'],headers=outsider).status_code==404
+    with Database.from_environment() as db:
+        assert db.query("SELECT COUNT(*) AS n FROM agent_tool_calls c JOIN agent_runs r ON r.id=c.agent_run_id WHERE r.session_id=? AND c.tool_name='observe_visualization'",[session['id']]).rows[0]['n']=='1'
+        db.query("UPDATE questions SET status='archived' WHERE id=?",[question_id])
+    assert client.post(path,headers=headers,json={}).status_code==409
+    assert client.get(path,headers=headers).status_code==200
