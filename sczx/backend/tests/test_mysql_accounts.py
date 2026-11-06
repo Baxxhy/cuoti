@@ -25,7 +25,7 @@ def client(tmp_path_factory):
     with logfile.open('wb') as log:
         subprocess.run([binary, '--no-defaults', '--initialize-insecure', '--user=root', f'--datadir={datadir}', '--innodb-buffer-pool-size=32M', '--innodb-log-file-size=16M'], stdout=log, stderr=log, check=True, timeout=60)
         process = subprocess.Popen([binary, '--no-defaults', '--user=root', f'--datadir={datadir}', f'--socket={socket}', f'--pid-file={root / "mysql.pid"}', '--skip-networking', '--mysqlx=OFF', '--innodb-buffer-pool-size=32M', '--innodb-log-file-size=16M'], stdout=log, stderr=log)
-        keys = ['SCZX_DB_NAME', 'SCZX_DB_USER', 'SCZX_DB_PASSWORD', 'SCZX_DB_SOCKET', 'SCZX_AUTH_SECRET']
+        keys = ['SCZX_DB_NAME', 'SCZX_DB_USER', 'SCZX_DB_PASSWORD', 'SCZX_DB_SOCKET', 'SCZX_AUTH_SECRET','SCZX_TASK_WORKERS']
         saved = {key: os.environ.get(key) for key in keys}
         try:
             deadline = time.monotonic() + 40
@@ -40,7 +40,7 @@ def client(tmp_path_factory):
             with connection:
                 with connection.cursor() as cursor:
                     cursor.execute('CREATE DATABASE sczx_test_accounts CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
-            os.environ.update(SCZX_DB_NAME='sczx_test_accounts', SCZX_DB_USER='root', SCZX_DB_PASSWORD='', SCZX_DB_SOCKET=str(socket), SCZX_AUTH_SECRET='sczx-isolated-contract-test-secret-000000')
+            os.environ.update(SCZX_DB_NAME='sczx_test_accounts', SCZX_DB_USER='root', SCZX_DB_PASSWORD='', SCZX_DB_SOCKET=str(socket), SCZX_AUTH_SECRET='sczx-isolated-contract-test-secret-000000',SCZX_TASK_WORKERS='0')
             initialize_database()
             with TestClient(app) as web:
                 yield web
@@ -862,7 +862,7 @@ def test_direct_variant_attempt_uncertain_retry_and_completion(client,monkeypatc
 def test_visualization_uses_original_specs_and_persists_observations(client,monkeypatch):
     from sczx_api import analysis,visualizations
     from pathlib import Path
-    monkeypatch.syspath_prepend(str(Path('sczx/algorithms').resolve()))
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[2]/'algorithms'))
     from learning_core.services.visualizations import recommended_visualization,visualization_spec,visualization_catalog
     from learning_core.schemas import VisualizationPayload
     def compute(payload):
@@ -1469,7 +1469,7 @@ def test_papers_real_rendering_ownership_and_transaction_rollback(client,monkeyp
     from io import BytesIO
     from openpyxl import load_workbook
     from sczx_api import paper_exports,analysis
-    monkeypatch.syspath_prepend(str(Path('sczx/algorithms').resolve()))
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[2]/'algorithms'))
     from paper_export_compute import ExportQuestion,render_paper
     monkeypatch.setenv('SCZX_MEDIA_ROOT',str(tmp_path/'media'))
     def register(email):
@@ -1997,3 +1997,255 @@ def test_task_self_checks_history_and_journey_keep_source_and_evidence_boundarie
         assert db.query("SELECT COUNT(*) AS n FROM agent_runs WHERE agent_name='student_self_check' AND JSON_UNQUOTE(JSON_EXTRACT(result,'$.task_id'))=?",[tid]).rows[0]['n']=='5'
         db.query("UPDATE questions SET status='archived' WHERE id=?",[qid])
     assert client.get(journey_url,headers=headers).status_code==404
+
+
+def test_task_worker_real_local_workflow_and_cognition_persist_end_to_end(client,monkeypatch):
+    import asyncio,json
+    from sczx_api import analysis,task_worker,learning_evidence
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[2]/'algorithms'))
+    from learning_task_compute import TaskContext,Checkpoint,TaskAction
+    from learning_workflow import run_learning_workflow
+    from grading_compute import UnavailableGradingProvider
+    from mastery_tracker import compute_aemt_cognition
+    user=client.post('/api/v1/auth/register',json={'email':'task-real-worker@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    qid=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程：2x+3=11','grade':'初一','student_steps':['2x=11+3','x=7'],'knowledge_points':['等式的性质']}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['等式的性质'],'prerequisites':[],'final_answer':'x=4','answer_verified':True,'reference_steps':['2x=8','x=4']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True,True]})
+    assert client.post('/api/v1/questions/'+qid+'/analyze',headers=headers).status_code==200
+    def actual_workflow(p,timeout=200,budget=None):
+        assert p['operation']=='learning_task' and 1<=p['task_budget_ms']<=38000 and timeout<=40
+        return asyncio.run(run_learning_workflow(UnavailableGradingProvider(),TaskContext.model_validate(p['task_context']),Checkpoint.model_validate(p['task_checkpoint']),TaskAction.model_validate(p['task_action']))).model_dump(mode='json')
+    def actual_cognition(p,timeout=200):
+        mastery,misconception=compute_aemt_cognition(p['mastery_values'],p['misconception_values'],p['learning_evidence'],p['misconception_label'])
+        return {'mastery':mastery,'misconception':misconception}
+    monkeypatch.setattr(task_worker,'compute',actual_workflow);monkeypatch.setattr(learning_evidence,'compute',actual_cognition)
+    created=client.post('/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'actual-worker-create'})
+    assert created.status_code==202,created.text
+    task=created.json()['data'];tid=task['id'];url='/api/v1/learning-tasks/'+tid
+    def execute():
+        task_worker.run_task(tid)
+        result=client.get(url,headers=headers).json()['data']
+        assert result['status'] in ['waiting_student','completed'],result
+        return result
+    task=execute()
+    with Database.from_environment() as db:
+        state=json.loads(db.query('SELECT checkpoint FROM learning_tasks WHERE id=?',[tid]).rows[0]['checkpoint'])
+        assert state['phase']=='repair' and state['evidence_diagnosis']['verified'] is True
+    assert client.get('/api/v1/questions/'+qid+'/journey',headers=headers).json()['data']['next_action']['url']=='/pages/task/task?id='+tid
+    def submit(text,request_id):
+        nonlocal task
+        body={'kind':'answer','text':text,'version':task['version'],'step_id':task['step_id'],'input_fingerprint':task['input_fingerprint'],'request_id':request_id}
+        response=client.post(url+'/actions',headers=headers,json=body)
+        assert response.status_code==202,response.text
+        task=execute();return body
+    submit('11-3','actual-repair')
+    with Database.from_environment() as db:
+        assert json.loads(db.query('SELECT checkpoint FROM learning_tasks WHERE id=?',[tid]).rows[0]['checkpoint'])['phase']=='independent'
+        assert db.query('SELECT COUNT(*) AS n FROM cognitive_updates WHERE user_id=?',[user['id']]).rows[0]['n']=='0'
+    submit('x=4','actual-independent')
+    with Database.from_environment() as db:
+        state=json.loads(db.query('SELECT checkpoint FROM learning_tasks WHERE id=?',[tid]).rows[0]['checkpoint'])
+        assert state['phase']=='contrast'
+        expected=state['contrast']['expected']
+        assert db.query('SELECT evidence_count FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['evidence_count']=='1'
+    last=submit(expected,'actual-contrast')
+    assert task['status']=='completed' and task['learning_applied'] is True
+    history=client.get(url+'/history',headers=headers).json()['data']
+    assert len(history['items'])==3 and all(item['source']['snapshot_id']==tid for item in history['items'])
+    journey=client.get('/api/v1/questions/'+qid+'/journey',headers=headers).json()['data']
+    assert journey['learning_tasks']['repair_verified'] is True and journey['learning_tasks']['near_transfer'] is True
+    assert client.get(url+'/self-check',headers=headers).json()['data']['can_save'] is True
+    assert client.post(url+'/actions',headers=headers,json=last).json()['data']['status']=='completed'
+    task_worker.run_task(tid)
+    with Database.from_environment() as db:
+        assert db.query('SELECT evidence_count FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['evidence_count']=='2'
+        assert db.query('SELECT COUNT(*) AS n FROM cognitive_updates WHERE user_id=?',[user['id']]).rows[0]['n']=='4'
+        assert db.query('SELECT COUNT(*) AS n FROM review_plans WHERE user_id=? AND question_id=?',[user['id'],qid]).rows[0]['n']=='1'
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_exposures WHERE user_id=?',[user['id']]).rows[0]['n']=='1'
+        assert db.query('SELECT run_count FROM learning_tasks WHERE id=?',[tid]).rows[0]['run_count']=='4'
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_steps WHERE task_id=?',[tid]).rows[0]['n']!='0'
+    # Re-exposure to an already completed contrast cannot produce a new observation.
+    repeated=client.post('/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'actual-repeat-contrast'}).json()['data']
+    repeat_url='/api/v1/learning-tasks/'+repeated['id']
+    with Database.from_environment() as db:
+        db.query("UPDATE learning_tasks SET status='waiting_student',checkpoint=?,student_view=JSON_OBJECT('input_kind','text') WHERE id=?",[json.dumps(state,ensure_ascii=False),repeated['id']])
+    response=client.post(repeat_url+'/actions',headers=headers,json={'kind':'answer','text':expected,'version':repeated['version'],'step_id':repeated['step_id'],'input_fingerprint':repeated['input_fingerprint'],'request_id':'repeat-known-contrast'})
+    assert response.status_code==202,response.text
+    task_worker.run_task(repeated['id'])
+    repeated_result=client.get(repeat_url,headers=headers).json()['data']
+    assert repeated_result['status']=='completed' and repeated_result['learning_applied'] is False,repeated_result
+    with Database.from_environment() as db:
+        assert db.query('SELECT evidence_count FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['evidence_count']=='2'
+        assert db.query('SELECT COUNT(*) AS n FROM cognitive_updates WHERE user_id=?',[user['id']]).rows[0]['n']=='4'
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_exposures WHERE user_id=?',[user['id']]).rows[0]['n']=='1'
+
+
+def test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure(client,monkeypatch):
+    import copy,json,threading
+    from concurrent.futures import ThreadPoolExecutor
+    from fastapi import HTTPException
+    from sczx_api import analysis,task_worker
+    from sczx_api.task_policy import TaskBudget
+    user=client.post('/api/v1/auth/register',json={'email':'task-worker-races@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['后台恢复测试'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    def create(label):
+        qid=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':label+' x+1=2'}).json()['data']['id']
+        assert client.post('/api/v1/questions/'+qid+'/analyze',headers=headers).status_code==200
+        task=client.post('/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':label}).json()['data']
+        return qid,task['id'],'/api/v1/learning-tasks/'+task['id']
+    def result(p):
+        return {'status':'waiting_student','checkpoint':{'phase':'repair','rounds':1},'student_view':{'title':'已准备','prompt_blocks':[],'input_kind':'text'},'traces':[{'tool_name':'check_step','validation':'verified','memory_refs':[],'evidence':{}}],'attempt':None,'learning_eligible':False,'exit_reason':'','elapsed_ms':1,'usage':None}
+    entered=threading.Event();release=threading.Event();calls=[]
+    def blocked(p,timeout=200,budget=None):
+        calls.append(p);entered.set();assert release.wait(8)
+        return result(p)
+    monkeypatch.setattr(task_worker,'compute',blocked)
+    for mode in ['cancel','edit','context']:
+        entered.clear();release.clear();qid,tid,url=create('race-'+mode)
+        if mode=='context':
+            with Database.from_environment() as db:db.query("UPDATE student_profiles SET preferences=JSON_SET(preferences,'$.daily_minutes',5) WHERE user_id=?",[user['id']])
+        before=len(calls)
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            pending=executor.submit(task_worker.run_task,tid)
+            try:
+                assert entered.wait(5),'worker never reached compute'
+                assert executor.submit(task_worker.run_task,tid).result(timeout=5) is None
+                assert len(calls)==before+1
+                if mode=='cancel':assert client.post(url+'/cancel',headers=headers).status_code==200
+                elif mode=='edit':assert client.patch('/api/v1/questions/'+qid,headers=headers,json={'question_text':'原题在计算中更新'}).status_code==200
+                else:
+                    with Database.from_environment() as db:db.query("UPDATE student_profiles SET preferences=JSON_SET(preferences,'$.daily_minutes',10) WHERE user_id=?",[user['id']])
+            finally:release.set()
+            pending.result(timeout=8)
+        current=client.get(url,headers=headers).json()['data']
+        assert current['status']=={'cancel':'cancelled','edit':'stale','context':'failed'}[mode],current
+        if mode=='context':assert current['exit_reason']=='commit_api_409'
+        with Database.from_environment() as db:
+            assert db.query('SELECT COUNT(*) AS n FROM learning_task_steps WHERE task_id=?',[tid]).rows[0]['n']=='0'
+            assert db.query('SELECT run_count FROM learning_tasks WHERE id=?',[tid]).rows[0]['run_count']=='1'
+    monkeypatch.setattr(task_worker,'compute',lambda p,**kwargs:result(p))
+    qid,tid,url=create('recover-expired')
+    with Database.from_environment() as db:db.query("UPDATE learning_tasks SET status='running',run_count=1,lease_token='expired-lease',lease_until=UTC_TIMESTAMP(6)-INTERVAL 1 SECOND WHERE id=?",[tid])
+    task_worker.run_task(tid)
+    current=client.get(url,headers=headers).json()['data']
+    assert current['status']=='waiting_student' and current['version']==2
+    task_worker.failure(tid,user['id'],qid,'expired-lease','old-failure')
+    assert client.get(url,headers=headers).json()['data']['version']==2
+    with Database.from_environment() as db:assert db.query('SELECT run_count FROM learning_tasks WHERE id=?',[tid]).rows[0]['run_count']=='2'
+    # A failure after the checkpoint write must roll back audit and checkpoint together.
+    qid,tid,url=create('atomic-after-checkpoint')
+    class FailBeforeCommit(TaskBudget):
+        def check(self,stage):
+            if stage=='after_checkpoint':raise HTTPException(503,'controlled late failure')
+            return super().check(stage)
+    task_worker.run_task(tid,FailBeforeCommit())
+    current=client.get(url,headers=headers).json()['data']
+    assert current['status']=='failed' and current['exit_reason']=='commit_api_503' and current['version']==2
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_steps WHERE task_id=?',[tid]).rows[0]['n']=='0'
+        assert db.query("SELECT COUNT(*) AS n FROM agent_runs WHERE JSON_UNQUOTE(JSON_EXTRACT(result,'$.task_id'))=?",[tid]).rows[0]['n']=='0'
+    resumed=client.post(url+'/actions',headers=headers,json={'kind':'resume','version':current['version'],'step_id':current['step_id'],'input_fingerprint':current['input_fingerprint'],'request_id':'resume-atomic'})
+    assert resumed.status_code==202,resumed.text
+    task_worker.run_task(tid)
+    assert client.get(url,headers=headers).json()['data']['status']=='waiting_student'
+    with Database.from_environment() as db:
+        assert db.query("SELECT status FROM learning_task_actions WHERE task_id=? AND request_id='resume-atomic'",[tid]).rows[0]['status']=='applied'
+    qid,tid,url=create('prepare-limit')
+    task_worker.run_task(tid,TaskBudget(started=time.monotonic()-46))
+    current=client.get(url,headers=headers).json()['data']
+    assert current['status']=='failed' and current['exit_reason']=='prepare_budget'
+    qid,tid,url=create('execution-limit')
+    with Database.from_environment() as db:db.query('UPDATE learning_tasks SET run_count=72 WHERE id=?',[tid])
+    task_worker.run_task(tid)
+    limited=client.get(url,headers=headers).json()['data']
+    assert limited['status']=='failed' and limited['exit_reason']=='retry_budget' and limited['restart_required'] is True
+
+
+def test_task_mastery_admission_distinguishes_exposure_hint_and_independence(client,monkeypatch):
+    import copy
+    from fastapi import HTTPException
+    from sczx_api import task_mastery
+    from sczx_api.task_policy import TaskBudget
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'task-aemt-rules@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    qid=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程 x+1=2'}).json()['data']['id']
+    task={'id':new_id(),'user_id':user['id'],'question_id':qid,'active_request':'aemt-action','pending_action':{'kind':'answer','text':'1'},'checkpoint':{'phase':'independent'}}
+    base={'checkpoint':{'workflow_version':'langgraph-learning-v1','revealed_phases':[],'hints':{}},'attempt':{'phase':'independent','verdict':'confirmed_correct','answer':'1','assisted':False,'grading':{'can_update_learning':True,'verdict':'confirmed_correct','correct':True}}}
+    calls=[]
+    monkeypatch.setattr(task_mastery,'apply_evidence',lambda *args,**kwargs:calls.append(copy.deepcopy(args[3])))
+    with Database.from_environment() as db:
+        revealed=copy.deepcopy(base);revealed['checkpoint']['revealed_phases']=['independent']
+        task_mastery.apply_aemt(db,task,revealed,TaskBudget(),False)
+        assisted=copy.deepcopy(base);assisted['attempt']['assisted']=True
+        task_mastery.apply_aemt(db,task,assisted,TaskBudget(),False)
+        contrast=copy.deepcopy(base);contrast['attempt']['phase']='contrast'
+        task_mastery.apply_aemt(db,task,contrast,TaskBudget(),False)
+        assert not calls
+        mismatch=copy.deepcopy(base);mismatch['attempt']['answer']='2'
+        with pytest.raises(HTTPException) as error:task_mastery.apply_aemt(db,task,mismatch,TaskBudget(),False)
+        assert error.value.status_code==503
+        wrong_verdict=copy.deepcopy(base);wrong_verdict['attempt']['grading']['correct']=False
+        with pytest.raises(HTTPException):task_mastery.apply_aemt(db,task,wrong_verdict,TaskBudget(),False)
+        assisted['checkpoint']['hints']={'independent':['先移项']}
+        task_mastery.apply_aemt(db,task,assisted,TaskBudget(),False)
+        assert calls[-1]['aemt_event']['hint_used'] is True and calls[-1]['hint_level']==1
+        assert calls[-1]['aemt_event']['scope']=='original_question' and calls[-1]['aemt_event']['solution_seen'] is False
+        assert db.query('SELECT interval_days FROM review_plans WHERE user_id=? AND question_id=?',[user['id'],qid]).rows[0]['interval_days']=='1'
+        task_mastery.apply_aemt(db,task,base,TaskBudget(),False)
+        assert len(calls)==2 and calls[-1]['aemt_event']['hint_used'] is False
+        assert calls[-1]['aemt_event']['student_confirmed'] is True
+
+
+def test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task(client,monkeypatch):
+    import time
+    from sczx_api import analysis,task_worker
+    # A separate schema keeps the real queue scan independent of earlier test jobs.
+    with Database.from_environment() as db:db.query('CREATE DATABASE sczx_pool_workers CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
+    monkeypatch.setenv('SCZX_DB_NAME','sczx_pool_workers');initialize_database()
+    monkeypatch.setenv('SCZX_TASK_WORKERS','2')
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    def compute(p,**kwargs):
+        completed=p['task_action']['kind']=='answer'
+        return {'status':'completed' if completed else 'waiting_student','checkpoint':{'phase':'done' if completed else 'repair','rounds':1},'student_view':{'title':'后台执行完成','prompt_blocks':[],'input_kind':'none' if completed else 'text'},'traces':[],'attempt':None,'learning_eligible':False,'exit_reason':'','elapsed_ms':1,'usage':None}
+    monkeypatch.setattr(task_worker,'compute',compute)
+    def wait_for(web,url,headers,status):
+        deadline=time.monotonic()+8
+        while time.monotonic()<deadline:
+            response=web.get(url,headers=headers)
+            assert response.status_code==200,response.text
+            task=response.json()['data']
+            if task['status']==status:return task
+            assert task['status'] in ['queued','running'],task
+            time.sleep(.05)
+        pytest.fail('background task did not reach '+status)
+    with TestClient(app) as web:
+        pool=app.state.task_workers
+        assert len(pool.threads)==2 and all(t.is_alive() for t in pool.threads)
+        user=web.post('/api/v1/auth/register',json={'email':'real-pool@example.com','password':'secret'}).json()['data']
+        headers={'Authorization':'Bearer '+user['access_token']}
+        qid=web.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程 x+1=2'}).json()['data']['id']
+        web.post('/api/v1/questions/'+qid+'/analyze',headers=headers)
+        task=web.post('/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'pool-create'}).json()['data']
+        url='/api/v1/learning-tasks/'+task['id'];task=wait_for(web,url,headers,'waiting_student')
+        accepted=web.post(url+'/actions',headers=headers,json={'kind':'answer','text':'1','version':task['version'],'step_id':task['step_id'],'input_fingerprint':task['input_fingerprint'],'request_id':'pool-answer'})
+        assert accepted.status_code==202,accepted.text
+        done=wait_for(web,url,headers,'completed')
+        with Database.from_environment() as db:
+            assert db.query('SELECT run_count FROM learning_tasks WHERE id=?',[task['id']]).rows[0]['run_count']=='2'
+            assert db.query('SELECT status FROM learning_task_actions WHERE task_id=?',[task['id']]).rows[0]['status']=='applied'
+    assert all(not t.is_alive() for t in pool.threads)
+    # The outer fixture has workers disabled; enqueue between two server lifespans.
+    queued=client.post('/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'pool-restart'}).json()['data']
+    assert queued['status']=='queued'
+    with Database.from_environment() as db:db.query("UPDATE learning_tasks SET status='running',lease_token='interrupted-worker',lease_until=UTC_TIMESTAMP(6)-INTERVAL 1 SECOND,run_count=1 WHERE id=?",[queued['id']])
+    with TestClient(app) as restarted:
+        recovered=wait_for(restarted,'/api/v1/learning-tasks/'+queued['id'],headers,'waiting_student')
+        assert recovered['id']==queued['id']
+        with Database.from_environment() as db:
+            row=db.query('SELECT run_count,lease_token,lease_until FROM learning_tasks WHERE id=?',[queued['id']]).rows[0]
+            assert row=={'run_count':'2','lease_token':None,'lease_until':None}

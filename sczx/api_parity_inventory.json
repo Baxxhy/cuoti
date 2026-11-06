@@ -7,7 +7,7 @@
       "GET",
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}",
@@ -16,7 +16,7 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/actions",
@@ -25,7 +25,7 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/handwriting",
@@ -34,7 +34,7 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/self-check",
@@ -45,7 +45,7 @@
       "GET",
       "PATCH"
     ],
-    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; task worker/end-to-end browser pending"
+    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; native worker/local real workflow/expired lease acceptance passed; model/HTTP/browser parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/history",
@@ -54,7 +54,7 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; task worker/end-to-end browser pending"
+    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; native worker/local real workflow/expired lease acceptance passed; model/HTTP/browser parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/cancel",
@@ -63,7 +63,7 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
   },
   {
     "path": "/api/v1/dashboard",
@@ -697,7 +697,7 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; task worker/end-to-end browser pending"
+    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; native worker/local real workflow/expired lease acceptance passed; model/HTTP/browser parity pending"
   },
   {
     "path": "/api/v1/questions/{question_id}",

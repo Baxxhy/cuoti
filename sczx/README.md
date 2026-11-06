@@ -10,7 +10,7 @@
 - `api_parity_inventory.json`：原83个注册路径的接入清单。
 - `MIGRATION_STATUS.md`：已验证的内容及下一批任务。
 
-目前前端构建、一部分浏览器交互和已接入后端的隔离数据库验收通过。原83条注册路径均已接入，学习任务后台执行与恢复尚在迁移；完整浏览器对照、实际算法联调及独立安装仍待完成。
+目前前端构建、一部分浏览器交互和已接入后端的隔离数据库验收通过。原83条注册路径均已接入，学习任务后台执行、本地算法完整流程和过期执行恢复已验收；完整浏览器对照、真实模型/语音联调及独立安装仍待完成。
 
 ## 运行
 
@@ -30,12 +30,13 @@ npm run dev
 - `SCZX_DB_NAME`：新建的 `sczx_` 前缀数据库。
 - `SCZX_DB_HOST`、`SCZX_DB_PORT`、`SCZX_DB_USER`、`SCZX_DB_PASSWORD`：该独立MySQL数据库的连接信息。
 - `SCZX_DB_SOCKET`：可选的本地MySQL socket。
+- `SCZX_TASK_WORKERS`：默认2个后台任务线程；仅隔离接口测试可设为0，关闭后任务不会自动执行。
 
 空数据库可通过 `python -c 'from sczx_api.schema import initialize_database; initialize_database()'` 初始化。该命令拒绝已有表的数据库。程序不会读取原项目的数据库配置。
 
 ## 检查
 
-在 `frontend/` 运行 `npm test` 和 `npm run build`。后端安装pytest后，从 `sczx/` 运行 `PYTHONPATH=backend python -m pytest backend/tests`。MySQL测试会新建临时实例，仅使用临时数据目录和本地socket。
+在 `frontend/` 运行 `npm test` 和 `npm run build`。后端验收还需要安装算法目录依赖，以运行实际渲染和学习流程；安装pytest后，从 `sczx/` 运行 `PYTHONPATH=backend python -m pytest backend/tests`。MySQL测试会新建临时实例，仅使用临时数据目录和本地socket。
 
 `node scripts/browser_smoke.mjs` 检查已启动网页中的登录错误、注册页和图片选择；使用受控HTTP响应，不作为真实后端完整流程验收。
 

@@ -1,8 +1,10 @@
 from contextlib import asynccontextmanager
+import os
 from starlette.concurrency import run_in_threadpool
 from . import practice
 from . import tasks,task_images
 from . import task_records,journey
+from .task_worker import WorkerPool
 
 import pymysql
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
@@ -63,7 +65,10 @@ def envelope(data):
 async def lifespan(app):
     accounts.secret()
     recover_jobs()
-    yield
+    pool=WorkerPool(count=int(os.environ.get('SCZX_TASK_WORKERS','2'))).start()
+    app.state.task_workers=pool
+    try:yield
+    finally:pool.stop()
 
 
 app = FastAPI(title='SCZX', lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None, redirect_slashes=False)
