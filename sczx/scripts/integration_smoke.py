@@ -59,6 +59,12 @@ def main():
                         for index in range(16):
                             stem=f'{subject}浏览器验收样本{index}: 1+1=?'
                             db.query("INSERT INTO dataset_questions (id,dataset_source_id,source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade,created_at,updated_at) VALUES (?,?,?,'test',?,'高一','高中','浏览器验收题',?,'综合题',JSON_ARRAY(),JSON_QUOTE('2'),'验收样本',JSON_ARRAY('基础运算'),JSON_ARRAY(),'medium',?,JSON_OBJECT(),1,1,1,'ready',1,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),source,subject+str(index),subject,stem,hashlib.sha256(stem.encode()).hexdigest()])
+                    study_source=new_id()
+                    db.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,'sczx-study-browser','练习验收题库','1','','fixture','',6,6,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[study_source])
+                    for index in range(6):
+                        stem=f'独立题库验收{index}: 1+1等于多少？'
+                        db.query("INSERT INTO dataset_questions (id,dataset_source_id,source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade,created_at,updated_at) VALUES (?,?,?,'test','数学','高一','高中','独立题库验收',?,'multiple-choice',JSON_ARRAY(JSON_OBJECT('key','A','text','2'),JSON_OBJECT('key','B','text','3')),JSON_QUOTE('A'),'1+1=2',JSON_ARRAY('基础运算'),JSON_ARRAY(),'medium',?,JSON_OBJECT(),1,1,1,'ready',1,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),study_source,str(index),stem,hashlib.sha256(stem.encode()).hexdigest()])
+                    env.update(QA_STUDY_SOURCE=study_source,QA_STUDY_EMAIL='study-browser@example.test',QA_STUDY_PASSWORD='Study-browser-123')
             algorithm_port,backend_port,web_port=port(),port(),port()
             env.update(SCZX_ALGORITHM_URL=f'http://127.0.0.1:{algorithm_port}',SCZX_BACKEND_URL=f'http://127.0.0.1:{backend_port}')
             python=str(ROOT/'.venv/bin/python')
@@ -78,6 +84,18 @@ def main():
                     response=http.request(method,base+'/api/v1'+path,json=body,headers=headers)
                     assert response.status_code==expected,(path,response.status_code,response.text)
                     return response.json()['data']
+                if os.environ.get('SCZX_RUN_E2E')=='1':
+                    actor=http.post(base+'/api/v1/auth/register',json={'email':env['QA_STUDY_EMAIL'],'password':env['QA_STUDY_PASSWORD'],'grade':'高一'})
+                    assert actor.status_code==200,actor.text
+                    review_response=http.post(base+'/api/v1/auth/register',json={'email':'review-browser@example.test','password':'Review-browser-123','grade':'初一'})
+                    assert review_response.status_code==200,review_response.text
+                    reviewer=review_response.json()['data'];review_headers={'Authorization':'Bearer '+reviewer['access_token']};review_ids=[]
+                    for index,stem in enumerate(['解方程 x+2=5','计算 7+5']):
+                        created=http.post(base+'/api/v1/questions/manual',headers=review_headers,json={'question_text':stem,'subject':'数学','grade':'初一'})
+                        assert created.status_code==200,created.text
+                        plan_id=new_id();review_ids.append(plan_id)
+                        with Database.from_environment() as db:db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL ? DAY,1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[plan_id,reviewer['id'],created.json()['data']['id'],2-index])
+                    env.update(QA_REVIEW_QUEUE_TOKEN=reviewer['access_token'],QA_REVIEW_QUEUE_FIRST=review_ids[0],QA_REVIEW_QUEUE_SECOND=review_ids[1])
                 response=http.post(base+'/api/v1/auth/register',json={'email':'http-smoke@example.com','password':'local-test-password'})
                 assert response.status_code==200,response.text
                 user=response.json()['data'];headers={'Authorization':'Bearer '+user['access_token']}
