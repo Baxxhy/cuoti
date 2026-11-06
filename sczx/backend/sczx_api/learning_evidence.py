@@ -34,12 +34,16 @@ def question_version(db,question):
     return digest(value)
 
 
-def apply_evidence(db,owner,question,evidence,preferred='',include_analysis=True,timeout=200):
+def knowledge_point(db,question,preferred='',include_analysis=True):
     point=preferred.strip() or first_label(question['knowledge_points'])
     if not point and include_analysis:
         analyses=db.query('SELECT * FROM problem_analyses WHERE question_id=? ORDER BY created_at,id LIMIT 1',[question['id']]).rows
         if analyses:point=first_label(row_json('problem_analyses',analyses[0])['knowledge_points'])
-    point=point or question['title'].strip() or question['subject'].strip()+'·'+question['question_type']
+    return point or question['title'].strip() or question['subject'].strip()+'·'+question['question_type']
+
+
+def apply_evidence(db,owner,question,evidence,preferred='',include_analysis=True,timeout=200):
+    point=knowledge_point(db,question,preferred,include_analysis)
     subject=question['subject'].strip();question_id=question['id']
     diagnoses=db.query('SELECT * FROM diagnoses WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1',[question_id]).rows
     diagnosis=row_json('diagnoses',diagnoses[0]) if diagnoses else {}

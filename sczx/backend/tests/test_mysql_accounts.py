@@ -1536,3 +1536,148 @@ def test_papers_real_rendering_ownership_and_transaction_rollback(client,monkeyp
     assert client.delete(url,headers=headers).json()['data']=={'deleted':True}
     assert client.delete(url,headers=headers).json()['data']=={'deleted':False}
     assert client.get(url,headers=headers).status_code==404
+
+
+def test_practice_recommend_cache_receipt_alignment_and_source_versions(client,monkeypatch):
+    import hashlib,json
+    from sczx_api import practice,practice_alignment,retrieval,practice_generated
+    from sczx_api.security import new_id
+    from sczx_api.rows import row_json
+    for path in ['/api/v1/practice/recommend','/api/v1/practice/attempt']:
+        assert client.post(path,content='{invalid').status_code==401
+    user=client.post('/api/v1/auth/register',json={'email':'practice-owner@example.com','password':'secret'}).json()['data']
+    outsider=client.post('/api/v1/auth/register',json={'email':'practice-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};other={'Authorization':'Bearer '+outsider['access_token']}
+    mistake=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程 x+1=2','subject':'数学','grade':'初二','knowledge_points':['方程']}).json()['data']['id']
+    source_id=new_id();dataset_id=new_id();card_id=new_id()
+    with Database.from_environment() as db:
+        db.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,'sczx-practice-test','练习测试题','1','','public','',1,1,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[source_id])
+        db.query("INSERT INTO dataset_questions (id,dataset_source_id,source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade,created_at,updated_at) VALUES (?,?,?,'test','数学','初二','初中','解方程','解方程 x+2=3','综合题',JSON_ARRAY(),JSON_QUOTE('1'),'两边减去2',JSON_ARRAY('方程'),JSON_ARRAY(),'medium',?,JSON_OBJECT(),1,1,1,'ready',1,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[dataset_id,source_id,'practice-1',hashlib.sha256(b'practice-1').hexdigest()])
+        db.query("INSERT INTO knowledge_points (id,code,subject,name,content,created_at,updated_at) VALUES (?,'sczx.practice.equation','数学','方程',JSON_OBJECT('grade','初二'),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[card_id])
+    counts={'alignment':0,'grade':0};decisive=False;allow=True
+    prepared={'query':'方程','knowledge_match':['方程'],'target_knowledge_id':card_id,'target_knowledge_name':'方程','target_skill':'移项','error_match':[]}
+    def compute(p):
+        op=p['operation']
+        if op=='retrieval_prepare':return prepared
+        if op=='retrieval_search':return {'hits':[{'id':dataset_id,'dense_rank':1,'sparse_rank':1,'fusion_rank':1,'fusion_score':1.}]}
+        if op=='retrieval_rank':return {'ranked':[{**p['retrieval_candidates'][0],'knowledge_points':['方程'],'score_trace':{'structure_similarity':1,'reranker_score':1,'mode_score':1}}]}
+        if op=='practice_alignment':
+            counts['alignment']+=1
+            return {'checks':[{'id':dataset_id,'aligned':allow,'method':'symbolic_linear'}]}
+        if op=='normalize_options':return {'options':[]}
+        if op=='grade_answer':
+            counts['grade']+=1
+            return {'correct':True if decisive else None,'can_update_learning':decisive,'verdict':'correct' if decisive else 'uncertain','confidence':1 if decisive else 0,'evidence':[],'feedback':'完成' if decisive else '无法确定','method':'test'}
+        raise AssertionError(op)
+    for module in [practice,practice_alignment,retrieval,practice_generated]:monkeypatch.setattr(module,'compute',compute)
+    evidence=[]
+    monkeypatch.setattr(practice,'apply_evidence',lambda *args,**kwargs:evidence.append(args) or {'mastery_after':{'mastery_score':.5}})
+    body={'mistake_id':mistake,'mode':'reinforce','debug':True}
+    assert client.post('/api/v1/practice/recommend',headers=other,json=body).status_code==404
+    recommended=client.post('/api/v1/practice/recommend',headers=headers,json=body)
+    assert recommended.status_code==200,recommended.text
+    result=recommended.json()['data'];assert result['question_id']==dataset_id and 'answer' not in result
+    assert result['debug']['alignment_proof']['context']['policy']==1
+    cached=client.post('/api/v1/practice/recommend',headers=headers,json=body)
+    assert cached.status_code==200 and cached.json()['data']['question_id']==dataset_id and counts['alignment']==1
+    attempt={'mistake_id':mistake,'question_id':dataset_id,'mode':'reinforce','student_answer':'1','duration_seconds':20}
+    uncertain=client.post('/api/v1/practice/attempt',headers=headers,json=attempt)
+    assert uncertain.status_code==200,uncertain.text
+    assert uncertain.json()['data']['correct'] is None and not evidence
+    decisive=True
+    graded=client.post('/api/v1/practice/attempt',headers=headers,json=attempt)
+    assert graded.status_code==200,graded.text
+    receipt=graded.json()['data'];assert receipt['correct'] is True and receipt['mastery'] is None and 'learning_note' in receipt and not evidence
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM dataset_practice_attempts WHERE mistake_id=?',[mistake]).rows[0]['n']=='1'
+    again=client.post('/api/v1/practice/attempt',headers=headers,json=attempt)
+    assert again.json()['data']==receipt and counts['grade']==2
+    resumed=client.post('/api/v1/practice/recommend',headers=headers,json=body)
+    assert resumed.json()['data']['previous_result']==receipt
+    assert resumed.json()['data']['previous_answer']=='1'
+    assert client.post('/api/v1/practice/attempt',headers=headers,json={**attempt,'student_answer':'2'}).status_code==409
+    with Database.from_environment() as db:
+        clone=dict(db.query('SELECT * FROM dataset_questions WHERE id=?',[dataset_id]).rows[0])
+        dataset_id=new_id();clone.update(id=dataset_id,source_item_id='practice-2',content_hash=hashlib.sha256(b'practice-2').hexdigest(),question_text='解方程 x+3=4')
+        keys=list(clone)
+        db.query('INSERT INTO dataset_questions ('+','.join('`'+k+'`' for k in keys)+') VALUES ('+','.join('?' for _ in keys)+')',[clone[k] for k in keys])
+    fresh=client.post('/api/v1/practice/recommend',headers=headers,json={**body,'force_new':True})
+    assert fresh.status_code==200,fresh.text
+    assert fresh.json()['data']['question_id']==dataset_id
+    with Database.from_environment() as db:db.query("UPDATE dataset_questions SET solution='两边减去3' WHERE id=?",[dataset_id])
+    allow=False;second_attempt={**attempt,'question_id':dataset_id}
+    rejected=client.post('/api/v1/practice/attempt',headers=headers,json=second_attempt)
+    assert rejected.status_code==409 and not evidence
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM dataset_practice_attempts WHERE dataset_question_id=?',[dataset_id]).rows[0]['n']=='0'
+    allow=True
+    independent=client.post('/api/v1/practice/attempt',headers=headers,json=second_attempt)
+    assert independent.status_code==200,independent.text
+    assert independent.json()['data']['mastery']==.5 and len(evidence)==1
+    assert 'learning_note' not in independent.json()['data']
+    assert client.post('/api/v1/practice/attempt',headers=headers,json=second_attempt).json()['data']==independent.json()['data']
+    assert len(evidence)==1
+    with Database.from_environment() as db:db.query("UPDATE questions SET question_text='原题已修改' WHERE id=?",[mistake])
+    assert client.post('/api/v1/practice/attempt',headers=headers,json=attempt).status_code==409
+    assert client.post('/api/v1/practice/recommend',headers=headers,json={**body,'mode':'invalid'}).status_code==422
+
+
+def test_generated_practice_fallback_retries_and_real_concurrent_edit(client,monkeypatch):
+    import threading
+    from concurrent.futures import ThreadPoolExecutor
+    from sczx_api import practice_generated,retrieval
+    user=client.post('/api/v1/auth/register',json={'email':'practice-generated@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    qid=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'求 3+4','subject':'数学','grade':'初二','knowledge_points':['加法']}).json()['data']['id']
+    counts={'generate':0,'grade':0};evidence=[];verified=True;decisive=True
+    entered=threading.Event();release=threading.Event();block=False
+    def compute(p):
+        if p['operation']=='generate_practice':
+            counts['generate']+=1
+            if block:
+                entered.set();assert release.wait(8),'concurrent save did not finish'
+            return {'verified':verified,'generation':{},'variant':{'question_text':'求 4+5','answer':'9','explanation':'4+5=9','reference_solution':['4+5=9'],'options':[]}}
+        if p['operation']=='grade_answer':
+            counts['grade']+=1
+            return {'correct':p['answer']=='9' if decisive else None,'can_update_learning':decisive,'verdict':'correct' if decisive else 'uncertain','confidence':1,'evidence':[],'feedback':'反馈','method':'controlled'}
+        raise AssertionError(p['operation'])
+    monkeypatch.setattr(retrieval,'compute',lambda p:{})
+    monkeypatch.setattr(practice_generated,'compute',compute)
+    monkeypatch.setattr(practice_generated,'apply_evidence',lambda *args,**kwargs:evidence.append(args) or {'mastery_after':{'mastery_score':.4}})
+    body={'mistake_id':qid,'mode':'reinforce'}
+    initial=client.post('/api/v1/practice/recommend',headers=headers,json=body)
+    assert initial.status_code==200,initial.text
+    item=initial.json()['data'];assert item['generated'] is True and 'answer' not in item
+    assert client.post('/api/v1/practice/recommend',headers=headers,json=body).json()['data']==item
+    assert counts['generate']==1
+    attempt={'mistake_id':qid,'question_id':item['question_id'],'mode':'reinforce','student_answer':'9'}
+    first=client.post('/api/v1/practice/attempt',headers=headers,json=attempt)
+    assert first.status_code==200,first.text
+    receipt=first.json()['data'];assert receipt['correct'] is True and receipt['mastery']==.4 and len(evidence)==1
+    assert client.post('/api/v1/practice/attempt',headers=headers,json=attempt).json()['data']==receipt
+    assert counts['grade']==1
+    repeated=client.post('/api/v1/practice/attempt',headers=headers,json={**attempt,'student_answer':'8'})
+    assert repeated.status_code==200 and repeated.json()['data']['mastery'] is None and 'learning_note' in repeated.json()['data']
+    assert len(evidence)==1
+    restored=client.post('/api/v1/practice/recommend',headers=headers,json=body).json()['data']
+    assert restored['previous_answer']=='8' and restored['previous_result']['correct'] is False
+    verified=False
+    fallback=client.post('/api/v1/practice/recommend',headers=headers,json={**body,'force_new':True})
+    assert fallback.status_code==200 and fallback.json()['data']['question_id']==item['question_id']
+    verified=True;block=True
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        pending=executor.submit(client.post,'/api/v1/practice/recommend',headers=headers,json={**body,'force_new':True})
+        try:
+            assert entered.wait(5)
+            saved=client.patch('/api/v1/questions/'+qid,headers=headers,json={'question_text':'求 5+6'})
+            assert saved.status_code==200,saved.text
+        finally:release.set()
+        stale=pending.result(timeout=8)
+    assert stale.status_code==409,stale.text
+    assert client.post('/api/v1/practice/attempt',headers=headers,json=attempt).status_code==409
+    verified=False;block=False
+    unavailable=client.post('/api/v1/practice/recommend',headers=headers,json=body)
+    assert unavailable.status_code==503 and '原错题和学习记录已保留' in unavailable.json()['detail']
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM variant_questions WHERE question_id=?',[qid]).rows[0]['n']=='1'
+        assert db.query('SELECT COUNT(*) AS n FROM variant_attempts WHERE variant_id=?',[item['question_id']]).rows[0]['n']=='2'

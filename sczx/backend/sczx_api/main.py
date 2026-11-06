@@ -1,4 +1,6 @@
 from contextlib import asynccontextmanager
+from starlette.concurrency import run_in_threadpool
+from . import practice
 
 import pymysql
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
@@ -448,3 +450,15 @@ async def paper_download(request: Request):
 @app.api_route('/reports/{media_path:path}', methods=['GET', 'HEAD'])
 async def media(request: Request):
     return await serve_media(request)
+
+
+@app.post('/api/v1/practice/recommend')
+async def practice_recommend(request: Request):
+    await run_in_threadpool(practice.authorize,request)
+    return envelope(await run_in_threadpool(practice.recommend,request,await accounts.read_json(request)))
+
+
+@app.post('/api/v1/practice/attempt')
+async def practice_attempt(request: Request):
+    await run_in_threadpool(practice.authorize,request)
+    return envelope(await run_in_threadpool(practice.attempt,request,await accounts.read_json(request)))

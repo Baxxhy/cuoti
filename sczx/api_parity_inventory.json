@@ -309,16 +309,20 @@
   {
     "path": "/api/v1/practice/recommend",
     "source": "backend-cangjie/src/main.cj:60",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported dataset/generated practice admission/cache/source-version/receipt/evidence rules; isolated two-branch and genuine concurrent edit acceptance passed; real retrieval/model/browser pending"
   },
   {
     "path": "/api/v1/practice/attempt",
     "source": "backend-cangjie/src/main.cj:61",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported dataset/generated practice admission/cache/source-version/receipt/evidence rules; isolated two-branch and genuine concurrent edit acceptance passed; real retrieval/model/browser pending"
   },
   {
     "path": "/api/v1/answers/handwriting",

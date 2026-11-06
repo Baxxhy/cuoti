@@ -5,6 +5,11 @@ from .question_detail import query_array
 from .rows import row_json
 
 
+def equivalent(left,right):
+    # Original jsonEquivalent compares scalar JSON text, so true != 1 != 1.0.
+    return json.dumps(left,sort_keys=True,ensure_ascii=False)==json.dumps(right,sort_keys=True,ensure_ascii=False)
+
+
 def source_fingerprint(db,question):
     source={k:question[k] for k in ['question_text','student_answer','subject','grade','title','formulas','options','question_type','knowledge_points']}
     source['student_work_revisions']=[r['id'] for r in db.query('SELECT id FROM student_works WHERE question_id=? ORDER BY id',[question['id']]).rows]
