@@ -22,7 +22,7 @@ from sczx_api.database import Database
 from sczx_api.schema import initialize_database
 from sczx_api.security import new_id
 from sczx_api.knowledge_seed import seed_public_knowledge
-from browser_fixtures import seed_rendering
+from browser_fixtures import seed_rendering,seed_personal_learning
 
 
 def port():
@@ -116,6 +116,26 @@ def main():
                         plan_id=new_id();review_ids.append(plan_id)
                         with Database.from_environment() as db:db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL ? DAY,1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[plan_id,reviewer['id'],created.json()['data']['id'],2-index])
                     env.update(QA_REVIEW_QUEUE_TOKEN=reviewer['access_token'],QA_REVIEW_QUEUE_FIRST=review_ids[0],QA_REVIEW_QUEUE_SECOND=review_ids[1])
+                    route_email,route_password='route-browser@example.test','Route-browser-123'
+                    routed=http.post(base+'/api/v1/auth/register',json={'email':route_email,'password':route_password,'grade':'初一'})
+                    assert routed.status_code==200,routed.text
+                    route_actor=routed.json()['data']
+                    routed_question=http.post(base+'/api/v1/questions/manual',headers={'Authorization':'Bearer '+route_actor['access_token']},json={'question_text':'解方程：2x+3=11','student_answer':'x=7','student_steps':['2x=11+3','x=7'],'subject':'数学','grade':'初一'})
+                    assert routed_question.status_code==200,routed_question.text
+                    route_qid=routed_question.json()['data']['id']
+                    with Database.from_environment() as db:
+                        point=db.query("SELECT id FROM knowledge_points WHERE code='math.equation_property'").rows[0]['id']
+                        db.query("INSERT INTO user_question_knowledge_links (id,user_id,question_id,knowledge_point_id,`role`,confidence,mapping_method,evidence_text,created_at,updated_at) VALUES (?,?,?,?,'primary',1,'fixture','受控图谱布局验收',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),route_actor['id'],route_qid,point])
+                    env.update(QA_ROUTE_EMAIL=route_email,QA_ROUTE_PASSWORD=route_password,QA_ROUTE_QUESTION=route_qid)
+                    person=http.post(base+'/api/v1/auth/register',json={'email':'personal-browser@example.test','password':'Personal-browser-123','grade':'初一'})
+                    assert person.status_code==200,person.text
+                    personal_actor=person.json()['data'];personal_headers={'Authorization':'Bearer '+personal_actor['access_token']};personal_questions=[]
+                    for index in range(22):
+                        created=http.post(base+'/api/v1/questions/manual',headers=personal_headers,json={'question_text':f'长期检索{index}：2x+1=2','subject':'数学','grade':'初一'})
+                        assert created.status_code==200,created.text
+                        personal_questions.append(created.json()['data']['id'])
+                    with Database.from_environment() as db:env.update(seed_personal_learning(db,personal_actor['id'],personal_questions))
+                    env['QA_PERSONAL_TOKEN']=personal_actor['access_token']
                 response=http.post(base+'/api/v1/auth/register',json={'email':'http-smoke@example.com','password':'local-test-password'})
                 assert response.status_code==200,response.text
                 user=response.json()['data'];headers={'Authorization':'Bearer '+user['access_token']}

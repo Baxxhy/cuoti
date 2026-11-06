@@ -42,3 +42,21 @@ def seed_rendering(db,root):
     blocked=source(db,'sczx-blocked-rendering','停用题验收')
     blocked_id=question(db,blocked,r'不应展示的坏公式 $$\overset{⇌}$$',[{'key':'A','text':'甲'},{'key':'B','text':'乙'}],'A','验收样本')
     return {'QA_STUDY_FIGURE_SOURCE':figures,'QA_STUDY_CHEM_SOURCE':chemical,'SCZX_QUESTION_BANK_ROOT':str(root),'QA_STUDY_BLOCKED_QUESTION':blocked_id}
+
+
+def seed_personal_learning(db,owner,question_ids):
+    """Persist the original personal-learning browser fixture, without model output."""
+    code='personal.browser';card_id=new_id()
+    insert(db,'knowledge_points',dict(id=card_id,code=code,subject='数学',name='长期学习等式性质',content={'grade':'初一','chapter':'长期学习验收章节','definition':'等式两边同时加上或减去同一个数，等式仍成立。','formulas':[r'a=b \Rightarrow a+c=b+c']}))
+    first_plan=None
+    for index,qid in enumerate(question_ids):
+        db.query('UPDATE questions SET knowledge_points=? WHERE id=?',[json.dumps(['长期学习等式性质'],ensure_ascii=False),qid])
+        plan=new_id()
+        insert(db,'review_plans',dict(id=plan,user_id=owner,question_id=qid,interval_days=1,due_at='2099-01-01 00:00:00' if index==21 else '2020-01-01 00:00:00',reason='移项符号待巩固',status='pending'))
+        if index==0:
+            first_plan=plan
+            insert(db,'user_question_knowledge_links',dict(id=new_id(),user_id=owner,question_id=qid,knowledge_point_id=card_id,role='primary',confidence=1,mapping_method='fixture',evidence_text='受控验收'))
+    insert(db,'mastery_states',dict(id=new_id(),user_id=owner,subject='数学',knowledge_point='长期学习等式性质',mastery_score=.4,confidence=.8,evidence_count=2,near_transfer_rate=0,far_transfer_rate=0,forgetting_risk=0,update_reason='受控验收'))
+    result={'explanation':'受控历史讲解','key_points':['两边同时运算'],'check_question':'为什么要同时运算？','sources':[{'name':'等式的性质'}]}
+    db.query('INSERT INTO knowledge_lessons (id,user_id,knowledge_code,request_id,input_fingerprint,prompt,result,created_at) VALUES (?,?,?,?,?,?,?,UTC_TIMESTAMP(6))',[new_id(),owner,code,'fixture-history','old','历史提问',json.dumps(result,ensure_ascii=False)])
+    return {'QA_PERSONAL_QUESTION':question_ids[0],'QA_PERSONAL_PLAN':first_plan,'QA_PERSONAL_CODE':code}

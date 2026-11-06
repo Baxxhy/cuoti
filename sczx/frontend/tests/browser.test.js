@@ -144,6 +144,7 @@ describe('Web runtime preserves original page contracts',()=>{
   input.value='保留后的草稿'
   await wrapper.setProps({active:false})
   expect(hide).toHaveBeenCalledTimes(1)
+  expect(wrapper.find('input').exists()).toBe(false)
   expect(unload).not.toHaveBeenCalled()
   document.dispatchEvent(new Event('visibilitychange'))
   expect(show).toHaveBeenCalledTimes(1)

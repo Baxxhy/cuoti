@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 41,
+  "migrated_count": 45,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -222,8 +222,9 @@
       "file": "graph-layout.spec.ts",
       "line": 5,
       "name": "知识图谱：实际连线对齐节点，缩放和聚焦后仍然对齐",
-      "migration": "not_yet_copied",
-      "full_title": "知识图谱：实际连线对齐节点，缩放和聚焦后仍然对齐"
+      "migration": "copied_case",
+      "full_title": "知识图谱：实际连线对齐节点，缩放和聚焦后仍然对齐",
+      "migrated_file": "graph-layout.spec.ts"
     },
     {
       "file": "learning-tasks.spec.ts",
@@ -366,22 +367,25 @@
       "file": "personal-learning.spec.ts",
       "line": 13,
       "name": "知识讲解来源冲突：问题保留，重新发送可恢复且不会重复旧请求",
-      "migration": "not_yet_copied",
-      "full_title": "知识讲解来源冲突：问题保留，重新发送可恢复且不会重复旧请求"
+      "migration": "copied_case",
+      "full_title": "知识讲解来源冲突：问题保留，重新发送可恢复且不会重复旧请求",
+      "migrated_file": "personal-learning.spec.ts"
     },
     {
       "file": "personal-learning.spec.ts",
       "line": 53,
       "name": "复习检索覆盖未来安排，常用范围保存与恢复，切题草稿不丢失",
-      "migration": "not_yet_copied",
-      "full_title": "复习检索覆盖未来安排，常用范围保存与恢复，切题草稿不丢失"
+      "migration": "copied_case",
+      "full_title": "复习检索覆盖未来安排，常用范围保存与恢复，切题草稿不丢失",
+      "migrated_file": "personal-learning.spec.ts"
     },
     {
       "file": "personal-learning.spec.ts",
       "line": 89,
       "name": "知识框架连接真实知识卡，历史讲解恢复，模型离线时保留提问",
-      "migration": "not_yet_copied",
-      "full_title": "知识框架连接真实知识卡，历史讲解恢复，模型离线时保留提问"
+      "migration": "copied_case",
+      "full_title": "知识框架连接真实知识卡，历史讲解恢复，模型离线时保留提问",
+      "migrated_file": "personal-learning.spec.ts"
     },
     {
       "file": "product-experience.spec.ts",
