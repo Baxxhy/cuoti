@@ -12,7 +12,7 @@ const artifacts=path.join(root,'.runtime/page-compare',process.env.SCZX_COMPARE_
 fs.mkdirSync(artifacts,{recursive:true})
 const user={id:'ui-user',name:'界面对照',email:'ui@example.test',grade:'初二',role:'student'}
 const task={id:'ui-task',question_id:'ui-question',session_id:null,status:'completed',version:4,step_id:'ui-step',input_fingerprint:'ui-fingerprint',learning_applied:true,last_request_id:'ui-answer',current_action:'answer',exit_reason:'',restart_required:false,student_view:{title:'本次学习完成',feedback:'对照题独立完成了，已保留这次验证记录。',prompt_blocks:[],input_kind:'none',secondary_actions:[],recommendation:{action:'practice',question_id:'',knowledge_card_ids:[],reason:''}}}
-const initial=['pages/login/login','pages/register/register','pages/forgot/forgot','pages/manual/manual','pages/manual/manual?ui_filled=1','pages/task/task?id=ui-task','pages/task/task?id=ui-task&ui_repair=1','pages/index/index']
+const initial=['pages/login/login','pages/register/register','pages/forgot/forgot','pages/manual/manual','pages/manual/manual?ui_filled=1','pages/task/task?id=ui-task','pages/task/task?id=ui-task&ui_repair=1','pages/index/index','pages/task/task?id=ui-task&ui_repair=1&ui_modal=1','pages/detail/detail?id=ui-question&ui_sheet=1','pages/detail/detail?id=ui-question&ui_remove=1','pages/detail/detail?id=ui-question&ui_preview=1','pages/capture/capture?ui_return=1','pages/capture/capture?ui_history=1']
 const cases=process.env.SCZX_COMPARE_ROUTES?process.env.SCZX_COMPARE_ROUTES.split(','):process.argv.includes('--all')?[...JSON.parse(fs.readFileSync(path.join(root,'frontend/src/routes.json'))),...initial.filter(r=>r.includes('?'))]:initial
 const mime={'.js':'text/javascript','.css':'text/css','.html':'text/html','.json':'application/json','.ttf':'font/ttf','.woff':'font/woff','.woff2':'font/woff2','.svg':'image/svg+xml','.png':'image/png'}
 async function serve(folder){
@@ -64,6 +64,19 @@ try{
     await page.waitForURL('**/#/pages/capture/capture*')
     await page.waitForTimeout(150)
     if(await page.locator('.capture-zone-selected').count()!==1)throw new Error(name+': selected photo lost on return')
+   }
+   if(route.includes('ui_history')){
+    await page.getByLabel('手动录入错题',{exact:true}).click()
+    await page.locator('textarea:visible').first().fill('浏览器返回检查')
+    await page.goBack();await page.waitForURL('**/#/pages/capture/capture*')
+    await page.goForward();await page.waitForURL('**/#/pages/manual/manual')
+    await page.locator('textarea:visible').first().waitFor()
+    await page.evaluate(()=>{location.hash='/pages/help/help?ui_direct=1'})
+    await page.waitForURL('**/#/pages/help/help?ui_direct=1')
+    await page.waitForTimeout(150)
+    await page.reload({waitUntil:'networkidle'})
+    const title=page.locator('.header-title:visible')
+    if(await title.textContent()!=='使用指南')throw new Error(name+': stale page stack overrides the address after reload')
    }
    await page.evaluate(()=>document.fonts.ready)
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})

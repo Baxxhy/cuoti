@@ -196,6 +196,15 @@ describe('Web runtime preserves original page contracts',()=>{
   expect(image.emitted('load')[0][0].detail).toEqual({width:600,height:400})
   image.unmount()
  })
+ it('returns transport failures in the original errMsg shape so pages show their network guidance',async()=>{
+  vi.stubGlobal('fetch',vi.fn(async()=>{throw new TypeError('Failed to fetch')}))
+  const complete=vi.fn()
+  const error=await new Promise(resolve=>browser.request({url:'/api/v1/auth/login',fail:resolve,complete}))
+  expect(error.errMsg).toBe('request:fail Failed to fetch')
+  expect(error.message).toBeUndefined()
+  expect(complete).toHaveBeenCalledWith(error)
+  vi.unstubAllGlobals()
+ })
  it('keeps HTTP errors visible to original API handling',async()=>{
   vi.stubGlobal('fetch',vi.fn(async()=>new Response(JSON.stringify({detail:'请先登录'}),{status:401})))
   const response=await new Promise((resolve,reject)=>browser.request({url:'/api/v1/auth/me',success:resolve,fail:reject}))

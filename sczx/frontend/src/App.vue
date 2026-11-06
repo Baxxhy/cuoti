@@ -14,7 +14,7 @@ const page=computed(()=>pages[parsePage(currentUrl.value).route])
   <main v-if="!page" class="page-content"><h1>页面不存在</h1><a href="#/pages/index/index">返回首页</a></main>
   <WebDialogs />
   <WebImagePreview />
-  <div v-if="notice" class="web-toast" :class="{'web-toast-symbol':notice.icon!=='none'}" role="alert">
+  <div v-if="notice" class="web-toast" :class="{'web-toast-symbol':notice.icon!=='none'}">
     <WebIcon v-if="notice.icon!=='none'" type="checkmarkempty" size="55" color="#fff" class="web-toast-success-icon" />
     <span class="web-toast-text">{{notice.title}}</span>
   </div>

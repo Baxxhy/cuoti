@@ -2,7 +2,7 @@
 
 这里把原来的 uni-app 页面改成普通 Vue 网页，把仓颉业务服务改成 Python。数据库仍用 MySQL，原项目和原数据库保留。
 
-目前已接入原版83条接口，后台学习任务可以执行和恢复。独立环境下已通过99项后端测试、33项算法入口/学习流程/掌握度测试、16项前端测试及网页构建。真实浏览器已走通“订正一步→独立解原题→完成对照题”，并通过实际HTTP服务生成和下载PDF、答案PDF、Excel。
+目前已接入原版83条接口，后台学习任务可以执行和恢复。独立环境下已通过99项后端测试、33项算法入口/学习流程/掌握度测试、17项前端测试及网页构建。真实浏览器已走通“订正一步→独立解原题→完成对照题”，并通过实际HTTP服务生成和下载PDF、答案PDF、Excel。
 
 接下来继续核对其余网页操作、原版页面呈现和真实模型/语音。具体记录见 [MIGRATION_STATUS.md](MIGRATION_STATUS.md)。
 
@@ -77,3 +77,12 @@ PYTHONPATH=algorithms .venv/bin/python -m pytest algorithms/tests/test_service.p
 - `api_parity_inventory.json`：原接口的接入及验收情况。
 
 上传图片和导出文件由 `SCZX_MEDIA_ROOT` 指定；启动脚本默认使用 `.runtime/media/`。题库配图位置通过 `SCZX_QUESTION_BANK_ROOT` 指定。
+
+
+原版账号与资料浏览器用例可以和隔离HTTP联调一起运行：
+
+```bash
+SCZX_RUN_E2E=1 .venv/bin/python scripts/integration_smoke.py
+```
+
+它会创建临时MySQL和测试账号，结束后停止本次进程；不会连接现有学生数据库。测试报告保存在 `.runtime/http-smoke/` 对应运行目录。

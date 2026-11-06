@@ -103,7 +103,8 @@ export const browser = {
   },
   request(o) {
     const controller = new AbortController()
-    const timer = setTimeout(() => controller.abort(), o.timeout ?? 60000)
+    let reason=''
+    const timer = setTimeout(() => {reason='timeout';controller.abort()}, o.timeout ?? 60000)
     let url = o.url
     const method = String(o.method || 'GET').toUpperCase()
     const headers = { ...o.header }
@@ -119,8 +120,8 @@ export const browser = {
       let data
       try { data = JSON.parse(text) } catch { data = text }
       result(o, { statusCode: response.status, data, header: Object.fromEntries(response.headers) })
-    }).catch(error => failed(o, error)).finally(() => clearTimeout(timer))
-    return { abort: () => controller.abort() }
+    }).catch(error => failed(o, {errMsg:'request:fail '+(reason||error.message||'')})).finally(() => clearTimeout(timer))
+    return { abort: () => {reason='abort';controller.abort()} }
   },
   uploadFile(o) {
     const xhr = new XMLHttpRequest()
