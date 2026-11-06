@@ -6,7 +6,7 @@ function field(tag) {
  props:{modelValue:[String,Number],value:[String,Number],password:Boolean,focus:Boolean,cursor:{type:Number,default:-1},autoHeight:Boolean},
  emits:['input','change','confirm','focus','blur','update:modelValue'],
  setup(props,{attrs,emit}) {
-  const host=ref(null),control=ref(null)
+  const host=ref(null),control=ref(null),inputText=ref(props.modelValue??props.value??'')
   let observer,lastWidth=-1
   function resize(){
    if(tag!=='textarea'||!props.autoHeight||!host.value||!control.value)return
@@ -23,18 +23,22 @@ function field(tag) {
   }
   onMounted(()=>{nextTick(()=>{resize();selection()});document.fonts?.ready.then(resize);if(typeof ResizeObserver!=='undefined'){observer=new ResizeObserver(entries=>{const width=entries[0].contentRect.width;if(width!==lastWidth){lastWidth=width;resize()}});observer.observe(host.value)}})
   onBeforeUnmount(()=>observer?.disconnect())
-  watch(()=>props.modelValue??props.value,()=>nextTick(resize))
+  watch(()=>props.modelValue??props.value,value=>{inputText.value=value??'';nextTick(resize)})
   watch(()=>[props.focus,props.cursor],selection,{flush:'post'})
   function event(e){return {...eventValue(e,e.target.value),detail:{value:e.target.value,cursor:e.target.selectionStart}}}
   return()=>{
    const {class:classes,style,...rest}=attrs
    const type=props.password?'password':rest.type==='digit'?'text':rest.type
-   return h('div',{ref:host,class:[tag==='textarea'?'web-textarea':'web-input',classes],style,onClick:e=>{if(e.target===host.value&&!rest.disabled){control.value?.focus();rest.onClick?.(e)}}},[
-    h(tag,{...rest,ref:control,class:tag==='textarea'?'uni-textarea-textarea':'uni-input-input',type,inputmode:rest.inputmode||(rest.type==='digit'?'decimal':undefined),value:props.modelValue??props.value??'',
-     onInput:e=>{emit('update:modelValue',e.target.value);emit('input',event(e));resize()},
-     onChange:e=>emit('change',event(e)),onFocus:e=>emit('focus',event(e)),onBlur:e=>emit('blur',event(e)),
-     onKeydown:e=>{rest.onKeydown?.(e);if(e.key==='Enter')emit('confirm',event(e))}})
-   ])
+   const overlay=tag==='input'&&typeof rest.placeholder==='string'&&rest.placeholder.length>0
+   const value=overlay?inputText.value:props.modelValue??props.value??''
+   const native=h(tag,{...rest,ref:control,class:tag==='textarea'?'uni-textarea-textarea':'uni-input-input',type,inputmode:rest.inputmode||(rest.type==='digit'?'decimal':undefined),value,
+    onInput:e=>{if(overlay)inputText.value=e.target.value;emit('update:modelValue',e.target.value);emit('input',event(e));resize()},
+    onChange:e=>emit('change',event(e)),onFocus:e=>emit('focus',event(e)),onBlur:e=>emit('blur',event(e)),
+    onKeydown:e=>{rest.onKeydown?.(e);if(e.key==='Enter')emit('confirm',event(e))}})
+   const children=overlay?[h('div',{class:'web-input-core'},[
+    h('div',{class:'web-input-placeholder input-placeholder','aria-hidden':'true',style:{display:value===''?'block':'none'}},rest.placeholder),native
+   ])]:[native]
+   return h('div',{ref:host,class:[tag==='textarea'?'web-textarea':'web-input',classes],style,onClick:e=>{if(e.target===host.value&&!rest.disabled){control.value?.focus();rest.onClick?.(e)}}},children)
   }
  }
  })

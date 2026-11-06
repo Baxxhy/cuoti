@@ -31,6 +31,22 @@ describe('Web runtime preserves original page contracts',()=>{
    expect(text).not.toMatch(/\buni\s*\./)
   }
  })
+ it('keeps placeholder access and typed text through unrelated updates',async()=>{
+  const wrapper=mount(WebInput,{attachTo:document.body,attrs:{placeholder:'搜索知识','aria-label':'搜索知识'}})
+  expect(wrapper.find('input').attributes('placeholder')).toBe('搜索知识')
+  expect(wrapper.find('.web-input-placeholder').attributes('aria-hidden')).toBe('true')
+  expect(wrapper.find('.web-input-placeholder').isVisible()).toBe(true)
+  await wrapper.find('input').setValue('等式')
+  expect(wrapper.find('.web-input-placeholder').isVisible()).toBe(false)
+  await wrapper.setProps({cursor:1})
+  expect(wrapper.find('input').element.value).toBe('等式')
+  await wrapper.find('input').setValue('')
+  expect(wrapper.find('.web-input-placeholder').isVisible()).toBe(true)
+  await wrapper.setProps({modelValue:'外部恢复的草稿'})
+  expect(wrapper.find('input').element.value).toBe('外部恢复的草稿')
+  expect(wrapper.find('.web-input-placeholder').isVisible()).toBe(false)
+  wrapper.unmount()
+ })
  it('preserves typed storage values and draft enumeration',()=>{
   browser.setStorageSync('draft',{steps:['2x=8'],helped:false})
   expect(browser.getStorageSync('draft')).toEqual({steps:['2x=8'],helped:false})

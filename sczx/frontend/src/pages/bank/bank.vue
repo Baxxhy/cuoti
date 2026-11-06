@@ -400,6 +400,9 @@ onShow(() => {
   padding-bottom: 12px;
 }
 .bank-subjects button {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   flex: none;
   margin: 0;
   min-height: 40px;

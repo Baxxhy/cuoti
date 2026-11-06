@@ -43,7 +43,7 @@ button[disabled][type='default'] {
   white-space: pre-wrap;
   word-break: break-all;
 }
-.web-input > input, .web-textarea > textarea {
+.web-input > input, .web-input-core > input, .web-textarea > textarea {
   display: block;
   width: 100%;
   height: 100%;
@@ -63,3 +63,32 @@ button[disabled][type='default'] {
 }
 .web-input > input::placeholder,.web-textarea > textarea::placeholder {color:gray;opacity:1;}
 .web-textarea > textarea {resize:none;white-space:inherit;word-break:inherit;}
+
+/* The original input keeps its placeholder in a centered text layer. */
+.web-input-core {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+.web-input-placeholder {
+  position: absolute;
+  top: auto !important;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  color: gray;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: pre;
+  word-break: keep-all;
+  pointer-events: none;
+  line-height: inherit;
+  text-decoration: inherit;
+}
+.web-input-core > input::placeholder {color:transparent;opacity:0;}

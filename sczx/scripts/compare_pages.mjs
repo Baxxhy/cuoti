@@ -89,13 +89,14 @@ try{
    if(name==='vue'&&process.env.SCZX_COMPARE_VUE_CSS)await page.addStyleTag({content:process.env.SCZX_COMPARE_VUE_CSS})
    const snapshot=await page.evaluate(()=>{
     const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color','alignContent','alignItems','justifyContent','appearance','wordSpacing','whiteSpace','fontVariantNumeric']
-    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img,.crop-stage,.crop-box')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
+    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img,.crop-stage,.crop-box,.filter-button,.filter-label,.uni-input-placeholder,.uni-textarea-placeholder,.web-input-placeholder')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
      const r=e.getBoundingClientRect(),css=getComputedStyle(e)
      const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let textNode
      while((textNode=walker.nextNode())&&!textNode.textContent.trim()){}
      let textBox=null
      if(textNode){const range=document.createRange();range.selectNodeContents(textNode);const b=range.getBoundingClientRect();textBox=[b.x,b.y,b.width,b.height].map(v=>Math.round(v*100)/100)}
-     return {textBox,tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
+     const placeholder=e.tagName==='INPUT'?getComputedStyle(e,'::placeholder'):null
+     return {placeholderStyle:placeholder?Object.fromEntries(fields.map(k=>[k,placeholder[k]])):null,textBox,tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
     })
     const words=[]
     function visit(node){

@@ -315,6 +315,10 @@ onUnload(leave)
   min-width: 44px;
 }
 .save-range-toggle {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
   margin: 0;
   padding: 8px 0;
   min-height: 44px;

@@ -231,6 +231,9 @@ onUnload(clear)
   gap: 8px;
 }
 .map-filter-row button {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   flex-shrink: 0;
   margin: 0;
   min-height: 44px;
