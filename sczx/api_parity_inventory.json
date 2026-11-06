@@ -256,16 +256,21 @@
   {
     "path": "/api/v1/practice/questions/{question_id}/images/{image_index}",
     "source": "backend-cangjie/src/main.cj:55",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "HEAD"
+    ],
+    "parity": "ported current bank filters/shuffle and signed image API; isolated grade/shuffle/paging/facet/image/ownership acceptance passed, image-layout unit checks passed; study sessions/model/browser pending"
   },
   {
     "path": "/api/v1/study-bank",
     "source": "backend-cangjie/src/main.cj:56",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported current bank filters/shuffle and signed image API; isolated grade/shuffle/paging/facet/image/ownership acceptance passed, image-layout unit checks passed; study sessions/model/browser pending"
   },
   {
     "path": "/api/v1/study-sessions",

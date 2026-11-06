@@ -9,11 +9,11 @@ from .security import signature, valid_media
 from .storage import parts, root
 
 
-def open_media(path):
+def open_media(path, media_root=None):
     components = parts(path)
     fd = None
     try:
-        fd = os.open(root(), os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        fd = os.open(media_root if media_root is not None else root(), os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
         for index, part in enumerate(components):
             flags = os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK
             if index < len(components) - 1: flags |= os.O_DIRECTORY
@@ -48,11 +48,11 @@ def media_range(header, length):
 _TYPES = {'.png':'image/png', '.jpg':'image/jpeg', '.jpeg':'image/jpeg', '.webp':'image/webp', '.bmp':'image/bmp', '.tif':'image/tiff', '.gif':'image/gif', '.svg':'image/svg+xml', '.mp3':'audio/mpeg', '.wav':'audio/wav', '.webm':'audio/webm', '.m4a':'audio/mp4', '.ogg':'audio/ogg', '.mp4':'video/mp4', '.pdf':'application/pdf', '.docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '.zip':'application/zip', '.json':'application/json', '.txt':'text/plain; charset=utf-8'}
 
 
-async def serve_media(request):
+async def serve_media(request, storage_root=None, storage_path=None):
     if not valid_media(request.url.path, request.query_params.get('expires'), request.query_params.get('signature'), secret()):
         raise HTTPException(403, '资源链接已失效，请返回页面刷新')
-    path = request.url.path[1:]
-    file, info = open_media(path)
+    path = storage_path if storage_path is not None else request.url.path[1:]
+    file, info = open_media(path, storage_root)
     etag = '"' + signature('media-etag-v1', f'{path}:{info.st_size}:{info.st_mtime_ns}:{info.st_ino}').hex() + '"'
     content_type = next((value for suffix, value in _TYPES.items() if path.lower().endswith(suffix)), 'application/octet-stream')
     headers = {'ETag': etag, 'Accept-Ranges':'bytes', 'Cache-Control':'private, max-age=0, must-revalidate', 'X-Content-Type-Options':'nosniff', 'Content-Type': content_type}

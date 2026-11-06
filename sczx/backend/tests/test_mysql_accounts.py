@@ -1150,3 +1150,56 @@ def test_review_search_paging_and_saved_filter_limits(client):
     assert client.delete(url+'/'+item['id'],headers=outsider).status_code==404
     assert client.delete(url+'/'+item['id'],headers=headers).json()['data']=={'deleted':True}
     assert len(client.get(url,headers=headers).json()['data'])==19
+
+
+def test_study_bank_grade_shuffle_public_images_and_facets(client,tmp_path,monkeypatch):
+    import json,hashlib
+    from sczx_api.security import new_id,media_url
+    user=client.post('/api/v1/auth/register',json={'email':'bank@example.com','password':'secret','grade':'初二'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};source_id=new_id();bank=tmp_path/'bank';bank.mkdir()
+    stem=bank/'stem.png';answer_image=bank/'answer.png';stem.write_bytes(b'stem-image');answer_image.write_bytes(b'answer-image')
+    monkeypatch.setenv('SCZX_QUESTION_BANK_ROOT',str(bank))
+    def insert(db,index,subject,grade,band,text,**changes):
+        item={'id':new_id(),'dataset_source_id':source_id,'source_item_id':str(index),'split':'test','subject':subject,'grade':grade,'grade_band':band,'title':text,'question_text':text,'question_type':'综合题','options':[],'answer':'1','solution':'参考过程','knowledge_points':[],'image_paths':[],'difficulty':'medium','content_hash':hashlib.sha256(str(index).encode()).hexdigest(),'source_metadata':{},'has_answer':1,'has_solution':1,'answer_verified':1,'quality_status':'ready','usable_for_practice':1,'usable_for_auto_grade':1}
+        item.update(changes);keys=list(item)
+        params=[json.dumps(item[k],ensure_ascii=False) if k in ['options','answer','knowledge_points','image_paths','source_metadata'] else item[k] for k in keys]
+        db.query('INSERT INTO dataset_questions ('+','.join('`'+k+'`' for k in keys)+',created_at,updated_at) VALUES ('+','.join('?' for _ in keys)+',UTC_TIMESTAMP(),UTC_TIMESTAMP())',params)
+        return item['id']
+    with Database.from_environment() as db:
+        db.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,'sczx-bank-test','测试题源','1','','public','',0,0,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[source_id])
+        for index in range(26):insert(db,index,'英语','八年级','初中',f'English passage {index}')
+        plain=insert(db,30,'数学','初二','初中','解方程x+1=2')
+        pictured=insert(db,31,'数学','初二','初中','图示<ImageHere>求x',answer='答案<ImageHere>',solution='',image_paths=[str(stem),str(answer_image)])
+        insert(db,32,'语文','初二','初中','文章全文\n\n阅读小问',source_metadata={'passage_id':'sample'})
+        insert(db,33,'数学','初二','初中','二次函数的最值')
+        senior=insert(db,34,'数学','高三','高中','高中数学题')
+        insert(db,35,'英语','','初中','没有具体年级')
+    assert client.get('/api/v1/study-bank').status_code==401
+    first=client.get('/api/v1/study-bank?shuffle_seed=123',headers=headers)
+    assert first.status_code==200,first.text
+    value=first.json()['data']
+    assert value['total']==29 and value['grade']=='初二' and value['scope_label']=='初二'
+    assert {q['subject'] for q in value['questions'][:3]}=={'英语','数学','语文'}
+    assert all('answer' not in q and 'solution' not in q for q in value['questions'])
+    assert sum(f['count'] for f in value['facets'])==29 and value['sources'][0]['count']==29
+    again=client.get('/api/v1/study-bank?shuffle_seed=123',headers=headers).json()['data']
+    assert [q['id'] for q in again['questions']]==[q['id'] for q in value['questions']]
+    second=client.get('/api/v1/study-bank?shuffle_seed=123&page=2',headers=headers).json()['data']
+    assert len(second['questions'])==9 and not ({q['id'] for q in value['questions']} & {q['id'] for q in second['questions']})
+    math=client.get('/api/v1/study-bank?subject=数学',headers=headers).json()['data']
+    assert math['total']==2 and {q['id'] for q in math['questions']}=={plain,pictured}
+    image_question=client.get('/api/v1/study-bank?search=图示',headers=headers).json()['data']['questions'][0]
+    assert len(image_question['image_urls'])==len(image_question['preview_image_urls'])==1
+    assert client.get(image_question['image_urls'][0]).content==b'stem-image'
+    assert client.head(image_question['image_urls'][0]).headers['content-length']=='10'
+    assert client.get(image_question['image_urls'][0],headers={'Range':'bytes=0-3'}).content==b'stem'
+    assert client.get(f'/api/v1/practice/questions/{pictured}/images/0').status_code==403
+    bad=media_url(f'/api/v1/practice/questions/{pictured}/images/99',os.environ['SCZX_AUTH_SECRET'])
+    assert client.get(bad).status_code==404
+    chinese=client.get('/api/v1/study-bank?subject=语文',headers=headers).json()['data']['questions'][0]
+    assert chinese['preview_text']=='阅读理解：阅读小问'
+    for query in ['page=0','shuffle_seed=-1','shuffle_seed=2147483648','search='+'字'*101]:
+        assert client.get('/api/v1/study-bank?'+query,headers=headers).status_code==422
+    with Database.from_environment() as db:db.query("UPDATE student_profiles SET grade='高一' WHERE user_id=?",[user['id']])
+    senior_bank=client.get('/api/v1/study-bank',headers=headers).json()['data']
+    assert senior_bank['scope_label']=='高中' and [q['id'] for q in senior_bank['questions']]==[senior]

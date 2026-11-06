@@ -36,6 +36,8 @@ from .knowledge import knowledge_cards, read_knowledge_card
 from .cognition_graph import cognition_graph
 from .reviews import list_reviews, attempt_review, grade_review
 from .review_search import search_reviews, saved_filters
+from .study_bank import study_bank
+from .practice_images import serve_practice_image
 
 from . import accounts
 from .database import Database
@@ -328,6 +330,16 @@ async def review_filters(request: Request):
 @app.delete('/api/v1/reviews/filters/{filter_id}')
 async def delete_review_filter(request: Request):
     return envelope(await saved_filters(request, deleting=True))
+
+
+@app.get('/api/v1/study-bank')
+async def bank(request: Request):
+    return envelope(await study_bank(request))
+
+
+@app.api_route('/api/v1/practice/questions/{question_id}/images/{image_index}', methods=['GET', 'HEAD'])
+async def practice_image(request: Request):
+    return await serve_practice_image(request)
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])
