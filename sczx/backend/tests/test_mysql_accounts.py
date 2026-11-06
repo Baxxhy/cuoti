@@ -960,3 +960,87 @@ def test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot(client,monkey
         assert learning_memory(db,user['id'],question)['legacy_rows']['mastery']==[]
         db.query("UPDATE tutor_sessions SET stage='finished' WHERE id=?",[session['id']])
     assert client.post(path,headers=headers,json={'message':'继续'}).status_code==409
+
+
+def test_dashboard_analytics_and_error_sources_use_original_statistics(client):
+    import json
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'dashboard@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'dashboard-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']}
+    empty=client.get('/api/v1/dashboard',headers=headers).json()['data']
+    assert empty['weekly_questions']==empty['estimated_minutes']==0 and empty['continue_learning'] is None
+    assert empty['discoveries']==[] and empty['grade']=='初二'
+    assert client.get('/api/v1/dashboard').status_code==401
+    question_ids=[]
+    for text in ['求 X？','求x','较早的题']:
+        question_ids.append(client.post('/api/v1/questions/manual',headers=headers,json={'question_text':text}).json()['data']['id'])
+    session_id=new_id();plan_id=new_id()
+    with Database.from_environment() as db:
+        for index,question_id in enumerate(question_ids):
+            age=[0,1,8][index]
+            db.query('UPDATE questions SET created_at=TIMESTAMP(DATE(UTC_TIMESTAMP()+INTERVAL 8 HOUR))-INTERVAL 7 HOUR-INTERVAL ? DAY WHERE id=?',[age,question_id])
+        db.query('UPDATE questions SET updated_at=UTC_TIMESTAMP()+INTERVAL 1 SECOND WHERE id=?',[question_ids[0]])
+        for age,score in [(1,.3),(0,.8)]:
+            db.query("INSERT INTO mastery_states (id,user_id,subject,knowledge_point,mastery_score,confidence,evidence_count,near_transfer_rate,far_transfer_rate,forgetting_risk,update_reason,created_at,updated_at) VALUES (?,?,'数学','方程',?,0.5,1,0,0,0.5,'学习更新',UTC_TIMESTAMP(),UTC_TIMESTAMP()-INTERVAL ? DAY)",[new_id(),user['id'],score,age])
+        for label,probability in [('移项符号看错',.8),('移项忘记变号',.6)]:
+            db.query("INSERT INTO misconception_states (id,user_id,subject,code,label,probability,evidence_count,status,related_question_count,successful_strategy,failed_strategy,first_seen_at,created_at,updated_at) VALUES (?,?,'数学',?,?,?,1,'active',1,'micro_activity','guided',UTC_TIMESTAMP(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),user['id'],new_id(),label,probability])
+        db.query("INSERT INTO tutor_sessions (id,user_id,question_id,stage,hint_level,turn_count,mastery_score,state,status,created_at,updated_at) VALUES (?,?,?,'teach_back_retry',0,0,0,JSON_OBJECT(),'active',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[session_id,user['id'],question_ids[0]])
+        db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL 1 DAY,1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[plan_id,user['id'],question_ids[0]])
+        for score in [.25,.75]:
+            db.query("INSERT INTO cognitive_updates (id,user_id,question_id,entity_type,entity_key,old_value,new_value,evidence,reason,created_at,updated_at) VALUES (?,?,?,'mastery','方程',0,?,JSON_OBJECT(),'学习',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),user['id'],question_ids[0],score])
+        for index,question_id in enumerate(question_ids[:2]):
+            db.query("INSERT INTO diagnoses (id,question_id,first_error_step,first_error_text,error_type,root_misconception,propagated_errors,strategy_candidates,confidence,error_location,missing_prerequisites,recommended_strategy,user_confirmed,correction,created_at,updated_at) VALUES (?,?,NULL,'','sign_error','移项符号',JSON_ARRAY(),JSON_ARRAY(),0.8,'',JSON_ARRAY(),'核对符号',0,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),question_id])
+    dashboard=client.get('/api/v1/dashboard',headers=headers)
+    assert dashboard.status_code==200,dashboard.text
+    value=dashboard.json()['data']
+    assert value['weekly_questions']==2 and value['streak_days']==2 and value['today_reviews']==1
+    assert value['mastered_points']==1 and value['estimated_minutes']==6
+    assert value['continue_learning']['session_id']==session_id and value['continue_learning']['next_step']=='补充说明关键理由'
+    assert len(value['mastery'])==len(value['misconceptions'])==1 and value['misconceptions'][0]['label']=='移项符号'
+    analytics=client.get('/api/v1/analytics/overview?days=2',headers=headers)
+    assert analytics.status_code==200,analytics.text
+    data=analytics.json()['data']
+    assert data['summary']=={'knowledge_count':1,'misconception_count':1,'evidence_count':2}
+    assert data['trend'][0]['score']==50.0 and data['misconceptions'][0]['successful_strategy']=='小步练习'
+    for days in ['0','366','abc','1.5','']:
+        assert client.get('/api/v1/analytics/overview?days='+days,headers=headers).status_code==422
+    assert client.get('/api/v1/analytics/overview?days=0&days=1',headers=headers).status_code==200
+    sources=client.get('/api/v1/analytics/error-sources?subject=数学',headers=headers)
+    assert sources.status_code==200,sources.text
+    assert len(sources.json()['data']['sources'])==1
+    assert sources.json()['data']['sources'][0]['due_review_id']==plan_id
+    assert client.get('/api/v1/analytics/error-sources?subject=语文',headers=headers).json()['data']['sources']==[]
+    assert client.get('/api/v1/analytics/overview',headers=outsider).json()['data']['summary']['evidence_count']==0
+    graph=client.get('/api/v1/analytics/cognition-graph',headers=headers)
+    assert graph.status_code==200,graph.text
+    projected=graph.json()['data']
+    assert projected['evidence_count']==2 and projected['filters']=={'subject':None,'days':90}
+    assert {n['category'] for n in projected['nodes']}=={'knowledge','question','misconception','strategy'}
+    assert len([n for n in projected['nodes'] if n['category']=='question'])==1
+    visible_ids={n['id'] for n in projected['nodes']}
+    assert all(link['source'] in visible_ids and link['target'] in visible_ids for link in projected['links'])
+    assert any(link['relation']=='提供掌握证据' for link in projected['links'])
+    assert client.get('/api/v1/analytics/cognition-graph?subject=语文',headers=headers).json()['data']['nodes']==[]
+    assert client.get('/api/v1/analytics/cognition-graph?days=3651',headers=headers).status_code==422
+    assert client.get('/api/v1/analytics/cognition-graph',headers=outsider).json()['data']['nodes']==[]
+    with Database.from_environment() as db:
+        db.query("UPDATE tutor_sessions SET state=JSON_OBJECT('question_changed',CAST('true' AS JSON)) WHERE id=?",[session_id])
+    assert client.get('/api/v1/dashboard',headers=headers).json()['data']['continue_learning'] is None
+
+
+def test_knowledge_search_unicode_filters_and_relations(client):
+    import json
+    from sczx_api.security import new_id
+    first,second=new_id(),new_id()
+    with Database.from_environment() as db:
+        for card_id,code,name,grade in [(first,'sczx.search.one','特殊知识甲','初一'),(second,'sczx.search.two','特殊知识乙','高一')]:
+            db.query("INSERT INTO knowledge_points (id,code,subject,name,content,created_at,updated_at) VALUES (?,?,'数学',?,?,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[card_id,code,name,json.dumps({'grade':grade,'common_misconceptions':['特殊误区']})])
+        db.query("INSERT INTO knowledge_relations (id,source_id,target_id,relation_type,created_at,updated_at) VALUES (?,?,?,'prerequisite',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),second,first])
+    found=client.get('/api/v1/knowledge/cards',params={'q':'特殊知识，其他词','subject':'数学','grade':'初一','misconception':'特殊误区'})
+    assert found.status_code==200 and [c['id'] for c in found.json()['data']]==[first]
+    assert client.get('/api/v1/knowledge/cards',params={'q':'特殊知识','grade':'高一'}).json()['data'][0]['id']==second
+    card=client.get('/api/v1/knowledge/cards/sczx.search.two')
+    assert card.status_code==200 and card.json()['data']['prerequisites'][0]['id']==first
+    assert client.get('/api/v1/knowledge/cards/'+first).json()['data']['next_knowledge'][0]['id']==second
+    assert client.get('/api/v1/knowledge/cards/missing-card').status_code==404

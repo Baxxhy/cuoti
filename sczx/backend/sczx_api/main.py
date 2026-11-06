@@ -30,6 +30,10 @@ from .handwriting import upload_handwriting
 from .variant_attempt import variant_attempt
 from .visualizations import session_visualization, visualization_types, read_visualization
 from .tutor_dialogue import tutor_dialogue
+from .dashboard import dashboard
+from .insights import analytics, error_sources
+from .knowledge import knowledge_cards, read_knowledge_card
+from .cognition_graph import cognition_graph
 
 from . import accounts
 from .database import Database
@@ -257,6 +261,36 @@ async def visual_read(request: Request):
 @app.post('/api/v1/tutor/sessions/{session_id}/turns')
 async def tutor_turn(request: Request):
     return envelope(await tutor_dialogue(request))
+
+
+@app.get('/api/v1/dashboard')
+async def student_dashboard(request: Request):
+    return envelope(await dashboard(request))
+
+
+@app.get('/api/v1/analytics/overview')
+async def student_analytics(request: Request):
+    return envelope(await analytics(request))
+
+
+@app.get('/api/v1/analytics/error-sources')
+async def student_errors(request: Request):
+    return envelope(await error_sources(request))
+
+
+@app.get('/api/v1/knowledge/cards')
+async def cards(request: Request):
+    return envelope(await knowledge_cards(request))
+
+
+@app.get('/api/v1/knowledge/cards/{code}')
+async def card(request: Request):
+    return envelope(await read_knowledge_card(request))
+
+
+@app.get('/api/v1/analytics/cognition-graph')
+async def student_cognition_graph(request: Request):
+    return envelope(await cognition_graph(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

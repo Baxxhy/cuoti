@@ -51,9 +51,11 @@
   {
     "path": "/api/v1/dashboard",
     "source": "backend-cangjie/src/main.cj:32",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/student-preferences",
@@ -68,30 +70,38 @@
   {
     "path": "/api/v1/analytics/error-sources",
     "source": "backend-cangjie/src/main.cj:34",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/analytics/overview",
     "source": "backend-cangjie/src/main.cj:35",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/analytics/cognition-graph",
     "source": "backend-cangjie/src/main.cj:36",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/knowledge/cards",
     "source": "backend-cangjie/src/main.cj:37",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/knowledge/framework",
@@ -103,9 +113,11 @@
   {
     "path": "/api/v1/knowledge/cards/{code}",
     "source": "backend-cangjie/src/main.cj:39",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/knowledge/cards/{code}/lessons",
