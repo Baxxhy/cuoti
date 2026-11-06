@@ -525,9 +525,11 @@
   {
     "path": "/api/v1/questions/manual",
     "source": "backend-cangjie/src/main.cj:99",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from manual_questions.cj and study_mistake.cj; isolated MySQL verified manual work, study snapshots, deduplication and copied figures; file-copy failure rollback verified; full browser/study flow parity pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/journey",

@@ -9,6 +9,7 @@ from .preferences import student_preferences
 from .questions import list_questions
 from .question_detail import read_question, archive_question
 from .question_edit import edit_question
+from .manual_questions import create_manual_question
 
 from . import accounts
 from .database import Database
@@ -88,6 +89,11 @@ async def preferences(request: Request):
 @app.get('/api/v1/questions')
 async def questions(request: Request):
     return envelope(await list_questions(request))
+
+
+@app.post('/api/v1/questions/manual')
+async def manual_question(request: Request):
+    return envelope(await create_manual_question(request))
 
 
 @app.api_route('/api/v1/questions/{question_id}', methods=['GET', 'PATCH', 'DELETE'])

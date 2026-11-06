@@ -209,3 +209,60 @@ def test_question_detail_assets_and_archive_preserve_data(client):
     with Database.from_environment() as db:
         assert db.query('SELECT status FROM review_plans WHERE id=?', [review_id]).rows[0]['status'] == 'cancelled'
         assert db.query('SELECT COUNT(*) AS n FROM question_assets WHERE question_id=?', [question_id]).rows[0]['n'] == '3'
+
+
+def test_manual_question_work_steps_validation_and_study_snapshot(client, tmp_path, monkeypatch):
+    import json
+    from sczx_api.security import new_id
+    user = client.post('/api/v1/auth/register', json={'email': 'manual@example.com', 'password': 'secret'}).json()['data']
+    headers = {'Authorization': 'Bearer ' + user['access_token']}
+    url = '/api/v1/questions/manual'
+    body = {'question_text': ' 求解 x+1=2 ', 'student_answer': ' 3 ', 'student_steps': [' x+1=2 ', '所以x等于3']}
+    response = client.post(url, headers=headers, json=body)
+    assert response.status_code == 200, response.text
+    saved = response.json()['data']
+    detail = client.get('/api/v1/questions/' + saved['id'], headers=headers).json()['data']
+    assert detail['question_text'] == '求解 x+1=2' and detail['subject'] == '数学'
+    assert detail['student_answer'] == '3' and detail['confirmed'] is True
+    assert [s['text'] for s in detail['student_steps']] == ['x+1=2', '所以x等于3']
+    assert detail['student_steps'][0]['formula'] == 'x+1=2'
+    assert detail['student_steps'][1]['formula'] == ''
+    for changes in [{'question_type': '填空题'}, {'student_answer': None}, {'student_steps': [' ']}, {'question_type': '单选题', 'options': [{'label': 'A', 'text': '1'}, {'label': 'A', 'text': '2'}]}]:
+        assert client.post(url, headers=headers, json={**body, **changes}).status_code == 422
+    assert client.post(url, json=body).status_code == 401
+    session_id, item_id = new_id(), new_id()
+    bank, media = tmp_path / 'bank', tmp_path / 'media'
+    bank.mkdir(); image = bank / 'figure.png'; image.write_bytes(b'\x89PNG\r\n\x1a\nfixture')
+    monkeypatch.setenv('SCZX_QUESTION_BANK_ROOT', str(bank))
+    monkeypatch.setenv('SCZX_MEDIA_ROOT', str(media))
+    snapshot = {'id': new_id(), 'question_text': '服务器题目', 'subject': '数学', 'grade': '初二', 'question_type': 'single_choice', 'options': ['选项一', '选项二'], 'image_paths': [str(image)], 'quality_status': 'ready', 'source_metadata': {}, 'knowledge_points': ['方程']}
+    with Database.from_environment() as db:
+        db.query("INSERT INTO study_sessions (id,user_id,mode,title,subject,grade_band,status,duration_seconds,created_at,updated_at) VALUES (?,?,'practice','练习','数学','初中','submitted',0,UTC_TIMESTAMP(),UTC_TIMESTAMP())", [session_id, user['id']])
+        db.query('INSERT INTO study_session_items (id,session_id,position,snapshot,student_answer,grading) VALUES (?,?,0,?,?,?)', [item_id, session_id, json.dumps(snapshot), json.dumps('B'), json.dumps({'correct': False})])
+    request = {'study_session_id': session_id, 'study_item_id': item_id, 'question_text': '客户端伪造', 'image_paths': ['/etc/passwd']}
+    first = client.post(url, headers=headers, json=request)
+    assert first.status_code == 200, first.text
+    question_id = first.json()['data']['id']
+    again = client.post(url, headers=headers, json=request)
+    assert again.json()['data']['id'] == question_id
+    detail = client.get('/api/v1/questions/' + question_id, headers=headers).json()['data']
+    assert detail['question_text'] == '服务器题目' and detail['student_answer'] == 'B'
+    assert detail['question_type'] == '单选题' and detail['options'][0] == {'label': 'A', 'text': '选项一'}
+    assert detail['knowledge_points'] == ['方程'] and detail['tags'] == ['study-item:' + item_id]
+    assert len(detail['question_figures']) == 1
+    assert (media / detail['question_figures'][0]['path']).read_bytes() == image.read_bytes()
+    with Database.from_environment() as db:
+        db.query("UPDATE study_sessions SET status='active' WHERE id=?", [session_id])
+    assert client.post(url, headers=headers, json=request).status_code == 409
+    failed_item = new_id()
+    failed_snapshot = {**snapshot, 'image_paths': [str(image), str(bank / 'missing.png')]}
+    with Database.from_environment() as db:
+        db.query("UPDATE study_sessions SET status='submitted' WHERE id=?", [session_id])
+        db.query('INSERT INTO study_session_items (id,session_id,position,snapshot,student_answer,grading) VALUES (?,?,1,?,?,?)', [failed_item, session_id, json.dumps(failed_snapshot), json.dumps('B'), json.dumps({'correct': False})])
+        before = db.query('SELECT COUNT(*) AS n FROM questions').rows[0]['n']
+    files_before = set(media.rglob('*.png'))
+    failed = client.post(url, headers=headers, json={'study_session_id': session_id, 'study_item_id': failed_item})
+    assert failed.status_code == 404, failed.text
+    assert set(media.rglob('*.png')) == files_before
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM questions').rows[0]['n'] == before
