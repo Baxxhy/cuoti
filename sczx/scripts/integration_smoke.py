@@ -21,6 +21,7 @@ sys.path.insert(0,str(ROOT/'backend'))
 from sczx_api.database import Database
 from sczx_api.schema import initialize_database
 from sczx_api.security import new_id
+from sczx_api.knowledge_seed import seed_public_knowledge
 from browser_fixtures import seed_rendering
 
 
@@ -53,6 +54,18 @@ def main():
                 with connection.cursor() as cursor:cursor.execute('CREATE DATABASE sczx_http_smoke CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
             os.environ.update({k:v for k,v in env.items() if k.startswith('SCZX_')});initialize_database()
             if os.environ.get('SCZX_RUN_E2E')=='1':
+                seed_public_knowledge()
+                with Database.from_environment() as db:
+                    before=db.query('SELECT code,id FROM knowledge_points ORDER BY code').rows
+                    relations=db.query('SELECT source_id,target_id,relation_type FROM knowledge_relations ORDER BY source_id,target_id').rows
+                seeded=subprocess.run([str(ROOT/'.venv/bin/python'),str(ROOT/'scripts/seed_knowledge.py')],cwd=ROOT,env=env,capture_output=True,text=True,timeout=30)
+                (artifacts/'knowledge-seed.log').write_text(seeded.stdout+'\n'+seeded.stderr)
+                assert seeded.returncode==0,seeded.stdout+'\n'+seeded.stderr
+                with Database.from_environment() as db:
+                    assert db.query('SELECT code,id FROM knowledge_points ORDER BY code').rows==before
+                    assert db.query('SELECT source_id,target_id,relation_type FROM knowledge_relations ORDER BY source_id,target_id').rows==relations
+                assert len(before)==250 and len(relations)==65
+                report['checks'].append('public knowledge seed: 250 cards/65 relations; repeat preserves IDs and relations')
                 with Database.from_environment() as db:
                     source=new_id()
                     db.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,'sczx-browser-fixtures','浏览器验收样本','1','','fixture','',32,32,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[source])

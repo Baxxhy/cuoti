@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 36,
+  "migrated_count": 41,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -39,15 +39,17 @@
       "file": "app-layout-audit.spec.ts",
       "line": 7,
       "name": "学生全路由：小屏布局、缺少题目时的反馈、个人资料返回刷新",
-      "migration": "not_yet_copied",
-      "full_title": "学生全路由：小屏布局、缺少题目时的反馈、个人资料返回刷新"
+      "migration": "copied_case",
+      "full_title": "学生全路由：小屏布局、缺少题目时的反馈、个人资料返回刷新",
+      "migrated_file": "app-layout-audit.spec.ts"
     },
     {
       "file": "app-layout-audit.spec.ts",
       "line": 76,
       "name": "学习入口分工：知识关系直达图谱，报告无重复地图，记录不含作业",
-      "migration": "not_yet_copied",
-      "full_title": "学习入口分工：知识关系直达图谱，报告无重复地图，记录不含作业"
+      "migration": "copied_case",
+      "full_title": "学习入口分工：知识关系直达图谱，报告无重复地图，记录不含作业",
+      "migrated_file": "app-layout-audit.spec.ts"
     },
     {
       "file": "bank-images.spec.ts",
@@ -101,8 +103,9 @@
       "file": "deployment-readiness.spec.ts",
       "line": 30,
       "name": "真实账号之间不能访问错题、试卷或管理权限，注册不能提升身份",
-      "migration": "not_yet_copied",
-      "full_title": "真实账号之间不能访问错题、试卷或管理权限，注册不能提升身份"
+      "migration": "copied_case",
+      "full_title": "真实账号之间不能访问错题、试卷或管理权限，注册不能提升身份",
+      "migrated_file": "deployment-readiness.spec.ts"
     },
     {
       "file": "english-rendering.spec.ts",
@@ -452,8 +455,9 @@
       "file": "review-display.spec.ts",
       "line": 3,
       "name": "复习排版：过滤占位错因、渲染公式、紧凑拍照入口",
-      "migration": "not_yet_copied",
-      "full_title": "复习排版：过滤占位错因、渲染公式、紧凑拍照入口"
+      "migration": "copied_case",
+      "full_title": "复习排版：过滤占位错因、渲染公式、紧凑拍照入口",
+      "migrated_file": "review-display.spec.ts"
     },
     {
       "file": "review-origin.spec.ts",
@@ -498,8 +502,9 @@
       "file": "student-only.spec.ts",
       "line": 5,
       "name": "学生个人版没有老师家长入口，旧协作接口不可访问",
-      "migration": "not_yet_copied",
-      "full_title": "学生个人版没有老师家长入口，旧协作接口不可访问"
+      "migration": "copied_case",
+      "full_title": "学生个人版没有老师家长入口，旧协作接口不可访问",
+      "migrated_file": "student-only.spec.ts"
     },
     {
       "file": "student-personas.spec.ts",

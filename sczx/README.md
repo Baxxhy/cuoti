@@ -2,7 +2,7 @@
 
 这里把原来的 uni-app 页面改成普通 Vue 网页，把仓颉业务服务改成 Python。数据库仍用 MySQL，原项目和原数据库保留。
 
-目前已接入原版83条接口，后台学习任务可以执行和恢复。独立环境下已通过99项后端测试、33项算法入口/学习流程/掌握度测试、18项前端测试及网页构建。账号、资料、录题、裁剪、练习、考试、复习及恢复等36项浏览器验收已分批通过。真实浏览器已走通“订正一步→独立解原题→完成对照题”，并通过实际HTTP服务生成和下载PDF、答案PDF、Excel。
+目前已接入原版83条接口，后台学习任务可以执行和恢复。独立环境下已通过99项后端测试、33项算法入口/学习流程/掌握度测试、18项前端测试及网页构建。账号、资料、录题、裁剪、练习、考试、复习及恢复等41项浏览器验收已完整一轮通过。真实浏览器已走通“订正一步→独立解原题→完成对照题”，并通过实际HTTP服务生成和下载PDF、答案PDF、Excel。
 
 接下来继续核对其余网页操作、原版页面呈现和真实模型/语音。具体记录见 [MIGRATION_STATUS.md](MIGRATION_STATUS.md)。
 
@@ -36,7 +36,13 @@ cp .env.example .env
 PYTHONPATH=backend .venv/bin/python -c "from dotenv import load_dotenv; load_dotenv('.env'); from sczx_api.schema import initialize_database; initialize_database()"
 ```
 
-该命令拒绝已有表的数据库。然后启动：
+该命令拒绝已有表的数据库。接着导入项目自带的250张公开知识卡和65条知识关系：
+
+```bash
+.venv/bin/python scripts/seed_knowledge.py
+```
+
+这一步对应原版的知识初始化，可重复执行，保留已有卡片编号，不重复建立关系。然后启动：
 
 ```bash
 .venv/bin/python scripts/run_local.py
@@ -89,4 +95,4 @@ SCZX_RUN_E2E=1 .venv/bin/python scripts/integration_smoke.py
 
 只复核裁剪时可在上述命令前加 `SCZX_E2E_GREP=裁剪`，报告会注明实际选择范围。
 
-原版71项浏览器用例的迁移清单见 [e2e_parity_inventory.json](e2e_parity_inventory.json)。目前仍有36项待接入，不能把现有用例通过视为全部一致。
+原版71项浏览器用例的迁移清单见 [e2e_parity_inventory.json](e2e_parity_inventory.json)。目前仍有31项待接入，不能把现有用例通过视为全部一致。
