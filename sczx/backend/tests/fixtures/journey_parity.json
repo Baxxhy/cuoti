@@ -1,0 +1,4696 @@
+[
+  {
+    "name": "diagnosis-required",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": null,
+      "diagnosis": null,
+      "job": null,
+      "ocr": null,
+      "sessions": [],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": false,
+          "detail": "等待完成诊断"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "开始错因诊断",
+        "url": "/pages/diagnosis/diagnosis?id=q",
+        "reason": "根据确认后的题目与步骤寻找错误原因。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "尚未通过规则校验",
+        "verified": false,
+        "diagnosis_confirmed": false
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "crop-before-running",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "awaiting_crop",
+        "confirmed": false
+      },
+      "analysis": null,
+      "diagnosis": null,
+      "job": {
+        "id": "j",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "status": "running"
+      },
+      "ocr": null,
+      "sessions": [],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": false,
+          "detail": "等待核对识别内容"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": false,
+          "detail": "等待完成诊断"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续框选题目",
+        "url": "/pages/crop/crop?id=q",
+        "reason": "框选要学习的题目，再开始识别。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "尚未通过规则校验",
+        "verified": false,
+        "diagnosis_confirmed": false
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "unconfirmed-pending",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": false
+      },
+      "analysis": null,
+      "diagnosis": null,
+      "job": {
+        "id": "j",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "status": "pending"
+      },
+      "ocr": null,
+      "sessions": [],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": false,
+          "detail": "等待核对识别内容"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": false,
+          "detail": "等待完成诊断"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "查看识别进度",
+        "url": "/pages/ocr/ocr?id=q&job=j",
+        "reason": "识别仍在处理中，完成后核对题干和答案。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "尚未通过规则校验",
+        "verified": false,
+        "diagnosis_confirmed": false
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "unconfirmed-running",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": false
+      },
+      "analysis": null,
+      "diagnosis": null,
+      "job": {
+        "id": "j",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "status": "running"
+      },
+      "ocr": null,
+      "sessions": [],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": false,
+          "detail": "等待核对识别内容"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": false,
+          "detail": "等待完成诊断"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "查看识别进度",
+        "url": "/pages/ocr/ocr?id=q&job=j",
+        "reason": "识别仍在处理中，完成后核对题干和答案。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "尚未通过规则校验",
+        "verified": false,
+        "diagnosis_confirmed": false
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "unconfirmed-failed",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": false
+      },
+      "analysis": null,
+      "diagnosis": null,
+      "job": {
+        "id": "j",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "status": "failed"
+      },
+      "ocr": null,
+      "sessions": [],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": false,
+          "detail": "等待核对识别内容"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": false,
+          "detail": "等待完成诊断"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "核对题目信息",
+        "url": "/pages/ocr/ocr?id=q&job=j",
+        "reason": "确认题干和自己的作答，避免识别偏差影响诊断。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "尚未通过规则校验",
+        "verified": false,
+        "diagnosis_confirmed": false
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "unconfirmed-completed",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": false
+      },
+      "analysis": null,
+      "diagnosis": null,
+      "job": {
+        "id": "j",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "status": "completed"
+      },
+      "ocr": null,
+      "sessions": [],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": false,
+          "detail": "等待核对识别内容"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": false,
+          "detail": "等待完成诊断"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "核对题目信息",
+        "url": "/pages/ocr/ocr?id=q",
+        "reason": "确认题干和自己的作答，避免识别偏差影响诊断。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "尚未通过规则校验",
+        "verified": false,
+        "diagnosis_confirmed": false
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "learning-not-started",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "查看诊断并学习",
+        "url": "/pages/diagnosis/diagnosis?id=q",
+        "reason": "理解首错原因，再练习验证。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-7",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {}
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=s",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-8",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {}
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "练一道相似题",
+        "url": "/pages/practice/practice?id=q",
+        "reason": "用独立作答检验理解。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-9",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {
+            "understanding_passed": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=s",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-10",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {
+            "understanding_passed": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "练一道相似题",
+        "url": "/pages/practice/practice?id=q",
+        "reason": "用独立作答检验理解。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-11",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {
+            "understanding_passed": true,
+            "teach_back_passed": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": true,
+          "detail": "理解检查与教回均通过"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=s",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-12",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {
+            "understanding_passed": true,
+            "teach_back_passed": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": true,
+          "detail": "理解检查与教回均通过"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "练一道相似题",
+        "url": "/pages/practice/practice?id=q",
+        "reason": "用独立作答检验理解。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-13",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {
+            "near_transfer": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=s",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-14",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {
+            "near_transfer": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "练一道相似题",
+        "url": "/pages/practice/practice?id=q",
+        "reason": "用独立作答检验理解。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-15",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {
+            "near_transfer": true,
+            "far_transfer": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": true,
+          "detail": "相似题和综合应用均独立通过"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=s",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "曾有独立迁移证据，继续用复习检验保持。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-16",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {
+            "near_transfer": true,
+            "far_transfer": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": true,
+          "detail": "相似题和综合应用均独立通过"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "练一道相似题",
+        "url": "/pages/practice/practice?id=q",
+        "reason": "用独立作答检验理解。"
+      },
+      "summary": "曾有独立迁移证据，继续用复习检验保持。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-17",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {
+            "near_transfer": true,
+            "far_transfer": true,
+            "assisted": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=s",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮使用了辅助或迁移尚不稳定，仍需巩固。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-18",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {
+            "near_transfer": true,
+            "far_transfer": true,
+            "assisted": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "练一道相似题",
+        "url": "/pages/practice/practice?id=q",
+        "reason": "用独立作答检验理解。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮使用了辅助或迁移尚不稳定，仍需巩固。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-19",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {
+            "near_transfer": true,
+            "far_transfer": true,
+            "transfer_insufficient": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=s",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮使用了辅助或迁移尚不稳定，仍需巩固。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-20",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {
+            "near_transfer": true,
+            "far_transfer": true,
+            "transfer_insufficient": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "练一道相似题",
+        "url": "/pages/practice/practice?id=q",
+        "reason": "用独立作答检验理解。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "本轮使用了辅助或迁移尚不稳定，仍需巩固。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-21",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {
+            "understanding_passed": true,
+            "teach_back_passed": true,
+            "near_transfer": true,
+            "far_transfer": true,
+            "question_changed": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "查看诊断并学习",
+        "url": "/pages/diagnosis/diagnosis?id=q",
+        "reason": "理解首错原因，再练习验证。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "题目信息已修改，本次记录保留为历史，不计入当前进度。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "session-22",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {
+            "understanding_passed": true,
+            "teach_back_passed": true,
+            "near_transfer": true,
+            "far_transfer": true,
+            "question_changed": true
+          }
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "查看诊断并学习",
+        "url": "/pages/diagnosis/diagnosis?id=q",
+        "reason": "理解首错原因，再练习验证。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:s",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "题目信息已修改，本次记录保留为历史，不计入当前进度。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "newest-active",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "older",
+          "created_at": "2026-10-14T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {}
+        },
+        {
+          "id": "newer",
+          "created_at": "2026-10-15T10:00:00.000001+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {}
+        }
+      ],
+      "practices": [],
+      "plans": [],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=newer",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:older",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        },
+        {
+          "id": "session:newer",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "day-boundary",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [],
+      "practices": [],
+      "plans": [
+        {
+          "id": "today",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "pending",
+          "due_at": "2026-10-16T15:59:59.999999+00:00"
+        },
+        {
+          "id": "tomorrow",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "pending",
+          "due_at": "2026-10-16T16:00:00+00:00"
+        },
+        {
+          "id": "done",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "due_at": "2026-01-01T00:00:00+00:00"
+        }
+      ],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "完成到期复习",
+        "url": "/pages/review/review?plan=today",
+        "reason": "先独立回忆，再根据判题结果安排下次复习。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 1,
+        "next_due_at": "2026-10-16T15:59:59.999999+00:00"
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "active-before-due",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "older",
+          "created_at": "2026-10-14T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {}
+        },
+        {
+          "id": "newer",
+          "created_at": "2026-10-15T10:00:00.000001+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "active",
+          "state": {}
+        }
+      ],
+      "practices": [],
+      "plans": [
+        {
+          "id": "today",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "pending",
+          "due_at": "2026-10-16T15:59:59.999999+00:00"
+        },
+        {
+          "id": "tomorrow",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "pending",
+          "due_at": "2026-10-16T16:00:00+00:00"
+        },
+        {
+          "id": "done",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "due_at": "2026-01-01T00:00:00+00:00"
+        }
+      ],
+      "reviews": []
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": false,
+          "detail": "等待复习验证长期保持"
+        }
+      ],
+      "next_action": {
+        "label": "继续上次辅导",
+        "url": "/pages/tutor/tutor?id=newer",
+        "reason": "从已保存的学习阶段继续。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 0,
+        "verified_attempts": 0,
+        "correct": 0,
+        "pending": 0
+      },
+      "review": {
+        "completed": 0,
+        "due": 1,
+        "next_due_at": "2026-10-16T15:59:59.999999+00:00"
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "session:older",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        },
+        {
+          "id": "session:newer",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "辅导记录",
+          "detail": "学习进度已保存，可继续。"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "evidence-filter",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [],
+      "practices": [
+        {
+          "id": "r0-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {},
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r0-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {},
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r1-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": false
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r1-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": false
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r2-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r2-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r3-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true,
+            "question_changed": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r3-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true,
+            "question_changed": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r4-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "question_changed": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r4-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "question_changed": true
+          },
+          "correct": false,
+          "grade": "good"
+        }
+      ],
+      "plans": [],
+      "reviews": [
+        {
+          "id": "r0-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {},
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r0-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {},
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r1-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": false
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r1-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": false
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r2-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r2-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r3-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true,
+            "question_changed": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r3-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true,
+            "question_changed": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r4-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "question_changed": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r4-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "question_changed": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "waiting",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grade": "pending",
+          "correct": true,
+          "grading_details": {
+            "can_update_learning": true
+          }
+        }
+      ]
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": true,
+          "detail": "完成 2 次有效复习"
+        }
+      ],
+      "next_action": {
+        "label": "查看诊断并学习",
+        "url": "/pages/diagnosis/diagnosis?id=q",
+        "reason": "理解首错原因，再练习验证。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 10,
+        "verified_attempts": 2,
+        "correct": 1,
+        "pending": 4
+      },
+      "review": {
+        "completed": 2,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "question:q",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "记录错题",
+          "detail": "数学 · 填空题"
+        },
+        {
+          "id": "ocr:o",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "图片识别",
+          "detail": "识别完成，请以人工核对后的内容为准。"
+        },
+        {
+          "id": "diagnosis:d",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "错因诊断",
+          "detail": "移项符号"
+        },
+        {
+          "id": "practice:r0-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "本次结果待核对，未作为掌握证据"
+        },
+        {
+          "id": "practice:r0-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "本次结果待核对，未作为掌握证据"
+        },
+        {
+          "id": "practice:r1-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "本次结果待核对，未作为掌握证据"
+        },
+        {
+          "id": "practice:r1-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "本次结果待核对，未作为掌握证据"
+        },
+        {
+          "id": "practice:r2-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "独立练习作答正确"
+        },
+        {
+          "id": "practice:r2-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "本次作答仍需巩固"
+        },
+        {
+          "id": "practice:r3-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "题目信息已修改，此次练习作为历史记录保留。"
+        },
+        {
+          "id": "practice:r3-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "题目信息已修改，此次练习作为历史记录保留。"
+        },
+        {
+          "id": "practice:r4-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "题目信息已修改，此次练习作为历史记录保留。"
+        },
+        {
+          "id": "practice:r4-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "题库练习",
+          "detail": "题目信息已修改，此次练习作为历史记录保留。"
+        },
+        {
+          "id": "review:r0-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "等待完成判定和难度反馈"
+        },
+        {
+          "id": "review:r0-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "等待完成判定和难度反馈"
+        },
+        {
+          "id": "review:r1-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "等待完成判定和难度反馈"
+        },
+        {
+          "id": "review:r1-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "等待完成判定和难度反馈"
+        },
+        {
+          "id": "review:r2-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "复习作答正确"
+        },
+        {
+          "id": "review:r2-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "复习仍需巩固"
+        },
+        {
+          "id": "review:r3-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "题目信息已修改，此次复习作为历史记录保留。"
+        },
+        {
+          "id": "review:r3-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "题目信息已修改，此次复习作为历史记录保留。"
+        },
+        {
+          "id": "review:r4-True",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "题目信息已修改，此次复习作为历史记录保留。"
+        },
+        {
+          "id": "review:r4-False",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "题目信息已修改，此次复习作为历史记录保留。"
+        },
+        {
+          "id": "review:waiting",
+          "time": "2026-10-15T10:00:00+00:00",
+          "title": "复习作答",
+          "detail": "等待完成判定和难度反馈"
+        }
+      ],
+      "history_limit": 50
+    }
+  },
+  {
+    "name": "event-limit-stable-order",
+    "input": {
+      "question": {
+        "id": "q",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "title": "一次方程",
+        "question_text": "3x=15",
+        "subject": "数学",
+        "question_type": "填空题",
+        "status": "confirmed",
+        "confirmed": true
+      },
+      "analysis": {
+        "id": "a",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "verified": true
+      },
+      "diagnosis": {
+        "id": "d",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00",
+        "root_misconception": "移项符号",
+        "user_confirmed": true
+      },
+      "job": null,
+      "ocr": {
+        "id": "o",
+        "created_at": "2026-10-15T10:00:00+00:00",
+        "updated_at": "2026-10-15T10:00:00+00:00"
+      },
+      "sessions": [
+        {
+          "id": "s0",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s1",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:01+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s2",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:02+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s3",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:03+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s4",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:04+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s5",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:05+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s6",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:06+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s7",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:07+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s8",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:08+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s9",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:09+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s10",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:10+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s11",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:11+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s12",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:12+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s13",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:13+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s14",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:14+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s15",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:15+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s16",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:16+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s17",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:17+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s18",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:18+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s19",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:19+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s20",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:20+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s21",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:21+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s22",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:22+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s23",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:23+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s24",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:24+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s25",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:25+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s26",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:26+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s27",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:27+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s28",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:28+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s29",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:29+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s30",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:30+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s31",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:31+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s32",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:32+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s33",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:33+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s34",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:34+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s35",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:35+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s36",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:36+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s37",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:37+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s38",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:38+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s39",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:39+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s40",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:40+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s41",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:41+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s42",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:42+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s43",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:43+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s44",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:44+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s45",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:45+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s46",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:46+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s47",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:47+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s48",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:48+00:00",
+          "status": "completed",
+          "state": {}
+        },
+        {
+          "id": "s49",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:49+00:00",
+          "status": "completed",
+          "state": {}
+        }
+      ],
+      "practices": [
+        {
+          "id": "r0-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {},
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r0-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {},
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r1-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": false
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r1-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": false
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r2-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r2-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r3-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true,
+            "question_changed": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r3-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true,
+            "question_changed": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r4-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "question_changed": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r4-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "question_changed": true
+          },
+          "correct": false,
+          "grade": "good"
+        }
+      ],
+      "plans": [],
+      "reviews": [
+        {
+          "id": "r0-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {},
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r0-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {},
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r1-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": false
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r1-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": false
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r2-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r2-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r3-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true,
+            "question_changed": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r3-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "can_update_learning": true,
+            "question_changed": true
+          },
+          "correct": false,
+          "grade": "good"
+        },
+        {
+          "id": "r4-True",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "question_changed": true
+          },
+          "correct": true,
+          "grade": "good"
+        },
+        {
+          "id": "r4-False",
+          "created_at": "2026-10-15T10:00:00+00:00",
+          "updated_at": "2026-10-15T10:00:00+00:00",
+          "grading_details": {
+            "question_changed": true
+          },
+          "correct": false,
+          "grade": "good"
+        }
+      ]
+    },
+    "now": "2026-10-16T12:34:56.123456+00:00",
+    "expected": {
+      "question_id": "q",
+      "title": "一次方程",
+      "question_text": "3x=15",
+      "subject": "数学",
+      "generated_at": "2026-10-16T12:34:56.123456+00:00",
+      "stages": [
+        {
+          "key": "confirmed",
+          "label": "核对题目",
+          "completed": true,
+          "detail": "题干与作答已确认"
+        },
+        {
+          "key": "diagnosed",
+          "label": "找到错因",
+          "completed": true,
+          "detail": "已有诊断证据，可查看和纠正"
+        },
+        {
+          "key": "understanding",
+          "label": "理解并讲清",
+          "completed": false,
+          "detail": "以实际检查与教回结果为准"
+        },
+        {
+          "key": "transfer",
+          "label": "独立迁移",
+          "completed": false,
+          "detail": "尚无完整的独立迁移证据"
+        },
+        {
+          "key": "review",
+          "label": "间隔复习",
+          "completed": true,
+          "detail": "完成 2 次有效复习"
+        }
+      ],
+      "next_action": {
+        "label": "练一道相似题",
+        "url": "/pages/practice/practice?id=q",
+        "reason": "用独立作答检验理解。"
+      },
+      "summary": "按记录逐步巩固，完成辅导不等于已经掌握。",
+      "verification": {
+        "label": "已完成规则校验",
+        "verified": true,
+        "diagnosis_confirmed": true
+      },
+      "practice": {
+        "attempts": 10,
+        "verified_attempts": 2,
+        "correct": 1,
+        "pending": 4
+      },
+      "review": {
+        "completed": 2,
+        "due": 0,
+        "next_due_at": null
+      },
+      "events": [
+        {
+          "id": "session:s49",
+          "time": "2026-10-15T10:00:49+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s48",
+          "time": "2026-10-15T10:00:48+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s47",
+          "time": "2026-10-15T10:00:47+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s46",
+          "time": "2026-10-15T10:00:46+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s45",
+          "time": "2026-10-15T10:00:45+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s44",
+          "time": "2026-10-15T10:00:44+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s43",
+          "time": "2026-10-15T10:00:43+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s42",
+          "time": "2026-10-15T10:00:42+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s41",
+          "time": "2026-10-15T10:00:41+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s40",
+          "time": "2026-10-15T10:00:40+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s39",
+          "time": "2026-10-15T10:00:39+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s38",
+          "time": "2026-10-15T10:00:38+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s37",
+          "time": "2026-10-15T10:00:37+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s36",
+          "time": "2026-10-15T10:00:36+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s35",
+          "time": "2026-10-15T10:00:35+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s34",
+          "time": "2026-10-15T10:00:34+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s33",
+          "time": "2026-10-15T10:00:33+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s32",
+          "time": "2026-10-15T10:00:32+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s31",
+          "time": "2026-10-15T10:00:31+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s30",
+          "time": "2026-10-15T10:00:30+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s29",
+          "time": "2026-10-15T10:00:29+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s28",
+          "time": "2026-10-15T10:00:28+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s27",
+          "time": "2026-10-15T10:00:27+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s26",
+          "time": "2026-10-15T10:00:26+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s25",
+          "time": "2026-10-15T10:00:25+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s24",
+          "time": "2026-10-15T10:00:24+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s23",
+          "time": "2026-10-15T10:00:23+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s22",
+          "time": "2026-10-15T10:00:22+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s21",
+          "time": "2026-10-15T10:00:21+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        },
+        {
+          "id": "session:s20",
+          "time": "2026-10-15T10:00:20+00:00",
+          "title": "辅导记录",
+          "detail": "本轮已结束，后续仍需独立练习和复习。"
+        }
+      ],
+      "history_limit": 50
+    }
+  }
+]

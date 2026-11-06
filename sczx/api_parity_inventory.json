@@ -39,16 +39,22 @@
   {
     "path": "/api/v1/learning-tasks/{task_id}/self-check",
     "source": "backend-cangjie/src/main.cj:29",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; task worker/end-to-end browser pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/history",
     "source": "backend-cangjie/src/main.cj:30",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; task worker/end-to-end browser pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/cancel",
@@ -687,9 +693,11 @@
   {
     "path": "/api/v1/questions/{question_id}/journey",
     "source": "backend-cangjie/src/main.cj:100",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; task worker/end-to-end browser pending"
   },
   {
     "path": "/api/v1/questions/{question_id}",

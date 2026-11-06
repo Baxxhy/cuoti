@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from starlette.concurrency import run_in_threadpool
 from . import practice
 from . import tasks,task_images
+from . import task_records,journey
 
 import pymysql
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
@@ -497,3 +498,20 @@ async def learning_handwriting(request: Request):
     task_id=request.path_params['task_id'];await run_in_threadpool(tasks.authorize,request,task_id)
     raw,filename,deferred,fields=await read_upload(request,include_fields=True)
     return JSONResponse(envelope(await run_in_threadpool(task_images.upload,request,task_id,fields,raw)),status_code=202)
+
+
+@app.api_route('/api/v1/learning-tasks/{task_id}/self-check',methods=['GET','PATCH','DELETE'])
+async def learning_self_check(request: Request):
+    task_id=request.path_params['task_id'];await run_in_threadpool(tasks.authorize,request,task_id)
+    body={} if request.method=='GET' else await accounts.read_json(request)
+    return envelope(await run_in_threadpool(task_records.self_check,request,task_id,body))
+
+
+@app.get('/api/v1/learning-tasks/{task_id}/history')
+async def learning_history(request: Request):
+    return envelope(await run_in_threadpool(task_records.history,request,request.path_params['task_id']))
+
+
+@app.get('/api/v1/questions/{question_id}/journey')
+async def learning_journey(request: Request):
+    return envelope(await run_in_threadpool(journey.journey,request,request.path_params['question_id']))

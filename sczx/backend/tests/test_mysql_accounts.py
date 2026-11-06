@@ -1909,3 +1909,91 @@ def test_task_handwriting_original_integrity_step_confirmation_and_retry(client,
     with Database.from_environment() as db:
         assert db.query('SELECT COUNT(*) AS n FROM learning_task_images WHERE task_id=?',[tid]).rows[0]['n']=='1'
         assert not db.query("SELECT id FROM learning_task_actions WHERE task_id=? AND request_id='upload-rollback'",[tid]).rows
+
+
+def test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries(client,monkeypatch,tmp_path):
+    import json
+    from sczx_api import analysis
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'task-records@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'task-records-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']}
+    qid=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'求解 2x=4'}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'2','answer_verified':True,'reference_steps':['x=2']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+qid+'/analyze',headers=headers)
+    task=client.post('/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'records-task'}).json()['data']
+    tid=task['id'];url='/api/v1/learning-tasks/'+tid;note_url=url+'/self-check';journey_url='/api/v1/questions/'+qid+'/journey'
+    assert client.get(note_url,headers=headers).json()['data']=={'version':0,'source_current':True,'can_save':False,'note':None}
+    assert client.request('DELETE',note_url,headers=headers,json={'version':0}).json()['data']['version']==0
+    body={'version':0,'text':'先移项再计算','confirmed':True,'input_fingerprint':task['input_fingerprint']}
+    assert client.patch(note_url,headers=headers,json=body).status_code==409
+    with Database.from_environment() as db:
+        db.query("UPDATE learning_tasks SET status='completed',checkpoint=JSON_OBJECT('repair_passed',true,'independent_passed',true,'assistance',JSON_OBJECT('independent',true)) WHERE id=?",[tid])
+    assert client.patch(note_url,headers=headers,json={**body,'confirmed':1}).status_code==422
+    assert client.patch(note_url,headers=headers,json={**body,'version':0.0}).status_code==422
+    assert client.patch(note_url,headers=headers,json={**body,'input_fingerprint':'changed'}).status_code==409
+    saved=client.patch(note_url,headers=headers,json=body)
+    assert saved.status_code==200,saved.text
+    note=saved.json()['data'];assert note['version']==1 and note['note']['kind']=='student_self_report'
+    assert client.patch(note_url,headers=headers,json=body).json()['data']==note
+    assert client.patch(note_url,headers=headers,json={**body,'text':'换个要点'}).status_code==409
+    from concurrent.futures import ThreadPoolExecutor
+    import threading
+    barrier=threading.Barrier(2)
+    def edit_same_note(_):
+        barrier.wait(timeout=5)
+        return client.patch(note_url,headers=headers,json={**body,'version':1,'text':'先核对等式两边'})
+    with ThreadPoolExecutor(max_workers=2) as executor:edits=list(executor.map(edit_same_note,[1,2]))
+    assert all(e.status_code==200 and e.json()['data']['version']==2 for e in edits)
+    assert client.patch(note_url,headers=outsider,content='{broken').status_code==404
+    projection=client.get(journey_url,headers=headers)
+    assert projection.status_code==200,projection.text
+    value=projection.json()['data'];assert value['next_action']['url'].startswith('/pages/practice/')
+    assert value['learning_tasks']['repair_verified'] is True
+    assert value['learning_tasks']['original_independent'] is False and value['learning_tasks']['near_transfer'] is False
+    assert value['self_checks'][0]['text']=='先核对等式两边' and value['self_checks'][0]['source_current'] is True
+    assert client.get(journey_url,headers=outsider).status_code==404
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM cognitive_updates WHERE user_id=?',[user['id']]).rows[0]['n']=='0'
+        assert db.query('SELECT COUNT(*) AS n FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['n']=='0'
+        assert db.query("SELECT COUNT(*) AS n FROM agent_runs WHERE agent_name='student_self_check' AND JSON_UNQUOTE(JSON_EXTRACT(result,'$.task_id'))=?",[tid]).rows[0]['n']=='2'
+        result={'student_view':{'feedback':'公开反馈'},'attempt':{'phase':'repair','verdict':'confirmed_correct','assisted':False,'source':{'snapshot_id':tid}},'checkpoint':{'secret':'private-checkpoint'},'chain_of_thought':'private-reasoning','grading':{'expected':'private-answer'}}
+        for kind in ['answer','observe_visualization']:
+            item=json.loads(json.dumps(result))
+            if kind=='observe_visualization':item['checkpoint']['visualization']={'spec':{'title':'等式图','interactive_variables':[{'name':'delta','label':'两边增加'}]},'values':{'delta':1.5},'current_equation_tex':'x+1=3','source_phase':'repair'}
+            db.query("INSERT INTO learning_task_actions (id,task_id,request_id,body_hash,kind,input_version,input_step_id,body,result,status,created_at,updated_at) VALUES (?,?,?,'hash',?,1,'step',?,?, 'applied',UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[new_id(),tid,'history-'+kind,kind,json.dumps({'text':'我的回答'},ensure_ascii=False),json.dumps(item,ensure_ascii=False)])
+    history=client.get(url+'/history',headers=headers)
+    assert history.status_code==200,history.text
+    output=history.json()['data'];assert output['has_more'] is False and output['source_question']['question_text']=='求解 2x=4'
+    assert len(output['items'])==2
+    visual=next(i for i in output['items'] if i['kind']=='observe_visualization')
+    assert visual['visualization']=={'title':'等式图','relation_tex':'x+1=3','controls':'两边增加：1.5；'} and visual['assisted'] is True
+    assert next(i for i in output['items'] if i['kind']=='answer')['source']=={'snapshot_id':tid}
+    for private in ['private-checkpoint','private-reasoning','private-answer']:assert private not in history.text
+    assert client.get(url+'/history',headers=outsider).status_code==404
+    with Database.from_environment() as db:
+        for index in range(49):db.query("INSERT INTO learning_task_actions (id,task_id,request_id,body_hash,kind,input_version,input_step_id,body,status,created_at,updated_at) VALUES (?,?,?,'hash','hint',1,'step',JSON_OBJECT(),'applied',UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[new_id(),tid,'history-extra-'+str(index)])
+    limited=client.get(url+'/history',headers=headers).json()['data']
+    assert limited['has_more'] is True and len(limited['items'])==50
+    assert client.request('DELETE',note_url,headers=headers,json={'version':1}).status_code==409
+    deleted=client.request('DELETE',note_url,headers=headers,json={'version':2}).json()['data']
+    assert deleted['version']==3 and deleted['note'] is None
+    assert client.request('DELETE',note_url,headers=headers,json={'version':0}).json()['data']['version']==3
+    restored=client.patch(note_url,headers=headers,json={**body,'version':3})
+    assert restored.status_code==200 and restored.json()['data']['version']==4
+    with Database.from_environment() as db:db.query("UPDATE questions SET question_text='原题已改为 3x=6' WHERE id=?",[qid])
+    stale=client.get(note_url,headers=headers).json()['data']
+    assert stale['source_current'] is False and stale['can_save'] is False and stale['note']['text']=='先移项再计算'
+    assert client.patch(note_url,headers=headers,json={**body,'version':4}).status_code==409
+    stale_journey=client.get(journey_url,headers=headers).json()['data']
+    assert stale_journey['self_checks'][0]['source_current'] is False
+    assert stale_journey['learning_tasks']['items'][0]['status']=='stale'
+    assert client.get(url+'/history',headers=headers).json()['data']['source_question']['question_text']=='求解 2x=4'
+    assert client.request('DELETE',note_url,headers=headers,json={'version':4}).json()['data']['version']==5
+    with Database.from_environment() as db:
+        note_row=db.query('SELECT text,deleted FROM learning_self_checks WHERE task_id=?',[tid]).rows[0]
+        assert note_row=={'text':'','deleted':'1'}
+        assert db.query("SELECT COUNT(*) AS n FROM agent_runs WHERE agent_name='student_self_check' AND JSON_UNQUOTE(JSON_EXTRACT(result,'$.task_id'))=?",[tid]).rows[0]['n']=='5'
+        db.query("UPDATE questions SET status='archived' WHERE id=?",[qid])
+    assert client.get(journey_url,headers=headers).status_code==404
