@@ -1681,3 +1681,76 @@ def test_generated_practice_fallback_retries_and_real_concurrent_edit(client,mon
     with Database.from_environment() as db:
         assert db.query('SELECT COUNT(*) AS n FROM variant_questions WHERE question_id=?',[qid]).rows[0]['n']=='1'
         assert db.query('SELECT COUNT(*) AS n FROM variant_attempts WHERE variant_id=?',[item['question_id']]).rows[0]['n']=='2'
+
+
+def test_task_sources_stale_transitions_budgets_and_native_planning(client,monkeypatch):
+    import copy,json,hashlib
+    from sczx_api import task_core,task_sources,task_policy,task_planning
+    from sczx_api.memory_sources import task_snapshot
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'task-core-owner@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'task-core-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};other_headers={'Authorization':'Bearer '+other['access_token']}
+    def manual(auth,text):
+        response=client.post('/api/v1/questions/manual',headers=auth,json={'question_text':text,'subject':'数学','grade':'初二','question_type':'综合题','knowledge_points':['任务测试知识点'],'student_steps':['x+1=3','x=3']})
+        assert response.status_code==200,response.text
+        return response.json()['data']['id']
+    qid=manual(headers,'解方程 x+1=3');due=manual(headers,'应复习的错题');foreign=manual(other_headers,'别人的待复习错题')
+    tid=new_id();action_id=new_id();source_id=new_id();bank_id=new_id()
+    with Database.from_environment() as db:
+        snapshot=task_snapshot(db,qid,user['id']);fingerprint=task_sources.fingerprint(snapshot)
+        view={'title':'学习中','input_kind':'text','prompt_blocks':[{'kind':'question','text':'解方程 x+1=3'}],'handwriting':{'image_url':'/uploads/kept.jpg'}}
+        db.query("INSERT INTO learning_tasks (id,user_id,question_id,input_fingerprint,status,version,step_id,checkpoint,student_view,pending_action,active_request,lease_token,lease_until,created_at,updated_at) VALUES (?,?,?,?,'running',1,?,JSON_OBJECT('phase','repair'),?,JSON_OBJECT('kind','start'),'req-1',?,UTC_TIMESTAMP(6)+INTERVAL 1 MINUTE,UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[tid,user['id'],qid,fingerprint,new_id(),json.dumps(view,ensure_ascii=False),new_id()])
+        db.query("INSERT INTO learning_task_actions (id,task_id,request_id,body_hash,kind,input_version,input_step_id,body,status,created_at,updated_at) VALUES (?,?,'req-1','hash','start',1,'step',JSON_OBJECT(),'pending',UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",[action_id,tid])
+        task=task_core.task_row(db,tid,user['id'])
+        with pytest.raises(Exception) as missing:task_core.task_row(db,tid,other['id'])
+        assert missing.value.status_code==404
+        with db.transaction():task_sources.source(db,task,snapshot,origin='created')
+        immutable=task_sources.source(db,task,snapshot)
+        assert immutable['question']['question_text']=='解方程 x+1=3'
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_sources WHERE task_id=?',[tid]).rows[0]['n']=='1'
+        public_source=task_sources.public_source(db,tid)
+        assert public_source['origin']=='created' and 'student_answer' not in public_source and 'steps' not in public_source
+        task['checkpoint']['evidence_diagnosis']={'verified':True,'first_error_step':10}
+        captured=task_sources.attempt_source(db,task,'repair')
+        assert captured['step_index']==1 and captured['student_step_text']=='x=3'
+        assert captured['student_work_id']==snapshot['work']['id']
+        assert task_sources.attempt_source(db,task,'contrast')['student_step_id'] is None
+        assert task_core.validate_version(db,task,snapshot)
+        assert task['student_view']['prompt_blocks'][0]['options']==[]
+        projected=task_core.public(task)
+        assert 'signature=' in projected['student_view']['handwriting']['image_url']
+        assert task['student_view']['handwriting']['image_url']=='/uploads/kept.jpg'
+        limited=copy.deepcopy(task);limited.update(run_count=72,status='waiting_student')
+        assert task_core.public(limited)['restart_required'] is True
+        for owner_id,question_id in [(user['id'],due),(other['id'],foreign)]:
+            db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL 1 DAY,1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),owner_id,question_id])
+        db.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,'sczx-task-plan-test','任务候选题','1','','public','',1,1,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[source_id])
+        db.query("INSERT INTO dataset_questions (id,dataset_source_id,source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade,created_at,updated_at) VALUES (?,?,?,'test','数学','初二','初中','任务练习','解方程 x+2=4','综合题',JSON_ARRAY(),JSON_QUOTE('2'),'两边减去2',JSON_ARRAY('任务测试知识点'),JSON_ARRAY(),'easy',?,JSON_OBJECT(),1,1,1,'ready',1,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[bank_id,source_id,'task-bank-1',hashlib.sha256(b'task-bank-1').hexdigest()])
+        candidates=task_planning.plan_candidates(db,user['id'],snapshot['question'],['任务测试知识点'])
+        assert any(c['id']==due and c['source']=='notebook' for c in candidates)
+        assert not any(c['id']==foreign or c['id']==qid for c in candidates)
+        bank=next(c for c in candidates if c['id']==bank_id)
+        assert bank['error_relevance']==1 and bank['difficulty']==.25 and bank['recent_exposures']==0
+        assert bank['just_mastered'] is False
+        db.query("UPDATE questions SET question_text='原题已经更新' WHERE id=?",[qid])
+        changed=task_snapshot(db,qid,user['id'])
+        with pytest.raises(task_sources.TaskSourceError) as mismatch:task_sources.source(db,task,changed)
+        assert mismatch.value.reason=='source_field_0'
+        assert task_sources.public_source(db,tid)['question_text']=='解方程 x+1=3'
+        with db.transaction():assert task_core.validate_version(db,task,changed) is False
+        assert task['status']=='stale' and task['version']==2
+        assert task_core.validate_version(db,task,changed) is False and task['version']==2
+        persisted=task_core.task_row(db,tid,user['id'])
+        assert persisted['lease_token'] is None and persisted['lease_until'] is None
+        assert db.query('SELECT status FROM learning_task_actions WHERE id=?',[action_id]).rows[0]['status']=='stale'
+        db.query("UPDATE learning_task_actions SET status='pending' WHERE id=?",[action_id])
+        # Model a preparation timeout with its original photo still in the view.
+        db.query('UPDATE learning_tasks SET student_view=? WHERE id=?',[json.dumps(view,ensure_ascii=False),tid])
+        task['student_view']=copy.deepcopy(view)
+        task_policy.stop_at_limit(db,task,'prepare_budget')
+        stopped=task_core.task_row(db,tid,user['id'])
+        assert stopped['status']=='failed' and stopped['version']==3
+        assert stopped['student_view']['secondary_actions']==['resume']
+        assert stopped['student_view']['handwriting']['image_url']=='/uploads/kept.jpg'
+        assert db.query('SELECT status FROM learning_task_actions WHERE id=?',[action_id]).rows[0]['status']=='failed'
