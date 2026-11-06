@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 70,
+  "migrated_count": 71,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -271,8 +271,9 @@
       "file": "learning-tasks.spec.ts",
       "line": 279,
       "name": "作答图形：候选关系折叠、核对依据、刷新保留与辅助作答",
-      "migration": "not_yet_copied",
-      "full_title": "作答图形：候选关系折叠、核对依据、刷新保留与辅助作答"
+      "migration": "copied_case",
+      "full_title": "作答图形：候选关系折叠、核对依据、刷新保留与辅助作答",
+      "migrated_file": "learning-tasks.spec.ts"
     },
     {
       "file": "learning-tasks.spec.ts",

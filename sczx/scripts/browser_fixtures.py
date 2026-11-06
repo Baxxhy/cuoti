@@ -221,3 +221,55 @@ def seed_route_content(qid,env):
         for index,text in enumerate(['2x=8','x=4']):insert(db,'reference_steps',dict(id=new_id(),analysis_id=analysis,step_index=index,text=text,explanation='',math_valid=1,uses_condition=0))
         insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='sign_error',first_error_step=0,first_error_text='',root_misconception='移项需要改变符号',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
         insert(db,'question_assets',dict(id=new_id(),question_id=qid,kind='question_figure',path=relative,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),bbox=[0,0,1,1],role='question',description='等式左右两边（隔离验收图示）'))
+
+
+def prepare_figure_photo(root):
+    from PIL import ImageFont
+    raw=root/'figure-answer.png';normalized=root/'figure-answer-normalized.jpg'
+    image=Image.new('RGB',(320,180),'white');draw=ImageDraw.Draw(image);font=ImageFont.truetype('DejaVuSans.ttf',24)
+    draw.line([(35,140),(160,20),(285,140),(35,140)],fill='black',width=2)
+    draw.text((30,145),'A',font=font,fill='black');draw.text((280,145),'B',font=font,fill='black');draw.text((165,8),'C',font=font,fill='black');draw.text((85,75),'∠C=80°',font=font,fill='red')
+    image.save(raw);image.save(normalized,format='JPEG',quality=94)
+    return raw,normalized
+
+
+def seed_figure_task(http,base,photo):
+    import time
+    from sczx_api.database import Database
+    response=http.post(base+'/api/v1/auth/register',json={'email':'figure-browser@example.test','password':'Figure-browser-123','grade':'初二'})
+    assert response.status_code==200,response.text
+    token=response.json()['data']['access_token'];headers={'Authorization':'Bearer '+token}
+    response=http.post(base+'/api/v1/questions/manual',headers=headers,json={'question_text':'在三角形ABC中，∠A=50°，∠B=60°，求∠C。','subject':'数学','grade':'初二','question_type':'综合题','student_answer':'80','student_steps':['∠C=80°']})
+    assert response.status_code==200,response.text
+    qid=response.json()['data']['id']
+    with Database.from_environment() as db:
+        insert(db,'problem_analyses',dict(id=new_id(),question_id=qid,subject='数学',problem_type='几何',known_conditions=[],goal='求角C',knowledge_points=[],prerequisites=[],final_answer='70',verified=1,raw_result={'fixture':True}))
+        insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='calculation_error',first_error_step=0,first_error_text='',root_misconception='',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
+    response=http.patch(base+'/api/v1/questions/'+qid+'/diagnosis',headers=headers,json={'first_error_step':0,'root_misconception':'内角和计算需要核对。'})
+    assert response.status_code==200,response.text
+    response=http.post(base+'/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'figure-browser'})
+    assert response.status_code==202,response.text
+    def ready(task):
+        deadline=time.monotonic()+55
+        while task['status'] in ['queued','running']:
+            assert time.monotonic()<deadline,task
+            time.sleep(.2)
+            response=http.get(base+'/api/v1/learning-tasks/'+task['id'],headers=headers)
+            assert response.status_code==200,response.text
+            task=response.json()['data']
+        assert task['status']=='waiting_student',task
+        return task
+    task=ready(response.json()['data'])
+    response=http.post(base+'/api/v1/learning-tasks/'+task['id']+'/handwriting',headers=headers,data={**{key:str(task[key]) for key in ['version','step_id','input_fingerprint']},'request_id':'figure-photo'},files={'file':('figure.png',photo.read_bytes(),'image/png')})
+    assert response.status_code==202,response.text
+    task=ready(response.json()['data'])
+    assert task['student_view']['handwriting']['figure_review'][0]['status']=='conflicts',task
+    import os
+    with Database.from_environment() as db:
+        image_id=task['student_view']['handwriting']['id']
+        saved=db.query('SELECT original_path,sha256 FROM learning_task_images WHERE id=?',[image_id]).rows[0]
+        assert (Path(os.environ['SCZX_MEDIA_ROOT'])/saved['original_path']).read_bytes()==photo.read_bytes()
+        assert saved['sha256']==hashlib.sha256(photo.read_bytes()).hexdigest()
+        trace=json.loads(db.query("SELECT trace FROM learning_task_steps WHERE task_id=? AND tool_name='inspect_figure'",[task['id']]).rows[0]['trace'])
+        assert trace['validation']=='needs_review' and trace['evidence']['classification']=='model_observation' and not trace['evidence']['student_confirmed']
+    return {'QA_FIGURE_TASK_ID':task['id'],'QA_FIGURE_TOKEN':token}

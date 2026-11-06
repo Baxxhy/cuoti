@@ -173,3 +173,37 @@ test('不等式：诊断保留正确第一步，错误端点不判对，区间�
   ).toBe(true)
   expect(items.some((item: any) => item.verdict === 'review_required')).toBe(true)
 })
+
+test('作答图形：候选关系折叠、核对依据、刷新保留与辅助作答', async ({ page, request }) => {
+  expect(process.env.QA_FIGURE_TASK_ID, '需要隔离图形标注样本').toBeTruthy()
+  const token = process.env.QA_FIGURE_TOKEN!
+  await page.addInitScript(
+    (value) => localStorage.setItem('minddimension_access_token', JSON.stringify(value)),
+    token,
+  )
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto(`/#/pages/task/task?id=${process.env.QA_FIGURE_TASK_ID}`)
+  await expect(page.getByRole('button', { name: '查看图形标注 · 1', exact: true })).toBeVisible()
+  await expect(page.locator('.figure-body')).toHaveCount(0)
+  await page.getByRole('button', { name: '查看图形标注 · 1', exact: true }).focus()
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.figure-body')).toContainText('需要检查')
+  await expect(page.locator('.figure-body')).toContainText('辅助学习记录')
+  await page.getByRole('button', { name: '查看核对依据', exact: true }).click()
+  await expect(page.locator('.figure-basis')).toContainText('∠A=50°；∠B=60°')
+  await page.locator('.answer-input textarea, textarea.answer-input').fill('70')
+  await page.reload()
+  await expect(page.locator('.answer-input textarea, textarea.answer-input')).toHaveValue('70')
+  await expect(page.getByRole('button', { name: '查看图形标注 · 1', exact: true })).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.getByRole('button', { name: '确认文字并提交', exact: true }).click()
+  await expect(page.getByText('本次学习完成', { exact: true })).toBeVisible()
+  const response = await request.get(
+    `${process.env.SCZX_API_URL}/learning-tasks/${process.env.QA_FIGURE_TASK_ID}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  )
+  expect(response.ok()).toBeTruthy()
+  expect((await response.json()).data.learning_applied).toBe(false)
+})
