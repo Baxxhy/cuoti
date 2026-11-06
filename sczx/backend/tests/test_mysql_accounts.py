@@ -330,3 +330,81 @@ def test_ingest_recognition_failure_retry_stale_and_recovery(client, tmp_path, m
     assert recovered['status'] == 'failed' and '服务重启' in recovered['error']
     assert client.post('/api/v1/questions/ingest', headers=headers, files=files, data={'defer_processing': 'invalid'}).status_code == 422
     assert client.post('/api/v1/questions/ingest', headers=headers, files={'file': ('empty.png', b'', 'image/png')}).status_code == 422
+
+
+def test_crop_resume_confirm_and_ocr_endpoints(client, tmp_path, monkeypatch):
+    import base64
+    import hashlib
+    from sczx_api import ingest, crop
+    user = client.post('/api/v1/auth/register', json={'email': 'crop@example.com', 'password': 'secret'}).json()['data']
+    headers = {'Authorization': 'Bearer ' + user['access_token']}
+    monkeypatch.setenv('SCZX_MEDIA_ROOT', str(tmp_path / 'media'))
+    data = b'image-content'
+    def asset(kind): return {'kind': kind, 'image_base64': base64.b64encode(data).decode(), 'sha256': hashlib.sha256(data).hexdigest(), 'geometry': {'width': 100, 'height': 100}}
+    monkeypatch.setattr(ingest, 'compute', lambda payload: asset('original'))
+    monkeypatch.setattr(crop, 'compute', lambda payload: asset('crop'))
+    monkeypatch.setattr(crop, 'run_recognition', lambda *args: None)
+    result = client.post('/api/v1/questions/ingest', headers=headers, files={'file': ('q.png', data, 'image/png')}, data={'defer_processing': 'true'}).json()['data']
+    path = '/api/v1/questions/' + result['question_id']
+    assert client.post(path + '/ocr', headers=headers).status_code == 422
+    assert client.post(path + '/confirm', headers=headers).status_code == 422
+    for box in [[0, 0, 0, 1], [-.1, 0, 1, 1], [True, 0, 1, 1], [0, 0, 1.1, 1], [0, 0, 1]]:
+        assert client.post(path + '/crop', headers=headers, json={'box': box}).status_code == 422
+    box = [.1, .2, .6, .7]
+    cropped = client.post(path + '/crop', headers=headers, json={'box': box})
+    assert cropped.status_code == 200, cropped.text
+    saved = cropped.json()['data']
+    assert saved['original_preserved'] is True and saved['status'] == 'pending'
+    detail = client.get(path, headers=headers).json()['data']
+    assert detail['crop_box'] == pytest.approx(box)
+    resumed = client.post(path + '/crop', headers=headers, json={'box': box}).json()['data']
+    assert resumed['job_id'] == saved['job_id'] and resumed['resumed'] is True
+    assert client.post(path + '/crop', headers=headers, json={'box': [0, 0, 1, 1]}).status_code == 409
+    assert client.post(path + '/reprocess', headers=headers).json()['data']['resumed'] is True
+    draft = client.post(path + '/draft', headers=headers, json={'question_text': '计算题', 'student_steps': [{'text': 'x = 1', 'bbox': [0, '0.1', 1, 1], 'confidence': '0.9'}], 'teacher_marks': ['已核对']})
+    assert draft.status_code == 200, draft.text
+    value = draft.json()['data']
+    assert value['status'] == 'ocr_draft' and value['confirmed'] is False
+    assert value['student_steps'][0]['text'] == 'x = 1' and value['teacher_marks'][0]['comment'] == '已核对'
+    job = client.get('/api/v1/jobs/' + saved['job_id'], headers=headers).json()['data']
+    assert job['status'] == 'cancelled' and '人工核对' in job['error']
+    confirmed = client.post(path + '/confirm', headers=headers)
+    assert confirmed.status_code == 200 and confirmed.json()['data']['confirmed'] is True
+    assert confirmed.json()['data']['status'] == 'confirmed'
+    choice = client.post(path + '/confirm', headers=headers, json={'question_type': 'multiple_choice', 'options': [{'label': 'A', 'text': '一'}, {'label': 'B', 'text': '二'}], 'student_answer': '', 'student_steps': ['a，b']})
+    assert choice.status_code == 200, choice.text
+    assert choice.json()['data']['student_answer'] == 'A、B' and choice.json()['data']['student_steps'] == []
+    asynchronous = client.post(path + '/reprocess', headers=headers).json()['data']
+    assert asynchronous['job_id']
+    synchronous = client.post(path + '/ocr', headers=headers).json()['data']
+    assert synchronous['resumed'] is True and synchronous['job']['id'] == asynchronous['job_id']
+    assert synchronous['question']['id'] == result['question_id']
+
+
+def test_signed_media_head_ranges_etag_and_symlink_rejection(client, tmp_path, monkeypatch):
+    from sczx_api.security import media_url
+    monkeypatch.setenv('SCZX_MEDIA_ROOT', str(tmp_path))
+    (tmp_path / 'uploads').mkdir()
+    (tmp_path / 'uploads' / 'image.png').write_bytes(b'0123456789')
+    url = media_url('/uploads/image.png', os.environ['SCZX_AUTH_SECRET'])
+    assert client.get('/uploads/image.png').status_code == 403
+    response = client.get(url)
+    assert response.status_code == 200 and response.content == b'0123456789'
+    assert response.headers['content-type'] == 'image/png' and response.headers['accept-ranges'] == 'bytes'
+    tag = response.headers['etag']
+    head = client.head(url)
+    assert head.status_code == 200 and head.content == b'' and head.headers['content-length'] == '10'
+    assert client.get(url, headers={'If-None-Match': 'W/' + tag}).status_code == 304
+    ranged = client.get(url, headers={'Range': 'bytes=2-4'})
+    assert ranged.status_code == 206 and ranged.content == b'234'
+    assert ranged.headers['content-range'] == 'bytes 2-4/10'
+    assert client.get(url, headers={'Range': 'bytes=-3'}).content == b'789'
+    assert client.get(url, headers={'Range': 'bytes=2-4', 'If-Range': 'changed'}).content == b'0123456789'
+    assert client.get(url, headers={'Range': 'bytes=0-1,4-5'}).status_code == 200
+    invalid = client.get(url, headers={'Range': 'bytes=99-'})
+    assert invalid.status_code == 416 and invalid.headers['content-range'] == 'bytes */10'
+    assert client.post(url).status_code == 405 and client.post(url).headers['allow'] == 'GET, HEAD'
+    outside = tmp_path / 'outside.txt'; outside.write_text('private')
+    (tmp_path / 'uploads' / 'link.png').symlink_to(outside)
+    link = media_url('/uploads/link.png', os.environ['SCZX_AUTH_SECRET'])
+    assert client.get(link).status_code == 404

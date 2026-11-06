@@ -117,37 +117,47 @@
   {
     "path": "/api/v1/questions/{question_id}/ocr",
     "source": "backend-cangjie/src/main.cj:41",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/reprocess",
     "source": "backend-cangjie/src/main.cj:42",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/crop",
     "source": "backend-cangjie/src/main.cj:43",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/draft",
     "source": "backend-cangjie/src/main.cj:44",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/confirm",
     "source": "backend-cangjie/src/main.cj:45",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
   },
   {
     "path": "/api/v1/questions/{question_id}/analyze",
@@ -508,16 +518,22 @@
   {
     "path": "/uploads/*",
     "source": "backend-cangjie/src/main.cj:96",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "HEAD"
+    ],
+    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
   },
   {
     "path": "/reports/*",
     "source": "backend-cangjie/src/main.cj:97",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "HEAD"
+    ],
+    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
   },
   {
     "path": "/api/v1/questions",
@@ -549,9 +565,9 @@
     "source": "backend-cangjie/src/main.cj:101",
     "python_registered": true,
     "python_methods": [
+      "DELETE",
       "GET",
-      "PATCH",
-      "DELETE"
+      "PATCH"
     ],
     "parity": "ported from question_detail.cj, question_edit.cj, question_api.cj; basic isolated MySQL acceptance, enriched diagnosis/workflow parity pending"
   },

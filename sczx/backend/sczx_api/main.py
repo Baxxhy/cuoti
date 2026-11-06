@@ -13,6 +13,9 @@ from .manual_questions import create_manual_question
 from .ingest import ingest_question
 from .recognition import recover_jobs
 from .jobs import get_job, retry_job
+from .crop import crop_question, start_recognition
+from .ocr_edits import save_ocr_edits
+from .media import serve_media
 
 from . import accounts
 from .database import Database
@@ -50,7 +53,7 @@ async def http_error(request, error):
     if error.status_code == 405:
         matched = next((route for route in app.routes if route.matches(request.scope)[0] != Match.NONE), None)
         if matched:
-            methods = [m for m in ['GET', 'PATCH', 'POST', 'DELETE'] if m in matched.methods]
+            methods = [m for m in ['GET', 'HEAD', 'PATCH', 'POST', 'DELETE'] if m in matched.methods]
             headers = {'Allow': ', '.join(methods)}
     return JSONResponse({'detail': detail}, status_code=error.status_code, headers=headers)
 
@@ -119,3 +122,34 @@ async def retry(request: Request, background: BackgroundTasks):
 async def question(request: Request):
     handler = {'GET': read_question, 'PATCH': edit_question, 'DELETE': archive_question}[request.method]
     return envelope(await handler(request))
+
+
+@app.post('/api/v1/questions/{question_id}/crop')
+async def crop(request: Request, background: BackgroundTasks):
+    return envelope(await crop_question(request, background))
+
+
+@app.post('/api/v1/questions/{question_id}/ocr')
+async def ocr(request: Request, background: BackgroundTasks):
+    return envelope(await start_recognition(request, background, synchronous=True))
+
+
+@app.post('/api/v1/questions/{question_id}/reprocess')
+async def reprocess(request: Request, background: BackgroundTasks):
+    return envelope(await start_recognition(request, background))
+
+
+@app.post('/api/v1/questions/{question_id}/draft')
+async def draft(request: Request):
+    return envelope(await save_ocr_edits(request, False))
+
+
+@app.post('/api/v1/questions/{question_id}/confirm')
+async def confirm(request: Request):
+    return envelope(await save_ocr_edits(request, True))
+
+
+@app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])
+@app.api_route('/reports/{media_path:path}', methods=['GET', 'HEAD'])
+async def media(request: Request):
+    return await serve_media(request)

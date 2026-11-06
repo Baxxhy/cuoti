@@ -17,13 +17,15 @@ def secret():
     return value
 
 
-async def read_json(request: Request, max_bytes=65536):
+async def read_json(request: Request, max_bytes=65536, default_empty=False):
     data = bytearray()
     async for chunk in request.stream():
         data.extend(chunk)
         if len(data) > max_bytes:
             raise HTTPException(413, '请求内容过大')
     try:
+        if default_empty and not data:
+            return {}
         value = json.loads(data)
         if not isinstance(value, dict):
             raise ValueError
