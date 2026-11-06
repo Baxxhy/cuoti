@@ -8,15 +8,24 @@ export function parsePage(url) {
   return { route: parsed.pathname.replace(/^\//, ''), options: Object.fromEntries(parsed.searchParams), $page: { fullPath: parsed.pathname + parsed.search } }
 }
 export const currentUrl = shallowRef(locationUrl())
-let pages = window.history.state?.sczxPages || [parsePage(currentUrl.value)]
+let pageSequence=0
+function pageEntry(url){return {...parsePage(url),key:'page-'+Date.now()+'-'+(++pageSequence)}}
+let pages = (window.history.state?.sczxPages || [pageEntry(currentUrl.value)]).map(page=>page.key?page:{...page,key:'page-'+Date.now()+'-'+(++pageSequence)})
+export const pageStack=shallowRef(pages)
+window.history.replaceState({...window.history.state,sczxPages:pages},'')
+const scrollPositions=new Map()
+function rememberScroll(){if(pages.length)scrollPositions.set(pages.at(-1).key,window.scrollY||0)}
+function publishPages(){pageStack.value=pages}
 export const getBrowserPages = () => pages.map(p => ({ ...p, options: { ...p.options } }))
 function navigate(options, replace = false, reset = false) {
   try {
     const url = String(options.url || '')
     if (!url.startsWith('/pages/')) throw new Error('页面地址不正确')
-    const page = parsePage(url)
+    rememberScroll()
+    const page = pageEntry(url)
     pages = reset ? [page] : replace ? [...pages.slice(0, -1), page] : [...pages, page]
     window.history[replace || reset ? 'replaceState' : 'pushState']({ sczxPages: pages }, '', '#' + page.$page.fullPath)
+    publishPages()
     currentUrl.value = page.$page.fullPath
     window.scrollTo?.(0, 0)
     options.success?.({})
@@ -24,12 +33,15 @@ function navigate(options, replace = false, reset = false) {
   } catch (error) { options.fail?.(error); options.complete?.(error) }
 }
 window.addEventListener('popstate', () => {
-  pages = window.history.state?.sczxPages || [parsePage(locationUrl())]
+  rememberScroll()
+  pages = window.history.state?.sczxPages || [pageEntry(locationUrl())]
+  publishPages()
   currentUrl.value = locationUrl()
+  requestAnimationFrame(()=>window.scrollTo?.(0,scrollPositions.get(pages.at(-1).key)||0))
 })
 window.addEventListener('hashchange', () => {
   currentUrl.value = locationUrl()
-  if (pages.at(-1)?.$page.fullPath !== currentUrl.value) pages = [parsePage(currentUrl.value)]
+  if (pages.at(-1)?.$page.fullPath !== currentUrl.value){pages = [pageEntry(currentUrl.value)];publishPages()}
 })
 export const notice = shallowRef(null)
 let noticeTimer

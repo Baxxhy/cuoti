@@ -1,15 +1,23 @@
-import { onMounted, onBeforeUnmount } from 'vue'
-import { parsePage } from './browser.js'
-export function onLoad(callback) { onMounted(() => callback(parsePage(window.location.hash.slice(1)).options)) }
-export function onShow(callback) {
-  onMounted(callback)
-  const visible = () => { if (document.visibilityState === 'visible') callback() }
-  document.addEventListener('visibilitychange', visible)
-  onBeforeUnmount(() => document.removeEventListener('visibilitychange', visible))
+import {inject,onMounted,onBeforeUnmount,watch} from 'vue'
+import {parsePage} from './browser.js'
+import {pageContext} from './page-context.js'
+export function onLoad(callback){
+ const context=inject(pageContext,null)
+ const options=context?.options||parsePage(window.location.hash.slice(1)).options
+ onMounted(()=>callback(options))
 }
-export function onHide(callback) {
-  const hidden = () => { if (document.visibilityState === 'hidden') callback() }
-  document.addEventListener('visibilitychange', hidden)
-  onBeforeUnmount(() => { document.removeEventListener('visibilitychange', hidden); callback() })
+function visibilityHook(callback,shown){
+ const context=inject(pageContext,null)
+ let mounted=false,visible=false
+ function update(){
+  const next=(context?.active.value??true)&&document.visibilityState!=='hidden'
+  if(next!==visible){visible=next;if(next===shown)callback()}
+ }
+ onMounted(()=>{mounted=true;update()})
+ const stop=context?watch(context.active,()=>{if(mounted)update()},{flush:'post'}):()=>{}
+ document.addEventListener('visibilitychange',update)
+ onBeforeUnmount(()=>{stop();document.removeEventListener('visibilitychange',update);if(visible&&!shown)callback();mounted=false})
 }
-export function onUnload(callback) { onBeforeUnmount(callback) }
+export function onShow(callback){visibilityHook(callback,true)}
+export function onHide(callback){visibilityHook(callback,false)}
+export function onUnload(callback){onBeforeUnmount(callback)}

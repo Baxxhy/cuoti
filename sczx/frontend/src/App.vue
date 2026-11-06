@@ -1,7 +1,8 @@
 <script setup>
 import { computed, defineAsyncComponent } from 'vue'
-import { currentUrl, notice, parsePage } from './platform/browser.js'
+import { currentUrl, notice, parsePage, pageStack } from './platform/browser.js'
 import routes from './routes.json'
+import PageHost from './platform/PageHost.vue'
 import WebDialogs from './platform/WebDialogs.vue'
 import WebImagePreview from './platform/WebImagePreview.vue'
 const modules=import.meta.glob('./pages/**/*.vue')
@@ -9,8 +10,8 @@ const pages=Object.fromEntries(routes.map(path=>[path,defineAsyncComponent(modul
 const page=computed(()=>pages[parsePage(currentUrl.value).route])
 </script>
 <template>
-  <component v-if="page" :is="page" :key="currentUrl" />
-  <main v-else class="page-content"><h1>页面不存在</h1><a href="#/pages/index/index">返回首页</a></main>
+  <PageHost v-for="(entry,index) in pageStack" :key="entry.key" :entry="entry" :active="index===pageStack.length-1" :component="pages[entry.route]" />
+  <main v-if="!page" class="page-content"><h1>页面不存在</h1><a href="#/pages/index/index">返回首页</a></main>
   <WebDialogs />
   <WebImagePreview />
   <div v-if="notice" class="web-toast" :class="{'web-toast-symbol':notice.icon!=='none'}" role="alert">

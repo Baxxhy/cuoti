@@ -54,6 +54,17 @@ try{
    if(route.includes('ui_modal')){await page.getByText('拍照与辅助工具',{exact:true}).click();await page.getByText('查看图解',{exact:true}).click()}
    if(route.includes('ui_sheet')||route.includes('ui_remove')){await page.getByLabel('更多操作',{exact:true}).click();await page.waitForTimeout(350);if(route.includes('ui_remove'))await page.getByText('移出错题本',{exact:true}).click()}
    if(route.includes('ui_preview')){await page.getByText('查看原图',{exact:true}).click();await page.waitForTimeout(400)}
+   if(route.includes('ui_return')){
+    const chooser=page.waitForEvent('filechooser')
+    await page.getByLabel('选择错题图片',{exact:true}).click()
+    await (await chooser).setFiles({name:'return.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wl6whkAAAAASUVORK5CYII=','base64')})
+    await page.getByLabel('手动录入错题',{exact:true}).click()
+    await page.locator('textarea').first().fill('离开后返回时保留上一页图片')
+    await page.getByLabel('返回',{exact:true}).click()
+    await page.waitForURL('**/#/pages/capture/capture*')
+    await page.waitForTimeout(150)
+    if(await page.locator('.capture-zone-selected').count()!==1)throw new Error(name+': selected photo lost on return')
+   }
    await page.evaluate(()=>document.fonts.ready)
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})
    const snapshot=await page.evaluate(()=>{

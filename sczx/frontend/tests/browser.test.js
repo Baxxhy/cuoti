@@ -1,11 +1,13 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
-import { h, nextTick } from 'vue'
+import { h, nextTick, defineComponent, markRaw } from 'vue'
 import { mount } from '@vue/test-utils'
 import { browser, parsePage, getBrowserPages, currentUrl, modalState, actionSheetState, imagePreviewState } from '../src/platform/browser.js'
 import { WebInput, WebTextarea, WebPicker, WebImage, WebMovable, WebCheckboxGroup, WebCheckbox } from '../src/platform/components.js'
 import routes from '../src/routes.json'
 import WebDialogs from '../src/platform/WebDialogs.vue'
 import WebImagePreview from '../src/platform/WebImagePreview.vue'
+import PageHost from '../src/platform/PageHost.vue'
+import {onLoad,onShow,onHide,onUnload} from '../src/platform/lifecycle.js'
 import { readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 
@@ -131,6 +133,28 @@ describe('Web runtime preserves original page contracts',()=>{
   browser.closePreviewImage()
   await nextTick()
   wrapper.unmount()
+ })
+ it('loads each page once, hides it while covered and shows it again without unloading',async()=>{
+  const load=vi.fn(),show=vi.fn(),hide=vi.fn(),unload=vi.fn()
+  const Child=defineComponent({setup(){onLoad(load);onShow(show);onHide(hide);onUnload(unload);return()=>h('input',{value:'未保存草稿'})}})
+  const wrapper=mount(PageHost,{props:{entry:{options:{id:'original-page'}},active:true,component:markRaw(Child)}})
+  expect(load).toHaveBeenCalledWith({id:'original-page'})
+  expect(show).toHaveBeenCalledTimes(1)
+  const input=wrapper.find('input').element
+  input.value='保留后的草稿'
+  await wrapper.setProps({active:false})
+  expect(hide).toHaveBeenCalledTimes(1)
+  expect(unload).not.toHaveBeenCalled()
+  document.dispatchEvent(new Event('visibilitychange'))
+  expect(show).toHaveBeenCalledTimes(1)
+  await wrapper.setProps({active:true})
+  expect(show).toHaveBeenCalledTimes(2)
+  expect(wrapper.find('input').element).toBe(input)
+  expect(input.value).toBe('保留后的草稿')
+  expect(load).toHaveBeenCalledTimes(1)
+  wrapper.unmount()
+  expect(hide).toHaveBeenCalledTimes(2)
+  expect(unload).toHaveBeenCalledTimes(1)
  })
  it('converts native typing into the original detail.value event',async()=>{
   const wrapper=mount(WebInput,{props:{modelValue:'',maxlength:30}})
