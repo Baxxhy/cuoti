@@ -423,37 +423,50 @@
   {
     "path": "/api/v1/papers",
     "source": "backend-cangjie/src/main.cj:73",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "POST"
+    ],
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
   },
   {
     "path": "/api/v1/papers/candidates",
     "source": "backend-cangjie/src/main.cj:74",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
   },
   {
     "path": "/api/v1/papers/{paper_id}/export",
     "source": "backend-cangjie/src/main.cj:75",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
   },
   {
     "path": "/api/v1/papers/{paper_id}/download",
     "source": "backend-cangjie/src/main.cj:76",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
   },
   {
     "path": "/api/v1/papers/{paper_id}",
     "source": "backend-cangjie/src/main.cj:77",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "DELETE",
+      "GET",
+      "PATCH"
+    ],
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
   },
   {
     "path": "/api/v1/variants/{variant_id}/attempt",

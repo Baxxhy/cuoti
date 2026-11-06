@@ -1463,3 +1463,76 @@ def test_admin_workbench_details_permissions_and_recursive_sanitization(client,m
     assert client.get('/api/v1/admin/students/'+student['id'],headers=student_headers).status_code==403
     assert client.get('/api/v1/admin/students/'+new_id(),headers=admin_headers).status_code==404
     assert client.get('/api/v1/admin/sessions/'+new_id(),headers=admin_headers).status_code==404
+
+
+def test_papers_real_rendering_ownership_and_transaction_rollback(client,monkeypatch,tmp_path):
+    from io import BytesIO
+    from openpyxl import load_workbook
+    from sczx_api import paper_exports,analysis
+    monkeypatch.syspath_prepend(str(Path('sczx/algorithms').resolve()))
+    from paper_export_compute import ExportQuestion,render_paper
+    monkeypatch.setenv('SCZX_MEDIA_ROOT',str(tmp_path/'media'))
+    def register(email):
+        user=client.post('/api/v1/auth/register',json={'email':email,'password':'secret'}).json()['data']
+        return {'Authorization':'Bearer '+user['access_token']}
+    headers=register('paper-owner@example.com');other=register('paper-other@example.com')
+    def question(auth,text):
+        response=client.post('/api/v1/questions/manual',headers=auth,json={'question_text':text,'subject':'数学'})
+        assert response.status_code==200,response.text
+        return response.json()['data']['id']
+    qid=question(headers,'求方程 x+1=2 的解');foreign=question(other,'其他学生的题')
+    candidate=client.get('/api/v1/papers/candidates',headers=headers).json()['data']
+    assert [q['id'] for q in candidate]==[qid]
+    assert client.get('/api/v1/papers/candidates?mastery_min=2',headers=headers).status_code==422
+    created=client.post('/api/v1/papers',headers=headers,json={'title':'错题巩固','default_score':15})
+    assert created.status_code==200,created.text
+    paper=created.json()['data'];url='/api/v1/papers/'+paper['id']
+    detail=client.get(url,headers=headers).json()['data']
+    assert detail['items'][0]['question_id']==qid and detail['items'][0]['score']==15
+    assert detail['items'][0]['analysis_ready'] is False
+    assert client.get(url,headers=other).status_code==404
+    assert client.post(url+'/export',headers=headers,json={'kind':'answer'}).status_code==409
+    failed=client.patch(url,headers=headers,json={'title':'不能留下的修改','items':[{'question_id':foreign}]})
+    assert failed.status_code==404
+    assert client.get(url,headers=headers).json()['data']['title']=='错题巩固'
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=2-1=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    assert client.post('/api/v1/questions/'+qid+'/analyze',headers=headers).status_code==200
+    assert client.get(url,headers=headers).json()['data']['items'][0]['analysis_ready'] is True
+    assert client.get('/api/v1/papers/candidates?knowledge_point=方程',headers=headers).json()['data'][0]['id']==qid
+    assert client.get('/api/v1/papers/candidates?knowledge_point=几何',headers=headers).json()['data']==[]
+    assert client.get('/api/v1/papers/candidates?due_review=true',headers=headers).json()['data']==[]
+    assert client.get('/api/v1/papers/candidates?mastery_min=0.5',headers=headers).json()['data']==[]
+    replacement=client.patch(url,headers=headers,json={'items':[{'question_id':qid,'score':20},{'question_id':qid,'score':5}]})
+    assert replacement.status_code==200,replacement.text
+    assert [i['score'] for i in replacement.json()['data']['items']]==[20,5]
+    assert client.patch(url,headers=headers,json={'items':[{'question_id':qid,'score':101}]}).status_code==422
+    def render(payload):
+        assert payload['operation']=='render_paper'
+        return render_paper(payload['paper_title'],payload['paper_kind'],[ExportQuestion.model_validate(q) for q in payload['paper_questions']])
+    monkeypatch.setattr(paper_exports,'compute',render)
+    for kind in ['question','answer','excel']:
+        exported=client.post(url+'/export',headers=headers,json={'kind':kind})
+        assert exported.status_code==200,exported.text
+        job=exported.json()['data'];signed=client.get(job['url'])
+        assert signed.status_code==200,signed.text
+        download=client.get(url+'/download?kind='+kind,headers=headers)
+        assert download.status_code==200 and download.content==signed.content
+        assert client.get(url+'/download?kind='+kind,headers=other).status_code==404
+        if kind=='excel':
+            workbook=load_workbook(BytesIO(download.content))
+            assert any('求方程 x+1=2 的解' in str(cell) for row in workbook.active.values for cell in row)
+        else:assert download.content.startswith(b'%PDF-')
+    assert len(client.get(url,headers=headers).json()['data']['exports'])==3
+    def corrupted(payload):
+        result=render(payload);result['sha256']='0'*64;return result
+    monkeypatch.setattr(paper_exports,'compute',corrupted)
+    before=set((tmp_path/'media').rglob('*.*'))
+    assert client.post(url+'/export',headers=headers,json={}).status_code==503
+    assert set((tmp_path/'media').rglob('*.*'))==before
+    assert len(client.get(url,headers=headers).json()['data']['exports'])==3
+    assert client.post(url+'/export',headers=headers,json={'kind':'invalid'}).status_code==422
+    assert client.delete(url,headers=other).json()['data']=={'deleted':False}
+    assert client.delete(url,headers=headers).json()['data']=={'deleted':True}
+    assert client.delete(url,headers=headers).json()['data']=={'deleted':False}
+    assert client.get(url,headers=headers).status_code==404

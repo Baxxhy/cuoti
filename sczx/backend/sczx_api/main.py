@@ -43,6 +43,8 @@ from .knowledge_lessons import personal_framework, knowledge_lessons
 from .system import system_api
 from .voice import transcribe, synthesize
 from .admin import admin_api
+from .papers import papers, paper_api, paper_candidates
+from .paper_exports import export_paper, download_paper
 
 from . import accounts
 from .database import Database
@@ -415,6 +417,31 @@ async def admin_student(request: Request):
 @app.get('/api/v1/admin/sessions/{session_id}')
 async def admin_session(request: Request):
     return envelope(await admin_api(request, 'session'))
+
+
+@app.api_route('/api/v1/papers', methods=['GET', 'POST'])
+async def user_papers(request: Request):
+    return envelope(await papers(request))
+
+
+@app.get('/api/v1/papers/candidates')
+async def candidate_papers(request: Request):
+    return envelope(await paper_candidates(request))
+
+
+@app.api_route('/api/v1/papers/{paper_id}', methods=['GET', 'PATCH', 'DELETE'])
+async def user_paper(request: Request):
+    return envelope(await paper_api(request))
+
+
+@app.post('/api/v1/papers/{paper_id}/export')
+async def paper_export(request: Request):
+    return envelope(await export_paper(request))
+
+
+@app.get('/api/v1/papers/{paper_id}/download')
+async def paper_download(request: Request):
+    return await download_paper(request)
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])
