@@ -1415,3 +1415,51 @@ def test_system_and_voice_context_files_failure_and_cleanup(client,tmp_path,monk
     monkeypatch.setattr(voice,'compute',bad_duration);before=set((tmp_path/'media').rglob('*.*'))
     assert client.post('/api/v1/voice/synthesize',headers=headers,json={'text':'测试回滚'}).status_code==422
     assert set((tmp_path/'media').rglob('*.*'))==before
+
+
+def test_admin_workbench_details_permissions_and_recursive_sanitization(client,monkeypatch):
+    import json
+    from sczx_api import admin,analysis
+    from sczx_api.security import new_id
+    student=client.post('/api/v1/auth/register',json={'email':'admin-student@example.com','password':'secret','name':'查看样例学生'}).json()['data']
+    administrator=client.post('/api/v1/auth/register',json={'email':'admin-account@example.com','password':'secret'}).json()['data']
+    student_headers={'Authorization':'Bearer '+student['access_token']};admin_headers={'Authorization':'Bearer '+administrator['access_token']}
+    with Database.from_environment() as db:db.query("UPDATE users SET role='admin' WHERE id=?",[administrator['id']])
+    question_id=client.post('/api/v1/questions/manual',headers=student_headers,json={'question_text':'管理员查看题','student_steps':['x=3']}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=student_headers)
+    session=client.post('/api/v1/tutor/sessions',headers=student_headers,json={'question_id':question_id}).json()['data'];run_id=new_id()
+    sensitive={'visible':'保留','nested':[{'password':'fake-private','api_key':'fake-key','access_token':'fake-token','chain_of_thought':'fake-reasoning','safe':'显示'}]}
+    with Database.from_environment() as db:
+        db.query("INSERT INTO agent_runs (id,session_id,agent_name,status,result,created_at,updated_at) VALUES (?,?,'mindtrace_tutor','completed',?,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[run_id,session['id'],json.dumps({'branch':'guided_question','next_goal':'核对依据','observation':sensitive,'plan':{'raw_prompt':'fake-prompt','tool':'knowledge_search'},'verification':{'status':'checked'}})])
+        db.query("INSERT INTO agent_tool_calls (id,agent_run_id,tool_name,input_json,output_json,created_at,updated_at) VALUES (?,?,'knowledge_search',?,?,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),run_id,json.dumps(sensitive),json.dumps({'safe':True,'authorization':'fake-auth'})])
+        db.query("INSERT INTO tutor_turns (id,session_id,role,content,stage,metadata_json,created_at,updated_at) VALUES (?,?,'assistant','核对条件','understanding',?,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),session['id'],json.dumps(sensitive)])
+        db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP(),1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),student['id'],question_id])
+    monkeypatch.setattr(admin,'compute',lambda p:{'provider':{'logical_model':'test-model','total_entries':2,'text_entries':2,'vision_entries':1,'last_status':'ready','api_key':'fake-private'},'voice':{'status':'ready','loaded':False,'stt_model':'test','tts_model':'test','secret':'fake-private'}})
+    assert client.get('/api/v1/admin/workbench').status_code==401
+    assert client.get('/api/v1/admin/workbench',headers=student_headers).status_code==403
+    workbench=client.get('/api/v1/admin/workbench',headers=admin_headers)
+    assert workbench.status_code==200,workbench.text
+    value=workbench.json()['data']
+    assert value['generated_at'].endswith('+00:00') and value['metrics']['students']>=1
+    assert any(s['id']==student['id'] and s['question_count']==1 for s in value['students'])
+    assert value['system']['provider']['status']=='ready'
+    detail=client.get('/api/v1/admin/students/'+student['id'],headers=admin_headers)
+    assert detail.status_code==200,detail.text
+    assert detail.json()['data']['metrics']=={'questions':1,'sessions':1,'pending_reviews':1}
+    assert detail.json()['data']['student']['name']=='查看样例学生'
+    session_detail=client.get('/api/v1/admin/sessions/'+session['id'],headers=admin_headers)
+    assert session_detail.status_code==200,session_detail.text
+    result=session_detail.json()['data']
+    run=next(r for r in result['trace'] if r['id']==run_id)
+    assert run['agent']=='教学决策智能体' and run['decision']=='引导式提问'
+    assert run['observation']=={'visible':'保留','nested':[{'safe':'显示'}]}
+    assert run['actions'][0]['tool']=='知识检索' and run['actions'][0]['output']=={'safe':True}
+    assert next(t for t in result['turns'] if t['content']=='核对条件')['decision']['nested']==[{'safe':'显示'}]
+    serialized=json.dumps([value,detail.json()['data'],result],ensure_ascii=False)
+    for hidden in ['fake-private','fake-key','fake-token','fake-reasoning','fake-prompt','fake-auth','password_hash','admin-student@example.com']:
+        assert hidden not in serialized
+    assert client.get('/api/v1/admin/students/'+student['id'],headers=student_headers).status_code==403
+    assert client.get('/api/v1/admin/students/'+new_id(),headers=admin_headers).status_code==404
+    assert client.get('/api/v1/admin/sessions/'+new_id(),headers=admin_headers).status_code==404

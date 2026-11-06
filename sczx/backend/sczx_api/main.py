@@ -42,6 +42,7 @@ from .study_sessions import sessions, session_api
 from .knowledge_lessons import personal_framework, knowledge_lessons
 from .system import system_api
 from .voice import transcribe, synthesize
+from .admin import admin_api
 
 from . import accounts
 from .database import Database
@@ -399,6 +400,21 @@ async def voice_transcribe(request: Request):
 @app.post('/api/v1/voice/synthesize')
 async def voice_synthesize(request: Request):
     return envelope(await synthesize(request))
+
+
+@app.get('/api/v1/admin/workbench')
+async def admin_workbench(request: Request):
+    return envelope(await admin_api(request, 'workbench'))
+
+
+@app.get('/api/v1/admin/students/{student_id}')
+async def admin_student(request: Request):
+    return envelope(await admin_api(request, 'student'))
+
+
+@app.get('/api/v1/admin/sessions/{session_id}')
+async def admin_session(request: Request):
+    return envelope(await admin_api(request, 'session'))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

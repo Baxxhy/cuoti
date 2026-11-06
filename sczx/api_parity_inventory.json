@@ -378,23 +378,29 @@
   {
     "path": "/api/v1/admin/workbench",
     "source": "backend-cangjie/src/main.cj:68",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original admin role gate, field projections and recursive sanitization; isolated role/metrics/detail/trace/sensitive-field acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/admin/students/{student_id}",
     "source": "backend-cangjie/src/main.cj:69",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original admin role gate, field projections and recursive sanitization; isolated role/metrics/detail/trace/sensitive-field acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/admin/sessions/{session_id}",
     "source": "backend-cangjie/src/main.cj:70",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original admin role gate, field projections and recursive sanitization; isolated role/metrics/detail/trace/sensitive-field acceptance passed; browser parity pending"
   },
   {
     "path": "/api/v1/voice/transcribe",
