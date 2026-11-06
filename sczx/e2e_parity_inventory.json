@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 45,
+  "migrated_count": 54,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -143,43 +143,49 @@
       "file": "functional-audit.spec.ts",
       "line": 57,
       "name": "讲回、练习和复习的文字输入实际渲染且提交内容正确",
-      "migration": "not_yet_copied",
-      "full_title": "讲回、练习和复习的文字输入实际渲染且提交内容正确"
+      "migration": "copied_case",
+      "full_title": "讲回、练习和复习的文字输入实际渲染且提交内容正确",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
       "line": 240,
       "name": "错题筛选、搜索、详情折叠、修改与取消归档均可操作",
-      "migration": "not_yet_copied",
-      "full_title": "错题筛选、搜索、详情折叠、修改与取消归档均可操作"
+      "migration": "copied_case",
+      "full_title": "错题筛选、搜索、详情折叠、修改与取消归档均可操作",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
       "line": 277,
       "name": "组卷高级筛选、保存、排序与导出真实生效，缺解析的答案卷被阻止",
-      "migration": "not_yet_copied",
-      "full_title": "组卷高级筛选、保存、排序与导出真实生效，缺解析的答案卷被阻止"
+      "migration": "copied_case",
+      "full_title": "组卷高级筛选、保存、排序与导出真实生效，缺解析的答案卷被阻止",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
       "line": 353,
       "name": "页面加载失败后重试恢复，颜色和操作不依赖旧数据",
-      "migration": "not_yet_copied",
-      "full_title": "页面加载失败后重试恢复，颜色和操作不依赖旧数据"
+      "migration": "copied_case",
+      "full_title": "页面加载失败后重试恢复，颜色和操作不依赖旧数据",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
       "line": 383,
       "name": "管理员手机四个分区、学生详情、会话详情和退出可操作且不溢出",
-      "migration": "not_yet_copied",
-      "full_title": "角色页面操作 › 管理员手机四个分区、学生详情、会话详情和退出可操作且不溢出"
+      "migration": "copied_case",
+      "full_title": "角色页面操作 › 管理员手机四个分区、学生详情、会话详情和退出可操作且不溢出",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
       "line": 418,
       "name": "注册和修改密码可实际完成，新旧密码状态正确",
-      "migration": "not_yet_copied",
-      "full_title": "注册和修改密码可实际完成，新旧密码状态正确"
+      "migration": "copied_case",
+      "full_title": "注册和修改密码可实际完成，新旧密码状态正确",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
@@ -194,22 +200,25 @@
       "file": "functional-audit.spec.ts",
       "line": 504,
       "name": "学习分类、知识检索与跨页多题组卷保持范围",
-      "migration": "not_yet_copied",
-      "full_title": "学习分类、知识检索与跨页多题组卷保持范围"
+      "migration": "copied_case",
+      "full_title": "学习分类、知识检索与跨页多题组卷保持范围",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
       "line": 562,
       "name": "最终手机布局：窄屏页面、筛选草稿和详情分区保持可用",
-      "migration": "not_yet_copied",
-      "full_title": "最终手机布局：窄屏页面、筛选草稿和详情分区保持可用"
+      "migration": "copied_case",
+      "full_title": "最终手机布局：窄屏页面、筛选草稿和详情分区保持可用",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
       "line": 639,
       "name": "本题知识：点击分析后自动启动，进度、失败重试和结果保持一致",
-      "migration": "not_yet_copied",
-      "full_title": "本题知识：点击分析后自动启动，进度、失败重试和结果保持一致"
+      "migration": "copied_case",
+      "full_title": "本题知识：点击分析后自动启动，进度、失败重试和结果保持一致",
+      "migrated_file": "functional-audit.spec.ts"
     },
     {
       "file": "generated-practice.spec.ts",

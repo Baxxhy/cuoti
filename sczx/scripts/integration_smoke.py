@@ -127,6 +127,13 @@ def main():
                         point=db.query("SELECT id FROM knowledge_points WHERE code='math.equation_property'").rows[0]['id']
                         db.query("INSERT INTO user_question_knowledge_links (id,user_id,question_id,knowledge_point_id,`role`,confidence,mapping_method,evidence_text,created_at,updated_at) VALUES (?,?,?,?,'primary',1,'fixture','受控图谱布局验收',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),route_actor['id'],route_qid,point])
                     env.update(QA_ROUTE_EMAIL=route_email,QA_ROUTE_PASSWORD=route_password,QA_ROUTE_QUESTION=route_qid)
+                    admin_email,admin_password='admin-browser@example.test','Admin-browser-123'
+                    admin=http.post(base+'/api/v1/auth/register',json={'email':admin_email,'password':admin_password,'name':'隔离管理员'})
+                    assert admin.status_code==200,admin.text
+                    with Database.from_environment() as db:
+                        db.query("UPDATE users SET role='admin' WHERE id=?",[admin.json()['data']['id']])
+                        db.query("INSERT INTO tutor_sessions (id,user_id,question_id,stage,hint_level,turn_count,mastery_score,state,status,created_at,updated_at) VALUES (?,?,?,'understanding',0,0,0,JSON_OBJECT(),'active',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),route_actor['id'],route_qid])
+                    env.update(QA_ROLE_TESTS='1',QA_ADMIN_EMAIL=admin_email,QA_ADMIN_PASSWORD=admin_password)
                     person=http.post(base+'/api/v1/auth/register',json={'email':'personal-browser@example.test','password':'Personal-browser-123','grade':'初一'})
                     assert person.status_code==200,person.text
                     personal_actor=person.json()['data'];personal_headers={'Authorization':'Bearer '+personal_actor['access_token']};personal_questions=[]
