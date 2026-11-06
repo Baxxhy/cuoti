@@ -855,6 +855,8 @@ async function advanceToTeachBack() {
   try {
     await postData(`/tutor/sessions/${id.value}/advance`, { target_stage: 'teach_back' })
     await load()
+  } catch {
+    // The API layer displays the error; retain this activity and all input for retry.
   } finally {
     busy.value = false
   }
@@ -867,6 +869,8 @@ async function rewindStage() {
   try {
     session.value = await postData(`/tutor/sessions/${id.value}/rewind`, {})
     resetActivityInput()
+  } catch {
+    // The API layer displays the error; retain this activity and all input for retry.
   } finally {
     busy.value = false
   }
@@ -885,6 +889,8 @@ async function sendQuestion() {
     askOpen.value = false
     historyOpen.value = true
     await load(true)
+  } catch {
+    // The API layer displays the error; retain this activity and all input for retry.
   } finally {
     busy.value = false
   }

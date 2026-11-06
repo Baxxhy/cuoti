@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 28,
+  "migrated_count": 36,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -116,22 +116,25 @@
       "file": "followup-settings.spec.ts",
       "line": 3,
       "name": "升年级后默认学习范围更新，原有错题与答案保留",
-      "migration": "not_yet_copied",
-      "full_title": "升年级后默认学习范围更新，原有错题与答案保留"
+      "migration": "copied_case",
+      "full_title": "升年级后默认学习范围更新，原有错题与答案保留",
+      "migrated_file": "followup-settings.spec.ts"
     },
     {
       "file": "followup-settings.spec.ts",
       "line": 76,
       "name": "学习设置控制真实题量，练习与考试主色一致，二级页可返回",
-      "migration": "not_yet_copied",
-      "full_title": "学习设置控制真实题量，练习与考试主色一致，二级页可返回"
+      "migration": "copied_case",
+      "full_title": "学习设置控制真实题量，练习与考试主色一致，二级页可返回",
+      "migrated_file": "followup-settings.spec.ts"
     },
     {
       "file": "followup-settings.spec.ts",
       "line": 140,
       "name": "参考知识可展开并打开原卡，返回后仍是当前讲解",
-      "migration": "not_yet_copied",
-      "full_title": "参考知识可展开并打开原卡，返回后仍是当前讲解"
+      "migration": "copied_case",
+      "full_title": "参考知识可展开并打开原卡，返回后仍是当前讲解",
+      "migrated_file": "followup-settings.spec.ts"
     },
     {
       "file": "functional-audit.spec.ts",
@@ -352,8 +355,9 @@
       "file": "paper-recovery.spec.ts",
       "line": 12,
       "name": "组卷按最后选择打开，保存和删除失败保留编辑，窄屏操作可达",
-      "migration": "not_yet_copied",
-      "full_title": "组卷按最后选择打开，保存和删除失败保留编辑，窄屏操作可达"
+      "migration": "copied_case",
+      "full_title": "组卷按最后选择打开，保存和删除失败保留编辑，窄屏操作可达",
+      "migrated_file": "paper-recovery.spec.ts"
     },
     {
       "file": "personal-learning.spec.ts",
@@ -409,29 +413,33 @@
       "file": "recovery.spec.ts",
       "line": 30,
       "name": "页面里的旧文件链接失效后，点击打开仍取得新链接且保留编辑内容",
-      "migration": "not_yet_copied",
-      "full_title": "页面里的旧文件链接失效后，点击打开仍取得新链接且保留编辑内容"
+      "migration": "copied_case",
+      "full_title": "页面里的旧文件链接失效后，点击打开仍取得新链接且保留编辑内容",
+      "migrated_file": "recovery.spec.ts"
     },
     {
       "file": "recovery.spec.ts",
       "line": 94,
       "name": "求助取消、发送失败、作答失败与回退失败都保留当前输入并可重试",
-      "migration": "not_yet_copied",
-      "full_title": "求助取消、发送失败、作答失败与回退失败都保留当前输入并可重试"
+      "migration": "copied_case",
+      "full_title": "求助取消、发送失败、作答失败与回退失败都保留当前输入并可重试",
+      "migrated_file": "recovery.spec.ts"
     },
     {
       "file": "recovery.spec.ts",
       "line": 167,
       "name": "归档取消的识别任务立即停止等待，裁剪和核对页均可返回错题本",
-      "migration": "not_yet_copied",
-      "full_title": "归档取消的识别任务立即停止等待，裁剪和核对页均可返回错题本"
+      "migration": "copied_case",
+      "full_title": "归档取消的识别任务立即停止等待，裁剪和核对页均可返回错题本",
+      "migrated_file": "recovery.spec.ts"
     },
     {
       "file": "recovery.spec.ts",
       "line": 208,
       "name": "裁剪提交后刷新继续原任务，断网恢复不重新创建识别",
-      "migration": "not_yet_copied",
-      "full_title": "裁剪提交后刷新继续原任务，断网恢复不重新创建识别"
+      "migration": "copied_case",
+      "full_title": "裁剪提交后刷新继续原任务，断网恢复不重新创建识别",
+      "migrated_file": "recovery.spec.ts"
     },
     {
       "file": "redesign-acceptance.spec.ts",
