@@ -1,45 +1,79 @@
-# SCZX：Vue网页端与Python后端迁移
+# SCZX：错题帮网页版
 
-本目录将原错题帮迁移为普通Vue网页和Python业务服务，业务数据库仍为MySQL。原项目保持原样。
+这里把原来的 uni-app 页面改成普通 Vue 网页，把仓颉业务服务改成 Python。数据库仍用 MySQL，原项目和原数据库保留。
 
-## 当前状态
+目前已接入原版83条接口，后台学习任务可以执行和恢复。独立环境下已通过99项后端测试、33项算法入口/学习流程/掌握度测试、9项前端测试及网页构建。真实浏览器已走通“订正一步→独立解原题→完成对照题”，并通过实际HTTP服务生成和下载PDF、答案PDF、Excel。
 
-- `frontend/`：原36个页面已转换为普通Vue源码，使用Vite构建；浏览器操作由原生Web API承担。
-- `backend/`：Python/FastAPI业务层，已接入账号、学习偏好、错题列表、题目详情、编辑、归档、手动录题、图片上传、识别任务与重试、裁剪、草稿/确认、签名图片、题目分析、作答提交、诊断及修正、开始/恢复辅导、类似题与阶段导航、讲清提交、活动作答/判分、结课、手写上传、直接类似题作答、可视化、辅导对话、首页/学习分析、认知图谱、知识卡、复习及筛选、题库浏览/配图、练习考试会话、知识框架/讲解、系统与语音、管理员查看、组卷与文件导出、错题针对练习推荐与作答接口。
-- `reference/`：原版源码与测试样例的对照快照，不是新程序的运行依赖。
-- `api_parity_inventory.json`：原83个注册路径的接入清单。
-- `MIGRATION_STATUS.md`：已验证的内容及下一批任务。
+接下来继续核对其余网页操作、原版页面呈现和真实模型/语音。具体记录见 [MIGRATION_STATUS.md](MIGRATION_STATUS.md)。
 
-目前前端构建、一部分浏览器交互和已接入后端的隔离数据库验收通过。原83条注册路径均已接入，学习任务后台执行、本地算法完整流程和过期执行恢复已验收；完整浏览器对照、真实模型/语音联调及独立安装仍待完成。
+## 安装和启动
 
-## 运行
+本轮验证环境：Linux x86_64、Python 3.13、Node.js 24、MySQL 8.0。所有命令从 `sczx` 目录运行。
 
-前端在本目录安装独立依赖后启动：
+先安装依赖：
 
 ```bash
-cd frontend
-npm install
-npm run dev
+bash scripts/setup.sh
 ```
 
-网页地址为 `http://127.0.0.1:5176`，默认把业务请求转发到 `http://127.0.0.1:8010`；可通过 `SCZX_BACKEND_URL` 更改。
+脚本会建立本目录的 `.venv`，并按 `requirements.lock` 和 `frontend/package-lock.json` 安装依赖；前端不再借用原项目的依赖目录。
 
-后端安装 `backend/requirements.txt`，设置以下环境变量后，在 `backend/` 中运行 `python -m uvicorn sczx_api.main:app --host 127.0.0.1 --port 8010`：
+复制配置文件并填写自己的独立MySQL连接信息：
 
-- `SCZX_AUTH_SECRET`：至少32字符的本地随机会话密钥。
-- `SCZX_DB_NAME`：新建的 `sczx_` 前缀数据库。
-- `SCZX_DB_HOST`、`SCZX_DB_PORT`、`SCZX_DB_USER`、`SCZX_DB_PASSWORD`：该独立MySQL数据库的连接信息。
-- `SCZX_DB_SOCKET`：可选的本地MySQL socket。
-- `SCZX_TASK_WORKERS`：默认2个后台任务线程；仅隔离接口测试可设为0，关闭后任务不会自动执行。
+```bash
+cp .env.example .env
+```
 
-空数据库可通过 `python -c 'from sczx_api.schema import initialize_database; initialize_database()'` 初始化。该命令拒绝已有表的数据库。程序不会读取原项目的数据库配置。
+- 数据库名称必须以 `sczx_` 开头，例如 `sczx_local`。先在自己的MySQL中创建这个空数据库，并授予专用账号建表和读写权限。
+- `SCZX_AUTH_SECRET` 和 `SCZX_ALGORITHM_SECRET` 各填一个至少32字符的随机值。后者用于两个Python服务之间的身份核对。
+- `SCZX_API_POOL_PATH` 填模型池配置文件路径，识别和需要模型的分析功能会使用它。原模型凭据没有复制进本目录。
+
+可以用 `.venv/bin/python -c 'import secrets; print(secrets.token_hex(32))'` 生成一个随机值。
+
+配置好后，只对新建的空数据库初始化一次：
+
+```bash
+PYTHONPATH=backend .venv/bin/python -c "from dotenv import load_dotenv; load_dotenv('.env'); from sczx_api.schema import initialize_database; initialize_database()"
+```
+
+该命令拒绝已有表的数据库。然后启动：
+
+```bash
+.venv/bin/python scripts/run_local.py
+```
+
+打开 `http://127.0.0.1:5176`。脚本会同时启动网页、业务服务和内部算法服务；按 Ctrl+C 停止本次启动的进程。需要换端口时，在 `.env` 设置 `SCZX_WEB_PORT`、`SCZX_BACKEND_PORT`、`SCZX_ALGORITHM_PORT`。后台任务默认有2个执行线程；`SCZX_TASK_WORKERS=0` 仅用于隔离接口测试。
+
+## PDF公式排版和浏览器验收
+
+公式PDF和公式Excel会使用本目录的KaTeX排版及Chromium，需要另外安装浏览器：
+
+```bash
+PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/playwright-browsers" node frontend/node_modules/@playwright/test/cli.js install chromium
+```
+
+普通文本导出使用ReportLab/openpyxl。可用 `SCZX_PDF_CHROMIUM` 指定已有Chromium路径。
 
 ## 检查
 
-在 `frontend/` 运行 `npm test` 和 `npm run build`。后端验收还需要安装算法目录依赖，以运行实际渲染和学习流程；安装pytest后，从 `sczx/` 运行 `PYTHONPATH=backend python -m pytest backend/tests`。MySQL测试会新建临时实例，仅使用临时数据目录和本地socket。
+```bash
+npm --prefix frontend test
+npm --prefix frontend run build
+PYTHONPATH=backend .venv/bin/python -m pytest backend/tests -q
+PYTHONPATH=algorithms .venv/bin/python -m pytest algorithms/tests/test_service.py algorithms/tests/test_learning_workflow.py algorithms/tests/test_mastery_tracker.py -q
+.venv/bin/python scripts/integration_smoke.py
+```
 
-`node scripts/browser_smoke.mjs` 检查已启动网页中的登录错误、注册页和图片选择；使用受控HTTP响应，不作为真实后端完整流程验收。
+最后一个命令会启动临时MySQL、网页和两个Python服务，再让真实浏览器完成作答和刷新恢复，并验证导出。它使用固定分析样例，不调用外部模型；结束后关闭本次启动的服务并删除临时数据库目录，截图、导出样本和报告保存在 `.runtime/http-smoke/`。
 
-## 内部算法服务
+`node scripts/browser_smoke.mjs` 可对已启动网页单独检查登录错误、注册页及文件选择。这个小检查使用受控接口响应；`SCZX_WEB_URL` 可指定网页地址。
 
-`algorithms/`保存独立算法代码。按其中README安装并启动8012端口，业务服务设置相同的`SCZX_ALGORITHM_SECRET`及`SCZX_ALGORITHM_URL=http://127.0.0.1:8012`。模型池由`SCZX_API_POOL_PATH`指定，凭据通过环境变量提供，本次未复制原凭据。图片与导出文件写入`SCZX_MEDIA_ROOT`（默认当前工作目录的media），题库配图根通过`SCZX_QUESTION_BANK_ROOT`指定。
+## 目录
+
+- `frontend/`：普通Vue网页，保留原36个页面的业务逻辑。
+- `backend/`：Python业务服务，负责账号、错题、学习记录和MySQL。
+- `algorithms/`：识别、数学校验、学习计算及语音服务，不读写业务数据库。
+- `reference/`：原版源码对照快照。
+- `api_parity_inventory.json`：原接口的接入及验收情况。
+
+上传图片和导出文件由 `SCZX_MEDIA_ROOT` 指定；启动脚本默认使用 `.runtime/media/`。题库配图位置通过 `SCZX_QUESTION_BANK_ROOT` 指定。

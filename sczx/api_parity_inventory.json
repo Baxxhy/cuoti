@@ -7,7 +7,7 @@
       "GET",
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; real web/business/algorithm HTTP symbolic task flow passed; full page/model/voice parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}",
@@ -16,7 +16,7 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; real web/business/algorithm HTTP symbolic task flow passed; full page/model/voice parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/actions",
@@ -25,7 +25,7 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; real web/business/algorithm HTTP symbolic task flow passed; full page/model/voice parity pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/handwriting",
@@ -449,7 +449,7 @@
       "GET",
       "POST"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
   },
   {
     "path": "/api/v1/papers/candidates",
@@ -458,7 +458,7 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
   },
   {
     "path": "/api/v1/papers/{paper_id}/export",
@@ -467,7 +467,7 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
   },
   {
     "path": "/api/v1/papers/{paper_id}/download",
@@ -476,7 +476,7 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
   },
   {
     "path": "/api/v1/papers/{paper_id}",
@@ -487,7 +487,7 @@
       "GET",
       "PATCH"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; browser/export visual parity pending"
+    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
   },
   {
     "path": "/api/v1/variants/{variant_id}/attempt",
