@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 61,
+  "migrated_count": 64,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -262,8 +262,9 @@
       "file": "learning-tasks.spec.ts",
       "line": 254,
       "name": "学习达到上限后可结束回原题并创建新任务，原记录保留",
-      "migration": "not_yet_copied",
-      "full_title": "学习达到上限后可结束回原题并创建新任务，原记录保留"
+      "migration": "copied_case",
+      "full_title": "学习达到上限后可结束回原题并创建新任务，原记录保留",
+      "migrated_file": "learning-tasks.spec.ts"
     },
     {
       "file": "learning-tasks.spec.ts",
@@ -403,15 +404,17 @@
       "file": "product-experience.spec.ts",
       "line": 3,
       "name": "产品闭环：MySQL学习方向、可追溯地图、按ID回放与真实修复任务",
-      "migration": "not_yet_copied",
-      "full_title": "产品闭环：MySQL学习方向、可追溯地图、按ID回放与真实修复任务"
+      "migration": "copied_case",
+      "full_title": "产品闭环：MySQL学习方向、可追溯地图、按ID回放与真实修复任务",
+      "migrated_file": "product-experience.spec.ts"
     },
     {
       "file": "product-experience.spec.ts",
       "line": 81,
       "name": "真正零历史：学习方向与真实知识卡可达；加载失败不伪装为空地图",
-      "migration": "not_yet_copied",
-      "full_title": "真正零历史：学习方向与真实知识卡可达；加载失败不伪装为空地图"
+      "migration": "copied_case",
+      "full_title": "真正零历史：学习方向与真实知识卡可达；加载失败不伪装为空地图",
+      "migrated_file": "product-experience.spec.ts"
     },
     {
       "file": "profile-edit.spec.ts",

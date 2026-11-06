@@ -136,3 +136,23 @@ def seed_function_entry(http,base):
         insert(db,'problem_analyses',dict(id=new_id(),question_id=qid,subject='数学',problem_type='函数',known_conditions=[],goal='求顶点',knowledge_points=['二次函数'],prerequisites=[],final_answer='顶点(1,0)',verified=1,raw_result={'fixture':True}))
         insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='',first_error_step=0,first_error_text='',root_misconception='顶点式的参数关系',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
     return {'QA_VISUAL_EMAIL':email,'QA_VISUAL_PASSWORD':password,'QA_VISUAL_QUESTION_ID':qid}
+
+
+def seed_experience(http,base):
+    """Original error-source/replay samples, persisted in disposable MySQL."""
+    from sczx_api.database import Database
+    email,password='experience-browser@example.test','Experience-browser-123'
+    response=http.post(base+'/api/v1/auth/register',json={'email':email,'password':password,'grade':'初一'})
+    assert response.status_code==200,response.text
+    token=response.json()['data']['access_token'];ids=[]
+    for stem in ['解方程：2x+3=11','解方程2x+3=11，并验算所得结果']:
+        response=http.post(base+'/api/v1/questions/manual',headers={'Authorization':'Bearer '+token},json={'question_text':stem,'student_answer':'x=7','student_steps':['2x=11+3','x=7'],'subject':'数学','grade':'初一'})
+        assert response.status_code==200,response.text
+        qid=response.json()['data']['id'];ids.append(qid);analysis,reference,diagnosis=new_id(),new_id(),new_id()
+        with Database.from_environment() as db:
+            insert(db,'problem_analyses',dict(id=analysis,question_id=qid,subject='数学',problem_type='方程',known_conditions=[],goal='求x',knowledge_points=['等式的性质'],prerequisites=[],final_answer='x=4',verified=1,raw_result={'fixture':True}))
+            for index,text in enumerate(['x=4','2x=8']):insert(db,'reference_steps',dict(id=reference if index==1 else new_id(),analysis_id=analysis,step_index=index,text=text,explanation='',math_valid=1,uses_condition=0))
+            insert(db,'diagnoses',dict(id=diagnosis,question_id=qid,error_type='sign_error',first_error_step=0,first_error_text='',root_misconception='移项时应改变符号',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
+            step=db.query('SELECT s.id FROM student_steps s JOIN student_works w ON w.id=s.work_id WHERE w.question_id=? ORDER BY s.step_index LIMIT 1',[qid]).rows[0]['id']
+            insert(db,'diagnosis_evidence',dict(id=new_id(),diagnosis_id=diagnosis,kind='step_alignment',student_step_id=step,reference_step_id=reference,content='移项符号核对',alignment='',equivalent=0,uses_condition=0,is_first_error=0,propagated=0,math_valid=0,metadata_json={'student_step_id':step,'reference_step_id':reference,'reason':'等式两边应同时减去3','is_first_error':True}))
+    return {'QA_EXPERIENCE_EMAIL':email,'QA_EXPERIENCE_PASSWORD':password,'QA_EXPERIENCE_QUESTION_ID':ids[0]}

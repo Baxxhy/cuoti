@@ -53,6 +53,7 @@
           <span class="field-label">优先学习内容</span>
           <div class="preference-options">
             <button
+              type="button"
               role="button"
               tabindex="0"
               v-for="goal in goals"
@@ -73,6 +74,7 @@
           <span class="field-label">预计学习时间</span>
           <div class="preference-options">
             <button
+              type="button"
               role="button"
               tabindex="0"
               v-for="minutes in [5, 10, 20]"
@@ -92,6 +94,7 @@
         <span v-if="saveError" class="account-notice" role="alert">{{ saveError }}</span>
         <span v-if="saved" class="saved-preferences" role="status">已保存</span>
         <button
+          type="button"
           role="button"
           tabindex="0"
           class="primary-btn"

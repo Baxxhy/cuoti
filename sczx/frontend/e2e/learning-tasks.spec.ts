@@ -98,3 +98,28 @@ test('原式函数图：参数可按按钮调整、退化有说明、观察刷�
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
   await page.screenshot({ path: testInfo.outputPath('task-function.png'), fullPage: true })
 })
+
+test('学习达到上限后可结束回原题并创建新任务，原记录保留', async ({ page }, testInfo) => {
+  expect(process.env.QA_BUDGET_TASK_ID, '需要隔离的任务上限样本').toBeTruthy()
+  await page.setViewportSize({ width: 360, height: 800 })
+  await page.goto('/#/pages/login/login')
+  await page.getByLabel('邮箱', { exact: true }).fill(process.env.QA_BUDGET_EMAIL!)
+  await page.getByLabel('密码', { exact: true }).fill(process.env.QA_BUDGET_PASSWORD!)
+  await page.getByText('登录', { exact: true }).click()
+  await expect(page).toHaveURL(/pages\/index\/index/)
+  await page.goto(`/#/pages/task/task?id=${process.env.QA_BUDGET_TASK_ID}`)
+  await expect(page.getByRole('button', { name: '结束并回原题', exact: true })).toBeVisible()
+  await expect(page.locator('.answer-input')).toHaveCount(0)
+  await page.screenshot({ path: testInfo.outputPath('task-budget.png'), fullPage: true })
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+  await page.getByRole('button', { name: '结束并回原题', exact: true }).click()
+  await page.getByText('确定', { exact: true }).last().click()
+  await expect(page).toHaveURL(
+    new RegExp(`pages/detail/detail\\?id=${process.env.QA_BUDGET_QUESTION_ID}`),
+  )
+  await page.getByRole('button', { name: '订正这道题', exact: true }).click()
+  await expect(page.getByText('先订正这一步', { exact: true })).toBeVisible()
+  expect(page.url()).not.toContain(process.env.QA_BUDGET_TASK_ID!)
+  await page.goto(`/#/pages/task/task?id=${process.env.QA_BUDGET_TASK_ID}`)
+  await expect(page.getByText('已结束', { exact: true })).toBeVisible()
+})
