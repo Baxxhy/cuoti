@@ -1754,3 +1754,158 @@ def test_task_sources_stale_transitions_budgets_and_native_planning(client,monke
         assert stopped['student_view']['secondary_actions']==['resume']
         assert stopped['student_view']['handwriting']['image_url']=='/uploads/kept.jpg'
         assert db.query('SELECT status FROM learning_task_actions WHERE id=?',[action_id]).rows[0]['status']=='failed'
+
+
+def test_task_http_lifecycle_idempotency_roles_and_cancel(client,monkeypatch):
+    import json
+    from sczx_api import analysis
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'task-api-owner@example.com','password':'secret'}).json()['data']
+    outsider=client.post('/api/v1/auth/register',json={'email':'task-api-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};other={'Authorization':'Bearer '+outsider['access_token']}
+    base='/api/v1/learning-tasks'
+    assert client.post(base,content='{broken').status_code==401
+    qid=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程 x+1=2'}).json()['data']['id']
+    body={'question_id':qid,'request_id':'task-create-1'}
+    assert client.post(base,headers=headers,json=body).status_code==409
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    assert client.post('/api/v1/questions/'+qid+'/analyze',headers=headers).status_code==200
+    assert client.post(base,headers=headers,json={**body,'unexpected':True}).status_code==422
+    assert client.post(base,headers=other,json=body).status_code==404
+    created=client.post(base,headers=headers,json=body)
+    assert created.status_code==202,created.text
+    task=created.json()['data'];url=base+'/'+task['id']
+    assert task['status']=='queued' and task['last_request_id']=='__initial__' and task['current_action']=='start'
+    assert client.post(base,headers=headers,json=body).json()['data']['id']==task['id']
+    assert client.post(base,headers=headers,json={**body,'request_id':'task-create-2'}).json()['data']['id']==task['id']
+    assert client.post(base,headers=headers,json={**body,'session_id':new_id()}).status_code==409
+    assert client.get(url,headers=other).status_code==404
+    assert client.post(url+'/actions',headers=other,content='{broken').status_code==404
+    assert client.get(base,headers=other).json()['data']==[]
+    listed=client.get(base+'?question_id=missing&question_id='+qid,headers=headers).json()['data']
+    assert len(listed)==1 and listed[0]['question_title']=='解方程 x+1=2'
+    answer={'kind':'answer','text':'x=1','version':task['version'],'step_id':task['step_id'],'input_fingerprint':task['input_fingerprint'],'request_id':'task-answer-1'}
+    assert client.post(url+'/actions',headers=headers,json=answer).status_code==409
+    # Controlled worker checkpoint; this test covers HTTP admission, not execution.
+    with Database.from_environment() as db:
+        db.query("UPDATE learning_tasks SET status='waiting_student',student_view=JSON_OBJECT('input_kind','text') WHERE id=?",[task['id']])
+    assert client.post(url+'/actions',headers=headers,json={**answer,'version':1.0}).status_code==409
+    assert client.post(url+'/actions',headers=headers,json={**answer,'version':True}).status_code==409
+    assert client.post(url+'/actions',headers=headers,json={**answer,'text':' '}).status_code==422
+    assert client.post(url+'/actions',headers=headers,json={**answer,'kind':'unsupported'}).status_code==422
+    assert client.post(url+'/actions',headers=headers,json={**answer,'handwriting_confirmed':True}).status_code==422
+    accepted=client.post(url+'/actions',headers=headers,json=answer)
+    assert accepted.status_code==202,accepted.text
+    queued=accepted.json()['data'];assert queued['version']==2 and queued['last_request_id']=='task-answer-1'
+    assert client.post(url+'/actions',headers=headers,json=answer).json()['data']['version']==2
+    assert client.post(url+'/actions',headers=headers,json={**answer,'text':'x=2'}).status_code==409
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_actions WHERE task_id=?',[task['id']]).rows[0]['n']=='1'
+        db.query("UPDATE learning_tasks SET status='running',lease_token='lease',lease_until=UTC_TIMESTAMP(6)+INTERVAL 1 MINUTE WHERE id=?",[task['id']])
+    cancelled=client.post(url+'/cancel',headers=headers)
+    assert cancelled.status_code==200,cancelled.text
+    assert cancelled.json()['data']['status']=='cancelled' and cancelled.json()['data']['version']==3
+    assert client.post(url+'/cancel',headers=headers).json()['data']['version']==3
+    assert client.post(url+'/actions',headers=headers,json=answer).json()['data']['status']=='cancelled'
+    assert client.post(url+'/actions',headers=headers,json={**answer,'request_id':'new-action'}).status_code==409
+    with Database.from_environment() as db:
+        row=db.query('SELECT lease_token,lease_until,cancel_requested FROM learning_tasks WHERE id=?',[task['id']]).rows[0]
+        assert row=={'lease_token':None,'lease_until':None,'cancel_requested':'1'}
+        assert db.query('SELECT status FROM learning_task_actions WHERE task_id=?',[task['id']]).rows[0]['status']=='cancelled'
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_sources WHERE task_id=?',[task['id']]).rows[0]['n']=='1'
+        db.query("UPDATE users SET role='admin' WHERE id=?",[outsider['id']])
+    assert client.get(base,headers=other).status_code==403
+    replacement=client.post(base,headers=headers,json={**body,'request_id':'reopen'})
+    assert replacement.status_code==202 and replacement.json()['data']['id']!=task['id']
+    replacement_task=replacement.json()['data'];replacement_url=base+'/'+replacement_task['id']
+    with Database.from_environment() as db:db.query("UPDATE learning_tasks SET status='waiting_student',student_view=JSON_OBJECT('input_kind','text') WHERE id=?",[replacement_task['id']])
+    from concurrent.futures import ThreadPoolExecutor
+    import threading
+    barrier=threading.Barrier(2)
+    def simultaneous_answer(index):
+        barrier.wait(timeout=5)
+        return client.post(replacement_url+'/actions',headers=headers,json={'kind':'answer','text':str(index),'version':replacement_task['version'],'step_id':replacement_task['step_id'],'input_fingerprint':replacement_task['input_fingerprint'],'request_id':'simultaneous-'+str(index)})
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        responses=list(executor.map(simultaneous_answer,[1,2]))
+    assert sorted(r.status_code for r in responses)==[202,409]
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_actions WHERE task_id=?',[replacement_task['id']]).rows[0]['n']=='1'
+    with Database.from_environment() as db:db.query("UPDATE questions SET question_text='原题改动' WHERE id=?",[qid])
+    stale=client.get(replacement_url,headers=headers)
+    assert stale.status_code==200 and stale.json()['data']['status']=='stale'
+    assert client.get(replacement_url,headers=headers).json()['data']['version']==stale.json()['data']['version']
+
+
+def test_task_handwriting_original_integrity_step_confirmation_and_retry(client,monkeypatch,tmp_path):
+    import base64,json
+    from sczx_api import analysis,task_images,task_core
+    from sczx_api.security import new_id
+    from sczx_api.storage import read_media
+    monkeypatch.setenv('SCZX_MEDIA_ROOT',str(tmp_path/'media'))
+    user=client.post('/api/v1/auth/register',json={'email':'task-images@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    qid=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'求 1+1'}).json()['data']['id']
+    record={'subject':'数学','problem_type':'计算','known_conditions':[],'goal':'求和','knowledge_points':['加法'],'prerequisites':[],'final_answer':'2','answer_verified':True,'reference_steps':['1+1=2']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+qid+'/analyze',headers=headers)
+    created=client.post('/api/v1/learning-tasks',headers=headers,json={'question_id':qid,'request_id':'create-photo'})
+    assert created.status_code==202,created.text
+    task=created.json()['data'];tid=task['id'];url='/api/v1/learning-tasks/'+tid
+    with Database.from_environment() as db:db.query("UPDATE learning_tasks SET status='waiting_student',student_view=JSON_OBJECT('input_kind','text') WHERE id=?",[tid])
+    fields={'version':str(task['version']),'step_id':task['step_id'],'input_fingerprint':task['input_fingerprint'],'request_id':'upload-1'}
+    raw=base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jX1cAAAAASUVORK5CYII=')
+    def upload(data=fields,content=raw):return client.post(url+'/handwriting',headers=headers,data=data,files={'file':('answer.png',content,'image/png')})
+    assert upload({**fields,'extra':'bad'}).status_code==422
+    assert upload(content=b'not-an-image').status_code==422
+    assert upload({**fields,'version':'1.0'}).status_code==422
+    accepted=upload();assert accepted.status_code==202,accepted.text
+    assert accepted.json()['data']['version']==2 and accepted.json()['data']['current_action']=='recognize_handwriting'
+    assert upload().json()['data']['version']==2
+    assert upload(content=raw+b'changed').status_code==409
+    with Database.from_environment() as db:
+        current=task_core.task_row(db,tid,user['id']);image_id=current['pending_action']['handwriting_id'];photo=task_images.image(db,current,image_id)
+        assert read_media(photo['original_path'])==raw
+        assert base64.b64decode(task_images.compute_action(current)['image_base64'])==raw
+        stored_path=tmp_path/'media'/photo['original_path']
+        stored_path.write_bytes(b'tampered')
+        with pytest.raises(Exception) as integrity:task_images.compute_action(current)
+        assert integrity.value.status_code==503
+        stored_path.write_bytes(raw)
+        next_step=new_id();view={'input_kind':'text','handwriting':{'id':image_id,'recognition':{'recognized_final_answer':'2'}}}
+        task_images.save_result(db,current,view,next_step)
+        assert view['handwriting']['image_url']=='/'+photo['original_path']
+        db.query("UPDATE learning_tasks SET status='waiting_student',version=3,step_id=?,student_view=?,checkpoint=JSON_OBJECT('phase','repair') WHERE id=?",[next_step,json.dumps(view,ensure_ascii=False),tid])
+    current=client.get(url,headers=headers).json()['data']
+    assert client.get(current['student_view']['handwriting']['image_url']).content==raw
+    answer={'kind':'answer','text':'2','version':3,'step_id':next_step,'input_fingerprint':task['input_fingerprint'],'request_id':'photo-answer','handwriting_id':image_id}
+    assert client.post(url+'/actions',headers=headers,json=answer).status_code==422
+    assert client.post(url+'/actions',headers=headers,json={**answer,'handwriting_confirmed':True,'step_id':task['step_id']}).status_code==409
+    confirmed=client.post(url+'/actions',headers=headers,json={**answer,'handwriting_confirmed':True})
+    assert confirmed.status_code==202,confirmed.text
+    with Database.from_environment() as db:
+        current=task_core.task_row(db,tid,user['id'])
+        assert current['pending_action']['handwriting_recognition']['recognized_final_answer']=='2'
+        current['pending_action']={'kind':'hint'};current['checkpoint']={'phase':'repair'}
+        retained={'input_kind':'text'};new_step=new_id()
+        task_images.retain_for_support(db,current,{'checkpoint':{'phase':'repair'}},retained,new_step)
+        assert retained['handwriting']['id']==image_id
+        assert task_images.image(db,current,image_id)['confirmation_step_id']==new_step
+        db.query("UPDATE learning_tasks SET status='failed',pending_action=JSON_OBJECT('kind','recognize_handwriting','handwriting_id',?) WHERE id=?",[image_id,tid])
+    failed=client.get(url,headers=headers).json()['data']
+    resumed=client.post(url+'/actions',headers=headers,json={'kind':'resume','version':failed['version'],'step_id':failed['step_id'],'input_fingerprint':failed['input_fingerprint'],'request_id':'resume-photo'})
+    assert resumed.status_code==202 and resumed.json()['data']['current_action']=='recognize_handwriting'
+    assert len(list((tmp_path/'media').rglob('*.png')))==1
+    with Database.from_environment() as db:db.query("UPDATE learning_tasks SET status='waiting_student' WHERE id=?",[tid])
+    latest=resumed.json()['data'];new_fields={**fields,'version':str(latest['version']),'step_id':latest['step_id'],'request_id':'upload-rollback'}
+    from fastapi import HTTPException
+    original_query=Database.query
+    def fail_insert(self,sql,params=()):
+        if sql.startswith('INSERT INTO learning_task_images'):raise HTTPException(503,'controlled insert failure')
+        return original_query(self,sql,params)
+    monkeypatch.setattr(Database,'query',fail_insert)
+    assert upload(new_fields).status_code==503
+    assert len(list((tmp_path/'media').rglob('*.png')))==1
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM learning_task_images WHERE task_id=?',[tid]).rows[0]['n']=='1'
+        assert not db.query("SELECT id FROM learning_task_actions WHERE task_id=? AND request_id='upload-rollback'",[tid]).rows

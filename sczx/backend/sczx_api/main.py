@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 from starlette.concurrency import run_in_threadpool
 from . import practice
+from . import tasks,task_images
 
 import pymysql
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
@@ -462,3 +463,37 @@ async def practice_recommend(request: Request):
 async def practice_attempt(request: Request):
     await run_in_threadpool(practice.authorize,request)
     return envelope(await run_in_threadpool(practice.attempt,request,await accounts.read_json(request)))
+
+
+@app.api_route('/api/v1/learning-tasks',methods=['GET','POST'])
+async def learning_tasks(request: Request):
+    if request.method=='GET':return envelope(await run_in_threadpool(tasks.list_tasks,request))
+    await run_in_threadpool(tasks.authorize,request)
+    result=await run_in_threadpool(tasks.create_task,request,await accounts.read_json(request))
+    return JSONResponse(envelope(result),status_code=202)
+
+
+@app.get('/api/v1/learning-tasks/{task_id}')
+async def learning_task(request: Request):
+    return envelope(await run_in_threadpool(tasks.read_task,request,request.path_params['task_id']))
+
+
+@app.post('/api/v1/learning-tasks/{task_id}/actions')
+async def learning_action(request: Request):
+    task_id=request.path_params['task_id'];await run_in_threadpool(tasks.authorize,request,task_id)
+    result=await run_in_threadpool(tasks.task_action,request,task_id,await accounts.read_json(request))
+    return JSONResponse(envelope(result),status_code=202)
+
+
+@app.post('/api/v1/learning-tasks/{task_id}/cancel')
+async def learning_cancel(request: Request):
+    task_id=request.path_params['task_id'];await run_in_threadpool(tasks.authorize,request,task_id)
+    return envelope(await run_in_threadpool(tasks.task_action,request,task_id,await accounts.read_json(request,default_empty=True),True))
+
+
+@app.post('/api/v1/learning-tasks/{task_id}/handwriting')
+async def learning_handwriting(request: Request):
+    from .ingest import read_upload
+    task_id=request.path_params['task_id'];await run_in_threadpool(tasks.authorize,request,task_id)
+    raw,filename,deferred,fields=await read_upload(request,include_fields=True)
+    return JSONResponse(envelope(await run_in_threadpool(task_images.upload,request,task_id,fields,raw)),status_code=202)

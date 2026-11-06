@@ -2,30 +2,39 @@
   {
     "path": "/api/v1/learning-tasks",
     "source": "backend-cangjie/src/main.cj:25",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "POST"
+    ],
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}",
     "source": "backend-cangjie/src/main.cj:26",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/actions",
     "source": "backend-cangjie/src/main.cj:27",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/handwriting",
     "source": "backend-cangjie/src/main.cj:28",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/self-check",
@@ -44,9 +53,11 @@
   {
     "path": "/api/v1/learning-tasks/{task_id}/cancel",
     "source": "backend-cangjie/src/main.cj:31",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; task worker/recovery/end-to-end browser pending"
   },
   {
     "path": "/api/v1/dashboard",
