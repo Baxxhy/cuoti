@@ -745,3 +745,104 @@ def test_tutor_activity_full_and_compressed_learning_flows(client,monkeypatch):
             assert db.query('SELECT COUNT(*) AS n FROM review_plans WHERE question_id=?',[question_id]).rows[0]['n']=='1'
             assert len(db.query('SELECT id FROM cognitive_updates WHERE question_id=?',[question_id]).rows)==2
         assert client.post(path+'/activity/answer',headers=headers,json={'activity_id':'done','answer':'2'}).status_code==409
+
+
+def test_handwriting_upload_context_ownership_and_retained_failure(client,tmp_path,monkeypatch):
+    import base64,hashlib,json
+    from sczx_api import analysis,handwriting,tutor_variants
+    from sczx_api.practice_context import source_version
+    from sczx_api.rows import row_json
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'handwriting@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'handwriting-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'x+1=2','student_steps':['x=3']}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':['x+1=2'],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers)
+    session=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).json()['data']
+    monkeypatch.setenv('SCZX_MEDIA_ROOT',str(tmp_path/'media'))
+    image=b'normalized-handwriting'
+    def computed(payload):
+        if payload['operation']=='normalize':return {'image_base64':base64.b64encode(image).decode(),'sha256':hashlib.sha256(image).hexdigest()}
+        if payload['operation']=='validate_handwriting':return {'validated':True}
+        return {'recognition':{'answer':'1','steps':['x=1']}}
+    monkeypatch.setattr(handwriting,'compute',computed)
+    monkeypatch.setattr(tutor_variants,'compute',lambda p:{'valid':True})
+    url='/api/v1/answers/handwriting';files={'file':('work.png',b'uploaded','image/png')}
+    fields={'context_type':'tutor','context_id':session['id'],'activity_id':session['activity']['id']}
+    assert client.post(url,headers=headers,files=files,data=fields).status_code==422
+    assert client.post(url,headers=outsider,files=files,data=fields).status_code==404
+    variant_id,plan_id=new_id(),new_id()
+    with Database.from_environment() as db:
+        db.query("INSERT INTO variant_questions (id,question_id,session_id,transfer_type,question_text,answer,explanation,reference_solution,verified,generation_metadata,created_at,updated_at) VALUES (?,?,?,'near','x+2=4','2','移项',JSON_ARRAY('x=2'),1,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[variant_id,question_id,session['id']])
+        db.query("UPDATE tutor_sessions SET stage='near_transfer',state=JSON_SET(state,'$.near_variant_id',?,'$.near_variant_options',JSON_ARRAY()) WHERE id=?",[variant_id,session['id']])
+        db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP(),1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[plan_id,user['id'],question_id])
+    fields['activity_id']='near-variant-'+variant_id
+    uploaded=client.post(url,headers=headers,files=files,data=fields)
+    assert uploaded.status_code==200,uploaded.text
+    result=uploaded.json()['data']
+    assert result['recognition']['answer']=='1'
+    assert client.get(result['image_url']).content==image
+    verified=handwriting.validate_handwriting({'handwriting_image_url':result['image_url'],'handwriting_recognition':result['recognition']},user['id'],session['id'])
+    assert verified['recognition']['validated'] is True
+    with pytest.raises(Exception):handwriting.validate_handwriting({'handwriting_image_url':result['image_url']},other['id'],session['id'])
+    review={'context_type':'review','context_id':plan_id}
+    assert client.post(url,headers=headers,files=files,data=review).status_code==200
+    with Database.from_environment() as db:
+        question=row_json('questions',db.query('SELECT * FROM questions WHERE id=?',[question_id]).rows[0])
+        metadata={'mode':'reinforce','source_version':source_version(db,question),'options':[]}
+        db.query("UPDATE tutor_sessions SET stage='standalone_practice' WHERE id=?",[session['id']])
+        db.query('UPDATE variant_questions SET generation_metadata=? WHERE id=?',[json.dumps(metadata),variant_id])
+    practice={'context_type':'practice','context_id':variant_id,'mistake_id':question_id,'mode':'reinforce'}
+    assert client.post(url,headers=headers,files=files,data=practice).status_code==200
+    def failure(payload):
+        if payload['operation']=='normalize':return computed(payload)
+        raise RuntimeError('controlled recognition failure')
+    monkeypatch.setattr(handwriting,'compute',failure)
+    before=set((tmp_path/'media').rglob('*.jpg'))
+    failed=client.post(url,headers=headers,files=files,data=review)
+    assert failed.status_code==503 and '照片已保留' in failed.json()['detail']
+    assert len(set((tmp_path/'media').rglob('*.jpg'))-before)==1
+
+
+def test_direct_variant_attempt_uncertain_retry_and_completion(client,monkeypatch):
+    import json
+    from sczx_api import analysis,variant_attempt,tutor_variants,learning_evidence
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'variant-attempt@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'x+1=2','student_steps':['x=3']}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers)
+    session=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).json()['data'];variant_id=new_id()
+    with Database.from_environment() as db:
+        db.query("INSERT INTO variant_questions (id,question_id,session_id,transfer_type,question_text,answer,explanation,reference_solution,verified,generation_metadata,created_at,updated_at) VALUES (?,?,?,'near','x+2=4','2','移项',JSON_ARRAY('x=2'),1,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[variant_id,question_id,session['id']])
+        db.query("UPDATE tutor_sessions SET stage='near_transfer',state=JSON_SET(state,'$.near_variant_id',?) WHERE id=?",[variant_id,session['id']])
+    grading={'correct':False,'can_update_learning':False,'verdict':'review_required','feedback':'需要核对'}
+    monkeypatch.setattr(variant_attempt,'compute',lambda p:grading)
+    path='/api/v1/variants/'+variant_id+'/attempt'
+    uncertain=client.post(path,headers=headers,json={'answer':'可能是2'})
+    assert uncertain.status_code==200 and uncertain.json()['data']['attempt'] is None
+    assert uncertain.json()['data']['correct'] is None and uncertain.json()['data']['mastery'] is None
+    grading.update(can_update_learning=True,verdict='confirmed_incorrect')
+    for _ in range(2):assert client.post(path,headers=headers,json={'answer':'3'}).status_code==200
+    with Database.from_environment() as db:
+        state=json.loads(db.query('SELECT state FROM tutor_sessions WHERE id=?',[session['id']]).rows[0]['state'])
+        assert state['near_confirmation'] and state['near_attempts']==2 and state['assisted'] is True
+    monkeypatch.setattr(tutor_variants,'variant_retrieval',lambda *args:{'references':[],'status':'unavailable'})
+    monkeypatch.setattr(tutor_variants,'compute',lambda p:{'variant':{'question_text':'x+3=5','answer':'2','explanation':'移项','reference_solution':['x=2'],'options':[]},'generation':{},'verified':True})
+    grading.update(correct=True,verdict='confirmed_correct')
+    near=client.post(path,headers=headers,json={'answer':'2','elapsed_seconds':2.9,'hint_level':1.8})
+    assert near.status_code==200 and near.json()['data']['stage']=='far_transfer'
+    assert near.json()['data']['attempt']['elapsed_seconds']==2 and near.json()['data']['attempt']['hint_level']==1
+    with Database.from_environment() as db:
+        state=json.loads(db.query('SELECT state FROM tutor_sessions WHERE id=?',[session['id']]).rows[0]['state'])
+    assert client.post(path,headers=headers,json={'answer':'2'}).status_code==409
+    monkeypatch.setattr(learning_evidence,'compute',lambda p,timeout=200:{'mastery':{**p['mastery_values'],'mastery_score':.7,'evidence_count':1,'update_reason':'受控验收'},'misconception':{**p['misconception_values'],'probability':.3,'evidence_count':2}})
+    far=client.post('/api/v1/variants/'+state['far_variant_id']+'/attempt',headers=headers,json={'answer':'2'})
+    assert far.status_code==200,far.text
+    assert far.json()['data']['stage']=='finished' and far.json()['data']['mastery'] is not None
+    with Database.from_environment() as db:
+        assert db.query('SELECT interval_days FROM review_plans WHERE question_id=?',[question_id]).rows[0]['interval_days']=='3'

@@ -26,6 +26,8 @@ from .tutor_navigation import navigate_tutor
 from .tutor_teach_back import teach_back
 from .tutor_completion import finish_tutor
 from .tutor_answer import answer_activity
+from .handwriting import upload_handwriting
+from .variant_attempt import variant_attempt
 
 from . import accounts
 from .database import Database
@@ -223,6 +225,16 @@ async def tutor_finish(request: Request):
 @app.post('/api/v1/tutor/sessions/{session_id}/activity/answer')
 async def tutor_answer(request: Request):
     return envelope(await answer_activity(request))
+
+
+@app.post('/api/v1/answers/handwriting')
+async def handwriting(request: Request):
+    return envelope(await upload_handwriting(request))
+
+
+@app.post('/api/v1/variants/{variant_id}/attempt')
+async def variant_answer(request: Request):
+    return envelope(await variant_attempt(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])

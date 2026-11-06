@@ -14,7 +14,7 @@ from .security import new_id
 from .storage import write_media, remove_media
 
 
-async def read_upload(request):
+async def read_upload(request, include_fields=False):
     header = Message(); header['content-type'] = request.headers.get('content-type', '')
     if header.get_content_type() != 'multipart/form-data': raise HTTPException(422, '请选择上传图片')
     boundary = header.get_param('boundary') or ''
@@ -33,7 +33,7 @@ async def read_upload(request):
     try:
         items = form.multi_items()
         if len(items) > 32: raise HTTPException(422, '上传字段过多')
-        file, deferred = None, False
+        file, deferred, fields = None, False, {}
         for key, value in items:
             if key == 'file':
                 if file is not None or not isinstance(value, UploadFile): raise HTTPException(422, '请上传一张图片')
@@ -41,6 +41,7 @@ async def read_upload(request):
             else:
                 if isinstance(value, UploadFile): raise HTTPException(422, '上传字段无效')
                 if len(value.encode()) > 4096: raise HTTPException(422, '上传字段过长')
+                fields[key] = value
                 if key == 'defer_processing':
                     word = value.lower()
                     if word in ['true', '1', 'on', 'yes', 't', 'y']: deferred = True
@@ -52,7 +53,7 @@ async def read_upload(request):
         if len(image) > 15 * 1024 * 1024: raise HTTPException(413, '图片不能超过 15 MB')
         filename = file.filename or '上传错题'
         if len(filename) > 255: raise HTTPException(422, '文件名称过长')
-        return image, filename, deferred
+        return (image, filename, deferred, fields) if include_fields else (image, filename, deferred)
     finally:
         await form.close()
 
