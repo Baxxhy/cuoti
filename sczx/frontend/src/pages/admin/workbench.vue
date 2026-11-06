@@ -877,6 +877,7 @@ onUnmounted(() => clearInterval(timer))
   margin: 5px 0 12px;
 }
 .sidebar-foot button {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 9px;
@@ -944,13 +945,13 @@ onUnmounted(() => clearInterval(timer))
   background: var(--color-warning);
 }
 .service b,
-.service span {
+.service div > span {
   display: block;
 }
 .service b {
   font-size: 15px;
 }
-.service span {
+.service div > span {
   font-size: 13px;
   color: var(--color-text-secondary);
   margin-top: 2px;
@@ -1920,6 +1921,7 @@ onUnmounted(() => clearInterval(timer))
     display: none;
   }
   .sidebar-foot button {
+    width: auto;
     margin: 0;
     padding: 6px 0;
     min-height: 36px;

@@ -15,6 +15,15 @@ button {
   color: #000;
   background: #f8f8f8;
 }
+/* Match the original H5 default-button disabled colors and specificity. */
+button[disabled]:not([type]),
+button[disabled][type='button'],
+button[disabled][type='submit'],
+button[disabled][type='reset'],
+button[disabled][type='default'] {
+  color: rgba(0, 0, 0, .3);
+  background-color: #f7f7f7;
+}
 .primary-btn, .secondary-btn, .danger-btn { width: 100%; }
 .web-input {
   display: block;

@@ -98,3 +98,9 @@ SCZX_RUN_E2E=1 .venv/bin/python scripts/integration_smoke.py
 原版71项浏览器用例的迁移清单见 [e2e_parity_inventory.json](e2e_parity_inventory.json)。原版场景已全部接入，其中一项裁剪扩展为电脑和触屏两项，共72项；视觉细节及实际模型、语音联调仍需核对，不能把用例通过视为全部一致。
 
 浏览器验收会启动一个本地受控判题与图形转写接口，只接受已登记的测试样本，其他请求拒绝；不会使用真实模型账号，也不会改变正常启动的模型配置。
+
+页面外观也在和原版逐项对照。目前90组页面状态的文字和脚本检查通过，92对截图中63对逐像素相同；其余差异继续记录和修正。已有对照目录可用下面的命令生成逐图差异记录：
+
+```bash
+.venv/bin/python scripts/compare_pixels.py .runtime/page-compare/full-icons
+```
