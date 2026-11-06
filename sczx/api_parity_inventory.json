@@ -439,30 +439,38 @@
   {
     "path": "/api/v1/tutor/sessions/{session_id}/advance",
     "source": "backend-cangjie/src/main.cj:85",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL resume/variant acceptance; navigation advance/rewind acceptance passed; live retrieval/model and full tutor loop pending"
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/rewind",
     "source": "backend-cangjie/src/main.cj:86",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL resume/variant acceptance; navigation advance/rewind acceptance passed; live retrieval/model and full tutor loop pending"
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/variant",
     "source": "backend-cangjie/src/main.cj:87",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL resume/variant acceptance; navigation advance/rewind acceptance passed; live retrieval/model and full tutor loop pending"
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}",
     "source": "backend-cangjie/src/main.cj:88",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from current Cangjie source; isolated MySQL resume/variant acceptance; navigation advance/rewind acceptance passed; live retrieval/model and full tutor loop pending"
   },
   {
     "path": "/api/v1/tutor/sessions",

@@ -516,3 +516,71 @@ def test_tutor_start_full_and_compressed_state_persistence(client, monkeypatch):
         return {'brief':brief}
     monkeypatch.setattr(tutor_start,'compute',stale_brief)
     assert client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).status_code==409
+
+
+def test_tutor_resume_legacy_stages_and_variant_validation(client,monkeypatch):
+    import json
+    from sczx_api import analysis,tutor_variants
+    user=client.post('/api/v1/auth/register',json={'email':'tutor-resume@example.com','password':'secret'}).json()['data']
+    other=client.post('/api/v1/auth/register',json={'email':'tutor-resume-other@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']};outsider={'Authorization':'Bearer '+other['access_token']}
+    question=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程x+1=2','student_steps':['x=3']}).json()['data']
+    question_id=question['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':['x+1=2'],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda payload:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers)
+    session=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).json()['data']
+    path='/api/v1/tutor/sessions/'+session['id']
+    assert client.get(path,headers=outsider).status_code==404
+    resumed=client.get(path,headers=headers)
+    assert resumed.status_code==200 and resumed.json()['data']['activity']==session['activity']
+    assert client.post(path+'/advance',headers=headers,json={'target_stage':'teach_back'}).status_code==409
+    assert client.post(path+'/advance',headers=headers,json={'target_stage':'near_transfer'}).status_code==422
+    with Database.from_environment() as db:
+        db.query("UPDATE tutor_sessions SET state=JSON_SET(state,'$.understanding_passed',CAST('true' AS JSON)) WHERE id=?",[session['id']])
+    advanced=client.post(path+'/advance',headers=headers,json={'target_stage':'teach_back'})
+    assert advanced.status_code==200 and advanced.json()['data']['stage']=='teach_back'
+    rewound=client.post(path+'/rewind',headers=headers)
+    assert rewound.status_code==200 and rewound.json()['data']['stage']=='understanding'
+    assert rewound.json()['data']['stage_status']=='passed'
+    assert client.post(path+'/rewind',headers=headers).status_code==409
+    assert client.post(path+'/variant',headers=headers).status_code==409
+    with Database.from_environment() as db:
+        state=json.loads(db.query('SELECT state FROM tutor_sessions WHERE id=?',[session['id']]).rows[0]['state'])
+        state.pop('understanding_plan');state.pop('assisted');state.pop('understanding_passed')
+        db.query("UPDATE tutor_sessions SET stage='teach_back_retry',state=? WHERE id=?",[json.dumps(state),session['id']])
+    legacy=client.get(path,headers=headers).json()['data']
+    assert legacy['stage']=='teach_back' and legacy['activity']['type']=='teach_back'
+    assert legacy['state']['assisted'] is False and 'understanding_plan' not in legacy['state']
+    with Database.from_environment() as db:
+        db.query("UPDATE tutor_sessions SET stage='near_remediation' WHERE id=?",[session['id']])
+    calls=[]
+    def computed(payload):
+        calls.append(payload['operation'])
+        if payload['operation']=='validate_variant':return {'valid':True}
+        return {'variant':{'question_text':'解方程x+2=4','answer':'2','explanation':'移项','reference_solution':['x=2'],'options':[]},'generation':{'method':'controlled'},'verified':True}
+    monkeypatch.setattr(tutor_variants,'compute',computed)
+    monkeypatch.setattr(tutor_variants,'variant_retrieval',lambda *args:{'references':[],'status':'unavailable'})
+    transferred=client.get(path,headers=headers)
+    assert transferred.status_code==200,transferred.text
+    data=transferred.json()['data']
+    assert data['stage']=='near_transfer' and data['activity']['question']=='解方程x+2=4'
+    variant_id=data['activity']['variant_id']
+    assert 'answer' not in data['activity'] and 'correct_answers' not in data['activity']
+    assert 'near_variant_id' not in data['state']
+    direct=client.post(path+'/variant',headers=headers,json={'transfer_type':'near'})
+    assert direct.status_code==200 and direct.json()['data']['id']==variant_id
+    assert 'answer' not in direct.json()['data'] and calls==['generate_variant','validate_variant']
+    def invalid_then_generate(payload):
+        if payload['operation']=='validate_variant':return {'valid':False}
+        return computed(payload)
+    monkeypatch.setattr(tutor_variants,'compute',invalid_then_generate)
+    replacement=client.post(path+'/variant',headers=headers,json={'transfer_type':'near'})
+    assert replacement.status_code==200 and replacement.json()['data']['id']!=variant_id
+    with Database.from_environment() as db:
+        stored=json.loads(db.query('SELECT state FROM tutor_sessions WHERE id=?',[session['id']]).rows[0]['state'])
+        assert variant_id in stored['invalidated_variant_ids']
+        db.query("UPDATE questions SET status='archived' WHERE id=?",[question_id])
+        stored['near_variant_id']=None
+        db.query('UPDATE tutor_sessions SET state=? WHERE id=?',[json.dumps(stored),session['id']])
+    assert client.post(path+'/variant',headers=headers).status_code==409

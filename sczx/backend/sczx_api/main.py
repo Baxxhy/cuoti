@@ -20,6 +20,9 @@ from .analysis import analyze_question, submit_work
 from .diagnosis import diagnose_question, get_diagnosis
 from .diagnosis_edit import correct_diagnosis, counterfactual_question
 from .tutor_start import start_tutor
+from .tutor_read import read_tutor
+from .tutor_variants import tutor_variant
+from .tutor_navigation import navigate_tutor
 
 from . import accounts
 from .database import Database
@@ -182,6 +185,26 @@ async def counterfactual(request: Request):
 @app.post('/api/v1/tutor/sessions')
 async def tutor_start(request: Request):
     return envelope(await start_tutor(request))
+
+
+@app.get('/api/v1/tutor/sessions/{session_id}')
+async def tutor_read(request: Request):
+    return envelope(await read_tutor(request))
+
+
+@app.post('/api/v1/tutor/sessions/{session_id}/variant')
+async def variant(request: Request):
+    return envelope(await tutor_variant(request))
+
+
+@app.post('/api/v1/tutor/sessions/{session_id}/advance')
+async def tutor_advance(request: Request):
+    return envelope(await navigate_tutor(request, False))
+
+
+@app.post('/api/v1/tutor/sessions/{session_id}/rewind')
+async def tutor_rewind(request: Request):
+    return envelope(await navigate_tutor(request, True))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])
