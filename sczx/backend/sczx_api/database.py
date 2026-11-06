@@ -8,6 +8,18 @@ from dataclasses import dataclass
 from decimal import Decimal
 
 import pymysql
+from pymysql.constants import FIELD_TYPE
+
+
+def mysql_conversions():
+    # The original MySQL bridge reads textual cells. Preserve FLOAT display
+    # precision and DATETIME(6) trailing zeros before row_json/source hashing.
+    result = pymysql.converters.conversions.copy()
+    for kind in [FIELD_TYPE.FLOAT, FIELD_TYPE.DOUBLE, FIELD_TYPE.DECIMAL,
+                 FIELD_TYPE.NEWDECIMAL, FIELD_TYPE.DATETIME, FIELD_TYPE.TIMESTAMP,
+                 FIELD_TYPE.DATE, FIELD_TYPE.TIME]:
+        result[kind] = str
+    return result
 
 
 @dataclass
@@ -68,7 +80,7 @@ class Database:
                        port=int(os.environ.get('SCZX_DB_PORT', '3307')),
                        user=os.environ.get('SCZX_DB_USER', 'sczx'),
                        password=os.environ.get('SCZX_DB_PASSWORD', ''),
-                       database=name, charset='utf8mb4', autocommit=True,
+                       database=name, charset='utf8mb4', autocommit=True, conv=mysql_conversions(),
                        connect_timeout=5, read_timeout=30, write_timeout=30)
         if os.environ.get('SCZX_DB_SOCKET'):
             options['unix_socket'] = os.environ['SCZX_DB_SOCKET']

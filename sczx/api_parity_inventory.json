@@ -422,9 +422,11 @@
   {
     "path": "/api/v1/tutor/sessions/{session_id}/turns",
     "source": "backend-cangjie/src/main.cj:81",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "ported with original learning-memory source/expiry rules; isolated dialogue/tools/memory acceptance passed; MySQL FLOAT/DATETIME(6) textual-cell parity regression passed; real model and browser parity pending"
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/teach-back",

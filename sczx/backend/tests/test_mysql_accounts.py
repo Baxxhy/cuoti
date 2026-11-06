@@ -101,6 +101,8 @@ def test_invalid_json_and_transaction_rollback(client):
     assert client.post('/api/v1/auth/register', content='[]').status_code == 422
     assert client.post('/api/v1/auth/register', content='x' * 65537).status_code == 413
     with Database.from_environment() as db:
+        raw=db.query("SELECT CAST(0.4 AS FLOAT) AS score,CAST('2026-01-01 00:00:00.000000' AS DATETIME(6)) AS observed").rows[0]
+        assert raw=={'score':'0.4','observed':'2026-01-01 00:00:00.000000'}
         before = db.query('SELECT COUNT(*) AS n FROM users').rows[0]['n']
         with pytest.raises(RuntimeError):
             with db.transaction():
@@ -898,3 +900,63 @@ def test_visualization_uses_original_specs_and_persists_observations(client,monk
         db.query("UPDATE questions SET status='archived' WHERE id=?",[question_id])
     assert client.post(path,headers=headers,json={}).status_code==409
     assert client.get(path,headers=headers).status_code==200
+
+
+def test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot(client,monkeypatch):
+    import json
+    from sczx_api import analysis,tutor_dialogue
+    from sczx_api.learning_memory import learning_memory
+    from sczx_api.rows import row_json
+    from sczx_api.security import new_id
+    user=client.post('/api/v1/auth/register',json={'email':'dialogue@example.com','password':'secret'}).json()['data']
+    headers={'Authorization':'Bearer '+user['access_token']}
+    question_id=client.post('/api/v1/questions/manual',headers=headers,json={'question_text':'解方程x+1=2','student_steps':['x=3']}).json()['data']['id']
+    record={'subject':'数学','problem_type':'方程','known_conditions':[],'goal':'求x','knowledge_points':['方程'],'prerequisites':[],'final_answer':'1','answer_verified':True,'reference_steps':['x=1']}
+    monkeypatch.setattr(analysis,'compute',lambda p:{'analysis':record,'reference_math_valid':[True]})
+    client.post('/api/v1/questions/'+question_id+'/analyze',headers=headers)
+    session=client.post('/api/v1/tutor/sessions',headers=headers,json={'question_id':question_id}).json()['data']
+    mastery_id=new_id();card_id=new_id()
+    with Database.from_environment() as db:
+        db.query("INSERT INTO mastery_states (id,user_id,subject,knowledge_point,mastery_score,confidence,evidence_count,near_transfer_rate,far_transfer_rate,forgetting_risk,update_reason,created_at,updated_at) VALUES (?,?,'数学','方程',0.4,0.3,1,0,0,0.5,'旧估计',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[mastery_id,user['id']])
+        db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP(),1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),user['id'],question_id])
+        db.query("INSERT INTO knowledge_points (id,code,subject,name,content,created_at,updated_at) VALUES (?,'sczx.dialogue.equation','数学','方程',JSON_OBJECT('grade','初一'),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[card_id])
+        question=row_json('questions',db.query('SELECT * FROM questions WHERE id=?',[question_id]).rows[0])
+        memory=learning_memory(db,user['id'],question)
+        assert {e['classification'] for e in memory['snapshot']['entries']}=={'estimate','reminder'}
+        assert memory['legacy_rows']['mastery'][0]['id']==mastery_id
+    calls=[];stale=False
+    def compute(payload):
+        calls.append(payload['operation'])
+        if payload['operation']=='tutor_dialogue_prepare':
+            assert payload['dialogue_context']['memory_snapshot']['entries']
+            return {'plan':{'tool_name':'knowledge_search','memory_source_ids':[e['ref'] for e in payload['dialogue_context']['memory_snapshot']['entries']]},'knowledge_query':'方程'}
+        assert payload['dialogue_cards'] and payload['dialogue_context']['reference_steps']==['x=1']
+        if stale:
+            with Database.from_environment() as db:db.query("UPDATE questions SET student_answer='已修改' WHERE id=?",[question_id])
+        plan=payload['dialogue_preparation']['plan']
+        return {'reply':'等式两边同时减1。','graph':{'branch':'condition_hint','strategy':'micro_activity','next_goal':'核对条件','mastery_proven':False,'stage':'far_transfer','hint_level':1},'agent':{'tool':{'evidence':{'source':'knowledge'},'executed':True,'consumed_input':{'query':'方程'}},'verification':{'status':'verified'},'planner_status':'ready','observation':{},'plan':plan},'knowledge_sources':[{'code':'sczx.dialogue.equation'}]}
+    monkeypatch.setattr(tutor_dialogue,'compute',compute)
+    path='/api/v1/tutor/sessions/'+session['id']+'/turns'
+    assert client.post(path,headers=headers,json={'message':' '}).status_code==422
+    first=client.post(path,headers=headers,json={'message':'为什么移项'})
+    assert first.status_code==200,first.text
+    assert first.json()['data']['stage']=='understanding' and first.json()['data']['message']=='等式两边同时减1。'
+    assert calls==['tutor_dialogue_prepare','tutor_dialogue_finish']
+    assert client.post(path,headers=headers,json={'message':'为什么移项'}).status_code==200
+    with Database.from_environment() as db:
+        stored=db.query('SELECT state,turn_count,stage FROM tutor_sessions WHERE id=?',[session['id']]).rows[0]
+        assert stored['turn_count']=='2' and stored['stage']=='understanding'
+        assert json.loads(stored['state'])['repeated_count']==1
+        runs=db.query("SELECT result FROM agent_runs WHERE session_id=? ORDER BY created_at DESC",[session['id']]).rows
+        audited=[json.loads(r['result']) for r in runs if 'memory_manifest' in r['result']]
+        assert len(audited)==2 and len(audited[0]['memory_manifest'])==2
+        before=db.query('SELECT COUNT(*) AS n FROM tutor_turns WHERE session_id=?',[session['id']]).rows[0]['n']
+    stale=True
+    conflict=client.post(path,headers=headers,json={'message':'继续解释'})
+    assert conflict.status_code==409 and '已变化' in conflict.json()['detail']
+    with Database.from_environment() as db:
+        assert db.query('SELECT COUNT(*) AS n FROM tutor_turns WHERE session_id=?',[session['id']]).rows[0]['n']==before
+        db.query('UPDATE mastery_states SET updated_at=UTC_TIMESTAMP()-INTERVAL 31 DAY WHERE id=?',[mastery_id])
+        assert learning_memory(db,user['id'],question)['legacy_rows']['mastery']==[]
+        db.query("UPDATE tutor_sessions SET stage='finished' WHERE id=?",[session['id']])
+    assert client.post(path,headers=headers,json={'message':'继续'}).status_code==409

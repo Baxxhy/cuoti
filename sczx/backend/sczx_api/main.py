@@ -29,6 +29,7 @@ from .tutor_answer import answer_activity
 from .handwriting import upload_handwriting
 from .variant_attempt import variant_attempt
 from .visualizations import session_visualization, visualization_types, read_visualization
+from .tutor_dialogue import tutor_dialogue
 
 from . import accounts
 from .database import Database
@@ -251,6 +252,11 @@ async def visual_types():
 @app.get('/api/v1/visualizations/{visualization_id}')
 async def visual_read(request: Request):
     return envelope(await read_visualization(request))
+
+
+@app.post('/api/v1/tutor/sessions/{session_id}/turns')
+async def tutor_turn(request: Request):
+    return envelope(await tutor_dialogue(request))
 
 
 @app.api_route('/uploads/{media_path:path}', methods=['GET', 'HEAD'])
