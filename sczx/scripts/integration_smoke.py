@@ -22,7 +22,7 @@ from sczx_api.database import Database
 from sczx_api.schema import initialize_database
 from sczx_api.security import new_id
 from sczx_api.knowledge_seed import seed_public_knowledge
-from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task
+from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_clear_entry
 
 
 def port():
@@ -198,6 +198,7 @@ def main():
                 report['checks'].append('controlled login/register/image-picker browser compatibility')
                 if os.environ.get('SCZX_RUN_E2E')=='1':
                     env['QA_OPTIONS_FIXTURE']=seed_option_task(http,base,artifacts,env)
+                    env.update(seed_clear_entry(http,base))
                     acceptance_args=['node',str(ROOT/'frontend/node_modules/@playwright/test/cli.js'),'test','--config',str(ROOT/'frontend/playwright.config.js')]
                     if os.environ.get('SCZX_E2E_GREP'):acceptance_args.extend(['--grep',os.environ['SCZX_E2E_GREP']])
                     report['e2e_scope']=os.environ.get('SCZX_E2E_GREP','all migrated cases')

@@ -350,10 +350,10 @@ def test_learning_task_remaining_budget_cancels_instead_of_returning_late_result
             headers=HEADERS,
             json={
                 "operation": "learning_task",
-                "task_budget_ms": 25,
-                # Resume an already diagnosed task so this checks cancellation
-                # of the provider, rather than spending the entire 25 ms on
-                # the graph's first symbolic diagnosis.
+                "task_budget_ms": 250,
+                # Leave room for local preparation under full-suite load, while
+                # still requiring the 10-second provider to be cancelled within
+                # the unchanged two-second bound. Resume a diagnosed task.
                 "task_checkpoint": {"evidence_diagnosis": {
                     "reason": "原步骤已核验", "confidence_level": "verified",
                     "verified": True, "next_action": "repair",

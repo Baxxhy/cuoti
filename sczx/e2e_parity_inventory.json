@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 56,
+  "migrated_count": 57,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -553,8 +553,9 @@
       "file": "task-entry.spec.ts",
       "line": 84,
       "name": "未发现错误的诊断可直接进入独立任务，刷新恢复当前记录",
-      "migration": "not_yet_copied",
-      "full_title": "未发现错误的诊断可直接进入独立任务，刷新恢复当前记录"
+      "migration": "copied_case",
+      "full_title": "未发现错误的诊断可直接进入独立任务，刷新恢复当前记录",
+      "migrated_file": "task-entry.spec.ts"
     }
   ],
   "additional_cases": [

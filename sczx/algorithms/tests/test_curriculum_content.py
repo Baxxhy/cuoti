@@ -7,7 +7,7 @@ from grounded_knowledge import build_knowledge_evidence
 
 
 def test_all_seed_cards_have_actual_teaching_content_and_no_fake_examples():
-    path = Path(__file__).resolve().parents[2] / "backend-cangjie/schema/knowledge_seed.json"
+    path = Path(__file__).resolve().parents[2] / "backend/schema/knowledge_seed.json"
     data = json.loads(path.read_text())
     assert len(data["cards"]) >= 250
     for card in data["cards"]:

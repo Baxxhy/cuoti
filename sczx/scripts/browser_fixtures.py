@@ -92,3 +92,19 @@ def seed_option_task(http,base,artifacts,env):
     with Database.from_environment() as db:db.query("UPDATE learning_tasks SET student_view=JSON_REMOVE(student_view,'$.prompt_blocks[0].options') WHERE id=?",[task['id']])
     fixture=artifacts/'options-browser.json';fixture.write_text(json.dumps({'token':actor['access_token'],'question_id':qid,'task_id':task['id'],'figure':True}))
     return str(fixture)
+
+
+def seed_clear_entry(http,base):
+    """Isolated correct-answer entry using persisted original reference steps."""
+    from sczx_api.database import Database
+    response=http.post(base+'/api/v1/auth/register',json={'email':'clear-entry-browser@example.test','password':'Clear-entry-browser-123','grade':'初一'})
+    assert response.status_code==200,response.text
+    actor=response.json()['data'];token=actor['access_token']
+    response=http.post(base+'/api/v1/questions/manual',headers={'Authorization':'Bearer '+token},json={'question_text':'解方程：2x+3=11','subject':'数学','grade':'初一','student_answer':'x=4','student_steps':['2x=8','x=4']})
+    assert response.status_code==200,response.text
+    qid=response.json()['data']['id'];analysis=new_id()
+    with Database.from_environment() as db:
+        insert(db,'problem_analyses',dict(id=analysis,question_id=qid,subject='数学',problem_type='方程',known_conditions=[],goal='求x',knowledge_points=['等式的性质'],prerequisites=[],final_answer='x=4',verified=1,raw_result={'fixture':True}))
+        for index,text in enumerate(['2x=8','x=4']):insert(db,'reference_steps',dict(id=new_id(),analysis_id=analysis,step_index=index,text=text,explanation='',math_valid=1,uses_condition=0))
+        insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='exact',first_error_step=None,first_error_text='',root_misconception='',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
+    return {'QA_ENTRY_CLEAR_QUESTION_ID':qid,'QA_ENTRY_CLEAR_TOKEN':token}
