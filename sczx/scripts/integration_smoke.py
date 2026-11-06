@@ -22,7 +22,7 @@ from sczx_api.database import Database
 from sczx_api.schema import initialize_database
 from sczx_api.security import new_id
 from sczx_api.knowledge_seed import seed_public_knowledge
-from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_task_entry,seed_function_entry,seed_experience,seed_inequality,seed_personas
+from browser_fixtures import seed_rendering,seed_personal_learning,seed_option_task,seed_task_entry,seed_function_entry,seed_experience,seed_inequality,seed_personas,seed_route_content
 
 
 def port():
@@ -144,7 +144,8 @@ def main():
                     with Database.from_environment() as db:
                         point=db.query("SELECT id FROM knowledge_points WHERE code='math.equation_property'").rows[0]['id']
                         db.query("INSERT INTO user_question_knowledge_links (id,user_id,question_id,knowledge_point_id,`role`,confidence,mapping_method,evidence_text,created_at,updated_at) VALUES (?,?,?,?,'primary',1,'fixture','受控图谱布局验收',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),route_actor['id'],route_qid,point])
-                    env.update(QA_ROUTE_EMAIL=route_email,QA_ROUTE_PASSWORD=route_password,QA_ROUTE_QUESTION=route_qid)
+                    seed_route_content(route_qid,env)
+                    env.update(QA_ROUTE_EMAIL=route_email,QA_ROUTE_PASSWORD=route_password,QA_ROUTE_QUESTION=route_qid,QA_ROUTE_QUESTION_ID=route_qid)
                     admin_email,admin_password='admin-browser@example.test','Admin-browser-123'
                     admin=http.post(base+'/api/v1/auth/register',json={'email':admin_email,'password':admin_password,'name':'隔离管理员'})
                     assert admin.status_code==200,admin.text
@@ -214,7 +215,7 @@ def main():
                     acceptance_args=['node',str(ROOT/'frontend/node_modules/@playwright/test/cli.js'),'test','--config',str(ROOT/'frontend/playwright.config.js')]
                     if os.environ.get('SCZX_E2E_GREP'):acceptance_args.extend(['--grep',os.environ['SCZX_E2E_GREP']])
                     report['e2e_scope']=os.environ.get('SCZX_E2E_GREP','all migrated cases')
-                    acceptance=subprocess.run(acceptance_args,cwd=ROOT,env={**env,'SCZX_WEB_URL':base,'SCZX_API_URL':base+'/api/v1','SCZX_E2E_OUTPUT':str(artifacts/'e2e')},capture_output=True,text=True,timeout=300)
+                    acceptance=subprocess.run(acceptance_args,cwd=ROOT,env={**env,'SCZX_WEB_URL':base,'SCZX_API_URL':base+'/api/v1','SCZX_E2E_OUTPUT':str(artifacts/'e2e')},capture_output=True,text=True,timeout=600)
                     (artifacts/'e2e.log').write_text(acceptance.stdout+'\n'+acceptance.stderr)
                     assert acceptance.returncode==0,acceptance.stdout+'\n'+acceptance.stderr
                     report['checks'].append('migrated browser acceptance on Python/MySQL')

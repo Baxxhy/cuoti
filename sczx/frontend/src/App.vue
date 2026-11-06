@@ -35,5 +35,6 @@ button:disabled {cursor:default}
 .web-toast-symbol .web-toast-text {box-sizing:content-box;display:block;font-size:16px;padding:0;margin:0 0 15px;background:none}
 .web-picker {position:relative}
 .web-picker-control {position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.web-picker-control:focus {outline:none}
 .web-loading {padding:18px;text-align:center;color:var(--color-text-secondary)}
 </style>

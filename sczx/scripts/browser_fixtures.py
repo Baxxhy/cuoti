@@ -205,3 +205,19 @@ def seed_personas(http,base):
             insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='sign_error',first_error_step=0,first_error_text='',root_misconception='移项需要改变符号',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
             insert(db,'review_plans',dict(id=plan,user_id=actor['id'],question_id=qid,due_at=f'2026-01-0{index+1} 00:00:00',interval_days=1,status='pending',reason='again'))
     return {'QA_PERSONA_REPAIR_EMAIL':repair['QA_EXPERIENCE_EMAIL'],'QA_PERSONA_REPAIR_PASSWORD':repair['QA_EXPERIENCE_PASSWORD'],'QA_PERSONA_REPAIR_QUESTION_1':repair['QA_EXPERIENCE_QUESTION_ID'],'QA_PERSONA_REPAIR_QUESTION_2':repair['QA_EXPERIENCE_QUESTION_2'],'QA_PERSONA_REVIEW_EMAIL':email,'QA_PERSONA_REVIEW_PASSWORD':password,'QA_PERSONA_REVIEW_QUESTION_1':ids[0],'QA_PERSONA_REVIEW_QUESTION_2':ids[1],'QA_PERSONA_REVIEW_PLAN_2':plans[1]}
+
+
+def seed_route_content(qid,env):
+    from sczx_api.database import Database
+    from PIL import ImageFont
+    relative='uploads/questions/'+qid+'/route-figure.png'
+    path=Path(env['SCZX_MEDIA_ROOT'])/relative;path.parent.mkdir(parents=True,exist_ok=True)
+    image=Image.new('RGB',(480,150),'white');draw=ImageDraw.Draw(image);font=ImageFont.load_default(size=24)
+    draw.rounded_rectangle((20,32,198,112),radius=8,outline='#002fa7',width=2);draw.rounded_rectangle((282,32,460,112),radius=8,outline='#002fa7',width=2)
+    for xy,text in [((64,56),'2x + 3'),((232,56),'='),((354,56),'11')]:draw.text(xy,text,font=font,fill='#1d1d1f')
+    image.save(path);analysis=new_id()
+    with Database.from_environment() as db:
+        insert(db,'problem_analyses',dict(id=analysis,question_id=qid,subject='数学',problem_type='方程',known_conditions=[],goal='求x',knowledge_points=['等式的性质'],prerequisites=[],final_answer='x=4',verified=1,raw_result={'fixture':True}))
+        for index,text in enumerate(['2x=8','x=4']):insert(db,'reference_steps',dict(id=new_id(),analysis_id=analysis,step_index=index,text=text,explanation='',math_valid=1,uses_condition=0))
+        insert(db,'diagnoses',dict(id=new_id(),question_id=qid,error_type='sign_error',first_error_step=0,first_error_text='',root_misconception='移项需要改变符号',propagated_errors=[],strategy_candidates=[],confidence=1,error_location='',missing_prerequisites=[],recommended_strategy='',user_confirmed=0,correction={}))
+        insert(db,'question_assets',dict(id=new_id(),question_id=qid,kind='question_figure',path=relative,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),bbox=[0,0,1,1],role='question',description='等式左右两边（隔离验收图示）'))

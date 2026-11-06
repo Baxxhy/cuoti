@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 68,
+  "migrated_count": 70,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -224,8 +224,9 @@
       "file": "generated-practice.spec.ts",
       "line": 3,
       "name": "无题库匹配时恢复生成练习、提交并再练一道",
-      "migration": "not_yet_copied",
-      "full_title": "无题库匹配时恢复生成练习、提交并再练一道"
+      "migration": "copied_case",
+      "full_title": "无题库匹配时恢复生成练习、提交并再练一道",
+      "migrated_file": "generated-practice.spec.ts"
     },
     {
       "file": "graph-layout.spec.ts",
@@ -469,8 +470,9 @@
       "file": "redesign-acceptance.spec.ts",
       "line": 8,
       "name": "全站重构：全部路由在手机与桌面真实渲染，包含学生学习与维护页面",
-      "migration": "not_yet_copied",
-      "full_title": "全站重构：全部路由在手机与桌面真实渲染，包含学生学习与维护页面"
+      "migration": "copied_case",
+      "full_title": "全站重构：全部路由在手机与桌面真实渲染，包含学生学习与维护页面",
+      "migrated_file": "redesign-acceptance.spec.ts"
     },
     {
       "file": "review-display.spec.ts",
