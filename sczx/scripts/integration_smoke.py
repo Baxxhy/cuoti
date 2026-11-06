@@ -3,6 +3,7 @@
 A known analysis is seeded as a fixture. OCR/model analysis and voice are not tested here.
 """
 import json
+import hashlib
 import os
 from pathlib import Path
 import secrets
@@ -50,6 +51,14 @@ def main():
             with connection:
                 with connection.cursor() as cursor:cursor.execute('CREATE DATABASE sczx_http_smoke CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
             os.environ.update({k:v for k,v in env.items() if k.startswith('SCZX_')});initialize_database()
+            if os.environ.get('SCZX_RUN_E2E')=='1':
+                with Database.from_environment() as db:
+                    source=new_id()
+                    db.query("INSERT INTO dataset_sources (id,`key`,name,version,homepage,license,local_path,total_items,imported_items,source_metadata,created_at,updated_at) VALUES (?,'sczx-browser-fixtures','浏览器验收样本','1','','fixture','',32,32,JSON_OBJECT(),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[source])
+                    for subject in ['数学','英语']:
+                        for index in range(16):
+                            stem=f'{subject}浏览器验收样本{index}: 1+1=?'
+                            db.query("INSERT INTO dataset_questions (id,dataset_source_id,source_item_id,split,subject,grade,grade_band,title,question_text,question_type,options,answer,solution,knowledge_points,image_paths,difficulty,content_hash,source_metadata,has_answer,has_solution,answer_verified,quality_status,usable_for_practice,usable_for_auto_grade,created_at,updated_at) VALUES (?,?,?,'test',?,'高一','高中','浏览器验收题',?,'综合题',JSON_ARRAY(),JSON_QUOTE('2'),'验收样本',JSON_ARRAY('基础运算'),JSON_ARRAY(),'medium',?,JSON_OBJECT(),1,1,1,'ready',1,1,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),source,subject+str(index),subject,stem,hashlib.sha256(stem.encode()).hexdigest()])
             algorithm_port,backend_port,web_port=port(),port(),port()
             env.update(SCZX_ALGORITHM_URL=f'http://127.0.0.1:{algorithm_port}',SCZX_BACKEND_URL=f'http://127.0.0.1:{backend_port}')
             python=str(ROOT/'.venv/bin/python')
@@ -97,7 +106,7 @@ def main():
                     acceptance=subprocess.run(['node',str(ROOT/'frontend/node_modules/@playwright/test/cli.js'),'test','--config',str(ROOT/'frontend/playwright.config.js')],cwd=ROOT,env={**env,'SCZX_WEB_URL':base,'SCZX_API_URL':base+'/api/v1','SCZX_E2E_OUTPUT':str(artifacts/'e2e')},capture_output=True,text=True,timeout=300)
                     (artifacts/'e2e.log').write_text(acceptance.stdout+'\n'+acceptance.stderr)
                     assert acceptance.returncode==0,acceptance.stdout+'\n'+acceptance.stderr
-                    report['checks'].append('original account/profile browser acceptance on Python/MySQL')
+                    report['checks'].append('original account/profile/new-user browser acceptance on Python/MySQL')
                 with Database.from_environment() as db:
                     assert db.query('SELECT evidence_count FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['evidence_count']=='2'
                 report['checks'].append('two objective learning observations persisted')

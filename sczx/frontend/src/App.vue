@@ -27,6 +27,7 @@ html,body,#app {margin:0;min-height:100%;width:100%}
 button {cursor:pointer;line-height:1.4}
 button:disabled {cursor:default}
 .web-icon {font-family:SczxIcons!important;display:inline-block;vertical-align:middle;font-style:normal}
+.web-icon::before {content:attr(data-glyph)}
 .web-toast {font-family:initial;color:initial;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);max-width:80%;text-align:center;line-height:normal;font-size:16px;z-index:999;pointer-events:none}
 .web-toast-text {box-sizing:content-box;display:inline-block;vertical-align:middle;padding:10px 20px;border-radius:5px;font-size:13px;line-height:normal;color:#fff;background:rgba(17,17,17,.7);text-align:center;max-width:100%;word-break:break-word;white-space:normal}
 .web-toast-symbol {width:8em;background:rgba(17,17,17,.7);border-radius:5px;color:#fff}
