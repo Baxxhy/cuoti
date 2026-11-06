@@ -1,0 +1,166 @@
+import { shallowRef } from 'vue'
+
+function locationUrl() {
+  return window.location.hash.slice(1) || '/pages/index/index'
+}
+export function parsePage(url) {
+  const parsed = new URL(url, 'https://sczx.local')
+  return { route: parsed.pathname.replace(/^\//, ''), options: Object.fromEntries(parsed.searchParams), $page: { fullPath: parsed.pathname + parsed.search } }
+}
+export const currentUrl = shallowRef(locationUrl())
+let pages = window.history.state?.sczxPages || [parsePage(currentUrl.value)]
+export const getBrowserPages = () => pages.map(p => ({ ...p, options: { ...p.options } }))
+function navigate(options, replace = false, reset = false) {
+  try {
+    const url = String(options.url || '')
+    if (!url.startsWith('/pages/')) throw new Error('页面地址不正确')
+    const page = parsePage(url)
+    pages = reset ? [page] : replace ? [...pages.slice(0, -1), page] : [...pages, page]
+    window.history[replace || reset ? 'replaceState' : 'pushState']({ sczxPages: pages }, '', '#' + page.$page.fullPath)
+    currentUrl.value = page.$page.fullPath
+    window.scrollTo?.(0, 0)
+    options.success?.({})
+    options.complete?.({})
+  } catch (error) { options.fail?.(error); options.complete?.(error) }
+}
+window.addEventListener('popstate', () => {
+  pages = window.history.state?.sczxPages || [parsePage(locationUrl())]
+  currentUrl.value = locationUrl()
+})
+window.addEventListener('hashchange', () => {
+  currentUrl.value = locationUrl()
+  if (pages.at(-1)?.$page.fullPath !== currentUrl.value) pages = [parsePage(currentUrl.value)]
+})
+export const notice = shallowRef('')
+let noticeTimer
+function result(options, value) { options.success?.(value); options.complete?.(value); return value }
+function failed(options, error) { options.fail?.(error); options.complete?.(error) }
+const files = new Map()
+
+export const browser = {
+  getStorageSync(key) { try { const item = localStorage.getItem(key); return item === null ? '' : JSON.parse(item) } catch { return '' } },
+  setStorageSync(key, value) { localStorage.setItem(key, JSON.stringify(value)) },
+  removeStorageSync(key) { localStorage.removeItem(key) },
+  getStorageInfoSync() { return { keys: Object.keys(localStorage) } },
+  navigateTo: o => navigate(o), redirectTo: o => navigate(o, true), reLaunch: o => navigate(o, true, true),
+  navigateBack(o = {}) {
+    const delta = Math.max(1, Number(o.delta) || 1)
+    if (pages.length <= delta) { failed(o, new Error('没有上一页')); return }
+    window.history.go(-delta)
+  },
+  showToast(o) {
+    notice.value = String(o.title || '')
+    clearTimeout(noticeTimer)
+    noticeTimer = setTimeout(() => { notice.value = '' }, o.duration || 2600)
+  },
+  showModal(o) {
+    const confirm = o.showCancel === false ? (window.alert(o.content || o.title || ''), true) : window.confirm([o.title, o.content].filter(Boolean).join('\n'))
+    return result(o, { confirm, cancel: !confirm })
+  },
+  showActionSheet(o) {
+    const choice = window.prompt(o.itemList.map((s, i) => `${i + 1}. ${s}`).join('\n'), '1')
+    const index = Number(choice) - 1
+    if (choice !== null && Number.isInteger(index) && index >= 0 && index < o.itemList.length) result(o, { tapIndex: index })
+    else failed(o, new Error('已取消'))
+  },
+  request(o) {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), o.timeout ?? 60000)
+    let url = o.url
+    const method = String(o.method || 'GET').toUpperCase()
+    const headers = { ...o.header }
+    let body
+    if (method === 'GET' || method === 'HEAD') {
+      if (o.data) { const q = new URLSearchParams(o.data); url += (url.includes('?') ? '&' : '?') + q }
+    } else if (o.data !== undefined) {
+      headers['Content-Type'] ??= 'application/json'
+      body = JSON.stringify(o.data)
+    }
+    fetch(url, { method, headers, body, signal: controller.signal, credentials: 'same-origin' }).then(async response => {
+      const text = await response.text()
+      let data
+      try { data = JSON.parse(text) } catch { data = text }
+      result(o, { statusCode: response.status, data, header: Object.fromEntries(response.headers) })
+    }).catch(error => failed(o, error)).finally(() => clearTimeout(timer))
+    return { abort: () => controller.abort() }
+  },
+  uploadFile(o) {
+    const xhr = new XMLHttpRequest()
+    let progress
+    xhr.open('POST', o.url)
+    xhr.timeout = o.timeout ?? 60000
+    Object.entries(o.header || {}).forEach(([k, v]) => xhr.setRequestHeader(k, v))
+    xhr.upload.onprogress = e => { if (e.lengthComputable) progress?.({ progress: Math.round(e.loaded * 100 / e.total) }) }
+    xhr.onload = () => result(o, { statusCode: xhr.status, data: xhr.responseText })
+    xhr.onerror = () => failed(o, new Error('图片上传失败'))
+    xhr.ontimeout = () => failed(o, new Error('图片上传超时'))
+    xhr.onabort = () => failed(o, new Error('已取消上传'))
+    ;(async () => {
+      const blob = files.get(o.filePath) || await fetch(o.filePath).then(r => { if (!r.ok) throw new Error('读取图片失败'); return r.blob() })
+      const form = new FormData()
+      form.append(o.name || 'file', blob, blob.name || 'image.png')
+      Object.entries(o.formData || {}).forEach(([k, v]) => form.append(k, String(v)))
+      xhr.send(form)
+    })().catch(error => failed(o, error))
+    return { abort: () => xhr.abort(), onProgressUpdate: callback => { progress = callback } }
+  },
+  chooseImage(o) {
+    const input = document.createElement('input')
+    input.type = 'file'; input.accept = 'image/*'; input.multiple = (o.count || 1) > 1
+    input.style.display = 'none'; document.body.appendChild(input)
+    const cleanup = () => input.remove()
+    input.onchange = () => {
+      const selected = [...(input.files || [])].slice(0, o.count || 1)
+      if (!selected.length) { failed(o, new Error('未选择图片')); cleanup(); return }
+      const paths = selected.map(file => { const url = URL.createObjectURL(file); files.set(url, file); return url })
+      result(o, { tempFilePaths: paths, tempFiles: selected.map((file, i) => ({ path: paths[i], size: file.size, name: file.name })) })
+      cleanup()
+    }
+    input.oncancel = () => { failed(o, new Error('已取消')); cleanup() }
+    input.click()
+  },
+  previewImage(o) {
+    const urls = o.urls || []
+    const overlay = document.createElement('dialog')
+    const image = document.createElement('img')
+    image.src = typeof o.current === 'string' ? o.current : urls[o.current || 0]
+    image.style.cssText = 'max-width:90vw;max-height:88vh;object-fit:contain'
+    overlay.appendChild(image); document.body.appendChild(overlay)
+    overlay.onclick = () => overlay.close(); overlay.onclose = () => overlay.remove(); overlay.showModal()
+  },
+  setClipboardData(o) { navigator.clipboard.writeText(o.data).then(() => result(o, {})).catch(e => failed(o, e)) },
+  getSystemInfoSync() { return { windowWidth: window.innerWidth, windowHeight: window.innerHeight, pixelRatio: window.devicePixelRatio || 1, platform: 'web' } },
+  pageScrollTo(o) { window.scrollTo({ top: o.scrollTop || 0, behavior: o.duration === 0 ? 'instant' : 'smooth' }) },
+  onWindowResize(callback) { window.addEventListener('resize', callback) },
+  offWindowResize(callback) { window.removeEventListener('resize', callback) },
+  createSelectorQuery() {
+    let root = document, selector, callback
+    return {
+      in(instance) { root = instance?.$el || document; return this },
+      select(value) { selector = value; return this },
+      boundingClientRect(fn) { callback = fn; return this },
+      exec() {
+        const element = root.matches?.(selector) ? root : root.querySelector?.(selector)
+        const rect = element?.getBoundingClientRect()
+        callback?.(rect ? { width: rect.width, height: rect.height, left: rect.left, top: rect.top } : null)
+      },
+    }
+  },
+  createCanvasContext(id, instance) {
+    const root = instance?.$el || document
+    const canvas = root.id === id ? root : root.querySelector?.(`[id="${CSS.escape(id)}"]`) || document.getElementById(id)
+    if (!canvas) throw new Error('绘图区未加载')
+    const rect = canvas.getBoundingClientRect()
+    if (rect.width && rect.height) { canvas.width = rect.width; canvas.height = rect.height }
+    const context = canvas.getContext('2d')
+    const aliases = { setFillStyle: 'fillStyle', setStrokeStyle: 'strokeStyle', setLineWidth: 'lineWidth', setLineCap: 'lineCap', setLineJoin: 'lineJoin', setTextAlign: 'textAlign', setTextBaseline: 'textBaseline', setGlobalAlpha: 'globalAlpha' }
+    return new Proxy(context, { get(target, key) {
+      if (aliases[key]) return value => { target[aliases[key]] = value }
+      if (key === 'setFontSize') return value => { target.font = `${value}px sans-serif` }
+      if (key === 'draw') return () => {}
+      const value = target[key]; return typeof value === 'function' ? value.bind(target) : value
+    } })
+  },
+  downloadFile(o) { fetch(o.url).then(async r => { const blob = await r.blob(); result(o, { statusCode: r.status, tempFilePath: URL.createObjectURL(blob) }) }).catch(e => failed(o, e)) },
+  openDocument(o) { const w = window.open(o.filePath, '_blank', 'noopener'); if (w) result(o, {}); else failed(o, new Error('浏览器阻止打开文件')) },
+}

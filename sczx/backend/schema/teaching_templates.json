@@ -1,0 +1,224 @@
+{
+  "guided_prompts": {
+    "数学": "只看出错的这一步：它使用了哪条定义、公式或运算规则？",
+    "物理": "这一步使用了哪个物理规律？题目条件满足这个规律吗？",
+    "化学": "这一步依据的是物质性质、反应规律还是实验现象？条件是否完整？",
+    "语文": "你的判断能从原文哪句话得到支持？结合语境说明。",
+    "英语": "请指出主干或上下文线索，再说明为什么选择这个形式或答案。",
+    "生物": "这一步依据的是结构与功能关系，还是某个生命过程？",
+    "历史": "请从材料或史实中找一条证据，并说明它与结论的因果关系。",
+    "地理": "这个结论来自地图中的哪项信息？相关自然或人文因素是什么？",
+    "道德与法治": "材料中的哪个关键词对应这条观点？请把观点与行为联系起来。",
+    "思想政治": "材料中的哪一信息对应这个原理？二者之间是什么逻辑关系？"
+  },
+  "question_type_labels": {
+    "fill_blank": "填空题",
+    "choice": "单选题",
+    "multiple_choice": "多选题",
+    "calculation": "计算题",
+    "proof": "证明题",
+    "subjective": "主观题",
+    "other": "其他题型"
+  },
+  "activity_defaults": {
+    "id": "",
+    "type": "single_choice",
+    "title": "",
+    "question": "",
+    "options": [],
+    "correct_answers": [],
+    "hint": "",
+    "teaching": "",
+    "sentence_starter": "",
+    "keywords": [],
+    "visual": {}
+  },
+  "cube_plan": [
+    {
+      "id": "understanding-1",
+      "type": "single_choice",
+      "title": "先找出一组相对面",
+      "question": "图中 x 所在面与哪个数字面相对？",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ],
+      "correct_answers": [
+        "4"
+      ],
+      "hint": "沿着展开图想象折叠，x 与 4 会落在正方体两侧。",
+      "teaching": "判断相对面时，可以看“相间”关系，也可以沿 Z 字两端想象折叠。",
+      "sentence_starter": "",
+      "keywords": [],
+      "visual": {
+        "type": "cube_net",
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "label": "1"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "label": "3"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "label": "x"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "label": "y"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "label": "z"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "label": "4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "understanding-2",
+      "type": "single_choice",
+      "title": "再确认另一组相对面",
+      "question": "图中数字 1 所在面与哪个字母面相对？",
+      "options": [
+        {
+          "value": "x",
+          "label": "x"
+        },
+        {
+          "value": "y",
+          "label": "y"
+        },
+        {
+          "value": "z",
+          "label": "z"
+        }
+      ],
+      "correct_answers": [
+        "y"
+      ],
+      "hint": "从数字 1 沿展开图折起，和它正对的是 y。",
+      "teaching": "相对面折叠后不会共用一条棱，而是分别位于正方体两侧。",
+      "sentence_starter": "",
+      "keywords": [],
+      "visual": {
+        "type": "cube_net",
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "label": "1"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "label": "3"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "label": "x"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "label": "y"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "label": "z"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "label": "4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "understanding-3",
+      "type": "single_choice",
+      "title": "把相对关系用到计算中",
+      "question": "相对面上的两个数之和为 5，求得 x=1、y=4，那么 x+y 等于多少？",
+      "options": [
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "5",
+          "label": "5"
+        },
+        {
+          "value": "7",
+          "label": "7"
+        }
+      ],
+      "correct_answers": [
+        "5"
+      ],
+      "hint": "把 x=1 和 y=4 直接相加。",
+      "teaching": "先判断相对面，再分别列出和为 5 的关系，最后计算 x+y。",
+      "sentence_starter": "",
+      "keywords": [],
+      "visual": {
+        "type": "cube_net",
+        "cells": [
+          {
+            "x": 0,
+            "y": 0,
+            "label": "1"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "label": "3"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "label": "x"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "label": "y"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "label": "z"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "label": "4"
+          }
+        ]
+      }
+    }
+  ]
+}

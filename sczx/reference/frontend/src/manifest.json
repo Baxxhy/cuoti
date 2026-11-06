@@ -1,0 +1,28 @@
+{
+  "name": "错题帮",
+  "locale": "zh-Hans",
+  "appid": "__UNI__MINDDIMENSION",
+  "description": "面向中学生的错题诊断、智能教学与自适应训练应用",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "vueVersion": "3",
+  "app-plus": {
+    "usingComponents": true,
+    "compilerVersion": 3,
+    "splashscreen": { "alwaysShowBeforeRender": true, "waiting": true, "autoclose": true },
+    "modules": { "Camera": {}, "Record": {} },
+    "distribute": {
+      "android": {
+        "permissions": [
+          "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+          "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+          "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>"
+        ]
+      },
+      "ios": {}
+    }
+  },
+  "h5": { "router": { "mode": "hash" } },
+  "uniStatistics": { "enable": false }
+}

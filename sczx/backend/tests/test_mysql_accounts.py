@@ -1,0 +1,211 @@
+"""Real MySQL acceptance isolated from every existing application database."""
+import os
+import shutil
+import subprocess
+import time
+from pathlib import Path
+
+import pymysql
+import pytest
+from fastapi.testclient import TestClient
+
+from sczx_api.main import app
+from sczx_api.schema import initialize_database
+from sczx_api.database import Database
+
+
+@pytest.fixture(scope='module')
+def client(tmp_path_factory):
+    binary = shutil.which('mysqld')
+    assert binary, 'MySQL is required for backend parity checks'
+    root = tmp_path_factory.mktemp('sczx_mysql')
+    datadir, socket = root / 'data', root / 'mysql.sock'
+    datadir.mkdir()
+    logfile = root / 'mysql.log'
+    with logfile.open('wb') as log:
+        subprocess.run([binary, '--no-defaults', '--initialize-insecure', '--user=root', f'--datadir={datadir}', '--innodb-buffer-pool-size=32M', '--innodb-log-file-size=16M'], stdout=log, stderr=log, check=True, timeout=60)
+        process = subprocess.Popen([binary, '--no-defaults', '--user=root', f'--datadir={datadir}', f'--socket={socket}', f'--pid-file={root / "mysql.pid"}', '--skip-networking', '--mysqlx=OFF', '--innodb-buffer-pool-size=32M', '--innodb-log-file-size=16M'], stdout=log, stderr=log)
+        keys = ['SCZX_DB_NAME', 'SCZX_DB_USER', 'SCZX_DB_PASSWORD', 'SCZX_DB_SOCKET', 'SCZX_AUTH_SECRET']
+        saved = {key: os.environ.get(key) for key in keys}
+        try:
+            deadline = time.monotonic() + 40
+            while True:
+                try:
+                    connection = pymysql.connect(unix_socket=str(socket), user='root', charset='utf8mb4', autocommit=True)
+                    break
+                except pymysql.MySQLError:
+                    if process.poll() is not None or time.monotonic() >= deadline:
+                        raise RuntimeError(f'Isolated MySQL failed; inspect {logfile}') from None
+                    time.sleep(.2)
+            with connection:
+                with connection.cursor() as cursor:
+                    cursor.execute('CREATE DATABASE sczx_test_accounts CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
+            os.environ.update(SCZX_DB_NAME='sczx_test_accounts', SCZX_DB_USER='root', SCZX_DB_PASSWORD='', SCZX_DB_SOCKET=str(socket), SCZX_AUTH_SECRET='sczx-isolated-contract-test-secret-000000')
+            initialize_database()
+            with TestClient(app) as web:
+                yield web
+        finally:
+            process.terminate()
+            try:
+                process.wait(timeout=20)
+            except subprocess.TimeoutExpired:
+                process.kill(); process.wait()
+            for key, value in saved.items():
+                if value is None: os.environ.pop(key, None)
+                else: os.environ[key] = value
+
+
+def test_register_duplicate_login_and_me(client):
+    payload = {'email': 'Student@Example.com', 'password': ' password ', 'name': ' 初中同学 ', 'grade': '初二'}
+    response = client.post('/api/v1/auth/register', json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert data['success'] is True and data['error'] is None and data['request_id']
+    user = data['data']
+    assert user['email'] == 'student@example.com' and user['name'] == '初中同学'
+    assert user['role'] == 'student' and 'password_hash' not in user
+    assert user['created_at'].endswith('+00:00')
+    duplicate = client.post('/api/v1/auth/register', json=payload)
+    assert duplicate.status_code == 409
+    assert duplicate.json()['detail'] == '这个邮箱已经注册，请直接登录'
+    assert client.post('/api/v1/auth/login', json={'email': payload['email'], 'password': 'password'}).status_code == 401
+    login = client.post('/api/v1/auth/login', json={'email': payload['email'], 'password': payload['password']})
+    assert login.status_code == 200
+    headers = {'Authorization': 'Bearer ' + login.json()['data']['access_token']}
+    assert client.get('/api/v1/auth/me', headers=headers).json()['data']['id'] == user['id']
+    assert client.get('/api/v1/auth/me').status_code == 401
+    assert client.get('/readyz').json()['status'] == 'database_ready'
+
+
+def test_profile_email_requires_password_and_reset_revokes_token(client):
+    payload = {'email': 'another@example.com', 'password': 'old-password'}
+    user = client.post('/api/v1/auth/register', json=payload).json()['data']
+    headers = {'Authorization': 'Bearer ' + user['access_token']}
+    assert client.patch('/api/v1/auth/me', headers=headers, json={'email': 'changed@example.com'}).status_code == 422
+    wrong = client.patch('/api/v1/auth/me', headers=headers, json={'email': 'changed@example.com', 'current_password': 'wrong'})
+    assert wrong.status_code == 422
+    assert wrong.json()['detail'] == '当前密码不正确，邮箱未修改'
+    patched = client.patch('/api/v1/auth/me', headers=headers, json={'name': '新名字', 'grade': '初三', 'email': 'changed@example.com', 'current_password': 'old-password'})
+    assert patched.status_code == 200 and patched.json()['data']['name'] == '新名字'
+    with Database.from_environment() as db:
+        profile = db.query('SELECT grade,preferences FROM student_profiles WHERE user_id=?', [user['id']]).rows[0]
+        assert profile['grade'] == '初三' and 'experience_version' in profile['preferences']
+    reset = client.post('/api/v1/auth/reset-password', json={'email': 'changed@example.com', 'current_password': 'old-password', 'new_password': 'new-password'})
+    assert reset.status_code == 200
+    assert client.get('/api/v1/auth/me', headers=headers).status_code == 401
+    assert client.post('/api/v1/auth/login', json={'email': 'changed@example.com', 'password': 'old-password'}).status_code == 401
+    assert client.post('/api/v1/auth/login', json={'email': 'changed@example.com', 'password': 'new-password'}).status_code == 200
+
+
+def test_invalid_json_and_transaction_rollback(client):
+    assert client.post('/api/v1/auth/register', content='[]').status_code == 422
+    assert client.post('/api/v1/auth/register', content='x' * 65537).status_code == 413
+    with Database.from_environment() as db:
+        before = db.query('SELECT COUNT(*) AS n FROM users').rows[0]['n']
+        with pytest.raises(RuntimeError):
+            with db.transaction():
+                db.query("INSERT INTO users (id,email,name,role,password_hash,created_at,updated_at) VALUES ('rollback','rollback@example.com','test','student','test',UTC_TIMESTAMP(),UTC_TIMESTAMP())")
+                raise RuntimeError('rollback')
+        assert db.query('SELECT COUNT(*) AS n FROM users').rows[0]['n'] == before
+
+
+def test_preferences_version_conflict_and_persistence(client):
+    user = client.post('/api/v1/auth/register', json={'email': 'prefs@example.com', 'password': 'secret'}).json()['data']
+    headers = {'Authorization': 'Bearer ' + user['access_token']}
+    original = client.get('/api/v1/student-preferences', headers=headers).json()['data']
+    assert original == {'grade': '初二', 'subject': '', 'minutes': 10, 'goal': 'understand', 'version': 0}
+    changes = {'grade': '高一', 'subject': '数学', 'minutes': 20, 'goal': 'practice', 'version': 0}
+    updated = client.patch('/api/v1/student-preferences', json=changes, headers=headers)
+    assert updated.status_code == 200 and updated.json()['data']['version'] == 1
+    stale = client.patch('/api/v1/student-preferences', json=changes, headers=headers)
+    assert stale.status_code == 409 and stale.json()['detail'] == '学习方向已变化，请重新读取后保存'
+    persisted = client.get('/api/v1/student-preferences', headers=headers).json()['data']
+    assert persisted['grade'] == '高一' and persisted['minutes'] == 20
+    wrong = client.post('/api/v1/auth/me', headers=headers, json={})
+    assert wrong.status_code == 405 and wrong.json()['detail'] == '请求方法不支持'
+    assert wrong.headers['allow'] == 'GET, PATCH'
+
+
+def test_question_list_search_deduplication_and_ownership(client):
+    from sczx_api.security import new_id
+    user = client.post('/api/v1/auth/register', json={'email': 'questions@example.com', 'password': 'secret'}).json()['data']
+    other = client.post('/api/v1/auth/register', json={'email': 'other-questions@example.com', 'password': 'secret'}).json()['data']
+    headers = {'Authorization': 'Bearer ' + user['access_token']}
+    rows = [
+        (new_id(), user['id'], '数学', '求 X？', 'confirmed', '2026-01-01 00:00:00'),
+        (new_id(), user['id'], '数学', '求x', 'confirmed', '2026-01-02 00:00:00'),
+        (new_id(), user['id'], '语文', '阅读文本', 'confirmed', '2026-01-03 00:00:00'),
+        (new_id(), user['id'], '数学', '归档题', 'archived', '2026-01-04 00:00:00'),
+        (new_id(), other['id'], '数学', '别人的题', 'confirmed', '2026-01-05 00:00:00'),
+    ]
+    with Database.from_environment() as db:
+        for question_id, owner, subject, text, status, created in rows:
+            db.query("INSERT INTO questions (id,user_id,subject,title,question_text,status,confirmed,favorite,tags,formulas,options,question_type,knowledge_points,created_at,updated_at) VALUES (?,?,?,?,?,?,1,0,JSON_ARRAY(),JSON_ARRAY(),JSON_ARRAY(),'综合题',JSON_ARRAY(),?,?)", [question_id, owner, subject, text, text, status, created, created])
+    assert client.get('/api/v1/questions').status_code == 401
+    response = client.get('/api/v1/questions', headers=headers)
+    assert response.status_code == 200, response.text
+    items = response.json()['data']
+    assert [item['id'] for item in items] == [rows[2][0], rows[1][0]]
+    assert items[0]['diagnosis_summary'] == '等待完成错因诊断'
+    assert items[0]['review_due_at'] is None and items[0]['thumbnail_url'] is None
+    assert items[0]['mastery_score'] == 0 and items[0]['mastery_status'] == '需要巩固'
+    assert items[0]['confirmed'] is True and items[0]['knowledge_points'] == []
+    filtered = client.get('/api/v1/questions?subject=语文&subject=数学', headers=headers).json()['data']
+    assert [item['id'] for item in filtered] == [rows[1][0]]
+    assert len(client.get('/api/v1/questions?search=阅读', headers=headers).json()['data']) == 1
+    assert client.get('/api/v1/questions?search=计算错误', headers=headers).json()['data'] == []
+    assert client.get('/api/v1/questions?search=归档题', headers=headers).json()['data'] == []
+
+
+def test_question_detail_assets_and_archive_preserve_data(client):
+    from sczx_api.security import new_id, valid_media
+    from urllib.parse import urlsplit, parse_qs
+    user = client.post('/api/v1/auth/register', json={'email': 'detail@example.com', 'password': 'secret'}).json()['data']
+    other = client.post('/api/v1/auth/register', json={'email': 'detail-other@example.com', 'password': 'secret'}).json()['data']
+    headers = {'Authorization': 'Bearer ' + user['access_token']}
+    outsider = {'Authorization': 'Bearer ' + other['access_token']}
+    question_id, review_id = new_id(), new_id()
+    with Database.from_environment() as db:
+        db.query("INSERT INTO questions (id,user_id,subject,title,question_text,status,confirmed,favorite,tags,formulas,options,question_type,knowledge_points,created_at,updated_at) VALUES (?,?,'数学','几何题','几何题','confirmed',1,0,JSON_ARRAY(),JSON_ARRAY(),JSON_ARRAY(),'综合题',JSON_ARRAY(),UTC_TIMESTAMP(),UTC_TIMESTAMP())", [question_id, user['id']])
+        for kind, bbox in [('original', '[]'), ('crop', '[0.1,0.2,0.8,0.9]'), ('question_figure', '[]')]:
+            db.query("INSERT INTO question_assets (id,question_id,kind,path,sha256,bbox,created_at,updated_at) VALUES (?,?,?,?,?,?,UTC_TIMESTAMP(),UTC_TIMESTAMP())", [new_id(), question_id, kind, f'uploads/{question_id}/{kind}.png', '0' * 64, bbox])
+        db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP(),1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())", [review_id, user['id'], question_id])
+    path = '/api/v1/questions/' + question_id
+    assert client.get(path).status_code == 401
+    assert client.get(path, headers=outsider).status_code == 404
+    assert client.delete(path, headers=outsider).status_code == 404
+    response = client.get(path, headers=headers)
+    assert response.status_code == 200, response.text
+    data = response.json()['data']
+    assert data['crop_box'] == pytest.approx([.1, .2, .7, .7])
+    assert len(data['assets']) == 3 and len(data['question_figures']) == 1
+    assert data['student_working_figures'] == [] and data['teacher_annotation_regions'] == []
+    for key in ['analysis', 'diagnosis', 'ocr', 'processing_job']:
+        assert data[key] is None
+    assert data['reference_steps'] == data['student_steps'] == data['teacher_marks'] == data['ocr_runs'] == []
+    for asset in data['assets']:
+        url = urlsplit(asset['url']); query = parse_qs(url.query)
+        assert valid_media(url.path, query['expires'][0], query['signature'][0], os.environ['SCZX_AUTH_SECRET'])
+    assert client.patch(path, headers=outsider, json={'title': '越权'}).status_code == 404
+    favorite = client.patch(path, headers=headers, json={'favorite': 'yes', 'unknown': 'ignored'})
+    assert favorite.status_code == 200 and favorite.json()['data']['favorite'] is True
+    with Database.from_environment() as db:
+        assert db.query('SELECT status FROM review_plans WHERE id=?', [review_id]).rows[0]['status'] == 'pending'
+    invalid = client.patch(path, headers=headers, json={'question_type': '单选题', 'options': [{'label': 'A', 'text': '一个'}]})
+    assert invalid.status_code == 422
+    edited = client.patch(path, headers=headers, json={'question_text': ' 修改后的几何题 ', 'tags': [' 重点 '], 'grade': None})
+    assert edited.status_code == 200, edited.text
+    assert edited.json()['data']['question_text'] == '修改后的几何题'
+    assert edited.json()['data']['tags'] == ['重点'] and edited.json()['data']['grade'] is None
+    with Database.from_environment() as db:
+        assert db.query('SELECT status FROM review_plans WHERE id=?', [review_id]).rows[0]['status'] == 'cancelled'
+        db.query("UPDATE review_plans SET status='pending' WHERE id=?", [review_id])
+    assert client.delete(path, headers=headers).json()['data'] == {'deleted': True}
+    assert client.patch(path, headers=headers, json={'title': '归档后修改'}).status_code == 409
+    wrong_method = client.post(path, headers=headers)
+    assert wrong_method.status_code == 405 and wrong_method.headers['allow'] == 'GET, PATCH, DELETE'
+    assert client.get(path, headers=headers).json()['data']['status'] == 'archived'
+    assert client.get('/api/v1/questions', headers=headers).json()['data'] == []
+    with Database.from_environment() as db:
+        assert db.query('SELECT status FROM review_plans WHERE id=?', [review_id]).rows[0]['status'] == 'cancelled'
+        assert db.query('SELECT COUNT(*) AS n FROM question_assets WHERE question_id=?', [question_id]).rows[0]['n'] == '3'

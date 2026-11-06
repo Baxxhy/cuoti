@@ -1,0 +1,2540 @@
+[
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": true,
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.38,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.62,
+        "update_reason": "讲解思路通过、相似题通过、综合题通过"
+      },
+      {
+        "probability": 0.196,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": true,
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.0,
+        "update_reason": "讲解思路通过、相似题通过、综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.244,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": true,
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.14,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路通过、相似题通过、综合题未通过"
+      },
+      {
+        "probability": 0.388,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": true,
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.15,
+        "update_reason": "讲解思路通过、相似题通过、综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.436,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.2,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.8,
+        "update_reason": "讲解思路通过、相似题通过"
+      },
+      {
+        "probability": 0.34,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.0,
+        "update_reason": "讲解思路通过、相似题通过、提示等级4"
+      },
+      {
+        "probability": 0.388,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": false,
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.18,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.82,
+        "update_reason": "讲解思路通过、相似题未通过、综合题通过"
+      },
+      {
+        "probability": 0.356,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": false,
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.0,
+        "update_reason": "讲解思路通过、相似题未通过、综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.404,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": false,
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路通过、相似题未通过、综合题未通过"
+      },
+      {
+        "probability": 0.548,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": false,
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.81,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.34,
+        "update_reason": "讲解思路通过、相似题未通过、综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.596,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路通过、相似题未通过"
+      },
+      {
+        "probability": 0.5,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "near_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.87,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.13,
+        "update_reason": "讲解思路通过、相似题未通过、提示等级4"
+      },
+      {
+        "probability": 0.548,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.26,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.74,
+        "update_reason": "讲解思路通过、综合题通过"
+      },
+      {
+        "probability": 0.292,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.0,
+        "update_reason": "讲解思路通过、综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.34,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.02,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路通过、综合题未通过"
+      },
+      {
+        "probability": 0.484,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.89,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.26,
+        "update_reason": "讲解思路通过、综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.532,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.08,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.92,
+        "update_reason": "讲解思路通过"
+      },
+      {
+        "probability": 0.436,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.95,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.05,
+        "update_reason": "讲解思路通过、提示等级4"
+      },
+      {
+        "probability": 0.484,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": true,
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.25,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.75,
+        "update_reason": "讲解思路未通过、相似题通过、综合题通过"
+      },
+      {
+        "probability": 0.3,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": true,
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.0,
+        "update_reason": "讲解思路未通过、相似题通过、综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.348,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": true,
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.01,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路未通过、相似题通过、综合题未通过"
+      },
+      {
+        "probability": 0.492,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": true,
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.88,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.27,
+        "update_reason": "讲解思路未通过、相似题通过、综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.54,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.07,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.93,
+        "update_reason": "讲解思路未通过、相似题通过"
+      },
+      {
+        "probability": 0.444,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.94,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.06,
+        "update_reason": "讲解思路未通过、相似题通过、提示等级4"
+      },
+      {
+        "probability": 0.492,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": false,
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.05,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.95,
+        "update_reason": "讲解思路未通过、相似题未通过、综合题通过"
+      },
+      {
+        "probability": 0.46,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": false,
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.92,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.08,
+        "update_reason": "讲解思路未通过、相似题未通过、综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.508,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": false,
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路未通过、相似题未通过、综合题未通过"
+      },
+      {
+        "probability": 0.652,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": false,
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.68,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.47,
+        "update_reason": "讲解思路未通过、相似题未通过、综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.7,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路未通过、相似题未通过"
+      },
+      {
+        "probability": 0.604,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "near_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.74,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.26,
+        "update_reason": "讲解思路未通过、相似题未通过、提示等级4"
+      },
+      {
+        "probability": 0.652,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.13,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.87,
+        "update_reason": "讲解思路未通过、综合题通过"
+      },
+      {
+        "probability": 0.396,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.0,
+        "update_reason": "讲解思路未通过、综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.444,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路未通过、综合题未通过"
+      },
+      {
+        "probability": 0.588,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.76,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.39,
+        "update_reason": "讲解思路未通过、综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.636,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 1.0,
+        "update_reason": "讲解思路未通过"
+      },
+      {
+        "probability": 0.54,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "teach_back": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.82,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.18,
+        "update_reason": "讲解思路未通过、提示等级4"
+      },
+      {
+        "probability": 0.588,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": true,
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.3,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.7,
+        "update_reason": "相似题通过、综合题通过"
+      },
+      {
+        "probability": 0.26,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": true,
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.0,
+        "update_reason": "相似题通过、综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.308,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": true,
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.06,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "相似题通过、综合题未通过"
+      },
+      {
+        "probability": 0.452,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": true,
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.93,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.22,
+        "update_reason": "相似题通过、综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.5,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.12,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 1.0,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.88,
+        "update_reason": "相似题通过"
+      },
+      {
+        "probability": 0.404,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.99,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4667,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.01,
+        "update_reason": "相似题通过、提示等级4"
+      },
+      {
+        "probability": 0.452,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": false,
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.1,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.9,
+        "update_reason": "相似题未通过、综合题通过"
+      },
+      {
+        "probability": 0.42,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": false,
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.97,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.03,
+        "update_reason": "相似题未通过、综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.468,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": false,
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "相似题未通过、综合题未通过"
+      },
+      {
+        "probability": 0.612,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": false,
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.73,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.42,
+        "update_reason": "相似题未通过、综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.66,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.0,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 1.0,
+        "update_reason": "相似题未通过"
+      },
+      {
+        "probability": 0.564,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "near_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.79,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.3556,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.21,
+        "update_reason": "相似题未通过、提示等级4"
+      },
+      {
+        "probability": 0.612,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "far_transfer": true,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.18,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 1.0,
+        "forgetting_risk": 0.82,
+        "update_reason": "综合题通过"
+      },
+      {
+        "probability": 0.356,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "far_transfer": true,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 1.0,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2889,
+        "forgetting_risk": 0.0,
+        "update_reason": "综合题通过、提示等级4"
+      },
+      {
+        "probability": 0.404,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "improving",
+        "successful_strategy": "teacher_review",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "far_transfer": false,
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.0,
+        "forgetting_risk": 1.0,
+        "update_reason": "综合题未通过"
+      },
+      {
+        "probability": 0.548,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "far_transfer": false,
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.81,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.1778,
+        "forgetting_risk": 0.34,
+        "update_reason": "综合题未通过、提示等级4"
+      },
+      {
+        "probability": 0.596,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "teacher_review"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.0,
+      "evidence_count": 0,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "hint_level": 0,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.0,
+        "evidence_count": 1,
+        "confidence": 0.43,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 1.0,
+        "update_reason": "根据本次学习更新"
+      },
+      {
+        "probability": 0.5,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  },
+  {
+    "mastery": {
+      "mastery_score": 0.93,
+      "evidence_count": 8,
+      "confidence": 0.0,
+      "near_transfer_rate": 0.4,
+      "far_transfer_rate": 0.2,
+      "forgetting_risk": 0.5,
+      "update_reason": ""
+    },
+    "misconception": {
+      "probability": 0.5,
+      "evidence_count": 1,
+      "related_question_count": 1,
+      "label": "旧错因",
+      "status": "active",
+      "successful_strategy": "old_success",
+      "failed_strategy": "old_failure"
+    },
+    "evidence": {
+      "hint_level": 4,
+      "strategy": "teacher_review"
+    },
+    "label": "移项符号",
+    "expected": [
+      {
+        "mastery_score": 0.87,
+        "evidence_count": 9,
+        "confidence": 1.0,
+        "near_transfer_rate": 0.4,
+        "far_transfer_rate": 0.2,
+        "forgetting_risk": 0.13,
+        "update_reason": "提示等级4"
+      },
+      {
+        "probability": 0.548,
+        "evidence_count": 2,
+        "related_question_count": 1,
+        "label": "移项符号",
+        "status": "active",
+        "successful_strategy": "old_success",
+        "failed_strategy": "old_failure"
+      }
+    ]
+  }
+]

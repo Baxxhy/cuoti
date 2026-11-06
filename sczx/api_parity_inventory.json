@@ -1,0 +1,605 @@
+[
+  {
+    "path": "/api/v1/learning-tasks",
+    "source": "backend-cangjie/src/main.cj:25",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/learning-tasks/{task_id}",
+    "source": "backend-cangjie/src/main.cj:26",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/learning-tasks/{task_id}/actions",
+    "source": "backend-cangjie/src/main.cj:27",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/learning-tasks/{task_id}/handwriting",
+    "source": "backend-cangjie/src/main.cj:28",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/learning-tasks/{task_id}/self-check",
+    "source": "backend-cangjie/src/main.cj:29",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/learning-tasks/{task_id}/history",
+    "source": "backend-cangjie/src/main.cj:30",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/learning-tasks/{task_id}/cancel",
+    "source": "backend-cangjie/src/main.cj:31",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/dashboard",
+    "source": "backend-cangjie/src/main.cj:32",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/student-preferences",
+    "source": "backend-cangjie/src/main.cj:33",
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "parity": "accounts/preferences tests only"
+  },
+  {
+    "path": "/api/v1/analytics/error-sources",
+    "source": "backend-cangjie/src/main.cj:34",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/analytics/overview",
+    "source": "backend-cangjie/src/main.cj:35",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/analytics/cognition-graph",
+    "source": "backend-cangjie/src/main.cj:36",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/knowledge/cards",
+    "source": "backend-cangjie/src/main.cj:37",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/knowledge/framework",
+    "source": "backend-cangjie/src/main.cj:38",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/knowledge/cards/{code}",
+    "source": "backend-cangjie/src/main.cj:39",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/knowledge/cards/{code}/lessons",
+    "source": "backend-cangjie/src/main.cj:40",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/ocr",
+    "source": "backend-cangjie/src/main.cj:41",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/reprocess",
+    "source": "backend-cangjie/src/main.cj:42",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/crop",
+    "source": "backend-cangjie/src/main.cj:43",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/draft",
+    "source": "backend-cangjie/src/main.cj:44",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/confirm",
+    "source": "backend-cangjie/src/main.cj:45",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/analyze",
+    "source": "backend-cangjie/src/main.cj:46",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/student-work",
+    "source": "backend-cangjie/src/main.cj:47",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/reviews/today",
+    "source": "backend-cangjie/src/main.cj:48",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/reviews/search",
+    "source": "backend-cangjie/src/main.cj:49",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/reviews/filters",
+    "source": "backend-cangjie/src/main.cj:50",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/reviews/filters/{filter_id}",
+    "source": "backend-cangjie/src/main.cj:51",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/reviews/history",
+    "source": "backend-cangjie/src/main.cj:52",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/reviews/{plan_id}/attempt",
+    "source": "backend-cangjie/src/main.cj:53",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/reviews/{plan_id}/grade",
+    "source": "backend-cangjie/src/main.cj:54",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/practice/questions/{question_id}/images/{image_index}",
+    "source": "backend-cangjie/src/main.cj:55",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/study-bank",
+    "source": "backend-cangjie/src/main.cj:56",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/study-sessions",
+    "source": "backend-cangjie/src/main.cj:57",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/study-sessions/{session_id}",
+    "source": "backend-cangjie/src/main.cj:58",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/study-sessions/{session_id}/submit",
+    "source": "backend-cangjie/src/main.cj:59",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/practice/recommend",
+    "source": "backend-cangjie/src/main.cj:60",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/practice/attempt",
+    "source": "backend-cangjie/src/main.cj:61",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/answers/handwriting",
+    "source": "backend-cangjie/src/main.cj:62",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}/visualization",
+    "source": "backend-cangjie/src/main.cj:63",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/system/health",
+    "source": "backend-cangjie/src/main.cj:64",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/system/providers",
+    "source": "backend-cangjie/src/main.cj:65",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/system/providers/probe",
+    "source": "backend-cangjie/src/main.cj:66",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/system/voice",
+    "source": "backend-cangjie/src/main.cj:67",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/admin/workbench",
+    "source": "backend-cangjie/src/main.cj:68",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/admin/students/{student_id}",
+    "source": "backend-cangjie/src/main.cj:69",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/admin/sessions/{session_id}",
+    "source": "backend-cangjie/src/main.cj:70",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/voice/transcribe",
+    "source": "backend-cangjie/src/main.cj:71",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/voice/synthesize",
+    "source": "backend-cangjie/src/main.cj:72",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/papers",
+    "source": "backend-cangjie/src/main.cj:73",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/papers/candidates",
+    "source": "backend-cangjie/src/main.cj:74",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/papers/{paper_id}/export",
+    "source": "backend-cangjie/src/main.cj:75",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/papers/{paper_id}/download",
+    "source": "backend-cangjie/src/main.cj:76",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/papers/{paper_id}",
+    "source": "backend-cangjie/src/main.cj:77",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/variants/{variant_id}/attempt",
+    "source": "backend-cangjie/src/main.cj:78",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/visualizations/types",
+    "source": "backend-cangjie/src/main.cj:79",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/visualizations/{visualization_id}",
+    "source": "backend-cangjie/src/main.cj:80",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}/turns",
+    "source": "backend-cangjie/src/main.cj:81",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}/teach-back",
+    "source": "backend-cangjie/src/main.cj:82",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}/finish",
+    "source": "backend-cangjie/src/main.cj:83",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}/activity/answer",
+    "source": "backend-cangjie/src/main.cj:84",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}/advance",
+    "source": "backend-cangjie/src/main.cj:85",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}/rewind",
+    "source": "backend-cangjie/src/main.cj:86",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}/variant",
+    "source": "backend-cangjie/src/main.cj:87",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions/{session_id}",
+    "source": "backend-cangjie/src/main.cj:88",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/tutor/sessions",
+    "source": "backend-cangjie/src/main.cj:89",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/diagnose",
+    "source": "backend-cangjie/src/main.cj:90",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/diagnosis",
+    "source": "backend-cangjie/src/main.cj:91",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/diagnosis/counterfactual",
+    "source": "backend-cangjie/src/main.cj:92",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/ingest",
+    "source": "backend-cangjie/src/main.cj:93",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/jobs/{job_id}/retry",
+    "source": "backend-cangjie/src/main.cj:94",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/jobs/{job_id}",
+    "source": "backend-cangjie/src/main.cj:95",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/uploads/*",
+    "source": "backend-cangjie/src/main.cj:96",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/reports/*",
+    "source": "backend-cangjie/src/main.cj:97",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions",
+    "source": "backend-cangjie/src/main.cj:98",
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "ported from question_list.cj; isolated MySQL verified ownership, archive exclusion, display deduplication, filters and response types; enriched records and full browser parity pending"
+  },
+  {
+    "path": "/api/v1/questions/manual",
+    "source": "backend-cangjie/src/main.cj:99",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}/journey",
+    "source": "backend-cangjie/src/main.cj:100",
+    "python_registered": false,
+    "python_methods": [],
+    "parity": "pending"
+  },
+  {
+    "path": "/api/v1/questions/{question_id}",
+    "source": "backend-cangjie/src/main.cj:101",
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "PATCH",
+      "DELETE"
+    ],
+    "parity": "ported from question_detail.cj, question_edit.cj, question_api.cj; basic isolated MySQL acceptance, enriched diagnosis/workflow parity pending"
+  },
+  {
+    "path": "/livez",
+    "source": "backend-cangjie/src/main.cj:103",
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "accounts/preferences tests only"
+  },
+  {
+    "path": "/readyz",
+    "source": "backend-cangjie/src/main.cj:112",
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "accounts/preferences tests only"
+  },
+  {
+    "path": "/api/v1/auth/register",
+    "source": "backend-cangjie/src/account_api.cj:164",
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "accounts/preferences tests only"
+  },
+  {
+    "path": "/api/v1/auth/login",
+    "source": "backend-cangjie/src/account_api.cj:165",
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "accounts/preferences tests only"
+  },
+  {
+    "path": "/api/v1/auth/reset-password",
+    "source": "backend-cangjie/src/account_api.cj:166",
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "accounts/preferences tests only"
+  },
+  {
+    "path": "/api/v1/auth/me",
+    "source": "backend-cangjie/src/account_api.cj:167",
+    "python_registered": true,
+    "python_methods": [
+      "GET",
+      "PATCH"
+    ],
+    "parity": "accounts/preferences tests only"
+  }
+]

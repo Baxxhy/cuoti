@@ -1,0 +1,1134 @@
+{
+  "frontend/src/uni.scss": {
+    "sha256": "d17affffb4056d7addc2dab36463921f956f98b1f15e705f9eeccbcaf8c9f895",
+    "bytes": 456
+  },
+  "frontend/src/main.js": {
+    "sha256": "e337785d40c5dea94befc74ff7b5bc8211f1578f4a641c79c1ab8d94858d6afe",
+    "bytes": 240
+  },
+  "frontend/src/App.vue": {
+    "sha256": "4f650dcd50b40f28c3544134fbfad63316f8e08465e7f1b65957a965659e597f",
+    "bytes": 153
+  },
+  "frontend/src/pages.json": {
+    "sha256": "819ae475213e4e9bdb768a047809fca3cd9f3b08292b9771c18316e0738b51d1",
+    "bytes": 3268
+  },
+  "frontend/src/vue-shim.d.ts": {
+    "sha256": "321c850e4ac1e6dee699ede0d5269153bfb65579db67ef93b381f285b4d9fa7e",
+    "bytes": 189
+  },
+  "frontend/src/manifest.json": {
+    "sha256": "f1a3990d514e7a69e446507ae4a65b49e99c839d786b8dae295e051b0cdeeb31",
+    "bytes": 903
+  },
+  "frontend/src/visualizations/task-visualization.ts": {
+    "sha256": "b1251e5c0f79a99c968e74da2a6f1725407ef49a7a90c586e59c48b95ec94734",
+    "bytes": 4580
+  },
+  "frontend/src/visualizations/registry.ts": {
+    "sha256": "b954acafd40f2b77396ea25427d713056950a0bdb2ed932251824ecfc82668bf",
+    "bytes": 2338
+  },
+  "frontend/src/styles/uni-common.scss": {
+    "sha256": "2aec0897e2873318759e8b28f934b75d4812a4a311f27bdb75b8bdebd38945a4",
+    "bytes": 13417
+  },
+  "frontend/src/constants/learning.js": {
+    "sha256": "4c9ef0b32acfcee11371686dbfdec80a6c593aec27b655287990550adb41c585",
+    "bytes": 1480
+  },
+  "frontend/src/constants/education.js": {
+    "sha256": "434b000c34089a836b02a01e062fab856af5b9662b9cc6586bf8f06933b24044",
+    "bytes": 2485
+  },
+  "frontend/src/api/index.js": {
+    "sha256": "7ac2dc3493e0ecde135689138efc51b798b441927ab5b8c200744a4376697a46",
+    "bytes": 4817
+  },
+  "frontend/src/utils/question-assets.js": {
+    "sha256": "def673d3d7d4eb6c89e956633209bceb3236750671d7c7c2e4da01b87269ac6f",
+    "bytes": 530
+  },
+  "frontend/src/utils/api-base.js": {
+    "sha256": "6c480e8bbd499a794c2b0b58af2336e7359b554f0fd7dfd1d15692fa23cc6ff4",
+    "bytes": 1372
+  },
+  "frontend/src/utils/math.ts": {
+    "sha256": "d32e1ff06380f63ef4a31af37f32f618f8156aa782e837ec6a9bad95b68963b0",
+    "bytes": 14338
+  },
+  "frontend/src/utils/learning.js": {
+    "sha256": "530fe4fabdc51686f835f582a7c3b3bbf32b256e775bc2469345809909e2b33e",
+    "bytes": 3915
+  },
+  "frontend/src/utils/review-draft.js": {
+    "sha256": "27c29ed203ef95cb52e2231b2250dd29e196c6417fc3acfa76605bcec7254542",
+    "bytes": 2484
+  },
+  "frontend/src/utils/navigation.js": {
+    "sha256": "e0defa35ea0be28648855a06c9609180dee21f313b5e12c1c9ad4ffd5c1bfec4",
+    "bytes": 3061
+  },
+  "frontend/src/utils/diagnosis.js": {
+    "sha256": "7bd39a220586400a470b9890834a6146a645a70ae2fbce0f0104f5074fca4c60",
+    "bytes": 4373
+  },
+  "frontend/src/utils/report.js": {
+    "sha256": "c35555b3322d77334612936427b5d1342542a53742ca10e9be9989a6b554c219",
+    "bytes": 1864
+  },
+  "frontend/src/utils/repair.js": {
+    "sha256": "14661d27a334d552e5cdfd8c71e1799976e1320a501039d75fd39c12e8b4c4c9",
+    "bytes": 5101
+  },
+  "frontend/src/utils/knowledge-framework.js": {
+    "sha256": "02cbfc669ea8b92e6d9bd1b1ce5ad954507293bbd21663b83f163ec667a0a768",
+    "bytes": 1234
+  },
+  "frontend/src/utils/question-content.ts": {
+    "sha256": "47d34774d53235d28aeeaf36c3f7eae0bd771647d554bf16e7599f70971b4a07",
+    "bytes": 1337
+  },
+  "frontend/src/utils/task-draft.js": {
+    "sha256": "3eb8c18445db68128b369cd851e803bf77d1d3ba909b9239185d67c4dfd4ec6f",
+    "bytes": 3655
+  },
+  "frontend/src/utils/math-input.js": {
+    "sha256": "4a479f0392b645b79dfbbbc75270060a934fd4b65a6d6938de6f584420378d34",
+    "bytes": 803
+  },
+  "frontend/src/utils/question.js": {
+    "sha256": "a614b4d011ec7fc98fa4157f1f07a4a4e43684261d6a54eb361622f1c6b271e5",
+    "bytes": 2394
+  },
+  "frontend/src/utils/task-entry.js": {
+    "sha256": "234726983f59bffa1fe4e6e721e177ccdfb8d9a429577b1faf0612afb8c457fc",
+    "bytes": 1602
+  },
+  "frontend/src/utils/learning-feedback.js": {
+    "sha256": "1ced03da95b35518114122f7301aa75de88218a01afc2fc6210d2d32c87200c1",
+    "bytes": 1289
+  },
+  "frontend/src/utils/study-preferences.js": {
+    "sha256": "e927462c1e617be5150aa7db8b517ac2ab42e3dabb1613fda6471f3059f616ed",
+    "bytes": 630
+  },
+  "frontend/src/utils/export-file.js": {
+    "sha256": "2c3abfd68be77862e2716b7b5fcdf35d0933683c0e71cbf55564889b539138bf",
+    "bytes": 1304
+  },
+  "frontend/src/utils/knowledge-content.js": {
+    "sha256": "149bf6b7dcee3b884ee0bb64ea279b089da9c9ad70d01ae4c70967c57833fde5",
+    "bytes": 291
+  },
+  "frontend/src/utils/crop.ts": {
+    "sha256": "6e5df33bf0c999a691ede5ac4bc429e838f453269c73a2c5c76db08e243696e3",
+    "bytes": 1498
+  },
+  "frontend/src/utils/processing.js": {
+    "sha256": "9a1ac18c23c52bd6aff86b62e77b486cd3c33e278494e40ba038fd41b23ecef3",
+    "bytes": 916
+  },
+  "frontend/src/store/index.js": {
+    "sha256": "f3f9eaffd6a3499ea3445df5ef5462ad12a9b1d208481260bcf2fb8e55eb84df",
+    "bytes": 1927
+  },
+  "frontend/src/components/self-check/self-check.vue": {
+    "sha256": "f55c32c088e9ce43fc97299c33b47cfc4c5822ff2855c36f6fc30a2f5ba416bf",
+    "bytes": 8488
+  },
+  "frontend/src/components/tab-bar/tab-bar.vue": {
+    "sha256": "5c1f487258a9ac425144e883aa41068724d4248a5e4014d02a2b91146783144c",
+    "bytes": 4393
+  },
+  "frontend/src/components/math-text/math-text.vue": {
+    "sha256": "dacdaa7bb3826cf12b6ec4a6ef014d06bb1750d20ef43595886f24437235d526",
+    "bytes": 2130
+  },
+  "frontend/src/components/written-answer/written-answer.vue": {
+    "sha256": "060c5a59934ea0b039c69e06892db21f29e3f437c182c3d3ee3f6a87e4f78ac4",
+    "bytes": 11609
+  },
+  "frontend/src/components/teaching-content/teaching-content.vue": {
+    "sha256": "9523ffc0c318d0e79a75f385d90bc758aea1929c39fd45f896a2e4cf312c9127",
+    "bytes": 4646
+  },
+  "frontend/src/components/knowledge-teacher/knowledge-teacher.vue": {
+    "sha256": "f52ca4a61b5f3dd2d6058df6b74df284e0d445f44313530376b7934d5af79eb3",
+    "bytes": 6631
+  },
+  "frontend/src/components/app-header/app-header.vue": {
+    "sha256": "82baf9b5c093a1f31da2636a36d3c35a50cdffafb6239039d27141f622239de1",
+    "bytes": 2538
+  },
+  "frontend/src/components/task-history/task-history.vue": {
+    "sha256": "37062e922d31d556614af629795fa682b6788e36ecd621d959497e1b9b48e134",
+    "bytes": 6483
+  },
+  "frontend/src/components/visualization-canvas/visualization-canvas.vue": {
+    "sha256": "6d86540535413ec123974288f7f38ea8e32dfafb380f029a74a65ffa07d36db5",
+    "bytes": 13714
+  },
+  "frontend/src/components/date-time-input/date-time-input.vue": {
+    "sha256": "c188149a1a6c85892625e9350de6717bfe23a562cad50ae178091e12e16af73d",
+    "bytes": 2104
+  },
+  "frontend/src/components/question-content/question-content.vue": {
+    "sha256": "9a09fcf4b79938ec9459ae4f5f61aada4f9a1cafa2d58324775de03b1eb9ed9f",
+    "bytes": 2979
+  },
+  "frontend/src/components/figure-review/figure-review.vue": {
+    "sha256": "78d9eb3d3eaa6e0c8d84e2ec7a124d2ba4b01c0a9bccdc5c7e7cd2bbc6567dae",
+    "bytes": 4555
+  },
+  "frontend/src/components/account-field/account-field.vue": {
+    "sha256": "e060f953eee14386cc4b03e365d3767f0a52499da5e3416d7ece9aa8029deae8",
+    "bytes": 2341
+  },
+  "frontend/src/components/task-visualization/task-visualization.vue": {
+    "sha256": "0b5f47ba6c1318cff97ca80ec3959413869ac238921526ba64f144bada176e5e",
+    "bytes": 9466
+  },
+  "frontend/src/components/cognition-canvas/cognition-canvas.vue": {
+    "sha256": "3d766ba034d8648e42034c618cdf0ecca50c8b616264d3b75dbdb8940f4bba20",
+    "bytes": 5502
+  },
+  "frontend/src/components/state-panel/state-panel.vue": {
+    "sha256": "d699d26026a7351936e03afbfb605854fbd1c12056bce3d21495d80b22896f1c",
+    "bytes": 1003
+  },
+  "frontend/src/pages/error-map/error-map.vue": {
+    "sha256": "d58674bc3afba6557d7fab9d251f016bce88f928dd33b229e23c65810b9e2ccf",
+    "bytes": 12106
+  },
+  "frontend/src/pages/preferences/preferences.vue": {
+    "sha256": "05d602c9a669dd051f4379a3301e11914227005553422292ad7966f4f70c0fdd",
+    "bytes": 8713
+  },
+  "frontend/src/pages/framework/framework.vue": {
+    "sha256": "da3023c3361f40443b0428b80bd795dafb01faf9d445f00c20ab8adbe8f1f614",
+    "bytes": 9034
+  },
+  "frontend/src/pages/ocr/ocr.vue": {
+    "sha256": "4cdf1904f01e635d93edca123997fccbf988ae5978435b9fcff884ee5300f605",
+    "bytes": 22074
+  },
+  "frontend/src/pages/review/review.vue": {
+    "sha256": "5269717dadf317a3cbf8d46706aa08fc780818c1c3054cbe82a7d94d849a0b08",
+    "bytes": 38986
+  },
+  "frontend/src/pages/learning/learning.vue": {
+    "sha256": "2604dcc8cde9708a05c5990d4eaad74c74f06d53b748d7c4a9c3e8cf3f1fcf0c",
+    "bytes": 6335
+  },
+  "frontend/src/pages/practice/practice.vue": {
+    "sha256": "930e82fce04c7274a6b0b5f01e6bcaadb4c9cdb1367ea9931419ca3983245951",
+    "bytes": 17274
+  },
+  "frontend/src/pages/tutor/tutor.vue": {
+    "sha256": "97b6042e48a7414b27559011942455657ebe51b4cc201703a69bc62377acf05f",
+    "bytes": 51140
+  },
+  "frontend/src/pages/paper/paper-center.vue": {
+    "sha256": "fc0dcd97d38ff719b830cf038a02c9786b4ab5fe40af85fbea29bf683a546e41",
+    "bytes": 27743
+  },
+  "frontend/src/pages/study-session/study-session.vue": {
+    "sha256": "cb162df8bbe5c531e7d42e0ba8089649e4eab1948da01008fc403ca59d93ca60",
+    "bytes": 25664
+  },
+  "frontend/src/pages/help/help.vue": {
+    "sha256": "37c1fc5dff72fc7d4d3a9c87b2f024f0c10b1d91968f59ed02234fce4897bd7b",
+    "bytes": 2653
+  },
+  "frontend/src/pages/manual/manual.vue": {
+    "sha256": "9f22b7b45bc1fb1787cd9bfcf6e2ee41ff8e96494a6f42e08a883410016a1d64",
+    "bytes": 8372
+  },
+  "frontend/src/pages/repair/repair.vue": {
+    "sha256": "ec36221c15c90724255fa7688648384318498b518626fc58702e799c576395a7",
+    "bytes": 8464
+  },
+  "frontend/src/pages/problem/list.vue": {
+    "sha256": "6ae444f7ca584e25a04ba8e10720b423ca6365be3d5b78553a0cd3bce71ae779",
+    "bytes": 17594
+  },
+  "frontend/src/pages/system/system.vue": {
+    "sha256": "53b4246280355d31fdee002ffe84776431af78e9f37426df372188d0fb5da380",
+    "bytes": 6278
+  },
+  "frontend/src/pages/replay/replay.vue": {
+    "sha256": "4897add1ac5453086d5c168ebe8a510426c86988e4f0edf53592a1b5e7ac21f2",
+    "bytes": 11544
+  },
+  "frontend/src/pages/detail/detail.vue": {
+    "sha256": "971cb341ab46a1a9168014fafdebbe8fd6bd4b8c672179e69b942201b642abe8",
+    "bytes": 25981
+  },
+  "frontend/src/pages/visualization/visualization.vue": {
+    "sha256": "75a2669e45c23f9bcea2396155c19a5b132d9338f77df5e7969190555a7b14c1",
+    "bytes": 5916
+  },
+  "frontend/src/pages/forgot/forgot.vue": {
+    "sha256": "2df888f00f66293f3e4fac55fde2763f93b572ebb72a00e7b747adc1d5dd95df",
+    "bytes": 3277
+  },
+  "frontend/src/pages/capture/capture.vue": {
+    "sha256": "f87c1907cdf9761ec03ca37b148f814279bfd2fd43baedcd970c4b1f6634b098",
+    "bytes": 5600
+  },
+  "frontend/src/pages/search/search.vue": {
+    "sha256": "ac8858a4cfe36b7b58c0b61733a1d81c06655dee3142cf74138e767026b8611d",
+    "bytes": 390
+  },
+  "frontend/src/pages/library/library.vue": {
+    "sha256": "24287f3fa3b16d5140933f655db799a3ec30b6ab9170d4ac677a7da882309913",
+    "bytes": 10824
+  },
+  "frontend/src/pages/register/register.vue": {
+    "sha256": "b38ea6fa8dc73e38c778914d597a0ceb352f4cfab0dfb18fc264c3da1449be55",
+    "bytes": 4409
+  },
+  "frontend/src/pages/journey/journey.vue": {
+    "sha256": "16ee3335b372aa515c31176962fe16437486e1de5530690902b29f27098d41d5",
+    "bytes": 11658
+  },
+  "frontend/src/pages/bank/bank.vue": {
+    "sha256": "19d098f3465fbf211f086925a191e447eb7d80a11a3d02cac85526c2502ff9d9",
+    "bytes": 16986
+  },
+  "frontend/src/pages/login/login.vue": {
+    "sha256": "c530803bdc1031d82289274122af181d30bb48a43c1f1c26d72a5a7b9129a40c",
+    "bytes": 5784
+  },
+  "frontend/src/pages/task/task.vue": {
+    "sha256": "a142408e47694a54c93a85c318532e60c1e45941ff63f9751f327e0d6c4913fd",
+    "bytes": 33359
+  },
+  "frontend/src/pages/crop/crop.vue": {
+    "sha256": "4916dbcb5fdcbf391fe60aab8499203d3d6f1f07734feefc8b6bd8f2fac5d5d2",
+    "bytes": 10593
+  },
+  "frontend/src/pages/analysis/analysis.vue": {
+    "sha256": "30cda8afdd273542ca837a06ea33b290b9b88b625561fcad4423b29c81ff67ca",
+    "bytes": 15267
+  },
+  "frontend/src/pages/admin/workbench.vue": {
+    "sha256": "27c81eb1d05066bb6b177ae2ce726dd95ab3e2a8e376b04041ad62dc1a2cc9db",
+    "bytes": 53442
+  },
+  "frontend/src/pages/admin/workbench-data.js": {
+    "sha256": "b7c885238a5a251e0779462cbbf26878039551f4175eb5d5c695fae5bc28363b",
+    "bytes": 899
+  },
+  "frontend/src/pages/index/index.vue": {
+    "sha256": "ff408a699350f68425315bd66194d90e2e5f0cb03bae6bb0f352ba0523f20de4",
+    "bytes": 19120
+  },
+  "frontend/src/pages/review-search/review-search.vue": {
+    "sha256": "f7dfb986929fe90ff77e43701c453949bbf3380fca935eb8f6cb8fb8c1905669",
+    "bytes": 12090
+  },
+  "frontend/src/pages/diagnosis/diagnosis.vue": {
+    "sha256": "4d9ff8b23b271b07d2539624057cc8966cd6a95fa6ea1574f37b241cc76c1ce6",
+    "bytes": 46716
+  },
+  "frontend/src/pages/knowledge/knowledge.vue": {
+    "sha256": "cfe00b80e36ca7452a3f188eedca0ad2ae8679632d70da67969782fd467160b5",
+    "bytes": 10323
+  },
+  "frontend/src/pages/profile/edit.vue": {
+    "sha256": "9b2a5d1272a9b18168efd068f323ef8b3d1e1322c3bcd27f997d60afbc0085a0",
+    "bytes": 6018
+  },
+  "frontend/src/pages/profile/profile.vue": {
+    "sha256": "fbef94b0939ab62367e139bcb0850ae3026b55488381d8c633437e816d9002c4",
+    "bytes": 6835
+  },
+  "backend-cangjie/src/handwriting.cj": {
+    "sha256": "0b37dc76410dc401a1cc2a8ecad70aa2e737de56da8a464cf7034bc202bdaf6e",
+    "bytes": 5651
+  },
+  "backend-cangjie/src/tutor_transfer.cj": {
+    "sha256": "bfae9b4b7b66b6880f52aade157fc6656fa114ba162310651567be7468c26c93",
+    "bytes": 5720
+  },
+  "backend-cangjie/src/student_work_api.cj": {
+    "sha256": "b0f5f46a69a2ca652b1e32cb4924d9100ece53dd91b73136bc11819be8860475",
+    "bytes": 2737
+  },
+  "backend-cangjie/src/knowledge_lesson_version_test.cj": {
+    "sha256": "71dcddc01bbade6149b4b96227e4e51e45c59938ef55426cb2b60e911d867e13",
+    "bytes": 1886
+  },
+  "backend-cangjie/src/variant_attempt.cj": {
+    "sha256": "41b52921f1cc47db1a8a0097ea5140ed36a093a4a062336ca8da4d2bb570aeec",
+    "bytes": 7387
+  },
+  "backend-cangjie/src/study_bank.cj": {
+    "sha256": "d48582d7ab55967352427b5009ba5c649ddf0953e573d64748bb01a300fa44ed",
+    "bytes": 27719
+  },
+  "backend-cangjie/src/student_experience.cj": {
+    "sha256": "bacdbf4649fc0643633dfc659c3a01b04ab8f4e3b61519a3c1f1e95c091bc192",
+    "bytes": 5718
+  },
+  "backend-cangjie/src/practice_context.cj": {
+    "sha256": "f95f8fed4b245c9c0d22afa5bc73c764de8be4c81d2004e8d33c6470dc7cc16b",
+    "bytes": 6598
+  },
+  "backend-cangjie/src/database.cj": {
+    "sha256": "87a9969144f31edd57879cb83c7216aba84b6dce1906080fe9153b6ecd792024",
+    "bytes": 7721
+  },
+  "backend-cangjie/src/tutor_completion.cj": {
+    "sha256": "27dc60409860e01455b722f46641adcca278d15fecec9b081e032dd021fb9a39",
+    "bytes": 3135
+  },
+  "backend-cangjie/src/personal_learning.cj": {
+    "sha256": "c3e0f8c56d3c4c64dcc2008af0d70bc2dda2c69d8584f8947b0a0ee777ceced1",
+    "bytes": 15268
+  },
+  "backend-cangjie/src/learning_evidence.cj": {
+    "sha256": "664f64fe1dcf5b969cf3d71f2a893355ac60d1d9c3eddbe532168570302b2ab9",
+    "bytes": 7147
+  },
+  "backend-cangjie/src/tutor_activities.cj": {
+    "sha256": "e725809152006efbe47995b31a6a669abac4ff9928b0adcdf707e84913a9f16f",
+    "bytes": 4829
+  },
+  "backend-cangjie/src/diagnosis_edit.cj": {
+    "sha256": "84cdf315e7a4b6f2bb7114452b334546646d31069d9b8402165d9ecb448ffbbe",
+    "bytes": 6012
+  },
+  "backend-cangjie/src/learning_memory.cj": {
+    "sha256": "752ce257bdd837de5978d28722f02b35c16a5fc782f5b6f69ee3a506fd8810bf",
+    "bytes": 11542
+  },
+  "backend-cangjie/src/tutor_state_test.cj": {
+    "sha256": "d497f63967ca216d1a651ee0a96e462f28ffa41d7eb68df590b899c3d13d61e9",
+    "bytes": 2169
+  },
+  "backend-cangjie/src/ocr_edits.cj": {
+    "sha256": "f8d95e277a1d377e6e692980bdcc3e81225b25890c15965c8dcda3f3cf0774a8",
+    "bytes": 9024
+  },
+  "backend-cangjie/src/auth.cj": {
+    "sha256": "debbe6a1558201f4717a1098708396c91e4d9270259ab806a80a1766779477d1",
+    "bytes": 5625
+  },
+  "backend-cangjie/src/algorithm_client_test.cj": {
+    "sha256": "e4589687f52c4114a3b428de804bc2c93472d0c3a2b8fd33799bb94693cb0fc9",
+    "bytes": 4404
+  },
+  "backend-cangjie/src/media.cj": {
+    "sha256": "a55e5b115b452e62d9db5f9392b1015d22b0304d772fdccfefb1ca16bb3c0fca",
+    "bytes": 7603
+  },
+  "backend-cangjie/src/ingest_api.cj": {
+    "sha256": "9e0f754a1e395470f825ba3ef39a11b479eeaab96d7e595fd4e1142c8b97c0a7",
+    "bytes": 4160
+  },
+  "backend-cangjie/src/schema_test.cj": {
+    "sha256": "e406e5093567a858ca3ca4958b0f3f2e9f5e7093e6437ba73b3ac7a682dc99a7",
+    "bytes": 2027
+  },
+  "backend-cangjie/src/learning_task_worker.cj": {
+    "sha256": "0ef04a1bdabbbb0c71b54ca65a3428ad28c22df47c95b9e9004d06cd42903d00",
+    "bytes": 17345
+  },
+  "backend-cangjie/src/tutor_answer.cj": {
+    "sha256": "9311dc96e6a50d7327d5dd5d3c058232c856b7eb9d05ba6f7383bda8e9179c37",
+    "bytes": 11659
+  },
+  "backend-cangjie/src/question_api.cj": {
+    "sha256": "66db2e15629192888d10a1a02b99f6d3100363f7d0395402c48eb8e1dab6ec3f",
+    "bytes": 1458
+  },
+  "backend-cangjie/src/system_api.cj": {
+    "sha256": "be0ff475f78b7fdf0fb3d78d340a18781362af78aa844b136487d7e74c828633",
+    "bytes": 1098
+  },
+  "backend-cangjie/src/row_json_test.cj": {
+    "sha256": "4f048cbe770915ee544d08f26fa7ebd38e3437f5abafcc7dbe76c1850d4af3e7",
+    "bytes": 1931
+  },
+  "backend-cangjie/src/learning_task_sources_test.cj": {
+    "sha256": "e9f06622376a271a8a3b526ab37f93b6bee894a25ab67b38940e56ebde82fc3c",
+    "bytes": 1447
+  },
+  "backend-cangjie/src/analysis_api.cj": {
+    "sha256": "8044b42dc2c0dfe08996ee31f5a7744b903c9f6abeadb18d5181a59650c5ef07",
+    "bytes": 6152
+  },
+  "backend-cangjie/src/paper_candidates.cj": {
+    "sha256": "6b3f25ab93186f4def4838ea09660fc40d73d87b6af29b7f1efd36721be26ecd",
+    "bytes": 4220
+  },
+  "backend-cangjie/src/multipart.cj": {
+    "sha256": "d98e9c861c170c104eab60f4107f793eb15e004bb80d78ff19201f9a1cbbb872",
+    "bytes": 6853
+  },
+  "backend-cangjie/src/recognition_api.cj": {
+    "sha256": "d4e7d0563e8449b7203883cc4addce3bef8def17ff4810522ab36ceb10279db1",
+    "bytes": 2664
+  },
+  "backend-cangjie/src/practice_attempt.cj": {
+    "sha256": "3951c7c08f78f996f0f617e7df9a9df2b4789f4a6ea54407c42afb1240594dfd",
+    "bytes": 9138
+  },
+  "backend-cangjie/src/visualizations.cj": {
+    "sha256": "b68ff21d9bfb650054d21e96405d9b9b2cdd4cd7f9777498678cbce1ce49ebf5",
+    "bytes": 5171
+  },
+  "backend-cangjie/src/papers.cj": {
+    "sha256": "72b6c6d932a5b7da90954a9b4bf42674d1f1bb9a5a7d3e401926a99447ed2c25",
+    "bytes": 5912
+  },
+  "backend-cangjie/src/learning_journey.cj": {
+    "sha256": "80f8b20bb1ee9492f5b7ee45467f8e6c2bfab1dcaef0c292e349e1799156dbc9",
+    "bytes": 13396
+  },
+  "backend-cangjie/src/learning_task_sources.cj": {
+    "sha256": "53ac22230f752fe6a257d513ddc54aa959c8284a529f6b3cd13d5eef82f2da8a",
+    "bytes": 5270
+  },
+  "backend-cangjie/src/learning_task_mastery.cj": {
+    "sha256": "5e8e621db58499190ded0760e280458ff103b453e363d675227e36a716aaad47",
+    "bytes": 5145
+  },
+  "backend-cangjie/src/tutor_activities_test.cj": {
+    "sha256": "29ac48c6f54aa3f5531b0f1578d1c2986d502b2d137eea070aa504bb915420d4",
+    "bytes": 2306
+  },
+  "backend-cangjie/src/dataset_images_test.cj": {
+    "sha256": "f126dd531eee0b8b11a549c4f1afc10bae9fd7a3a0ec05c0343bf53e81951237",
+    "bytes": 2646
+  },
+  "backend-cangjie/src/learning_tasks.cj": {
+    "sha256": "ef037dd08143227accc9232ae5076dc4cc3ec4a4db409eae9cfdd4798334af9f",
+    "bytes": 23078
+  },
+  "backend-cangjie/src/learning_memory_sources.cj": {
+    "sha256": "adf5a7e6476565d67dbf3d8a78a1a588ffb0f986282601bc3fa2042fdf9c1fc1",
+    "bytes": 6383
+  },
+  "backend-cangjie/src/learning_task_images.cj": {
+    "sha256": "ded32265cdee92f97b70151c54155db8346f084e2562034217a49923b427c3d0",
+    "bytes": 8359
+  },
+  "backend-cangjie/src/learning_insights.cj": {
+    "sha256": "ba2d73afee35a75c6bec8ceaf338d44576c68168aa613e73e004a5d3ec18d081",
+    "bytes": 9293
+  },
+  "backend-cangjie/src/practice_recommend.cj": {
+    "sha256": "1851c18e7182ad8d76fb54257d784d47769a2e5efb97f459341b41c837ce29f1",
+    "bytes": 11475
+  },
+  "backend-cangjie/src/learning_journey_test.cj": {
+    "sha256": "d5d46a4b2879b16cf6f5258ec73bde495c9169deba3bb20113fa398a890d30f2",
+    "bytes": 620
+  },
+  "backend-cangjie/src/local_users.cj": {
+    "sha256": "a73aa20f4b4eecb8d28c15fa6b88c4c56d65549ac1330d80e84a82519bf647c0",
+    "bytes": 3610
+  },
+  "backend-cangjie/src/retrieval.cj": {
+    "sha256": "b1db6d6e7e813573a7c3899fa9433595753323c1c56df1bea979429860c66d7a",
+    "bytes": 4649
+  },
+  "backend-cangjie/src/tutor_policy.cj": {
+    "sha256": "4492316642d79e486ec02a26f36d0846ea9bb81862a606e0b99b8e6b99ecd9bd",
+    "bytes": 2424
+  },
+  "backend-cangjie/src/question_detail.cj": {
+    "sha256": "06b38eabb35fbd1898908a73892aac16acbb493981e74afaa5a9549d12de3eca",
+    "bytes": 6197
+  },
+  "backend-cangjie/src/dataset_images.cj": {
+    "sha256": "9b1fb02c42ca0a56bb9abc0da44f71850503c636ec05b785091a12f933db19c6",
+    "bytes": 4595
+  },
+  "backend-cangjie/src/router.cj": {
+    "sha256": "784d0b3626d06da664e2da7b3b408751637f90bb73b38dc8ff8cd16ce4ec66b5",
+    "bytes": 1628
+  },
+  "backend-cangjie/src/media_storage.cj": {
+    "sha256": "c9cf76ea5c07fcde30552cd9a65facaaab7a3d476c56134e124c8527a8d85738",
+    "bytes": 2949
+  },
+  "backend-cangjie/src/dialogue_knowledge_test.cj": {
+    "sha256": "08cd59560de9d3e6e95232379599b469343771a64605a10042377e99cdb260bc",
+    "bytes": 1591
+  },
+  "backend-cangjie/src/practice_generated.cj": {
+    "sha256": "7b8d5f366d79ce071c7a97b614f7926669699388bb07e016cea276c52d76fb8f",
+    "bytes": 9258
+  },
+  "backend-cangjie/src/tutor_navigation.cj": {
+    "sha256": "086980fd1e02aa46e8b6f62f454545c2e8e268fd2aa11f6042ec29901e8dd4c2",
+    "bytes": 6065
+  },
+  "backend-cangjie/src/knowledge_seed.cj": {
+    "sha256": "8fbc4cd7ac1ccad6b537cf82e396065737c465360149ed897a01527da1d1f6b4",
+    "bytes": 1484
+  },
+  "backend-cangjie/src/question_list.cj": {
+    "sha256": "35452b5703a8a18e3198a7df6283ba9d83da58a5e62ad59c4f8035776bfd6d9e",
+    "bytes": 5802
+  },
+  "backend-cangjie/src/learning_task_budget.cj": {
+    "sha256": "fe74ec0f2c01968e1f9b2f680590363a8e4babdf28bf059193c905102e3a9b86",
+    "bytes": 2357
+  },
+  "backend-cangjie/src/learning_task_budget_test.cj": {
+    "sha256": "962503f777bde4973b896929d30add2b1ee35c22d88b716486c4a5dcee3184cc",
+    "bytes": 1376
+  },
+  "backend-cangjie/src/question_edit.cj": {
+    "sha256": "32875a1d2ff039409f8470fd2ff64081fb9bba8907be4ae2a0e1b92cf71e29e3",
+    "bytes": 4540
+  },
+  "backend-cangjie/src/tutor_variants.cj": {
+    "sha256": "a2b52b9236841246fc053e177a5274adebd801d3c3da20f13d2b875977f31239",
+    "bytes": 9902
+  },
+  "backend-cangjie/src/learning_task_planning.cj": {
+    "sha256": "681bc3f2bf3d60995ec7ea20528b6815c3d93118639d84d295e8d255d70675ef",
+    "bytes": 4896
+  },
+  "backend-cangjie/src/reviews.cj": {
+    "sha256": "5d7c42d69b4136e901851d6eef6bd57888606c329aecd306fb912e96db02e84e",
+    "bytes": 13787
+  },
+  "backend-cangjie/src/tutor_dialogue.cj": {
+    "sha256": "7f0a76ee00f45f5b44b089502d741bf792d6c6bb25161f7f4f548a3a88e92b00",
+    "bytes": 11498
+  },
+  "backend-cangjie/src/manual_questions.cj": {
+    "sha256": "8c8ccad3a96c432732f91949c3411a256ffa8fe8e2f482f12e96f7ba415e720a",
+    "bytes": 6643
+  },
+  "backend-cangjie/src/voice_api.cj": {
+    "sha256": "23596444a18ddb27f39a8580a58864e3bc95f4de8510be8c42ccb40740ab61eb",
+    "bytes": 5395
+  },
+  "backend-cangjie/src/media_storage_test.cj": {
+    "sha256": "66afd4a8c492bc4fc1a292f73ca764ea8889a46b9ade992b7038934546dd171f",
+    "bytes": 978
+  },
+  "backend-cangjie/src/tutor_read.cj": {
+    "sha256": "368eb7fb24e3fdaff11f0f2ee080d0eb518d59e4f94dd0fb0c9c72d820c101ed",
+    "bytes": 10947
+  },
+  "backend-cangjie/src/auth_test.cj": {
+    "sha256": "1810b2132104839aefad3b1f4de40e202a0f47446d558758aefdc8a33a777657",
+    "bytes": 2111
+  },
+  "backend-cangjie/src/tutor_state.cj": {
+    "sha256": "89d0cd04d1c393080c5dc27e2152ebfd5bf300a05db8050c128273b3d6d88a27",
+    "bytes": 1852
+  },
+  "backend-cangjie/src/admin_api.cj": {
+    "sha256": "12e10491bfbf1dafffea74e98ee3748c9030cc2db5d52a957143ab512c9755c2",
+    "bytes": 8304
+  },
+  "backend-cangjie/src/dashboard.cj": {
+    "sha256": "1c81c4e2fb65508382684b3181156414283bfc8bb4296e6e2c63d2a48ddc9824",
+    "bytes": 6656
+  },
+  "backend-cangjie/src/practice_context_test.cj": {
+    "sha256": "9d45b9e88a9c4d00abf1e9702ebdb8d0a55946faaf2f65aac7cd6ce27d6b8806",
+    "bytes": 1333
+  },
+  "backend-cangjie/src/paper_exports.cj": {
+    "sha256": "4d76fb9f42b56e6f5f4aab0cf52b22bc9702ed78b29db7bb1ef4657edd94fdba",
+    "bytes": 7126
+  },
+  "backend-cangjie/src/learning_task_visuals.cj": {
+    "sha256": "ef294bda9605e5c31318213522a2992d4702dfbf08246611f771eebe4b2ec35a",
+    "bytes": 2639
+  },
+  "backend-cangjie/src/cognition_graph.cj": {
+    "sha256": "181a20564ffe1ea6128b994903f7bdbc6778af64b4f652de723e4fa52daed6b9",
+    "bytes": 14174
+  },
+  "backend-cangjie/src/schema.cj": {
+    "sha256": "bef202ab962550eb6d13441d481ea5dc1109704e0c0fa1fc5a17cfd3b9eedb6a",
+    "bytes": 7108
+  },
+  "backend-cangjie/src/account_api.cj": {
+    "sha256": "02a2325568e2d12f199d8615075bac04805cf6990c91d7826703a070de84c8c9",
+    "bytes": 9259
+  },
+  "backend-cangjie/src/paper_validation.cj": {
+    "sha256": "186b605c583da3f748d13547333d1fddcf9cfd6e9ccd25b76b2d5f23431535d8",
+    "bytes": 3168
+  },
+  "backend-cangjie/src/tutor_teach_back.cj": {
+    "sha256": "8607b0e859fc4523dff60f451108a3cdfa8d613d9e845e796b97e2ef12a69dd4",
+    "bytes": 4876
+  },
+  "backend-cangjie/src/crop_api.cj": {
+    "sha256": "e0cd2c54a749b867e5835a6daf49b765ca7b99a258fc16bc2c5f003e365697f4",
+    "bytes": 6346
+  },
+  "backend-cangjie/src/diagnosis_api.cj": {
+    "sha256": "2255336bd3dd519819e4f562a42c6a8f46f094eeeb6bcfc562a728f14fff16a3",
+    "bytes": 9581
+  },
+  "backend-cangjie/src/row_json.cj": {
+    "sha256": "5cbe348629c141e6f7ab0dc6d0c75875d8aaff9e38d80becd296df9b30f8c7d5",
+    "bytes": 1947
+  },
+  "backend-cangjie/src/question_edit_validation.cj": {
+    "sha256": "9e7c05d24a15cb1d1a692a09c79da053ff20a19a1d8cedb7f8654606418e0149",
+    "bytes": 7350
+  },
+  "backend-cangjie/src/counterfactual_evidence_test.cj": {
+    "sha256": "0c740e4ff9d778514dca4a016087ab2b0dab83e09ac2b20041b38dc7195ccf93",
+    "bytes": 2412
+  },
+  "backend-cangjie/src/learning_task_records.cj": {
+    "sha256": "d8c5386dc38d3c8f43d3994b27fd58c6fdb948b42de29f74aae35eb9fb0cb2d9",
+    "bytes": 13093
+  },
+  "backend-cangjie/src/tutor_start.cj": {
+    "sha256": "529a5a7594f22cff8887c98470ad3ea9c5057c38b8b574d1f1f1f91eae07f07e",
+    "bytes": 10772
+  },
+  "backend-cangjie/src/practice_alignment.cj": {
+    "sha256": "5a62b6c47ac4cddece910c75a6df1b5930bf706f312c2311f378264232700164",
+    "bytes": 3898
+  },
+  "backend-cangjie/src/question_bank_cli.cj": {
+    "sha256": "1ad2e1f6c90038193aa21175310b4a92c1692206528477751b1efc2b079d0715",
+    "bytes": 14480
+  },
+  "backend-cangjie/src/adaptive_practice.cj": {
+    "sha256": "ee402e3647813fd34327fa31d3b87082901f075d0bd4c982072b47659e8d219b",
+    "bytes": 2739
+  },
+  "backend-cangjie/src/request_fields.cj": {
+    "sha256": "9da0c59a86b908e37ef93e2e07d125a6605c797eafc0c8765dffcf92dea7bd67",
+    "bytes": 721
+  },
+  "backend-cangjie/src/recognition_worker.cj": {
+    "sha256": "d5725a2ba1581afffa7614e349c5fa7bd13ae177020a8a90702c8acdc1fa3b6d",
+    "bytes": 12173
+  },
+  "backend-cangjie/src/job_api.cj": {
+    "sha256": "6879d2a84bc2cf45b314e031f7fe19bb244ab593e55a2f5e0d9b72a8f2c21ff3",
+    "bytes": 3883
+  },
+  "backend-cangjie/src/tutor_finish.cj": {
+    "sha256": "5850e6ab76a1480cbd91ace3a3a4dd9d2fcd246468d0608025a6ea514596a296",
+    "bytes": 2757
+  },
+  "backend-cangjie/src/knowledge_links.cj": {
+    "sha256": "b000f6da3f19272af07fd8c6965717ee0a9b610e113ac4b346e662972780c29f",
+    "bytes": 4056
+  },
+  "backend-cangjie/src/http_api.cj": {
+    "sha256": "d9b7f3935d661308c372daa64d048e1e8aa4914f5fe7d84de528e50f2dc360d3",
+    "bytes": 4490
+  },
+  "backend-cangjie/src/tutor_policy_test.cj": {
+    "sha256": "542ad74fc6588882594bbcfe5f36f422a80644d62c445a650cdab992449e42eb",
+    "bytes": 2944
+  },
+  "backend-cangjie/src/study_bank_test.cj": {
+    "sha256": "10d5828257b3c758e574e53be86a353e8f2c94afafc0a96ab7f7bc94b3d552f6",
+    "bytes": 922
+  },
+  "backend-cangjie/src/learning_task_planning_test.cj": {
+    "sha256": "b0c5e38ef6a00981dbc2de21e4bb94b1132afba7c2f8bc51a4e84037f3630a98",
+    "bytes": 1613
+  },
+  "backend-cangjie/src/main.cj": {
+    "sha256": "85907242e8e48a3daa6a112617a4d261f4f7a457a959ea637effe99a92a9a825",
+    "bytes": 12999
+  },
+  "backend-cangjie/src/database_test.cj": {
+    "sha256": "a70c2163a7d33bf49662513b843cbdbe2f58106805045a8390a746a50c7f20c6",
+    "bytes": 4157
+  },
+  "backend-cangjie/src/algorithm_client.cj": {
+    "sha256": "ba639477f0a870559010c7ac13637ee8aad93d6dd284d95b0e8366184ce31131",
+    "bytes": 2796
+  },
+  "backend-cangjie/src/study_mistake.cj": {
+    "sha256": "acec088aa2c727b0a66e82c94d0097dc7b23954be01e338e4006825fda2191a4",
+    "bytes": 4492
+  },
+  "backend-cangjie/src/admin_trace.cj": {
+    "sha256": "5733b45be56885dfc191dffdbc5f22c30818fd521456b6740585535a86b51afd",
+    "bytes": 4037
+  },
+  "backend-cangjie/src/counterfactual_api.cj": {
+    "sha256": "0d8c5902fefbe6f48929f7cbb5049840d18e262b2d6e3ef9de207d83969b43bc",
+    "bytes": 4523
+  },
+  "backend-algorithms/learning_planner.py": {
+    "sha256": "bca0554d00ab8f8fda46ff19615c35828fda3dc15d9ccebb4a7ac51eaae5550a",
+    "bytes": 6830
+  },
+  "backend-algorithms/task_visualization_compute.py": {
+    "sha256": "543a10f383f735adf963eae9033bd078b5fcd8332cad805fe3f39bb4f99fecca",
+    "bytes": 9189
+  },
+  "backend-algorithms/service.py": {
+    "sha256": "863e5d39ba6387f64ad1432c8ab6631d0b7fefa28aaea825789391f51f560bc4",
+    "bytes": 36381
+  },
+  "backend-algorithms/mastery_tracker.py": {
+    "sha256": "512d7b234d90f889247d7b11461e09088b8b437e8fd210749d56d8fac9dcae69",
+    "bytes": 7263
+  },
+  "backend-algorithms/diagnosis_alignment.py": {
+    "sha256": "53e002cdfe0b7b5620db9b7b56d4da79c45d475319a157e4091ed7dce70c63b6",
+    "bytes": 8153
+  },
+  "backend-algorithms/learning_workflow.py": {
+    "sha256": "4af649356cb4c4749331551c6ed315d5435b4b79c3e6a8da57955d5ba73d4ae8",
+    "bytes": 10724
+  },
+  "backend-algorithms/pyproject.toml": {
+    "sha256": "66400c3ed9e30e7646a87666dabc3010719e915b920eb1748e975ab8c0d4aacb",
+    "bytes": 1451
+  },
+  "backend-algorithms/learning_memory_compute.py": {
+    "sha256": "e1904e4fd6134e25bd69af4ceaf59a3db8a4537213ecdcb6ef87fe36ab00022b",
+    "bytes": 3631
+  },
+  "backend-algorithms/learning_task_compute.py": {
+    "sha256": "98fa7c9307a8fa741e4ce2ccdc0fd919d93af57d93d225dc9fdea59165f85481",
+    "bytes": 55301
+  },
+  "backend-algorithms/adaptive_practice.py": {
+    "sha256": "dd4179a368050232d8c86e282e32ad8077a709c11dde1af1dd0565b9fbd35bfb",
+    "bytes": 4318
+  },
+  "backend-algorithms/knowledge_lesson_compute.py": {
+    "sha256": "ebdb18188ae6744391d7f663f1a07715161da0df5336dfef3f63637005f7c721",
+    "bytes": 4053
+  },
+  "backend-algorithms/paper_export_compute.py": {
+    "sha256": "868ff4e07ad719fe2079f1077b91964b4b575167aebb59cf3568b78c25a325d3",
+    "bytes": 2644
+  },
+  "backend-algorithms/voice_compute.py": {
+    "sha256": "7b70314ecbeab36b1e59967eff3e2abed5eedcc2930edba88755f1b613f1f472",
+    "bytes": 1880
+  },
+  "backend-algorithms/error_diagnosis.py": {
+    "sha256": "7cdd99dc4a41e9888fa0e53c8edf297eabf611eb22bf374806f8b62674769810",
+    "bytes": 9731
+  },
+  "backend-algorithms/figure_review.py": {
+    "sha256": "9cd26ebb0b3fea8bb4fd582e1f656a6ac44f95c54095800ffdfe7ed3dfc3f578",
+    "bytes": 10564
+  },
+  "backend-algorithms/diagnosis_compute.py": {
+    "sha256": "a3a9f59ed2bc1ffd7c183b560378dfa9272c94e3e691ed80d6e97a58809380b8",
+    "bytes": 6605
+  },
+  "backend-algorithms/grading_compute.py": {
+    "sha256": "c0e909685dfb7899f6af07c766efb71fba0952b018503b246fbeb9ad616a39dd",
+    "bytes": 3084
+  },
+  "backend-algorithms/grounded_knowledge.py": {
+    "sha256": "04a20566ff47a832938210e6a0e223e80a6c68c9ef7eed6daba43dde7a3b01fd",
+    "bytes": 2657
+  },
+  "backend-algorithms/dialogue_compute.py": {
+    "sha256": "917879832463d9de8cb3302ec9ec486443544ec6022b7726c450e3d46b4d381e",
+    "bytes": 6681
+  },
+  "backend-algorithms/practice_generation.py": {
+    "sha256": "43d682f9b783e235a47196561c7f180618fa5057898ec056de29c7f46b5a5ac5",
+    "bytes": 3760
+  },
+  "backend-algorithms/variant_compute.py": {
+    "sha256": "63ed3db6abd238b115dc53f8f2934010a68dead6b8df25538b679898014a49d4",
+    "bytes": 17155
+  },
+  "backend-algorithms/inequality_compute.py": {
+    "sha256": "6854508f58e27fad7b0d2ea8ea771811af4507fca9d26a2df4018d06325d26f7",
+    "bytes": 18477
+  },
+  "backend-algorithms/retrieval_compute.py": {
+    "sha256": "5045f6d4374ee0712b8a516b58d9015f5e38e1f81cbeb118e7d78af6f5b1800d",
+    "bytes": 16230
+  },
+  "backend-algorithms/README.md": {
+    "sha256": "942b2f5e92d8c847da920ae4c5bf1a721dc8bada26eeded74aba117e85dfb4e9",
+    "bytes": 1370
+  },
+  "backend-algorithms/practice_alignment.py": {
+    "sha256": "555311f8fbd7b15bf2843d963d98bd8aa786f0b7d07b8052ade9b3c102a9b234",
+    "bytes": 5778
+  },
+  "backend-algorithms/learning_hint_compute.py": {
+    "sha256": "2ae1f35ef0329d8bc69ca0b17307148a7e0bc73a399bfbf5f0d0cc4b4386ccd5",
+    "bytes": 8269
+  },
+  "backend-algorithms/agent_compute.py": {
+    "sha256": "39c07ab0cd960c9a92092b8df60bf2ead78c62fcb560e43682ddc540870129fe",
+    "bytes": 19413
+  },
+  "backend-algorithms/tests/test_teach_back_compute.py": {
+    "sha256": "0bd65ccdcf345b00b0e22c2c00b24ade76d45bcf38d7390f83a36cc4259eb4da",
+    "bytes": 2336
+  },
+  "backend-algorithms/tests/test_learning_planner.py": {
+    "sha256": "6aaa76e0b9f106694a821f01dc02549e182e8931466a8e23a6b304e56462f686",
+    "bytes": 2500
+  },
+  "backend-algorithms/tests/test_counterfactual_evidence.py": {
+    "sha256": "bdb2fda47fa258929eda33446073ed66e4c21ee523436290f19fc377a3d7ed7c",
+    "bytes": 3321
+  },
+  "backend-algorithms/tests/test_system_voice_compute.py": {
+    "sha256": "9915fc09b5c1a512a9393a11343ab5469f603e486b68ca0a434661fc877ce0bb",
+    "bytes": 4790
+  },
+  "backend-algorithms/tests/test_learning_workflow.py": {
+    "sha256": "fa08e387f5e65aff5c491b738bef404b3deb8a35c5f086c35472c3d8b0ce909c",
+    "bytes": 6766
+  },
+  "backend-algorithms/tests/test_grading.py": {
+    "sha256": "2764553440bad0d433e589cfb6bac3a136de347c70ac9ea5b6ef1add81b25fc6",
+    "bytes": 5519
+  },
+  "backend-algorithms/tests/test_inequality_service.py": {
+    "sha256": "55243541ed6fff94abbd19f0718dabc7c8c4fad25238aae19efebc7c740f125d",
+    "bytes": 4714
+  },
+  "backend-algorithms/tests/test_release_input_matrix.py": {
+    "sha256": "b20b622f4823b14e061c7ce561965e101439a3bcea546e001a19f254354f4afa",
+    "bytes": 4793
+  },
+  "backend-algorithms/tests/test_learning_memory_compute.py": {
+    "sha256": "5e91b5008ba341c3c7e61ad058f9a338cc4c5397b6d0aead7ab73ae3a04569eb",
+    "bytes": 4601
+  },
+  "backend-algorithms/tests/test_mastery_tracker.py": {
+    "sha256": "982e1c39c67f76b453059e05c1ba62c4d8aa7d77f4d6fc0a8b465a8ac62422bb",
+    "bytes": 4175
+  },
+  "backend-algorithms/tests/test_figure_review.py": {
+    "sha256": "19ad954c66027c09f85280d7b433394ee342576310c2d34c3b12c68ad6c83ad5",
+    "bytes": 7478
+  },
+  "backend-algorithms/tests/test_retrieval_compute.py": {
+    "sha256": "4e50fd31027be9568d5416d1f1a19de1386a763af69d7296991701b13f7ca069",
+    "bytes": 4622
+  },
+  "backend-algorithms/tests/test_practice_generation.py": {
+    "sha256": "d1304e5299f2c3128090f81dd326181e7748564d903e226c8b12612e722bf6ac",
+    "bytes": 3816
+  },
+  "backend-algorithms/tests/test_variants.py": {
+    "sha256": "eefd54c6cf40095705fad862031f1d25a010893ac68e1c8361c3568255d012a0",
+    "bytes": 3882
+  },
+  "backend-algorithms/tests/test_pool_model_configuration.py": {
+    "sha256": "92e8b756a22f6b339301394c549808796555e0f37ce7513355ee106ce9db67e5",
+    "bytes": 1849
+  },
+  "backend-algorithms/tests/test_practice_alignment.py": {
+    "sha256": "304de3d68e86f5e88d1bff458b3edbc8c46a9fcafb2fb1b268dbc13ef3e9f285",
+    "bytes": 3552
+  },
+  "backend-algorithms/tests/test_task_visualization_compute.py": {
+    "sha256": "5df10d1e685758a576c85408815757e652219490e72788c1ecd7069f7662a966",
+    "bytes": 8232
+  },
+  "backend-algorithms/tests/test_adaptive_practice.py": {
+    "sha256": "3174404ef99472208e1bcf73ad81c106b6b0ed1028b54ed708e5a2645eb1f5d1",
+    "bytes": 2702
+  },
+  "backend-algorithms/tests/test_curriculum_content.py": {
+    "sha256": "7088536feae7fd1ad50ee1403dd9e4a8de193b5320c523d96e5931e4b914e443",
+    "bytes": 1248
+  },
+  "backend-algorithms/tests/test_diagnosis_compute.py": {
+    "sha256": "d6f77afeb6f2d7e4cbe90d5e4b452efcbf527c98a5a0a47a6972ce966c5b2c4d",
+    "bytes": 7215
+  },
+  "backend-algorithms/tests/test_diagnosis_alignment.py": {
+    "sha256": "0ea496c05d93862cac5097a49cb8e344127ddca70ede46a7096f7f1136aae9cc",
+    "bytes": 3958
+  },
+  "backend-algorithms/tests/test_paper_export_compute.py": {
+    "sha256": "7aeda2d82b18053303250ef587304834edc8e13e1a6929b4261d27a3aae98f89",
+    "bytes": 3971
+  },
+  "backend-algorithms/tests/test_cognition_compute.py": {
+    "sha256": "8c3b4763e05f310bccfe4cd4f9d764509f8358d4421dbe181149db9ae8fd3733",
+    "bytes": 1638
+  },
+  "backend-algorithms/tests/test_visualization_compute.py": {
+    "sha256": "2cf616cd9b6a544fc9ab7b925b90bfc7c8aff84415cf5dd472e9d365ca3b1808",
+    "bytes": 1759
+  },
+  "backend-algorithms/tests/test_learning_task_compute.py": {
+    "sha256": "e801d5c74072abd6a14f9a5e3c08efd43d183b88f8f522b46afe57631da0bacb",
+    "bytes": 17305
+  },
+  "backend-algorithms/tests/test_angular_grading.py": {
+    "sha256": "cd52b2b8459058fdca89184c7120b7b5f8d4d6407a1e40c3f7e38481dbbfbd40",
+    "bytes": 1530
+  },
+  "backend-algorithms/tests/test_handwriting.py": {
+    "sha256": "36a07617135d33172d2fe6c81fffac68a0d370e0fc4c20f694d9ca404ea419ce",
+    "bytes": 2415
+  },
+  "backend-algorithms/tests/test_error_diagnosis.py": {
+    "sha256": "eb892d98c8681bdfc0e086dc7a498b05d01f0b54b6dc7bf3ab9771ca23fc1655",
+    "bytes": 5870
+  },
+  "backend-algorithms/tests/test_learning_hint_compute.py": {
+    "sha256": "d30a6d3a5bf5c3564ec5725bfed9a942be3038f7d20cec443a1adc8f951a1998",
+    "bytes": 13070
+  },
+  "backend-algorithms/tests/test_teaching.py": {
+    "sha256": "c088369e9b6cd4f1521515ce2f7b0a3aafb3f3c53f3e66891d327d619345dd20",
+    "bytes": 4446
+  },
+  "backend-algorithms/tests/test_dialogue_compute.py": {
+    "sha256": "73bbca3e0e36812e256a3495d81caa3419a9e65a331b86a840dd9cc1849ba645",
+    "bytes": 5417
+  },
+  "backend-algorithms/tests/test_knowledge_lesson_compute.py": {
+    "sha256": "4b0f57a274030377b1bc829b8c960a3f6b6564283ff2ec1140d13c670a794b12",
+    "bytes": 4725
+  },
+  "backend-algorithms/tests/test_semantic_diagnosis.py": {
+    "sha256": "c0152a9d032c13766d67c0150f40b620e267d284210b185bf1520ff5f76229ba",
+    "bytes": 4299
+  },
+  "backend-algorithms/tests/test_service.py": {
+    "sha256": "dbe40e7991fe3983e7344a324607af76ac5c3a6185c3f5b5e4658079d1b64f5d",
+    "bytes": 14195
+  },
+  "backend-algorithms/tests/test_inequality_compute.py": {
+    "sha256": "e7e0a6f08df1ed3110bfe3d657facf7ea32283c3132b2f50eb8675c087c33796",
+    "bytes": 7463
+  },
+  "backend-algorithms/tests/test_grounded_knowledge.py": {
+    "sha256": "63e69db63ceb0bcdc3f2fbaa699e0efa2ba941df0a5cbeec91e697ed7b09a447",
+    "bytes": 2013
+  },
+  "backend-algorithms/learning_core/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "backend-algorithms/learning_core/schemas.py": {
+    "sha256": "dc90c1e86f6c9e51ac8f34770f6fecd7d3cee369afe7e9f022911b2910ce44ef",
+    "bytes": 10211
+  },
+  "backend-algorithms/learning_core/services/grading.py": {
+    "sha256": "f76e0aec3d1262252eb689534dcd14eb954a5ff7c68c98f3f0a7f6510b4cf08b",
+    "bytes": 19755
+  },
+  "backend-algorithms/learning_core/services/handwritten_answer.py": {
+    "sha256": "8b6e9711371651bd12d46c59c44458ad40ee1362614b7fb597dd99d6b393f37b",
+    "bytes": 1335
+  },
+  "backend-algorithms/learning_core/services/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "backend-algorithms/learning_core/services/academic_text.py": {
+    "sha256": "a0ac4f8e2cbfd168f324765935b7f6c13d21ea00fdadce1ac2c8edb3be8b3911",
+    "bytes": 209
+  },
+  "backend-algorithms/learning_core/services/cognition_rules.py": {
+    "sha256": "dc21f9f4079c980bc045d2408afa71ac31391cdcac0494ec6c745547c35fffca",
+    "bytes": 3049
+  },
+  "backend-algorithms/learning_core/services/image_recognition.py": {
+    "sha256": "7b4d6a1d78c7d87bcb14365b62ac63987ecebdccad1147df55b08785ba0937dc",
+    "bytes": 6017
+  },
+  "backend-algorithms/learning_core/services/counterfactual.py": {
+    "sha256": "b9014616fbc3e0d2a8888a12a9cc7385dab6bb2983ebcebf5b6cb2ddf17a5480",
+    "bytes": 7629
+  },
+  "backend-algorithms/learning_core/services/export.py": {
+    "sha256": "f4bc66baf2a85072f9a3f41cf682dc351ee9b019d65fda0b29ec86cf3f46f32f",
+    "bytes": 8816
+  },
+  "backend-algorithms/learning_core/services/tutor_graph.py": {
+    "sha256": "13df757a9b1472ee44755f7af1a9d6f193e8d18d144681ab4ce0ecfd41f4221c",
+    "bytes": 10543
+  },
+  "backend-algorithms/learning_core/services/pedagogy.py": {
+    "sha256": "76fe46c7c9441088c45b89a2e9bbfa412463fcdac5b7360b67ae8c3a08e90682",
+    "bytes": 12457
+  },
+  "backend-algorithms/learning_core/services/question_mapping.py": {
+    "sha256": "6176874a51209b583575071aed03355ac26f3ada04c93e2ee98bb120ac36b106",
+    "bytes": 4419
+  },
+  "backend-algorithms/learning_core/services/diagnosis.py": {
+    "sha256": "dc430a58329997ad31604d061a1e1a06f613669b07a555e0c35cf99cf625461c",
+    "bytes": 6631
+  },
+  "backend-algorithms/learning_core/services/ai_pipeline.py": {
+    "sha256": "4b59a7542b661da9514c5bd4df1628a0e899c09373619a41ac4bb2c64539f181",
+    "bytes": 11535
+  },
+  "backend-algorithms/learning_core/services/public_question_sources.py": {
+    "sha256": "059382dfc85fd542a98de01c45144970b17a9674b4a66302272b50c8687b4f3c",
+    "bytes": 6550
+  },
+  "backend-algorithms/learning_core/services/vision.py": {
+    "sha256": "4c772ef3cbdd319e49b2fc25bcac2855b6c61921e06cd7992df2ddf0bdcd90d1",
+    "bytes": 7609
+  },
+  "backend-algorithms/learning_core/services/question_quality.py": {
+    "sha256": "1c865adc95418d30d068be923ed1aaeda89724d389f55ccaa9baa265faa46121",
+    "bytes": 3595
+  },
+  "backend-algorithms/learning_core/services/math_tools.py": {
+    "sha256": "f6c39c38cd112eaad01e36738308ccfcdb745c122ff9d6405d44092adbca041f",
+    "bytes": 8860
+  },
+  "backend-algorithms/learning_core/services/tutor_activities.py": {
+    "sha256": "46076c57a00d7d4c60eb8d4be22fb18a1cfb10444e9d0130fec87237ccf8d868",
+    "bytes": 15679
+  },
+  "backend-algorithms/learning_core/services/voice.py": {
+    "sha256": "2a08066c87d6f0b137071a63d5c5bc3f713873ea05f58056285ccf1f2d2a5512",
+    "bytes": 2940
+  },
+  "backend-algorithms/learning_core/services/question_bank_import.py": {
+    "sha256": "dbf899343fcbeed68888c3bbc22963c3d483037e51ab36cfd04db1e995ddb60e",
+    "bytes": 8446
+  },
+  "backend-algorithms/learning_core/services/visualizations.py": {
+    "sha256": "f4df04ae369c4201383120c8c191894264b1cabe70d1287674c5f34f600c0579",
+    "bytes": 8880
+  },
+  "backend-algorithms/learning_core/providers/api_pool.py": {
+    "sha256": "c9358df3ac5cf7091da19c77aa9c023a2810c20c3796ecb1fdc498f60e38e8e9",
+    "bytes": 14596
+  },
+  "backend-algorithms/learning_core/providers/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "backend-algorithms/tests/fixtures/cognition_vectors.json": {
+    "sha256": "aeb04339fdeff7fc3008a571b7e5aa1aadb468a498eab85fa41a06d9aa2ea20f",
+    "bytes": 66325
+  },
+  "backend-cangjie/tests/auth_vectors.json": {
+    "sha256": "f19fbc561f00c2b830b512a571d78921a8cec35210372b4d997cde1c37ea4022",
+    "bytes": 694
+  }
+}
