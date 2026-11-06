@@ -31,7 +31,7 @@ def port():
 
 def main():
     artifacts=ROOT/'.runtime/http-smoke'/secrets.token_hex(4);artifacts.mkdir(parents=True)
-    children=[];logs=[];report={'analysis':'seeded fixed fixture; no model invocation','checks':[]}
+    children=[];logs=[];report={'analysis':'seeded fixed fixture; no external model invocation','checks':[]}
     def spawn(name,args,cwd,env):
         log=(artifacts/(name+'.log')).open('wb');logs.append(log)
         child=subprocess.Popen(args,cwd=cwd,env=env,stdout=log,stderr=log);children.append(child);return child
@@ -81,6 +81,24 @@ def main():
                     env.update(QA_STUDY_SOURCE=study_source,QA_STUDY_EMAIL='study-browser@example.test',QA_STUDY_PASSWORD='Study-browser-123')
                     env.update(seed_rendering(db,artifacts/'question-bank-images'))
                     os.environ['SCZX_QUESTION_BANK_ROOT']=env['SCZX_QUESTION_BANK_ROOT']
+            if os.environ.get('SCZX_RUN_E2E')=='1':
+                fixture_port=port()
+                spawn('model-fixture',[str(ROOT/'.venv/bin/python'),str(ROOT/'scripts/model_fixture.py'),'--port',str(fixture_port),'--events',str(artifacts/'model-fixture-events.jsonl')],ROOT,env)
+                deadline=time.monotonic()+10
+                with httpx.Client(trust_env=False) as fixture_http:
+                    while True:
+                        try:
+                            if fixture_http.get(f'http://127.0.0.1:{fixture_port}/livez').status_code==200:break
+                        except httpx.TransportError:pass
+                        if time.monotonic()>deadline:raise RuntimeError('controlled model fixture failed to start')
+                        time.sleep(.1)
+                    for rejected in ['unknown prompt','AnswerGradeOutput\n题目：3x+2=17\n标准答案：x=5\n学生作答：3x=18\nx=5\n请判断','AnswerGradeOutput\n题目：3x+2=17\n标准答案：x=5\n学生作答：3x=15\nx=5\n但x=9\n请判断']:
+                        assert fixture_http.post(f'http://127.0.0.1:{fixture_port}/v1/chat/completions',json={'messages':[{'role':'user','content':rejected}]}).status_code==503
+                report['checks'].append('controlled model rejects unknown and contradictory process prompts')
+                pool=artifacts/'fixture-model-pool.json'
+                pool.write_text(json.dumps([{'base_url':f'http://127.0.0.1:{fixture_port}/v1','api_key':'local-test-only','model':'Qwen'}]))
+                env['SCZX_API_POOL_PATH']=str(pool)
+                report['provider']='local controlled fixture; unknown prompts rejected; no external model calls'
             algorithm_port,backend_port,web_port=port(),port(),port()
             env.update(SCZX_ALGORITHM_URL=f'http://127.0.0.1:{algorithm_port}',SCZX_BACKEND_URL=f'http://127.0.0.1:{backend_port}')
             python=str(ROOT/'.venv/bin/python')
@@ -143,6 +161,17 @@ def main():
                         personal_questions.append(created.json()['data']['id'])
                     with Database.from_environment() as db:env.update(seed_personal_learning(db,personal_actor['id'],personal_questions))
                     env['QA_PERSONAL_TOKEN']=personal_actor['access_token']
+                    recovery=http.post(base+'/api/v1/auth/register',json={'email':'review-recovery@example.test','password':'Review-recovery-123','grade':'初一'})
+                    assert recovery.status_code==200,recovery.text
+                    recovery_actor=recovery.json()['data'];recovery_headers={'Authorization':'Bearer '+recovery_actor['access_token']}
+                    recovery_question=http.post(base+'/api/v1/questions/manual',headers=recovery_headers,json={'question_text':'解方程 3x+2=17','subject':'数学','grade':'初一'})
+                    assert recovery_question.status_code==200,recovery_question.text
+                    recovery_qid=recovery_question.json()['data']['id'];recovery_plan=new_id();recovery_analysis=new_id()
+                    with Database.from_environment() as db:
+                        db.query("INSERT INTO problem_analyses (id,question_id,subject,problem_type,known_conditions,goal,knowledge_points,prerequisites,final_answer,verified,raw_result,created_at,updated_at) VALUES (?,?,'数学','方程',JSON_ARRAY(),'求x',JSON_ARRAY('等式的性质'),JSON_ARRAY(),'x=5',1,JSON_OBJECT('fixture',true),UTC_TIMESTAMP(),UTC_TIMESTAMP())",[recovery_analysis,recovery_qid])
+                        for index,text in enumerate(['3x=15','x=5']):db.query("INSERT INTO reference_steps (id,analysis_id,step_index,text,explanation,math_valid,uses_condition,created_at,updated_at) VALUES (?,?,?,?, '',1,0,UTC_TIMESTAMP(),UTC_TIMESTAMP())",[new_id(),recovery_analysis,index,text])
+                        db.query("INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL 1 DAY,1,'复习','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",[recovery_plan,recovery_actor['id'],recovery_qid])
+                    env.update(QA_REVIEW_TOKEN=recovery_actor['access_token'],QA_REVIEW_PLAN_ID=recovery_plan)
                 response=http.post(base+'/api/v1/auth/register',json={'email':'http-smoke@example.com','password':'local-test-password'})
                 assert response.status_code==200,response.text
                 user=response.json()['data'];headers={'Authorization':'Bearer '+user['access_token']}
@@ -175,6 +204,9 @@ def main():
                     (artifacts/'e2e.log').write_text(acceptance.stdout+'\n'+acceptance.stderr)
                     assert acceptance.returncode==0,acceptance.stdout+'\n'+acceptance.stderr
                     report['checks'].append('migrated browser acceptance on Python/MySQL')
+                    events=artifacts/'model-fixture-events.jsonl'
+                    report['controlled_grades']=len(events.read_text().splitlines()) if events.exists() else 0
+                    if not os.environ.get('SCZX_E2E_GREP') or '到期复习' in os.environ['SCZX_E2E_GREP']:assert report['controlled_grades']>=1
                 with Database.from_environment() as db:
                     assert db.query('SELECT evidence_count FROM mastery_states WHERE user_id=?',[user['id']]).rows[0]['evidence_count']=='2'
                 report['checks'].append('two objective learning observations persisted')

@@ -1,7 +1,7 @@
 {
   "note": "Inventory from Playwright --list. Case presence is not passing evidence; see MIGRATION_STATUS.md for actual run reports.",
   "original_count": 71,
-  "migrated_count": 54,
+  "migrated_count": 55,
   "original_case_mapping": [
     {
       "file": "account-access.spec.ts",
@@ -508,8 +508,9 @@
       "file": "review-recovery.spec.ts",
       "line": 3,
       "name": "到期复习：草稿刷新、提交重试、判题恢复与评价丢失回执后核对历史",
-      "migration": "not_yet_copied",
-      "full_title": "到期复习：草稿刷新、提交重试、判题恢复与评价丢失回执后核对历史"
+      "migration": "copied_case",
+      "full_title": "到期复习：草稿刷新、提交重试、判题恢复与评价丢失回执后核对历史",
+      "migrated_file": "review-recovery.spec.ts"
     },
     {
       "file": "student-only.spec.ts",
