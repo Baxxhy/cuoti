@@ -481,23 +481,29 @@
   {
     "path": "/api/v1/questions/ingest",
     "source": "backend-cangjie/src/main.cj:93",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "isolated MySQL verified with controlled algorithm responses; real model and browser parity pending"
   },
   {
     "path": "/api/v1/jobs/{job_id}/retry",
     "source": "backend-cangjie/src/main.cj:94",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "POST"
+    ],
+    "parity": "isolated MySQL verified with controlled algorithm responses; real model and browser parity pending"
   },
   {
     "path": "/api/v1/jobs/{job_id}",
     "source": "backend-cangjie/src/main.cj:95",
-    "python_registered": false,
-    "python_methods": [],
-    "parity": "pending"
+    "python_registered": true,
+    "python_methods": [
+      "GET"
+    ],
+    "parity": "isolated MySQL verified with controlled algorithm responses; real model and browser parity pending"
   },
   {
     "path": "/uploads/*",

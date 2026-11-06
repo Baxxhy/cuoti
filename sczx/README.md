@@ -5,7 +5,7 @@
 ## 当前状态
 
 - `frontend/`：原36个页面已转换为普通Vue源码，使用Vite构建；浏览器操作由原生Web API承担。
-- `backend/`：Python/FastAPI业务层，已接入账号、学习偏好、错题列表、题目详情、编辑、归档、手动录题和健康检查。
+- `backend/`：Python/FastAPI业务层，已接入账号、学习偏好、错题列表、题目详情、编辑、归档、手动录题、图片上传、识别任务与重试和健康检查。
 - `reference/`：原版源码与测试样例的对照快照，不是新程序的运行依赖。
 - `api_parity_inventory.json`：原83个注册路径的接入清单。
 - `MIGRATION_STATUS.md`：已验证的内容及下一批任务。
@@ -38,3 +38,7 @@ npm run dev
 在 `frontend/` 运行 `npm test` 和 `npm run build`。后端安装pytest后，从 `sczx/` 运行 `PYTHONPATH=backend python -m pytest backend/tests`。MySQL测试会新建临时实例，仅使用临时数据目录和本地socket。
 
 `node scripts/browser_smoke.mjs` 检查已启动网页中的登录错误、注册页和图片选择；使用受控HTTP响应，不作为真实后端完整流程验收。
+
+## 内部算法服务
+
+`algorithms/`保存独立算法代码。按其中README安装并启动8012端口，业务服务设置相同的`SCZX_ALGORITHM_SECRET`及`SCZX_ALGORITHM_URL=http://127.0.0.1:8012`。模型池由`SCZX_API_POOL_PATH`指定，凭据通过环境变量提供，本次未复制原凭据。图片与导出文件写入`SCZX_MEDIA_ROOT`（默认当前工作目录的media），题库配图根通过`SCZX_QUESTION_BANK_ROOT`指定。

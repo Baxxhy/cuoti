@@ -1,0 +1,13 @@
+# SCZX内部算法服务
+
+由原版算法源码复制，保留ApiPoolProvider、Pydantic结构和SymPy校验。负责图片预处理、识别、分析、判题等计算，不连接业务MySQL。账号和业务状态由`../backend`中的Python服务管理。
+
+在本目录安装`pyproject.toml`依赖后，设置与业务服务一致的`SCZX_ALGORITHM_SECRET`（至少32字符），运行：
+
+```bash
+python -m uvicorn service:create_app --factory --host 127.0.0.1 --port 8012
+```
+
+模型池配置通过`SCZX_API_POOL_PATH`指定；默认位置为`sczx/config/api_pool.json`。本次迁移没有复制原项目的模型凭据，配置中的`api_key_env`继续引用运行环境变量。服务只监听本地端口，前端通过业务服务调用，不直接持有内部密钥。
+
+从`sczx`目录运行测试：`PYTHONPATH=algorithms python -m pytest algorithms/tests`。计算端完整可用性仍需对应依赖、模型池和检索服务的实际环境验收。

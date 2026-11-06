@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 
 import pymysql
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.routing import Match
@@ -10,6 +10,9 @@ from .questions import list_questions
 from .question_detail import read_question, archive_question
 from .question_edit import edit_question
 from .manual_questions import create_manual_question
+from .ingest import ingest_question
+from .recognition import recover_jobs
+from .jobs import get_job, retry_job
 
 from . import accounts
 from .database import Database
@@ -23,6 +26,7 @@ def envelope(data):
 @asynccontextmanager
 async def lifespan(app):
     accounts.secret()
+    recover_jobs()
     yield
 
 
@@ -94,6 +98,21 @@ async def questions(request: Request):
 @app.post('/api/v1/questions/manual')
 async def manual_question(request: Request):
     return envelope(await create_manual_question(request))
+
+
+@app.post('/api/v1/questions/ingest')
+async def ingest(request: Request, background: BackgroundTasks):
+    return envelope(await ingest_question(request, background))
+
+
+@app.get('/api/v1/jobs/{job_id}')
+async def job(request: Request):
+    return envelope(await get_job(request))
+
+
+@app.post('/api/v1/jobs/{job_id}/retry')
+async def retry(request: Request, background: BackgroundTasks):
+    return envelope(await retry_job(request, background))
 
 
 @app.api_route('/api/v1/questions/{question_id}', methods=['GET', 'PATCH', 'DELETE'])

@@ -266,3 +266,67 @@ def test_manual_question_work_steps_validation_and_study_snapshot(client, tmp_pa
     assert set(media.rglob('*.png')) == files_before
     with Database.from_environment() as db:
         assert db.query('SELECT COUNT(*) AS n FROM questions').rows[0]['n'] == before
+
+
+def test_ingest_recognition_failure_retry_stale_and_recovery(client, tmp_path, monkeypatch):
+    import base64
+    import hashlib
+    from sczx_api import ingest, recognition
+    user = client.post('/api/v1/auth/register', json={'email': 'ocr@example.com', 'password': 'secret'}).json()['data']
+    headers = {'Authorization': 'Bearer ' + user['access_token']}
+    monkeypatch.setenv('SCZX_MEDIA_ROOT', str(tmp_path / 'media'))
+    original = b'\x89PNG\r\n\x1a\noriginal-file'
+    normalized = b'normalized-jpeg-bytes'
+    def asset(data, kind):
+        return {'kind': kind, 'image_base64': base64.b64encode(data).decode(), 'sha256': hashlib.sha256(data).hexdigest()}
+    monkeypatch.setattr(ingest, 'compute', lambda payload: asset(normalized, 'original'))
+    record = {'question_text': '求解 x+1=2', 'student_answer': '3', 'subject': '数学', 'grade': '初二', 'question_type': '综合题', 'options': [], 'recognition_confidence': .9, 'student_steps': [{'index': 1, 'text': 'x + 1 = 2'}], 'teacher_annotations': [{'type': 'cross', 'text': '错'}]}
+    def compute(payload):
+        if payload['operation'] == 'preprocess': return {'assets': [asset(b'clean', 'clean')]}
+        return {'recognition': record, 'assets': [], 'duration_ms': 10}
+    monkeypatch.setattr(recognition, 'compute', compute)
+    files = {'file': ('原图.png', original, 'image/png')}
+    deferred = client.post('/api/v1/questions/ingest', headers=headers, files=files, data={'defer_processing': 'true'})
+    assert deferred.status_code == 200, deferred.text
+    result = deferred.json()['data']
+    assert result['job_id'] is None and result['status'] == 'awaiting_crop'
+    detail = client.get('/api/v1/questions/' + result['question_id'], headers=headers).json()['data']
+    assets = {a['kind']: a for a in detail['assets']}
+    assert (tmp_path / 'media' / assets['uploaded_original']['path']).read_bytes() == original
+    assert (tmp_path / 'media' / assets['original']['path']).read_bytes() == normalized
+    started = client.post('/api/v1/questions/ingest', headers=headers, files=files)
+    assert started.status_code == 200, started.text
+    result = started.json()['data']; job_path = '/api/v1/jobs/' + result['job_id']
+    job = client.get(job_path, headers=headers).json()['data']
+    assert job['status'] == 'completed' and job['progress'] == 100
+    detail = client.get('/api/v1/questions/' + result['question_id'], headers=headers).json()['data']
+    assert detail['question_text'] == record['question_text'] and detail['status'] == 'needs_confirmation'
+    assert detail['student_steps'][0]['step_index'] == 0 and detail['student_steps'][0]['source'] == 'qwen_crop'
+    assert detail['teacher_marks'][0]['comment'] == '错' and detail['ocr']['stream'] == 'qwen_crop'
+    assert client.post(job_path + '/retry', headers=headers).status_code == 409
+    monkeypatch.setattr(recognition, 'compute', lambda payload: (_ for _ in ()).throw(RuntimeError('offline')))
+    failed = client.post('/api/v1/questions/ingest', headers=headers, files=files).json()['data']
+    failed_job = '/api/v1/jobs/' + failed['job_id']
+    assert client.get(failed_job, headers=headers).json()['data']['status'] == 'failed'
+    monkeypatch.setattr(recognition, 'compute', compute)
+    assert client.post(failed_job + '/retry', headers=headers).status_code == 200
+    assert client.get(failed_job, headers=headers).json()['data']['status'] == 'completed'
+    def stale_compute(payload):
+        if payload['operation'] == 'recognize':
+            with Database.from_environment() as db:
+                db.query("UPDATE questions SET question_text='学生已修改' WHERE status='processing' AND user_id=?", [user['id']])
+        return compute(payload)
+    monkeypatch.setattr(recognition, 'compute', stale_compute)
+    stale = client.post('/api/v1/questions/ingest', headers=headers, files=files).json()['data']
+    stale_job = client.get('/api/v1/jobs/' + stale['job_id'], headers=headers).json()['data']
+    assert stale_job['status'] == 'cancelled'
+    assert client.get('/api/v1/questions/' + stale['question_id'], headers=headers).json()['data']['question_text'] == '学生已修改'
+    assert not list((tmp_path / 'media' / 'uploads' / stale['question_id'] / 'derived').glob('*'))
+    with Database.from_environment() as db:
+        db.query("UPDATE processing_jobs SET status='running' WHERE id=?", [failed['job_id']])
+        db.query("UPDATE questions SET status='processing' WHERE id=?", [failed['question_id']])
+    recognition.recover_jobs()
+    recovered = client.get(failed_job, headers=headers).json()['data']
+    assert recovered['status'] == 'failed' and '服务重启' in recovered['error']
+    assert client.post('/api/v1/questions/ingest', headers=headers, files=files, data={'defer_processing': 'invalid'}).status_code == 422
+    assert client.post('/api/v1/questions/ingest', headers=headers, files={'file': ('empty.png', b'', 'image/png')}).status_code == 422
