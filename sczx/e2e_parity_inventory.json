@@ -1,5 +1,5 @@
 {
-  "note": "Inventory from Playwright --list. Case presence is not passing evidence; see docs/development/迁移进度_20261107_v1.md for actual run reports.",
+  "note": "Inventory from Playwright --list. Case presence is not passing evidence; see docs/development/核对说明_20261107_v1.md for actual run reports.",
   "original_count": 71,
   "migrated_count": 72,
   "original_case_mapping": [
