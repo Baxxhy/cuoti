@@ -25,7 +25,32 @@ import {
 } from "lucide-vue-next";
 import { navigate } from "@/lib/navigation.js";
 import SidebarContent from "@/components/SidebarContent.vue";
+import { useLearning } from "@/store.js";
+import PlatformStatus from "@/components/PlatformStatus.vue";
+import NotFound from "@/pages/NotFound.vue";
+const store = useLearning();
 const route = useRoute();
+const missingTask = computed(
+  () =>
+    store.status === "ready" &&
+    !!route.query.task &&
+    !store.data.tasks.some((task) => task.id === route.query.task),
+);
+const missingWrong = computed(
+  () =>
+    store.status === "ready" &&
+    !!route.query.wrong &&
+    !store.record?.wrongQuestions.some((item) => item.id === route.query.wrong),
+);
+watch(
+  [() => store.status, () => route.query.task],
+  () => {
+    if (store.status === "ready" && route.query.task)
+      store.selectTask(route.query.task);
+  },
+  { immediate: true },
+);
+
 const navigation = {
   student: [
     { route: "home", label: "我的学习", icon: LayoutDashboard },
@@ -135,9 +160,13 @@ const results = computed(() =>
   ].filter((item) => (item.title + item.subtitle).includes(search.value)),
 );
 function submitFeedback() {
-  sessionStorage.setItem("shicheng-experience-feedback", issueNote.value);
+  if (!issueNote.value.trim()) return notify("请填写反馈");
+  store.data.issue.text = issueNote.value;
+  store.data.issue.resolved = false;
+  store.data.issue.reply = "";
+  store.touch();
   helpOpen.value = false;
-  notify("体验反馈已保存到本次浏览会话");
+  notify("体验反馈已记录");
 }
 </script>
 <template>
@@ -164,6 +193,7 @@ function submitFeedback() {
               <Button
                 variant="ghost"
                 class="search-trigger"
+                aria-label="搜索课程和案例"
                 @click="searchOpen = true"
                 ><Search :size="16" /><span>搜索课程、案例</span
                 ><kbd>⌘ K</kbd></Button
@@ -181,7 +211,23 @@ function submitFeedback() {
             </div>
           </header>
           <main>
-            <RouterView v-slot="{ Component, route: currentRoute }"
+            <div v-if="store.saveError" class="save-error" role="alert">
+              <span>{{ store.saveError }}</span
+              ><Button
+                variant="outline"
+                size="sm"
+                :disabled="store.saving"
+                @click="store.save"
+                >重新保存</Button
+              ><RouteButton route="issues" secondary>导出记录</RouteButton>
+            </div>
+            <PlatformStatus
+              v-if="store.status !== 'ready' && route.name !== 'issues'"
+            />
+            <div v-else-if="missingTask || missingWrong" class="page-content">
+              <NotFound />
+            </div>
+            <RouterView v-else v-slot="{ Component, route: currentRoute }"
               ><AnimatePresence mode="wait"
                 ><motion.div
                   :key="currentRoute.fullPath"
@@ -233,16 +279,21 @@ function submitFeedback() {
       >
       <AppDialog v-model:open="notifications" title="消息与提醒"
         ><button
+          v-for="message in store.data.messages"
+          :key="message.id"
           class="notification-row"
           @click="
-            navigate('result');
+            navigate(`result?task=${message.taskId}`);
             notifications = false;
           "
         >
-          <span class="notification-dot" /><strong>等式性质 · 学习反馈</strong
-          ><ArrowUpRight :size="16" /></button
-      ></AppDialog>
-      <AppDialog v-model:open="helpOpen" title="帮助与反馈"
+          <span class="notification-dot" /><strong>{{ message.title }}</strong
+          ><ArrowUpRight :size="16" />
+        </button>
+        <p v-if="!store.data.messages.length" class="muted">
+          暂无消息
+        </p></AppDialog
+      ><AppDialog v-model:open="helpOpen" title="帮助与反馈"
         ><label class="field-label" for="issue-note">体验反馈</label
         ><Textarea
           id="issue-note"

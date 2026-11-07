@@ -1,14 +1,28 @@
-import { createApp } from "vue";
+import { storageKey } from "./services/platform.js";
+import { createApp, watch } from "vue";
 import { createPinia } from "pinia";
 import { createRouter, createWebHashHistory } from "vue-router";
 import "@fontsource-variable/geist";
 import "./index.css";
 import "./app.css";
 import App from "./App.vue";
-import Home from "./pages/Home.vue";
-import Learning from "./pages/Learning.vue";
-import Teacher from "./pages/Teacher.vue";
-import Manage from "./pages/Manage.vue";
+import Dashboard from "./pages/Dashboard.vue";
+import Courses from "./pages/Courses.vue";
+import Records from "./pages/Records.vue";
+import Lesson from "./pages/Lesson.vue";
+import CheckLesson from "./pages/CheckLesson.vue";
+import Result from "./pages/Result.vue";
+import WrongQuestions from "./pages/WrongQuestions.vue";
+import Repair from "./pages/Repair.vue";
+import Cases from "./pages/Cases.vue";
+import CaseDetail from "./pages/CaseDetail.vue";
+import Prepare from "./pages/Prepare.vue";
+import Classroom from "./pages/Classroom.vue";
+import Insights from "./pages/Insights.vue";
+import ManageContent from "./pages/ManageContent.vue";
+import CourseContent from "./pages/CourseContent.vue";
+import Issues from "./pages/Issues.vue";
+import NotFound from "./pages/NotFound.vue";
 import Button from "./components/app/Button.vue";
 import Surface from "./components/app/Surface.vue";
 import PageHeading from "./components/app/PageHeading.vue";
@@ -27,20 +41,28 @@ import { useLearning } from "./store.js";
 // Existing bookmarked prototype URLs used #home; retain their entry behavior.
 if (location.hash && !location.hash.startsWith("#/"))
   history.replaceState(null, "", "#/" + location.hash.slice(1));
-const groups = [
-  [Home, ["home", "courses", "records", "teacher"]],
-  [Learning, ["learn", "check", "result", "wrong", "repair"]],
-  [Teacher, ["cases", "case-detail", "prepare", "class", "insights"]],
-  [Manage, ["manage", "content", "issues"]],
-];
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     { path: "/", redirect: "/home" },
-    ...groups.flatMap(([component, names]) =>
-      names.map((name) => ({ path: "/" + name, name, component })),
-    ),
-    { path: "/:pathMatch(.*)*", redirect: "/home" },
+    { path: "/home", name: "home", component: Dashboard },
+    { path: "/teacher", name: "teacher", component: Dashboard },
+    { path: "/courses", name: "courses", component: Courses },
+    { path: "/records", name: "records", component: Records },
+    { path: "/learn", name: "learn", component: Lesson },
+    { path: "/check", name: "check", component: CheckLesson },
+    { path: "/result", name: "result", component: Result },
+    { path: "/wrong", name: "wrong", component: WrongQuestions },
+    { path: "/repair", name: "repair", component: Repair },
+    { path: "/cases", name: "cases", component: Cases },
+    { path: "/case-detail", name: "case-detail", component: CaseDetail },
+    { path: "/prepare", name: "prepare", component: Prepare },
+    { path: "/class", name: "class", component: Classroom },
+    { path: "/insights", name: "insights", component: Insights },
+    { path: "/manage", name: "manage", component: ManageContent },
+    { path: "/content", name: "content", component: CourseContent },
+    { path: "/issues", name: "issues", component: Issues },
+    { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
   ],
 });
 const app = createApp(App);
@@ -63,5 +85,25 @@ for (const [name, component] of Object.entries({
 }))
   app.component(name, component);
 const store = useLearning();
-store.$subscribe(() => store.save(), { detached: true, flush: "sync" });
+let saveTimer;
+watch(
+  () => store.data,
+  () => {
+    if (store.status !== "ready") return;
+    store.revision++;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => store.save(), 300);
+  },
+  { deep: true },
+);
+window.addEventListener("pagehide", () => {
+  if (store.status === "ready") {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(store.data));
+    } catch {
+      /* The visible save error is handled by the regular save request. */
+    }
+  }
+});
 app.mount("#root");
+store.load();
