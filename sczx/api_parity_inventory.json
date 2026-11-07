@@ -7,7 +7,51 @@
       "GET",
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; real web/business/algorithm HTTP symbolic task flow passed; full page/model/voice parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel"
+        ],
+        "statuses": [
+          200,
+          403
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel"
+        ]
+      },
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ],
+        "statuses": [
+          202,
+          401,
+          404,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}",
@@ -16,7 +60,32 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; real web/business/algorithm HTTP symbolic task flow passed; full page/model/voice parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/actions",
@@ -25,7 +94,34 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; real web/business/algorithm HTTP symbolic task flow passed; full page/model/voice parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ],
+        "statuses": [
+          202,
+          404,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/handwriting",
@@ -34,7 +130,26 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry"
+        ],
+        "statuses": [
+          202,
+          409,
+          422,
+          503
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/self-check",
@@ -45,7 +160,55 @@
       "GET",
       "PATCH"
     ],
-    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; native worker/local real workflow/expired lease acceptance passed; model/HTTP/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "DELETE",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries"
+        ]
+      },
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries"
+        ],
+        "statuses": [
+          200,
+          404,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/history",
@@ -54,7 +217,26 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; native worker/local real workflow/expired lease acceptance passed; model/HTTP/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/learning-tasks/{task_id}/cancel",
@@ -63,7 +245,25 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original HTTP lifecycle/queueing/admission/upload behavior; isolated idempotency/cancel/version/original-image acceptance passed; native worker/local real workflow/concurrent cancellation/expired lease acceptance passed; model/HTTP/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/dashboard",
@@ -72,7 +272,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics"
+        ],
+        "statuses": [
+          200,
+          401
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/student-preferences",
@@ -82,7 +299,37 @@
       "GET",
       "PATCH"
     ],
-    "parity": "accounts/preferences tests only"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_preferences_version_conflict_and_persistence"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_preferences_version_conflict_and_persistence"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_preferences_version_conflict_and_persistence"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_preferences_version_conflict_and_persistence"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/analytics/error-sources",
@@ -91,7 +338,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/analytics/overview",
@@ -100,7 +363,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/analytics/cognition-graph",
@@ -109,7 +389,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/knowledge/cards",
@@ -118,7 +415,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_knowledge_search_unicode_filters_and_relations"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_knowledge_search_unicode_filters_and_relations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/knowledge/framework",
@@ -127,7 +440,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "isolated framework/lesson versioning/history/idempotency/ownership acceptance passed; real model/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/knowledge/cards/{code}",
@@ -136,7 +465,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current Cangjie dashboard/insights/graph source; isolated statistics, filters, knowledge relations and graph acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_knowledge_search_unicode_filters_and_relations"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_knowledge_search_unicode_filters_and_relations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/knowledge/cards/{code}/lessons",
@@ -146,7 +492,39 @@
       "GET",
       "POST"
     ],
-    "parity": "isolated framework/lesson versioning/history/idempotency/ownership acceptance passed; real model/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons"
+        ]
+      },
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons"
+        ],
+        "statuses": [
+          200,
+          409,
+          422,
+          503
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/ocr",
@@ -155,7 +533,24 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/reprocess",
@@ -164,7 +559,23 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/crop",
@@ -173,7 +584,25 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ],
+        "statuses": [
+          200,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/draft",
@@ -182,7 +611,23 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/confirm",
@@ -191,7 +636,24 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/analyze",
@@ -200,7 +662,60 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization",
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation",
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion",
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes",
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end",
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation",
+          "backend/tests/test_mysql_accounts.py::test_tutor_start_full_and_compressed_state_persistence",
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization",
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation",
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion",
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes",
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end",
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation",
+          "backend/tests/test_mysql_accounts.py::test_tutor_start_full_and_compressed_state_persistence",
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/student-work",
@@ -209,7 +724,23 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/reviews/today",
@@ -218,7 +749,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/reviews/search",
@@ -227,7 +774,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/reviews/filters",
@@ -237,7 +801,37 @@
       "GET",
       "POST"
     ],
-    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits"
+        ]
+      },
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/reviews/filters/{filter_id}",
@@ -246,7 +840,24 @@
     "python_methods": [
       "DELETE"
     ],
-    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "DELETE",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/reviews/history",
@@ -255,7 +866,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/reviews/{plan_id}/attempt",
@@ -264,7 +891,25 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes"
+        ],
+        "statuses": [
+          200,
+          404,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/reviews/{plan_id}/grade",
@@ -273,7 +918,25 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current reviews.cj/personal_learning.cj; isolated review receipts/grading acceptance passed; search paging/filter limits/ownership acceptance passed; review-memory event/source-change acceptance passed, browser/model parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes"
+        ],
+        "statuses": [
+          200,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/practice/questions/{question_id}/images/{image_index}",
@@ -283,7 +946,39 @@
       "GET",
       "HEAD"
     ],
-    "parity": "ported current bank filters/shuffle and signed image API; isolated grade/shuffle/paging/facet/image/ownership acceptance passed, image-layout unit checks passed; study sessions/model/browser pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_bank_grade_shuffle_public_images_and_facets"
+        ],
+        "statuses": [
+          200,
+          206,
+          403,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_bank_grade_shuffle_public_images_and_facets"
+        ]
+      },
+      {
+        "method": "HEAD",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_bank_grade_shuffle_public_images_and_facets"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_bank_grade_shuffle_public_images_and_facets"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/study-bank",
@@ -292,7 +987,25 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported current bank filters/shuffle and signed image API; isolated grade/shuffle/paging/facet/image/ownership acceptance passed, image-layout unit checks passed; study sessions/model/browser pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_bank_grade_shuffle_public_images_and_facets"
+        ],
+        "statuses": [
+          200,
+          401,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_bank_grade_shuffle_public_images_and_facets"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/study-sessions",
@@ -302,7 +1015,38 @@
       "GET",
       "POST"
     ],
-    "parity": "ported original practice/exam/save/submit/adaptive rules; isolated session acceptance passed; genuine concurrent save/submit conflict acceptance passed; task recommendation branch/browser/model pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ]
+      },
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ],
+        "statuses": [
+          200,
+          422,
+          503
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/study-sessions/{session_id}",
@@ -312,7 +1056,39 @@
       "GET",
       "PATCH"
     ],
-    "parity": "ported original practice/exam/save/submit/adaptive rules; isolated session acceptance passed; genuine concurrent save/submit conflict acceptance passed; task recommendation branch/browser/model pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ],
+        "statuses": [
+          200,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/study-sessions/{session_id}/submit",
@@ -321,7 +1097,24 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original practice/exam/save/submit/adaptive rules; isolated session acceptance passed; genuine concurrent save/submit conflict acceptance passed; task recommendation branch/browser/model pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/practice/recommend",
@@ -330,7 +1123,30 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported dataset/generated practice admission/cache/source-version/receipt/evidence rules; isolated two-branch and genuine concurrent edit acceptance passed; real retrieval/model/browser pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_practice_recommend_cache_receipt_alignment_and_source_versions"
+        ],
+        "statuses": [
+          200,
+          401,
+          404,
+          409,
+          422,
+          503
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_practice_recommend_cache_receipt_alignment_and_source_versions"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/practice/attempt",
@@ -339,7 +1155,27 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported dataset/generated practice admission/cache/source-version/receipt/evidence rules; isolated two-branch and genuine concurrent edit acceptance passed; real retrieval/model/browser pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_practice_recommend_cache_receipt_alignment_and_source_versions"
+        ],
+        "statuses": [
+          200,
+          401,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_practice_recommend_cache_receipt_alignment_and_source_versions"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/answers/handwriting",
@@ -348,7 +1184,26 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "handwriting tutor/review/generated practice acceptance passed; direct variant attempt retry/progression/assisted completion acceptance passed; live model/browser pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure"
+        ],
+        "statuses": [
+          200,
+          404,
+          422,
+          503
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/visualization",
@@ -358,7 +1213,39 @@
       "GET",
       "POST"
     ],
-    "parity": "ported from current visualizations.cj; original Python spec/Pydantic and isolated MySQL persistence/ownership acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ]
+      },
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ],
+        "statuses": [
+          200,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/system/health",
@@ -367,7 +1254,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/system/providers",
@@ -376,7 +1279,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/system/providers/probe",
@@ -385,7 +1304,23 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/system/voice",
@@ -394,7 +1329,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/admin/workbench",
@@ -403,7 +1354,25 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original admin role gate, field projections and recursive sanitization; isolated role/metrics/detail/trace/sensitive-field acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization"
+        ],
+        "statuses": [
+          200,
+          401,
+          403
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/admin/students/{student_id}",
@@ -412,7 +1381,25 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original admin role gate, field projections and recursive sanitization; isolated role/metrics/detail/trace/sensitive-field acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization"
+        ],
+        "statuses": [
+          200,
+          403,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/admin/sessions/{session_id}",
@@ -421,7 +1408,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original admin role gate, field projections and recursive sanitization; isolated role/metrics/detail/trace/sensitive-field acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/voice/transcribe",
@@ -430,7 +1434,26 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ],
+        "statuses": [
+          200,
+          400,
+          404,
+          502
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/voice/synthesize",
@@ -439,7 +1462,26 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original system/voice behavior; isolated status/audio/context/failure/cleanup acceptance passed; real provider/voice runtime pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ],
+        "statuses": [
+          200,
+          400,
+          404,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/papers",
@@ -449,7 +1491,37 @@
       "GET",
       "POST"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200,
+          401
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      },
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/papers/candidates",
@@ -458,7 +1530,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/papers/{paper_id}/export",
@@ -467,7 +1556,26 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200,
+          409,
+          422,
+          503
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/papers/{paper_id}/download",
@@ -476,7 +1584,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/papers/{paper_id}",
@@ -487,7 +1612,52 @@
       "GET",
       "PATCH"
     ],
-    "parity": "ported original paper CRUD/filter/export behavior; real local PDF/XLSX rendering and isolated ownership/rollback/checksum acceptance passed; real algorithm HTTP PDF/answer/Excel export passed; full browser/export visual parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "DELETE",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      },
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200,
+          404,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/variants/{variant_id}/attempt",
@@ -496,7 +1666,24 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "handwriting tutor/review/generated practice acceptance passed; direct variant attempt retry/progression/assisted completion acceptance passed; live model/browser pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/visualizations/types",
@@ -505,7 +1692,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current visualizations.cj; original Python spec/Pydantic and isolated MySQL persistence/ownership acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/visualizations/{visualization_id}",
@@ -514,7 +1717,24 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current visualizations.cj; original Python spec/Pydantic and isolated MySQL persistence/ownership acceptance passed; browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/turns",
@@ -523,7 +1743,25 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported with original learning-memory source/expiry rules; isolated dialogue/tools/memory acceptance passed; MySQL FLOAT/DATETIME(6) textual-cell parity regression passed; real model and browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot"
+        ],
+        "statuses": [
+          200,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/teach-back",
@@ -532,7 +1770,25 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated teach-back acceptance; completion evidence/review/idempotency acceptance passed, full activity loop pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback"
+        ],
+        "statuses": [
+          200,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/finish",
@@ -541,7 +1797,26 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated teach-back acceptance; completion evidence/review/idempotency acceptance passed, full activity loop pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/activity/answer",
@@ -550,7 +1825,25 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from tutor_answer.cj/tutor_transfer.cj; isolated full/compressed success, far-failure, help and ungradable flow acceptance passed; real model/browser and additional retry branches pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows"
+        ],
+        "statuses": [
+          200,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/advance",
@@ -559,7 +1852,27 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL resume/variant acceptance; navigation advance/rewind acceptance passed; live retrieval/model and full tutor loop pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation"
+        ],
+        "statuses": [
+          200,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/rewind",
@@ -568,7 +1881,24 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL resume/variant acceptance; navigation advance/rewind acceptance passed; live retrieval/model and full tutor loop pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}/variant",
@@ -577,7 +1907,24 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL resume/variant acceptance; navigation advance/rewind acceptance passed; live retrieval/model and full tutor loop pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions/{session_id}",
@@ -586,7 +1933,26 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL resume/variant acceptance; navigation advance/rewind acceptance passed; live retrieval/model and full tutor loop pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/tutor/sessions",
@@ -595,7 +1961,42 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "opening session ported: full/compressed policies, state/turn/tool persistence; reading/answering/continuation endpoints pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization",
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion",
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation",
+          "backend/tests/test_mysql_accounts.py::test_tutor_start_full_and_compressed_state_persistence",
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization",
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion",
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation",
+          "backend/tests/test_mysql_accounts.py::test_tutor_start_full_and_compressed_state_persistence",
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/diagnose",
@@ -604,7 +2005,24 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ],
+        "statuses": [
+          200,
+          503
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/diagnosis",
@@ -614,7 +2032,37 @@
       "GET",
       "PATCH"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/diagnosis/counterfactual",
@@ -623,7 +2071,23 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from current Cangjie source; isolated MySQL analysis/diagnosis acceptance; correction and cached counterfactual verified; uncached computation, real model/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/ingest",
@@ -632,7 +2096,26 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "isolated MySQL verified with controlled algorithm responses; real model and browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints",
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints",
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/jobs/{job_id}/retry",
@@ -641,7 +2124,24 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "isolated MySQL verified with controlled algorithm responses; real model and browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery"
+        ],
+        "statuses": [
+          200,
+          409
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/jobs/{job_id}",
@@ -650,7 +2150,25 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "isolated MySQL verified with controlled algorithm responses; real model and browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints",
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints",
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery"
+        ]
+      }
+    ]
   },
   {
     "path": "/uploads/*",
@@ -660,7 +2178,47 @@
       "GET",
       "HEAD"
     ],
-    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_signed_media_head_ranges_etag_and_symlink_rejection",
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup",
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry"
+        ],
+        "statuses": [
+          200,
+          206,
+          304,
+          403,
+          404,
+          416
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_signed_media_head_ranges_etag_and_symlink_rejection",
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup",
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry"
+        ]
+      },
+      {
+        "method": "HEAD",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_signed_media_head_ranges_etag_and_symlink_rejection"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_signed_media_head_ranges_etag_and_symlink_rejection"
+        ]
+      }
+    ]
   },
   {
     "path": "/reports/*",
@@ -670,7 +2228,36 @@
       "GET",
       "HEAD"
     ],
-    "parity": "ported from current Cangjie source; isolated database/media acceptance; real model and full browser flow pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      },
+      {
+        "method": "HEAD",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions",
@@ -679,7 +2266,26 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported from question_list.cj; isolated MySQL verified ownership, archive exclusion, display deduplication, filters and response types; enriched records and full browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data",
+          "backend/tests/test_mysql_accounts.py::test_question_list_search_deduplication_and_ownership"
+        ],
+        "statuses": [
+          200,
+          401
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data",
+          "backend/tests/test_mysql_accounts.py::test_question_list_search_deduplication_and_ownership"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/manual",
@@ -688,7 +2294,83 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "ported from manual_questions.cj and study_mistake.cj; isolated MySQL verified manual work, study snapshots, deduplication and copied figures; file-copy failure rollback verified; full browser/study flow parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization",
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation",
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics",
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion",
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_manual_question_work_steps_validation_and_study_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons",
+          "backend/tests/test_mysql_accounts.py::test_practice_recommend_cache_receipt_alignment_and_source_versions",
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes",
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits",
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection",
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup",
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_mastery_admission_distinguishes_exposure_hint_and_independence",
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_sources_stale_transitions_budgets_and_native_planning",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end",
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation",
+          "backend/tests/test_mysql_accounts.py::test_tutor_start_full_and_compressed_state_persistence",
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ],
+        "statuses": [
+          200,
+          401,
+          404,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization",
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation",
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics",
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion",
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_manual_question_work_steps_validation_and_study_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons",
+          "backend/tests/test_mysql_accounts.py::test_practice_recommend_cache_receipt_alignment_and_source_versions",
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes",
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits",
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection",
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup",
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_mastery_admission_distinguishes_exposure_hint_and_independence",
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_sources_stale_transitions_budgets_and_native_planning",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end",
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation",
+          "backend/tests/test_mysql_accounts.py::test_tutor_start_full_and_compressed_state_persistence",
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}/journey",
@@ -697,7 +2379,26 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "ported original self-check/history/journey projection; isolated source/version/audit/privacy acceptance and all original journey fixtures passed; native worker/local real workflow/expired lease acceptance passed; model/HTTP/browser parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/questions/{question_id}",
@@ -708,7 +2409,67 @@
       "GET",
       "PATCH"
     ],
-    "parity": "ported from question_detail.cj, question_edit.cj, question_api.cj; basic isolated MySQL acceptance, enriched diagnosis/workflow parity pending"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "DELETE",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data"
+        ],
+        "statuses": [
+          200,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data"
+        ]
+      },
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation",
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints",
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery",
+          "backend/tests/test_mysql_accounts.py::test_manual_question_work_steps_validation_and_study_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data"
+        ],
+        "statuses": [
+          200,
+          401,
+          404
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation",
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints",
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery",
+          "backend/tests/test_mysql_accounts.py::test_manual_question_work_steps_validation_and_study_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure"
+        ],
+        "statuses": [
+          200,
+          404,
+          409,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure"
+        ]
+      }
+    ]
   },
   {
     "path": "/livez",
@@ -717,7 +2478,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "accounts/preferences tests only"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me"
+        ]
+      }
+    ]
   },
   {
     "path": "/readyz",
@@ -726,7 +2503,23 @@
     "python_methods": [
       "GET"
     ],
-    "parity": "accounts/preferences tests only"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/auth/register",
@@ -735,7 +2528,99 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "accounts/preferences tests only"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization",
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation",
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints",
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics",
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion",
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery",
+          "backend/tests/test_mysql_accounts.py::test_manual_question_work_steps_validation_and_study_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons",
+          "backend/tests/test_mysql_accounts.py::test_practice_recommend_cache_receipt_alignment_and_source_versions",
+          "backend/tests/test_mysql_accounts.py::test_preferences_version_conflict_and_persistence",
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token",
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data",
+          "backend/tests/test_mysql_accounts.py::test_question_list_search_deduplication_and_ownership",
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me",
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes",
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits",
+          "backend/tests/test_mysql_accounts.py::test_study_bank_grade_shuffle_public_images_and_facets",
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection",
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup",
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_mastery_admission_distinguishes_exposure_hint_and_independence",
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_sources_stale_transitions_budgets_and_native_planning",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end",
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation",
+          "backend/tests/test_mysql_accounts.py::test_tutor_start_full_and_compressed_state_persistence",
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ],
+        "statuses": [
+          200,
+          409,
+          413,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_admin_workbench_details_permissions_and_recursive_sanitization",
+          "backend/tests/test_mysql_accounts.py::test_analysis_diagnosis_evidence_and_work_invalidation",
+          "backend/tests/test_mysql_accounts.py::test_crop_resume_confirm_and_ocr_endpoints",
+          "backend/tests/test_mysql_accounts.py::test_dashboard_analytics_and_error_sources_use_original_statistics",
+          "backend/tests/test_mysql_accounts.py::test_direct_variant_attempt_uncertain_retry_and_completion",
+          "backend/tests/test_mysql_accounts.py::test_generated_practice_fallback_retries_and_real_concurrent_edit",
+          "backend/tests/test_mysql_accounts.py::test_handwriting_upload_context_ownership_and_retained_failure",
+          "backend/tests/test_mysql_accounts.py::test_ingest_recognition_failure_retry_stale_and_recovery",
+          "backend/tests/test_mysql_accounts.py::test_invalid_json_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_manual_question_work_steps_validation_and_study_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_papers_real_rendering_ownership_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_personal_framework_and_versioned_knowledge_lessons",
+          "backend/tests/test_mysql_accounts.py::test_practice_recommend_cache_receipt_alignment_and_source_versions",
+          "backend/tests/test_mysql_accounts.py::test_preferences_version_conflict_and_persistence",
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token",
+          "backend/tests/test_mysql_accounts.py::test_question_detail_assets_and_archive_preserve_data",
+          "backend/tests/test_mysql_accounts.py::test_question_list_search_deduplication_and_ownership",
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me",
+          "backend/tests/test_mysql_accounts.py::test_review_attempt_receipts_supersession_grading_and_source_changes",
+          "backend/tests/test_mysql_accounts.py::test_review_search_paging_and_saved_filter_limits",
+          "backend/tests/test_mysql_accounts.py::test_study_bank_grade_shuffle_public_images_and_facets",
+          "backend/tests/test_mysql_accounts.py::test_study_sessions_save_submit_timeout_and_adaptive_selection",
+          "backend/tests/test_mysql_accounts.py::test_system_and_voice_context_files_failure_and_cleanup",
+          "backend/tests/test_mysql_accounts.py::test_task_handwriting_original_integrity_step_confirmation_and_retry",
+          "backend/tests/test_mysql_accounts.py::test_task_http_lifecycle_idempotency_roles_and_cancel",
+          "backend/tests/test_mysql_accounts.py::test_task_mastery_admission_distinguishes_exposure_hint_and_independence",
+          "backend/tests/test_mysql_accounts.py::test_task_self_checks_history_and_journey_keep_source_and_evidence_boundaries",
+          "backend/tests/test_mysql_accounts.py::test_task_sources_stale_transitions_budgets_and_native_planning",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_concurrency_recovery_stale_inputs_and_atomic_failure",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_lifespan_starts_two_workers_and_recovers_expired_task",
+          "backend/tests/test_mysql_accounts.py::test_task_worker_real_local_workflow_and_cognition_persist_end_to_end",
+          "backend/tests/test_mysql_accounts.py::test_teach_back_retry_assistance_pass_and_transaction_rollback",
+          "backend/tests/test_mysql_accounts.py::test_tutor_activity_full_and_compressed_learning_flows",
+          "backend/tests/test_mysql_accounts.py::test_tutor_dialogue_memory_tools_stage_gate_and_stale_snapshot",
+          "backend/tests/test_mysql_accounts.py::test_tutor_finish_evidence_review_and_idempotency",
+          "backend/tests/test_mysql_accounts.py::test_tutor_resume_legacy_stages_and_variant_validation",
+          "backend/tests/test_mysql_accounts.py::test_tutor_start_full_and_compressed_state_persistence",
+          "backend/tests/test_mysql_accounts.py::test_visualization_uses_original_specs_and_persists_observations"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/auth/login",
@@ -744,7 +2629,26 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "accounts/preferences tests only"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token",
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me"
+        ],
+        "statuses": [
+          200,
+          401
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token",
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/auth/reset-password",
@@ -753,7 +2657,23 @@
     "python_methods": [
       "POST"
     ],
-    "parity": "accounts/preferences tests only"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "POST",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token"
+        ],
+        "statuses": [
+          200
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token"
+        ]
+      }
+    ]
   },
   {
     "path": "/api/v1/auth/me",
@@ -763,6 +2683,38 @@
       "GET",
       "PATCH"
     ],
-    "parity": "accounts/preferences tests only"
+    "parity": "已注册，全部列出方法均在通过的后端用例中实际成功调用；具体行为断言见http_evidence。整体页面一致性仍在核对。",
+    "http_evidence_run": ".runtime/api-audit/4b9bf127/report.json",
+    "http_evidence": [
+      {
+        "method": "GET",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me"
+        ],
+        "statuses": [
+          200,
+          401
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token",
+          "backend/tests/test_mysql_accounts.py::test_register_duplicate_login_and_me"
+        ]
+      },
+      {
+        "method": "PATCH",
+        "registered": true,
+        "success_tests": [
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token"
+        ],
+        "statuses": [
+          200,
+          422
+        ],
+        "tests": [
+          "backend/tests/test_mysql_accounts.py::test_profile_email_requires_password_and_reset_revokes_token"
+        ]
+      }
+    ]
   }
 ]

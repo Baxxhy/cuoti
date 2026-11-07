@@ -75,6 +75,8 @@ def test_register_duplicate_login_and_me(client):
     assert client.get('/api/v1/auth/me', headers=headers).json()['data']['id'] == user['id']
     assert client.get('/api/v1/auth/me').status_code == 401
     assert client.get('/readyz').json()['status'] == 'database_ready'
+    live=client.get('/livez')
+    assert live.status_code==200 and live.json()['status']=='alive'
 
 
 def test_profile_email_requires_password_and_reset_revokes_token(client):
@@ -1487,6 +1489,10 @@ def test_papers_real_rendering_ownership_and_transaction_rollback(client,monkeyp
     created=client.post('/api/v1/papers',headers=headers,json={'title':'错题巩固','default_score':15})
     assert created.status_code==200,created.text
     paper=created.json()['data'];url='/api/v1/papers/'+paper['id']
+    listed=client.get('/api/v1/papers',headers=headers)
+    assert listed.status_code==200 and [item['id'] for item in listed.json()['data']]==[paper['id']]
+    assert client.get('/api/v1/papers',headers=other).json()['data']==[]
+    assert client.get('/api/v1/papers').status_code==401
     detail=client.get(url,headers=headers).json()['data']
     assert detail['items'][0]['question_id']==qid and detail['items'][0]['score']==15
     assert detail['items'][0]['analysis_ready'] is False
@@ -1516,6 +1522,11 @@ def test_papers_real_rendering_ownership_and_transaction_rollback(client,monkeyp
         assert exported.status_code==200,exported.text
         job=exported.json()['data'];signed=client.get(job['url'])
         assert signed.status_code==200,signed.text
+        head=client.head(job['url'])
+        assert head.status_code==200 and head.content==b''
+        assert int(head.headers['content-length'])==len(signed.content)
+        assert head.headers['content-type']==signed.headers['content-type']
+        assert head.headers['etag']==signed.headers['etag']
         download=client.get(url+'/download?kind='+kind,headers=headers)
         assert download.status_code==200 and download.content==signed.content
         assert client.get(url+'/download?kind='+kind,headers=other).status_code==404

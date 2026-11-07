@@ -586,5 +586,15 @@
       "name": "四角调整、移动框选和整图恢复保留原图",
       "full_title": "触屏裁剪 › 四角调整、移动框选和整图恢复保留原图"
     }
-  ]
+  ],
+  "last_verified_run": {
+    "report": ".runtime/http-smoke/e2730531/report.json",
+    "log": ".runtime/http-smoke/e2730531/e2e.log",
+    "scope": "all migrated cases",
+    "passed": 72,
+    "failed": 0,
+    "skipped": 0,
+    "duration": "6.0m",
+    "provider": "local controlled fixture; real-model cases documented separately"
+  }
 }
