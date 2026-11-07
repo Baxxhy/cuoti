@@ -27,7 +27,11 @@ def main():
                      'different_pixels': int(np.any(difference != 0, axis=2).sum()),
                      'pixels_above_8': int(np.any(difference > 8, axis=2).sum()),
                      'max_channel_delta': int(difference.max())})
-    result = {'screenshot_pairs': len(rows),
+    report_path = args.directory / 'report.json'
+    comparisons = json.loads(report_path.read_text()) if report_path.is_file() else []
+    modes = {row.get('comparisonMode', 'unspecified') for row in comparisons}
+    comparison_mode = next(iter(modes)) if len(modes) == 1 else 'unspecified'
+    result = {'comparison_mode': comparison_mode, 'screenshot_pairs': len(rows),
               'exact_pairs': sum(row.get('different_pixels') == 0 for row in rows),
               'incomplete_pairs': sum('different_pixels' not in row for row in rows),
               'note': 'All RGB differences count; pixels_above_8 is supplemental, not an equality threshold.',
