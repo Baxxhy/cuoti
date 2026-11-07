@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f3">
+  <title>师承智学 · 教学与学习原型</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <aside id="sidebar">
+    <a class="brand" href="#home"><span class="brand-mark">师承</span><span>师承智学<small>让好的教学，继续发生</small></span></a>
+    <label class="role-label" for="role">演示身份</label>
+    <select id="role"><option value="student">学生端</option><option value="teacher">教师端</option><option value="admin">内容管理端</option></select>
+    <nav id="navigation" aria-label="主要导航"></nav>
+    <div class="sidebar-bottom"><p>一元一次方程</p><small>首课 · 等式性质</small><div class="demo-label">交互原型 · 全部为演示数据</div><button class="text-button" id="reset">重置演示进度</button></div>
+  </aside>
+  <div class="mobile-bar"><a href="#home">师承智学</a><button id="menu" aria-expanded="false" aria-controls="sidebar">菜单</button></div>
+  <main id="main"></main>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="dialog"><form method="dialog"><button class="close" aria-label="关闭弹窗">关闭</button></form><div id="dialog-content"></div></dialog>
+</body>
+</html>
