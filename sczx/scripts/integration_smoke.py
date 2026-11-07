@@ -1,6 +1,7 @@
 """Real web proxy -> business HTTP -> algorithm HTTP -> isolated MySQL acceptance.
 
-A known analysis is seeded as a fixture. OCR/model analysis and voice are not tested here.
+A known analysis is seeded as a fixture. External LLM analysis is not tested here.
+SCZX_RUN_LIVE_VOICE=1 explicitly enables live TTS/local STT HTTP acceptance.
 """
 import json
 import hashlib
@@ -203,6 +204,10 @@ def main():
                     assert http.get(base+'/api/v1/papers/'+paper['id']+'/download?kind='+kind,headers=headers).content==downloaded.content
                     (artifacts/('paper-'+kind+('.xlsx' if kind=='excel' else '.pdf'))).write_bytes(downloaded.content)
                 report['checks'].append('real algorithm HTTP PDF/answer/Excel export and download')
+                if os.environ.get('SCZX_RUN_LIVE_VOICE')=='1':
+                    from live_voice_smoke import verify_live_voice
+                    report['live_voice']=verify_live_voice(http,base,headers,user['id'],qid,artifacts)
+                    report['checks'].append('live TTS and local STT through web proxy/business/algorithm; persisted original audio and signed range download')
                 compatibility=subprocess.run(['node',str(ROOT/'scripts/browser_smoke.mjs')],cwd=ROOT,env={**env,'SCZX_WEB_URL':base},capture_output=True,text=True,timeout=45)
                 assert compatibility.returncode==0,compatibility.stdout+'\n'+compatibility.stderr
                 report['checks'].append('controlled login/register/image-picker browser compatibility')

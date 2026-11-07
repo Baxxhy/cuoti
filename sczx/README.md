@@ -4,7 +4,7 @@
 
 目前已接入原版83条接口，后台学习任务可以执行和恢复。独立环境下已通过99项后端测试、694项算法全量测试、25项前端测试及网页构建。账号、资料、录题、裁剪、练习、考试、复习、任务恢复、函数图及全站手机/桌面等72项浏览器验收已完整一轮通过。真实浏览器已走通“订正一步→独立解原题→完成对照题”，并通过实际HTTP服务生成和下载PDF、答案PDF、Excel。
 
-接下来继续核对其余网页操作、原版页面呈现和真实模型/语音。具体记录见 [MIGRATION_STATUS.md](MIGRATION_STATUS.md)。
+已实际检查当前模型的文字/图片连通性，以及一条合成中文语音的合成、转写、保存和下载。接下来继续核对完整图片识别与诊断、浏览器录音和剩余页面差异。具体记录见 [MIGRATION_STATUS.md](MIGRATION_STATUS.md)。
 
 ## 安装和启动
 
@@ -108,3 +108,19 @@ SCZX_RUN_E2E=1 .venv/bin/python scripts/integration_smoke.py
 选择器正在对齐原版：手机使用底部滚轮，桌面使用字段旁的列表。确认、取消和实际多选题录入已验证；短列表初始位置及少量叠层渲染差异仍在核对，详见MIGRATION_STATUS.md。
 
 滚轮现已支持连续拖动、惯性和回弹；学科选择器已用相同真实触屏轨迹对照原版，停靠位置和最终选项一致。滚动计算模块的来源及许可证保存在frontend/src/platform/vendor/。
+
+## 实际模型和语音检查
+
+以下命令会实际请求所配置的服务，不属于默认测试；只发送合成样例，不使用学生资料。模型探测默认最多1个条目，报告不会输出凭据：
+
+```bash
+.venv/bin/python scripts/live_provider_smoke.py --pool-path /你的配置/api_pool.json --env-file .env --voice
+```
+
+语音识别首次使用需要Whisper small模型缓存，默认位于本目录.models/faster-whisper。本次已复制已有缓存并在离线模式下成功加载，缓存不提交Git。要检查网页代理、后端、算法服务、MySQL和原音下载整条链路，可以显式运行：
+
+```bash
+SCZX_RUN_LIVE_VOICE=1 .venv/bin/python scripts/integration_smoke.py
+```
+
+已验证的一句语音存在“已知”被识别为“一支”的误差，结果可编辑；这些检查证明链路能用，不代表所有录音都能准确识别。
