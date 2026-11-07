@@ -1,78 +1,79 @@
+import { InfoTip } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+Dialog,
+DialogContent,
+DialogDescription,
+DialogHeader,
+DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+Select,
+SelectContent,
+SelectItem,
+SelectTrigger,
+SelectValue,
 } from "@/components/ui/select";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetTitle,
+Sheet,
+SheetContent,
+SheetDescription,
+SheetTitle,
 } from "@/components/ui/sheet";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
+Tooltip,
+TooltipContent,
+TooltipProvider,
+TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { navigate } from "@/lib/navigation";
-import { Courses, Home, Records } from "@/pages/home";
+import { Courses,Home,Records } from "@/pages/home";
 import {
-  CheckLesson,
-  Learning,
-  Repair,
-  Result,
-  WrongQuestions,
+CheckLesson,
+Learning,
+Repair,
+Result,
+WrongQuestions,
 } from "@/pages/learning";
-import { Issues, Manage } from "@/pages/manage";
+import { Issues,Manage } from "@/pages/manage";
 import {
-  CaseDetail,
-  Cases,
-  Classroom,
-  Insights,
-  Prepare,
+CaseDetail,
+Cases,
+Classroom,
+Insights,
+Prepare,
 } from "@/pages/teacher";
 import type { LucideIcon } from "lucide-react";
 import {
-  ArrowUpRight,
-  Bell,
-  BookOpen,
-  BookOpenText,
-  Check,
-  ChevronDown,
-  ChevronRight,
-  CircleHelp,
-  FileText,
-  GraduationCap,
-  History,
-  Layers,
-  LayoutDashboard,
-  LibraryBig,
-  Menu,
-  MessageSquareText,
-  NotebookPen,
-  Search,
-  Settings2,
-  Users,
+ArrowUpRight,
+Bell,
+BookOpen,
+BookOpenText,
+Check,
+ChevronDown,
+ChevronRight,
+CircleHelp,
+FileText,
+GraduationCap,
+History,
+Layers,
+LayoutDashboard,
+LibraryBig,
+Menu,
+MessageSquareText,
+NotebookPen,
+Search,
+Settings2,
+Users,
 } from "lucide-react";
 import {
-  AnimatePresence,
-  motion,
-  MotionConfig,
-  useReducedMotion,
+AnimatePresence,
+motion,
+MotionConfig,
+useReducedMotion,
 } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 
 type NavItem = { route: string; label: string; icon: LucideIcon };
 const navigation: Record<string, NavItem[]> = {
@@ -185,9 +186,7 @@ function App() {
         <span className="brand-symbol">
           <BookOpenText size={23} strokeWidth={1.8} />
         </span>
-        <span>
-          师承智学<span className="brand-caption">Shicheng Learning</span>
-        </span>
+        <span>师承智学</span>
       </a>
       <div className="workspace-switch">
         <Select
@@ -218,7 +217,6 @@ function App() {
             ))}
           </SelectContent>
         </Select>
-        <span className="workspace-caption">七年级 · 数学学习</span>
       </div>
       <div className="nav-label">
         {role === "student"
@@ -245,17 +243,6 @@ function App() {
         ))}
       </nav>
       <div className="sidebar-bottom">
-        <div className="experience-note">
-          <div>
-            <BookOpenText size={17} />
-            <span>好经验，陪伴每一次理解</span>
-          </div>
-          <p>把优秀教学经验，带到日常学习中。</p>
-          <button onClick={() => navigate("cases")}>
-            发现教学案例
-            <ArrowUpRight size={14} />
-          </button>
-        </div>
         <Button
           variant="ghost"
           className="utility-button"
@@ -276,7 +263,6 @@ function App() {
                   ? "教师演示账号"
                   : "内容管理账号"}
             </strong>
-            <small>演示空间</small>
           </span>
           <Button
             size="icon-sm"
@@ -292,11 +278,11 @@ function App() {
   );
   const searchResults = [
     { route: "learn", title: "等式性质", subtitle: "七年级数学 · 第 1 课" },
-    { route: "wrong", title: "错题帮", subtitle: "回看原题，理解错误原因" },
+    { route: "wrong", title: "错题帮", subtitle: "错题记录" },
     {
       route: "cases",
       title: "天平与等式 · 教学案例",
-      subtitle: "用于教师备课的经验示例",
+      subtitle: "教学案例",
     },
   ].filter((item) => (item.title + item.subtitle).includes(search));
   return (
@@ -350,7 +336,12 @@ function App() {
                   </TooltipTrigger>
                   <TooltipContent>消息与提醒</TooltipContent>
                 </Tooltip>
-                <span className="topbar-demo">演示预览</span>
+                <span className="topbar-demo">
+                  演示
+                  <InfoTip label="演示范围">
+                    数据为演示；模型生成和发布采用本地模拟，学习记录保存在当前浏览器。
+                  </InfoTip>
+                </span>
               </div>
             </header>
             <main>
@@ -367,10 +358,6 @@ function App() {
                 </motion.div>
               </AnimatePresence>
             </main>
-            <footer className="page-footer">
-              <span>师承智学 · 让好的教学，与你相遇</span>
-              <span>界面原型，学习与班级数据均为演示</span>
-            </footer>
           </div>
         </div>
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -386,7 +373,9 @@ function App() {
           <DialogContent className="search-dialog">
             <DialogHeader>
               <DialogTitle>搜索学习内容</DialogTitle>
-              <DialogDescription>查找课程、错题与教学案例</DialogDescription>
+              <DialogDescription className="sr-only">
+                查找课程、错题与教学案例
+              </DialogDescription>
             </DialogHeader>
             <Input
               autoFocus
@@ -422,7 +411,9 @@ function App() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>消息与提醒</DialogTitle>
-              <DialogDescription>演示任务的最新动态</DialogDescription>
+              <DialogDescription className="sr-only">
+                演示任务的最新动态
+              </DialogDescription>
             </DialogHeader>
             <button
               className="notification-row"
@@ -434,7 +425,6 @@ function App() {
               <span className="notification-dot" />
               <span>
                 <strong>等式性质 · 查看学习反馈</strong>
-                <small>你可以查看作答记录，并继续补充练习。</small>
               </span>
               <ChevronRight size={16} />
             </button>
@@ -444,7 +434,7 @@ function App() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>体验师承智学</DialogTitle>
-              <DialogDescription>
+              <DialogDescription className="sr-only">
                 通过空间切换体验学生、教师与内容管理流程。
               </DialogDescription>
             </DialogHeader>

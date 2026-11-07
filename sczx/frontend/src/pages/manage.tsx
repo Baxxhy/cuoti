@@ -1,36 +1,36 @@
 import type { PageProps } from "@/App";
 import {
-  PageHeading,
-  RouteButton,
-  SectionHeading,
-  Status,
-  Surface,
+InfoTip,PageHeading,
+RouteButton,
+SectionHeading,
+Status,
+Surface
 } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+Dialog,
+DialogContent,
+DialogDescription,
+DialogHeader,
+DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs,TabsList,TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useLearning } from "@/store";
 import {
-  ArrowRight,
-  BookOpen,
-  Check,
-  CheckCircle2,
-  ChevronRight,
-  CircleAlert,
-  FileCheck2,
-  FileText,
-  Layers,
-  LoaderCircle,
-  RotateCcw,
-  Upload,
+ArrowRight,
+BookOpen,
+Check,
+CheckCircle2,
+ChevronRight,
+CircleAlert,
+FileCheck2,
+FileText,
+Layers,
+LoaderCircle,
+RotateCcw,
+Upload,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
@@ -42,7 +42,7 @@ export function Manage({
   const { casePublished, update } = useLearning();
   const [tab, setTab] = useState("case");
   const [source, setSource] = useState("");
-  const [title, setTitle] = useState("从天平上的变化，走向等式的性质");
+  const [title, setTitle] = useState("天平与等式性质");
   const [content, setContent] = useState(
     "先请学生预测，再共同操作。用等式表达两边的变化，追问“同时”和“相同”的意义。学生只记住变号时，回到两边相同运算的完整过程。",
   );
@@ -51,12 +51,7 @@ export function Manage({
   const [preview, setPreview] = useState(false);
   return (
     <>
-      <PageHeading
-        title={
-          course ? "把内容，组织成完整的一课。" : "让每一份经验，有据可查。"
-        }
-        description="对照原始材料整理教学经验，再核对、修订与发布。"
-      >
+      <PageHeading title={course ? "课程内容" : "资料与案例"}>
         <Button variant="outline" onClick={() => setPreview(true)}>
           <BookOpen />
           查看案例预览
@@ -134,9 +129,9 @@ export function Manage({
             </p>
             <div className="source-page-number">材料示例 · 第 1 页</div>
           </div>
-          <p className="source-note">
+          <InfoTip label="内容来源说明">
             当前为团队编写材料，正式内容需登记真实作者、原文与使用条件。
-          </p>
+          </InfoTip>
         </Surface>
         <Surface className="experience-editor">
           <Tabs value={tab} onValueChange={setTab}>
@@ -229,14 +224,14 @@ export function Manage({
         <DialogContent className="case-preview-dialog">
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="sr-only">
               当前编辑内容预览 · 团队编写示例
             </DialogDescription>
           </DialogHeader>
           <div className="dialog-copy">{content}</div>
-          <p className="source-note">
+          <InfoTip label="内容来源说明">
             来源：{source || "当前自编示例，待整理真实公开材料。"}
-          </p>
+          </InfoTip>
         </DialogContent>
       </Dialog>
     </>
@@ -252,10 +247,7 @@ export function Issues({ notify }: PageProps) {
   const [retried, setRetried] = useState(false);
   return (
     <>
-      <PageHeading
-        title="让问题，回到可以改进的地方。"
-        description="定位具体内容，回复师生反馈，并继续未完成的任务。"
-      />
+      <PageHeading title="反馈与运行" />
       <Surface>
         <SectionHeading title="内容反馈" />
         <div className="feedback-issue">
@@ -264,7 +256,7 @@ export function Issues({ notify }: PageProps) {
           </span>
           <div>
             <h3>为什么只改变一边，等式就不成立了？</h3>
-            <p>来自等式性质 · 观察活动 · 演示反馈</p>
+            <p>等式性质 · 观察活动</p>
           </div>
           <Status tone={resolved ? "green" : "amber"}>
             {resolved ? "已处理" : "待处理"}
@@ -283,7 +275,7 @@ export function Issues({ notify }: PageProps) {
           </span>
           <div>
             <h3>配套教学内容生成</h3>
-            <p>原型模拟任务 · 可重试并查看结果</p>
+            <p>模拟失败</p>
           </div>
           <Status tone={retried ? "green" : "amber"}>
             {retried ? "重试成功" : retrying ? "重试中" : "模拟失败"}
@@ -318,7 +310,9 @@ export function Issues({ notify }: PageProps) {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>回复这次学习中的疑问</DialogTitle>
-            <DialogDescription>等式性质 · 观察活动</DialogDescription>
+            <DialogDescription className="sr-only">
+              等式性质 · 观察活动
+            </DialogDescription>
           </DialogHeader>
           <Textarea
             value={reply}

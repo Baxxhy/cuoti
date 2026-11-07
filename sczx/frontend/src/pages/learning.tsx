@@ -1,45 +1,43 @@
 import type { PageProps } from "@/App";
 import {
-  ExperienceLink,
-  PageHeading,
-  RouteButton,
-  SectionHeading,
-  Status,
-  Surface,
+ExperienceLink,InfoTip,PageHeading,
+RouteButton,
+SectionHeading,
+Status,
+Surface
 } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+Dialog,
+DialogContent,
+DialogDescription,
+DialogHeader,
+DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs,TabsList,TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Workspace } from "@/components/workspace";
 import { navigate } from "@/lib/navigation";
-import { questions, useLearning } from "@/store";
+import { questions,useLearning } from "@/store";
 import {
-  ArrowLeft,
-  ArrowRight,
-  BookOpen,
-  Check,
-  CheckCircle2,
-  ChevronRight,
-  CircleHelp,
-  Clock3,
-  ImagePlus,
-  Lightbulb,
-  Plus,
-  RotateCcw,
-  Send,
-  Sparkles,
-  Upload,
+ArrowLeft,
+ArrowRight,
+BookOpen,
+Check,
+CheckCircle2,
+ChevronRight,
+CircleHelp,
+ImagePlus,
+Lightbulb,
+Plus,
+RotateCcw,
+Send,
+Sparkles,
+Upload
 } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence,motion } from "motion/react";
 import { useState } from "react";
 
 export function Learning({ notify }: PageProps) {
@@ -52,21 +50,12 @@ export function Learning({ notify }: PageProps) {
   const [imageName, setImageName] = useState("");
   const primary = (
     <article className="lesson-paper">
-      <div className="lesson-paper-heading">
-        <span className="lesson-topic">观察与理解</span>
-        <span className="reading-time">
-          <Clock3 size={13} />
-          按自己的节奏
-        </span>
-      </div>
       <h2>
         如果两边一起变化，
         <br />
         相等关系会改变吗？
       </h2>
-      <p className="lesson-introduction">
-        先观察这架平衡的天平。试着给两边增加相同数量，再解释你看到了什么。
-      </p>
+
       <div className="interactive-balance">
         <div className="balance-math">
           <span>{5 + weight}</span>
@@ -168,13 +157,11 @@ export function Learning({ notify }: PageProps) {
           <Sparkles size={19} />
         </span>
         <div>
-          <h3>陪你多想一步</h3>
-          <p>根据你的问题，换一种理解方式</p>
+          <h3>学习助手</h3>
         </div>
       </div>
       <div className="assistant-message">
         <p>先想一想，天平平衡的时候，两边有什么共同的特点？</p>
-        <p>你可以先预测，再点击操作验证自己的想法。</p>
       </div>
       <div className="help-options">
         <Button
@@ -234,7 +221,7 @@ export function Learning({ notify }: PageProps) {
               }
             />
           </label>
-          <span>{imageName || "支持上传题图"}</span>
+          <span>{imageName || "选择题图"}</span>
           <Button
             size="icon"
             aria-label="发送问题"
@@ -252,9 +239,6 @@ export function Learning({ notify }: PageProps) {
         </div>
       </div>
       <ExperienceLink />
-      <p className="assistant-disclaimer">
-        原型指导为预设示例，后续接入教学案例与模型 API。
-      </p>
     </aside>
   );
   return (
@@ -266,10 +250,7 @@ export function Learning({ notify }: PageProps) {
         </Button>
         <span>七年级数学 / 一元一次方程</span>
       </div>
-      <PageHeading
-        title="等式性质"
-        description="从观察出发，解释等式两边共同变化的道理。"
-      >
+      <PageHeading title="等式性质">
         <Status tone="blue">学习中</Status>
         <RouteButton route="result" secondary>
           学习结果
@@ -320,10 +301,7 @@ export function CheckLesson({ notify }: PageProps) {
           返回本课
         </Button>
       </div>
-      <PageHeading
-        title="把理解，交给一道新题。"
-        description="先试着独立完成，需要时也可以获得帮助。"
-      />
+      <PageHeading title="独立检查" />
       <div className="check-grid">
         <Surface className="question-card">
           <div className="question-meta">
@@ -367,7 +345,6 @@ export function CheckLesson({ notify }: PageProps) {
                 <div>
                   <strong>一点提示</strong>
                   <p>{current.hint}</p>
-                  <small>本题会记录帮助情况，理解后可以换新题。</small>
                 </div>
               </motion.div>
             )}
@@ -377,15 +354,9 @@ export function CheckLesson({ notify }: PageProps) {
               <CheckCircle2 size={18} />
               <div>
                 <strong>
-                  {answer.trim() === current.answer
-                    ? "数值正确，看看你的解释是否完整。"
-                    : "再想一想，两边进行了相同的运算吗？"}
+                  {answer.trim() === current.answer ? "数值正确" : "需要订正"}
                 </strong>
-                <p>
-                  {helped
-                    ? "本次获得过帮助，下一题再试试独立完成。"
-                    : "已保存本次独立作答，解释内容可由教师查看。"}
-                </p>
+                <p>{helped ? "已记录帮助" : "已记录独立作答"}</p>
               </div>
             </div>
           )}
@@ -415,41 +386,29 @@ export function CheckLesson({ notify }: PageProps) {
           </div>
         </Surface>
         <aside className="check-aside">
-          <span className="check-aside-icon">
-            <TargetIcon />
-          </span>
-          <h2>理解，可以多试一次。</h2>
-          <p>
-            使用帮助后，当前题会作为指导练习保留。下一道新题，将重新记录你的独立表现。
-          </p>
+          <InfoTip label="独立检查规则">
+            获得提示后，本题作为指导练习保留；换新题检查时重新记录独立作答。
+          </InfoTip>
+
           <Button variant="outline" onClick={nextQuestion}>
             换一道新题
             <ArrowRight />
           </Button>
           <Button variant="ghost" onClick={() => navigate("result")}>
-            保存并稍后继续
+            查看本课结果
             <ChevronRight />
           </Button>
-          <p className="small-caption">
-            演示包含两道检查题，所有尝试都可回看。
-          </p>
         </aside>
       </div>
     </>
   );
-}
-function TargetIcon() {
-  return <CheckCircle2 size={28} strokeWidth={1.3} />;
 }
 export function Result({ notify }: PageProps) {
   const { attempts, completed, feedback, update, repaired } = useLearning();
   const independent = attempts.filter((item) => item.correct && !item.helped);
   return (
     <>
-      <PageHeading
-        title="看见自己，正在理解。"
-        description="等式性质 · 本课的每一步都有记录。"
-      >
+      <PageHeading title="本课结果">
         <RouteButton route="learn" secondary>
           返回本课
         </RouteButton>
@@ -459,8 +418,7 @@ export function Result({ notify }: PageProps) {
           <CheckCircle2 size={32} strokeWidth={1.4} />
         </span>
         <div>
-          <h2>{completed ? "本课学习结果已提交" : "把这次学习，整理一下"}</h2>
-          <p>你可以回看作答、继续补救，或把当前结果提交给教师。</p>
+          <h2>{completed ? "已提交" : "待提交"}</h2>
         </div>
         <Button
           onClick={() => {
@@ -513,7 +471,6 @@ export function Result({ notify }: PageProps) {
             <span>师</span>
             <div>
               <h3>教师的反馈</h3>
-              <p>演示反馈 · 可在教师端修改</p>
             </div>
           </div>
           <blockquote>{feedback}</blockquote>
@@ -537,10 +494,7 @@ export function WrongQuestions({ notify }: PageProps) {
     (filter === "done" && repaired);
   return (
     <>
-      <PageHeading
-        title="把没想明白的，再想明白。"
-        description="保留原题和当时的思考，让每一道错题成为下一步。"
-      >
+      <PageHeading title="错题帮">
         <Button onClick={() => setOpen(true)}>
           <Plus />
           录入一道题
@@ -549,7 +503,6 @@ export function WrongQuestions({ notify }: PageProps) {
       <div className="wrong-summary">
         <NotebookSymbol />
         <div>
-          <h2>我的错题本</h2>
           <p>一元一次方程 · 1 道演示题</p>
         </div>
         <Status tone={repaired ? "green" : "amber"}>
@@ -593,35 +546,26 @@ export function WrongQuestions({ notify }: PageProps) {
               </Button>
             </div>
           </Surface>
-          <div className="wrong-guidance">
-            <Lightbulb size={27} strokeWidth={1.3} />
-            <h3>答案背后，还有思路。</h3>
-            <p>
-              先看看当时为什么这样做，再通过提示、讲解和新题，建立自己的理解。
-            </p>
-            <ExperienceLink />
-          </div>
         </div>
       ) : (
         <Surface>
           <div className="empty-state">
             <h3>这个分类还没有题目</h3>
-            <p>完成补救后，可以在“已订正”中回看。</p>
           </div>
         </Surface>
       )}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="upload-dialog">
           <DialogHeader>
-            <DialogTitle>把题目放进错题本</DialogTitle>
-            <DialogDescription>
+            <DialogTitle>录入题目</DialogTitle>
+            <DialogDescription className="sr-only">
               选择原图或填写题目，确认后开始补救。
             </DialogDescription>
           </DialogHeader>
           <label className="upload-dropzone">
             <Upload size={26} />
             <strong>点击选择题图</strong>
-            <span>图片仅用于当前浏览器内的原型预览</span>
+
             <input
               type="file"
               accept="image/*"
@@ -649,9 +593,9 @@ export function WrongQuestions({ notify }: PageProps) {
             value={text}
             onChange={(event) => setText(event.target.value)}
           />
-          <p className="small-caption">
-            当前补救演示针对 x + 3 = 8。自定义题目的智能识别与生成在后续接入。
-          </p>
+          <InfoTip label="录题范围">
+            可保存题目文字；补救内容当前使用 x + 3 = 8 的固定示例。
+          </InfoTip>
           <Button
             onClick={() => {
               if (!text.trim()) return notify("请先填写题目");
@@ -691,10 +635,7 @@ export function Repair({ notify }: PageProps) {
           返回错题帮
         </Button>
       </div>
-      <PageHeading
-        title="两边的变化，要保持一致。"
-        description="回看最初的想法，再给自己一次独立完成的机会。"
-      >
+      <PageHeading title="错题订正">
         <RouteButton route="result" secondary>
           返回原任务
         </RouteButton>
@@ -722,8 +663,7 @@ export function Repair({ notify }: PageProps) {
           <ExperienceLink />
         </Surface>
         <Surface className="repair-practice">
-          <span className="tiny-label">再试一次</span>
-          <h2>换个数字，解释你的方法。</h2>
+          <h2>变式练习</h2>
           <div className="question-equation">z + 2 = 9</div>
           <label className="field-label" htmlFor="repair-answer">
             z 的值是多少？

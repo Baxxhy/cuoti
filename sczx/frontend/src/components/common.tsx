@@ -1,24 +1,26 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card,CardContent } from "@/components/ui/card";
+import {
+Tooltip,
+TooltipContent,
+TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { navigate } from "@/lib/navigation";
-import { ArrowUpRight, ChevronRight, Sparkles } from "lucide-react";
-import type { ReactNode } from "react";
+import { BookOpen,ChevronRight,Info } from "lucide-react";
+import { useId, type ReactNode } from "react";
 
 export function PageHeading({
   title,
-  description,
   children,
 }: {
   title: string;
-  description: string;
   children?: ReactNode;
 }) {
   return (
     <div className="page-heading">
       <div>
         <h1>{title}</h1>
-        <p>{description}</p>
       </div>
       <div className="heading-actions">{children}</div>
     </div>
@@ -83,18 +85,44 @@ export function RouteButton({
 }
 export function ExperienceLink() {
   return (
-    <div className="experience-link">
-      <Sparkles size={16} />
-      <span>教学经验支持</span>
-      <Button
-        size="icon-xs"
-        variant="ghost"
-        aria-label="查看参考教学案例"
-        onClick={() => navigate("case-detail")}
+    <Button
+      variant="ghost"
+      className="experience-link"
+      onClick={() => navigate("case-detail")}
+    >
+      <BookOpen size={15} />
+      参考案例
+      <ChevronRight size={14} />
+    </Button>
+  );
+}
+export function InfoTip({
+  label,
+  children,
+}: {
+  label: string;
+  children: ReactNode;
+}) {
+  const descriptionId = useId();
+  return (
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            className="info-tip"
+            aria-label={label}
+            aria-describedby={descriptionId}
+          />
+        }
       >
-        <ArrowUpRight />
-      </Button>
-    </div>
+        <Info size={15} />
+      </TooltipTrigger>
+      <TooltipContent id={descriptionId} role="tooltip" className="max-w-72 text-xs leading-relaxed">
+        {children}
+      </TooltipContent>
+    </Tooltip>
   );
 }
 export function Status({
@@ -116,13 +144,13 @@ export function EmptyState({
   children,
 }: {
   title: string;
-  description: string;
+  description?: string;
   children?: ReactNode;
 }) {
   return (
     <div className="empty-state">
       <h3>{title}</h3>
-      <p>{description}</p>
+      {description && <p>{description}</p>}
       {children}
     </div>
   );
