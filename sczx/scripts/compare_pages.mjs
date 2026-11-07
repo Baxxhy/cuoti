@@ -32,7 +32,7 @@ try{
   const service=await serve(folder);servers.push(service.server)
   for(const width of [390,1280])for(const route of cases){
    const anonymous=/pages\/(login|register|forgot)\//.test(route)
-   const context=await browser.newContext({viewport:{width,height:width===390?844:900},reducedMotion:'reduce',deviceScaleFactor:1,...(process.env.SCZX_COMPARE_TOUCH&&width===390?{hasTouch:true,isMobile:true}:{} )})
+   const context=await browser.newContext({viewport:{width,height:width===390?844:900},reducedMotion:'reduce',colorScheme:process.env.SCZX_COMPARE_COLOR_SCHEME||'light',deviceScaleFactor:1,...(process.env.SCZX_COMPARE_TOUCH&&width===390?{hasTouch:true,isMobile:true}:{} )})
    await context.addInitScript(({name,anonymous})=>{if(!anonymous)localStorage.setItem('minddimension_access_token',name==='original'?'ui-token':JSON.stringify('ui-token'))},{name,anonymous})
    const page=await context.newPage();const errors=[];const writes=[]
    page.on('pageerror',e=>errors.push(e.message))
@@ -201,7 +201,7 @@ try{
  const comparisons=results.filter(r=>r.name==='original').map(a=>{
   const b=results.find(r=>r.name==='vue'&&r.route===a.route&&r.width===a.width)
   if(a.pickerMotion&&a.pickerMotion.selectedLabel!==b.pickerMotion?.selectedLabel)throw new Error('Original and Vue picker swipe selections differ')
-  return {route:a.route,width:a.width,vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,pickerVisualOnly:!!process.env.SCZX_PICKER_VISUAL_ONLY,touchContext:!!process.env.SCZX_COMPARE_TOUCH&&a.width===390,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,vuePreviewGestures:b.previewGestures,originalPickerInteraction:a.pickerInteraction,vuePickerInteraction:b.pickerInteraction,originalPickerMotion:a.pickerMotion,vuePickerMotion:b.pickerMotion,originalWrites:a.writes,vueWrites:b.writes}
+  return {route:a.route,width:a.width,colorScheme:process.env.SCZX_COMPARE_COLOR_SCHEME||'light',vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,pickerVisualOnly:!!process.env.SCZX_PICKER_VISUAL_ONLY,touchContext:!!process.env.SCZX_COMPARE_TOUCH&&a.width===390,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,vuePreviewGestures:b.previewGestures,originalPickerInteraction:a.pickerInteraction,vuePickerInteraction:b.pickerInteraction,originalPickerMotion:a.pickerMotion,vuePickerMotion:b.pickerMotion,originalWrites:a.writes,vueWrites:b.writes}
  })
  fs.writeFileSync(path.join(artifacts,'report.json'),JSON.stringify(comparisons,null,2)+'\n')
  console.log(JSON.stringify({artifacts,cases:comparisons.length,textDifferences:comparisons.filter(c=>!c.textEqual).length,pageErrors:comparisons.filter(c=>c.originalErrors.length||c.vueErrors.length).length}))

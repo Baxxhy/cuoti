@@ -1,3 +1,4 @@
+/* 原版manifest未启用darkmode，弹窗跟随其H5产物保持浅色样式。 */
 .web-modal-host {
   position: fixed;
   top: 0;
@@ -132,28 +133,6 @@
   color: #007aff;
 }
 
-@media (prefers-color-scheme: dark) {
-  .uni-modal {
-    color: var(--UI-FG-0);
-    background-color: var(--UI-BG-2);
-  }
-
-  .uni-modal__bd {
-    color: var(--UI-FG-1);
-  }
-
-  .uni-modal__btn:active {
-    color: rgb(170, 170, 170);
-    background-color: var(--UI-BG-COLOR-ACTIVE);
-  }
-
-  .uni-modal__ft:after,
-  .uni-modal__btn:after {
-    color: var(--UI-BORDER-COLOR-1);
-    border-color: var(--UI-BORDER-COLOR-1);
-  }
-}
-
 .web-sheet-host {
   display: block;
   box-sizing: border-box;
@@ -261,31 +240,6 @@
 
   .uni-actionsheet__action {
     display: none;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .uni-actionsheet__title {
-    background-color: var(--UI-BG-1);
-    border-bottom-color: var(--UI-BORDER-COLOR-1);
-  }
-
-  body .uni-actionsheet {
-    background-color: var(--UI-BG-1);
-  }
-
-  .uni-actionsheet__action,
-  body .uni-actionsheet__menu {
-    background-color: var(--UI-BG-2);
-  }
-
-  .uni-actionsheet__cell:active {
-    background-color: var(--UI-BG-COLOR-ACTIVE);
-  }
-
-  .uni-actionsheet__cell:before {
-    border-top-color: var(--UI-BORDER-COLOR-1);
-    color: var(--UI-BORDER-COLOR-1);
   }
 }
 
