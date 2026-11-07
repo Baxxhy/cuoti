@@ -66,7 +66,7 @@ async function main() {
   *{box-sizing:border-box}body{font:14px/1.9 'Noto Sans CJK SC','Microsoft YaHei',sans-serif;color:#202632;margin:0}h1{font-size:23px;font-weight:600;text-align:center;margin:0 0 25px;line-height:1.6}.question{margin-bottom:28px;break-inside:auto}.stem{white-space:pre-wrap;break-after:avoid}.ordinal{font-weight:600}.option{margin:5px 0 0 14px;white-space:pre-wrap}.answer,.solution{margin-top:12px;white-space:pre-wrap;orphans:3;widows:3}.solution{color:#333f50}.figure{display:block;max-width:100%;max-height:270px;object-fit:contain;margin:12px 0;break-inside:avoid;break-before:avoid}.answer-space{height:65px}.katex{white-space:normal;font-size:1.08em}.katex-display{margin:8px 0}.math-table{max-width:100%}strong{font-weight:600}table{border-collapse:collapse}td,th{padding:4px;border:1px solid #aaa}
   .sheet-cell{padding:6px;white-space:pre-wrap;overflow-wrap:anywhere;background:white;font-size:14px;line-height:1.9;margin-bottom:8px}
   </style></head><body>${content}</body></html>`;
-  const { chromium } = requireFrontend("@playwright/test");
+  const { chromium } = requireFrontend("playwright");
   let executablePath = process.env.SCZX_PDF_CHROMIUM || process.env.ZHIWEI_PDF_CHROMIUM;
   const bundled = process.env.PLAYWRIGHT_BROWSERS_PATH;
   if (!executablePath && fs.existsSync(bundled)) {

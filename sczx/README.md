@@ -5,5 +5,4 @@
 项目文档集中在 `docs/`。
 
 - [功能技术与落地计划](docs/planning/功能技术与落地计划_20261107_v9.md)
-- [现有功能与检查结果](docs/development/核对说明_20261107_v1.md)
 - [安装、启动与检查](docs/development/使用说明_20261107_v1.md)
