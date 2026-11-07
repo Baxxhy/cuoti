@@ -10,7 +10,6 @@ import {
   FileCheck2,
   FileText,
   Layers,
-  Upload,
 } from "lucide-vue-next";
 import { useLearning } from "@/store.js";
 defineProps({ course: Boolean });
@@ -36,10 +35,6 @@ const reviewed = computed({
   get: () => store.data.caseDraft.reviewed,
   set: (value) => (store.data.caseDraft.reviewed = value),
 });
-const fileName = computed({
-  get: () => store.data.caseDraft.fileName,
-  set: (value) => (store.data.caseDraft.fileName = value),
-});
 async function save() {
   notify((await store.save()) ? "案例草稿已保存" : store.saveError);
 }
@@ -51,17 +46,10 @@ async function publish() {
   }
   busy.value = true;
   error.value = "";
-  const previous = store.data.publishedCase;
-  store.data.publishedCase = {
-    ...JSON.parse(JSON.stringify(store.data.caseDraft)),
-    publishedAt: new Date().toISOString(),
-  };
-  store.touch();
-  if (await store.save()) notify("案例已发布到教学案例库");
-  else {
-    store.data.publishedCase = previous;
-    error.value = store.saveError;
-  }
+  try {
+    await store.publishCase();
+    notify("案例已发布到教学案例库");
+  } catch (problem) { error.value = problem.message; }
   busy.value = false;
 }
 </script>
@@ -84,7 +72,7 @@ async function publish() {
       :class="['workflow-step', { done: store.data.publishedCase }]"
       ><CheckCircle2 :size="16" />发布应用</span
     ><Status>{{
-      store.data.publishedCase ? "已模拟发布" : "待核对草稿"
+      store.data.publishedCase ? "已发布" : "待核对草稿"
     }}</Status>
   </div>
   <div class="content-grid">
@@ -93,13 +81,7 @@ async function publish() {
         <h2>原始材料</h2>
         <Status tone="amber">自编示例</Status>
       </div>
-      <label class="source-upload"
-        ><Upload :size="17" /><span>{{ fileName || "选择资料文件" }}</span
-        ><input
-          type="file"
-          accept=".pdf,.docx,.txt,image/*"
-          @change="fileName = $event.target.files?.[0]?.name || ''" /></label
-      ><label class="field-label" for="source-link">公开资料出处</label
+      <label class="field-label" for="source-link">公开资料出处</label
       ><Input
         id="source-link"
         v-model="source"

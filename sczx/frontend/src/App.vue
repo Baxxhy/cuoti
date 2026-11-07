@@ -70,32 +70,9 @@ const navigation = {
     { route: "issues", label: "反馈与运行", icon: MessageSquareText },
   ],
 };
-const roleOptions = [
-  { value: "student", label: "学生空间" },
-  { value: "teacher", label: "教师空间" },
-  { value: "admin", label: "内容管理" },
-];
-const role = computed({
-  get: () =>
-    [
-      "teacher",
-      "cases",
-      "case-detail",
-      "prepare",
-      "class",
-      "insights",
-    ].includes(route.name)
-      ? "teacher"
-      : ["manage", "content", "issues"].includes(route.name)
-        ? "admin"
-        : "student",
-  set: (value) =>
-    navigate(
-      value === "teacher" ? "teacher" : value === "admin" ? "manage" : "home",
-    ),
-});
+const role = computed(() => store.user?.role || "student");
 const roleLabel = computed(
-  () => roleOptions.find((item) => item.value === role.value).label,
+  () => ({ student: "学生空间", teacher: "教学空间", admin: "内容管理" })[role.value],
 );
 const active = computed(
   () =>
@@ -127,6 +104,14 @@ provide("notify", notify);
 provide("shell", {
   openHelp: () => {
     helpOpen.value = true;
+  },
+  logout: async () => {
+    try {
+      await store.logout();
+      navigate("login");
+    } catch (error) {
+      notify(error.message);
+    }
   },
 });
 watch(notice, (message, old, onCleanup) => {
@@ -172,7 +157,8 @@ function submitFeedback() {
 <template>
   <MotionConfig reduced-motion="user"
     ><TooltipProvider :delay-duration="100">
-      <div class="app-shell">
+      <RouterView v-if="!store.user" />
+      <div v-else class="app-shell">
         <aside class="desktop-sidebar"><SidebarContent /></aside>
         <div class="app-body">
           <header class="topbar">
@@ -204,8 +190,8 @@ function submitFeedback() {
                 @click="notifications = true"
                 ><Bell :size="18" /></Button
               ><span class="topbar-demo"
-                >演示<InfoTip label="演示范围"
-                  >数据为演示；模型生成和发布采用本地模拟，学习记录保存在当前浏览器。</InfoTip
+                >{{ store.status === "ready" ? "已连接" : "连接中" }}<InfoTip label="数据状态"
+                  >页面数据由当前账号从业务服务读取；课程讲解仍为固定演示内容。</InfoTip
                 ></span
               >
             </div>

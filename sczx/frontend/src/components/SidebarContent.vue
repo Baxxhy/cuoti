@@ -10,35 +10,20 @@ import {
   LibraryBig,
   Users,
   FileText,
-  Settings2,
+  LogOut,
   CircleHelp,
   GraduationCap,
   Layers,
   MessageSquareText,
 } from "lucide-vue-next";
-import { navigate } from "@/lib/navigation.js";
+import { useLearning } from "@/store.js";
 const route = useRoute();
 const shell = inject("shell");
-const teacherRoutes = [
-  "teacher",
-  "cases",
-  "case-detail",
-  "prepare",
-  "class",
-  "insights",
-];
-const role = computed({
-  get: () =>
-    teacherRoutes.includes(route.name)
-      ? "teacher"
-      : ["manage", "content", "issues"].includes(route.name)
-        ? "admin"
-        : "student",
-  set: (value) =>
-    navigate(
-      value === "teacher" ? "teacher" : value === "admin" ? "manage" : "home",
-    ),
-});
+const store = useLearning();
+const role = computed(() => store.user?.role || "student");
+const roleName = computed(() => ({ student: "学生空间", teacher: "教学空间", admin: "工作空间" })[role.value]);
+const userName = computed(() => store.user?.displayName || "当前账号");
+const initial = computed(() => userName.value.slice(0, 1));
 const active = computed(
   () =>
     ({
@@ -50,11 +35,6 @@ const active = computed(
       insights: "class",
     })[route.name] || route.name,
 );
-const options = [
-  { value: "student", label: "学生空间" },
-  { value: "teacher", label: "教师空间" },
-  { value: "admin", label: "内容管理" },
-];
 const items = computed(
   () =>
     ({
@@ -84,9 +64,7 @@ const items = computed(
       ><BookOpenText :size="23" :stroke-width="1.8" /></span
     ><span>师承智学</span></a
   >
-  <div class="workspace-switch">
-    <AppSelect v-model="role" :options="options" label="切换演示身份" />
-  </div>
+  <div class="workspace-switch"><span class="role-pill">{{ roleName }}</span></div>
   <div class="nav-label">
     {{
       role === "student"
@@ -114,23 +92,14 @@ const items = computed(
       ><CircleHelp />帮助与反馈</Button
     >
     <div class="profile">
-      <span class="avatar">{{
-        role === "student" ? "林" : role === "teacher" ? "师" : "管"
-      }}</span
-      ><span
-        ><strong>{{
-          role === "student"
-            ? "小林同学"
-            : role === "teacher"
-              ? "教师演示账号"
-              : "内容管理账号"
-        }}</strong></span
+      <span class="avatar">{{ initial }}</span
+      ><span><strong>{{ userName }}</strong></span
       ><Button
         variant="ghost"
         size="icon-sm"
-        aria-label="账号说明"
-        @click="shell.openHelp()"
-        ><Settings2
+        aria-label="退出登录"
+        @click="shell.logout()"
+        ><LogOut
       /></Button>
     </div>
   </div>

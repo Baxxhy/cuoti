@@ -1,4 +1,3 @@
-import { storageKey } from "./services/platform.js";
 import { createApp, watch } from "vue";
 import { createPinia } from "pinia";
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -23,6 +22,7 @@ import ManageContent from "./pages/ManageContent.vue";
 import CourseContent from "./pages/CourseContent.vue";
 import Issues from "./pages/Issues.vue";
 import NotFound from "./pages/NotFound.vue";
+import Login from "./pages/Login.vue";
 import Button from "./components/app/Button.vue";
 import Surface from "./components/app/Surface.vue";
 import PageHeading from "./components/app/PageHeading.vue";
@@ -45,6 +45,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     { path: "/", redirect: "/home" },
+    { path: "/login", name: "login", component: Login, meta: { public: true } },
     { path: "/home", name: "home", component: Dashboard },
     { path: "/teacher", name: "teacher", component: Dashboard },
     { path: "/courses", name: "courses", component: Courses },
@@ -66,7 +67,8 @@ const router = createRouter({
   ],
 });
 const app = createApp(App);
-app.use(createPinia()).use(router);
+const pinia = createPinia();
+app.use(pinia);
 for (const [name, component] of Object.entries({
   Button,
   Surface,
@@ -85,25 +87,39 @@ for (const [name, component] of Object.entries({
 }))
   app.component(name, component);
 const store = useLearning();
+let sessionReady;
+const roleRoutes = {
+  student: new Set(["home", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
+  teacher: new Set(["teacher", "courses", "cases", "case-detail", "prepare", "class", "insights", "issues"]),
+  admin: new Set(["manage", "content", "issues", "cases", "case-detail", "courses"]),
+};
+router.beforeEach(async (to) => {
+  if (to.name === "login") {
+    if (!sessionReady) sessionReady = store.initialize();
+    await sessionReady;
+    if (store.user) return { name: store.user.role === "teacher" ? "teacher" : store.user.role === "admin" ? "manage" : "home" };
+    return true;
+  }
+  if (!sessionReady) sessionReady = store.initialize();
+  await sessionReady;
+  if (!store.user) return { name: "login", query: { next: to.fullPath } };
+  if (!roleRoutes[store.user.role]?.has(to.name)) return { name: store.user.role === "teacher" ? "teacher" : store.user.role === "admin" ? "manage" : "home" };
+  if (store.status === "ready" && store.data) {
+    const saved = await store.save();
+    if (!saved && to.name !== router.currentRoute.value.name) return false;
+  }
+  return true;
+});
 let saveTimer;
 watch(
   () => store.data,
   () => {
-    if (store.status !== "ready") return;
+    if (store.status !== "ready" || !store.user) return;
     store.revision++;
     clearTimeout(saveTimer);
     saveTimer = setTimeout(() => store.save(), 300);
   },
   { deep: true },
 );
-window.addEventListener("pagehide", () => {
-  if (store.status === "ready") {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(store.data));
-    } catch {
-      /* The visible save error is handled by the regular save request. */
-    }
-  }
-});
+app.use(router);
 app.mount("#root");
-store.load();

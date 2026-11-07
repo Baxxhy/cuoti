@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref, onBeforeUnmount } from "vue";
+import { computed, inject, ref, onBeforeUnmount, watch } from "vue";
 import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
 
@@ -26,8 +26,11 @@ const store = useLearning(),
 const modal = ref(""),
   previewTab = ref("student"),
   busyBlock = ref(""),
-  publishClass = ref("demo"),
+  publishClass = ref(store.data.publishClassId || store.data.classroom?.id || store.data.classrooms?.[0]?.id || ""),
   publishError = ref("");
+watch(() => store.data.classrooms, (classrooms) => {
+  if (!publishClass.value && classrooms?.length) publishClass.value = classrooms[0].id;
+}, { immediate: true, deep: true });
 const dialogOpen = computed({
   get: () => !!modal.value,
   set: (value) => {
@@ -62,6 +65,11 @@ async function saveDraft() {
 }
 async function publish() {
   publishError.value = "";
+  if (!publishClass.value) {
+    publishError.value = "请先创建班级并加入学生，再发布任务。";
+    return;
+  }
+  store.data.publishClassId = publishClass.value;
   try {
     const task = await store.publish();
     if (task) {
@@ -97,7 +105,9 @@ async function publish() {
               ? "保存中"
               : store.saveError
                 ? "保存失败"
-                : "自动保存到本地"
+                : store.savedAt
+                  ? "已保存"
+                  : "已连接"
           }}</Status>
         </div>
         <label class="field-label" for="lesson-goal">本课目标</label
@@ -200,7 +210,7 @@ async function publish() {
         id="publish-class"
         v-model="publishClass"
         label="选择发布班级"
-        :options="[{ value: 'demo', label: '七年级一班 · 演示班级' }]" /><label
+        :options="store.data.classrooms.map((item) => ({ value: item.id, label: `${item.name} · ${item.grade}` }))" /><p v-if="!store.data.classrooms.length" class="form-error">先在班级教学中创建班级并添加学生。</p><label
         class="field-label"
         for="due-date"
         >建议完成日期</label
@@ -208,10 +218,8 @@ async function publish() {
         id="due-date"
         v-model="store.data.lessonDraft.dueDate"
         type="date" />
-      <p class="small-caption">
-        发布后，七年级一班的学生可在任务列表中进入本课。当前为演示发布。
-      </p>
-      <Button @click="publish" :disabled="store.publishing"
+      <p class="small-caption">发布后，所选班级的学生可从任务列表进入本课。</p>
+      <Button @click="publish" :disabled="store.publishing || !store.data.classrooms.length"
         >{{ store.publishing ? "发布中…" : "确认发布"
         }}<ArrowRight /></Button></template
   ></AppDialog>

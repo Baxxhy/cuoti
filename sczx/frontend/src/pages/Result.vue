@@ -1,11 +1,24 @@
 <script setup>
-import { inject } from "vue";
+import { inject, ref } from "vue";
 import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
 import TaskEmpty from "@/components/TaskEmpty.vue";
 import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-vue-next";
 const store = useLearning(),
   notify = inject("notify");
+const submitting = ref(false);
+async function submitResult() {
+  if (submitting.value) return;
+  submitting.value = true;
+  try {
+    await store.submitLesson();
+    notify("本课结果已提交给教师");
+  } catch (error) {
+    notify(error.message);
+  } finally {
+    submitting.value = false;
+  }
+}
 </script>
 <template>
   <template v-if="store.task"
@@ -18,11 +31,9 @@ const store = useLearning(),
         <h2>{{ store.record.completed ? "已提交" : "待提交" }}</h2>
       </div>
       <Button
-        @click="
-          store.submitLesson();
-          notify('本课结果已模拟提交给教师');
-        "
-        >{{ store.record.completed ? "再次提交结果" : "提交本课结果"
+        @click="submitResult"
+        :disabled="submitting"
+        >{{ submitting ? "提交中…" : store.record.completed ? "再次提交结果" : "提交本课结果"
         }}<ArrowRight
       /></Button>
     </div>

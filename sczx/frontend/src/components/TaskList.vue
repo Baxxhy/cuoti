@@ -16,7 +16,7 @@ function open(task, teacher) {
       <div class="task-description">
         <h3>{{ task.title }}</h3>
         <p>
-          {{ store.data.classroom.name }} ·
+          {{ task.className || store.data.classroom?.name || "班级" }} ·
           {{ new Date(task.publishedAt).toLocaleString("zh-CN") }}
         </p>
       </div>

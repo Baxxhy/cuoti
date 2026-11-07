@@ -1,14 +1,15 @@
 <script setup>
-import { computed, inject, ref } from "vue";
+import { computed, inject, ref, watch } from "vue";
 import { ArrowUpRight, Check, Plus, Send } from "lucide-vue-next";
 import { useLearning } from "@/store.js";
 
-import { questions, demoStudents } from "@/data.js";
+import { questions } from "@/data.js";
 import TaskEmpty from "@/components/TaskEmpty.vue";
 const store = useLearning(),
   notify = inject("notify"),
   studentOpen = ref(false),
   supplement = ref(false),
+  supplementBusy = ref(false),
   draft = ref(store.record?.feedback || ""),
   supplementText = ref("回看等式两边共同变化的过程，再完成独立检查。"),
   error = ref("");
@@ -17,16 +18,27 @@ const independent = computed(
     store.record?.attempts.filter((item) => item.correct && !item.helped)
       .length || 0,
 );
-function feedback() {
+const records = computed(() => store.data.studentRecords?.[store.task?.id] || []);
+const submittedCount = computed(() => records.value.filter((record) => record.completed).length);
+const independentCount = computed(() => records.value.reduce((sum, record) => sum + record.attempts.filter((item) => item.correct && !item.helped).length, 0));
+watch(() => store.data.activeStudentId, () => { draft.value = store.record?.feedback || ""; });
+async function feedback() {
   try {
-    store.saveFeedback(draft.value);
+    await store.saveFeedback(draft.value);
     notify("反馈已发送到学生结果页");
   } catch (problem) {
     error.value = problem.message;
   }
 }
-function arrange() {
+function openStudent(id) {
+  store.selectStudent(id);
+  draft.value = store.record?.feedback || "";
+  studentOpen.value = true;
+}
+async function arrange() {
   if (!supplementText.value.trim()) return notify("请填写补充内容");
+  if (supplementBusy.value) return;
+  supplementBusy.value = true;
   store.data.supplements.push({
     id: crypto.randomUUID(),
     taskId: store.task.id,
@@ -34,8 +46,13 @@ function arrange() {
     createdAt: new Date().toISOString(),
   });
   store.touch();
-  supplement.value = false;
-  notify("补充学习已安排");
+  if (await store.save()) {
+    supplement.value = false;
+    notify("补充学习已安排");
+  } else {
+    error.value = store.saveError;
+  }
+  supplementBusy.value = false;
 }
 </script>
 <template>
@@ -53,15 +70,15 @@ function arrange() {
     </div>
     <div class="insight-summary">
       <div>
-        <span>参与学生</span><strong>1<small>人</small></strong>
+        <span>参与学生</span><strong>{{ records.length }}<small>人</small></strong>
       </div>
       <div>
         <span>已经提交</span
-        ><strong>{{ store.record.completed ? 1 : 0 }}<small>/ 1</small></strong>
+        ><strong>{{ submittedCount }}<small>/ {{ records.length }}</small></strong>
       </div>
       <div>
         <span>新题独立完成</span
-        ><strong>{{ independent }}<small>次</small></strong>
+        ><strong>{{ independentCount }}<small>次</small></strong>
       </div>
       <div class="summary-context"><Status>本次操作记录</Status></div>
     </div>
@@ -79,10 +96,10 @@ function arrange() {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="student in store.students" :key="student.id">
+            <tr v-for="student in store.students" :key="student.id" :class="{ 'is-selected': store.data.activeStudentId === student.id }">
               <td>
                 <span class="student-name avatar-0"
-                  ><span>林</span>{{ student.name }}</span
+                  ><span>{{ student.initials }}</span>{{ student.name }}</span
                 >
               </td>
               <td>
@@ -90,18 +107,18 @@ function arrange() {
                   <span>{{ student.status }}</span
                   ><Progress
                     :model-value="student.progress"
-                    aria-label="小林学习进度"
+                    :aria-label="`${student.name}学习进度`"
                   />
                 </div>
               </td>
               <td>{{ student.help }}</td>
               <td>
-                <Status :tone="independent ? 'green' : 'neutral'">{{
+                <Status :tone="student.result === '新题独立完成' ? 'green' : 'neutral'">{{
                   student.result
                 }}</Status>
               </td>
               <td>
-                <Button variant="ghost" @click="studentOpen = true"
+                <Button variant="ghost" @click="openStudent(student.id)"
                   >查看过程<ArrowUpRight
                 /></Button>
               </td>
@@ -109,7 +126,7 @@ function arrange() {
           </tbody>
         </table></div
     ></Surface>
-    <div class="two-column insight-detail">
+    <div v-if="store.record" class="two-column insight-detail">
       <Surface
         ><SectionHeading title="作答概况" />
         <h3>
@@ -121,7 +138,7 @@ function arrange() {
         </p>
         <RouteButton route="cases" secondary>查找教学案例</RouteButton></Surface
       ><Surface
-        ><SectionHeading title="给学生的反馈" /><Textarea
+        ><SectionHeading :title="`给${store.record.studentName || '学生'}的反馈`" /><Textarea
           v-model="draft"
           aria-label="教师反馈"
         />
@@ -131,24 +148,17 @@ function arrange() {
         </div></Surface
       >
     </div>
-    <Surface class="records-surface"
-      ><SectionHeading title="固定学情示例" />
-      <details>
-        <summary>查看示例学生</summary>
-        <p v-for="item in demoStudents" :key="item.name">
-          {{ item.name }} · {{ item.status }} · {{ item.result }}（固定示例）
-        </p>
-      </details></Surface
-    ><AppDialog
+    <Surface v-else class="records-surface"><SectionHeading title="学生学习过程" /><p>班级还没有学生。先添加学生账号，再发布学习任务。</p></Surface>
+    <AppDialog
       v-model:open="studentOpen"
-      title="小林同学的学习过程"
+      :title="`${store.record?.studentName || '学生'}的学习过程`"
       content-class="student-detail-dialog"
       ><div class="attempt-timeline">
-        <section>
+        <section v-if="store.record">
           <h3>自己的解释</h3>
           <p>{{ store.record.observation || "尚未填写" }}</p>
         </section>
-        <section v-for="attempt in store.record.attempts" :key="attempt.id">
+        <section v-for="attempt in store.record?.attempts || []" :key="attempt.id">
           <small>{{
             new Date(attempt.createdAt).toLocaleString("zh-CN")
           }}</small>
@@ -164,7 +174,7 @@ function arrange() {
             attempt.correct ? "数值正确" : "需订正"
           }}</Status>
         </section>
-        <section v-for="help in store.record.helps" :key="help.id">
+        <section v-for="help in store.record?.helps || []" :key="help.id">
           <h3>{{ help.kind }}</h3>
           <p>{{ help.message }}</p>
           <img
@@ -175,21 +185,22 @@ function arrange() {
           />
           <small>{{ new Date(help.createdAt).toLocaleString("zh-CN") }}</small>
         </section>
-        <section v-for="repair in store.record.repairs" :key="repair.id">
+        <section v-for="repair in store.record?.repairs || []" :key="repair.id">
           <h3>补救变式 z + 2 = 9 → {{ repair.answer }}</h3>
           <p>{{ repair.reason }}</p>
           <Status :tone="repair.correct ? 'green' : 'amber'">{{
             repair.correct ? "数值正确" : "需订正"
           }}</Status>
         </section>
-        <p v-if="!store.record.attempts.length && !store.record.helps.length">
+        <p v-if="store.record && !store.record.attempts.length && !store.record.helps.length">
           尚无作答和求助记录
         </p>
       </div></AppDialog
     ><AppDialog v-model:open="supplement" title="安排补充学习"
       ><label class="field-label" for="supplement-content">补充内容</label
       ><Textarea id="supplement-content" v-model="supplementText" /><Button
+        :disabled="supplementBusy"
         @click="arrange"
-        >确认安排<Send /></Button></AppDialog></template
+        >{{ supplementBusy ? "保存中…" : "确认安排" }}<Send /></Button></AppDialog></template
   ><TaskEmpty v-else />
 </template>
