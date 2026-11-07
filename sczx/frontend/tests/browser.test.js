@@ -15,7 +15,7 @@ beforeEach(()=>{localStorage.clear();vi.spyOn(window,'scrollTo').mockImplementat
 afterEach(()=>{modalState.value=null;actionSheetState.value=null;imagePreviewState.value=null;vi.restoreAllMocks()})
 describe('Web runtime preserves original page contracts',()=>{
  it('keeps all 36 original routes and real Vue pages',()=>{
-  const original=JSON.parse(readFileSync(path.resolve('../reference/frontend/src/pages.json'))).pages.map(x=>x.path)
+  const original=JSON.parse(readFileSync(path.resolve('tests/fixtures/original-pages.json'))).pages.map(x=>x.path)
   expect(routes).toEqual(original)
   for(const route of routes)expect(readFileSync(path.resolve('src',route+'.vue'),'utf8')).toContain('<template>')
  })

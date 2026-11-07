@@ -55,7 +55,7 @@ def test_request_fields_preserve_whitespace_and_original_errors():
 def test_original_cangjie_auth_golden_vectors(monkeypatch):
     from pathlib import Path
     from sczx_api import security
-    vector = json.loads((Path(__file__).resolve().parents[2] / 'reference/backend-cangjie/tests/auth_vectors.json').read_text())
+    vector = json.loads((Path(__file__).resolve().parent / 'fixtures/original-auth-vectors.json').read_text())
     assert hash_password(vector['password'], bytes(range(16))) == vector['encoded']
     assert security.credential_tag(vector['encoded'], vector['secret']) == vector['tag']
     payload = vector['token'].split('.')[0]
