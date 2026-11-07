@@ -1,6 +1,8 @@
 """Real web proxy -> business HTTP -> algorithm HTTP -> isolated MySQL acceptance.
 
-A known analysis is seeded as a fixture. External LLM analysis is not tested here.
+A known analysis is seeded as a fixture by default.
+SCZX_LIVE_MODEL_POOL explicitly enables one synthetic live OCR/analysis/diagnosis sample.
+SCZX_LIVE_MODEL_BROWSER=1 drives its confirmation through the actual browser.
 SCZX_RUN_LIVE_VOICE=1 explicitly enables live TTS/local STT HTTP acceptance.
 """
 import json
@@ -31,6 +33,14 @@ def port():
 
 
 def main():
+    live_pool=os.environ.get('SCZX_LIVE_MODEL_POOL')
+    if os.environ.get('SCZX_LIVE_MODEL_BROWSER')=='1' and not live_pool:raise SystemExit('网页真实模型检查需要显式设置SCZX_LIVE_MODEL_POOL')
+    if live_pool and not Path(live_pool).is_file():raise SystemExit('指定的真实模型池文件不存在')
+    if live_pool:
+        if os.environ.get('SCZX_RUN_E2E')=='1':raise SystemExit('真实模型检查不能与受控模型浏览器验收混用')
+        if os.environ.get('SCZX_LIVE_MODEL_ENV'):
+            from dotenv import load_dotenv
+            load_dotenv(os.environ['SCZX_LIVE_MODEL_ENV'],override=False)
     artifacts=ROOT/'.runtime/http-smoke'/secrets.token_hex(4);artifacts.mkdir(parents=True)
     children=[];logs=[];report={'analysis':'seeded fixed fixture; no external model invocation','checks':[]}
     def spawn(name,args,cwd,env):
@@ -40,6 +50,7 @@ def main():
         temp=Path(temporary);data=temp/'data';data.mkdir();mysql_socket=temp/'mysql.sock'
         env=os.environ.copy();env.update(SCZX_DB_NAME='sczx_http_smoke',SCZX_DB_USER='root',SCZX_DB_PASSWORD='',SCZX_DB_SOCKET=str(mysql_socket),SCZX_AUTH_SECRET=secrets.token_hex(32),SCZX_ALGORITHM_SECRET=secrets.token_hex(32),SCZX_MEDIA_ROOT=str(artifacts/'media'),SCZX_API_POOL_PATH=str(artifacts/'no-model-pool.json'),SCZX_AI_USE_ENV_PROXY='false',SCZX_TASK_WORKERS='2',LANGSMITH_TRACING='false')
         env.pop('PYTHONPATH',None)
+        if live_pool:env.update(SCZX_API_POOL_PATH=str(Path(live_pool).resolve()),SCZX_AI_USE_ENV_PROXY=os.environ.get('SCZX_AI_USE_ENV_PROXY','true'))
         mysql=shutil.which('mysqld')
         if not mysql:raise SystemExit('需要本机 mysqld 才能运行隔离联调。')
         try:
@@ -204,6 +215,11 @@ def main():
                     assert http.get(base+'/api/v1/papers/'+paper['id']+'/download?kind='+kind,headers=headers).content==downloaded.content
                     (artifacts/('paper-'+kind+('.xlsx' if kind=='excel' else '.pdf'))).write_bytes(downloaded.content)
                 report['checks'].append('real algorithm HTTP PDF/answer/Excel export and download')
+                if live_pool:
+                    from live_model_smoke import verify_live_model
+                    report['live_model']=verify_live_model(http,base,headers,user['id'],artifacts)
+                    report['analysis']='native task uses seeded fixture; separate live synthetic OCR/analysis/diagnosis sample verified'
+                    report['checks'].append('live synthetic image OCR, confirmation, structured analysis, diagnosis and persistence')
                 if os.environ.get('SCZX_RUN_LIVE_VOICE')=='1':
                     from live_voice_smoke import verify_live_voice
                     report['live_voice']=verify_live_voice(http,base,headers,user['id'],qid,artifacts)
