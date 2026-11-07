@@ -227,7 +227,9 @@ test('手动多选题保留结构化选项，无图片题也可以打开修改',
   await registerAndLogin(page)
   await page.goto('/#/pages/manual/manual')
   const questionType = page.locator('.field').filter({ hasText: '题型' }).locator('.picker-value')
-  await page.locator('.field').filter({hasText:'题型'}).locator('select').selectOption('2')
+  await questionType.click()
+  await page.locator('.web-selector-content .web-selector-item').filter({hasText:'多选题'}).click()
+  await page.locator('.web-selector-action.confirm').click()
   await expect(questionType).toContainText('多选题')
   await page
     .locator('.field')

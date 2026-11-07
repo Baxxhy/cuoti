@@ -48,9 +48,7 @@ export const WebImage=defineComponent({inheritAttrs:false,props:{src:String,mode
 const glyphs=Object.fromEntries(fontData.map(x=>[x.font_class,x.unicode]))
 export const WebIcon=defineComponent({props:{type:String,size:[String,Number],color:{type:String,default:'#333333'}},setup(p){return()=>h('span',{class:'web-icon uni-icons',style:{fontSize:(p.size||16)+'px',color:p.color},'aria-hidden':'true','data-glyph':glyphs[p.type]||''}) }})
 export const WebLoadMore=defineComponent({props:{status:String,contentText:Object},setup(p){return()=>h('div',{role:'status',class:'web-loading'},p.contentText?.contentrefresh||'正在加载')}})
-export const WebPicker=defineComponent({inheritAttrs:false,props:{range:{type:Array,default:()=>[]},rangeKey:String,value:[String,Number,Array],mode:String,disabled:Boolean},emits:['change'],setup(p,{attrs,slots,emit}){
- return()=>h('div',{...attrs,class:[attrs.class,'web-picker']},[slots.default?.(),p.mode==='date'||p.mode==='time'?h('input',{class:'web-picker-control',type:p.mode,value:p.value,disabled:p.disabled,min:attrs.start,max:attrs.end,onChange:e=>emit('change',eventValue(e,e.target.value))}):h('select',{class:'web-picker-control',value:p.value??0,disabled:p.disabled,'aria-label':attrs['aria-label']||'选择选项',onChange:e=>emit('change',eventValue(e,Number(e.target.value)))},p.range.map((x,i)=>h('option',{value:i},p.rangeKey?x[p.rangeKey]:String(x))))])
-}})
+export {default as WebPicker} from './WebPicker.vue'
 export const WebScroll=defineComponent({inheritAttrs:false,props:{scrollX:Boolean,scrollY:Boolean},setup(p,{attrs,slots}){return()=>h('div',{...attrs,style:[{overflowX:p.scrollX?'auto':undefined,overflowY:p.scrollY?'auto':undefined},attrs.style]},slots.default?.())}})
 export const WebSlider=defineComponent({inheritAttrs:false,props:{value:Number,min:Number,max:Number,step:Number},emits:['changing','change'],setup(p,{attrs,emit}){return()=>h('input',{...attrs,type:'range',value:p.value,min:p.min,max:p.max,step:p.step,onInput:e=>emit('changing',eventValue(e,Number(e.target.value))),onChange:e=>emit('change',eventValue(e,Number(e.target.value)))})}})
 const groupKey=Symbol('choiceGroup')

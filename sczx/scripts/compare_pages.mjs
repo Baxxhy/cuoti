@@ -12,7 +12,7 @@ const artifacts=path.join(root,'.runtime/page-compare',process.env.SCZX_COMPARE_
 fs.mkdirSync(artifacts,{recursive:true})
 const user={id:'ui-user',name:'界面对照',email:'ui@example.test',grade:'初二',role:'student'}
 const task={id:'ui-task',question_id:'ui-question',session_id:null,status:'completed',version:4,step_id:'ui-step',input_fingerprint:'ui-fingerprint',learning_applied:true,last_request_id:'ui-answer',current_action:'answer',exit_reason:'',restart_required:false,student_view:{title:'本次学习完成',feedback:'对照题独立完成了，已保留这次验证记录。',prompt_blocks:[],input_kind:'none',secondary_actions:[],recommendation:{action:'practice',question_id:'',knowledge_card_ids:[],reason:''}}}
-const initial=['pages/login/login','pages/register/register','pages/forgot/forgot','pages/manual/manual','pages/manual/manual?ui_filled=1','pages/task/task?id=ui-task','pages/task/task?id=ui-task&ui_repair=1','pages/index/index','pages/task/task?id=ui-task&ui_repair=1&ui_modal=1','pages/detail/detail?id=ui-question&ui_sheet=1','pages/detail/detail?id=ui-question&ui_remove=1','pages/detail/detail?id=ui-question&ui_preview=1','pages/capture/capture?ui_return=1','pages/capture/capture?ui_history=1']
+const initial=['pages/manual/manual?ui_picker=1','pages/manual/manual?ui_picker=2','pages/framework/framework?ui_picker=1','pages/login/login','pages/register/register','pages/forgot/forgot','pages/manual/manual','pages/manual/manual?ui_filled=1','pages/task/task?id=ui-task','pages/task/task?id=ui-task&ui_repair=1','pages/index/index','pages/task/task?id=ui-task&ui_repair=1&ui_modal=1','pages/detail/detail?id=ui-question&ui_sheet=1','pages/detail/detail?id=ui-question&ui_remove=1','pages/detail/detail?id=ui-question&ui_preview=1','pages/capture/capture?ui_return=1','pages/capture/capture?ui_history=1']
 const cases=process.env.SCZX_COMPARE_ROUTES?process.env.SCZX_COMPARE_ROUTES.split(','):process.argv.includes('--all')?[...JSON.parse(fs.readFileSync(path.join(root,'frontend/src/routes.json'))),...initial.filter(r=>r.includes('?'))]:initial
 const mime={'.js':'text/javascript','.css':'text/css','.html':'text/html','.json':'application/json','.ttf':'font/ttf','.woff':'font/woff','.woff2':'font/woff2','.svg':'image/svg+xml','.png':'image/png'}
 async function serve(folder){
@@ -84,12 +84,13 @@ try{
     const box=await page.locator('.crop-box').boundingBox()
     await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+box.width/2+10,box.y+box.height/2+8,{steps:8});await page.mouse.up()
    }
+   if(route.includes('ui_picker')){await page.locator(name==='original'?'uni-picker':'.web-picker').nth(Number(new URLSearchParams(route.split('?')[1]).get('ui_picker'))-1).click();await page.waitForTimeout(1200)}
    await page.evaluate(()=>document.fonts.ready)
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})
    if(name==='vue'&&process.env.SCZX_COMPARE_VUE_CSS)await page.addStyleTag({content:process.env.SCZX_COMPARE_VUE_CSS})
    const snapshot=await page.evaluate(()=>{
     const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color','alignContent','alignItems','justifyContent','appearance','wordSpacing','whiteSpace','fontVariantNumeric','transform','transformOrigin','imageRendering','objectFit','width','maxWidth','maxHeight']
-    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img,.crop-stage,.crop-box,.filter-button,.filter-label,.uni-input-placeholder,.uni-textarea-placeholder,.web-input-placeholder')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
+    const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img,.crop-stage,.crop-box,.filter-button,.filter-label,.uni-input-placeholder,.uni-textarea-placeholder,.web-input-placeholder,.uni-picker-custom,.uni-picker-item,.uni-picker-header,.web-selector-popup,.web-selector-item,.web-selector-header,.uni-picker-view-content,.web-selector-content')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
      const r=e.getBoundingClientRect(),css=getComputedStyle(e)
      const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let textNode
      while((textNode=walker.nextNode())&&!textNode.textContent.trim()){}
@@ -114,7 +115,26 @@ try{
    })
    const key=route.replaceAll('/','-').replaceAll('?','-').replaceAll('=','-')+'-'+width
    await page.screenshot({path:path.join(artifacts,key+'-'+name+'.png')})
-   let popupDismissed,previewGestures
+   let popupDismissed,previewGestures,pickerInteraction
+   if(route.includes('ui_picker')&&!process.env.SCZX_PICKER_VISUAL_ONLY){
+    const picker=page.locator(name==='original'?'uni-picker':'.web-picker').nth(Number(new URLSearchParams(route.split('?')[1]).get('ui_picker'))-1)
+    const mask=page.locator(name==='original'?'.uni-picker-mask:visible':'.web-selector-mask:visible')
+    const before=(await picker.innerText()).trim()
+    await mask.click({position:{x:1,y:1}});await page.waitForTimeout(350)
+    if(await mask.isVisible())throw new Error(name+': picker cancellation did not close popup')
+    if((await picker.innerText()).trim()!==before)throw new Error(name+': picker cancellation changed value')
+    await picker.click();await page.waitForTimeout(400)
+    const options=page.locator(width>=500?(name==='original'?'.uni-picker-custom:visible .uni-picker-select .uni-picker-item':'.web-selector-list .web-selector-item'):(name==='original'?'.uni-picker-custom:visible .uni-picker-view-content .uni-picker-item':'.web-selector-content .web-selector-item'))
+    const index=Math.min(2,(await options.count())-1),chosen=(await options.nth(index).innerText()).trim()
+    await options.nth(index).click();await page.waitForTimeout(350)
+    if(width<500){
+     if((await picker.innerText()).trim()!==before)throw new Error(name+': mobile picker applied selection before confirmation')
+     await page.locator(name==='original'?'.uni-picker-action-confirm:visible':'.web-selector-action.confirm').click();await page.waitForTimeout(350)
+    }
+    if(await mask.isVisible())throw new Error(name+': picker confirmation did not close popup')
+    if(!(await picker.innerText()).includes(chosen))throw new Error(name+': picker did not apply selected label '+chosen)
+    pickerInteraction={cancelPreservedValue:true,confirmationApplied:true,chosen,index}
+   }
    if(route.includes('ui_modal')||route.includes('ui_remove')){await page.locator('.uni-modal__btn_default').click();await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-modal:visible').count()===0}
    if(route.includes('ui_sheet')){await page.locator(name==='original'?'.uni-actionsheet__mask':'.web-popup-mask').click({position:{x:1,y:1}});await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-actionsheet_toggle:visible').count()===0}
    if(route.includes('ui_preview')){
@@ -151,13 +171,13 @@ try{
     }
     await page.keyboard.press('Escape');await page.waitForTimeout(100);popupDismissed=await page.locator(name==='original'?'#u-a-p img':'.web-image-preview').count()===0}
    if(/ui_modal|ui_sheet|ui_remove|ui_preview/.test(route)){if(!popupDismissed)throw new Error(name+': popup did not dismiss');if(writes.length)throw new Error(name+': cancellation issued a write request')}
-   results.push({name,route,width,popupDismissed,previewGestures,writes,url:page.url().split('#')[1],errors,...snapshot})
+   results.push({name,route,width,popupDismissed,previewGestures,pickerInteraction,writes,url:page.url().split('#')[1],errors,...snapshot})
    await context.close()
   }
  }
  const comparisons=results.filter(r=>r.name==='original').map(a=>{
   const b=results.find(r=>r.name==='vue'&&r.route===a.route&&r.width===a.width)
-  return {route:a.route,width:a.width,vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,vuePreviewGestures:b.previewGestures,originalWrites:a.writes,vueWrites:b.writes}
+  return {route:a.route,width:a.width,vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,pickerVisualOnly:!!process.env.SCZX_PICKER_VISUAL_ONLY,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,vuePreviewGestures:b.previewGestures,originalPickerInteraction:a.pickerInteraction,vuePickerInteraction:b.pickerInteraction,originalWrites:a.writes,vueWrites:b.writes}
  })
  fs.writeFileSync(path.join(artifacts,'report.json'),JSON.stringify(comparisons,null,2)+'\n')
  console.log(JSON.stringify({artifacts,cases:comparisons.length,textDifferences:comparisons.filter(c=>!c.textEqual).length,pageErrors:comparisons.filter(c=>c.originalErrors.length||c.vueErrors.length).length}))

@@ -12,6 +12,7 @@ const page=computed(()=>pages[parsePage(currentUrl.value).route])
 <template>
   <PageHost v-for="(entry,index) in pageStack" :key="entry.key" :entry="entry" :active="index===pageStack.length-1" :component="pages[entry.route]" />
   <main v-if="!page" class="page-content"><h1>页面不存在</h1><a href="#/pages/index/index">返回首页</a></main>
+  <div id="web-picker-layer" />
   <WebDialogs />
   <WebImagePreview />
   <div v-if="notice" class="web-toast" :class="{'web-toast-symbol':notice.icon!=='none'}">
