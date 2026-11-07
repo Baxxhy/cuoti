@@ -1,21 +1,11 @@
 # 师承智学
 
-日期 2026-11-07
+日期 2026-11-07　版本 v2
 
-当前已清空旧代码与运行环境，准备重新开发，应用服务已停止。
+当前前端采用 React、shadcn/ui Nova、Lucide、Motion 与 Zustand，设计交互原型位于 `frontend/`。
 
-## 开发计划
+- [当前视觉与交互设计](docs/design/前端视觉与交互设计_20261107_v2.md)
+- [平台结构与首课流程](docs/planning/平台结构与首课使用流程_20261107_v1.md)
+- [整体开发步骤](docs/planning/系统代码迭代步骤_20261107_v2.md)
 
-- [功能技术与落地计划](docs/planning/功能技术与落地计划_20261107_v9.md)
-- [系统代码迭代步骤](docs/planning/系统代码迭代步骤_20261107_v1.md)
-
-迭代步骤文档编写于本次清理前，涉及复用旧代码的安排在重建时调整。
-
-## 保留数据与配置
-
-- `.env` 和 `.env.example` 保存现有配置及示例。
-- `.runtime/local/mysql-data/` 保存已正常关闭的MySQL物理数据。
-- `.runtime/local/sczx_local.sql` 保存独立数据库的SQL导出备份。
-- 上传资料路径配置在 `.env` 或运行配置中，重建时继续使用已保存的数据。
-
-重新部署时先根据新程序设计迁移和恢复流程。
+安装与预览使用 `npm --prefix frontend ci`、`npm --prefix frontend run dev`，本地端口为 5177。生产构建使用 `npm --prefix frontend run build`。页面使用演示数据与本地状态，具体交互及验证见当前设计说明。
