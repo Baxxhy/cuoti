@@ -15,9 +15,11 @@ const page=computed(()=>pages[parsePage(currentUrl.value).route])
   <div id="web-picker-layer" />
   <WebDialogs />
   <WebImagePreview />
-  <div v-if="notice" class="web-toast" :class="{'web-toast-symbol':notice.icon!=='none'}">
-    <WebIcon v-if="notice.icon!=='none'" type="checkmarkempty" size="55" color="#fff" class="web-toast-success-icon" />
-    <span class="web-toast-text">{{notice.title}}</span>
+  <div v-if="notice" class="web-toast-host">
+    <div class="web-toast" :class="{'web-toast-symbol':notice.icon!=='none'}">
+      <WebIcon v-if="notice.icon!=='none'" type="checkmarkempty" size="55" color="#fff" class="web-toast-success-icon" />
+      <span class="web-toast-text">{{notice.title}}</span>
+    </div>
   </div>
 </template>
 <style lang="scss">
@@ -29,6 +31,7 @@ button {cursor:pointer;line-height:1.4}
 button:disabled {cursor:default}
 .web-icon {font-family:SczxIcons!important;display:inline;vertical-align:baseline;font-style:normal;text-align:center;text-decoration:none}
 .web-icon::before {content:attr(data-glyph)}
+.web-toast-host {position:fixed;inset:0;z-index:999;display:block;box-sizing:border-box;pointer-events:none;font-size:16px}
 .web-toast {font-family:initial;color:initial;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);max-width:80%;text-align:center;line-height:normal;font-size:16px;z-index:999;pointer-events:none}
 .web-toast-text {box-sizing:content-box;display:inline-block;vertical-align:middle;padding:10px 20px;border-radius:5px;font-size:13px;line-height:normal;color:#fff;background:rgba(17,17,17,.7);text-align:center;max-width:100%;word-break:break-word;white-space:normal}
 .web-toast-symbol {width:8em;background:rgba(17,17,17,.7);border-radius:5px;color:#fff}
