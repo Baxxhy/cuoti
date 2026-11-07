@@ -3543,3 +3543,13 @@ h4 {
     min-height: 28px;
   }
 }
+
+/* Vue registry components share the established Nova visual tokens. */
+[data-slot="progress"] { height: 4px; background: #f0eff5; }
+.mobile-sidebar[data-slot="dialog-content"] {
+  top: 0; left: 0; right: auto; bottom: 0;
+  transform: none; height: 100dvh; max-height: 100dvh;
+  border-radius: 0; max-width: calc(100vw - 40px);
+}
+.mobile-sidebar > [data-slot="dialog-header"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.resize-handle { flex-shrink: 0; }
