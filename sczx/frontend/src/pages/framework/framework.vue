@@ -237,6 +237,9 @@ onUnload(leave)
   background: var(--color-surface);
 }
 .weak-filter {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   margin: 0;
   color: var(--color-text-secondary);
 }
