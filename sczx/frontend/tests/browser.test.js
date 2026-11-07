@@ -229,6 +229,7 @@ describe('Web runtime preserves original page contracts',()=>{
   picker.unmount()
  })
  it('accumulates small wheel movement before changing the picker selection',async()=>{
+  vi.spyOn(window,'innerWidth','get').mockReturnValue(390)
   const picker=mount(WebPicker,{props:{range:['初一','初二','初三']}})
   await picker.trigger('click')
   const wheel=document.querySelector('.web-selector-wheel')

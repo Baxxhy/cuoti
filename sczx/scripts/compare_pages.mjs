@@ -32,7 +32,7 @@ try{
   const service=await serve(folder);servers.push(service.server)
   for(const width of [390,1280])for(const route of cases){
    const anonymous=/pages\/(login|register|forgot)\//.test(route)
-   const context=await browser.newContext({viewport:{width,height:width===390?844:900},reducedMotion:'reduce',deviceScaleFactor:1})
+   const context=await browser.newContext({viewport:{width,height:width===390?844:900},reducedMotion:'reduce',deviceScaleFactor:1,...(process.env.SCZX_COMPARE_TOUCH&&width===390?{hasTouch:true,isMobile:true}:{} )})
    await context.addInitScript(({name,anonymous})=>{if(!anonymous)localStorage.setItem('minddimension_access_token',name==='original'?'ui-token':JSON.stringify('ui-token'))},{name,anonymous})
    const page=await context.newPage();const errors=[];const writes=[]
    page.on('pageerror',e=>errors.push(e.message))
@@ -84,7 +84,7 @@ try{
     const box=await page.locator('.crop-box').boundingBox()
     await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+box.width/2+10,box.y+box.height/2+8,{steps:8});await page.mouse.up()
    }
-   if(route.includes('ui_picker')){await page.locator(name==='original'?'uni-picker':'.web-picker').nth(Number(new URLSearchParams(route.split('?')[1]).get('ui_picker'))-1).click();await page.waitForTimeout(1200)}
+   if(route.includes('ui_picker')){const picker=page.locator(name==='original'?'uni-picker':'.web-picker').nth(Number(new URLSearchParams(route.split('?')[1]).get('ui_picker'))-1);if(process.env.SCZX_COMPARE_TOUCH&&width===390)await picker.tap();else await picker.click();await page.waitForTimeout(1200)}
    await page.evaluate(()=>document.fonts.ready)
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})
    if(name==='vue'&&process.env.SCZX_COMPARE_VUE_CSS)await page.addStyleTag({content:process.env.SCZX_COMPARE_VUE_CSS})
@@ -115,7 +115,7 @@ try{
    })
    const key=route.replaceAll('/','-').replaceAll('?','-').replaceAll('=','-')+'-'+width
    await page.screenshot({path:path.join(artifacts,key+'-'+name+'.png')})
-   let popupDismissed,previewGestures,pickerInteraction
+   let popupDismissed,previewGestures,pickerInteraction,pickerMotion
    if(route.includes('ui_picker')&&!process.env.SCZX_PICKER_VISUAL_ONLY){
     const picker=page.locator(name==='original'?'uni-picker':'.web-picker').nth(Number(new URLSearchParams(route.split('?')[1]).get('ui_picker'))-1)
     const mask=page.locator(name==='original'?'.uni-picker-mask:visible':'.web-selector-mask:visible')
@@ -134,6 +134,29 @@ try{
     if(await mask.isVisible())throw new Error(name+': picker confirmation did not close popup')
     if(!(await picker.innerText()).includes(chosen))throw new Error(name+': picker did not apply selected label '+chosen)
     pickerInteraction={cancelPreservedValue:true,confirmationApplied:true,chosen,index}
+    if(process.env.SCZX_COMPARE_PICKER_MOTION&&width===390){
+     await picker.tap();await page.waitForTimeout(400)
+     const wheel=page.locator(name==='original'?'.uni-picker-content:visible':'.web-selector-wheel:visible')
+     const content=page.locator(name==='original'?'.uni-picker-custom:visible .uni-picker-view-content':'.web-selector-content')
+     const position=()=>content.evaluate(el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).m42)
+     const bounds=await wheel.boundingBox(),initialPosition=await position(),touch=await context.newCDPSession(page),stamp=Date.now()/1000
+     const point=y=>[{id:1,x:bounds.x+bounds.width/2,y,radiusX:1,radiusY:1,force:1}]
+     await touch.send('Input.dispatchTouchEvent',{type:'touchStart',timestamp:stamp,touchPoints:point(bounds.y+119)})
+     await touch.send('Input.dispatchTouchEvent',{type:'touchMove',timestamp:stamp+.02,touchPoints:point(bounds.y+89)})
+     await touch.send('Input.dispatchTouchEvent',{type:'touchMove',timestamp:stamp+.04,touchPoints:point(bounds.y+59)})
+     const draggedPosition=await position()
+     if(Math.abs(draggedPosition-initialPosition+60)>1)throw new Error(name+': picker drag did not follow finger continuously')
+     await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',timestamp:stamp+.04,touchPoints:[]})
+     await page.waitForTimeout(150);const coastingPosition=await position()
+     if(coastingPosition>=draggedPosition-5)throw new Error(name+': picker did not continue moving after fast swipe')
+     await page.waitForTimeout(3000);const settledPosition=await position()
+     const selection=page.locator(name==='original'?'.uni-picker-custom:visible .uni-picker-select .selected':'.web-selector-list .selected')
+     const selectedLabel=(await selection.textContent()).trim()
+     await page.locator(name==='original'?'.uni-picker-action-confirm:visible':'.web-selector-action.confirm').tap();await page.waitForTimeout(350)
+     if(!(await picker.innerText()).includes(selectedLabel))throw new Error(name+': picker did not apply swipe selection')
+     pickerMotion={input:'Chromium touch events',initialPosition,draggedPosition,coastingPosition,settledPosition,selectedLabel}
+     await touch.detach()
+    }
    }
    if(route.includes('ui_modal')||route.includes('ui_remove')){await page.locator('.uni-modal__btn_default').click();await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-modal:visible').count()===0}
    if(route.includes('ui_sheet')){await page.locator(name==='original'?'.uni-actionsheet__mask':'.web-popup-mask').click({position:{x:1,y:1}});await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-actionsheet_toggle:visible').count()===0}
@@ -171,13 +194,14 @@ try{
     }
     await page.keyboard.press('Escape');await page.waitForTimeout(100);popupDismissed=await page.locator(name==='original'?'#u-a-p img':'.web-image-preview').count()===0}
    if(/ui_modal|ui_sheet|ui_remove|ui_preview/.test(route)){if(!popupDismissed)throw new Error(name+': popup did not dismiss');if(writes.length)throw new Error(name+': cancellation issued a write request')}
-   results.push({name,route,width,popupDismissed,previewGestures,pickerInteraction,writes,url:page.url().split('#')[1],errors,...snapshot})
+   results.push({name,route,width,popupDismissed,previewGestures,pickerInteraction,pickerMotion,writes,url:page.url().split('#')[1],errors,...snapshot})
    await context.close()
   }
  }
  const comparisons=results.filter(r=>r.name==='original').map(a=>{
   const b=results.find(r=>r.name==='vue'&&r.route===a.route&&r.width===a.width)
-  return {route:a.route,width:a.width,vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,pickerVisualOnly:!!process.env.SCZX_PICKER_VISUAL_ONLY,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,vuePreviewGestures:b.previewGestures,originalPickerInteraction:a.pickerInteraction,vuePickerInteraction:b.pickerInteraction,originalWrites:a.writes,vueWrites:b.writes}
+  if(a.pickerMotion&&a.pickerMotion.selectedLabel!==b.pickerMotion?.selectedLabel)throw new Error('Original and Vue picker swipe selections differ')
+  return {route:a.route,width:a.width,vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,pickerVisualOnly:!!process.env.SCZX_PICKER_VISUAL_ONLY,touchContext:!!process.env.SCZX_COMPARE_TOUCH&&a.width===390,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,vuePreviewGestures:b.previewGestures,originalPickerInteraction:a.pickerInteraction,vuePickerInteraction:b.pickerInteraction,originalPickerMotion:a.pickerMotion,vuePickerMotion:b.pickerMotion,originalWrites:a.writes,vueWrites:b.writes}
  })
  fs.writeFileSync(path.join(artifacts,'report.json'),JSON.stringify(comparisons,null,2)+'\n')
  console.log(JSON.stringify({artifacts,cases:comparisons.length,textDifferences:comparisons.filter(c=>!c.textEqual).length,pageErrors:comparisons.filter(c=>c.originalErrors.length||c.vueErrors.length).length}))
