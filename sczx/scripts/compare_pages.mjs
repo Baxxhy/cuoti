@@ -88,7 +88,7 @@ try{
    await page.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}'})
    if(name==='vue'&&process.env.SCZX_COMPARE_VUE_CSS)await page.addStyleTag({content:process.env.SCZX_COMPARE_VUE_CSS})
    const snapshot=await page.evaluate(()=>{
-    const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color','alignContent','alignItems','justifyContent','appearance','wordSpacing','whiteSpace','fontVariantNumeric']
+    const fields=['fontFamily','fontSize','fontWeight','letterSpacing','textAlign','lineHeight','height','minHeight','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','borderTopWidth','borderRadius','display','backgroundColor','color','alignContent','alignItems','justifyContent','appearance','wordSpacing','whiteSpace','fontVariantNumeric','transform','transformOrigin','imageRendering','objectFit','width','maxWidth','maxHeight']
     const items=[...document.querySelectorAll('button,uni-button,input:not([type="file"]),textarea,h1,h2,.auth-title,.auth-form,.context-row,.disclosure,.task-title,.page-header,.uni-icons,.uni-sample-toast,.uni-simple-toast__text,.web-toast,.web-toast-text,.uni-modal,.uni-modal__hd,.uni-modal__bd,.uni-modal__ft,.uni-modal__btn,.uni-actionsheet,.uni-actionsheet__cell,.web-image-preview img,#u-a-p img,.crop-stage,.crop-box,.filter-button,.filter-label,.uni-input-placeholder,.uni-textarea-placeholder,.web-input-placeholder')].filter(e=>e.getBoundingClientRect().width&&e.getBoundingClientRect().height).map(e=>{
      const r=e.getBoundingClientRect(),css=getComputedStyle(e)
      const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);let textNode
@@ -96,7 +96,8 @@ try{
      let textBox=null
      if(textNode){const range=document.createRange();range.selectNodeContents(textNode);const b=range.getBoundingClientRect();textBox=[b.x,b.y,b.width,b.height].map(v=>Math.round(v*100)/100)}
      const placeholder=e.tagName==='INPUT'?getComputedStyle(e,'::placeholder'):null
-     return {placeholderStyle:placeholder?Object.fromEntries(fields.map(k=>[k,placeholder[k]])):null,textBox,tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
+     const imageAncestors=e.tagName==='IMG'?[...function*(node){while(node&&node!==document.body){const c=getComputedStyle(node);yield {tag:node.tagName,classes:node.className,transform:c.transform,transformOrigin:c.transformOrigin,width:c.width,height:c.height};node=node.parentElement}}(e.parentElement)]:undefined
+     return {imageAncestors,placeholderStyle:placeholder?Object.fromEntries(fields.map(k=>[k,placeholder[k]])):null,textBox,tag:e.tagName,classes:e.className,text:(e.innerText||e.getAttribute('placeholder')||'').trim().replace(/\s+/g,' '),box:[r.x,r.y,r.width,r.height].map(v=>Math.round(v*100)/100),style:Object.fromEntries(fields.map(k=>[k,css[k]]))}
     })
     const words=[]
     function visit(node){
@@ -113,7 +114,7 @@ try{
    })
    const key=route.replaceAll('/','-').replaceAll('?','-').replaceAll('=','-')+'-'+width
    await page.screenshot({path:path.join(artifacts,key+'-'+name+'.png')})
-   let popupDismissed
+   let popupDismissed,previewGestures
    if(route.includes('ui_modal')||route.includes('ui_remove')){await page.locator('.uni-modal__btn_default').click();await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-modal:visible').count()===0}
    if(route.includes('ui_sheet')){await page.locator(name==='original'?'.uni-actionsheet__mask':'.web-popup-mask').click({position:{x:1,y:1}});await page.waitForTimeout(350);popupDismissed=await page.locator('.uni-actionsheet_toggle:visible').count()===0}
    if(route.includes('ui_preview')){
@@ -123,15 +124,40 @@ try{
     const switched=await page.evaluate(()=>[...document.querySelectorAll('#u-a-p img,.web-image-preview img')].some(img=>{const r=img.getBoundingClientRect();return img.src.includes('ui-preview-b.png')&&Math.abs(r.x+r.width/2-innerWidth/2)<2}))
     if(!switched)throw new Error(name+': gallery did not switch to second image')
     await page.screenshot({path:path.join(artifacts,key+'-'+name+'-second.png')})
+    if(name==='vue'){
+     const picture=page.locator('.web-preview-image')
+     const before=await picture.boundingBox()
+     const touch=await context.newCDPSession(page)
+     const point=(id,x,y)=>({id,x,y,radiusX:1,radiusY:1,force:1})
+     await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(1,100,300)]})
+     await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(1,100,300),point(2,150,300)]})
+     await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[point(1,100,300),point(2,300,300)]})
+     await page.waitForTimeout(100)
+     const zoomed=await picture.boundingBox()
+     if(Math.abs(zoomed.width-before.width*4)>1||Math.abs(zoomed.height-before.height*4)>1)throw new Error('Vue preview pinch did not enlarge image fourfold')
+     await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]})
+     await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(3,200,400)]})
+     await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[point(3,280,410)]})
+     await page.waitForTimeout(100)
+     const panned=await picture.boundingBox()
+     if(Math.abs(panned.x-zoomed.x-80)>1||Math.abs(panned.y-zoomed.y-10)>1)throw new Error('Vue preview enlarged image did not follow drag')
+     await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]})
+     await touch.detach()
+     await page.mouse.move(15,(width===390?844:900)/2)
+     await page.locator('.web-preview-navigation:not(.is-next)').click()
+     const reset=await picture.boundingBox()
+     if(Math.abs(reset.width-before.width)>1||Math.abs(reset.x-before.x)>1||Math.abs(reset.y-before.y)>1)throw new Error('Vue preview did not reset zoom and position after switching images')
+     previewGestures={input:'Chromium touch events',before,zoomed,panned,reset}
+    }
     await page.keyboard.press('Escape');await page.waitForTimeout(100);popupDismissed=await page.locator(name==='original'?'#u-a-p img':'.web-image-preview').count()===0}
    if(/ui_modal|ui_sheet|ui_remove|ui_preview/.test(route)){if(!popupDismissed)throw new Error(name+': popup did not dismiss');if(writes.length)throw new Error(name+': cancellation issued a write request')}
-   results.push({name,route,width,popupDismissed,writes,url:page.url().split('#')[1],errors,...snapshot})
+   results.push({name,route,width,popupDismissed,previewGestures,writes,url:page.url().split('#')[1],errors,...snapshot})
    await context.close()
   }
  }
  const comparisons=results.filter(r=>r.name==='original').map(a=>{
   const b=results.find(r=>r.name==='vue'&&r.route===a.route&&r.width===a.width)
-  return {route:a.route,width:a.width,vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,originalWrites:a.writes,vueWrites:b.writes}
+  return {route:a.route,width:a.width,vueStyleOverride:process.env.SCZX_COMPARE_VUE_CSS||null,textEqual:a.text===b.text,originalText:a.text,vueText:b.text,originalErrors:a.errors,vueErrors:b.errors,originalOverflow:a.overflow,vueOverflow:b.overflow,originalItems:a.items,vueItems:b.items,originalPopupDismissed:a.popupDismissed,vuePopupDismissed:b.popupDismissed,vuePreviewGestures:b.previewGestures,originalWrites:a.writes,vueWrites:b.writes}
  })
  fs.writeFileSync(path.join(artifacts,'report.json'),JSON.stringify(comparisons,null,2)+'\n')
  console.log(JSON.stringify({artifacts,cases:comparisons.length,textDifferences:comparisons.filter(c=>!c.textEqual).length,pageErrors:comparisons.filter(c=>c.originalErrors.length||c.vueErrors.length).length}))

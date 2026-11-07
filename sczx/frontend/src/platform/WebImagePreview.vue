@@ -58,7 +58,9 @@ onBeforeUnmount(()=>{window.removeEventListener('keyup',key);clearTimeout(hideTi
 </script>
 <template>
  <div v-if="preview" class="web-image-preview" role="dialog" aria-modal="true" aria-label="图片预览" @click="clicked" @pointerdown="down" @pointermove="move" @pointerup="up" @pointercancel="pointers.clear();start=null;pinch=null" @mousemove="hover" @mouseleave="showNavigation=false">
-  <img ref="image" class="web-preview-image" :src="preview.urls[preview.index]" alt="" draggable="false" :style="{transform:`translate(-50%,-50%) translate(${x}px,${y}px) scale(${scale})`}" @load="clampPan" />
+  <div class="web-preview-motion" :style="{transform:`translateX(${x}px) translateY(${y}px) translateZ(0px) scale(${scale})`}">
+  <img ref="image" class="web-preview-image" :src="preview.urls[preview.index]" alt="" draggable="false" style="transform:translate(-50%,-50%)" @load="clampPan" />
+  </div>
   <div v-for="(delta,i) in [-1,1]" :key="delta" class="web-preview-navigation" :class="{'is-next':i===1,'is-disabled':delta<0?preview.index===0:preview.index===preview.urls.length-1,'is-hidden':!showNavigation}" role="button" tabindex="0" :aria-label="i?'下一张':'上一张'" :aria-disabled="delta<0?preview.index===0:preview.index===preview.urls.length-1" @click.stop="next(delta)" @keydown.enter.prevent="next(delta)">
    <svg width="26" height="26" viewBox="0 0 32 32"><path :d="previewIcons.BACK" fill="#ffffff" /></svg>
   </div>
@@ -67,6 +69,7 @@ onBeforeUnmount(()=>{window.removeEventListener('keyup',key);clearTimeout(hideTi
 </template>
 <style>
 .web-image-preview {display:block;position:fixed;left:0;top:0;width:100%;height:100%;z-index:999;background:rgba(0,0,0,.8);touch-action:none;overflow:hidden;}
+.web-preview-motion {position:absolute;left:0;top:0;width:100%;height:100%;}
 .web-preview-image {position:absolute;left:50%;top:50%;max-width:100%;max-height:100%;user-select:none;}
 .web-preview-close {position:absolute;box-sizing:border-box;top:0;right:0;width:60px;height:44px;padding:6px;line-height:32px;font-size:26px;color:white;text-align:center;cursor:pointer;}
 .web-preview-navigation {width:26px;height:26px;cursor:pointer;position:absolute;top:50%;margin-top:-13px;display:flex;align-items:center;border-radius:50%;left:10px;}
