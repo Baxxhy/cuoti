@@ -32,6 +32,7 @@ class Course(Base):
     id: Mapped[str] = mapped_column(String(40), primary_key=True)
     title: Mapped[str] = mapped_column(String(200))
     grade: Mapped[str] = mapped_column(String(80), default="")
+    metadata_json: Mapped[dict] = mapped_column(JSON, default=dict)
 
 
 class Lesson(Base):
@@ -41,6 +42,7 @@ class Lesson(Base):
     course_id: Mapped[str] = mapped_column(ForeignKey("courses.id"), index=True)
     title: Mapped[str] = mapped_column(String(200))
     position: Mapped[int] = mapped_column(Integer, default=0)
+    unit_id: Mapped[str | None] = mapped_column(ForeignKey("course_units.id"), nullable=True)
 
 
 class Classroom(Base):
@@ -81,6 +83,7 @@ class LessonDraft(Base):
     lesson_id: Mapped[str] = mapped_column(ForeignKey("lessons.id"), index=True)
     case_id: Mapped[str | None] = mapped_column(ForeignKey("teaching_cases.id"), nullable=True)
     case_snapshot: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    lesson_snapshot: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     goal: Mapped[str] = mapped_column(Text, default="")
     student_base: Mapped[str] = mapped_column(Text, default="")
     due_date: Mapped[str] = mapped_column(String(30), default="")
@@ -292,6 +295,40 @@ class CaseVersion(Base):
     __table_args__ = (UniqueConstraint('case_id', 'number', name='uq_case_version_number'),)
     id: Mapped[str] = mapped_column(String(40), primary_key=True)
     case_id: Mapped[str] = mapped_column(ForeignKey('teaching_cases.id'), index=True)
+    number: Mapped[int] = mapped_column(Integer)
+    data: Mapped[dict] = mapped_column(JSON)
+    published_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+class CourseUnit(Base):
+    __tablename__ = 'course_units'
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    course_id: Mapped[str] = mapped_column(ForeignKey('courses.id'), index=True)
+    title: Mapped[str] = mapped_column(String(200))
+    position: Mapped[int] = mapped_column(Integer, default=0)
+
+
+class KnowledgePoint(Base):
+    __tablename__ = 'knowledge_points'
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    name: Mapped[str] = mapped_column(String(160))
+    prerequisites: Mapped[list] = mapped_column(JSON, default=list)
+
+
+class LessonContent(Base):
+    __tablename__ = 'lesson_contents'
+    lesson_id: Mapped[str] = mapped_column(ForeignKey('lessons.id'), primary_key=True)
+    draft: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    reviewed: Mapped[bool] = mapped_column(Boolean, default=False)
+    status: Mapped[str] = mapped_column(String(24), default='draft')
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class LessonVersion(Base):
+    __tablename__ = 'lesson_versions'
+    __table_args__ = (UniqueConstraint('lesson_id', 'number', name='uq_lesson_version'),)
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    lesson_id: Mapped[str] = mapped_column(ForeignKey('lessons.id'), index=True)
     number: Mapped[int] = mapped_column(Integer)
     data: Mapped[dict] = mapped_column(JSON)
     published_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)

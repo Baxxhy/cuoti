@@ -16,14 +16,14 @@ const store = useLearning(),
   error = ref("");
 const independent = computed(
   () =>
-    store.record?.attempts.filter((item) => item.correct && !item.helped)
+    store.record?.attempts.filter((item) => item.correct && !item.helped && store.task?.questions[item.question]?.kind!=='practice')
       .length || 0,
 );
 const records = computed(() => store.data.studentRecords?.[store.task?.id] || []);
 const coveredHelpIds = ref([]);
 const visibleHelps = computed(() => (store.record?.helps || []).filter(item => !coveredHelpIds.value.includes(item.id)));
 const submittedCount = computed(() => records.value.filter((record) => record.completed).length);
-const independentCount = computed(() => records.value.reduce((sum, record) => sum + record.attempts.filter((item) => item.correct && !item.helped).length, 0));
+const independentCount = computed(() => records.value.reduce((sum, record) => sum + record.attempts.filter((item) => item.correct && !item.helped && store.task?.questions[item.question]?.kind!=='practice').length, 0));
 watch(() => store.data.activeStudentId, () => { draft.value = store.record?.feedback || ""; });
 async function feedback() {
   try {
@@ -80,7 +80,7 @@ async function arrange() {
         ><strong>{{ submittedCount }}<small>/ {{ records.length }}</small></strong>
       </div>
       <div>
-        <span>新题独立完成</span
+        <span>独立检查正确</span
         ><strong>{{ independentCount }}<small>次</small></strong>
       </div>
       <div class="summary-context"><Status>本次操作记录</Status></div>
@@ -116,7 +116,7 @@ async function arrange() {
               </td>
               <td>{{ student.help }}</td>
               <td>
-                <Status :tone="student.result === '新题独立完成' ? 'green' : 'neutral'">{{
+                <Status :tone="student.result === '独立检查正确' ? 'green' : 'neutral'">{{
                   student.result
                 }}</Status>
               </td>

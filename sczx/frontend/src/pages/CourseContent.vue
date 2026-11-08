@@ -1,4 +1,4 @@
 <script setup>
-import ContentEditor from "@/components/ContentEditor.vue";
+import CourseWorkbench from '@/components/CourseWorkbench.vue';
 </script>
-<template><ContentEditor course /></template>
+<template><CourseWorkbench/></template>

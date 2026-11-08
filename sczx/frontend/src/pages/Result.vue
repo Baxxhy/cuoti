@@ -48,7 +48,7 @@ async function submitResult() {
             },
             {
               title: '独立应用',
-              text: `${store.record.attempts.filter((i) => i.correct && !i.helped).length} 次未使用帮助且数值正确`,
+              text: `${store.record.attempts.filter((i) => i.correct && !i.helped && store.task.questions[i.question]?.kind!=='practice').length} 次未使用帮助且数值正确`,
               route: 'check',
             },
             {

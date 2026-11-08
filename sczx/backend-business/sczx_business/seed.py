@@ -45,6 +45,8 @@ def ensure_seed() -> None:
             if case.status == 'published':
                 db.add(CaseVersion(id=uid('version'), case_id=case.id, number=1, data={'title':case.title,'content':case.content,'source':case.source,'author':'','grade':'七年级','subject':'数学','experience':{},'references':[],'legacy':True}))
                 db.flush()
+        from .lesson_seed import ensure_curriculum
+        ensure_curriculum(db)
         admin = db.scalar(select(Account).where(Account.role == "admin").order_by(Account.created_at).limit(1))
         teacher = db.scalar(select(Account).where(Account.role == "teacher").order_by(Account.created_at).limit(1))
         student = db.scalar(select(Account).where(Account.role == "student").order_by(Account.created_at).limit(1))

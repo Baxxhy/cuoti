@@ -1,3 +1,4 @@
+import copy
 import asyncio
 import hashlib
 import json
@@ -37,9 +38,15 @@ def job_for(db, user, job_id):
 
 
 def serialize(job, detail=True):
+    def public_context(value):
+        if isinstance(value,list):return [public_context(v) for v in value]
+        if isinstance(value,dict):return {k:public_context(v) for k,v in value.items() if k not in ('answer','hint','teacherNote','feedback','explanation')}
+        return value
+    exposed=copy.deepcopy(job.input)
+    if 'context' in exposed:exposed['context']=public_context(exposed['context'])
     result = job.result
     if result and not detail and "vectors" in result: result = {k:v for k,v in result.items() if k != "vectors"}
-    return {"id":job.id,"capability":job.capability,"summary":job.input.get("label", ""),"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":job.input} if detail else {})}
+    return {"id":job.id,"capability":job.capability,"summary":job.input.get("label", ""),"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
 
 
 @router.get("/capabilities")

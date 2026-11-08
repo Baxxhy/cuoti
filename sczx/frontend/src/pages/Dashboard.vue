@@ -14,10 +14,10 @@ const teacher = computed(() => route.name === "teacher");
   <div class="home-grid">
     <div class="home-main">
       <section class="lesson-hero">
-        <img src="/images/equation-balance.png" alt="等式性质天平课程封面" />
+        <img src="/images/equation-balance.png" alt="数学课程插画" />
         <div class="hero-copy">
-          <span class="hero-category">七年级数学 · 一元一次方程</span>
-          <h2>等式性质</h2>
+          <span class="hero-category">{{ teacher?'教师工作区':store.task?.snapshot.lessonSnapshot?.grade||'学习空间' }}</span>
+          <h2>{{ teacher?store.data.lesson?.title||'选择课时':store.task?.title||'探索课程' }}</h2>
           <Button
             @click="
               navigate(
@@ -46,7 +46,7 @@ const teacher = computed(() => route.name === "teacher");
             @click="navigate(teacher ? 'cases' : 'courses')"
           >
             <div class="explore-art"><LibraryBig :size="48" /></div>
-            <h3>{{ teacher ? "教学案例" : "一元一次方程" }}</h3></button
+            <h3>{{ teacher ? "教学案例" : "课程目录" }}</h3></button
           ><button
             class="explore-card peach"
             @click="navigate(teacher ? 'class' : 'wrong')"

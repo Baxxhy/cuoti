@@ -47,6 +47,7 @@ const items = computed(
       teacher: [
         ["teacher", "教学概览", LayoutDashboard],
         ["cases", "教学案例", LibraryBig],
+        ["courses", "课程与课时", BookOpen],
         ["prepare", "我的教案", FileText],
         ["class", "班级教学", Users],
       ],

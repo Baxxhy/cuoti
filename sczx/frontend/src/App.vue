@@ -61,6 +61,7 @@ const navigation = {
   teacher: [
     { route: "teacher", label: "教学概览", icon: LayoutDashboard },
     { route: "cases", label: "教学案例", icon: LibraryBig },
+    { route: "courses", label: "课程与课时", icon: BookOpen },
     { route: "prepare", label: "我的教案", icon: FileText },
     { route: "class", label: "班级教学", icon: Users },
   ],

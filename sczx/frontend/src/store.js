@@ -53,8 +53,8 @@ export const useLearning = defineStore("platform", {
                 ? 40
                 : 0,
           help: `${record.helps.length} 次帮助`,
-          result: record.attempts.some((item) => item.correct && !item.helped)
-            ? "新题独立完成"
+          result: record.attempts.some((item) => item.correct && !item.helped && this.task.questions[item.question]?.kind!=='practice')
+            ? "独立检查正确"
             : "待独立检查",
         }));
     },
@@ -85,11 +85,11 @@ export const useLearning = defineStore("platform", {
       this.data = createPlatform();
       this.status = "unauthenticated";
     },
-    async load() {
+    async load(lessonId=this.data.lesson?.id) {
       this.status = "loading";
       this.error = "";
       try {
-        this.data = await api.platform();
+        this.data = await api.platform(lessonId);
         this.status = "ready";
       } catch (error) {
         this.error = error.message;
@@ -123,6 +123,13 @@ export const useLearning = defineStore("platform", {
       } finally {
         this.saving = false;
       }
+    },
+    async selectLesson(id) {
+      if (id===this.data.lesson?.id) return true;
+      if (!(await this.save())) throw new Error(this.saveError);
+      await this.load(id);
+      if(this.status==='error') throw new Error(this.error);
+      return true;
     },
     selectTask(id) {
       if (!this.data.tasks.some((task) => task.id === id)) return false;
