@@ -13,6 +13,7 @@ from .ai_schemas import JobInput, CAPABILITIES
 from .database import get_db, SessionLocal
 from .models import Attempt, FileAsset, LearningTask, ModelJob, ModelRun, ModelEvent, StudentRecord
 from .model_jobs import event, provider, help_record_id
+from .retrieval import search, published_documents
 
 router = APIRouter(prefix="/api/ai")
 
@@ -51,8 +52,26 @@ def capabilities(request: Request, db=Depends(get_db)):
     results = []
     for cap in CAPABILITIES:
         latest = db.scalar(select(ModelJob).where(ModelJob.capability==cap, ModelJob.status.in_(["succeeded","failed"])).order_by(ModelJob.updated_at.desc()).limit(1))
-        results.append({"capability":cap,"configured":bool(entries[cap]),"unavailableReason":UNSUPPORTED.get(cap, "") if cli else "","transport":"codex_cli" if cli else "http","models":entries[cap],"lastStatus":latest.status if latest else None,"lastJobId":latest.id if latest else None,"lastError":latest.error if latest else ""})
+        results.append({"capability":cap,"configured":bool(entries[cap]),"unavailableReason":UNSUPPORTED.get(cap, "") if cli else "","transport":"algorithm" if cap=="retrieval" else "codex_cli" if cli else "http","models":entries[cap],"lastStatus":latest.status if latest else None,"lastJobId":latest.id if latest else None,"lastError":latest.error if latest else ""})
     return results
+
+
+@router.get("/search")
+def search_cases(request: Request, q: str = "", db=Depends(get_db)):
+    user_for(request, db)
+    if len(q) > 2000: raise HTTPException(422, "检索内容过长，请缩短问题。")
+    documents = published_documents(db)
+    items = search(q, documents) if q.strip() else documents
+    return {"query": q, "method": "bm25", "items": items, "totalDocuments": len(documents)}
+
+
+@router.get("/cases/{case_id}")
+def read_case(case_id: str, request: Request, db=Depends(get_db)):
+    user_for(request, db)
+    from .models import TeachingCase
+    item = db.get(TeachingCase, case_id)
+    if not item or item.status != "published": raise HTTPException(404, "案例不存在或尚未发布。")
+    return {"id": item.id, "title": item.title, "content": item.content, "source": item.source}
 
 
 @router.get("/jobs")
@@ -62,7 +81,7 @@ def jobs(request: Request, recordId: str | None = None, db=Depends(get_db)):
     if recordId: query=query.where(ModelJob.record_id==recordId)
     if user.role == "student": query=query.where(ModelJob.owner_id==user.id)
     elif user.role == "teacher":
-        query=query.join(StudentRecord,ModelJob.record_id==StudentRecord.id).join(LearningTask,StudentRecord.task_id==LearningTask.id).where(LearningTask.teacher_id==user.id)
+        query=query.outerjoin(StudentRecord,ModelJob.record_id==StudentRecord.id).outerjoin(LearningTask,StudentRecord.task_id==LearningTask.id).where((LearningTask.teacher_id==user.id) | (ModelJob.owner_id==user.id))
     return [serialize(item,False) for item in db.scalars(query.order_by(ModelJob.created_at.desc()).limit(60)).all()]
 
 
@@ -71,7 +90,10 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
     user = user_for(request, db)
     data = payload.data.copy()
     record = db.get(StudentRecord,payload.recordId) if payload.recordId else None
-    if user.role != "admin":
+    if payload.capability == "retrieval":
+        if payload.recordId: raise HTTPException(422, "案例检索不关联学生学习记录。")
+        if user.role not in ("admin", "teacher"): raise HTTPException(403, "请从教师案例入口检索。")
+    elif user.role != "admin":
         if user.role != "student" or not record or record.student_id != user.id: raise HTTPException(403,"请选择自己的学习记录。")
         if payload.capability not in ("text","ocr"): raise HTTPException(403,"此能力通过管理员验证入口使用。")
     elif payload.recordId and not record: raise HTTPException(404,"学习记录不存在。")
@@ -88,6 +110,10 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
         if not asset or asset.owner_id!=user.id: raise HTTPException(404,"没有找到此账号上传的文件。")
         if payload.capability=="ocr" and not asset.content_type.startswith("image/"): raise HTTPException(422,"请选择题图。")
         if payload.capability=="asr" and not asset.content_type.startswith("audio/"): raise HTTPException(422,"请选择音频文件。")
+    if payload.capability == "retrieval":
+        query = data.get("query")
+        if not isinstance(query, str) or not 0 < len(query.strip()) <= 2000: raise HTTPException(422, "请输入1至2000字的教学问题。")
+        data = {"query": query.strip(), "rerank": data.get("rerank") is True, "documents": published_documents(db)}
     if payload.capability=="text":
         prompt=data.get("prompt","")
         prompt=prompt.strip() if isinstance(prompt,str) else ""
@@ -99,6 +125,9 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
             if question is not None and (isinstance(question,bool) or not isinstance(question,int) or not 0<=question<len(task.questions)):
                 raise HTTPException(422,"当前题目不存在。")
             data["context"]={"lesson":task.snapshot,"question":task.questions[question] if question is not None else None,"observation":record.observation}
+            recognized = data.get("recognizedText", "")
+            teaching_query = (recognized if isinstance(recognized, str) else "") + " " + prompt
+            data["context"]["teachingCases"] = search(teaching_query, published_documents(db), 3)
             data["attemptNumber"]=len(db.scalars(select(Attempt.id).where(Attempt.record_id==record.id)).all())+1
             # Requesting help immediately marks the current pending attempt as helped.
             if question is not None:

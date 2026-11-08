@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch } from "vue";
 import { LoaderCircle, RotateCcw, Check, CircleAlert } from "lucide-vue-next";
+import SpeechReader from "./SpeechReader.vue";
 import { capabilityNames } from "@/services/models.js";
 const props = defineProps({ job: Object, busy: Boolean, showSource: Boolean, canRetry: { type: Boolean, default: true } });
 defineEmits(["retry"]);
@@ -24,6 +25,7 @@ const verification = computed(() => ({ verified: "列出的等式已核对", inc
     <template v-if="result && job.status === 'succeeded'">
       <details v-if="job.recognizedText" class="model-run-history"><summary>学生确认的题目</summary><p class="model-prose">{{ job.recognizedText }}</p></details>
       <template v-if="job.capability === 'text'">
+        <SpeechReader :text="[result.title, result.hint, ...(expanded ? result.steps || [] : [])].filter(Boolean).join('。')" />
         <h3>{{ result.title }}</h3><p class="model-prose">{{ result.hint }}</p>
         <Button variant="outline" @click="expanded = !expanded" :aria-expanded="expanded">{{ expanded ? '收起讲解' : '展开分步讲解' }}</Button>
         <ol v-if="expanded" class="model-steps"><li v-for="(step, index) in result.steps" :key="index">{{ step }}</li></ol>
@@ -35,6 +37,13 @@ const verification = computed(() => ({ verified: "列出的等式已核对", inc
       <p v-if="result.studentAnswer" class="model-prose">原作答：{{ result.studentAnswer }}</p>
       <div v-if="result.uncertainties?.length" class="model-error">待核对：{{ result.uncertainties.join('；') }}</div>
       <div v-if="job.capability === 'embedding'" class="model-metrics"><div><strong>{{ result.count }}</strong><span>段文本</span></div><div><strong>{{ result.dimensions }}</strong><span>向量维度</span></div></div>
+      <div v-if="job.capability === 'retrieval'" class="retrieval-results">
+        <p v-if="!result.items?.length" class="ai-empty">没有匹配的案例，换个知识点或学生困难试试。</p>
+        <p v-if="result.warning" role="status" class="model-model-name">{{ result.warning }}</p>
+        <details v-for="item in result.items" :key="item.id" class="retrieval-item"><summary>{{ item.title }}</summary><p class="model-prose">{{ item.content }}</p><span class="model-model-name">{{ item.source || '团队编写案例示例' }}</span></details>
+        <InfoTip v-if="result.items?.length" label="检索方式">BM25 中文检索{{ result.rerankApplied ? '，已完成 Codex 语义重排' : '' }}；相关分值不代表内容正确性。</InfoTip>
+      </div>
+      <details v-if="result.sources?.length" class="model-run-history"><summary>参考教学案例 · {{ result.sources.length }}</summary><p v-for="source in result.sources" :key="source.id">{{ source.title }}</p></details>
       <ol v-if="result.ranking" class="model-ranking"><li v-for="item in result.ranking" :key="item.id"><strong>{{ item.id }}</strong><span>{{ item.score }}</span></li></ol>
       <InfoTip v-if="result.scoreMeaning" label="重排方法与分值">{{ result.method === 'llm' ? 'LLM 语义重排。' : '' }}{{ result.scoreMeaning }}</InfoTip>
       <audio v-if="result.url" class="model-audio" controls :src="result.url" aria-label="生成的讲解音频" preload="metadata" />

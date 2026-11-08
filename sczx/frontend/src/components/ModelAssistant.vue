@@ -5,6 +5,7 @@ import { useLearning } from "@/store.js";
 import { modelApi } from "@/services/models.js";
 import { useModelJob } from "@/lib/useModelJob.js";
 import ModelResult from "./ModelResult.vue";
+import SpeechInput from "./SpeechInput.vue";
 const props = defineProps({ question: { default: null }, compact: Boolean });
 const emit = defineEmits(["help"]);
 const store = useLearning();
@@ -73,7 +74,7 @@ async function confirmOCR() {
     </template>
     <div class="ai-compose">
       <label class="sr-only" for="learning-question">向学习助手提问</label><Textarea id="learning-question" v-model="prompt" placeholder="写下还没想明白的地方…" />
-      <div class="ai-compose-actions"><label class="image-input"><ImagePlus :size="18" /><span class="sr-only">选择题图</span><input type="file" accept="image/*" :disabled="busy || uploading" @change="file = $event.target.files?.[0] || null; ocrId = null" /></label><span class="ai-file-name">{{ file?.name || '题图' }}</span><Button :disabled="busy || uploading || !recordId" @click="send"><Send :size="16" />{{ uploading ? '上传中…' : busy ? '处理中…' : file ? '识别题图' : '发送' }}</Button></div>
+      <div class="ai-compose-actions"><SpeechInput :context-key="`${recordId}:${question}`" :disabled="busy || uploading" @text="prompt = [prompt.trim(), $event].filter(Boolean).join(' ' )" /><label class="image-input"><ImagePlus :size="18" /><span class="sr-only">选择题图</span><input type="file" accept="image/*" :disabled="busy || uploading" @change="file = $event.target.files?.[0] || null; ocrId = null" /></label><span class="ai-file-name">{{ file?.name || '题图' }}</span><Button :disabled="busy || uploading || !recordId" @click="send"><Send :size="16" />{{ uploading ? '上传中…' : busy ? '处理中…' : file ? '识别题图' : '发送' }}</Button></div>
     </div>
     <p v-if="uploadError || error" class="form-error" role="alert">{{ uploadError || error }}</p>
   </aside>

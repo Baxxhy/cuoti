@@ -58,11 +58,12 @@ async def execute(job_id, run_id):
             path = storage_dir() / asset.storage_key if asset else None
             if not path or not path.is_file(): raise ModelError("原始文件缺失，请重新上传。")
             file = (asset.original_name, path.read_bytes(), asset.content_type)
-    phase(job_id, {"ocr": "正在识别题图", "text": "正在生成指导", "embedding": "正在生成向量", "rerank": "正在重排材料", "asr": "正在转写音频", "tts": "正在合成音频"}[capability])
+    phase(job_id, {"retrieval": "正在检索教学案例", "ocr": "正在识别题图", "text": "正在生成指导", "embedding": "正在生成向量", "rerank": "正在重排材料", "asr": "正在转写音频", "tts": "正在合成音频"}[capability])
     result, model, source = await provider.call(capability, data, file=file, request_id=run_id)
     if capability == "text":
         phase(job_id, "正在核对数学表达")
         result["verification"] = await asyncio.to_thread(math_check, result.get("mathClaims", []))
+        result["sources"] = [{"id": x["id"], "title": x["title"], "source": x.get("source", "")} for x in data.get("context", {}).get("teachingCases", [])]
     phase(job_id, "正在保存结果")
     with SessionLocal.begin() as db:
         job, run = db.get(ModelJob, job_id), db.get(ModelRun, run_id)

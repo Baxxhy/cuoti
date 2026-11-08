@@ -27,6 +27,8 @@ class ModelProvider:
         self.client = httpx.AsyncClient(timeout=httpx.Timeout(100, connect=15), trust_env=False)
 
     def entries(self, capability):
+        if capability == "retrieval":
+            return [{"name": "BM25 中文检索", "model": "BM25", "transport": "algorithm"}]
         if os.getenv("SCZX_MODEL_TRANSPORT", "codex_cli") == "codex_cli":
             from .codex_provider import MODEL, SUPPORTED
             return [{"name": "Codex CLI · low", "model": MODEL, "transport": "codex_cli"}] if capability in SUPPORTED else []
@@ -75,6 +77,20 @@ class ModelProvider:
         raise last_error or ModelError("没有可用模型服务。")
 
     async def _call(self, entry, capability, data, file, request_id=None):
+        if capability == "retrieval":
+            from .retrieval import search
+            documents = data.get("documents", [])
+            items = search(data["query"], documents)
+            result = {"query": data["query"], "method": "bm25", "items": items, "totalDocuments": len(documents), "rerankApplied": False}
+            if data.get("rerank") and items:
+                try:
+                    ranking, model, source = await self.call("rerank", {"query": data["query"], "candidates": [{"id": x["id"], "text": x["title"] + "\n" + x["content"][:8000]} for x in items]}, request_id=request_id)
+                    by_id = {x["id"]: x for x in items}
+                    result["items"] = [{**by_id[x["id"]], "relevanceScore": x["score"]} for x in ranking["ranking"]]
+                    result.update(rerankApplied=True, rerankModel=model, method="bm25+llm")
+                except ModelError:
+                    result["warning"] = "语义重排暂未完成，已保留 BM25 检索结果。"
+            return result
         if entry.get("transport") == "codex_cli":
             from .codex_provider import call
             return await call(capability, data, file)

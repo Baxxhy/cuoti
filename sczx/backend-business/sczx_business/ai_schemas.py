@@ -1,8 +1,8 @@
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 
-CAPABILITIES = ("text", "ocr", "embedding", "rerank", "asr", "tts")
-CAPABILITY_LABELS = {"text": "文字指导", "ocr": "题图识别", "embedding": "文本向量", "rerank": "材料重排", "asr": "语音转写", "tts": "讲解音频"}
+CAPABILITIES = ("text", "ocr", "retrieval", "embedding", "rerank", "asr", "tts")
+CAPABILITY_LABELS = {"retrieval": "案例检索", "text": "文字指导", "ocr": "题图识别", "embedding": "文本向量", "rerank": "材料重排", "asr": "语音转写", "tts": "讲解音频"}
 
 
 class StrictResult(BaseModel):
@@ -39,7 +39,7 @@ class RankingResult(StrictResult):
 
 
 class JobInput(BaseModel):
-    capability: Literal["text", "ocr", "embedding", "rerank", "asr", "tts"]
+    capability: Literal["text", "ocr", "retrieval", "embedding", "rerank", "asr", "tts"]
     requestKey: str = Field(min_length=8, max_length=80)
     recordId: str | None = None
     fileId: str | None = None

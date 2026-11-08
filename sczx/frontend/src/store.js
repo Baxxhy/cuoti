@@ -165,8 +165,8 @@ export const useLearning = defineStore("platform", {
       await this.load();
       return result;
     },
-    useCase() {
-      const example = this.data.publishedCase || this.data.caseDraft;
+    useCase(selectedCase) {
+      const example = selectedCase || this.data.publishedCase || this.data.caseDraft;
       this.data.lessonDraft.caseId = example.id;
       this.data.lessonDraft.blocks[0].content = example.content;
       this.data.lessonDraft.updatedAt = new Date().toISOString();
