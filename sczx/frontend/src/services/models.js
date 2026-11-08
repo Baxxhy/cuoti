@@ -2,7 +2,7 @@ import { api } from "./api.js";
 
 export const modelApi = {
   search: (query = "") => api.request(`/ai/search?q=${encodeURIComponent(query)}`),
-  caseDetail: (id) => api.request(`/ai/cases/${encodeURIComponent(id)}`),
+  caseDetail: (id, versionId) => api.request(`/ai/cases/${encodeURIComponent(id)}${versionId ? `?versionId=${encodeURIComponent(versionId)}` : ""}`),
   capabilities: () => api.request("/ai/capabilities"),
   list: (recordId) => api.request(`/ai/jobs${recordId ? `?recordId=${encodeURIComponent(recordId)}` : ""}`),
   detail: (id) => api.request(`/ai/jobs/${encodeURIComponent(id)}`),
@@ -16,4 +16,4 @@ export const modelApi = {
   },
 };
 
-export const capabilityNames = { retrieval: "案例检索", text: "文字指导", ocr: "题图识别", embedding: "文本向量", rerank: "材料重排", asr: "语音转写", tts: "讲解音频" };
+export const capabilityNames = { document_parse: "文档解析", document_ocr: "原文识别", case_extract: "案例提取", retrieval: "案例检索", text: "文字指导", ocr: "题图识别", embedding: "文本向量", rerank: "材料重排", asr: "语音转写", tts: "讲解音频" };

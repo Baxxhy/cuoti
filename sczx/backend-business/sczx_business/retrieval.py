@@ -21,7 +21,7 @@ def search(query, documents, limit=8):
     """返回正分匹配；空查询、空库和零匹配不返回占位案例。"""
     terms = set(tokenize(query))
     if not terms or not documents: return []
-    counts = [Counter(tokenize(f"{d.get('title', '')} {d.get('title', '')} {d.get('content', '')}")) for d in documents]
+    counts = [Counter(tokenize(f"{d.get('title', '')} {d.get('title', '')} {d.get('content', '')} {d.get('retrievalText', '')}")) for d in documents]
     lengths = [sum(count.values()) for count in counts]
     average = sum(lengths) / len(lengths) or 1
     frequencies = {term: sum(term in count for count in counts) for term in terms}
@@ -41,5 +41,10 @@ def search(query, documents, limit=8):
 def published_documents(db):
     from sqlalchemy import select
     from .models import TeachingCase
-    return [{'id': case.id, 'title': case.title, 'content': case.content, 'source': case.source}
-            for case in db.scalars(select(TeachingCase).where(TeachingCase.status == 'published').order_by(TeachingCase.id)).all()]
+    from .library import current_case
+    import json
+    results = []
+    for case in db.scalars(select(TeachingCase).where(TeachingCase.status == 'published').order_by(TeachingCase.id)).all():
+        data = current_case(db, case.id)
+        if data: results.append({**data, 'retrievalText': json.dumps(data.get('experience', {}), ensure_ascii=False)})
+    return results

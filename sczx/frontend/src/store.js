@@ -168,7 +168,9 @@ export const useLearning = defineStore("platform", {
     useCase(selectedCase) {
       const example = selectedCase || this.data.publishedCase || this.data.caseDraft;
       this.data.lessonDraft.caseId = example.id;
-      this.data.lessonDraft.blocks[0].content = example.content;
+      this.data.lessonDraft.caseSnapshot = example.versionId ? JSON.parse(JSON.stringify(example)) : null;
+      if (this.data.lessonDraft.blocks.length) this.data.lessonDraft.blocks[0].content = example.content;
+      else this.data.lessonDraft.blocks.push({id:createId('activity'),title:example.title,content:example.content});
       this.data.lessonDraft.updatedAt = new Date().toISOString();
       this.touch();
     },

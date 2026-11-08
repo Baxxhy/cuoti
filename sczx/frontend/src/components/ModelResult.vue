@@ -6,6 +6,7 @@ import { capabilityNames } from "@/services/models.js";
 const props = defineProps({ job: Object, busy: Boolean, showSource: Boolean, canRetry: { type: Boolean, default: true } });
 defineEmits(["retry"]);
 const expanded = ref(false);
+const uniqueReferences = refs => [...new Map((refs || []).map(item => [item.unitId, item])).values()];
 watch(() => props.job?.id, () => { expanded.value = false; });
 const result = computed(() => props.job?.result);
 const verification = computed(() => ({ verified: "列出的等式已核对", inconsistent: "发现数学不一致", unverified: "数学需核对" })[result.value?.verification?.status]);
@@ -43,7 +44,7 @@ const verification = computed(() => ({ verified: "列出的等式已核对", inc
         <details v-for="item in result.items" :key="item.id" class="retrieval-item"><summary>{{ item.title }}</summary><p class="model-prose">{{ item.content }}</p><span class="model-model-name">{{ item.source || '团队编写案例示例' }}</span></details>
         <InfoTip v-if="result.items?.length" label="检索方式">BM25 中文检索{{ result.rerankApplied ? '，已完成 Codex 语义重排' : '' }}；相关分值不代表内容正确性。</InfoTip>
       </div>
-      <details v-if="result.sources?.length" class="model-run-history"><summary>参考教学案例 · {{ result.sources.length }}</summary><p v-for="source in result.sources" :key="source.id">{{ source.title }}</p></details>
+      <details v-if="result.sources?.length" class="model-run-history"><summary>参考教学案例 · {{ result.sources.length }}</summary><section v-for="source in result.sources" :key="`${source.id}:${source.versionId||''}`"><p>{{ source.role === 'lesson' ? '课时关联 · ' : '' }}{{ source.title }}{{ source.version ? ' · v'+source.version : '' }}</p><a v-for="(ref,index) in uniqueReferences(source.references)" :key="index" :href="`/#/source?unit=${ref.unitId}`" target="_blank" rel="noopener">{{ ref.materialTitle }} · {{ ref.label }}</a></section></details>
       <ol v-if="result.ranking" class="model-ranking"><li v-for="item in result.ranking" :key="item.id"><strong>{{ item.id }}</strong><span>{{ item.score }}</span></li></ol>
       <InfoTip v-if="result.scoreMeaning" label="重排方法与分值">{{ result.method === 'llm' ? 'LLM 语义重排。' : '' }}{{ result.scoreMeaning }}</InfoTip>
       <audio v-if="result.url" class="model-audio" controls :src="result.url" aria-label="生成的讲解音频" preload="metadata" />

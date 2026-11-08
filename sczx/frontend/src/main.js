@@ -1,3 +1,4 @@
+import SourcePage from './pages/Source.vue';
 import { createApp, watch } from "vue";
 import { createPinia } from "pinia";
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -56,6 +57,7 @@ const router = createRouter({
     { path: "/wrong", name: "wrong", component: WrongQuestions },
     { path: "/repair", name: "repair", component: Repair },
     { path: "/cases", name: "cases", component: Cases },
+    { path: "/source", name: "source", component: SourcePage },
     { path: "/case-detail", name: "case-detail", component: CaseDetail },
     { path: "/prepare", name: "prepare", component: Prepare },
     { path: "/class", name: "class", component: Classroom },
@@ -89,9 +91,9 @@ for (const [name, component] of Object.entries({
 const store = useLearning();
 let sessionReady;
 const roleRoutes = {
-  student: new Set(["home", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
-  teacher: new Set(["teacher", "courses", "cases", "case-detail", "prepare", "class", "insights", "issues"]),
-  admin: new Set(["manage", "content", "issues", "cases", "case-detail", "courses"]),
+  student: new Set(["source", "home", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
+  teacher: new Set(["source", "teacher", "courses", "cases", "case-detail", "prepare", "class", "insights", "issues"]),
+  admin: new Set(["source", "manage", "content", "issues", "cases", "case-detail", "courses"]),
 };
 router.beforeEach(async (to) => {
   if (to.name === "login") {

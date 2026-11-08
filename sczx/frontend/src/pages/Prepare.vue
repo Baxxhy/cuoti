@@ -19,10 +19,17 @@ import {
 import draggable from "vuedraggable";
 import Workspace from "@/components/Workspace.vue";
 import LessonPreview from "@/components/LessonPreview.vue";
+import CaseArticle from "@/components/CaseArticle.vue";
+import { modelApi } from "@/services/models.js";
 import { initialBlocks } from "@/data.js";
 const store = useLearning(),
   notify = inject("notify");
 
+const caseSnapshot = computed(() => store.data.lessonDraft.caseSnapshot);
+const fallbackCase=ref(null),referenceError=ref('');let referenceGeneration=0;
+const caseReference=computed(()=>caseSnapshot.value?.versionId?caseSnapshot.value:fallbackCase.value);
+watch(()=>[store.data.lessonDraft.caseId,caseSnapshot.value?.versionId],async([id,versionId])=>{const generation=++referenceGeneration;fallbackCase.value=null;referenceError.value='';if(!id||versionId)return;try{const item=await modelApi.caseDetail(id);if(generation===referenceGeneration)fallbackCase.value=item}catch(e){if(generation===referenceGeneration)referenceError.value=e.message}},{immediate:true});
+const caseRoute = computed(() => 'case-detail?caseId='+encodeURIComponent(store.data.lessonDraft.caseId||'')+(caseSnapshot.value?.versionId?'&versionId='+encodeURIComponent(caseSnapshot.value.versionId):''));
 const modal = ref(""),
   previewTab = ref("student"),
   busyBlock = ref(""),
@@ -161,8 +168,8 @@ async function publish() {
                 :aria-label="block.title"
                 :disabled="busyBlock === block.id"
               /></div></template></draggable
-        ><button class="reference-link" @click="navigate('case-detail')">
-          <LibraryBig :size="16" /><span>参考案例 · 天平与等式性质</span
+        ><button class="reference-link" @click="navigate(caseRoute)" :disabled="!store.data.lessonDraft.caseId">
+          <LibraryBig :size="16" /><span>参考案例 · {{ caseReference?.title || '尚未选择' }}</span
           ><ArrowUpRight :size="15" />
         </button></div></template
     ><template #secondary
@@ -178,11 +185,9 @@ async function publish() {
       <LessonPreview v-if="previewTab === 'student'" />
       <div v-else class="preview-source">
         <BookOpen :size="28" />
-        <h2>天平与等式性质</h2>
-        <p>
-          先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。
-        </p>
-        <RouteButton route="case-detail" secondary>阅读完整案例</RouteButton>
+        <h2>{{ caseReference?.title || '尚未选择参考案例' }}</h2>
+        <InfoTip v-if="caseReference&&!caseSnapshot?.versionId" label="参考版本说明">此教案尚未记录案例版本，当前展示最新发布内容；使用案例备课后会保存所选版本。</InfoTip><p v-if="referenceError" class="form-error">{{ referenceError }}</p><CaseArticle v-if="caseReference" :value="caseReference" />
+        <RouteButton v-if="store.data.lessonDraft.caseId" :route="caseRoute" secondary>阅读完整案例</RouteButton>
       </div></template
     ></Workspace
   ><AppDialog

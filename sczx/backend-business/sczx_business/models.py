@@ -80,6 +80,7 @@ class LessonDraft(Base):
     teacher_id: Mapped[str] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), index=True)
     lesson_id: Mapped[str] = mapped_column(ForeignKey("lessons.id"), index=True)
     case_id: Mapped[str | None] = mapped_column(ForeignKey("teaching_cases.id"), nullable=True)
+    case_snapshot: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     goal: Mapped[str] = mapped_column(Text, default="")
     student_base: Mapped[str] = mapped_column(Text, default="")
     due_date: Mapped[str] = mapped_column(String(30), default="")
@@ -249,3 +250,48 @@ class ModelEvent(Base):
     status: Mapped[str] = mapped_column(String(20))
     step: Mapped[str] = mapped_column(String(100))
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+class SourceMaterial(Base):
+    __tablename__ = 'source_materials'
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    owner_id: Mapped[str] = mapped_column(ForeignKey('accounts.id'), index=True)
+    file_id: Mapped[str] = mapped_column(ForeignKey('file_assets.id'))
+    title: Mapped[str] = mapped_column(String(240))
+    metadata_json: Mapped[dict] = mapped_column(JSON, default=dict)
+    parse_job_id: Mapped[str | None] = mapped_column(ForeignKey('model_jobs.id'), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+class MaterialUnit(Base):
+    __tablename__ = 'material_units'
+    __table_args__ = (UniqueConstraint('material_id', 'position', name='uq_material_position'),)
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    material_id: Mapped[str] = mapped_column(ForeignKey('source_materials.id'), index=True)
+    position: Mapped[int] = mapped_column(Integer)
+    label: Mapped[str] = mapped_column(String(160))
+    kind: Mapped[str] = mapped_column(String(30))
+    original_text: Mapped[str] = mapped_column(Text, default='')
+    text: Mapped[str] = mapped_column(Text, default='')
+    image_file_id: Mapped[str | None] = mapped_column(ForeignKey('file_assets.id'), nullable=True)
+    job_id: Mapped[str | None] = mapped_column(ForeignKey('model_jobs.id'), nullable=True)
+    details: Mapped[dict] = mapped_column(JSON, default=dict)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class CaseDraftContent(Base):
+    __tablename__ = 'case_draft_contents'
+    case_id: Mapped[str] = mapped_column(ForeignKey('teaching_cases.id'), primary_key=True)
+    data: Mapped[dict] = mapped_column(JSON)
+    reviewed: Mapped[bool] = mapped_column(Boolean, default=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class CaseVersion(Base):
+    __tablename__ = 'case_versions'
+    __table_args__ = (UniqueConstraint('case_id', 'number', name='uq_case_version_number'),)
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    case_id: Mapped[str] = mapped_column(ForeignKey('teaching_cases.id'), index=True)
+    number: Mapped[int] = mapped_column(Integer)
+    data: Mapped[dict] = mapped_column(JSON)
+    published_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)

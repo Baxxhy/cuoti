@@ -18,6 +18,7 @@ from .models import Account, Attempt, ClassMember, Classroom, FileAsset, HelpRec
 from .seed import BLOCKS, CASE_TEXT, QUESTIONS, ensure_seed
 from .security import hash_password, verify_password
 from .grading import assess, assess_repair
+from .library import current_case as published_case_json
 from .model_provider import ModelError
 from fastapi.responses import JSONResponse
 
@@ -186,7 +187,7 @@ def platform_data(db: Session, user: Account) -> dict:
             if rec.get("feedback"):
                 task = next((item for item in task_json if item["id"] == task_id), None)
                 messages.append({"id": rec["id"], "taskId": task_id, "title": f"{task['title'] if task else '课程'} · 教师反馈", "createdAt": rec.get("feedbackAt")})
-    return {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": {"id": case.id, "title": case.title, "source": case.source, "content": case.content, "publishedAt": case.updated_at.isoformat()} if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "supplements": supplements, "messages": messages}
+    return {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": published_case_json(db,case.id) if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "caseSnapshot": draft.case_snapshot, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "supplements": supplements, "messages": messages}
 
 
 @app.on_event("startup")
@@ -353,18 +354,24 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                 )
                 db.add(record)
             if record:
+                previous_case_id = record.case_id
                 record.case_id = draft.get("caseId")
+                from .library import current_case
+                supplied = draft.get('caseSnapshot') or {}
+                if supplied.get('versionId'):
+                    selected = current_case(db, record.case_id, supplied['versionId'])
+                    if not selected: raise HTTPException(422,'参考案例版本不存在，请重新选择。')
+                    record.case_snapshot = selected
+                elif not record.case_id:
+                    record.case_snapshot = None
+                elif record.case_id != previous_case_id:
+                    record.case_snapshot = current_case(db,record.case_id)
+                # 没有历史版本记录的旧教案不由聚合自动保存补造版本。
                 record.goal = str(draft.get("goal", ""))
                 record.student_base = str(draft.get("studentBase", ""))
                 record.due_date = str(draft.get("dueDate", ""))
                 record.blocks = draft.get("blocks") or []
                 record.questions = draft.get("questions") or QUESTIONS
-            case_payload = data.get("caseDraft") or {}
-            case = db.get(TeachingCase, case_payload.get("id", ""))
-            if case and case.status == "draft":
-                case.title = str(case_payload.get("title", case.title))
-                case.content = str(case_payload.get("content", case.content))
-                case.source = str(case_payload.get("source", case.source))
             for task_id, record_data in (data.get("records") or {}).items():
                 if isinstance(record_data, list):
                     continue
@@ -382,18 +389,7 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                         db.add(supplement)
                     supplement.content = str(item.get("content", ""))
         elif user.role == "admin":
-            case_payload = data.get("caseDraft") or {}
-            case_id = case_payload.get("id") or f"case-draft-{user.id}"
-            case = db.get(TeachingCase, case_id)
-            if not case or case.status == "published":
-                case_id = f"case-draft-{user.id}"
-                case = db.get(TeachingCase, case_id)
-            if not case:
-                case = TeachingCase(id=case_id, title="", source="", content="", status="draft")
-                db.add(case)
-            case.title = str(case_payload.get("title", case.title))
-            case.content = str(case_payload.get("content", case.content))
-            case.source = str(case_payload.get("source", case.source))
+            pass  # 案例独立接口保存；聚合自动保存不改写案例草稿或发布版本。
         elif user.role == "student":
             for task_id, record_data in (data.get("records") or {}).items():
                 rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
@@ -473,35 +469,28 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
 
 @app.put("/api/cases/draft")
 def save_case(payload: dict, request: Request, db: DB) -> dict:
+    from .library_routes import save_draft, new_case, revise
+    from .library import draft_json
+    from .models import CaseDraftContent
     user = current_user(request, db)
-    require_role(user, "admin")
-    case_id = str(payload.get("id") or f"case-draft-{user.id}")
-    case = db.get(TeachingCase, case_id)
-    if not case or case.status == "published":
-        case_id = f"case-draft-{user.id}"
-        case = db.get(TeachingCase, case_id)
+    require_role(user, 'admin')
+    case_id = payload.get('id')
+    case = db.get(TeachingCase, case_id) if case_id else None
     if not case:
-        case = TeachingCase(id=case_id, title="", source="", content="", status="draft")
-        db.add(case)
-    case.title = str(payload.get("title", case.title))
-    case.source = str(payload.get("source", case.source))
-    case.content = str(payload.get("content", case.content))
-    db.commit()
-    return {"id": case.id, "saved": True}
+        created = new_case({'title':payload.get('title','新案例')}, request, db)
+        case_id = created['id']
+    if not db.get(CaseDraftContent, case_id): revise(case_id,request,db)
+    draft = db.get(CaseDraftContent, case_id)
+    data = {**draft.data, **{k:payload[k] for k in ('title','content','source') if k in payload}}
+    save_draft(case_id, {'data':data}, request, db)
+    return {'id':case_id,'saved':True}
 
 
 @app.post("/api/cases/{case_id}/publish")
 def publish_case(case_id: str, request: Request, db: DB) -> dict:
-    user = current_user(request, db)
-    require_role(user, "admin")
-    case = db.get(TeachingCase, case_id)
-    if not case:
-        raise HTTPException(404, "案例草稿不存在。")
-    if not case.title.strip() or not case.content.strip():
-        raise HTTPException(422, "请填写案例标题和内容。")
-    case.status = "published"
-    db.commit()
-    return {"id": case.id, "published": True}
+    from .library_routes import publish_case as publish_version
+    result = publish_version(case_id, request, db)
+    return {'id':case_id,'published':True,'version':result['published']['version']}
 
 
 @app.post("/api/tasks/publish", status_code=201)
@@ -524,6 +513,10 @@ def publish(payload: PublishInput, request: Request, db: DB) -> dict:
     if existing:
         return {"taskId": existing.id, "created": False}
     snapshot = {k: payload.lessonDraft.get(k) for k in ("id", "caseId", "goal", "studentBase", "dueDate", "blocks")}
+    from .library import current_case
+    supplied = payload.lessonDraft.get('caseSnapshot') or {}
+    snapshot['caseSnapshot'] = current_case(db, snapshot.get('caseId'), supplied.get('versionId')) if snapshot.get('caseId') else None
+    if supplied.get('versionId') and not snapshot['caseSnapshot']: raise HTTPException(422,'参考案例版本不存在，请重新选择。')
     lesson = db.get(Lesson, "lesson-equation")
     task = LearningTask(id=task_id, classroom_id=classroom.id, teacher_id=user.id, lesson_id=lesson.id, title=lesson.title, snapshot=snapshot, questions=payload.lessonDraft.get("questions") or QUESTIONS, due_date=snapshot["dueDate"])
     db.add(task)
@@ -653,12 +646,17 @@ def read_file(file_id: str, request: Request, db: DB) -> Response:
     if user.role == "admin":
         allowed = True
     if not allowed:
-        raise HTTPException(403, "没有权限查看此图片。")
+        from .models import MaterialUnit, SourceMaterial
+        from .library import published_unit
+        for unit in db.scalars(select(MaterialUnit).outerjoin(SourceMaterial, MaterialUnit.material_id==SourceMaterial.id).where((MaterialUnit.image_file_id==file_id) | (SourceMaterial.file_id==file_id))).all():
+            if published_unit(db,unit.id): allowed=True; break
+    if not allowed:
+        raise HTTPException(403, "没有权限查看此文件。")
     path = STORAGE_DIR / asset.storage_key
     if not path.is_file():
         raise HTTPException(404, "图片文件缺失，可重新上传。")
     from fastapi.responses import FileResponse
-    return FileResponse(path, media_type=asset.content_type, filename=asset.original_name)
+    return FileResponse(path, media_type=asset.content_type, filename=asset.original_name, content_disposition_type="inline" if request.query_params.get("inline")=="1" and asset.content_type.startswith(("image/", "application/pdf")) else "attachment")
 
 
 @app.post("/api/legacy-import")
@@ -740,3 +738,6 @@ def import_legacy(body: dict, request: Request, db: DB) -> dict:
 
 from .ai_routes import router as ai_router
 app.include_router(ai_router)
+
+from .library_routes import router as library_router
+app.include_router(library_router)

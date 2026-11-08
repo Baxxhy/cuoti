@@ -58,15 +58,44 @@ async def execute(job_id, run_id):
             path = storage_dir() / asset.storage_key if asset else None
             if not path or not path.is_file(): raise ModelError("原始文件缺失，请重新上传。")
             file = (asset.original_name, path.read_bytes(), asset.content_type)
-    phase(job_id, {"retrieval": "正在检索教学案例", "ocr": "正在识别题图", "text": "正在生成指导", "embedding": "正在生成向量", "rerank": "正在重排材料", "asr": "正在转写音频", "tts": "正在合成音频"}[capability])
+    phase(job_id, {"document_parse": "正在解析原文", "document_ocr": "正在识别原文页面", "case_extract": "正在整理教学经验", "retrieval": "正在检索教学案例", "ocr": "正在识别题图", "text": "正在生成指导", "embedding": "正在生成向量", "rerank": "正在重排材料", "asr": "正在转写音频", "tts": "正在合成音频"}[capability])
     result, model, source = await provider.call(capability, data, file=file, request_id=run_id)
-    if capability == "text":
+    if capability in ("text", "case_extract"):
         phase(job_id, "正在核对数学表达")
         result["verification"] = await asyncio.to_thread(math_check, result.get("mathClaims", []))
-        result["sources"] = [{"id": x["id"], "title": x["title"], "source": x.get("source", "")} for x in data.get("context", {}).get("teachingCases", [])]
+        context = data.get('context') if isinstance(data.get('context'),dict) else {}
+        provided = [{**x,'role':'retrieval'} for x in context.get('teachingCases',[]) if isinstance(x,dict)]
+        lesson = context.get('lesson') if isinstance(context.get('lesson'),dict) else {}
+        primary = lesson.get('caseSnapshot')
+        if isinstance(primary,dict) and primary.get('versionId'):
+            provided = [{**primary,'role':'lesson'}, *[x for x in provided if x.get('versionId') != primary['versionId']]]
+        result['sources'] = [{k:x.get(k) for k in ('id','title','source','versionId','version','references','role')} for x in provided]
+    if capability == "case_extract":
+        original = {x['id']: x['text'] for x in data['units']}
+        required = {'content'} | {key for key in ('goal','studentBase','difficulty','introduction','adjustment','boundary') if result.get(key)}
+        for key in ('knowledgePoints','steps','questions','responses'):
+            required.update(f'{key}.{index}' for index in range(len(result.get(key, []))))
+        if not required.issubset({r['field'] for r in result['references']}):
+            raise ModelError('教学片段缺少原文引用，不符合结果结构。', retryable=True)
+        for item in result['references']:
+            if item['unitId'] not in original or ''.join(item['quote'].split()) not in ''.join(original[item['unitId']].split()):
+                raise ModelError("原文引用不符合结果结构，请重新提取。", retryable=True)
     phase(job_id, "正在保存结果")
     with SessionLocal.begin() as db:
         job, run = db.get(ModelJob, job_id), db.get(ModelRun, run_id)
+        if capability == "document_ocr":
+            from .models import MaterialUnit
+            unit = db.get(MaterialUnit, data['unitId'])
+            unit.original_text = result['text']
+            if not unit.text: unit.text = result['text']
+            unit.details = {**unit.details, 'uncertainties': result.get('uncertainties', [])}
+        if capability == "case_extract":
+            from .models import MaterialUnit
+            from .library import create_draft, reference
+            refs = [{**reference(db, db.get(MaterialUnit, r['unitId']), r['quote']), 'field':r['field']} for r in result['references']]
+            experience = {k: v for k, v in result.items() if k not in ('references','content','title','grade','subject','verification','sources')}
+            draft = create_draft(db, {'title': result['title'], 'content': result['content'], 'grade': result['grade'], 'subject': result['subject'], 'source': refs[0]['source'] or refs[0]['materialTitle'], 'author': refs[0]['author'], 'experience': experience, 'references': refs, 'verification': result.get('verification'), 'extractionJobId': job.id})
+            result['caseId'] = draft.case_id
         if capability == "tts":
             contents = result.pop("audio")
             file_id, key = "file-" + uuid.uuid4().hex, uuid.uuid4().hex

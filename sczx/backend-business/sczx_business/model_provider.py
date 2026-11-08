@@ -27,6 +27,7 @@ class ModelProvider:
         self.client = httpx.AsyncClient(timeout=httpx.Timeout(100, connect=15), trust_env=False)
 
     def entries(self, capability):
+        if capability == "document_parse": return [{"name": "文档解析", "model": "Document parser", "transport": "algorithm"}]
         if capability == "retrieval":
             return [{"name": "BM25 中文检索", "model": "BM25", "transport": "algorithm"}]
         if os.getenv("SCZX_MODEL_TRANSPORT", "codex_cli") == "codex_cli":
@@ -77,6 +78,9 @@ class ModelProvider:
         raise last_error or ModelError("没有可用模型服务。")
 
     async def _call(self, entry, capability, data, file, request_id=None):
+        if capability == "document_parse":
+            from .document_parser import parse_material
+            return await asyncio.to_thread(parse_material, data["materialId"], request_id)
         if capability == "retrieval":
             from .retrieval import search
             documents = data.get("documents", [])

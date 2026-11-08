@@ -1,4 +1,4 @@
 <script setup>
-import ContentEditor from "@/components/ContentEditor.vue";
+import MaterialWorkbench from "@/components/MaterialWorkbench.vue";
 </script>
-<template><ContentEditor /></template>
+<template><MaterialWorkbench /></template>

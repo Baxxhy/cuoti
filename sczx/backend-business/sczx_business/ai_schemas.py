@@ -44,3 +44,34 @@ class JobInput(BaseModel):
     recordId: str | None = None
     fileId: str | None = None
     data: dict = Field(default_factory=dict)
+
+
+class DocumentOCRResult(StrictResult):
+    text: str = Field(min_length=1)
+    uncertainties: list[str] = Field(default_factory=list)
+
+
+class Evidence(StrictResult):
+    field: str = Field(default='content', pattern=r'^(content|goal|studentBase|difficulty|introduction|adjustment|boundary|knowledgePoints\.\d+|steps\.\d+|questions\.\d+|responses\.\d+)$')
+    unitId: str
+    quote: str = Field(min_length=1)
+
+
+class ExperienceResult(StrictResult):
+    title: str = Field(min_length=1, max_length=240)
+    content: str = Field(min_length=1)
+    grade: str = ''
+    subject: str = '数学'
+    knowledgePoints: list[str] = Field(default_factory=list)
+    goal: str = ''
+    studentBase: str = ''
+    difficulty: str = ''
+    introduction: str = ''
+    steps: list[str] = Field(default_factory=list)
+    questions: list[str] = Field(default_factory=list)
+    responses: list[str] = Field(default_factory=list)
+    adjustment: str = ''
+    boundary: str = ''
+    suggestions: list[str] = Field(default_factory=list)
+    references: list[Evidence] = Field(min_length=1)
+    mathClaims: list[MathClaim] = Field(default_factory=list, max_length=12)

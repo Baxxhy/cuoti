@@ -22,6 +22,7 @@ async function load() {
   loadError.value = '';
   try { [configurations.value, history.value] = await Promise.all([modelApi.capabilities(), modelApi.list()]); }
   catch (problem) { loadError.value = problem.message; }
+  history.value = history.value.filter(x => !['document_parse','document_ocr','case_extract'].includes(x.capability));
 }
 async function run() {
   if (busy.value || uploading.value || activeConfig.value?.unavailableReason) return;

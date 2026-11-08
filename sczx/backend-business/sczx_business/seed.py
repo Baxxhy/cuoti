@@ -3,7 +3,7 @@ import os
 from sqlalchemy import select
 
 from .database import Base, SessionLocal, engine
-from .models import Account, ClassMember, Classroom, Course, Lesson, LessonDraft, SupportIssue, TeachingCase
+from .models import Account, ClassMember, Classroom, Course, Lesson, LessonDraft, SupportIssue, TeachingCase, CaseVersion
 from .security import hash_password
 
 
@@ -34,10 +34,17 @@ def ensure_seed() -> None:
                 continue
             db.add(Account(id=f"account-{role}-demo", username=username, display_name=display_name, role=role, password_hash=hash_password(password)))
         if not db.get(Course, "course-equation"):
-            db.add(Course(id="course-equation", title="一元一次方程", grade="七年级数学"))
+            db.add(Course(id="course-equation", title="一元一次方程", grade="七年级数学")); db.flush()
             db.add(Lesson(id="lesson-equation", course_id="course-equation", title="等式性质", position=1))
         if not db.get(TeachingCase, "case-balance"):
             db.add(TeachingCase(id="case-balance", title="天平与等式性质", source="待补充核对的教学示例", content=CASE_TEXT, status="published"))
+        db.flush()
+        if not db.scalar(select(CaseVersion).where(CaseVersion.case_id == 'case-balance')):
+            from .library import uid
+            case = db.get(TeachingCase, 'case-balance')
+            if case.status == 'published':
+                db.add(CaseVersion(id=uid('version'), case_id=case.id, number=1, data={'title':case.title,'content':case.content,'source':case.source,'author':'','grade':'七年级','subject':'数学','experience':{},'references':[],'legacy':True}))
+                db.flush()
         admin = db.scalar(select(Account).where(Account.role == "admin").order_by(Account.created_at).limit(1))
         teacher = db.scalar(select(Account).where(Account.role == "teacher").order_by(Account.created_at).limit(1))
         student = db.scalar(select(Account).where(Account.role == "student").order_by(Account.created_at).limit(1))

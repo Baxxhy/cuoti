@@ -39,7 +39,7 @@ def job_for(db, user, job_id):
 def serialize(job, detail=True):
     result = job.result
     if result and not detail and "vectors" in result: result = {k:v for k,v in result.items() if k != "vectors"}
-    return {"id":job.id,"capability":job.capability,"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":job.input} if detail else {})}
+    return {"id":job.id,"capability":job.capability,"summary":job.input.get("label", ""),"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":job.input} if detail else {})}
 
 
 @router.get("/capabilities")
@@ -69,16 +69,18 @@ def search_cases(request: Request, q: str = "", db=Depends(get_db)):
 def read_case(case_id: str, request: Request, db=Depends(get_db)):
     user_for(request, db)
     from .models import TeachingCase
-    item = db.get(TeachingCase, case_id)
-    if not item or item.status != "published": raise HTTPException(404, "案例不存在或尚未发布。")
-    return {"id": item.id, "title": item.title, "content": item.content, "source": item.source}
+    from .library import current_case
+    item = current_case(db, case_id, request.query_params.get("versionId"))
+    if not item: raise HTTPException(404, "案例不存在或尚未发布。")
+    return item
 
 
 @router.get("/jobs")
-def jobs(request: Request, recordId: str | None = None, db=Depends(get_db)):
+def jobs(request: Request, recordId: str | None = None, capability: str | None = None, db=Depends(get_db)):
     user = user_for(request, db)
     query = select(ModelJob)
     if recordId: query=query.where(ModelJob.record_id==recordId)
+    if capability: query=query.where(ModelJob.capability==capability)
     if user.role == "student": query=query.where(ModelJob.owner_id==user.id)
     elif user.role == "teacher":
         query=query.outerjoin(StudentRecord,ModelJob.record_id==StudentRecord.id).outerjoin(LearningTask,StudentRecord.task_id==LearningTask.id).where((LearningTask.teacher_id==user.id) | (ModelJob.owner_id==user.id))
