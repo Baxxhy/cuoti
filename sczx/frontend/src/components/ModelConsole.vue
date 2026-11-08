@@ -19,7 +19,7 @@ async function load() {
   catch (problem) { loadError.value = problem.message; }
 }
 async function run() {
-  if (busy.value || uploading.value) return;
+  if (busy.value || uploading.value || activeConfig.value?.unavailableReason) return;
   loadError.value = '';
   const capability = selected.value;
   const data = capability === 'embedding' ? { texts: text.value.split(/\n+/).map(x => x.trim()).filter(Boolean) } : capability === 'rerank' ? { query: query.value, candidates: materials.value.split(/\n+/).filter(x => x.trim()).map((value, i) => ({ id: `材料${i + 1}`, text: value })) } : capability === 'tts' ? { text: text.value } : capability === 'text' ? { prompt: text.value } : {};
@@ -58,12 +58,13 @@ async function saveCorrection() {
   <div class="model-capability-tabs" role="group" aria-label="选择模型能力"><button v-for="(name, key) in capabilityNames" :key="key" :class="{ active: selected === key }" :disabled="uploading || submitting" @click="selectCapability(key)" :aria-pressed="selected === key">{{ name }}</button></div>
   <div class="model-console-grid">
     <div class="model-console-form">
-      <div class="model-config-state"><h3>{{ capabilityNames[selected] }}</h3><Status :tone="activeConfig?.configured ? 'green' : 'amber'">{{ activeConfig?.configured ? activeConfig.lastStatus === 'succeeded' ? '最近调用成功' : activeConfig.lastStatus === 'failed' ? '最近调用失败' : '已配置 · 待验证' : '未配置' }}</Status></div>
-      <p v-if="activeConfig?.models?.length" class="model-model-name">{{ activeConfig.models.map(x => x.model).join(' / ') }}</p>
+      <div class="model-config-state"><h3>{{ capabilityNames[selected] }}</h3><Status :tone="activeConfig?.configured ? 'green' : 'amber'">{{ activeConfig?.configured ? activeConfig.lastStatus === 'succeeded' ? '最近调用成功' : activeConfig.lastStatus === 'failed' ? '最近调用失败' : '已配置 · 待验证' : activeConfig?.unavailableReason ? '暂不可用' : '未配置' }}</Status></div>
+      <p v-if="activeConfig?.unavailableReason" role="status" class="model-model-name">{{ activeConfig.unavailableReason }}</p>
+      <p v-if="activeConfig?.models?.length" class="model-model-name">{{ activeConfig.models.map(x => `${x.model} · ${x.name}`).join(' / ') }}</p>
       <template v-if="['ocr', 'asr'].includes(selected)"><label class="field-label" for="model-input-file">{{ selected === 'ocr' ? '题目原图' : '音频文件' }}</label><label class="model-file-picker"><FileAudio v-if="selected === 'asr'" :size="20" /><span>{{ file?.name || '选择文件' }}</span><input id="model-input-file" type="file" :accept="selected === 'ocr' ? 'image/*' : 'audio/*'" @change="file = $event.target.files?.[0] || null" /></label></template>
       <template v-else-if="selected === 'rerank'"><label class="field-label" for="rerank-query">教学问题</label><Input id="rerank-query" v-model="query" /><label class="field-label" for="rerank-materials">候选材料，每行一段</label><Textarea id="rerank-materials" v-model="materials" class="model-input-large" /></template>
       <template v-else><label class="field-label" for="model-input-text">{{ selected === 'embedding' ? '文本，每行一段' : selected === 'tts' ? '朗读文字' : '问题' }}</label><Textarea id="model-input-text" v-model="text" class="model-input-large" /></template>
-      <Button class="model-run-button" :disabled="busy || uploading" @click="run"><Play :size="15" />{{ uploading ? '上传中…' : busy ? '执行中…' : '运行验证' }}</Button>
+      <Button class="model-run-button" :disabled="busy || uploading || !!activeConfig?.unavailableReason || !activeConfig" @click="run"><Play :size="15" />{{ uploading ? '上传中…' : busy ? '执行中…' : '运行验证' }}</Button>
       <p v-if="loadError || error" class="form-error" role="alert">{{ loadError || error }}</p>
       <ModelResult :job="job" :busy="busy" show-source @retry="retry" />
       <template v-if="job?.capability === 'asr' && job.status === 'succeeded'"><label class="field-label" for="asr-correction">修订转写文字</label><Textarea id="asr-correction" v-model="transcript" /><div class="paper-actions"><Button variant="outline" :disabled="correcting" @click="saveCorrection">{{ correcting ? '保存中…' : '保存修订' }}</Button><Button variant="outline" @click="selected = 'tts'; text = transcript">用于生成讲解音频</Button></div></template>

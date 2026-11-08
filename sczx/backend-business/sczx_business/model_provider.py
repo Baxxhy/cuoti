@@ -27,6 +27,9 @@ class ModelProvider:
         self.client = httpx.AsyncClient(timeout=httpx.Timeout(100, connect=15), trust_env=False)
 
     def entries(self, capability):
+        if os.getenv("SCZX_MODEL_TRANSPORT", "codex_cli") == "codex_cli":
+            from .codex_provider import MODEL, SUPPORTED
+            return [{"name": "Codex CLI · low", "model": MODEL, "transport": "codex_cli"}] if capability in SUPPORTED else []
         path = Path(os.getenv("SCZX_MODEL_CONFIG", str(Path(__file__).resolve().parents[1] / "config/model_pool.json")))
         if not path.is_file():
             return []
@@ -45,6 +48,9 @@ class ModelProvider:
 
     async def call(self, capability, data, *, file=None, request_id=None):
         entries = self.entries(capability)
+        if not entries and os.getenv("SCZX_MODEL_TRANSPORT", "codex_cli") == "codex_cli":
+            from .codex_provider import UNSUPPORTED
+            raise ModelError(UNSUPPORTED.get(capability, "Codex CLI 暂不可用。"))
         if not entries:
             raise ModelError(f"{CAPABILITY_LABELS.get(capability, '此能力')}尚未配置可用服务。")
         start = self.cursors.get(capability, 0) % len(entries)
@@ -52,7 +58,7 @@ class ModelProvider:
         ordered = entries[start:] + entries[:start]
         last_error = None
         for entry in ordered:
-            pool_id = (entry["base_url"], entry.get("api_key_env"), capability, entry["model"])
+            pool_id = (entry.get("base_url", "codex_cli"), entry.get("api_key_env"), capability, entry["model"])
             if self.cooldowns.get(pool_id, 0) > time.monotonic():
                 last_error = ModelError("服务正在限流冷却，请稍后重试。", retryable=True, retry_after=max(2, self.cooldowns[pool_id] - time.monotonic()))
                 continue
@@ -69,6 +75,9 @@ class ModelProvider:
         raise last_error or ModelError("没有可用模型服务。")
 
     async def _call(self, entry, capability, data, file, request_id=None):
+        if entry.get("transport") == "codex_cli":
+            from .codex_provider import call
+            return await call(capability, data, file)
         paths = {"text": "/chat/completions", "ocr": "/chat/completions", "embedding": "/embeddings", "rerank": "/rerank", "asr": "/audio/transcriptions", "tts": "/audio/speech"}
         chat_rerank = capability == "rerank" and entry.get("protocol") == "chat_rerank"
         if chat_rerank: paths["rerank"] = "/chat/completions"

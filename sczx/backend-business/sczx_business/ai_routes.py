@@ -2,6 +2,7 @@ import asyncio
 import hashlib
 import json
 import uuid
+import os
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import StreamingResponse
@@ -45,10 +46,12 @@ def capabilities(request: Request, db=Depends(get_db)):
     user = user_for(request, db)
     if user.role != "admin": raise HTTPException(403,"仅管理员可查看服务配置状态。")
     entries = provider.configured()
+    from .codex_provider import UNSUPPORTED
+    cli = os.getenv("SCZX_MODEL_TRANSPORT", "codex_cli") == "codex_cli"
     results = []
     for cap in CAPABILITIES:
         latest = db.scalar(select(ModelJob).where(ModelJob.capability==cap, ModelJob.status.in_(["succeeded","failed"])).order_by(ModelJob.updated_at.desc()).limit(1))
-        results.append({"capability":cap,"configured":bool(entries[cap]),"models":entries[cap],"lastStatus":latest.status if latest else None,"lastJobId":latest.id if latest else None,"lastError":latest.error if latest else ""})
+        results.append({"capability":cap,"configured":bool(entries[cap]),"unavailableReason":UNSUPPORTED.get(cap, "") if cli else "","transport":"codex_cli" if cli else "http","models":entries[cap],"lastStatus":latest.status if latest else None,"lastJobId":latest.id if latest else None,"lastError":latest.error if latest else ""})
     return results
 
 

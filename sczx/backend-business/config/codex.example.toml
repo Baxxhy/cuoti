@@ -1,0 +1,13 @@
+# 可选：将本文件复制到忽略的 var/codex/config.toml。
+# 在 .env 中设置 SCZX_CODEX_HOME=./var/codex，并提供下方指定的凭据环境变量。
+# 不需要本地部署模型；仅当已有外部服务支持 Responses 协议时使用此配置。
+model = "gpt-6-luna"
+model_reasoning_effort = "low"
+model_provider = "sczx"
+
+[model_providers.sczx]
+name = "SCZX CLI upstream"
+base_url = "https://provider.example/v1"
+wire_api = "responses"
+requires_openai_auth = false
+env_key = "SCZX_CODEX_API_KEY"
