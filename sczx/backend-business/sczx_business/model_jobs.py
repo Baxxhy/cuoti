@@ -1,0 +1,157 @@
+import asyncio
+import contextlib
+import json
+import logging
+import os
+import uuid
+from datetime import datetime
+from pathlib import Path
+
+from sqlalchemy import select
+
+from .database import SessionLocal
+from .models import FileAsset, HelpRecord, ModelEvent, ModelJob, ModelRun
+from .model_provider import ModelProvider, ModelError
+from .math_tools import compare_equivalence
+
+log = logging.getLogger(__name__)
+provider = ModelProvider()
+worker_task = None
+
+
+def help_record_id(job_id):
+    return "help-" + job_id[4:]
+
+
+def storage_dir():
+    return Path(os.getenv("SCZX_STORAGE_DIR", "./var/uploads")).resolve()
+
+
+def event(db, job, step):
+    job.step = step
+    db.add(ModelEvent(job_id=job.id, attempt_number=job.attempt_number, status=job.status, step=step))
+
+
+def phase(job_id, step):
+    with SessionLocal.begin() as db:
+        job = db.get(ModelJob, job_id)
+        event(db, job, step)
+
+
+def math_check(claims):
+    results = []
+    for claim in claims:
+        equal, verified = compare_equivalence(claim["left"], claim["right"])
+        results.append({**claim, "status": "verified" if verified and equal else "inconsistent" if verified else "unverified"})
+    status = "inconsistent" if any(x["status"] == "inconsistent" for x in results) else "verified" if results and all(x["status"] == "verified" for x in results) else "unverified"
+    return {"status": status, "claims": results, "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对"}
+
+
+async def execute(job_id, run_id):
+    with SessionLocal() as db:
+        job = db.get(ModelJob, job_id)
+        capability, data, file = job.capability, dict(job.input), None
+        if job.retry_count and "结构" in job.error:
+            data["repairStructure"] = True
+        if job.file_id:
+            asset = db.get(FileAsset, job.file_id)
+            path = storage_dir() / asset.storage_key if asset else None
+            if not path or not path.is_file(): raise ModelError("原始文件缺失，请重新上传。")
+            file = (asset.original_name, path.read_bytes(), asset.content_type)
+    phase(job_id, {"ocr": "正在识别题图", "text": "正在生成指导", "embedding": "正在生成向量", "rerank": "正在重排材料", "asr": "正在转写音频", "tts": "正在合成音频"}[capability])
+    result, model, source = await provider.call(capability, data, file=file, request_id=run_id)
+    if capability == "text":
+        phase(job_id, "正在核对数学表达")
+        result["verification"] = await asyncio.to_thread(math_check, result.get("mathClaims", []))
+    phase(job_id, "正在保存结果")
+    with SessionLocal.begin() as db:
+        job, run = db.get(ModelJob, job_id), db.get(ModelRun, run_id)
+        if capability == "tts":
+            contents = result.pop("audio")
+            file_id, key = "file-" + uuid.uuid4().hex, uuid.uuid4().hex
+            folder = storage_dir()
+            folder.mkdir(parents=True, exist_ok=True)
+            (folder / key).write_bytes(contents)
+            db.add(FileAsset(id=file_id, owner_id=job.owner_id, original_name="讲解音频.mp3", content_type=result["contentType"], size=len(contents), storage_key=key))
+            db.flush()
+            result.update(fileId=file_id, url="/api/files/" + file_id)
+        if capability == "text" and job.record_id:
+            # Stable ID prevents duplicate helper records if a caller repeats a task.
+            help_id = help_record_id(job.id)
+            if not db.get(HelpRecord, help_id):
+                message = result["hint"] + "\n\n" + "\n".join(result["steps"])
+                db.add(HelpRecord(id=help_id, record_id=job.record_id, question=data.get("question"), kind="模型指导", message=message, file_id=job.file_id, attempt_number=data.get("attemptNumber", 1)))
+        job.result, job.status, job.error = result, "succeeded", ""
+        job.active_hash = None
+        run.result, run.model, run.provider, run.status, run.ended_at = result, model, source, "succeeded", datetime.utcnow()
+        event(db, job, "已完成")
+
+
+def recover_interrupted():
+    with SessionLocal.begin() as db:
+        for job in db.scalars(select(ModelJob).where(ModelJob.status == "running")).all():
+            job.status, job.error = "failed", "服务中断，输入与已有结果已保留，可手动重试。"
+            job.active_hash = None
+            event(db, job, "服务中断")
+            for run in db.scalars(select(ModelRun).where(ModelRun.job_id == job.id, ModelRun.status == "running")).all():
+                run.status, run.error, run.ended_at = "failed", job.error, datetime.utcnow()
+
+
+async def worker():
+    needs_recovery = False
+    while True:
+        try:
+            if needs_recovery:
+                recover_interrupted()
+                needs_recovery = False
+            with SessionLocal.begin() as db:
+                job = db.scalar(select(ModelJob).where(ModelJob.status == "queued").order_by(ModelJob.created_at).with_for_update(skip_locked=True).limit(1))
+                if job:
+                    job.status, job.attempt_number = "running", job.attempt_number + 1
+                    run_id, job_id = "run-" + uuid.uuid4().hex, job.id
+                    db.add(ModelRun(id=run_id, job_id=job.id, number=job.attempt_number))
+                    event(db, job, "开始执行")
+                else:
+                    job_id = None
+            if not job_id:
+                await asyncio.sleep(.5)
+                continue
+            try:
+                await asyncio.wait_for(execute(job_id, run_id), timeout=150)
+            except asyncio.CancelledError:
+                raise
+            except Exception as error:
+                if isinstance(error, TimeoutError): error = ModelError("任务执行超时，可重试。", retryable=True)
+                known = isinstance(error, ModelError)
+                message = str(error) if known else "任务执行失败，输入已保留，请重试。"
+                if not known: log.exception("model job failed: %s", job_id)
+                with SessionLocal.begin() as db:
+                    job, run = db.get(ModelJob, job_id), db.get(ModelRun, run_id)
+                    run.status, run.error, run.ended_at = "failed", message, datetime.utcnow()
+                    run.model, run.provider = getattr(error, "model", ""), getattr(error, "provider", "")
+                    again = known and error.retryable and job.retry_count < 2
+                    job.status, job.error = ("queued" if again else "failed"), message
+                    if not again: job.active_hash = None
+                    if again: job.retry_count += 1
+                    event(db, job, "稍后自动重试" if again else "执行失败")
+                if again: await asyncio.sleep(min(60, max(2, error.retry_after)))
+        except asyncio.CancelledError:
+            raise
+        except Exception:
+            log.exception("model worker iteration failed")
+            needs_recovery = True
+            await asyncio.sleep(2)
+
+
+async def start():
+    global worker_task
+    recover_interrupted()
+    worker_task = asyncio.create_task(worker())
+
+
+async def stop():
+    if worker_task:
+        worker_task.cancel()
+        with contextlib.suppress(asyncio.CancelledError): await worker_task
+    recover_interrupted()
+    await provider.close()

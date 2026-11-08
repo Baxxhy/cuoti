@@ -1,0 +1,10 @@
+{
+  "entries": [
+    {"name": "文本与图文服务", "base_url": "https://provider.example/v1", "api_key_env": "SCZX_TEXT_API_KEY", "model": "YOUR_TEXT_VISION_MODEL", "capabilities": ["text", "ocr"], "timeout_seconds": 100},
+    {"name": "向量服务", "base_url": "https://provider.example/v1", "api_key_env": "SCZX_EMBEDDING_API_KEY", "model": "YOUR_EMBEDDING_MODEL", "capabilities": ["embedding"]},
+    {"name": "重排服务", "base_url": "https://provider.example/v1", "api_key_env": "SCZX_RERANK_API_KEY", "model": "YOUR_RERANK_MODEL", "capabilities": ["rerank"], "protocol": "standard"},
+    {"name": "LLM语义重排", "base_url": "https://provider.example/v1", "api_key_env": "SCZX_TEXT_API_KEY", "model": "YOUR_TEXT_MODEL", "capabilities": ["rerank"], "protocol": "chat_rerank", "disabled": true},
+    {"name": "转写服务", "base_url": "https://provider.example/v1", "api_key_env": "SCZX_ASR_API_KEY", "model": "YOUR_ASR_MODEL", "capabilities": ["asr"]},
+    {"name": "合成服务", "base_url": "https://provider.example/v1", "api_key_env": "SCZX_TTS_API_KEY", "model": "YOUR_TTS_MODEL", "capabilities": ["tts"], "voice": "alloy"}
+  ]
+}

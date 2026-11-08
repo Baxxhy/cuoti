@@ -130,6 +130,7 @@ class Attempt(Base):
     reason: Mapped[str] = mapped_column(Text, default="")
     helped: Mapped[bool] = mapped_column(Boolean, default=False)
     correct: Mapped[bool] = mapped_column(Boolean, default=False)
+    verification: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
 
@@ -167,6 +168,7 @@ class RepairAttempt(Base):
     answer: Mapped[str] = mapped_column(Text)
     reason: Mapped[str] = mapped_column(Text, default="")
     correct: Mapped[bool] = mapped_column(Boolean, default=False)
+    verification: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
 
@@ -201,3 +203,49 @@ class SupportIssue(Base):
     reply: Mapped[str] = mapped_column(Text, default="")
     resolved: Mapped[bool] = mapped_column(Boolean, default=False)
     updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
+
+
+class ModelJob(Base):
+    __tablename__ = "model_jobs"
+    __table_args__ = (UniqueConstraint("owner_id", "request_key", name="uq_model_job_request"), UniqueConstraint("owner_id", "active_hash", name="uq_model_job_active_input"))
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    owner_id: Mapped[str] = mapped_column(ForeignKey("accounts.id"), index=True)
+    record_id: Mapped[str | None] = mapped_column(ForeignKey("student_records.id"), nullable=True, index=True)
+    file_id: Mapped[str | None] = mapped_column(ForeignKey("file_assets.id"), nullable=True)
+    capability: Mapped[str] = mapped_column(String(30), index=True)
+    request_key: Mapped[str] = mapped_column(String(80))
+    input_hash: Mapped[str] = mapped_column(String(64), index=True)
+    active_hash: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    input: Mapped[dict] = mapped_column(JSON)
+    result: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    status: Mapped[str] = mapped_column(String(20), default="queued", index=True)
+    step: Mapped[str] = mapped_column(String(100), default="排队中")
+    error: Mapped[str] = mapped_column(Text, default="")
+    attempt_number: Mapped[int] = mapped_column(Integer, default=0)
+    retry_count: Mapped[int] = mapped_column(Integer, default=0)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class ModelRun(Base):
+    __tablename__ = "model_runs"
+    id: Mapped[str] = mapped_column(String(40), primary_key=True)
+    job_id: Mapped[str] = mapped_column(ForeignKey("model_jobs.id"), index=True)
+    number: Mapped[int] = mapped_column(Integer)
+    status: Mapped[str] = mapped_column(String(20), default="running")
+    model: Mapped[str] = mapped_column(String(160), default="")
+    provider: Mapped[str] = mapped_column(String(100), default="")
+    error: Mapped[str] = mapped_column(Text, default="")
+    result: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    started_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    ended_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
+
+class ModelEvent(Base):
+    __tablename__ = "model_events"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    job_id: Mapped[str] = mapped_column(ForeignKey("model_jobs.id"), index=True)
+    attempt_number: Mapped[int] = mapped_column(Integer)
+    status: Mapped[str] = mapped_column(String(20))
+    step: Mapped[str] = mapped_column(String(100))
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)

@@ -17,8 +17,17 @@ from .database import get_db
 from .models import Account, Attempt, ClassMember, Classroom, FileAsset, HelpRecord, LearningTask, Lesson, LessonDraft, LoginSession, RepairAttempt, StudentRecord, SupplementalInstruction, SupportIssue, TeachingCase, WrongQuestion
 from .seed import BLOCKS, CASE_TEXT, QUESTIONS, ensure_seed
 from .security import hash_password, verify_password
+from .grading import assess, assess_repair
+from .model_provider import ModelError
+from fastapi.responses import JSONResponse
 
 app = FastAPI(title="师承智学业务服务", version="0.1.0")
+
+
+@app.exception_handler(ModelError)
+async def model_configuration_error(request: Request, error: ModelError):
+    return JSONResponse(status_code=422, content={"detail": str(error)})
+
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5177", "http://127.0.0.1:5177", "http://localhost:5178", "http://127.0.0.1:5178"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 DB = Annotated[Session, Depends(get_db)]
 COOKIE = "sczx_session"
@@ -115,8 +124,8 @@ def record_json(db: Session, rec: StudentRecord) -> dict:
     wrong_json = []
     for item in wrongs:
         repairs = db.scalars(select(RepairAttempt).where(RepairAttempt.wrong_id == item.id).order_by(RepairAttempt.created_at)).all()
-        wrong_json.append({"id": item.id, "taskId": rec.task_id, "attemptId": item.attempt_id, "prompt": item.prompt, "answer": item.answer, "reason": item.reason, "image": file_url(item.file_id), "createdAt": item.created_at.isoformat(), "repairs": [{"id": r.id, "taskId": rec.task_id, "wrongId": item.id, "answer": r.answer, "reason": r.reason, "correct": r.correct, "createdAt": r.created_at.isoformat()} for r in repairs]})
-    return {"id": rec.id, "taskId": rec.task_id, "studentId": rec.student_id, "studentName": student.display_name if student else "学生", "observation": rec.observation, "drafts": rec.drafts or {}, "attempts": [{"id": a.id, "taskId": rec.task_id, "question": a.question, "answer": a.answer, "reason": a.reason, "helped": a.helped, "correct": a.correct, "createdAt": a.created_at.isoformat()} for a in attempts], "helps": [{"id": h.id, "taskId": rec.task_id, "question": h.question, "kind": h.kind, "message": h.message, "image": file_url(h.file_id), "attemptNumber": h.attempt_number, "createdAt": h.created_at.isoformat()} for h in helps], "repairs": [repair for wrong in wrong_json for repair in wrong["repairs"]], "wrongQuestions": wrong_json, "completed": rec.completed, "submittedAt": rec.submitted_at.isoformat() if rec.submitted_at else None, "feedback": rec.feedback, "feedbackAt": rec.feedback_at.isoformat() if rec.feedback_at else None, "updatedAt": rec.updated_at.isoformat() if rec.updated_at else None}
+        wrong_json.append({"id": item.id, "taskId": rec.task_id, "attemptId": item.attempt_id, "prompt": item.prompt, "answer": item.answer, "reason": item.reason, "image": file_url(item.file_id), "createdAt": item.created_at.isoformat(), "repairs": [{"id": r.id, "taskId": rec.task_id, "wrongId": item.id, "answer": r.answer, "reason": r.reason, "correct": r.correct, "verification": r.verification, "createdAt": r.created_at.isoformat()} for r in repairs]})
+    return {"id": rec.id, "taskId": rec.task_id, "studentId": rec.student_id, "studentName": student.display_name if student else "学生", "observation": rec.observation, "drafts": rec.drafts or {}, "attempts": [{"id": a.id, "taskId": rec.task_id, "question": a.question, "answer": a.answer, "reason": a.reason, "helped": a.helped, "correct": a.correct, "verification": a.verification, "createdAt": a.created_at.isoformat()} for a in attempts], "helps": [{"id": h.id, "taskId": rec.task_id, "question": h.question, "kind": h.kind, "message": h.message, "image": file_url(h.file_id), "attemptNumber": h.attempt_number, "createdAt": h.created_at.isoformat()} for h in helps], "repairs": [repair for wrong in wrong_json for repair in wrong["repairs"]], "wrongQuestions": wrong_json, "completed": rec.completed, "submittedAt": rec.submitted_at.isoformat() if rec.submitted_at else None, "feedback": rec.feedback, "feedbackAt": rec.feedback_at.isoformat() if rec.feedback_at else None, "updatedAt": rec.updated_at.isoformat() if rec.updated_at else None}
 
 
 def platform_data(db: Session, user: Account) -> dict:
@@ -177,7 +186,7 @@ def platform_data(db: Session, user: Account) -> dict:
             if rec.get("feedback"):
                 task = next((item for item in task_json if item["id"] == task_id), None)
                 messages.append({"id": rec["id"], "taskId": task_id, "title": f"{task['title'] if task else '课程'} · 教师反馈", "createdAt": rec.get("feedbackAt")})
-    return {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": {"id": case.id, "title": case.title, "source": case.source, "content": case.content, "publishedAt": case.updated_at.isoformat()} if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "runtime": {"id": "runtime-placeholder", "status": "idle"}, "supplements": supplements, "messages": messages}
+    return {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": {"id": case.id, "title": case.title, "source": case.source, "content": case.content, "publishedAt": case.updated_at.isoformat()} if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "supplements": supplements, "messages": messages}
 
 
 @app.on_event("startup")
@@ -186,6 +195,18 @@ def startup() -> None:
         from .database import Base, engine
         Base.metadata.create_all(engine)
         ensure_seed()
+
+
+@app.on_event("startup")
+async def start_model_worker():
+    from .model_jobs import start
+    await start()
+
+
+@app.on_event("shutdown")
+async def stop_model_worker():
+    from .model_jobs import stop
+    await stop()
 
 
 @app.get("/api/health")
@@ -399,7 +420,8 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                     attempt.answer = answer
                     attempt.reason = str(item.get("reason", ""))
                     attempt.helped = bool(item.get("helped"))
-                    attempt.correct = answer == str(expected)
+                    attempt.verification = assess(answer, expected, task.questions[idx].get("equation", ""))
+                    attempt.correct = attempt.verification["correct"]
                 current_helps = {item.id: item for item in db.scalars(select(HelpRecord).where(HelpRecord.record_id == rec.id)).all()}
                 for item in record_data.get("helps", []):
                     help_item = current_helps.get(str(item.get("id", "")))
@@ -431,7 +453,8 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                             db.add(repair)
                         repair.answer = str(repair_data.get("answer", ""))
                         repair.reason = str(repair_data.get("reason", ""))
-                        repair.correct = bool(repair_data.get("correct"))
+                        repair.verification = assess_repair(repair.answer)
+                        repair.correct = repair.verification["correct"]
             issue_data = data.get("issue") or {}
             issue = db.get(SupportIssue, issue_data.get("id", ""))
             if not issue and str(issue_data.get("text", "")).strip():
@@ -525,12 +548,14 @@ def add_attempt(task_id: str, body: dict, request: Request, db: DB) -> dict:
     answer = str(body.get("answer", "")).strip()
     if not answer:
         raise HTTPException(422, "请先填写答案。")
-    attempt = Attempt(id=f"attempt-{uuid.uuid4().hex}", record_id=rec.id, question=index, answer=answer, reason=str(body.get("reason", "")), helped=bool(body.get("helped")), correct=answer == str(questions[index].get("answer", "")))
+    verification = assess(answer, questions[index].get("answer", ""), questions[index].get("equation", ""))
+    attempt = Attempt(id=f"attempt-{uuid.uuid4().hex}", record_id=rec.id, question=index, answer=answer, reason=str(body.get("reason", "")), helped=bool(body.get("helped")), correct=verification["correct"], verification=verification)
     db.add(attempt)
-    if not attempt.correct:
+    if verification["status"] == "inconsistent":
+        db.flush()
         db.add(WrongQuestion(id=f"wrong-{uuid.uuid4().hex}", record_id=rec.id, attempt_id=attempt.id, prompt=str(questions[index].get("equation", "")), answer=answer, reason=attempt.reason))
     db.commit()
-    return {"id": attempt.id, "correct": attempt.correct}
+    return {"id": attempt.id, "correct": attempt.correct, "verification": verification}
 
 
 @app.post("/api/records/{task_id}/helps", status_code=201)
@@ -552,11 +577,14 @@ def add_repair(task_id: str, body: dict, request: Request, db: DB) -> dict:
     rec = db.get(StudentRecord, wrong.record_id) if wrong else None
     if not rec or rec.task_id != task_id or rec.student_id != user.id:
         raise HTTPException(404, "没有找到对应错题。")
-    correct = str(body.get("answer", "")).strip() == "7" # Explicit scope: fixed demo variation only.
-    item = RepairAttempt(id=f"repair-{uuid.uuid4().hex}", wrong_id=wrong.id, answer=str(body.get("answer", "")), reason=str(body.get("reason", "")), correct=correct)
+    answer = str(body.get("answer", "")).strip()
+    if not answer: raise HTTPException(422, "请填写补救答案。")
+    verification = assess_repair(answer)
+    correct = verification["correct"]
+    item = RepairAttempt(id=f"repair-{uuid.uuid4().hex}", wrong_id=wrong.id, answer=answer, reason=str(body.get("reason", "")), correct=correct, verification=verification)
     db.add(item)
     db.commit()
-    return {"id": item.id, "correct": correct}
+    return {"id": item.id, "correct": correct, "verification": verification}
 
 
 @app.post("/api/records/{task_id}/submit")
@@ -592,11 +620,11 @@ def save_feedback(record_id: str, body: dict, request: Request, db: DB) -> dict:
 async def upload_file(request: Request, db: DB, file: UploadFile = File(...)) -> dict:
     user = current_user(request, db)
     content_type = file.content_type or "application/octet-stream"
-    if not content_type.startswith("image/"):
-        raise HTTPException(415, "目前只接收图片文件。")
+    if not content_type.startswith(("image/", "audio/")):
+        raise HTTPException(415, "请选择图片或音频文件。")
     contents = await file.read(12 * 1024 * 1024 + 1)
     if len(contents) > 12 * 1024 * 1024:
-        raise HTTPException(413, "图片不能超过 12 MB。")
+        raise HTTPException(413, "文件不能超过 12 MB。")
     file_id = f"file-{uuid.uuid4().hex}"
     storage_key = uuid.uuid4().hex
     STORAGE_DIR.mkdir(parents=True, exist_ok=True)
@@ -708,3 +736,7 @@ def import_legacy(body: dict, request: Request, db: DB) -> dict:
         db.rollback()
         raise HTTPException(422, "历史记录关联不完整，导入未完成；请检查数据后重试。") from error
     return {"imported": True, "taskIds": imported_ids, "records": total, "source": "legacy-demo"}
+
+
+from .ai_routes import router as ai_router
+app.include_router(ai_router)

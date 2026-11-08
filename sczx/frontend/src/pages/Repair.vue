@@ -18,34 +18,39 @@ const wrong = computed(() =>
 );
 const key = `repair-${route.query.wrong || "practice"}`;
 const saved = store.record?.drafts[key] || {};
+const submitting = ref(false), verification = ref(saved.verification || null);
 const repairAnswer = ref(saved.answer || ""),
   repairReason = ref(saved.reason || ""),
   repairSubmitted = ref(saved.submitted === true),
   correct = ref(saved.correct === true);
-watch([repairAnswer, repairReason, repairSubmitted, correct], () => {
+watch([repairAnswer, repairReason, repairSubmitted, correct, verification], () => {
   if (store.record) {
     store.record.drafts[key] = {
       answer: repairAnswer.value,
       reason: repairReason.value,
       submitted: repairSubmitted.value,
       correct: correct.value,
+      verification: verification.value,
     };
     store.touch();
   }
 });
-function submitRepair() {
+async function submitRepair() {
+  if (submitting.value) return;
+  submitting.value = true;
   try {
-    const result = store.submitRepair(
+    const result = await store.submitRepair(
       wrong.value?.id || null,
       repairAnswer.value,
       repairReason.value,
     );
     correct.value = result.correct;
+    verification.value = result.verification;
     repairSubmitted.value = true;
     notify("补救尝试已保存");
   } catch (error) {
     notify(error.message);
-  }
+  } finally { submitting.value = false; }
 }
 </script>
 <template>
@@ -60,7 +65,8 @@ function submitRepair() {
         >返回原任务</RouteButton
       ></PageHeading
     >
-    <div class="two-column">
+    <Surface v-if="!wrong"><div class="empty-state"><h2>选择一道需要订正的错题</h2><div class="paper-actions"><RouteButton route="wrong">查看本课错题</RouteButton><RouteButton route="check" secondary>独立检查</RouteButton></div></div></Surface>
+    <div v-else class="two-column">
       <Surface class="repair-paper"
         ><Status tone="amber">等式性质补救</Status>
         <p v-if="wrong">{{ wrong.prompt }}</p>
@@ -112,14 +118,14 @@ function submitRepair() {
           <CheckCircle2 :size="18" />
           <p>
             {{
-              correct
+              verification?.status === "unverified" ? "需核对，请保留原作答供教师查看。" : correct
                 ? "正确。两边同时减去 2，得到 z = 7。"
                 : "试着在两边同时减去 2，再计算右边。"
             }}
           </p>
         </div>
         <div class="paper-actions">
-          <Button @click="submitRepair">提交尝试<ArrowRight /></Button
+          <Button :disabled="submitting" @click="submitRepair">{{ submitting ? "保存中…" : "提交尝试" }}<ArrowRight /></Button
           ><RouteButton route="result" secondary>返回任务</RouteButton>
         </div></Surface
       >

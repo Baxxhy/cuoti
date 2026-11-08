@@ -3,68 +3,14 @@ import { inject, ref, watch } from "vue";
 import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
 import TaskEmpty from "@/components/TaskEmpty.vue";
-import {
-  ArrowLeft,
-  Check,
-  ImagePlus,
-  Lightbulb,
-  Plus,
-  RotateCcw,
-  Send,
-  Sparkles,
-} from "lucide-vue-next";
-import { motion, AnimatePresence } from "motion-v";
+import ModelAssistant from "@/components/ModelAssistant.vue";
+import { ArrowLeft, Check, Plus, RotateCcw, Lightbulb } from "lucide-vue-next";
+import { motion } from "motion-v";
 import Workspace from "@/components/Workspace.vue";
-const store = useLearning(),
-  notify = inject("notify");
-const weight = ref(store.record?.drafts.weight || 0),
-  draft = ref(store.record?.observation || ""),
-  help = ref(""),
-  question = ref(store.record?.drafts.assistant || ""),
-  imageName = ref(store.record?.drafts.imageName || ""),
-  image = ref(store.record?.drafts.assistantImage || "");
-watch(draft, (value) => {
-  if (store.record) {
-    store.record.observation = value;
-    store.touch();
-  }
-});
-watch(question, (value) => {
-  if (store.record) {
-    store.record.drafts.assistant = value;
-    store.touch();
-  }
-});
-watch(help, (value) => {
-  if (value) store.requestHelp(null, "讲解", value, image.value);
-});
-function send() {
-  if (!question.value.trim() && !imageName.value)
-    return notify("先写下问题或选择题图");
-  help.value = `关于“${question.value || "你选择的题图"}”，先比较等式两边进行的运算。此处为预设演示回应。`;
-  question.value = "";
-}
-watch([weight, imageName, image], () => {
-  if (store.record) {
-    Object.assign(store.record.drafts, {
-      weight: weight.value,
-      imageName: imageName.value,
-      assistantImage: image.value,
-    });
-    store.touch();
-  }
-});
-function chooseImage(event) {
-  const file = event.target.files?.[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    imageName.value = file.name;
-    image.value = String(reader.result);
-  };
-  reader.onerror = () => notify("题图读取失败");
-  reader.readAsDataURL(file);
-}
+const store = useLearning(), notify = inject("notify");
+const weight = ref(store.record?.drafts.weight || 0), draft = ref(store.record?.observation || "");
+watch(draft, value => { if (store.record) { store.record.observation = value; store.touch(); } });
+watch(weight, value => { if (store.record) { store.record.drafts.weight = value; store.touch(); } });
 </script>
 <template>
   <template v-if="store.task"
@@ -178,67 +124,6 @@ function chooseImage(event) {
             ><RouteButton route="check">独立试一试</RouteButton>
           </div>
         </article></template
-      ><template #secondary
-        ><aside class="assistant-panel">
-          <div class="assistant-title">
-            <span class="assistant-symbol"><Sparkles :size="19" /></span>
-            <h3>学习助手</h3>
-          </div>
-          <div class="assistant-message">
-            <p>先想一想，天平平衡的时候，两边有什么共同的特点？</p>
-          </div>
-          <div class="help-options">
-            <Button
-              variant="outline"
-              @click="
-                help =
-                  '例如 5 = 5，两边都加 2，得到 7 = 7。如果只给左边加 2，就变成 7 和 5。你能解释它们有什么不同吗？'
-              "
-              ><Lightbulb />举个例子</Button
-            ><Button
-              variant="outline"
-              @click="
-                help =
-                  '把两边想成两组一样多的物品。两边增加同样多，仍然一样多。只增加一边时，它们就不一样多了。'
-              "
-              ><RotateCcw />换种讲法</Button
-            >
-          </div>
-          <AnimatePresence
-            ><motion.div
-              v-if="help"
-              class="assistant-answer"
-              :initial="{ opacity: 0, y: 8 }"
-              :animate="{ opacity: 1, y: 0 }"
-              :exit="{ opacity: 0 }"
-              ><span><Sparkles :size="13" />演示指导</span>
-              <p>{{ help }}</p></motion.div
-            ></AnimatePresence
-          >
-          <img
-            v-if="image"
-            :src="image"
-            class="upload-thumbnail"
-            alt="学习提问题图"
-          />
-          <div class="assistant-compose">
-            <Textarea
-              v-model="question"
-              aria-label="向学习助手提问"
-              placeholder="写下你还没想明白的地方……"
-            />
-            <div>
-              <label class="image-input" aria-label="选择题图"
-                ><ImagePlus :size="18" /><input
-                  type="file"
-                  accept="image/*"
-                  @change="chooseImage" /></label
-              ><span>{{ imageName || "选择题图" }}</span
-              ><Button size="icon" aria-label="发送问题" @click="send"
-                ><Send
-              /></Button>
-            </div>
-          </div>
-          <ExperienceLink /></aside></template></Workspace></template
+      ><template #secondary><ModelAssistant /></template></Workspace></template
   ><TaskEmpty v-else />
 </template>

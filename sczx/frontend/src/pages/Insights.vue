@@ -5,6 +5,7 @@ import { useLearning } from "@/store.js";
 
 import { questions } from "@/data.js";
 import TaskEmpty from "@/components/TaskEmpty.vue";
+import ModelHistory from "@/components/ModelHistory.vue";
 const store = useLearning(),
   notify = inject("notify"),
   studentOpen = ref(false),
@@ -19,6 +20,8 @@ const independent = computed(
       .length || 0,
 );
 const records = computed(() => store.data.studentRecords?.[store.task?.id] || []);
+const coveredHelpIds = ref([]);
+const visibleHelps = computed(() => (store.record?.helps || []).filter(item => !coveredHelpIds.value.includes(item.id)));
 const submittedCount = computed(() => records.value.filter((record) => record.completed).length);
 const independentCount = computed(() => records.value.reduce((sum, record) => sum + record.attempts.filter((item) => item.correct && !item.helped).length, 0));
 watch(() => store.data.activeStudentId, () => { draft.value = store.record?.feedback || ""; });
@@ -171,10 +174,11 @@ async function arrange() {
           <p>{{ attempt.reason || "未填写解释" }}</p>
           <Status>{{ attempt.helped ? "获得帮助" : "独立作答" }}</Status
           ><Status :tone="attempt.correct ? 'green' : 'amber'">{{
-            attempt.correct ? "数值正确" : "需订正"
+            attempt.verification?.status === "unverified" ? "需核对" : attempt.correct ? "数值正确" : "需订正"
           }}</Status>
         </section>
-        <section v-for="help in store.record?.helps || []" :key="help.id">
+        <ModelHistory :record-id="store.record?.id" @covered-helps="coveredHelpIds = $event" />
+        <section v-for="help in visibleHelps" :key="help.id">
           <h3>{{ help.kind }}</h3>
           <p>{{ help.message }}</p>
           <img
@@ -189,7 +193,7 @@ async function arrange() {
           <h3>补救变式 z + 2 = 9 → {{ repair.answer }}</h3>
           <p>{{ repair.reason }}</p>
           <Status :tone="repair.correct ? 'green' : 'amber'">{{
-            repair.correct ? "数值正确" : "需订正"
+            repair.verification?.status === "unverified" ? "需核对" : repair.correct ? "数值正确" : "需订正"
           }}</Status>
         </section>
         <p v-if="store.record && !store.record.attempts.length && !store.record.helps.length">

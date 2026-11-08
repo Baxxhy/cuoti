@@ -40,7 +40,6 @@ export function createPlatform() {
     activeStudentId: null,
     favorite: false,
     issue: { id: "issue-empty", text: "", reply: "", resolved: false },
-    runtime: { id: "runtime-placeholder", status: "idle" },
     supplements: [],
     messages: [],
   };

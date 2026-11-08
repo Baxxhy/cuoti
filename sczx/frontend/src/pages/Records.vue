@@ -26,7 +26,7 @@ const store = useLearning();
         <small>{{ new Date(attempt.createdAt).toLocaleString("zh-CN") }}</small>
       </div>
       <Status :tone="attempt.correct ? 'green' : 'amber'">{{
-        attempt.correct ? "数值正确" : "需订正"
+        attempt.verification?.status === "unverified" ? "需核对" : attempt.correct ? "数值正确" : "需订正"
       }}</Status
       ><Status>{{ attempt.helped ? "获得帮助" : "独立作答" }}</Status>
     </div>

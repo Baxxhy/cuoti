@@ -3,6 +3,7 @@ import { computed, inject, ref, watch } from "vue";
 import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
 import TaskEmpty from "@/components/TaskEmpty.vue";
+import ModelAssistant from "@/components/ModelAssistant.vue";
 import {
   ArrowLeft,
   ArrowRight,
@@ -14,6 +15,7 @@ import { motion } from "motion-v";
 import { questions } from "@/data.js";
 const store = useLearning(),
   notify = inject("notify");
+const submitting = ref(false), result = ref(store.record?.attempts.at(-1) || null);
 const saved = store.record?.drafts.check || {};
 const questionIndex = ref(
   Number.isInteger(saved.question) &&
@@ -57,10 +59,11 @@ function next() {
   helped.value = false;
   submitted.value = false;
 }
-function submit() {
-  if (submitted.value) return;
+async function submit() {
+  if (submitted.value || submitting.value) return;
+  submitting.value = true;
   try {
-    store.submitAnswer(
+    result.value = await store.submitAnswer(
       questionIndex.value,
       answer.value,
       reason.value,
@@ -70,7 +73,7 @@ function submit() {
     notify("本次作答已保存");
   } catch (error) {
     notify(error.message);
-  }
+  } finally { submitting.value = false; }
 }
 </script>
 <template>
@@ -120,20 +123,20 @@ function submit() {
           <CheckCircle2 :size="18" />
           <div>
             <strong>{{
-              answer.trim() === current.answer ? "数值正确" : "需要订正"
+              result?.verification?.status === "unverified" ? "需核对" : result?.correct ? "数值正确" : "需要订正"
             }}</strong>
             <p>{{ helped ? "已记录帮助" : "已记录独立作答" }}</p>
           </div>
         </div>
         <div class="paper-actions">
-          <Button :disabled="submitted" @click="submit"
-            >{{ submitted ? "作答已保存" : "提交作答" }}<ArrowRight /></Button
+          <Button :disabled="submitted || submitting" @click="submit"
+            >{{ submitting ? '保存中…' : submitted ? '作答已保存' : '提交作答' }}<ArrowRight /></Button
           ><Button variant="ghost" @click="askHint()" :disabled="submitted"
             ><CircleHelp />我需要提示</Button
           >
         </div></Surface
       >
-      <aside class="check-aside">
+      <aside class="check-aside"><ModelAssistant :key="questionIndex" :question="questionIndex" compact @help="helped = true" />
         <InfoTip label="独立检查规则"
           >获得提示后，本题作为指导练习保留；换新题检查时重新记录独立作答。</InfoTip
         ><Button variant="outline" @click="next"

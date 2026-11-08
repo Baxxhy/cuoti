@@ -4,6 +4,7 @@ import { useLearning } from "@/store.js";
 import { api } from "@/services/api.js";
 import AccountManager from "@/components/AccountManager.vue";
 import LegacyImport from "@/components/LegacyImport.vue";
+import ModelConsole from "@/components/ModelConsole.vue";
 const store = useLearning();
 const notify = inject("notify");
 const reply = ref(store.data.issue?.reply || "");
@@ -33,6 +34,7 @@ onMounted(health);
   <PageHeading title="反馈与运行" />
   <p v-if="error" class="form-error" role="alert">{{ error }}</p>
   <template v-if="store.user?.role === 'admin'">
+    <Surface><ModelConsole /></Surface>
     <Surface><SectionHeading title="业务服务" /><p role="status">{{ serviceStatus }}</p><Button variant="outline" @click="health">重新检查</Button></Surface>
     <Surface class="runtime-surface"><AccountManager /></Surface>
     <Surface class="runtime-surface"><LegacyImport /></Surface>
