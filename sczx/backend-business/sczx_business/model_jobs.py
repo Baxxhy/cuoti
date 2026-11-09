@@ -17,6 +17,14 @@ from .math_tools import compare_equivalence
 log = logging.getLogger(__name__)
 provider = ModelProvider()
 worker_task = None
+active_execution = None
+active_job_id = None
+worker_loop = None
+
+def cancel_execution(job_id):
+    if worker_loop and active_job_id == job_id and active_execution:
+        worker_loop.call_soon_threadsafe(active_execution.cancel)
+
 
 
 def help_record_id(job_id):
@@ -58,6 +66,16 @@ async def execute(job_id, run_id):
             path = storage_dir() / asset.storage_key if asset else None
             if not path or not path.is_file(): raise ModelError("原始文件缺失，请重新上传。")
             file = (asset.original_name, path.read_bytes(), asset.content_type)
+    if capability == 'lesson_agent':
+        from .prepare_agent import run_agent
+        result=await run_agent(job_id,run_id,provider)
+        with SessionLocal.begin() as db:
+            job=db.scalar(select(ModelJob).where(ModelJob.id==job_id).with_for_update());run=db.get(ModelRun,run_id)
+            if job.status=='cancelled':raise asyncio.CancelledError()
+            job.result,job.status,job.error,job.active_hash=result,'succeeded','',None
+            run.result,run.status,run.model,run.provider,run.ended_at=result,'succeeded',result.get('model',''),'Codex CLI / LangGraph',datetime.utcnow()
+            event(db,job,'等待教师确认')
+        return
     phase(job_id, {"document_parse": "正在解析原文", "document_ocr": "正在识别原文页面", "case_extract": "正在整理教学经验", "retrieval": "正在检索教学案例", "ocr": "正在识别题图", "text": "正在生成指导", "embedding": "正在生成向量", "rerank": "正在重排材料", "asr": "正在转写音频", "tts": "正在合成音频"}[capability])
     result, model, source = await provider.call(capability, data, file=file, request_id=run_id)
     if capability in ("text", "case_extract"):
@@ -132,6 +150,7 @@ def recover_interrupted():
 
 
 async def worker():
+    global active_execution,active_job_id
     needs_recovery = False
     while True:
         try:
@@ -151,24 +170,35 @@ async def worker():
                 await asyncio.sleep(.5)
                 continue
             try:
-                await asyncio.wait_for(execute(job_id, run_id), timeout=150)
+                with SessionLocal() as session: agent=session.get(ModelJob,job_id).capability=='lesson_agent'
+                active_job_id=job_id
+                active_execution=asyncio.create_task(execute(job_id,run_id))
+                await asyncio.wait_for(active_execution, timeout=300 if agent else 150)
             except asyncio.CancelledError:
-                raise
+                with SessionLocal.begin() as db:
+                    job,run=db.get(ModelJob,job_id),db.get(ModelRun,run_id)
+                    if job.status!='cancelled':raise
+                    run.status,run.error,run.ended_at='cancelled','教师取消',datetime.utcnow()
             except Exception as error:
                 if isinstance(error, TimeoutError): error = ModelError("任务执行超时，可重试。", retryable=True)
                 known = isinstance(error, ModelError)
                 message = str(error) if known else "任务执行失败，输入已保留，请重试。"
                 if not known: log.exception("model job failed: %s", job_id)
                 with SessionLocal.begin() as db:
-                    job, run = db.get(ModelJob, job_id), db.get(ModelRun, run_id)
+                    job=db.scalar(select(ModelJob).where(ModelJob.id==job_id).with_for_update());run=db.get(ModelRun,run_id)
+                    if job.status=='cancelled':
+                        run.status,run.error,run.ended_at='cancelled','教师取消',datetime.utcnow()
+                        continue
                     run.status, run.error, run.ended_at = "failed", message, datetime.utcnow()
                     run.model, run.provider = getattr(error, "model", ""), getattr(error, "provider", "")
-                    again = known and error.retryable and job.retry_count < 2
+                    again = known and error.retryable and job.retry_count < (1 if job.capability=='lesson_agent' else 2)
                     job.status, job.error = ("queued" if again else "failed"), message
                     if not again: job.active_hash = None
                     if again: job.retry_count += 1
                     event(db, job, "稍后自动重试" if again else "执行失败")
                 if again: await asyncio.sleep(min(60, max(2, error.retry_after)))
+            finally:
+                active_execution=None;active_job_id=None
         except asyncio.CancelledError:
             raise
         except Exception:
@@ -178,7 +208,8 @@ async def worker():
 
 
 async def start():
-    global worker_task
+    global worker_task,worker_loop
+    worker_loop=asyncio.get_running_loop()
     recover_interrupted()
     worker_task = asyncio.create_task(worker())
 

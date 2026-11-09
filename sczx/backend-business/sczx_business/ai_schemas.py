@@ -39,7 +39,7 @@ class RankingResult(StrictResult):
 
 
 class JobInput(BaseModel):
-    capability: Literal["text", "ocr", "retrieval", "embedding", "rerank", "asr", "tts"]
+    capability: Literal["text", "ocr", "retrieval", "embedding", "rerank", "asr", "tts", "lesson_agent"]
     requestKey: str = Field(min_length=8, max_length=80)
     recordId: str | None = None
     fileId: str | None = None

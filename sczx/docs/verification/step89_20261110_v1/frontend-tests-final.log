@@ -1,0 +1,15 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ clearing a pending create prevents the old job from reopening (1180.813226ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1157.663986ms)
+✔ assistant initialization cannot replace a newer user request (1233.888303ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3721.95141

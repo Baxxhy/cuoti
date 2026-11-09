@@ -14,6 +14,7 @@ export const useLearning = defineStore("platform", {
     error: "",
     saveError: "",
     saving: false,
+    externalUpdating: false,
     publishing: false,
     savedAt: null,
     revision: 0,
@@ -85,8 +86,8 @@ export const useLearning = defineStore("platform", {
       this.data = createPlatform();
       this.status = "unauthenticated";
     },
-    async load(lessonId=this.data.lesson?.id) {
-      this.status = "loading";
+    async load(lessonId=this.data.lesson?.id, background=false) {
+      if (!background) this.status = "loading";
       this.error = "";
       try {
         this.data = await api.platform(lessonId);

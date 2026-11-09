@@ -46,7 +46,7 @@ def serialize(job, detail=True):
     if 'context' in exposed:exposed['context']=public_context(exposed['context'])
     result = job.result
     if result and not detail and "vectors" in result: result = {k:v for k,v in result.items() if k != "vectors"}
-    return {"id":job.id,"capability":job.capability,"summary":job.input.get("label", ""),"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
+    return {"id":job.id,"capability":job.capability,"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
 
 
 @router.get("/capabilities")
@@ -125,7 +125,11 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
     user = user_for(request, db)
     data = payload.data.copy()
     record = db.get(StudentRecord,payload.recordId) if payload.recordId else None
-    if payload.capability == "retrieval":
+    if payload.capability == "lesson_agent":
+        if user.role != "teacher" or payload.recordId or payload.fileId:raise HTTPException(403,"请使用教师备课入口。")
+        from .prepare_agent import build_input
+        data=build_input(db,user,data)
+    elif payload.capability == "retrieval":
         if payload.recordId: raise HTTPException(422, "案例检索不关联学生学习记录。")
         if user.role not in ("admin", "teacher"): raise HTTPException(403, "请从教师案例入口检索。")
     elif user.role != "admin":
@@ -238,6 +242,9 @@ def retry(job_id: str, request: Request, db=Depends(get_db)):
     if db.scalar(select(ModelJob.id).where(ModelJob.owner_id==user.id,ModelJob.active_hash==job.input_hash,ModelJob.id!=job.id).limit(1)):
         raise HTTPException(409,"相同内容已有运行任务，请先查看该任务。")
     job.status,job.error,job.retry_count="queued","",0
+    if job.capability=='lesson_agent' and job.result:
+        from .prepare_agent import now
+        job.result={**job.result,'budgetStartedAt':now()}
     job.active_hash=job.input_hash
     event(db,job,"等待手动重试")
     try: db.commit()
@@ -272,3 +279,68 @@ def events(job_id: str, request: Request, after: int=0, db=Depends(get_db)):
             yield ": heartbeat\n\n"
             await asyncio.sleep(.5)
     return StreamingResponse(stream(),media_type="text/event-stream",headers={"Cache-Control":"no-cache","X-Accel-Buffering":"no"})
+
+
+def owned_agent(db,user,job_id):
+    job=db.scalar(select(ModelJob).where(ModelJob.id==job_id).with_for_update())
+    if user.role!='teacher' or not job or job.owner_id!=user.id or job.capability!='lesson_agent':raise HTTPException(404,'没有找到自己的备课任务。')
+    return job
+
+@router.get('/agent/draft-state')
+def agent_draft_state(lessonId:str,request:Request,db=Depends(get_db)):
+    from .prepare_agent import current_draft,fingerprint
+    user=user_for(request,db)
+    if user.role!='teacher':raise HTTPException(403,'请使用教师账号。')
+    row=current_draft(db,user.id,lessonId)
+    return {'draftHash':fingerprint(row),'goal':row.goal if row else '', 'blocks':[{'id':b['id'],'title':b['title']} for b in row.blocks] if row else []}
+
+@router.put('/agent/{job_id}/draft')
+def agent_edit(job_id:str,body:dict,request:Request,db=Depends(get_db)):
+    from .prepare_agent import validate_plan,now
+    from .model_jobs import math_check
+    job=owned_agent(db,user_for(request,db),job_id)
+    if job.status not in ('succeeded','failed') or not (job.result or {}).get('plan'):raise HTTPException(409,'请等待建议生成完成。')
+    if (job.result or {}).get('accepted'):raise HTTPException(409,'已确认的建议请在备课页继续编辑。')
+    try:plan=validate_plan(body,job.input['lesson'],job.result.get('evidence',[]))
+    except ValueError as error:raise HTTPException(422,'建议结构或引用无效：'+str(error).split('\n')[0]) from None
+    verification=math_check(plan['mathClaims'])
+    if verification['status']=='inconsistent':raise HTTPException(422,'列出的数学表达式不一致，请修订后保存。')
+    result=copy.deepcopy(job.result);result.update(editable=plan,editedAt=now(),decision='pending',verification={**verification,'structure':'passed','references':'passed','humanReviewRequired':True})
+    job.result=result;job.status='succeeded';job.error='';job.active_hash=None
+    event(db,job,'建议草稿已保存，等待确认');db.commit();return serialize(job)
+
+@router.post('/agent/{job_id}/confirm')
+def agent_confirm(job_id:str,body:dict,request:Request,db=Depends(get_db)):
+    from .planning_schemas import AgentConfirmation
+    from .prepare_agent import current_draft,fingerprint,validate_plan,now
+    from .models import LessonDraft
+    from .library import uid
+    from .model_jobs import math_check
+    try:confirmation=AgentConfirmation.model_validate(body)
+    except ValueError:raise HTTPException(422,'请明确确认替换备课目标和活动。') from None
+    user=user_for(request,db);job=owned_agent(db,user,job_id);result=copy.deepcopy(job.result or {})
+    if result.get('accepted'):return {'accepted':result['accepted'],'created':False}
+    if job.status!='succeeded' or not result.get('editable'):raise HTTPException(409,'请先完成并保存建议。')
+    try:plan=validate_plan(result['editable'],job.input['lesson'],result.get('evidence',[]))
+    except ValueError:raise HTTPException(422,'建议未通过校验。') from None
+    if math_check(plan['mathClaims'])['status']=='inconsistent':raise HTTPException(422,'请先修订数学核对问题。')
+    row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id==user.id,LessonDraft.lesson_id==job.input['lessonId']).with_for_update())
+    if fingerprint(row)!=confirmation.expectedDraftHash:raise HTTPException(409,'备课草稿已变更，请重新查看当前草稿后再确认；本次建议已保留。')
+    lesson=job.input['lesson']
+    if row and {q['id'] for q in row.questions}!={q['id'] for q in lesson['questions']}:raise HTTPException(409,'当前题目与课时版本不同，请先在备课页确认使用发布课时。')
+    if not row:
+        row=LessonDraft(id=uid('draft'),teacher_id=user.id,lesson_id=job.input['lessonId'],case_id=lesson.get('caseId'),case_snapshot=lesson.get('caseSnapshot'),lesson_snapshot=lesson,questions=copy.deepcopy(lesson['questions']),student_base='',due_date='');db.add(row)
+    row.lesson_snapshot=copy.deepcopy(lesson)
+    by_id={b['id']:b for b in plan['blocks']};row.blocks=[{**copy.deepcopy(b),'title':by_id[b['id']]['title'],'content':by_id[b['id']]['content'],'agentEvidence':by_id[b['id']]['evidenceIds'],'agentJobId':job.id} for b in lesson['blocks']];row.goal=plan['goal']
+    receipt={'draftId':row.id,'lessonId':row.lesson_id,'confirmedAt':now(),'jobId':job.id}
+    result.update(accepted=receipt,decision='accepted');job.result=result;event(db,job,'已确认保存到备课草稿');db.commit();return {'accepted':receipt,'created':True}
+
+@router.post('/agent/{job_id}/cancel')
+def agent_cancel(job_id:str,request:Request,db=Depends(get_db)):
+    from .model_jobs import cancel_execution
+    job=owned_agent(db,user_for(request,db),job_id)
+    if (job.result or {}).get('accepted'):raise HTTPException(409,'已确认内容请在备课页继续编辑。')
+    if job.status=='cancelled':return serialize(job)
+    job.status='cancelled';job.error='教师取消，已完成步骤保留。';job.active_hash=None
+    if job.result:job.result={**job.result,'decision':'rejected'}
+    event(db,job,'已取消');db.commit();cancel_execution(job.id);return serialize(job)

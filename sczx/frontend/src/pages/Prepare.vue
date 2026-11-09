@@ -94,7 +94,7 @@ async function publish() {
     ><span>我的教案 / {{ store.data.lesson?.title }}</span>
   </div>
   <PageHeading :title="(store.data.lesson?.title||'课时')+' · 备课'"
-    ><Button variant="outline" :disabled="templateBusy" @click="applyPublished">使用发布课时</Button><RouteButton route="courses" secondary>选择课时</RouteButton><Button variant="outline" @click="saveDraft"><Save />保存教案</Button
+    ><RouteButton :route="'agent?lesson='+store.data.lesson?.id" secondary>任务备课</RouteButton><Button variant="outline" :disabled="templateBusy" @click="applyPublished">使用发布课时</Button><RouteButton route="courses" secondary>选择课时</RouteButton><Button variant="outline" @click="saveDraft"><Save />保存教案</Button
     ><Button variant="outline" @click="modal = 'preview'"
       ><Eye />学生预览</Button
     ><Button @click="modal = 'publish'"

@@ -1,0 +1,1426 @@
+{
+  "corpus": [
+    {
+      "grade": "",
+      "title": "天平与等式性质",
+      "author": "",
+      "legacy": true,
+      "source": "待补充核对的教学示例",
+      "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+      "subject": "数学",
+      "experience": {},
+      "references": [],
+      "id": "case-balance",
+      "versionId": "version-d9452ce605ba4cf190431e879f560bb6",
+      "version": 1,
+      "publishedAt": "2026-11-08T14:33:09Z",
+      "retrievalText": "{}"
+    },
+    {
+      "grade": "",
+      "title": "天平与等式性质 · 案例联调验收",
+      "author": "",
+      "legacy": true,
+      "source": "待补充核对的教学示例",
+      "content": "先让学生预测天平两边同时变化的结果，再要求用等式记录共同运算，并针对单边变化进行比较。",
+      "subject": "数学",
+      "experience": {},
+      "references": [],
+      "id": "case-draft-account-admin-demo",
+      "versionId": "version-cb3b863feee747a28d98181a8051cbea",
+      "version": 1,
+      "publishedAt": "2026-11-08T14:33:09Z",
+      "retrievalText": "{}"
+    },
+    {
+      "grade": "七年级",
+      "title": "等式性质：两边同时进行相同运算",
+      "author": "项目成员（自编样本）",
+      "source": "自编验收材料，非真实教师评审",
+      "content": "本案例依据一份自编验收材料，说明如何通过天平演示和共同运算步骤，帮助七年级学生理解等式两边同时加上相同的数，相等关系保持不变。材料注明此为验收样本，不是真实教师评审。",
+      "subject": "数学",
+      "experience": {
+        "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+        "steps": [
+          "展示保持平衡的天平，请学生先预测，再同时增加相同砝码。",
+          "讲解例题 x - 3 = 5，两边同时加3，得到 x = 8。",
+          "安排独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+        ],
+        "boundary": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+        "questions": [
+          "如果只在左边加3，还会平衡吗？为什么？"
+        ],
+        "responses": [
+          "若学生只说移项变号，要求写出两边共同运算的步骤。"
+        ],
+        "adjustment": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+        "difficulty": "学生只改变等式的一边，机械记忆移项变号。",
+        "mathClaims": [
+          {
+            "left": "5+3",
+            "right": "8"
+          },
+          {
+            "left": "11-4",
+            "right": "7"
+          }
+        ],
+        "studentBase": "适用于已理解相等关系并掌握加减法的七年级学生。",
+        "suggestions": [],
+        "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+        "knowledgePoints": [
+          "等式两边同时加上相同的数，相等关系保持不变。",
+          "解方程时可通过等式两边同时进行相同的加减运算。"
+        ]
+      },
+      "references": [
+        {
+          "field": "content",
+          "label": "第 1 页",
+          "quote": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "goal",
+          "label": "第 1 页",
+          "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "knowledgePoints.0",
+          "label": "第 1 页",
+          "quote": "理解等式两边同时加上相同的数，相等关系保持不变。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "knowledgePoints.1",
+          "label": "第 1 页",
+          "quote": "x - 3 = 5，两边同时加3，得到 x = 8。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "studentBase",
+          "label": "第 1 页",
+          "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "difficulty",
+          "label": "第 1 页",
+          "quote": "学生只改变等式的一边，机械记忆移项变号。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "introduction",
+          "label": "第 1 页",
+          "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "steps.0",
+          "label": "第 1 页",
+          "quote": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "steps.1",
+          "label": "第 1 页",
+          "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "steps.2",
+          "label": "第 1 页",
+          "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "questions.0",
+          "label": "第 1 页",
+          "quote": "如果只在左边加3，还会平衡吗？为什么？",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "responses.0",
+          "label": "第 1 页",
+          "quote": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "adjustment",
+          "label": "第 1 页",
+          "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "field": "boundary",
+          "label": "第 1 页",
+          "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        }
+      ],
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "verification": {
+        "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+        "claims": [
+          {
+            "left": "5+3",
+            "right": "8",
+            "status": "unverified"
+          },
+          {
+            "left": "11-4",
+            "right": "7",
+            "status": "unverified"
+          }
+        ],
+        "status": "unverified"
+      },
+      "knowledgeLinks": [
+        {
+          "id": "kp-equality",
+          "name": "等式性质"
+        }
+      ],
+      "extractionJobId": "job-1bc0cff1af964aa8822294225ef858dc",
+      "id": "case-cb7a37515e09454d863ceb82f50b64a7",
+      "versionId": "version-b4f160db2af54728bff5018198074f02",
+      "version": 2,
+      "publishedAt": "2026-11-09T13:35:09Z",
+      "retrievalText": "{\"goal\": \"理解等式两边同时加上相同的数，相等关系保持不变。\", \"steps\": [\"展示保持平衡的天平，请学生先预测，再同时增加相同砝码。\", \"讲解例题 x - 3 = 5，两边同时加3，得到 x = 8。\", \"安排独立检查：y + 4 = 11，两边同时减4，得到 y = 7。\"], \"boundary\": \"适用范围：已理解相等关系并掌握加减法的七年级学生。\", \"questions\": [\"如果只在左边加3，还会平衡吗？为什么？\"], \"responses\": [\"若学生只说移项变号，要求写出两边共同运算的步骤。\"], \"adjustment\": \"若学生只说移项变号，要求写出两边共同运算的步骤。\", \"difficulty\": \"学生只改变等式的一边，机械记忆移项变号。\", \"mathClaims\": [{\"left\": \"5+3\", \"right\": \"8\"}, {\"left\": \"11-4\", \"right\": \"7\"}], \"studentBase\": \"适用于已理解相等关系并掌握加减法的七年级学生。\", \"suggestions\": [], \"introduction\": \"展示保持平衡的天平，让学生先预测，再同时增加相同砝码。\", \"knowledgePoints\": [\"等式两边同时加上相同的数，相等关系保持不变。\", \"解方程时可通过等式两边同时进行相同的加减运算。\"]}"
+    },
+    {
+      "grade": "七年级",
+      "title": "等式性质：天平追问（第六步自编验收）",
+      "author": "项目成员（自编样本）",
+      "source": "自编验收材料，非真实教师评审",
+      "content": "本案例依据输入中的自编验收材料整理，材料注明其为验收样本，不是真实教师评审。教学聚焦于等式两边同时进行相同运算时，相等关系保持不变；通过天平预测、追问和例题，引导学生理解这一性质，并检查其是否仍只会机械记忆移项变号。\n人工核对：先预测，再操作，再解释。\n版本修订标记 onlyrevisionstep6",
+      "subject": "数学",
+      "experience": {
+        "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+        "steps": [
+          "展示天平并请学生先预测同时增加相同砝码后的情况。",
+          "结合例题 x - 3 = 5，引导学生写出等式两边同时加3的步骤，得到 x = 8。",
+          "进行独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+        ],
+        "boundary": "适用于已理解相等关系并掌握加减法的七年级学生。",
+        "questions": [
+          "如果只在左边加3，还会平衡吗？为什么？"
+        ],
+        "responses": [
+          "若学生只说“移项变号”，要求写出两边共同运算的步骤。"
+        ],
+        "adjustment": "当学生只用“移项变号”解释时，要求其写出等式两边共同进行的运算步骤。",
+        "difficulty": "学生可能只改变等式的一边，或机械记忆移项变号，而未说明等式两边共同进行的运算。",
+        "mathClaims": [
+          {
+            "left": "x - 3 = 5",
+            "right": "两边同时加3后，x = 8"
+          },
+          {
+            "left": "y + 4 = 11",
+            "right": "两边同时减4后，y = 7"
+          }
+        ],
+        "studentBase": "已理解相等关系并掌握加减法的七年级学生。",
+        "suggestions": [],
+        "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+        "knowledgePoints": [
+          "等式的性质",
+          "解一元一次方程的加减运算"
+        ]
+      },
+      "references": [
+        {
+          "label": "第 1 页",
+          "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "label": "第 1 页",
+          "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "label": "第 1 页",
+          "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "label": "第 1 页",
+          "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "label": "第 1 页",
+          "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        },
+        {
+          "label": "第 1 页",
+          "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+          "author": "项目成员（自编样本）",
+          "source": "自编验收材料，非真实教师评审",
+          "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+          "sourceUrl": "",
+          "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+          "materialTitle": "第六步自编验收 mixed.pdf"
+        }
+      ],
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "verification": {
+        "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+        "claims": [
+          {
+            "left": "x - 3 = 5",
+            "right": "两边同时加3后，x = 8",
+            "status": "unverified"
+          },
+          {
+            "left": "y + 4 = 11",
+            "right": "两边同时减4后，y = 7",
+            "status": "unverified"
+          }
+        ],
+        "status": "unverified"
+      },
+      "knowledgeLinks": [
+        {
+          "id": "kp-equality",
+          "name": "等式性质"
+        }
+      ],
+      "extractionJobId": "job-efe2742f7c5942f091a68ef9cdc55988",
+      "id": "case-d4919db6ab774719a97c69ccbc1737a7",
+      "versionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954",
+      "version": 6,
+      "publishedAt": "2026-11-09T13:35:15Z",
+      "retrievalText": "{\"goal\": \"理解等式两边同时加上相同的数，相等关系保持不变。\", \"steps\": [\"展示天平并请学生先预测同时增加相同砝码后的情况。\", \"结合例题 x - 3 = 5，引导学生写出等式两边同时加3的步骤，得到 x = 8。\", \"进行独立检查：y + 4 = 11，两边同时减4，得到 y = 7。\"], \"boundary\": \"适用于已理解相等关系并掌握加减法的七年级学生。\", \"questions\": [\"如果只在左边加3，还会平衡吗？为什么？\"], \"responses\": [\"若学生只说“移项变号”，要求写出两边共同运算的步骤。\"], \"adjustment\": \"当学生只用“移项变号”解释时，要求其写出等式两边共同进行的运算步骤。\", \"difficulty\": \"学生可能只改变等式的一边，或机械记忆移项变号，而未说明等式两边共同进行的运算。\", \"mathClaims\": [{\"left\": \"x - 3 = 5\", \"right\": \"两边同时加3后，x = 8\"}, {\"left\": \"y + 4 = 11\", \"right\": \"两边同时减4后，y = 7\"}], \"studentBase\": \"已理解相等关系并掌握加减法的七年级学生。\", \"suggestions\": [], \"introduction\": \"展示保持平衡的天平，让学生先预测，再同时增加相同砝码。\", \"knowledgePoints\": [\"等式的性质\", \"解一元一次方程的加减运算\"]}"
+    }
+  ],
+  "knowledge": [
+    {
+      "id": "kp-equal",
+      "name": "相等关系",
+      "aliases": [],
+      "prerequisites": []
+    },
+    {
+      "id": "kp-equality",
+      "name": "等式性质",
+      "aliases": [
+        "等式两边同时变化"
+      ],
+      "prerequisites": [
+        "kp-equal",
+        "kp-expression"
+      ]
+    },
+    {
+      "id": "kp-expression",
+      "name": "算式含义",
+      "aliases": [],
+      "prerequisites": [
+        "kp-operations"
+      ]
+    },
+    {
+      "id": "kp-operations",
+      "name": "基本运算",
+      "aliases": [],
+      "prerequisites": []
+    }
+  ],
+  "queries": [
+    {
+      "id": "q01",
+      "group": "concept",
+      "split": "dev",
+      "query": "如何讲解等式性质",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q02",
+      "group": "concept",
+      "split": "dev",
+      "query": "为什么等式两边需要同时加上相同的数",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q03",
+      "group": "misconception",
+      "split": "test",
+      "query": "学生只改变等式的一边怎么办",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q04",
+      "group": "misconception",
+      "split": "test",
+      "query": "学生机械记忆移项变号却不会解释共同运算",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q05",
+      "group": "activity",
+      "split": "dev",
+      "query": "怎样设计天平活动",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 2,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 2,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q06",
+      "group": "activity",
+      "split": "dev",
+      "query": "让学生先预测再操作天平的教学方法",
+      "suggestedLabels": {
+        "case-balance": 2,
+        "case-draft-account-admin-demo": 2,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 2,
+        "case-draft-account-admin-demo": 2,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q07",
+      "group": "questioning",
+      "split": "test",
+      "query": "如何通过追问检查学生对单边变化的理解",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q08",
+      "group": "questioning",
+      "split": "test",
+      "query": "我该问什么问题来区分机械记忆和真正理解",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q09",
+      "group": "geometry-no-match",
+      "split": "dev",
+      "query": "如何讲解平面几何的三角形内角和",
+      "suggestedLabels": {
+        "case-balance": 0,
+        "case-draft-account-admin-demo": 0,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 0,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 0
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 0,
+        "case-draft-account-admin-demo": 0,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 0,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 0
+      }
+    },
+    {
+      "id": "q10",
+      "group": "trigonometry-no-match",
+      "split": "test",
+      "query": "怎样设计三角函数的周期性活动",
+      "suggestedLabels": {
+        "case-balance": 0,
+        "case-draft-account-admin-demo": 0,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 0,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 0
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 0,
+        "case-draft-account-admin-demo": 0,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 0,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 0
+      }
+    },
+    {
+      "id": "q11",
+      "group": "prerequisite",
+      "split": "dev",
+      "query": "学生还不理解相等关系，怎样补基础",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 1,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 1
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 1,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 1
+      }
+    },
+    {
+      "id": "q12",
+      "group": "prerequisite",
+      "split": "dev",
+      "query": "学生缺乏算式含义的基础，怎样支持",
+      "suggestedLabels": {
+        "case-balance": 0,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 1,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 1
+      },
+      "context": {},
+      "labels": {
+        "case-balance": 0,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 1,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 1
+      }
+    },
+    {
+      "id": "q13",
+      "group": "student-context",
+      "split": "test",
+      "query": "我不懂这题怎么办",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {
+        "grade": "七年级",
+        "subject": "数学",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "prerequisiteIds": [
+          "kp-equal",
+          "kp-expression"
+        ],
+        "goal": "理解等式两边共同变化",
+        "questionText": "两边同时加3，x等于多少",
+        "equation": "x - 3 = 5",
+        "studentObservation": "只给左边加3"
+      },
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    },
+    {
+      "id": "q14",
+      "group": "student-context",
+      "split": "test",
+      "query": "为什么要这样做",
+      "suggestedLabels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      },
+      "context": {
+        "grade": "七年级",
+        "subject": "数学",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "prerequisiteIds": [
+          "kp-equal",
+          "kp-expression"
+        ],
+        "goal": "理解等式两边共同变化",
+        "questionText": "两边同时加3，x等于多少",
+        "equation": "x - 3 = 5",
+        "studentObservation": "只给左边加3"
+      },
+      "labels": {
+        "case-balance": 1,
+        "case-draft-account-admin-demo": 1,
+        "case-cb7a37515e09454d863ceb82f50b64a7": 2,
+        "case-d4919db6ab774719a97c69ccbc1737a7": 2
+      }
+    }
+  ],
+  "humanReview": {
+    "labelsApproved": true,
+    "mappingsApproved": true,
+    "method": "AI拟稿，用户单人复核；非双人标注，非真实教师评价"
+  },
+  "weights": {
+    "title": 2.0,
+    "knowledgePoints": 2.5,
+    "difficulty": 2.0,
+    "goal": 1.6,
+    "studentBase": 1.4,
+    "introduction": 1.2,
+    "content": 1.0,
+    "steps": 0.9,
+    "questions": 0.9,
+    "responses": 0.9,
+    "adjustment": 0.8,
+    "boundary": 0.7,
+    "suggestions": 0.2,
+    "references": 0.4
+  },
+  "algorithmVersion": "teaching-context-v1",
+  "expected": {
+    "B0": {
+      "q01": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          3.133147
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          0.972772
+        ],
+        [
+          "case-balance",
+          0.616896
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.609308
+        ]
+      ],
+      "q02": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          9.236659
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          6.675216
+        ],
+        [
+          "case-balance",
+          0.945188
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.905578
+        ]
+      ],
+      "q03": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          4.620493
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          4.388762
+        ],
+        [
+          "case-balance",
+          0.374277
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.372584
+        ]
+      ],
+      "q04": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          8.674278
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          7.114381
+        ],
+        [
+          "case-draft-account-admin-demo",
+          1.756425
+        ],
+        [
+          "case-balance",
+          1.278129
+        ]
+      ],
+      "q05": [
+        [
+          "case-draft-account-admin-demo",
+          0.21514
+        ],
+        [
+          "case-balance",
+          0.205632
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          0.174748
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          0.151133
+        ]
+      ],
+      "q06": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          3.871689
+        ],
+        [
+          "case-balance",
+          3.3328
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          1.999272
+        ],
+        [
+          "case-draft-account-admin-demo",
+          1.063022
+        ]
+      ],
+      "q07": [
+        [
+          "case-draft-account-admin-demo",
+          9.606139
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          4.539793
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          4.150742
+        ],
+        [
+          "case-balance",
+          0.168645
+        ]
+      ],
+      "q08": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          3.842228
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          3.259797
+        ]
+      ],
+      "q09": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          1.86458
+        ]
+      ],
+      "q10": [],
+      "q11": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          5.734367
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          5.21106
+        ],
+        [
+          "case-balance",
+          0.168645
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.157444
+        ]
+      ],
+      "q12": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          0.206013
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          0.205486
+        ],
+        [
+          "case-balance",
+          0.168645
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.157444
+        ]
+      ],
+      "q13": [],
+      "q14": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          1.07347
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          0.979958
+        ]
+      ]
+    },
+    "B1": {
+      "q01": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          5.127017
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          4.383618
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.769519
+        ],
+        [
+          "case-balance",
+          0.559686
+        ]
+      ],
+      "q02": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          9.359895
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          7.341562
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.682101
+        ],
+        [
+          "case-balance",
+          0.614277
+        ]
+      ],
+      "q03": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          6.949001
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          6.208264
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.543095
+        ],
+        [
+          "case-balance",
+          0.354237
+        ]
+      ],
+      "q04": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          7.348116
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          6.615492
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.64595
+        ],
+        [
+          "case-balance",
+          0.519594
+        ]
+      ],
+      "q05": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          1.52738
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          1.093915
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.814254
+        ],
+        [
+          "case-balance",
+          0.609654
+        ]
+      ],
+      "q06": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          4.922467
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          4.150021
+        ],
+        [
+          "case-balance",
+          1.384551
+        ],
+        [
+          "case-draft-account-admin-demo",
+          1.222727
+        ]
+      ],
+      "q07": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          5.734115
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          5.626283
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.887623
+        ]
+      ],
+      "q08": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          3.536818
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          3.468008
+        ]
+      ],
+      "q09": [],
+      "q10": [],
+      "q11": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          7.314056
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          5.506712
+        ]
+      ],
+      "q12": [],
+      "q13": [],
+      "q14": []
+    },
+    "B2": {
+      "q01": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          5.763533
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          5.467549
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.769519
+        ],
+        [
+          "case-balance",
+          0.559686
+        ]
+      ],
+      "q02": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          9.35544
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          8.199373
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.682101
+        ],
+        [
+          "case-balance",
+          0.614277
+        ]
+      ],
+      "q03": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          7.033657
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          6.468134
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.543095
+        ],
+        [
+          "case-balance",
+          0.354237
+        ]
+      ],
+      "q04": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          7.378368
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          6.557439
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.64595
+        ],
+        [
+          "case-balance",
+          0.519594
+        ]
+      ],
+      "q05": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          1.52738
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          1.093915
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.814254
+        ],
+        [
+          "case-balance",
+          0.609654
+        ]
+      ],
+      "q06": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          4.922467
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          4.150021
+        ],
+        [
+          "case-balance",
+          1.384551
+        ],
+        [
+          "case-draft-account-admin-demo",
+          1.222727
+        ]
+      ],
+      "q07": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          6.562333
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          6.051857
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.887623
+        ]
+      ],
+      "q08": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          3.536818
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          3.468008
+        ]
+      ],
+      "q09": [],
+      "q10": [],
+      "q11": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          7.347439
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          5.506712
+        ]
+      ],
+      "q12": [],
+      "q13": [],
+      "q14": []
+    },
+    "B3": {
+      "q01": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          6.66578
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          6.296719
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.769519
+        ],
+        [
+          "case-balance",
+          0.559686
+        ]
+      ],
+      "q02": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          10.805857
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          9.515947
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.682101
+        ],
+        [
+          "case-balance",
+          0.614277
+        ]
+      ],
+      "q03": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          8.067801
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          7.516155
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.543095
+        ],
+        [
+          "case-balance",
+          0.354237
+        ]
+      ],
+      "q04": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          8.578623
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          7.754323
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.64595
+        ],
+        [
+          "case-balance",
+          0.519594
+        ]
+      ],
+      "q05": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          1.761466
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          1.335541
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.814254
+        ],
+        [
+          "case-balance",
+          0.609654
+        ]
+      ],
+      "q06": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          5.459696
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          4.687163
+        ],
+        [
+          "case-balance",
+          1.384551
+        ],
+        [
+          "case-draft-account-admin-demo",
+          1.222727
+        ]
+      ],
+      "q07": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          6.785069
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          6.272399
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.887623
+        ]
+      ],
+      "q08": [
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          4.079484
+        ],
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          4.073973
+        ]
+      ],
+      "q09": [],
+      "q10": [],
+      "q11": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          7.983805
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          6.142099
+        ]
+      ],
+      "q12": [],
+      "q13": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          1.43975
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          1.389806
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.115
+        ],
+        [
+          "case-balance",
+          0.065
+        ]
+      ],
+      "q14": [
+        [
+          "case-cb7a37515e09454d863ceb82f50b64a7",
+          2.222599
+        ],
+        [
+          "case-d4919db6ab774719a97c69ccbc1737a7",
+          1.932171
+        ],
+        [
+          "case-draft-account-admin-demo",
+          0.115
+        ],
+        [
+          "case-balance",
+          0.065
+        ]
+      ]
+    }
+  }
+}

@@ -297,7 +297,7 @@ class CaseVersion(Base):
     case_id: Mapped[str] = mapped_column(ForeignKey('teaching_cases.id'), index=True)
     number: Mapped[int] = mapped_column(Integer)
     data: Mapped[dict] = mapped_column(JSON)
-    published_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    published_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.utcnow().replace(microsecond=0))
 
 
 class CourseUnit(Base):

@@ -83,12 +83,13 @@ const active = computed(
       result: "home",
       repair: "wrong",
       "case-detail": "cases",
+      agent: "prepare",
       insights: "class",
     })[route.name] || route.name,
 );
 const pageLabel = computed(
   () =>
-    (route.name === "source" ? "原文阅读" : navigation[role.value].find((item) => item.route === active.value)?.label) ||
+    (route.name === "source" ? "原文阅读" : route.name === "agent" ? "任务备课" : navigation[role.value].find((item) => item.route === active.value)?.label) ||
     "学习工作区",
 );
 const pageKey = current => ['manage','content'].includes(current.name) ? current.path : current.fullPath;

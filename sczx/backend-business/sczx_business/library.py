@@ -25,7 +25,7 @@ def latest_version(db, case_id):
 
 
 def version_json(version):
-    return {**version.data, 'id': version.case_id, 'versionId': version.id, 'version': version.number, 'publishedAt': version.published_at.isoformat() + 'Z'}
+    return {**version.data, 'id': version.case_id, 'versionId': version.id, 'version': version.number, 'publishedAt': version.published_at.isoformat(timespec='seconds') + 'Z'}
 
 
 def current_case(db, case_id, version_id=None):

@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "misconceptionJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+  "savedLessonVersion": "lessonversion-619e68cc68234c4cbd37ded435",
+  "matchesGenerationContext": true,
+  "otherEditedContentPreserved": true,
+  "receipt": {
+    "accepted": {
+      "draftId": "draft-3d6bf0304928417989a19dd6e9488fdf",
+      "lessonId": "lesson-equation",
+      "confirmedAt": "2026-11-09T17:49:12.241552+00:00",
+      "jobId": "job-4f48a93629ab4f4da0f2c36db026d9b1"
+    },
+    "created": true
+  }
+}

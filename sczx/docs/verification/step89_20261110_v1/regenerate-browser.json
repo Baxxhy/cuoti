@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "jobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+  "parentJobId": "job-c23121730e1b46af886cac0d86333204",
+  "regeneratedBlock": "eq-balance",
+  "otherEditedBlockPreserved": true,
+  "realModel": true,
+  "modelCalls": 1,
+  "refreshed": true,
+  "consoleErrors": []
+}

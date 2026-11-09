@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "taskId": "task-ae72611bd45cb74263aafc90e210217b",
+  "recordId": "record-709b1898045740ccb98eee6fb1febab8",
+  "guideId": "job-4a61358067f2440cbb3bcf72bc35dada",
+  "realOCR": true,
+  "realGuidance": true,
+  "confirmedText": true,
+  "refresh": true,
+  "teacherSourceReview": true,
+  "consoleErrors": []
+}

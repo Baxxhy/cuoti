@@ -12,12 +12,14 @@ const store = useLearning();
 const recordId = computed(() => store.record?.id);
 const prompt = ref(""), file = ref(null), uploading = ref(false), uploadError = ref(""), recognized = ref("");
 const ocrId = ref(null), originalFileId = ref(null);
+let interaction = 0;
 const draftKey = computed(() => props.question === null ? 'assistant' : `assistantQuestion-${props.question}`);
 const { job, busy, error, create, open, retry } = useModelJob(async (value) => {
-  if (value.status === 'succeeded' && value.capability === 'ocr') { recognized.value = store.record?.drafts[`ocr-${value.id}`] || [value.result.text, value.result.equation && !value.result.text.includes(value.result.equation) ? value.result.equation : '', value.result.studentAnswer ? `原作答：${value.result.studentAnswer}` : ''].filter(Boolean).join('\n'); ocrId.value = value.id; originalFileId.value = value.fileId; }
+  if (value.recordId === recordId.value && (value.question ?? null) === props.question && value.status === 'succeeded' && value.capability === 'ocr') { recognized.value = store.record?.drafts[`ocr-${value.id}`] || [value.result.text, value.result.equation && !value.result.text.includes(value.result.equation) ? value.result.equation : '', value.result.studentAnswer ? `原作答：${value.result.studentAnswer}` : ''].filter(Boolean).join('\n'); ocrId.value = value.id; originalFileId.value = value.fileId; }
   if (value.status === 'succeeded' && value.capability === 'text' && recordId.value === value.recordId) await store.refreshRecord();
 });
-watch(recordId, async (id, _, onCleanup) => {
+watch([recordId, () => props.question], async ([id], _, onCleanup) => {
+  const version = ++interaction;
   let live = true;
   onCleanup(() => { live = false; });
   await open(null); ocrId.value = null; originalFileId.value = null; recognized.value = ""; file.value = null;
@@ -26,13 +28,14 @@ watch(recordId, async (id, _, onCleanup) => {
   try {
     const jobs = await modelApi.list(id);
     const latest = jobs.find((item) => ['text','ocr'].includes(item.capability) && (item.question ?? null) === props.question);
-    if (live && latest) { await open(latest); if (!prompt.value) prompt.value = job.value?.input?.prompt || ''; }
+    if (live && version === interaction && latest) { await open(latest); if (!prompt.value) prompt.value = job.value?.input?.prompt || ''; }
   } catch (problem) { if (live) uploadError.value = problem.message; }
 }, { immediate: true });
 watch(prompt, (value) => { if (store.record) { store.record.drafts[draftKey.value] = value; store.touch(); } });
 watch(recognized, (value) => { if (store.record && ocrId.value) { store.record.drafts[`ocr-${ocrId.value}`] = value; store.touch(); } });
 async function send() {
   if (busy.value || uploading.value) return;
+  interaction++;
   uploadError.value = "";
   const targetRecord = recordId.value, targetQuestion = props.question, originalPrompt = prompt.value;
   if (file.value) {
@@ -53,6 +56,8 @@ async function send() {
   await create({ capability: 'text', recordId: targetRecord, data: { prompt: originalPrompt, question: targetQuestion } });
 }
 async function confirmOCR() {
+  if (busy.value || uploading.value || ocrId.value !== job.value?.id) return;
+  interaction++;
   if (!recognized.value.trim()) { uploadError.value = "请核对识别的题目。"; return; }
   const targetRecord = recordId.value, targetQuestion = props.question;
   const data = { prompt: prompt.value.trim() || '请引导我理解这道题，先给提示。', question: targetQuestion, ocrJobId: ocrId.value, confirmed: true, recognizedText: recognized.value };

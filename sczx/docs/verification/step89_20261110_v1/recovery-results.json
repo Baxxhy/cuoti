@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "jobId": "job-ea8c08e23ff14cb793d8a2f794e75dd3",
+  "actualServiceRestart": true,
+  "interruptedStatus": "failed",
+  "manualRetry": true,
+  "priorThreeNodeTimestampsPreserved": true,
+  "runStatuses": [
+    "failed",
+    "succeeded"
+  ],
+  "modelAttempts": 2,
+  "finishedAt": "2026-11-10T01:49:11.542105+08:00"
+}

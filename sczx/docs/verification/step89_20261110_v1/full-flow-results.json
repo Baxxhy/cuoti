@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+  "taskId": "task-64fd206aa104f72946b29c2a2135a9e6",
+  "preview": true,
+  "explicitTeacherPublish": true,
+  "generatedBlocksAndVersionDelivered": true,
+  "practice": true,
+  "blockProgressAndRefresh": true,
+  "helpedAttempt": true,
+  "newIndependentAttempt": true,
+  "submitted": true,
+  "teacherFeedbackRoundTrip": true,
+  "consoleErrors": []
+}

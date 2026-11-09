@@ -17,6 +17,7 @@ import Repair from "./pages/Repair.vue";
 import Cases from "./pages/Cases.vue";
 import CaseDetail from "./pages/CaseDetail.vue";
 import Prepare from "./pages/Prepare.vue";
+import PlanningAgent from "./pages/PlanningAgent.vue";
 import Classroom from "./pages/Classroom.vue";
 import Insights from "./pages/Insights.vue";
 import ManageContent from "./pages/ManageContent.vue";
@@ -60,6 +61,7 @@ const router = createRouter({
     { path: "/source", name: "source", component: SourcePage },
     { path: "/case-detail", name: "case-detail", component: CaseDetail },
     { path: "/prepare", name: "prepare", component: Prepare },
+    { path: "/agent", name: "agent", component: PlanningAgent },
     { path: "/class", name: "class", component: Classroom },
     { path: "/insights", name: "insights", component: Insights },
     { path: "/manage", name: "manage", component: ManageContent },
@@ -92,7 +94,7 @@ const store = useLearning();
 let sessionReady;
 const roleRoutes = {
   student: new Set(["source", "home", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
-  teacher: new Set(["source", "teacher", "courses", "cases", "case-detail", "prepare", "class", "insights", "issues"]),
+  teacher: new Set(["source", "teacher", "courses", "cases", "case-detail", "prepare", "agent", "class", "insights", "issues"]),
   admin: new Set(["source", "manage", "content", "issues", "cases", "case-detail", "courses"]),
 };
 router.beforeEach(async (to) => {
@@ -116,10 +118,10 @@ let saveTimer;
 watch(
   () => store.data,
   () => {
-    if (store.status !== "ready" || !store.user) return;
+    if (store.status !== "ready" || !store.user || store.externalUpdating) return;
     store.revision++;
     clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => store.save(), 300);
+    saveTimer = setTimeout(() => { if (!store.externalUpdating) store.save(); }, 300);
   },
   { deep: true },
 );

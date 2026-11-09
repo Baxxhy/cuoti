@@ -5,6 +5,7 @@ from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy import select
 from .database import get_db
+from .knowledge_validation import KnowledgeCatalogInput, validate_catalog
 from .models import Course, CourseUnit, Lesson, LessonContent, LessonVersion, KnowledgePoint
 from .library import uid, current_case
 from .library_routes import account
@@ -186,39 +187,12 @@ def knowledge(request:Request,db=Depends(get_db)):
 
 
 @router.put('/knowledge')
-def save_knowledge(body:dict,request:Request,db=Depends(get_db)):
-    account(request,db,True);points=body.get('points',[])
-    if not isinstance(points,list) or not points:raise HTTPException(422,'至少保留一个知识点。')
-    from .retrieval import normalize
-    names={};owners={}
-    for p in points:
-        if not isinstance(p,dict):raise HTTPException(422,'知识点格式无效。')
-        formal=normalize(p.get('name',''))
-        if formal in names and names[formal]!=p.get('id'):raise HTTPException(422,'知识点正式名称重复。')
-        names[formal]=p.get('id')
-    for p in points:
-        aliases=p.get('aliases',[])
-        if not isinstance(aliases,list) or len(aliases)>20 or any(not isinstance(a,str) or not a.strip() or len(a)>100 for a in aliases):raise HTTPException(422,'别名需为不超过20个非空短语。')
-        normalized=[normalize(a) for a in aliases]
-        if len(set(normalized))!=len(normalized):raise HTTPException(422,'知识点别名重复。')
-        for value in normalized:
-            if value in names or value in owners and owners[value]!=p.get('id'):raise HTTPException(422,'别名与正式名称或其他知识点别名重复，请消除歧义。')
-            owners[value]=p.get('id')
-    graph={}
-    for p in points:
-        if not isinstance(p,dict) or not p.get('id') or p['id'] in graph or not str(p.get('name','')).strip():raise HTTPException(422,'知识点名称或ID缺失、重复。')
-        dependencies=p.get('prerequisites',[])
-        if not isinstance(dependencies,list) or len(set(dependencies))!=len(dependencies):raise HTTPException(422,'前置关系重复或格式无效。')
-        graph[p['id']]=dependencies
-    active=set();done=set()
-    def visit(node):
-        if node in active:raise HTTPException(422,'知识前置关系存在循环。')
-        if node in done:return
-        if node not in graph:raise HTTPException(422,'前置知识点不存在。')
-        active.add(node)
-        for previous in graph[node]:visit(previous)
-        active.remove(node);done.add(node)
-    for node in graph:visit(node)
+def save_knowledge(body:KnowledgeCatalogInput,request:Request,db=Depends(get_db)):
+    account(request,db,True)
+    points=[p.model_dump() for p in body.points]
+    try:validate_catalog(points)
+    except ValueError as error:raise HTTPException(422,str(error)) from None
+    graph={p['id']:p['prerequisites'] for p in points}
     if any(p.id not in graph for p in db.scalars(select(KnowledgePoint)).all()):raise HTTPException(422,'已存在知识点需保留，避免历史引用丢失。')
     for p in points:
         row=db.get(KnowledgePoint,p['id'])

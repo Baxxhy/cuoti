@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "jobId": "job-04fd77566dc94f7a8292b33a1ed9e44d",
+  "desktopWidths": [
+    1440,
+    1920,
+    2560
+  ],
+  "editedSuggestion": true,
+  "saveWithoutApplying": true,
+  "refreshRestoresSuggestion": true,
+  "explicitConfirmation": true,
+  "savedToExistingDraft": true,
+  "noAutoPublish": true,
+  "returnToPrepare": true,
+  "consoleErrors": []
+}
