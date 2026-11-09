@@ -1,4 +1,5 @@
 <script setup>
+import MatchEvidence from './MatchEvidence.vue';
 import { computed, ref, watch } from "vue";
 import { LoaderCircle, RotateCcw, Check, CircleAlert } from "lucide-vue-next";
 import SpeechReader from "./SpeechReader.vue";
@@ -41,10 +42,10 @@ const verification = computed(() => ({ verified: "列出的等式已核对", inc
       <div v-if="job.capability === 'retrieval'" class="retrieval-results">
         <p v-if="!result.items?.length" class="ai-empty">没有匹配的案例，换个知识点或学生困难试试。</p>
         <p v-if="result.warning" role="status" class="model-model-name">{{ result.warning }}</p>
-        <details v-for="item in result.items" :key="item.id" class="retrieval-item"><summary>{{ item.title }}</summary><p class="model-prose">{{ item.content }}</p><span class="model-model-name">{{ item.source || '团队编写案例示例' }}</span></details>
+        <details v-for="item in result.items" :key="item.id" class="retrieval-item"><summary>{{ item.title }}</summary><p class="model-prose">{{ item.content }}</p><MatchEvidence :item="item"/><span class="model-model-name">{{ item.source || '团队编写案例示例' }}</span></details>
         <InfoTip v-if="result.items?.length" label="检索方式">BM25 中文检索{{ result.rerankApplied ? '，已完成 Codex 语义重排' : '' }}；相关分值不代表内容正确性。</InfoTip>
       </div>
-      <details v-if="result.sources?.length" class="model-run-history"><summary>参考教学案例 · {{ result.sources.length }}</summary><section v-for="source in result.sources" :key="`${source.id}:${source.versionId||''}`"><p>{{ source.role === 'lesson' ? '课时关联 · ' : '' }}{{ source.title }}{{ source.version ? ' · v'+source.version : '' }}</p><a v-for="(ref,index) in uniqueReferences(source.references)" :key="index" :href="`/#/source?unit=${ref.unitId}`" target="_blank" rel="noopener">{{ ref.materialTitle }} · {{ ref.label }}</a></section></details>
+      <details v-if="result.sources?.length" class="model-run-history"><summary>参考教学案例 · {{ result.sources.length }}</summary><section v-for="source in result.sources" :key="`${source.id}:${source.versionId||''}`"><p>{{ source.role === 'lesson' ? (source.roles?.includes('retrieval')?'课时关联 / 情境检索 · ':'课时关联 · ') : '情境检索 · ' }}{{ source.title }}{{ source.version ? ' · v'+source.version : '' }}</p><MatchEvidence :item="source"/><a v-for="(ref,index) in uniqueReferences(source.references)" :key="index" :href="`/#/source?unit=${ref.unitId}`" target="_blank" rel="noopener">{{ ref.materialTitle }} · {{ ref.label }}</a></section></details>
       <ol v-if="result.ranking" class="model-ranking"><li v-for="item in result.ranking" :key="item.id"><strong>{{ item.id }}</strong><span>{{ item.score }}</span></li></ol>
       <InfoTip v-if="result.scoreMeaning" label="重排方法与分值">{{ result.method === 'llm' ? 'LLM 语义重排。' : '' }}{{ result.scoreMeaning }}</InfoTip>
       <audio v-if="result.url" class="model-audio" controls :src="result.url" aria-label="生成的讲解音频" preload="metadata" />

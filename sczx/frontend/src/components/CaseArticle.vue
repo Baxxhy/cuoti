@@ -9,7 +9,7 @@ const labels={knowledgePoints:'知识点',goal:'教学目标',studentBase:'学�
 <template>
   <article v-if="value" class="case-reading-article">
     <div class="case-meta"><BookOpen :size="16" /><span>{{ value.source || '来源待补充' }}</span><span v-if="value.grade">{{ value.grade }}</span><span v-if="value.subject">{{ value.subject }}</span><span v-if="value.author">{{ value.author }}</span><span v-if="value.version">v{{ value.version }}</span></div>
-    <SpeechReader :text="value.title+'。'+value.content" />
+    <div v-if="value.knowledgeLinks?.length" class="case-knowledge-links"><Status v-for="p in value.knowledgeLinks" :key="p.id">{{ p.name }}</Status></div><SpeechReader :text="value.title+'。'+value.content" />
     <p class="model-prose">{{ value.content }}</p>
     <section v-for="(label,key) in labels" v-show="value.experience?.[key]?.length" :key="key"><h3>{{ label }}</h3><ul v-if="Array.isArray(value.experience?.[key])"><li v-for="(text,index) in value.experience[key]" :key="index">{{ text }}</li></ul><p v-else>{{ value.experience?.[key] }}</p></section>
     <details v-if="value.references?.length" class="case-source-list" open><summary>原文依据</summary><section v-for="(item,index) in value.references" :key="index"><a :href="`/#/source?unit=${encodeURIComponent(item.unitId)}`" target="_blank" rel="noopener">{{ item.materialTitle }} · {{ item.label }}<ExternalLink :size="14" /></a><span class="reference-field">{{ fieldLabel(item.field) }}</span><blockquote>{{ item.quote }}</blockquote></section></details>

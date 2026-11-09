@@ -202,6 +202,14 @@ export const useLearning = defineStore("platform", {
       if (this.record?.id !== recordId) return;
       const record = fresh.studentRecords?.[this.task.id]?.find(item => item.id === recordId);
       if (record) {
+        // A submitted answer may finish while another block is being edited.
+        // Refresh server-owned attempts without replacing the live editor drafts.
+        const local = this.record;
+        const drafts = JSON.parse(JSON.stringify(local.drafts || {}));
+        if (record.drafts?.check?.helped && drafts.check?.question === record.drafts.check.question)
+          drafts.check.helped = true;
+        record.drafts = { ...record.drafts, ...drafts };
+        record.observation = local.observation;
         this.data.studentRecords[this.task.id] = fresh.studentRecords[this.task.id];
         this.data.records[this.task.id] = record;
       }

@@ -2,6 +2,8 @@ import { api } from "./api.js";
 
 export const modelApi = {
   search: (query = "") => api.request(`/ai/search?q=${encodeURIComponent(query)}`),
+  contextualSearch: (body) => api.request('/ai/search',{method:'POST',body:JSON.stringify(body)}),
+  searchOptions: () => api.request('/ai/search-options'),
   caseDetail: (id, versionId) => api.request(`/ai/cases/${encodeURIComponent(id)}${versionId ? `?versionId=${encodeURIComponent(versionId)}` : ""}`),
   capabilities: () => api.request("/ai/capabilities"),
   list: (recordId) => api.request(`/ai/jobs${recordId ? `?recordId=${encodeURIComponent(recordId)}` : ""}`),

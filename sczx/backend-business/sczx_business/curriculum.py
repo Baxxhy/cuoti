@@ -182,13 +182,28 @@ def lesson_action(ident:str,action:str,request:Request,db=Depends(get_db)):
 
 @router.get('/knowledge')
 def knowledge(request:Request,db=Depends(get_db)):
-    account(request,db);return [{'id':p.id,'name':p.name,'prerequisites':p.prerequisites} for p in db.scalars(select(KnowledgePoint)).all()]
+    account(request,db);return [{'id':p.id,'name':p.name,'aliases':p.aliases or [],'prerequisites':p.prerequisites} for p in db.scalars(select(KnowledgePoint)).all()]
 
 
 @router.put('/knowledge')
 def save_knowledge(body:dict,request:Request,db=Depends(get_db)):
     account(request,db,True);points=body.get('points',[])
     if not isinstance(points,list) or not points:raise HTTPException(422,'至少保留一个知识点。')
+    from .retrieval import normalize
+    names={};owners={}
+    for p in points:
+        if not isinstance(p,dict):raise HTTPException(422,'知识点格式无效。')
+        formal=normalize(p.get('name',''))
+        if formal in names and names[formal]!=p.get('id'):raise HTTPException(422,'知识点正式名称重复。')
+        names[formal]=p.get('id')
+    for p in points:
+        aliases=p.get('aliases',[])
+        if not isinstance(aliases,list) or len(aliases)>20 or any(not isinstance(a,str) or not a.strip() or len(a)>100 for a in aliases):raise HTTPException(422,'别名需为不超过20个非空短语。')
+        normalized=[normalize(a) for a in aliases]
+        if len(set(normalized))!=len(normalized):raise HTTPException(422,'知识点别名重复。')
+        for value in normalized:
+            if value in names or value in owners and owners[value]!=p.get('id'):raise HTTPException(422,'别名与正式名称或其他知识点别名重复，请消除歧义。')
+            owners[value]=p.get('id')
     graph={}
     for p in points:
         if not isinstance(p,dict) or not p.get('id') or p['id'] in graph or not str(p.get('name','')).strip():raise HTTPException(422,'知识点名称或ID缺失、重复。')
@@ -208,7 +223,7 @@ def save_knowledge(body:dict,request:Request,db=Depends(get_db)):
     for p in points:
         row=db.get(KnowledgePoint,p['id'])
         if not row:row=KnowledgePoint(id=p['id']);db.add(row)
-        row.name=p['name'][:160];row.prerequisites=p.get('prerequisites',[])
+        row.name=p['name'][:160];row.prerequisites=p.get('prerequisites',[]);row.aliases=[a.strip() for a in p.get('aliases',[])]
     db.commit();return knowledge(request,db)
 
 

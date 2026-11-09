@@ -548,7 +548,8 @@ def publish(payload: PublishInput, request: Request, db: DB) -> dict:
     if supplied_lesson.get('versionId') and not version:raise HTTPException(422,'课时版本不存在。')
     if version:
         if not published_lesson(db,lesson_id):raise HTTPException(422,'课时已停用，不能发布新任务。')
-        errors=content_errors(db,{**version,**payload.lessonDraft,'title':version['title']})
+        errors=content_errors(db,{**version,**payload.lessonDraft,'title':version['title'],
+                                 'caseVersionId':(snapshot.get('caseSnapshot') or {}).get('versionId')})
         if errors:raise HTTPException(422,'；'.join(errors))
         snapshot['lessonSnapshot']=version
     task = LearningTask(id=task_id, classroom_id=classroom.id, teacher_id=user.id, lesson_id=lesson.id, title=version["title"] if version else lesson.title, snapshot=snapshot, questions=payload.lessonDraft.get("questions", []), due_date=snapshot["dueDate"])

@@ -148,6 +148,9 @@ def save_draft(case_id: str, body: dict, request: Request, db=Depends(get_db)):
     if not draft:raise HTTPException(409,'请先创建修订草稿。')
     data=body.get('data',{})
     if not isinstance(data,dict) or not isinstance(data.get('title'),str) or len(data.get('title',''))>240 or not isinstance(data.get('content'),str):raise HTTPException(422,'案例内容格式无效。')
+    from .library import validate_knowledge
+    try:validate_knowledge(db,data)
+    except ValueError as e:raise HTTPException(422,str(e)) from None
     # 状态与审核由服务端控制；编辑任何正文/来源字段都会撤销原审核。
     changed=data!=draft.data
     data=copy.deepcopy(data)
@@ -186,11 +189,16 @@ def publish_case(case_id: str, request: Request, db=Depends(get_db)):
     if case and not draft and case.status=='published':
         db.commit();return draft_json(db,case)
     if not case or not draft:raise HTTPException(404,'请先创建案例草稿。')
-    data=draft.data
+    data=copy.deepcopy(draft.data)
+    from .library import validate_knowledge
+    try:validate_knowledge(db,data)
+    except ValueError as e:raise HTTPException(422,str(e)) from None
     if not draft.reviewed or not str(data.get('title','')).strip() or not str(data.get('content','')).strip():raise HTTPException(422,'请填写标题、正文，并保存后完成原文核对。')
     if not data.get('references') and not data.get('legacy'):raise HTTPException(422,'请关联至少一处原文。')
     try:validate_references(db,data.get('references',[]))
     except ValueError as error:raise HTTPException(422,str(error)) from None
+    from .models import KnowledgePoint
+    data['knowledgeLinks']=[{'id':ident,'name':db.get(KnowledgePoint,ident).name} for ident in data.get('knowledgeIds',[])]
     last=db.scalar(select(CaseVersion).where(CaseVersion.case_id==case_id).order_by(CaseVersion.number.desc()).with_for_update().limit(1))
     version=CaseVersion(id=uid('version'),case_id=case_id,number=last.number+1 if last else 1,data=copy.deepcopy(data))
     db.add(version);case.title=data['title'];case.content=data['content'];case.source=data.get('source','');case.status='published';db.delete(draft)
@@ -202,3 +210,14 @@ def withdraw(case_id: str, request: Request, db=Depends(get_db)):
     account(request,db,True);case=db.get(TeachingCase,case_id)
     if not case:raise HTTPException(404,'案例不存在。')
     case.status='withdrawn';db.commit();return draft_json(db,case)
+
+
+@router.get('/cases/{case_id}/knowledge-suggestions')
+def knowledge_suggestions(case_id:str,request:Request,db=Depends(get_db)):
+    account(request,db,True);case=db.get(TeachingCase,case_id)
+    if not case:raise HTTPException(404,'案例不存在。')
+    from .retrieval import identify_knowledge,knowledge_documents
+    draft=db.get(CaseDraftContent,case_id);data=draft.data if draft else current_case(db,case_id) or {}
+    experience=data.get('experience') or {}
+    text=' '.join([data.get('title',''),experience.get('goal',''),experience.get('difficulty',''),*experience.get('knowledgePoints',[])])
+    return {'suggestions':identify_knowledge(text,knowledge_documents(db)),'confirmedIds':data.get('knowledgeIds',[])}

@@ -81,19 +81,31 @@ class ModelProvider:
         if capability == "document_parse":
             from .document_parser import parse_material
             return await asyncio.to_thread(parse_material, data["materialId"], request_id)
-        if capability == "retrieval":
-            from .retrieval import search
-            documents = data.get("documents", [])
-            items = search(data["query"], documents)
-            result = {"query": data["query"], "method": "bm25", "items": items, "totalDocuments": len(documents), "rerankApplied": False}
-            if data.get("rerank") and items:
+        if capability == 'retrieval':
+            from .retrieval import retrieve
+            spec={k:data[k] for k in ('query','filters','context','includePrerequisites','limit') if k in data}
+            result=retrieve(spec,data.get('documents',[]),data.get('knowledge',[]))
+            candidates=result.pop('candidateItems',[])
+            result['rerankAttempted']=bool(data.get('rerank') and candidates)
+            if data.get('rerank') and candidates:
+                started=time.monotonic()
                 try:
-                    ranking, model, source = await self.call("rerank", {"query": data["query"], "candidates": [{"id": x["id"], "text": x["title"] + "\n" + x["content"][:8000]} for x in items]}, request_id=request_id)
-                    by_id = {x["id"]: x for x in items}
-                    result["items"] = [{**by_id[x["id"]], "relevanceScore": x["score"]} for x in ranking["ranking"]]
-                    result.update(rerankApplied=True, rerankModel=model, method="bm25+llm")
-                except ModelError:
-                    result["warning"] = "语义重排暂未完成，已保留 BM25 检索结果。"
+                    compact=[]
+                    for item in candidates:
+                        fields={k:item.get(k) for k in ('title','grade','subject','knowledgeIds','experience')}
+                        fields['content']=item.get('content','')[:5000]
+                        compact.append({'id':item['id'],'text':json.dumps(fields,ensure_ascii=False)[:10000]})
+                    ranking,model,source=await self.call('rerank',{'query':data['query'],'context':spec.get('context',{}),'filters':spec.get('filters',{}),'candidates':compact},request_id=request_id)
+                    ranking=RankingResult.model_validate({'ranking':ranking['ranking']}).model_dump()['ranking']
+                    expected={item['id'] for item in candidates};ids=[item['id'] for item in ranking];scores=[item['score'] for item in ranking]
+                    if len(ids)!=len(expected) or set(ids)!=expected or len(set(ids))!=len(ids) or scores!=sorted(scores,reverse=True):raise ValueError('invalid candidate permutation')
+                    by_id={item['id']:item for item in candidates}
+                    result['items']=[{**by_id[item['id']],'relevanceScore':item['score']} for item in ranking][:spec.get('limit',8)]
+                    result.update(rerankApplied=True,rerankModel=model,method='field-bm25+knowledge+context+codex')
+                except (ModelError,ValidationError,ValueError,KeyError,TypeError) as error:
+                    result['warning']='语义重排未完成，已完整保留本次BM25结果。'
+                    result['rerankFailure']=type(error).__name__
+                result['rerankElapsedMs']=round((time.monotonic()-started)*1000,3)
             return result
         if entry.get("transport") == "codex_cli":
             from .codex_provider import call

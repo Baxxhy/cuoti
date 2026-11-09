@@ -14,7 +14,7 @@ from .ai_schemas import JobInput, CAPABILITIES
 from .database import get_db, SessionLocal
 from .models import Attempt, FileAsset, LearningTask, ModelJob, ModelRun, ModelEvent, StudentRecord
 from .model_jobs import event, provider, help_record_id
-from .retrieval import search, published_documents
+from .retrieval import search, published_documents, retrieve, knowledge_documents, validate_request, student_request
 
 router = APIRouter(prefix="/api/ai")
 
@@ -63,13 +63,39 @@ def capabilities(request: Request, db=Depends(get_db)):
     return results
 
 
-@router.get("/search")
-def search_cases(request: Request, q: str = "", db=Depends(get_db)):
-    user_for(request, db)
-    if len(q) > 2000: raise HTTPException(422, "检索内容过长，请缩短问题。")
-    documents = published_documents(db)
-    items = search(q, documents) if q.strip() else documents
-    return {"query": q, "method": "bm25", "items": items, "totalDocuments": len(documents)}
+def search_spec(body,db):
+    from pydantic import ValidationError
+    try:return validate_request(body,knowledge_documents(db))
+    except (ValueError,ValidationError) as error:
+        raise HTTPException(422,'检索参数无效：'+str(error).split('\n')[0]) from None
+
+
+@router.get('/search-options')
+def search_options(request:Request,db=Depends(get_db)):
+    user_for(request,db)
+    from .retrieval import SCENARIOS,normalize_grade
+    docs=published_documents(db)
+    return {'knowledge':knowledge_documents(db),'grades':sorted({normalize_grade(d.get('grade')) for d in docs if normalize_grade(d.get('grade'))},key=int),'subjects':sorted({d['subject'] for d in docs if d.get('subject')}),'scenarios':[{'value':k,'label':v} for k,v in SCENARIOS.items()]}
+
+
+@router.get('/search')
+def search_cases(request:Request,q:str='',db=Depends(get_db)):
+    user_for(request,db)
+    spec=search_spec({'query':q},db)
+    result=retrieve(spec,published_documents(db),knowledge_documents(db))
+    if result['mode']=='browse':result['items']=result['candidateItems']
+    result.pop('candidateItems',None)
+    return result
+
+
+@router.post('/search')
+def structured_search(body:dict,request:Request,db=Depends(get_db)):
+    user=user_for(request,db)
+    if user.role not in ('admin','teacher'):raise HTTPException(403,'请通过自己的学习任务获取指导。')
+    spec=search_spec(body,db)
+    if spec['rerank']:raise HTTPException(422,'语义重排请通过后台检索任务发起。')
+    result=retrieve(spec,published_documents(db),knowledge_documents(db));result.pop('candidateItems',None)
+    return result
 
 
 @router.get("/cases/{case_id}")
@@ -120,9 +146,9 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
         if payload.capability=="ocr" and not asset.content_type.startswith("image/"): raise HTTPException(422,"请选择题图。")
         if payload.capability=="asr" and not asset.content_type.startswith("audio/"): raise HTTPException(422,"请选择音频文件。")
     if payload.capability == "retrieval":
-        query = data.get("query")
-        if not isinstance(query, str) or not 0 < len(query.strip()) <= 2000: raise HTTPException(422, "请输入1至2000字的教学问题。")
-        data = {"query": query.strip(), "rerank": data.get("rerank") is True, "documents": published_documents(db)}
+        spec=search_spec(data,db)
+        if not spec['query'] and not spec['filters']['knowledgeIds']:raise HTTPException(422,'请填写教学问题或选择知识点。')
+        data={**spec,'documents':published_documents(db),'knowledge':knowledge_documents(db)}
     if payload.capability=="text":
         prompt=data.get("prompt","")
         prompt=prompt.strip() if isinstance(prompt,str) else ""
@@ -135,8 +161,13 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
                 raise HTTPException(422,"当前题目不存在。")
             data["context"]={"lesson":task.snapshot,"question":task.questions[question] if question is not None else None,"observation":record.observation}
             recognized = data.get("recognizedText", "")
-            teaching_query = (recognized if isinstance(recognized, str) else "") + " " + prompt
-            data["context"]["teachingCases"] = search(teaching_query, published_documents(db), 3)
+            specification=student_request(task.snapshot,task.questions[question] if question is not None else None,record.observation,prompt,recognized if isinstance(recognized,str) else '')
+            points=knowledge_documents(db);known={p['id'] for p in points}
+            for key in ('knowledgeIds','prerequisiteIds'):specification['context'][key]=[i for i in specification['context'][key] if i in known]
+            retrieval=retrieve(specification,published_documents(db),points)
+            data['context']['teachingCases']=retrieval['items']
+            data['context']['retrieval']={k:v for k,v in retrieval.items() if k not in ('items','candidateItems')}
+            data['retrievalContext']=specification
             data["attemptNumber"]=len(db.scalars(select(Attempt.id).where(Attempt.record_id==record.id)).all())+1
             # Requesting help immediately marks the current pending attempt as helped.
             if question is not None:
@@ -178,6 +209,10 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
 def detail(job_id: str, request: Request, db=Depends(get_db)):
     job=job_for(db,user_for(request,db),job_id)
     result=serialize(job)
+    if job.capability=='retrieval' and job.status=='succeeded' and job.result:
+        current={(d['id'],d.get('versionId')) for d in published_documents(db)}
+        result['liveItems']=[item for item in job.result.get('items',[]) if (item['id'],item.get('versionId')) in current]
+        result['hasStaleItems']=len(result['liveItems'])!=len(job.result.get('items',[]))
     result["runs"]=[{"id":run.id,"number":run.number,"status":run.status,"model":run.model,"provider":run.provider,"error":run.error,"result":run.result,"startedAt":run.started_at.isoformat()+"Z","endedAt":run.ended_at.isoformat()+"Z" if run.ended_at else None} for run in db.scalars(select(ModelRun).where(ModelRun.job_id==job.id).order_by(ModelRun.number)).all()]
     return result
 

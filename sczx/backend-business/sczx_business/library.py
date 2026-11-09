@@ -69,3 +69,10 @@ def draft_json(db, case):
     draft = db.get(CaseDraftContent, case.id)
     versions = db.scalars(select(CaseVersion).where(CaseVersion.case_id == case.id).order_by(CaseVersion.number.desc())).all()
     return {'id': case.id, 'status': case.status, 'draft': {**draft.data, 'reviewed': draft.reviewed, 'updatedAt': draft.updated_at.isoformat()+'Z'} if draft else None, 'versions': [{'id': v.id, 'number': v.number, 'publishedAt': v.published_at.isoformat()+'Z'} for v in versions], 'published': version_json(versions[0]) if versions else None}
+
+
+def validate_knowledge(db, data):
+    from .models import KnowledgePoint
+    ids=data.get('knowledgeIds',[])
+    if not isinstance(ids,list) or len(ids)>16 or any(not isinstance(i,str) for i in ids) or len(set(ids))!=len(ids):raise ValueError('请选择不重复的有效知识点。')
+    if any(not db.get(KnowledgePoint,ident) for ident in ids):raise ValueError('所选知识点不存在。')

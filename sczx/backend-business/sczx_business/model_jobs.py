@@ -68,8 +68,12 @@ async def execute(job_id, run_id):
         lesson = context.get('lesson') if isinstance(context.get('lesson'),dict) else {}
         primary = lesson.get('caseSnapshot')
         if isinstance(primary,dict) and primary.get('versionId'):
-            provided = [{**primary,'role':'lesson'}, *[x for x in provided if x.get('versionId') != primary['versionId']]]
-        result['sources'] = [{k:x.get(k) for k in ('id','title','source','versionId','version','references','role')} for x in provided]
+            matched = next((x for x in provided if x.get('versionId') == primary['versionId']), {})
+            provided = [{**matched,**primary,'role':'lesson','roles':['lesson','retrieval'] if matched else ['lesson']},
+                        *[x for x in provided if x.get('versionId') != primary['versionId']]]
+        result['sources'] = [{k:x.get(k) for k in ('id','title','source','versionId','version','references','role','roles','knowledgeIds','knowledgeMatches','matchReasons','matchedFields')} for x in provided]
+    if capability=='text' and context.get('retrieval'):
+        result['retrieval']=context['retrieval']
     if capability == "case_extract":
         original = {x['id']: x['text'] for x in data['units']}
         required = {'content'} | {key for key in ('goal','studentBase','difficulty','introduction','adjustment','boundary') if result.get(key)}

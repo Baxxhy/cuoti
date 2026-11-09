@@ -1,42 +1,38 @@
 <script setup>
-import { onBeforeUnmount, ref, watch } from 'vue';
-import { useLearning } from '@/store.js';
-import { useModelJob } from '@/lib/useModelJob.js';
-import { modelApi } from '@/services/models.js';
-import { navigate } from '@/lib/navigation.js';
-import { ArrowUpRight, BookOpen, Search, RefreshCw } from 'lucide-vue-next';
-const store = useLearning();
-const query = ref(''), tab = ref('all'), items = ref([]), loading = ref(false), error = ref('');
-let generation = 0, timer;
-const sortWarning = ref('');
-const { busy: sorting, error: sortError, create: sortCases, open } = useModelJob(value => {
-  if (value.status === 'succeeded' && value.input?.query === query.value.trim()) { items.value = value.result.items; sortWarning.value = value.result.warning || ''; }
-});
-function semanticSort() { sortWarning.value = ''; return sortCases({ capability: 'retrieval', data: { query: query.value, rerank: true } }); }
-async function load() {
-  const version = ++generation; loading.value = true; error.value = '';
-  try { const result = await modelApi.search(query.value); if (version === generation) items.value = result.items; }
-  catch (problem) { if (version === generation) { error.value = problem.message; items.value = []; } }
-  finally { if (version === generation) loading.value = false; }
-}
-watch(query, () => { open(null); sortWarning.value = ''; clearTimeout(timer); generation++; loading.value = true; timer = setTimeout(load, 250); }, { immediate: true });
-onBeforeUnmount(() => { clearTimeout(timer); generation++; });
-function read(item) { navigate('case-detail?caseId=' + encodeURIComponent(item.id)); }
+import {ref,computed,onMounted,onBeforeUnmount,watch} from 'vue';
+import {useRoute,useRouter} from 'vue-router';
+import {useLearning} from '@/store.js';
+import {useModelJob} from '@/lib/useModelJob.js';
+import {modelApi} from '@/services/models.js';
+import {curriculumApi} from '@/services/curriculum.js';
+import {navigate} from '@/lib/navigation.js';
+import MatchEvidence from '@/components/MatchEvidence.vue';
+import {Search,ArrowUpRight,BookOpen,RefreshCw,SlidersHorizontal} from 'lucide-vue-next';
+const store=useLearning(),route=useRoute(),router=useRouter();
+const query=ref(String(route.query.q||'')),filters=ref({grade:String(route.query.grade||''),subject:String(route.query.subject||''),knowledgeIds:String(route.query.knowledge||'').split(',').filter(Boolean),scenario:String(route.query.scenario||'other')}),includePrerequisites=ref(route.query.prerequisites!=='false');
+const options=ref({grades:[],subjects:[],knowledge:[],scenarios:[]}),context=ref({}),items=ref([]),loading=ref(true),error=ref(''),warning=ref(''),tab=ref('all'),understanding=ref(null),mode=ref('browse');let timer,generation=0,disposed=false,ready=false;
+const visibleItems=computed(()=>items.value.filter(x=>tab.value!=='favorite'||store.data.favorite&&x.id===store.data.publishedCase?.id));
+const request=()=>({query:query.value.trim(),filters:{...filters.value,knowledgeIds:[...filters.value.knowledgeIds].sort()},includePrerequisites:includePrerequisites.value,context:context.value,limit:8});
+const fingerprint=spec=>JSON.stringify([spec.query,spec.filters.grade,spec.filters.subject,[...spec.filters.knowledgeIds].sort(),spec.filters.scenario,spec.includePrerequisites,Object.fromEntries(Object.entries(spec.context||{}).filter(([,v])=>Array.isArray(v)?v.length:!!v))]);
+const {busy:sorting,error:sortError,job,create:sort,open}=useModelJob(value=>{if(value.status!=='succeeded'||fingerprint(value.input)!==fingerprint(request())||disposed)return;items.value=value.liveItems||value.result.items;warning.value=[value.result.warning,value.hasStaleItems?'部分案例在任务期间已修订或撤回，请重新检索。':''].filter(Boolean).join(' ');understanding.value=value.result.queryUnderstanding});
+async function load(){const version=++generation;loading.value=true;error.value='';warning.value='';const spec=request();try{const result=await modelApi.contextualSearch(spec);if(version!==generation||disposed)return;items.value=result.items;understanding.value=result.queryUnderstanding;mode.value=result.mode;warning.value=(result.warnings||[]).join(' ');await router.replace({query:{...route.query,q:spec.query||undefined,grade:spec.filters.grade||undefined,subject:spec.filters.subject||undefined,knowledge:spec.filters.knowledgeIds.join(',')||undefined,scenario:spec.filters.scenario==='other'?undefined:spec.filters.scenario,prerequisites:String(spec.includePrerequisites)}})}catch(e){if(version===generation){error.value=e.message;items.value=[]}}finally{if(version===generation)loading.value=false}}
+function schedule(){if(!ready)return;generation++;open(null);router.replace({query:{...route.query,job:undefined}});clearTimeout(timer);timer=setTimeout(load,280)}
+watch([query,filters,includePrerequisites],schedule,{deep:true});
+function reset(){query.value='';filters.value={grade:'',subject:'',knowledgeIds:[],scenario:'other'};context.value={};tab.value='all'}
+async function semanticSort(){warning.value='';await sort({capability:'retrieval',data:{...request(),rerank:true}});if(job.value)await router.replace({query:{...route.query,job:job.value.id}})}
+function read(item){navigate('case-detail?caseId='+encodeURIComponent(item.id)+'&versionId='+encodeURIComponent(item.versionId))}
+onMounted(async()=>{try{options.value=await modelApi.searchOptions();if(route.query.lesson){const lesson=await curriculumApi.lesson(String(route.query.lesson));context.value={grade:lesson.grade||'',subject:lesson.subject||'',knowledgeIds:lesson.knowledgeIds||[],prerequisiteIds:lesson.prerequisiteIds||[],goal:lesson.goal||''}}ready=true;await load();if(route.query.job)await open(await modelApi.detail(String(route.query.job)))}catch(e){error.value=e.message;loading.value=false;ready=true}});
+onBeforeUnmount(()=>{disposed=true;generation++;clearTimeout(timer)});
 </script>
 <template>
-  <PageHeading title="教学案例" />
-  <div class="case-toolbar"><form class="search-field" @submit.prevent="load"><Search :size="17" /><Input v-model="query" aria-label="搜索教学案例" placeholder="搜索知识点或学生困难" /></form><Button variant="outline" :disabled="loading || sorting || !query.trim() || !items.length" @click="semanticSort">{{ sorting ? '排序中…' : '语义排序' }}</Button><InfoTip label="检索方式">BM25 中文检索，搜索已发布的案例标题与正文；可用 Codex 进一步语义排序。</InfoTip></div>
-  <AppTabs v-model="tab" :items="[{ value: 'all', label: '全部案例' }, { value: 'favorite', label: '我的收藏' }]" />
-  <p v-if="sortError || sortWarning" role="alert" class="form-error">{{ sortError || sortWarning }}</p>
-  <p v-if="loading" role="status" class="ai-empty">正在检索…</p>
-  <Surface v-else-if="error"><div class="empty-state"><p role="alert">{{ error }}</p><Button variant="outline" @click="load"><RefreshCw :size="16" />重试</Button></div></Surface>
-  <div v-else class="case-search-layout">
-    <div class="case-search-results">
-      <article v-for="item in items.filter(x => tab !== 'favorite' || (store.data.favorite && x.id === store.data.publishedCase?.id))" :key="item.id" class="case-search-card">
-        <div class="case-meta"><BookOpen :size="15" /><span>{{ item.source || '团队编写案例示例' }}</span></div><h2>{{ item.title }}</h2><p>{{ item.content.slice(0, 180) }}{{ item.content.length > 180 ? '…' : '' }}</p><Button variant="outline" @click="read(item)">阅读案例<ArrowUpRight :size="16" /></Button>
-      </article>
-      <Surface v-if="!items.length || (tab === 'favorite' && !items.some(x => store.data.favorite && x.id === store.data.publishedCase?.id))"><div class="empty-state"><h3>{{ tab === 'favorite' ? '暂无收藏的匹配案例' : '没有匹配的案例' }}</h3><Button variant="outline" @click="query = ''; tab = 'all'">浏览全部案例</Button></div></Surface>
-    </div>
-    <aside class="case-reading-guide"><h2>学生困难</h2><div class="case-question-links"><button v-for="item in ['学生只改变等式的一边', '学生机械记忆移项变号', '怎样检查学生独立理解']" :key="item" @click="query = item">{{ item }}<ArrowUpRight :size="15" /></button></div></aside>
-  </div>
+<PageHeading title="教学案例"><Status v-if="mode==='browse'">全部发布案例</Status><InfoTip label="检索方式">字段加权BM25、知识关联与教学情境；语义重排由你主动开启，失败保留原结果。</InfoTip></PageHeading>
+<section class="context-search"><form class="context-search-main" @submit.prevent="load"><div class="search-field"><Search :size="19"/><Input v-model="query" aria-label="教学情境问题" placeholder="输入教学目标、学生困难或想寻找的讲法"/></div><Button type="submit" :disabled="loading">检索</Button><Button type="button" variant="outline" :disabled="sorting||loading||!items.length||!query.trim()&&!filters.knowledgeIds.length" @click="semanticSort">{{ sorting?'重排中…':'Codex重排' }}</Button></form>
+<div class="context-filters"><AppSelect :model-value="filters.grade||'all'" label="年级" :options="[{value:'all',label:'全部年级'},...options.grades.map(g=>({value:g,label:g+'年级'}))]" @update:model-value="filters.grade=$event==='all'?'':$event"/><AppSelect :model-value="filters.subject||'all'" label="学科" :options="[{value:'all',label:'全部学科'},...options.subjects.map(s=>({value:s,label:s}))]" @update:model-value="filters.subject=$event==='all'?'':$event"/><AppSelect v-model="filters.scenario" label="教学情境" :options="options.scenarios.map(s=>({...s,label:s.value==='other'?'自动识别情境':s.label}))"/><details class="context-knowledge-filter"><summary><SlidersHorizontal :size="15"/>知识点{{ filters.knowledgeIds.length?' · '+filters.knowledgeIds.length:'' }}</summary><label v-for="p in options.knowledge" :key="p.id"><input type="checkbox" v-model="filters.knowledgeIds" :value="p.id"/>{{ p.name }}</label><label class="context-prerequisite"><input type="checkbox" v-model="includePrerequisites"/>包含一层前置知识</label></details><Button variant="ghost" @click="reset">清空</Button></div>
+<p v-if="Object.keys(context).length" class="context-source">已参考当前课时<InfoTip label="课时条件">课时信息用于辅助匹配；明确选择的筛选条件严格生效。</InfoTip></p>
+</section>
+<div class="context-results-heading"><AppTabs v-model="tab" :items="[{value:'all',label:'检索结果'},{value:'favorite',label:'已有收藏'}]"/><span v-if="understanding&&mode==='search'">{{ options.scenarios.find(s=>s.value===understanding.scenario)?.label||'教学情境' }} · {{ visibleItems.length }} 篇</span></div>
+<p v-if="warning||sortError||job?.status==='failed'" role="status" class="form-error">{{ warning||sortError||job?.error }}</p><p v-if="sorting" role="status" class="library-notice">{{ job?.step||'正在重排候选案例…' }}</p>
+<p v-if="loading" role="status" class="ai-empty">正在检索…</p><Surface v-else-if="error"><div class="empty-state"><p role="alert">{{ error }}</p><Button variant="outline" @click="load"><RefreshCw :size="16"/>重试</Button></div></Surface>
+<div v-else-if="visibleItems.length" class="context-results-grid"><article v-for="item in visibleItems" :key="item.id+':'+item.versionId" class="context-case-card"><header><Status v-if="item.grade">{{ item.grade }}</Status><span>{{ item.subject||'学科未记录' }}</span><span>v{{ item.version }}</span></header><h2>{{ item.title }}</h2><p class="context-case-goal">{{ item.experience?.goal||item.content.slice(0,160) }}</p><dl><template v-if="item.experience?.difficulty"><dt>学生困难</dt><dd>{{ item.experience.difficulty }}</dd></template><template v-if="item.experience?.introduction"><dt>教学方法</dt><dd>{{ item.experience.introduction }}</dd></template></dl><div v-if="item.knowledgeMatches?.length" class="case-knowledge-links"><Status v-for="p in item.knowledgeMatches" :key="p.id" :tone="p.relation==='direct'?'blue':'neutral'">{{ p.name }}{{ p.relation==='prerequisite'?' · 前置':'' }}</Status></div><MatchEvidence :item="item"/><footer><p><BookOpen :size="15"/>{{ item.source||'来源待补充' }}</p><Button variant="outline" @click="read(item)">阅读案例<ArrowUpRight :size="16"/></Button></footer></article></div>
+<Surface v-else><div class="empty-state"><BookOpen :size="28"/><h3>{{ tab==='favorite'?'暂无匹配的已有收藏':'没有匹配的案例' }}</h3><Button variant="outline" @click="reset">清空条件</Button></div></Surface>
 </template>

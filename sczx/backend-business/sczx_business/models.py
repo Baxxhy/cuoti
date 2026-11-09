@@ -312,6 +312,7 @@ class KnowledgePoint(Base):
     __tablename__ = 'knowledge_points'
     id: Mapped[str] = mapped_column(String(40), primary_key=True)
     name: Mapped[str] = mapped_column(String(160))
+    aliases: Mapped[list] = mapped_column(JSON, default=list, nullable=True)
     prerequisites: Mapped[list] = mapped_column(JSON, default=list)
 
 

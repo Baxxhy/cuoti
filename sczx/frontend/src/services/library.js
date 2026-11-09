@@ -10,6 +10,7 @@ export const libraryApi = {
   saveUnit: (id,text) => api.request('/library/units/'+id,json({text},'PUT')),
   extract: unitIds => api.request('/library/extract',json({unitIds})),
   cases: () => api.request('/library/cases'),
+  suggestions: id => api.request('/library/cases/'+id+'/knowledge-suggestions'),
   case: id => api.request('/library/cases/'+id),
   newCase: unitIds => api.request('/library/cases',json({unitIds})),
   save: (id,data) => api.request('/library/cases/'+id+'/draft',json({data},'PUT')),

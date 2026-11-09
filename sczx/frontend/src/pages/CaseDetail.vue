@@ -70,21 +70,7 @@ watch(
     <article class="case-article"><CaseArticle :value="currentCase" /></article>
     <aside>
       <Surface class="case-use-card"
-        ><h3>{{ currentCase.id === 'case-balance' ? '这篇案例适合什么时候？' : '案例来源' }}</h3>
-        <template v-if="currentCase.id === 'case-balance'">
-        <div>
-          <span>学习基础</span>
-          <p>理解相等关系，掌握加减法</p>
-        </div>
-        <div>
-          <span>常见困难</span>
-          <p>只改变一边，机械记忆变号</p>
-        </div>
-        <div>
-          <span>教学目标</span>
-          <p>解释共同变化，独立应用等式性质</p>
-        </div>
-        </template>
+        ><h3>适用情境</h3><div v-for="(label,key) in {studentBase:'学生基础',difficulty:'学生困难',goal:'教学目标',boundary:'适用边界'}" v-show="currentCase.experience?.[key]" :key="key"><span>{{ label }}</span><p>{{ currentCase.experience?.[key] }}</p></div>
         <div class="source-box">
           <BookOpen :size="16" />
           <p>

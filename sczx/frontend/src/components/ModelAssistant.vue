@@ -67,7 +67,7 @@ async function confirmOCR() {
     <div class="ai-assistant-heading"><Sparkles :size="19" /><h3>学习助手</h3></div>
     <p v-if="!job" class="ai-empty">你想从哪里开始理解？</p>
     <ModelResult :job="job" :busy="busy" :show-source="job?.status === 'failed'" @retry="retry" />
-    <template v-if="job?.capability === 'ocr' && job.status === 'succeeded'">
+    <template v-if="job?.capability === 'ocr' && job.status === 'succeeded' && ocrId === job.id">
       <img :src="`/api/files/${job.fileId}`" class="ai-original" alt="识别所用原始题图" />
       <label class="field-label" for="confirmed-question">核对题目</label><Textarea id="confirmed-question" v-model="recognized" :disabled="busy" />
       <Button @click="confirmOCR" :disabled="busy">确认题目并获取提示</Button>

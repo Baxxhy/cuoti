@@ -75,3 +75,34 @@ class ExperienceResult(StrictResult):
     suggestions: list[str] = Field(default_factory=list)
     references: list[Evidence] = Field(min_length=1)
     mathClaims: list[MathClaim] = Field(default_factory=list, max_length=12)
+
+
+Scenario = Literal['concept_explanation','misconception_correction','activity_design','questioning','assessment','differentiated_support','other']
+
+
+class RetrievalFilters(StrictResult):
+    grade: str = Field(default='',max_length=40)
+    subject: str = Field(default='',max_length=80)
+    knowledgeIds: list[str] = Field(default_factory=list,max_length=16)
+    scenario: Scenario = 'other'
+
+
+class RetrievalContext(StrictResult):
+    grade: str = Field(default='',max_length=80)
+    subject: str = Field(default='',max_length=80)
+    knowledgeIds: list[str] = Field(default_factory=list,max_length=16)
+    prerequisiteIds: list[str] = Field(default_factory=list,max_length=32)
+    goal: str = Field(default='',max_length=2000)
+    questionText: str = Field(default='',max_length=3000)
+    equation: str = Field(default='',max_length=1000)
+    studentObservation: str = Field(default='',max_length=4000)
+    recognizedText: str = Field(default='',max_length=12000)
+
+
+class RetrievalRequest(StrictResult):
+    query: str = Field(default='',max_length=2000)
+    filters: RetrievalFilters = Field(default_factory=RetrievalFilters)
+    context: RetrievalContext = Field(default_factory=RetrievalContext)
+    includePrerequisites: bool = True
+    rerank: bool = False
+    limit: int = Field(default=8,ge=1,le=20,strict=True)
