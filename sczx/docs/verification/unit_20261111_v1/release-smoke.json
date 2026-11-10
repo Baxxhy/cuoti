@@ -1,0 +1,1387 @@
+{
+  "checks": [
+    "API-created accounts",
+    "teacher created class",
+    "student joined by invite",
+    "reviewed lesson published",
+    "real wrong answer",
+    "real guidance",
+    "actual variants verified",
+    "teacher reads original",
+    "feedback after student relogin"
+  ],
+  "jobs": [
+    {
+      "seconds": 15.652,
+      "job": {
+        "id": "job-18ef7e30c59145cd8addc0ea3844c081",
+        "mode": null,
+        "wrongId": null,
+        "phase": null,
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": "help-18ef7e30c59145cd8addc0ea3844c081",
+        "question": 0,
+        "blockId": "simple-practice",
+        "strategy": "hint",
+        "prompt": "请只提示当前题第一步，保留我已有的错误答案。",
+        "parentJobId": null,
+        "recognizedText": "",
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "想一想：要抵消左边的“+7”，对等式两边各做什么相同的运算？",
+          "steps": [
+            "先观察左边多出的7，思考用哪种运算可以抵消它。"
+          ],
+          "title": "先从等式性质想",
+          "sources": [],
+          "question": "你会对等式两边同时做什么运算？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 14709,
+            "modelCalls": 1,
+            "contextChars": 2242,
+            "historyTurns": 0
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equality",
+          "representation": "question",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:49:41Z",
+        "updatedAt": "2026-11-10T17:49:56Z",
+        "input": {
+          "scope": {
+            "taskId": "task-579a39567a26d330b12c83acf2f2527e",
+            "classId": "class-4feb2646c5b34e849df537232fd5ee07",
+            "lessonId": "lesson-simple",
+            "studentId": "account-f09ea41c96ea4d1bbcc2d655cfd9e3a2",
+            "questionId": "simple-p1",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "lessonVersionId": "lessonversion-c0ba3a062b2e4994b9c320abfd"
+          },
+          "prompt": "请只提示当前题第一步，保留我已有的错误答案。",
+          "blockId": "simple-practice",
+          "context": {
+            "block": {
+              "id": "simple-practice",
+              "type": "practice",
+              "title": "活动：比较、求解并验算",
+              "content": "先独立写出每一步，再与原式比较；把答案代回左右两边。",
+              "questionIds": [
+                "simple-p1",
+                "simple-p2"
+              ]
+            },
+            "lesson": {
+              "id": "lesson-simple",
+              "goal": "用等式性质解加减、乘除及两步方程，并代回原式验算。",
+              "grade": "七年级",
+              "title": "解简单的一元一次方程",
+              "versionId": "lessonversion-c0ba3a062b2e4994b9c320abfd"
+            },
+            "question": {
+              "id": "simple-p1",
+              "kind": "practice",
+              "prompt": "求x，并说明消去7的方法。",
+              "equation": "x+7=12",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ]
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "observation": "",
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [
+              {
+                "id": "case-0b52ea745636408c83bb07fb715ae93d",
+                "title": "项目自编：例题：消去减去的数",
+                "source": "用户单人复核的项目自编单元",
+                "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "version": 1,
+                "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+                "references": [
+                  {
+                    "label": "段落 1",
+                    "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                    "author": "项目自编、AI辅助整理",
+                    "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                    "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+                    "sourceUrl": "",
+                    "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+                    "materialTitle": "项目自编单元来源：等式性质"
+                  }
+                ]
+              },
+              {
+                "id": "case-82d0bccea41e40a29866490c6170b8b8",
+                "title": "项目自编：例题：单价与固定费用",
+                "source": "用户单人复核的项目自编单元",
+                "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                "version": 1,
+                "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+                "references": [
+                  {
+                    "label": "段落 1",
+                    "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                    "author": "项目自编、AI辅助整理",
+                    "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                    "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+                    "sourceUrl": "",
+                    "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+                    "materialTitle": "项目自编单元来源：用方程解决生活问题"
+                  }
+                ]
+              },
+              {
+                "id": "case-balance",
+                "title": "天平与等式性质",
+                "source": "待补充核对的教学示例",
+                "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+                "version": 1,
+                "versionId": "version-ff719fd797164ca99cdbed8574144861",
+                "references": []
+              }
+            ],
+            "learningMemory": []
+          },
+          "history": [],
+          "guidance": true,
+          "ocrJobId": null,
+          "question": 0,
+          "strategy": "hint",
+          "confirmed": false,
+          "parentJobId": null,
+          "recognizedText": "",
+          "selectedStrategy": "hint",
+          "confirmedEquation": ""
+        },
+        "runs": [
+          {
+            "id": "run-f9b8c4abb5ad4d8d930251a7167f0196",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "hint": "想一想：要抵消左边的“+7”，对等式两边各做什么相同的运算？",
+              "steps": [
+                "先观察左边多出的7，思考用哪种运算可以抵消它。"
+              ],
+              "title": "先从等式性质想",
+              "sources": [],
+              "question": "你会对等式两边同时做什么运算？",
+              "strategy": "hint",
+              "workflow": {
+                "nodes": [
+                  "固定学习上下文",
+                  "读取公开案例与一层前置知识",
+                  "生成本轮指导",
+                  "核验并等待学生回应"
+                ],
+                "elapsedMs": 14709,
+                "modelCalls": 1,
+                "contextChars": 2242,
+                "historyTurns": 0
+              },
+              "mathClaims": [],
+              "needCoverage": {
+                "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+                "missing": [],
+                "required": []
+              },
+              "nextStrategy": "try",
+              "verification": {
+                "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+                "claims": [],
+                "status": "unverified"
+              },
+              "prerequisites": [],
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "prerequisiteId": "kp-equality",
+              "representation": "question",
+              "usedCaseVersionIds": []
+            },
+            "startedAt": "2026-11-10T17:49:41Z",
+            "endedAt": "2026-11-10T17:49:56Z"
+          }
+        ]
+      }
+    },
+    {
+      "seconds": 20.663,
+      "job": {
+        "id": "job-ff6edaa101d349418adc962881ac5d3b",
+        "mode": "analysis",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "证据逐字复制我的原答案单字符0，不加引号或前缀；只列可能错因。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "goal": "找出满足 x+7=12 的 x，并用代入检验结果。",
+          "cause": "其他或待确认",
+          "steps": [
+            "提示：想一想，x 加 7 得到 12，x 应该比 12 大还是小？",
+            "两边同时减去 7，得到 x=12-7=5。",
+            "检验：把 5 代入原方程，左边 5+7=12，与右边相等。"
+          ],
+          "evidence": "0",
+          "strategy": "hint",
+          "workflow": {
+            "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+            "modelCalls": 1
+          },
+          "confirmed": false,
+          "mathClaims": [
+            {
+              "left": "x+7=12",
+              "right": "x=5"
+            }
+          ],
+          "uncertainty": "原答案和理由表明学生直接猜了 0 且没有核对；仅凭这些信息无法确认更具体的错因。",
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x+7=12",
+                "right": "x=5",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "checkQuestion": "把你得到的 x 代入 x+7=12，左边等于多少？它和右边相等吗？",
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:49:56Z",
+        "updatedAt": "2026-11-10T17:50:17Z",
+        "input": {
+          "mode": "analysis",
+          "phase": "practice",
+          "prompt": "证据逐字复制我的原答案单字符0，不加引号或前缀；只列可能错因。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": null,
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对两边。"
+          },
+          "history": [],
+          "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-db7f931420f54c85b2407bfcc6d29123",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "goal": "找出满足 x+7=12 的 x，并用代入检验结果。",
+              "cause": "其他或待确认",
+              "steps": [
+                "提示：想一想，x 加 7 得到 12，x 应该比 12 大还是小？",
+                "两边同时减去 7，得到 x=12-7=5。",
+                "检验：把 5 代入原方程，左边 5+7=12，与右边相等。"
+              ],
+              "evidence": "0",
+              "strategy": "hint",
+              "workflow": {
+                "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+                "modelCalls": 1
+              },
+              "confirmed": false,
+              "mathClaims": [
+                {
+                  "left": "x+7=12",
+                  "right": "x=5"
+                }
+              ],
+              "uncertainty": "原答案和理由表明学生直接猜了 0 且没有核对；仅凭这些信息无法确认更具体的错因。",
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "x+7=12",
+                    "right": "x=5",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "checkQuestion": "把你得到的 x 代入 x+7=12，左边等于多少？它和右边相等吗？",
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              }
+            },
+            "startedAt": "2026-11-10T17:49:57Z",
+            "endedAt": "2026-11-10T17:50:17Z"
+          }
+        ]
+      }
+    },
+    {
+      "seconds": 33.48,
+      "job": {
+        "id": "job-c53ba0b3a8da4c14b3a293d7bd2ed9f8",
+        "mode": "guidance",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": "help-c53ba0b3a8da4c14b3a293d7bd2ed9f8",
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "针对当前错因给一步提示。",
+        "parentJobId": "job-ff6edaa101d349418adc962881ac5d3b",
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "想一想：要让左边的“+7”消失，可以对等式两边做同一个什么运算？",
+          "steps": [
+            "你上一轮的“0”没有说明如何让左边等于右边。",
+            "等式性质要求左右两边做相同运算，等式才保持成立。"
+          ],
+          "title": "用等式性质检查",
+          "sources": [],
+          "question": "你会在等式两边各做什么运算来消去左边的 +7？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 16556,
+            "modelCalls": 1,
+            "contextChars": 558,
+            "historyTurns": 1
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equality",
+          "representation": "symbolic",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:50:17Z",
+        "updatedAt": "2026-11-10T17:50:50Z",
+        "input": {
+          "mode": "guidance",
+          "phase": "practice",
+          "prompt": "针对当前错因给一步提示。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对两边。"
+          },
+          "history": [
+            {
+              "hint": "找出满足 x+7=12 的 x，并用代入检验结果。",
+              "student": "证据逐字复制我的原答案单字符0，不加引号或前缀；只列可能错因。",
+              "question": "把你得到的 x 代入 x+7=12，左边等于多少？它和右边相等吗？",
+              "strategy": "hint",
+              "representation": "question"
+            }
+          ],
+          "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+          "guidance": true,
+          "strategy": "hint",
+          "parentJobId": "job-ff6edaa101d349418adc962881ac5d3b",
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-c6279dcd82ad4e1883da82bc130fca39",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "hint": "想一想：要让左边的“+7”消失，可以对等式两边做同一个什么运算？",
+              "steps": [
+                "你上一轮的“0”没有说明如何让左边等于右边。",
+                "等式性质要求左右两边做相同运算，等式才保持成立。"
+              ],
+              "title": "用等式性质检查",
+              "sources": [],
+              "question": "你会在等式两边各做什么运算来消去左边的 +7？",
+              "strategy": "hint",
+              "workflow": {
+                "nodes": [
+                  "固定学习上下文",
+                  "读取公开案例与一层前置知识",
+                  "生成本轮指导",
+                  "核验并等待学生回应"
+                ],
+                "elapsedMs": 16556,
+                "modelCalls": 1,
+                "contextChars": 558,
+                "historyTurns": 1
+              },
+              "mathClaims": [],
+              "needCoverage": {
+                "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+                "missing": [],
+                "required": []
+              },
+              "nextStrategy": "try",
+              "verification": {
+                "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+                "claims": [],
+                "status": "unverified"
+              },
+              "prerequisites": [],
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "prerequisiteId": "kp-equality",
+              "representation": "symbolic",
+              "usedCaseVersionIds": []
+            },
+            "startedAt": "2026-11-10T17:50:33Z",
+            "endedAt": "2026-11-10T17:50:50Z"
+          }
+        ]
+      }
+    },
+    {
+      "seconds": 17.538,
+      "job": {
+        "id": "job-a4d7ad80a07042a99082b222c94c2fba",
+        "mode": "variant",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "保持当前加法一步方程结构，使用不同数值生成新题。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "先想想怎样让左边只剩未知数：对等式两边做同一运算，再把结果代回原式检查。",
+            "equation": "x+4=15",
+            "rationale": "与原题一样，都是通过消去未知数旁的加数来求解；新题的数值和答案均不同，可练习避免直接猜答案并核对等式。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+            "modelCalls": 1
+          },
+          "mathClaims": [
+            {
+              "left": "x+4=15",
+              "right": "x=11"
+            }
+          ],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x+4=15",
+                "right": "x=11",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x+4=15"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:50:50Z",
+        "updatedAt": "2026-11-10T17:51:08Z",
+        "input": {
+          "mode": "variant",
+          "phase": "practice",
+          "prompt": "保持当前加法一步方程结构，使用不同数值生成新题。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对两边。"
+          },
+          "history": [],
+          "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-7d60a439a9914c3fbbb6cc58074a07f8",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "先想想怎样让左边只剩未知数：对等式两边做同一运算，再把结果代回原式检查。",
+                "equation": "x+4=15",
+                "rationale": "与原题一样，都是通过消去未知数旁的加数来求解；新题的数值和答案均不同，可练习避免直接猜答案并核对等式。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+                "modelCalls": 1
+              },
+              "mathClaims": [
+                {
+                  "left": "x+4=15",
+                  "right": "x=11"
+                }
+              ],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "x+4=15",
+                    "right": "x=11",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "x+4=15"
+              }
+            },
+            "startedAt": "2026-11-10T17:50:51Z",
+            "endedAt": "2026-11-10T17:51:08Z"
+          }
+        ]
+      }
+    },
+    {
+      "seconds": 16.49,
+      "job": {
+        "id": "job-7b0b812cefc342858f1c75f4862c5b5b",
+        "mode": "variant",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "phase": "retest",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "保持当前加法一步方程结构，使用不同数值生成新题。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：x+8=17",
+            "equation": "x+8=17",
+            "rationale": "保留原题“未知数加一个常数等于常数”的结构，改用不同数值；新方程的解与原题及已用过的方程不同。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+            "modelCalls": 1
+          },
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x+8=17"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:51:08Z",
+        "updatedAt": "2026-11-10T17:51:24Z",
+        "input": {
+          "mode": "variant",
+          "phase": "retest",
+          "prompt": "保持当前加法一步方程结构，使用不同数值生成新题。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对两边。"
+          },
+          "history": [],
+          "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": [
+            "x+4=15"
+          ]
+        },
+        "runs": [
+          {
+            "id": "run-bae0ce1caa7347caa39ab3472605fbe3",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "解方程：x+8=17",
+                "equation": "x+8=17",
+                "rationale": "保留原题“未知数加一个常数等于常数”的结构，改用不同数值；新方程的解与原题及已用过的方程不同。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+                "modelCalls": 1
+              },
+              "mathClaims": [],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "x+8=17"
+              }
+            },
+            "startedAt": "2026-11-10T17:51:08Z",
+            "endedAt": "2026-11-10T17:51:24Z"
+          }
+        ]
+      }
+    }
+  ],
+  "passed": true,
+  "taskId": "task-579a39567a26d330b12c83acf2f2527e",
+  "classId": "class-4feb2646c5b34e849df537232fd5ee07",
+  "users": {
+    "teacher": {
+      "id": "account-f444e9f03e5340539ec82cc87a5ae0c5",
+      "username": "release-teacher-890f1",
+      "displayName": "预发布冒烟自编验收teacher",
+      "role": "teacher"
+    },
+    "student": {
+      "id": "account-f09ea41c96ea4d1bbcc2d655cfd9e3a2",
+      "username": "release-student-c9127",
+      "displayName": "预发布冒烟自编验收student",
+      "role": "student"
+    }
+  },
+  "sourceVersion": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+  "wrong": {
+    "id": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+    "taskId": "task-579a39567a26d330b12c83acf2f2527e",
+    "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+    "attemptId": "attempt-e5245d68ca714d10b3d943efd876e330",
+    "source": "course",
+    "prompt": "x+7=12",
+    "answer": "0",
+    "reason": "我直接猜0，没有核对两边。",
+    "image": "",
+    "details": {
+      "cause": "其他或待确认",
+      "draft": {},
+      "source": "course",
+      "version": "dynamic_v1",
+      "equation": "x+7=12",
+      "planJobId": "job-ff6edaa101d349418adc962881ac5d3b",
+      "explanation": "",
+      "knowledgeIds": [
+        "kp-linear-simple"
+      ],
+      "causeConfirmed": true,
+      "originalPrompt": "求x，并说明消去7的方法。"
+    },
+    "status": "retest_passed",
+    "readOnly": false,
+    "taskTitle": "解简单的一元一次方程",
+    "repairs": [
+      {
+        "id": "repair-d02b7f63450a4b53ae8ccd6747831df6",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "answer": "11",
+        "reason": "两边共同运算并代回核对。",
+        "correct": true,
+        "verification": {
+          "scope": "实际变式题的单变量单解实数方程与答案等价性",
+          "status": "verified_correct",
+          "correct": true
+        },
+        "details": {
+          "phase": "practice",
+          "helped": false,
+          "version": "dynamic_v1",
+          "equation": "x+4=15",
+          "expected": "11",
+          "planJobId": "job-ff6edaa101d349418adc962881ac5d3b",
+          "variantId": "job-a4d7ad80a07042a99082b222c94c2fba",
+          "requestKey": "d50b7d86db5847eca2f4790df3420362",
+          "variantJobId": "job-a4d7ad80a07042a99082b222c94c2fba",
+          "verification": {
+            "scope": "实际变式题的单变量单解实数方程与答案等价性",
+            "status": "verified_correct",
+            "correct": true
+          }
+        },
+        "createdAt": "2026-11-11T01:51:07"
+      },
+      {
+        "id": "repair-a7178609d1e945c6bef6ce7c20a97496",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "answer": "9",
+        "reason": "两边共同运算并代回核对。",
+        "correct": true,
+        "verification": {
+          "scope": "实际变式题的单变量单解实数方程与答案等价性",
+          "status": "verified_correct",
+          "correct": true
+        },
+        "details": {
+          "phase": "retest",
+          "helped": false,
+          "version": "dynamic_v1",
+          "equation": "x+8=17",
+          "expected": "9",
+          "planJobId": "job-ff6edaa101d349418adc962881ac5d3b",
+          "variantId": "job-7b0b812cefc342858f1c75f4862c5b5b",
+          "requestKey": "826e29e925ed431d833c9fbe40e17401",
+          "variantJobId": "job-7b0b812cefc342858f1c75f4862c5b5b",
+          "verification": {
+            "scope": "实际变式题的单变量单解实数方程与答案等价性",
+            "status": "verified_correct",
+            "correct": true
+          }
+        },
+        "createdAt": "2026-11-11T01:51:24"
+      }
+    ],
+    "createdAt": "2026-11-11T01:49:40",
+    "jobs": [
+      {
+        "id": "job-ff6edaa101d349418adc962881ac5d3b",
+        "mode": "analysis",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "证据逐字复制我的原答案单字符0，不加引号或前缀；只列可能错因。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "goal": "找出满足 x+7=12 的 x，并用代入检验结果。",
+          "cause": "其他或待确认",
+          "steps": [
+            "提示：想一想，x 加 7 得到 12，x 应该比 12 大还是小？",
+            "两边同时减去 7，得到 x=12-7=5。",
+            "检验：把 5 代入原方程，左边 5+7=12，与右边相等。"
+          ],
+          "evidence": "0",
+          "strategy": "hint",
+          "workflow": {
+            "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+            "modelCalls": 1
+          },
+          "confirmed": false,
+          "mathClaims": [
+            {
+              "left": "x+7=12",
+              "right": "x=5"
+            }
+          ],
+          "uncertainty": "原答案和理由表明学生直接猜了 0 且没有核对；仅凭这些信息无法确认更具体的错因。",
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x+7=12",
+                "right": "x=5",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "checkQuestion": "把你得到的 x 代入 x+7=12，左边等于多少？它和右边相等吗？",
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:49:56Z",
+        "updatedAt": "2026-11-10T17:50:17Z",
+        "input": {
+          "mode": "analysis",
+          "phase": "practice",
+          "prompt": "证据逐字复制我的原答案单字符0，不加引号或前缀；只列可能错因。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": null,
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对两边。"
+          },
+          "history": [],
+          "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        }
+      },
+      {
+        "id": "job-c53ba0b3a8da4c14b3a293d7bd2ed9f8",
+        "mode": "guidance",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": "help-c53ba0b3a8da4c14b3a293d7bd2ed9f8",
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "针对当前错因给一步提示。",
+        "parentJobId": "job-ff6edaa101d349418adc962881ac5d3b",
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "想一想：要让左边的“+7”消失，可以对等式两边做同一个什么运算？",
+          "steps": [
+            "你上一轮的“0”没有说明如何让左边等于右边。",
+            "等式性质要求左右两边做相同运算，等式才保持成立。"
+          ],
+          "title": "用等式性质检查",
+          "sources": [],
+          "question": "你会在等式两边各做什么运算来消去左边的 +7？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 16556,
+            "modelCalls": 1,
+            "contextChars": 558,
+            "historyTurns": 1
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equality",
+          "representation": "symbolic",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:50:17Z",
+        "updatedAt": "2026-11-10T17:50:50Z",
+        "input": {
+          "mode": "guidance",
+          "phase": "practice",
+          "prompt": "针对当前错因给一步提示。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对两边。"
+          },
+          "history": [
+            {
+              "hint": "找出满足 x+7=12 的 x，并用代入检验结果。",
+              "student": "证据逐字复制我的原答案单字符0，不加引号或前缀；只列可能错因。",
+              "question": "把你得到的 x 代入 x+7=12，左边等于多少？它和右边相等吗？",
+              "strategy": "hint",
+              "representation": "question"
+            }
+          ],
+          "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+          "guidance": true,
+          "strategy": "hint",
+          "parentJobId": "job-ff6edaa101d349418adc962881ac5d3b",
+          "remediation": true,
+          "previousEquations": []
+        }
+      },
+      {
+        "id": "job-a4d7ad80a07042a99082b222c94c2fba",
+        "mode": "variant",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "保持当前加法一步方程结构，使用不同数值生成新题。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "先想想怎样让左边只剩未知数：对等式两边做同一运算，再把结果代回原式检查。",
+            "equation": "x+4=15",
+            "rationale": "与原题一样，都是通过消去未知数旁的加数来求解；新题的数值和答案均不同，可练习避免直接猜答案并核对等式。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+            "modelCalls": 1
+          },
+          "mathClaims": [
+            {
+              "left": "x+4=15",
+              "right": "x=11"
+            }
+          ],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x+4=15",
+                "right": "x=11",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x+4=15"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:50:50Z",
+        "updatedAt": "2026-11-10T17:51:08Z",
+        "input": {
+          "mode": "variant",
+          "phase": "practice",
+          "prompt": "保持当前加法一步方程结构，使用不同数值生成新题。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对两边。"
+          },
+          "history": [],
+          "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        }
+      },
+      {
+        "id": "job-7b0b812cefc342858f1c75f4862c5b5b",
+        "mode": "variant",
+        "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+        "phase": "retest",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-853adcc2aa724009b9f5e700de7cd8f2",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "保持当前加法一步方程结构，使用不同数值生成新题。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：x+8=17",
+            "equation": "x+8=17",
+            "rationale": "保留原题“未知数加一个常数等于常数”的结构，改用不同数值；新方程的解与原题及已用过的方程不同。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+            "modelCalls": 1
+          },
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x+8=17"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:51:08Z",
+        "updatedAt": "2026-11-10T17:51:24Z",
+        "input": {
+          "mode": "variant",
+          "phase": "retest",
+          "prompt": "保持当前加法一步方程结构，使用不同数值生成新题。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对两边。"
+          },
+          "history": [],
+          "wrongId": "wrong-51eedec5b5024f3d9aa89ecb89b78aad",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": [
+            "x+4=15"
+          ]
+        }
+      }
+    ]
+  }
+}

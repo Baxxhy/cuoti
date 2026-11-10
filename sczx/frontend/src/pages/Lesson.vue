@@ -1,4 +1,5 @@
 <script setup>
+import UnitJourney from "@/components/UnitJourney.vue";
 import MemoryBridge from "@/components/MemoryBridge.vue";
 import MemoryReturn from "@/components/MemoryReturn.vue";
 import SupplementPanel from "@/components/SupplementPanel.vue";
@@ -180,4 +181,4 @@ async function save() {
           :question="selectedQuestion"
           :block-id="selectedBlock" /></template></Workspace></template
   ><TaskEmpty v-else />
-</template>
+<UnitJourney v-if="store.task?.unitId||store.task?.snapshot.lessonSnapshot?.unitId" :unit-id="store.task.unitId||store.task.snapshot.lessonSnapshot.unitId" :task="store.task" compact/></template>

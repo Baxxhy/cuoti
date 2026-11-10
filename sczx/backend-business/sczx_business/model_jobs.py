@@ -104,6 +104,8 @@ async def execute(job_id, run_id):
         result,model,source=await run(data,provider,run_id)
     else:result, model, source = await provider.call(capability, data, file=file, request_id=run_id)
     if capability in ("text", "case_extract") and not data.get("guidance") and not data.get("remediation"):
+        from .math_conditions import require_conditions
+        result["conditionCheck"]=require_conditions(result)
         phase(job_id, "正在核对数学表达")
         result["verification"] = await asyncio.to_thread(math_check, result.get("mathClaims", []))
         context = data.get('context') if isinstance(data.get('context'),dict) else {}

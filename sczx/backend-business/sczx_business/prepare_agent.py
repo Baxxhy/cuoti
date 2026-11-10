@@ -159,6 +159,8 @@ async def run_agent(job_id,run_id,provider):
                 step['output']={'model':model,'provider':source,'blockCount':len(plan['blocks']),'onlyBlock':target,'origin':'模型生成，待教师核对'}
             elif key=='validate':
                 plan=validate_plan(value['plan'],data['lesson'],value['evidence'])
+                from .math_conditions import require_conditions
+                value['conditionCheck']=require_conditions(plan)
                 verification=await asyncio.wait_for(asyncio.to_thread(math_check,plan['mathClaims']),timeout=min(12,max(.01,remaining())))
                 if verification['status']=='inconsistent':raise ModelError('列出的数学表达式不一致，请先修改建议再确认。')
                 overlap=set(tokenize(plan['goal']))&set(tokenize(data['lesson']['goal']+' '+data['lesson']['title']))

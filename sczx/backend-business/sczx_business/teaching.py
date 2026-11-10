@@ -65,8 +65,9 @@ def summary(db,task):
     facts=[e for r in recs if r.student_id in active for e in collect(db,r.student_id,task.teacher_id,{task.classroom_id})[0] if e['taskId']==task.id]
     return {'metrics':metrics(facts),'members':len(active),'assigned':len(recs),'started':started,'submitted':submitted,'unsubmitted':len(recs)-submitted,'overdue':overdue,'feedback':feedback,'inactive':sum(r.student_id not in active for r in recs),'status':'未分配' if not recs else '已完成反馈' if feedback==len(recs) and submitted==len(recs) else '全员已提交' if submitted==len(recs) else '有逾期' if overdue else '学习中' if started else '待开始'}
 def task_json(db,user,task):
+    from .models import Lesson
     room=db.get(Classroom,task.classroom_id);rec=db.scalar(select(StudentRecord).where(StudentRecord.task_id==task.id,StudentRecord.student_id==user.id)) if user.role=='student' else None
-    result={'id':task.id,'lessonId':task.lesson_id,'classId':task.classroom_id,'className':room.name,'title':task.title,'dueDate':task.due_date,'dueAt':iso(cutoff(task.due_date)),'publishedAt':iso(task.published_at),'teacherName':db.get(Account,task.teacher_id).display_name,'source':task.source}
+    result={'unitId':db.get(Lesson,task.lesson_id).unit_id,'id':task.id,'lessonId':task.lesson_id,'classId':task.classroom_id,'className':room.name,'title':task.title,'dueDate':task.due_date,'dueAt':iso(cutoff(task.due_date)),'publishedAt':iso(task.published_at),'teacherName':db.get(Account,task.teacher_id).display_name,'source':task.source}
     if user.role=='teacher':result['summary']=summary(db,task)
     elif rec:
         status=personal_status(rec,cutoff(task.due_date),member(db,task.classroom_id,user.id))

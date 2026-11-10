@@ -1,0 +1,26 @@
+{
+  "startedAt": "2026-11-10T17:31:36.825Z",
+  "checks": [
+    {
+      "name": "unit-catalog-five-assigned-lessons"
+    },
+    {
+      "name": "lesson-equation:drafts-survive-refresh"
+    },
+    {
+      "name": "lesson-equation:read-practice-check-submit"
+    },
+    {
+      "name": "actual-prerequisite-review-and-return"
+    },
+    {
+      "name": "lesson-simple:drafts-survive-refresh"
+    },
+    {
+      "name": "simple-actual-help-recorded"
+    }
+  ],
+  "screens": [],
+  "failure": "Browser wait timed out: document.querySelector('.result-summary')?.textContent.includes('已提交')||[...document.querySelectorAll('button')].some(e=>e.textContent.includes('再次提交结果'))",
+  "consoleErrors": []
+}

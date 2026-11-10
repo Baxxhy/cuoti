@@ -1,0 +1,11 @@
+javaldx: Could not find a Java Runtime Environment!
+Please ensure that a JVM and the package libreoffice-java-common
+is installed.
+If it is already installed then try removing ~/.config/libreoffice/4/user/config/javasettings_Linux_*.xml
+Warning: failed to read path from javaldx
+I18N: Operating system doesn't support locale ""
+I18N: Operating system doesn't support locale "en_US"
+/usr/lib/libreoffice/program/soffice.bin X11 error: Can't open display: 
+   Set DISPLAY environment variable, use -display option
+   or check permissions of your X-Server
+   (See "man X" resp. "man xhost" for details)

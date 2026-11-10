@@ -1,0 +1,752 @@
+{
+  "startedAt": 1794332694.525089,
+  "cases": [
+    {
+      "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+      "mode": "analysis",
+      "phase": null,
+      "seconds": 9.304,
+      "job": {
+        "id": "job-04a06b1feffd45b9843d220c961fa728",
+        "mode": "analysis",
+        "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "请只依据当前课时、原答案0分析可能错误。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写；不要把推测当能力结论。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "goal": "求出满足 3z = 18 的 z，并理解为什么可以把等式两边同除以 3。",
+          "cause": "其他或待确认",
+          "steps": [
+            "提示：想一想，3 乘什么数等于 18？",
+            "因为 3 ≠ 0，可以把等式两边同除以 3：3z ÷ 3 = 18 ÷ 3。",
+            "计算得到 z = 6。"
+          ],
+          "evidence": "0",
+          "strategy": "hint",
+          "workflow": {
+            "scope": "wrong:wrong-d221373555f14b42856a9b2ab2b993a7",
+            "modelCalls": 1
+          },
+          "confirmed": false,
+          "mathClaims": [
+            {
+              "left": "3z = 18",
+              "right": "z = 6"
+            }
+          ],
+          "uncertainty": "原答案只提供了“0”，没有说明推理过程；无法判断具体错误原因。",
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "3z = 18",
+                "right": "z = 6",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "checkQuestion": "哪个数乘 3 等于 18？",
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:44:55Z",
+        "updatedAt": "2026-11-10T17:45:04Z",
+        "input": {
+          "mode": "analysis",
+          "phase": "practice",
+          "prompt": "请只依据当前课时、原答案0分析可能错误。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写；不要把推测当能力结论。",
+          "context": {
+            "question": {
+              "prompt": "3z = 18",
+              "equation": "3z = 18"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": null,
+            "originalAnswer": "0",
+            "originalReason": "先保留我的错误，后面再订正。"
+          },
+          "history": [],
+          "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-be910cac367046bd8ee0b3b1101f886d",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "goal": "求出满足 3z = 18 的 z，并理解为什么可以把等式两边同除以 3。",
+              "cause": "其他或待确认",
+              "steps": [
+                "提示：想一想，3 乘什么数等于 18？",
+                "因为 3 ≠ 0，可以把等式两边同除以 3：3z ÷ 3 = 18 ÷ 3。",
+                "计算得到 z = 6。"
+              ],
+              "evidence": "0",
+              "strategy": "hint",
+              "workflow": {
+                "scope": "wrong:wrong-d221373555f14b42856a9b2ab2b993a7",
+                "modelCalls": 1
+              },
+              "confirmed": false,
+              "mathClaims": [
+                {
+                  "left": "3z = 18",
+                  "right": "z = 6"
+                }
+              ],
+              "uncertainty": "原答案只提供了“0”，没有说明推理过程；无法判断具体错误原因。",
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "3z = 18",
+                    "right": "z = 6",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "checkQuestion": "哪个数乘 3 等于 18？",
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              }
+            },
+            "startedAt": "2026-11-10T17:44:55Z",
+            "endedAt": "2026-11-10T17:45:04Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+      "mode": "guidance",
+      "phase": null,
+      "seconds": 9.827,
+      "job": {
+        "id": "job-28a38d7648c147009dd258ef0d7430e4",
+        "mode": "guidance",
+        "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+        "fileId": null,
+        "helpRecordId": "help-28a38d7648c147009dd258ef0d7430e4",
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "请给一步针对当前错误的提示，先不公布原题答案。",
+        "parentJobId": "job-04a06b1feffd45b9843d220c961fa728",
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "把保留的答案 0 代入左边，算出 3×0 并与 18 比较；再想想该用哪种逆运算，且两边同除的数必须非零。",
+          "steps": [
+            "将 0 代入左边。",
+            "计算 3×0，并与 18 比较。"
+          ],
+          "title": "检验保留的答案",
+          "sources": [],
+          "question": "3×0 的结果与 18 相等吗？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 8900,
+            "modelCalls": 1,
+            "contextChars": 622,
+            "historyTurns": 1
+          },
+          "mathClaims": [
+            {
+              "left": "3×0",
+              "right": "0"
+            }
+          ],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [
+              {
+                "left": "3×0",
+                "right": "0",
+                "method": "表达式等价",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equal",
+          "representation": "numeric",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:45:04Z",
+        "updatedAt": "2026-11-10T17:45:14Z",
+        "input": {
+          "mode": "guidance",
+          "phase": "practice",
+          "prompt": "请给一步针对当前错误的提示，先不公布原题答案。",
+          "context": {
+            "question": {
+              "prompt": "3z = 18",
+              "equation": "3z = 18"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "先保留我的错误，后面再订正。"
+          },
+          "history": [
+            {
+              "hint": "求出满足 3z = 18 的 z，并理解为什么可以把等式两边同除以 3。",
+              "student": "请只依据当前课时、原答案0分析可能错误。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写；不要把推测当能力结论。",
+              "question": "哪个数乘 3 等于 18？",
+              "strategy": "hint",
+              "representation": "question"
+            }
+          ],
+          "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+          "guidance": true,
+          "strategy": "hint",
+          "parentJobId": "job-04a06b1feffd45b9843d220c961fa728",
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-fa72783dcb314548ba7e80ad0a2da95a",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "hint": "把保留的答案 0 代入左边，算出 3×0 并与 18 比较；再想想该用哪种逆运算，且两边同除的数必须非零。",
+              "steps": [
+                "将 0 代入左边。",
+                "计算 3×0，并与 18 比较。"
+              ],
+              "title": "检验保留的答案",
+              "sources": [],
+              "question": "3×0 的结果与 18 相等吗？",
+              "strategy": "hint",
+              "workflow": {
+                "nodes": [
+                  "固定学习上下文",
+                  "读取公开案例与一层前置知识",
+                  "生成本轮指导",
+                  "核验并等待学生回应"
+                ],
+                "elapsedMs": 8900,
+                "modelCalls": 1,
+                "contextChars": 622,
+                "historyTurns": 1
+              },
+              "mathClaims": [
+                {
+                  "left": "3×0",
+                  "right": "0"
+                }
+              ],
+              "needCoverage": {
+                "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+                "missing": [],
+                "required": []
+              },
+              "nextStrategy": "try",
+              "verification": {
+                "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+                "claims": [
+                  {
+                    "left": "3×0",
+                    "right": "0",
+                    "method": "表达式等价",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "prerequisites": [],
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "prerequisiteId": "kp-equal",
+              "representation": "numeric",
+              "usedCaseVersionIds": []
+            },
+            "startedAt": "2026-11-10T17:45:05Z",
+            "endedAt": "2026-11-10T17:45:14Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+      "mode": "variant",
+      "phase": "practice",
+      "seconds": 7.256,
+      "job": {
+        "id": "job-0a4a26ad35bd42dab7966bdc3d18d152",
+        "mode": "variant",
+        "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是3z = 18，注意非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "提示：要单独求出未知数，可以把等式两边同除以未知数的系数 4；同除的数必须非零。请计算未知数的值。",
+            "equation": "4x = 28",
+            "rationale": "与原题一样，未知数乘以一个非零系数后等于常数，需要用等式两边同除该系数来求解；新题的数值和解都与原题不同。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-d221373555f14b42856a9b2ab2b993a7",
+            "modelCalls": 1
+          },
+          "mathClaims": [
+            {
+              "left": "4x=28",
+              "right": "x=7"
+            }
+          ],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "4x=28",
+                "right": "x=7",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "4x = 28"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:45:14Z",
+        "updatedAt": "2026-11-10T17:45:21Z",
+        "input": {
+          "mode": "variant",
+          "phase": "practice",
+          "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是3z = 18，注意非零条件。",
+          "context": {
+            "question": {
+              "prompt": "3z = 18",
+              "equation": "3z = 18"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "先保留我的错误，后面再订正。"
+          },
+          "history": [],
+          "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-fb19f6e95d0b4f508331d83c0b0c233a",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "提示：要单独求出未知数，可以把等式两边同除以未知数的系数 4；同除的数必须非零。请计算未知数的值。",
+                "equation": "4x = 28",
+                "rationale": "与原题一样，未知数乘以一个非零系数后等于常数，需要用等式两边同除该系数来求解；新题的数值和解都与原题不同。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-d221373555f14b42856a9b2ab2b993a7",
+                "modelCalls": 1
+              },
+              "mathClaims": [
+                {
+                  "left": "4x=28",
+                  "right": "x=7"
+                }
+              ],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "4x=28",
+                    "right": "x=7",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "4x = 28"
+              }
+            },
+            "startedAt": "2026-11-10T17:45:14Z",
+            "endedAt": "2026-11-10T17:45:21Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+      "phase": "practice",
+      "actualVariant": "4x = 28",
+      "actualAnswer": "7",
+      "attempt": {
+        "id": "repair-d76ca2a836434c7c9907a5904e561acf",
+        "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+        "answer": "7",
+        "reason": "工程验收：针对实际新题写出共同运算并代回。",
+        "correct": true,
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        },
+        "details": {
+          "version": "dynamic_v1",
+          "planJobId": "job-04a06b1feffd45b9843d220c961fa728",
+          "variantJobId": "job-0a4a26ad35bd42dab7966bdc3d18d152",
+          "variantId": "job-0a4a26ad35bd42dab7966bdc3d18d152",
+          "equation": "4x = 28",
+          "expected": "7",
+          "phase": "practice",
+          "helped": false,
+          "requestKey": "50e86a30e52345bf8000f80ffed9e202",
+          "verification": {
+            "status": "verified_correct",
+            "correct": true,
+            "scope": "实际变式题的单变量单解实数方程与答案等价性"
+          }
+        },
+        "createdAt": "2026-11-11T01:45:21"
+      }
+    },
+    {
+      "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+      "mode": "variant",
+      "phase": "retest",
+      "seconds": 7.238,
+      "job": {
+        "id": "job-ddac41ad381e467c804747ba7cef775c",
+        "mode": "variant",
+        "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+        "phase": "retest",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是3z = 18，注意非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：5x = 40",
+            "equation": "5x = 40",
+            "rationale": "与原题一样，未知数乘以一个非零常数等于另一数；新题的数值和解均不同。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-d221373555f14b42856a9b2ab2b993a7",
+            "modelCalls": 1
+          },
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "5x = 40"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:45:22Z",
+        "updatedAt": "2026-11-10T17:45:29Z",
+        "input": {
+          "mode": "variant",
+          "phase": "retest",
+          "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是3z = 18，注意非零条件。",
+          "context": {
+            "question": {
+              "prompt": "3z = 18",
+              "equation": "3z = 18"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "先保留我的错误，后面再订正。"
+          },
+          "history": [],
+          "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": [
+            "4x = 28"
+          ]
+        },
+        "runs": [
+          {
+            "id": "run-8d4d5178880346f0b260cc43b18280ef",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "解方程：5x = 40",
+                "equation": "5x = 40",
+                "rationale": "与原题一样，未知数乘以一个非零常数等于另一数；新题的数值和解均不同。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-d221373555f14b42856a9b2ab2b993a7",
+                "modelCalls": 1
+              },
+              "mathClaims": [],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "5x = 40"
+              }
+            },
+            "startedAt": "2026-11-10T17:45:22Z",
+            "endedAt": "2026-11-10T17:45:29Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+      "phase": "retest",
+      "actualVariant": "5x = 40",
+      "actualAnswer": "8",
+      "attempt": {
+        "id": "repair-ec9f11ee77b74e67b6e6e56e727cfc64",
+        "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+        "answer": "8",
+        "reason": "工程验收：针对实际新题写出共同运算并代回。",
+        "correct": true,
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        },
+        "details": {
+          "version": "dynamic_v1",
+          "planJobId": "job-04a06b1feffd45b9843d220c961fa728",
+          "variantJobId": "job-ddac41ad381e467c804747ba7cef775c",
+          "variantId": "job-ddac41ad381e467c804747ba7cef775c",
+          "equation": "5x = 40",
+          "expected": "8",
+          "phase": "retest",
+          "helped": false,
+          "requestKey": "fbe42e18302a4ea9bb043556078420ac",
+          "verification": {
+            "status": "verified_correct",
+            "correct": true,
+            "scope": "实际变式题的单变量单解实数方程与答案等价性"
+          }
+        },
+        "createdAt": "2026-11-11T01:45:28"
+      }
+    },
+    {
+      "lesson": "lesson-equation",
+      "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+      "originalAnswerRetained": true,
+      "finalStatus": "retest_passed",
+      "sourceTask": "task-2fb2beed8a84a12625e36bed85bb051b"
+    }
+  ],
+  "errors": [],
+  "completedAt": 1794332728.8507578
+}

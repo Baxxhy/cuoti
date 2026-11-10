@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-11-10T17:33:14.907Z",
+  "checks": [
+    {
+      "name": "unit-catalog-five-assigned-lessons"
+    },
+    {
+      "name": "first-lesson-already-submitted-original-record-retained"
+    }
+  ],
+  "screens": [],
+  "failure": "Browser wait timed out: document.querySelector('.memory-bridge')?.textContent.includes('补前置知识')",
+  "consoleErrors": []
+}

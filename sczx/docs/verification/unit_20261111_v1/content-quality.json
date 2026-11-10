@@ -1,0 +1,82 @@
+[
+  {
+    "id": "lesson-equation",
+    "title": "等式性质",
+    "editorialMarks": [],
+    "quality": {
+      "status": "passed",
+      "warnings": [],
+      "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查"
+    },
+    "conditions": {
+      "status": "no_known_issue",
+      "issues": [],
+      "humanReviewRequired": true,
+      "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+    }
+  },
+  {
+    "id": "lesson-simple",
+    "title": "解简单的一元一次方程",
+    "editorialMarks": [],
+    "quality": {
+      "status": "passed",
+      "warnings": [],
+      "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查"
+    },
+    "conditions": {
+      "status": "no_known_issue",
+      "issues": [],
+      "humanReviewRequired": true,
+      "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+    }
+  },
+  {
+    "id": "lesson-transform",
+    "title": "含括号与分母的方程",
+    "editorialMarks": [],
+    "quality": {
+      "status": "passed",
+      "warnings": [],
+      "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查"
+    },
+    "conditions": {
+      "status": "no_known_issue",
+      "issues": [],
+      "humanReviewRequired": true,
+      "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+    }
+  },
+  {
+    "id": "lesson-application",
+    "title": "用方程解决生活问题",
+    "editorialMarks": [],
+    "quality": {
+      "status": "passed",
+      "warnings": [],
+      "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查"
+    },
+    "conditions": {
+      "status": "no_known_issue",
+      "issues": [],
+      "humanReviewRequired": true,
+      "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+    }
+  },
+  {
+    "id": "lesson-unit-review",
+    "title": "一元一次方程单元复习",
+    "editorialMarks": [],
+    "quality": {
+      "status": "passed",
+      "warnings": [],
+      "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查"
+    },
+    "conditions": {
+      "status": "no_known_issue",
+      "issues": [],
+      "humanReviewRequired": true,
+      "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+    }
+  }
+]

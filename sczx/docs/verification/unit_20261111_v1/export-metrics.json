@@ -1,0 +1,56 @@
+{
+  "checks": [
+    {
+      "name": "actual_saved_version_docx",
+      "draftId": "draft-66ee3d7cf7ad464d94ea502224013004",
+      "versionId": "dv-a6519b5515b4418fa20fc6fd417629ee",
+      "fonts": [
+        "宋体",
+        "Times New Roman"
+      ],
+      "black": true,
+      "goalMatchesSavedVersion": true,
+      "file": "简单方程_正式教案.docx"
+    }
+  ],
+  "api": {
+    "/api/health": {
+      "milliseconds": [
+        5.98,
+        4.57,
+        4.24
+      ],
+      "median": 4.57
+    },
+    "/api/teaching/classes": {
+      "milliseconds": [
+        9.88,
+        8.61,
+        8.77
+      ],
+      "median": 8.77
+    },
+    "/api/insights?classId=unit-c0": {
+      "milliseconds": [
+        114.49,
+        111.25,
+        110.92
+      ],
+      "median": 111.25
+    },
+    "/api/curriculum/courses": {
+      "milliseconds": [
+        29.0,
+        30.11,
+        30.65
+      ],
+      "median": 30.11
+    }
+  },
+  "static": {
+    "httpMilliseconds": 4.81,
+    "bytes": 405,
+    "productionAssets": true
+  },
+  "scope": "local 3 samples, not a production load benchmark"
+}

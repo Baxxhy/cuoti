@@ -1,0 +1,42 @@
+{
+  "software": "existing LibreOffice25.2",
+  "pages": [
+    {
+      "page": 1,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "black": true,
+      "boundsWithinPage": true
+    },
+    {
+      "page": 2,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "black": true,
+      "boundsWithinPage": true
+    },
+    {
+      "page": 3,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "black": true,
+      "boundsWithinPage": true
+    },
+    {
+      "page": 4,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "black": true,
+      "boundsWithinPage": true
+    }
+  ],
+  "wordWpsNewSample": "not repeated; previous user verification retained"
+}

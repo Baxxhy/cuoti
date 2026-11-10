@@ -1,0 +1,39 @@
+{
+  "url": "http://127.0.0.1:8087/#/login",
+  "navigation": {
+    "durationMs": 384.19999980926514,
+    "domContentLoadedMs": 383.8999996185303,
+    "loadEventMs": 384.19999980926514,
+    "transferSize": 705
+  },
+  "assets": [
+    {
+      "name": "/assets/index-DAvUpwpV.js",
+      "durationMs": 12.800000190734863,
+      "transferSize": 999789
+    },
+    {
+      "name": "/assets/index-BxH9iTJm.css",
+      "durationMs": 8.600000381469727,
+      "transferSize": 144585
+    },
+    {
+      "name": "/api/auth/me",
+      "durationMs": 7.699999809265137,
+      "transferSize": 328
+    },
+    {
+      "name": "/favicon.ico",
+      "durationMs": 4.699999809265137,
+      "transferSize": 322
+    },
+    {
+      "name": "/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+      "durationMs": 6,
+      "transferSize": 29700
+    }
+  ],
+  "scope": "fresh Chromium profile, network cache disabled, production login page; one local sample",
+  "wallUntilUsableLoginMs": 674,
+  "consoleErrors": []
+}

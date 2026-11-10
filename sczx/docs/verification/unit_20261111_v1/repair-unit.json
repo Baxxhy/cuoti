@@ -1,0 +1,1520 @@
+{
+  "startedAt": 1794332242.8070567,
+  "cases": [
+    {
+      "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+      "mode": "analysis",
+      "phase": null,
+      "seconds": 44.741,
+      "job": {
+        "id": "job-c78a32a8199045e8a2f7a516ef5db015",
+        "mode": "analysis",
+        "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "请只依据当前课时、原答0和我的解释分析可能错误；不要把推测当能力结论。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "failed",
+        "step": "执行失败",
+        "error": "错因证据必须逐字来自原作答或解释。",
+        "result": null,
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:37:23Z",
+        "updatedAt": "2026-11-10T17:38:08Z",
+        "input": {
+          "mode": "analysis",
+          "phase": "practice",
+          "prompt": "请只依据当前课时、原答0和我的解释分析可能错误；不要把推测当能力结论。",
+          "context": {
+            "question": {
+              "prompt": "3z = 18",
+              "equation": "3z = 18"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": null,
+            "originalAnswer": "0",
+            "originalReason": "先保留我的错误，后面再订正。"
+          },
+          "history": [],
+          "wrongId": "wrong-d221373555f14b42856a9b2ab2b993a7",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-0d1572982cd44cdab4926d771571314d",
+            "number": 1,
+            "status": "failed",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "错因证据必须逐字来自原作答或解释。",
+            "result": {
+              "workflow": {
+                "scope": "wrong:wrong-d221373555f14b42856a9b2ab2b993a7",
+                "modelCalls": 2
+              }
+            },
+            "startedAt": "2026-11-10T17:37:24Z",
+            "endedAt": "2026-11-10T17:38:08Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+      "mode": "analysis",
+      "phase": null,
+      "seconds": 20.586,
+      "job": {
+        "id": "job-79163471da8b4ffa8e0d888b9388a400",
+        "mode": "analysis",
+        "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "请只依据当前课时、原答0和我的解释分析可能错误；不要把推测当能力结论。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "goal": "理解解方程时要对等式两边进行相同的运算，并求出 x。",
+          "cause": "符号处理错误",
+          "steps": [
+            "提示：想一想，怎样让等式左边的“+7”消失？对左边这样做时，右边也要做什么？",
+            "解释：在等式两边同时减去 7，得到 x+7-7=12-7，因此 x=5。这样两边进行了相同的运算，等式关系得以保留。"
+          ],
+          "evidence": "我直接改动一边。",
+          "strategy": "hint",
+          "workflow": {
+            "scope": "wrong:wrong-40ba0266b9874205bba7b39b3bb8c195",
+            "modelCalls": 1
+          },
+          "confirmed": false,
+          "mathClaims": [],
+          "uncertainty": "原答为“0”，解释只说明曾直接改动等式一边，未指出具体改动方式；错因仅作建议，不能据此判断学生能力。",
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "checkQuestion": "要消去左边的 +7，等式两边分别要进行什么运算？",
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:38:08Z",
+        "updatedAt": "2026-11-10T17:38:28Z",
+        "input": {
+          "mode": "analysis",
+          "phase": "practice",
+          "prompt": "请只依据当前课时、原答0和我的解释分析可能错误；不要把推测当能力结论。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": null,
+            "originalAnswer": "0",
+            "originalReason": "首次实际错误：我直接改动一边。"
+          },
+          "history": [],
+          "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-180a665418df4839a6140ee65715c552",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "goal": "理解解方程时要对等式两边进行相同的运算，并求出 x。",
+              "cause": "符号处理错误",
+              "steps": [
+                "提示：想一想，怎样让等式左边的“+7”消失？对左边这样做时，右边也要做什么？",
+                "解释：在等式两边同时减去 7，得到 x+7-7=12-7，因此 x=5。这样两边进行了相同的运算，等式关系得以保留。"
+              ],
+              "evidence": "我直接改动一边。",
+              "strategy": "hint",
+              "workflow": {
+                "scope": "wrong:wrong-40ba0266b9874205bba7b39b3bb8c195",
+                "modelCalls": 1
+              },
+              "confirmed": false,
+              "mathClaims": [],
+              "uncertainty": "原答为“0”，解释只说明曾直接改动等式一边，未指出具体改动方式；错因仅作建议，不能据此判断学生能力。",
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified"
+              },
+              "checkQuestion": "要消去左边的 +7，等式两边分别要进行什么运算？",
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              }
+            },
+            "startedAt": "2026-11-10T17:38:08Z",
+            "endedAt": "2026-11-10T17:38:28Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+      "mode": "guidance",
+      "phase": null,
+      "seconds": 17.531,
+      "job": {
+        "id": "job-46ceb0f6773645fd89ffbef67949dd23",
+        "mode": "guidance",
+        "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+        "fileId": null,
+        "helpRecordId": "help-46ceb0f6773645fd89ffbef67949dd23",
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "请给一步针对当前错误的提示，先不公布原题答案。",
+        "parentJobId": "job-79163471da8b4ffa8e0d888b9388a400",
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "按等式性质，消去左边的 +7 时，想一想两边都减去同一个数会怎样。",
+          "steps": [
+            "只改动等式一边会破坏两边相等。",
+            "要消去左边的 +7，左右两边都要进行相同的运算。"
+          ],
+          "title": "两边进行相同运算",
+          "sources": [],
+          "question": "为了保持等式成立，右边也要做什么相同的运算？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 17091,
+            "modelCalls": 1,
+            "contextChars": 567,
+            "historyTurns": 1
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equality",
+          "representation": "balance",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:38:29Z",
+        "updatedAt": "2026-11-10T17:38:46Z",
+        "input": {
+          "mode": "guidance",
+          "phase": "practice",
+          "prompt": "请给一步针对当前错误的提示，先不公布原题答案。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "符号处理错误",
+            "originalAnswer": "0",
+            "originalReason": "首次实际错误：我直接改动一边。"
+          },
+          "history": [
+            {
+              "hint": "理解解方程时要对等式两边进行相同的运算，并求出 x。",
+              "student": "请只依据当前课时、原答0和我的解释分析可能错误；不要把推测当能力结论。",
+              "question": "要消去左边的 +7，等式两边分别要进行什么运算？",
+              "strategy": "hint",
+              "representation": "question"
+            }
+          ],
+          "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+          "guidance": true,
+          "strategy": "hint",
+          "parentJobId": "job-79163471da8b4ffa8e0d888b9388a400",
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-cfc7ecd1cce048d4914820729d011cd3",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "hint": "按等式性质，消去左边的 +7 时，想一想两边都减去同一个数会怎样。",
+              "steps": [
+                "只改动等式一边会破坏两边相等。",
+                "要消去左边的 +7，左右两边都要进行相同的运算。"
+              ],
+              "title": "两边进行相同运算",
+              "sources": [],
+              "question": "为了保持等式成立，右边也要做什么相同的运算？",
+              "strategy": "hint",
+              "workflow": {
+                "nodes": [
+                  "固定学习上下文",
+                  "读取公开案例与一层前置知识",
+                  "生成本轮指导",
+                  "核验并等待学生回应"
+                ],
+                "elapsedMs": 17091,
+                "modelCalls": 1,
+                "contextChars": 567,
+                "historyTurns": 1
+              },
+              "mathClaims": [],
+              "needCoverage": {
+                "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+                "missing": [],
+                "required": []
+              },
+              "nextStrategy": "try",
+              "verification": {
+                "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+                "claims": [],
+                "status": "unverified"
+              },
+              "prerequisites": [],
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "prerequisiteId": "kp-equality",
+              "representation": "balance",
+              "usedCaseVersionIds": []
+            },
+            "startedAt": "2026-11-10T17:38:29Z",
+            "endedAt": "2026-11-10T17:38:46Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+      "mode": "variant",
+      "phase": "practice",
+      "seconds": 20.078,
+      "job": {
+        "id": "job-2255c0da16b0443da1ce27b70a3f13e8",
+        "mode": "variant",
+        "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是x+7=12，注意非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "先试着对等式两边同时减去9，保持等式两边相等，再求出未知数。注意：这里不需要同除；若用同除规则，除数必须非零。请写出每一步。",
+            "equation": "x+9=16",
+            "rationale": "新题保留原题“未知数加常数等于常数”的结构，数值和解都不同。学生原答为“0”；原错因记录为“首次实际错误：我直接改动一边。”"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-40ba0266b9874205bba7b39b3bb8c195",
+            "modelCalls": 1
+          },
+          "mathClaims": [
+            {
+              "left": "x+7=12",
+              "right": "x=5"
+            },
+            {
+              "left": "x+9=16",
+              "right": "x=7"
+            }
+          ],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x+7=12",
+                "right": "x=5",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              },
+              {
+                "left": "x+9=16",
+                "right": "x=7",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x+9=16"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:38:46Z",
+        "updatedAt": "2026-11-10T17:39:06Z",
+        "input": {
+          "mode": "variant",
+          "phase": "practice",
+          "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是x+7=12，注意非零条件。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "符号处理错误",
+            "originalAnswer": "0",
+            "originalReason": "首次实际错误：我直接改动一边。"
+          },
+          "history": [],
+          "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-3c002058581b414daf4bee437bda4dbd",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "先试着对等式两边同时减去9，保持等式两边相等，再求出未知数。注意：这里不需要同除；若用同除规则，除数必须非零。请写出每一步。",
+                "equation": "x+9=16",
+                "rationale": "新题保留原题“未知数加常数等于常数”的结构，数值和解都不同。学生原答为“0”；原错因记录为“首次实际错误：我直接改动一边。”"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-40ba0266b9874205bba7b39b3bb8c195",
+                "modelCalls": 1
+              },
+              "mathClaims": [
+                {
+                  "left": "x+7=12",
+                  "right": "x=5"
+                },
+                {
+                  "left": "x+9=16",
+                  "right": "x=7"
+                }
+              ],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "x+7=12",
+                    "right": "x=5",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  },
+                  {
+                    "left": "x+9=16",
+                    "right": "x=7",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "x+9=16"
+              }
+            },
+            "startedAt": "2026-11-10T17:38:46Z",
+            "endedAt": "2026-11-10T17:39:06Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+      "phase": "practice",
+      "actualVariant": "x+9=16",
+      "actualAnswer": "7",
+      "attempt": {
+        "id": "repair-503b75a1136a449db119b381fe53ee56",
+        "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+        "answer": "7",
+        "reason": "工程验收：针对实际新题写出共同运算并代回。",
+        "correct": true,
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        },
+        "details": {
+          "version": "dynamic_v1",
+          "planJobId": "job-79163471da8b4ffa8e0d888b9388a400",
+          "variantJobId": "job-2255c0da16b0443da1ce27b70a3f13e8",
+          "variantId": "job-2255c0da16b0443da1ce27b70a3f13e8",
+          "equation": "x+9=16",
+          "expected": "7",
+          "phase": "practice",
+          "helped": false,
+          "requestKey": "06ab057180bd4393a064552e579dff9c",
+          "verification": {
+            "status": "verified_correct",
+            "correct": true,
+            "scope": "实际变式题的单变量单解实数方程与答案等价性"
+          }
+        },
+        "createdAt": "2026-11-11T01:39:06"
+      }
+    },
+    {
+      "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+      "mode": "variant",
+      "phase": "retest",
+      "seconds": 16.547,
+      "job": {
+        "id": "job-8559db4b8a294b6d995dc17c5a0fcc1a",
+        "mode": "variant",
+        "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+        "phase": "retest",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是x+7=12，注意非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：x+4=13。",
+            "equation": "x+4=13",
+            "rationale": "与原题一样，未知数与一个数相加等于另一个数；本题的数值和解均不同。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-40ba0266b9874205bba7b39b3bb8c195",
+            "modelCalls": 1
+          },
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x+4=13"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:39:06Z",
+        "updatedAt": "2026-11-10T17:39:23Z",
+        "input": {
+          "mode": "variant",
+          "phase": "retest",
+          "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是x+7=12，注意非零条件。",
+          "context": {
+            "question": {
+              "prompt": "x+7=12",
+              "equation": "x+7=12"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "符号处理错误",
+            "originalAnswer": "0",
+            "originalReason": "首次实际错误：我直接改动一边。"
+          },
+          "history": [],
+          "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": [
+            "x+9=16"
+          ]
+        },
+        "runs": [
+          {
+            "id": "run-03d1d57e88f14b31a42e18727bba9590",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "解方程：x+4=13。",
+                "equation": "x+4=13",
+                "rationale": "与原题一样，未知数与一个数相加等于另一个数；本题的数值和解均不同。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-40ba0266b9874205bba7b39b3bb8c195",
+                "modelCalls": 1
+              },
+              "mathClaims": [],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "x+4=13"
+              }
+            },
+            "startedAt": "2026-11-10T17:39:06Z",
+            "endedAt": "2026-11-10T17:39:23Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+      "phase": "retest",
+      "actualVariant": "x+4=13",
+      "actualAnswer": "9",
+      "attempt": {
+        "id": "repair-bd0f913858414943a0ba388165034859",
+        "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+        "answer": "9",
+        "reason": "工程验收：针对实际新题写出共同运算并代回。",
+        "correct": true,
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        },
+        "details": {
+          "version": "dynamic_v1",
+          "planJobId": "job-79163471da8b4ffa8e0d888b9388a400",
+          "variantJobId": "job-8559db4b8a294b6d995dc17c5a0fcc1a",
+          "variantId": "job-8559db4b8a294b6d995dc17c5a0fcc1a",
+          "equation": "x+4=13",
+          "expected": "9",
+          "phase": "retest",
+          "helped": false,
+          "requestKey": "88eaf6ab4a2f45fbabe720403c3d689d",
+          "verification": {
+            "status": "verified_correct",
+            "correct": true,
+            "scope": "实际变式题的单变量单解实数方程与答案等价性"
+          }
+        },
+        "createdAt": "2026-11-11T01:39:22"
+      }
+    },
+    {
+      "lesson": "lesson-simple",
+      "wrongId": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+      "originalAnswerRetained": true,
+      "finalStatus": "retest_passed",
+      "sourceTask": "task-b91159708e264cc18553fb2ac341f948"
+    },
+    {
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "mode": "analysis",
+      "phase": null,
+      "seconds": 39.581,
+      "job": {
+        "id": "job-e138b2fcbce44383af711dab63992514",
+        "mode": "analysis",
+        "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "请只依据当前课时、原答0和我的解释分析可能错误；不要把推测当能力结论。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "goal": "练习通过对等式两边做相同运算来解 3x+6=21。",
+          "cause": "运算步骤错误",
+          "steps": [
+            "提示：先想怎样消去左边的 +6，同时保持等式成立。",
+            "解释：等式两边同时减去 6，得到 3x=15。接着等式两边同除以 3；3≠0，因此同除后得到 x=5。",
+            "检验：把 x=5 代入原方程，左边为 3×5+6=21，与右边相等。"
+          ],
+          "evidence": "首次实际错误：我直接改动一边。",
+          "strategy": "hint",
+          "workflow": {
+            "scope": "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+            "modelCalls": 2
+          },
+          "confirmed": false,
+          "mathClaims": [],
+          "uncertainty": "原答为“0”，原解释只说明首次错误是直接改动一边；这些信息不足以确定具体是哪一步或判断稳定的知识掌握情况。",
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "checkQuestion": "为消去 3x 前的系数，下一步应对等式两边做什么？为什么这种变形不会改变方程的解？",
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:39:23Z",
+        "updatedAt": "2026-11-10T17:40:02Z",
+        "input": {
+          "mode": "analysis",
+          "phase": "practice",
+          "prompt": "请只依据当前课时、原答0和我的解释分析可能错误；不要把推测当能力结论。",
+          "context": {
+            "question": {
+              "prompt": "3x+6=21",
+              "equation": "3x+6=21"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-linear-transform",
+                "name": "方程变形与验算"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": null,
+            "originalAnswer": "0",
+            "originalReason": "首次实际错误：我直接改动一边。"
+          },
+          "history": [],
+          "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-b21697776a2e4af88bdc4684cba4a685",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "goal": "练习通过对等式两边做相同运算来解 3x+6=21。",
+              "cause": "运算步骤错误",
+              "steps": [
+                "提示：先想怎样消去左边的 +6，同时保持等式成立。",
+                "解释：等式两边同时减去 6，得到 3x=15。接着等式两边同除以 3；3≠0，因此同除后得到 x=5。",
+                "检验：把 x=5 代入原方程，左边为 3×5+6=21，与右边相等。"
+              ],
+              "evidence": "首次实际错误：我直接改动一边。",
+              "strategy": "hint",
+              "workflow": {
+                "scope": "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+                "modelCalls": 2
+              },
+              "confirmed": false,
+              "mathClaims": [],
+              "uncertainty": "原答为“0”，原解释只说明首次错误是直接改动一边；这些信息不足以确定具体是哪一步或判断稳定的知识掌握情况。",
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified"
+              },
+              "checkQuestion": "为消去 3x 前的系数，下一步应对等式两边做什么？为什么这种变形不会改变方程的解？",
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              }
+            },
+            "startedAt": "2026-11-10T17:39:23Z",
+            "endedAt": "2026-11-10T17:40:02Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "mode": "guidance",
+      "phase": null,
+      "seconds": 15.989,
+      "job": {
+        "id": "job-f0bee0c49295413b8bc098d4c9210b94",
+        "mode": "guidance",
+        "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+        "fileId": null,
+        "helpRecordId": "help-f0bee0c49295413b8bc098d4c9210b94",
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "请给一步针对当前错误的提示，先不公布原题答案。",
+        "parentJobId": "job-e138b2fcbce44383af711dab63992514",
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "先检查你写的“0”：把它代回原方程，看看等式两边是否相等。",
+          "steps": [
+            "把原答案0代入方程左边。",
+            "计算左边，并与右边21比较。"
+          ],
+          "title": "检查原答案",
+          "sources": [],
+          "question": "将原答案0代入后，等式两边分别是多少？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 15368,
+            "modelCalls": 1,
+            "contextChars": 598,
+            "historyTurns": 1
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-linear-transform",
+          "representation": "question",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:40:03Z",
+        "updatedAt": "2026-11-10T17:40:18Z",
+        "input": {
+          "mode": "guidance",
+          "phase": "practice",
+          "prompt": "请给一步针对当前错误的提示，先不公布原题答案。",
+          "context": {
+            "question": {
+              "prompt": "3x+6=21",
+              "equation": "3x+6=21"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-linear-transform",
+                "name": "方程变形与验算"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "运算步骤错误",
+            "originalAnswer": "0",
+            "originalReason": "首次实际错误：我直接改动一边。"
+          },
+          "history": [
+            {
+              "hint": "练习通过对等式两边做相同运算来解 3x+6=21。",
+              "student": "请只依据当前课时、原答0和我的解释分析可能错误；不要把推测当能力结论。",
+              "question": "为消去 3x 前的系数，下一步应对等式两边做什么？为什么这种变形不会改变方程的解？",
+              "strategy": "hint",
+              "representation": "question"
+            }
+          ],
+          "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+          "guidance": true,
+          "strategy": "hint",
+          "parentJobId": "job-e138b2fcbce44383af711dab63992514",
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-e370eaf15d0745de8d8a9f5f8a4455c9",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "hint": "先检查你写的“0”：把它代回原方程，看看等式两边是否相等。",
+              "steps": [
+                "把原答案0代入方程左边。",
+                "计算左边，并与右边21比较。"
+              ],
+              "title": "检查原答案",
+              "sources": [],
+              "question": "将原答案0代入后，等式两边分别是多少？",
+              "strategy": "hint",
+              "workflow": {
+                "nodes": [
+                  "固定学习上下文",
+                  "读取公开案例与一层前置知识",
+                  "生成本轮指导",
+                  "核验并等待学生回应"
+                ],
+                "elapsedMs": 15368,
+                "modelCalls": 1,
+                "contextChars": 598,
+                "historyTurns": 1
+              },
+              "mathClaims": [],
+              "needCoverage": {
+                "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+                "missing": [],
+                "required": []
+              },
+              "nextStrategy": "try",
+              "verification": {
+                "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+                "claims": [],
+                "status": "unverified"
+              },
+              "prerequisites": [],
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "prerequisiteId": "kp-linear-transform",
+              "representation": "question",
+              "usedCaseVersionIds": []
+            },
+            "startedAt": "2026-11-10T17:40:03Z",
+            "endedAt": "2026-11-10T17:40:18Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "mode": "variant",
+      "phase": "practice",
+      "seconds": 22.133,
+      "job": {
+        "id": "job-47c9b41ea6cc4a579cae5527b7d0a452",
+        "mode": "variant",
+        "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是3x+6=21，注意非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：4x+12=28。先对等式两边做相同运算，再求出 x。",
+            "equation": "4x+12=28",
+            "rationale": "与原题一样，先消去加数，再处理未知数前的系数。原答保留为“0”。可操作提示：每一步都对等式两边做相同运算。分步解释原题：从 3x+6=21 开始，两边同时减 6，得到 3x=15；再两边同除以 3，得到 x=5。除以 3 合法，因为 3≠0。证据：“首次实际错误：我直接改动一边。”这提示可能是只改动了等式一边；由于没有原答的计算过程，无法确定具体错步。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+            "modelCalls": 1
+          },
+          "mathClaims": [
+            {
+              "left": "3x+6=21",
+              "right": "3x=15"
+            },
+            {
+              "left": "3x=15",
+              "right": "x=5"
+            },
+            {
+              "left": "4x+12=28",
+              "right": "x=4"
+            }
+          ],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "3x+6=21",
+                "right": "3x=15",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              },
+              {
+                "left": "3x=15",
+                "right": "x=5",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              },
+              {
+                "left": "4x+12=28",
+                "right": "x=4",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "4x+12=28"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:40:19Z",
+        "updatedAt": "2026-11-10T17:40:40Z",
+        "input": {
+          "mode": "variant",
+          "phase": "practice",
+          "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是3x+6=21，注意非零条件。",
+          "context": {
+            "question": {
+              "prompt": "3x+6=21",
+              "equation": "3x+6=21"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-linear-transform",
+                "name": "方程变形与验算"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "运算步骤错误",
+            "originalAnswer": "0",
+            "originalReason": "首次实际错误：我直接改动一边。"
+          },
+          "history": [],
+          "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-9e53935943fd4c2884f955bde85c4507",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "解方程：4x+12=28。先对等式两边做相同运算，再求出 x。",
+                "equation": "4x+12=28",
+                "rationale": "与原题一样，先消去加数，再处理未知数前的系数。原答保留为“0”。可操作提示：每一步都对等式两边做相同运算。分步解释原题：从 3x+6=21 开始，两边同时减 6，得到 3x=15；再两边同除以 3，得到 x=5。除以 3 合法，因为 3≠0。证据：“首次实际错误：我直接改动一边。”这提示可能是只改动了等式一边；由于没有原答的计算过程，无法确定具体错步。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+                "modelCalls": 1
+              },
+              "mathClaims": [
+                {
+                  "left": "3x+6=21",
+                  "right": "3x=15"
+                },
+                {
+                  "left": "3x=15",
+                  "right": "x=5"
+                },
+                {
+                  "left": "4x+12=28",
+                  "right": "x=4"
+                }
+              ],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "3x+6=21",
+                    "right": "3x=15",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  },
+                  {
+                    "left": "3x=15",
+                    "right": "x=5",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  },
+                  {
+                    "left": "4x+12=28",
+                    "right": "x=4",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "4x+12=28"
+              }
+            },
+            "startedAt": "2026-11-10T17:40:19Z",
+            "endedAt": "2026-11-10T17:40:40Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "phase": "practice",
+      "actualVariant": "4x+12=28",
+      "actualAnswer": "4",
+      "attempt": {
+        "id": "repair-4014908eb2e8481383aea73af9c82b9d",
+        "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+        "answer": "4",
+        "reason": "工程验收：针对实际新题写出共同运算并代回。",
+        "correct": true,
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        },
+        "details": {
+          "version": "dynamic_v1",
+          "planJobId": "job-e138b2fcbce44383af711dab63992514",
+          "variantJobId": "job-47c9b41ea6cc4a579cae5527b7d0a452",
+          "variantId": "job-47c9b41ea6cc4a579cae5527b7d0a452",
+          "equation": "4x+12=28",
+          "expected": "4",
+          "phase": "practice",
+          "helped": false,
+          "requestKey": "9f3eca304ad64a4ab3331399ee620573",
+          "verification": {
+            "status": "verified_correct",
+            "correct": true,
+            "scope": "实际变式题的单变量单解实数方程与答案等价性"
+          }
+        },
+        "createdAt": "2026-11-11T01:40:40"
+      }
+    },
+    {
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "mode": "variant",
+      "phase": "retest",
+      "seconds": 15.982,
+      "job": {
+        "id": "job-2d7f4b4ad89b4f9eb847784e7096081d",
+        "mode": "variant",
+        "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+        "phase": "retest",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是3x+6=21，注意非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：4x+7=23。",
+            "equation": "4x+7=23",
+            "rationale": "保留原题先乘后加的运算结构，系数、常数项和等号右侧数值均有变化，解也与原题不同。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+            "modelCalls": 1
+          },
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "4x+7=23"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T17:40:41Z",
+        "updatedAt": "2026-11-10T17:40:57Z",
+        "input": {
+          "mode": "variant",
+          "phase": "retest",
+          "prompt": "生成与本题运算结构一致、数值和解不同的新题；原题是3x+6=21，注意非零条件。",
+          "context": {
+            "question": {
+              "prompt": "3x+6=21",
+              "equation": "3x+6=21"
+            },
+            "knowledge": [
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-linear-transform",
+                "name": "方程变形与验算"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "运算步骤错误",
+            "originalAnswer": "0",
+            "originalReason": "首次实际错误：我直接改动一边。"
+          },
+          "history": [],
+          "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": [
+            "4x+12=28"
+          ]
+        },
+        "runs": [
+          {
+            "id": "run-0febbb19d5c040b9a805538a4efe2954",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "解方程：4x+7=23。",
+                "equation": "4x+7=23",
+                "rationale": "保留原题先乘后加的运算结构，系数、常数项和等号右侧数值均有变化，解也与原题不同。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+                "modelCalls": 1
+              },
+              "mathClaims": [],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "4x+7=23"
+              }
+            },
+            "startedAt": "2026-11-10T17:40:41Z",
+            "endedAt": "2026-11-10T17:40:57Z"
+          }
+        ]
+      }
+    },
+    {
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "phase": "retest",
+      "actualVariant": "4x+7=23",
+      "actualAnswer": "4",
+      "attempt": {
+        "id": "repair-73772e4285644ce89f2f662c80f73ea9",
+        "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+        "answer": "4",
+        "reason": "工程验收：针对实际新题写出共同运算并代回。",
+        "correct": true,
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        },
+        "details": {
+          "version": "dynamic_v1",
+          "planJobId": "job-e138b2fcbce44383af711dab63992514",
+          "variantJobId": "job-2d7f4b4ad89b4f9eb847784e7096081d",
+          "variantId": "job-2d7f4b4ad89b4f9eb847784e7096081d",
+          "equation": "4x+7=23",
+          "expected": "4",
+          "phase": "retest",
+          "helped": false,
+          "requestKey": "68563b8307564a2bb4d8b9b8a7df6868",
+          "verification": {
+            "status": "verified_correct",
+            "correct": true,
+            "scope": "实际变式题的单变量单解实数方程与答案等价性"
+          }
+        },
+        "createdAt": "2026-11-11T01:40:56"
+      }
+    },
+    {
+      "lesson": "lesson-application",
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "originalAnswerRetained": true,
+      "finalStatus": "retest_passed",
+      "sourceTask": "task-3cc47381a911730cd8a97390868d579a"
+    }
+  ],
+  "errors": [
+    {
+      "lesson": "lesson-equation",
+      "error": "错因证据必须逐字来自原作答或解释。"
+    }
+  ],
+  "completedAt": 1794332456.847817
+}

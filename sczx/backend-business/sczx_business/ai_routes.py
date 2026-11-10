@@ -361,6 +361,8 @@ def agent_edit(job_id:str,body:dict,request:Request,db=Depends(get_db)):
     if (job.result or {}).get('accepted'):raise HTTPException(409,'已确认的建议请在备课页继续编辑。')
     try:plan=validate_plan(body,job.input['lesson'],job.result.get('evidence',[]))
     except ValueError as error:raise HTTPException(422,'建议结构或引用无效：'+str(error).split('\n')[0]) from None
+    from .math_conditions import require_conditions
+    require_conditions(plan)
     verification=math_check(plan['mathClaims'])
     if verification['status']=='inconsistent':raise HTTPException(422,'列出的数学表达式不一致，请修订后保存。')
     from .teaching_quality import review_plan
@@ -382,6 +384,8 @@ def agent_confirm(job_id:str,body:dict,request:Request,db=Depends(get_db)):
     if job.status!='succeeded' or not result.get('editable'):raise HTTPException(409,'请先完成并保存建议。')
     try:plan=validate_plan(result['editable'],job.input['lesson'],result.get('evidence',[]))
     except ValueError:raise HTTPException(422,'建议未通过校验。') from None
+    from .math_conditions import require_conditions
+    require_conditions(plan)
     if math_check(plan['mathClaims'])['status']=='inconsistent':raise HTTPException(422,'请先修订数学核对问题。')
     row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id==user.id,LessonDraft.lesson_id==job.input['lessonId']).with_for_update())
     if fingerprint(row)!=confirmation.expectedDraftHash:raise HTTPException(409,'备课草稿已变更，请重新查看当前草稿后再确认；本次建议已保留。')

@@ -1,0 +1,29 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (1990.503212ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1596.50681ms)
+✔ memory return controls preserve original learning task and knowledge route (1781.126912ms)
+✔ late memory response cannot overwrite a different task suggestion (1470.434441ms)
+✔ clearing a pending create prevents the old job from reopening (2012.06391ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1438.621001ms)
+✔ assistant initialization cannot replace a newer user request (1343.647601ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1032.325852ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (2137.551378ms)
+✔ independent wrong detail ignores an old response after switching questions (2232.400454ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (2419.350477ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1513.875664ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (2272.346327ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1608.318777ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1231.557859ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (2330.96248ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1331.045053ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5992.384865

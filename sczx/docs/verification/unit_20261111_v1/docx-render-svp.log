@@ -1,0 +1,25 @@
+javaldx: Could not find a Java Runtime Environment!
+Please ensure that a JVM and the package libreoffice-java-common
+is installed.
+If it is already installed then try removing ~/.config/libreoffice/4/user/config/javasettings_Linux_*.xml
+Warning: failed to read path from javaldx
+
+
+Fatal exception: Signal 11
+Stack:
+/usr/lib/libreoffice/program/libuno_sal.so.3(+0x3e043)[0x7fa990bb8043]
+/usr/lib/libreoffice/program/libuno_sal.so.3(+0x3e1ba)[0x7fa990bb81ba]
+/lib/x86_64-linux-gnu/libc.so.6(+0x43090)[0x7fa9909bf090]
+/usr/lib/libreoffice/program/libuno_cppu.so.3(+0x16e07)[0x7fa98ec2fe07]
+/usr/lib/libreoffice/program/libuno_cppu.so.3(uno_type_any_assign+0x93)[0x7fa98ec2f233]
+/usr/lib/libreoffice/program/libmergedlo.so(+0x284df81)[0x7fa993427f81]
+/usr/lib/libreoffice/program/libmergedlo.so(+0x284e4ba)[0x7fa9934284ba]
+/usr/lib/libreoffice/program/libmergedlo.so(_ZN3utl10ConfigItemC2ERKN3rtl8OUStringE14ConfigItemMode+0x82)[0x7fa9934221c2]
+/usr/lib/libreoffice/program/libmergedlo.so(+0x28885e6)[0x7fa9934625e6]
+/usr/lib/libreoffice/program/libmergedlo.so(_ZN19SvtSysLocaleOptionsC1Ev+0x129)[0x7fa993463a89]
+/usr/lib/libreoffice/program/libmergedlo.so(_Z7InitVCLv+0x1b0)[0x7fa9938437d0]
+/usr/lib/libreoffice/program/libmergedlo.so(_Z10ImplSVMainv+0x115)[0x7fa993844da5]
+/usr/lib/libreoffice/program/libmergedlo.so(soffice_main+0xa3)[0x7fa992988263]
+/usr/lib/libreoffice/program/soffice.bin(+0x10b0)[0x5569013870b0]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf3)[0x7fa9909a0083]
+/usr/lib/libreoffice/program/soffice.bin(+0x10ee)[0x5569013870ee]

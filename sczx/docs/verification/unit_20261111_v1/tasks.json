@@ -1,0 +1,56 @@
+{
+  "t1": [
+    {
+      "sourceId": "lesson-equation",
+      "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+      "lessonId": "lesson-equation"
+    },
+    {
+      "sourceId": "lesson-simple",
+      "taskId": "task-b91159708e264cc18553fb2ac341f948",
+      "lessonId": "lesson-simple"
+    },
+    {
+      "sourceId": "lesson-transform",
+      "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+      "lessonId": "lesson-5657bb45715a4d7bbec25debb63b50c8"
+    },
+    {
+      "sourceId": "lesson-application",
+      "taskId": "task-3cc47381a911730cd8a97390868d579a",
+      "lessonId": "lesson-application"
+    },
+    {
+      "sourceId": "lesson-unit-review",
+      "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+      "lessonId": "lesson-7cc1f55173f74072a33c833dce7fa80c"
+    }
+  ],
+  "t2": [
+    {
+      "sourceId": "lesson-equation",
+      "taskId": "task-b07385611e3a6baaacae033d707f9d22",
+      "lessonId": "lesson-equation"
+    },
+    {
+      "sourceId": "lesson-simple",
+      "taskId": "task-26756704dd387357318b5fddd28d3efe",
+      "lessonId": "lesson-simple"
+    },
+    {
+      "sourceId": "lesson-transform",
+      "taskId": "task-856019d359a2104f23d96cd609c59bf2",
+      "lessonId": "lesson-5657bb45715a4d7bbec25debb63b50c8"
+    },
+    {
+      "sourceId": "lesson-application",
+      "taskId": "task-6cc24bb9e1e0c89bc1313a6cea5e95bd",
+      "lessonId": "lesson-application"
+    },
+    {
+      "sourceId": "lesson-unit-review",
+      "taskId": "task-16c1da2c82e89a343187bb624b1b4c85",
+      "lessonId": "lesson-7cc1f55173f74072a33c833dce7fa80c"
+    }
+  ]
+}

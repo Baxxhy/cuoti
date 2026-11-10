@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/tmp/sczx-step16/install-preview.py", line 21, in <module>
+    result=install(c,bundle,approval,cases);result['cases']=cases
+  File "/root/Baxxhy/zhiwei/sczx/scripts/install_unit_content.py", line 26, in install
+    if draft.get('blocks') or draft.get('questions') or draft.get('goal'):raise RuntimeError('保留已有非空草稿，需人工整合：'+existing['id'])
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: 保留已有非空草稿，需人工整合：lesson-equation

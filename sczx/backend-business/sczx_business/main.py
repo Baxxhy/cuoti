@@ -841,3 +841,13 @@ from .insights import router as insights_router
 from .issues import router as support_router
 app.include_router(insights_router)
 app.include_router(support_router)
+
+from .unit_learning import router as unit_learning_router
+app.include_router(unit_learning_router)
+
+# Optional production frontend: hash routes share the same origin as the API.
+if os.getenv('SCZX_FRONTEND_DIST'):
+    from fastapi.staticfiles import StaticFiles
+    frontend_dist=Path(os.environ['SCZX_FRONTEND_DIST']).resolve()
+    if not (frontend_dist/'index.html').is_file():raise RuntimeError('SCZX_FRONTEND_DIST缺少生产构建index.html')
+    app.mount('/',StaticFiles(directory=frontend_dist,html=True),name='frontend')

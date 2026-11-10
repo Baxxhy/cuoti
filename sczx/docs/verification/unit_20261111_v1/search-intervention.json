@@ -1,0 +1,989 @@
+{
+  "queries": [
+    {
+      "lesson": "equality",
+      "query": "天平 两边 共同运算 非零",
+      "result": {
+        "query": "天平 两边 共同运算 非零",
+        "mode": "search",
+        "method": "field-bm25+knowledge+context",
+        "algorithmVersion": "teaching-context-v1",
+        "variant": "B3",
+        "queryUnderstanding": {
+          "normalizedQuery": "天平 两边 共同运算 非零",
+          "knowledge": [],
+          "scenario": "activity_design",
+          "expansions": []
+        },
+        "warnings": [],
+        "items": [
+          {
+            "grade": "七年级",
+            "title": "项目自编：例题：消去减去的数",
+            "author": "AI辅助整理",
+            "source": "用户单人复核的项目自编单元",
+            "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "subject": "数学",
+            "experience": {
+              "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+              "difficulty": "先看数量关系和当前运算，保留学生的解释",
+              "introduction": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。"
+            },
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+                "sourceUrl": "",
+                "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+                "materialTitle": "项目自编单元来源：等式性质"
+              }
+            ],
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "id": "case-0b52ea745636408c83bb07fb715ae93d",
+            "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:19:30Z",
+            "retrievalText": "{\"goal\": \"理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。\", \"difficulty\": \"先看数量关系和当前运算，保留学生的解释\", \"introduction\": \"x - 3 = 5\\n两边同时加3：x - 3 + 3 = 5 + 3\\n得到x = 8。把8代回，8 - 3 = 5，成立。\"}",
+            "score": 2.596519,
+            "bm25Score": 3.967293,
+            "textScore": 2.596519,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 0.554575,
+                "bm25": 0.383676,
+                "matchedTerms": [
+                  "运算"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "goal",
+                "label": "教学目标",
+                "score": 1.105006,
+                "bm25": 2.232365,
+                "matchedTerms": [
+                  "两边",
+                  "共同",
+                  "非零"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "introduction",
+                "label": "引入方法",
+                "score": 0.48808,
+                "bm25": 0.431196,
+                "matchedTerms": [
+                  "两边"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "content",
+                "label": "正文",
+                "score": 0.328345,
+                "bm25": 0.48886,
+                "matchedTerms": [
+                  "两边"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "references",
+                "label": "原文摘录",
+                "score": 0.120513,
+                "bm25": 0.431196,
+                "matchedTerms": [
+                  "两边"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配教学目标、学生困难、引入方法"
+            ]
+          },
+          {
+            "grade": "七年级",
+            "title": "项目自编：例题：单价与固定费用",
+            "author": "AI辅助整理",
+            "source": "用户单人复核的项目自编单元",
+            "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+            "subject": "数学",
+            "experience": {
+              "goal": "说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。",
+              "difficulty": "先看数量关系和当前运算，保留学生的解释",
+              "introduction": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。"
+            },
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+                "sourceUrl": "",
+                "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+                "materialTitle": "项目自编单元来源：用方程解决生活问题"
+              }
+            ],
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "knowledgeLinks": [
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "id": "case-82d0bccea41e40a29866490c6170b8b8",
+            "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:19:31Z",
+            "retrievalText": "{\"goal\": \"说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。\", \"difficulty\": \"先看数量关系和当前运算，保留学生的解释\", \"introduction\": \"3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。\"}",
+            "score": 1.360463,
+            "bm25Score": 1.477554,
+            "textScore": 1.360463,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 0.554575,
+                "bm25": 0.383676,
+                "matchedTerms": [
+                  "运算"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "introduction",
+                "label": "引入方法",
+                "score": 0.416068,
+                "bm25": 0.345591,
+                "matchedTerms": [
+                  "两边"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "content",
+                "label": "正文",
+                "score": 0.287087,
+                "bm25": 0.402696,
+                "matchedTerms": [
+                  "两边"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "references",
+                "label": "原文摘录",
+                "score": 0.102733,
+                "bm25": 0.345591,
+                "matchedTerms": [
+                  "两边"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配学生困难、引入方法、正文"
+            ]
+          },
+          {
+            "grade": "七年级",
+            "title": "天平与等式性质",
+            "author": "",
+            "legacy": true,
+            "source": "待补充核对的教学示例",
+            "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+            "subject": "数学",
+            "experience": {},
+            "references": [],
+            "id": "case-balance",
+            "versionId": "version-ff719fd797164ca99cdbed8574144861",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:17:54Z",
+            "retrievalText": "{}",
+            "score": 1.057595,
+            "bm25Score": 1.12223,
+            "textScore": 1.057595,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "title",
+                "label": "标题",
+                "score": 1.057595,
+                "bm25": 1.12223,
+                "matchedTerms": [
+                  "天平"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配标题"
+            ]
+          }
+        ],
+        "totalDocuments": 3,
+        "eligibleDocuments": 3,
+        "matchedCount": 3,
+        "rerankApplied": false,
+        "elapsedMs": 2.38
+      }
+    },
+    {
+      "lesson": "simple",
+      "query": "逆运算 简单方程 代回",
+      "result": {
+        "query": "逆运算 简单方程 代回",
+        "mode": "search",
+        "method": "field-bm25+knowledge+context",
+        "algorithmVersion": "teaching-context-v1",
+        "variant": "B3",
+        "queryUnderstanding": {
+          "normalizedQuery": "逆运算 简单方程 代回",
+          "knowledge": [],
+          "scenario": "other",
+          "expansions": []
+        },
+        "warnings": [],
+        "items": [
+          {
+            "grade": "七年级",
+            "title": "项目自编：例题：消去减去的数",
+            "author": "AI辅助整理",
+            "source": "用户单人复核的项目自编单元",
+            "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "subject": "数学",
+            "experience": {
+              "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+              "difficulty": "先看数量关系和当前运算，保留学生的解释",
+              "introduction": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。"
+            },
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+                "sourceUrl": "",
+                "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+                "materialTitle": "项目自编单元来源：等式性质"
+              }
+            ],
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "id": "case-0b52ea745636408c83bb07fb715ae93d",
+            "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:19:30Z",
+            "retrievalText": "{\"goal\": \"理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。\", \"difficulty\": \"先看数量关系和当前运算，保留学生的解释\", \"introduction\": \"x - 3 = 5\\n两边同时加3：x - 3 + 3 = 5 + 3\\n得到x = 8。把8代回，8 - 3 = 5，成立。\"}",
+            "score": 1.817394,
+            "bm25Score": 3.203541,
+            "textScore": 1.817394,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 0.554575,
+                "bm25": 0.383676,
+                "matchedTerms": [
+                  "运算"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "introduction",
+                "label": "引入方法",
+                "score": 0.568369,
+                "bm25": 0.899843,
+                "matchedTerms": [
+                  "代回"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "content",
+                "label": "正文",
+                "score": 0.504994,
+                "bm25": 1.020179,
+                "matchedTerms": [
+                  "代回"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "references",
+                "label": "原文摘录",
+                "score": 0.189456,
+                "bm25": 0.899843,
+                "matchedTerms": [
+                  "代回"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配引入方法、学生困难、正文"
+            ]
+          },
+          {
+            "grade": "七年级",
+            "title": "项目自编：例题：单价与固定费用",
+            "author": "AI辅助整理",
+            "source": "用户单人复核的项目自编单元",
+            "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+            "subject": "数学",
+            "experience": {
+              "goal": "说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。",
+              "difficulty": "先看数量关系和当前运算，保留学生的解释",
+              "introduction": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。"
+            },
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+                "sourceUrl": "",
+                "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+                "materialTitle": "项目自编单元来源：用方程解决生活问题"
+              }
+            ],
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "knowledgeLinks": [
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "id": "case-82d0bccea41e40a29866490c6170b8b8",
+            "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:19:31Z",
+            "retrievalText": "{\"goal\": \"说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。\", \"difficulty\": \"先看数量关系和当前运算，保留学生的解释\", \"introduction\": \"3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。\"}",
+            "score": 1.297372,
+            "bm25Score": 1.250212,
+            "textScore": 1.297372,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 0.554575,
+                "bm25": 0.383676,
+                "matchedTerms": [
+                  "运算"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "goal",
+                "label": "教学目标",
+                "score": 0.742797,
+                "bm25": 0.866536,
+                "matchedTerms": [
+                  "方程"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配教学目标、学生困难"
+            ]
+          }
+        ],
+        "totalDocuments": 3,
+        "eligibleDocuments": 3,
+        "matchedCount": 2,
+        "rerankApplied": false,
+        "elapsedMs": 2.161
+      }
+    },
+    {
+      "lesson": "transform",
+      "query": "括号 分母 公倍数",
+      "result": {
+        "query": "括号 分母 公倍数",
+        "mode": "search",
+        "method": "field-bm25+knowledge+context",
+        "algorithmVersion": "teaching-context-v1",
+        "variant": "B3",
+        "queryUnderstanding": {
+          "normalizedQuery": "括号 分母 公倍数",
+          "knowledge": [],
+          "scenario": "other",
+          "expansions": []
+        },
+        "warnings": [],
+        "items": [],
+        "totalDocuments": 3,
+        "eligibleDocuments": 3,
+        "matchedCount": 0,
+        "rerankApplied": false,
+        "elapsedMs": 1.727
+      }
+    },
+    {
+      "lesson": "application",
+      "query": "商品 运费 单位 数量关系",
+      "result": {
+        "query": "商品 运费 单位 数量关系",
+        "mode": "search",
+        "method": "field-bm25+knowledge+context",
+        "algorithmVersion": "teaching-context-v1",
+        "variant": "B3",
+        "queryUnderstanding": {
+          "normalizedQuery": "商品 运费 单位 数量关系",
+          "knowledge": [],
+          "scenario": "other",
+          "expansions": []
+        },
+        "warnings": [],
+        "items": [
+          {
+            "grade": "七年级",
+            "title": "项目自编：例题：单价与固定费用",
+            "author": "AI辅助整理",
+            "source": "用户单人复核的项目自编单元",
+            "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+            "subject": "数学",
+            "experience": {
+              "goal": "说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。",
+              "difficulty": "先看数量关系和当前运算，保留学生的解释",
+              "introduction": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。"
+            },
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+                "sourceUrl": "",
+                "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+                "materialTitle": "项目自编单元来源：用方程解决生活问题"
+              }
+            ],
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "knowledgeLinks": [
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "id": "case-82d0bccea41e40a29866490c6170b8b8",
+            "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:19:31Z",
+            "retrievalText": "{\"goal\": \"说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。\", \"difficulty\": \"先看数量关系和当前运算，保留学生的解释\", \"introduction\": \"3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。\"}",
+            "score": 2.311962,
+            "bm25Score": 4.617174,
+            "textScore": 2.311962,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 1.070213,
+                "bm25": 1.151029,
+                "matchedTerms": [
+                  "关系",
+                  "数量",
+                  "量关"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "goal",
+                "label": "教学目标",
+                "score": 1.241749,
+                "bm25": 3.466145,
+                "matchedTerms": [
+                  "关系",
+                  "单位",
+                  "数量",
+                  "量关"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配教学目标、学生困难"
+            ]
+          },
+          {
+            "grade": "七年级",
+            "title": "项目自编：例题：消去减去的数",
+            "author": "AI辅助整理",
+            "source": "用户单人复核的项目自编单元",
+            "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "subject": "数学",
+            "experience": {
+              "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+              "difficulty": "先看数量关系和当前运算，保留学生的解释",
+              "introduction": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。"
+            },
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+                "sourceUrl": "",
+                "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+                "materialTitle": "项目自编单元来源：等式性质"
+              }
+            ],
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "id": "case-0b52ea745636408c83bb07fb715ae93d",
+            "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:19:30Z",
+            "retrievalText": "{\"goal\": \"理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。\", \"difficulty\": \"先看数量关系和当前运算，保留学生的解释\", \"introduction\": \"x - 3 = 5\\n两边同时加3：x - 3 + 3 = 5 + 3\\n得到x = 8。把8代回，8 - 3 = 5，成立。\"}",
+            "score": 1.070213,
+            "bm25Score": 1.151029,
+            "textScore": 1.070213,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 1.070213,
+                "bm25": 1.151029,
+                "matchedTerms": [
+                  "关系",
+                  "数量",
+                  "量关"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配学生困难"
+            ]
+          }
+        ],
+        "totalDocuments": 3,
+        "eligibleDocuments": 3,
+        "matchedCount": 2,
+        "rerankApplied": false,
+        "elapsedMs": 1.977
+      }
+    },
+    {
+      "lesson": "review",
+      "query": "单元 复习 共同运算",
+      "result": {
+        "query": "单元 复习 共同运算",
+        "mode": "search",
+        "method": "field-bm25+knowledge+context",
+        "algorithmVersion": "teaching-context-v1",
+        "variant": "B3",
+        "queryUnderstanding": {
+          "normalizedQuery": "单元 复习 共同运算",
+          "knowledge": [],
+          "scenario": "other",
+          "expansions": []
+        },
+        "warnings": [],
+        "items": [
+          {
+            "grade": "七年级",
+            "title": "项目自编：例题：消去减去的数",
+            "author": "AI辅助整理",
+            "source": "用户单人复核的项目自编单元",
+            "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "subject": "数学",
+            "experience": {
+              "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+              "difficulty": "先看数量关系和当前运算，保留学生的解释",
+              "introduction": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。"
+            },
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+                "sourceUrl": "",
+                "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+                "materialTitle": "项目自编单元来源：等式性质"
+              }
+            ],
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "id": "case-0b52ea745636408c83bb07fb715ae93d",
+            "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:19:30Z",
+            "retrievalText": "{\"goal\": \"理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。\", \"difficulty\": \"先看数量关系和当前运算，保留学生的解释\", \"introduction\": \"x - 3 = 5\\n两边同时加3：x - 3 + 3 = 5 + 3\\n得到x = 8。把8代回，8 - 3 = 5，成立。\"}",
+            "score": 1.237208,
+            "bm25Score": 1.127798,
+            "textScore": 1.237208,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 0.554575,
+                "bm25": 0.383676,
+                "matchedTerms": [
+                  "运算"
+                ],
+                "contextMatched": false
+              },
+              {
+                "field": "goal",
+                "label": "教学目标",
+                "score": 0.682633,
+                "bm25": 0.744122,
+                "matchedTerms": [
+                  "共同"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配教学目标、学生困难"
+            ]
+          },
+          {
+            "grade": "七年级",
+            "title": "项目自编：例题：单价与固定费用",
+            "author": "AI辅助整理",
+            "source": "用户单人复核的项目自编单元",
+            "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+            "subject": "数学",
+            "experience": {
+              "goal": "说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。",
+              "difficulty": "先看数量关系和当前运算，保留学生的解释",
+              "introduction": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。"
+            },
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+                "sourceUrl": "",
+                "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+                "materialTitle": "项目自编单元来源：用方程解决生活问题"
+              }
+            ],
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "knowledgeLinks": [
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "id": "case-82d0bccea41e40a29866490c6170b8b8",
+            "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+            "version": 1,
+            "publishedAt": "2026-11-10T17:19:31Z",
+            "retrievalText": "{\"goal\": \"说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。\", \"difficulty\": \"先看数量关系和当前运算，保留学生的解释\", \"introduction\": \"3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。\"}",
+            "score": 0.554575,
+            "bm25Score": 0.383676,
+            "textScore": 0.554575,
+            "knowledgeScore": 0.0,
+            "contextScore": 0.0,
+            "matchedFields": [
+              {
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 0.554575,
+                "bm25": 0.383676,
+                "matchedTerms": [
+                  "运算"
+                ],
+                "contextMatched": false
+              }
+            ],
+            "knowledgeMatches": [],
+            "matchReasons": [
+              "匹配学生困难"
+            ]
+          }
+        ],
+        "totalDocuments": 3,
+        "eligibleDocuments": 3,
+        "matchedCount": 2,
+        "rerankApplied": false,
+        "elapsedMs": 1.672
+      }
+    }
+  ],
+  "passed": true,
+  "job": {
+    "id": "job-344784c3bfc64fda90963075ad923b8f",
+    "mode": "variant",
+    "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+    "phase": "retest",
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+    "fileId": null,
+    "helpRecordId": null,
+    "question": null,
+    "blockId": null,
+    "strategy": "hint",
+    "prompt": "在教师订正安排后生成另一道可核验的新方程，保持原题乘加结构；数值与解均区别以往。",
+    "parentJobId": null,
+    "recognizedText": null,
+    "status": "succeeded",
+    "step": "已完成",
+    "error": "",
+    "result": {
+      "variant": {
+        "prompt": "解方程：6x+9=45。",
+        "equation": "6x+9=45",
+        "rationale": "保留原题的乘加结构，供订正后检验是否能正确处理方程两边的运算；新方程的数值和解均不同于原题及已用题目。"
+      },
+      "workflow": {
+        "scope": "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+        "modelCalls": 1
+      },
+      "mathClaims": [],
+      "verification": {
+        "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+        "claims": [],
+        "status": "unverified"
+      },
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "variantVerification": {
+        "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+        "status": "verified",
+        "equation": "6x+9=45"
+      }
+    },
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-10T17:50:11Z",
+    "updatedAt": "2026-11-10T17:50:33Z",
+    "input": {
+      "mode": "variant",
+      "phase": "retest",
+      "prompt": "在教师订正安排后生成另一道可核验的新方程，保持原题乘加结构；数值与解均区别以往。",
+      "context": {
+        "question": {
+          "prompt": "3x+6=21",
+          "equation": "3x+6=21"
+        },
+        "knowledge": [
+          {
+            "id": "kp-linear-model",
+            "name": "实际问题中的设元与列式"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "kp-linear-transform",
+            "name": "方程变形与验算"
+          }
+        ],
+        "teachingCases": [],
+        "confirmedCause": "运算步骤错误",
+        "originalAnswer": "0",
+        "originalReason": "首次实际错误：我直接改动一边。"
+      },
+      "history": [],
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "guidance": false,
+      "strategy": "hint",
+      "parentJobId": null,
+      "remediation": true,
+      "previousEquations": [
+        "4x+12=28",
+        "4x+7=23"
+      ]
+    },
+    "runs": [
+      {
+        "id": "run-542cc4bb1dfd4edbb7803b60ec62287b",
+        "number": 1,
+        "status": "succeeded",
+        "model": "gpt-6-luna",
+        "provider": "Codex CLI · low",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：6x+9=45。",
+            "equation": "6x+9=45",
+            "rationale": "保留原题的乘加结构，供订正后检验是否能正确处理方程两边的运算；新方程的数值和解均不同于原题及已用题目。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+            "modelCalls": 1
+          },
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "6x+9=45"
+          }
+        },
+        "startedAt": "2026-11-10T17:50:17Z",
+        "endedAt": "2026-11-10T17:50:33Z"
+      }
+    ]
+  },
+  "seconds": 22.558,
+  "actualEquation": "6x+9=45",
+  "actualAnswer": "6",
+  "supplement": {
+    "id": "sup-1cc31849bff0a26893a8db1aa20cecac",
+    "taskId": "task-3cc47381a911730cd8a97390868d579a",
+    "className": "单元预发布验收1班",
+    "teacherName": "单元验收·t1",
+    "content": "回看原答0与新的变式；说明设元、3件单价加6元运费的数量关系及单位，再检查代回结果。",
+    "kind": "correction",
+    "status": "active",
+    "dueDate": "",
+    "dueAt": null,
+    "createdAt": "2026-11-10T17:46:40Z",
+    "recipients": [
+      {
+        "studentId": "unit-s0",
+        "studentName": "单元验收·s0",
+        "startedAt": "2026-11-10T17:46:40Z",
+        "completedAt": "2026-11-10T17:46:40Z",
+        "response": "设每件x元，三件商品费用3x元，加6元运费共21元，列3x+6=21；解为5元，代回满足数量关系。",
+        "feedback": "已核对本题数量关系与单位。原答0和补救过程保留；后续独立题继续说明设元、列式与验算。",
+        "status": "已提交",
+        "outcome": {
+          "newAttempts": 1,
+          "newQuestions": 1,
+          "independentPassed": true,
+          "needsHelp": false,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:50:33",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "repair:repair-d86a7e63a4cd4543a0c5a3e1d6c2332e",
+              "sourceType": "repair",
+              "sourceId": "repair-d86a7e63a4cd4543a0c5a3e1d6c2332e",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-model"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-model"
+              ],
+              "occurredAt": "2026-11-10T17:50:33Z",
+              "taskId": "task-3cc47381a911730cd8a97390868d579a",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+              "readOnly": false,
+              "target": "/repair?wrong=wrong-bc2302d3b579487db4073cc2e8e174ce",
+              "equation": "6x+9=45",
+              "answer": "6",
+              "reason": "根据教师安排完成新的乘加方程，代回核对。",
+              "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "retest_passed",
+              "phase": "retest",
+              "questionKey": "job-344784c3bfc64fda90963075ad923b8f",
+              "knowledgeId": "kp-linear-model",
+              "evidenceId": "repair:repair-d86a7e63a4cd4543a0c5a3e1d6c2332e:kp-linear-model",
+              "label": "独立复测通过"
+            }
+          ],
+          "target": {
+            "kind": "repair",
+            "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce"
+          },
+          "label": "新增独立正确证据"
+        }
+      }
+    ],
+    "knowledgeId": "kp-linear-model",
+    "case": null
+  }
+}

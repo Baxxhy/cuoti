@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/tmp/sczx-step16/feedback-flow.py", line 15, in <module>
+    assert call(student,'GET','/records/'+record['id'])['feedback']==feedback
+           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/Baxxhy/zhiwei/sczx/scripts/install_unit_content.py", line 11, in call
+    if not r.is_success:raise RuntimeError(path+': '+r.text)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: /records/record-fef262a014fd4ef1abc282b7df7ef782: {"detail":"Not Found"}

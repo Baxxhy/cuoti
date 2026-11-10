@@ -1,0 +1,1361 @@
+{
+  "startedAt": "2026-11-10T17:34:15.419Z",
+  "checks": [
+    {
+      "name": "unit-catalog-five-assigned-lessons"
+    },
+    {
+      "name": "first-lesson-already-submitted-original-record-retained"
+    },
+    {
+      "name": "lesson-simple:drafts-survive-refresh"
+    },
+    {
+      "name": "simple-actual-help-recorded"
+    },
+    {
+      "name": "lesson-simple:read-practice-check-submit"
+    },
+    {
+      "name": "lesson-transform:drafts-survive-refresh"
+    },
+    {
+      "name": "lesson-transform:read-practice-check-submit"
+    },
+    {
+      "name": "lesson-application:drafts-survive-refresh"
+    },
+    {
+      "name": "lesson-application:read-practice-check-submit"
+    },
+    {
+      "name": "lesson-unit-review:drafts-survive-refresh"
+    },
+    {
+      "name": "lesson-unit-review:read-practice-check-submit"
+    },
+    {
+      "name": "all-five-submissions-restored"
+    },
+    {
+      "name": "unit-review-produces-cross-lesson-evidence",
+      "knowledge": [
+        {
+          "id": "kp-equal",
+          "state": {
+            "status": "none",
+            "statusLabel": "暂无证据",
+            "reason": "暂无作答记录。",
+            "evidenceCount": 0,
+            "verifiedCount": 0,
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "helpedCorrect": 0,
+            "unverifiedCount": 0,
+            "legacyCount": 0,
+            "lastPracticedAt": null,
+            "lastIndependentAt": null,
+            "basisIds": [],
+            "recentVerifiedCount": 0,
+            "dayCount": 0,
+            "reviewRequested": false
+          },
+          "eventIds": []
+        },
+        {
+          "id": "kp-equality",
+          "state": {
+            "status": "strengthen",
+            "statusLabel": "需要补强",
+            "reason": "最近两次独立作答未通过，建议先订正再检查。",
+            "evidenceCount": 10,
+            "verifiedCount": 5,
+            "independentCorrect": 0,
+            "independentIncorrect": 5,
+            "helpedCorrect": 0,
+            "unverifiedCount": 0,
+            "legacyCount": 0,
+            "lastPracticedAt": "2026-11-10T17:34:31Z",
+            "lastIndependentAt": "2026-11-10T17:34:31Z",
+            "basisIds": [
+              "attempt:attempt-27e00ab9c0914a7aa77308d836769e4d:kp-equality",
+              "attempt:attempt-d5775bc95e5b4b5887474de6a91709a3:kp-equality",
+              "attempt:attempt-3d7204d363af4815bfd2bf525376180e:kp-equality",
+              "attempt:attempt-986fbb08fb5b47fe854cebef2dd85003:kp-equality",
+              "attempt:attempt-4a0cf9d628e24a59b77ed91c2bc57ab5:kp-equality"
+            ],
+            "recentVerifiedCount": 5,
+            "dayCount": 1,
+            "reviewRequested": false
+          },
+          "eventIds": [
+            "attempt:attempt-27e00ab9c0914a7aa77308d836769e4d",
+            "attempt:attempt-d5775bc95e5b4b5887474de6a91709a3",
+            "wrong:wrong-55bb244e3aef4d21b46a7673e330e236",
+            "wrong:wrong-6fe8c9bf64d04491a90a9ac07450cde0",
+            "attempt:attempt-3d7204d363af4815bfd2bf525376180e",
+            "wrong:wrong-d221373555f14b42856a9b2ab2b993a7",
+            "attempt:attempt-986fbb08fb5b47fe854cebef2dd85003",
+            "wrong:wrong-80a0091aaa134394a84381f4f7d05555",
+            "attempt:attempt-4a0cf9d628e24a59b77ed91c2bc57ab5",
+            "wrong:wrong-6bf4934b312245e293e98d1baa4f385d"
+          ]
+        },
+        {
+          "id": "kp-expression",
+          "state": {
+            "status": "none",
+            "statusLabel": "暂无证据",
+            "reason": "暂无作答记录。",
+            "evidenceCount": 0,
+            "verifiedCount": 0,
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "helpedCorrect": 0,
+            "unverifiedCount": 0,
+            "legacyCount": 0,
+            "lastPracticedAt": null,
+            "lastIndependentAt": null,
+            "basisIds": [],
+            "recentVerifiedCount": 0,
+            "dayCount": 0,
+            "reviewRequested": false
+          },
+          "eventIds": []
+        },
+        {
+          "id": "kp-linear-model",
+          "state": {
+            "status": "insufficient",
+            "statusLabel": "证据不足",
+            "reason": "目前还缺少足够的独立练习证据。",
+            "evidenceCount": 5,
+            "verifiedCount": 1,
+            "independentCorrect": 0,
+            "independentIncorrect": 1,
+            "helpedCorrect": 0,
+            "unverifiedCount": 3,
+            "legacyCount": 0,
+            "lastPracticedAt": "2026-11-10T17:34:29Z",
+            "lastIndependentAt": "2026-11-10T17:34:26Z",
+            "basisIds": [
+              "attempt:attempt-dfcef781ae7042e6bc2360e4d54e3ca0:kp-linear-model"
+            ],
+            "recentVerifiedCount": 1,
+            "dayCount": 1,
+            "reviewRequested": false
+          },
+          "eventIds": [
+            "attempt:attempt-dfcef781ae7042e6bc2360e4d54e3ca0",
+            "wrong:wrong-bc2302d3b579487db4073cc2e8e174ce",
+            "attempt:attempt-7cadbef4d139411d9311cbf25bc994f2",
+            "attempt:attempt-5cb117359743431888988ff54a212987",
+            "attempt:attempt-9f407bb2c8d94ae69a2ab5843d190c29"
+          ]
+        },
+        {
+          "id": "kp-linear-review",
+          "state": {
+            "status": "none",
+            "statusLabel": "暂无证据",
+            "reason": "暂无作答记录。",
+            "evidenceCount": 0,
+            "verifiedCount": 0,
+            "independentCorrect": 0,
+            "independentIncorrect": 0,
+            "helpedCorrect": 0,
+            "unverifiedCount": 0,
+            "legacyCount": 0,
+            "lastPracticedAt": null,
+            "lastIndependentAt": null,
+            "basisIds": [],
+            "recentVerifiedCount": 0,
+            "dayCount": 0,
+            "reviewRequested": false
+          },
+          "eventIds": []
+        },
+        {
+          "id": "kp-linear-simple",
+          "state": {
+            "status": "independent",
+            "statusLabel": "已有独立正确证据",
+            "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+            "evidenceCount": 12,
+            "verifiedCount": 8,
+            "independentCorrect": 4,
+            "independentIncorrect": 2,
+            "helpedCorrect": 2,
+            "unverifiedCount": 0,
+            "legacyCount": 0,
+            "lastPracticedAt": "2026-11-10T17:34:32Z",
+            "lastIndependentAt": "2026-11-10T17:34:32Z",
+            "basisIds": [
+              "attempt:attempt-75583dd59943474db4d5d8b8dcc79be5:kp-linear-simple",
+              "attempt:attempt-0d56c4b45f7e4ee687be371650dcab89:kp-linear-simple",
+              "attempt:attempt-39c5f286970441458bee644b8aeaeaf2:kp-linear-simple",
+              "attempt:attempt-9189eb337c1141ce8f212c7bb22ecee3:kp-linear-simple",
+              "attempt:attempt-ee6b86daa545427daceb034f14b23c92:kp-linear-simple",
+              "attempt:attempt-4e1ae1cdc54c4d1fa0168a76a2a1ca08:kp-linear-simple"
+            ],
+            "recentVerifiedCount": 8,
+            "dayCount": 1,
+            "reviewRequested": false
+          },
+          "eventIds": [
+            "attempt:attempt-c451e4dd76004012b905d27ddff4f7ce",
+            "attempt:attempt-f2e1579c2e2043ffbf112e12f07e5939",
+            "wrong:wrong-0ba3c92fbfb141bb8b4f9cbce3f2de59",
+            "attempt:attempt-75583dd59943474db4d5d8b8dcc79be5",
+            "help:help-bf97b8a69fff4daf9c0e88a3f697c30c",
+            "attempt:attempt-0d56c4b45f7e4ee687be371650dcab89",
+            "attempt:attempt-39c5f286970441458bee644b8aeaeaf2",
+            "wrong:wrong-40ba0266b9874205bba7b39b3bb8c195",
+            "help:help-2101d25966c24d15b49cf9757b40639c",
+            "attempt:attempt-9189eb337c1141ce8f212c7bb22ecee3",
+            "attempt:attempt-ee6b86daa545427daceb034f14b23c92",
+            "attempt:attempt-4e1ae1cdc54c4d1fa0168a76a2a1ca08"
+          ]
+        },
+        {
+          "id": "kp-linear-transform",
+          "state": {
+            "status": "independent",
+            "statusLabel": "已有独立正确证据",
+            "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+            "evidenceCount": 9,
+            "verifiedCount": 7,
+            "independentCorrect": 5,
+            "independentIncorrect": 2,
+            "helpedCorrect": 0,
+            "unverifiedCount": 0,
+            "legacyCount": 0,
+            "lastPracticedAt": "2026-11-10T17:34:34Z",
+            "lastIndependentAt": "2026-11-10T17:34:34Z",
+            "basisIds": [
+              "attempt:attempt-5dbac895590647e687ea8f40826801b2:kp-linear-transform",
+              "attempt:attempt-3ebc28ae555d4b0a81e97a056e31ed13:kp-linear-transform",
+              "attempt:attempt-3603b31f232243d0bd8ce9e633008319:kp-linear-transform",
+              "attempt:attempt-4a0cf9d628e24a59b77ed91c2bc57ab5:kp-linear-transform",
+              "attempt:attempt-4987a5c4059748299148d71b14d789c3:kp-linear-transform",
+              "attempt:attempt-dceb2fbfea4f498fa0ac566c75381ef4:kp-linear-transform"
+            ],
+            "recentVerifiedCount": 7,
+            "dayCount": 1,
+            "reviewRequested": false
+          },
+          "eventIds": [
+            "attempt:attempt-54bf3e4e1c4e4df3ba154391242ab990",
+            "attempt:attempt-5dbac895590647e687ea8f40826801b2",
+            "wrong:wrong-4d35a8a0159d42ee917b9937fa0685a5",
+            "attempt:attempt-3ebc28ae555d4b0a81e97a056e31ed13",
+            "attempt:attempt-3603b31f232243d0bd8ce9e633008319",
+            "attempt:attempt-4a0cf9d628e24a59b77ed91c2bc57ab5",
+            "wrong:wrong-6bf4934b312245e293e98d1baa4f385d",
+            "attempt:attempt-4987a5c4059748299148d71b14d789c3",
+            "attempt:attempt-dceb2fbfea4f498fa0ac566c75381ef4"
+          ]
+        }
+      ]
+    }
+  ],
+  "screens": [
+    {
+      "page": "catalog",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "catalog",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "catalog",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "records": {
+    "lesson-equation": {
+      "metrics": {
+        "attempts": 4,
+        "answeredQuestions": 4,
+        "independentQuestions": 2,
+        "independentCorrectQuestions": 0,
+        "independentCorrectStudents": 0,
+        "unverifiedQuestions": 0,
+        "helpedQuestions": 0
+      },
+      "memberActive": true,
+      "id": "record-f2b474d8258d4db99e43a13df84637c3",
+      "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+      "studentId": "unit-s0",
+      "studentName": "单元验收·s0",
+      "observation": "两边同时增加1，左右仍相等；只改一边会失衡。",
+      "drafts": {
+        "blocks": {
+          "eq-intro": {
+            "completed": true
+          },
+          "eq-add-sub": {
+            "completed": true
+          },
+          "eq-balance": {
+            "weight": 1,
+            "completed": true,
+            "explanation": "两边同时增加1，左右仍相等；只改一边会失衡。",
+            "visualization": {
+              "state": {
+                "left": 6,
+                "right": 6
+              },
+              "actions": [
+                "both_add"
+              ]
+            }
+          },
+          "eq-mul-div": {
+            "completed": true
+          },
+          "eq-example-add": {
+            "completed": true
+          },
+          "eq-example-div": {
+            "completed": true
+          }
+        },
+        "questions": {
+          "eq-check-divide": {
+            "hint": "",
+            "answer": "0",
+            "helped": false,
+            "reason": "先保留我的错误，后面再订正。"
+          },
+          "eq-practice-add": {
+            "hint": "",
+            "answer": "0",
+            "helped": false,
+            "reason": "首次实际错误：我直接改动一边。"
+          },
+          "eq-practice-sub": {
+            "hint": "",
+            "answer": "0",
+            "helped": false,
+            "reason": "两边共同运算，代回原式核对。"
+          },
+          "eq-check-multiply": {
+            "hint": "",
+            "answer": "0",
+            "helped": false,
+            "reason": "先保留我的错误，后面再订正。"
+          }
+        },
+        "lessonPosition": {
+          "blockId": "eq-practice",
+          "question": null
+        }
+      },
+      "attempts": [
+        {
+          "id": "attempt-27e00ab9c0914a7aa77308d836769e4d",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "question": 1,
+          "questionId": "eq-practice-sub",
+          "answer": "0",
+          "reason": "两边共同运算，代回原式核对。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:31:40"
+        },
+        {
+          "id": "attempt-d5775bc95e5b4b5887474de6a91709a3",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "question": 0,
+          "questionId": "eq-practice-add",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:31:40"
+        },
+        {
+          "id": "attempt-3d7204d363af4815bfd2bf525376180e",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "question": 2,
+          "questionId": "eq-check-divide",
+          "answer": "0",
+          "reason": "先保留我的错误，后面再订正。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:31:42"
+        },
+        {
+          "id": "attempt-986fbb08fb5b47fe854cebef2dd85003",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "question": 3,
+          "questionId": "eq-check-multiply",
+          "answer": "0",
+          "reason": "先保留我的错误，后面再订正。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:31:43"
+        }
+      ],
+      "helps": [],
+      "repairs": [],
+      "wrongQuestions": [
+        {
+          "id": "wrong-55bb244e3aef4d21b46a7673e330e236",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+          "attemptId": "attempt-27e00ab9c0914a7aa77308d836769e4d",
+          "source": "course",
+          "prompt": "y + 4 = 11",
+          "answer": "0",
+          "reason": "两边共同运算，代回原式核对。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "y + 4 = 11",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "两边同时减4，y等于多少？"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "等式性质",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:31:40"
+        },
+        {
+          "id": "wrong-6fe8c9bf64d04491a90a9ac07450cde0",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+          "attemptId": "attempt-d5775bc95e5b4b5887474de6a91709a3",
+          "source": "course",
+          "prompt": "x - 3 = 5",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "x - 3 = 5",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "两边同时加3，x等于多少？"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "等式性质",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:31:40"
+        },
+        {
+          "id": "wrong-d221373555f14b42856a9b2ab2b993a7",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+          "attemptId": "attempt-3d7204d363af4815bfd2bf525376180e",
+          "source": "course",
+          "prompt": "3z = 18",
+          "answer": "0",
+          "reason": "先保留我的错误，后面再订正。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "3z = 18",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "求z，并解释两边为什么可以同时除以3。"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "等式性质",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:31:42"
+        },
+        {
+          "id": "wrong-80a0091aaa134394a84381f4f7d05555",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+          "attemptId": "attempt-986fbb08fb5b47fe854cebef2dd85003",
+          "source": "course",
+          "prompt": "w / 4 = 3",
+          "answer": "0",
+          "reason": "先保留我的错误，后面再订正。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "w / 4 = 3",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "求w，并写出两边共同进行的运算。"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "等式性质",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:31:43"
+        }
+      ],
+      "completed": true,
+      "submittedAt": "2026-11-10T17:31:43",
+      "feedback": "",
+      "feedbackAt": null,
+      "updatedAt": "2026-11-11T01:31:43"
+    },
+    "lesson-simple": {
+      "metrics": {
+        "attempts": 7,
+        "answeredQuestions": 4,
+        "independentQuestions": 1,
+        "independentCorrectQuestions": 1,
+        "independentCorrectStudents": 1,
+        "unverifiedQuestions": 0,
+        "helpedQuestions": 1
+      },
+      "memberActive": true,
+      "id": "record-9c28deca155c49a3ab4f54efed9cd07c",
+      "taskId": "task-b91159708e264cc18553fb2ac341f948",
+      "studentId": "unit-s0",
+      "studentName": "单元验收·s0",
+      "observation": "",
+      "drafts": {
+        "blocks": {
+          "simple-example-0": {
+            "completed": true
+          },
+          "simple-example-1": {
+            "completed": true
+          },
+          "simple-explain-0": {
+            "completed": true
+          },
+          "simple-explain-1": {
+            "completed": true
+          },
+          "simple-explain-2": {
+            "completed": true
+          }
+        },
+        "questions": {
+          "simple-c1": {
+            "hint": "两边同时乘-3。",
+            "answer": "-12",
+            "helped": true,
+            "reason": "写出共同运算并代回；应用题同时说明设元和单位。"
+          },
+          "simple-c2": {
+            "hint": "",
+            "answer": "-4",
+            "helped": false,
+            "reason": "写出共同运算并代回；应用题同时说明设元和单位。"
+          },
+          "simple-p1": {
+            "hint": "",
+            "answer": "0",
+            "helped": false,
+            "reason": "首次实际错误：我直接改动一边。"
+          },
+          "simple-p2": {
+            "hint": "",
+            "answer": "5",
+            "helped": false,
+            "reason": "两边共同运算，代回原式核对。"
+          }
+        },
+        "lessonPosition": {
+          "blockId": "simple-practice",
+          "question": null
+        }
+      },
+      "attempts": [
+        {
+          "id": "attempt-c451e4dd76004012b905d27ddff4f7ce",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 1,
+          "questionId": "simple-p2",
+          "answer": "5",
+          "reason": "两边共同运算，代回原式核对。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:31:45"
+        },
+        {
+          "id": "attempt-f2e1579c2e2043ffbf112e12f07e5939",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 0,
+          "questionId": "simple-p1",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:31:45"
+        },
+        {
+          "id": "attempt-75583dd59943474db4d5d8b8dcc79be5",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 2,
+          "questionId": "simple-c1",
+          "answer": "-12",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": true,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:31:47"
+        },
+        {
+          "id": "attempt-0d56c4b45f7e4ee687be371650dcab89",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 3,
+          "questionId": "simple-c2",
+          "answer": "-4",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:31:48"
+        },
+        {
+          "id": "attempt-39c5f286970441458bee644b8aeaeaf2",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 0,
+          "questionId": "simple-p1",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:34:18"
+        },
+        {
+          "id": "attempt-9189eb337c1141ce8f212c7bb22ecee3",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 3,
+          "questionId": "simple-c2",
+          "answer": "-4",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:34:20"
+        },
+        {
+          "id": "attempt-ee6b86daa545427daceb034f14b23c92",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 2,
+          "questionId": "simple-c1",
+          "answer": "-12",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": true,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:34:20"
+        }
+      ],
+      "helps": [
+        {
+          "id": "help-bf97b8a69fff4daf9c0e88a3f697c30c",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 2,
+          "questionId": "simple-c1",
+          "kind": "提示",
+          "message": "两边同时乘-3。",
+          "image": "",
+          "attemptNumber": 3,
+          "createdAt": "2026-11-11T01:31:47"
+        },
+        {
+          "id": "help-2101d25966c24d15b49cf9757b40639c",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "question": 2,
+          "questionId": "simple-c1",
+          "kind": "提示",
+          "message": "两边同时乘-3。",
+          "image": "",
+          "attemptNumber": 6,
+          "createdAt": "2026-11-11T01:34:19"
+        }
+      ],
+      "repairs": [],
+      "wrongQuestions": [
+        {
+          "id": "wrong-0ba3c92fbfb141bb8b4f9cbce3f2de59",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+          "attemptId": "attempt-f2e1579c2e2043ffbf112e12f07e5939",
+          "source": "course",
+          "prompt": "x+7=12",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "x+7=12",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "求x，并说明消去7的方法。"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "解简单的一元一次方程",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:31:45"
+        },
+        {
+          "id": "wrong-40ba0266b9874205bba7b39b3bb8c195",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+          "attemptId": "attempt-39c5f286970441458bee644b8aeaeaf2",
+          "source": "course",
+          "prompt": "x+7=12",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "x+7=12",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "求x，并说明消去7的方法。"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "解简单的一元一次方程",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:34:18"
+        }
+      ],
+      "completed": true,
+      "submittedAt": "2026-11-10T17:34:21",
+      "feedback": "",
+      "feedbackAt": null,
+      "updatedAt": "2026-11-11T01:34:21"
+    },
+    "lesson-transform": {
+      "metrics": {
+        "attempts": 4,
+        "answeredQuestions": 4,
+        "independentQuestions": 2,
+        "independentCorrectQuestions": 2,
+        "independentCorrectStudents": 1,
+        "unverifiedQuestions": 0,
+        "helpedQuestions": 0
+      },
+      "memberActive": true,
+      "id": "record-e9bbb471363f4e8fba1a43b21c6b7325",
+      "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+      "studentId": "unit-s0",
+      "studentName": "单元验收·s0",
+      "observation": "",
+      "drafts": {
+        "blocks": {
+          "transform-example-0": {
+            "completed": true
+          },
+          "transform-example-1": {
+            "completed": true
+          },
+          "transform-explain-0": {
+            "completed": true
+          },
+          "transform-explain-1": {
+            "completed": true
+          },
+          "transform-explain-2": {
+            "completed": true
+          }
+        },
+        "questions": {
+          "transform-c1": {
+            "hint": "",
+            "answer": "5",
+            "helped": false,
+            "reason": "写出共同运算并代回；应用题同时说明设元和单位。"
+          },
+          "transform-c2": {
+            "hint": "",
+            "answer": "4",
+            "helped": false,
+            "reason": "写出共同运算并代回；应用题同时说明设元和单位。"
+          },
+          "transform-p1": {
+            "hint": "",
+            "answer": "0",
+            "helped": false,
+            "reason": "首次实际错误：我直接改动一边。"
+          },
+          "transform-p2": {
+            "hint": "",
+            "answer": "7",
+            "helped": false,
+            "reason": "两边共同运算，代回原式核对。"
+          }
+        },
+        "lessonPosition": {
+          "blockId": "transform-practice",
+          "question": null
+        }
+      },
+      "attempts": [
+        {
+          "id": "attempt-54bf3e4e1c4e4df3ba154391242ab990",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "question": 0,
+          "questionId": "transform-p1",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:34:22"
+        },
+        {
+          "id": "attempt-5dbac895590647e687ea8f40826801b2",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "question": 1,
+          "questionId": "transform-p2",
+          "answer": "7",
+          "reason": "两边共同运算，代回原式核对。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:34:22"
+        },
+        {
+          "id": "attempt-3ebc28ae555d4b0a81e97a056e31ed13",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "question": 2,
+          "questionId": "transform-c1",
+          "answer": "5",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:34:24"
+        },
+        {
+          "id": "attempt-3603b31f232243d0bd8ce9e633008319",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "question": 3,
+          "questionId": "transform-c2",
+          "answer": "4",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:34:25"
+        }
+      ],
+      "helps": [],
+      "repairs": [],
+      "wrongQuestions": [
+        {
+          "id": "wrong-4d35a8a0159d42ee917b9937fa0685a5",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "recordId": "record-e9bbb471363f4e8fba1a43b21c6b7325",
+          "attemptId": "attempt-54bf3e4e1c4e4df3ba154391242ab990",
+          "source": "course",
+          "prompt": "2(x-3)+4=10",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "2(x-3)+4=10",
+            "knowledgeIds": [
+              "kp-linear-transform"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "展开括号并求x。"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "含括号与分母的方程",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:34:22"
+        }
+      ],
+      "completed": true,
+      "submittedAt": "2026-11-10T17:34:25",
+      "feedback": "",
+      "feedbackAt": null,
+      "updatedAt": "2026-11-11T01:34:25"
+    },
+    "lesson-application": {
+      "metrics": {
+        "attempts": 4,
+        "answeredQuestions": 4,
+        "independentQuestions": 2,
+        "independentCorrectQuestions": 0,
+        "independentCorrectStudents": 0,
+        "unverifiedQuestions": 3,
+        "helpedQuestions": 0
+      },
+      "memberActive": true,
+      "id": "record-fef262a014fd4ef1abc282b7df7ef782",
+      "taskId": "task-3cc47381a911730cd8a97390868d579a",
+      "studentId": "unit-s0",
+      "studentName": "单元验收·s0",
+      "observation": "",
+      "drafts": {
+        "blocks": {
+          "application-example-0": {
+            "completed": true
+          },
+          "application-example-1": {
+            "completed": true
+          },
+          "application-explain-0": {
+            "completed": true
+          },
+          "application-explain-1": {
+            "completed": true
+          },
+          "application-explain-2": {
+            "completed": true
+          }
+        },
+        "questions": {
+          "application-c1": {
+            "hint": "",
+            "answer": "7",
+            "helped": false,
+            "reason": "写出共同运算并代回；应用题同时说明设元和单位。"
+          },
+          "application-c2": {
+            "hint": "",
+            "answer": "60",
+            "helped": false,
+            "reason": "写出共同运算并代回；应用题同时说明设元和单位。"
+          },
+          "application-p1": {
+            "hint": "",
+            "answer": "0",
+            "helped": false,
+            "reason": "首次实际错误：我直接改动一边。"
+          },
+          "application-p2": {
+            "hint": "",
+            "answer": "6",
+            "helped": false,
+            "reason": "两边共同运算，代回原式核对。"
+          }
+        },
+        "lessonPosition": {
+          "blockId": "application-practice",
+          "question": null
+        }
+      },
+      "attempts": [
+        {
+          "id": "attempt-dfcef781ae7042e6bc2360e4d54e3ca0",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "question": 0,
+          "questionId": "application-p1",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:34:26"
+        },
+        {
+          "id": "attempt-7cadbef4d139411d9311cbf25bc994f2",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "question": 1,
+          "questionId": "application-p2",
+          "answer": "6",
+          "reason": "两边共同运算，代回原式核对。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "应用题文字建模不自动判定正确",
+            "status": "unverified",
+            "correct": false,
+            "message": "数值与参考方程相符；设元、列式和情境条件仍需教师核对。",
+            "numericVerification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            }
+          },
+          "createdAt": "2026-11-11T01:34:27"
+        },
+        {
+          "id": "attempt-5cb117359743431888988ff54a212987",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "question": 3,
+          "questionId": "application-c2",
+          "answer": "60",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "应用题文字建模不自动判定正确",
+            "status": "unverified",
+            "correct": false,
+            "message": "数值与参考方程相符；设元、列式和情境条件仍需教师核对。",
+            "numericVerification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            }
+          },
+          "createdAt": "2026-11-11T01:34:29"
+        },
+        {
+          "id": "attempt-9f407bb2c8d94ae69a2ab5843d190c29",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "question": 2,
+          "questionId": "application-c1",
+          "answer": "7",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "应用题文字建模不自动判定正确",
+            "status": "unverified",
+            "correct": false,
+            "message": "数值与参考方程相符；设元、列式和情境条件仍需教师核对。",
+            "numericVerification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            }
+          },
+          "createdAt": "2026-11-11T01:34:29"
+        }
+      ],
+      "helps": [],
+      "repairs": [],
+      "wrongQuestions": [
+        {
+          "id": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+          "attemptId": "attempt-dfcef781ae7042e6bc2360e4d54e3ca0",
+          "source": "course",
+          "prompt": "3x+6=21",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "3x+6=21",
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "3支同价笔加6元包装费共21元，每支笔几元？在解释中写设元和列式。"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "用方程解决生活问题",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:34:26"
+        }
+      ],
+      "completed": true,
+      "submittedAt": "2026-11-10T17:34:30",
+      "feedback": "",
+      "feedbackAt": null,
+      "updatedAt": "2026-11-11T01:34:30"
+    },
+    "lesson-unit-review": {
+      "metrics": {
+        "attempts": 4,
+        "answeredQuestions": 4,
+        "independentQuestions": 2,
+        "independentCorrectQuestions": 2,
+        "independentCorrectStudents": 1,
+        "unverifiedQuestions": 0,
+        "helpedQuestions": 0
+      },
+      "memberActive": true,
+      "id": "record-78555bb8fba245fc9389c9014a041fd7",
+      "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+      "studentId": "unit-s0",
+      "studentName": "单元验收·s0",
+      "observation": "",
+      "drafts": {
+        "blocks": {
+          "unit-review-example-0": {
+            "completed": true
+          },
+          "unit-review-example-1": {
+            "completed": true
+          },
+          "unit-review-explain-0": {
+            "completed": true
+          },
+          "unit-review-explain-1": {
+            "completed": true
+          },
+          "unit-review-explain-2": {
+            "completed": true
+          }
+        },
+        "questions": {
+          "review-c1": {
+            "hint": "",
+            "answer": "12",
+            "helped": false,
+            "reason": "写出共同运算并代回；应用题同时说明设元和单位。"
+          },
+          "review-c2": {
+            "hint": "",
+            "answer": "6",
+            "helped": false,
+            "reason": "写出共同运算并代回；应用题同时说明设元和单位。"
+          },
+          "review-p1": {
+            "hint": "",
+            "answer": "0",
+            "helped": false,
+            "reason": "首次实际错误：我直接改动一边。"
+          },
+          "review-p2": {
+            "hint": "",
+            "answer": "9",
+            "helped": false,
+            "reason": "两边共同运算，代回原式核对。"
+          }
+        },
+        "lessonPosition": {
+          "blockId": "unit-review-practice",
+          "question": null
+        }
+      },
+      "attempts": [
+        {
+          "id": "attempt-4a0cf9d628e24a59b77ed91c2bc57ab5",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "question": 0,
+          "questionId": "review-p1",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "helped": false,
+          "correct": false,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "inconsistent",
+            "correct": false,
+            "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+          },
+          "createdAt": "2026-11-11T01:34:31"
+        },
+        {
+          "id": "attempt-4e1ae1cdc54c4d1fa0168a76a2a1ca08",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "question": 1,
+          "questionId": "review-p2",
+          "answer": "9",
+          "reason": "两边共同运算，代回原式核对。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:34:32"
+        },
+        {
+          "id": "attempt-4987a5c4059748299148d71b14d789c3",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "question": 3,
+          "questionId": "review-c2",
+          "answer": "6",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:34:34"
+        },
+        {
+          "id": "attempt-dceb2fbfea4f498fa0ac566c75381ef4",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "question": 2,
+          "questionId": "review-c1",
+          "answer": "12",
+          "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+          "helped": false,
+          "correct": true,
+          "verification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          },
+          "createdAt": "2026-11-11T01:34:34"
+        }
+      ],
+      "helps": [],
+      "repairs": [],
+      "wrongQuestions": [
+        {
+          "id": "wrong-6bf4934b312245e293e98d1baa4f385d",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "recordId": "record-78555bb8fba245fc9389c9014a041fd7",
+          "attemptId": "attempt-4a0cf9d628e24a59b77ed91c2bc57ab5",
+          "source": "course",
+          "prompt": "2(x+3)=18",
+          "answer": "0",
+          "reason": "首次实际错误：我直接改动一边。",
+          "image": "",
+          "details": {
+            "cause": "其他或待确认",
+            "source": "course",
+            "version": "dynamic_v1",
+            "equation": "2(x+3)=18",
+            "knowledgeIds": [
+              "kp-equality",
+              "kp-linear-transform"
+            ],
+            "causeConfirmed": false,
+            "originalPrompt": "求x，说明展开与共同运算的区别。"
+          },
+          "status": "pending",
+          "readOnly": false,
+          "taskTitle": "一元一次方程单元复习",
+          "repairs": [],
+          "createdAt": "2026-11-11T01:34:31"
+        }
+      ],
+      "completed": true,
+      "submittedAt": "2026-11-10T17:34:35",
+      "feedback": "",
+      "feedbackAt": null,
+      "updatedAt": "2026-11-11T01:34:35"
+    }
+  },
+  "consoleErrors": [],
+  "completedAt": "2026-11-10T17:34:38.763Z"
+}

@@ -1,0 +1,61 @@
+{
+  "files": [
+    {
+      "user": "anonymous",
+      "status": 401,
+      "bytes": null
+    },
+    {
+      "user": "unit-s1",
+      "status": 200,
+      "bytes": 10183
+    },
+    {
+      "user": "unit-t1",
+      "status": 200,
+      "bytes": 10183
+    },
+    {
+      "user": "unit-t2",
+      "status": 403,
+      "bytes": null
+    },
+    {
+      "user": "unit-s4",
+      "status": 403,
+      "bytes": null
+    }
+  ],
+  "modelJobs": [
+    {
+      "capability": "text",
+      "status": "succeeded",
+      "count": 49
+    },
+    {
+      "capability": "document_parse",
+      "status": "succeeded",
+      "count": 2
+    },
+    {
+      "capability": "lesson_agent",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "capability": "ocr",
+      "status": "succeeded",
+      "count": 5
+    },
+    {
+      "capability": "text",
+      "status": "failed",
+      "count": 1
+    }
+  ],
+  "schema": "0013_teaching_insights",
+  "passed": true,
+  "productionURL": "http://127.0.0.1:8087",
+  "frontEnd": "Vite production build, same origin static mount",
+  "noPublicTargetConfigured": true
+}

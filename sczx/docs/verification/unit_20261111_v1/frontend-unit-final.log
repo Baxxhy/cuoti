@@ -1,0 +1,15 @@
+
+> shicheng-zhixue@0.3.0 test:unit
+> node --test tests/*.test.js
+
+✔ tests/learning-memory.test.js (102.278878ms)
+✔ tests/route-policy.test.js (97.483762ms)
+✔ tests/visualization.test.js (90.925722ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 121.742476

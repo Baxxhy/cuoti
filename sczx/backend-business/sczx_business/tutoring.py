@@ -129,6 +129,8 @@ def validate_result(result,data):
     normalized=lambda s:re.sub(r'\s+','',s).replace('−','-').replace('×','*').replace('÷','/')
     if data['strategy']=='example' and equation and normalized(equation) in normalized(text):raise ModelError('举例复用了当前题目，已拦截。')
     if any(word in text for word in ('系统已经检测到你不掌握','根据你的学习画像','本Agent正在','经过多维分析','显著提升你的理解能力')):raise ModelError('指导含有无依据的学习判断，未展示。')
+    from .math_conditions import require_conditions
+    value['conditionCheck']=require_conditions(text)
     validate_arithmetic_text(text)
     coverage=need_coverage(data.get('prompt',''),text)
     if coverage['missing']:raise ModelError('当前明确需求未覆盖：'+'、'.join(coverage['missing'])+'；请先回答该问题再回到原题。')

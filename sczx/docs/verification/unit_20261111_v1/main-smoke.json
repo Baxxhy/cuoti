@@ -1,0 +1,183 @@
+{
+  "checks": [],
+  "passed": true,
+  "lessons": [
+    {
+      "sourceId": "lesson-equation",
+      "id": "lesson-equation",
+      "title": "等式性质",
+      "versionId": "lessonversion-619e68cc68234c4cbd37ded435",
+      "questions": 6,
+      "reviewRecord": null,
+      "verification": {
+        "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+        "status": "verified"
+      }
+    },
+    {
+      "sourceId": "lesson-simple",
+      "id": "lesson-simple",
+      "title": "解简单的一元一次方程",
+      "versionId": "lessonversion-e14a11ca96084d0b86c8f0d0a7",
+      "questions": 6,
+      "reviewRecord": {
+        "at": "2026-11-10T17:36:18.774078Z",
+        "scope": "内容、条件与数量关系人工核对",
+        "actorId": "account-admin-demo",
+        "conditions": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        }
+      },
+      "verification": {
+        "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+        "status": "verified"
+      }
+    },
+    {
+      "sourceId": "lesson-transform",
+      "id": "lesson-64963fc468b24ea88f318da435b944c2",
+      "title": "含括号与分母的方程",
+      "versionId": "lessonversion-083f09eda99e4516b1dc4e9364",
+      "questions": 6,
+      "reviewRecord": {
+        "at": "2026-11-10T17:36:19.062537Z",
+        "scope": "内容、条件与数量关系人工核对",
+        "actorId": "account-admin-demo",
+        "conditions": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        }
+      },
+      "verification": {
+        "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+        "status": "verified"
+      }
+    },
+    {
+      "sourceId": "lesson-application",
+      "id": "lesson-application",
+      "title": "用方程解决生活问题",
+      "versionId": "lessonversion-0d759dc8d7bd43f0a2c2bca3c3",
+      "questions": 6,
+      "reviewRecord": {
+        "at": "2026-11-10T17:36:19.307902Z",
+        "scope": "内容、条件与数量关系人工核对",
+        "actorId": "account-admin-demo",
+        "conditions": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        }
+      },
+      "verification": {
+        "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+        "status": "verified"
+      }
+    },
+    {
+      "sourceId": "lesson-unit-review",
+      "id": "lesson-fd5b73a61b7e493480d28aee43d478e4",
+      "title": "一元一次方程单元复习",
+      "versionId": "lessonversion-7966a867a7bd441e97b3812dee",
+      "questions": 6,
+      "reviewRecord": {
+        "at": "2026-11-10T17:36:19.585454Z",
+        "scope": "内容、条件与数量关系人工核对",
+        "actorId": "account-admin-demo",
+        "conditions": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        }
+      },
+      "verification": {
+        "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+        "status": "verified"
+      }
+    }
+  ],
+  "lessonOrder": [
+    "lesson-equation",
+    "lesson-simple",
+    "lesson-64963fc468b24ea88f318da435b944c2",
+    "lesson-application",
+    "lesson-fd5b73a61b7e493480d28aee43d478e4"
+  ],
+  "extraPreservedLessons": [
+    "lesson-897e9ff4141e4a1db4a4ef2857be5fd6"
+  ],
+  "knowledgeNoCycle": true,
+  "knowledge": [
+    {
+      "id": "kp-equal",
+      "name": "相等关系",
+      "aliases": [],
+      "prerequisites": []
+    },
+    {
+      "id": "kp-equality",
+      "name": "等式性质",
+      "aliases": [
+        "等式两边同时变化"
+      ],
+      "prerequisites": [
+        "kp-equal",
+        "kp-expression"
+      ]
+    },
+    {
+      "id": "kp-expression",
+      "name": "算式含义",
+      "aliases": [],
+      "prerequisites": [
+        "kp-operations"
+      ]
+    },
+    {
+      "id": "kp-linear-model",
+      "name": "实际问题中的设元与列式",
+      "aliases": [],
+      "prerequisites": [
+        "kp-linear-transform"
+      ]
+    },
+    {
+      "id": "kp-linear-review",
+      "name": "一元一次方程综合检查",
+      "aliases": [],
+      "prerequisites": [
+        "kp-linear-transform",
+        "kp-linear-model"
+      ]
+    },
+    {
+      "id": "kp-linear-simple",
+      "name": "简单一元一次方程",
+      "aliases": [],
+      "prerequisites": [
+        "kp-equality"
+      ]
+    },
+    {
+      "id": "kp-linear-transform",
+      "name": "方程变形与验算",
+      "aliases": [],
+      "prerequisites": [
+        "kp-linear-simple"
+      ]
+    },
+    {
+      "id": "kp-operations",
+      "name": "基本运算",
+      "aliases": [],
+      "prerequisites": []
+    }
+  ]
+}

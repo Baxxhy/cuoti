@@ -1,0 +1,1656 @@
+{
+  "checks": [
+    {
+      "name": "application-numeric-answer-still-needs-modeling-review",
+      "record": "record-fef262a014fd4ef1abc282b7df7ef782",
+      "questions": [
+        {
+          "id": "task-0bf0f28cdaa929cc86098f61cd082995:0",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "taskTitle": "一元一次方程单元复习",
+          "versionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+          "index": 0,
+          "prompt": "求x，说明展开与共同运算的区别。",
+          "equation": "2(x+3)=18",
+          "knowledgeIds": [
+            "kp-equality",
+            "kp-linear-transform"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 1,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:31",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-4a0cf9d628e24a59b77ed91c2bc57ab5",
+              "sourceType": "attempt",
+              "sourceId": "attempt-4a0cf9d628e24a59b77ed91c2bc57ab5",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-equality",
+                "kp-linear-transform"
+              ],
+              "originalKnowledgeIds": [
+                "kp-equality",
+                "kp-linear-transform"
+              ],
+              "occurredAt": "2026-11-10T17:34:31Z",
+              "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+              "readOnly": false,
+              "target": "/result?task=task-0bf0f28cdaa929cc86098f61cd082995",
+              "prompt": "求x，说明展开与共同运算的区别。",
+              "equation": "2(x+3)=18",
+              "answer": "0",
+              "reason": "首次实际错误：我直接改动一边。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "practice",
+              "questionIndex": 0,
+              "questionKey": "lesson-7cc1f55173f74072a33c833dce7fa80c:review-p1",
+              "recordId": "record-78555bb8fba245fc9389c9014a041fd7",
+              "knowledgeId": "kp-linear-transform",
+              "evidenceId": "attempt:attempt-4a0cf9d628e24a59b77ed91c2bc57ab5:kp-linear-transform",
+              "label": "独立错误"
+            }
+          ]
+        },
+        {
+          "id": "task-0bf0f28cdaa929cc86098f61cd082995:1",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "taskTitle": "一元一次方程单元复习",
+          "versionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+          "index": 1,
+          "prompt": "求x并验算。",
+          "equation": "x/3-2=1",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:32",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-4e1ae1cdc54c4d1fa0168a76a2a1ca08",
+              "sourceType": "attempt",
+              "sourceId": "attempt-4e1ae1cdc54c4d1fa0168a76a2a1ca08",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "occurredAt": "2026-11-10T17:34:32Z",
+              "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+              "readOnly": false,
+              "target": "/result?task=task-0bf0f28cdaa929cc86098f61cd082995",
+              "prompt": "求x并验算。",
+              "equation": "x/3-2=1",
+              "answer": "9",
+              "reason": "两边共同运算，代回原式核对。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "practice",
+              "questionIndex": 1,
+              "questionKey": "lesson-7cc1f55173f74072a33c833dce7fa80c:review-p2",
+              "recordId": "record-78555bb8fba245fc9389c9014a041fd7",
+              "knowledgeId": "kp-linear-simple",
+              "evidenceId": "attempt:attempt-4e1ae1cdc54c4d1fa0168a76a2a1ca08:kp-linear-simple",
+              "label": "独立正确"
+            }
+          ]
+        },
+        {
+          "id": "task-0bf0f28cdaa929cc86098f61cd082995:2",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "taskTitle": "一元一次方程单元复习",
+          "versionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+          "index": 2,
+          "prompt": "独立求解，写出去分母的完整等式。",
+          "equation": "x/2+x/4=9",
+          "knowledgeIds": [
+            "kp-linear-transform"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:34",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-dceb2fbfea4f498fa0ac566c75381ef4",
+              "sourceType": "attempt",
+              "sourceId": "attempt-dceb2fbfea4f498fa0ac566c75381ef4",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "occurredAt": "2026-11-10T17:34:34Z",
+              "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+              "readOnly": false,
+              "target": "/result?task=task-0bf0f28cdaa929cc86098f61cd082995",
+              "prompt": "独立求解，写出去分母的完整等式。",
+              "equation": "x/2+x/4=9",
+              "answer": "12",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "check",
+              "questionIndex": 2,
+              "questionKey": "lesson-7cc1f55173f74072a33c833dce7fa80c:review-c1",
+              "recordId": "record-78555bb8fba245fc9389c9014a041fd7",
+              "knowledgeId": "kp-linear-transform",
+              "evidenceId": "attempt:attempt-dceb2fbfea4f498fa0ac566c75381ef4:kp-linear-transform",
+              "label": "独立正确"
+            }
+          ]
+        },
+        {
+          "id": "task-0bf0f28cdaa929cc86098f61cd082995:3",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "taskTitle": "一元一次方程单元复习",
+          "versionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+          "index": 3,
+          "prompt": "独立求解并代回原方程。",
+          "equation": "5(x-2)=2x+8",
+          "knowledgeIds": [
+            "kp-linear-transform"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:34",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-4987a5c4059748299148d71b14d789c3",
+              "sourceType": "attempt",
+              "sourceId": "attempt-4987a5c4059748299148d71b14d789c3",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "occurredAt": "2026-11-10T17:34:34Z",
+              "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+              "readOnly": false,
+              "target": "/result?task=task-0bf0f28cdaa929cc86098f61cd082995",
+              "prompt": "独立求解并代回原方程。",
+              "equation": "5(x-2)=2x+8",
+              "answer": "6",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "check",
+              "questionIndex": 3,
+              "questionKey": "lesson-7cc1f55173f74072a33c833dce7fa80c:review-c2",
+              "recordId": "record-78555bb8fba245fc9389c9014a041fd7",
+              "knowledgeId": "kp-linear-transform",
+              "evidenceId": "attempt:attempt-4987a5c4059748299148d71b14d789c3:kp-linear-transform",
+              "label": "独立正确"
+            }
+          ]
+        },
+        {
+          "id": "task-0bf0f28cdaa929cc86098f61cd082995:4",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "taskTitle": "一元一次方程单元复习",
+          "versionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+          "index": 4,
+          "prompt": "4件同价物品加12元固定费用共40元，每件几元？写列式与验算。",
+          "equation": "4x+12=40",
+          "knowledgeIds": [
+            "kp-linear-model"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-0bf0f28cdaa929cc86098f61cd082995:5",
+          "taskId": "task-0bf0f28cdaa929cc86098f61cd082995",
+          "taskTitle": "一元一次方程单元复习",
+          "versionId": "lessonversion-812f746bff9540ee99a0b5d5d2",
+          "index": 5,
+          "prompt": "求x并说明乘数条件。",
+          "equation": "-x/2=3",
+          "knowledgeIds": [
+            "kp-equality",
+            "kp-linear-simple"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-2fb2beed8a84a12625e36bed85bb051b:0",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "taskTitle": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb",
+          "index": 0,
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 1,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:31:40",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-d5775bc95e5b4b5887474de6a91709a3",
+              "sourceType": "attempt",
+              "sourceId": "attempt-d5775bc95e5b4b5887474de6a91709a3",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-equality"
+              ],
+              "originalKnowledgeIds": [
+                "kp-equality"
+              ],
+              "occurredAt": "2026-11-10T17:31:40Z",
+              "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-573554153138457c93ab1091cb",
+              "readOnly": false,
+              "target": "/result?task=task-2fb2beed8a84a12625e36bed85bb051b",
+              "prompt": "两边同时加3，x等于多少？",
+              "equation": "x - 3 = 5",
+              "answer": "0",
+              "reason": "首次实际错误：我直接改动一边。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "practice",
+              "questionIndex": 0,
+              "questionKey": "lesson-equation:eq-practice-add",
+              "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+              "knowledgeId": "kp-equality",
+              "evidenceId": "attempt:attempt-d5775bc95e5b4b5887474de6a91709a3:kp-equality",
+              "label": "独立错误"
+            }
+          ]
+        },
+        {
+          "id": "task-2fb2beed8a84a12625e36bed85bb051b:1",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "taskTitle": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb",
+          "index": 1,
+          "prompt": "两边同时减4，y等于多少？",
+          "equation": "y + 4 = 11",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 1,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:31:40",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-27e00ab9c0914a7aa77308d836769e4d",
+              "sourceType": "attempt",
+              "sourceId": "attempt-27e00ab9c0914a7aa77308d836769e4d",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-equality"
+              ],
+              "originalKnowledgeIds": [
+                "kp-equality"
+              ],
+              "occurredAt": "2026-11-10T17:31:40Z",
+              "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-573554153138457c93ab1091cb",
+              "readOnly": false,
+              "target": "/result?task=task-2fb2beed8a84a12625e36bed85bb051b",
+              "prompt": "两边同时减4，y等于多少？",
+              "equation": "y + 4 = 11",
+              "answer": "0",
+              "reason": "两边共同运算，代回原式核对。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "practice",
+              "questionIndex": 1,
+              "questionKey": "lesson-equation:eq-practice-sub",
+              "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+              "knowledgeId": "kp-equality",
+              "evidenceId": "attempt:attempt-27e00ab9c0914a7aa77308d836769e4d:kp-equality",
+              "label": "独立错误"
+            }
+          ]
+        },
+        {
+          "id": "task-2fb2beed8a84a12625e36bed85bb051b:2",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "taskTitle": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb",
+          "index": 2,
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 1,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:31:42",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-3d7204d363af4815bfd2bf525376180e",
+              "sourceType": "attempt",
+              "sourceId": "attempt-3d7204d363af4815bfd2bf525376180e",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-equality"
+              ],
+              "originalKnowledgeIds": [
+                "kp-equality"
+              ],
+              "occurredAt": "2026-11-10T17:31:42Z",
+              "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-573554153138457c93ab1091cb",
+              "readOnly": false,
+              "target": "/result?task=task-2fb2beed8a84a12625e36bed85bb051b",
+              "prompt": "求z，并解释两边为什么可以同时除以3。",
+              "equation": "3z = 18",
+              "answer": "0",
+              "reason": "先保留我的错误，后面再订正。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "check",
+              "questionIndex": 2,
+              "questionKey": "lesson-equation:eq-check-divide",
+              "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+              "knowledgeId": "kp-equality",
+              "evidenceId": "attempt:attempt-3d7204d363af4815bfd2bf525376180e:kp-equality",
+              "label": "独立错误"
+            }
+          ]
+        },
+        {
+          "id": "task-2fb2beed8a84a12625e36bed85bb051b:3",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "taskTitle": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb",
+          "index": 3,
+          "prompt": "求w，并写出两边共同进行的运算。",
+          "equation": "w / 4 = 3",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 1,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:31:43",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-986fbb08fb5b47fe854cebef2dd85003",
+              "sourceType": "attempt",
+              "sourceId": "attempt-986fbb08fb5b47fe854cebef2dd85003",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-equality"
+              ],
+              "originalKnowledgeIds": [
+                "kp-equality"
+              ],
+              "occurredAt": "2026-11-10T17:31:43Z",
+              "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-573554153138457c93ab1091cb",
+              "readOnly": false,
+              "target": "/result?task=task-2fb2beed8a84a12625e36bed85bb051b",
+              "prompt": "求w，并写出两边共同进行的运算。",
+              "equation": "w / 4 = 3",
+              "answer": "0",
+              "reason": "先保留我的错误，后面再订正。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "check",
+              "questionIndex": 3,
+              "questionKey": "lesson-equation:eq-check-multiply",
+              "recordId": "record-f2b474d8258d4db99e43a13df84637c3",
+              "knowledgeId": "kp-equality",
+              "evidenceId": "attempt:attempt-986fbb08fb5b47fe854cebef2dd85003:kp-equality",
+              "label": "独立错误"
+            }
+          ]
+        },
+        {
+          "id": "task-2fb2beed8a84a12625e36bed85bb051b:4",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "taskTitle": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb",
+          "index": 4,
+          "prompt": "先使a - 1单独在一边，再求a。",
+          "equation": "2(a - 1) = 10",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-2fb2beed8a84a12625e36bed85bb051b:5",
+          "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+          "taskTitle": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb",
+          "index": 5,
+          "prompt": "求b，说明两边共同进行的运算。",
+          "equation": "b / (-3) = 2",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-3cc47381a911730cd8a97390868d579a:0",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "taskTitle": "用方程解决生活问题",
+          "versionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+          "index": 0,
+          "prompt": "3支同价笔加6元包装费共21元，每支笔几元？在解释中写设元和列式。",
+          "equation": "3x+6=21",
+          "knowledgeIds": [
+            "kp-linear-model"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 1,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:26",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-dfcef781ae7042e6bc2360e4d54e3ca0",
+              "sourceType": "attempt",
+              "sourceId": "attempt-dfcef781ae7042e6bc2360e4d54e3ca0",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-model"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-model"
+              ],
+              "occurredAt": "2026-11-10T17:34:26Z",
+              "taskId": "task-3cc47381a911730cd8a97390868d579a",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+              "readOnly": false,
+              "target": "/result?task=task-3cc47381a911730cd8a97390868d579a",
+              "prompt": "3支同价笔加6元包装费共21元，每支笔几元？在解释中写设元和列式。",
+              "equation": "3x+6=21",
+              "answer": "0",
+              "reason": "首次实际错误：我直接改动一边。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "practice",
+              "questionIndex": 0,
+              "questionKey": "lesson-application:application-p1",
+              "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+              "knowledgeId": "kp-linear-model",
+              "evidenceId": "attempt:attempt-dfcef781ae7042e6bc2360e4d54e3ca0:kp-linear-model",
+              "label": "独立错误"
+            }
+          ]
+        },
+        {
+          "id": "task-3cc47381a911730cd8a97390868d579a:1",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "taskTitle": "用方程解决生活问题",
+          "versionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+          "index": 1,
+          "prompt": "长方形长比宽多3厘米，周长30厘米，宽几厘米？写出数量关系。",
+          "equation": "2(x+x+3)=30",
+          "knowledgeIds": [
+            "kp-linear-model"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 1,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:27",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-7cadbef4d139411d9311cbf25bc994f2",
+              "sourceType": "attempt",
+              "sourceId": "attempt-7cadbef4d139411d9311cbf25bc994f2",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-model"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-model"
+              ],
+              "occurredAt": "2026-11-10T17:34:27Z",
+              "taskId": "task-3cc47381a911730cd8a97390868d579a",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+              "readOnly": false,
+              "target": "/result?task=task-3cc47381a911730cd8a97390868d579a",
+              "prompt": "长方形长比宽多3厘米，周长30厘米，宽几厘米？写出数量关系。",
+              "equation": "2(x+x+3)=30",
+              "answer": "6",
+              "reason": "两边共同运算，代回原式核对。",
+              "helped": false,
+              "verification": "unverified",
+              "outcome": "unverified",
+              "questionKind": "practice",
+              "questionIndex": 1,
+              "questionKey": "lesson-application:application-p2",
+              "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+              "knowledgeId": "kp-linear-model",
+              "evidenceId": "attempt:attempt-7cadbef4d139411d9311cbf25bc994f2:kp-linear-model",
+              "label": "未核验作答"
+            }
+          ]
+        },
+        {
+          "id": "task-3cc47381a911730cd8a97390868d579a:2",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "taskTitle": "用方程解决生活问题",
+          "versionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+          "index": 2,
+          "prompt": "5本同价练习本加8元运费共43元，每本几元？写设元、列式与验算。",
+          "equation": "5x+8=43",
+          "knowledgeIds": [
+            "kp-linear-model"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 1,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:29",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-9f407bb2c8d94ae69a2ab5843d190c29",
+              "sourceType": "attempt",
+              "sourceId": "attempt-9f407bb2c8d94ae69a2ab5843d190c29",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-model"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-model"
+              ],
+              "occurredAt": "2026-11-10T17:34:29Z",
+              "taskId": "task-3cc47381a911730cd8a97390868d579a",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+              "readOnly": false,
+              "target": "/result?task=task-3cc47381a911730cd8a97390868d579a",
+              "prompt": "5本同价练习本加8元运费共43元，每本几元？写设元、列式与验算。",
+              "equation": "5x+8=43",
+              "answer": "7",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": false,
+              "verification": "unverified",
+              "outcome": "unverified",
+              "questionKind": "check",
+              "questionIndex": 2,
+              "questionKey": "lesson-application:application-c1",
+              "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+              "knowledgeId": "kp-linear-model",
+              "evidenceId": "attempt:attempt-9f407bb2c8d94ae69a2ab5843d190c29:kp-linear-model",
+              "label": "未核验作答"
+            }
+          ]
+        },
+        {
+          "id": "task-3cc47381a911730cd8a97390868d579a:3",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "taskTitle": "用方程解决生活问题",
+          "versionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+          "index": 3,
+          "prompt": "匀速车3小时行180千米，每小时几千米？写速度关系和单位。",
+          "equation": "3x=180",
+          "knowledgeIds": [
+            "kp-linear-model"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 1,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:29",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-5cb117359743431888988ff54a212987",
+              "sourceType": "attempt",
+              "sourceId": "attempt-5cb117359743431888988ff54a212987",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-model"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-model"
+              ],
+              "occurredAt": "2026-11-10T17:34:29Z",
+              "taskId": "task-3cc47381a911730cd8a97390868d579a",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+              "readOnly": false,
+              "target": "/result?task=task-3cc47381a911730cd8a97390868d579a",
+              "prompt": "匀速车3小时行180千米，每小时几千米？写速度关系和单位。",
+              "equation": "3x=180",
+              "answer": "60",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": false,
+              "verification": "unverified",
+              "outcome": "unverified",
+              "questionKind": "check",
+              "questionIndex": 3,
+              "questionKey": "lesson-application:application-c2",
+              "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+              "knowledgeId": "kp-linear-model",
+              "evidenceId": "attempt:attempt-5cb117359743431888988ff54a212987:kp-linear-model",
+              "label": "未核验作答"
+            }
+          ]
+        },
+        {
+          "id": "task-3cc47381a911730cd8a97390868d579a:4",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "taskTitle": "用方程解决生活问题",
+          "versionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+          "index": 4,
+          "prompt": "4盒同价材料加5元配送费共33元，每盒几元？",
+          "equation": "4x+5=33",
+          "knowledgeIds": [
+            "kp-linear-model"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-3cc47381a911730cd8a97390868d579a:5",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "taskTitle": "用方程解决生活问题",
+          "versionId": "lessonversion-d80d55f6f49d422693ed320fd2",
+          "index": 5,
+          "prompt": "上午完成2组、下午完成3组，每组人数相同，共45人，每组几人？",
+          "equation": "2x+3x=45",
+          "knowledgeIds": [
+            "kp-linear-model"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-b91159708e264cc18553fb2ac341f948:0",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "taskTitle": "解简单的一元一次方程",
+          "versionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+          "index": 0,
+          "prompt": "求x，并说明消去7的方法。",
+          "equation": "x+7=12",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 1,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 2,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:31:45",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-f2e1579c2e2043ffbf112e12f07e5939",
+              "sourceType": "attempt",
+              "sourceId": "attempt-f2e1579c2e2043ffbf112e12f07e5939",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "occurredAt": "2026-11-10T17:31:45Z",
+              "taskId": "task-b91159708e264cc18553fb2ac341f948",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+              "readOnly": false,
+              "target": "/result?task=task-b91159708e264cc18553fb2ac341f948",
+              "prompt": "求x，并说明消去7的方法。",
+              "equation": "x+7=12",
+              "answer": "0",
+              "reason": "首次实际错误：我直接改动一边。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "practice",
+              "questionIndex": 0,
+              "questionKey": "lesson-simple:simple-p1",
+              "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+              "knowledgeId": "kp-linear-simple",
+              "evidenceId": "attempt:attempt-f2e1579c2e2043ffbf112e12f07e5939:kp-linear-simple",
+              "label": "独立错误"
+            },
+            {
+              "rawOccurredAt": "2026-11-11T01:34:18",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-39c5f286970441458bee644b8aeaeaf2",
+              "sourceType": "attempt",
+              "sourceId": "attempt-39c5f286970441458bee644b8aeaeaf2",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "occurredAt": "2026-11-10T17:34:18Z",
+              "taskId": "task-b91159708e264cc18553fb2ac341f948",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+              "readOnly": false,
+              "target": "/result?task=task-b91159708e264cc18553fb2ac341f948",
+              "prompt": "求x，并说明消去7的方法。",
+              "equation": "x+7=12",
+              "answer": "0",
+              "reason": "首次实际错误：我直接改动一边。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "practice",
+              "questionIndex": 0,
+              "questionKey": "lesson-simple:simple-p1",
+              "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+              "knowledgeId": "kp-linear-simple",
+              "evidenceId": "attempt:attempt-39c5f286970441458bee644b8aeaeaf2:kp-linear-simple",
+              "label": "独立错误"
+            }
+          ]
+        },
+        {
+          "id": "task-b91159708e264cc18553fb2ac341f948:1",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "taskTitle": "解简单的一元一次方程",
+          "versionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+          "index": 1,
+          "prompt": "求x，说明同除条件。",
+          "equation": "4x=20",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:31:45",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-c451e4dd76004012b905d27ddff4f7ce",
+              "sourceType": "attempt",
+              "sourceId": "attempt-c451e4dd76004012b905d27ddff4f7ce",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "occurredAt": "2026-11-10T17:31:45Z",
+              "taskId": "task-b91159708e264cc18553fb2ac341f948",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+              "readOnly": false,
+              "target": "/result?task=task-b91159708e264cc18553fb2ac341f948",
+              "prompt": "求x，说明同除条件。",
+              "equation": "4x=20",
+              "answer": "5",
+              "reason": "两边共同运算，代回原式核对。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "practice",
+              "questionIndex": 1,
+              "questionKey": "lesson-simple:simple-p2",
+              "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+              "knowledgeId": "kp-linear-simple",
+              "evidenceId": "attempt:attempt-c451e4dd76004012b905d27ddff4f7ce:kp-linear-simple",
+              "label": "独立正确"
+            }
+          ]
+        },
+        {
+          "id": "task-b91159708e264cc18553fb2ac341f948:2",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "taskTitle": "解简单的一元一次方程",
+          "versionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+          "index": 2,
+          "prompt": "求x并验算。",
+          "equation": "x/(-3)=4",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 1,
+          "attempts": 2,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:31:47",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-75583dd59943474db4d5d8b8dcc79be5",
+              "sourceType": "attempt",
+              "sourceId": "attempt-75583dd59943474db4d5d8b8dcc79be5",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "occurredAt": "2026-11-10T17:31:47Z",
+              "taskId": "task-b91159708e264cc18553fb2ac341f948",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+              "readOnly": false,
+              "target": "/result?task=task-b91159708e264cc18553fb2ac341f948",
+              "prompt": "求x并验算。",
+              "equation": "x/(-3)=4",
+              "answer": "-12",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": true,
+              "verification": "verified_correct",
+              "outcome": "helped_correct",
+              "questionKind": "check",
+              "questionIndex": 2,
+              "questionKey": "lesson-simple:simple-c1",
+              "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+              "knowledgeId": "kp-linear-simple",
+              "evidenceId": "attempt:attempt-75583dd59943474db4d5d8b8dcc79be5:kp-linear-simple",
+              "label": "帮助后正确"
+            },
+            {
+              "rawOccurredAt": "2026-11-11T01:34:20",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-ee6b86daa545427daceb034f14b23c92",
+              "sourceType": "attempt",
+              "sourceId": "attempt-ee6b86daa545427daceb034f14b23c92",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "occurredAt": "2026-11-10T17:34:20Z",
+              "taskId": "task-b91159708e264cc18553fb2ac341f948",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+              "readOnly": false,
+              "target": "/result?task=task-b91159708e264cc18553fb2ac341f948",
+              "prompt": "求x并验算。",
+              "equation": "x/(-3)=4",
+              "answer": "-12",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": true,
+              "verification": "verified_correct",
+              "outcome": "helped_correct",
+              "questionKind": "check",
+              "questionIndex": 2,
+              "questionKey": "lesson-simple:simple-c1",
+              "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+              "knowledgeId": "kp-linear-simple",
+              "evidenceId": "attempt:attempt-ee6b86daa545427daceb034f14b23c92:kp-linear-simple",
+              "label": "帮助后正确"
+            }
+          ]
+        },
+        {
+          "id": "task-b91159708e264cc18553fb2ac341f948:3",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "taskTitle": "解简单的一元一次方程",
+          "versionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+          "index": 3,
+          "prompt": "求x，写出两步共同运算。",
+          "equation": "-2x+5=13",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 2,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:31:48",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-0d56c4b45f7e4ee687be371650dcab89",
+              "sourceType": "attempt",
+              "sourceId": "attempt-0d56c4b45f7e4ee687be371650dcab89",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "occurredAt": "2026-11-10T17:31:48Z",
+              "taskId": "task-b91159708e264cc18553fb2ac341f948",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+              "readOnly": false,
+              "target": "/result?task=task-b91159708e264cc18553fb2ac341f948",
+              "prompt": "求x，写出两步共同运算。",
+              "equation": "-2x+5=13",
+              "answer": "-4",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "check",
+              "questionIndex": 3,
+              "questionKey": "lesson-simple:simple-c2",
+              "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+              "knowledgeId": "kp-linear-simple",
+              "evidenceId": "attempt:attempt-0d56c4b45f7e4ee687be371650dcab89:kp-linear-simple",
+              "label": "独立正确"
+            },
+            {
+              "rawOccurredAt": "2026-11-11T01:34:20",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-9189eb337c1141ce8f212c7bb22ecee3",
+              "sourceType": "attempt",
+              "sourceId": "attempt-9189eb337c1141ce8f212c7bb22ecee3",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "occurredAt": "2026-11-10T17:34:20Z",
+              "taskId": "task-b91159708e264cc18553fb2ac341f948",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+              "readOnly": false,
+              "target": "/result?task=task-b91159708e264cc18553fb2ac341f948",
+              "prompt": "求x，写出两步共同运算。",
+              "equation": "-2x+5=13",
+              "answer": "-4",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "check",
+              "questionIndex": 3,
+              "questionKey": "lesson-simple:simple-c2",
+              "recordId": "record-9c28deca155c49a3ab4f54efed9cd07c",
+              "knowledgeId": "kp-linear-simple",
+              "evidenceId": "attempt:attempt-9189eb337c1141ce8f212c7bb22ecee3:kp-linear-simple",
+              "label": "独立正确"
+            }
+          ]
+        },
+        {
+          "id": "task-b91159708e264cc18553fb2ac341f948:4",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "taskTitle": "解简单的一元一次方程",
+          "versionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+          "index": 4,
+          "prompt": "求x并代回。",
+          "equation": "x/5+2=1",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-b91159708e264cc18553fb2ac341f948:5",
+          "taskId": "task-b91159708e264cc18553fb2ac341f948",
+          "taskTitle": "解简单的一元一次方程",
+          "versionId": "lessonversion-c0ba3a062b2e4994b9c320abfd",
+          "index": 5,
+          "prompt": "求x并解释。",
+          "equation": "3x-4=11",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87:0",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "taskTitle": "含括号与分母的方程",
+          "versionId": "lessonversion-7459e05af43449d684d0c30861",
+          "index": 0,
+          "prompt": "展开括号并求x。",
+          "equation": "2(x-3)+4=10",
+          "knowledgeIds": [
+            "kp-linear-transform"
+          ],
+          "students": 1,
+          "correctStudents": 0,
+          "incorrectStudents": 1,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:22",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-54bf3e4e1c4e4df3ba154391242ab990",
+              "sourceType": "attempt",
+              "sourceId": "attempt-54bf3e4e1c4e4df3ba154391242ab990",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "occurredAt": "2026-11-10T17:34:22Z",
+              "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-7459e05af43449d684d0c30861",
+              "readOnly": false,
+              "target": "/result?task=task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+              "prompt": "展开括号并求x。",
+              "equation": "2(x-3)+4=10",
+              "answer": "0",
+              "reason": "首次实际错误：我直接改动一边。",
+              "helped": false,
+              "verification": "verified_incorrect",
+              "outcome": "independent_incorrect",
+              "questionKind": "practice",
+              "questionIndex": 0,
+              "questionKey": "lesson-5657bb45715a4d7bbec25debb63b50c8:transform-p1",
+              "recordId": "record-e9bbb471363f4e8fba1a43b21c6b7325",
+              "knowledgeId": "kp-linear-transform",
+              "evidenceId": "attempt:attempt-54bf3e4e1c4e4df3ba154391242ab990:kp-linear-transform",
+              "label": "独立错误"
+            }
+          ]
+        },
+        {
+          "id": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87:1",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "taskTitle": "含括号与分母的方程",
+          "versionId": "lessonversion-7459e05af43449d684d0c30861",
+          "index": 1,
+          "prompt": "去分母并求x。",
+          "equation": "(x-1)/3=2",
+          "knowledgeIds": [
+            "kp-linear-transform"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:22",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-5dbac895590647e687ea8f40826801b2",
+              "sourceType": "attempt",
+              "sourceId": "attempt-5dbac895590647e687ea8f40826801b2",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "occurredAt": "2026-11-10T17:34:22Z",
+              "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-7459e05af43449d684d0c30861",
+              "readOnly": false,
+              "target": "/result?task=task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+              "prompt": "去分母并求x。",
+              "equation": "(x-1)/3=2",
+              "answer": "7",
+              "reason": "两边共同运算，代回原式核对。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "practice",
+              "questionIndex": 1,
+              "questionKey": "lesson-5657bb45715a4d7bbec25debb63b50c8:transform-p2",
+              "recordId": "record-e9bbb471363f4e8fba1a43b21c6b7325",
+              "knowledgeId": "kp-linear-transform",
+              "evidenceId": "attempt:attempt-5dbac895590647e687ea8f40826801b2:kp-linear-transform",
+              "label": "独立正确"
+            }
+          ]
+        },
+        {
+          "id": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87:2",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "taskTitle": "含括号与分母的方程",
+          "versionId": "lessonversion-7459e05af43449d684d0c30861",
+          "index": 2,
+          "prompt": "求x并解释负号的作用。",
+          "equation": "3(2x-1)-2(x+4)=9",
+          "knowledgeIds": [
+            "kp-linear-transform"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:24",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-3ebc28ae555d4b0a81e97a056e31ed13",
+              "sourceType": "attempt",
+              "sourceId": "attempt-3ebc28ae555d4b0a81e97a056e31ed13",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "occurredAt": "2026-11-10T17:34:24Z",
+              "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-7459e05af43449d684d0c30861",
+              "readOnly": false,
+              "target": "/result?task=task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+              "prompt": "求x并解释负号的作用。",
+              "equation": "3(2x-1)-2(x+4)=9",
+              "answer": "5",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "check",
+              "questionIndex": 2,
+              "questionKey": "lesson-5657bb45715a4d7bbec25debb63b50c8:transform-c1",
+              "recordId": "record-e9bbb471363f4e8fba1a43b21c6b7325",
+              "knowledgeId": "kp-linear-transform",
+              "evidenceId": "attempt:attempt-3ebc28ae555d4b0a81e97a056e31ed13:kp-linear-transform",
+              "label": "独立正确"
+            }
+          ]
+        },
+        {
+          "id": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87:3",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "taskTitle": "含括号与分母的方程",
+          "versionId": "lessonversion-7459e05af43449d684d0c30861",
+          "index": 3,
+          "prompt": "求x，写出两边同乘的数。",
+          "equation": "(x+2)/4-(x-1)/6=1",
+          "knowledgeIds": [
+            "kp-linear-transform"
+          ],
+          "students": 1,
+          "correctStudents": 1,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 1,
+          "evidence": [
+            {
+              "rawOccurredAt": "2026-11-11T01:34:25",
+              "timeBasis": "database_session",
+              "timeReliable": true,
+              "eventId": "attempt:attempt-3603b31f232243d0bd8ce9e633008319",
+              "sourceType": "attempt",
+              "sourceId": "attempt-3603b31f232243d0bd8ce9e633008319",
+              "studentId": "unit-s0",
+              "knowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "originalKnowledgeIds": [
+                "kp-linear-transform"
+              ],
+              "occurredAt": "2026-11-10T17:34:25Z",
+              "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+              "classId": "unit-c0",
+              "lessonVersionId": "lessonversion-7459e05af43449d684d0c30861",
+              "readOnly": false,
+              "target": "/result?task=task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+              "prompt": "求x，写出两边同乘的数。",
+              "equation": "(x+2)/4-(x-1)/6=1",
+              "answer": "4",
+              "reason": "写出共同运算并代回；应用题同时说明设元和单位。",
+              "helped": false,
+              "verification": "verified_correct",
+              "outcome": "independent_correct",
+              "questionKind": "check",
+              "questionIndex": 3,
+              "questionKey": "lesson-5657bb45715a4d7bbec25debb63b50c8:transform-c2",
+              "recordId": "record-e9bbb471363f4e8fba1a43b21c6b7325",
+              "knowledgeId": "kp-linear-transform",
+              "evidenceId": "attempt:attempt-3603b31f232243d0bd8ce9e633008319:kp-linear-transform",
+              "label": "独立正确"
+            }
+          ]
+        },
+        {
+          "id": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87:4",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "taskTitle": "含括号与分母的方程",
+          "versionId": "lessonversion-7459e05af43449d684d0c30861",
+          "index": 4,
+          "prompt": "求x并验算。",
+          "equation": "-3(x-2)=12",
+          "knowledgeIds": [
+            "kp-linear-transform"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        },
+        {
+          "id": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87:5",
+          "taskId": "task-bd70308e4d1a3f9d64c1c14b8dfe9c87",
+          "taskTitle": "含括号与分母的方程",
+          "versionId": "lessonversion-7459e05af43449d684d0c30861",
+          "index": 5,
+          "prompt": "求x。",
+          "equation": "x/2+x/3=5",
+          "knowledgeIds": [
+            "kp-linear-transform"
+          ],
+          "students": 0,
+          "correctStudents": 0,
+          "incorrectStudents": 0,
+          "unverifiedStudents": 0,
+          "helpedStudents": 0,
+          "attempts": 0,
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "name": "teacher-targets-real-wrong-student-submits-teacher-replies",
+      "supplementId": "sup-1cc31849bff0a26893a8db1aa20cecac",
+      "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce",
+      "feedback": "已核对本题数量关系与单位。原答0和补救过程保留；后续独立题继续说明设元、列式与验算。",
+      "supplement": [
+        {
+          "id": "sup-1cc31849bff0a26893a8db1aa20cecac",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "className": "单元预发布验收1班",
+          "teacherName": "单元验收·t1",
+          "content": "回看原答0与新的变式；说明设元、3件单价加6元运费的数量关系及单位，再检查代回结果。",
+          "kind": "correction",
+          "status": "active",
+          "dueDate": "",
+          "dueAt": null,
+          "createdAt": "2026-11-10T17:46:40Z",
+          "recipients": [
+            {
+              "studentId": "unit-s0",
+              "studentName": "单元验收·s0",
+              "startedAt": "2026-11-10T17:46:40Z",
+              "completedAt": "2026-11-10T17:46:40Z",
+              "response": "设每件x元，三件商品费用3x元，加6元运费共21元，列3x+6=21；解为5元，代回满足数量关系。",
+              "feedback": "已核对本题数量关系与单位。原答0和补救过程保留；后续独立题继续说明设元、列式与验算。",
+              "status": "已提交",
+              "outcome": {
+                "newAttempts": 0,
+                "newQuestions": 0,
+                "independentPassed": false,
+                "needsHelp": false,
+                "evidence": [],
+                "target": {
+                  "kind": "repair",
+                  "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce"
+                },
+                "label": "尚无新作答"
+              }
+            }
+          ],
+          "knowledgeId": "kp-linear-model",
+          "case": null
+        },
+        {
+          "id": "sup-bd3e8b822f7138e81c931a52f25e2f14",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "className": "单元预发布验收1班",
+          "teacherName": "单元验收·t1",
+          "content": "回看原答0与新的变式；说明设元、3件单价加6元运费的数量关系及单位，再检查代回结果。",
+          "kind": "correction",
+          "status": "active",
+          "dueDate": "",
+          "dueAt": null,
+          "createdAt": "2026-11-10T17:46:02Z",
+          "recipients": [
+            {
+              "studentId": "unit-s0",
+              "studentName": "单元验收·s0",
+              "startedAt": "2026-11-10T17:46:02Z",
+              "completedAt": "2026-11-10T17:46:02Z",
+              "response": "设每件x元，三件商品费用3x元，加6元运费共21元，列3x+6=21；解为5元，代回满足数量关系。",
+              "feedback": "已核对本题数量关系与单位。原答0和补救过程保留；后续独立题继续说明设元、列式与验算。",
+              "status": "已提交",
+              "outcome": {
+                "newAttempts": 0,
+                "newQuestions": 0,
+                "independentPassed": false,
+                "needsHelp": false,
+                "evidence": [],
+                "target": {
+                  "kind": "repair",
+                  "wrongId": "wrong-bc2302d3b579487db4073cc2e8e174ce"
+                },
+                "label": "尚无新作答"
+              }
+            }
+          ],
+          "knowledgeId": "kp-linear-model",
+          "case": null
+        }
+      ]
+    },
+    {
+      "name": "two-independent-support-items-and-teacher-reply",
+      "issues": [
+        {
+          "id": "issue-607bdea8ca5c4121abeb76be25098fb9",
+          "ownerId": "unit-s0",
+          "ownerName": "单元验收·s0",
+          "text": "应用题里6元是一次运费还是每件运费？",
+          "reply": "",
+          "resolved": false,
+          "category": "learning",
+          "taskId": "task-3cc47381a911730cd8a97390868d579a",
+          "taskTitle": "用方程解决生活问题",
+          "status": "pending",
+          "statusLabel": "待处理",
+          "revision": 1,
+          "createdAt": "2026-11-10T17:46:39.954653Z",
+          "updatedAt": "2026-11-10T17:46:39.954660Z",
+          "legacyReply": "",
+          "history": [
+            {
+              "id": "ise-a06eef59541240edb8145ec595c7b1bd",
+              "actorId": "unit-s0",
+              "actorName": "单元验收·s0",
+              "oldStatus": "",
+              "status": "pending",
+              "content": "应用题里6元是一次运费还是每件运费？",
+              "createdAt": "2026-11-10T17:46:39.958496Z"
+            }
+          ]
+        },
+        {
+          "id": "issue-467d819e25b04bcc9fef7cd26b846e41",
+          "ownerId": "unit-s0",
+          "ownerName": "单元验收·s0",
+          "text": "验收问题：重新打开网页后如何返回当前课时？",
+          "reply": "",
+          "resolved": false,
+          "category": "system",
+          "taskId": null,
+          "taskTitle": null,
+          "status": "pending",
+          "statusLabel": "待处理",
+          "revision": 1,
+          "createdAt": "2026-11-10T17:46:39.993867Z",
+          "updatedAt": "2026-11-10T17:46:39.993873Z",
+          "legacyReply": "",
+          "history": [
+            {
+              "id": "ise-74de1833e76543bf964f5a0c8d426d00",
+              "actorId": "unit-s0",
+              "actorName": "单元验收·s0",
+              "oldStatus": "",
+              "status": "pending",
+              "content": "验收问题：重新打开网页后如何返回当前课时？",
+              "createdAt": "2026-11-10T17:46:39.995523Z"
+            }
+          ]
+        }
+      ],
+      "replied": {
+        "id": "issue-607bdea8ca5c4121abeb76be25098fb9",
+        "ownerId": "unit-s0",
+        "ownerName": "单元验收·s0",
+        "text": "应用题里6元是一次运费还是每件运费？",
+        "reply": "6元为整单一次运费，所以列3x+6=21。",
+        "resolved": true,
+        "category": "learning",
+        "taskId": "task-3cc47381a911730cd8a97390868d579a",
+        "taskTitle": "用方程解决生活问题",
+        "status": "replied",
+        "statusLabel": "已回复",
+        "revision": 2,
+        "createdAt": "2026-11-10T17:46:40Z",
+        "updatedAt": "2026-11-10T17:46:40.027378Z",
+        "legacyReply": "6元为整单一次运费，所以列3x+6=21。",
+        "history": [
+          {
+            "id": "ise-a06eef59541240edb8145ec595c7b1bd",
+            "actorId": "unit-s0",
+            "actorName": "单元验收·s0",
+            "oldStatus": "",
+            "status": "pending",
+            "content": "应用题里6元是一次运费还是每件运费？",
+            "createdAt": "2026-11-10T17:46:39.958496Z"
+          },
+          {
+            "id": "ise-4bdc3746fff64cb5baa6b2c84b323326",
+            "actorId": "unit-t1",
+            "actorName": "单元验收·t1",
+            "oldStatus": "pending",
+            "status": "replied",
+            "content": "6元为整单一次运费，所以列3x+6=21。",
+            "createdAt": "2026-11-10T17:46:40.029465Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-t2",
+      "method": "GET",
+      "path": "/teaching/tasks/task-3cc47381a911730cd8a97390868d579a",
+      "status": 404
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-t2",
+      "method": "PUT",
+      "path": "/records/record-fef262a014fd4ef1abc282b7df7ef782/feedback",
+      "status": 404
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-t2",
+      "method": "POST",
+      "path": "/support/issue-607bdea8ca5c4121abeb76be25098fb9/events",
+      "status": 404
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-s4",
+      "method": "GET",
+      "path": "/teaching/tasks/task-3cc47381a911730cd8a97390868d579a",
+      "status": 404
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-s4",
+      "method": "PUT",
+      "path": "/records/record-fef262a014fd4ef1abc282b7df7ef782/feedback",
+      "status": 403
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-s4",
+      "method": "POST",
+      "path": "/support/issue-607bdea8ca5c4121abeb76be25098fb9/events",
+      "status": 404
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-admin",
+      "method": "GET",
+      "path": "/teaching/tasks/task-3cc47381a911730cd8a97390868d579a",
+      "status": 404
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-admin",
+      "method": "PUT",
+      "path": "/records/record-fef262a014fd4ef1abc282b7df7ef782/feedback",
+      "status": 403
+    },
+    {
+      "name": "out-of-scope-denied",
+      "role": "unit-admin",
+      "method": "POST",
+      "path": "/support/issue-607bdea8ca5c4121abeb76be25098fb9/events",
+      "status": 404
+    }
+  ],
+  "taskId": "task-3cc47381a911730cd8a97390868d579a",
+  "recordId": "record-fef262a014fd4ef1abc282b7df7ef782",
+  "feedback": "已核对本题数量关系与单位。原答0和补救过程保留；后续独立题继续说明设元、列式与验算。",
+  "passed": true
+}

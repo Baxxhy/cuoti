@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "teacher-reviews-actual-student-and-saves-feedback-in-browser"
+  ],
+  "screens": [
+    {
+      "page": "teacher-unit-insights",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "teacher-unit-insights",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "teacher-unit-insights",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "failure": "Browser wait timed out: document.body.innerText.includes('下次独立完成一道新的应用题')"
+}

@@ -1,0 +1,15 @@
+unit-catalog-five-assigned-lessons
+lesson-equation:drafts-survive-refresh
+lesson-equation:read-practice-check-submit
+actual-prerequisite-review-and-return
+lesson-simple:drafts-survive-refresh
+simple-actual-help-recorded
+file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19
+  async wait(code,ms=20000){const end=Date.now()+ms;while(Date.now()<end){if(await this.eval(code))return;await sleep(80)}throw Error('Browser wait timed out: '+code)}
+                                                                                                                                ^
+
+Error: Browser wait timed out: document.querySelector('.result-summary')?.textContent.includes('已提交')||[...document.querySelectorAll('button')].some(e=>e.textContent.includes('再次提交结果'))
+    at Browser.wait (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19:129)
+    at async file:///tmp/sczx-step16/student-browser.mjs:14:159
+
+Node.js v24.15.0

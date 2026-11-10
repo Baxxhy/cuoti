@@ -17,7 +17,7 @@ def published_lesson(db, lesson_id, version_id=None):
     content=db.get(LessonContent,lesson_id)
     version=db.get(LessonVersion,version_id) if version_id else db.scalar(select(LessonVersion).where(LessonVersion.lesson_id==lesson_id).order_by(LessonVersion.number.desc()).limit(1))
     if not version or version.lesson_id!=lesson_id or (not version_id and (not content or content.status!='published')):return None
-    return {**copy.deepcopy(version.data),'lessonId':lesson_id,'versionId':version.id,'version':version.number,'publishedAt':version.published_at.isoformat()+'Z'}
+    return {**copy.deepcopy(version.data),'unitId':db.get(Lesson,lesson_id).unit_id,'lessonId':lesson_id,'versionId':version.id,'version':version.number,'publishedAt':version.published_at.isoformat()+'Z'}
 
 
 def student_content(data):
@@ -78,7 +78,9 @@ def content_errors(db,data):
     if not checks:errors.append('questions：至少需要一道独立检查题')
     if data.get('caseId'):
         if not current_case(db,data['caseId'],data.get('caseVersionId')):errors.append('caseId：案例已撤回或版本不存在')
-    return errors
+    from .math_conditions import inspect_conditions
+    errors.extend(i["message"] for i in inspect_conditions(data)["issues"])
+    return list(dict.fromkeys(errors))
 
 
 @router.get('/courses')
@@ -89,7 +91,9 @@ def catalog(request:Request,db=Depends(get_db)):
         for unit in db.scalars(select(CourseUnit).where(CourseUnit.course_id==course.id).order_by(CourseUnit.position)).all():
             lessons=[lesson_json(db,l,admin) for l in db.scalars(select(Lesson).where(Lesson.unit_id==unit.id).order_by(Lesson.position)).all()]
             if not admin:lessons=[l for l in lessons if l['published']]
-            if admin or lessons:units.append({'id':unit.id,'title':unit.title,'position':unit.position,'lessons':lessons})
+            if admin or lessons:
+                from .unit_learning import lesson_order
+                order=lesson_order(db,unit);planned=bool((course.metadata_json or {}).get('unitPlans',{}).get(unit.id));units.append({'id':unit.id,'title':unit.title,'position':unit.position,'lessonOrder':order,'hasPlan':planned,'lessons':sorted(lessons,key=lambda l:(order.index(l['id']) if l['id'] in order else len(order),l['position'],l['id']))})
         if admin or units:result.append({'id':course.id,'title':course.title,'grade':course.grade,'metadata':course.metadata_json or {},'units':units})
     return sorted(result,key=lambda c:((c['metadata'] or {}).get('position') or 0,c['id']))
 
@@ -107,6 +111,13 @@ def edit_course(ident:str,body:dict,request:Request,db=Depends(get_db)):
     account(request,db,True);row=db.get(Course,ident)
     if not row:raise HTTPException(404,'课程不存在。')
     if not str(body.get('title','')).strip():raise HTTPException(422,'请填写课程名称。')
+    metadata=body.get('metadata') or {}
+    if not isinstance(metadata,dict):raise HTTPException(422,'课程元数据无效。')
+    plans=metadata.get('unitPlans',{})
+    if not isinstance(plans,dict):raise HTTPException(422,'单元顺序格式无效。')
+    for unit_id,order in plans.items():
+        unit=db.get(CourseUnit,unit_id)
+        if not unit or unit.course_id!=ident or not isinstance(order,list) or any(not isinstance(i,str) for i in order) or len(order)!=len(set(order)) or any(not db.get(Lesson,l) or db.get(Lesson,l).unit_id!=unit_id for l in order):raise HTTPException(422,'单元顺序必须引用本单元真实课时且不能重复。')
     row.title=str(body['title'])[:200];row.grade=str(body.get('grade',''))[:80];row.metadata_json=body.get('metadata') or {};db.commit();return {'saved':True}
 
 
@@ -151,7 +162,7 @@ def save_lesson(ident:str,body:dict,request:Request,db=Depends(get_db)):
         lesson.position=int(body['position']);db.commit();return lesson_json(db,lesson,True)
     data=body.get('data')
     if not isinstance(data,dict) or not isinstance(data.get('blocks',[]),list) or not isinstance(data.get('questions',[]),list):raise HTTPException(422,'课时格式无效。')
-    data=copy.deepcopy(data);data.pop('verification',None)
+    data=copy.deepcopy(data);data.pop('verification',None);data.pop('reviewRecord',None)
     if content.draft!=data:content.reviewed=False
     content.draft=data
     lesson.position=int(body.get('position',lesson.position))
@@ -172,7 +183,9 @@ def lesson_action(ident:str,action:str,request:Request,db=Depends(get_db)):
         if not content.draft:raise HTTPException(422,'请先创建课时草稿。')
         errors=content_errors(db,content.draft)
         if errors:raise HTTPException(422,'；'.join(errors))
-        if action=='review':content.reviewed=True
+        if action=='review':
+            from .math_conditions import inspect_conditions
+            actor=account(request,db,True);data=copy.deepcopy(content.draft);data['reviewRecord']={'actorId':actor.id,'at':datetime.utcnow().isoformat()+'Z','scope':'内容、条件与数量关系人工核对','conditions':inspect_conditions(data)};content.draft=data;content.reviewed=True
         if action=='publish':
             if not content.reviewed:raise HTTPException(422,'请先完成内容和数学核对。')
             data=copy.deepcopy(content.draft)
@@ -234,6 +247,8 @@ def assess_question(answer,question):
     elif re.search(r'/\s*0(?:\D|$)',answer):result['message']='除数不能为零，请检查运算条件。'
     else:
         result['message']=next((f['message'] for f in question.get('feedback',[]) if f.get('answer')==answer),'请检查左右两边是否进行了相同运算，再核对计算。')
+    if question.get('requiresTeacherReview') and result['correct']:
+        result={'status':'unverified','correct':False,'numericVerification':result,'message':'数值与参考方程相符；设元、列式和情境条件仍需教师核对。','scope':'应用题文字建模不自动判定正确'}
     return result
 
 

@@ -1,0 +1,96 @@
+{
+  "checks": [
+    "teacher-reviews-actual-student-and-saves-feedback-in-browser",
+    "student-relogin-reads-teacher-feedback"
+  ],
+  "screens": [
+    {
+      "page": "teacher-unit-insights",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "teacher-unit-insights",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "teacher-unit-insights",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "page": "student-unit-result",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "student-unit-result",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "student-unit-result",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "page": "unit-catalog",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "unit-catalog",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "unit-catalog",
+      "width": 2560,
+      "scroll": 2560,
+      "client": 2560
+    }
+  ],
+  "cardLayout": [
+    {
+      "width": 281,
+      "title": "等式性质",
+      "height": 33
+    },
+    {
+      "width": 281,
+      "title": "解简单的一元一次方程",
+      "height": 33
+    },
+    {
+      "width": 281,
+      "title": "含括号与分母的方程",
+      "height": 33
+    },
+    {
+      "width": 281,
+      "title": "用方程解决生活问题",
+      "height": 33
+    },
+    {
+      "width": 281,
+      "title": "一元一次方程单元复习",
+      "height": 33
+    }
+  ],
+  "navigation": {
+    "duration": 141.5,
+    "domContentLoaded": 141.4000005722046,
+    "transferSize": 300
+  },
+  "consoleErrors": [],
+  "passed": true
+}

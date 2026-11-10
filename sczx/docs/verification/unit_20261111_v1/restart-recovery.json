@@ -1,0 +1,586 @@
+{
+  "checks": [],
+  "before": {
+    "id": "job-455046e62bc24ddf879baa19e10079d6",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": "record-e1461ff40fd5456aaddd8504362e5f18",
+    "fileId": null,
+    "helpRecordId": null,
+    "question": 2,
+    "blockId": "eq-check",
+    "strategy": "hint",
+    "prompt": "先解释同除为什么必须非零，只给下一步提示。",
+    "parentJobId": null,
+    "recognizedText": "",
+    "status": "running",
+    "step": "正在生成指导",
+    "error": "",
+    "result": null,
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-10T17:26:14Z",
+    "updatedAt": "2026-11-10T17:26:14Z",
+    "input": {
+      "scope": {
+        "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+        "classId": "unit-c0",
+        "lessonId": "lesson-equation",
+        "studentId": "unit-s2",
+        "questionId": "eq-check-divide",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "lessonVersionId": "lessonversion-573554153138457c93ab1091cb"
+      },
+      "prompt": "先解释同除为什么必须非零，只给下一步提示。",
+      "blockId": "eq-check",
+      "context": {
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "lesson": {
+          "id": "lesson-equation",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "grade": "七年级",
+          "title": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb"
+        },
+        "question": {
+          "id": "eq-check-divide",
+          "kind": "check",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "observation": "",
+        "prerequisites": [
+          {
+            "id": "kp-equal",
+            "name": "相等关系"
+          },
+          {
+            "id": "kp-expression",
+            "name": "算式含义"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "case-0b52ea745636408c83bb07fb715ae93d",
+            "title": "项目自编：例题：消去减去的数",
+            "source": "用户单人复核的项目自编单元",
+            "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "version": 1,
+            "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+                "sourceUrl": "",
+                "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+                "materialTitle": "项目自编单元来源：等式性质"
+              }
+            ]
+          },
+          {
+            "id": "case-balance",
+            "title": "天平与等式性质",
+            "source": "待补充核对的教学示例",
+            "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+            "version": 1,
+            "versionId": "version-ff719fd797164ca99cdbed8574144861",
+            "references": []
+          },
+          {
+            "id": "case-82d0bccea41e40a29866490c6170b8b8",
+            "title": "项目自编：例题：单价与固定费用",
+            "source": "用户单人复核的项目自编单元",
+            "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+            "version": 1,
+            "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+                "sourceUrl": "",
+                "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+                "materialTitle": "项目自编单元来源：用方程解决生活问题"
+              }
+            ]
+          }
+        ],
+        "learningMemory": []
+      },
+      "history": [],
+      "guidance": true,
+      "ocrJobId": null,
+      "question": 2,
+      "strategy": "hint",
+      "confirmed": false,
+      "parentJobId": null,
+      "recognizedText": "",
+      "selectedStrategy": "hint",
+      "confirmedEquation": ""
+    },
+    "runs": [
+      {
+        "id": "run-747123dc37f848d2916c19d95e3b6f83",
+        "number": 1,
+        "status": "running",
+        "model": "",
+        "provider": "",
+        "error": "",
+        "result": null,
+        "startedAt": "2026-11-10T17:26:14Z",
+        "endedAt": null
+      }
+    ]
+  },
+  "afterRestart": {
+    "id": "job-455046e62bc24ddf879baa19e10079d6",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": "record-e1461ff40fd5456aaddd8504362e5f18",
+    "fileId": null,
+    "helpRecordId": null,
+    "question": 2,
+    "blockId": "eq-check",
+    "strategy": "hint",
+    "prompt": "先解释同除为什么必须非零，只给下一步提示。",
+    "parentJobId": null,
+    "recognizedText": "",
+    "status": "failed",
+    "step": "服务中断",
+    "error": "服务中断，输入与已有结果已保留，可手动重试。",
+    "result": null,
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-10T17:26:14Z",
+    "updatedAt": "2026-11-10T17:26:14Z",
+    "input": {
+      "scope": {
+        "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+        "classId": "unit-c0",
+        "lessonId": "lesson-equation",
+        "studentId": "unit-s2",
+        "questionId": "eq-check-divide",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "lessonVersionId": "lessonversion-573554153138457c93ab1091cb"
+      },
+      "prompt": "先解释同除为什么必须非零，只给下一步提示。",
+      "blockId": "eq-check",
+      "context": {
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "lesson": {
+          "id": "lesson-equation",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "grade": "七年级",
+          "title": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb"
+        },
+        "question": {
+          "id": "eq-check-divide",
+          "kind": "check",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "observation": "",
+        "prerequisites": [
+          {
+            "id": "kp-equal",
+            "name": "相等关系"
+          },
+          {
+            "id": "kp-expression",
+            "name": "算式含义"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "case-0b52ea745636408c83bb07fb715ae93d",
+            "title": "项目自编：例题：消去减去的数",
+            "source": "用户单人复核的项目自编单元",
+            "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "version": 1,
+            "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+                "sourceUrl": "",
+                "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+                "materialTitle": "项目自编单元来源：等式性质"
+              }
+            ]
+          },
+          {
+            "id": "case-balance",
+            "title": "天平与等式性质",
+            "source": "待补充核对的教学示例",
+            "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+            "version": 1,
+            "versionId": "version-ff719fd797164ca99cdbed8574144861",
+            "references": []
+          },
+          {
+            "id": "case-82d0bccea41e40a29866490c6170b8b8",
+            "title": "项目自编：例题：单价与固定费用",
+            "source": "用户单人复核的项目自编单元",
+            "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+            "version": 1,
+            "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+                "sourceUrl": "",
+                "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+                "materialTitle": "项目自编单元来源：用方程解决生活问题"
+              }
+            ]
+          }
+        ],
+        "learningMemory": []
+      },
+      "history": [],
+      "guidance": true,
+      "ocrJobId": null,
+      "question": 2,
+      "strategy": "hint",
+      "confirmed": false,
+      "parentJobId": null,
+      "recognizedText": "",
+      "selectedStrategy": "hint",
+      "confirmedEquation": ""
+    },
+    "runs": [
+      {
+        "id": "run-747123dc37f848d2916c19d95e3b6f83",
+        "number": 1,
+        "status": "failed",
+        "model": "",
+        "provider": "",
+        "error": "服务中断，输入与已有结果已保留，可手动重试。",
+        "result": null,
+        "startedAt": "2026-11-10T17:26:14Z",
+        "endedAt": "2026-11-10T17:26:14Z"
+      }
+    ]
+  },
+  "afterRetry": {
+    "id": "job-455046e62bc24ddf879baa19e10079d6",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": "record-e1461ff40fd5456aaddd8504362e5f18",
+    "fileId": null,
+    "helpRecordId": "help-455046e62bc24ddf879baa19e10079d6",
+    "question": 2,
+    "blockId": "eq-check",
+    "strategy": "hint",
+    "prompt": "先解释同除为什么必须非零，只给下一步提示。",
+    "parentJobId": null,
+    "recognizedText": "",
+    "status": "succeeded",
+    "step": "已完成",
+    "error": "",
+    "result": {
+      "hint": "要把3z变成z，可以对等式两边做什么相同的运算？",
+      "steps": [
+        "同除是乘法的逆运算：只有除数非零时，才有唯一的乘法逆数。",
+        "因此，两边同除一个数时，该数必须非零；这里的3符合这个条件。"
+      ],
+      "title": "同除为什么要求非零",
+      "sources": [],
+      "question": "你会选择哪种运算？",
+      "strategy": "hint",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 31512,
+        "modelCalls": 2,
+        "contextChars": 2283,
+        "historyTurns": 0
+      },
+      "mathClaims": [],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "try",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [],
+        "status": "unverified"
+      },
+      "prerequisites": [],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "",
+      "representation": "question",
+      "usedCaseVersionIds": []
+    },
+    "attemptNumber": 2,
+    "retryCount": 0,
+    "createdAt": "2026-11-10T17:26:14Z",
+    "updatedAt": "2026-11-10T17:26:49Z",
+    "input": {
+      "scope": {
+        "taskId": "task-2fb2beed8a84a12625e36bed85bb051b",
+        "classId": "unit-c0",
+        "lessonId": "lesson-equation",
+        "studentId": "unit-s2",
+        "questionId": "eq-check-divide",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "lessonVersionId": "lessonversion-573554153138457c93ab1091cb"
+      },
+      "prompt": "先解释同除为什么必须非零，只给下一步提示。",
+      "blockId": "eq-check",
+      "context": {
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "lesson": {
+          "id": "lesson-equation",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "grade": "七年级",
+          "title": "等式性质",
+          "versionId": "lessonversion-573554153138457c93ab1091cb"
+        },
+        "question": {
+          "id": "eq-check-divide",
+          "kind": "check",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "observation": "",
+        "prerequisites": [
+          {
+            "id": "kp-equal",
+            "name": "相等关系"
+          },
+          {
+            "id": "kp-expression",
+            "name": "算式含义"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "case-0b52ea745636408c83bb07fb715ae93d",
+            "title": "项目自编：例题：消去减去的数",
+            "source": "用户单人复核的项目自编单元",
+            "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "version": 1,
+            "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+                "sourceUrl": "",
+                "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+                "materialTitle": "项目自编单元来源：等式性质"
+              }
+            ]
+          },
+          {
+            "id": "case-balance",
+            "title": "天平与等式性质",
+            "source": "待补充核对的教学示例",
+            "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+            "version": 1,
+            "versionId": "version-ff719fd797164ca99cdbed8574144861",
+            "references": []
+          },
+          {
+            "id": "case-82d0bccea41e40a29866490c6170b8b8",
+            "title": "项目自编：例题：单价与固定费用",
+            "source": "用户单人复核的项目自编单元",
+            "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+            "version": 1,
+            "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+            "references": [
+              {
+                "label": "段落 1",
+                "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+                "author": "项目自编、AI辅助整理",
+                "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+                "sourceUrl": "",
+                "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+                "materialTitle": "项目自编单元来源：用方程解决生活问题"
+              }
+            ]
+          }
+        ],
+        "learningMemory": []
+      },
+      "history": [],
+      "guidance": true,
+      "ocrJobId": null,
+      "question": 2,
+      "strategy": "hint",
+      "confirmed": false,
+      "parentJobId": null,
+      "recognizedText": "",
+      "selectedStrategy": "hint",
+      "confirmedEquation": ""
+    },
+    "runs": [
+      {
+        "id": "run-747123dc37f848d2916c19d95e3b6f83",
+        "number": 1,
+        "status": "failed",
+        "model": "",
+        "provider": "",
+        "error": "服务中断，输入与已有结果已保留，可手动重试。",
+        "result": null,
+        "startedAt": "2026-11-10T17:26:14Z",
+        "endedAt": "2026-11-10T17:26:14Z"
+      },
+      {
+        "id": "run-c89b4458c0184ec89eee76ad616efd0d",
+        "number": 2,
+        "status": "succeeded",
+        "model": "gpt-6-luna",
+        "provider": "Codex CLI · low",
+        "error": "",
+        "result": {
+          "hint": "要把3z变成z，可以对等式两边做什么相同的运算？",
+          "steps": [
+            "同除是乘法的逆运算：只有除数非零时，才有唯一的乘法逆数。",
+            "因此，两边同除一个数时，该数必须非零；这里的3符合这个条件。"
+          ],
+          "title": "同除为什么要求非零",
+          "sources": [],
+          "question": "你会选择哪种运算？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 31512,
+            "modelCalls": 2,
+            "contextChars": 2283,
+            "historyTurns": 0
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "",
+          "representation": "question",
+          "usedCaseVersionIds": []
+        },
+        "startedAt": "2026-11-10T17:26:17Z",
+        "endedAt": "2026-11-10T17:26:49Z"
+      }
+    ]
+  },
+  "oneOriginalHelpRecord": true
+}

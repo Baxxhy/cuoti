@@ -1,0 +1,130 @@
+{
+  "mapping": {
+    "lesson-equation": "lesson-equation",
+    "lesson-simple": "lesson-simple",
+    "lesson-transform": "lesson-5657bb45715a4d7bbec25debb63b50c8",
+    "lesson-application": "lesson-application",
+    "lesson-unit-review": "lesson-7cc1f55173f74072a33c833dce7fa80c"
+  },
+  "actions": [
+    {
+      "sourceId": "lesson-equation",
+      "lessonId": "lesson-equation",
+      "action": "reviewed_and_published",
+      "versionId": "lessonversion-573554153138457c93ab1091cb"
+    },
+    {
+      "sourceId": "lesson-simple",
+      "lessonId": "lesson-simple",
+      "action": "reviewed_and_published",
+      "versionId": "lessonversion-c0ba3a062b2e4994b9c320abfd"
+    },
+    {
+      "sourceId": "lesson-transform",
+      "lessonId": "lesson-5657bb45715a4d7bbec25debb63b50c8",
+      "action": "reviewed_and_published",
+      "versionId": "lessonversion-7459e05af43449d684d0c30861"
+    },
+    {
+      "sourceId": "lesson-application",
+      "lessonId": "lesson-application",
+      "action": "reviewed_and_published",
+      "versionId": "lessonversion-d80d55f6f49d422693ed320fd2"
+    },
+    {
+      "sourceId": "lesson-unit-review",
+      "lessonId": "lesson-7cc1f55173f74072a33c833dce7fa80c",
+      "action": "reviewed_and_published",
+      "versionId": "lessonversion-812f746bff9540ee99a0b5d5d2"
+    }
+  ],
+  "unitId": "unit-equation",
+  "approval": {
+    "scope": "五课教学表述、应用数量关系和条件预期",
+    "provenance": "AI辅助拟稿、用户单人复核",
+    "answer": "已阅读，认可五课与条件预期",
+    "contentFile": "docs/planning/第十六步单元内容草案_20261111_v1.json",
+    "sha256": "e71797144ccc7306be88687bc5483fef54c95ff01ef13bc6c6ee722d1e7831ac",
+    "date": "2026-11-11",
+    "notClaiming": "真实教师审核或课堂效果"
+  },
+  "source": "project_authored_ai_assisted",
+  "cases": {
+    "equality": {
+      "grade": "七年级",
+      "title": "项目自编：例题：消去减去的数",
+      "author": "AI辅助整理",
+      "source": "用户单人复核的项目自编单元",
+      "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+      "subject": "数学",
+      "experience": {
+        "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+        "difficulty": "先看数量关系和当前运算，保留学生的解释",
+        "introduction": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。"
+      },
+      "references": [
+        {
+          "label": "段落 1",
+          "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+          "author": "项目自编、AI辅助整理",
+          "source": "用户单人复核的单元草案；非真实教师课堂材料",
+          "unitId": "unit-914b315a00390418addf23fdf646e0f8",
+          "sourceUrl": "",
+          "materialId": "material-609f0f334e75454f9401ad5fbe974d8",
+          "materialTitle": "项目自编单元来源：等式性质"
+        }
+      ],
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "knowledgeLinks": [
+        {
+          "id": "kp-equality",
+          "name": "等式性质"
+        }
+      ],
+      "id": "case-0b52ea745636408c83bb07fb715ae93d",
+      "versionId": "version-fc76d31adeeb42ac9a5267c8c1e88150",
+      "version": 1,
+      "publishedAt": "2026-11-10T17:19:30Z"
+    },
+    "application": {
+      "grade": "七年级",
+      "title": "项目自编：例题：单价与固定费用",
+      "author": "AI辅助整理",
+      "source": "用户单人复核的项目自编单元",
+      "content": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+      "subject": "数学",
+      "experience": {
+        "goal": "说明未知量、单位和数量关系，列出一元一次方程，求解后核对情境条件。",
+        "difficulty": "先看数量关系和当前运算，保留学生的解释",
+        "introduction": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。"
+      },
+      "references": [
+        {
+          "label": "段落 1",
+          "quote": "3支同价笔加6元包装费共21元。设每支笔x元，列3x+6=21。两边减6再除以3，得x=5。验算3×5+6=21，且5元为正，符合条件。",
+          "author": "项目自编、AI辅助整理",
+          "source": "用户单人复核的单元草案；非真实教师课堂材料",
+          "unitId": "unit-03c3831f7510615724a6dfbda1c7886e",
+          "sourceUrl": "",
+          "materialId": "material-a0a1be47d75f473b963d97f20b09e8e",
+          "materialTitle": "项目自编单元来源：用方程解决生活问题"
+        }
+      ],
+      "knowledgeIds": [
+        "kp-linear-model"
+      ],
+      "knowledgeLinks": [
+        {
+          "id": "kp-linear-model",
+          "name": "实际问题中的设元与列式"
+        }
+      ],
+      "id": "case-82d0bccea41e40a29866490c6170b8b8",
+      "versionId": "version-965e505b55d646ae9b9335b975d093a2",
+      "version": 1,
+      "publishedAt": "2026-11-10T17:19:31Z"
+    }
+  }
+}

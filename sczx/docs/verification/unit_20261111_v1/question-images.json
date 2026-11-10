@@ -1,0 +1,60 @@
+{
+  "shots": [
+    {
+      "sourceId": "lesson-equation",
+      "path": "/tmp/sczx-step16/lesson-equation-question.png",
+      "clip": {
+        "x": 289,
+        "y": 253.5257568359375,
+        "width": 793.09375,
+        "height": 192.796875,
+        "scale": 1
+      }
+    },
+    {
+      "sourceId": "lesson-simple",
+      "path": "/tmp/sczx-step16/lesson-simple-question.png",
+      "clip": {
+        "x": 289,
+        "y": 253.96975708007812,
+        "width": 793.09375,
+        "height": 192.796875,
+        "scale": 1
+      }
+    },
+    {
+      "sourceId": "lesson-transform",
+      "path": "/tmp/sczx-step16/lesson-transform-question.png",
+      "clip": {
+        "x": 289,
+        "y": 251.46484375,
+        "width": 793.09375,
+        "height": 192.79684448242188,
+        "scale": 1
+      }
+    },
+    {
+      "sourceId": "lesson-application",
+      "path": "/tmp/sczx-step16/lesson-application-question.png",
+      "clip": {
+        "x": 289,
+        "y": 253.45114135742188,
+        "width": 793.09375,
+        "height": 192.796875,
+        "scale": 1
+      }
+    },
+    {
+      "sourceId": "lesson-unit-review",
+      "path": "/tmp/sczx-step16/lesson-unit-review-question.png",
+      "clip": {
+        "x": 289,
+        "y": 253.96975708007812,
+        "width": 793.09375,
+        "height": 192.796875,
+        "scale": 1
+      }
+    }
+  ],
+  "consoleErrors": []
+}

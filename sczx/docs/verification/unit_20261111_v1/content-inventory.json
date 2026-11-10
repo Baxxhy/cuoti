@@ -1,0 +1,105 @@
+[
+  {
+    "id": "lesson-equation",
+    "title": "等式性质",
+    "position": 1,
+    "status": "published",
+    "reviewed": true,
+    "draftBlocks": 0,
+    "draftQuestions": 0,
+    "source": null,
+    "versions": [
+      {
+        "id": "lessonversion-1dfcfdd8eda643c283427ea482",
+        "number": 1,
+        "blocks": 8,
+        "questions": 6,
+        "source": "项目自编首课；教学示例，未经真实教师试用"
+      },
+      {
+        "id": "lessonversion-619e68cc68234c4cbd37ded435",
+        "number": 2,
+        "blocks": 8,
+        "questions": 6,
+        "source": "项目自编首课；教学示例，未经真实教师试用"
+      }
+    ],
+    "taskCount": 12,
+    "attemptCount": 20
+  },
+  {
+    "id": "lesson-simple",
+    "title": "解简单的一元一次方程",
+    "position": 2,
+    "status": "draft",
+    "reviewed": false,
+    "draftBlocks": 0,
+    "draftQuestions": 0,
+    "source": "项目自编目录草稿",
+    "versions": [],
+    "taskCount": 0,
+    "attemptCount": 0
+  },
+  {
+    "id": "lesson-application",
+    "title": "用方程解决生活问题",
+    "position": 3,
+    "status": "draft",
+    "reviewed": false,
+    "draftBlocks": 0,
+    "draftQuestions": 0,
+    "source": "项目自编目录草稿",
+    "versions": [],
+    "taskCount": 0,
+    "attemptCount": 0
+  },
+  {
+    "id": "lesson-897e9ff4141e4a1db4a4ef2857be5fd6",
+    "title": "自编验收：乘除应用",
+    "position": 4,
+    "status": "published",
+    "reviewed": true,
+    "draftBlocks": 0,
+    "draftQuestions": 0,
+    "source": null,
+    "versions": [
+      {
+        "id": "lessonversion-fd82beceef544a58a513d4accf",
+        "number": 1,
+        "blocks": 8,
+        "questions": 6,
+        "source": "项目自编多课时验收内容，不代表单元全部上线"
+      },
+      {
+        "id": "lessonversion-5493a30dcc504f7e9044fbf85b",
+        "number": 2,
+        "blocks": 8,
+        "questions": 6,
+        "source": "项目自编多课时验收内容，不代表单元全部上线"
+      },
+      {
+        "id": "lessonversion-a4eebbce95e64315be289fc6d5",
+        "number": 3,
+        "blocks": 8,
+        "questions": 6,
+        "source": "项目自编多课时验收内容，不代表单元全部上线"
+      },
+      {
+        "id": "lessonversion-90f54d7e1c614f488a446e727a",
+        "number": 4,
+        "blocks": 8,
+        "questions": 6,
+        "source": "项目自编多课时验收内容，不代表单元全部上线"
+      },
+      {
+        "id": "lessonversion-35c4eb74184e4bbc9821a42498",
+        "number": 5,
+        "blocks": 8,
+        "questions": 6,
+        "source": "项目自编多课时验收内容，不代表单元全部上线"
+      }
+    ],
+    "taskCount": 4,
+    "attemptCount": 15
+  }
+]

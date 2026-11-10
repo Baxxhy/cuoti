@@ -1,0 +1,174 @@
+{
+  "checks": [
+    {
+      "name": "restored-production-login-five-submissions-three-remediations-feedback",
+      "passed": true
+    }
+  ],
+  "stopOriginal": "{\"stopped\": true}\n",
+  "backup": "{\"backup\": \"/tmp/sczx-step16/backup-d63d15\"}\n",
+  "restore": "{\"restored\": true, \"database\": \"sczx_test_unit_restore_aeeca8\", \"files\": 7}\n",
+  "tables": {
+    "accounts": {
+      "rows": 17,
+      "sha256": "b83be810684a3d84afce6ec73c5490f4f6cdaa8a2a39c70c53d71cfe377ed247"
+    },
+    "alembic_version": {
+      "rows": 1,
+      "sha256": "37c9dea24056e32984386fa6d27ea0465bd7f4e9471325c25ef8d131b97e818b"
+    },
+    "attempts": {
+      "rows": 24,
+      "sha256": "f0d85e01a4f73c2dcc28055c56cd3148b80904b32f0fa0019bff8cdea41d4d11"
+    },
+    "business_messages": {
+      "rows": 65,
+      "sha256": "56be89854e08bd8d21a11024ad9bf0cbd2919034856c832fbbc697664895ebc5"
+    },
+    "case_draft_contents": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "case_versions": {
+      "rows": 3,
+      "sha256": "3724796a8dae289a79fce11b044d1bd1944f0b419baeb59ec1b35cf6c0e0fb45"
+    },
+    "class_invites": {
+      "rows": 2,
+      "sha256": "7abff1642818d9838b3bafad59f653b39a8f17e2dd6b99fc0ec37482c08f8c61"
+    },
+    "class_join_throttles": {
+      "rows": 2,
+      "sha256": "bc3a0e092db008e9c56387a877773fab38a685936840c9c918b661a499f32246"
+    },
+    "class_members": {
+      "rows": 11,
+      "sha256": "f624a8b11b3e6a92edb99ad5e80ae8f00de2adf12f10e8fd5271689c4370a2ef"
+    },
+    "classrooms": {
+      "rows": 4,
+      "sha256": "a2d715c396e0a92f76ce47421eadf3a6ee751111a12a86c3b75cce5e170a2529"
+    },
+    "course_units": {
+      "rows": 1,
+      "sha256": "1182e0433389d525d4a2c810b4bcc73d61b3d0be47d6354352f5d2569da555b1"
+    },
+    "courses": {
+      "rows": 1,
+      "sha256": "4df4922a50e2f85b3405da4d41d21541bb64349b3b7ff1399b97647fea0c019b"
+    },
+    "file_assets": {
+      "rows": 7,
+      "sha256": "b606655e6ad1f5a662f036d3ce48e49b09e9917958cdb8a1d165b47476161c08"
+    },
+    "help_records": {
+      "rows": 33,
+      "sha256": "cec1a82ac9b54c37789b70df7791df9728a8a9904a690fe96bbdf1a73814d6b6"
+    },
+    "knowledge_points": {
+      "rows": 8,
+      "sha256": "553d788d48169b6f6a4319092fa339722cba3e53f7ed3a70c8d2d8e81e42f61e"
+    },
+    "learning_memory_changes": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "learning_tasks": {
+      "rows": 11,
+      "sha256": "d3155d30ded9d6b73e8621677b82c73f7774258fef1012318499971b9288fb28"
+    },
+    "lesson_contents": {
+      "rows": 5,
+      "sha256": "d767240e581a22a443d043468c7c92a15f6565b60c6b53cc831deda963d87ab3"
+    },
+    "lesson_draft_versions": {
+      "rows": 14,
+      "sha256": "522449621e02096ea97f63e72ab1d4b1da5868ed4fcdbbbeb553b3b6924e4215"
+    },
+    "lesson_drafts": {
+      "rows": 12,
+      "sha256": "38a8f47452545387fca54851422b0f22dfc60ef6c242c092b81026494641145e"
+    },
+    "lesson_versions": {
+      "rows": 5,
+      "sha256": "6886620efefc36b14e1c0638b4efd70924c9fba009a52e4bd77bb35748e82916"
+    },
+    "lessons": {
+      "rows": 5,
+      "sha256": "566fb8a62ee0bcdb00735fc1d7f4b50e0051d52a85427ab8cc1c8772ac552569"
+    },
+    "login_sessions": {
+      "rows": 36,
+      "sha256": "b9b154fac2cda90cba79bdf5c086a21f9abb07be196afe677e17fae31b994deb"
+    },
+    "material_units": {
+      "rows": 2,
+      "sha256": "1e133c8775b4643a560c43d63c943e4ea4a5ce426026a8ce7438fd890321f1b7"
+    },
+    "model_events": {
+      "rows": 302,
+      "sha256": "9e2bd9822815fa76c79d6479661a7ca4b29b39471d7dcb01dc9d461fc5f35aa9"
+    },
+    "model_jobs": {
+      "rows": 58,
+      "sha256": "7ece14e7b8581a03f77245026c2ff03b370217f3eae5069debdd7154ee2a451a"
+    },
+    "model_runs": {
+      "rows": 59,
+      "sha256": "c3ccf8cb030a49cb0348d5de5f31e2613c11bdac784917789e0bd4eb0f2a093b"
+    },
+    "repair_attempts": {
+      "rows": 9,
+      "sha256": "b94f2c4c89cec0640dc6354d8fdd2c5e63cf42e038b256987bc4b0fd8c204ae1"
+    },
+    "source_materials": {
+      "rows": 2,
+      "sha256": "a8cc2482f89fc2e80f3961ea11f26b826e72bf67ab087461000b846172b12435"
+    },
+    "student_records": {
+      "rows": 51,
+      "sha256": "6be3412cb5b9f50b0f27cc4d9a514af77ef68e53555a2b76c425228caf77ba98"
+    },
+    "supplement_recipients": {
+      "rows": 2,
+      "sha256": "75c768902fe038a6fc69881593d672fd6b8657389d4ae5f83a9f8d112a940bf4"
+    },
+    "supplemental_instructions": {
+      "rows": 2,
+      "sha256": "622c6bdd4b9d5fb25a85259a691115b0f98e1160857e049594d7230a2422121a"
+    },
+    "support_issue_events": {
+      "rows": 3,
+      "sha256": "d35a1e1444ac523782cee8f62f31a252b22067ee1b494571d248b889587cc62c"
+    },
+    "support_issues": {
+      "rows": 3,
+      "sha256": "60bf126ae36f421b9f1f0dbf7a97d93b608578a99f76d8f3cff374c5fdcf0d60"
+    },
+    "teaching_cases": {
+      "rows": 3,
+      "sha256": "528d024641367127f50ce333e7e7c85e69bfe975d9f90d5fc5cdc7230ca34074"
+    },
+    "wrong_questions": {
+      "rows": 10,
+      "sha256": "8eb4960c6c76643bd84be776f7a5cb80d9bf6f72581364f80a212253236a6874"
+    }
+  },
+  "files": {
+    "752857d314194c9eb67b9e1b8f26553f": "4e37ed3e1b15a88980b916b8132e9b3b530bfb0a42d5fd18033fad03d5471cb4",
+    "source-2ea7251fb7b7450db706697a813cda30": "1d480f3dbd15a806c8acaa66f1a75a1749bcff94857168ee6ef50663114a4c3e",
+    "810df231a7f5422a98985bd2844b68e1": "d200e589c25cd798805d4aef9f6066135f58202bd90660f878f5a12318b3278f",
+    "0c047007cd5b40d7a553f31ab27306ae": "c161173f95e077e44c906be8592a84ec871b307de12f11dc2190f80453ca722f",
+    "3dc5b1ace53f429d928f4e4ca615b042": "7e6cfcb867e4e8b65c56dfa55267416960dd99e7acbed37842aa1d9881d96643",
+    "source-37dba2fc4b0b4e00af8340dbee98e7dd": "7568009b4029bb4ac379619ed200772b4998a00903a33954ee44c416ea99bd77",
+    "1a1227bf47f146e7b0f6cd6bbd47dee0": "5b30158c0144f63f652cd2a2fe38523baf4d1b3388ddb0cdac1e59297b2f0015"
+  },
+  "allRowsIdentical": true,
+  "allFilesIdentical": true,
+  "backupPath": "/tmp/sczx-step16/backup-d63d15",
+  "restoredDatabase": "sczx_test_unit_restore_aeeca8",
+  "startRestored": "{\"running\": true, \"created\": true, \"pid\": 3290066}\n",
+  "stopRestored": "{\"stopped\": true}\n",
+  "passed": true,
+  "restartOriginal": "{\"running\": true, \"created\": true, \"pid\": 3290075}\n"
+}

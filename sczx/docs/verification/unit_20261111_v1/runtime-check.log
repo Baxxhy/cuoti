@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/sczx-step16/runtime-check.py", line 9, in <module>
+    response=c.get(path);assert response.status_code==expected,(username,response.status_code);r['files'].append({'user':username or 'anonymous','status':response.status_code,'bytes':len(response.content) if response.status_code==200 else None})
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('unit-t2', 403)

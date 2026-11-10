@@ -223,6 +223,8 @@ def validate(result,data):
         value['variantVerification']={'status':'verified','scope':'同类结构、不同题目与答案；单变量单解实数方程','equation':v['equation']}
     from .tutoring import validate_arithmetic_text
     validate_arithmetic_text('\n'.join([value.get('goal',''),*value.get('steps',[]),value.get('checkQuestion','')]))
+    from .math_conditions import require_conditions
+    value['conditionCheck']=require_conditions(value)
     verification=math_check(value.get('mathClaims',[]))
     if verification['status']=='inconsistent':raise ModelError('补救内容含已确认数学错误，已拦截。')
     value['verification']=verification
