@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "sourceTask": "ops-target1",
+      "kind": "foundation",
+      "knowledgeId": "ops-kp1",
+      "actualPrerequisite": [
+        {
+          "id": "ops-kp",
+          "name": "等式性质"
+        }
+      ],
+      "recipient": {
+        "studentId": "ops-s0",
+        "studentName": "同学0",
+        "startedAt": null,
+        "completedAt": null,
+        "response": "",
+        "feedback": "",
+        "status": "待开始",
+        "outcome": {
+          "newAttempts": 0,
+          "newQuestions": 0,
+          "independentPassed": false,
+          "needsHelp": false,
+          "evidence": [],
+          "target": {
+            "kind": "learn",
+            "taskId": "ops-t00"
+          },
+          "label": "尚无新作答"
+        }
+      }
+    },
+    {
+      "sourceTask": "ops-t00",
+      "kind": "correction",
+      "knowledgeId": "ops-kp",
+      "actualPrerequisite": null,
+      "recipient": {
+        "studentId": "ops-s0",
+        "studentName": "同学0",
+        "startedAt": null,
+        "completedAt": null,
+        "response": "",
+        "feedback": "",
+        "status": "待开始",
+        "outcome": {
+          "newAttempts": 0,
+          "newQuestions": 0,
+          "independentPassed": false,
+          "needsHelp": false,
+          "evidence": [],
+          "target": {
+            "kind": "repair",
+            "wrongId": "ops-w-ops-s0"
+          },
+          "label": "尚无新作答"
+        }
+      }
+    }
+  ]
+}

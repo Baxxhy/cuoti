@@ -1,0 +1,12 @@
+date-filters-survive-refresh
+file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18
+  async eval(code,arg){const expression=typeof code==='function'?'('+code.toString()+')('+JSON.stringify(arg)+')':code;const r=await this.send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result?.value}
+                                                                                                                                                                                                                                                 ^
+
+Error: TypeError: Cannot read properties of null (reading 'click')
+    at <anonymous>:1:51
+    at <anonymous>:1:60
+    at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+    at async file:///tmp/sczx-step15/states.mjs:11:147
+
+Node.js v24.15.0

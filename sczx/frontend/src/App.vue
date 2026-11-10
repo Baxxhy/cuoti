@@ -1,4 +1,5 @@
 <script setup>
+import { supportApi } from "@/services/insights.js";
 import { computed, onMounted, onBeforeUnmount, provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { AnimatePresence, motion, MotionConfig } from "motion-v";
@@ -54,6 +55,7 @@ const navigation = {
     { route: "wrong", label: "错题帮", icon: NotebookPen },
     { route: "memory", label: "学习记忆", icon: History },
     { route: "records", label: "学习记录", icon: History },
+    { route: "issues", label: "问题与回复", icon: MessageSquareText },
     {route:"class",label:"我的班级",icon:Users},
   ],
   teacher: [
@@ -63,6 +65,7 @@ const navigation = {
     { route: "prepare", label: "我的教案", icon: FileText },
     { route: "class", label: "班级教学", icon: Users },
     { route: "memory", label: "学习记忆", icon: History },
+    { route: "issues", label: "问题与回复", icon: MessageSquareText },
   ],
   admin: [
     { route: "manage", label: "内容工作台", icon: Layers },
@@ -91,7 +94,7 @@ const pageLabel = computed(
     (route.name === "source" ? "原文阅读" : route.name === "agent" ? "任务备课" : navigation[role.value].find((item) => item.route === active.value)?.label) ||
     "学习工作区",
 );
-const pageKey = current => ['manage','content'].includes(current.name) ? current.path : current.fullPath;
+const pageKey = current => ['manage','content','insights'].includes(current.name) ? current.path : current.fullPath;
 const notice = ref("");
 const mobileOpen = ref(false);
 const searchOpen = ref(false);
@@ -146,14 +149,12 @@ const results = computed(() =>
     { route: "cases", title: "天平与等式 · 教学案例", subtitle: "教学案例" },
   ].filter((item) => (item.title + item.subtitle).includes(search.value)),
 );
-function submitFeedback() {
-  if (!issueNote.value.trim()) return notify("请填写反馈");
-  store.data.issue.text = issueNote.value;
-  store.data.issue.resolved = false;
-  store.data.issue.reply = "";
-  store.touch();
-  helpOpen.value = false;
-  notify("体验反馈已记录");
+const issueRequest = ref(crypto.randomUUID()), issueBusy = ref(false);
+async function submitFeedback() {
+  if (issueBusy.value || !issueNote.value.trim()) return;
+  issueBusy.value=true;
+  try { await supportApi.create({text:issueNote.value,category:'system',requestKey:issueRequest.value});helpOpen.value=false;issueNote.value='';issueRequest.value=crypto.randomUUID();notify('反馈已提交'); }
+  catch(e){notify(e.message)} finally{issueBusy.value=false}
 }
 </script>
 <template>
@@ -273,7 +274,7 @@ function submitFeedback() {
           id="issue-note"
           v-model="issueNote"
           placeholder="填写反馈"
-        /><Button @click="submitFeedback">记录反馈</Button></AppDialog
+        /><Button :disabled="issueBusy" @click="submitFeedback">提交反馈</Button><RouteButton route="issues" secondary>查看反馈记录</RouteButton></AppDialog
       >
       <AnimatePresence
         ><motion.div

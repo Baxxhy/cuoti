@@ -1,0 +1,17 @@
+teacher-class-report-visible
+common-difficulty-opens-original-evidence
+case-selected-and-intervention-published
+student-received-and-submitted-explanation
+submission-does-not-imply-independent-success
+independent-check-page-opened
+student-submits-new-answer-in-ui
+new-independent-answer-program-verified
+file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19
+  async wait(code,ms=20000){const end=Date.now()+ms;while(Date.now()<end){if(await this.eval(code))return;await sleep(80)}throw Error('Browser wait timed out: '+code)}
+                                                                                                                                ^
+
+Error: Browser wait timed out: document.querySelector('.analytics-content').innerText.includes('新增独立正确证据')
+    at Browser.wait (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19:129)
+    at async file:///tmp/sczx-step15/browser.mjs:19:153
+
+Node.js v24.15.0

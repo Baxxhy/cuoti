@@ -1,0 +1,9 @@
+teacher-class-report-visible
+file:///tmp/sczx-step15/browser.mjs:12
+ await b.eval(()=>document.querySelector('.analytics-text-button').click());await b.wait("!!document.querySelector('[role=dialog]')");const original=await b.eval(()=>document.querySelector('[role=dialog]').innerText);if(!original.includes('2')||!original.includes('把右边'))throw Error('Missing evidence');note('common-difficulty-opens-original-evidence',{content:original});await b.eval(()=>document.querySelector('[role=dialog] [data-slot=dialog-close]').click());
+                                                                                                                                                                                                                                                                                     ^
+
+Error: Missing evidence
+    at file:///tmp/sczx-step15/browser.mjs:12:278
+
+Node.js v24.15.0

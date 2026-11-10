@@ -1,5 +1,5 @@
 """Class-scoped teaching, assignment lifecycle and durable HTTP notifications."""
-import copy,hashlib,secrets,uuid
+import copy,hashlib,secrets,uuid,json
 from datetime import datetime,timedelta,time,date,timezone
 from zoneinfo import ZoneInfo
 from typing import Literal
@@ -60,7 +60,10 @@ def summary(db,task):
     due=cutoff(task.due_date);submitted=sum(r.completed for r in recs);feedback=sum(bool(r.feedback) for r in recs)
     overdue=sum(not r.completed and r.student_id in active and bool(due and now()>due) for r in recs)
     started=sum(has_started(r) or r.id in attempted for r in recs)
-    return {'members':len(active),'assigned':len(recs),'started':started,'submitted':submitted,'unsubmitted':len(recs)-submitted,'overdue':overdue,'feedback':feedback,'inactive':sum(r.student_id not in active for r in recs),'status':'未分配' if not recs else '已完成反馈' if feedback==len(recs) and submitted==len(recs) else '全员已提交' if submitted==len(recs) else '有逾期' if overdue else '学习中' if started else '待开始'}
+    from .insights import metrics
+    from .learning_memory import collect
+    facts=[e for r in recs if r.student_id in active for e in collect(db,r.student_id,task.teacher_id,{task.classroom_id})[0] if e['taskId']==task.id]
+    return {'metrics':metrics(facts),'members':len(active),'assigned':len(recs),'started':started,'submitted':submitted,'unsubmitted':len(recs)-submitted,'overdue':overdue,'feedback':feedback,'inactive':sum(r.student_id not in active for r in recs),'status':'未分配' if not recs else '已完成反馈' if feedback==len(recs) and submitted==len(recs) else '全员已提交' if submitted==len(recs) else '有逾期' if overdue else '学习中' if started else '待开始'}
 def task_json(db,user,task):
     room=db.get(Classroom,task.classroom_id);rec=db.scalar(select(StudentRecord).where(StudentRecord.task_id==task.id,StudentRecord.student_id==user.id)) if user.role=='student' else None
     result={'id':task.id,'lessonId':task.lesson_id,'classId':task.classroom_id,'className':room.name,'title':task.title,'dueDate':task.due_date,'dueAt':iso(cutoff(task.due_date)),'publishedAt':iso(task.published_at),'teacherName':db.get(Account,task.teacher_id).display_name,'source':task.source}
@@ -186,30 +189,44 @@ def read_message(ident:str,request:Request,db=Depends(get_db)):
     if not row.read_at:row.read_at=now()
     db.commit();return {'readAt':iso(row.read_at)}
 class SupplementInput(BaseModel):
-    kind:Literal['note','correction','learning']
+    kind:Literal['note','correction','learning','foundation','retest']
+    knowledgeId:str|None=None
+    difficultyOnly:bool=False
+    target:dict|None=None
+    targets:dict={}
+    caseId:str|None=None
     content:str=Field(min_length=1,max_length=6000)
     studentIds:list[str]|None=None
     dueDate:str=''
     requestKey:str=Field(min_length=8,max_length=100)
 @router.post('/tasks/{ident}/supplements',status_code=201)
 def send_supplement(ident:str,body:SupplementInput,request:Request,db=Depends(get_db)):
-    user=user_for(request,db);task=accessible_task(db,user,ident,True);owned_class(db,user,task.classroom_id);cutoff(body.dueDate,True)
+    user=user_for(request,db);task=accessible_task(db,user,ident,True);owned_class(db,user,task.classroom_id,True);cutoff(body.dueDate,True)
     if not body.content.strip():raise HTTPException(422,'请填写安排内容。')
     key=hashlib.sha256((user.id+ident+body.requestKey).encode()).hexdigest();sid='sup-'+key[:32]
     existing=db.scalar(select(SupplementalInstruction).where(SupplementalInstruction.id==sid).with_for_update())
-    if existing:return {'id':sid,'created':False}
+    if existing:
+        if (existing.details or {}).get('requestHash') and existing.details['requestHash']!=hashlib.sha256(json.dumps(body.model_dump(),sort_keys=True).encode()).hexdigest():raise HTTPException(409,'请求标识已经用于其他安排。')
+        return {'id':sid,'created':False}
     assigned=set(db.scalars(select(StudentRecord.student_id).where(StudentRecord.task_id==ident)))
     active=set(db.scalars(select(ClassMember.student_id).where(ClassMember.classroom_id==task.classroom_id)))
     targets=set(body.studentIds) if body.studentIds is not None else assigned&active
     if not targets or not targets<=assigned&active:raise HTTPException(422,'请选择当前班级中已分配此任务的学生，晚加入学生请先补发原任务。')
-    item=SupplementalInstruction(id=sid,task_id=ident,teacher_id=user.id,kind=body.kind,content=body.content,due_date=body.dueDate,status='active',created_at=now());db.add(item);db.flush()
+    from .interventions import prepare
+    details=prepare(db,user,task,targets,body) or {}
+    details['requestHash']=hashlib.sha256(json.dumps(body.model_dump(),sort_keys=True).encode()).hexdigest()
+    item=SupplementalInstruction(details=details,id=sid,task_id=ident,teacher_id=user.id,kind=body.kind,content=body.content,due_date=body.dueDate,status='active',created_at=now());db.add(item);db.flush()
     for student in targets:
-        db.add(SupplementRecipient(instruction_id=sid,student_id=student));message(db,task,student,{'note':'note','correction':'correction','learning':'supplement'}[body.kind],body.content,sid)
+        db.add(SupplementRecipient(instruction_id=sid,student_id=student));message(db,task,student,{'note':'note','correction':'correction','learning':'supplement','foundation':'supplement','retest':'supplement'}[body.kind],body.content,sid)
     db.commit();return {'id':sid,'created':True}
 def supplement_json(db,user,item):
     task=db.get(LearningTask,item.task_id);recs=db.scalars(select(SupplementRecipient).where(SupplementRecipient.instruction_id==item.id)).all()
     visible=recs if user.role=='teacher' else [r for r in recs if r.student_id==user.id]
-    return {'id':item.id,'taskId':item.task_id,'className':db.get(Classroom,task.classroom_id).name,'teacherName':db.get(Account,item.teacher_id).display_name,'content':item.content,'kind':item.kind,'status':item.status,'dueDate':item.due_date,'dueAt':iso(cutoff(item.due_date)),'createdAt':iso(item.created_at),'recipients':[{'studentId':r.student_id,'studentName':db.get(Account,r.student_id).display_name,'startedAt':iso(r.started_at),'completedAt':iso(r.completed_at),'response':r.response,'feedback':r.feedback,'status':'已取消' if item.status=='cancelled' else '已送达' if item.kind=='note' else '已提交' if r.completed_at else '已逾期' if cutoff(item.due_date) and now()>cutoff(item.due_date) else '学习中' if r.started_at else '待开始'} for r in visible]}
+    from .interventions import outcomes
+    result= {'id':item.id,'taskId':item.task_id,'className':db.get(Classroom,task.classroom_id).name,'teacherName':db.get(Account,item.teacher_id).display_name,'content':item.content,'kind':item.kind,'status':item.status,'dueDate':item.due_date,'dueAt':iso(cutoff(item.due_date)),'createdAt':iso(item.created_at),'recipients':[{'studentId':r.student_id,'studentName':db.get(Account,r.student_id).display_name,'startedAt':iso(r.started_at),'completedAt':iso(r.completed_at),'response':r.response,'feedback':r.feedback,'status':'已取消' if item.status=='cancelled' else '已送达' if item.kind=='note' else '已提交' if r.completed_at else '已逾期' if cutoff(item.due_date) and now()>cutoff(item.due_date) else '学习中' if r.started_at else '待开始'} for r in visible]}
+    result['knowledgeId']=(item.details or {}).get('knowledgeId');result['case']=(item.details or {}).get('case')
+    for r in result['recipients']:r['outcome']=outcomes(db,item,r['studentId'])
+    return result
 @router.get('/tasks/{ident}/supplements')
 def supplements(ident:str,request:Request,db=Depends(get_db)):
     user=user_for(request,db);task=accessible_task(db,user,ident)
@@ -249,6 +266,8 @@ def dashboard(request:Request,classId:str|None=None,db=Depends(get_db)):
         if selected:owned_class(db,user,selected)
         tasks=db.scalars(select(LearningTask).where(LearningTask.classroom_id==selected).order_by(LearningTask.published_at.desc())).all() if selected else []
         ids=[t.id for t in tasks];recs=db.scalars(select(StudentRecord).where(StudentRecord.task_id.in_(ids))).all() if ids else []
+        from .insights import class_report
+        aggregate=class_report(db,user,selected)['stats'] if selected else {}
         stats={'tasks':len(tasks),'unsubmittedStudents':len({r.student_id for r in recs if not r.completed and member(db,selected,r.student_id)}),'waitingFeedback':sum(r.completed and not r.feedback for r in recs)}
         recent=[{'recordId':r.id,'taskId':r.task_id,'studentName':db.get(Account,r.student_id).display_name,'taskTitle':db.get(LearningTask,r.task_id).title,'submittedAt':iso(r.submitted_at)} for r in sorted([r for r in recs if r.submitted_at],key=lambda r:r.submitted_at,reverse=True)[:8]]
     elif user.role=='student':
@@ -256,4 +275,4 @@ def dashboard(request:Request,classId:str|None=None,db=Depends(get_db)):
         recs=db.scalars(select(StudentRecord).where(StudentRecord.student_id==user.id)).all();stats={'pending':sum(not r.completed and member(db,db.get(LearningTask,r.task_id).classroom_id,user.id) for r in recs),'submitted':sum(r.completed for r in recs),'inProgress':sum(not r.completed and has_started(r) and member(db,db.get(LearningTask,r.task_id).classroom_id,user.id) for r in recs)};recent=[]
     else:return {'classes':[],'tasks':[],'stats':{},'recentSubmissions':[]}
     materialize_messages(db,user);db.commit()
-    return {'classes':rooms,'selectedClassId':selected,'tasks':[task_json(db,user,t) for t in tasks],'stats':stats,'recentSubmissions':recent,'unread':db.scalar(select(func.count()).select_from(BusinessMessage).where(BusinessMessage.recipient_id==user.id,BusinessMessage.read_at.is_(None)))}
+    return {'learningMetrics':aggregate if user.role=='teacher' else {},'classes':rooms,'selectedClassId':selected,'tasks':[task_json(db,user,t) for t in tasks],'stats':stats,'recentSubmissions':recent,'unread':db.scalar(select(func.count()).select_from(BusinessMessage).where(BusinessMessage.recipient_id==user.id,BusinessMessage.read_at.is_(None)))}

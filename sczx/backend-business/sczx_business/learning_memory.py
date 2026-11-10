@@ -48,7 +48,9 @@ def collect(db,student_id,teacher_id=None,class_ids=None):
     query=select(StudentRecord,LearningTask).join(LearningTask,LearningTask.id==StudentRecord.task_id).where(StudentRecord.student_id==student_id)
     if teacher_id:query=query.where(LearningTask.teacher_id==teacher_id,LearningTask.classroom_id.in_(class_ids or []))
     pairs=db.execute(query).all();records={r.id:(r,t) for r,t in pairs};tasks={t.id:t for r,t in pairs};record_ids=list(records)
-    offset_seconds=int(db.execute(text('SELECT TIMESTAMPDIFF(SECOND, UTC_TIMESTAMP(), NOW())')).scalar())
+    # Existing DB-generated facts were written in deployment Asia/Shanghai.
+    # Their historical basis must not change when a reader changes SQL session zone.
+    offset_seconds=int(os.getenv('SCZX_FACT_TIME_OFFSET_SECONDS','28800'))
     active={m.classroom_id for m in db.scalars(select(ClassMember).where(ClassMember.student_id==student_id)).all()}
     points={p.id:p for p in db.scalars(select(KnowledgePoint)).all()};events=[]
     def add(event_id,source_type,source_id,ids,time,task=None,**data):
@@ -68,7 +70,7 @@ def collect(db,student_id,teacher_id=None,class_ids=None):
         helped=bool(a.helped) or any(h.record_id==a.record_id and h.question==a.question and h.created_at<a.created_at for h in helps)
         verification=verified_status(a.verification,a.correct)
         outcome='unverified' if verification=='unverified' else ('helped_' if helped else 'independent_')+('correct' if verification=='verified_correct' else 'incorrect')
-        add('attempt:'+a.id,'attempt',a.id,knowledge(task,q),a.created_at,task,prompt=q.get('prompt',''),equation=q.get('equation',''),answer=a.answer,reason=a.reason,helped=helped,verification=verification,outcome=outcome,questionIndex=a.question,questionKey=task.lesson_id+':'+str(q.get('id',a.question)),recordId=rec.id)
+        add('attempt:'+a.id,'attempt',a.id,knowledge(task,q),a.created_at,task,prompt=q.get('prompt',''),equation=q.get('equation',''),answer=a.answer,reason=a.reason,helped=helped,verification=verification,outcome=outcome,questionKind=q.get('kind'),questionIndex=a.question,questionKey=task.lesson_id+':'+str(q.get('id',a.question)),recordId=rec.id)
     for h in helps:
         rec,task=records[h.record_id];q=task.questions[h.question] if isinstance(h.question,int) and 0<=h.question<len(task.questions or []) else {}
         add('help:'+h.id,'help',h.id,knowledge(task,q),h.created_at,task,helped=True,verification='unverified',outcome='help',reason=h.kind,recordId=rec.id)

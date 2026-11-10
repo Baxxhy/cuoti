@@ -1,4 +1,5 @@
 <script setup>
+import ClassAnalytics from "@/components/ClassAnalytics.vue";
 import { computed, inject, ref, watch } from "vue";
 import { ArrowUpRight, Check, Plus, Send } from "lucide-vue-next";
 import { useLearning } from "@/store.js";
@@ -16,15 +17,7 @@ const store = useLearning(),
 async function reviewRepair(repair,correct){
  try{await wrongApi.review(repair.wrongId,{attemptId:repair.id,correct,note:'教师在学情页面人工核对'});await store.refreshRecord();notify('人工确认已保存，程序核验原结果保留。')}catch(e){notify(e.message)}
 }
-const independent = computed(
-  () =>
-    store.record?.attempts.filter(
-      (item) =>
-        item.correct &&
-        !item.helped &&
-        store.task?.questions[item.question]?.kind !== "practice",
-    ).length || 0,
-);
+const independent = computed(()=>store.record?.metrics?.independentCorrectQuestions || 0);
 const records = computed(
   () => store.data.studentRecords?.[store.task?.id] || [],
 );
@@ -34,23 +27,12 @@ const visibleHelps = computed(() =>
     (item) => !coveredHelpIds.value.includes(item.id),
   ),
 );
-const independentCount = computed(() =>
-  records.value.reduce(
-    (sum, record) =>
-      sum +
-      record.attempts.filter(
-        (item) =>
-          item.correct &&
-          !item.helped &&
-          store.task?.questions[item.question]?.kind !== "practice",
-      ).length,
-    0,
-  ),
-);
+const independentCount = computed(()=>store.task?.summary?.metrics?.independentCorrectQuestions || 0);
 watch(
-  () => store.data.activeStudentId,
+  () => [store.data.activeStudentId,store.task?.id],
   () => {
     draft.value = store.record?.feedback || "";
+    studentOpen.value = false;
   },
 );
 async function feedback() {
@@ -68,7 +50,7 @@ function openStudent(id) {
 }
 </script>
 <template>
-  <PageHeading title="学情反馈"
+  <ClassAnalytics/><PageHeading title="任务学习过程"
     ><RouteButton route="class" secondary>返回班级</RouteButton></PageHeading
   ><template v-if="store.task"
     ><div class="back-line">
@@ -94,7 +76,7 @@ function openStudent(id) {
         ><strong>{{ store.task.summary?.[key] || 0 }}</strong>
       </div>
       <div>
-        <span>独立检查正确</span><strong>{{ independentCount }}</strong>
+        <span>独立正确题目</span><strong>{{ independentCount }}</strong>
       </div>
     </div>
     <Surface class="student-table"

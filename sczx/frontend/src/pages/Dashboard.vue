@@ -76,6 +76,7 @@ onBeforeUnmount(() => {
     ></PageHeading
   >
   <p v-if="error" class="form-error" role="alert">{{ error }}</p>
+  <RouteButton v-if="teacher" :route="'insights?class='+selected" secondary>班级学情与补充教学</RouteButton>
   <div
     v-if="teacher && overview?.classes.length"
     class="teaching-class-toolbar"

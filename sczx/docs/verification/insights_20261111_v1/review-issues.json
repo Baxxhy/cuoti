@@ -1,0 +1,70 @@
+{
+  "rounds": [
+    "初验与问题归集",
+    "集中修复及终验"
+  ],
+  "issues": [
+    {
+      "id": "D01",
+      "finding": "原学情把同题的多次正确累加",
+      "fix": "统一后端唯一组合与最近作答；次数另列",
+      "evidence": "mysql-tests.log"
+    },
+    {
+      "id": "D02",
+      "finding": "旧反馈只读取最近一条，过期聚合保存可覆写回复",
+      "fix": "多条队列、追加事件、revision与旧写接口保护",
+      "evidence": "mysql-tests.log"
+    },
+    {
+      "id": "D03",
+      "finding": "旧事实按读取SQL会话换算，切换时区会漂移",
+      "fix": "固定历史写入基准，日期闭开区间测试",
+      "evidence": "mysql-tests.log"
+    },
+    {
+      "id": "D04",
+      "finding": "新库旧迁移引用当前模型，后续再次ADD列报重复",
+      "fix": "0013检查现存列/表，真实旧0012升级另验",
+      "evidence": "migration.json"
+    },
+    {
+      "id": "D05",
+      "finding": "问题事件前缀+UUID超过40字符",
+      "fix": "缩短事件前缀，保留ID唯一性",
+      "evidence": "initial-tests-3.log"
+    },
+    {
+      "id": "D06",
+      "finding": "学情筛选地址更新重建页面，弹窗消失",
+      "fix": "insights页面按路径保留实例，筛选自行监听",
+      "evidence": "browser-flow.json"
+    },
+    {
+      "id": "D07",
+      "finding": "Surface内层CardContent使问题列表按钮横排",
+      "fix": "按实际包裹层设置纵向列表及间距，实测每行y递增",
+      "evidence": "final-visual.json"
+    },
+    {
+      "id": "D08",
+      "finding": "首页新增指标破坏旧stats精确契约，初验94项中1项失败",
+      "fix": "保留stats，统一指标放learningMetrics",
+      "evidence": "mysql-tests.log",
+      "originalRawLogRetained": false
+    },
+    {
+      "id": "H01",
+      "finding": "浏览器脚本等待旧DOM/用click代替原生鼠标，导致误超时",
+      "fix": "等待登录/刷新新页面完成，页签用实际鼠标按下释放；不改产品为测试放宽",
+      "evidence": "browser-final.log"
+    }
+  ],
+  "noOutstandingP0P1": true,
+  "initialFullResult": {
+    "tests": 94,
+    "failures": 1,
+    "reason": "old dashboard exact stats contract",
+    "rawLogReplacedByFinalRunner": true
+  }
+}

@@ -57,7 +57,7 @@ export const useLearning = defineStore("platform", {
                 ? 40
                 : 0,
           help: `${record.helps.length} 次帮助`,
-          result: record.attempts.some((item) => item.correct && !item.helped && this.task.questions[item.question]?.kind!=='practice')
+          result: (record.metrics?.independentCorrectQuestions || 0)>0
             ? "独立检查正确"
             : "待独立检查",
         }));

@@ -24,7 +24,9 @@ watch(dialog, (value) => {
 const labels = {
   note: "补充说明",
   correction: "订正要求",
-  learning: "补充学习",
+  learning: "补充讲解",
+  foundation:"前置知识复习",
+  retest:"独立复测",
 };
 const students = computed(() =>
   (store.data.studentRecords?.[props.taskId] || []).filter(
@@ -116,7 +118,8 @@ async function feedback(item, rec) {
         ><span>{{ item.teacherName }} · {{ item.className }}</span
         ><time>{{ deadlineText(item.dueAt) }}</time>
       </div>
-      <p class="preserve-lines">{{ item.content }}</p>
+      <p class="preserve-lines">{{ item.content }}</p><p v-if="item.case">参考：{{item.case.title}} · v{{item.case.version}} · {{item.case.source}}<RouteButton :route="'case-detail?caseId='+item.case.id+'&versionId='+item.case.versionId" secondary>案例原文</RouteButton></p>
+      <template v-if="!teacher&&item.recipients[0]?.outcome"><p>{{item.recipients[0].outcome.label}}</p><RouteButton v-if="item.recipients[0].outcome.target.wrongId" :route="'repair?wrong='+item.recipients[0].outcome.target.wrongId" secondary>进入原错题</RouteButton><RouteButton v-else :route="item.recipients[0].outcome.target.kind+'?task='+item.recipients[0].outcome.target.taskId" secondary>进入安排内容</RouteButton></template>
       <template v-if="teacher"
         ><div
           v-for="rec in item.recipients"
@@ -125,7 +128,7 @@ async function feedback(item, rec) {
         >
           <strong>{{ rec.studentName }}</strong
           ><Status>{{ rec.status }}</Status>
-          <p v-if="rec.response">{{ rec.response }}</p>
+          <p v-if="rec.outcome">{{rec.outcome.label}} · {{rec.outcome.newAttempts}} 次新作答<span v-if="rec.outcome.needsHelp"> · 仍需帮助或核对</span></p><p v-if="rec.response">{{ rec.response }}</p>
           <template v-if="rec.completedAt"
             ><Textarea
               v-model="feedbacks[item.id + rec.studentId]"
@@ -184,7 +187,7 @@ async function feedback(item, rec) {
             v-model="kind"
             label="安排类型"
             :options="
-              Object.entries(labels).map(([value, label]) => ({ value, label }))
+              Object.entries(labels).filter(([key])=>['note','correction','learning'].includes(key)).map(([value, label]) => ({ value, label }))
             " /></label
         ><label class="field-label"
           >内容<Textarea v-model="content" required /></label

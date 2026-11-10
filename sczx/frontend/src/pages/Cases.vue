@@ -20,7 +20,7 @@ function schedule(){if(!ready)return;generation++;open(null);router.replace({que
 watch([query,filters,includePrerequisites],schedule,{deep:true});
 function reset(){query.value='';filters.value={grade:'',subject:'',knowledgeIds:[],scenario:'other'};context.value={};tab.value='all'}
 async function semanticSort(){warning.value='';await sort({capability:'retrieval',data:{...request(),rerank:true}});if(job.value)await router.replace({query:{...route.query,job:job.value.id}})}
-function read(item){navigate('case-detail?caseId='+encodeURIComponent(item.id)+'&versionId='+encodeURIComponent(item.versionId))}
+function read(item){navigate('case-detail?caseId='+encodeURIComponent(item.id)+'&versionId='+encodeURIComponent(item.versionId)+(route.query.interventionClass?'&interventionClass='+encodeURIComponent(route.query.interventionClass)+'&interventionTask='+encodeURIComponent(route.query.interventionTask||''):''))}
 onMounted(async()=>{try{options.value=await modelApi.searchOptions();if(route.query.lesson){const lesson=await curriculumApi.lesson(String(route.query.lesson));context.value={grade:lesson.grade||'',subject:lesson.subject||'',knowledgeIds:lesson.knowledgeIds||[],prerequisiteIds:lesson.prerequisiteIds||[],goal:lesson.goal||''}}ready=true;await load();if(route.query.job)await open(await modelApi.detail(String(route.query.job)))}catch(e){error.value=e.message;loading.value=false;ready=true}});
 onBeforeUnmount(()=>{disposed=true;generation++;clearTimeout(timer)});
 </script>

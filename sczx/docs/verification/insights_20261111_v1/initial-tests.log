@@ -1,0 +1,18 @@
+setUpClass (test_insights_mysql.InsightsTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (test_insights_mysql.InsightsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/Baxxhy/zhiwei/sczx/backend-business/tests/test_insights_mysql.py", line 19, in setUpClass
+    subprocess.run([sys.executable,'-m','sczx_business.commands','migrate'],cwd=Path(__file__).resolve().parents[1],check=True,capture_output=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/tmp/sczx-venv/bin/python', '-m', 'sczx_business.commands', 'migrate']' returned non-zero exit status 1.
+
+----------------------------------------------------------------------
+Ran 0 tests in 9.985s
+
+FAILED (errors=1)

@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "name": "document-upload-and-source-parse",
+      "materialId": "material-90e2ec10d41841e796f37705b452557",
+      "unitId": "unit-3803c4d0159f6d6dedf1412b38eb3070",
+      "text": "让学生比较只改变左边和两边一起增加相同砝码的区别。"
+    },
+    {
+      "name": "unreviewed-content-publication-rejected",
+      "status": 422
+    },
+    {
+      "name": "review-revision-and-version2-publication",
+      "versionId": "version-5f55f243fb974e7cbccb92a7284370f6",
+      "oldCaseUnchanged": true,
+      "oldTasksUnchanged": true,
+      "interventionCaseSnapshotsUnchanged": true
+    }
+  ],
+  "passed": true
+}

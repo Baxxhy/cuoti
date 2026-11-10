@@ -1,0 +1,30 @@
+{
+  "startedAt": "2026-11-10T16:39:40.514Z",
+  "checks": [
+    {
+      "name": "date-filters-survive-refresh"
+    }
+  ],
+  "screens": [
+    {
+      "name": "teacher-analytics-final",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "teacher-analytics-final",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "teacher-analytics-final",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "failure": "TypeError: Cannot read properties of null (reading 'click')\n    at <anonymous>:1:51\n    at <anonymous>:1:60",
+  "consoleErrors": []
+}

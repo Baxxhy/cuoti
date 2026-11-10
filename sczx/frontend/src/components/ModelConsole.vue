@@ -72,7 +72,7 @@ async function saveCorrection() {
         <div class="browser-voice-actions"><SpeechInput v-if="selected === 'voice-input'" :context-key="selected" @text="text = [text.trim(), $event].filter(Boolean).join(' ')" /><SpeechReader :text="text" /></div>
       </template>
       <template v-else>
-      <div class="model-config-state"><h3>{{ tabs[selected] }}</h3><Status :tone="activeConfig?.configured ? 'green' : 'amber'">{{ activeConfig?.configured ? activeConfig.lastStatus === 'succeeded' ? '最近调用成功' : activeConfig.lastStatus === 'failed' ? '最近调用失败' : '已配置 · 待验证' : activeConfig?.unavailableReason ? '暂不可用' : '未配置' }}</Status></div>
+      <div class="model-config-state"><h3>{{ tabs[selected] }}</h3><Status :tone="activeConfig?.lastStatus==='failed'||!activeConfig?.configured ? 'amber' : 'green'">{{ activeConfig?.configured ? activeConfig.lastStatus === 'succeeded' ? '最近调用成功' : activeConfig.lastStatus === 'failed' ? '最近调用失败' : '已配置 · 待验证' : activeConfig?.unavailableReason ? '暂不可用' : '未配置' }}</Status></div>
       <p v-if="activeConfig?.unavailableReason" role="status" class="model-model-name">{{ activeConfig.unavailableReason }}</p>
       <p v-if="activeConfig?.models?.length" class="model-model-name">{{ activeConfig.models.map(x => `${x.model} · ${x.name}`).join(' / ') }}</p>
       <template v-if="['ocr', 'asr'].includes(selected)"><label class="field-label" for="model-input-file">{{ selected === 'ocr' ? '题目原图' : '音频文件' }}</label><label class="model-file-picker"><FileAudio v-if="selected === 'asr'" :size="20" /><span>{{ file?.name || '选择文件' }}</span><input id="model-input-file" type="file" :accept="selected === 'ocr' ? 'image/*' : 'audio/*'" @change="file = $event.target.files?.[0] || null" /></label></template>

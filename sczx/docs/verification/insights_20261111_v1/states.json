@@ -1,0 +1,294 @@
+{
+  "startedAt": "2026-11-10T16:41:35.164Z",
+  "checks": [
+    {
+      "name": "date-filters-survive-refresh"
+    },
+    {
+      "name": "offline-analytics-retry"
+    },
+    {
+      "name": "other-teacher-class-real-404"
+    },
+    {
+      "name": "teacher-appended-manual-review"
+    },
+    {
+      "name": "queue-search-no-results"
+    },
+    {
+      "name": "other-teacher-queue-isolated",
+      "text": "暂无问题反馈"
+    },
+    {
+      "name": "new-answer-state-and-old-facts-preserved",
+      "state": {
+        "status": "improving",
+        "statusLabel": "正在改善",
+        "reason": "错误之后新增了独立正确证据，可继续检查。",
+        "evidenceCount": 4,
+        "verifiedCount": 3,
+        "independentCorrect": 1,
+        "independentIncorrect": 2,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T16:36:01Z",
+        "lastIndependentAt": "2026-11-10T16:36:01Z",
+        "basisIds": [
+          "attempt:ops-a-ops-s1-1:ops-kp",
+          "attempt:ops-a-ops-s1-2:ops-kp",
+          "attempt:attempt-3672ee59cfab45c4b0fb8fdb7cd48e04:ops-kp"
+        ],
+        "recentVerifiedCount": 3,
+        "dayCount": 1,
+        "reviewRequested": false
+      },
+      "audit": [
+        {
+          "id": "memory-4355996d8dd84bcead3fb27dea4e0291",
+          "kind": "knowledge_correction",
+          "eventId": "attempt:ops-a-ops-s1-0",
+          "knowledgeId": "ops-kp",
+          "actorId": "ops-t1",
+          "details": {
+            "note": "",
+            "reason": "本条作答重点是逆运算，原答案保留。",
+            "original": {
+              "label": "独立错误",
+              "answer": "2",
+              "helped": false,
+              "prompt": "两边同时加3，x等于多少？",
+              "reason": "把右边的数直接相减了",
+              "target": "/result?task=ops-t00",
+              "taskId": "ops-t00",
+              "classId": "ops-c0",
+              "eventId": "attempt:ops-a-ops-s1-0",
+              "outcome": "independent_incorrect",
+              "equation": "x - 3 = 5",
+              "readOnly": false,
+              "recordId": "record-ddfe98ff5ee44e58b7599a08f6d523f1",
+              "sourceId": "ops-a-ops-s1-0",
+              "studentId": "ops-s1",
+              "timeBasis": "database_session",
+              "evidenceId": "attempt:ops-a-ops-s1-0:ops-kp",
+              "occurredAt": "2026-11-10T16:24:25Z",
+              "sourceType": "attempt",
+              "knowledgeId": "ops-kp",
+              "questionKey": "ops-lesson:eq-practice-add",
+              "knowledgeIds": [
+                "ops-kp"
+              ],
+              "questionKind": "practice",
+              "timeReliable": true,
+              "verification": "verified_incorrect",
+              "questionIndex": 0,
+              "rawOccurredAt": "2026-11-11T00:24:25",
+              "lessonVersionId": "ops-version",
+              "originalKnowledgeIds": [
+                "ops-kp"
+              ]
+            },
+            "requestId": null,
+            "requestHash": "3201db1173e3d308ed6993feed7ad79c6f3eaf36a697390d003018a713fc068a",
+            "knowledgeIds": [
+              "ops-kp1"
+            ],
+            "originalState": {
+              "reason": "最近两次独立作答未通过，建议先订正再检查。",
+              "status": "strengthen",
+              "basisIds": [
+                "attempt:ops-a-ops-s1-0:ops-kp",
+                "attempt:ops-a-ops-s1-1:ops-kp",
+                "attempt:ops-a-ops-s1-2:ops-kp"
+              ],
+              "dayCount": 1,
+              "legacyCount": 0,
+              "statusLabel": "需要补强",
+              "evidenceCount": 4,
+              "helpedCorrect": 0,
+              "verifiedCount": 3,
+              "lastPracticedAt": "2026-11-10T16:26:25Z",
+              "reviewRequested": false,
+              "unverifiedCount": 0,
+              "lastIndependentAt": "2026-11-10T16:26:25Z",
+              "independentCorrect": 0,
+              "recentVerifiedCount": 3,
+              "independentIncorrect": 3
+            },
+            "evidenceDigest": null,
+            "baselineEventIds": [
+              "wrong:ops-w-ops-s1",
+              "attempt:ops-a-ops-s1-0",
+              "attempt:ops-a-ops-s1-1",
+              "attempt:ops-a-ops-s1-2"
+            ],
+            "proposedKnowledgeIds": []
+          },
+          "createdAt": "2026-11-10T16:35:59.095380Z"
+        }
+      ]
+    },
+    {
+      "name": "administrator-retries-own-failed-job"
+    },
+    {
+      "name": "actual-codex-retry-succeeded",
+      "job": {
+        "id": "job-ops-failure",
+        "mode": null,
+        "wrongId": null,
+        "phase": null,
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": null,
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": null,
+        "prompt": "为什么两边应一起变化",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "可以把等式想成天平：想让它继续平衡，就在两边同时加上、减去、乘上或除以同一个数。",
+          "steps": [
+            "等号表示左右两边的值相等。",
+            "如果只改变一边，左右两边的值通常就不再相等，等式也就不成立了。",
+            "两边同时进行相同的运算，等式仍保持平衡。例如，若 a=b，那么 a+c=b+c。",
+            "解方程时，这样做能在保持等式成立的同时，把未知数逐步单独留在一边。"
+          ],
+          "title": "保持等式平衡",
+          "sources": [],
+          "question": "为什么两边应一起变化？",
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          }
+        },
+        "attemptNumber": 2,
+        "retryCount": 0,
+        "createdAt": "2026-11-10T16:34:25Z",
+        "updatedAt": "2026-11-10T16:42:12Z",
+        "input": {
+          "prompt": "为什么两边应一起变化"
+        },
+        "runs": [
+          {
+            "id": "run-e3e1d98e40e04daa9a2980dea8c4b17a",
+            "number": 2,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "hint": "可以把等式想成天平：想让它继续平衡，就在两边同时加上、减去、乘上或除以同一个数。",
+              "steps": [
+                "等号表示左右两边的值相等。",
+                "如果只改变一边，左右两边的值通常就不再相等，等式也就不成立了。",
+                "两边同时进行相同的运算，等式仍保持平衡。例如，若 a=b，那么 a+c=b+c。",
+                "解方程时，这样做能在保持等式成立的同时，把未知数逐步单独留在一边。"
+              ],
+              "title": "保持等式平衡",
+              "sources": [],
+              "question": "为什么两边应一起变化？",
+              "mathClaims": [],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified"
+              }
+            },
+            "startedAt": "2026-11-10T16:41:56Z",
+            "endedAt": "2026-11-10T16:42:12Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "admin-accounts-and-health-visible"
+    }
+  ],
+  "screens": [
+    {
+      "name": "teacher-analytics-final",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "teacher-analytics-final",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "teacher-analytics-final",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "name": "teacher-issues-final",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "teacher-issues-final",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "teacher-issues-final",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "name": "student-memory-after-intervention",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "student-memory-after-intervention",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "student-memory-after-intervention",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "name": "admin-operations-final",
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    {
+      "name": "admin-operations-final",
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    {
+      "name": "admin-operations-final",
+      "width": 2560,
+      "scroll": 2560,
+      "client": 2560
+    }
+  ],
+  "completedAt": "2026-11-10T16:42:12.659Z",
+  "consoleErrors": []
+}

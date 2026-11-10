@@ -1,0 +1,306 @@
+{
+  "startedAt": "2026-11-10T16:35:40.696Z",
+  "checks": [
+    {
+      "0": "当",
+      "1": "前",
+      "2": "成",
+      "3": "员",
+      "4": "\n",
+      "5": "4",
+      "6": "\n",
+      "7": "任",
+      "8": "务",
+      "9": "\n",
+      "10": "1",
+      "11": "\n",
+      "12": "已",
+      "13": "开",
+      "14": "始",
+      "15": "学",
+      "16": "生",
+      "17": "\n",
+      "18": "3",
+      "19": "\n",
+      "20": "已",
+      "21": "提",
+      "22": "交",
+      "23": "学",
+      "24": "生",
+      "25": "\n",
+      "26": "0",
+      "27": "\n",
+      "28": "仍",
+      "29": "有",
+      "30": "未",
+      "31": "提",
+      "32": "交",
+      "33": "\n",
+      "34": "4",
+      "35": "\n",
+      "36": "有",
+      "37": "逾",
+      "38": "期",
+      "39": "学",
+      "40": "生",
+      "41": "\n",
+      "42": "4",
+      "43": "\n",
+      "44": "作",
+      "45": "答",
+      "46": "尝",
+      "47": "试",
+      "48": "\n",
+      "49": "7",
+      "50": "\n",
+      "51": "已",
+      "52": "答",
+      "53": "题",
+      "54": "目",
+      "55": "\n",
+      "56": "5",
+      "57": "\n",
+      "58": "独",
+      "59": "立",
+      "60": "正",
+      "61": "确",
+      "62": "题",
+      "63": "目",
+      "64": "\n",
+      "65": "0",
+      "66": "\n",
+      "67": "独",
+      "68": "立",
+      "69": "正",
+      "70": "确",
+      "71": "学",
+      "72": "生",
+      "73": "\n",
+      "74": "0",
+      "name": "teacher-class-report-visible"
+    },
+    {
+      "name": "common-difficulty-opens-original-evidence",
+      "content": "等式性质\n\n等式性质\n\nops-s0 · ops-version · 2026-11-10T16:24:25Z\nx - 3 = 5\n\n原答：2\n\n把右边的数直接相减了\n\n独立错误原任务\nops-s0 · ops-version · 2026-11-10T16:25:25Z\n3z = 18\n\n原答：2\n\n把右边的数直接相减了\n\n独立错误原任务\nops-s0 · ops-version · 2026-11-10T16:26:25Z\n3z = 18\n\n原答：2\n\n把右边的数直接相减了\n\n独立错误原任务\nops-s0 · ops-version · 2026-11-10T16:34:25Z\n3z=18\n\n原答：2\n\n把18减3\n\n已确认错因原任务\nops-s1 · ops-version · 2026-11-10T16:24:25Z\nx - 3 = 5\n\n原答：2\n\n把右边的数直接相减了\n\n独立错误原任务\nops-s1 · ops-version · 2026-11-10T16:25:25Z\n3z = 18\n\n原答：2\n\n把右边的数直接相减了\n\n独立错误原任务\nops-s1 · ops-version · 2026-11-10T16:26:25Z\n3z = 18\n\n原答：2\n\n把右边的数直接相减了\n\n独立错误原任务\nops-s1 · ops-version · 2026-11-10T16:34:25Z\n3z=18\n\n原答：2\n\n把18减3\n\n已确认错因原任务\nops-s2 · ops-version · 2026-11-10T16:29:25Z\nw / 4 = 3\n\n原答：两边相乘\n\n未给出具体数值\n\n未核验作答原任务\n关闭"
+    },
+    {
+      "name": "case-selected-and-intervention-published"
+    },
+    {
+      "name": "student-received-and-submitted-explanation"
+    },
+    {
+      "name": "submission-does-not-imply-independent-success",
+      "studentId": "ops-s0",
+      "studentName": "同学0",
+      "startedAt": "2026-11-10T16:35:51Z",
+      "completedAt": "2026-11-10T16:35:52Z",
+      "response": "我观察到两边一起增加才保持平衡。",
+      "feedback": "",
+      "status": "已提交",
+      "outcome": {
+        "newAttempts": 0,
+        "newQuestions": 0,
+        "independentPassed": false,
+        "needsHelp": false,
+        "evidence": [],
+        "target": {
+          "kind": "learn",
+          "taskId": "ops-t00"
+        },
+        "label": "尚无新作答"
+      }
+    },
+    {
+      "name": "independent-check-page-opened",
+      "text": "天平与等式 · 独立检查\n返回本课\n2 / 4\n独立检查\n求w，并写出两边共同进行的运算。\n\nw / 4 = 3\n\n你的答案\n解释你的运算\n提交作答\n我需要提示\n向学习助手提问\n学习助手\n\n独立检查\n\n给我提示\n举个例子\n换种讲法\n补基础\n向学习助手提问或回答追问\n语音输入\n选择题图\n题图\n发送\n我想自己试试\n换一道新题\n查看本课结果"
+    },
+    {
+      "name": "student-submits-new-answer-in-ui"
+    },
+    {
+      "name": "new-independent-answer-program-verified",
+      "newAttempts": 1,
+      "newQuestions": 1,
+      "independentPassed": true,
+      "needsHelp": false,
+      "evidence": [
+        {
+          "rawOccurredAt": "2026-11-11T00:35:53",
+          "timeBasis": "database_session",
+          "timeReliable": true,
+          "eventId": "attempt:attempt-7ddea28895474eeeb5ab9d139aba6bd7",
+          "sourceType": "attempt",
+          "sourceId": "attempt-7ddea28895474eeeb5ab9d139aba6bd7",
+          "studentId": "ops-s0",
+          "knowledgeIds": [
+            "ops-kp"
+          ],
+          "originalKnowledgeIds": [
+            "ops-kp"
+          ],
+          "occurredAt": "2026-11-10T16:35:53Z",
+          "taskId": "ops-t00",
+          "classId": "ops-c0",
+          "lessonVersionId": "ops-version",
+          "readOnly": false,
+          "target": "/result?task=ops-t00",
+          "prompt": "求w，并写出两边共同进行的运算。",
+          "equation": "w / 4 = 3",
+          "answer": "12",
+          "reason": "等式两边同时乘4，得到w=12。",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "questionKind": "check",
+          "questionIndex": 3,
+          "questionKey": "ops-lesson:eq-check-multiply",
+          "recordId": "record-c4841734a07e4048810f4fa912897d91",
+          "knowledgeId": "ops-kp",
+          "evidenceId": "attempt:attempt-7ddea28895474eeeb5ab9d139aba6bd7:ops-kp",
+          "label": "独立正确"
+        }
+      ],
+      "target": {
+        "kind": "learn",
+        "taskId": "ops-t00"
+      },
+      "label": "新增独立正确证据"
+    },
+    {
+      "name": "teacher-sees-intervention-result"
+    },
+    {
+      "name": "student-detail-memory-strengthen",
+      "text": "师承智学\n教学空间\n教学空间\n教学概览\n教学案例\n课程与课时\n我的教案\n班级教学\n学习记忆\n问题与回复\n帮助与反馈\n陈\n陈老师\n教学空间\n/\n学习记忆\n搜索课程、案例\n⌘ K\n1\n已连接\n学生学习记忆\n刷新证据\n班级\n七年级一班\n七年级二班\n学生\n同学0\n同学1\n同学2\n同学9\n同学1\n3\n待复习建议\n3\n独立正确证据\n0\n全部状态\n待检查\n有独立正确证据\n等式性质\n需要补强\n0 独立正确\n3 独立错误\n4 条依据\n11/11 00:26\n逆运算\n暂无证据\n0 独立正确\n0 独立错误\n0 条依据\n暂无\n非零条件\n暂无证据\n0 独立正确\n0 独立错误\n0 条依据\n暂无\n依据与记录\n等式性质\n收起\n需要补强\n\n最近两次独立作答未通过，建议先订正再检查。\n\n已有原始错题，先继续针对性订正。\n\n查看对应任务\n天平与等式\n共同运算练习\n已确认错因\n11/11 00:34\n3z=18\n\n原作答 2\n\n把18减3\n\n已确认错因 · 运算步骤错误\n\n查看原任务\n核对与修订\n来源\n独立错误\n11/11 00:26\n3z = 18\n\n原作答 2\n\n把右边的数直接相减了\n\n查看原任务\n核对与修订\n来源\n独立错误\n11/11 00:25\n3z = 18\n\n原作答 2\n\n把右边的数直接相减了\n\n查看原任务\n核对与修订\n来源\n独立错误\n11/11 00:24\nx - 3 = 5\n\n原作答 2\n\n把右边的数直接相减了\n\n查看原任务\n核对与修订\n来源\n状态变化"
+    },
+    {
+      "name": "teacher-appended-knowledge-correction",
+      "status": 201,
+      "body": {
+        "id": "memory-4355996d8dd84bcead3fb27dea4e0291",
+        "created": true
+      }
+    },
+    {
+      "name": "targeted-retest-delivered",
+      "status": 201,
+      "body": {
+        "id": "sup-f36d2de0f7323fc06175957b678ce331",
+        "created": true
+      }
+    },
+    {
+      "name": "second-student-new-answer-in-ui"
+    },
+    {
+      "name": "student-two-created-learning-question"
+    },
+    {
+      "name": "student-one-created-separate-question"
+    },
+    {
+      "name": "teacher-replied-one-other-remains-pending"
+    },
+    {
+      "name": "admin-system-feedback-and-failure-queue-scoped"
+    },
+    {
+      "name": "student-relogin-reads-reply"
+    }
+  ],
+  "screens": [
+    {
+      "name": "teacher-analytics",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "teacher-analytics",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "teacher-analytics",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "name": "student-intervention",
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    {
+      "name": "student-intervention",
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    {
+      "name": "student-intervention",
+      "width": 2560,
+      "scroll": 2560,
+      "client": 2560
+    },
+    {
+      "name": "teacher-intervention",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "teacher-intervention",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "teacher-intervention",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "name": "teacher-issues",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "teacher-issues",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "teacher-issues",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "name": "admin-operations",
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    {
+      "name": "admin-operations",
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    {
+      "name": "admin-operations",
+      "width": 2560,
+      "scroll": 2560,
+      "client": 2560
+    }
+  ],
+  "completedAt": "2026-11-10T16:36:17.387Z",
+  "consoleErrors": []
+}

@@ -25,7 +25,8 @@ def user_for(request, db):
 
 
 def can_read(db, user, job):
-    if user.role == "admin" or job.owner_id == user.id: return True
+    if job.owner_id == user.id: return True
+    if user.role == "admin": return job.capability in ("document_parse","document_ocr","case_extract")
     record = db.get(StudentRecord, job.record_id) if job.record_id else None
     task = db.get(LearningTask, record.task_id) if record else None
     return user.role == "teacher" and task and task.teacher_id == user.id
@@ -50,7 +51,7 @@ def serialize(job, detail=True):
     if result and result.get("variant"):
         result["variant"].pop("expected",None)
     if result and not detail and "vectors" in result: result = {k:v for k,v in result.items() if k != "vectors"}
-    return {"id":job.id,"mode":job.input.get("mode"),"wrongId":job.input.get("wrongId"),"phase":job.input.get("phase"),"capability":job.capability,"lessonId":job.input.get("lessonId"),"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" and job.input.get("strategy")!="try" and (not job.input.get("remediation") or job.input.get("mode")=="guidance") else None,"question":job.input.get("question"),"blockId":job.input.get("blockId"),"strategy":job.input.get("strategy"),"prompt":job.input.get("prompt"),"parentJobId":job.input.get("parentJobId"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
+    return {"id":job.id,"mode":job.input.get("mode"),"wrongId":job.input.get("wrongId"),"phase":job.input.get("phase"),"capability":job.capability,"lessonId":job.input.get("lessonId"),"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" and job.input.get("strategy")!="try" and (not job.input.get("remediation") or job.input.get("mode")=="guidance") else None,"question":job.input.get("question"),"blockId":job.input.get("blockId"),"strategy":job.input.get("strategy"),"prompt":job.input.get("prompt"),"parentJobId":job.input.get("parentJobId"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"retryCount":job.retry_count,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
 
 
 @router.get("/capabilities")
@@ -119,6 +120,7 @@ def jobs(request: Request, recordId: str | None = None, capability: str | None =
     if recordId: query=query.where(ModelJob.record_id==recordId)
     if capability: query=query.where(ModelJob.capability==capability)
     if user.role == "student": query=query.where(ModelJob.owner_id==user.id)
+    elif user.role == "admin":query=query.where((ModelJob.owner_id==user.id) | ModelJob.capability.in_(["document_parse","document_ocr","case_extract"]))
     elif user.role == "teacher":
         query=query.outerjoin(StudentRecord,ModelJob.record_id==StudentRecord.id).outerjoin(LearningTask,StudentRecord.task_id==LearningTask.id).where((LearningTask.teacher_id==user.id) | (ModelJob.owner_id==user.id))
     return [serialize(item,False) for item in db.scalars(query.order_by(ModelJob.created_at.desc()).limit(60)).all()]
@@ -281,6 +283,8 @@ def retry(job_id: str, request: Request, db=Depends(get_db)):
     if user.role=='student' and job.record_id:
         from .teaching import ensure_write
         record=db.get(StudentRecord,job.record_id);ensure_write(db,user,record.task_id)
+    from .job_access import validate_retry
+    validate_retry(db,job)
     if job.status!="failed": raise HTTPException(409,"只有失败任务可以重试。")
     if db.scalar(select(ModelJob.id).where(ModelJob.owner_id==user.id,ModelJob.active_hash==job.input_hash,ModelJob.id!=job.id).limit(1)):
         raise HTTPException(409,"相同内容已有运行任务，请先查看该任务。")
@@ -407,3 +411,18 @@ def agent_cancel(job_id:str,request:Request,db=Depends(get_db)):
     job.status='cancelled';job.error='教师取消，已完成步骤保留。';job.active_hash=None
     if job.result:job.result={**job.result,'decision':'rejected'}
     event(db,job,'已取消');db.commit();cancel_execution(job.id);return serialize(job)
+
+@router.get('/failures')
+def failures(request:Request,db=Depends(get_db)):
+    user=user_for(request,db)
+    from .job_access import validate_retry
+    rows=db.scalars(select(ModelJob).where(ModelJob.status=='failed').order_by(ModelJob.updated_at.desc())).all();result=[]
+    for job in rows:
+        own=job.owner_id==user.id
+        if not own and user.role!='admin' and not can_read(db,user,job):continue
+        reason='仅原提交账号可重试。'
+        if own:
+            try:validate_retry(db,job);reason=''
+            except HTTPException as e:reason=str(e.detail)
+        result.append({'id':job.id,'capability':job.capability,'createdAt':job.created_at.isoformat()+'Z','attemptNumber':job.attempt_number,'retryCount':job.retry_count,'status':job.status,'error':job.error if own else '业务任务失败，请由原提交者核对来源后处理。','canRetry':own and not reason,'retryBlockedReason':reason})
+    return result

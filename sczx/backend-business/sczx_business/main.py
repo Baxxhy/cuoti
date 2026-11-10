@@ -128,7 +128,9 @@ def record_json(db: Session, rec: StudentRecord) -> dict:
     wrongs = db.scalars(select(WrongQuestion).where(WrongQuestion.record_id == rec.id).order_by(WrongQuestion.created_at)).all()
     from .remediation import serialize as wrong_json_for
     wrong_json=[wrong_json_for(db,item) for item in wrongs]
-    return {"memberActive":bool(record_task and db.get(ClassMember,(record_task.classroom_id,rec.student_id))),"id": rec.id, "taskId": rec.task_id, "studentId": rec.student_id, "studentName": student.display_name if student else "学生", "observation": rec.observation, "drafts": rec.drafts or {}, "attempts": [{"id": a.id, "taskId": rec.task_id, "question": a.question, "questionId":question_id(a.question), "answer": a.answer, "reason": a.reason, "helped": a.helped, "correct": a.correct, "verification": a.verification, "createdAt": a.created_at.isoformat()} for a in attempts], "helps": [{"id": h.id, "taskId": rec.task_id, "question": h.question, "questionId":question_id(h.question), "kind": h.kind, "message": h.message, "image": file_url(h.file_id), "attemptNumber": h.attempt_number, "createdAt": h.created_at.isoformat()} for h in helps], "repairs": [repair for wrong in wrong_json for repair in wrong["repairs"]], "wrongQuestions": wrong_json, "completed": rec.completed, "submittedAt": rec.submitted_at.isoformat() if rec.submitted_at else None, "feedback": rec.feedback, "feedbackAt": rec.feedback_at.isoformat() if rec.feedback_at else None, "updatedAt": rec.updated_at.isoformat() if rec.updated_at else None}
+    from .insights import record_metrics
+    metrics=record_metrics(db,rec,record_task,attempts,helps)
+    return {"metrics":metrics,"memberActive":bool(record_task and db.get(ClassMember,(record_task.classroom_id,rec.student_id))),"id": rec.id, "taskId": rec.task_id, "studentId": rec.student_id, "studentName": student.display_name if student else "学生", "observation": rec.observation, "drafts": rec.drafts or {}, "attempts": [{"id": a.id, "taskId": rec.task_id, "question": a.question, "questionId":question_id(a.question), "answer": a.answer, "reason": a.reason, "helped": a.helped, "correct": a.correct, "verification": a.verification, "createdAt": a.created_at.isoformat()} for a in attempts], "helps": [{"id": h.id, "taskId": rec.task_id, "question": h.question, "questionId":question_id(h.question), "kind": h.kind, "message": h.message, "image": file_url(h.file_id), "attemptNumber": h.attempt_number, "createdAt": h.created_at.isoformat()} for h in helps], "repairs": [repair for wrong in wrong_json for repair in wrong["repairs"]], "wrongQuestions": wrong_json, "completed": rec.completed, "submittedAt": rec.submitted_at.isoformat() if rec.submitted_at else None, "feedback": rec.feedback, "feedbackAt": rec.feedback_at.isoformat() if rec.feedback_at else None, "updatedAt": rec.updated_at.isoformat() if rec.updated_at else None}
 
 
 def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
@@ -155,7 +157,7 @@ def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
     elif user.role == "student":
         tasks = db.scalars(select(LearningTask).join(StudentRecord).where(StudentRecord.student_id==user.id).order_by(LearningTask.published_at.desc())).all()
     elif user.role == "admin":
-        tasks = db.scalars(select(LearningTask).order_by(LearningTask.published_at.desc())).all()
+        tasks = [] # Admin operations do not expose unrelated student learning records.
     task_json = []
     records = {}
     student_records = {}
@@ -178,7 +180,8 @@ def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
     elif user.role == "teacher" and classroom:
         member_ids = db.scalars(select(ClassMember.student_id).where(ClassMember.classroom_id == classroom.id)).all()
         if member_ids:
-            issue = db.scalar(select(SupportIssue).where(SupportIssue.owner_id.in_(member_ids)).order_by(SupportIssue.updated_at.desc()))
+            from .issues import permitted
+            issue = next((i for i in db.scalars(select(SupportIssue).where(SupportIssue.owner_id.in_(member_ids)).order_by(SupportIssue.updated_at.desc())) if permitted(db,user,i)),None)
     messages = []
     supplements = []
     task_ids = [item["id"] for item in task_json]
@@ -316,26 +319,13 @@ def add_member(classroom_id: str, payload: MemberInput, request: Request, db: DB
 
 @app.put("/api/issues/{issue_id}/reply")
 def reply_issue(issue_id: str, payload: IssueReplyInput, request: Request, db: DB) -> dict:
-    user = current_user(request, db)
-    require_role(user, "teacher")
-    issue = db.get(SupportIssue, issue_id)
-    if not issue:
-        raise HTTPException(404, "没有找到这条学习疑问。")
-    classroom = db.scalar(
-        select(Classroom.id)
-        .join(ClassMember, ClassMember.classroom_id == Classroom.id)
-        .where(Classroom.teacher_id == user.id, ClassMember.student_id == issue.owner_id)
-        .limit(1)
-    )
-    if not classroom:
-        raise HTTPException(404, "没有找到本班学生的学习疑问。")
-    reply = payload.reply.strip()
-    if not reply:
-        raise HTTPException(422, "请填写回复内容。")
-    issue.reply = reply
-    issue.resolved = True
-    db.commit()
-    return {"reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()}
+    from .issues import transition
+    row=db.get(SupportIssue,issue_id)
+    if not row:raise HTTPException(404,"没有找到这条学习疑问。")
+    require_role(current_user(request,db),"teacher")
+    result=transition(issue_id,{"status":"replied","content":payload.reply,"requestKey":uuid.uuid4().hex,"expectedRevision":row.revision},request,db)
+    return {"reply":result["reply"],"resolved":result["resolved"],"updatedAt":result["updatedAt"]}
+
 
 
 @app.get("/api/classrooms/{classroom_id}/members")
@@ -506,10 +496,11 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
             if not issue and str(issue_data.get("text", "")).strip():
                 issue = SupportIssue(id=str(issue_data.get("id") or f"issue-{uuid.uuid4().hex[:32]}"), owner_id=user.id, text="")
                 db.add(issue)
-            if issue and issue.owner_id == user.id:
+            if issue and issue.owner_id == user.id and issue in db.new:
                 issue.text = str(issue_data.get("text", issue.text))
-                issue.reply = str(issue_data.get("reply", issue.reply))
-                issue.resolved = bool(issue_data.get("resolved"))
+                # Existing replies and states are controlled by the scoped queue only.
+                issue.reply = ""
+                issue.resolved = False
         db.commit()
     except Exception:
         db.rollback()
@@ -845,3 +836,8 @@ app.include_router(remediation_router)
 
 from .learning_memory import router as learning_memory_router
 app.include_router(learning_memory_router)
+
+from .insights import router as insights_router
+from .issues import router as support_router
+app.include_router(insights_router)
+app.include_router(support_router)

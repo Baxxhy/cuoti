@@ -1,0 +1,554 @@
+[
+  {
+    "id": "A01",
+    "item": "独立检查计数",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "同题先错再对再对，尝试3、唯一题1、独立正确1",
+    "method": "test_retries_count_unique_and_latest；固定原答场景",
+    "expected": "唯一题目不随重试增加",
+    "actual": "3次尝试仅1题/1人；同刻矛盾不选成功",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "A02",
+    "item": "统计口径一致性",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "首页/任务/班级/记录指标共享定义",
+    "method": "test_dashboard_record_and_class_same_metric_definitions",
+    "expected": "同范围同定义一致",
+    "actual": "learningMetrics与班级stats一致，任务/单人使用同一函数",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "A03",
+    "item": "时间范围",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "UTC/+08读取会话、日期边界、未知时间",
+    "method": "test_time_range_and_sql_session_timezone_consistent；闭开区间规则",
+    "expected": "边界与会话切换一致",
+    "actual": "同日证据1条；SQL会话切换不改结果，未知时间不混入",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S01",
+    "item": "班级学情总览",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "2教师3班各4人及跨班/移出",
+    "method": "教师真实浏览器读取",
+    "expected": "来源为本班实际记录",
+    "actual": "首页人数、尝试、题目、知识状态来自隔离原始作答",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S02",
+    "item": "多班级切换",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "迟到A班与当前B班、另一教师班级",
+    "method": "Chromium analytics ignores delayed class evidence",
+    "expected": "不串班级",
+    "actual": "迟到A不覆盖B，URL保留B；越权班404",
+    "status": "passed",
+    "evidence": [
+      "frontend-final.log",
+      "states.json"
+    ]
+  },
+  {
+    "id": "S03",
+    "item": "参与统计",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "当前成员、已分配/未提交/逾期与移出",
+    "method": "MySQL class scoping与正式入口",
+    "expected": "人数/任务状态不混淆",
+    "actual": "当前成员去重，历史分配另列，首页契约保持",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "main-smoke.json"
+    ]
+  },
+  {
+    "id": "S04",
+    "item": "知识点统计",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "有错误、无事实、未核验与复测学生",
+    "method": "班级知识表及规则投影",
+    "expected": "证据与分母明确",
+    "actual": "全班/已分配/实际作答/已核验分别返回，无虚构百分比",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S05",
+    "item": "共性困难",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "等式性质两名学生原答2与解释",
+    "method": "打开知识点依据弹窗",
+    "expected": "结论对应原答",
+    "actual": "实际显示原错误、解释、来源版本和学生",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S06",
+    "item": "无证据处理",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "未开始学生、未知答案/旧固定补救",
+    "method": "test_helped_unknown_and_manual_never_auto_correct",
+    "expected": "不虚构掌握/困难",
+    "actual": "0/证据不足，未知及人工确认不计程序独立正确",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S07",
+    "item": "学生详情",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "两错学生、知识记忆、原任务和反馈",
+    "method": "流程二＋原任务详情",
+    "expected": "跨任务原证据可回看",
+    "actual": "原答、任务、纠正审计与新状态一起保留",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json"
+    ]
+  },
+  {
+    "id": "S08",
+    "item": "题目分析",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "同学生同题3次＋跨任务/不同学生",
+    "method": "unique key规则与MySQL重复作答",
+    "expected": "人数和尝试分开，版本隔离",
+    "actual": "同题作答人数1、尝试3，任务ID隔离发布内容",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S09",
+    "item": "未核验队列",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "无数值答案及学生解释",
+    "method": "实际点击待核对/保存意见",
+    "expected": "查看原题原答并追加记录",
+    "actual": "人工确认保存，原程序未核验仍保留",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S10",
+    "item": "教师人工纠正",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "关联纠正与人工退回",
+    "method": "流程二、append_review_preserves_original_verification",
+    "expected": "原始事实不改",
+    "actual": "旧答案2、原核验和新审计均可追查",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S11",
+    "item": "干预对象选择",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "全班、指定与候选",
+    "method": "预览发布及并发校验",
+    "expected": "收件范围准确",
+    "actual": "实际送达全班；另勾选候选1人预览后发送",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "final-visual.json"
+    ]
+  },
+  {
+    "id": "S12",
+    "item": "知识点分组",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "两个独立错误候选及无证据学生",
+    "method": "候选界面与difficultyOnly服务检查",
+    "expected": "先有证据，再教师确认",
+    "actual": "候选2、初始未选且按钮禁用；无错误依据422",
+    "status": "passed",
+    "evidence": [
+      "final-visual.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S13",
+    "item": "补充讲解",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "真实案例及教师安排",
+    "method": "流程一师生收发",
+    "expected": "发布/接收正常",
+    "actual": "消息、开始、说明提交及新作答均实际保存",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S14",
+    "item": "错题订正",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "本学生原任务错题与个人错题",
+    "method": "all_intervention_types/targets tests",
+    "expected": "真实所属错题可选，拒绝个人/他人错题",
+    "actual": "原任务WrongQuestion目标有效，个人与跨班422",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "supplement-types.json"
+    ]
+  },
+  {
+    "id": "S15",
+    "item": "前置知识复习",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "本班已分配目标课时",
+    "method": "all_intervention_types_real_wrong_and_prerequisite_target",
+    "expected": "真实目标，非虚构入口",
+    "actual": "真实逆运算知识依赖等式性质，前置课时目标已实际送达；分配/班级后端核查",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "supplement-types.json"
+    ]
+  },
+  {
+    "id": "S16",
+    "item": "独立复测",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "原q2错，未答q3实际输入12",
+    "method": "学生真实检查页提交",
+    "expected": "新题、独立、程序验证",
+    "actual": "两学生实际提交；重做旧题仅新尝试，不算新题通过",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S17",
+    "item": "干预后回看",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "先提交说明，再新题作答",
+    "method": "师生流程一/二",
+    "expected": "说明与核验分开",
+    "actual": "说明后independentPassed=false，新题核验后true",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json"
+    ]
+  },
+  {
+    "id": "S18",
+    "item": "教学案例检索",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "等式性质、年级学科、独立错误",
+    "method": "从学情查案例并返回发布",
+    "expected": "条件与版本来源可追查",
+    "actual": "检索/阅读/用于补充教学；已发安排保留v1",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "content-operations.json"
+    ]
+  },
+  {
+    "id": "S19",
+    "item": "多条问题",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "两名学生新疑问、原3状态问题",
+    "method": "流程三真实提交与重登",
+    "expected": "列表及历史完整",
+    "actual": "多条并存，当前用户/教师队列隔离",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S20",
+    "item": "问题状态",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "pending/processing/replied/closed与旧回复",
+    "method": "实际回复、MySQL并发/历史测试",
+    "expected": "状态操作留人/时/前后状态",
+    "actual": "回复历史保留、旧回复保留、学生重登可见",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S21",
+    "item": "模型任务异常",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "本人失败及他人私人失败任务",
+    "method": "真实Codex重试、权限/来源测试",
+    "expected": "按当前权限重试，不重复业务",
+    "actual": "本人任务第2次成功；非本人不可重试，失效源409",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S22",
+    "item": "管理端内容操作",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "上传DOCX与案例v1→v2",
+    "method": "真实来源解析、审核拒绝/通过、发布",
+    "expected": "旧版本/任务/安排引用不变",
+    "actual": "未审核422，审核后v2；旧v1及任务和引用JSON一致",
+    "status": "passed",
+    "evidence": [
+      "content-operations.json"
+    ]
+  },
+  {
+    "id": "S23",
+    "item": "跨教师权限",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "教师A/B、跨班学生及移出",
+    "method": "MySQL隔离与浏览器404/空队列",
+    "expected": "无越权或聚合泄露",
+    "actual": "B不能读A班、原答、问题；当前移出不纳入统计",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "states.json"
+    ]
+  },
+  {
+    "id": "S24",
+    "item": "跨学生权限",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "学生s0/s1的学习/问题/个人错题",
+    "method": "MySQL与实际重登",
+    "expected": "只返回本人或明确授权资料",
+    "actual": "跨学生问题404；原记忆/错题回归通过",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S25",
+    "item": "数据迁移",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "真实0012旧结构及正式sczx",
+    "method": "备份、0013升级、全部旧字段摘要",
+    "expected": "历史完整",
+    "actual": "隔离/正式库原字段摘要均一致，旧回复/说明保留",
+    "status": "passed",
+    "evidence": [
+      "migration.json",
+      "main-protection.json"
+    ]
+  },
+  {
+    "id": "S26",
+    "item": "并发与幂等",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "同时发布同键、同时处理同revision",
+    "method": "MySQL并发及Chromium409保留输入",
+    "expected": "不重发，不覆盖",
+    "actual": "同键单安排，改内容同键409；问题并发一个成功一个409",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "frontend-final.log"
+    ]
+  },
+  {
+    "id": "S27",
+    "item": "教师浏览器流程",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "原始困难→案例→安排→实际结果",
+    "method": "流程一/二",
+    "expected": "完整可操作",
+    "actual": "发现原始问题、预览、发送、回看实答完成",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S28",
+    "item": "学生浏览器流程",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "接收/开始/说明/新题/反馈",
+    "method": "流程一/二/三",
+    "expected": "真实保存与重登",
+    "actual": "实际输入答案/解释，说明独立保存，重登读取教师回复",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S29",
+    "item": "桌面视觉",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "1440/1920/2560",
+    "method": "截图自审、页面宽度与行位置测量",
+    "expected": "无溢出、行列清晰",
+    "actual": "队列纵向且每行y递增，无文档横向溢出，源案例显示名称",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "final-visual.json"
+    ]
+  },
+  {
+    "id": "S30",
+    "item": "自动化回归",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "第六至十四步原功能与本步",
+    "method": "unittest/Chromium/JS＋正式读检查",
+    "expected": "相关原功能正常",
+    "actual": "103后端、15Chromium、3JS文件及17正式入口通过",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "frontend-final.log",
+      "frontend-unit-final.log",
+      "main-smoke.json"
+    ]
+  },
+  {
+    "id": "S31",
+    "item": "生产构建",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "冻结源码",
+    "method": "Vite build、Python编译/后端测试",
+    "expected": "前后端正常",
+    "actual": "Vite成功，原chunk提示保留；103后端通过",
+    "status": "passed",
+    "evidence": [
+      "build-frozen.log",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S32",
+    "item": "文档与证据",
+    "executedAt": "2026-11-11T00:52:27.828398+08:00",
+    "executionTimeNote": "归档时间；原运行时间见各日志/JSON",
+    "environment": "environment.json",
+    "testData": "本步源码、规则、流程、限制及验收",
+    "method": "文档/引用/摘要核对",
+    "expected": "可复核实际记录",
+    "actual": "35项完整；任务书32标题计数差异已说明，原失败另存",
+    "status": "passed",
+    "evidence": [
+      "README.md",
+      "review-issues.json",
+      "source-sha256.json"
+    ]
+  }
+]

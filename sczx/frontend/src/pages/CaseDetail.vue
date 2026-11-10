@@ -32,6 +32,7 @@ watch(
 );
 </script>
 <template>
+  <RouteButton v-if="route.query.interventionClass&&currentCase" :route="'insights?class='+route.query.interventionClass+'&task='+(route.query.interventionTask||'')+'&interventionCase='+currentCase.id" secondary>用于补充教学</RouteButton>
   <p v-if="loading" role="status">读取案例中…</p>
   <Surface v-else-if="error || !currentCase"><div class="empty-state"><p role="alert">{{ error || '暂无已发布的案例' }}</p><Button @click="navigate('cases')">返回教学案例</Button></div></Surface>
   <template v-else>

@@ -197,6 +197,8 @@ class FileAsset(Base):
 class SupplementalInstruction(Base):
     __tablename__ = "supplemental_instructions"
 
+    details: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+
     id: Mapped[str] = mapped_column(String(40), primary_key=True)
     task_id: Mapped[str] = mapped_column(ForeignKey("learning_tasks.id", ondelete="CASCADE"), index=True)
     teacher_id: Mapped[str] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), index=True)
@@ -209,6 +211,13 @@ class SupplementalInstruction(Base):
 
 class SupportIssue(Base):
     __tablename__ = "support_issues"
+
+    task_id: Mapped[str | None] = mapped_column(ForeignKey("learning_tasks.id"), nullable=True)
+    category: Mapped[str] = mapped_column(String(24), default="learning", server_default="learning")
+    status: Mapped[str] = mapped_column(String(24), default="pending", server_default="pending")
+    revision: Mapped[int] = mapped_column(Integer, default=1, server_default="1")
+    request_key: Mapped[str | None] = mapped_column(String(100), nullable=True, unique=True)
+    created_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
     id: Mapped[str] = mapped_column(String(40), primary_key=True)
     owner_id: Mapped[str] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), index=True)
@@ -408,4 +417,17 @@ class LearningMemoryChange(Base):
     kind: Mapped[str] = mapped_column(String(30))
     request_key: Mapped[str] = mapped_column(String(80))
     details: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(MySQLDateTime(fsp=6),default=datetime.utcnow)
+
+
+class SupportIssueEvent(Base):
+    __tablename__ = 'support_issue_events'
+    __table_args__ = (UniqueConstraint('actor_id','request_key',name='uq_issue_event_request'),)
+    id: Mapped[str] = mapped_column(String(40),primary_key=True)
+    issue_id: Mapped[str] = mapped_column(ForeignKey('support_issues.id'),index=True)
+    actor_id: Mapped[str] = mapped_column(ForeignKey('accounts.id'))
+    request_key: Mapped[str] = mapped_column(String(100))
+    old_status: Mapped[str] = mapped_column(String(24))
+    new_status: Mapped[str] = mapped_column(String(24))
+    content: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(MySQLDateTime(fsp=6),default=datetime.utcnow)

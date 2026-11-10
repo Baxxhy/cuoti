@@ -1,0 +1,11 @@
+teacher-class-report-visible
+common-difficulty-opens-original-evidence
+file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19
+  async wait(code,ms=20000){const end=Date.now()+ms;while(Date.now()<end){if(await this.eval(code))return;await sleep(80)}throw Error('Browser wait timed out: '+code)}
+                                                                                                                                ^
+
+Error: Browser wait timed out: !!document.querySelector('[role=dialog] textarea')
+    at Browser.wait (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19:129)
+    at async file:///tmp/sczx-step15/browser.mjs:13:455
+
+Node.js v24.15.0

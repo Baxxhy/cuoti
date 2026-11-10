@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/sczx-step15/supplement-types.py", line 10, in <module>
+    rows=student.get('/api/teaching/tasks/'+source+'/supplements').json();item=next(i for i in rows if i['id']==r.json()['id']);assert item['recipients'][0]['outcome']['target']==body['target'];assert not item['recipients'][0]['outcome']['independentPassed'];checks.append({'sourceTask':source,'kind':body['kind'],'knowledgeId':body['knowledgeId'],'actualPrerequisite':point['prerequisites'] if body['kind']=='foundation' else None,'recipient':item['recipients'][0]})
+                                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

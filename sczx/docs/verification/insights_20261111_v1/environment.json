@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-11-11T00:52:27.828398+08:00",
+  "dateBasis": "Asia/Shanghai; raw logs UTC",
+  "platform": "Linux-4.15.0-76-generic-x86_64-with-glibc2.31",
+  "python": "3.13.9",
+  "node": "v24.15.0",
+  "backendTestDatabase": "sczx_test_insights_3a0274e1",
+  "browserDatabase": "sczx_test_insights_browser_373d72",
+  "browserOrigin": "http://127.0.0.1:5185",
+  "api": "http://127.0.0.1:8015",
+  "normalOrigin": "http://localhost:5177",
+  "normalApiPort": 8000,
+  "frontend": "Vue3/JavaScript; existing Nova",
+  "business": "FastAPI/MySQL",
+  "model": "existing Codex CLI gpt-6-luna/low",
+  "accounts": "ops-t1/ops-t2/ops-admin/ops-s0..ops-s11; no credentials included",
+  "tests": {
+    "backend": 103,
+    "chromium": 15,
+    "javascriptFiles": 3,
+    "backendSkipped": 0,
+    "chromiumSkipped": 0
+  },
+  "newDependencies": []
+}

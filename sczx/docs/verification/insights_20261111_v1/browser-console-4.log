@@ -1,0 +1,18 @@
+teacher-class-report-visible
+common-difficulty-opens-original-evidence
+case-selected-and-intervention-published
+student-received-and-submitted-explanation
+submission-does-not-imply-independent-success
+independent-check-page-opened
+file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18
+  async eval(code,arg){const expression=typeof code==='function'?'('+code.toString()+')('+JSON.stringify(arg)+')':code;const r=await this.send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result?.value}
+                                                                                                                                                                                                                                                 ^
+
+Error: Error: #eq-check-multiply
+    at <anonymous>:1:66
+    at <anonymous>:1:195
+    at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+    at async type (file:///tmp/sczx-step15/browser.mjs:5:32)
+    at async file:///tmp/sczx-step15/browser.mjs:16:290
+
+Node.js v24.15.0
