@@ -393,3 +393,19 @@ class SupplementRecipient(Base):
     completed_at: Mapped[datetime | None] = mapped_column(DateTime,nullable=True)
     response: Mapped[str] = mapped_column(Text,default='')
     feedback: Mapped[str] = mapped_column(Text,default='')
+
+from sqlalchemy.dialects.mysql import DATETIME as MySQLDateTime
+
+class LearningMemoryChange(Base):
+    """Append-only decisions; raw attempts and task snapshots remain untouched."""
+    __tablename__ = 'learning_memory_changes'
+    __table_args__ = (UniqueConstraint('actor_id','request_key',name='uq_memory_actor_request'),)
+    id: Mapped[str] = mapped_column(String(40),primary_key=True)
+    student_id: Mapped[str] = mapped_column(ForeignKey('accounts.id'),index=True)
+    actor_id: Mapped[str] = mapped_column(ForeignKey('accounts.id'),index=True)
+    source_event_id: Mapped[str] = mapped_column(String(100),default='')
+    knowledge_id: Mapped[str | None] = mapped_column(ForeignKey('knowledge_points.id'),nullable=True)
+    kind: Mapped[str] = mapped_column(String(30))
+    request_key: Mapped[str] = mapped_column(String(80))
+    details: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(MySQLDateTime(fsp=6),default=datetime.utcnow)

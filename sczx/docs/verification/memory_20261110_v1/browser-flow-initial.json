@@ -1,0 +1,339 @@
+{
+  "startedAt": "2026-11-10T13:47:12.716Z",
+  "steps": [
+    {
+      "name": "flow1-lessonA-wrong-and-helped-practice",
+      "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+      "state": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 3,
+        "verifiedCount": 2,
+        "independentCorrect": 0,
+        "independentIncorrect": 1,
+        "helpedCorrect": 1,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T13:48:05Z",
+        "lastIndependentAt": "2026-11-10T13:47:17Z",
+        "basisIds": [
+          "attempt:attempt-3a3db9a227cc4d449f5d4512187a80d9:browser-kp",
+          "repair:repair-9c059973f3304c9797f316c935c30189:browser-kp"
+        ],
+        "recentVerifiedCount": 2,
+        "dayCount": 1,
+        "reviewRequested": false
+      }
+    }
+  ],
+  "screens": [],
+  "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+  "jobs": [
+    {
+      "id": "job-bd3d201517eb42e89bfbe558fbb40361",
+      "mode": "analysis",
+      "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-f4344427eea44fcd9328ccc6765ec5d5",
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "理解当 3z = 18 时，应使用与乘以 3 相反的运算求 z。",
+        "cause": "概念理解错误",
+        "steps": [
+          "提示：想一想，什么数乘以 3 会得到 18？求这个数时，应把 18 减去 3，还是除以 3？",
+          "因为 z 被乘以 3，要使 z 单独留在等式一边，就把等式两边都除以 3：3z ÷ 3 = 18 ÷ 3。",
+          "所以 z = 6。检验：3 × 6 = 18。",
+          "练习：4x = 20。先判断应对等式两边做什么运算，再求 x。"
+        ],
+        "evidence": "我把18减去3",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [
+          {
+            "left": "3z = 18",
+            "right": "z = 6"
+          }
+        ],
+        "uncertainty": "原作答说明了所用运算，但不能据此判断学生是否理解乘法与除法的关系。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "3z = 18",
+              "right": "z = 6",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "checkQuestion": "在 4x = 20 中，应该对等式两边做什么运算来求 x？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T13:47:20Z",
+      "updatedAt": "2026-11-10T13:47:42Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "3z = 18",
+            "equation": "3z = 18"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "15",
+          "originalReason": "我把18减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-794be06eb4b045c786bc203cd13cd9f6",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "理解当 3z = 18 时，应使用与乘以 3 相反的运算求 z。",
+            "cause": "概念理解错误",
+            "steps": [
+              "提示：想一想，什么数乘以 3 会得到 18？求这个数时，应把 18 减去 3，还是除以 3？",
+              "因为 z 被乘以 3，要使 z 单独留在等式一边，就把等式两边都除以 3：3z ÷ 3 = 18 ÷ 3。",
+              "所以 z = 6。检验：3 × 6 = 18。",
+              "练习：4x = 20。先判断应对等式两边做什么运算，再求 x。"
+            ],
+            "evidence": "我把18减去3",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [
+              {
+                "left": "3z = 18",
+                "right": "z = 6"
+              }
+            ],
+            "uncertainty": "原作答说明了所用运算，但不能据此判断学生是否理解乘法与除法的关系。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "3z = 18",
+                  "right": "z = 6",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "checkQuestion": "在 4x = 20 中，应该对等式两边做什么运算来求 x？"
+          },
+          "startedAt": "2026-11-10T13:47:20Z",
+          "endedAt": "2026-11-10T13:47:42Z"
+        }
+      ]
+    },
+    {
+      "id": "job-6cb21da771e54392abce26be767102da",
+      "mode": "variant",
+      "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-f4344427eea44fcd9328ccc6765ec5d5",
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "求解方程 4x = 28。",
+          "equation": "4x = 28",
+          "rationale": "提示：把 4x 看作 4 个相同的 x 相加；要找 x，可用 28 除以 4。分步解释：原作答是“15”，原因为“我把18减去3”。在 3z = 18 中，3 表示 z 的 3 倍，应将等式两边同时除以 3，得到 z = 18 ÷ 3 = 6；代回可检验 3 × 6 = 18。这道新题同样是系数乘未知数等于常数，练习用除法求未知数。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+          "modelCalls": 1
+        },
+        "mathClaims": [
+          {
+            "left": "18 ÷ 3",
+            "right": "6"
+          },
+          {
+            "left": "3 × 6",
+            "right": "18"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "18 ÷ 3",
+              "right": "6",
+              "method": "表达式等价",
+              "status": "verified"
+            },
+            {
+              "left": "3 × 6",
+              "right": "18",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "4x = 28"
+        }
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T13:47:42Z",
+      "updatedAt": "2026-11-10T13:48:04Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "3z = 18",
+            "equation": "3z = 18"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "15",
+          "originalReason": "我把18减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-60a5de1638bf43188c2b46bb37407739",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "求解方程 4x = 28。",
+              "equation": "4x = 28",
+              "rationale": "提示：把 4x 看作 4 个相同的 x 相加；要找 x，可用 28 除以 4。分步解释：原作答是“15”，原因为“我把18减去3”。在 3z = 18 中，3 表示 z 的 3 倍，应将等式两边同时除以 3，得到 z = 18 ÷ 3 = 6；代回可检验 3 × 6 = 18。这道新题同样是系数乘未知数等于常数，练习用除法求未知数。"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+              "modelCalls": 1
+            },
+            "mathClaims": [
+              {
+                "left": "18 ÷ 3",
+                "right": "6"
+              },
+              {
+                "left": "3 × 6",
+                "right": "18"
+              }
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "18 ÷ 3",
+                  "right": "6",
+                  "method": "表达式等价",
+                  "status": "verified"
+                },
+                {
+                  "left": "3 × 6",
+                  "right": "18",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "variantVerification": {
+              "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+              "status": "verified",
+              "equation": "4x = 28"
+            }
+          },
+          "startedAt": "2026-11-10T13:47:43Z",
+          "endedAt": "2026-11-10T13:48:04Z"
+        }
+      ]
+    }
+  ],
+  "passed": false,
+  "error": "Browser wait timed out: document.querySelector('.memory-bridge')?.textContent.includes('复测')",
+  "body": "师承智学\n学生空间\n学习空间\n我的学习\n探索课程\n错题帮\n学习记录\n帮助与反馈\n同\n同学0\n学生空间\n/\n我的学习\n搜索课程、案例\n⌘ K\n3\n已连接\n含括号方程\n保存进度\n独立检查\n学习结果\n七年级\n0 / 8 个内容块已标记\nv\n相关复习\n学习记忆\n含括号方程\n\n先查看课时例题，再补充实际作答证据。\n\n查看例题\n含括号方程\n\n理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。\n\n01\n相等的两边\n讲解\n\n等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。\n\n标记完成\n02\n让天平两边一起变化\n互动\n\n天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。\n\n5\n=\n5\n5\n5\n两边相等\n左侧加 1\n右侧加 1\n两边同时加 1\n左侧减 1\n右侧减 1\n两边同时减 1\n重置天平\n用自己的话解释观察结果\n标记完成\n03\n同加、同减\n讲解\n\n若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。\n\n标记完成\n04\n例题：消去减去的数\n例题\n\nx - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。\n\n标记完成\n05\n随堂练习\n随堂练习\n\n每一步都说明两边进行了什么运算。\n\n两边同时加3，x等于多少？\n\nx - 3 = 5\n\n你的答案\n解释你的运算\n提交作答\n我需要提示\n向学习助手提问\n两边同时减4，y等于多少？\n\ny + 4 = 11\n\n你的答案\n解释你的运算\n提交作答\n我需要提示\n向学习助手提问\n06\n同乘、同除的条件\n讲解\n\n若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。\n\n标记完成\n07\n例题：共同除以非零数\n例题\n\n3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。\n\n标记完成\n08\n独立检查\n独立检查\n\n独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。\n\n求z，并解释两边为什么可以同时除以3。\n\n3z = 18\n\n进入独立检查\n求w，并写出两边共同进行的运算。\n\nw / 4 = 3\n\n进入独立检查\n补充与订正\n\n暂无补充安排\n\n本课内容\n01\n相等的两边\n02\n让天平两边一起变化\n03\n同加、同减\n04\n例题：消去减去的数\n05\n随堂练习\n06\n同乘、同除的条件\n07\n例题：共同除以非零数\n08\n独立检查\n学习助手\n\n相等的两边\n\n给我提示\n举个例子\n换种讲法\n补基础\n向学习助手提问或回答追问\n语音输入\n选择题图\n题图\n发送\n我想自己试试"
+}

@@ -1,0 +1,20 @@
+{
+  "allOriginalTablesAndValuesUnchanged": true,
+  "oldRows": {
+    "accounts": 12,
+    "attempts": 35,
+    "classrooms": 6,
+    "file_assets": 31,
+    "help_records": 21,
+    "learning_tasks": 16,
+    "lesson_drafts": 6,
+    "repair_attempts": 6,
+    "student_records": 16,
+    "teaching_cases": 9,
+    "wrong_questions": 7
+  },
+  "beforeDigest": "d176a94559dbc724e1bbcbbcd589335527f397efa02add0f6d113e8f76f5adf1",
+  "afterDigest": "d176a94559dbc724e1bbcbbcd589335527f397efa02add0f6d113e8f76f5adf1",
+  "migration": "0012_learning_memory",
+  "scope": "新增追加表，不更改原始事实；SQL备份仅本机保存"
+}

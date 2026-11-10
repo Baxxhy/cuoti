@@ -1,0 +1,7 @@
+{
+  "startedAt": "2026-11-10T22:14:06.620120+08:00",
+  "finishedAt": "2026-11-10T22:15:24.650321+08:00",
+  "database": "sczx_test_memory_de19a5db",
+  "returnCode": 0,
+  "command": "PYTHONPATH=backend-business SCZX_RUN_MYSQL_TESTS=1 python -m unittest discover -s backend-business/tests -v"
+}

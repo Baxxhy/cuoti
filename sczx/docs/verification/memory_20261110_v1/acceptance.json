@@ -1,0 +1,879 @@
+[
+  {
+    "id": "M01",
+    "item": "原始学习证据提取",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "稳定来源ID、原始内容可追查",
+    "actual": "作答/帮助/错题/复测/反馈与原记录和版本关联",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "M02",
+    "item": "知识点关联",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "真实知识ID，无关联不猜测",
+    "actual": "原关联来自快照，纠正以追加审计叠加，未知单列",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "M03",
+    "item": "跨课时聚合",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "同知识的不同课时证据合并",
+    "actual": "A课错误和B课学习读取相同知识证据，版本各自保留",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M04",
+    "item": "跨任务隔离",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "不串学生或教师范围",
+    "actual": "跨学生、指定班级和跨教师过滤；个人不共享",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "M05",
+    "item": "证据去重",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "相同事件不重复计数",
+    "actual": "稳定事件ID、知识内去重、首页跨知识按事件去重",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "states.json"
+    ]
+  },
+  {
+    "id": "M06",
+    "item": "独立与帮助区分",
+    "executedAt": "2026-11-10T22:15:16.685900+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "帮助成功不冒充独立成功",
+    "actual": "帮助、原错误与独立新题分别保存、分别计算",
+    "status": "passed",
+    "evidence": [
+      "rule-comparison.json",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "M07",
+    "item": "未核验处理",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "未知不视作掌握",
+    "actual": "未核验与人工意见单列，旧固定示例不计独立成功",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "rule-comparison.json"
+    ]
+  },
+  {
+    "id": "M08",
+    "item": "证据不足",
+    "executedAt": "2026-11-10T22:15:16.685900+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "单次或缺记录保持不确定",
+    "actual": "C01—C04/C08—C10/C14和无历史学生通过",
+    "status": "passed",
+    "evidence": [
+      "rule-comparison.json",
+      "states.json",
+      "human-review.json"
+    ]
+  },
+  {
+    "id": "M09",
+    "item": "学习状态计算",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "与确定事实及规则一致",
+    "actual": "六种状态、不同题、时间/同刻矛盾的规则通过",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "rules-final.log",
+      "rule-comparison.json"
+    ]
+  },
+  {
+    "id": "M10",
+    "item": "学习状态更新",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "新作答和纠正改变派生结果",
+    "actual": "真实复测与新检查更新状态；过期建议停止重复",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M11",
+    "item": "历史版本兼容",
+    "executedAt": "2026-11-10T22:22:14.618232+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "原答案、解释、核验及快照不变",
+    "actual": "关联修订不覆盖原始记录；过期聚合保存不改旧帮助",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "main-protection.json"
+    ]
+  },
+  {
+    "id": "M12",
+    "item": "前置知识关联",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "只用一层实际关系",
+    "actual": "C依赖A给有依据入口，模型提取仅一层",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M13",
+    "item": "相关记忆提取",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "进入上下文的历史与当前知识相关",
+    "actual": "真实指导只选择当前知识及一层前置的有限结构化证据",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M14",
+    "item": "记忆输入控制",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "有条数和字符预算",
+    "actual": "最多6条、每摘要180字，沿用24000字符模型预算",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M15",
+    "item": "复习推荐规则",
+    "executedAt": "2026-11-10T22:15:16.685900+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "有原始事实及可解释原因",
+    "actual": "错误/帮助/前置/时间等规则生成稳定建议",
+    "status": "passed",
+    "evidence": [
+      "rule-comparison.json",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "M16",
+    "item": "推荐目标",
+    "executedAt": "2026-11-10T22:28:55.635504+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "目标真实且有权限",
+    "actual": "原课时/实际未答检查/错题可打开，移出历史不推荐写入",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json",
+      "teacher-target.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M17",
+    "item": "推荐去重",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "刷新不增等价推荐",
+    "actual": "每知识稳定ID且至多一条，读取不新增ModelJob",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M18",
+    "item": "补基础",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "有困难证据与一层关系",
+    "actual": "两次前置独立错误给出A课实际入口，完成后返回",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M19",
+    "item": "独立复测推荐",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "原帮助不清除",
+    "actual": "由有帮助练习进入不同变式独立作答，历史仍在",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M20",
+    "item": "学生知识总览",
+    "executedAt": "2026-11-10T22:05:37.247293+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "计数、状态与数据一致",
+    "actual": "知识列表、状态、真实计数、推荐及筛选可操作",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "M21",
+    "item": "证据详情",
+    "executedAt": "2026-11-10T22:28:55.635504+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "能查看原答和原来源",
+    "actual": "展开原作答、错误/补救、版本、时间和来源入口",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json",
+      "teacher-target.json"
+    ]
+  },
+  {
+    "id": "M22",
+    "item": "学生复习流程",
+    "executedAt": "2026-11-10T22:05:37.247293+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "推荐到作答再重算闭环",
+    "actual": "跨课时复测及前置学习均产生新事实并返回",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json"
+    ]
+  },
+  {
+    "id": "M23",
+    "item": "教师查看",
+    "executedAt": "2026-11-10T22:15:24.645794+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "仅有权班级与教师任务",
+    "actual": "另一教师实际404且无证据表；跨班学生分别过滤",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "M24",
+    "item": "教师纠正",
+    "executedAt": "2026-11-10T22:28:58.439555+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "原事实和修订审计同时保留",
+    "actual": "学生请求、教师关联修订、新旧知识均可追溯",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json",
+      "frontend-unit.log"
+    ]
+  },
+  {
+    "id": "M25",
+    "item": "数据库迁移",
+    "executedAt": "2026-11-10T22:22:14.618232+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "旧数据保护与可恢复",
+    "actual": "0011→0012只建审计表，隔离及主库原表摘要相同",
+    "status": "passed",
+    "evidence": [
+      "migration.json",
+      "main-protection.json"
+    ]
+  },
+  {
+    "id": "M26",
+    "item": "并发与幂等",
+    "executedAt": "2026-11-10T22:29:04.151659+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "重复不增条、过期不覆盖",
+    "actual": "同键并发/重放稳定，409保留输入；读取不写模型任务",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "states.json",
+      "frontend-final.log"
+    ]
+  },
+  {
+    "id": "M27",
+    "item": "浏览器交互",
+    "executedAt": "2026-11-10T22:05:37.247293+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "三条真实师生流程通过",
+    "actual": "真实模型记忆、复测、前置活动及教师纠正完成",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json"
+    ]
+  },
+  {
+    "id": "M28",
+    "item": "桌面视觉",
+    "executedAt": "2026-11-10T22:05:37.247293+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "1440/1920/2560无阻断",
+    "actual": "总览、证据详情、教师视图最终9图，无横向溢出",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "student-memory-final-1920.png"
+    ]
+  },
+  {
+    "id": "M29",
+    "item": "自动化回归",
+    "executedAt": "2026-11-10T22:29:04.151659+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "原第六至十三步主要功能正常",
+    "actual": "80项完整后端、13项Chromium、4项JS及12项主服务读取",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "frontend-final.log",
+      "frontend-unit.log",
+      "main-smoke.json"
+    ]
+  },
+  {
+    "id": "M30",
+    "item": "生产构建",
+    "executedAt": "2026-11-10T22:29:13.255660+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "当前前后端检查通过",
+    "actual": "后端80项与定向规则4项通过，Vite生产构建成功",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "rules-final.log",
+      "build-final.log"
+    ]
+  },
+  {
+    "id": "M31",
+    "item": "真实效果评测",
+    "executedAt": "2026-11-10T22:15:16.685900+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "固定规则数据、预期与实际结果",
+    "actual": "B0/B1/B2同14情境7/10/14匹配；用户认可预期，真实业务验证可运行",
+    "status": "passed",
+    "evidence": [
+      "rule-comparison.json",
+      "human-review.json",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "M32",
+    "item": "文档与证据",
+    "executedAt": "2026-11-10T22:32:03.834580+08:00",
+    "environment": {
+      "at": "2026-11-10T14:32:03.815547+00:00",
+      "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+      "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+      "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "main": "localhost5177/API8000",
+      "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+    },
+    "testData": "隔离2教师/3班/多学生/多课时/4知识点；C01—C14固定情境，具体ID与输入见证据",
+    "method": "自动化、真实浏览器与模型按证据区分；M31预期经用户单人复核",
+    "expected": "可复核、与代码一致",
+    "actual": "使用/证据/状态/记忆/推荐/迁移/流程/限制与当前进度齐全",
+    "status": "passed",
+    "evidence": [
+      "environment.json",
+      "source-sha256.json",
+      "review-issues.json"
+    ]
+  }
+]

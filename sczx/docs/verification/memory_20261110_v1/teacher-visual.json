@@ -1,0 +1,22 @@
+{
+  "startedAt": "2026-11-10T14:30:25.510Z",
+  "checks": [
+    {
+      "name": "desktop-teacher-memory-final",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "desktop-teacher-memory-final",
+      "width": 1920,
+      "scroll": 1905
+    },
+    {
+      "name": "desktop-teacher-memory-final",
+      "width": 2560,
+      "scroll": 2545
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

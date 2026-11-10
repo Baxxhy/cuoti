@@ -181,7 +181,7 @@ function openStudent(id) {
       :title="`${store.record?.studentName || '学生'}的学习过程`"
       content-class="student-detail-dialog"
       ><div class="attempt-timeline">
-        <section v-if="store.record">
+        <section v-if="store.record"><RouteButton :route="'memory?studentId='+store.record.studentId+'&classId='+store.task.classId" secondary>查看学习记忆</RouteButton>
           <h3>自己的解释</h3>
           <p>{{ store.record.observation || "尚未填写" }}</p>
         </section>

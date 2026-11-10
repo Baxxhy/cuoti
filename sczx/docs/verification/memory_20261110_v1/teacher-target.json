@@ -1,0 +1,12 @@
+{
+  "startedAt": "2026-11-10T14:28:52.317Z",
+  "checks": [
+    {
+      "name": "teacher-evidence-opens-source-insights-with-correct-student",
+      "student": "teaching-s0",
+      "task": "browser-t00"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

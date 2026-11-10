@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "role": "teacher",
+      "endpoint": "/api/platform",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "endpoint": "/api/teaching/classes",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "endpoint": "/api/teaching/dashboard",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "endpoint": "/api/teaching/messages",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "endpoint": "/api/wrongs",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "endpoint": "/api/memory",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "endpoint": "/api/platform",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "endpoint": "/api/teaching/classes",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "endpoint": "/api/teaching/dashboard",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "endpoint": "/api/teaching/messages",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "endpoint": "/api/wrongs",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "endpoint": "/api/memory",
+      "status": 200
+    }
+  ]
+}

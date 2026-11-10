@@ -1,4 +1,6 @@
 <script setup>
+import MemoryBridge from "@/components/MemoryBridge.vue";
+import MemoryReturn from "@/components/MemoryReturn.vue";
 import SupplementPanel from "@/components/SupplementPanel.vue";
 import { computed, ref, inject, watch, nextTick } from "vue";
 import { CheckCircle2, ChevronRight } from "lucide-vue-next";
@@ -106,6 +108,7 @@ async function save() {
 }
 </script>
 <template>
+<MemoryReturn/>
   <template v-if="store.task"
     ><PageHeading :title="store.task.title"
       ><Button
@@ -129,7 +132,7 @@ async function save() {
         ><p v-if="store.task.readOnly" class="inline-notice">
           已移出班级，此任务仅可回看。
         </p>
-        <fieldset class="history-fields" :disabled="store.task.readOnly">
+        <MemoryBridge :task="store.task" compact/><fieldset class="history-fields" :disabled="store.task.readOnly">
           <LessonContent
             :lesson="lesson"
             :progress="progress"

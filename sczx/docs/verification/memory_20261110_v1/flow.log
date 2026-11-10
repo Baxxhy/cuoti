@@ -1,0 +1,4 @@
+flow1-lessonA-wrong-and-helped-practice
+Error: Browser wait timed out: document.querySelector('.memory-bridge')?.textContent.includes('复测')
+    at Browser.wait (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19:129)
+    at async file:///tmp/sczx-step14/flow.mjs:28:40

@@ -1,4 +1,5 @@
 <script setup>
+import MemoryReturn from "@/components/MemoryReturn.vue";
 import { computed, ref, watch, onBeforeUnmount } from "vue";
 import { useRoute } from "vue-router";
 import {
@@ -234,6 +235,7 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
+<MemoryReturn/>
   <div class="back-line">
     <Button variant="ghost" @click="navigate('wrong')"
       ><ArrowLeft />错题帮</Button

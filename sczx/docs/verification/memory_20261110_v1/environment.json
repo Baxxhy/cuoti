@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-10T14:32:03.815547+00:00",
+  "stack": "Vue3/JavaScript, Nova, FastAPI/MySQL, existing Codex gpt-6-luna/low",
+  "backendTests": "fresh isolated sczx_test_memory_de19a5db",
+  "browser": "Chromium via CDP, localhost5184/API8014 isolated",
+  "desktopWidths": [
+    1440,
+    1920,
+    2560
+  ],
+  "main": "localhost5177/API8000",
+  "data": "自编账号与课程，不是真实课堂或教师标注；规则预期为AI拟稿、用户单人复核"
+}

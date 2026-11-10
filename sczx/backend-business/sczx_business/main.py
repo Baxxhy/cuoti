@@ -467,6 +467,7 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                 current_helps = {item.id: item for item in db.scalars(select(HelpRecord).where(HelpRecord.record_id == rec.id)).all()}
                 for item in record_data.get("helps", []):
                     help_item = current_helps.get(str(item.get("id", "")))
+                    if help_item:continue  # Broad autosave cannot rewrite original help evidence.
                     if not help_item:
                         help_item = HelpRecord(id=str(item.get("id") or f"help-{uuid.uuid4().hex}"), record_id=rec.id, kind="提示")
                         db.add(help_item)
@@ -841,3 +842,6 @@ app.include_router(teaching_router)
 
 from .remediation import router as remediation_router
 app.include_router(remediation_router)
+
+from .learning_memory import router as learning_memory_router
+app.include_router(learning_memory_router)

@@ -42,6 +42,7 @@ const items = computed(
         ["home", "我的学习", LayoutDashboard],
         ["courses", "探索课程", BookOpen],
         ["wrong", "错题帮", NotebookPen],
+        ["memory", "学习记忆", History],
         ["records", "学习记录", History],
       ],
       teacher: [
@@ -50,6 +51,7 @@ const items = computed(
         ["courses", "课程与课时", BookOpen],
         ["prepare", "我的教案", FileText],
         ["class", "班级教学", Users],
+        ["memory", "学习记忆", History],
       ],
       admin: [
         ["manage", "内容工作台", Layers],

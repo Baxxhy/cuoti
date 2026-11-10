@@ -1,4 +1,5 @@
 <script setup>
+import MemoryBridge from "@/components/MemoryBridge.vue";
 import { ref, computed, onMounted, watch, onBeforeUnmount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useLearning } from "@/store.js";
@@ -87,6 +88,7 @@ onBeforeUnmount(() => {
     />
   </div>
   <p v-if="loading" role="status">读取中…</p>
+  <MemoryBridge v-if="!teacher&&overview" compact/>
   <template v-if="overview"
     ><div class="teaching-metrics">
       <Surface

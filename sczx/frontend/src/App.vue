@@ -52,6 +52,7 @@ const navigation = {
     { route: "home", label: "我的学习", icon: LayoutDashboard },
     { route: "courses", label: "探索课程", icon: BookOpen },
     { route: "wrong", label: "错题帮", icon: NotebookPen },
+    { route: "memory", label: "学习记忆", icon: History },
     { route: "records", label: "学习记录", icon: History },
     {route:"class",label:"我的班级",icon:Users},
   ],
@@ -61,6 +62,7 @@ const navigation = {
     { route: "courses", label: "课程与课时", icon: BookOpen },
     { route: "prepare", label: "我的教案", icon: FileText },
     { route: "class", label: "班级教学", icon: Users },
+    { route: "memory", label: "学习记忆", icon: History },
   ],
   admin: [
     { route: "manage", label: "内容工作台", icon: Layers },

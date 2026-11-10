@@ -1,0 +1,675 @@
+{
+  "clock": "2026-11-10T12:00:00Z",
+  "dataset": "14个固定规则情境，AI拟稿、用户单人复核认可",
+  "baselines": {
+    "B0": "只看最近一次核验，不区分帮助",
+    "B1": "聚合正确/错误次数，不用帮助/复测/时间",
+    "B2": "本次证据规则"
+  },
+  "rows": [
+    {
+      "id": "C01",
+      "facts": [],
+      "expected": "none",
+      "B0": "none",
+      "B1": "none",
+      "B2": {
+        "status": "none",
+        "statusLabel": "暂无证据",
+        "reason": "暂无作答记录。",
+        "evidenceCount": 0,
+        "verifiedCount": 0,
+        "independentCorrect": 0,
+        "independentIncorrect": 0,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": null,
+        "lastIndependentAt": null,
+        "basisIds": [],
+        "recentVerifiedCount": 0,
+        "dayCount": 0
+      },
+      "matches": {
+        "B0": true,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C02",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "independent_correct",
+          "verification": "verified_correct",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        }
+      ],
+      "expected": "insufficient",
+      "B0": "independent",
+      "B1": "insufficient",
+      "B2": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 1,
+        "verifiedCount": 1,
+        "independentCorrect": 1,
+        "independentIncorrect": 0,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:41:00Z",
+        "lastIndependentAt": "2026-11-10T11:41:00Z",
+        "basisIds": [
+          "e1"
+        ],
+        "recentVerifiedCount": 1,
+        "dayCount": 1
+      },
+      "matches": {
+        "B0": false,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C03",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "independent_incorrect",
+          "verification": "verified_incorrect",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        }
+      ],
+      "expected": "insufficient",
+      "B0": "strengthen",
+      "B1": "insufficient",
+      "B2": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 1,
+        "verifiedCount": 1,
+        "independentCorrect": 0,
+        "independentIncorrect": 1,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:41:00Z",
+        "lastIndependentAt": "2026-11-10T11:41:00Z",
+        "basisIds": [
+          "e1"
+        ],
+        "recentVerifiedCount": 1,
+        "dayCount": 1
+      },
+      "matches": {
+        "B0": false,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C04",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "helped_correct",
+          "verification": "verified_correct",
+          "helped": true,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        }
+      ],
+      "expected": "insufficient",
+      "B0": "independent",
+      "B1": "insufficient",
+      "B2": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 1,
+        "verifiedCount": 1,
+        "independentCorrect": 0,
+        "independentIncorrect": 0,
+        "helpedCorrect": 1,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:41:00Z",
+        "lastIndependentAt": null,
+        "basisIds": [
+          "e1"
+        ],
+        "recentVerifiedCount": 1,
+        "dayCount": 0
+      },
+      "matches": {
+        "B0": false,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C05",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "independent_incorrect",
+          "verification": "verified_incorrect",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        },
+        {
+          "evidenceId": "e2",
+          "sourceId": "2",
+          "sourceType": "attempt",
+          "questionKey": "2",
+          "outcome": "independent_incorrect",
+          "verification": "verified_incorrect",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:42:00Z"
+        }
+      ],
+      "expected": "strengthen",
+      "B0": "strengthen",
+      "B1": "strengthen",
+      "B2": {
+        "status": "strengthen",
+        "statusLabel": "需要补强",
+        "reason": "最近两次独立作答未通过，建议先订正再检查。",
+        "evidenceCount": 2,
+        "verifiedCount": 2,
+        "independentCorrect": 0,
+        "independentIncorrect": 2,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:42:00Z",
+        "lastIndependentAt": "2026-11-10T11:42:00Z",
+        "basisIds": [
+          "e1",
+          "e2"
+        ],
+        "recentVerifiedCount": 2,
+        "dayCount": 1
+      },
+      "matches": {
+        "B0": true,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C06",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "independent_incorrect",
+          "verification": "verified_incorrect",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        },
+        {
+          "evidenceId": "e2",
+          "sourceId": "2",
+          "sourceType": "repair",
+          "questionKey": "2",
+          "outcome": "retest_passed",
+          "verification": "verified_correct",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:42:00Z"
+        }
+      ],
+      "expected": "improving",
+      "B0": "independent",
+      "B1": "insufficient",
+      "B2": {
+        "status": "improving",
+        "statusLabel": "正在改善",
+        "reason": "错误之后新增了独立正确证据，可继续检查。",
+        "evidenceCount": 2,
+        "verifiedCount": 2,
+        "independentCorrect": 1,
+        "independentIncorrect": 1,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:42:00Z",
+        "lastIndependentAt": "2026-11-10T11:42:00Z",
+        "basisIds": [
+          "e1",
+          "e2"
+        ],
+        "recentVerifiedCount": 2,
+        "dayCount": 1
+      },
+      "matches": {
+        "B0": false,
+        "B1": false,
+        "B2": true
+      }
+    },
+    {
+      "id": "C07",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "independent_incorrect",
+          "verification": "verified_incorrect",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        },
+        {
+          "evidenceId": "e2",
+          "sourceId": "2",
+          "sourceType": "repair",
+          "questionKey": "2",
+          "outcome": "retest_failed",
+          "verification": "verified_incorrect",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:42:00Z"
+        }
+      ],
+      "expected": "strengthen",
+      "B0": "strengthen",
+      "B1": "strengthen",
+      "B2": {
+        "status": "strengthen",
+        "statusLabel": "需要补强",
+        "reason": "最近两次独立作答未通过，建议先订正再检查。",
+        "evidenceCount": 2,
+        "verifiedCount": 2,
+        "independentCorrect": 0,
+        "independentIncorrect": 2,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:42:00Z",
+        "lastIndependentAt": "2026-11-10T11:42:00Z",
+        "basisIds": [
+          "e1",
+          "e2"
+        ],
+        "recentVerifiedCount": 2,
+        "dayCount": 1
+      },
+      "matches": {
+        "B0": true,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C08",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "unverified",
+          "verification": "unverified",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        }
+      ],
+      "expected": "insufficient",
+      "B0": "insufficient",
+      "B1": "insufficient",
+      "B2": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 1,
+        "verifiedCount": 0,
+        "independentCorrect": 0,
+        "independentIncorrect": 0,
+        "helpedCorrect": 0,
+        "unverifiedCount": 1,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:41:00Z",
+        "lastIndependentAt": null,
+        "basisIds": [],
+        "recentVerifiedCount": 0,
+        "dayCount": 0
+      },
+      "matches": {
+        "B0": true,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C09",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "teacher_confirmation",
+          "questionKey": "1",
+          "outcome": "teacher_confirmation",
+          "verification": "unverified",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        }
+      ],
+      "expected": "insufficient",
+      "B0": "insufficient",
+      "B1": "insufficient",
+      "B2": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 1,
+        "verifiedCount": 0,
+        "independentCorrect": 0,
+        "independentIncorrect": 0,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": null,
+        "lastIndependentAt": null,
+        "basisIds": [],
+        "recentVerifiedCount": 0,
+        "dayCount": 0
+      },
+      "matches": {
+        "B0": true,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C10",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "repair",
+          "questionKey": "1",
+          "outcome": "legacy_repair",
+          "verification": "unverified",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        }
+      ],
+      "expected": "insufficient",
+      "B0": "insufficient",
+      "B1": "insufficient",
+      "B2": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 1,
+        "verifiedCount": 0,
+        "independentCorrect": 0,
+        "independentIncorrect": 0,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 1,
+        "lastPracticedAt": null,
+        "lastIndependentAt": null,
+        "basisIds": [],
+        "recentVerifiedCount": 0,
+        "dayCount": 0
+      },
+      "matches": {
+        "B0": true,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C11",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "independent_correct",
+          "verification": "verified_correct",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        },
+        {
+          "evidenceId": "e2",
+          "sourceId": "2",
+          "sourceType": "attempt",
+          "questionKey": "2",
+          "outcome": "independent_correct",
+          "verification": "verified_correct",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:42:00Z"
+        }
+      ],
+      "expected": "independent",
+      "B0": "independent",
+      "B1": "independent",
+      "B2": {
+        "status": "independent",
+        "statusLabel": "已有独立正确证据",
+        "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+        "evidenceCount": 2,
+        "verifiedCount": 2,
+        "independentCorrect": 2,
+        "independentIncorrect": 0,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:42:00Z",
+        "lastIndependentAt": "2026-11-10T11:42:00Z",
+        "basisIds": [
+          "e1",
+          "e2"
+        ],
+        "recentVerifiedCount": 2,
+        "dayCount": 1
+      },
+      "matches": {
+        "B0": true,
+        "B1": true,
+        "B2": true
+      }
+    },
+    {
+      "id": "C12",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "independent_correct",
+          "verification": "verified_correct",
+          "helped": false,
+          "occurredAt": "2026-11-02T11:41:00Z"
+        },
+        {
+          "evidenceId": "e2",
+          "sourceId": "2",
+          "sourceType": "attempt",
+          "questionKey": "2",
+          "outcome": "independent_correct",
+          "verification": "verified_correct",
+          "helped": false,
+          "occurredAt": "2026-11-02T11:42:00Z"
+        }
+      ],
+      "expected": "review_due",
+      "B0": "independent",
+      "B1": "independent",
+      "B2": {
+        "status": "review_due",
+        "statusLabel": "需要再次复习",
+        "reason": "距最近独立作答已达到配置的复习间隔，建议再检查一次。",
+        "evidenceCount": 2,
+        "verifiedCount": 2,
+        "independentCorrect": 2,
+        "independentIncorrect": 0,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-02T11:42:00Z",
+        "lastIndependentAt": "2026-11-02T11:42:00Z",
+        "basisIds": [
+          "e1",
+          "e2"
+        ],
+        "recentVerifiedCount": 0,
+        "dayCount": 1
+      },
+      "matches": {
+        "B0": false,
+        "B1": false,
+        "B2": true
+      }
+    },
+    {
+      "id": "C13",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "independent_correct",
+          "verification": "verified_correct",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        },
+        {
+          "evidenceId": "e2",
+          "sourceId": "2",
+          "sourceType": "attempt",
+          "questionKey": "2",
+          "outcome": "independent_incorrect",
+          "verification": "verified_incorrect",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:42:00Z"
+        },
+        {
+          "evidenceId": "e3",
+          "sourceId": "3",
+          "sourceType": "attempt",
+          "questionKey": "3",
+          "outcome": "independent_correct",
+          "verification": "verified_correct",
+          "helped": false,
+          "occurredAt": "2026-11-10T11:43:00Z"
+        }
+      ],
+      "expected": "improving",
+      "B0": "independent",
+      "B1": "independent",
+      "B2": {
+        "status": "improving",
+        "statusLabel": "正在改善",
+        "reason": "错误之后新增了独立正确证据，可继续检查。",
+        "evidenceCount": 3,
+        "verifiedCount": 3,
+        "independentCorrect": 2,
+        "independentIncorrect": 1,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:43:00Z",
+        "lastIndependentAt": "2026-11-10T11:43:00Z",
+        "basisIds": [
+          "e1",
+          "e2",
+          "e3"
+        ],
+        "recentVerifiedCount": 3,
+        "dayCount": 1
+      },
+      "matches": {
+        "B0": false,
+        "B1": false,
+        "B2": true
+      }
+    },
+    {
+      "id": "C14",
+      "facts": [
+        {
+          "evidenceId": "e1",
+          "sourceId": "1",
+          "sourceType": "attempt",
+          "questionKey": "1",
+          "outcome": "helped_correct",
+          "verification": "verified_correct",
+          "helped": true,
+          "occurredAt": "2026-11-10T11:41:00Z"
+        },
+        {
+          "evidenceId": "e2",
+          "sourceId": "2",
+          "sourceType": "attempt",
+          "questionKey": "2",
+          "outcome": "helped_correct",
+          "verification": "verified_correct",
+          "helped": true,
+          "occurredAt": "2026-11-10T11:42:00Z"
+        }
+      ],
+      "expected": "insufficient",
+      "B0": "independent",
+      "B1": "independent",
+      "B2": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 2,
+        "verifiedCount": 2,
+        "independentCorrect": 0,
+        "independentIncorrect": 0,
+        "helpedCorrect": 2,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T11:42:00Z",
+        "lastIndependentAt": null,
+        "basisIds": [
+          "e1",
+          "e2"
+        ],
+        "recentVerifiedCount": 2,
+        "dayCount": 0
+      },
+      "matches": {
+        "B0": false,
+        "B1": false,
+        "B2": true
+      }
+    }
+  ],
+  "matches": {
+    "B0": 7,
+    "B1": 10,
+    "B2": 14
+  },
+  "scope": "规则一致性比较，不是教育有效性或学习成绩评价",
+  "humanReview": "human-review.json"
+}

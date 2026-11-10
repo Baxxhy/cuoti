@@ -1,0 +1,5 @@
+flow1-lessonB-finds-related-A-evidence
+flow1-real-cross-lesson-guidance
+Error: Browser wait timed out: document.querySelector('.memory-state-reason')?.textContent.includes('独立正确')
+    at Browser.wait (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19:129)
+    at async file:///tmp/sczx-step14/flow-resume.mjs:31:286

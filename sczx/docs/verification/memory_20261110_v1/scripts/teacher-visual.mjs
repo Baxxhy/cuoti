@@ -1,0 +1,13 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {Browser,sleep} from '/root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs';
+const out='/tmp/sczx-step14',fx=JSON.parse(readFileSync(out+'/browser-private.json')),flow=JSON.parse(readFileSync(out+'/browser-flow.json')),b=await Browser.launch(),report={startedAt:new Date().toISOString(),checks:[]};
+const note=(name,details={})=>{report.checks.push({name,...details});writeFileSync(out+'/teacher-visual.json',JSON.stringify(report,null,2));console.log(name)};
+async function type(selector,text){await b.eval(({selector,text})=>{const e=document.querySelector(selector);if(!e)throw Error(selector);e.value=text;e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}))},{selector,text});await sleep(100)}
+async function click(label){await b.wait(`[...document.querySelectorAll('button')].some(e=>e.textContent.trim()===${JSON.stringify(label)}&&!e.disabled)`);await b.eval(label=>[...document.querySelectorAll('button')].find(e=>e.textContent.trim()===label&&!e.disabled).click(),label);await sleep(300)}
+async function login(name){await b.eval(async()=>fetch('/api/auth/logout',{method:'POST'}));await b.goto('http://127.0.0.1:5184/?states='+Date.now()+'#/login');await b.wait("!!document.querySelector('#login-username')");await type('#login-username','teaching-'+name);await type('#login-password',fx.password);await b.eval(()=>document.querySelector('form').requestSubmit());await b.wait("!location.hash.includes('/login')");await sleep(600)}
+async function route(path){await b.eval(p=>location.hash='#/'+p,path);await sleep(600)}
+async function shot(name){for(const width of [1440,1920,2560]){await b.viewport(width,1000);await b.eval(()=>window.scrollTo(0,0));await sleep(250);const scroll=await b.eval(()=>document.documentElement.scrollWidth);if(scroll>width)throw Error('overflow '+name+' '+width);await b.screenshot(out+'/'+name+'-'+width+'.png');note('desktop-'+name,{width,scroll})}}
+
+try{
+ await b.goto('http://127.0.0.1:5184/#/login');await login('t1');await route('memory?studentId=teaching-s0&classId=browser-c0&knowledge=memory-kp-inverse');await b.wait("!!document.querySelector('.memory-detail')");await shot('teacher-memory-final');report.errors=b.errors;if(b.errors.length)throw Error(b.errors.join());report.passed=true;
+}catch(e){report.passed=false;report.error=e.message;console.error(e)}finally{writeFileSync(out+'/teacher-visual.json',JSON.stringify(report,null,2));await b.close()}

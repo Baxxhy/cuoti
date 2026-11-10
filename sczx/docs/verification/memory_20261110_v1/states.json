@@ -1,0 +1,95 @@
+{
+  "startedAt": "2026-11-10T14:05:19.304Z",
+  "checks": [
+    {
+      "name": "new-student-no-history"
+    },
+    {
+      "name": "empty-search"
+    },
+    {
+      "name": "invalid-knowledge-route"
+    },
+    {
+      "name": "snooze-refresh-stable"
+    },
+    {
+      "name": "new-fact-recomputes-state-and-retires-recommendation",
+      "status": 201,
+      "body": {
+        "id": "attempt-7b849ddfdedb43c3b1bcff28111b219f",
+        "correct": true,
+        "verification": {
+          "status": "verified",
+          "correct": true,
+          "scope": "参考答案的数值或表达式等价性",
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        }
+      }
+    },
+    {
+      "name": "overview-and-refresh-zero-model-calls",
+      "before": 4,
+      "after": 4
+    },
+    {
+      "name": "offline-memory-retry"
+    },
+    {
+      "name": "desktop-student-memory-final",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "desktop-student-memory-final",
+      "width": 1920,
+      "scroll": 1920
+    },
+    {
+      "name": "desktop-student-memory-final",
+      "width": 2560,
+      "scroll": 2560
+    },
+    {
+      "name": "desktop-student-memory-detail-final",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "desktop-student-memory-detail-final",
+      "width": 1920,
+      "scroll": 1905
+    },
+    {
+      "name": "desktop-student-memory-detail-final",
+      "width": 2560,
+      "scroll": 2545
+    },
+    {
+      "name": "stale-correction-rejected-and-input-retained"
+    },
+    {
+      "name": "teacher-conflict-refresh-audit"
+    },
+    {
+      "name": "desktop-teacher-memory-final",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "desktop-teacher-memory-final",
+      "width": 1920,
+      "scroll": 1905
+    },
+    {
+      "name": "desktop-teacher-memory-final",
+      "width": 2560,
+      "scroll": 2545
+    },
+    {
+      "name": "removed-student-historical-evidence-no-write-target"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

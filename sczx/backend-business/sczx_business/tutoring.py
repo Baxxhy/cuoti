@@ -79,6 +79,8 @@ def prepare(db,user,record,data):
     confirmed_equation=str(data.get('confirmedEquation','')) if ocr_id else ''
     if len(confirmed_equation)>500:raise HTTPException(422,'数学表达式最多500字。')
     context={'lesson':{'id':task.lesson_id,'versionId':lesson.get('versionId'),'title':task.title,'grade':lesson.get('grade',''),'goal':str(task.snapshot.get('goal',''))[:1200]},'block':public_fields(block,PUBLIC_BLOCK) if block else None,'question':public_fields(q,PUBLIC_QUESTION) if q else None,'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':prerequisites,'teachingCases':sources,'observation':str(record.observation or '')[:1200]}
+    from .learning_memory import related_memory
+    context['learningMemory']=related_memory(db,user,record,ids)
     if ocr_id:
         if not confirmed_equation:
             match=re.search(r'(?<![A-Za-z])([A-Za-z0-9(][A-Za-z0-9()+*/ .−-]{0,80}=[A-Za-z0-9()+*/ .−-]{1,80})',recognized)

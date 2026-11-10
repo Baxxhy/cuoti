@@ -1,4 +1,6 @@
 <script setup>
+import {useRoute} from "vue-router";
+import MemoryReturn from "@/components/MemoryReturn.vue";
 import SupplementPanel from "@/components/SupplementPanel.vue";
 import { ref, computed, watch, inject, nextTick } from "vue";
 import { useLearning } from "@/store.js";
@@ -6,6 +8,7 @@ import QuestionAttempt from "@/components/QuestionAttempt.vue";
 import ModelAssistant from "@/components/ModelAssistant.vue";
 import TaskEmpty from "@/components/TaskEmpty.vue";
 import { ArrowRight } from "lucide-vue-next";
+const route=useRoute();
 const store = useLearning(),
   notify = inject("notify");
 const indices = computed(() =>
@@ -26,10 +29,11 @@ const current = computed(() =>
 );
 const restoring = ref(false);
 watch(
-  () => store.record?.id,
+  () => [store.record?.id,route.query.question],
   async () => {
     restoring.value = true;
-    const saved = store.record?.drafts.check?.question;
+    const requested=route.query.question===undefined?null:Number(route.query.question);
+    const saved = indices.value.some(q=>q.index===requested)?requested:store.record?.drafts.check?.question;
     index.value = indices.value.some((q) => q.index === saved)
       ? saved
       : (indices.value[0]?.index ?? 0);
@@ -70,6 +74,7 @@ function markHelp() {
 }
 </script>
 <template>
+<MemoryReturn/>
   <template v-if="store.task"
     ><PageHeading :title="store.task.title + ' · 独立检查'"
       ><RouteButton route="learn" secondary>返回本课</RouteButton></PageHeading

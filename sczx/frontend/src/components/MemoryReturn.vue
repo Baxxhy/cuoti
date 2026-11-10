@@ -1,0 +1,29 @@
+<script setup>
+import { useRoute } from "vue-router";
+import { navigate } from "@/lib/navigation.js";
+import { ArrowLeft, History } from "lucide-vue-next";
+const route = useRoute();
+function backToMemory() {
+  const params = new URLSearchParams();
+  if (route.query.returnKnowledge)
+    params.set("knowledge", String(route.query.returnKnowledge));
+  if (route.query.returnTask)
+    params.set("returnTask", String(route.query.returnTask));
+  navigate("memory" + (params.size ? "?" + params.toString() : ""));
+}
+</script>
+<template>
+  <div
+    v-if="route.query.returnTask || route.query.returnKnowledge"
+    class="memory-return"
+  >
+    <Button
+      v-if="route.query.returnTask"
+      variant="outline"
+      @click="navigate('learn?task=' + route.query.returnTask)"
+      ><ArrowLeft />返回当前课时</Button
+    ><Button variant="ghost" @click="backToMemory"
+      ><History />查看复习后的证据</Button
+    >
+  </div>
+</template>

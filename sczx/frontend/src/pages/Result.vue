@@ -1,4 +1,5 @@
 <script setup>
+import MemoryReturn from "@/components/MemoryReturn.vue";
 import SupplementPanel from "@/components/SupplementPanel.vue";
 import { inject, ref } from "vue";
 import { useLearning } from "@/store.js";
@@ -22,6 +23,7 @@ async function submitResult() {
 }
 </script>
 <template>
+<MemoryReturn/>
   <template v-if="store.task"
     ><PageHeading title="本课结果"
       ><RouteButton route="learn" secondary>返回本课</RouteButton></PageHeading

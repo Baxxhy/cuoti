@@ -1,3 +1,4 @@
+import LearningMemory from './pages/LearningMemory.vue';
 import SourcePage from './pages/Source.vue';
 import { createApp, watch } from "vue";
 import { createPinia } from "pinia";
@@ -51,6 +52,7 @@ const router = createRouter({
     { path: "/home", name: "home", component: Dashboard },
     { path: "/teacher", name: "teacher", component: Dashboard },
     { path: "/courses", name: "courses", component: Courses },
+    { path: "/memory", name: "memory", component: LearningMemory },
     { path: "/records", name: "records", component: Records },
     { path: "/learn", name: "learn", component: Lesson },
     { path: "/check", name: "check", component: CheckLesson },
@@ -93,8 +95,8 @@ for (const [name, component] of Object.entries({
 const store = useLearning();
 let sessionReady;
 const roleRoutes = {
-  student: new Set(["source", "home", "class", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
-  teacher: new Set(["source", "teacher", "courses", "cases", "case-detail", "prepare", "agent", "class", "insights", "issues"]),
+  student: new Set(["memory", "source", "home", "class", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
+  teacher: new Set(["memory", "source", "teacher", "courses", "cases", "case-detail", "prepare", "agent", "class", "insights", "issues"]),
   admin: new Set(["source", "manage", "content", "issues", "cases", "case-detail", "courses"]),
 };
 router.beforeEach(async (to) => {

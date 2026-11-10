@@ -1,0 +1,9 @@
+test_distinct_questions_and_configured_time (test_learning_memory.MemoryRuleTests.test_distinct_questions_and_configured_time) ... ok
+test_does_not_mutate_sources (test_learning_memory.MemoryRuleTests.test_does_not_mutate_sources) ... ok
+test_fixed_scenarios (test_learning_memory.MemoryRuleTests.test_fixed_scenarios) ... ok
+test_same_timestamp_conflict_does_not_invent_progress (test_learning_memory.MemoryRuleTests.test_same_timestamp_conflict_does_not_invent_progress) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK

@@ -1,0 +1,834 @@
+{
+  "startedAt": "2026-11-10T13:47:12.716Z",
+  "steps": [
+    {
+      "name": "flow1-lessonA-wrong-and-helped-practice",
+      "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+      "state": {
+        "status": "insufficient",
+        "statusLabel": "证据不足",
+        "reason": "目前还缺少足够的独立练习证据。",
+        "evidenceCount": 3,
+        "verifiedCount": 2,
+        "independentCorrect": 0,
+        "independentIncorrect": 1,
+        "helpedCorrect": 1,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T13:48:05Z",
+        "lastIndependentAt": "2026-11-10T13:47:17Z",
+        "basisIds": [
+          "attempt:attempt-3a3db9a227cc4d449f5d4512187a80d9:browser-kp",
+          "repair:repair-9c059973f3304c9797f316c935c30189:browser-kp"
+        ],
+        "recentVerifiedCount": 2,
+        "dayCount": 1,
+        "reviewRequested": false
+      }
+    },
+    {
+      "name": "flow1-lessonB-finds-related-A-evidence"
+    },
+    {
+      "name": "flow1-real-cross-lesson-guidance",
+      "jobId": "job-7699b738fc1d45a29d025f5460d922ee",
+      "memory": [
+        {
+          "helped": false,
+          "outcome": "independent_incorrect",
+          "summary": "我把18减去3",
+          "relation": "当前知识点",
+          "sourceId": "attempt-3a3db9a227cc4d449f5d4512187a80d9",
+          "evidenceId": "attempt:attempt-3a3db9a227cc4d449f5d4512187a80d9:browser-kp",
+          "occurredAt": "2026-11-10T13:47:17Z",
+          "sourceType": "attempt",
+          "knowledgeId": "browser-kp",
+          "verification": "verified_incorrect",
+          "teacherConfirmed": false
+        },
+        {
+          "helped": true,
+          "outcome": "helped_correct",
+          "summary": "两边共同使用逆运算，保留非零条件。",
+          "relation": "当前知识点",
+          "sourceId": "repair-9c059973f3304c9797f316c935c30189",
+          "evidenceId": "repair:repair-9c059973f3304c9797f316c935c30189:browser-kp",
+          "occurredAt": "2026-11-10T13:48:05Z",
+          "sourceType": "repair",
+          "knowledgeId": "browser-kp",
+          "verification": "verified_correct",
+          "teacherConfirmed": false
+        }
+      ]
+    },
+    {
+      "name": "flow1-new-evidence-updates",
+      "state": {
+        "status": "improving",
+        "statusLabel": "正在改善",
+        "reason": "错误之后新增了独立正确证据，可继续检查。",
+        "evidenceCount": 5,
+        "verifiedCount": 3,
+        "independentCorrect": 1,
+        "independentIncorrect": 1,
+        "helpedCorrect": 1,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T13:51:21Z",
+        "lastIndependentAt": "2026-11-10T13:51:21Z",
+        "basisIds": [
+          "attempt:attempt-3a3db9a227cc4d449f5d4512187a80d9:browser-kp",
+          "repair:repair-9c059973f3304c9797f316c935c30189:browser-kp",
+          "repair:repair-b0d0e470739743a8aec69f8eefe349ed:browser-kp"
+        ],
+        "recentVerifiedCount": 3,
+        "dayCount": 1,
+        "reviewRequested": false
+      }
+    },
+    {
+      "name": "flow1-return-lessonB"
+    },
+    {
+      "name": "flow2-prerequisite-reason",
+      "state": {
+        "status": "strengthen",
+        "statusLabel": "需要补强",
+        "reason": "最近两次独立作答未通过，建议先订正再检查。",
+        "evidenceCount": 4,
+        "verifiedCount": 2,
+        "independentCorrect": 0,
+        "independentIncorrect": 2,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T13:53:18Z",
+        "lastIndependentAt": "2026-11-10T13:53:18Z",
+        "basisIds": [
+          "attempt:attempt-05fb19c1f18a4fdd85b2931234f0d628:browser-kp",
+          "attempt:attempt-ad5d0d740eba43ef94f6848e765a952b:browser-kp"
+        ],
+        "recentVerifiedCount": 2,
+        "dayCount": 1,
+        "reviewRequested": false
+      }
+    },
+    {
+      "name": "flow2-new-prerequisite-evidence",
+      "state": {
+        "status": "improving",
+        "statusLabel": "正在改善",
+        "reason": "错误之后新增了独立正确证据，可继续检查。",
+        "evidenceCount": 5,
+        "verifiedCount": 3,
+        "independentCorrect": 1,
+        "independentIncorrect": 2,
+        "helpedCorrect": 0,
+        "unverifiedCount": 0,
+        "legacyCount": 0,
+        "lastPracticedAt": "2026-11-10T13:53:20Z",
+        "lastIndependentAt": "2026-11-10T13:53:20Z",
+        "basisIds": [
+          "attempt:attempt-05fb19c1f18a4fdd85b2931234f0d628:browser-kp",
+          "attempt:attempt-ad5d0d740eba43ef94f6848e765a952b:browser-kp",
+          "attempt:attempt-6a5b9da762f84721bb3eb70423b3df6d:browser-kp"
+        ],
+        "recentVerifiedCount": 3,
+        "dayCount": 1,
+        "reviewRequested": false
+      }
+    },
+    {
+      "name": "flow2-return-current-course"
+    },
+    {
+      "name": "flow3-student-correction-request"
+    },
+    {
+      "name": "flow3-teacher-appends-correction",
+      "source": "attempt-3a3db9a227cc4d449f5d4512187a80d9"
+    }
+  ],
+  "screens": [
+    {
+      "name": "teacher-memory",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "teacher-memory",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "teacher-memory",
+      "width": 2560,
+      "overflow": 2545
+    }
+  ],
+  "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+  "jobs": [
+    {
+      "id": "job-bd3d201517eb42e89bfbe558fbb40361",
+      "mode": "analysis",
+      "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-f4344427eea44fcd9328ccc6765ec5d5",
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "理解当 3z = 18 时，应使用与乘以 3 相反的运算求 z。",
+        "cause": "概念理解错误",
+        "steps": [
+          "提示：想一想，什么数乘以 3 会得到 18？求这个数时，应把 18 减去 3，还是除以 3？",
+          "因为 z 被乘以 3，要使 z 单独留在等式一边，就把等式两边都除以 3：3z ÷ 3 = 18 ÷ 3。",
+          "所以 z = 6。检验：3 × 6 = 18。",
+          "练习：4x = 20。先判断应对等式两边做什么运算，再求 x。"
+        ],
+        "evidence": "我把18减去3",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [
+          {
+            "left": "3z = 18",
+            "right": "z = 6"
+          }
+        ],
+        "uncertainty": "原作答说明了所用运算，但不能据此判断学生是否理解乘法与除法的关系。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "3z = 18",
+              "right": "z = 6",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "checkQuestion": "在 4x = 20 中，应该对等式两边做什么运算来求 x？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T13:47:20Z",
+      "updatedAt": "2026-11-10T13:47:42Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "3z = 18",
+            "equation": "3z = 18"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "15",
+          "originalReason": "我把18减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-794be06eb4b045c786bc203cd13cd9f6",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "理解当 3z = 18 时，应使用与乘以 3 相反的运算求 z。",
+            "cause": "概念理解错误",
+            "steps": [
+              "提示：想一想，什么数乘以 3 会得到 18？求这个数时，应把 18 减去 3，还是除以 3？",
+              "因为 z 被乘以 3，要使 z 单独留在等式一边，就把等式两边都除以 3：3z ÷ 3 = 18 ÷ 3。",
+              "所以 z = 6。检验：3 × 6 = 18。",
+              "练习：4x = 20。先判断应对等式两边做什么运算，再求 x。"
+            ],
+            "evidence": "我把18减去3",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [
+              {
+                "left": "3z = 18",
+                "right": "z = 6"
+              }
+            ],
+            "uncertainty": "原作答说明了所用运算，但不能据此判断学生是否理解乘法与除法的关系。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "3z = 18",
+                  "right": "z = 6",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "checkQuestion": "在 4x = 20 中，应该对等式两边做什么运算来求 x？"
+          },
+          "startedAt": "2026-11-10T13:47:20Z",
+          "endedAt": "2026-11-10T13:47:42Z"
+        }
+      ]
+    },
+    {
+      "id": "job-6cb21da771e54392abce26be767102da",
+      "mode": "variant",
+      "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-f4344427eea44fcd9328ccc6765ec5d5",
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "求解方程 4x = 28。",
+          "equation": "4x = 28",
+          "rationale": "提示：把 4x 看作 4 个相同的 x 相加；要找 x，可用 28 除以 4。分步解释：原作答是“15”，原因为“我把18减去3”。在 3z = 18 中，3 表示 z 的 3 倍，应将等式两边同时除以 3，得到 z = 18 ÷ 3 = 6；代回可检验 3 × 6 = 18。这道新题同样是系数乘未知数等于常数，练习用除法求未知数。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+          "modelCalls": 1
+        },
+        "mathClaims": [
+          {
+            "left": "18 ÷ 3",
+            "right": "6"
+          },
+          {
+            "left": "3 × 6",
+            "right": "18"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "18 ÷ 3",
+              "right": "6",
+              "method": "表达式等价",
+              "status": "verified"
+            },
+            {
+              "left": "3 × 6",
+              "right": "18",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "4x = 28"
+        }
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T13:47:42Z",
+      "updatedAt": "2026-11-10T13:48:04Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "3z = 18",
+            "equation": "3z = 18"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "15",
+          "originalReason": "我把18减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-60a5de1638bf43188c2b46bb37407739",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "求解方程 4x = 28。",
+              "equation": "4x = 28",
+              "rationale": "提示：把 4x 看作 4 个相同的 x 相加；要找 x，可用 28 除以 4。分步解释：原作答是“15”，原因为“我把18减去3”。在 3z = 18 中，3 表示 z 的 3 倍，应将等式两边同时除以 3，得到 z = 18 ÷ 3 = 6；代回可检验 3 × 6 = 18。这道新题同样是系数乘未知数等于常数，练习用除法求未知数。"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+              "modelCalls": 1
+            },
+            "mathClaims": [
+              {
+                "left": "18 ÷ 3",
+                "right": "6"
+              },
+              {
+                "left": "3 × 6",
+                "right": "18"
+              }
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "18 ÷ 3",
+                  "right": "6",
+                  "method": "表达式等价",
+                  "status": "verified"
+                },
+                {
+                  "left": "3 × 6",
+                  "right": "18",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "variantVerification": {
+              "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+              "status": "verified",
+              "equation": "4x = 28"
+            }
+          },
+          "startedAt": "2026-11-10T13:47:43Z",
+          "endedAt": "2026-11-10T13:48:04Z"
+        }
+      ]
+    },
+    {
+      "id": "job-7699b738fc1d45a29d025f5460d922ee",
+      "mode": null,
+      "wrongId": null,
+      "phase": null,
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-2c5f6d4769f14e3b8ac341e14677cb6d",
+      "fileId": null,
+      "helpRecordId": "help-7699b738fc1d45a29d025f5460d922ee",
+      "question": null,
+      "blockId": "eq-intro",
+      "strategy": "hint",
+      "prompt": "上节课乘除这里还没独立通过，请先问一个能检查我想法的问题，不要给答案。",
+      "parentJobId": null,
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "先想想：如果等式两边原本相等，并且都增加同一个数量，两边还会相等吗？",
+        "steps": [
+          "先回忆相等表示什么。",
+          "再判断两边同时增加同一个数量，关系是否改变。"
+        ],
+        "title": "检查两边共同变化",
+        "sources": [],
+        "question": "你认为两边同时增加相同数量后，等式关系会怎样？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 17408,
+          "modelCalls": 1,
+          "contextChars": 1835,
+          "historyTurns": 0
+        },
+        "mathClaims": [],
+        "needCoverage": {
+          "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+          "missing": [],
+          "required": []
+        },
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "prerequisiteId": "browser-base",
+        "representation": "question",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T13:50:38Z",
+      "updatedAt": "2026-11-10T13:50:56Z",
+      "input": {
+        "scope": {
+          "taskId": "memory-task-b",
+          "classId": "browser-c0",
+          "lessonId": "memory-flow-lesson-b",
+          "studentId": "teaching-s0",
+          "questionId": null,
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "memory-flow-lesson-b-v1"
+        },
+        "prompt": "上节课乘除这里还没独立通过，请先问一个能检查我想法的问题，不要给答案。",
+        "blockId": "eq-intro",
+        "context": {
+          "block": {
+            "id": "eq-intro",
+            "type": "explanation",
+            "title": "相等的两边",
+            "content": "等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。"
+          },
+          "lesson": {
+            "id": "memory-flow-lesson-b",
+            "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+            "grade": "七年级",
+            "title": "等式性质的后续课时",
+            "versionId": "memory-flow-lesson-b-v1"
+          },
+          "question": null,
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "tutor-case-1",
+              "title": "相等关系小检查",
+              "source": "项目自编验收材料",
+              "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+              "version": 1,
+              "versionId": "tutor-case-version-1",
+              "references": []
+            },
+            {
+              "id": "tutor-case-3",
+              "title": "非零除数条件",
+              "source": "项目自编验收材料",
+              "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+              "version": 1,
+              "versionId": "tutor-case-version-3",
+              "references": []
+            }
+          ],
+          "learningMemory": [
+            {
+              "helped": false,
+              "outcome": "independent_incorrect",
+              "summary": "我把18减去3",
+              "relation": "当前知识点",
+              "sourceId": "attempt-3a3db9a227cc4d449f5d4512187a80d9",
+              "evidenceId": "attempt:attempt-3a3db9a227cc4d449f5d4512187a80d9:browser-kp",
+              "occurredAt": "2026-11-10T13:47:17Z",
+              "sourceType": "attempt",
+              "knowledgeId": "browser-kp",
+              "verification": "verified_incorrect",
+              "teacherConfirmed": false
+            },
+            {
+              "helped": true,
+              "outcome": "helped_correct",
+              "summary": "两边共同使用逆运算，保留非零条件。",
+              "relation": "当前知识点",
+              "sourceId": "repair-9c059973f3304c9797f316c935c30189",
+              "evidenceId": "repair:repair-9c059973f3304c9797f316c935c30189:browser-kp",
+              "occurredAt": "2026-11-10T13:48:05Z",
+              "sourceType": "repair",
+              "knowledgeId": "browser-kp",
+              "verification": "verified_correct",
+              "teacherConfirmed": false
+            }
+          ]
+        },
+        "history": [],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": null,
+        "strategy": "hint",
+        "confirmed": false,
+        "parentJobId": null,
+        "recognizedText": "",
+        "selectedStrategy": "hint",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-4088a302d128485c8d365314f06725b0",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "先想想：如果等式两边原本相等，并且都增加同一个数量，两边还会相等吗？",
+            "steps": [
+              "先回忆相等表示什么。",
+              "再判断两边同时增加同一个数量，关系是否改变。"
+            ],
+            "title": "检查两边共同变化",
+            "sources": [],
+            "question": "你认为两边同时增加相同数量后，等式关系会怎样？",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 17408,
+              "modelCalls": 1,
+              "contextChars": 1835,
+              "historyTurns": 0
+            },
+            "mathClaims": [],
+            "needCoverage": {
+              "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+              "missing": [],
+              "required": []
+            },
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "prerequisiteId": "browser-base",
+            "representation": "question",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-10T13:50:38Z",
+          "endedAt": "2026-11-10T13:50:56Z"
+        }
+      ]
+    },
+    {
+      "id": "job-2a06d7156a214175bed1a26d17593ae7",
+      "mode": "variant",
+      "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+      "phase": "retest",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-f4344427eea44fcd9328ccc6765ec5d5",
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "独立解方程：6a=30。",
+          "equation": "6a=30",
+          "rationale": "与原题一样，需要根据等式两边的乘法关系求出未知数；系数和等号右侧数值均有变化。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+          "modelCalls": 1
+        },
+        "mathClaims": [
+          {
+            "left": "3z=18",
+            "right": "z=6"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "3z=18",
+              "right": "z=6",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "6a=30"
+        }
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T13:50:58Z",
+      "updatedAt": "2026-11-10T13:51:20Z",
+      "input": {
+        "mode": "variant",
+        "phase": "retest",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "3z = 18",
+            "equation": "3z = 18"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "15",
+          "originalReason": "我把18减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": [
+          "4x = 28"
+        ]
+      },
+      "runs": [
+        {
+          "id": "run-2991187323b44987b6134fac90aa9d70",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "独立解方程：6a=30。",
+              "equation": "6a=30",
+              "rationale": "与原题一样，需要根据等式两边的乘法关系求出未知数；系数和等号右侧数值均有变化。"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-cd3367a5c0f548a0aa0fa52f6195091b",
+              "modelCalls": 1
+            },
+            "mathClaims": [
+              {
+                "left": "3z=18",
+                "right": "z=6"
+              }
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "3z=18",
+                  "right": "z=6",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "variantVerification": {
+              "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+              "status": "verified",
+              "equation": "6a=30"
+            }
+          },
+          "startedAt": "2026-11-10T13:50:58Z",
+          "endedAt": "2026-11-10T13:51:20Z"
+        }
+      ]
+    }
+  ],
+  "passed": false,
+  "error": "Browser wait timed out: document.querySelector('.memory-audit')?.textContent.includes('教师修订关联')",
+  "body": "师承智学\n学生空间\n学习空间\n我的学习\n探索课程\n错题帮\n学习记忆\n学习记录\n帮助与反馈\n同\n同学0\n学生空间\n/\n学习记忆\n搜索课程、案例\n⌘ K\n5\n已连接\n学习记忆\n刷新证据\n我的知识点\n3\n待复习建议\n2\n独立正确证据\n1\n全部状态\n待检查\n有独立正确证据\n相等关系与基本运算\n暂无证据\n0 独立正确\n0 独立错误\n0 条依据\n暂无\n等式性质\n证据不足\n1 独立正确\n0 独立错误\n4 条依据\n11/10 21:51\n含括号方程\n证据不足\n0 独立正确\n1 独立错误\n1 条依据\n11/10 21:47\n依据与记录\n含括号方程\n收起\n证据不足\n\n目前还缺少足够的独立练习证据。\n\n前置知识\n等式性质\n\n相关独立作答有错误，先回看原课时。\n\n回看讲解\n含括号方程的前置检查\n含括号方程\n独立错误\n11/10 21:47\n3z = 18\n\n原作答 15\n\n我把18减去3\n\n查看原任务\n提出纠正\n来源\n状态变化\n修订记录",
+  "correctedSource": "attempt-3a3db9a227cc4d449f5d4512187a80d9"
+}
