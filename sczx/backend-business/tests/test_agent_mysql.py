@@ -172,3 +172,21 @@ class AgentMySQLTests(unittest.IsolatedAsyncioTestCase):
         reply=await self.c.post('/api/ai/agent/'+job['id']+'/confirm',json={'expectedDraftHash':state['draftHash'],'confirmed':True});self.assertEqual(reply.status_code,200,reply.text)
         with SessionLocal() as db:
             row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id=='agent-owner'));self.assertEqual(row.goal,'教师手写目标');self.assertEqual(row.blocks[0]['content'],'教师手写导入：比较5和5');self.assertEqual(row.blocks[0]['teacherQuestion'],'怎样解释相等？');self.assertTrue(row.blocks[1]['content'].startswith('受控生成'))
+
+    async def test_word_export_options_never_modify_saved_teacher_text(self):
+        from sczx_business.drafts import snapshot
+        with SessionLocal.begin() as db:
+            row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id=='agent-owner'));blocks=copy.deepcopy(row.blocks);blocks[0]['content']='教师手写保留：出示5 = 5。';row.blocks=blocks
+        with SessionLocal() as db:before=snapshot(db.scalar(select(LessonDraft).where(LessonDraft.teacher_id=='agent-owner')))
+        options=await self.c.get('/api/preparation/agent-lesson/export-options');self.assertEqual(options.status_code,200);self.assertTrue(options.json()['markers'])
+        for mode in ('formal','trace'):
+            r=await self.c.get('/api/preparation/agent-lesson/export',params={'mode':mode,'cleanEditorial':'true'});self.assertEqual(r.status_code,200)
+        with SessionLocal() as db:self.assertEqual(before,snapshot(db.scalar(select(LessonDraft).where(LessonDraft.teacher_id=='agent-owner'))))
+
+    async def test_word_quality_revision_is_single_and_preserves_parent_history(self):
+        job,_=await self.run_success();before=(await self.c.get('/api/ai/jobs/'+job['id'])).json()['result']
+        body={'capability':'lesson_agent','requestKey':str(uuid.uuid4()),'data':{'lessonId':'agent-lesson','task':'改进一次教学表述，分开学生任务和提问','qualityRevisionOf':job['id']}}
+        child=await self.c.post('/api/ai/jobs',json=body);self.assertEqual(child.status_code,201,child.text)
+        body['requestKey']=str(uuid.uuid4());self.assertEqual((await self.c.post('/api/ai/jobs',json=body)).status_code,409)
+        body['data']['qualityRevisionOf']=child.json()['id'];self.assertEqual((await self.c.post('/api/ai/jobs',json=body)).status_code,409)
+        self.assertEqual((await self.c.get('/api/ai/jobs/'+job['id'])).json()['result'],before)

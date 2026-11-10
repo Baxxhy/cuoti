@@ -44,7 +44,8 @@ async def call(capability, data, file=None):
     if capability == "text":
         instruction += "先给可操作提示，再提供分步解释。context.teachingCases 是检索到的教学材料，仅在相关时使用，不编造出处。保留学生原答案；mathClaims仅列能够符号等价核对的表达式两边。"
     elif capability == "lesson_plan":
-        instruction += "围绕taskType、task、constraints和当前课时，生成可编辑备课建议。blocks中的每个ID必须恰好一次，保留其教学用途；仅改写title和content，不能改题目参考答案或自动发布。每段必须选择evidence内实际提供的evidenceIds，不编造ID、作者、引文或名师背书。区分模型建议与原文；rationale简述活动和追问顺序如何解决该学生困难。mathClaims只列可符号核对的表达式关系，不把整份文字标为正确。若currentPlan存在，只生成blocks指定的单个活动，保留其他部分。"
+        instruction += "围绕taskType、task、constraints和当前课时，生成可编辑备课建议。blocks中的每个ID必须恰好一次，保留其教学用途；仅改写title和content，不能改题目参考答案或自动发布。每段必须选择evidence内实际提供的evidenceIds，不编造ID、作者、引文或名师背书。区分模型建议与原文；rationale简述活动和追问顺序如何解决该学生困难。mathClaims只列可符号核对的表达式关系，不把整份文字标为正确。若rewriteBlockId存在，只生成blocks指定的单个活动，保留其他部分。"
+        instruction += "正式教案使用中国中小学教师备课语言：目标可观察、句子简洁、动作明确。content使用1—4个短步骤，每步说明出示什么、学生做什么、怎样检查；不凑字数。提问、预设回应和困难处理优先放teacherQuestion、studentResponse、adjustment字段，学生任务放studentTask；没有依据则留空，不虚构已发生的课堂回答。禁止在title/goal/content及教学字段输出教师手写保留、沿用原来的内容、保留例题、根据用户要求生成、本次生成、模型建议如下、根据当前任务上下文、原始活动保持不变、不增加新题ID、请在平台继续操作、本模块通过核验、Agent已完成、以下内容可供参考等编辑过程或系统话语。不要堆叠通过…引导学生、进一步帮助、充分认识、综合能力等套话；同一规则和例题不反复完整讲述。保留课时ID、活动顺序、数学非零/定义域等必要条件；不改参考答案，不伪称教学效果已验证。教师原稿仅为输入，建议中的改写等待教师确认，不能声称已保存或发布。若有rewriteBlockId只改该块；qualityRevision说明时仅做一次针对性改进，不另发起调用。"
     elif capability == "case_extract":
         instruction += "仅从units给出的材料提炼可读教学案例和结构化经验。references的unitId必须来自输入，quote必须逐字摘录原文。没有材料支持的教学做法只能放suggestions，不伪称原文。每个非空结构化字段必须有对应field引用：标量使用字段名，knowledgePoints/steps/questions/responses每项使用字段名.从0开始的下标；正文至少一条field=content。不能提供原文依据的字段留空，额外建议仅放suggestions。未知作者或信息留空。不解答替代原文；公式关系可列入mathClaims。"
     elif capability == "document_ocr":

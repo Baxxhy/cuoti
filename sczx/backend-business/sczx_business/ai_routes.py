@@ -305,7 +305,8 @@ def agent_edit(job_id:str,body:dict,request:Request,db=Depends(get_db)):
     except ValueError as error:raise HTTPException(422,'建议结构或引用无效：'+str(error).split('\n')[0]) from None
     verification=math_check(plan['mathClaims'])
     if verification['status']=='inconsistent':raise HTTPException(422,'列出的数学表达式不一致，请修订后保存。')
-    result=copy.deepcopy(job.result);result.update(editable=plan,editedAt=now(),decision='pending',verification={**verification,'structure':'passed','references':'passed','humanReviewRequired':True})
+    from .teaching_quality import review_plan
+    result=copy.deepcopy(job.result);result['textQuality']=review_plan(plan,job.input.get('regenerateBlockId'));result.update(editable=plan,editedAt=now(),decision='pending',verification={**verification,'structure':'passed','references':'passed','humanReviewRequired':True})
     job.result=result;job.status='succeeded';job.error='';job.active_hash=None
     event(db,job,'建议草稿已保存，等待确认');db.commit();return serialize(job)
 
@@ -338,7 +339,7 @@ def agent_confirm(job_id:str,body:dict,request:Request,db=Depends(get_db)):
     row.lesson_snapshot=copy.deepcopy(lesson)
     base_blocks=copy.deepcopy(row.blocks or lesson['blocks'])
     target=job.input.get('regenerateBlockId')
-    by_id={b['id']:b for b in plan['blocks']};row.blocks=[{**copy.deepcopy(b),'title':by_id[b['id']]['title'],'content':by_id[b['id']]['content'],'agentEvidence':by_id[b['id']]['evidenceIds'],'agentJobId':job.id} if (not target or b['id']==target) else b for b in base_blocks];row.goal=row.goal if target else plan['goal']
+    by_id={b['id']:b for b in plan['blocks']};row.blocks=[{**copy.deepcopy(b),'title':by_id[b['id']]['title'],'content':by_id[b['id']]['content'],'agentEvidence':by_id[b['id']]['evidenceIds'],'agentJobId':job.id,**{key:by_id[b['id']][key] for key in ('studentTask','teacherQuestion','studentResponse','adjustment') if by_id[b['id']].get(key)}} if (not target or b['id']==target) else b for b in base_blocks];row.goal=row.goal if target else plan['goal']
     checkpoint(db,row,'采用Agent建议')
     receipt={'draftId':row.id,'lessonId':row.lesson_id,'confirmedAt':now(),'jobId':job.id}
     result.update(accepted=receipt,decision='accepted');job.result=result;event(db,job,'已确认保存到备课草稿');db.commit();return {'accepted':receipt,'created':True}

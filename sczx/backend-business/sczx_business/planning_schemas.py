@@ -13,10 +13,15 @@ class PlanningInput(StrictModel):
     parentJobId: str|None=None
     regenerateBlockId: str|None=None
     rewriteBlockId: str|None=None
+    qualityRevisionOf: str|None=Field(default=None,max_length=80)
 class PlanBlock(StrictModel):
     id: Text=Field(max_length=80)
     title: Text=Field(max_length=200)
     content: Text=Field(max_length=6000)
+    studentTask: str=Field(default='',max_length=1000)
+    teacherQuestion: str=Field(default='',max_length=800)
+    studentResponse: str=Field(default='',max_length=800)
+    adjustment: str=Field(default='',max_length=800)
     evidenceIds: list[Text]=Field(min_length=1,max_length=6)
 class GeneratedPlan(StrictModel):
     title: Text=Field(max_length=200)

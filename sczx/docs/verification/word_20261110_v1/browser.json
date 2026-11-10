@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "finishedAt": "2026-11-10T03:21:43.160Z",
+  "formalAndTraceDownload": true,
+  "cleanupDefaultOff": true,
+  "explicitCleanupExportOnly": true,
+  "qualityWarningVisible": true,
+  "oneQualityRevision": "job-9c86bb56b9164fc1a51ef17dd5014a4b",
+  "partialJob": "job-f2ece390dbc5409aadd7d010e58b8863",
+  "otherBlocksUnchanged": true,
+  "confirmationFieldsVisible": true,
+  "noDraftOverwrite": true,
+  "noPublish": true,
+  "consoleErrors": []
+}

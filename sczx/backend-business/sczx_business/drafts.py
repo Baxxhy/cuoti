@@ -63,49 +63,36 @@ def restore(lesson_id:str,body:dict,request:Request,db=Depends(get_db)):
     preserve_original(db,row)
     for key,field in FIELDS.items():setattr(row,field,copy.deepcopy(data.get(key)))
     checkpoint(db,row,'恢复历史版本');db.commit();return snapshot(row)
-def build_docx(data):
-    from docx import Document
-    from docx.oxml import OxmlElement
-    from docx.oxml.ns import qn
-    from docx.shared import Pt
-    doc=Document();style=doc.styles['Normal'];style.font.name='Microsoft YaHei';style.font.size=Pt(11)
-    style.element.rPr.rFonts.set(qn('w:eastAsia'),'微软雅黑')
-    lesson=data.get('lessonSnapshot') or {};details=data.get('planningDetails') or {}
-    doc.add_heading(lesson.get('title','教案'),0)
-    doc.add_paragraph(f"{lesson.get('grade','')} · {lesson.get('subject','')}　教案版本 {data.get('revision',0)} / 来源课时 v{lesson.get('version','未记录')}")
-    def section(title,text):
-        if text:doc.add_heading(title,1);[doc.add_paragraph(line) for line in str(text).splitlines()]
-    section('教学目标',data.get('goal'));section('学生基础',data.get('studentBase'))
-    for key,title in [('focus','教学重点'),('difficulty','教学难点'),('teacherQuestions','教师提问'),('studentResponses','学生可能回应'),('adjustments','教师调整')]:section(title,details.get(key))
-    doc.add_heading('教学活动',1)
-    for b in data.get('blocks',[]):
-        doc.add_heading(b.get('title','活动'),2);doc.add_paragraph(b.get('content',''))
-        for key,title in [('teacherQuestion','教师提问'),('studentResponse','学生回应'),('adjustment','调整建议')]:
-            if b.get(key):doc.add_paragraph(title+'：'+b[key])
-    doc.add_heading('例题与练习',1)
-    for i,q in enumerate(data.get('questions',[]),1):
-        doc.add_heading(f"{i}. {q.get('prompt','练习')}",2)
-        for key,title in [('equation','题目'),('answer','参考答案'),('hint','提示'),('explanation','讲解')]:
-            if q.get(key):doc.add_paragraph(title+'：'+str(q[key]))
-    refs=[data.get('caseSnapshot'),*details.get('references',[])]
-    seen=set()
-    for c in refs:
-        if not c or c.get('versionId') in seen:continue
-        seen.add(c.get('versionId'));doc.add_heading('参考案例：'+c.get('title',''),1)
-        doc.add_paragraph(f"版本 v{c.get('version','')}　{c.get('source','')}")
-        for ref in c.get('references',[]):doc.add_paragraph(' · '.join(str(ref.get(k,'')) for k in ('materialTitle','label','quote') if ref.get(k)))
-    for ref in data.get('agentSources',[]):
-        doc.add_heading('生成内容参考原文',2);doc.add_paragraph(' · '.join(str(ref.get(k,'')) for k in ('title','label','content') if ref.get(k)))
-    output=io.BytesIO();doc.save(output);return output.getvalue()
-@router.get('/{lesson_id}/export')
-def export(lesson_id:str,request:Request,versionId:str|None=None,db=Depends(get_db)):
-    _,data=selected(db,account(request,db),lesson_id,versionId)
+from .docx_export import build_docx
+
+def export_data(db,user,lesson_id,version_id):
+    _,data=selected(db,user,lesson_id,version_id)
     from .models import ModelJob
-    sources={}
+    sources={};cases={}
     for block in data.get('blocks',[]):
         job=db.get(ModelJob,block.get('agentJobId')) if block.get('agentJobId') else None
-        if job and job.owner_id==account(request,db).id:
+        if job and job.owner_id==user.id:
             for evidence in (job.result or {}).get('evidence',[]):
-                if evidence['id'] in block.get('agentEvidence',[]) and evidence.get('kind')=='material':sources[evidence['id']]=evidence
-    data['agentSources']=list(sources.values())
-    return Response(build_docx(data),media_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document',headers={'Content-Disposition':'attachment; filename="lesson-plan.docx"'})
+                if evidence['id'] in block.get('agentEvidence',[]) and evidence.get('kind')=='material':
+                    sources[evidence['id']]=evidence
+                    for case in (job.result or {}).get('cases',[]):
+                        if case['versionId']==evidence.get('caseVersionId'):cases[case['versionId']]=case
+    data['agentSources']=list(sources.values());data['agentCases']=list(cases.values())
+    return data
+
+@router.get('/{lesson_id}/export-options')
+def export_options(lesson_id:str,request:Request,versionId:str|None=None,db=Depends(get_db)):
+    from .teaching_quality import editorial_marks,cleaned_copy
+    data=export_data(db,account(request,db),lesson_id,versionId);clean=cleaned_copy(data)
+    marks=editorial_marks(data)
+    for item in marks:
+        node=clean
+        for key in item['field'].split('.'):node=node[int(key)] if isinstance(node,list) else node.get(key,'')
+        item['proposed']=node
+    return {'revision':data['revision'],'markers':marks,'defaultMode':'formal'}
+
+@router.get('/{lesson_id}/export')
+def export(lesson_id:str,request:Request,versionId:str|None=None,mode:str='formal',cleanEditorial:bool=False,db=Depends(get_db)):
+    if mode not in ('formal','trace'):raise HTTPException(422,'请选择正式教案或完整溯源版。')
+    data=export_data(db,account(request,db),lesson_id,versionId)
+    return Response(build_docx(data,mode,cleanEditorial),media_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document',headers={'Content-Disposition':'attachment; filename="lesson-plan-'+mode+'.docx"'})

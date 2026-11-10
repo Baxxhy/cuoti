@@ -1,0 +1,146 @@
+[
+  {
+    "type": "activity",
+    "questionId": "eq-practice-add",
+    "equation": "x - 3 = 5",
+    "savedAnswer": "8",
+    "solution": "x=8",
+    "verified": true
+  },
+  {
+    "type": "activity",
+    "questionId": "eq-practice-sub",
+    "equation": "y + 4 = 11",
+    "savedAnswer": "7",
+    "solution": "y=7",
+    "verified": true
+  },
+  {
+    "type": "activity",
+    "questionId": "eq-check-divide",
+    "equation": "3z = 18",
+    "savedAnswer": "6",
+    "solution": "z=6",
+    "verified": true
+  },
+  {
+    "type": "activity",
+    "questionId": "eq-check-multiply",
+    "equation": "w / 4 = 3",
+    "savedAnswer": "12",
+    "solution": "w=12",
+    "verified": true
+  },
+  {
+    "type": "activity",
+    "questionId": "eq-new-combine",
+    "equation": "2(a - 1) = 10",
+    "savedAnswer": "6",
+    "solution": "a=6",
+    "verified": true
+  },
+  {
+    "type": "activity",
+    "questionId": "eq-new-negative",
+    "equation": "b / (-3) = 2",
+    "savedAnswer": "-6",
+    "solution": "b=-6",
+    "verified": true
+  },
+  {
+    "type": "misconception",
+    "questionId": "eq-practice-add",
+    "equation": "x - 3 = 5",
+    "savedAnswer": "8",
+    "solution": "x=8",
+    "verified": true
+  },
+  {
+    "type": "misconception",
+    "questionId": "eq-practice-sub",
+    "equation": "y + 4 = 11",
+    "savedAnswer": "7",
+    "solution": "y=7",
+    "verified": true
+  },
+  {
+    "type": "misconception",
+    "questionId": "eq-check-divide",
+    "equation": "3z = 18",
+    "savedAnswer": "6",
+    "solution": "z=6",
+    "verified": true
+  },
+  {
+    "type": "misconception",
+    "questionId": "eq-check-multiply",
+    "equation": "w / 4 = 3",
+    "savedAnswer": "12",
+    "solution": "w=12",
+    "verified": true
+  },
+  {
+    "type": "misconception",
+    "questionId": "eq-new-combine",
+    "equation": "2(a - 1) = 10",
+    "savedAnswer": "6",
+    "solution": "a=6",
+    "verified": true
+  },
+  {
+    "type": "misconception",
+    "questionId": "eq-new-negative",
+    "equation": "b / (-3) = 2",
+    "savedAnswer": "-6",
+    "solution": "b=-6",
+    "verified": true
+  },
+  {
+    "type": "foundation",
+    "questionId": "eq-practice-add",
+    "equation": "x - 3 = 5",
+    "savedAnswer": "8",
+    "solution": "x=8",
+    "verified": true
+  },
+  {
+    "type": "foundation",
+    "questionId": "eq-practice-sub",
+    "equation": "y + 4 = 11",
+    "savedAnswer": "7",
+    "solution": "y=7",
+    "verified": true
+  },
+  {
+    "type": "foundation",
+    "questionId": "eq-check-divide",
+    "equation": "3z = 18",
+    "savedAnswer": "6",
+    "solution": "z=6",
+    "verified": true
+  },
+  {
+    "type": "foundation",
+    "questionId": "eq-check-multiply",
+    "equation": "w / 4 = 3",
+    "savedAnswer": "12",
+    "solution": "w=12",
+    "verified": true
+  },
+  {
+    "type": "foundation",
+    "questionId": "eq-new-combine",
+    "equation": "2(a - 1) = 10",
+    "savedAnswer": "6",
+    "solution": "a=6",
+    "verified": true
+  },
+  {
+    "type": "foundation",
+    "questionId": "eq-new-negative",
+    "equation": "b / (-3) = 2",
+    "savedAnswer": "-6",
+    "solution": "b=-6",
+    "verified": true
+  }
+]

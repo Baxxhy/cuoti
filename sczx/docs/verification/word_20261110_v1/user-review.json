@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-11-10T11:35:04.991736+08:00",
+  "exportCleanup": {
+    "method": "直接用户文本确认",
+    "answer": "同意，仅清理导出样例",
+    "scope": "只清理明确过程前缀，不改数据库、题目或历史"
+  },
+  "writingStyle": {
+    "method": "用户单人复核三份PDF",
+    "answer": "认可当前表达风格",
+    "scope": "只确认表达风格，不是实际课堂效果研究"
+  },
+  "wordWps": {
+    "method": "用户实际打开、编辑副本、保存重开后的文本确认",
+    "answer": "Word/WPS显示正常，编辑保存重开成功",
+    "softwareBrandAndVersion": "用户未指定，不推断具体品牌或版本"
+  },
+  "localOffice": {
+    "software": "LibreOffice 25.2.7.2",
+    "proof": "office-edit.json",
+    "independentOfSystemBrokenOffice": true
+  }
+}

@@ -47,6 +47,15 @@ def build_input(db,user,raw):
     data={**request,'taskType':infer_task(request['task'],request['taskType']),'lesson':version,
           'documents':published_documents(db),'knowledge':knowledge_documents(db),'draftHash':fingerprint(baseline),
           'draftId':draft.id if draft else None,'ownerId':user.id,'workflowVersion':'teaching-plan-v1','label':request['task'][:64]}
+    if request.get('qualityRevisionOf'):
+        parent=db.scalar(select(ModelJob).where(ModelJob.id==request['qualityRevisionOf']).with_for_update())
+        if not parent or parent.owner_id!=user.id or parent.capability!='lesson_agent':raise HTTPException(404,'原备课任务不存在。')
+        if parent.input.get('qualityRevisionOf') or db.scalar(select(ModelJob.id).where(ModelJob.owner_id==user.id,ModelJob.input['qualityRevisionOf'].as_string()==parent.id).limit(1).with_for_update()):raise HTTPException(409,'这项建议已使用一次语言修订，请手动编辑。')
+        base=(parent.result or {}).get('editable') or (parent.result or {}).get('plan')
+        if not base or parent.input['lessonId']!=lesson.id:raise HTTPException(422,'请先选择已完成的同课时建议。')
+        data.update(basePlan=copy.deepcopy(base),qualityRevision='按文本质量警告改进表述，保留数学条件与题目；只修订一次',lesson=copy.deepcopy(parent.input['lesson']))
+        by_id={b['id']:b for b in base['blocks']}
+        data['lesson']['blocks']=[{**b,**{k:v for k,v in by_id[b['id']].items() if k!='evidenceIds'}} for b in data['lesson']['blocks']]
     if request['parentJobId']:
         parent=db.get(ModelJob,request['parentJobId'])
         if not parent or parent.owner_id!=user.id or parent.capability!='lesson_agent':raise HTTPException(404,'原备课任务不存在。')
@@ -66,7 +75,8 @@ def build_input(db,user,raw):
     return data
 
 def validate_plan(value,lesson,evidence,only=None):
-    plan=GeneratedPlan.model_validate(value).model_dump()
+    plan=GeneratedPlan.model_validate(value).model_dump(exclude_unset=True)
+    plan.setdefault('mathClaims',[])
     ids=[b['id'] for b in plan['blocks']];expected={only} if only else {b['id'] for b in lesson['blocks']}
     if len(ids)!=len(set(ids)) or set(ids)!=expected:raise ValueError('活动ID与当前课时不一致。')
     available={r['id'] for r in evidence}
@@ -137,7 +147,7 @@ async def run_agent(job_id,run_id,provider):
             elif key=='generate':
                 target=data.get('regenerateBlockId');blocks=[b for b in data['lesson']['blocks'] if not target or b['id']==target]
                 request={'task':data['task'],'taskType':TASK_TYPES[data['taskType']],'constraints':data['constraints'],'goal':data['lesson']['goal'],'grade':data['lesson']['grade'],'knowledge':[p for p in data['knowledge'] if p['id'] in set(data['lesson'].get('knowledgeIds',[]))],
-                         'studentBase':data['lesson'].get('studentBase',''),'planningDetails':data['lesson'].get('planningDetails',{}),'blocks':blocks,'cases':[{'id':c['id'],'title':c['title'],'experience':c.get('experience',{})} for c in value['cases']],'evidence':value['evidence'],'currentPlan':data.get('basePlan')}
+                         'rewriteBlockId':target,'qualityRevision':data.get('qualityRevision'),'studentBase':data['lesson'].get('studentBase',''),'planningDetails':data['lesson'].get('planningDetails',{}),'blocks':blocks,'questions':data['lesson']['questions'],'cases':[{'id':c['id'],'title':c['title'],'experience':c.get('experience',{})} for c in value['cases']],'evidence':value['evidence'],'currentPlan':data.get('basePlan')}
                 value['modelCalls']+=1;persist(value)
                 generated,model,source=await asyncio.wait_for(provider.call('lesson_plan',request,request_id=run_id),timeout=min(120,max(.01,remaining())))
                 value['generated']=generated
@@ -152,6 +162,8 @@ async def run_agent(job_id,run_id,provider):
                 verification=await asyncio.wait_for(asyncio.to_thread(math_check,plan['mathClaims']),timeout=min(12,max(.01,remaining())))
                 if verification['status']=='inconsistent':raise ModelError('列出的数学表达式不一致，请先修改建议再确认。')
                 overlap=set(tokenize(plan['goal']))&set(tokenize(data['lesson']['goal']+' '+data['lesson']['title']))
+                from .teaching_quality import review_plan
+                value['textQuality']=review_plan(plan,data.get('regenerateBlockId'))
                 value['verification']={**verification,'structure':'passed','references':'passed','goalTermsOverlap':bool(overlap),'humanReviewRequired':True}
                 if not overlap:value['warnings'].append('目标措辞与当前课时缺少共同词，请教师重点核对目标一致性。')
                 step['output']=value['verification']

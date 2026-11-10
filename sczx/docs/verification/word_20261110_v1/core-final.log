@@ -1,0 +1,36 @@
+test_active_duplicate_and_cross_role_access (test_agent_mysql.AgentMySQLTests.test_active_duplicate_and_cross_role_access) ... skipped 'isolated MySQL integration is opt-in'
+test_cancel_in_progress_keeps_prior_steps (test_agent_mysql.AgentMySQLTests.test_cancel_in_progress_keeps_prior_steps) ... skipped 'isolated MySQL integration is opt-in'
+test_confirm_draft_is_explicit_and_idempotent (test_agent_mysql.AgentMySQLTests.test_confirm_draft_is_explicit_and_idempotent) ... skipped 'isolated MySQL integration is opt-in'
+test_no_cases_materials_and_invalid_output_are_explicit (test_agent_mysql.AgentMySQLTests.test_no_cases_materials_and_invalid_output_are_explicit) ... skipped 'isolated MySQL integration is opt-in'
+test_step10_partial_rewrite_preserves_personalization (test_agent_mysql.AgentMySQLTests.test_step10_partial_rewrite_preserves_personalization) ... skipped 'isolated MySQL integration is opt-in'
+test_step10_saved_history_concurrency_restore_export_and_permissions (test_agent_mysql.AgentMySQLTests.test_step10_saved_history_concurrency_restore_export_and_permissions) ... skipped 'isolated MySQL integration is opt-in'
+test_step10_source_republish_blocks_old_agent_confirmation (test_agent_mysql.AgentMySQLTests.test_step10_source_republish_blocks_old_agent_confirmation) ... skipped 'isolated MySQL integration is opt-in'
+test_timeout_retains_checkpoints_and_resume_does_not_repeat_success (test_agent_mysql.AgentMySQLTests.test_timeout_retains_checkpoints_and_resume_does_not_repeat_success) ... skipped 'isolated MySQL integration is opt-in'
+test_total_deadline_prevents_model_call (test_agent_mysql.AgentMySQLTests.test_total_deadline_prevents_model_call) ... skipped 'isolated MySQL integration is opt-in'
+test_unparsed_material_is_not_presented_as_evidence (test_agent_mysql.AgentMySQLTests.test_unparsed_material_is_not_presented_as_evidence) ... skipped 'isolated MySQL integration is opt-in'
+test_word_export_options_never_modify_saved_teacher_text (test_agent_mysql.AgentMySQLTests.test_word_export_options_never_modify_saved_teacher_text) ... skipped 'isolated MySQL integration is opt-in'
+test_word_quality_revision_is_single_and_preserves_parent_history (test_agent_mysql.AgentMySQLTests.test_word_quality_revision_is_single_and_preserves_parent_history) ... skipped 'isolated MySQL integration is opt-in'
+test_fonts_color_a4_spacing_and_page_field_are_explicit (test_docx_export.WordExportTests.test_fonts_color_a4_spacing_and_page_field_are_explicit) ... ok
+test_marker_cleanup_is_bounded_explicit_and_preserves_math_and_sources (test_docx_export.WordExportTests.test_marker_cleanup_is_bounded_explicit_and_preserves_math_and_sources) ... ok
+test_modes_deduplicate_sources_without_touching_original_text (test_docx_export.WordExportTests.test_modes_deduplicate_sources_without_touching_original_text) ... ok
+test_quality_warnings_do_not_rewrite_or_mislabel_conditions (test_docx_export.WordExportTests.test_quality_warnings_do_not_rewrite_or_mislabel_conditions) ... ok
+test_invalid_or_failed_ranking_keeps_all_candidates (test_fallback.RerankFallbackTests.test_invalid_or_failed_ranking_keeps_all_candidates) ... ok
+test_conflicts_missing_edges_and_cycles (test_knowledge.KnowledgeValidationTests.test_conflicts_missing_edges_and_cycles) ... ok
+test_invalid_types_never_reach_sets_or_orm (test_knowledge.KnowledgeValidationTests.test_invalid_types_never_reach_sets_or_orm) ... ok
+test_valid_missing_optional_fields_and_unicode_collisions (test_knowledge.KnowledgeValidationTests.test_valid_missing_optional_fields_and_unicode_collisions) ... ok
+test_expressions_equations_conditions_and_errors_are_distinct (test_math_claims.MathClaimTests.test_expressions_equations_conditions_and_errors_are_distinct) ... ok
+test_invalid_knowledge_has_no_partial_writes (test_mysql_api.MySQLApiTests.test_invalid_knowledge_has_no_partial_writes) ... skipped 'set SCZX_RUN_MYSQL_TESTS=1 with isolated SCZX_DATABASE_URL'
+test_revision_and_withdrawal_preserve_history (test_mysql_api.MySQLApiTests.test_revision_and_withdrawal_preserve_history) ... skipped 'set SCZX_RUN_MYSQL_TESTS=1 with isolated SCZX_DATABASE_URL'
+test_roles_cannot_write_knowledge (test_mysql_api.MySQLApiTests.test_roles_cannot_write_knowledge) ... skipped 'set SCZX_RUN_MYSQL_TESTS=1 with isolated SCZX_DATABASE_URL'
+test_citation_and_block_contract (test_planning.PlanningValidationTests.test_citation_and_block_contract) ... ok
+test_client_cannot_supply_server_context (test_planning.PlanningValidationTests.test_client_cannot_supply_server_context) ... ok
+test_explicit_task_and_rule_recognition (test_planning.PlanningValidationTests.test_explicit_task_and_rule_recognition) ... ok
+test_partial_generation_only_accepts_target (test_planning.PlanningValidationTests.test_partial_generation_only_accepts_target) ... ok
+test_empty_long_context_and_invalid_grade (test_retrieval.RetrievalRegressionTests.test_empty_long_context_and_invalid_grade) ... ok
+test_frozen_baseline_and_context_orders (test_retrieval.RetrievalRegressionTests.test_frozen_baseline_and_context_orders) ... ok
+test_one_hop_toggle_and_wrong_topic (test_retrieval.RetrievalRegressionTests.test_one_hop_toggle_and_wrong_topic) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.565s
+
+OK (skipped=15)

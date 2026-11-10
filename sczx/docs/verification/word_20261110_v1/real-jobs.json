@@ -1,0 +1,44 @@
+[
+  {
+    "type": "activity",
+    "input": {
+      "lessonId": "lesson-equation",
+      "taskType": "activity",
+      "task": "设计七年级等式性质的天平活动，学生需要比较只改变一边和两边共同变化。",
+      "constraints": "每个活动写1—3个可执行短步骤，提问和预设回应放对应字段；保留所有题目答案，不写编辑过程用语。"
+    },
+    "id": "job-00633c8554a04a19be59ae01489435e3",
+    "startedAt": "2026-11-10T11:10:52.628914+08:00",
+    "status": "succeeded",
+    "error": "",
+    "finishedAt": "2026-11-10T11:11:30.928924+08:00"
+  },
+  {
+    "type": "misconception",
+    "input": {
+      "lessonId": "lesson-equation",
+      "taskType": "misconception",
+      "task": "纠正学生机械记忆移项变号的错误：要求说清两边共同运算及每一步依据。",
+      "constraints": "目标具体，讲解简洁；避免重复整套规则，不能虚构已观察到的学生回答。"
+    },
+    "id": "job-25c2a16054aa43d3b19dbb5a0ef5aae2",
+    "startedAt": "2026-11-10T11:10:52.701207+08:00",
+    "status": "succeeded",
+    "error": "",
+    "finishedAt": "2026-11-10T11:12:46.682494+08:00"
+  },
+  {
+    "type": "foundation",
+    "input": {
+      "lessonId": "lesson-equation",
+      "taskType": "foundation",
+      "task": "学生缺乏相等关系前置知识，先用数值比较补基础，再学习等式两边共同运算。",
+      "constraints": "先具体再符号；保留同除非零条件，不更改原课时例题和参考答案。"
+    },
+    "id": "job-25616329e2ea4255b616e7c8abd0d9a8",
+    "startedAt": "2026-11-10T11:10:52.773429+08:00",
+    "status": "succeeded",
+    "error": "",
+    "finishedAt": "2026-11-10T11:12:46.723952+08:00"
+  }
+]

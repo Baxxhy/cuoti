@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-11-10T11:35:06.949594+08:00",
+  "baseCommit": "0b3eb55e6efbbf4893b2b2e6224f1dafa6cb1819",
+  "fontMatches": {
+    "Chinese": "SimSun",
+    "Latin": "Times New Roman"
+  },
+  "sourceDocx": "docs/exports/20261110_v1/教案导出样例.docx",
+  "beforePages": 5,
+  "finalPages": {
+    "机械移项纠正.pdf": 4,
+    "天平活动设计.pdf": 4,
+    "原教案_完整溯源版.pdf": 4,
+    "原教案_正式版.pdf": 3,
+    "前置知识补救.pdf": 4
+  },
+  "qualitySamples": "真实Codex CLI gpt-6-luna / low；三种任务+一次质量修订+局部生成",
+  "times": {
+    "mysql-tests.json": "2026-11-10T11:29:54.849616+08:00",
+    "mysql-tests.log": "2026-11-10T11:29:54.849616+08:00",
+    "core-initial.log": "2026-11-10T11:07:13.588438+08:00",
+    "core-final.log": "2026-11-10T11:28:03.706942+08:00",
+    "frontend-final.log": "2026-11-10T11:28:14.522801+08:00",
+    "frontend-unit.log": "2026-11-10T11:28:04.458932+08:00",
+    "build-final.log": "2026-11-10T11:13:47.739870+08:00",
+    "browser.log": "2026-11-10T11:19:57.570195+08:00",
+    "browser-final.log": "2026-11-10T11:21:43.156935+08:00",
+    "browser.json": "2026-11-10T11:21:43.156935+08:00",
+    "export-options.json": "2026-11-10T11:24:30.250399+08:00",
+    "original-protection.json": "2026-11-10T11:24:30.518394+08:00",
+    "office-edit.json": "2026-11-10T11:25:25.289372+08:00",
+    "render-before.log": "2026-11-10T11:07:11.632386+08:00",
+    "render-delivery.log": "2026-11-10T11:24:31.898367+08:00",
+    "agent-activity.json": "2026-11-10T11:11:30.929830+08:00",
+    "agent-misconception.json": "2026-11-10T11:12:46.679016+08:00",
+    "agent-foundation.json": "2026-11-10T11:12:46.723017+08:00",
+    "agent-quality.json": "2026-11-10T11:21:23.841146+08:00",
+    "agent-partial.json": "2026-11-10T11:21:42.344944+08:00",
+    "real-jobs.json": "2026-11-10T11:12:46.723017+08:00"
+  },
+  "officeAttestation": "用户人工确认与本地LibreOffice观察分别归档，不推断Word/WPS版本"
+}

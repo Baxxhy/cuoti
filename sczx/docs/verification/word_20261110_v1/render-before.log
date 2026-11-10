@@ -1,0 +1,4 @@
+Could not find platform independent libraries <prefix>
+Could not find platform dependent libraries <exec_prefix>
+Consider setting $PYTHONHOME to <prefix>[:<exec_prefix>]
+convert /root/Baxxhy/zhiwei/sczx/docs/exports/20261110_v1/教案导出样例.docx as a Writer document -> /tmp/sczx-word/before/教案导出样例.pdf using filter : writer_pdf_Export
