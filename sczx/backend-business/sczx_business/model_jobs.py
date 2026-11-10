@@ -72,7 +72,7 @@ async def execute(job_id, run_id):
         job = db.get(ModelJob, job_id)
         require_job_write(db,job)
         capability, data, file = job.capability, dict(job.input), None
-        if capability=='text' and not data.get('guidance') and job.record_id:
+        if capability=='text' and not data.get('guidance') and not data.get('remediation') and job.record_id:
             from .models import Account,StudentRecord
             owner=db.get(Account,job.owner_id)
             if owner.role=='student':
@@ -96,11 +96,14 @@ async def execute(job_id, run_id):
             event(db,job,'等待教师确认')
         return
     phase(job_id, {"document_parse": "正在解析原文", "document_ocr": "正在识别原文页面", "case_extract": "正在整理教学经验", "retrieval": "正在检索教学案例", "ocr": "正在识别题图", "text": "正在生成指导", "embedding": "正在生成向量", "rerank": "正在重排材料", "asr": "正在转写音频", "tts": "正在合成音频"}[capability])
-    if data.get('guidance'):
+    if data.get('remediation'):
+        from .remediation import run
+        result,model,source=await run(data,provider,run_id)
+    elif data.get('guidance'):
         from .tutoring import run
         result,model,source=await run(data,provider,run_id)
     else:result, model, source = await provider.call(capability, data, file=file, request_id=run_id)
-    if capability in ("text", "case_extract") and not data.get("guidance"):
+    if capability in ("text", "case_extract") and not data.get("guidance") and not data.get("remediation"):
         phase(job_id, "正在核对数学表达")
         result["verification"] = await asyncio.to_thread(math_check, result.get("mathClaims", []))
         context = data.get('context') if isinstance(data.get('context'),dict) else {}
@@ -112,7 +115,7 @@ async def execute(job_id, run_id):
             provided = [{**matched,**primary,'role':'lesson','roles':['lesson','retrieval'] if matched else ['lesson']},
                         *[x for x in provided if x.get('versionId') != primary['versionId']]]
         result['sources'] = [{k:x.get(k) for k in ('id','title','source','versionId','version','references','role','roles','knowledgeIds','knowledgeMatches','matchReasons','matchedFields')} for x in provided]
-    if capability=='text' and not data.get('guidance') and context.get('retrieval'):
+    if capability=='text' and not data.get('guidance') and not data.get('remediation') and context.get('retrieval'):
         result['retrieval']=context['retrieval']
     if capability == "case_extract":
         original = {x['id']: x['text'] for x in data['units']}
@@ -154,7 +157,10 @@ async def execute(job_id, run_id):
             db.add(FileAsset(id=file_id, owner_id=job.owner_id, original_name="讲解音频.mp3", content_type=result["contentType"], size=len(contents), storage_key=key))
             db.flush()
             result.update(fileId=file_id, url="/api/files/" + file_id)
-        if capability == "text" and job.record_id and data.get("strategy")!="try":
+        if data.get('remediation') and data.get('mode')=='analysis':
+            from .models import WrongQuestion
+            row=db.get(WrongQuestion,data['wrongId']);row.details={**(row.details or {}),'planJobId':job.id}
+        if capability == "text" and job.record_id and data.get("strategy")!="try" and (not data.get('remediation') or data.get('mode')=='guidance'):
             # Stable ID prevents duplicate helper records if a caller repeats a task.
             help_id = help_record_id(job.id)
             entry=db.get(HelpRecord,help_id)
@@ -221,7 +227,7 @@ async def worker():
                     run.status, run.error, run.ended_at = "failed", message, datetime.utcnow()
                     run.model, run.provider = getattr(error, "model", ""), getattr(error, "provider", "")
                     if getattr(error,"metrics",None):run.result={"workflow":error.metrics}
-                    again = known and error.retryable and not job.input.get('guidance') and not (job.capability=='text' and job.record_id) and job.retry_count < (1 if job.capability=='lesson_agent' else 2)
+                    again = known and error.retryable and not job.input.get('guidance') and not job.input.get('remediation') and not (job.capability=='text' and job.record_id) and job.retry_count < (1 if job.capability=='lesson_agent' else 2)
                     job.status, job.error = ("queued" if again else "failed"), message
                     if not again: job.active_hash = None
                     if again: job.retry_count += 1

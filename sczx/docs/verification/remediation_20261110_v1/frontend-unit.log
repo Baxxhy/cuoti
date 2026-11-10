@@ -1,0 +1,14 @@
+
+> shicheng-zhixue@0.3.0 test:unit
+> node --test tests/*.test.js
+
+✔ agent identity includes both lesson and job (1.17785ms)
+✔ balance single and common actions preserve actual relation and bounds (2.449387ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114.270764

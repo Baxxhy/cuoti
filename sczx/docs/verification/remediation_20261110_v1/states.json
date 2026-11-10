@@ -1,0 +1,102 @@
+{
+  "startedAt": "2026-11-10T12:44:09.711Z",
+  "checks": [
+    {
+      "name": "empty-personal-library-no-current-course-required"
+    },
+    {
+      "name": "search-empty"
+    },
+    {
+      "name": "desktop-wrong-library-final",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "desktop-wrong-library-final",
+      "width": 1920,
+      "scroll": 1905
+    },
+    {
+      "name": "desktop-wrong-library-final",
+      "width": 2560,
+      "scroll": 2545
+    },
+    {
+      "name": "saved-repair-response-refresh"
+    },
+    {
+      "name": "offline-save-visible-and-retry-recovers-draft"
+    },
+    {
+      "name": "desktop-repair-photo-final",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "desktop-repair-photo-final",
+      "width": 1920,
+      "scroll": 1905
+    },
+    {
+      "name": "desktop-repair-photo-final",
+      "width": 2560,
+      "scroll": 2545
+    },
+    {
+      "name": "invalid-wrong-direct-route"
+    },
+    {
+      "name": "balance-single-both-subtract-reset-refresh",
+      "state": {
+        "weight": 1,
+        "completed": false,
+        "explanation": "单侧变化会失去平衡，两边共同加1仍相等。",
+        "visualization": {
+          "state": {
+            "left": 6,
+            "right": 6
+          },
+          "actions": [
+            "both_add"
+          ]
+        }
+      }
+    },
+    {
+      "name": "desktop-balance-final",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "desktop-balance-final",
+      "width": 1920,
+      "scroll": 1905
+    },
+    {
+      "name": "desktop-balance-final",
+      "width": 2560,
+      "scroll": 2545
+    },
+    {
+      "name": "teacher-real-analysis-guidance-variant-history"
+    },
+    {
+      "name": "desktop-teacher-history-final",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "desktop-teacher-history-final",
+      "width": 1920,
+      "scroll": 1920
+    },
+    {
+      "name": "desktop-teacher-history-final",
+      "width": 2560,
+      "scroll": 2560
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

@@ -37,12 +37,7 @@ const missingTask = computed(
     !!route.query.task &&
     !store.data.tasks.some((task) => task.id === route.query.task),
 );
-const missingWrong = computed(
-  () =>
-    store.status === "ready" &&
-    !!route.query.wrong &&
-    !store.record?.wrongQuestions.some((item) => item.id === route.query.wrong),
-);
+const missingWrong = computed(() => false);
 watch(
   [() => store.status, () => route.query.task],
   () => {

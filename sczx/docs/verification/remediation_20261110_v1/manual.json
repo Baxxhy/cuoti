@@ -1,0 +1,43 @@
+{
+  "startedAt": "2026-11-10T12:52:50.423Z",
+  "checks": [
+    {
+      "name": "text-only-capture",
+      "wrongId": "wrong-55de1dd32700e5d2b9e0aad514b43733"
+    },
+    {
+      "name": "refresh-relogin-no-task",
+      "row": {
+        "id": "wrong-55de1dd32700e5d2b9e0aad514b43733",
+        "taskId": null,
+        "recordId": null,
+        "attemptId": null,
+        "source": "manual",
+        "prompt": "4x=20",
+        "answer": "16",
+        "reason": "我把20减去4",
+        "image": "",
+        "details": {
+          "cause": "其他或待确认",
+          "source": "manual",
+          "subject": "数学",
+          "version": "dynamic_v1",
+          "equation": "4x=20",
+          "ocrJobId": null,
+          "cropFileId": null,
+          "knowledgeIds": [],
+          "confirmedText": "",
+          "causeConfirmed": false
+        },
+        "status": "pending",
+        "readOnly": false,
+        "taskTitle": null,
+        "repairs": [],
+        "createdAt": "2026-11-10T20:52:54",
+        "jobs": []
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

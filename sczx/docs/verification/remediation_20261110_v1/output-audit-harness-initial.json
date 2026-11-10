@@ -1,0 +1,137 @@
+{
+  "allModelOutputsPassFinalGuards": false,
+  "checks": [
+    {
+      "jobId": "job-056c6733eeed4502b5dd4c6662b77f55",
+      "wrongId": "wrong-69c604a08a43978a600baee48b0f1aff",
+      "mode": "variant",
+      "passed": true
+    },
+    {
+      "jobId": "job-09c01d8899e4477bb083a60c00b85dd1",
+      "wrongId": "wrong-a9d92f8953fc2027eecc4470cb219969",
+      "mode": "variant",
+      "passed": true
+    },
+    {
+      "jobId": "job-0e682115fa474aca88a72663f19b4aa1",
+      "wrongId": "wrong-92881eee3c635f8f8d40742054dc342b",
+      "mode": "variant",
+      "passed": true
+    },
+    {
+      "jobId": "job-1d594fa7fb9e4a76a99f0c08ee53ecf3",
+      "wrongId": "wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+      "mode": "analysis",
+      "passed": true
+    },
+    {
+      "jobId": "job-232e791971f741ba86ccdf18719e32da",
+      "wrongId": "wrong-82985aa6235c7c42c31a73ef7cfdae96",
+      "mode": "variant",
+      "passed": true
+    },
+    {
+      "jobId": "job-2803abf67dce4408adff51f0b4ff9528",
+      "wrongId": "wrong-0e9d527d91094b40ab175a0823847d93",
+      "mode": "variant",
+      "passed": true
+    },
+    {
+      "jobId": "job-4902b788387149388d6af51fc7830e97",
+      "wrongId": "wrong-69c604a08a43978a600baee48b0f1aff",
+      "mode": "analysis",
+      "passed": true
+    },
+    {
+      "jobId": "job-611100e123e74549884fa051c144a247",
+      "wrongId": "wrong-82985aa6235c7c42c31a73ef7cfdae96",
+      "mode": "analysis",
+      "passed": true
+    },
+    {
+      "jobId": "job-614f855c0a78432fb1266bb15a82aafc",
+      "wrongId": "wrong-a9d92f8953fc2027eecc4470cb219969",
+      "mode": "analysis",
+      "passed": true
+    },
+    {
+      "jobId": "job-734a632bed8a4a55834c7e952779dfba",
+      "wrongId": "wrong-0e9d527d91094b40ab175a0823847d93",
+      "mode": "variant",
+      "passed": true
+    },
+    {
+      "jobId": "job-7615a161cb004402a8ab1b74bbc011db",
+      "mode": "guidance",
+      "passed": false,
+      "error": "5 validation errors for TutoringResult\nsources\n  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nworkflow\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'nodes': ['固定学习... 527, 'historyTurns': 1}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nneedCoverage\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'scope': '仅检查明...ng': [], 'required': []}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nverification\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'scope': '仅核对声...], 'status': 'verified'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nprerequisites\n  Extra inputs are not permitted [type=extra_forbidden, input_value=[{'id': 'browser-base', '...关系与基本运算'}], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden"
+    },
+    {
+      "jobId": "job-7f86d52e872a4d8d8d3a52846ff829ae",
+      "wrongId": "wrong-5627c54e55026d22a7dd7d03116061b4",
+      "mode": "analysis",
+      "passed": true
+    },
+    {
+      "jobId": "job-88d3a525230748f39f265bad2b4fb74c",
+      "wrongId": "wrong-0e9d527d91094b40ab175a0823847d93",
+      "mode": "analysis",
+      "passed": true
+    },
+    {
+      "jobId": "job-9d89e68efc94455ebdf71df39518a3eb",
+      "wrongId": "wrong-5260be32098fb531438f08828a7a7438",
+      "mode": "analysis",
+      "passed": true
+    },
+    {
+      "jobId": "job-b35c00e901da4b0597a18487f25d7007",
+      "mode": "guidance",
+      "passed": false,
+      "error": "5 validation errors for TutoringResult\nsources\n  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nworkflow\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'nodes': ['固定学习... 533, 'historyTurns': 1}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nneedCoverage\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'scope': '仅检查明...ng': [], 'required': []}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nverification\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'scope': '仅核对声...], 'status': 'verified'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden\nprerequisites\n  Extra inputs are not permitted [type=extra_forbidden, input_value=[], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden"
+    },
+    {
+      "jobId": "job-b42b921e862f4c4cb0521056655b5af3",
+      "wrongId": "wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+      "mode": "variant",
+      "passed": true
+    },
+    {
+      "jobId": "job-ed89f427788d4f7faa992fc36c3f76f1",
+      "wrongId": "wrong-0d7e9af6dc9ee96d15fae3ef3b9c29fc",
+      "mode": "analysis",
+      "passed": true
+    },
+    {
+      "jobId": "job-f3a5b98c75eb49078c96dd2d0cc37d12",
+      "wrongId": "wrong-92881eee3c635f8f8d40742054dc342b",
+      "mode": "analysis",
+      "passed": true
+    }
+  ],
+  "originalUnchanged": true,
+  "files": [
+    {
+      "kind": "original",
+      "fileId": "file-5abbe71ef00b4df99a666203ee1ab060",
+      "bytes": 9235,
+      "sha256": "eb2952388fdfb204cc49b2868a0c3d31cd4c348806436cfe74d5c9cd4f4ff271"
+    },
+    {
+      "kind": "crop",
+      "fileId": "file-33bf1568f4d24608931e4b9e54116472",
+      "bytes": 8831,
+      "sha256": "33e19c82f10e83fa79a2fc83990dc1fad690000128227d069a8e4ff6ab98adbe"
+    }
+  ],
+  "confirmedText": "解方程 x - 3 = 5",
+  "ocrJobId": "job-b7ce3ae585744dde8634b561b1ae4eba",
+  "rawOcr": {
+    "text": "1.",
+    "equation": "x - 3 = 5",
+    "studentAnswer": "",
+    "uncertainties": []
+  },
+  "photoFinalStatus": "awaiting_retest"
+}

@@ -1,0 +1,10 @@
+TASTESKILL · LINT   2 file(s)
+
+WARN
+  [numbering] Decorative index numbering (01 / 02 / 03).  (3×)
+      frontend/src/pages/Repair.vue:40  >01<
+      frontend/src/pages/Repair.vue:42  >02<
+      frontend/src/pages/Repair.vue:43  >03<
+
+RESULT: 0 FAIL, 3 WARN
+Interface fragments marked data-ui keep their own borders and shadows. Any other line that must keep a flagged pattern for a real reason can carry the comment taste-skill-ignore.

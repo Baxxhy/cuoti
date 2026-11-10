@@ -1,0 +1,32 @@
+[
+  {
+    "kind": "harness",
+    "issue": "发布课时操作弹出确认框，首次CDP遗漏处理",
+    "fix": "测试处理现有确认框，不改产品确认规则"
+  },
+  {
+    "kind": "harness",
+    "issue": "独立OCR列表误带recordId=null，脚本未找到实际已创建任务",
+    "fix": "独立任务查询不带recordId，保留第一次报告并续走题图流程"
+  },
+  {
+    "kind": "harness",
+    "issue": "审计直接将服务追加的verification/workflow等送入严格模型Schema",
+    "fix": "按原Schema字段提取模型输出后核验；工作目录错误同时修正"
+  },
+  {
+    "kind": "product",
+    "issue": "失败补救刷新后没有恢复到重试入口",
+    "fix": "详情初始化恢复最后失败任务，并增加Chromium回归"
+  },
+  {
+    "kind": "product",
+    "issue": "未使用助手时空侧栏占用空间",
+    "fix": "未产生指导时收成工具栏；三种桌面重新截图"
+  },
+  {
+    "kind": "product",
+    "issue": "新变式必须保留运算类型，不能只依赖同阶多项式",
+    "fix": "区分加减、乘除、混合、括号及常数分母，新增拒绝测试并复核全部实际输出"
+  }
+]

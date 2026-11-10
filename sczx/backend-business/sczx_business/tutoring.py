@@ -127,13 +127,10 @@ def validate_result(result,data):
     normalized=lambda s:re.sub(r'\s+','',s).replace('−','-').replace('×','*').replace('÷','/')
     if data['strategy']=='example' and equation and normalized(equation) in normalized(text):raise ModelError('举例复用了当前题目，已拦截。')
     if any(word in text for word in ('系统已经检测到你不掌握','根据你的学习画像','本Agent正在','经过多维分析','显著提升你的理解能力')):raise ModelError('指导含有无依据的学习判断，未展示。')
-    # Audit arithmetic equalities written in prose too, not only declared claims.
-    from .math_tools import compare_equivalence
-    for left,right in re.findall(r'(?<![A-Za-z0-9])([A-Za-z\d()+*/×÷.− \t-]+)\s*=\s*([-A-Za-z\d.]+)',text):
-        # Do not mistake the numeric suffix of a variable equation for arithmetic.
-        if re.search('[A-Za-z]',left+right):continue
-        equal,verified=compare_equivalence(left.strip(),right.strip())
-        if verified and not equal:raise ModelError('指导正文中的数值运算错误，已拦截。')
+    validate_arithmetic_text(text)
+    coverage=need_coverage(data.get('prompt',''),text)
+    if coverage['missing']:raise ModelError('当前明确需求未覆盖：'+'、'.join(coverage['missing'])+'；请先回答该问题再回到原题。')
+    value['needCoverage']=coverage
     value['verification']=verification;value['verification']['scope']='仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。'
     value['sources']=[c for c in data['context']['teachingCases'] if c.get('versionId') in value['usedCaseVersionIds']]
     value['prerequisites']=data['context']['prerequisites'] if data['strategy']=='foundation' else []
@@ -181,3 +178,28 @@ async def run(data,provider,request_id):
         error.metrics={'modelCalls':audit['modelCalls'],'elapsedMs':round((time.perf_counter()-audit['started'])*1000),'historyTurns':len(data.get('history',[]))}
         error.model=getattr(error,'model',audit.get('model',''));error.provider=getattr(error,'provider',audit.get('provider',''));raise
     return state['result'],state['model'],state['provider']
+
+
+def need_coverage(prompt,text):
+    """Narrow topical guards, not a substitute for human teaching review."""
+    required=[];missing=[]
+    if re.search('天平',prompt):
+        required.append('天平两侧与具体变化')
+        if not ('天平' in text and re.search('左|一侧|一边|两盘',text) and re.search('右|另一侧|另一边|两盘',text) and re.search('加|减|放|拿|取|增|移',text)):missing.append(required[-1])
+    if re.search('乘[以]?零|乘[以]?0|乘0',prompt) and re.search('信息|丢失|逆|还原',prompt):
+        required.append('不同输入乘零同结果、不能逆推')
+        if not (re.search('不同|两个数|任意|任何',text) and re.search(r'乘|×|\*',text) and re.search('0|零',text) and re.search('无法|不能|区分|还原|逆推|不知道',text)):missing.append(required[-1])
+    if re.search('除[以]?零|除[以]?0|除数.*零',prompt):
+        required.append('除零与乘法逆运算或唯一结果')
+        if not (re.search('除|÷|/',text) and re.search('0|零',text) and re.search(r'乘|×|\*',text) and re.search('不存在|没有|不可能|不唯一|任意|无法|不能|确定',text)):missing.append(required[-1])
+    return {'required':required,'missing':missing,'scope':'仅检查明确教学主题的必要表征，适切性仍需人工评阅'}
+
+
+def validate_arithmetic_text(text):
+    # Audit arithmetic equalities written in prose too, not only declared claims.
+    from .math_tools import compare_equivalence
+    for left,right in re.findall(r'(?<![A-Za-z0-9])([A-Za-z\d()+*/×÷.− \t-]+)\s*=\s*([-A-Za-z\d.]+)',text):
+        # Do not mistake the numeric suffix of a variable equation for arithmetic.
+        if re.search('[A-Za-z]',left+right):continue
+        equal,verified=compare_equivalence(left.strip(),right.strip())
+        if verified and not equal:raise ModelError('指导正文中的数值运算错误，已拦截。')

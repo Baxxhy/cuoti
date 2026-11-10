@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "role": "teacher",
+      "path": "/api/wrongs",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "path": "/api/wrongs/options",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "path": "/api/wrongs",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "path": "/api/wrongs/options",
+      "status": 200
+    }
+  ]
+}

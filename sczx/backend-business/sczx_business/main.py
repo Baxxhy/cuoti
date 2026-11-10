@@ -126,10 +126,8 @@ def record_json(db: Session, rec: StudentRecord) -> dict:
     attempts = db.scalars(select(Attempt).where(Attempt.record_id == rec.id).order_by(Attempt.created_at)).all()
     helps = db.scalars(select(HelpRecord).where(HelpRecord.record_id == rec.id).order_by(HelpRecord.created_at)).all()
     wrongs = db.scalars(select(WrongQuestion).where(WrongQuestion.record_id == rec.id).order_by(WrongQuestion.created_at)).all()
-    wrong_json = []
-    for item in wrongs:
-        repairs = db.scalars(select(RepairAttempt).where(RepairAttempt.wrong_id == item.id).order_by(RepairAttempt.created_at)).all()
-        wrong_json.append({"id": item.id, "taskId": rec.task_id, "attemptId": item.attempt_id, "prompt": item.prompt, "answer": item.answer, "reason": item.reason, "image": file_url(item.file_id), "createdAt": item.created_at.isoformat(), "repairs": [{"id": r.id, "taskId": rec.task_id, "wrongId": item.id, "answer": r.answer, "reason": r.reason, "correct": r.correct, "verification": r.verification, "createdAt": r.created_at.isoformat()} for r in repairs]})
+    from .remediation import serialize as wrong_json_for
+    wrong_json=[wrong_json_for(db,item) for item in wrongs]
     return {"memberActive":bool(record_task and db.get(ClassMember,(record_task.classroom_id,rec.student_id))),"id": rec.id, "taskId": rec.task_id, "studentId": rec.student_id, "studentName": student.display_name if student else "学生", "observation": rec.observation, "drafts": rec.drafts or {}, "attempts": [{"id": a.id, "taskId": rec.task_id, "question": a.question, "questionId":question_id(a.question), "answer": a.answer, "reason": a.reason, "helped": a.helped, "correct": a.correct, "verification": a.verification, "createdAt": a.created_at.isoformat()} for a in attempts], "helps": [{"id": h.id, "taskId": rec.task_id, "question": h.question, "questionId":question_id(h.question), "kind": h.kind, "message": h.message, "image": file_url(h.file_id), "attemptNumber": h.attempt_number, "createdAt": h.created_at.isoformat()} for h in helps], "repairs": [repair for wrong in wrong_json for repair in wrong["repairs"]], "wrongQuestions": wrong_json, "completed": rec.completed, "submittedAt": rec.submitted_at.isoformat() if rec.submitted_at else None, "feedback": rec.feedback, "feedbackAt": rec.feedback_at.isoformat() if rec.feedback_at else None, "updatedAt": rec.updated_at.isoformat() if rec.updated_at else None}
 
 
@@ -441,7 +439,11 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                     continue
                 if not db.get(ClassMember,(db.get(LearningTask,rec.task_id).classroom_id,user.id)):continue
                 rec.observation = str(record_data.get("observation", ""))
-                rec.drafts = record_data.get("drafts") or {}
+                from .visualization import validate_progress
+                drafts=record_data.get("drafts") or {}
+                try:validate_progress(db.get(LearningTask,rec.task_id),drafts)
+                except (ValueError,TypeError) as error:raise HTTPException(422,str(error)) from None
+                rec.drafts = drafts
                 # Completion is committed by the dedicated submit endpoint.
                 current_attempts = {item.id: item for item in db.scalars(select(Attempt).where(Attempt.record_id == rec.id)).all()}
                 for item in record_data.get("attempts", []):
@@ -479,6 +481,8 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                     if not wrong:
                         wrong = WrongQuestion(id=str(item.get("id") or f"wrong-{uuid.uuid4().hex}"), record_id=rec.id, prompt="")
                         db.add(wrong)
+                    if wrong.id in current_wrongs:continue
+                    wrong.owner_id=user.id
                     wrong.prompt = str(item.get("prompt", ""))
                     wrong.answer = str(item.get("answer", ""))
                     wrong.reason = str(item.get("reason", ""))
@@ -491,9 +495,10 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                         if not repair:
                             repair = RepairAttempt(id=str(repair_data.get("id") or f"repair-{uuid.uuid4().hex}"), wrong_id=wrong.id, answer="")
                             db.add(repair)
+                        if repair.id in old_repairs:continue
                         repair.answer = str(repair_data.get("answer", ""))
                         repair.reason = str(repair_data.get("reason", ""))
-                        repair.verification = assess_repair(repair.answer)
+                        repair.verification = {"status":"unverified","correct":False,"scope":"旧版兼容录入，无明确练习关联"}
                         repair.correct = repair.verification["correct"]
             issue_data = data.get("issue") or {}
             issue = db.get(SupportIssue, issue_data.get("id", ""))
@@ -610,7 +615,9 @@ def add_attempt(task_id: str, body: dict, request: Request, db: DB) -> dict:
     db.add(attempt)
     if verification["status"] == "inconsistent":
         db.flush()
-        db.add(WrongQuestion(id=f"wrong-{uuid.uuid4().hex}", record_id=rec.id, attempt_id=attempt.id, prompt=str(questions[index].get("equation", "")), answer=answer, reason=attempt.reason))
+        source_image=db.scalar(select(HelpRecord.file_id).where(HelpRecord.record_id==rec.id,HelpRecord.question==index,HelpRecord.file_id.is_not(None)).order_by(HelpRecord.created_at.desc()).limit(1))
+        source_image=source_image or file_id_from_url(questions[index].get('imageUrl'))
+        db.add(WrongQuestion(id=f"wrong-{uuid.uuid4().hex}", owner_id=user.id, record_id=rec.id, attempt_id=attempt.id, prompt=str(questions[index].get("equation", "")), answer=answer, reason=attempt.reason,file_id=source_image,details={'version':'dynamic_v1','source':'course','equation':str(questions[index].get('equation','')),'originalPrompt':str(questions[index].get('prompt','')),'knowledgeIds':questions[index].get('knowledgeIds',[]),'cause':'其他或待确认','causeConfirmed':False}))
     db.commit()
     return {"id": attempt.id, "correct": attempt.correct, "verification": verification}
 
@@ -638,14 +645,8 @@ def add_repair(task_id: str, body: dict, request: Request, db: DB) -> dict:
     rec = db.get(StudentRecord, wrong.record_id) if wrong else None
     if not rec or rec.task_id != task_id or rec.student_id != user.id:
         raise HTTPException(404, "没有找到对应错题。")
-    answer = str(body.get("answer", "")).strip()
-    if not answer: raise HTTPException(422, "请填写补救答案。")
-    verification = assess_repair(answer)
-    correct = verification["correct"]
-    item = RepairAttempt(id=f"repair-{uuid.uuid4().hex}", wrong_id=wrong.id, answer=answer, reason=str(body.get("reason", "")), correct=correct, verification=verification)
-    db.add(item)
-    db.commit()
-    return {"id": item.id, "correct": correct, "verification": verification}
+    from .remediation import save_attempt
+    return save_attempt(db,user,wrong,body)
 
 
 @app.post("/api/records/{task_id}/submit")
@@ -721,7 +722,12 @@ def read_file(file_id: str, request: Request, db: DB) -> Response:
         raise HTTPException(404, "图片不存在。")
     allowed = asset.owner_id == user.id
     if not allowed:
-        allowed = db.scalar(select(ClassMember.student_id).join(StudentRecord, StudentRecord.student_id == ClassMember.student_id).join(LearningTask, LearningTask.id == StudentRecord.task_id).where(LearningTask.teacher_id == user.id, StudentRecord.student_id == asset.owner_id).limit(1)) is not None
+        allowed = db.scalar(select(HelpRecord.id).join(StudentRecord,HelpRecord.record_id==StudentRecord.id).join(LearningTask,LearningTask.id==StudentRecord.task_id).where(LearningTask.teacher_id==user.id,HelpRecord.file_id==file_id).limit(1)) is not None
+        if not allowed:
+            allowed = db.scalar(select(WrongQuestion.id).join(StudentRecord,WrongQuestion.record_id==StudentRecord.id).join(LearningTask,LearningTask.id==StudentRecord.task_id).where(LearningTask.teacher_id==user.id,(WrongQuestion.file_id==file_id)|(WrongQuestion.details['cropFileId'].as_string()==file_id)).limit(1)) is not None
+        if not allowed:
+            from .models import ModelJob
+            allowed = db.scalar(select(ModelJob.id).join(StudentRecord,ModelJob.record_id==StudentRecord.id).join(LearningTask,LearningTask.id==StudentRecord.task_id).where(LearningTask.teacher_id==user.id,ModelJob.file_id==file_id).limit(1)) is not None
     if user.role == "admin":
         allowed = True
     if not allowed:
@@ -832,3 +838,6 @@ app.include_router(preparation_router)
 
 from .teaching import router as teaching_router
 app.include_router(teaching_router)
+
+from .remediation import router as remediation_router
+app.include_router(remediation_router)

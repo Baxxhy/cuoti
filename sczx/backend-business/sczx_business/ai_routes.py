@@ -46,9 +46,11 @@ def serialize(job, detail=True):
     exposed.pop("_validation",None)
     exposed.pop("_requestFingerprint",None)
     if 'context' in exposed:exposed['context']=public_context(exposed['context'])
-    result = job.result
+    result = copy.deepcopy(job.result)
+    if result and result.get("variant"):
+        result["variant"].pop("expected",None)
     if result and not detail and "vectors" in result: result = {k:v for k,v in result.items() if k != "vectors"}
-    return {"id":job.id,"capability":job.capability,"lessonId":job.input.get("lessonId"),"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" and job.input.get("strategy")!="try" else None,"question":job.input.get("question"),"blockId":job.input.get("blockId"),"strategy":job.input.get("strategy"),"prompt":job.input.get("prompt"),"parentJobId":job.input.get("parentJobId"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
+    return {"id":job.id,"mode":job.input.get("mode"),"wrongId":job.input.get("wrongId"),"phase":job.input.get("phase"),"capability":job.capability,"lessonId":job.input.get("lessonId"),"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" and job.input.get("strategy")!="try" and (not job.input.get("remediation") or job.input.get("mode")=="guidance") else None,"question":job.input.get("question"),"blockId":job.input.get("blockId"),"strategy":job.input.get("strategy"),"prompt":job.input.get("prompt"),"parentJobId":job.input.get("parentJobId"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
 
 
 @router.get("/capabilities")
@@ -130,13 +132,22 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
     if user.role=="student" and record and record.student_id==user.id:
         from .teaching import ensure_write
         ensure_write(db,user,record.task_id)
-    if payload.capability=='text' and user.role=='student' and record:
+    if payload.capability=='text' and user.role=='student' and record and not payload.data.get('wrongId'):
         from .tutoring import request_fingerprint
         existing=db.scalar(select(ModelJob).where(ModelJob.owner_id==user.id,ModelJob.request_key==payload.requestKey))
         if existing:
             if existing.input.get('_requestFingerprint')!=request_fingerprint(payload):raise HTTPException(409,'同一请求标识对应不同指导内容。')
             return serialize(existing)
-    if payload.capability == "lesson_agent":
+    wrong_item=None
+    if data.get('wrongId'):
+        from .remediation import access
+        wrong_item=access(db,user,str(data['wrongId']),True)
+        if payload.capability!='text' or payload.recordId!=wrong_item.record_id:raise HTTPException(422,'错题指导记录关联不一致。')
+    if wrong_item:
+        pass
+    elif payload.capability=='ocr' and user.role=='student' and data.get('wrongCapture') is True and not payload.recordId:
+        pass
+    elif payload.capability == "lesson_agent":
         if user.role != "teacher" or payload.recordId or payload.fileId:raise HTTPException(403,"请使用教师备课入口。")
         from .prepare_agent import build_input
         data=build_input(db,user,data)
@@ -164,7 +175,7 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
         spec=search_spec(data,db)
         if not spec['query'] and not spec['filters']['knowledgeIds']:raise HTTPException(422,'请填写教学问题或选择知识点。')
         data={**spec,'documents':published_documents(db),'knowledge':knowledge_documents(db)}
-    if payload.capability=="text":
+    if payload.capability=="text" and not wrong_item:
         prompt=data.get("prompt","")
         prompt=prompt.strip() if isinstance(prompt,str) else ""
         if not prompt: raise HTTPException(422,"请填写问题。")
@@ -205,12 +216,15 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
         task=db.get(LearningTask,record.task_id);question=data.get('question');block=data.get('blockId')
         if question is not None and (isinstance(question,bool) or not isinstance(question,int) or not 0<=question<len(task.questions)):raise HTTPException(422,'当前题目不存在。')
         if block and not any(b.get('id')==block for b in task.snapshot.get('blocks',[])):raise HTTPException(422,'当前内容块不存在。')
-    if payload.capability=='text' and record and user.role=='student':
+    if payload.capability=='text' and record and user.role=='student' and not wrong_item:
         from .tutoring import prepare
         data=prepare(db,user,record,payload.data)
         from .tutoring import request_fingerprint
         data["_requestFingerprint"]=request_fingerprint(payload)
         file_id=data.pop('fileId')
+    if wrong_item:
+        from .remediation import prepare
+        data=prepare(db,user,wrong_item,payload.data)
     digest=hashlib.sha256(json.dumps({"cap":payload.capability,"data":data,"record":payload.recordId,"file":file_id},ensure_ascii=False,sort_keys=True).encode()).hexdigest()
     existing=db.scalar(select(ModelJob).where(ModelJob.owner_id==user.id,ModelJob.request_key==payload.requestKey))
     if existing:
@@ -222,7 +236,7 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
     db.add(job)
     try:
         db.flush()
-        if data.get('guidance') and data.get('strategy')!='try':
+        if data.get('guidance') and data.get('strategy')!='try' and record:
             from .tutoring import STRATEGIES
             db.add(HelpRecord(id=help_record_id(job.id),record_id=record.id,question=data.get('question'),kind='指导请求',message=STRATEGIES[data['strategy']]+'：'+data['prompt'],file_id=file_id,attempt_number=len(db.scalars(select(Attempt.id).where(Attempt.record_id==record.id)).all())+1))
         event(db,job,"排队中")
@@ -243,7 +257,7 @@ def detail(job_id: str, request: Request, db=Depends(get_db)):
         current={(d['id'],d.get('versionId')) for d in published_documents(db)}
         result['liveItems']=[item for item in job.result.get('items',[]) if (item['id'],item.get('versionId')) in current]
         result['hasStaleItems']=len(result['liveItems'])!=len(job.result.get('items',[]))
-    result["runs"]=[{"id":run.id,"number":run.number,"status":run.status,"model":run.model,"provider":run.provider,"error":run.error,"result":run.result,"startedAt":run.started_at.isoformat()+"Z","endedAt":run.ended_at.isoformat()+"Z" if run.ended_at else None} for run in db.scalars(select(ModelRun).where(ModelRun.job_id==job.id).order_by(ModelRun.number)).all()]
+    result["runs"]=[{"id":run.id,"number":run.number,"status":run.status,"model":run.model,"provider":run.provider,"error":run.error,"result":({**run.result,"variant":{k:v for k,v in run.result["variant"].items() if k!="expected"}} if run.result and run.result.get("variant") else run.result),"startedAt":run.started_at.isoformat()+"Z","endedAt":run.ended_at.isoformat()+"Z" if run.ended_at else None} for run in db.scalars(select(ModelRun).where(ModelRun.job_id==job.id).order_by(ModelRun.number)).all()]
     return result
 
 

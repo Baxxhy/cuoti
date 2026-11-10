@@ -68,7 +68,9 @@ const verification = computed(
         <summary>学生确认的题目</summary>
         <p class="model-prose">{{ job.recognizedText }}</p>
       </details>
-      <template v-if="job.capability === 'text'">
+      <template v-if="job.mode==='analysis'"><h3>{{result.goal}}</h3><p class="model-prose">建议检查：{{result.cause}}</p><blockquote v-if="result.evidence">{{result.evidence}}</blockquote><p class="model-prose">{{result.uncertainty}}</p><ol class="model-steps"><li v-for="step in result.steps" :key="step">{{step}}</li></ol><p class="model-followup">{{result.checkQuestion}}</p></template>
+      <template v-else-if="job.mode==='variant'"><h3>{{job.phase==='retest'?'独立新题':'补救练习'}}</h3><p class="model-prose">{{result.variant?.prompt}}</p><p class="math-equation">{{result.variant?.equation}}</p><Status>{{result.variantVerification?.status==='verified'?'本题方程与参考答案已核对':'需要核对'}}</Status></template>
+      <template v-else-if="job.capability === 'text'">
         <SpeechReader
           :text="
             [result.title, result.hint, ...(expanded ? result.steps || [] : [])]

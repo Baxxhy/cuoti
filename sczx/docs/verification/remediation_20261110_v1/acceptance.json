@@ -1,0 +1,1000 @@
+[
+  {
+    "id": "A01",
+    "item": "第十二步偏题样例",
+    "executedAt": "2026-11-10T20:57:01.324495+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "q12/q15/q18满足明确需求且经人工确认",
+    "actual": "3/3真实修订输出通过必要主题检查，用户单人认可",
+    "status": "passed",
+    "evidence": [
+      "quality.json",
+      "human-review.json"
+    ]
+  },
+  {
+    "id": "A02",
+    "item": "第十二步回归",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "原指导无阻断",
+    "actual": "原指导与旧业务包含在65项后端及11项浏览器回归，均通过",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "frontend-final.log"
+    ]
+  },
+  {
+    "id": "S01",
+    "item": "独立错题帮入口",
+    "executedAt": "2026-11-10T20:52:57.407979+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "无当前课程也可进入个人列表",
+    "actual": "空个人列表及无task路由正常",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "manual.json"
+    ]
+  },
+  {
+    "id": "S02",
+    "item": "课程错题导入",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "保留来源任务及作答",
+    "actual": "教师新发布任务，错误作答形成错题，保留Attempt/Record",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S03",
+    "item": "手动错题录入",
+    "executedAt": "2026-11-10T20:52:57.407979+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "保存、刷新、重登一致",
+    "actual": "纯文字录入4x=20、原答16；重登仍在，taskId/recordId为空",
+    "status": "passed",
+    "evidence": [
+      "manual.json"
+    ]
+  },
+  {
+    "id": "S04",
+    "item": "题图裁剪",
+    "executedAt": "2026-11-10T20:48:44.201845+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "原图与裁剪图分别保留",
+    "actual": "同图两题矩形裁剪第一题，两个文件ID不同",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "final-output-audit.json"
+    ]
+  },
+  {
+    "id": "S05",
+    "item": "OCR确认",
+    "executedAt": "2026-11-10T20:46:44.133850+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "保存实际人工修订文本",
+    "actual": "真实OCR后修订题目和负号表达式，确认前不可保存",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "faults.json"
+    ]
+  },
+  {
+    "id": "S06",
+    "item": "图片持久化",
+    "executedAt": "2026-11-10T20:48:44.201845+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "刷新重登后文件有效",
+    "actual": "原图SHA与输入PNG一致，裁剪另存，两图重登HTTP200",
+    "status": "passed",
+    "evidence": [
+      "final-output-audit.json",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S07",
+    "item": "错题去重",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "同一请求或来源不重复",
+    "actual": "录题账号级稳定ID重放同一记录；作答关联原Attempt",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S08",
+    "item": "知识点关联",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "使用真实知识点",
+    "actual": "真实知识点ID验证、按知识点筛选及来源关系",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "real-cases.json"
+    ]
+  },
+  {
+    "id": "S09",
+    "item": "错因分析",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "有原始证据且可修订",
+    "actual": "分析证据逐字引用，未知说明保留，分类可由学生确认",
+    "status": "passed",
+    "evidence": [
+      "real-cases.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S10",
+    "item": "分步补救",
+    "executedAt": "2026-11-10T20:43:07.796116+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "针对实际错题",
+    "actual": "加减、乘除、分式、括号获得不同目标与订正步骤",
+    "status": "passed",
+    "evidence": [
+      "real-cases.json",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S11",
+    "item": "多轮补救",
+    "executedAt": "2026-11-10T20:44:27.724862+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "回应进入当前错题上下文",
+    "actual": "学生回应改变后续策略，同题父轮校验，不跨错题",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "real-cases.json",
+      "frontend-final.log"
+    ]
+  },
+  {
+    "id": "S12",
+    "item": "变式题生成",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "保留相关困难并改变数值/答案",
+    "actual": "原题与历史题拒绝，区分加减/乘除/分式/括号，实际样例不同",
+    "status": "passed",
+    "evidence": [
+      "final-output-audit.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S13",
+    "item": "变式题数学核验",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "错误/未知不自动通过",
+    "actual": "错误参考值及不匹配结构拦截，E09缺条件真实任务失败并保留",
+    "status": "passed",
+    "evidence": [
+      "real-cases.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S14",
+    "item": "动态评分",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "按每道实际变式评分",
+    "actual": "实际方程、参考值与学生答案写入不可变快照，正确与错误均测",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S15",
+    "item": "独立复测",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "新题重新作答且帮助不清除",
+    "actual": "三类错题实际浏览器独立提交，帮助测试不能取得独立通过",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S16",
+    "item": "补救进度",
+    "executedAt": "2026-11-10T20:44:31.092891+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "状态依据实际作答",
+    "actual": "练习完成待复测，独立通过/失败/需核对区分；刷新恢复",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json"
+    ]
+  },
+  {
+    "id": "S17",
+    "item": "历史补救兼容",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "保留原结果与适用限制",
+    "actual": "真实旧结构升级后固定正确值未变；legacy_fixed不进入新版通过",
+    "status": "passed",
+    "evidence": [
+      "migration.json",
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S18",
+    "item": "返回原任务",
+    "executedAt": "2026-11-10T20:43:07.796116+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "返回正确来源",
+    "actual": "课程补救后返回原任务，个人错题返回个人列表",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json"
+    ]
+  },
+  {
+    "id": "S19",
+    "item": "天平交互",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "单侧/共同增减、边界与恢复正确",
+    "actual": "单侧显示不等，两侧恢复相等，减法/重置/保存刷新通过",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "mysql-tests.log",
+      "frontend-unit.log"
+    ]
+  },
+  {
+    "id": "S20",
+    "item": "VisualizationSpec",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "严格参数、固定组件",
+    "actual": "拒绝额外脚本字段和未知类型，动作重放核对状态",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "frontend-unit.log"
+    ]
+  },
+  {
+    "id": "S21",
+    "item": "权限隔离",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "学生、教师、个人和历史关系正确",
+    "actual": "跨学生及跨教师拒绝；个人题图不共享；移出只读",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log"
+    ]
+  },
+  {
+    "id": "S22",
+    "item": "异常与恢复",
+    "executedAt": "2026-11-10T20:46:44.133850+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "失败保留输入、可重试",
+    "actual": "实际断网保存/上传、12MB边界；注入失败后真实模型/OCR重试",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "faults.json",
+      "frontend-scope-final.log"
+    ]
+  },
+  {
+    "id": "S23",
+    "item": "浏览器流程",
+    "executedAt": "2026-11-10T20:52:57.407979+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "三条流程真实运行",
+    "actual": "课程全链、题图重登及三类型独立实际作答完成，无脚本异常",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "states.json",
+      "manual.json"
+    ]
+  },
+  {
+    "id": "S24",
+    "item": "桌面视觉",
+    "executedAt": "2026-11-10T20:44:31.092891+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "1440/1920/2560无阻断",
+    "actual": "5种桌面视图15张截图，scrollWidth不大于视口；无空助手栏",
+    "status": "passed",
+    "evidence": [
+      "states.json",
+      "repair-course-1920.png",
+      "repair-photo-final-1920.png"
+    ]
+  },
+  {
+    "id": "S25",
+    "item": "数据库迁移",
+    "executedAt": "2026-11-10T20:56:06.157192+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "旧字段数据不变",
+    "actual": "旧结构隔离升级与主库升级通过，原始字段逐一比对一致",
+    "status": "passed",
+    "evidence": [
+      "migration.json",
+      "main-protection.json"
+    ]
+  },
+  {
+    "id": "S26",
+    "item": "后端与前端测试",
+    "executedAt": "2026-11-10T20:54:44.462269+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "要求检查实际通过",
+    "actual": "65后端、11Chromium、2JS通过",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "frontend-final.log",
+      "frontend-unit.log"
+    ]
+  },
+  {
+    "id": "S27",
+    "item": "第六至十二步回归",
+    "executedAt": "2026-11-10T20:56:05.749197+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "原业务无阻断",
+    "actual": "资料/课程/备课/导出/班级/指导原回归通过，主服务8读接口200",
+    "status": "passed",
+    "evidence": [
+      "mysql-tests.log",
+      "frontend-final.log",
+      "main-smoke.json"
+    ]
+  },
+  {
+    "id": "S28",
+    "item": "真实模型评测",
+    "executedAt": "2026-11-10T20:51:31.725642+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "保存任务/输出/结果/失败",
+    "actual": "22成功补救任务、真实OCR和3项定向指导；未知失败、注入故障分别记录",
+    "status": "passed",
+    "evidence": [
+      "real-cases.json",
+      "quality.json",
+      "browser-flow.json",
+      "faults.json",
+      "final-output-audit.json"
+    ]
+  },
+  {
+    "id": "S29",
+    "item": "生产构建",
+    "executedAt": "2026-11-10T20:51:10.338103+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "当前前端生产构建成功",
+    "actual": "Vite build通过，保留已有大chunk提示",
+    "status": "passed",
+    "evidence": [
+      "build-final.log"
+    ]
+  },
+  {
+    "id": "S30",
+    "item": "完整业务闭环",
+    "executedAt": "2026-11-10T20:52:57.407979+08:00",
+    "environment": {
+      "at": "2026-11-10T12:57:01.348232+00:00",
+      "frontend": "Vue3/JavaScript + Vite, Nova",
+      "backend": "FastAPI + MySQL",
+      "model": "既有Codex CLI gpt-6-luna/low",
+      "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+      "browserApi": "localhost8013",
+      "browserWeb": "localhost5183",
+      "desktopWidths": [
+        1440,
+        1920,
+        2560
+      ],
+      "mainApi": 8000,
+      "mainWeb": 5177,
+      "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+    },
+    "testData": "隔离自编课程/账号；E01—E10、q12/q15/q18。具体ID、输入和原始结果见关联证据。",
+    "method": "自动化/实际浏览器/真实模型按证据标识区分；A01另含用户单人复核",
+    "expected": "录题到复测并回原任务",
+    "actual": "三条业务流程的关联题目、实际作答、核验和教师读取均有证据",
+    "status": "passed",
+    "evidence": [
+      "browser-flow.json",
+      "manual.json",
+      "final-output-audit.json"
+    ]
+  }
+]

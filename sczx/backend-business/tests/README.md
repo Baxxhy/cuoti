@@ -19,3 +19,5 @@ Word专项新增4项独立导出/文本规则测试与2项MySQL保护测试，�
 第十一步当前完整42项：原31项，加10项班级/任务/消息MySQL场景及1项日期边界单元。新增并发补发与读取去重、加入/移出/重入、私人安排收件、截止时区、提交重试首时间、旧说明兼容。前端当前7项Chromium及1项JS。真实多用户浏览器种子使用`PYTHONPATH=backend-business python backend-business/tests/seed_teaching_acceptance.py --output /tmp/sczx-step11/browser-private.json`，必须另用全新sczx_test_*库；凭据只写临时私有文件。[验收与复现](../../docs/verification/teaching_20261110_v1/README.md)。
 
 第十二步当前完整54项：原42项加10项指导MySQL场景和2项完成规则/上下文边界单元。覆盖移出重试及执行写回、父轮/题图隔离、旧客户端策略约束、幂等重放、数学错误/泄露阻断和真实作答门槛。前端10项Chromium及1项JS。[第十二步证据](../../docs/verification/tutoring_20261110_v1/README.md)区分受控提供者、真实Codex、实际故障/注入故障及单人评阅。
+
+第十三步新增独立错题帮、实际变式判分、运算类型匹配、旧固定记录保护、原图/裁剪与OCR确认、教师核对及并发重放检查。完整65项；前端11项Chromium、2项JS及构建通过。旧结构升级与真实模型/浏览器证据独立保存在[第十三步验收](../../docs/verification/remediation_20261110_v1/README.md)。Python算法独立目录与make verify不属于当前工程，继续使用本文现有命令。

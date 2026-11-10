@@ -1,115 +1,151 @@
 <script setup>
-import { computed, inject, ref } from "vue";
-import { useLearning } from "@/store.js";
-
-import TaskEmpty from "@/components/TaskEmpty.vue";
-import { ArrowUpRight, BookOpen, Check, Plus, Upload } from "lucide-vue-next";
-const store = useLearning(),
-  notify = inject("notify");
-const filter = ref("all"),
-  open = ref(false),
-  text = ref(""),
-  image = ref("");
-const isRepaired = (id) =>
-  store.record.repairs.some((item) => item.wrongId === id && item.correct);
-const filtered = computed(() =>
-  store.record.wrongQuestions.filter(
-    (item) =>
-      filter.value === "all" ||
-      (filter.value === "done" ? isRepaired(item.id) : !isRepaired(item.id)),
-  ),
-);
-function upload(event) {
-  const file = event.target.files?.[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    image.value = String(reader.result);
-  };
-  reader.onerror = () => notify("图片读取失败，请重新选择");
-  reader.readAsDataURL(file);
-}
-function record() {
+import { computed, ref, onMounted } from "vue";
+import { Plus, ArrowUpRight, Search, NotebookPen } from "lucide-vue-next";
+import { wrongApi, wrongStatuses } from "@/services/wrongs.js";
+import WrongCapture from "@/components/WrongCapture.vue";
+import { navigate } from "@/lib/navigation.js";
+const items = ref([]),
+  options = ref({ knowledge: [], reasons: [] }),
+  status = ref("all"),
+  subject = ref(""),
+  knowledge = ref(""),
+  cause = ref(""),
+  search = ref(""),
+  loading = ref(true),
+  error = ref(""),
+  open = ref(false);
+async function load() {
+  loading.value = true;
+  error.value = "";
   try {
-    store.addWrong(text.value, image.value);
-    open.value = false;
-    notify("题目和原图已保存到当前任务");
-  } catch (error) {
-    notify(error.message);
+    [items.value, options.value] = await Promise.all([
+      wrongApi.list(),
+      wrongApi.options(),
+    ]);
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
   }
 }
+const filtered = computed(() =>
+  items.value.filter(
+    (i) =>
+      (status.value === "all" ||
+        (status.value === "done"
+          ? i.status === "retest_passed"
+          : i.status !== "retest_passed")) &&
+      (!subject.value || (i.details.subject || "数学") === subject.value) &&
+      (!knowledge.value || i.details.knowledgeIds?.includes(knowledge.value)) &&
+      (!cause.value || i.details.cause === cause.value) &&
+      (!search.value || (i.prompt + i.answer).includes(search.value)),
+  ),
+);
+const knowledgeName = (i) =>
+  options.value.knowledge
+    .filter((p) => i.details.knowledgeIds?.includes(p.id))
+    .map((p) => p.name)
+    .join(" · ");
+function saved(item) {
+  open.value = false;
+  load();
+  navigate("repair?wrong=" + item.id);
+}
+onMounted(load);
 </script>
 <template>
-  <template v-if="store.task"
-    ><PageHeading title="错题帮"
-      ><Button
-        @click="
-          text = '';
-          image = '';
-          open = true;
-        "
-        ><Plus />录入一道题</Button
-      ></PageHeading
-    >
-    <div class="wrong-summary">
-      <BookOpen :size="27" />
-      <div>
-        <p>{{ store.record.wrongQuestions.length }} 道错题</p>
-      </div>
-      <Status
-        >{{
-          store.record.repairs.filter((item) => item.correct).length
-        }}
-        次补救完成</Status
-      >
-    </div>
+  <PageHeading title="错题帮"
+    ><Button @click="open = true"><Plus />录入错题</Button></PageHeading
+  >
+  <div class="wrong-workspace-toolbar">
     <AppTabs
-      v-model="filter"
+      v-model="status"
       :items="[
-        { value: 'all', label: '全部错题' },
+        { value: 'all', label: `全部 ${items.length}` },
         { value: 'pending', label: '待补救' },
-        { value: 'done', label: '已订正' },
-      ]" />
-    <div v-if="filtered.length" class="wrong-layout">
-      <Surface v-for="item in filtered" :key="item.id" class="wrong-question"
-        ><div class="question-meta">
-          <Status>等式性质</Status><span>来自当前任务 · 演示</span>
+        { value: 'done', label: '复测通过' },
+      ]"
+    />
+    <div class="wrong-filters">
+      <Input
+        v-model="search"
+        aria-label="搜索错题"
+        placeholder="搜索题目"
+      /><select v-model="subject" aria-label="筛选学科">
+        <option value="">全部学科</option>
+        <option
+          v-for="s in [
+            ...new Set(items.map((i) => i.details.subject || '数学')),
+          ]"
+          :key="s"
+        >
+          {{ s }}
+        </option></select
+      ><select v-model="knowledge" aria-label="筛选知识点">
+        <option value="">全部知识点</option>
+        <option v-for="p in options.knowledge" :key="p.id" :value="p.id">
+          {{ p.name }}
+        </option></select
+      ><select v-model="cause" aria-label="筛选错因">
+        <option value="">全部错因</option>
+        <option v-for="r in options.reasons" :key="r">{{ r }}</option>
+      </select>
+    </div>
+  </div>
+  <p v-if="loading" role="status">正在读取错题…</p>
+  <Surface v-else-if="error"
+    ><p role="alert">{{ error }}</p>
+    <Button @click="load">重新读取</Button></Surface
+  >
+  <div v-else-if="filtered.length" class="wrong-library">
+    <button
+      v-for="item in filtered"
+      :key="item.id"
+      class="wrong-library-row"
+      @click="navigate('repair?wrong=' + item.id)"
+    >
+      <div class="wrong-row-art">
+        <img v-if="item.image" :src="item.image" alt="原题" /><NotebookPen
+          v-else
+        />
+      </div>
+      <div class="wrong-row-main">
+        <div class="question-meta">
+          <span>{{ item.details.subject || "数学" }}</span
+          ><span>{{
+            knowledgeName(item) ||
+            { course: "课程作答", manual: "个人录入", image: "题图识别" }[
+              item.source
+            ]
+          }}</span>
         </div>
         <h2>{{ item.prompt }}</h2>
-        <img
-          v-if="item.image"
-          class="uploaded-image"
-          :src="item.image"
-          alt="本地选择的原始题图" />
-        <div class="original-attempt">
-          <span>原来的作答</span>
-          <div class="math-equation">{{ item.answer || "手动录入" }}</div>
-          <p v-if="item.reason" class="preserve-lines">{{ item.reason }}</p>
-        </div>
-        <div class="paper-actions">
-          <RouteButton :route="`repair?wrong=${item.id}&task=${store.task.id}`"
-            >开始补救</RouteButton
-          ><RouteButton route="result" secondary
-            >查看来源任务<ArrowUpRight
-          /></RouteButton></div
-      ></Surface>
-    </div>
-    <Surface v-else
-      ><div class="empty-state"><h3>这个分类还没有题目</h3></div></Surface
-    ><AppDialog
-      v-model:open="open"
-      title="录入题目"
-      content-class="upload-dialog"
-      ><label class="upload-dropzone"
-        ><Upload :size="26" /><strong>点击选择题图</strong
-        ><input type="file" accept="image/*" @change="upload" /></label
-      ><img
-        v-if="image"
-        class="upload-thumbnail"
-        :src="image"
-        alt="已选择的原始题图" /><label class="field-label" for="wrong-question"
-        >题目内容</label
-      ><Textarea id="wrong-question" v-model="text" /><Button @click="record"
-        >确认录入<Check /></Button></AppDialog></template
-  ><TaskEmpty v-else />
+        <p class="wrong-original">
+          原作答 <strong>{{ item.answer || "未填写" }}</strong
+          ><span v-if="item.details.causeConfirmed">{{
+            item.details.cause
+          }}</span>
+        </p>
+      </div>
+      <div class="wrong-row-end">
+        <Status :tone="item.status === 'retest_passed' ? 'green' : 'amber'">{{
+          wrongStatuses[item.status]
+        }}</Status
+        ><ArrowUpRight :size="19" />
+      </div>
+    </button>
+  </div>
+  <Surface v-else
+    ><div class="empty-state">
+      <NotebookPen :size="32" />
+      <h2>{{ items.length ? "没有符合条件的错题" : "记录第一道错题" }}</h2>
+      <Button v-if="!items.length" @click="open = true">录入错题</Button>
+    </div></Surface
+  >
+  <AppDialog
+    v-model:open="open"
+    title="录入错题"
+    content-class="wrong-capture-dialog"
+    ><WrongCapture v-if="open" :options="options" @saved="saved"
+  /></AppDialog>
 </template>

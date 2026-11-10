@@ -2,8 +2,6 @@ const taskPages = new Set([
   "learn",
   "check",
   "result",
-  "wrong",
-  "repair",
   "insights",
 ]);
 export function navigate(destination) {

@@ -6,12 +6,16 @@ import { useLearning } from "@/store.js";
 import { questions } from "@/data.js";
 import SupplementPanel from "@/components/SupplementPanel.vue";
 import TaskEmpty from "@/components/TaskEmpty.vue";
+import { wrongApi } from "@/services/wrongs.js";
 import ModelHistory from "@/components/ModelHistory.vue";
 const store = useLearning(),
   notify = inject("notify"),
   studentOpen = ref(false),
   draft = ref(store.record?.feedback || ""),
   error = ref("");
+async function reviewRepair(repair,correct){
+ try{await wrongApi.review(repair.wrongId,{attemptId:repair.id,correct,note:'教师在学情页面人工核对'});await store.refreshRecord();notify('人工确认已保存，程序核验原结果保留。')}catch(e){notify(e.message)}
+}
 const independent = computed(
   () =>
     store.record?.attempts.filter(
@@ -220,8 +224,8 @@ function openStudent(id) {
           <small>{{ new Date(help.createdAt).toLocaleString("zh-CN") }}</small>
         </section>
         <section v-for="repair in store.record?.repairs || []" :key="repair.id">
-          <h3>补救变式 z + 2 = 9 → {{ repair.answer }}</h3>
-          <p>{{ repair.reason }}</p>
+          <h3>{{ repair.details?.equation || '历史固定示例 z + 2 = 9' }} → {{ repair.answer }}</h3>
+          <p>{{ repair.reason }}</p><p v-if="repair.details?.version==='dynamic_v1'">{{repair.details.phase==='retest'?'独立新题':'补救练习'}}{{repair.details.helped?' · 使用过帮助':''}}</p><p v-else>历史固定示例，不能证明原题已掌握。</p><div v-if="repair.verification?.status==='unverified'" class="paper-actions"><Button variant="outline" @click="reviewRepair(repair,true)">人工确认正确</Button><Button variant="outline" @click="reviewRepair(repair,false)">人工确认有误</Button></div><p v-if="repair.details?.teacherReview">教师核对：{{repair.details.teacherReview.correct?'正确':'有误'}}</p>
           <Status :tone="repair.correct ? 'green' : 'amber'">{{
             repair.verification?.status === "unverified"
               ? "需核对"

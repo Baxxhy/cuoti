@@ -1,0 +1,21 @@
+{
+  "activeJobs": 0,
+  "allExistingValuesUnchanged": true,
+  "oldRows": {
+    "accounts": 12,
+    "attempts": 35,
+    "classrooms": 6,
+    "file_assets": 31,
+    "help_records": 21,
+    "learning_tasks": 16,
+    "lesson_drafts": 6,
+    "repair_attempts": 6,
+    "student_records": 16,
+    "teaching_cases": 9,
+    "wrong_questions": 7
+  },
+  "beforeDigest": "7a96018b93753ccb4e3dc4f6e330933b2115b659e3fa252e981ee9e254cafce5",
+  "afterProjectionDigest": "7a96018b93753ccb4e3dc4f6e330933b2115b659e3fa252e981ee9e254cafce5",
+  "migration": "0011_wrong_remediation",
+  "backup": "本机/tmp私有SQL备份，不上传原始业务数据"
+}

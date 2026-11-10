@@ -71,7 +71,10 @@ def content_errors(db,data):
         if b.get('type') in ('practice','check') and not b.get('questionIds'):errors.append(f'内容块{index+1}：请选择题目')
         if b.get('type')=='activity':
             a=b.get('activity') or {}
-            if a.get('type')!='balance' or not all(isinstance(a.get(k),(int,float)) for k in ('base','step','max')) or a.get('base',-1)<0 or a.get('step',0)<=0 or not 1<=a.get('max',0)<=100:errors.append(f'内容块{index+1}：天平配置无效，使用非负基量与正步长')
+            try:
+                from .visualization import specification
+                specification(a)
+            except (ValueError,TypeError):errors.append(f'内容块{index+1}：互动参数不符合VisualizationSpec')
     if not checks:errors.append('questions：至少需要一道独立检查题')
     if data.get('caseId'):
         if not current_case(db,data['caseId'],data.get('caseVersionId')):errors.append('caseId：案例已撤回或版本不存在')

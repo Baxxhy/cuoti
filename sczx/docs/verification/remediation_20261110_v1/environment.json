@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-10T12:57:01.348232+00:00",
+  "frontend": "Vue3/JavaScript + Vite, Nova",
+  "backend": "FastAPI + MySQL",
+  "model": "既有Codex CLI gpt-6-luna/low",
+  "isolatedDatabase": "sczx_test_remediation_d2d0a6ef",
+  "browserApi": "localhost8013",
+  "browserWeb": "localhost5183",
+  "desktopWidths": [
+    1440,
+    1920,
+    2560
+  ],
+  "mainApi": 8000,
+  "mainWeb": 5177,
+  "fixture": "项目自编账号/课程/错题与程序绘制PNG，无真实课堂效果主张"
+}

@@ -1,0 +1,71 @@
+{
+  "startedAt": "2026-11-10T12:45:45.195Z",
+  "checks": [
+    {
+      "name": "controlled-model-failure-real-retry",
+      "jobId": "job-d576b2bb8d5c4c9b84057caa9cf8a168",
+      "model": "gpt-6-luna",
+      "result": {
+        "goal": "理解解 x-3=5 时，如何用等式性质消去左边的 -3。",
+        "cause": "符号处理错误",
+        "steps": [
+          "提示：要消去左边的 -3，想一想应该在等式两边同时加上还是减去 3。",
+          "在等式两边同时加 3，左边的 -3 与 +3 抵消，右边变成 5+3。",
+          "因此 x=8。原答案“2”与原作答理由“我把右边5减去3”一致地体现了把右边减 3 的做法；这里应保持等式两边同时进行相同的运算。"
+        ],
+        "evidence": "我把右边5减去3",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [
+          {
+            "left": "x-3=5",
+            "right": "x=8"
+          }
+        ],
+        "uncertainty": "没有看到完整解题过程；错因是根据原答案和原作答理由提出的建议，不能据此断定学生对等式性质的整体掌握情况。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "x-3=5",
+              "right": "x=8",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "checkQuestion": "从 x-3=5 出发，怎样在等式两边同时加 3，才能保持等式成立？"
+      },
+      "scope": "故障为注入，恢复为真实Codex调用"
+    },
+    {
+      "name": "controlled-ocr-failure-real-retry",
+      "jobId": "job-24e3966a89084eee9922114a2cc5fba0",
+      "fileId": "file-33bf1568f4d24608931e4b9e54116472",
+      "text": "1.",
+      "equation": "x - 3 = 5"
+    },
+    {
+      "name": "ocr-success-still-requires-human-confirmation",
+      "checked": false,
+      "disabled": true
+    },
+    {
+      "name": "actual-offline-upload-visible-and-input-retained"
+    },
+    {
+      "name": "actual-server-upload-size-boundary",
+      "status": 413,
+      "body": {
+        "detail": "文件不能超过 12 MB。"
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

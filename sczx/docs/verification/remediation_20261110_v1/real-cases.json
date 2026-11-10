@@ -1,0 +1,2220 @@
+[
+  {
+    "id": "E01",
+    "wrong": {
+      "id": "wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+      "taskId": null,
+      "recordId": null,
+      "attemptId": null,
+      "source": "manual",
+      "prompt": "x-3=5",
+      "answer": "2",
+      "reason": "我把右边5减去3",
+      "image": "",
+      "details": {
+        "version": "dynamic_v1",
+        "source": "manual",
+        "subject": "数学",
+        "equation": "x-3=5",
+        "cropFileId": null,
+        "ocrJobId": null,
+        "confirmedText": "",
+        "knowledgeIds": [
+          "browser-kp"
+        ],
+        "cause": "其他或待确认",
+        "causeConfirmed": false
+      },
+      "status": "pending",
+      "readOnly": false,
+      "taskTitle": null,
+      "repairs": [],
+      "createdAt": "2026-11-10T20:19:23"
+    },
+    "analysis": {
+      "id": "job-1d594fa7fb9e4a76a99f0c08ee53ecf3",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "找出如何在保持等式成立的同时消去左边的−3。",
+        "cause": "概念理解错误",
+        "steps": [
+          "提示：想一想，给左边的x−3加上3后，右边也要做什么，才能保持等式成立？",
+          "解释：等式两边同时加3，左边的−3与+3抵消，右边变为5+3，因此x=8。",
+          "变式题：equation：x-4=7；prompt：解方程x-4=7。expected：11。rationale：与原题一样，需在等式两边同时加上减去的数，以消去左边的减数。"
+        ],
+        "evidence": "我把右边5减去3",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [
+          {
+            "left": "x-3=5",
+            "right": "x=8"
+          }
+        ],
+        "uncertainty": "原作答和理由显示了所用运算，但没有更多解题过程可供判断其具体困难。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "x-3=5",
+              "right": "x=8",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "checkQuestion": "要消去左边的−3，等式两边应同时加几？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:19:24Z",
+      "updatedAt": "2026-11-10T12:19:49Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "x-3=5",
+            "equation": "x-3=5"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "2",
+          "originalReason": "我把右边5减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-f58c8da6c78246dea60ad2cd0c4ee962",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "找出如何在保持等式成立的同时消去左边的−3。",
+            "cause": "概念理解错误",
+            "steps": [
+              "提示：想一想，给左边的x−3加上3后，右边也要做什么，才能保持等式成立？",
+              "解释：等式两边同时加3，左边的−3与+3抵消，右边变为5+3，因此x=8。",
+              "变式题：equation：x-4=7；prompt：解方程x-4=7。expected：11。rationale：与原题一样，需在等式两边同时加上减去的数，以消去左边的减数。"
+            ],
+            "evidence": "我把右边5减去3",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [
+              {
+                "left": "x-3=5",
+                "right": "x=8"
+              }
+            ],
+            "uncertainty": "原作答和理由显示了所用运算，但没有更多解题过程可供判断其具体困难。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "x-3=5",
+                  "right": "x=8",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "checkQuestion": "要消去左边的−3，等式两边应同时加几？"
+          },
+          "startedAt": "2026-11-10T12:19:24Z",
+          "endedAt": "2026-11-10T12:19:49Z"
+        }
+      ]
+    },
+    "variant": {
+      "id": "job-b42b921e862f4c4cb0521056655b5af3",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "先看原题：你写的答案是 2，理由是“我把右边5减去3”。要让 x 单独留在左边，想一想应对等式两边同时做什么运算，再代回原题检查。接着独立解新题：x-4=7。",
+          "equation": "x-4=7",
+          "rationale": "新题保留了原题“未知数减一个数等于一个数”的结构，练习用等式性质消去减数；原题中应在等式两边都加 3。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+          "modelCalls": 1
+        },
+        "mathClaims": [
+          {
+            "left": "8-3",
+            "right": "5"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "8-3",
+              "right": "5",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "x-4=7"
+        }
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:19:49Z",
+      "updatedAt": "2026-11-10T12:20:07Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "x-3=5",
+            "equation": "x-3=5"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "2",
+          "originalReason": "我把右边5减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-a7fed12ff7554c438493c8a43e4c7f9b",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "先看原题：你写的答案是 2，理由是“我把右边5减去3”。要让 x 单独留在左边，想一想应对等式两边同时做什么运算，再代回原题检查。接着独立解新题：x-4=7。",
+              "equation": "x-4=7",
+              "expected": "11",
+              "rationale": "新题保留了原题“未知数减一个数等于一个数”的结构，练习用等式性质消去减数；原题中应在等式两边都加 3。"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+              "modelCalls": 1
+            },
+            "mathClaims": [
+              {
+                "left": "8-3",
+                "right": "5"
+              }
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "8-3",
+                  "right": "5",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "variantVerification": {
+              "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+              "status": "verified",
+              "equation": "x-4=7"
+            }
+          },
+          "startedAt": "2026-11-10T12:19:50Z",
+          "endedAt": "2026-11-10T12:20:07Z"
+        }
+      ]
+    },
+    "attempt": {
+      "id": "repair-7dff9aa4c5e44fd79638e8cad5aba5f0",
+      "wrongId": "wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+      "answer": "11",
+      "reason": "隔离验收输入；参考答案由程序求解",
+      "correct": true,
+      "verification": {
+        "status": "verified_correct",
+        "correct": true,
+        "scope": "实际变式题的单变量单解实数方程与答案等价性"
+      },
+      "details": {
+        "version": "dynamic_v1",
+        "planJobId": "job-1d594fa7fb9e4a76a99f0c08ee53ecf3",
+        "variantJobId": "job-b42b921e862f4c4cb0521056655b5af3",
+        "variantId": "job-b42b921e862f4c4cb0521056655b5af3",
+        "equation": "x-4=7",
+        "expected": "11",
+        "phase": "practice",
+        "helped": false,
+        "requestKey": "319fe9515a054306a115d3533db1e6c5",
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        }
+      },
+      "createdAt": "2026-11-10T20:20:07"
+    },
+    "followup": {
+      "id": "job-7615a161cb004402a8ab1b74bbc011db",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "foundation",
+      "prompt": "我还是不明白，为什么减3后还要加回去？",
+      "parentJobId": "job-1d594fa7fb9e4a76a99f0c08ee53ecf3",
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "用相反的运算检查：什么运算能抵消“减3”？",
+        "steps": [
+          "减3表示从一个数中拿走3。",
+          "加回3能抵消这次减法；等式两边都这样做，原来的相等关系才保持。",
+          "这一步是为了消去左边的−3，不是要改变原来的数量关系。"
+        ],
+        "title": "为什么要加回去",
+        "sources": [],
+        "question": "减去3后，再加几才能回到原来的数？",
+        "strategy": "foundation",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 20444,
+          "modelCalls": 1,
+          "contextChars": 527,
+          "historyTurns": 1
+        },
+        "mathClaims": [
+          {
+            "left": "(a-3)+3",
+            "right": "a"
+          }
+        ],
+        "needCoverage": {
+          "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+          "missing": [],
+          "required": []
+        },
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [
+            {
+              "left": "(a-3)+3",
+              "right": "a",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "prerequisiteId": "browser-base",
+        "representation": "numeric",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:20:07Z",
+      "updatedAt": "2026-11-10T12:20:28Z",
+      "input": {
+        "mode": "guidance",
+        "phase": "practice",
+        "prompt": "我还是不明白，为什么减3后还要加回去？",
+        "context": {
+          "question": {
+            "prompt": "x-3=5",
+            "equation": "x-3=5"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "2",
+          "originalReason": "我把右边5减去3"
+        },
+        "history": [
+          {
+            "hint": "找出如何在保持等式成立的同时消去左边的−3。",
+            "student": "请依据本题和我的原作答提供针对性补救。",
+            "question": "要消去左边的−3，等式两边应同时加几？",
+            "strategy": "hint",
+            "representation": "question"
+          }
+        ],
+        "wrongId": "wrong-ac2351b94eb98d6d169dddda8b4f6ebe",
+        "guidance": true,
+        "strategy": "foundation",
+        "parentJobId": "job-1d594fa7fb9e4a76a99f0c08ee53ecf3",
+        "remediation": true,
+        "previousEquations": [
+          "x-4=7"
+        ]
+      },
+      "runs": [
+        {
+          "id": "run-22242075a406453f811f8a6f93c4879d",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "用相反的运算检查：什么运算能抵消“减3”？",
+            "steps": [
+              "减3表示从一个数中拿走3。",
+              "加回3能抵消这次减法；等式两边都这样做，原来的相等关系才保持。",
+              "这一步是为了消去左边的−3，不是要改变原来的数量关系。"
+            ],
+            "title": "为什么要加回去",
+            "sources": [],
+            "question": "减去3后，再加几才能回到原来的数？",
+            "strategy": "foundation",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 20444,
+              "modelCalls": 1,
+              "contextChars": 527,
+              "historyTurns": 1
+            },
+            "mathClaims": [
+              {
+                "left": "(a-3)+3",
+                "right": "a"
+              }
+            ],
+            "needCoverage": {
+              "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+              "missing": [],
+              "required": []
+            },
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [
+                {
+                  "left": "(a-3)+3",
+                  "right": "a",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "prerequisites": [
+              {
+                "id": "browser-base",
+                "name": "相等关系与基本运算"
+              }
+            ],
+            "prerequisiteId": "browser-base",
+            "representation": "numeric",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-10T12:20:07Z",
+          "endedAt": "2026-11-10T12:20:28Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "E02",
+    "wrong": {
+      "id": "wrong-69c604a08a43978a600baee48b0f1aff",
+      "taskId": null,
+      "recordId": null,
+      "attemptId": null,
+      "source": "manual",
+      "prompt": "3x=18",
+      "answer": "15",
+      "reason": "我把18减去3",
+      "image": "",
+      "details": {
+        "version": "dynamic_v1",
+        "source": "manual",
+        "subject": "数学",
+        "equation": "3x=18",
+        "cropFileId": null,
+        "ocrJobId": null,
+        "confirmedText": "",
+        "knowledgeIds": [
+          "browser-kp"
+        ],
+        "cause": "其他或待确认",
+        "causeConfirmed": false
+      },
+      "status": "pending",
+      "readOnly": false,
+      "taskTitle": null,
+      "repairs": [],
+      "createdAt": "2026-11-10T20:20:27"
+    },
+    "analysis": {
+      "id": "job-4902b788387149388d6af51fc7830e97",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "理解如何在3x=18中单独求出x，并判断代入后是否仍成立。",
+        "cause": "运算步骤错误",
+        "steps": [
+          "提示：3x表示3乘以x。想想要用什么运算，才能抵消乘以3？",
+          "等式两边同时除以3：左边的3x÷3化简为x，右边的18÷3化简为6。因为除数3不为0，这样变形有效。",
+          "所以x=6。检验：把6代入原式，3×6=18。"
+        ],
+        "evidence": "我把18减去3",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-69c604a08a43978a600baee48b0f1aff",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [
+          {
+            "left": "3x=18",
+            "right": "x=6"
+          },
+          {
+            "left": "3×6",
+            "right": "18"
+          }
+        ],
+        "uncertainty": "原作答和理由显示你尝试用减法处理，但不足以确定你为什么选择减法。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "3x=18",
+              "right": "x=6",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            },
+            {
+              "left": "3×6",
+              "right": "18",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "checkQuestion": "要在3x=18中单独求出x，应对等式两边同时做什么运算？为什么？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:20:28Z",
+      "updatedAt": "2026-11-10T12:20:52Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "3x=18",
+            "equation": "3x=18"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "15",
+          "originalReason": "我把18减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-69c604a08a43978a600baee48b0f1aff",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-27d66fb984f74982a01a7438d65a4ed6",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "理解如何在3x=18中单独求出x，并判断代入后是否仍成立。",
+            "cause": "运算步骤错误",
+            "steps": [
+              "提示：3x表示3乘以x。想想要用什么运算，才能抵消乘以3？",
+              "等式两边同时除以3：左边的3x÷3化简为x，右边的18÷3化简为6。因为除数3不为0，这样变形有效。",
+              "所以x=6。检验：把6代入原式，3×6=18。"
+            ],
+            "evidence": "我把18减去3",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-69c604a08a43978a600baee48b0f1aff",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [
+              {
+                "left": "3x=18",
+                "right": "x=6"
+              },
+              {
+                "left": "3×6",
+                "right": "18"
+              }
+            ],
+            "uncertainty": "原作答和理由显示你尝试用减法处理，但不足以确定你为什么选择减法。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "3x=18",
+                  "right": "x=6",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                },
+                {
+                  "left": "3×6",
+                  "right": "18",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "checkQuestion": "要在3x=18中单独求出x，应对等式两边同时做什么运算？为什么？"
+          },
+          "startedAt": "2026-11-10T12:20:28Z",
+          "endedAt": "2026-11-10T12:20:52Z"
+        }
+      ]
+    },
+    "variant": {
+      "id": "job-056c6733eeed4502b5dd4c6662b77f55",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "提示：想一想，4乘什么数等于28？可以在等式两边同时除以4。先写出两边同时除以4后的等式，再求x。",
+          "equation": "4x=28",
+          "rationale": "原题是3x=18，要求出被乘数x；你写道“我把18减去3”，说明这次可以重点练习用两边同时除以系数来求x。新题保持相同结构，但系数、右边的数和答案都不同。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-69c604a08a43978a600baee48b0f1aff",
+          "modelCalls": 1
+        },
+        "mathClaims": [
+          {
+            "left": "3x=18",
+            "right": "x=6"
+          },
+          {
+            "left": "3×6",
+            "right": "18"
+          },
+          {
+            "left": "4x=28",
+            "right": "x=7"
+          },
+          {
+            "left": "4×7",
+            "right": "28"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "3x=18",
+              "right": "x=6",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            },
+            {
+              "left": "3×6",
+              "right": "18",
+              "method": "表达式等价",
+              "status": "verified"
+            },
+            {
+              "left": "4x=28",
+              "right": "x=7",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            },
+            {
+              "left": "4×7",
+              "right": "28",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "4x=28"
+        }
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:20:53Z",
+      "updatedAt": "2026-11-10T12:21:14Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "3x=18",
+            "equation": "3x=18"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "15",
+          "originalReason": "我把18减去3"
+        },
+        "history": [],
+        "wrongId": "wrong-69c604a08a43978a600baee48b0f1aff",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-3086ae12c17440cb815685dc00b71dba",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "提示：想一想，4乘什么数等于28？可以在等式两边同时除以4。先写出两边同时除以4后的等式，再求x。",
+              "equation": "4x=28",
+              "expected": "7",
+              "rationale": "原题是3x=18，要求出被乘数x；你写道“我把18减去3”，说明这次可以重点练习用两边同时除以系数来求x。新题保持相同结构，但系数、右边的数和答案都不同。"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-69c604a08a43978a600baee48b0f1aff",
+              "modelCalls": 1
+            },
+            "mathClaims": [
+              {
+                "left": "3x=18",
+                "right": "x=6"
+              },
+              {
+                "left": "3×6",
+                "right": "18"
+              },
+              {
+                "left": "4x=28",
+                "right": "x=7"
+              },
+              {
+                "left": "4×7",
+                "right": "28"
+              }
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "3x=18",
+                  "right": "x=6",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                },
+                {
+                  "left": "3×6",
+                  "right": "18",
+                  "method": "表达式等价",
+                  "status": "verified"
+                },
+                {
+                  "left": "4x=28",
+                  "right": "x=7",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                },
+                {
+                  "left": "4×7",
+                  "right": "28",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "variantVerification": {
+              "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+              "status": "verified",
+              "equation": "4x=28"
+            }
+          },
+          "startedAt": "2026-11-10T12:20:53Z",
+          "endedAt": "2026-11-10T12:21:14Z"
+        }
+      ]
+    },
+    "attempt": {
+      "id": "repair-7c4cd61e986d49f390ba1db648e804c4",
+      "wrongId": "wrong-69c604a08a43978a600baee48b0f1aff",
+      "answer": "7",
+      "reason": "隔离验收输入；参考答案由程序求解",
+      "correct": true,
+      "verification": {
+        "status": "verified_correct",
+        "correct": true,
+        "scope": "实际变式题的单变量单解实数方程与答案等价性"
+      },
+      "details": {
+        "version": "dynamic_v1",
+        "planJobId": "job-4902b788387149388d6af51fc7830e97",
+        "variantJobId": "job-056c6733eeed4502b5dd4c6662b77f55",
+        "variantId": "job-056c6733eeed4502b5dd4c6662b77f55",
+        "equation": "4x=28",
+        "expected": "7",
+        "phase": "practice",
+        "helped": false,
+        "requestKey": "f57ceffa6e924b8aa2f128e773862c61",
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        }
+      },
+      "createdAt": "2026-11-10T20:21:13"
+    }
+  },
+  {
+    "id": "E03",
+    "wrong": {
+      "id": "wrong-a9d92f8953fc2027eecc4470cb219969",
+      "taskId": null,
+      "recordId": null,
+      "attemptId": null,
+      "source": "manual",
+      "prompt": "x/4=3",
+      "answer": "3/4",
+      "reason": "两边都除以4",
+      "image": "",
+      "details": {
+        "version": "dynamic_v1",
+        "source": "manual",
+        "subject": "数学",
+        "equation": "x/4=3",
+        "cropFileId": null,
+        "ocrJobId": null,
+        "confirmedText": "",
+        "knowledgeIds": [
+          "browser-kp"
+        ],
+        "cause": "其他或待确认",
+        "causeConfirmed": false
+      },
+      "status": "pending",
+      "readOnly": false,
+      "taskTitle": null,
+      "repairs": [],
+      "createdAt": "2026-11-10T20:21:13"
+    },
+    "analysis": {
+      "id": "job-614f855c0a78432fb1266bb15a82aafc",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "找出能让左边的 x 单独留下来的运算，并保持等式两边相等。",
+        "cause": "概念理解错误",
+        "steps": [
+          "提示：左边的 x 被除以 4。想一想，用什么运算可以抵消“除以 4”？",
+          "解释：在等式两边同时乘以 4，左边的“除以 4”和“乘以 4”抵消，右边也要乘以 4，因此得到 x = 12。",
+          "检查：把 x = 12 代回原式，计算 12/4，看看是否等于 3。"
+        ],
+        "evidence": "两边都除以4",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-a9d92f8953fc2027eecc4470cb219969",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [
+          {
+            "left": "(x/4)×4=3×4",
+            "right": "x=12"
+          }
+        ],
+        "uncertainty": "仅凭这次作答无法确定你是把逆运算弄反了，还是有其他想法；需要通过下一步作答确认。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "(x/4)×4=3×4",
+              "right": "x=12",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "checkQuestion": "要抵消左边的“除以 4”，等式两边应同时乘以还是除以 4？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:21:14Z",
+      "updatedAt": "2026-11-10T12:21:33Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "x/4=3",
+            "equation": "x/4=3"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "3/4",
+          "originalReason": "两边都除以4"
+        },
+        "history": [],
+        "wrongId": "wrong-a9d92f8953fc2027eecc4470cb219969",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-dc774b7026bb487398fc69b0c2cadc0e",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "找出能让左边的 x 单独留下来的运算，并保持等式两边相等。",
+            "cause": "概念理解错误",
+            "steps": [
+              "提示：左边的 x 被除以 4。想一想，用什么运算可以抵消“除以 4”？",
+              "解释：在等式两边同时乘以 4，左边的“除以 4”和“乘以 4”抵消，右边也要乘以 4，因此得到 x = 12。",
+              "检查：把 x = 12 代回原式，计算 12/4，看看是否等于 3。"
+            ],
+            "evidence": "两边都除以4",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-a9d92f8953fc2027eecc4470cb219969",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [
+              {
+                "left": "(x/4)×4=3×4",
+                "right": "x=12"
+              }
+            ],
+            "uncertainty": "仅凭这次作答无法确定你是把逆运算弄反了，还是有其他想法；需要通过下一步作答确认。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "(x/4)×4=3×4",
+                  "right": "x=12",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "checkQuestion": "要抵消左边的“除以 4”，等式两边应同时乘以还是除以 4？"
+          },
+          "startedAt": "2026-11-10T12:21:14Z",
+          "endedAt": "2026-11-10T12:21:33Z"
+        }
+      ]
+    },
+    "variant": {
+      "id": "job-09c01d8899e4477bb083a60c00b85dd1",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "可操作提示：原题中 x 被除以 4，要想单独得到 x，可以把等式两边都乘以 4；4 不等于 0，所以这样乘不会改变等式成立的关系。\n分步解释：① x/4=3；② 两边乘以 4，得到 4·(x/4)=4·3；③ 化简为 x=12。你可以检查：把 12 代回原题，12/4 是否等于 3？\n再独立完成新题 y/5=2。",
+          "equation": "y/5=2",
+          "rationale": "针对原题 x/4=3：原作答是“3/4”，原作答理由是“两边都除以4”。这提示可能把等式两边的运算方向弄反了；本题需要通过两边乘以 4 来消去 x 的分母。新题保留“未知数除以非零常数等于数值”的结构，数值和答案均不同。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-a9d92f8953fc2027eecc4470cb219969",
+          "modelCalls": 1
+        },
+        "mathClaims": [
+          {
+            "left": "4·(x/4)",
+            "right": "x"
+          },
+          {
+            "left": "4·3",
+            "right": "12"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "4·(x/4)",
+              "right": "x",
+              "method": "超出表达式核验范围",
+              "status": "unverified"
+            },
+            {
+              "left": "4·3",
+              "right": "12",
+              "method": "超出表达式核验范围",
+              "status": "unverified"
+            }
+          ],
+          "status": "unverified"
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "y/5=2"
+        }
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:21:34Z",
+      "updatedAt": "2026-11-10T12:21:55Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "x/4=3",
+            "equation": "x/4=3"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "3/4",
+          "originalReason": "两边都除以4"
+        },
+        "history": [],
+        "wrongId": "wrong-a9d92f8953fc2027eecc4470cb219969",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-c2788657b31d4ee1ae4582c47aa25dce",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "可操作提示：原题中 x 被除以 4，要想单独得到 x，可以把等式两边都乘以 4；4 不等于 0，所以这样乘不会改变等式成立的关系。\n分步解释：① x/4=3；② 两边乘以 4，得到 4·(x/4)=4·3；③ 化简为 x=12。你可以检查：把 12 代回原题，12/4 是否等于 3？\n再独立完成新题 y/5=2。",
+              "equation": "y/5=2",
+              "expected": "10",
+              "rationale": "针对原题 x/4=3：原作答是“3/4”，原作答理由是“两边都除以4”。这提示可能把等式两边的运算方向弄反了；本题需要通过两边乘以 4 来消去 x 的分母。新题保留“未知数除以非零常数等于数值”的结构，数值和答案均不同。"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-a9d92f8953fc2027eecc4470cb219969",
+              "modelCalls": 1
+            },
+            "mathClaims": [
+              {
+                "left": "4·(x/4)",
+                "right": "x"
+              },
+              {
+                "left": "4·3",
+                "right": "12"
+              }
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "4·(x/4)",
+                  "right": "x",
+                  "method": "超出表达式核验范围",
+                  "status": "unverified"
+                },
+                {
+                  "left": "4·3",
+                  "right": "12",
+                  "method": "超出表达式核验范围",
+                  "status": "unverified"
+                }
+              ],
+              "status": "unverified"
+            },
+            "variantVerification": {
+              "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+              "status": "verified",
+              "equation": "y/5=2"
+            }
+          },
+          "startedAt": "2026-11-10T12:21:34Z",
+          "endedAt": "2026-11-10T12:21:55Z"
+        }
+      ]
+    },
+    "attempt": {
+      "id": "repair-16d90c2a16e24dd4983c057a9598174d",
+      "wrongId": "wrong-a9d92f8953fc2027eecc4470cb219969",
+      "answer": "10",
+      "reason": "隔离验收输入；参考答案由程序求解",
+      "correct": true,
+      "verification": {
+        "status": "verified_correct",
+        "correct": true,
+        "scope": "实际变式题的单变量单解实数方程与答案等价性"
+      },
+      "details": {
+        "version": "dynamic_v1",
+        "planJobId": "job-614f855c0a78432fb1266bb15a82aafc",
+        "variantJobId": "job-09c01d8899e4477bb083a60c00b85dd1",
+        "variantId": "job-09c01d8899e4477bb083a60c00b85dd1",
+        "equation": "y/5=2",
+        "expected": "10",
+        "phase": "practice",
+        "helped": false,
+        "requestKey": "156e2aaeb22b44aa9116313087478b93",
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        }
+      },
+      "createdAt": "2026-11-10T20:21:54"
+    }
+  },
+  {
+    "id": "E04",
+    "wrong": {
+      "id": "wrong-92881eee3c635f8f8d40742054dc342b",
+      "taskId": null,
+      "recordId": null,
+      "attemptId": null,
+      "source": "manual",
+      "prompt": "2(x-1)=10",
+      "answer": "4",
+      "reason": "先减去1再除以2",
+      "image": "",
+      "details": {
+        "version": "dynamic_v1",
+        "source": "manual",
+        "subject": "数学",
+        "equation": "2(x-1)=10",
+        "cropFileId": null,
+        "ocrJobId": null,
+        "confirmedText": "",
+        "knowledgeIds": [
+          "browser-kp"
+        ],
+        "cause": "其他或待确认",
+        "causeConfirmed": false
+      },
+      "status": "pending",
+      "readOnly": false,
+      "taskTitle": null,
+      "repairs": [],
+      "createdAt": "2026-11-10T20:21:54"
+    },
+    "analysis": {
+      "id": "job-f3a5b98c75eb49078c96dd2d0cc37d12",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "按等式性质解出x，并检查原答案4是否满足原方程。",
+        "cause": "运算步骤错误",
+        "steps": [
+          "提示：括号里的x-1整体乘以2。先想想怎样消去等式左边的乘数2。",
+          "两边同时除以2，得到x-1=5。",
+          "两边同时加上1，得到x=6。代回原式：2(6-1)=10。",
+          "原答案是4；代入原式得2(4-1)=6，不等于10。问题在于运算顺序：应先处理括号外的乘数，再处理括号内的减1。"
+        ],
+        "evidence": "先减去1再除以2",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-92881eee3c635f8f8d40742054dc342b",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [
+          {
+            "left": "2(x-1)=10",
+            "right": "x-1=5"
+          },
+          {
+            "left": "x-1=5",
+            "right": "x=6"
+          }
+        ],
+        "uncertainty": "原作答只提供了答案4和“先减去1再除以2”，没有展示每一步的具体算式；错因判断仅依据这段理由，供教学参考。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "2(x-1)=10",
+              "right": "x-1=5",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            },
+            {
+              "left": "x-1=5",
+              "right": "x=6",
+              "method": "单变量实数方程解集比较",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "checkQuestion": "先把等式两边同时除以2，得到什么？接着怎样求出x？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:21:55Z",
+      "updatedAt": "2026-11-10T12:22:16Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "2(x-1)=10",
+            "equation": "2(x-1)=10"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "4",
+          "originalReason": "先减去1再除以2"
+        },
+        "history": [],
+        "wrongId": "wrong-92881eee3c635f8f8d40742054dc342b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-5fb7f51314a64bf895441aedccffde4c",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "按等式性质解出x，并检查原答案4是否满足原方程。",
+            "cause": "运算步骤错误",
+            "steps": [
+              "提示：括号里的x-1整体乘以2。先想想怎样消去等式左边的乘数2。",
+              "两边同时除以2，得到x-1=5。",
+              "两边同时加上1，得到x=6。代回原式：2(6-1)=10。",
+              "原答案是4；代入原式得2(4-1)=6，不等于10。问题在于运算顺序：应先处理括号外的乘数，再处理括号内的减1。"
+            ],
+            "evidence": "先减去1再除以2",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-92881eee3c635f8f8d40742054dc342b",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [
+              {
+                "left": "2(x-1)=10",
+                "right": "x-1=5"
+              },
+              {
+                "left": "x-1=5",
+                "right": "x=6"
+              }
+            ],
+            "uncertainty": "原作答只提供了答案4和“先减去1再除以2”，没有展示每一步的具体算式；错因判断仅依据这段理由，供教学参考。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "2(x-1)=10",
+                  "right": "x-1=5",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                },
+                {
+                  "left": "x-1=5",
+                  "right": "x=6",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "checkQuestion": "先把等式两边同时除以2，得到什么？接着怎样求出x？"
+          },
+          "startedAt": "2026-11-10T12:21:55Z",
+          "endedAt": "2026-11-10T12:22:16Z"
+        }
+      ]
+    },
+    "variant": {
+      "id": "job-0e682115fa474aca88a72663f19b4aa1",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "先把括号整体看作一个数，想想怎样消去括号外的乘数；再处理括号内的减法。每一步都对等式两边做相同的运算。",
+          "equation": "3(x-2)=15",
+          "rationale": "原答案是“4”，原理由是“先减去1再除以2”。这道题也需要按相反运算的顺序还原：先消去括号外的乘数，再处理括号内的减法。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-92881eee3c635f8f8d40742054dc342b",
+          "modelCalls": 1
+        },
+        "mathClaims": [
+          {
+            "left": "3(x-2)",
+            "right": "3x-6"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "3(x-2)",
+              "right": "3x-6",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "3(x-2)=15"
+        }
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:22:16Z",
+      "updatedAt": "2026-11-10T12:22:43Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "2(x-1)=10",
+            "equation": "2(x-1)=10"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "4",
+          "originalReason": "先减去1再除以2"
+        },
+        "history": [],
+        "wrongId": "wrong-92881eee3c635f8f8d40742054dc342b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-aecf710e965845118c5be3c1814c7fdc",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "先把括号整体看作一个数，想想怎样消去括号外的乘数；再处理括号内的减法。每一步都对等式两边做相同的运算。",
+              "equation": "3(x-2)=15",
+              "expected": "7",
+              "rationale": "原答案是“4”，原理由是“先减去1再除以2”。这道题也需要按相反运算的顺序还原：先消去括号外的乘数，再处理括号内的减法。"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-92881eee3c635f8f8d40742054dc342b",
+              "modelCalls": 1
+            },
+            "mathClaims": [
+              {
+                "left": "3(x-2)",
+                "right": "3x-6"
+              }
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "3(x-2)",
+                  "right": "3x-6",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "variantVerification": {
+              "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+              "status": "verified",
+              "equation": "3(x-2)=15"
+            }
+          },
+          "startedAt": "2026-11-10T12:22:17Z",
+          "endedAt": "2026-11-10T12:22:43Z"
+        }
+      ]
+    },
+    "attempt": {
+      "id": "repair-063ff188094c489a9813c644b21dbb76",
+      "wrongId": "wrong-92881eee3c635f8f8d40742054dc342b",
+      "answer": "7",
+      "reason": "隔离验收输入；参考答案由程序求解",
+      "correct": true,
+      "verification": {
+        "status": "verified_correct",
+        "correct": true,
+        "scope": "实际变式题的单变量单解实数方程与答案等价性"
+      },
+      "details": {
+        "version": "dynamic_v1",
+        "planJobId": "job-f3a5b98c75eb49078c96dd2d0cc37d12",
+        "variantJobId": "job-0e682115fa474aca88a72663f19b4aa1",
+        "variantId": "job-0e682115fa474aca88a72663f19b4aa1",
+        "equation": "3(x-2)=15",
+        "expected": "7",
+        "phase": "practice",
+        "helped": false,
+        "requestKey": "54183e398ea34ab6827f2e072714eeb5",
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        }
+      },
+      "createdAt": "2026-11-10T20:22:43"
+    }
+  },
+  {
+    "id": "E05",
+    "wrong": {
+      "id": "wrong-5260be32098fb531438f08828a7a7438",
+      "taskId": null,
+      "recordId": null,
+      "attemptId": null,
+      "source": "manual",
+      "prompt": "为什么除数不能为零",
+      "answer": "",
+      "reason": "不知道乘法与除法的关系",
+      "image": "",
+      "details": {
+        "version": "dynamic_v1",
+        "source": "manual",
+        "subject": "数学",
+        "equation": "为什么除数不能为零",
+        "cropFileId": null,
+        "ocrJobId": null,
+        "confirmedText": "",
+        "knowledgeIds": [
+          "browser-kp"
+        ],
+        "cause": "其他或待确认",
+        "causeConfirmed": false
+      },
+      "status": "pending",
+      "readOnly": false,
+      "taskTitle": null,
+      "repairs": [],
+      "createdAt": "2026-11-10T20:22:43"
+    },
+    "analysis": {
+      "id": "job-9d89e68efc94455ebdf71df39518a3eb",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "理解除法是乘法的逆运算，并说明为什么除数为零时无法得到定义良好的商。",
+        "cause": "概念理解错误",
+        "steps": [
+          "先用乘法检查除法：若 a ÷ b = q，就要有 b × q = a。",
+          "把 b 换成 0。无论 q 是什么，0 × q 都等于 0，因此当 a 不为 0 时，不存在这样的 q。",
+          "若 a 也为 0，那么 0 × q = 0 对任何 q 都成立，无法确定唯一的商。因此除数为零时，除法没有定义。"
+        ],
+        "evidence": "不知道乘法与除法的关系",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-5260be32098fb531438f08828a7a7438",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [],
+        "uncertainty": "原作答只说明不清楚乘法与除法的关系，没有提供具体计算或推理过程；目前无法判断学生对零乘任何数等于零这一性质是否熟悉。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified"
+        },
+        "checkQuestion": "若 6 ÷ 0 = q，那么 0 × q 应等于多少？这个结果能否等于 6？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:22:43Z",
+      "updatedAt": "2026-11-10T12:23:02Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "为什么除数不能为零",
+            "equation": "为什么除数不能为零"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "",
+          "originalReason": "不知道乘法与除法的关系"
+        },
+        "history": [],
+        "wrongId": "wrong-5260be32098fb531438f08828a7a7438",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-6b608ca6b48040efa1ba45b59158c801",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "理解除法是乘法的逆运算，并说明为什么除数为零时无法得到定义良好的商。",
+            "cause": "概念理解错误",
+            "steps": [
+              "先用乘法检查除法：若 a ÷ b = q，就要有 b × q = a。",
+              "把 b 换成 0。无论 q 是什么，0 × q 都等于 0，因此当 a 不为 0 时，不存在这样的 q。",
+              "若 a 也为 0，那么 0 × q = 0 对任何 q 都成立，无法确定唯一的商。因此除数为零时，除法没有定义。"
+            ],
+            "evidence": "不知道乘法与除法的关系",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-5260be32098fb531438f08828a7a7438",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [],
+            "uncertainty": "原作答只说明不清楚乘法与除法的关系，没有提供具体计算或推理过程；目前无法判断学生对零乘任何数等于零这一性质是否熟悉。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified"
+            },
+            "checkQuestion": "若 6 ÷ 0 = q，那么 0 × q 应等于多少？这个结果能否等于 6？"
+          },
+          "startedAt": "2026-11-10T12:22:44Z",
+          "endedAt": "2026-11-10T12:23:02Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "E06",
+    "wrong": {
+      "id": "wrong-5627c54e55026d22a7dd7d03116061b4",
+      "taskId": null,
+      "recordId": null,
+      "attemptId": null,
+      "source": "manual",
+      "prompt": "不同的数乘零为什么丢失信息",
+      "answer": "",
+      "reason": "我觉得还可以除以零恢复",
+      "image": "",
+      "details": {
+        "version": "dynamic_v1",
+        "source": "manual",
+        "subject": "数学",
+        "equation": "不同的数乘零为什么丢失信息",
+        "cropFileId": null,
+        "ocrJobId": null,
+        "confirmedText": "",
+        "knowledgeIds": [
+          "browser-kp"
+        ],
+        "cause": "其他或待确认",
+        "causeConfirmed": false
+      },
+      "status": "pending",
+      "readOnly": false,
+      "taskTitle": null,
+      "repairs": [],
+      "createdAt": "2026-11-10T20:23:02"
+    },
+    "analysis": {
+      "id": "job-7f86d52e872a4d8d8d3a52846ff829ae",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "理解为什么不同的数乘以零会得到相同结果，以及为什么不能通过除以零恢复原数。",
+        "cause": "概念理解错误",
+        "steps": [
+          "可先试着比较几个不同的数乘以零，观察所得结果是否相同。",
+          "乘法中，任何数乘以零都等于零；因此原数不同，乘积仍无法区分它们。",
+          "要从乘积恢复原数，不能把零当作除数，因为除法中除数不能为零。"
+        ],
+        "evidence": "我觉得还可以除以零恢复",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-5627c54e55026d22a7dd7d03116061b4",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [
+          {
+            "left": "a×0",
+            "right": "0"
+          },
+          {
+            "left": "b×0",
+            "right": "0"
+          }
+        ],
+        "uncertainty": "没有提供学生的具体推理过程或对“丢失信息”的解释，无法判断其对乘零后结果的理解程度。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "a×0",
+              "right": "0",
+              "method": "表达式等价",
+              "status": "verified"
+            },
+            {
+              "left": "b×0",
+              "right": "0",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "checkQuestion": "如果两个不同的数都乘以零，所得结果能否告诉你原来是哪一个数？为什么不能用除以零来判断？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:23:02Z",
+      "updatedAt": "2026-11-10T12:23:21Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "不同的数乘零为什么丢失信息",
+            "equation": "不同的数乘零为什么丢失信息"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "",
+          "originalReason": "我觉得还可以除以零恢复"
+        },
+        "history": [],
+        "wrongId": "wrong-5627c54e55026d22a7dd7d03116061b4",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-7e7f45bbc25a4e0c9a95959fc87ed93a",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "理解为什么不同的数乘以零会得到相同结果，以及为什么不能通过除以零恢复原数。",
+            "cause": "概念理解错误",
+            "steps": [
+              "可先试着比较几个不同的数乘以零，观察所得结果是否相同。",
+              "乘法中，任何数乘以零都等于零；因此原数不同，乘积仍无法区分它们。",
+              "要从乘积恢复原数，不能把零当作除数，因为除法中除数不能为零。"
+            ],
+            "evidence": "我觉得还可以除以零恢复",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-5627c54e55026d22a7dd7d03116061b4",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [
+              {
+                "left": "a×0",
+                "right": "0"
+              },
+              {
+                "left": "b×0",
+                "right": "0"
+              }
+            ],
+            "uncertainty": "没有提供学生的具体推理过程或对“丢失信息”的解释，无法判断其对乘零后结果的理解程度。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "a×0",
+                  "right": "0",
+                  "method": "表达式等价",
+                  "status": "verified"
+                },
+                {
+                  "left": "b×0",
+                  "right": "0",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "checkQuestion": "如果两个不同的数都乘以零，所得结果能否告诉你原来是哪一个数？为什么不能用除以零来判断？"
+          },
+          "startedAt": "2026-11-10T12:23:02Z",
+          "endedAt": "2026-11-10T12:23:21Z"
+        }
+      ]
+    }
+  },
+  {
+    "id": "E09",
+    "wrong": {
+      "id": "wrong-0d7e9af6dc9ee96d15fae3ef3b9c29fc",
+      "taskId": null,
+      "recordId": null,
+      "attemptId": null,
+      "source": "manual",
+      "prompt": "已知x+y=3，求x",
+      "answer": "",
+      "reason": "条件是不是不够",
+      "image": "",
+      "details": {
+        "version": "dynamic_v1",
+        "source": "manual",
+        "subject": "数学",
+        "equation": "已知x+y=3，求x",
+        "cropFileId": null,
+        "ocrJobId": null,
+        "confirmedText": "",
+        "knowledgeIds": [
+          "browser-kp"
+        ],
+        "cause": "其他或待确认",
+        "causeConfirmed": false
+      },
+      "status": "pending",
+      "readOnly": false,
+      "taskTitle": null,
+      "repairs": [],
+      "createdAt": "2026-11-10T20:23:21"
+    },
+    "analysis": {
+      "id": "job-ed89f427788d4f7faa992fc36c3f76f1",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "判断已知条件能否唯一确定 x，并说明理由。",
+        "cause": "条件遗漏",
+        "steps": [
+          "提示：先想想，已知 x+y 的和以后，若 y 可以改变，x 是否也可能随之改变？",
+          "题目只给出一个关于 x、y 的关系，却要求确定 x。若 y 取不同值，x 可以相应改变而仍满足这个关系，因此目前不能唯一求出 x。",
+          "要唯一确定 x，还需要补充关于 y 或 x、y 的另一条条件。"
+        ],
+        "evidence": "条件是不是不够",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-0d7e9af6dc9ee96d15fae3ef3b9c29fc",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [],
+        "uncertainty": "没有给出 x 与 y 的其他关系或 y 的具体值，无法判断题目是否还隐含了其他条件。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified"
+        },
+        "checkQuestion": "如果 y 的值没有给出，也没有其他关系，你能判断 x 是否只有一个确定值吗？"
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:23:22Z",
+      "updatedAt": "2026-11-10T12:23:40Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "已知x+y=3，求x",
+            "equation": "已知x+y=3，求x"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "",
+          "originalReason": "条件是不是不够"
+        },
+        "history": [],
+        "wrongId": "wrong-0d7e9af6dc9ee96d15fae3ef3b9c29fc",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-d847ffa616f6437e9a8e41e2e0128d24",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "判断已知条件能否唯一确定 x，并说明理由。",
+            "cause": "条件遗漏",
+            "steps": [
+              "提示：先想想，已知 x+y 的和以后，若 y 可以改变，x 是否也可能随之改变？",
+              "题目只给出一个关于 x、y 的关系，却要求确定 x。若 y 取不同值，x 可以相应改变而仍满足这个关系，因此目前不能唯一求出 x。",
+              "要唯一确定 x，还需要补充关于 y 或 x、y 的另一条条件。"
+            ],
+            "evidence": "条件是不是不够",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-0d7e9af6dc9ee96d15fae3ef3b9c29fc",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [],
+            "uncertainty": "没有给出 x 与 y 的其他关系或 y 的具体值，无法判断题目是否还隐含了其他条件。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified"
+            },
+            "checkQuestion": "如果 y 的值没有给出，也没有其他关系，你能判断 x 是否只有一个确定值吗？"
+          },
+          "startedAt": "2026-11-10T12:23:22Z",
+          "endedAt": "2026-11-10T12:23:40Z"
+        }
+      ]
+    },
+    "variant": {
+      "id": "job-6896704a4d224cac9dfe1f2205525079",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "failed",
+      "step": "执行失败",
+      "error": "变式参考答案未通过程序核验，未进入可评分练习。",
+      "result": null,
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T12:23:40Z",
+      "updatedAt": "2026-11-10T12:24:25Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "question": {
+            "prompt": "已知x+y=3，求x",
+            "equation": "已知x+y=3，求x"
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "",
+          "originalReason": "条件是不是不够"
+        },
+        "history": [],
+        "wrongId": "wrong-0d7e9af6dc9ee96d15fae3ef3b9c29fc",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "previousEquations": []
+      },
+      "runs": [
+        {
+          "id": "run-f0d47e501ce64d77b44c1f50cb34c444",
+          "number": 1,
+          "status": "failed",
+          "model": "",
+          "provider": "",
+          "error": "变式参考答案未通过程序核验，未进入可评分练习。",
+          "result": null,
+          "startedAt": "2026-11-10T12:23:41Z",
+          "endedAt": "2026-11-10T12:24:25Z"
+        }
+      ]
+    }
+  }
+]

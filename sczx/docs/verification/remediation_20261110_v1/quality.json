@@ -1,0 +1,652 @@
+[
+  {
+    "id": "q12",
+    "prompt": "刚才的讲解太抽象，请用天平讲。",
+    "before": {
+      "scenario": "q12",
+      "variant": "B3",
+      "strategy": "rephrase",
+      "startedAt": "2026-11-10T09:26:44Z",
+      "manualReview": null,
+      "automaticGate": "pass",
+      "status": "succeeded",
+      "result": {
+        "title": "先确认相等的含义",
+        "hint": "先想一想，“相等”表示等号两边的数值有什么关系？",
+        "steps": [
+          "等号表示等号两边的数值相等。"
+        ],
+        "question": "在 3z = 18 中，等号说明左边的数值和右边的数值是什么关系？",
+        "mathClaims": [],
+        "strategy": "rephrase",
+        "representation": "question",
+        "nextStrategy": "hint",
+        "prerequisiteId": "",
+        "usedCaseVersionIds": [],
+        "verification": {
+          "status": "unverified",
+          "claims": [],
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。"
+        },
+        "sources": [],
+        "prerequisites": [],
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "modelCalls": 1,
+          "elapsedMs": 14799,
+          "historyTurns": 1
+        }
+      },
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "elapsedMs": 14803,
+      "modelCalls": 1,
+      "calls": [
+        {
+          "capability": "text",
+          "request": {
+            "guidance": true,
+            "strategy": "rephrase",
+            "prompt": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+            "question": 2,
+            "blockId": "eq-check",
+            "context": {
+              "lesson": {
+                "id": "browser-lesson",
+                "versionId": "browser-version",
+                "title": "天平与等式",
+                "grade": "七年级",
+                "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+              },
+              "block": {
+                "id": "eq-check",
+                "type": "check",
+                "title": "独立检查",
+                "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+                "questionIds": [
+                  "eq-check-divide",
+                  "eq-check-multiply"
+                ]
+              },
+              "question": {
+                "id": "eq-check-divide",
+                "kind": "check",
+                "prompt": "求z，并解释两边为什么可以同时除以3。",
+                "equation": "3z = 18",
+                "knowledgeIds": [
+                  "browser-kp"
+                ]
+              },
+              "knowledge": [
+                {
+                  "id": "browser-kp",
+                  "name": "等式性质"
+                }
+              ],
+              "prerequisites": [
+                {
+                  "id": "browser-base",
+                  "name": "相等关系与基本运算"
+                }
+              ],
+              "teachingCases": [
+                {
+                  "id": "tutor-case-0",
+                  "versionId": "tutor-case-version-0",
+                  "version": 1,
+                  "title": "天平共同变化",
+                  "source": "项目自编验收材料",
+                  "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+                  "references": []
+                }
+              ],
+              "observation": ""
+            },
+            "history": [
+              {
+                "student": "刚才的讲解太抽象，请用天平讲。",
+                "strategy": "rephrase",
+                "representation": "balance",
+                "hint": "把等式想成两边一样重的天平：你觉得两边同时除以3，天平两边会怎样变化？",
+                "question": "如果把两边都平均分成3份，天平还会平衡吗？为什么？"
+              }
+            ],
+            "recognizedText": "",
+            "confirmedEquation": ""
+          },
+          "result": {
+            "title": "先确认相等的含义",
+            "hint": "先想一想，“相等”表示等号两边的数值有什么关系？",
+            "steps": [
+              "等号表示等号两边的数值相等。"
+            ],
+            "question": "在 3z = 18 中，等号说明左边的数值和右边的数值是什么关系？",
+            "mathClaims": [],
+            "strategy": "rephrase",
+            "representation": "question",
+            "nextStrategy": "hint",
+            "prerequisiteId": "",
+            "usedCaseVersionIds": []
+          },
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "elapsedMs": 14788
+        }
+      ]
+    },
+    "startedAt": 1794313049.9913116,
+    "after": {
+      "title": "用天平看两边同时除以3",
+      "hint": "想一想：要让天平仍然平衡，左右两盘各自的物品数量要怎样变化？",
+      "steps": [
+        "左盘放着3个相同的z，右盘放着18个单位砝码；两盘平衡表示两边一样重。",
+        "把左盘的3个z平均分成3份，同时把右盘的18个砝码也平均分成3份，每盘各取其中1份，天平仍平衡。",
+        "因此左盘剩1个z，右盘是18平均分成3份；这说明两边同时除以同一个非零数，等式关系不变。"
+      ],
+      "question": "如果左右两盘各平均分成3份并各取1份，右盘会留下多少个单位砝码？",
+      "mathClaims": [
+        {
+          "left": "18÷3",
+          "right": "6"
+        }
+      ],
+      "strategy": "rephrase",
+      "representation": "balance",
+      "nextStrategy": "try",
+      "prerequisiteId": "browser-base",
+      "usedCaseVersionIds": [
+        "tutor-case-version-0"
+      ],
+      "needCoverage": {
+        "required": [
+          "天平两侧与具体变化"
+        ],
+        "missing": [],
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅"
+      },
+      "verification": {
+        "status": "verified",
+        "claims": [
+          {
+            "left": "18÷3",
+            "right": "6",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。"
+      },
+      "sources": [
+        {
+          "id": "tutor-case-0",
+          "versionId": "tutor-case-version-0",
+          "version": 1,
+          "title": "天平共同变化",
+          "source": "项目自编验收材料",
+          "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+          "references": []
+        }
+      ],
+      "prerequisites": [],
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "modelCalls": 2,
+        "elapsedMs": 37771,
+        "historyTurns": 0,
+        "contextChars": 984
+      }
+    },
+    "model": "gpt-6-luna",
+    "provider": "Codex CLI · low",
+    "passed": true,
+    "humanReview": "approved_user_single_reviewer",
+    "humanReply": "已阅读，认可三项",
+    "humanReviewDate": "2026-11-10"
+  },
+  {
+    "id": "q15",
+    "prompt": "我不明白乘零为什么会丢失信息，请用对比讲。",
+    "before": {
+      "scenario": "q15",
+      "variant": "B3",
+      "strategy": "rephrase",
+      "startedAt": "2026-11-10T09:28:56Z",
+      "manualReview": null,
+      "automaticGate": "pass",
+      "status": "succeeded",
+      "result": {
+        "title": "用逆运算检查等式两边",
+        "hint": "把你的想法用在这道等式上：要让左边的“除以 4”抵消，等式两边可以同时做什么？",
+        "steps": [
+          "先指出左边对 w 做了什么运算。",
+          "想想用哪种逆运算可以抵消它。",
+          "检查这项运算是否要同时作用于两边。"
+        ],
+        "question": "你会在等式两边同时进行哪一种运算，来抵消左边的除以 4？",
+        "mathClaims": [],
+        "strategy": "rephrase",
+        "representation": "question",
+        "nextStrategy": "try",
+        "prerequisiteId": "",
+        "usedCaseVersionIds": [],
+        "verification": {
+          "status": "unverified",
+          "claims": [],
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。"
+        },
+        "sources": [],
+        "prerequisites": [],
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "modelCalls": 1,
+          "elapsedMs": 16150,
+          "historyTurns": 1
+        }
+      },
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "elapsedMs": 16154,
+      "modelCalls": 1,
+      "calls": [
+        {
+          "capability": "text",
+          "request": {
+            "guidance": true,
+            "strategy": "rephrase",
+            "prompt": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+            "question": 3,
+            "blockId": "eq-check",
+            "context": {
+              "lesson": {
+                "id": "browser-lesson",
+                "versionId": "browser-version",
+                "title": "天平与等式",
+                "grade": "七年级",
+                "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+              },
+              "block": {
+                "id": "eq-check",
+                "type": "check",
+                "title": "独立检查",
+                "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+                "questionIds": [
+                  "eq-check-divide",
+                  "eq-check-multiply"
+                ]
+              },
+              "question": {
+                "id": "eq-check-multiply",
+                "kind": "check",
+                "prompt": "求w，并写出两边共同进行的运算。",
+                "equation": "w / 4 = 3",
+                "knowledgeIds": [
+                  "browser-kp"
+                ]
+              },
+              "knowledge": [
+                {
+                  "id": "browser-kp",
+                  "name": "等式性质"
+                }
+              ],
+              "prerequisites": [
+                {
+                  "id": "browser-base",
+                  "name": "相等关系与基本运算"
+                }
+              ],
+              "teachingCases": [
+                {
+                  "id": "tutor-case-2",
+                  "versionId": "tutor-case-version-2",
+                  "version": 1,
+                  "title": "逆运算对比",
+                  "source": "项目自编验收材料",
+                  "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+                  "references": []
+                },
+                {
+                  "id": "tutor-case-3",
+                  "versionId": "tutor-case-version-3",
+                  "version": 1,
+                  "title": "非零除数条件",
+                  "source": "项目自编验收材料",
+                  "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+                  "references": []
+                }
+              ],
+              "observation": ""
+            },
+            "history": [
+              {
+                "student": "我不明白乘零为什么会丢失信息，请用对比讲。",
+                "strategy": "rephrase",
+                "representation": "comparison",
+                "hint": "对比乘以非零数和乘以零：想想不同的数乘完后还能不能区分。",
+                "question": "2 和 5 分别乘以 0 后结果相同吗？这能说明乘零保留了还是丢失了区分原数的信息？"
+              }
+            ],
+            "recognizedText": "",
+            "confirmedEquation": ""
+          },
+          "result": {
+            "title": "用逆运算检查等式两边",
+            "hint": "把你的想法用在这道等式上：要让左边的“除以 4”抵消，等式两边可以同时做什么？",
+            "steps": [
+              "先指出左边对 w 做了什么运算。",
+              "想想用哪种逆运算可以抵消它。",
+              "检查这项运算是否要同时作用于两边。"
+            ],
+            "question": "你会在等式两边同时进行哪一种运算，来抵消左边的除以 4？",
+            "mathClaims": [],
+            "strategy": "rephrase",
+            "representation": "question",
+            "nextStrategy": "try",
+            "prerequisiteId": "",
+            "usedCaseVersionIds": []
+          },
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "elapsedMs": 16137
+        }
+      ]
+    },
+    "startedAt": 1794313087.7666895,
+    "after": {
+      "title": "乘零与信息",
+      "hint": "比较两个不同的数乘以0后，结果是否还能区分它们。",
+      "steps": [
+        "例如，2和5是两个不同的数。",
+        "它们乘以0都得到0，结果无法告诉我们原来是2还是5。",
+        "所以乘0会丢失原数的信息，不能用除以0来唯一反推出原数。"
+      ],
+      "question": "你能再举两个不同的数，说明它们乘以0后为什么无法区分吗？",
+      "mathClaims": [
+        {
+          "left": "2×0",
+          "right": "0"
+        },
+        {
+          "left": "5×0",
+          "right": "0"
+        }
+      ],
+      "strategy": "rephrase",
+      "representation": "comparison",
+      "nextStrategy": "try",
+      "prerequisiteId": "browser-base",
+      "usedCaseVersionIds": [
+        "tutor-case-version-3"
+      ],
+      "needCoverage": {
+        "required": [
+          "不同输入乘零同结果、不能逆推"
+        ],
+        "missing": [],
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅"
+      },
+      "verification": {
+        "status": "verified",
+        "claims": [
+          {
+            "left": "2×0",
+            "right": "0",
+            "method": "表达式等价",
+            "status": "verified"
+          },
+          {
+            "left": "5×0",
+            "right": "0",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。"
+      },
+      "sources": [
+        {
+          "id": "tutor-case-3",
+          "versionId": "tutor-case-version-3",
+          "version": 1,
+          "title": "非零除数条件",
+          "source": "项目自编验收材料",
+          "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+          "references": []
+        }
+      ],
+      "prerequisites": [],
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "modelCalls": 1,
+        "elapsedMs": 15937,
+        "historyTurns": 0,
+        "contextChars": 1166
+      }
+    },
+    "model": "gpt-6-luna",
+    "provider": "Codex CLI · low",
+    "passed": true,
+    "humanReview": "approved_user_single_reviewer",
+    "humanReply": "已阅读，认可三项",
+    "humanReviewDate": "2026-11-10"
+  },
+  {
+    "id": "q18",
+    "prompt": "我忘了为什么不能除以零，先确认我的想法。",
+    "before": {
+      "scenario": "q18",
+      "variant": "B3",
+      "strategy": "foundation",
+      "startedAt": "2026-11-10T09:30:48Z",
+      "manualReview": null,
+      "automaticGate": "pass",
+      "status": "succeeded",
+      "result": {
+        "title": "检查两边共同增加",
+        "hint": "先用“相等关系与基本运算”检查：两边原来都是5，同时各加1后分别是多少？",
+        "steps": [
+          "两边原来各是5。",
+          "分别在两边加上相同的1。",
+          "比较变化后的两边。"
+        ],
+        "question": "两边各加1后，左边和右边各是多少？",
+        "mathClaims": [],
+        "strategy": "foundation",
+        "representation": "numeric",
+        "nextStrategy": "try",
+        "prerequisiteId": "browser-base",
+        "usedCaseVersionIds": [],
+        "verification": {
+          "status": "unverified",
+          "claims": [],
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。"
+        },
+        "sources": [],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "modelCalls": 1,
+          "elapsedMs": 14687,
+          "historyTurns": 1
+        }
+      },
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "elapsedMs": 14692,
+      "modelCalls": 1,
+      "calls": [
+        {
+          "capability": "text",
+          "request": {
+            "guidance": true,
+            "strategy": "foundation",
+            "prompt": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+            "question": null,
+            "blockId": "eq-balance",
+            "context": {
+              "lesson": {
+                "id": "browser-lesson",
+                "versionId": "browser-version",
+                "title": "天平与等式",
+                "grade": "七年级",
+                "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+              },
+              "block": {
+                "id": "eq-balance",
+                "type": "activity",
+                "title": "让天平两边一起变化",
+                "content": "天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+                "activity": {
+                  "max": 10,
+                  "base": 5,
+                  "step": 1,
+                  "type": "balance"
+                }
+              },
+              "question": null,
+              "knowledge": [
+                {
+                  "id": "browser-kp",
+                  "name": "等式性质"
+                }
+              ],
+              "prerequisites": [
+                {
+                  "id": "browser-base",
+                  "name": "相等关系与基本运算"
+                }
+              ],
+              "teachingCases": [],
+              "observation": ""
+            },
+            "history": [
+              {
+                "student": "我忘了为什么不能除以零，先确认我的想法。",
+                "strategy": "foundation",
+                "representation": "question",
+                "hint": "先想想：除法里，除数为零时，能不能唯一确定商？",
+                "question": "你觉得有没有一个数乘以0会等于5？"
+              }
+            ],
+            "recognizedText": "",
+            "confirmedEquation": ""
+          },
+          "result": {
+            "title": "检查两边共同增加",
+            "hint": "先用“相等关系与基本运算”检查：两边原来都是5，同时各加1后分别是多少？",
+            "steps": [
+              "两边原来各是5。",
+              "分别在两边加上相同的1。",
+              "比较变化后的两边。"
+            ],
+            "question": "两边各加1后，左边和右边各是多少？",
+            "mathClaims": [],
+            "strategy": "foundation",
+            "representation": "numeric",
+            "nextStrategy": "try",
+            "prerequisiteId": "browser-base",
+            "usedCaseVersionIds": []
+          },
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "elapsedMs": 14682
+        }
+      ]
+    },
+    "startedAt": 1794313103.7084293,
+    "after": {
+      "title": "先从乘法关系检查",
+      "hint": "把“a÷0”改写成“0乘哪个数等于a”，看看能不能确定唯一的数。",
+      "steps": [
+        "结合前置知识“相等关系与基本运算”，除法是在反过来找一个乘数。",
+        "所以除以零要检查：是否有一个数乘0能得到原来的数，而且这个数是否唯一。"
+      ],
+      "question": "你认为“6÷0”是在找哪个乘法算式里的未知数？",
+      "mathClaims": [
+        {
+          "left": "0×x",
+          "right": "0"
+        }
+      ],
+      "strategy": "foundation",
+      "representation": "symbolic",
+      "nextStrategy": "try",
+      "prerequisiteId": "browser-base",
+      "usedCaseVersionIds": [],
+      "needCoverage": {
+        "required": [
+          "除零与乘法逆运算或唯一结果"
+        ],
+        "missing": [],
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅"
+      },
+      "verification": {
+        "status": "verified",
+        "claims": [
+          {
+            "left": "0×x",
+            "right": "0",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。"
+      },
+      "sources": [],
+      "prerequisites": [
+        {
+          "id": "browser-base",
+          "name": "相等关系与基本运算"
+        }
+      ],
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "modelCalls": 1,
+        "elapsedMs": 18603,
+        "historyTurns": 0,
+        "contextChars": 731
+      }
+    },
+    "model": "gpt-6-luna",
+    "provider": "Codex CLI · low",
+    "passed": true,
+    "humanReview": "approved_user_single_reviewer",
+    "humanReply": "已阅读，认可三项",
+    "humanReviewDate": "2026-11-10"
+  }
+]

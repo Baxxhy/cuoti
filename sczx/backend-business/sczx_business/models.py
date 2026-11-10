@@ -158,7 +158,9 @@ class WrongQuestion(Base):
     __tablename__ = "wrong_questions"
 
     id: Mapped[str] = mapped_column(String(40), primary_key=True)
-    record_id: Mapped[str] = mapped_column(ForeignKey("student_records.id", ondelete="CASCADE"), index=True)
+    record_id: Mapped[str | None] = mapped_column(ForeignKey("student_records.id", ondelete="CASCADE"), nullable=True, index=True)
+    owner_id: Mapped[str | None] = mapped_column(ForeignKey("accounts.id"), nullable=True, index=True)
+    details: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     attempt_id: Mapped[str | None] = mapped_column(ForeignKey("attempts.id", ondelete="SET NULL"), nullable=True)
     prompt: Mapped[str] = mapped_column(Text)
     answer: Mapped[str] = mapped_column(Text, default="")
@@ -172,6 +174,7 @@ class RepairAttempt(Base):
 
     id: Mapped[str] = mapped_column(String(40), primary_key=True)
     wrong_id: Mapped[str] = mapped_column(ForeignKey("wrong_questions.id", ondelete="CASCADE"), index=True)
+    details: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     answer: Mapped[str] = mapped_column(Text)
     reason: Mapped[str] = mapped_column(Text, default="")
     correct: Mapped[bool] = mapped_column(Boolean, default=False)
