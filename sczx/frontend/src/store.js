@@ -8,6 +8,8 @@ import { api } from "./services/api.js";
 export const useLearning = defineStore("platform", {
   state: () => ({
     data: createPlatform(),
+    notifications: [],
+    currentClassId: "",
     user: null,
     authChecked: false,
     status: "loading",
@@ -20,6 +22,7 @@ export const useLearning = defineStore("platform", {
     revision: 0,
   }),
   getters: {
+    unreadCount:state=>state.notifications.filter(m=>!m.readAt).length,
     task: (state) =>
       state.data.tasks.find((task) => task.id === state.data.activeTaskId) ||
       null,
@@ -83,6 +86,7 @@ export const useLearning = defineStore("platform", {
       if (!(await this.save())) throw new Error(this.saveError || "当前修改尚未保存，请稍后重试退出。");
       await api.logout();
       this.user = null;
+      this.notifications=[];
       this.data = createPlatform();
       this.status = "unauthenticated";
     },
@@ -91,6 +95,7 @@ export const useLearning = defineStore("platform", {
       this.error = "";
       try {
         this.data = await api.platform(lessonId);
+        this.notifications=this.data.messages||[];
         this.status = "ready";
       } catch (error) {
         this.error = error.message;
@@ -226,6 +231,7 @@ export const useLearning = defineStore("platform", {
       return result;
     },
     addWrong(prompt, image) {
+      if(this.task?.readOnly)throw new Error("历史任务仅可回看。");
       if (!prompt.trim()) throw new Error("请填写题目内容。");
       const item = {
         id: createId("wrong"),
@@ -261,15 +267,12 @@ export const useLearning = defineStore("platform", {
     async saveFeedback(text) {
       if (!text.trim()) throw new Error("请填写反馈内容。");
       if (!this.record) throw new Error("没有找到当前学生的学习记录。");
-      const result = await api.saveFeedback(this.record.id, text);
-      this.record.feedback = result.feedback;
-      this.record.feedbackAt = result.feedbackAt;
-      this.data.messages.unshift({
-        id: createId("message"),
-        taskId: this.task.id,
-        title: `${this.task.title} · 教师反馈`,
-        createdAt: this.record.feedbackAt,
-      });
+      const record=this.record, taskId=this.task.id;
+      const result = await api.saveFeedback(record.id, text);
+      record.feedback = result.feedback;
+      record.feedbackAt = result.feedbackAt;
+      const current=this.data.tasks.find(task=>task.id===taskId);
+      if(current)Object.assign(current,await api.request('/teaching/tasks/'+taskId));
       this.touch();
     },
     async reset() {

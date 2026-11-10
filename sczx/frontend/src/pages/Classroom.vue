@@ -1,80 +1,386 @@
 <script setup>
-import { computed, ref, inject, onMounted, watch } from "vue";
-import { Users, Plus, UserPlus } from "lucide-vue-next";
-import TaskList from "@/components/TaskList.vue";
-import { api } from "@/services/api.js";
+import { ref, computed, onMounted, watch, inject, onBeforeUnmount } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useLearning } from "@/store.js";
-const store = useLearning();
-const notify = inject("notify");
-const accounts = ref([]);
-const members = ref([]);
-const selectedClassId = ref(store.data.classroom?.id || "");
-const selectedStudentId = ref("");
-const className = ref("");
-const error = ref("");
-const busy = ref(false);
-const classroom = computed(() => store.data.classrooms?.find((c) => c.id === selectedClassId.value) || store.data.classroom);
-async function loadAccounts() {
-  try { accounts.value = await api.accounts(); }
-  catch (problem) { error.value = problem.message; }
+import { api } from "@/services/api.js";
+import { teachingApi, deadlineText } from "@/services/teaching.js";
+import TaskList from "@/components/TaskList.vue";
+import {
+  Plus,
+  Users,
+  UserPlus,
+  Ticket,
+  Settings2,
+  RefreshCw,
+  X,
+} from "lucide-vue-next";
+const store = useLearning(),
+  route = useRoute(),
+  router = useRouter(),
+  notify = inject("notify");
+const teacher = computed(() => store.user.role === "teacher"),
+  rooms = ref([]),
+  members = ref([]),
+  tasks = ref([]),
+  accounts = ref([]),
+  invites = ref([]),
+  selected = ref(
+    String(
+      route.query.class ||
+        store.currentClassId ||
+        store.data.classroom?.id ||
+        "",
+    ),
+  ),
+  student = ref(""),
+  error = ref(""),
+  busy = ref(false),
+  loading = ref(false),
+  dialog = ref(""),
+  code = ref(""),
+  joinCode = ref(""),
+  name = ref(""),
+  grade = ref(""),
+  subject = ref(""),
+  inviteDays = ref("7");
+let generation = 0;
+const room = computed(() => rooms.value.find((c) => c.id === selected.value));
+async function refreshRooms() {
+  rooms.value = await teachingApi.classes();
 }
-async function loadMembers() {
-  if (!selectedClassId.value) { members.value = []; return; }
-  try { members.value = await api.classroomMembers(selectedClassId.value); }
-  catch (problem) { error.value = problem.message; }
-}
-async function createClass() {
-  if (busy.value || !className.value.trim()) return;
-  busy.value = true; error.value = "";
+async function load() {
+  if (!teacher.value || !selected.value) return;
+  const g = ++generation;
+  members.value = [];
+  tasks.value = [];
+  invites.value = [];
+  error.value = "";
+  loading.value = true;
+  store.currentClassId = selected.value;
+  store.data.publishClassId = selected.value;
   try {
-    const item = await store.createClassroom({ name: className.value.trim(), grade: "七年级数学" });
-    store.data.classrooms = [...(store.data.classrooms || []), item];
-    selectedClassId.value = item.id;
-    store.data.classroom = item;
-    members.value = [];
-    className.value = "";
-    notify("班级已创建");
-  } catch (problem) { error.value = problem.message; }
-  finally { busy.value = false; }
+    const values = await Promise.all([
+      api.classroomMembers(selected.value),
+      teachingApi.tasks(selected.value),
+      teachingApi.invites(selected.value),
+    ]);
+    if (g !== generation) return;
+    [members.value, tasks.value, invites.value] = values;
+  } catch (e) {
+    if (g === generation) error.value = e.message;
+  } finally {
+    if (g === generation) loading.value = false;
+  }
 }
-async function addStudent() {
-  if (busy.value || !selectedClassId.value || !selectedStudentId.value) return;
-  busy.value = true; error.value = "";
+function select() {
+  router.replace({ query: { ...route.query, class: selected.value } });
+}
+onBeforeUnmount(() => {
+  generation++;
+});
+watch(selected, load);
+watch(
+  () => route.query.class,
+  (id) => {
+    if (id && id !== selected.value) selected.value = String(id);
+  },
+);
+onMounted(async () => {
   try {
-    await store.addMember(selectedClassId.value, selectedStudentId.value);
-    await loadMembers();
-    if (selectedClassId.value === store.data.classroom?.id) await store.load();
-    selectedStudentId.value = "";
-    notify("学生已加入班级");
-  } catch (problem) { error.value = problem.message; }
-  finally { busy.value = false; }
+    await refreshRooms();
+    if (teacher.value) {
+      accounts.value = await api.accounts();
+      if (!selected.value) selected.value = rooms.value[0]?.id || "";
+      else await load();
+    }
+  } catch (e) {
+    error.value = e.message;
+  }
+});
+function edit(create = false) {
+  dialog.value = create ? "create" : "edit";
+  name.value = create ? "" : room.value.name;
+  grade.value = create ? "" : room.value.grade;
+  subject.value = create ? "" : room.value.subject;
 }
-watch(selectedClassId, () => loadMembers());
-onMounted(loadAccounts);
+async function saveClass() {
+  busy.value = true;
+  error.value = "";
+  try {
+    const data = {
+      name: name.value.trim(),
+      grade: grade.value.trim(),
+      subject: subject.value.trim(),
+    };
+    if (dialog.value === "create") {
+      const item = await store.createClassroom(data);
+      store.data.classrooms.push(item);
+      await refreshRooms();
+      selected.value = item.id;
+    } else {
+      await teachingApi.editClass(selected.value, data);
+      await refreshRooms();
+    }
+    dialog.value = "";
+    notify("班级已保存");
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    busy.value = false;
+  }
+}
+async function add() {
+  busy.value = true;
+  try {
+    await store.addMember(selected.value, student.value);
+    student.value = "";
+    await load();
+    await refreshRooms();
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    busy.value = false;
+  }
+}
+async function remove(item) {
+  if (
+    !confirm("移出后停止新任务分配，保留该学生历史作答；本人历史只读。继续？")
+  )
+    return;
+  try {
+    await teachingApi.removeMember(selected.value, item.id);
+    await load();
+    await refreshRooms();
+  } catch (e) {
+    error.value = e.message;
+  }
+}
+async function createInvite() {
+  try {
+    const result = await teachingApi.invite(
+      selected.value,
+      Number(inviteDays.value),
+    );
+    code.value = result.code;
+    await load();
+  } catch (e) {
+    error.value = e.message;
+  }
+}
+async function revoke(item) {
+  try {
+    await teachingApi.revoke(selected.value, item.id);
+    await load();
+  } catch (e) {
+    error.value = e.message;
+  }
+}
+async function backfill(task) {
+  if (!members.value.length) return;
+  if (
+    !confirm(
+      "将此历史任务的原始快照补发给当前班级尚未分配的学生？已分配记录保持不变。",
+    )
+  )
+    return;
+  try {
+    const result = await teachingApi.assign(
+      task.id,
+      members.value.map((m) => m.id),
+    );
+    notify("已补发给" + result.created + "名学生");
+    await load();
+  } catch (e) {
+    error.value = e.message;
+  }
+}
+async function join() {
+  busy.value = true;
+  error.value = "";
+  try {
+    const result = await teachingApi.join(joinCode.value.trim());
+    joinCode.value = "";
+    await refreshRooms();
+    await store.load(store.data.lesson?.id, true);
+    notify(result.created ? "已加入班级" : "你已在该班级中");
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    busy.value = false;
+  }
+}
 </script>
-
 <template>
-  <PageHeading :title="classroom?.name || '班级教学'"><RouteButton route="prepare">发布新任务</RouteButton></PageHeading>
-  <p v-if="error" role="alert" class="form-error">{{ error }}</p>
-  <div class="class-banner">
-    <div class="class-mark"><Users :size="35" /></div>
-    <div><p>{{ classroom?.grade || "七年级数学" }} · {{ members.length }} 名学生</p></div>
-    <div class="student-avatars"><span v-for="member in members" :key="member.id" :title="member.displayName">{{ member.displayName.slice(0,1) }}</span></div>
-  </div>
-  <div class="class-admin-grid">
-    <Surface>
-      <SectionHeading title="班级" />
-      <label class="field-label" for="class-select">当前班级</label>
-      <select id="class-select" v-model="selectedClassId" @change="store.data.publishClassId = selectedClassId"><option v-for="item in store.data.classrooms" :key="item.id" :value="item.id">{{ item.name }}</option></select>
-      <form class="class-create" @submit.prevent="createClass"><label class="field-label" for="new-class">新建班级</label><Input id="new-class" v-model="className" placeholder="班级名称" required /><Button type="submit" :disabled="busy"><Plus :size="16" />创建班级</Button></form>
-    </Surface>
-    <Surface>
-      <SectionHeading title="添加学生" />
-      <label class="field-label" for="class-student">学生账号</label>
-      <select id="class-student" v-model="selectedStudentId"><option value="">选择学生账号</option><option v-for="account in accounts" :key="account.id" :value="account.id">{{ account.displayName }} · {{ account.username }}</option></select>
-      <Button class="member-add" :disabled="busy || !selectedStudentId || !selectedClassId" @click="addStudent"><UserPlus :size="16" />加入当前班级</Button>
-      <div class="member-list"><div v-for="member in members" :key="member.id"><span class="avatar">{{ member.displayName.slice(0,1) }}</span><strong>{{ member.displayName }}</strong><span>{{ member.username }}</span></div><p v-if="!members.length" class="muted">班级还没有学生</p></div>
-    </Surface>
-  </div>
-  <SectionHeading title="班级学习任务" /><Surface><TaskList teacher /></Surface>
+  <PageHeading :title="teacher ? room?.name || '班级教学' : '我的班级'"
+    ><template v-if="teacher"
+      ><Button variant="outline" @click="edit(true)"
+        ><Plus :size="16" />新建班级</Button
+      ><Button v-if="room" variant="outline" @click="edit(false)"
+        ><Settings2 :size="16" />编辑班级</Button
+      ><RouteButton v-if="room" :route="'prepare?class=' + selected"
+        >备课并发布</RouteButton
+      ></template
+    ></PageHeading
+  >
+  <p v-if="error" class="form-error" role="alert">{{ error }}</p>
+  <template v-if="teacher"
+    ><div class="teaching-class-toolbar">
+      <AppSelect
+        v-model="selected"
+        label="当前班级"
+        @update:model-value="select"
+        :options="rooms.map((r) => ({ value: r.id, label: r.name }))"
+      /><span v-if="room"
+        >{{ room.grade }} · {{ room.subject }} · {{ members.length }} 人</span
+      ><Button
+        variant="ghost"
+        size="icon-sm"
+        aria-label="刷新当前班级"
+        @click="load"
+        ><RefreshCw :size="16"
+      /></Button>
+    </div>
+    <div v-if="room" class="teaching-class-grid">
+      <aside>
+        <Surface class="teaching-members"
+          ><header>
+            <h2>班级成员</h2>
+            <Users :size="17" />
+          </header>
+          <AppSelect
+            v-model="student"
+            label="添加已有学生"
+            :options="
+              accounts
+                .filter((a) => !members.some((m) => m.id === a.id))
+                .map((a) => ({
+                  value: a.id,
+                  label: a.displayName + ' · ' + a.username,
+                }))
+            " /><Button
+            variant="outline"
+            :disabled="busy || !student || loading"
+            @click="add"
+            ><UserPlus :size="15" />添加学生</Button
+          >
+          <p v-if="loading" role="status">读取中…</p>
+          <div v-for="item in members" :key="item.id" class="teaching-member">
+            <span class="avatar">{{ item.displayName.slice(0, 1) }}</span>
+            <div>
+              <strong>{{ item.displayName }}</strong>
+              <p>
+                {{
+                  item.classes?.map((c) => c.name).join(" / ") || item.username
+                }}
+              </p>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              :aria-label="'移出' + item.displayName"
+              @click="remove(item)"
+              ><X :size="14"
+            /></Button></div></Surface
+        ><Surface class="teaching-invites"
+          ><header>
+            <h2>班级邀请</h2>
+            <Ticket :size="17" />
+          </header>
+          <label class="field-label"
+            >有效期<AppSelect
+              v-model="inviteDays"
+              label="邀请码有效期"
+              :options="[
+                { value: '1', label: '1天' },
+                { value: '7', label: '7天' },
+                { value: '30', label: '30天' },
+              ]" /></label
+          ><Button variant="outline" @click="createInvite">生成邀请码</Button>
+          <p v-if="code" class="invitation-code" aria-label="新邀请码">
+            {{ code }}
+          </p>
+          <div v-for="item in invites" :key="item.id">
+            <Status>{{
+              item.revoked ? "已撤销" : item.expired ? "已过期" : "有效"
+            }}</Status
+            ><time>{{ deadlineText(item.expiresAt) }}</time
+            ><Button
+              v-if="!item.revoked && !item.expired"
+              variant="ghost"
+              @click="revoke(item)"
+              >撤销</Button
+            >
+          </div></Surface
+        >
+      </aside>
+      <Surface class="teaching-tasks"
+        ><SectionHeading title="班级任务" />
+        <p v-if="loading" role="status">读取中…</p>
+        <TaskList v-else teacher :tasks="tasks" />
+        <div v-for="task in tasks" :key="task.id" class="task-allocation">
+          <span
+            >{{ task.title }} · {{ task.summary.assigned }} 人已分配 ·
+            {{ task.summary.inactive }} 人历史保留</span
+          ><Button variant="ghost" @click="backfill(task)"
+            >补发给当前成员</Button
+          >
+        </div></Surface
+      >
+    </div>
+    <Surface v-else
+      ><div class="empty-state">
+        <h2>创建第一个班级</h2>
+        <Button @click="edit(true)">新建班级</Button>
+      </div></Surface
+    ></template
+  >
+  <template v-else
+    ><div class="student-class-grid">
+      <Surface class="student-join"
+        ><h2>加入班级</h2>
+        <form @submit.prevent="join">
+          <label class="field-label"
+            >班级邀请码<Input
+              v-model="joinCode"
+              autocomplete="off"
+              required /></label
+          ><Button type="submit" :disabled="busy || !joinCode.trim()"
+            >加入班级</Button
+          >
+        </form></Surface
+      ><Surface v-for="item in rooms" :key="item.id" class="student-class"
+        ><Users :size="24" />
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.grade }} · {{ item.subject }}</p>
+        <p>{{ item.teacherName }}</p>
+        <RouteButton route="home" secondary
+          >查看已分配任务</RouteButton
+        ></Surface
+      >
+    </div></template
+  >
+  <AppDialog
+    :open="!!dialog"
+    :title="dialog === 'create' ? '新建班级' : '编辑班级'"
+    @update:open="
+      (value) => {
+        if (!value) dialog = '';
+      }
+    "
+    ><form class="class-edit-form" @submit.prevent="saveClass">
+      <label class="field-label"
+        >班级名称<Input v-model="name" required /></label
+      ><label class="field-label"
+        >年级<Input v-model="grade" required placeholder="例如七年级" /></label
+      ><label class="field-label"
+        >学科<Input v-model="subject" required
+      /></label>
+      <p v-if="error" class="form-error">{{ error }}</p>
+      <Button
+        type="submit"
+        :disabled="busy || !name.trim() || !grade.trim() || !subject.trim()"
+        >保存班级</Button
+      >
+    </form></AppDialog
+  >
 </template>

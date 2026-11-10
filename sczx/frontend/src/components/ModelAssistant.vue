@@ -31,7 +31,7 @@ watch([recordId, () => props.question], async ([id], _, onCleanup) => {
     if (live && version === interaction && latest) { await open(latest); if (!prompt.value) prompt.value = job.value?.input?.prompt || ''; }
   } catch (problem) { if (live) uploadError.value = problem.message; }
 }, { immediate: true });
-watch(prompt, (value) => { if (store.record) { store.record.drafts[draftKey.value] = value; store.touch(); } });
+watch(prompt, (value) => { if (store.record && !store.task?.readOnly) { store.record.drafts[draftKey.value] = value; store.touch(); } });
 watch(recognized, (value) => { if (store.record && ocrId.value) { store.record.drafts[`ocr-${ocrId.value}`] = value; store.touch(); } });
 async function send() {
   if (busy.value || uploading.value) return;

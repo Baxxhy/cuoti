@@ -14,7 +14,7 @@ from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from .database import get_db
-from .models import Account, Attempt, ClassMember, Classroom, FileAsset, HelpRecord, LearningTask, Lesson, LessonDraft, LoginSession, RepairAttempt, StudentRecord, SupplementalInstruction, SupportIssue, TeachingCase, WrongQuestion
+from .models import Account, Attempt, ClassMember, Classroom, FileAsset, HelpRecord, LearningTask, Lesson, LessonDraft, LoginSession, RepairAttempt, StudentRecord, SupplementRecipient, SupplementalInstruction, SupportIssue, TeachingCase, WrongQuestion
 from .seed import BLOCKS, CASE_TEXT, QUESTIONS, ensure_seed
 from .security import hash_password, verify_password
 from .grading import assess, assess_repair
@@ -50,7 +50,8 @@ class AccountInput(BaseModel):
 
 class ClassInput(BaseModel):
     name: str = Field(min_length=1, max_length=160)
-    grade: str = "七年级数学"
+    grade: str = Field(default="",max_length=80)
+    subject: str = Field(default="",max_length=80)
 
 
 class MemberInput(BaseModel):
@@ -129,7 +130,7 @@ def record_json(db: Session, rec: StudentRecord) -> dict:
     for item in wrongs:
         repairs = db.scalars(select(RepairAttempt).where(RepairAttempt.wrong_id == item.id).order_by(RepairAttempt.created_at)).all()
         wrong_json.append({"id": item.id, "taskId": rec.task_id, "attemptId": item.attempt_id, "prompt": item.prompt, "answer": item.answer, "reason": item.reason, "image": file_url(item.file_id), "createdAt": item.created_at.isoformat(), "repairs": [{"id": r.id, "taskId": rec.task_id, "wrongId": item.id, "answer": r.answer, "reason": r.reason, "correct": r.correct, "verification": r.verification, "createdAt": r.created_at.isoformat()} for r in repairs]})
-    return {"id": rec.id, "taskId": rec.task_id, "studentId": rec.student_id, "studentName": student.display_name if student else "学生", "observation": rec.observation, "drafts": rec.drafts or {}, "attempts": [{"id": a.id, "taskId": rec.task_id, "question": a.question, "questionId":question_id(a.question), "answer": a.answer, "reason": a.reason, "helped": a.helped, "correct": a.correct, "verification": a.verification, "createdAt": a.created_at.isoformat()} for a in attempts], "helps": [{"id": h.id, "taskId": rec.task_id, "question": h.question, "questionId":question_id(h.question), "kind": h.kind, "message": h.message, "image": file_url(h.file_id), "attemptNumber": h.attempt_number, "createdAt": h.created_at.isoformat()} for h in helps], "repairs": [repair for wrong in wrong_json for repair in wrong["repairs"]], "wrongQuestions": wrong_json, "completed": rec.completed, "submittedAt": rec.submitted_at.isoformat() if rec.submitted_at else None, "feedback": rec.feedback, "feedbackAt": rec.feedback_at.isoformat() if rec.feedback_at else None, "updatedAt": rec.updated_at.isoformat() if rec.updated_at else None}
+    return {"memberActive":bool(record_task and db.get(ClassMember,(record_task.classroom_id,rec.student_id))),"id": rec.id, "taskId": rec.task_id, "studentId": rec.student_id, "studentName": student.display_name if student else "学生", "observation": rec.observation, "drafts": rec.drafts or {}, "attempts": [{"id": a.id, "taskId": rec.task_id, "question": a.question, "questionId":question_id(a.question), "answer": a.answer, "reason": a.reason, "helped": a.helped, "correct": a.correct, "verification": a.verification, "createdAt": a.created_at.isoformat()} for a in attempts], "helps": [{"id": h.id, "taskId": rec.task_id, "question": h.question, "questionId":question_id(h.question), "kind": h.kind, "message": h.message, "image": file_url(h.file_id), "attemptNumber": h.attempt_number, "createdAt": h.created_at.isoformat()} for h in helps], "repairs": [repair for wrong in wrong_json for repair in wrong["repairs"]], "wrongQuestions": wrong_json, "completed": rec.completed, "submittedAt": rec.submitted_at.isoformat() if rec.submitted_at else None, "feedback": rec.feedback, "feedbackAt": rec.feedback_at.isoformat() if rec.feedback_at else None, "updatedAt": rec.updated_at.isoformat() if rec.updated_at else None}
 
 
 def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
@@ -154,8 +155,7 @@ def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
         classroom_ids = [c.id for c in classrooms]
         tasks = db.scalars(select(LearningTask).where(LearningTask.classroom_id.in_(classroom_ids)).order_by(LearningTask.published_at.desc())).all() if classroom_ids else []
     elif user.role == "student":
-        class_ids = [c.id for c in classrooms]
-        tasks = db.scalars(select(LearningTask).where(LearningTask.classroom_id.in_(class_ids)).order_by(LearningTask.published_at.desc())).all() if class_ids else []
+        tasks = db.scalars(select(LearningTask).join(StudentRecord).where(StudentRecord.student_id==user.id).order_by(LearningTask.published_at.desc())).all()
     elif user.role == "admin":
         tasks = db.scalars(select(LearningTask).order_by(LearningTask.published_at.desc())).all()
     task_json = []
@@ -168,7 +168,7 @@ def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
             recs = db.scalars(select(StudentRecord).where(StudentRecord.task_id == task.id, StudentRecord.student_id == user.id)).all()
         else:
             member_ids = db.scalars(select(ClassMember.student_id).where(ClassMember.classroom_id == task.classroom_id)).all()
-            recs = db.scalars(select(StudentRecord).where(StudentRecord.task_id == task.id, StudentRecord.student_id.in_(member_ids))).all() if member_ids else []
+            recs = db.scalars(select(StudentRecord).where(StudentRecord.task_id == task.id)).all()
         values = [record_json(db, rec) for rec in recs]
         student_records[task.id] = values
         if values:
@@ -185,13 +185,20 @@ def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
     supplements = []
     task_ids = [item["id"] for item in task_json]
     if task_ids:
-        supplements = [{"id": item.id, "taskId": item.task_id, "content": item.content, "createdAt": item.created_at.isoformat()} for item in db.scalars(select(SupplementalInstruction).where(SupplementalInstruction.task_id.in_(task_ids)).order_by(SupplementalInstruction.created_at)).all()]
+        rows=db.scalars(select(SupplementalInstruction).where(SupplementalInstruction.task_id.in_(task_ids)).order_by(SupplementalInstruction.created_at)).all()
+        supplements=[{'id':i.id,'taskId':i.task_id,'content':i.content,'kind':i.kind,'createdAt':i.created_at.isoformat()} for i in rows if user.role!='student' or db.get(SupplementRecipient,(i.id,user.id)) or (i.kind=='note' and not db.scalar(select(SupplementRecipient.student_id).where(SupplementRecipient.instruction_id==i.id).limit(1)))]
     if user.role == "student":
         for task_id, rec in records.items():
             if rec.get("feedback"):
                 task = next((item for item in task_json if item["id"] == task_id), None)
                 messages.append({"id": rec["id"], "taskId": task_id, "title": f"{task['title'] if task else '课程'} · 教师反馈", "createdAt": rec.get("feedbackAt")})
-    result = {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": published_case_json(db,case.id) if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "caseSnapshot": draft.case_snapshot, "lessonSnapshot": draft.lesson_snapshot, "lessonId":draft.lesson_id, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "revision":draft.revision, "planningDetails":draft.planning_details or {}, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "supplements": supplements, "messages": messages}
+    result = {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id,"subject":classroom.subject} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id,"subject":c.subject} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": published_case_json(db,case.id) if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "caseSnapshot": draft.case_snapshot, "lessonSnapshot": draft.lesson_snapshot, "lessonId":draft.lesson_id, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "revision":draft.revision, "planningDetails":draft.planning_details or {}, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "supplements": supplements, "messages": messages}
+    from .teaching import task_json,materialize_messages,message_json
+    from .models import BusinessMessage
+    for entry,task in zip(result['tasks'],tasks):entry.update(task_json(db,user,task))
+    if user.role in ('teacher','student'):
+        materialize_messages(db,user);db.commit()
+        result['messages']=[message_json(db,m) for m in db.scalars(select(BusinessMessage).where(BusinessMessage.recipient_id==user.id).order_by(BusinessMessage.created_at.desc()).limit(100))]
     from .curriculum import apply_template, student_content
     if lesson and not draft:result['lessonDraft']=apply_template(db,lesson)
     if user.role=='student':
@@ -285,23 +292,25 @@ def create_account(payload: AccountInput, request: Request, db: DB) -> dict:
 def create_classroom(payload: ClassInput, request: Request, db: DB) -> dict:
     user = current_user(request, db)
     require_role(user, "teacher")
-    classroom = Classroom(id=f"class-{uuid.uuid4().hex}", teacher_id=user.id, name=payload.name, grade=payload.grade)
+    if not payload.name.strip():raise HTTPException(422,"请填写班级名称。")
+    classroom = Classroom(id=f"class-{uuid.uuid4().hex}", teacher_id=user.id, name=payload.name.strip(), grade=payload.grade.strip(), subject=payload.subject.strip())
     db.add(classroom)
     db.commit()
-    return {"id": classroom.id, "name": classroom.name, "grade": classroom.grade}
+    return {"id": classroom.id, "name": classroom.name, "grade": classroom.grade,"subject":classroom.subject}
 
 
 @app.post("/api/classrooms/{classroom_id}/members", status_code=201)
 def add_member(classroom_id: str, payload: MemberInput, request: Request, db: DB) -> dict:
     user = current_user(request, db)
-    room = db.get(Classroom, classroom_id)
+    from .teaching import owned_class
+    room = owned_class(db,user,classroom_id,True)
     if not room or room.teacher_id != user.id:
         raise HTTPException(404, "没有找到此班级。")
     student = db.get(Account, payload.studentId)
     if not student or student.role != "student" or not student.active:
         raise HTTPException(404, "没有找到可加入的学生账号。")
-    if db.get(ClassMember, {"classroom_id": room.id, "student_id": student.id}):
-        raise HTTPException(409, "该学生已经在班级中。")
+    if db.scalar(select(ClassMember).where(ClassMember.classroom_id==room.id,ClassMember.student_id==student.id).with_for_update()):
+        return account_json(student)
     db.add(ClassMember(classroom_id=room.id, student_id=student.id))
     db.commit()
     return account_json(student)
@@ -337,7 +346,11 @@ def list_members(classroom_id: str, request: Request, db: DB) -> list[dict]:
     room = db.get(Classroom, classroom_id)
     if not room or room.teacher_id != user.id:
         raise HTTPException(404, "没有找到此班级。")
-    return [account_json(a) for a in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == room.id).order_by(Account.display_name)).all()]
+    result=[]
+    for a in db.scalars(select(Account).join(ClassMember,ClassMember.student_id==Account.id).where(ClassMember.classroom_id==room.id).order_by(Account.display_name)):
+        own_rooms=db.scalars(select(Classroom).join(ClassMember).where(ClassMember.student_id==a.id,Classroom.teacher_id==user.id)).all()
+        result.append({**account_json(a),'classes':[{'id':c.id,'name':c.name} for c in own_rooms]})
+    return result
 
 
 @app.get("/api/platform")
@@ -406,8 +419,11 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                 rec = db.get(StudentRecord, record_data.get("id", ""))
                 task = db.get(LearningTask, rec.task_id) if rec else None
                 if rec and task and task.teacher_id == user.id:
-                    rec.feedback = str(record_data.get("feedback", ""))
-                    rec.feedback_at = datetime.utcnow() if rec.feedback else None
+                    text=str(record_data.get("feedback", ""))
+                    if text!=rec.feedback:
+                        rec.feedback=text;rec.feedback_at=datetime.utcnow() if text else None
+                        from .teaching import feedback_message
+                        feedback_message(db,task,rec)
             for item in data.get("supplements", []):
                 task = db.get(LearningTask, str(item.get("taskId", "")))
                 if task and task.teacher_id == user.id:
@@ -415,7 +431,7 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                     if not supplement:
                         supplement = SupplementalInstruction(id=str(item.get("id") or f"supp-{uuid.uuid4().hex[:32]}"), task_id=task.id, teacher_id=user.id, content="")
                         db.add(supplement)
-                    supplement.content = str(item.get("content", ""))
+                    if supplement.kind=="note":supplement.content = str(item.get("content", ""))
         elif user.role == "admin":
             pass  # 案例独立接口保存；聚合自动保存不改写案例草稿或发布版本。
         elif user.role == "student":
@@ -423,6 +439,7 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                 rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
                 if not rec:
                     continue
+                if not db.get(ClassMember,(db.get(LearningTask,rec.task_id).classroom_id,user.id)):continue
                 rec.observation = str(record_data.get("observation", ""))
                 rec.drafts = record_data.get("drafts") or {}
                 # Completion is committed by the dedicated submit endpoint.
@@ -524,22 +541,23 @@ def publish_case(case_id: str, request: Request, db: DB) -> dict:
 def publish(payload: PublishInput, request: Request, db: DB) -> dict:
     user = current_user(request, db)
     require_role(user, "teacher")
-    classroom = db.get(Classroom, payload.classroomId)
+    classroom = db.scalar(select(Classroom).where(Classroom.id==payload.classroomId).with_for_update())
     if not classroom or classroom.teacher_id != user.id:
         raise HTTPException(404, "发布班级不存在或不可访问。")
     if not payload.lessonDraft.get("goal", "").strip() or any(not str(block.get("content", "")).strip() for block in payload.lessonDraft.get("blocks", [])):
         raise HTTPException(422, "请填写学习目标和全部教学活动。")
-    if not payload.lessonDraft.get("dueDate"):
-        raise HTTPException(422, "请选择完成日期。")
     members = db.scalars(select(ClassMember.student_id).where(ClassMember.classroom_id == classroom.id)).all()
     if not members:
         raise HTTPException(422, "请先向班级添加至少一名学生，再发布学习任务。")
+    from .teaching import cutoff
+    cutoff(payload.lessonDraft.get("dueDate"),True)
     # The request key makes a retried publish safe after a lost response.
     task_id = f"task-{hashlib.sha256((user.id + payload.idempotencyKey).encode()).hexdigest()[:32]}"
-    existing = db.get(LearningTask, task_id)
+    existing = db.scalar(select(LearningTask).where(LearningTask.id==task_id).with_for_update())
     if existing:
         return {"taskId": existing.id, "created": False}
     snapshot = {k: payload.lessonDraft.get(k) for k in ("id", "caseId", "goal", "studentBase", "dueDate", "blocks", "planningDetails", "revision")}
+    snapshot["dueDate"]=str(payload.lessonDraft.get("dueDate") or "")
     from .library import current_case
     supplied = payload.lessonDraft.get('caseSnapshot') or {}
     snapshot['caseSnapshot'] = current_case(db, snapshot.get('caseId'), supplied.get('versionId')) if snapshot.get('caseId') else None
@@ -559,10 +577,11 @@ def publish(payload: PublishInput, request: Request, db: DB) -> dict:
                                  'caseVersionId':(snapshot.get('caseSnapshot') or {}).get('versionId')})
         if errors:raise HTTPException(422,'；'.join(errors))
         snapshot['lessonSnapshot']=version
-    task = LearningTask(id=task_id, classroom_id=classroom.id, teacher_id=user.id, lesson_id=lesson.id, title=version["title"] if version else lesson.title, snapshot=snapshot, questions=payload.lessonDraft.get("questions", []), due_date=snapshot["dueDate"])
+    task = LearningTask(id=task_id, classroom_id=classroom.id, teacher_id=user.id, lesson_id=lesson.id, title=version["title"] if version else lesson.title, snapshot=snapshot, questions=payload.lessonDraft.get("questions", []), due_date=snapshot["dueDate"],published_at=datetime.utcnow())
     db.add(task)
-    for member in db.scalars(select(ClassMember).where(ClassMember.classroom_id == classroom.id)).all():
-        db.add(StudentRecord(id=f"record-{uuid.uuid4().hex}", task_id=task_id, student_id=member.student_id, drafts={}, observation="", source="live"))
+    db.flush()
+    from .teaching import assign
+    for member in db.scalars(select(ClassMember).where(ClassMember.classroom_id == classroom.id)).all():assign(db,task,member.student_id)
     db.commit()
     return {"taskId": task_id, "created": True}
 
@@ -570,6 +589,8 @@ def publish(payload: PublishInput, request: Request, db: DB) -> dict:
 @app.post("/api/records/{task_id}/attempts", status_code=201)
 def add_attempt(task_id: str, body: dict, request: Request, db: DB) -> dict:
     user = current_user(request, db)
+    from .teaching import ensure_write
+    ensure_write(db,user,task_id)
     require_role(user, "student")
     rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
     task = db.get(LearningTask, task_id)
@@ -597,6 +618,8 @@ def add_attempt(task_id: str, body: dict, request: Request, db: DB) -> dict:
 @app.post("/api/records/{task_id}/helps", status_code=201)
 def add_help(task_id: str, body: dict, request: Request, db: DB) -> dict:
     user = current_user(request, db)
+    from .teaching import ensure_write
+    ensure_write(db,user,task_id)
     rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
     if not rec:
         raise HTTPException(404, "没有找到本人的学习任务。")
@@ -609,6 +632,8 @@ def add_help(task_id: str, body: dict, request: Request, db: DB) -> dict:
 @app.post("/api/records/{task_id}/repairs", status_code=201)
 def add_repair(task_id: str, body: dict, request: Request, db: DB) -> dict:
     user = current_user(request, db)
+    from .teaching import ensure_write
+    ensure_write(db,user,task_id)
     wrong = db.get(WrongQuestion, str(body.get("wrongId", "")))
     rec = db.get(StudentRecord, wrong.record_id) if wrong else None
     if not rec or rec.task_id != task_id or rec.student_id != user.id:
@@ -626,6 +651,8 @@ def add_repair(task_id: str, body: dict, request: Request, db: DB) -> dict:
 @app.post("/api/records/{task_id}/submit")
 def submit_task(task_id: str, request: Request, db: DB) -> dict:
     user = current_user(request, db)
+    from .teaching import ensure_write
+    ensure_write(db,user,task_id)
     rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
     if not rec:
         raise HTTPException(404, "没有找到本人的学习任务。")
@@ -633,8 +660,11 @@ def submit_task(task_id: str, request: Request, db: DB) -> dict:
     task=db.get(LearningTask,task_id)
     missing=completion_missing(task,rec,db.scalars(select(Attempt).where(Attempt.record_id==rec.id)).all())
     if missing:raise HTTPException(422,'请先完成：'+'、'.join(missing))
-    rec.completed = True
-    rec.submitted_at = datetime.utcnow()
+    if not rec.completed:
+        rec.completed = True
+        rec.submitted_at = datetime.now(timezone.utc).replace(tzinfo=None,microsecond=0)
+        from .teaching import message
+        message(db,task,task.teacher_id,'submission',sender=user.id,event_key=user.id)
     db.commit()
     return {"submitted": True, "submittedAt": rec.submitted_at.isoformat()}
 
@@ -652,6 +682,8 @@ def save_feedback(record_id: str, body: dict, request: Request, db: DB) -> dict:
         raise HTTPException(422, "请填写反馈内容。")
     rec.feedback = feedback
     rec.feedback_at = datetime.utcnow()
+    from .teaching import feedback_message
+    feedback_message(db,task,rec)
     db.commit()
     return {"feedback": rec.feedback, "feedbackAt": rec.feedback_at.isoformat()}
 
@@ -797,3 +829,6 @@ app.include_router(curriculum_router)
 
 from .drafts import router as preparation_router
 app.include_router(preparation_router)
+
+from .teaching import router as teaching_router
+app.include_router(teaching_router)

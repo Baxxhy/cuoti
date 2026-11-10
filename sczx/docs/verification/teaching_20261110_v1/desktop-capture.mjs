@@ -1,0 +1,22 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {Browser,sleep} from '../../../frontend/tests/cdp.mjs';
+const fixture=JSON.parse(readFileSync(process.env.SCZX_ACCEPTANCE_FIXTURE||'/tmp/sczx-step11/browser-private.json'));const out=process.env.SCZX_ACCEPTANCE_OUTPUT||'/tmp/sczx-step11';
+const browser=await Browser.launch(),report={startedAt:new Date().toISOString(),steps:[],screens:[]};
+const b=browser;await b.viewport(1440,1000);
+const note=(name,details={})=>{report.steps.push({name,...details});console.log(name)};
+async function click(label,root='document'){await b.wait(`[...${root}.querySelectorAll('button')].some(e=>e.textContent.trim()===${JSON.stringify(label)}&&!e.disabled&&e.getBoundingClientRect().width)`);await b.eval(({label,root})=>{const r=root==='document'?document:document.querySelector(root);const el=[...r.querySelectorAll('button')].find(e=>e.textContent.trim()===label&&!e.disabled&&e.getBoundingClientRect().width);el.scrollIntoView({block:'center'});el.click()},{label,root});await sleep(250)}
+async function type(selector,text){await b.eval(({selector,text})=>{const e=document.querySelector(selector);if(!e)throw Error('No field '+selector);e.focus();e.value=text;e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}))},{selector,text});await sleep(100)}
+async function route(path){await b.eval(path=>location.hash='#/'+path,path);await sleep(700);await b.wait("!document.body.innerText.includes('加载工作区')")}
+async function login(name){await b.eval(async()=>{await fetch('/api/auth/logout',{method:'POST'})});await b.goto('http://127.0.0.1:5178/?run='+Date.now()+'#/login');await b.wait("!!document.querySelector('#login-username')");await type('#login-username','teaching-'+name);await type('#login-password',fixture.password);await b.eval(()=>document.querySelector('form').requestSubmit());await b.wait("!location.hash.includes('/login')");await sleep(700)}
+async function screenshot(name,width){await b.viewport(width,1000);await b.eval(()=>window.scrollTo(0,0));await sleep(250);const overflow=await b.eval(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));if(overflow.scroll>width)throw Error('Horizontal overflow '+name+' '+JSON.stringify(overflow));await b.screenshot(out+'/'+name+'-'+width+'.png');report.screens.push({name,width,overflow:overflow.scroll});}
+async function choose(label,option){const point=await b.eval(label=>{const e=document.querySelector('[aria-label="'+label+'"]');e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2}},label);await b.send('Input.dispatchMouseEvent',{type:'mousePressed',button:'left',clickCount:1,...point});await b.send('Input.dispatchMouseEvent',{type:'mouseReleased',button:'left',clickCount:1,...point});await b.wait("!!document.querySelector('[role=option]')");const target=await b.eval(option=>{const e=[...document.querySelectorAll('[role=option]')].find(e=>e.textContent.trim()===option);if(!e)throw Error('Missing option '+option);const r=e.getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}},option);await b.send('Input.dispatchMouseEvent',{type:'mousePressed',button:'left',clickCount:1,...target});await b.send('Input.dispatchMouseEvent',{type:'mouseReleased',button:'left',clickCount:1,...target});await b.wait("!document.querySelector('[role=option]')");await sleep(500)}
+
+try{
+ await b.goto('http://127.0.0.1:5178/#/login');await login('t1');
+ for(const [name,path] of [['teacher-class','class?class=browser-c0'],['teacher-home','teacher?class=browser-c0'],['teacher-insights','insights?task='+JSON.parse(readFileSync(out+'/browser-flow.json')).publishedTaskId]]){
+  await route(path);await b.wait("!document.body.innerText.includes('读取中…')");for(const width of [1440,1920,2560])await screenshot(name,width);
+ }
+ await login('s0');const task=JSON.parse(readFileSync(out+'/browser-flow.json')).publishedTaskId;
+ for(const [name,path] of [['student-home','home'],['student-result','result?task='+task],['student-learning','learn?task='+task]]){await route(path);await b.wait("!document.body.innerText.includes('读取中…')");for(const width of [1440,1920,2560])await screenshot(name,width)}
+ report.errors=b.errors;if(b.errors.length)throw Error(b.errors.join());report.passed=true;
+}catch(e){report.passed=false;report.error=e.message;throw e}finally{writeFileSync(out+'/desktop.json',JSON.stringify(report,null,2));await b.close()}

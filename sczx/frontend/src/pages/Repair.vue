@@ -24,7 +24,7 @@ const repairAnswer = ref(saved.answer || ""),
   repairSubmitted = ref(saved.submitted === true),
   correct = ref(saved.correct === true);
 watch([repairAnswer, repairReason, repairSubmitted, correct, verification], () => {
-  if (store.record) {
+  if (store.record && !store.task?.readOnly) {
     store.record.drafts[key] = {
       answer: repairAnswer.value,
       reason: repairReason.value,
@@ -103,7 +103,7 @@ async function submitRepair() {
         <label class="field-label" for="repair-answer">z 的值是多少？</label
         ><Input
           id="repair-answer"
-          v-model="repairAnswer"
+          v-model="repairAnswer" :disabled="store.task.readOnly"
           inputmode="decimal"
           placeholder="填写数值"
           @update:model-value="repairSubmitted = false"
@@ -111,7 +111,7 @@ async function submitRepair() {
           >你对两边进行了什么运算？</label
         ><Textarea
           id="repair-reason"
-          v-model="repairReason"
+          v-model="repairReason" :disabled="store.task.readOnly"
           placeholder="两边同时……"
         />
         <div v-if="repairSubmitted" class="inline-notice">
@@ -125,7 +125,7 @@ async function submitRepair() {
           </p>
         </div>
         <div class="paper-actions">
-          <Button :disabled="submitting" @click="submitRepair">{{ submitting ? "保存中…" : "提交尝试" }}<ArrowRight /></Button
+          <Button :disabled="store.task.readOnly||submitting" @click="submitRepair">{{ submitting ? "保存中…" : "提交尝试" }}<ArrowRight /></Button
           ><RouteButton route="result" secondary>返回任务</RouteButton>
         </div></Surface
       >

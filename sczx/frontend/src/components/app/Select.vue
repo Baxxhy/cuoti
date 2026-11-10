@@ -7,13 +7,21 @@ import {
   SelectValue,
 } from "@/components/ui/select/index.js";
 defineOptions({ inheritAttrs: false });
-defineProps({ options: { default: () => [] }, label: String });
+defineProps({
+  options: { default: () => [] },
+  label: String,
+  placeholder: String,
+});
 const model = defineModel();
 </script>
 <template>
   <Select v-model="model"
     ><SelectTrigger :aria-label="label" v-bind="$attrs"
-      ><SelectValue /></SelectTrigger
+      ><SelectValue :placeholder="placeholder || label">{{
+        options.find((option) => option.value === model)?.label ||
+        placeholder ||
+        label
+      }}</SelectValue></SelectTrigger
     ><SelectContent
       ><SelectItem
         v-for="option in options"

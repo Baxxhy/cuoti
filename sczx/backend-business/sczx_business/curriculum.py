@@ -236,6 +236,8 @@ def assess_question(answer,question):
 def hint(task_id:str,index:int,request:Request,db=Depends(get_db)):
     from .models import LearningTask,StudentRecord,HelpRecord,Attempt
     user=account(request,db)
+    from .teaching import ensure_write
+    ensure_write(db,user,task_id)
     record=db.scalar(select(StudentRecord).where(StudentRecord.task_id==task_id,StudentRecord.student_id==user.id));task=db.get(LearningTask,task_id)
     if not record or not task or not 0<=index<len(task.questions):raise HTTPException(404,'题目不存在。')
     text=task.questions[index].get('hint','请检查等式两边是否进行相同运算。')

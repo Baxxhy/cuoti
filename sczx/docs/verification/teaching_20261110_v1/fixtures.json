@@ -1,0 +1,40 @@
+{
+  "teachers": [
+    "teaching-t1",
+    "teaching-t2"
+  ],
+  "classes": [
+    "browser-c0",
+    "browser-c1",
+    "browser-c2"
+  ],
+  "studentsPerClass": [
+    [
+      "teaching-s0",
+      "teaching-s1",
+      "teaching-s2"
+    ],
+    [
+      "teaching-s3",
+      "teaching-s4",
+      "teaching-s5"
+    ],
+    [
+      "teaching-s6",
+      "teaching-s7",
+      "teaching-s8"
+    ]
+  ],
+  "crossClassStudent": "teaching-s9",
+  "lateStudent": "teaching-s10",
+  "initialTasks": [
+    "browser-t00",
+    "browser-t01",
+    "browser-t10",
+    "browser-t11",
+    "browser-t20",
+    "browser-t21"
+  ],
+  "publishedTaskId": "task-80f398b584773d59c41d8d07b2a91ae7",
+  "contentOrigin": "项目自编验收数据，不是课堂效果数据"
+}

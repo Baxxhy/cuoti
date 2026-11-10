@@ -29,7 +29,8 @@ const store = useLearning(),
 
 const tools=ref(null);
 const details=computed(()=>store.data.lessonDraft.planningDetails|| (store.data.lessonDraft.planningDetails={}));
-const route=useRoute();const templateBusy=ref(false),lessonSwitchBusy=ref(false);
+const route=useRoute();
+watch(()=>route.query.class,id=>{if(id&&store.data.classrooms.some(c=>c.id===id))store.data.publishClassId=String(id)},{immediate:true});const templateBusy=ref(false),lessonSwitchBusy=ref(false);
 watch(()=>route.query.lesson,async id=>{
  if(id&&id!==store.data.lesson?.id){
   lessonSwitchBusy.value=true;
@@ -47,6 +48,7 @@ const modal = ref(""),
   busyBlock = ref(""),
   publishClass = ref(store.data.publishClassId || store.data.classroom?.id || store.data.classrooms?.[0]?.id || ""),
   publishError = ref("");
+watch(()=>route.query.class,id=>{if(id&&store.data.classrooms.some(c=>c.id===id))publishClass.value=String(id)},{immediate:true});
 watch(() => store.data.classrooms, (classrooms) => {
   if (!publishClass.value && classrooms?.length) publishClass.value = classrooms[0].id;
 }, { immediate: true, deep: true });
@@ -228,7 +230,7 @@ async function publish() {
         :options="store.data.classrooms.map((item) => ({ value: item.id, label: `${item.name} · ${item.grade}` }))" /><p v-if="!store.data.classrooms.length" class="form-error">先在班级教学中创建班级并添加学生。</p><label
         class="field-label"
         for="due-date"
-        >建议完成日期</label
+        >截止日期（北京时间）</label
       ><Input
         id="due-date"
         v-model="store.data.lessonDraft.dueDate"

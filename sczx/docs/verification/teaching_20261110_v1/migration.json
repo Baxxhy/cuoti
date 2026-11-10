@@ -1,0 +1,14 @@
+{
+  "database": "sczx_test_teaching_migrate_3b7e8b",
+  "oldRevision": "0009_lesson_draft_versions",
+  "revision": "0010_teaching_messages",
+  "beforeDigest": "765c3bd8c8970e24c3eceb406de853eeacf7a895ff2570058290519cc1f72435",
+  "afterDigest": "765c3bd8c8970e24c3eceb406de853eeacf7a895ff2570058290519cc1f72435",
+  "repeatDigest": "765c3bd8c8970e24c3eceb406de853eeacf7a895ff2570058290519cc1f72435",
+  "oldNote": {
+    "kind": "note",
+    "status": "active",
+    "content": "原有补充说明，不改成完成任务"
+  },
+  "passed": true
+}

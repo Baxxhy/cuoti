@@ -26,6 +26,7 @@ import {
 import { navigate } from "@/lib/navigation.js";
 import SidebarContent from "@/components/SidebarContent.vue";
 import { useLearning } from "@/store.js";
+import MessageCenter from "@/components/MessageCenter.vue";
 import PlatformStatus from "@/components/PlatformStatus.vue";
 import NotFound from "@/pages/NotFound.vue";
 const store = useLearning();
@@ -57,6 +58,7 @@ const navigation = {
     { route: "courses", label: "探索课程", icon: BookOpen },
     { route: "wrong", label: "错题帮", icon: NotebookPen },
     { route: "records", label: "学习记录", icon: History },
+    {route:"class",label:"我的班级",icon:Users},
   ],
   teacher: [
     { route: "teacher", label: "教学概览", icon: LayoutDashboard },
@@ -189,9 +191,10 @@ function submitFeedback() {
               ><Button
                 variant="ghost"
                 size="icon"
+                class="notification-trigger"
                 aria-label="查看消息"
                 @click="notifications = true"
-                ><Bell :size="18" /></Button
+                ><Bell :size="18" /><span v-if="store.unreadCount" class="notification-badge">{{ store.unreadCount }}</span></Button
               ><span class="topbar-demo"
                 >{{ store.status === "ready" ? "已连接" : "连接中" }}<InfoTip label="数据状态"
                   >页面数据由当前账号从业务服务读取；课程讲解仍为固定演示内容。</InfoTip
@@ -266,22 +269,7 @@ function submitFeedback() {
           <p v-if="!results.length" class="muted">没有匹配结果</p>
         </div></AppDialog
       >
-      <AppDialog v-model:open="notifications" title="消息与提醒"
-        ><button
-          v-for="message in store.data.messages"
-          :key="message.id"
-          class="notification-row"
-          @click="
-            navigate(`result?task=${message.taskId}`);
-            notifications = false;
-          "
-        >
-          <span class="notification-dot" /><strong>{{ message.title }}</strong
-          ><ArrowUpRight :size="16" />
-        </button>
-        <p v-if="!store.data.messages.length" class="muted">
-          暂无消息
-        </p></AppDialog
+      <AppDialog v-model:open="notifications" title="消息与提醒"><MessageCenter @navigate="notifications=false"/></AppDialog
       ><AppDialog v-model:open="helpOpen" title="帮助与反馈"
         ><label class="field-label" for="issue-note">体验反馈</label
         ><Textarea

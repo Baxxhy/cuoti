@@ -1,4 +1,5 @@
 <script setup>
+import SupplementPanel from "@/components/SupplementPanel.vue";
 import { inject, ref } from "vue";
 import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
@@ -32,7 +33,7 @@ async function submitResult() {
       </div>
       <Button
         @click="submitResult"
-        :disabled="submitting"
+        :disabled="submitting||store.task.readOnly"
         >{{ submitting ? "提交中…" : store.record.completed ? "再次提交结果" : "提交本课结果"
         }}<ArrowRight
       /></Button>
@@ -72,20 +73,11 @@ async function submitResult() {
           <span>师</span>
           <h3>教师的反馈</h3>
         </div>
-        <p
-          v-for="item in store.data.supplements.filter(
-            (item) => item.taskId === store.task.id,
-          )"
-          :key="item.id"
-          class="preserve-lines"
-        >
-          补充学习 · {{ item.content }}
-        </p>
         <blockquote>
           {{ store.record.feedback || "教师反馈将在保存后显示。" }}
         </blockquote>
         <RouteButton route="check" secondary>继续检查新题</RouteButton></Surface
       >
-    </div></template
+    </div><SupplementPanel :task-id="store.task.id"/></template
   ><TaskEmpty v-else />
 </template>

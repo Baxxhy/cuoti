@@ -125,6 +125,9 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
     user = user_for(request, db)
     data = payload.data.copy()
     record = db.get(StudentRecord,payload.recordId) if payload.recordId else None
+    if user.role=="student" and record and record.student_id==user.id:
+        from .teaching import ensure_write
+        ensure_write(db,user,record.task_id)
     if payload.capability == "lesson_agent":
         if user.role != "teacher" or payload.recordId or payload.fileId:raise HTTPException(403,"请使用教师备课入口。")
         from .prepare_agent import build_input

@@ -1,0 +1,123 @@
+{
+  "startedAt": "2026-11-10T08:15:01.587Z",
+  "steps": [
+    {
+      "name": "teacher-class-scope",
+      "tasks": 2,
+      "students": 4
+    },
+    {
+      "name": "edit-class-ui"
+    },
+    {
+      "name": "generate-invite-ui"
+    },
+    {
+      "name": "late-student-joins-no-history"
+    },
+    {
+      "name": "history-backfill-ui-idempotent"
+    },
+    {
+      "name": "publish-new-snapshot-ui",
+      "task": "task-80f398b584773d59c41d8d07b2a91ae7"
+    },
+    {
+      "name": "teacher-supplement-ui"
+    },
+    {
+      "name": "teacher-correction-ui"
+    },
+    {
+      "name": "student-learning-hint-independent-ui"
+    },
+    {
+      "name": "student-main-submit-ui"
+    },
+    {
+      "name": "student-supplement-submit-ui"
+    },
+    {
+      "name": "messages-read-ui"
+    },
+    {
+      "name": "refresh-preserves-main-and-supplement"
+    },
+    {
+      "name": "teacher-opens-student-ui"
+    },
+    {
+      "name": "teacher-feedback-ui"
+    },
+    {
+      "name": "student-reads-real-feedback-ui"
+    }
+  ],
+  "screens": [
+    {
+      "name": "teacher-class",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "teacher-class",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "teacher-class",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "teacher-home",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "teacher-home",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "teacher-home",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "student-home",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "student-home",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "student-home",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "student-result",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "student-result",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "student-result",
+      "width": 2560,
+      "overflow": 2545
+    }
+  ],
+  "publishedTaskId": "task-80f398b584773d59c41d8d07b2a91ae7",
+  "feedbackFields": [],
+  "errors": [],
+  "finishedAt": "2026-11-10T08:15:40.600Z",
+  "passed": true
+}

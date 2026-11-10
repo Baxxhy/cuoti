@@ -15,3 +15,5 @@ MySQL/API集成测试默认跳过。先新建仅供测试的 `sczx_test_*` 库�
 前端持久Chromium现有5项，另有 `npm --prefix frontend run test:unit` 无外部服务JS检查。GitHub基础工作流不连接业务数据库、不调用真实Codex。当前Office实机验收状态请读取第十步统一验收表，不用DOCX解析测试代替Word/WPS打开验证。
 
 Word专项新增4项独立导出/文本规则测试与2项MySQL保护测试，当前完整31项（不接MySQL为16通过、15跳过）。检查字体的四种OOXML映射、所有样式/页眉页脚纯黑、A4、双模式去重、清理只作用副本、语言规则及一次修订上限。当前Office状态见最新专项验收表，旧段落的待验收状态属于历史记录。
+
+第十一步当前完整42项：原31项，加10项班级/任务/消息MySQL场景及1项日期边界单元。新增并发补发与读取去重、加入/移出/重入、私人安排收件、截止时区、提交重试首时间、旧说明兼容。前端当前7项Chromium及1项JS。真实多用户浏览器种子使用`PYTHONPATH=backend-business python backend-business/tests/seed_teaching_acceptance.py --output /tmp/sczx-step11/browser-private.json`，必须另用全新sczx_test_*库；凭据只写临时私有文件。[验收与复现](../../docs/verification/teaching_20261110_v1/README.md)。

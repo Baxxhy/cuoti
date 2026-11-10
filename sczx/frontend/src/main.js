@@ -93,7 +93,7 @@ for (const [name, component] of Object.entries({
 const store = useLearning();
 let sessionReady;
 const roleRoutes = {
-  student: new Set(["source", "home", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
+  student: new Set(["source", "home", "class", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
   teacher: new Set(["source", "teacher", "courses", "cases", "case-detail", "prepare", "agent", "class", "insights", "issues"]),
   admin: new Set(["source", "manage", "content", "issues", "cases", "case-detail", "courses"]),
 };

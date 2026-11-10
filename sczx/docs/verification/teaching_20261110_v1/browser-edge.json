@@ -1,0 +1,26 @@
+{
+  "steps": [
+    {
+      "name": "message-deep-link"
+    },
+    {
+      "name": "read-status-after-relogin"
+    },
+    {
+      "name": "wrong-original-and-repair-refresh"
+    },
+    {
+      "name": "class-route-refresh"
+    },
+    {
+      "name": "remove-member-ui"
+    },
+    {
+      "name": "historical-assignment-readonly",
+      "text": true,
+      "disabled": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

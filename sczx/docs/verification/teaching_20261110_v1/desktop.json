@@ -1,0 +1,98 @@
+{
+  "startedAt": "2026-11-10T08:23:48.667Z",
+  "steps": [],
+  "screens": [
+    {
+      "name": "teacher-class",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "teacher-class",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "teacher-class",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "teacher-home",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "teacher-home",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "teacher-home",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "teacher-insights",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "teacher-insights",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "teacher-insights",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "student-home",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "student-home",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "student-home",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "student-result",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "student-result",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "student-result",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "student-learning",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "student-learning",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "student-learning",
+      "width": 2560,
+      "overflow": 2545
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

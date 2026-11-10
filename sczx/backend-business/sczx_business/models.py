@@ -52,6 +52,7 @@ class Classroom(Base):
     teacher_id: Mapped[str] = mapped_column(ForeignKey("accounts.id"), index=True)
     name: Mapped[str] = mapped_column(String(160))
     grade: Mapped[str] = mapped_column(String(80), default="")
+    subject: Mapped[str] = mapped_column(String(80), default="", server_default="")
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
 
@@ -197,6 +198,9 @@ class SupplementalInstruction(Base):
     task_id: Mapped[str] = mapped_column(ForeignKey("learning_tasks.id", ondelete="CASCADE"), index=True)
     teacher_id: Mapped[str] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), index=True)
     content: Mapped[str] = mapped_column(Text)
+    kind: Mapped[str] = mapped_column(String(24), default='note', server_default='note')
+    due_date: Mapped[str] = mapped_column(String(40), default='', server_default='')
+    status: Mapped[str] = mapped_column(String(24), default='active', server_default='active')
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
 
@@ -346,3 +350,43 @@ class LessonDraftVersion(Base):
     data: Mapped[dict] = mapped_column(JSON)
     reason: Mapped[str] = mapped_column(String(100))
     created_at: Mapped[datetime] = mapped_column(DateTime,server_default=func.now())
+
+
+class ClassInvite(Base):
+    __tablename__='class_invites'
+    id: Mapped[str] = mapped_column(String(40),primary_key=True)
+    classroom_id: Mapped[str] = mapped_column(ForeignKey('classrooms.id'),index=True)
+    code_hash: Mapped[str] = mapped_column(String(64),unique=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime)
+    revoked: Mapped[bool] = mapped_column(Boolean,default=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime,server_default=func.now())
+
+class JoinThrottle(Base):
+    __tablename__='class_join_throttles'
+    account_id: Mapped[str] = mapped_column(ForeignKey('accounts.id'),primary_key=True)
+    count: Mapped[int] = mapped_column(Integer,default=0)
+    window_start: Mapped[datetime] = mapped_column(DateTime)
+
+class BusinessMessage(Base):
+    __tablename__='business_messages'
+    id: Mapped[str] = mapped_column(String(40),primary_key=True)
+    dedupe_key: Mapped[str] = mapped_column(String(64),unique=True)
+    sender_id: Mapped[str] = mapped_column(ForeignKey('accounts.id'),index=True)
+    recipient_id: Mapped[str] = mapped_column(ForeignKey('accounts.id'),index=True)
+    classroom_id: Mapped[str] = mapped_column(ForeignKey('classrooms.id'),index=True)
+    task_id: Mapped[str] = mapped_column(ForeignKey('learning_tasks.id'),index=True)
+    object_id: Mapped[str | None] = mapped_column(String(40),nullable=True)
+    kind: Mapped[str] = mapped_column(String(32))
+    title: Mapped[str] = mapped_column(String(240))
+    body: Mapped[str] = mapped_column(Text,default='')
+    read_at: Mapped[datetime | None] = mapped_column(DateTime,nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime,server_default=func.now())
+
+class SupplementRecipient(Base):
+    __tablename__='supplement_recipients'
+    instruction_id: Mapped[str] = mapped_column(ForeignKey('supplemental_instructions.id'),primary_key=True)
+    student_id: Mapped[str] = mapped_column(ForeignKey('accounts.id'),primary_key=True)
+    started_at: Mapped[datetime | None] = mapped_column(DateTime,nullable=True)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime,nullable=True)
+    response: Mapped[str] = mapped_column(Text,default='')
+    feedback: Mapped[str] = mapped_column(Text,default='')
