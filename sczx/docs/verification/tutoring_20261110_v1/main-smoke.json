@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "role": "teacher",
+      "path": "/api/platform",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "path": "/api/teaching/classes",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "path": "/api/teaching/dashboard",
+      "status": 200
+    },
+    {
+      "role": "teacher",
+      "path": "/api/teaching/messages",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "path": "/api/platform",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "path": "/api/teaching/classes",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "path": "/api/teaching/dashboard",
+      "status": 200
+    },
+    {
+      "role": "student",
+      "path": "/api/teaching/messages",
+      "status": 200
+    }
+  ]
+}

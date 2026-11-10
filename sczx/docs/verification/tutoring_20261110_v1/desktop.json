@@ -1,0 +1,86 @@
+{
+  "startedAt": "2026-11-10T10:08:18.105Z",
+  "steps": [],
+  "screens": [
+    {
+      "name": "student-learning",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "student-learning",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "student-learning",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "student-check",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "student-check",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "student-check",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "student-result",
+      "width": 1440,
+      "overflow": 1440
+    },
+    {
+      "name": "student-result",
+      "width": 1920,
+      "overflow": 1920
+    },
+    {
+      "name": "student-result",
+      "width": 2560,
+      "overflow": 2560
+    },
+    {
+      "name": "teacher-insights",
+      "width": 1440,
+      "overflow": 1425
+    },
+    {
+      "name": "teacher-insights",
+      "width": 1920,
+      "overflow": 1905
+    },
+    {
+      "name": "teacher-insights",
+      "width": 2560,
+      "overflow": 2545
+    },
+    {
+      "name": "teacher-guidance-history",
+      "width": 1440,
+      "overflow": 1440
+    },
+    {
+      "name": "teacher-guidance-history",
+      "width": 1920,
+      "overflow": 1920
+    },
+    {
+      "name": "teacher-guidance-history",
+      "width": 2560,
+      "overflow": 2560
+    }
+  ],
+  "offlineDraft": "断网时先保留这段未提交的问题，恢复后继续。",
+  "offlineRecovery": true,
+  "guideFocus": true,
+  "errors": [],
+  "passed": true
+}

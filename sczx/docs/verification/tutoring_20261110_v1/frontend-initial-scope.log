@@ -1,0 +1,41 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ clearing a pending create prevents the old job from reopening (1414.509706ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1288.317456ms)
+✔ assistant initialization cannot replace a newer user request (1254.317763ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1010.293075ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (1814.751034ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (1773.742229ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1382.70671ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (1868.903754ms)
+✖ late OCR upload after question switch cannot create or show guidance in the new context (1165.899936ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5099.858291
+
+✖ failing tests:
+
+test at tests/tutoring-scope.test.mjs:13:1
+✖ late OCR upload after question switch cannot create or show guidance in the new context (1165.899936ms)
+  Error: TypeError: Cannot read properties of undefined (reading 'blocks')
+      at Proxy._sfc_render (http://127.0.0.1:5177/src/components/ModelAssistant.vue:363:105)
+      at renderComponentRoot (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:6270:17)
+      at ReactiveEffect.componentUpdateFn [as fn] (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:7713:46)
+      at ReactiveEffect.run (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:1918:23)
+      at setupRenderEffect (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:7858:5)
+      at mountComponent (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:7617:7)
+      at processComponent (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:7564:9)
+      at patch (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:7053:11)
+      at mountChildren (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:7306:7)
+      at processFragment (http://127.0.0.1:5177/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:7494:7)
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/tutoring-scope.test.mjs:14:131)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)

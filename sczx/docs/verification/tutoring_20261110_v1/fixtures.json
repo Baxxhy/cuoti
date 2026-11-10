@@ -1,0 +1,31 @@
+{
+  "classes": [
+    "browser-c0",
+    "browser-c1",
+    "browser-c2"
+  ],
+  "originalTasks": [
+    "browser-t00",
+    "browser-t01",
+    "browser-t10",
+    "browser-t11",
+    "browser-t20",
+    "browser-t21"
+  ],
+  "teachers": [
+    "teaching-t1",
+    "teaching-t2"
+  ],
+  "students": "teaching-s0..s10：每班3人、跨班s9、历史只读s10",
+  "lessonIds": [
+    "browser-lesson",
+    "browser-lesson-two"
+  ],
+  "knowledgeIds": [
+    "browser-kp",
+    "browser-base"
+  ],
+  "firstPublishedTask": "task-91df4bd17ce9a9e835fe37a5db0d458e",
+  "contentOrigin": "项目自编，不是真实课堂评价",
+  "database": "sczx_test_tutoring_browser_3f6e28"
+}

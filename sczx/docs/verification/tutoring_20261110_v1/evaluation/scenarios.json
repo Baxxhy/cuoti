@@ -1,0 +1,2455 @@
+[
+  {
+    "id": "q01",
+    "strategy": "hint",
+    "prompt": "只改变等式一边也能相等吗？",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "hint",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "hint",
+      "selectedStrategy": "hint",
+      "prompt": "只改变等式一边也能相等吗？",
+      "question": 0,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-add",
+          "kind": "practice",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "8",
+        "equation": "x - 3 = 5"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-add",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q02",
+    "strategy": "hint",
+    "prompt": "3z=18，我不知道先做什么。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "hint",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "hint",
+      "selectedStrategy": "hint",
+      "prompt": "3z=18，我不知道先做什么。",
+      "question": 2,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-divide",
+          "kind": "check",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "6",
+        "equation": "3z = 18"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-divide",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q03",
+    "strategy": "hint",
+    "prompt": "x减3为什么不能只在左边加3？",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "hint",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "hint",
+      "selectedStrategy": "hint",
+      "prompt": "x减3为什么不能只在左边加3？",
+      "question": null,
+      "blockId": "eq-balance",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-balance",
+          "type": "activity",
+          "title": "让天平两边一起变化",
+          "content": "天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+          "activity": {
+            "max": 10,
+            "base": 5,
+            "step": 1,
+            "type": "balance"
+          }
+        },
+        "question": null,
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "",
+        "equation": ""
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": null,
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q04",
+    "strategy": "hint",
+    "prompt": "我不确定题意，能先问我需要哪些条件吗？",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "hint",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "hint",
+      "selectedStrategy": "hint",
+      "prompt": "我不确定题意，能先问我需要哪些条件吗？",
+      "question": 1,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-sub",
+          "kind": "practice",
+          "prompt": "两边同时减4，y等于多少？",
+          "equation": "y + 4 = 11",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "7",
+        "equation": "y + 4 = 11"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-sub",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q05",
+    "strategy": "hint",
+    "prompt": "题图中减号有点模糊，确认后先给我提示。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "hint",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "hint",
+      "selectedStrategy": "hint",
+      "prompt": "题图中减号有点模糊，确认后先给我提示。",
+      "question": 3,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-multiply",
+          "kind": "check",
+          "prompt": "求w，并写出两边共同进行的运算。",
+          "equation": "w / 4 = 3",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "题图经核对的测试文字：3z = 18；仅用于文字情境，真实OCR另做端到端验收。",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "12",
+        "equation": "w / 4 = 3"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-multiply",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q06",
+    "strategy": "example",
+    "prompt": "请用另一道题说明两边同时加相同数。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "example",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "example",
+      "selectedStrategy": "example",
+      "prompt": "请用另一道题说明两边同时加相同数。",
+      "question": 0,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-add",
+          "kind": "practice",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-2",
+            "versionId": "tutor-case-version-2",
+            "version": 1,
+            "title": "逆运算对比",
+            "source": "项目自编验收材料",
+            "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "8",
+        "equation": "x - 3 = 5"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-add",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q07",
+    "strategy": "example",
+    "prompt": "请换一道乘除的例子，不要直接做这道检查题。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "example",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "example",
+      "selectedStrategy": "example",
+      "prompt": "请换一道乘除的例子，不要直接做这道检查题。",
+      "question": 2,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-divide",
+          "kind": "check",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "6",
+        "equation": "3z = 18"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-divide",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q08",
+    "strategy": "example",
+    "prompt": "用不同数量说明天平两边一起变化。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "example",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "example",
+      "selectedStrategy": "example",
+      "prompt": "用不同数量说明天平两边一起变化。",
+      "question": null,
+      "blockId": "eq-balance",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-balance",
+          "type": "activity",
+          "title": "让天平两边一起变化",
+          "content": "天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+          "activity": {
+            "max": 10,
+            "base": 5,
+            "step": 1,
+            "type": "balance"
+          }
+        },
+        "question": null,
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "",
+        "equation": ""
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": null,
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q09",
+    "strategy": "example",
+    "prompt": "我想看另一道逆运算例题，解释与当前题的联系。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "example",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "example",
+      "selectedStrategy": "example",
+      "prompt": "我想看另一道逆运算例题，解释与当前题的联系。",
+      "question": 1,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-sub",
+          "kind": "practice",
+          "prompt": "两边同时减4，y等于多少？",
+          "equation": "y + 4 = 11",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-2",
+            "versionId": "tutor-case-version-2",
+            "version": 1,
+            "title": "逆运算对比",
+            "source": "项目自编验收材料",
+            "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "7",
+        "equation": "y + 4 = 11"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-sub",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q10",
+    "strategy": "example",
+    "prompt": "用另一道除法例题说明非零条件。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "example",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "example",
+      "selectedStrategy": "example",
+      "prompt": "用另一道除法例题说明非零条件。",
+      "question": 3,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-multiply",
+          "kind": "check",
+          "prompt": "求w，并写出两边共同进行的运算。",
+          "equation": "w / 4 = 3",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-2",
+            "versionId": "tutor-case-version-2",
+            "version": 1,
+            "title": "逆运算对比",
+            "source": "项目自编验收材料",
+            "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "12",
+        "equation": "w / 4 = 3"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-multiply",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q11",
+    "strategy": "rephrase",
+    "prompt": "公式我还不懂，请用具体数量讲。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "rephrase",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "rephrase",
+      "selectedStrategy": "rephrase",
+      "prompt": "公式我还不懂，请用具体数量讲。",
+      "question": 0,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-add",
+          "kind": "practice",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "8",
+        "equation": "x - 3 = 5"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-add",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q12",
+    "strategy": "rephrase",
+    "prompt": "刚才的讲解太抽象，请用天平讲。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "rephrase",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "rephrase",
+      "selectedStrategy": "rephrase",
+      "prompt": "刚才的讲解太抽象，请用天平讲。",
+      "question": 2,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-divide",
+          "kind": "check",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "6",
+        "equation": "3z = 18"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-divide",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q13",
+    "strategy": "rephrase",
+    "prompt": "我知道要两边一起变，但不知道为什么，请换讲法。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "rephrase",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "rephrase",
+      "selectedStrategy": "rephrase",
+      "prompt": "我知道要两边一起变，但不知道为什么，请换讲法。",
+      "question": null,
+      "blockId": "eq-balance",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-balance",
+          "type": "activity",
+          "title": "让天平两边一起变化",
+          "content": "天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+          "activity": {
+            "max": 10,
+            "base": 5,
+            "step": 1,
+            "type": "balance"
+          }
+        },
+        "question": null,
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "",
+        "equation": ""
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": null,
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q14",
+    "strategy": "rephrase",
+    "prompt": "不要重复同一句规则，先让我比较两种做法。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "rephrase",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "rephrase",
+      "selectedStrategy": "rephrase",
+      "prompt": "不要重复同一句规则，先让我比较两种做法。",
+      "question": 1,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-sub",
+          "kind": "practice",
+          "prompt": "两边同时减4，y等于多少？",
+          "equation": "y + 4 = 11",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "7",
+        "equation": "y + 4 = 11"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-sub",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q15",
+    "strategy": "rephrase",
+    "prompt": "我不明白乘零为什么会丢失信息，请用对比讲。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "rephrase",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "rephrase",
+      "selectedStrategy": "rephrase",
+      "prompt": "我不明白乘零为什么会丢失信息，请用对比讲。",
+      "question": 3,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-multiply",
+          "kind": "check",
+          "prompt": "求w，并写出两边共同进行的运算。",
+          "equation": "w / 4 = 3",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-2",
+            "versionId": "tutor-case-version-2",
+            "version": 1,
+            "title": "逆运算对比",
+            "source": "项目自编验收材料",
+            "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "12",
+        "equation": "w / 4 = 3"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-multiply",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q16",
+    "strategy": "foundation",
+    "prompt": "相等是什么意思？先用一个小问题确认我的理解。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "foundation",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "foundation",
+      "selectedStrategy": "foundation",
+      "prompt": "相等是什么意思？先用一个小问题确认我的理解。",
+      "question": 0,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-add",
+          "kind": "practice",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "8",
+        "equation": "x - 3 = 5"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-add",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q17",
+    "strategy": "foundation",
+    "prompt": "我分不清加法的逆运算，先补相关基础。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "foundation",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "foundation",
+      "selectedStrategy": "foundation",
+      "prompt": "我分不清加法的逆运算，先补相关基础。",
+      "question": 2,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-divide",
+          "kind": "check",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-2",
+            "versionId": "tutor-case-version-2",
+            "version": 1,
+            "title": "逆运算对比",
+            "source": "项目自编验收材料",
+            "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "6",
+        "equation": "3z = 18"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-divide",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q18",
+    "strategy": "foundation",
+    "prompt": "我忘了为什么不能除以零，先确认我的想法。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "foundation",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "foundation",
+      "selectedStrategy": "foundation",
+      "prompt": "我忘了为什么不能除以零，先确认我的想法。",
+      "question": null,
+      "blockId": "eq-balance",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-balance",
+          "type": "activity",
+          "title": "让天平两边一起变化",
+          "content": "天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+          "activity": {
+            "max": 10,
+            "base": 5,
+            "step": 1,
+            "type": "balance"
+          }
+        },
+        "question": null,
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "",
+        "equation": ""
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": null,
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q19",
+    "strategy": "foundation",
+    "prompt": "我不知道同样的变化指什么，请先用简单数量检查。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "foundation",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "foundation",
+      "selectedStrategy": "foundation",
+      "prompt": "我不知道同样的变化指什么，请先用简单数量检查。",
+      "question": 1,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-sub",
+          "kind": "practice",
+          "prompt": "两边同时减4，y等于多少？",
+          "equation": "y + 4 = 11",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-1",
+            "versionId": "tutor-case-version-1",
+            "version": 1,
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "7",
+        "equation": "y + 4 = 11"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-sub",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q20",
+    "strategy": "foundation",
+    "prompt": "我只做错一次，请不要直接判断我没掌握。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "foundation",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "foundation",
+      "selectedStrategy": "foundation",
+      "prompt": "我只做错一次，请不要直接判断我没掌握。",
+      "question": 3,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-multiply",
+          "kind": "check",
+          "prompt": "求w，并写出两边共同进行的运算。",
+          "equation": "w / 4 = 3",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "12",
+        "equation": "w / 4 = 3"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-multiply",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q21",
+    "strategy": "try",
+    "prompt": "我想自己试试，请保留之前帮助记录。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "try",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "try",
+      "selectedStrategy": "try",
+      "prompt": "我想自己试试，请保留之前帮助记录。",
+      "question": 0,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-add",
+          "kind": "practice",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "8",
+        "equation": "x - 3 = 5"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-add",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q22",
+    "strategy": "try",
+    "prompt": "先不展开讲解，我自己写原题答案。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "try",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "try",
+      "selectedStrategy": "try",
+      "prompt": "先不展开讲解，我自己写原题答案。",
+      "question": 2,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-divide",
+          "kind": "check",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-2",
+            "versionId": "tutor-case-version-2",
+            "version": 1,
+            "title": "逆运算对比",
+            "source": "项目自编验收材料",
+            "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "6",
+        "equation": "3z = 18"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-divide",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q23",
+    "strategy": "try",
+    "prompt": "我准备独立完成下一道新题。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "try",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "try",
+      "selectedStrategy": "try",
+      "prompt": "我准备独立完成下一道新题。",
+      "question": null,
+      "blockId": "eq-balance",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-balance",
+          "type": "activity",
+          "title": "让天平两边一起变化",
+          "content": "天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+          "activity": {
+            "max": 10,
+            "base": 5,
+            "step": 1,
+            "type": "balance"
+          }
+        },
+        "question": null,
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "",
+        "equation": ""
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": null,
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q24",
+    "strategy": "try",
+    "prompt": "让我先解释等式两边共同做什么。",
+    "studentResponse": "我仍不明白为什么两边要做同一件事，请先确认相等的含义。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "try",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "try",
+      "selectedStrategy": "try",
+      "prompt": "让我先解释等式两边共同做什么。",
+      "question": 1,
+      "blockId": "eq-practice",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "question": {
+          "id": "eq-practice-sub",
+          "kind": "practice",
+          "prompt": "两边同时减4，y等于多少？",
+          "equation": "y + 4 = 11",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-0",
+            "versionId": "tutor-case-version-0",
+            "version": 1,
+            "title": "天平共同变化",
+            "source": "项目自编验收材料",
+            "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-3",
+            "versionId": "tutor-case-version-3",
+            "version": 1,
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "references": []
+          },
+          {
+            "id": "tutor-case-2",
+            "versionId": "tutor-case-version-2",
+            "version": 1,
+            "title": "逆运算对比",
+            "source": "项目自编验收材料",
+            "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "7",
+        "equation": "y + 4 = 11"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-practice-sub",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  },
+  {
+    "id": "q25",
+    "strategy": "try",
+    "prompt": "我想返回原题作答，不要继续给步骤。",
+    "studentResponse": "我试着说明：两边数量原本相同，所以变化也应该相同。",
+    "expected": {
+      "related": "围绕当前任务/题目",
+      "strategy": "try",
+      "noDirectOriginalAnswer": true,
+      "noUnsupportedDiagnosis": true,
+      "maxSteps": 4,
+      "math": "可核验关系不得错误",
+      "source": "只使用冻结公开来源"
+    },
+    "data": {
+      "guidance": true,
+      "strategy": "try",
+      "selectedStrategy": "try",
+      "prompt": "我想返回原题作答，不要继续给步骤。",
+      "question": 3,
+      "blockId": "eq-check",
+      "parentJobId": null,
+      "context": {
+        "lesson": {
+          "id": "browser-lesson",
+          "versionId": "browser-version",
+          "title": "天平与等式",
+          "grade": "七年级",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。"
+        },
+        "block": {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ]
+        },
+        "question": {
+          "id": "eq-check-multiply",
+          "kind": "check",
+          "prompt": "求w，并写出两边共同进行的运算。",
+          "equation": "w / 4 = 3",
+          "knowledgeIds": [
+            "browser-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "browser-kp",
+            "name": "等式性质"
+          }
+        ],
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "tutor-case-2",
+            "versionId": "tutor-case-version-2",
+            "version": 1,
+            "title": "逆运算对比",
+            "source": "项目自编验收材料",
+            "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+            "references": []
+          }
+        ],
+        "observation": ""
+      },
+      "history": [],
+      "ocrJobId": null,
+      "recognizedText": "",
+      "confirmedEquation": "",
+      "confirmed": false,
+      "fileId": null,
+      "_validation": {
+        "answer": "12",
+        "equation": "w / 4 = 3"
+      },
+      "scope": {
+        "studentId": "teaching-s0",
+        "taskId": "browser-t00",
+        "lessonId": "browser-lesson",
+        "lessonVersionId": "browser-version",
+        "questionId": "eq-check-multiply",
+        "knowledgeIds": [
+          "browser-kp"
+        ]
+      }
+    }
+  }
+]

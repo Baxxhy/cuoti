@@ -1,0 +1,252 @@
+{
+  "startedAt": "2026-11-10T09:56:10.612Z",
+  "steps": [
+    {
+      "name": "fresh-original-image-ocr",
+      "jobId": "job-99454e58e99640ac879454656a62fa27",
+      "fileId": "file-af7f8be57ca54668bcc777b67aed2c40"
+    },
+    {
+      "name": "corrected-image-is-guidance-target",
+      "jobId": "job-66f78286ee794fbba64c3614b31bed5b",
+      "taskQuestionId": "eq-new-combine",
+      "focus": "confirmed_image",
+      "equation": "3z = 18"
+    },
+    {
+      "name": "image-context-refresh"
+    },
+    {
+      "name": "teacher-reviews-fixed-image-guidance"
+    },
+    {
+      "name": "student-reads-image-feedback"
+    }
+  ],
+  "screens": [],
+  "taskId": "task-91df4bd17ce9a9e835fe37a5db0d458e",
+  "jobs": [
+    {
+      "id": "job-99454e58e99640ac879454656a62fa27",
+      "capability": "ocr",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-d59f088ebedb4b36a0d3f2f819041396",
+      "fileId": "file-af7f8be57ca54668bcc777b67aed2c40",
+      "helpRecordId": null,
+      "question": 4,
+      "blockId": null,
+      "strategy": null,
+      "prompt": "请只针对题图中3z=18提示，不要做当前课时的另一道题。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "text": "解方程，并说明两边共同进行的运算。",
+        "equation": "3z = 18",
+        "studentAnswer": "z = 18 - 3",
+        "uncertainties": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:56:14Z",
+      "updatedAt": "2026-11-10T09:56:29Z",
+      "input": {
+        "prompt": "请只针对题图中3z=18提示，不要做当前课时的另一道题。",
+        "blockId": null,
+        "question": 4
+      },
+      "runs": [
+        {
+          "id": "run-98dfbbf95f79445ea90559093a6d602f",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "text": "解方程，并说明两边共同进行的运算。",
+            "equation": "3z = 18",
+            "studentAnswer": "z = 18 - 3",
+            "uncertainties": []
+          },
+          "startedAt": "2026-11-10T09:56:14Z",
+          "endedAt": "2026-11-10T09:56:29Z"
+        }
+      ]
+    },
+    {
+      "id": "job-66f78286ee794fbba64c3614b31bed5b",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-d59f088ebedb4b36a0d3f2f819041396",
+      "fileId": "file-af7f8be57ca54668bcc777b67aed2c40",
+      "helpRecordId": "help-66f78286ee794fbba64c3614b31bed5b",
+      "question": 4,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请只针对题图中3z=18提示，不要做当前课时的另一道题。",
+      "parentJobId": null,
+      "recognizedText": "解方程3z = 18。学生原作答z = 18 - 3，想先理解两边共同进行的运算。",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "想一想：怎样对等式两边做同一种运算，才能让左边的 z 单独留下？",
+        "steps": [
+          "先看 z 前面的系数。",
+          "考虑用什么运算抵消这个系数。"
+        ],
+        "title": "让 z 单独留下",
+        "sources": [],
+        "question": "要让左边的 z 单独留下，两边应同时做什么运算？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 14914,
+          "modelCalls": 1,
+          "contextChars": 942,
+          "historyTurns": 0
+        },
+        "mathClaims": [],
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "prerequisiteId": "",
+        "representation": "question",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:56:31Z",
+      "updatedAt": "2026-11-10T09:56:46Z",
+      "input": {
+        "scope": {
+          "taskId": "task-91df4bd17ce9a9e835fe37a5db0d458e",
+          "classId": "browser-c0",
+          "lessonId": "browser-lesson",
+          "studentId": "teaching-s0",
+          "questionId": "eq-new-combine",
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "browser-version"
+        },
+        "prompt": "请只针对题图中3z=18提示，不要做当前课时的另一道题。",
+        "blockId": null,
+        "context": {
+          "block": null,
+          "focus": "confirmed_image",
+          "lesson": {
+            "id": "browser-lesson",
+            "goal": "比较等式两边共同变化，说明同加同减与同除非零数的条件。",
+            "grade": "七年级",
+            "title": "等式性质",
+            "versionId": "browser-version"
+          },
+          "question": {
+            "id": "eq-new-combine",
+            "kind": "confirmed_image",
+            "prompt": "解方程3z = 18。学生原作答z = 18 - 3，想先理解两边共同进行的运算。",
+            "equation": "3z = 18",
+            "knowledgeIds": [
+              "browser-kp"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "两边同时增加相同数量，相等关系保持。",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "tutor-case-2",
+              "title": "逆运算对比",
+              "source": "项目自编验收材料",
+              "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+              "version": 1,
+              "versionId": "tutor-case-version-2",
+              "references": []
+            }
+          ]
+        },
+        "history": [],
+        "guidance": true,
+        "ocrJobId": "job-99454e58e99640ac879454656a62fa27",
+        "question": 4,
+        "strategy": "hint",
+        "confirmed": true,
+        "parentJobId": null,
+        "recognizedText": "解方程3z = 18。学生原作答z = 18 - 3，想先理解两边共同进行的运算。",
+        "selectedStrategy": "hint",
+        "confirmedEquation": "3z = 18"
+      },
+      "runs": [
+        {
+          "id": "run-5b45b1a8cf4143cd822f822ed2a3ce64",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "想一想：怎样对等式两边做同一种运算，才能让左边的 z 单独留下？",
+            "steps": [
+              "先看 z 前面的系数。",
+              "考虑用什么运算抵消这个系数。"
+            ],
+            "title": "让 z 单独留下",
+            "sources": [],
+            "question": "要让左边的 z 单独留下，两边应同时做什么运算？",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 14914,
+              "modelCalls": 1,
+              "contextChars": 942,
+              "historyTurns": 0
+            },
+            "mathClaims": [],
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "prerequisiteId": "",
+            "representation": "question",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-10T09:56:31Z",
+          "endedAt": "2026-11-10T09:56:46Z"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

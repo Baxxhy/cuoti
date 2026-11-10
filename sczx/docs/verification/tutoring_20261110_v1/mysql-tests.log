@@ -1,0 +1,115 @@
+/tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+test_active_duplicate_and_cross_role_access (test_agent_mysql.AgentMySQLTests.test_active_duplicate_and_cross_role_access) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:246: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:86: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:246: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+ok
+test_cancel_in_progress_keeps_prior_steps (test_agent_mysql.AgentMySQLTests.test_cancel_in_progress_keeps_prior_steps) ... ok
+test_confirm_draft_is_explicit_and_idempotent (test_agent_mysql.AgentMySQLTests.test_confirm_draft_is_explicit_and_idempotent) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/model_jobs.py:95: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  run.result,run.status,run.model,run.provider,run.ended_at=result,'succeeded',result.get('model',''),'Codex CLI / LangGraph',datetime.utcnow()
+ok
+test_no_cases_materials_and_invalid_output_are_explicit (test_agent_mysql.AgentMySQLTests.test_no_cases_materials_and_invalid_output_are_explicit) ... ok
+test_step10_partial_rewrite_preserves_personalization (test_agent_mysql.AgentMySQLTests.test_step10_partial_rewrite_preserves_personalization) ... ok
+test_step10_saved_history_concurrency_restore_export_and_permissions (test_agent_mysql.AgentMySQLTests.test_step10_saved_history_concurrency_restore_export_and_permissions) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:86: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:246: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+ok
+test_step10_source_republish_blocks_old_agent_confirmation (test_agent_mysql.AgentMySQLTests.test_step10_source_republish_blocks_old_agent_confirmation) ... /tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/model_jobs.py:95: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  run.result,run.status,run.model,run.provider,run.ended_at=result,'succeeded',result.get('model',''),'Codex CLI / LangGraph',datetime.utcnow()
+ok
+test_timeout_retains_checkpoints_and_resume_does_not_repeat_success (test_agent_mysql.AgentMySQLTests.test_timeout_retains_checkpoints_and_resume_does_not_repeat_success) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/model_jobs.py:178: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  run.status, run.error, run.ended_at = "failed", job.error, datetime.utcnow()
+ok
+test_total_deadline_prevents_model_call (test_agent_mysql.AgentMySQLTests.test_total_deadline_prevents_model_call) ... ok
+test_unparsed_material_is_not_presented_as_evidence (test_agent_mysql.AgentMySQLTests.test_unparsed_material_is_not_presented_as_evidence) ... ok
+test_word_export_options_never_modify_saved_teacher_text (test_agent_mysql.AgentMySQLTests.test_word_export_options_never_modify_saved_teacher_text) ... ok
+test_word_quality_revision_is_single_and_preserves_parent_history (test_agent_mysql.AgentMySQLTests.test_word_quality_revision_is_single_and_preserves_parent_history) ... ok
+test_fonts_color_a4_spacing_and_page_field_are_explicit (test_docx_export.WordExportTests.test_fonts_color_a4_spacing_and_page_field_are_explicit) ... ok
+test_marker_cleanup_is_bounded_explicit_and_preserves_math_and_sources (test_docx_export.WordExportTests.test_marker_cleanup_is_bounded_explicit_and_preserves_math_and_sources) ... ok
+test_modes_deduplicate_sources_without_touching_original_text (test_docx_export.WordExportTests.test_modes_deduplicate_sources_without_touching_original_text) ... ok
+test_quality_warnings_do_not_rewrite_or_mislabel_conditions (test_docx_export.WordExportTests.test_quality_warnings_do_not_rewrite_or_mislabel_conditions) ... ok
+test_invalid_or_failed_ranking_keeps_all_candidates (test_fallback.RerankFallbackTests.test_invalid_or_failed_ranking_keeps_all_candidates) ... ok
+test_conflicts_missing_edges_and_cycles (test_knowledge.KnowledgeValidationTests.test_conflicts_missing_edges_and_cycles) ... ok
+test_invalid_types_never_reach_sets_or_orm (test_knowledge.KnowledgeValidationTests.test_invalid_types_never_reach_sets_or_orm) ... ok
+test_valid_missing_optional_fields_and_unicode_collisions (test_knowledge.KnowledgeValidationTests.test_valid_missing_optional_fields_and_unicode_collisions) ... ok
+test_expressions_equations_conditions_and_errors_are_distinct (test_math_claims.MathClaimTests.test_expressions_equations_conditions_and_errors_are_distinct) ... ok
+test_invalid_knowledge_has_no_partial_writes (test_mysql_api.MySQLApiTests.test_invalid_knowledge_has_no_partial_writes) ... ok
+test_revision_and_withdrawal_preserve_history (test_mysql_api.MySQLApiTests.test_revision_and_withdrawal_preserve_history) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/models.py:306: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  published_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.utcnow().replace(microsecond=0))
+ok
+test_roles_cannot_write_knowledge (test_mysql_api.MySQLApiTests.test_roles_cannot_write_knowledge) ... ok
+test_citation_and_block_contract (test_planning.PlanningValidationTests.test_citation_and_block_contract) ... ok
+test_client_cannot_supply_server_context (test_planning.PlanningValidationTests.test_client_cannot_supply_server_context) ... ok
+test_explicit_task_and_rule_recognition (test_planning.PlanningValidationTests.test_explicit_task_and_rule_recognition) ... ok
+test_partial_generation_only_accepts_target (test_planning.PlanningValidationTests.test_partial_generation_only_accepts_target) ... ok
+test_empty_long_context_and_invalid_grade (test_retrieval.RetrievalRegressionTests.test_empty_long_context_and_invalid_grade) ... ok
+test_frozen_baseline_and_context_orders (test_retrieval.RetrievalRegressionTests.test_frozen_baseline_and_context_orders) ... ok
+test_one_hop_toggle_and_wrong_topic (test_retrieval.RetrievalRegressionTests.test_one_hop_toggle_and_wrong_topic) ... ok
+test_shanghai_end_of_day_and_exact_boundary (test_teaching_mysql.DeadlineTests.test_shanghai_end_of_day_and_exact_boundary) ... ok
+test_class_isolation_edit_members_and_empty_tasks (test_teaching_mysql.TeachingMySQLTests.test_class_isolation_edit_members_and_empty_tasks) ... Executing <Task pending name='Task-219' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.214 seconds
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:86: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:246: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+ok
+test_concurrent_notification_reads_and_backfill_are_idempotent (test_teaching_mysql.TeachingMySQLTests.test_concurrent_notification_reads_and_backfill_are_idempotent) ... /tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+Executing <Task pending name='Task-224' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.210 seconds
+ok
+test_invite_join_expire_revoke_and_throttle (test_teaching_mysql.TeachingMySQLTests.test_invite_join_expire_revoke_and_throttle) ... Executing <Task pending name='Task-234' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.207 seconds
+ok
+test_late_join_backfill_idempotence_and_removal_readonly (test_teaching_mysql.TeachingMySQLTests.test_late_join_backfill_idempotence_and_removal_readonly) ... Executing <Task pending name='Task-239' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.209 seconds
+ok
+test_messages_persist_read_private_and_no_duplicates (test_teaching_mysql.TeachingMySQLTests.test_messages_persist_read_private_and_no_duplicates) ... Executing <Task pending name='Task-244' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.334 seconds
+ok
+test_note_correction_cancel_and_legacy_notes (test_teaching_mysql.TeachingMySQLTests.test_note_correction_cancel_and_legacy_notes) ... Executing <Task pending name='Task-249' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.182 seconds
+ok
+test_original_learning_submit_retry_keeps_first_time_and_single_message (test_teaching_mysql.TeachingMySQLTests.test_original_learning_submit_retry_keeps_first_time_and_single_message) ... Executing <Task pending name='Task-254' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.143 seconds
+ok
+test_publish_snapshot_repeat_and_feedback_notification (test_teaching_mysql.TeachingMySQLTests.test_publish_snapshot_repeat_and_feedback_notification) ... Executing <Task pending name='Task-259' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.152 seconds
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:580: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  task = LearningTask(id=task_id, classroom_id=classroom.id, teacher_id=user.id, lesson_id=lesson.id, title=version["title"] if version else lesson.title, snapshot=snapshot, questions=payload.lessonDraft.get("questions", []), due_date=snapshot["dueDate"],published_at=datetime.utcnow())
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:684: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  rec.feedback_at = datetime.utcnow()
+ok
+test_supplement_lifecycle_targets_privacy_and_feedback (test_teaching_mysql.TeachingMySQLTests.test_supplement_lifecycle_targets_privacy_and_feedback) ... Executing <Task pending name='Task-264' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.161 seconds
+ok
+test_teacher_stats_personal_status_and_dashboard (test_teaching_mysql.TeachingMySQLTests.test_teacher_stats_personal_status_and_dashboard) ... Executing <Task pending name='Task-269' coro=<TeachingMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_teaching_mysql.py:69> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.193 seconds
+ok
+test_canonical_context_is_bounded_and_excludes_internal_fields (test_tutoring_mysql.TutoringMySQLTests.test_canonical_context_is_bounded_and_excludes_internal_fields) ... Executing <Task pending name='Task-274' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.359 seconds
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/model_jobs.py:167: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  run.result, run.model, run.provider, run.status, run.ended_at = result, model, source, "succeeded", datetime.utcnow()
+ok
+test_failed_manual_retry_stop_and_duplicate_request (test_tutoring_mysql.TutoringMySQLTests.test_failed_manual_retry_stop_and_duplicate_request) ... Executing <Task pending name='Task-289' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.196 seconds
+ok
+test_invalid_math_and_original_answer_blocked_after_one_repair (test_tutoring_mysql.TutoringMySQLTests.test_invalid_math_and_original_answer_blocked_after_one_repair) ... Executing <Task pending name='Task-303' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.201 seconds
+ok
+test_legacy_student_client_cannot_bypass_guidance_policy (test_tutoring_mysql.TutoringMySQLTests.test_legacy_student_client_cannot_bypass_guidance_policy) ... Executing <Task pending name='Task-335' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.214 seconds
+ok
+test_ocr_scope_confirmation_and_text_fallback (test_tutoring_mysql.TutoringMySQLTests.test_ocr_scope_confirmation_and_text_fallback) ... Executing <Task pending name='Task-350' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.173 seconds
+ok
+test_removal_during_generation_does_not_write_guidance (test_tutoring_mysql.TutoringMySQLTests.test_removal_during_generation_does_not_write_guidance) ... Executing <Task pending name='Task-355' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.202 seconds
+ok
+test_removed_retry_new_and_queued_execution_blocked_history_retained (test_tutoring_mysql.TutoringMySQLTests.test_removed_retry_new_and_queued_execution_blocked_history_retained) ... Executing <Task pending name='Task-371' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.202 seconds
+ok
+test_replay_after_context_change_keeps_first_job_and_help_record (test_tutoring_mysql.TutoringMySQLTests.test_replay_after_context_change_keeps_first_job_and_help_record) ... Executing <Task pending name='Task-376' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.174 seconds
+ok
+test_self_attempt_no_model_or_help_reset (test_tutoring_mysql.TutoringMySQLTests.test_self_attempt_no_model_or_help_reset) ... Executing <Task pending name='Task-381' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.194 seconds
+ok
+test_strategy_chain_parent_scope_and_four_turn_bound (test_tutoring_mysql.TutoringMySQLTests.test_strategy_chain_parent_scope_and_four_turn_bound) ... Executing <Task pending name='Task-406' coro=<TutoringMySQLTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_tutoring_mysql.py:40> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.194 seconds
+ok
+test_fake_practice_and_check_marks_cannot_replace_answers (test_tutoring_policy.PracticeCompletionTests.test_fake_practice_and_check_marks_cannot_replace_answers) ... ok
+test_oversized_sources_are_bounded_without_mutating_original_evidence (test_tutoring_policy.PracticeCompletionTests.test_oversized_sources_are_bounded_without_mutating_original_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 54 tests in 54.196s
+
+OK

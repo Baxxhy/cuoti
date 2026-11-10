@@ -24,7 +24,9 @@ def student_content(data):
     result=copy.deepcopy(data)
     for q in result.get('questions',[]):
         for key in ('answer','hint','explanation','feedback','teacherNote','verification'):q.pop(key,None)
-    for b in result.get('blocks',[]):b.pop('teacherNote',None)
+    for b in result.get('blocks',[]):
+        for key in ('teacherNote','teacherQuestion','studentResponse','adjustment','agentEvidence','agentJobId'):b.pop(key,None)
+    result.pop('planningDetails',None)
     result.pop('caseSnapshot',None)
     return result
 

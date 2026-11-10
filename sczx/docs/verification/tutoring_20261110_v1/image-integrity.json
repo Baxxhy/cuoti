@@ -1,0 +1,17 @@
+{
+  "originalSha256": "ec9ba2b65c2cd76abf336c3a3ca2559846b6b36673ed65da4256fc7142608e0f",
+  "uploadedSha256": "ec9ba2b65c2cd76abf336c3a3ca2559846b6b36673ed65da4256fc7142608e0f",
+  "fileId": "file-af7f8be57ca54668bcc777b67aed2c40",
+  "ocrJobId": "job-99454e58e99640ac879454656a62fa27",
+  "guidanceJobId": "job-66f78286ee794fbba64c3614b31bed5b",
+  "ocrOriginalResult": {
+    "text": "解方程，并说明两边共同进行的运算。",
+    "equation": "3z = 18",
+    "studentAnswer": "z = 18 - 3",
+    "uncertainties": []
+  },
+  "studentConfirmedText": "解方程3z = 18。学生原作答z = 18 - 3，想先理解两边共同进行的运算。",
+  "guidanceEquation": "3z = 18",
+  "taskQuestionIdRetained": "eq-new-combine",
+  "passed": true
+}

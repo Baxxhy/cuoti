@@ -1,0 +1,36 @@
+{
+  "initialFailures": [
+    {
+      "issue": "新增测试run命名覆盖unittest入口，新增8项未执行",
+      "evidence": "mysql-initial.log",
+      "resolution": "重命名run_job，最终54项实际执行，不将初验42项当54项"
+    },
+    {
+      "issue": "算术扫描将a+2=9的数字后缀误识别为2=9",
+      "evidence": "mysql-scope-initial.log",
+      "resolution": "完整识别含字母等式，不把变量式后缀当数值等式"
+    },
+    {
+      "issue": "浏览器夹具未包含snapshot导致展示异常",
+      "evidence": "frontend-initial-scope.log",
+      "resolution": "组件可选链与完整作用域回归通过"
+    },
+    {
+      "issue": "关闭弹窗的自动化选择器错误",
+      "evidence": "browser-flow-initial.json",
+      "resolution": "使用真实data-slot关闭后重跑完整19步"
+    },
+    {
+      "issue": "截图发现检查页助手栏标题竖排",
+      "resolution": "助手栏clamp宽度、单层padding和图标按钮宽度修订，最终15图无横向溢出"
+    },
+    {
+      "issue": "确认题图3z=18与原检查题2(a-1)=10混用",
+      "initialJobId": "job-f1d55831ba70420683b0eac3d1067654",
+      "evidence": "browser-flow.json内初验题图输出（保存机器通过记录，但不作为修复后该分支验收）",
+      "resolution": "确认图优先，原题ID仅保留业务关联；不同题图历史拒绝混用，ocr-focus.json复测上传到师生反馈5步通过"
+    }
+  ],
+  "unchangedEvidence": "B0—B3冻结调用最大输入1501字，新增24000字上限不改变这些请求；OCR专用上下文修订不影响无OCR任务ID的冻结情境。",
+  "finalScope": "最终通过以mysql-tests、frontend-final、ocr-focus、faults、desktop为准，初验失败不删除。"
+}

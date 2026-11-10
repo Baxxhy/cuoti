@@ -1,0 +1,1603 @@
+{
+  "startedAt": "2026-11-10T09:25:12.257Z",
+  "steps": [
+    {
+      "name": "teacher-publishes-task",
+      "task": "task-1e0360414b8fecb28f13578087e22d8f"
+    },
+    {
+      "name": "real-hint",
+      "jobId": "job-038b4f5985d44e2aa56f911ed5335b67",
+      "model": "gpt-6-luna"
+    },
+    {
+      "name": "real-different-example",
+      "jobId": "job-eb0168c702054471b7c078867041e878"
+    },
+    {
+      "name": "real-rephrase",
+      "jobId": "job-f8743482835b4dfb80b90aa0d70b3a43",
+      "representation": "numeric"
+    },
+    {
+      "name": "real-foundation",
+      "jobId": "job-be3c3c3339de44caa245737f90f30a39",
+      "prerequisites": [
+        {
+          "id": "browser-base",
+          "name": "相等关系与基本运算"
+        }
+      ]
+    },
+    {
+      "name": "real-response-adjustment",
+      "jobId": "job-532b868e88b647fbba7be95286d61cde",
+      "strategy": "hint"
+    },
+    {
+      "name": "self-attempt-checkpoint"
+    },
+    {
+      "name": "helped-and-new-independent-attempts"
+    },
+    {
+      "name": "real-learning-submit"
+    },
+    {
+      "name": "real-original-image-ocr",
+      "jobId": "job-9cd3fba194d942b38643c39833423952",
+      "fileId": "file-0201ab565b234f9684c6879c4822a402"
+    },
+    {
+      "name": "confirmed-ocr-guidance",
+      "jobId": "job-ac8023065517482483c310c0060d4f0c",
+      "fileId": "file-0201ab565b234f9684c6879c4822a402",
+      "confirmed": "解方程3z = 18。学生原作答z = 18 - 3，想先理解两边共同进行的运算。"
+    },
+    {
+      "name": "refresh-recovers-current-question-and-guidance"
+    },
+    {
+      "name": "teacher-reads-real-turns"
+    }
+  ],
+  "screens": [],
+  "taskId": "task-1e0360414b8fecb28f13578087e22d8f",
+  "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+  "jobs": [
+    {
+      "id": "job-038b4f5985d44e2aa56f911ed5335b67",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+      "fileId": null,
+      "helpRecordId": "help-038b4f5985d44e2aa56f911ed5335b67",
+      "question": 2,
+      "blockId": "eq-check",
+      "strategy": "hint",
+      "prompt": "我不明白为什么3z=18要两边一起除，请先提示。",
+      "parentJobId": null,
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "想一想：若只把等式一边除以3，两边还会相等吗？",
+        "steps": [
+          "等式两边相等，做同一种允许的运算才能保持相等关系。",
+          "这里3不是0，所以两边同除以3是有定义的，也不会丢掉相等关系。"
+        ],
+        "title": "理解两边同除",
+        "sources": [],
+        "question": "如果只把右边18除以3，而左边3z不变，两边还相等吗？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 14452,
+          "modelCalls": 1,
+          "historyTurns": 0
+        },
+        "mathClaims": [],
+        "nextStrategy": "hint",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "prerequisiteId": "",
+        "representation": "question",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:25:24Z",
+      "updatedAt": "2026-11-10T09:25:39Z",
+      "input": {
+        "scope": {
+          "taskId": "task-1e0360414b8fecb28f13578087e22d8f",
+          "lessonId": "browser-lesson",
+          "studentId": "teaching-s0",
+          "questionId": "eq-check-divide",
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "browser-version"
+        },
+        "prompt": "我不明白为什么3z=18要两边一起除，请先提示。",
+        "blockId": "eq-check",
+        "context": {
+          "block": {
+            "id": "eq-check",
+            "type": "check",
+            "title": "独立检查",
+            "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "questionIds": [
+              "eq-check-divide",
+              "eq-check-multiply"
+            ]
+          },
+          "lesson": {
+            "id": "browser-lesson",
+            "goal": "比较等式两边共同变化，说明同加同减与同除非零数的条件。",
+            "grade": "七年级",
+            "title": "等式性质",
+            "versionId": "browser-version"
+          },
+          "question": {
+            "id": "eq-check-divide",
+            "kind": "check",
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18",
+            "knowledgeIds": [
+              "browser-kp"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "两边同时增加相同数量，相等关系保持。",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "tutor-case-0",
+              "title": "天平共同变化",
+              "source": "项目自编验收材料",
+              "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+              "version": 1,
+              "versionId": "tutor-case-version-0",
+              "references": []
+            },
+            {
+              "id": "tutor-case-3",
+              "title": "非零除数条件",
+              "source": "项目自编验收材料",
+              "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+              "version": 1,
+              "versionId": "tutor-case-version-3",
+              "references": []
+            }
+          ]
+        },
+        "history": [],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": 2,
+        "strategy": "hint",
+        "confirmed": false,
+        "parentJobId": null,
+        "recognizedText": "",
+        "selectedStrategy": "hint",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-404a2eb1773c47eeb5f01d4499addb4b",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "想一想：若只把等式一边除以3，两边还会相等吗？",
+            "steps": [
+              "等式两边相等，做同一种允许的运算才能保持相等关系。",
+              "这里3不是0，所以两边同除以3是有定义的，也不会丢掉相等关系。"
+            ],
+            "title": "理解两边同除",
+            "sources": [],
+            "question": "如果只把右边18除以3，而左边3z不变，两边还相等吗？",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 14452,
+              "modelCalls": 1,
+              "historyTurns": 0
+            },
+            "mathClaims": [],
+            "nextStrategy": "hint",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "prerequisiteId": "",
+            "representation": "question",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-10T09:25:25Z",
+          "endedAt": "2026-11-10T09:25:39Z"
+        }
+      ]
+    },
+    {
+      "id": "job-eb0168c702054471b7c078867041e878",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+      "fileId": null,
+      "helpRecordId": "help-eb0168c702054471b7c078867041e878",
+      "question": 2,
+      "blockId": "eq-check",
+      "strategy": "example",
+      "prompt": "请换一个字母和数量的例子，说明两边共同除的关系。",
+      "parentJobId": "job-038b4f5985d44e2aa56f911ed5335b67",
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "例子中，想想等式两边同时除以同一个非零数后，两边的相等关系会怎样。",
+        "steps": [
+          "例如，若 4a = 20，两边同时除以 4。",
+          "两边做相同的运算，等式仍保持相等；除数要非零。"
+        ],
+        "title": "两边共同除",
+        "sources": [
+          {
+            "id": "tutor-case-3",
+            "title": "非零除数条件",
+            "source": "项目自编验收材料",
+            "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+            "version": 1,
+            "versionId": "tutor-case-version-3",
+            "references": []
+          }
+        ],
+        "question": "在 4a = 20 中，两边同时除以 4 后，等式写成什么？",
+        "strategy": "example",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 15016,
+          "modelCalls": 1,
+          "historyTurns": 1
+        },
+        "mathClaims": [
+          {
+            "left": "20 ÷ 4",
+            "right": "5"
+          }
+        ],
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [
+            {
+              "left": "20 ÷ 4",
+              "right": "5",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "prerequisites": [],
+        "prerequisiteId": "",
+        "representation": "symbolic",
+        "usedCaseVersionIds": [
+          "tutor-case-version-3"
+        ]
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:25:40Z",
+      "updatedAt": "2026-11-10T09:25:56Z",
+      "input": {
+        "scope": {
+          "taskId": "task-1e0360414b8fecb28f13578087e22d8f",
+          "lessonId": "browser-lesson",
+          "studentId": "teaching-s0",
+          "questionId": "eq-check-divide",
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "browser-version"
+        },
+        "prompt": "请换一个字母和数量的例子，说明两边共同除的关系。",
+        "blockId": "eq-check",
+        "context": {
+          "block": {
+            "id": "eq-check",
+            "type": "check",
+            "title": "独立检查",
+            "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "questionIds": [
+              "eq-check-divide",
+              "eq-check-multiply"
+            ]
+          },
+          "lesson": {
+            "id": "browser-lesson",
+            "goal": "比较等式两边共同变化，说明同加同减与同除非零数的条件。",
+            "grade": "七年级",
+            "title": "等式性质",
+            "versionId": "browser-version"
+          },
+          "question": {
+            "id": "eq-check-divide",
+            "kind": "check",
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18",
+            "knowledgeIds": [
+              "browser-kp"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "两边同时增加相同数量，相等关系保持。",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "tutor-case-1",
+              "title": "相等关系小检查",
+              "source": "项目自编验收材料",
+              "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+              "version": 1,
+              "versionId": "tutor-case-version-1",
+              "references": []
+            },
+            {
+              "id": "tutor-case-0",
+              "title": "天平共同变化",
+              "source": "项目自编验收材料",
+              "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+              "version": 1,
+              "versionId": "tutor-case-version-0",
+              "references": []
+            },
+            {
+              "id": "tutor-case-3",
+              "title": "非零除数条件",
+              "source": "项目自编验收材料",
+              "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+              "version": 1,
+              "versionId": "tutor-case-version-3",
+              "references": []
+            }
+          ]
+        },
+        "history": [
+          {
+            "hint": "想一想：若只把等式一边除以3，两边还会相等吗？",
+            "student": "我不明白为什么3z=18要两边一起除，请先提示。",
+            "question": "如果只把右边18除以3，而左边3z不变，两边还相等吗？",
+            "strategy": "hint",
+            "representation": "question"
+          }
+        ],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": 2,
+        "strategy": "example",
+        "confirmed": false,
+        "parentJobId": "job-038b4f5985d44e2aa56f911ed5335b67",
+        "recognizedText": "",
+        "selectedStrategy": "example",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-6858c48cd4214dde90125aba78b1620f",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "例子中，想想等式两边同时除以同一个非零数后，两边的相等关系会怎样。",
+            "steps": [
+              "例如，若 4a = 20，两边同时除以 4。",
+              "两边做相同的运算，等式仍保持相等；除数要非零。"
+            ],
+            "title": "两边共同除",
+            "sources": [
+              {
+                "id": "tutor-case-3",
+                "title": "非零除数条件",
+                "source": "项目自编验收材料",
+                "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+                "version": 1,
+                "versionId": "tutor-case-version-3",
+                "references": []
+              }
+            ],
+            "question": "在 4a = 20 中，两边同时除以 4 后，等式写成什么？",
+            "strategy": "example",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 15016,
+              "modelCalls": 1,
+              "historyTurns": 1
+            },
+            "mathClaims": [
+              {
+                "left": "20 ÷ 4",
+                "right": "5"
+              }
+            ],
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [
+                {
+                  "left": "20 ÷ 4",
+                  "right": "5",
+                  "method": "表达式等价",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "prerequisites": [],
+            "prerequisiteId": "",
+            "representation": "symbolic",
+            "usedCaseVersionIds": [
+              "tutor-case-version-3"
+            ]
+          },
+          "startedAt": "2026-11-10T09:25:41Z",
+          "endedAt": "2026-11-10T09:25:56Z"
+        }
+      ]
+    },
+    {
+      "id": "job-f8743482835b4dfb80b90aa0d70b3a43",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+      "fileId": null,
+      "helpRecordId": "help-f8743482835b4dfb80b90aa0d70b3a43",
+      "question": 2,
+      "blockId": "eq-check",
+      "strategy": "rephrase",
+      "prompt": "刚才的说法还不懂，请从具体数量换一种讲法，不要直接给原题答案。",
+      "parentJobId": "job-eb0168c702054471b7c078867041e878",
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "想象两边各有相同数量的物品，平均分成3份时，左右每份的数量还会相同吗？",
+        "steps": [
+          "先把等号两边想成同样多的数量。",
+          "两边都平均分成3份；因为分法相同且3不是0，每份仍同样多。"
+        ],
+        "title": "用具体数量理解同除",
+        "sources": [],
+        "question": "如果两边原来各有同样多的18个物品，都平均分成3份，左右每份还一样多吗？",
+        "strategy": "rephrase",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 14056,
+          "modelCalls": 1,
+          "historyTurns": 2
+        },
+        "mathClaims": [],
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "prerequisiteId": "",
+        "representation": "numeric",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:25:57Z",
+      "updatedAt": "2026-11-10T09:26:12Z",
+      "input": {
+        "scope": {
+          "taskId": "task-1e0360414b8fecb28f13578087e22d8f",
+          "lessonId": "browser-lesson",
+          "studentId": "teaching-s0",
+          "questionId": "eq-check-divide",
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "browser-version"
+        },
+        "prompt": "刚才的说法还不懂，请从具体数量换一种讲法，不要直接给原题答案。",
+        "blockId": "eq-check",
+        "context": {
+          "block": {
+            "id": "eq-check",
+            "type": "check",
+            "title": "独立检查",
+            "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "questionIds": [
+              "eq-check-divide",
+              "eq-check-multiply"
+            ]
+          },
+          "lesson": {
+            "id": "browser-lesson",
+            "goal": "比较等式两边共同变化，说明同加同减与同除非零数的条件。",
+            "grade": "七年级",
+            "title": "等式性质",
+            "versionId": "browser-version"
+          },
+          "question": {
+            "id": "eq-check-divide",
+            "kind": "check",
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18",
+            "knowledgeIds": [
+              "browser-kp"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "两边同时增加相同数量，相等关系保持。",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "tutor-case-1",
+              "title": "相等关系小检查",
+              "source": "项目自编验收材料",
+              "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+              "version": 1,
+              "versionId": "tutor-case-version-1",
+              "references": []
+            },
+            {
+              "id": "tutor-case-2",
+              "title": "逆运算对比",
+              "source": "项目自编验收材料",
+              "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+              "version": 1,
+              "versionId": "tutor-case-version-2",
+              "references": []
+            },
+            {
+              "id": "tutor-case-0",
+              "title": "天平共同变化",
+              "source": "项目自编验收材料",
+              "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+              "version": 1,
+              "versionId": "tutor-case-version-0",
+              "references": []
+            }
+          ]
+        },
+        "history": [
+          {
+            "hint": "想一想：若只把等式一边除以3，两边还会相等吗？",
+            "student": "我不明白为什么3z=18要两边一起除，请先提示。",
+            "question": "如果只把右边18除以3，而左边3z不变，两边还相等吗？",
+            "strategy": "hint",
+            "representation": "question"
+          },
+          {
+            "hint": "例子中，想想等式两边同时除以同一个非零数后，两边的相等关系会怎样。",
+            "student": "请换一个字母和数量的例子，说明两边共同除的关系。",
+            "question": "在 4a = 20 中，两边同时除以 4 后，等式写成什么？",
+            "strategy": "example",
+            "representation": "symbolic"
+          }
+        ],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": 2,
+        "strategy": "rephrase",
+        "confirmed": false,
+        "parentJobId": "job-eb0168c702054471b7c078867041e878",
+        "recognizedText": "",
+        "selectedStrategy": "rephrase",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-aa27a4cdae6045ca8c9f68b0e051c8d6",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "想象两边各有相同数量的物品，平均分成3份时，左右每份的数量还会相同吗？",
+            "steps": [
+              "先把等号两边想成同样多的数量。",
+              "两边都平均分成3份；因为分法相同且3不是0，每份仍同样多。"
+            ],
+            "title": "用具体数量理解同除",
+            "sources": [],
+            "question": "如果两边原来各有同样多的18个物品，都平均分成3份，左右每份还一样多吗？",
+            "strategy": "rephrase",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 14056,
+              "modelCalls": 1,
+              "historyTurns": 2
+            },
+            "mathClaims": [],
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "prerequisiteId": "",
+            "representation": "numeric",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-10T09:25:57Z",
+          "endedAt": "2026-11-10T09:26:12Z"
+        }
+      ]
+    },
+    {
+      "id": "job-be3c3c3339de44caa245737f90f30a39",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+      "fileId": null,
+      "helpRecordId": "help-be3c3c3339de44caa245737f90f30a39",
+      "question": 2,
+      "blockId": "eq-check",
+      "strategy": "foundation",
+      "prompt": "我不明白相等是什么意思，先用一个小检查确认我的理解。",
+      "parentJobId": "job-f8743482835b4dfb80b90aa0d70b3a43",
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "把两边看作两堆数量相同的物品，试着判断它们都平均分成3份后，每份还会相同吗？",
+        "steps": [
+          "两边原来数量相同。",
+          "把相同数量平均分成相同份数，逐份比较。"
+        ],
+        "title": "先检查“相等”",
+        "sources": [
+          {
+            "id": "tutor-case-1",
+            "title": "相等关系小检查",
+            "source": "项目自编验收材料",
+            "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+            "version": 1,
+            "versionId": "tutor-case-version-1",
+            "references": []
+          }
+        ],
+        "question": "如果两边各有12个物品，都平均分成3份，每份的数量相同吗？",
+        "strategy": "foundation",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 15248,
+          "modelCalls": 1,
+          "historyTurns": 3
+        },
+        "mathClaims": [],
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [
+          {
+            "id": "browser-base",
+            "name": "相等关系与基本运算"
+          }
+        ],
+        "prerequisiteId": "browser-base",
+        "representation": "numeric",
+        "usedCaseVersionIds": [
+          "tutor-case-version-1"
+        ]
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:26:13Z",
+      "updatedAt": "2026-11-10T09:26:28Z",
+      "input": {
+        "scope": {
+          "taskId": "task-1e0360414b8fecb28f13578087e22d8f",
+          "lessonId": "browser-lesson",
+          "studentId": "teaching-s0",
+          "questionId": "eq-check-divide",
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "browser-version"
+        },
+        "prompt": "我不明白相等是什么意思，先用一个小检查确认我的理解。",
+        "blockId": "eq-check",
+        "context": {
+          "block": {
+            "id": "eq-check",
+            "type": "check",
+            "title": "独立检查",
+            "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "questionIds": [
+              "eq-check-divide",
+              "eq-check-multiply"
+            ]
+          },
+          "lesson": {
+            "id": "browser-lesson",
+            "goal": "比较等式两边共同变化，说明同加同减与同除非零数的条件。",
+            "grade": "七年级",
+            "title": "等式性质",
+            "versionId": "browser-version"
+          },
+          "question": {
+            "id": "eq-check-divide",
+            "kind": "check",
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18",
+            "knowledgeIds": [
+              "browser-kp"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "两边同时增加相同数量，相等关系保持。",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "tutor-case-1",
+              "title": "相等关系小检查",
+              "source": "项目自编验收材料",
+              "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+              "version": 1,
+              "versionId": "tutor-case-version-1",
+              "references": []
+            },
+            {
+              "id": "tutor-case-3",
+              "title": "非零除数条件",
+              "source": "项目自编验收材料",
+              "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+              "version": 1,
+              "versionId": "tutor-case-version-3",
+              "references": []
+            }
+          ]
+        },
+        "history": [
+          {
+            "hint": "想一想：若只把等式一边除以3，两边还会相等吗？",
+            "student": "我不明白为什么3z=18要两边一起除，请先提示。",
+            "question": "如果只把右边18除以3，而左边3z不变，两边还相等吗？",
+            "strategy": "hint",
+            "representation": "question"
+          },
+          {
+            "hint": "例子中，想想等式两边同时除以同一个非零数后，两边的相等关系会怎样。",
+            "student": "请换一个字母和数量的例子，说明两边共同除的关系。",
+            "question": "在 4a = 20 中，两边同时除以 4 后，等式写成什么？",
+            "strategy": "example",
+            "representation": "symbolic"
+          },
+          {
+            "hint": "想象两边各有相同数量的物品，平均分成3份时，左右每份的数量还会相同吗？",
+            "student": "刚才的说法还不懂，请从具体数量换一种讲法，不要直接给原题答案。",
+            "question": "如果两边原来各有同样多的18个物品，都平均分成3份，左右每份还一样多吗？",
+            "strategy": "rephrase",
+            "representation": "numeric"
+          }
+        ],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": 2,
+        "strategy": "foundation",
+        "confirmed": false,
+        "parentJobId": "job-f8743482835b4dfb80b90aa0d70b3a43",
+        "recognizedText": "",
+        "selectedStrategy": "foundation",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-c4a78c6e1ae94176b43a5db9b5b4d764",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "把两边看作两堆数量相同的物品，试着判断它们都平均分成3份后，每份还会相同吗？",
+            "steps": [
+              "两边原来数量相同。",
+              "把相同数量平均分成相同份数，逐份比较。"
+            ],
+            "title": "先检查“相等”",
+            "sources": [
+              {
+                "id": "tutor-case-1",
+                "title": "相等关系小检查",
+                "source": "项目自编验收材料",
+                "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+                "version": 1,
+                "versionId": "tutor-case-version-1",
+                "references": []
+              }
+            ],
+            "question": "如果两边各有12个物品，都平均分成3份，每份的数量相同吗？",
+            "strategy": "foundation",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 15248,
+              "modelCalls": 1,
+              "historyTurns": 3
+            },
+            "mathClaims": [],
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [
+              {
+                "id": "browser-base",
+                "name": "相等关系与基本运算"
+              }
+            ],
+            "prerequisiteId": "browser-base",
+            "representation": "numeric",
+            "usedCaseVersionIds": [
+              "tutor-case-version-1"
+            ]
+          },
+          "startedAt": "2026-11-10T09:26:13Z",
+          "endedAt": "2026-11-10T09:26:28Z"
+        }
+      ]
+    },
+    {
+      "id": "job-532b868e88b647fbba7be95286d61cde",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+      "fileId": null,
+      "helpRecordId": "help-532b868e88b647fbba7be95286d61cde",
+      "question": 2,
+      "blockId": "eq-check",
+      "strategy": "hint",
+      "prompt": "两边数量原本相同，我想先比较只改变左边与两边同时改变。",
+      "parentJobId": "job-be3c3c3339de44caa245737f90f30a39",
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "先回答这个小检查：12个物品平均分成3份，每份是多少？",
+        "steps": [
+          "先把12个物品分成3份。",
+          "求出每份的数量。",
+          "比较两边每份是否相同。"
+        ],
+        "title": "检查平均分",
+        "sources": [],
+        "question": "两边各有12个物品，都平均分成3份，每边每份有几个？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 29761,
+          "modelCalls": 2,
+          "historyTurns": 4
+        },
+        "mathClaims": [],
+        "nextStrategy": "hint",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "prerequisiteId": "browser-base",
+        "representation": "numeric",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:26:29Z",
+      "updatedAt": "2026-11-10T09:26:59Z",
+      "input": {
+        "scope": {
+          "taskId": "task-1e0360414b8fecb28f13578087e22d8f",
+          "lessonId": "browser-lesson",
+          "studentId": "teaching-s0",
+          "questionId": "eq-check-divide",
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "browser-version"
+        },
+        "prompt": "两边数量原本相同，我想先比较只改变左边与两边同时改变。",
+        "blockId": "eq-check",
+        "context": {
+          "block": {
+            "id": "eq-check",
+            "type": "check",
+            "title": "独立检查",
+            "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "questionIds": [
+              "eq-check-divide",
+              "eq-check-multiply"
+            ]
+          },
+          "lesson": {
+            "id": "browser-lesson",
+            "goal": "比较等式两边共同变化，说明同加同减与同除非零数的条件。",
+            "grade": "七年级",
+            "title": "等式性质",
+            "versionId": "browser-version"
+          },
+          "question": {
+            "id": "eq-check-divide",
+            "kind": "check",
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18",
+            "knowledgeIds": [
+              "browser-kp"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "两边同时增加相同数量，相等关系保持。",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "tutor-case-1",
+              "title": "相等关系小检查",
+              "source": "项目自编验收材料",
+              "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+              "version": 1,
+              "versionId": "tutor-case-version-1",
+              "references": []
+            },
+            {
+              "id": "tutor-case-0",
+              "title": "天平共同变化",
+              "source": "项目自编验收材料",
+              "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+              "version": 1,
+              "versionId": "tutor-case-version-0",
+              "references": []
+            },
+            {
+              "id": "tutor-case-3",
+              "title": "非零除数条件",
+              "source": "项目自编验收材料",
+              "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+              "version": 1,
+              "versionId": "tutor-case-version-3",
+              "references": []
+            }
+          ]
+        },
+        "history": [
+          {
+            "hint": "想一想：若只把等式一边除以3，两边还会相等吗？",
+            "student": "我不明白为什么3z=18要两边一起除，请先提示。",
+            "question": "如果只把右边18除以3，而左边3z不变，两边还相等吗？",
+            "strategy": "hint",
+            "representation": "question"
+          },
+          {
+            "hint": "例子中，想想等式两边同时除以同一个非零数后，两边的相等关系会怎样。",
+            "student": "请换一个字母和数量的例子，说明两边共同除的关系。",
+            "question": "在 4a = 20 中，两边同时除以 4 后，等式写成什么？",
+            "strategy": "example",
+            "representation": "symbolic"
+          },
+          {
+            "hint": "想象两边各有相同数量的物品，平均分成3份时，左右每份的数量还会相同吗？",
+            "student": "刚才的说法还不懂，请从具体数量换一种讲法，不要直接给原题答案。",
+            "question": "如果两边原来各有同样多的18个物品，都平均分成3份，左右每份还一样多吗？",
+            "strategy": "rephrase",
+            "representation": "numeric"
+          },
+          {
+            "hint": "把两边看作两堆数量相同的物品，试着判断它们都平均分成3份后，每份还会相同吗？",
+            "student": "我不明白相等是什么意思，先用一个小检查确认我的理解。",
+            "question": "如果两边各有12个物品，都平均分成3份，每份的数量相同吗？",
+            "strategy": "foundation",
+            "representation": "numeric"
+          }
+        ],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": 2,
+        "strategy": "hint",
+        "confirmed": false,
+        "parentJobId": "job-be3c3c3339de44caa245737f90f30a39",
+        "recognizedText": "",
+        "selectedStrategy": "continue",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-9e872e354b5644e29fd8038a460ec08e",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "先回答这个小检查：12个物品平均分成3份，每份是多少？",
+            "steps": [
+              "先把12个物品分成3份。",
+              "求出每份的数量。",
+              "比较两边每份是否相同。"
+            ],
+            "title": "检查平均分",
+            "sources": [],
+            "question": "两边各有12个物品，都平均分成3份，每边每份有几个？",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 29761,
+              "modelCalls": 2,
+              "historyTurns": 4
+            },
+            "mathClaims": [],
+            "nextStrategy": "hint",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "prerequisiteId": "browser-base",
+            "representation": "numeric",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-10T09:26:29Z",
+          "endedAt": "2026-11-10T09:26:59Z"
+        }
+      ]
+    },
+    {
+      "id": "job-e5763944f25b42a4aeed90ddb60e2971",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+      "fileId": null,
+      "helpRecordId": null,
+      "question": 2,
+      "blockId": "eq-check",
+      "strategy": "try",
+      "prompt": "两边数量原本相同，我想先比较只改变左边与两边同时改变。",
+      "parentJobId": "job-532b868e88b647fbba7be95286d61cde",
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "请写下你的答案和两边共同进行的运算。",
+        "steps": [
+          "回到原题作答；之前的帮助记录仍保留。"
+        ],
+        "title": "自己试试",
+        "sources": [],
+        "question": "你准备先对等式两边做什么？",
+        "strategy": "try",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "等待自主作答",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 12,
+          "modelCalls": 0,
+          "historyTurns": 4
+        },
+        "mathClaims": [],
+        "nextStrategy": "hint",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "prerequisiteId": "",
+        "representation": "question",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:27:00Z",
+      "updatedAt": "2026-11-10T09:27:00Z",
+      "input": {
+        "scope": {
+          "taskId": "task-1e0360414b8fecb28f13578087e22d8f",
+          "lessonId": "browser-lesson",
+          "studentId": "teaching-s0",
+          "questionId": "eq-check-divide",
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "browser-version"
+        },
+        "prompt": "两边数量原本相同，我想先比较只改变左边与两边同时改变。",
+        "blockId": "eq-check",
+        "context": {
+          "block": {
+            "id": "eq-check",
+            "type": "check",
+            "title": "独立检查",
+            "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "questionIds": [
+              "eq-check-divide",
+              "eq-check-multiply"
+            ]
+          },
+          "lesson": {
+            "id": "browser-lesson",
+            "goal": "比较等式两边共同变化，说明同加同减与同除非零数的条件。",
+            "grade": "七年级",
+            "title": "等式性质",
+            "versionId": "browser-version"
+          },
+          "question": {
+            "id": "eq-check-divide",
+            "kind": "check",
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18",
+            "knowledgeIds": [
+              "browser-kp"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "两边同时增加相同数量，相等关系保持。",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "tutor-case-1",
+              "title": "相等关系小检查",
+              "source": "项目自编验收材料",
+              "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+              "version": 1,
+              "versionId": "tutor-case-version-1",
+              "references": []
+            },
+            {
+              "id": "tutor-case-0",
+              "title": "天平共同变化",
+              "source": "项目自编验收材料",
+              "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+              "version": 1,
+              "versionId": "tutor-case-version-0",
+              "references": []
+            },
+            {
+              "id": "tutor-case-3",
+              "title": "非零除数条件",
+              "source": "项目自编验收材料",
+              "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+              "version": 1,
+              "versionId": "tutor-case-version-3",
+              "references": []
+            }
+          ]
+        },
+        "history": [
+          {
+            "hint": "例子中，想想等式两边同时除以同一个非零数后，两边的相等关系会怎样。",
+            "student": "请换一个字母和数量的例子，说明两边共同除的关系。",
+            "question": "在 4a = 20 中，两边同时除以 4 后，等式写成什么？",
+            "strategy": "example",
+            "representation": "symbolic"
+          },
+          {
+            "hint": "想象两边各有相同数量的物品，平均分成3份时，左右每份的数量还会相同吗？",
+            "student": "刚才的说法还不懂，请从具体数量换一种讲法，不要直接给原题答案。",
+            "question": "如果两边原来各有同样多的18个物品，都平均分成3份，左右每份还一样多吗？",
+            "strategy": "rephrase",
+            "representation": "numeric"
+          },
+          {
+            "hint": "把两边看作两堆数量相同的物品，试着判断它们都平均分成3份后，每份还会相同吗？",
+            "student": "我不明白相等是什么意思，先用一个小检查确认我的理解。",
+            "question": "如果两边各有12个物品，都平均分成3份，每份的数量相同吗？",
+            "strategy": "foundation",
+            "representation": "numeric"
+          },
+          {
+            "hint": "先回答这个小检查：12个物品平均分成3份，每份是多少？",
+            "student": "两边数量原本相同，我想先比较只改变左边与两边同时改变。",
+            "question": "两边各有12个物品，都平均分成3份，每边每份有几个？",
+            "strategy": "hint",
+            "representation": "numeric"
+          }
+        ],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": 2,
+        "strategy": "try",
+        "confirmed": false,
+        "parentJobId": "job-532b868e88b647fbba7be95286d61cde",
+        "recognizedText": "",
+        "selectedStrategy": "try",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-6f80e7d66a47413bbfc8f7c3b61e96f6",
+          "number": 1,
+          "status": "succeeded",
+          "model": "",
+          "provider": "程序检查点",
+          "error": "",
+          "result": {
+            "hint": "请写下你的答案和两边共同进行的运算。",
+            "steps": [
+              "回到原题作答；之前的帮助记录仍保留。"
+            ],
+            "title": "自己试试",
+            "sources": [],
+            "question": "你准备先对等式两边做什么？",
+            "strategy": "try",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "等待自主作答",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 12,
+              "modelCalls": 0,
+              "historyTurns": 4
+            },
+            "mathClaims": [],
+            "nextStrategy": "hint",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "prerequisiteId": "",
+            "representation": "question",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-10T09:27:00Z",
+          "endedAt": "2026-11-10T09:27:00Z"
+        }
+      ]
+    },
+    {
+      "id": "job-9cd3fba194d942b38643c39833423952",
+      "capability": "ocr",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+      "fileId": "file-0201ab565b234f9684c6879c4822a402",
+      "helpRecordId": null,
+      "question": 4,
+      "blockId": null,
+      "strategy": null,
+      "prompt": "请先提示题图中的方程，不要直接给解答。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "text": "解方程，并说明两边共同进行的运算。学生尝试：",
+        "equation": "3z = 18",
+        "studentAnswer": "z = 18 − 3",
+        "uncertainties": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:27:05Z",
+      "updatedAt": "2026-11-10T09:27:22Z",
+      "input": {
+        "prompt": "请先提示题图中的方程，不要直接给解答。",
+        "blockId": null,
+        "question": 4
+      },
+      "runs": [
+        {
+          "id": "run-535482844738447ab652c2ba4795cda2",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "text": "解方程，并说明两边共同进行的运算。学生尝试：",
+            "equation": "3z = 18",
+            "studentAnswer": "z = 18 − 3",
+            "uncertainties": []
+          },
+          "startedAt": "2026-11-10T09:27:05Z",
+          "endedAt": "2026-11-10T09:27:22Z"
+        }
+      ]
+    },
+    {
+      "id": "job-ac8023065517482483c310c0060d4f0c",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-1823844e5e904558963eccdb2c0b4724",
+      "fileId": "file-0201ab565b234f9684c6879c4822a402",
+      "helpRecordId": "help-ac8023065517482483c310c0060d4f0c",
+      "question": 4,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请先提示题图中的方程，不要直接给解答。",
+      "parentJobId": null,
+      "recognizedText": "解方程3z = 18。学生原作答z = 18 - 3，想先理解两边共同进行的运算。",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "先想想怎样对等式两边做同一种运算，才能让左边的括号前系数变成 1。",
+        "steps": [
+          "先观察括号前的系数 2。",
+          "回想两边同时进行相同运算时，等式关系会怎样。"
+        ],
+        "title": "先观察括号前的系数",
+        "sources": [],
+        "question": "要让左边的 2 消失，两边应同时做什么运算？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 20981,
+          "modelCalls": 1,
+          "historyTurns": 0
+        },
+        "mathClaims": [],
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "prerequisiteId": "",
+        "representation": "question",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "createdAt": "2026-11-10T09:27:23Z",
+      "updatedAt": "2026-11-10T09:27:44Z",
+      "input": {
+        "scope": {
+          "taskId": "task-1e0360414b8fecb28f13578087e22d8f",
+          "lessonId": "browser-lesson",
+          "studentId": "teaching-s0",
+          "questionId": "eq-new-combine",
+          "knowledgeIds": [
+            "browser-kp"
+          ],
+          "lessonVersionId": "browser-version"
+        },
+        "prompt": "请先提示题图中的方程，不要直接给解答。",
+        "blockId": null,
+        "context": {
+          "block": null,
+          "lesson": {
+            "id": "browser-lesson",
+            "goal": "比较等式两边共同变化，说明同加同减与同除非零数的条件。",
+            "grade": "七年级",
+            "title": "等式性质",
+            "versionId": "browser-version"
+          },
+          "question": {
+            "id": "eq-new-combine",
+            "kind": "replacement",
+            "prompt": "先使a - 1单独在一边，再求a。",
+            "equation": "2(a - 1) = 10",
+            "knowledgeIds": [
+              "browser-kp"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "browser-kp",
+              "name": "等式性质"
+            }
+          ],
+          "observation": "两边同时增加相同数量，相等关系保持。",
+          "prerequisites": [
+            {
+              "id": "browser-base",
+              "name": "相等关系与基本运算"
+            }
+          ],
+          "teachingCases": []
+        },
+        "history": [],
+        "guidance": true,
+        "ocrJobId": "job-9cd3fba194d942b38643c39833423952",
+        "question": 4,
+        "strategy": "hint",
+        "confirmed": true,
+        "parentJobId": null,
+        "recognizedText": "解方程3z = 18。学生原作答z = 18 - 3，想先理解两边共同进行的运算。",
+        "selectedStrategy": "hint",
+        "confirmedEquation": "3z = 18"
+      },
+      "runs": [
+        {
+          "id": "run-b2c0b4eaf5a24b32b0f2b57d373da1f1",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "先想想怎样对等式两边做同一种运算，才能让左边的括号前系数变成 1。",
+            "steps": [
+              "先观察括号前的系数 2。",
+              "回想两边同时进行相同运算时，等式关系会怎样。"
+            ],
+            "title": "先观察括号前的系数",
+            "sources": [],
+            "question": "要让左边的 2 消失，两边应同时做什么运算？",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 20981,
+              "modelCalls": 1,
+              "historyTurns": 0
+            },
+            "mathClaims": [],
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "prerequisiteId": "",
+            "representation": "question",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-10T09:27:23Z",
+          "endedAt": "2026-11-10T09:27:44Z"
+        }
+      ]
+    }
+  ],
+  "passed": false,
+  "error": "TypeError: Cannot read properties of null (reading 'click')\n    at <anonymous>:1:67\n    at <anonymous>:1:76",
+  "body": "师承智学\n教学空间\n教学空间\n教学概览\n教学案例\n课程与课时\n我的教案\n班级教学\n帮助与反馈\n陈\n陈老师\n教学空间\n/\n班级教学\n搜索课程、案例\n⌘ K\n1\n已连接\n学情反馈\n返回班级\n七年级一班 · 等式性质 · 2026/11/10 17:25:17\n班级人数\n4\n已分配\n4\n已开始\n1\n已提交\n1\n未提交\n3\n逾期\n0\n已反馈\n0\n独立检查正确\n1\n学生学习过程\n学生\t学习进度\t获得的帮助\t独立检查\t\n操作\n\n\n同\n同学0\n\t\n已提交\n\t6 次帮助\t独立检查正确\t查看过程\n\n\n同\n同学1\n\t\n未开始\n\t0 次帮助\t待独立检查\t查看过程\n\n\n同\n同学2\n\t\n未开始\n\t0 次帮助\t待独立检查\t查看过程\n\n\n同\n同学9\n\t\n未开始\n\t0 次帮助\t待独立检查\t查看过程\n作答概况\n4 次尝试 · 0 次补救\n\n两边同时增加相同数量，相等关系保持。\n\n查找教学案例\n给同学0的反馈\n确认并保存\n补充与订正\n新增安排\n\n暂无补充安排\n\n同学0的学习过程\n\n同学0的学习过程\n\n自己的解释\n\n两边同时增加相同数量，相等关系保持。\n\n2026/11/10 17:25:20\nx - 3 = 5 → 8\n\n两边同时进行相同运算。\n\n独立作答数值正确\n2026/11/10 17:25:21\ny + 4 = 11 → 7\n\n两边同时进行相同运算。\n\n独立作答数值正确\n2026/11/10 17:27:01\n3z = 18 → 6\n\n两边同时除以非零数3。\n\n获得帮助数值正确\n2026/11/10 17:27:02\nw / 4 = 3 → 12\n\n两边同时乘4。\n\n独立作答数值正确\n识别与指导过程\n刷新\n文字指导\n已完成\n学生确认的题目\n朗读\n提示\n先观察括号前的系数\n\n先想想怎样对等式两边做同一种运算，才能让左边的括号前系数变成 1。\n\n展开分步讲解\n\n要让左边的 2 消失，两边应同时做什么运算？\n\n数学需核对\n题图识别\n已完成\n\n解方程，并说明两边共同进行的运算。学生尝试：\n\n3z = 18\n\n 原作答：z = 18 − 3\n\n文字指导\n已完成\n朗读\n自主尝试\n自己试试\n\n请写下你的答案和两边共同进行的运算。\n\n展开分步讲解\n\n你准备先对等式两边做什么？\n\n数学需核对\n文字指导\n已完成\n朗读\n提示\n检查平均分\n\n先回答这个小检查：12个物品平均分成3份，每份是多少？\n\n展开分步讲解\n\n两边各有12个物品，都平均分成3份，每边每份有几个？\n\n数学需核对\n文字指导\n已完成\n朗读\n补基础\n先检查“相等”\n\n把两边看作两堆数量相同的物品，试着判断它们都平均分成3份后，每份还会相同吗？\n\n展开分步讲解\n\n如果两边各有12个物品，都平均分成3份，每份的数量相同吗？\n\n数学需核对\n参考教学案例 · 1\n文字指导\n已完成\n朗读\n换讲法\n用具体数量理解同除\n\n想象两边各有相同数量的物品，平均分成3份时，左右每份的数量还会相同吗？\n\n展开分步讲解\n\n如果两边原来各有同样多的18个物品，都平均分成3份，左右每份还一样多吗？\n\n数学需核对\n文字指导\n已完成\n朗读\n举例\n两边共同除\n\n例子中，想想等式两边同时除以同一个非零数后，两边的相等关系会怎样。\n\n展开分步讲解\n\n在 4a = 20 中，两边同时除以 4 后，等式写成什么？\n\n列出的等式已核对\n参考教学案例 · 1\n文字指导\n已完成\n朗读\n提示\n理解两边同除\n\n想一想：若只把等式一边除以3，两边还会相等吗？\n\n展开分步讲解\n\n如果只把右边18除以3，而左边3z不变，两边还相等吗？\n\n数学需核对\n关闭"
+}

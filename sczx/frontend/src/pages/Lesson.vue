@@ -1,6 +1,6 @@
 <script setup>
 import SupplementPanel from "@/components/SupplementPanel.vue";
-import { computed, ref, inject } from "vue";
+import { computed, ref, inject, watch, nextTick } from "vue";
 import { CheckCircle2, ChevronRight } from "lucide-vue-next";
 import { useLearning } from "@/store.js";
 import Workspace from "@/components/Workspace.vue";
@@ -10,7 +10,50 @@ import ModelAssistant from "@/components/ModelAssistant.vue";
 import TaskEmpty from "@/components/TaskEmpty.vue";
 const store = useLearning(),
   notify = inject("notify");
-const saving = ref(false);
+const saving = ref(false),
+  selectedBlock = ref(null),
+  selectedQuestion = ref(null);
+function selectBlock(id, question = null) {
+  selectedBlock.value = id;
+  selectedQuestion.value = question;
+  if (store.record && !store.task?.readOnly) {
+    store.record.drafts.lessonPosition = { blockId: id, question };
+    store.touch();
+  }
+}
+function guide(id, question) {
+  selectBlock(id, question);
+  nextTick(() => {
+    const input = document.querySelector(
+      ".tutoring-assistant #learning-question",
+    );
+    input?.focus({ preventScroll: true });
+    input?.scrollIntoView({
+      block: "nearest",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
+  });
+}
+watch(
+  () => store.record?.id,
+  async () => {
+    const position = store.record?.drafts.lessonPosition;
+    selectedBlock.value = (store.task?.snapshot.blocks || []).some(
+      (b) => b.id === position?.blockId,
+    )
+      ? position.blockId
+      : store.task?.snapshot.blocks?.[0]?.id || null;
+    selectedQuestion.value = position?.question ?? null;
+    await nextTick();
+    if (position?.blockId)
+      document
+        .querySelector(`[data-block="${CSS.escape(position.blockId)}"]`)
+        ?.scrollIntoView({ block: "start" });
+  },
+  { immediate: true, flush: "sync" },
+);
 const lesson = computed(() => ({
   ...store.task?.snapshot,
   title: store.task?.title,
@@ -48,14 +91,13 @@ function update(id, value) {
   store.touch();
 }
 function locate(id) {
-  document
-    .querySelector(`[data-block="${CSS.escape(id)}"]`)
-    ?.scrollIntoView({
-      block: "start",
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth",
-    });
+  selectBlock(id);
+  document.querySelector(`[data-block="${CSS.escape(id)}"]`)?.scrollIntoView({
+    block: "start",
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth",
+  });
 }
 async function save() {
   saving.value = true;
@@ -92,12 +134,14 @@ async function save() {
             :lesson="lesson"
             :progress="progress"
             @progress="update"
+            @focus="selectBlock"
             ><template #question="{ question, index, block }"
               ><QuestionAttempt
                 v-if="block.type === 'practice'"
                 :key="question.id"
                 :question="question"
                 :index="index"
+                @guide="guide(block.id, $event)"
               /><RouteButton v-else route="check" secondary
                 >进入独立检查</RouteButton
               ></template
@@ -118,6 +162,7 @@ async function save() {
             v-for="(block, i) in lesson.blocks"
             :key="block.id"
             @click="locate(block.id)"
+            :aria-current="selectedBlock === block.id ? 'step' : null"
           >
             <span>{{ String(i + 1).padStart(2, "0") }}</span
             ><strong>{{ block.title }}</strong
@@ -128,6 +173,8 @@ async function save() {
           </button>
         </nav>
         <ModelAssistant
-          v-if="!store.task.readOnly" /></template></Workspace></template
+          :key="store.task.id"
+          :question="selectedQuestion"
+          :block-id="selectedBlock" /></template></Workspace></template
   ><TaskEmpty v-else />
 </template>

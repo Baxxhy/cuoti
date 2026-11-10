@@ -1,6 +1,6 @@
 <script setup>
 import SupplementPanel from "@/components/SupplementPanel.vue";
-import { ref, computed, watch, inject } from "vue";
+import { ref, computed, watch, inject, nextTick } from "vue";
 import { useLearning } from "@/store.js";
 import QuestionAttempt from "@/components/QuestionAttempt.vue";
 import ModelAssistant from "@/components/ModelAssistant.vue";
@@ -24,8 +24,28 @@ const hasNext = computed(
 const current = computed(() =>
   indices.value.find((q) => q.index === index.value),
 );
+const restoring = ref(false);
+watch(
+  () => store.record?.id,
+  async () => {
+    restoring.value = true;
+    const saved = store.record?.drafts.check?.question;
+    index.value = indices.value.some((q) => q.index === saved)
+      ? saved
+      : (indices.value[0]?.index ?? 0);
+    await nextTick();
+    restoring.value = false;
+  },
+  { immediate: true, flush: "sync" },
+);
+const blockId = computed(
+  () =>
+    (store.task?.snapshot.blocks || []).find((b) =>
+      b.questionIds?.includes(current.value?.id),
+    )?.id || null,
+);
 watch(index, (value) => {
-  if (store.record && !store.task?.readOnly) {
+  if (store.record && !store.task?.readOnly && !restoring.value) {
     store.record.drafts.check = { question: value };
     store.touch();
   }
@@ -75,9 +95,9 @@ function markHelp() {
       ></Surface>
       <aside class="check-aside">
         <ModelAssistant
-          v-if="!store.task.readOnly"
           :key="store.task.id + ':' + index"
           :question="index"
+          :block-id="blockId"
           compact
           @help="markHelp"
         /><InfoTip label="独立检查规则"

@@ -1,0 +1,29 @@
+{
+  "database": "sczx",
+  "migrationRequired": false,
+  "before": {
+    "counts": {
+      "learning_tasks": 16,
+      "student_records": 16,
+      "lesson_drafts": 6,
+      "file_assets": 31,
+      "teaching_cases": 9,
+      "classrooms": 6
+    },
+    "digest": "c4a9ad59d2ec574ac1da7e4816faf30ba21ec3ed98a3c9bb2301bc8024678431",
+    "activeModelJobs": 0
+  },
+  "after": {
+    "counts": {
+      "learning_tasks": 16,
+      "student_records": 16,
+      "lesson_drafts": 6,
+      "file_assets": 31,
+      "teaching_cases": 9,
+      "classrooms": 6
+    },
+    "digest": "c4a9ad59d2ec574ac1da7e4816faf30ba21ec3ed98a3c9bb2301bc8024678431",
+    "activeModelJobs": 0
+  },
+  "passed": true
+}

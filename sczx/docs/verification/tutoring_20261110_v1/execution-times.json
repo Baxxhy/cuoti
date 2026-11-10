@@ -1,0 +1,38 @@
+{
+  "mysql-tests.log": {
+    "recordedEndAt": "2026-11-10T18:25:16.904714+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  },
+  "frontend-final.log": {
+    "recordedEndAt": "2026-11-10T18:08:15.534431+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  },
+  "frontend-unit.log": {
+    "recordedEndAt": "2026-11-10T18:08:15.898438+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  },
+  "build-final.log": {
+    "recordedEndAt": "2026-11-10T18:08:25.274614+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  },
+  "browser-flow.json": {
+    "recordedEndAt": "2026-11-10T17:36:08.920563+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  },
+  "ocr-focus.json": {
+    "recordedEndAt": "2026-11-10T17:56:53.114985+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  },
+  "faults.json": {
+    "recordedEndAt": "2026-11-10T17:39:04.780512+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  },
+  "desktop.json": {
+    "recordedEndAt": "2026-11-10T18:08:33.798772+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  },
+  "main-smoke.json": {
+    "recordedEndAt": "2026-11-10T18:26:47.218979+08:00",
+    "method": "日志或JSON最后写入时间；细分模型调用时间见ModelRun及评测rows.startedAt"
+  }
+}

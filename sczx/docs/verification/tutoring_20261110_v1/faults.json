@@ -1,0 +1,609 @@
+{
+  "database": "sczx_test_tutoring_browser_3f6e28",
+  "controlledStates": [
+    {
+      "name": "模拟服务中断，调用真实恢复函数",
+      "job": {
+        "id": "job-f823a68bf9854a5381e1f5fd8babb3d1",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-56091b80ff53402080af686bc1bfd37d",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": 0,
+        "blockId": "eq-practice",
+        "strategy": "hint",
+        "prompt": "只给下一步提示，比较两边共同加相同数。",
+        "parentJobId": null,
+        "recognizedText": "",
+        "status": "failed",
+        "step": "服务中断",
+        "error": "服务中断，输入与已有结果已保留，可手动重试。",
+        "result": null,
+        "attemptNumber": 1,
+        "createdAt": "2026-11-10T09:38:22Z",
+        "updatedAt": "2026-11-10T09:38:22Z",
+        "input": {
+          "scope": {
+            "taskId": "browser-t01",
+            "classId": "browser-c0",
+            "lessonId": "browser-lesson",
+            "studentId": "teaching-s2",
+            "questionId": "eq-practice-add",
+            "knowledgeIds": [
+              "browser-kp"
+            ],
+            "lessonVersionId": "browser-version"
+          },
+          "fileId": null,
+          "prompt": "只给下一步提示，比较两边共同加相同数。",
+          "blockId": "eq-practice",
+          "context": {
+            "block": {
+              "id": "eq-practice",
+              "type": "practice",
+              "title": "随堂练习",
+              "content": "每一步都说明两边进行了什么运算。",
+              "questionIds": [
+                "eq-practice-add",
+                "eq-practice-sub"
+              ]
+            },
+            "lesson": {
+              "id": "browser-lesson",
+              "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+              "grade": "七年级",
+              "title": "共同运算练习",
+              "versionId": "browser-version"
+            },
+            "question": {
+              "id": "eq-practice-add",
+              "kind": "practice",
+              "prompt": "两边同时加3，x等于多少？",
+              "equation": "x - 3 = 5",
+              "knowledgeIds": [
+                "browser-kp"
+              ]
+            },
+            "knowledge": [
+              {
+                "id": "browser-kp",
+                "name": "等式性质"
+              }
+            ],
+            "observation": "",
+            "prerequisites": [
+              {
+                "id": "browser-base",
+                "name": "相等关系与基本运算"
+              }
+            ],
+            "teachingCases": [
+              {
+                "id": "tutor-case-0",
+                "title": "天平共同变化",
+                "source": "项目自编验收材料",
+                "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+                "version": 1,
+                "versionId": "tutor-case-version-0",
+                "references": []
+              },
+              {
+                "id": "tutor-case-1",
+                "title": "相等关系小检查",
+                "source": "项目自编验收材料",
+                "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+                "version": 1,
+                "versionId": "tutor-case-version-1",
+                "references": []
+              },
+              {
+                "id": "tutor-case-3",
+                "title": "非零除数条件",
+                "source": "项目自编验收材料",
+                "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+                "version": 1,
+                "versionId": "tutor-case-version-3",
+                "references": []
+              }
+            ]
+          },
+          "history": [],
+          "guidance": true,
+          "ocrJobId": null,
+          "question": 0,
+          "strategy": "hint",
+          "confirmed": false,
+          "parentJobId": null,
+          "recognizedText": "",
+          "selectedStrategy": "hint",
+          "confirmedEquation": ""
+        },
+        "runs": [
+          {
+            "id": "run-708167db15284177bd67f8508b823333",
+            "number": 1,
+            "status": "failed",
+            "model": "",
+            "provider": "",
+            "error": "服务中断，输入与已有结果已保留，可手动重试。",
+            "result": null,
+            "startedAt": "2026-11-10T09:38:22Z",
+            "endedAt": "2026-11-10T09:38:22Z"
+          }
+        ]
+      }
+    }
+  ],
+  "liveChecks": [
+    {
+      "name": "中断恢复后的真实Codex手动重试",
+      "job": {
+        "id": "job-f823a68bf9854a5381e1f5fd8babb3d1",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-56091b80ff53402080af686bc1bfd37d",
+        "fileId": null,
+        "helpRecordId": "help-f823a68bf9854a5381e1f5fd8babb3d1",
+        "question": 0,
+        "blockId": "eq-practice",
+        "strategy": "hint",
+        "prompt": "只给下一步提示，比较两边共同加相同数。",
+        "parentJobId": null,
+        "recognizedText": "",
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "先在等式两边各加3，观察左边的−3与+3如何抵消。",
+          "steps": [
+            "把两边同时加3。"
+          ],
+          "title": "观察两边同时加3",
+          "sources": [],
+          "question": "两边都加3后，等式会变成什么？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 20901,
+            "modelCalls": 1,
+            "historyTurns": 0
+          },
+          "mathClaims": [],
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "prerequisiteId": "",
+          "representation": "balance",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 2,
+        "createdAt": "2026-11-10T09:38:22Z",
+        "updatedAt": "2026-11-10T09:38:43Z",
+        "input": {
+          "scope": {
+            "taskId": "browser-t01",
+            "classId": "browser-c0",
+            "lessonId": "browser-lesson",
+            "studentId": "teaching-s2",
+            "questionId": "eq-practice-add",
+            "knowledgeIds": [
+              "browser-kp"
+            ],
+            "lessonVersionId": "browser-version"
+          },
+          "fileId": null,
+          "prompt": "只给下一步提示，比较两边共同加相同数。",
+          "blockId": "eq-practice",
+          "context": {
+            "block": {
+              "id": "eq-practice",
+              "type": "practice",
+              "title": "随堂练习",
+              "content": "每一步都说明两边进行了什么运算。",
+              "questionIds": [
+                "eq-practice-add",
+                "eq-practice-sub"
+              ]
+            },
+            "lesson": {
+              "id": "browser-lesson",
+              "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+              "grade": "七年级",
+              "title": "共同运算练习",
+              "versionId": "browser-version"
+            },
+            "question": {
+              "id": "eq-practice-add",
+              "kind": "practice",
+              "prompt": "两边同时加3，x等于多少？",
+              "equation": "x - 3 = 5",
+              "knowledgeIds": [
+                "browser-kp"
+              ]
+            },
+            "knowledge": [
+              {
+                "id": "browser-kp",
+                "name": "等式性质"
+              }
+            ],
+            "observation": "",
+            "prerequisites": [
+              {
+                "id": "browser-base",
+                "name": "相等关系与基本运算"
+              }
+            ],
+            "teachingCases": [
+              {
+                "id": "tutor-case-0",
+                "title": "天平共同变化",
+                "source": "项目自编验收材料",
+                "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+                "version": 1,
+                "versionId": "tutor-case-version-0",
+                "references": []
+              },
+              {
+                "id": "tutor-case-1",
+                "title": "相等关系小检查",
+                "source": "项目自编验收材料",
+                "content": "先比较两组数量是否相同，再比较同时增加相同数量后的关系。",
+                "version": 1,
+                "versionId": "tutor-case-version-1",
+                "references": []
+              },
+              {
+                "id": "tutor-case-3",
+                "title": "非零除数条件",
+                "source": "项目自编验收材料",
+                "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+                "version": 1,
+                "versionId": "tutor-case-version-3",
+                "references": []
+              }
+            ]
+          },
+          "history": [],
+          "guidance": true,
+          "ocrJobId": null,
+          "question": 0,
+          "strategy": "hint",
+          "confirmed": false,
+          "parentJobId": null,
+          "recognizedText": "",
+          "selectedStrategy": "hint",
+          "confirmedEquation": ""
+        },
+        "runs": [
+          {
+            "id": "run-708167db15284177bd67f8508b823333",
+            "number": 1,
+            "status": "failed",
+            "model": "",
+            "provider": "",
+            "error": "服务中断，输入与已有结果已保留，可手动重试。",
+            "result": null,
+            "startedAt": "2026-11-10T09:38:22Z",
+            "endedAt": "2026-11-10T09:38:22Z"
+          },
+          {
+            "id": "run-8d50bf972f644087980aa7277caf6a94",
+            "number": 2,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "hint": "先在等式两边各加3，观察左边的−3与+3如何抵消。",
+              "steps": [
+                "把两边同时加3。"
+              ],
+              "title": "观察两边同时加3",
+              "sources": [],
+              "question": "两边都加3后，等式会变成什么？",
+              "strategy": "hint",
+              "workflow": {
+                "nodes": [
+                  "固定学习上下文",
+                  "读取公开案例与一层前置知识",
+                  "生成本轮指导",
+                  "核验并等待学生回应"
+                ],
+                "elapsedMs": 20901,
+                "modelCalls": 1,
+                "historyTurns": 0
+              },
+              "mathClaims": [],
+              "nextStrategy": "try",
+              "verification": {
+                "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+                "claims": [],
+                "status": "unverified"
+              },
+              "prerequisites": [],
+              "prerequisiteId": "",
+              "representation": "balance",
+              "usedCaseVersionIds": []
+            },
+            "startedAt": "2026-11-10T09:38:22Z",
+            "endedAt": "2026-11-10T09:38:43Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "真实运行中移出、结果不写回、历史可读、新建与重试403",
+      "job": {
+        "id": "job-40493b14b6be4744935fede22c8b7759",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-668659f0777144a18d43fdc2c5074bec",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": 0,
+        "blockId": "eq-practice",
+        "strategy": "hint",
+        "prompt": "我想理解为什么两边要一起加同一个数，请只给一个提示。",
+        "parentJobId": null,
+        "recognizedText": "",
+        "status": "failed",
+        "step": "执行失败",
+        "error": "已移出班级，本轮指导停止；历史保留，重新加入后可手动重试。",
+        "result": null,
+        "attemptNumber": 1,
+        "createdAt": "2026-11-10T09:38:44Z",
+        "updatedAt": "2026-11-10T09:39:04Z",
+        "input": {
+          "scope": {
+            "taskId": "browser-t01",
+            "classId": "browser-c0",
+            "lessonId": "browser-lesson",
+            "studentId": "teaching-s1",
+            "questionId": "eq-practice-add",
+            "knowledgeIds": [
+              "browser-kp"
+            ],
+            "lessonVersionId": "browser-version"
+          },
+          "prompt": "我想理解为什么两边要一起加同一个数，请只给一个提示。",
+          "blockId": "eq-practice",
+          "context": {
+            "block": {
+              "id": "eq-practice",
+              "type": "practice",
+              "title": "随堂练习",
+              "content": "每一步都说明两边进行了什么运算。",
+              "questionIds": [
+                "eq-practice-add",
+                "eq-practice-sub"
+              ]
+            },
+            "lesson": {
+              "id": "browser-lesson",
+              "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+              "grade": "七年级",
+              "title": "共同运算练习",
+              "versionId": "browser-version"
+            },
+            "question": {
+              "id": "eq-practice-add",
+              "kind": "practice",
+              "prompt": "两边同时加3，x等于多少？",
+              "equation": "x - 3 = 5",
+              "knowledgeIds": [
+                "browser-kp"
+              ]
+            },
+            "knowledge": [
+              {
+                "id": "browser-kp",
+                "name": "等式性质"
+              }
+            ],
+            "observation": "",
+            "prerequisites": [
+              {
+                "id": "browser-base",
+                "name": "相等关系与基本运算"
+              }
+            ],
+            "teachingCases": [
+              {
+                "id": "tutor-case-3",
+                "title": "非零除数条件",
+                "source": "项目自编验收材料",
+                "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+                "version": 1,
+                "versionId": "tutor-case-version-3",
+                "references": []
+              },
+              {
+                "id": "tutor-case-0",
+                "title": "天平共同变化",
+                "source": "项目自编验收材料",
+                "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+                "version": 1,
+                "versionId": "tutor-case-version-0",
+                "references": []
+              }
+            ]
+          },
+          "history": [],
+          "guidance": true,
+          "ocrJobId": null,
+          "question": 0,
+          "strategy": "hint",
+          "confirmed": false,
+          "parentJobId": null,
+          "recognizedText": "",
+          "selectedStrategy": "hint",
+          "confirmedEquation": ""
+        },
+        "runs": [
+          {
+            "id": "run-517853eb5c564d629d629adffc472e91",
+            "number": 1,
+            "status": "failed",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "已移出班级，本轮指导停止；历史保留，重新加入后可手动重试。",
+            "result": {
+              "workflow": {
+                "nodes": [
+                  "固定学习上下文",
+                  "读取公开案例与一层前置知识",
+                  "生成本轮指导",
+                  "核验并等待学生回应"
+                ],
+                "elapsedMs": 20282,
+                "modelCalls": 1,
+                "historyTurns": 0
+              }
+            },
+            "startedAt": "2026-11-10T09:38:44Z",
+            "endedAt": "2026-11-10T09:39:04Z"
+          }
+        ]
+      },
+      "repeatJobId": "job-40493b14b6be4744935fede22c8b7759",
+      "retryStatus": 403,
+      "newStatus": 403
+    },
+    {
+      "name": "结束一轮且保留历史",
+      "job": {
+        "id": "job-d27d1ccedfa34888a1d7fce0f7b0f2bd",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-56091b80ff53402080af686bc1bfd37d",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": 1,
+        "blockId": "eq-practice",
+        "strategy": "hint",
+        "prompt": "先比较等式两边。",
+        "parentJobId": null,
+        "recognizedText": "",
+        "status": "cancelled",
+        "step": "用户结束本轮指导",
+        "error": "已结束本轮，历史保留。",
+        "result": null,
+        "attemptNumber": 0,
+        "createdAt": "2026-11-10T09:39:05Z",
+        "updatedAt": "2026-11-10T09:39:05Z",
+        "input": {
+          "scope": {
+            "taskId": "browser-t01",
+            "classId": "browser-c0",
+            "lessonId": "browser-lesson",
+            "studentId": "teaching-s2",
+            "questionId": "eq-practice-sub",
+            "knowledgeIds": [
+              "browser-kp"
+            ],
+            "lessonVersionId": "browser-version"
+          },
+          "prompt": "先比较等式两边。",
+          "blockId": "eq-practice",
+          "context": {
+            "block": {
+              "id": "eq-practice",
+              "type": "practice",
+              "title": "随堂练习",
+              "content": "每一步都说明两边进行了什么运算。",
+              "questionIds": [
+                "eq-practice-add",
+                "eq-practice-sub"
+              ]
+            },
+            "lesson": {
+              "id": "browser-lesson",
+              "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+              "grade": "七年级",
+              "title": "共同运算练习",
+              "versionId": "browser-version"
+            },
+            "question": {
+              "id": "eq-practice-sub",
+              "kind": "practice",
+              "prompt": "两边同时减4，y等于多少？",
+              "equation": "y + 4 = 11",
+              "knowledgeIds": [
+                "browser-kp"
+              ]
+            },
+            "knowledge": [
+              {
+                "id": "browser-kp",
+                "name": "等式性质"
+              }
+            ],
+            "observation": "",
+            "prerequisites": [
+              {
+                "id": "browser-base",
+                "name": "相等关系与基本运算"
+              }
+            ],
+            "teachingCases": [
+              {
+                "id": "tutor-case-3",
+                "title": "非零除数条件",
+                "source": "项目自编验收材料",
+                "content": "讨论等式两边同除一个非零数，区分乘零丢失信息与除零未定义。",
+                "version": 1,
+                "versionId": "tutor-case-version-3",
+                "references": []
+              },
+              {
+                "id": "tutor-case-0",
+                "title": "天平共同变化",
+                "source": "项目自编验收材料",
+                "content": "用天平比较两边同时加入相同砝码后的数量，追问只动一边会怎样。",
+                "version": 1,
+                "versionId": "tutor-case-version-0",
+                "references": []
+              },
+              {
+                "id": "tutor-case-2",
+                "title": "逆运算对比",
+                "source": "项目自编验收材料",
+                "content": "对照同时加与只加一边；用另一组数值举例，再返回原题解释。",
+                "version": 1,
+                "versionId": "tutor-case-version-2",
+                "references": []
+              }
+            ]
+          },
+          "history": [],
+          "guidance": true,
+          "ocrJobId": null,
+          "question": 1,
+          "strategy": "hint",
+          "confirmed": false,
+          "parentJobId": null,
+          "recognizedText": "",
+          "selectedStrategy": "hint",
+          "confirmedEquation": ""
+        },
+        "runs": []
+      }
+    }
+  ],
+  "passed": true
+}

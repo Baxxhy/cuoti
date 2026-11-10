@@ -1,0 +1,8 @@
+{
+  "database": "sczx_test_teaching_browser_ce1977",
+  "jobId": "job-b94e0274a37e4fce954b2425d52398cb",
+  "memberRemoved": true,
+  "retryStatus": 200,
+  "expectedAfterFix": 403,
+  "reproduced": true
+}

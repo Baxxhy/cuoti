@@ -56,10 +56,28 @@ def math_check(claims):
     return {"status": status, "claims": results, "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对"}
 
 
+def require_job_write(db,job):
+    from .models import Account,StudentRecord
+    from .teaching import ensure_write
+    from fastapi import HTTPException
+    owner=db.get(Account,job.owner_id)
+    if owner and owner.role=='student' and job.record_id:
+        rec=db.get(StudentRecord,job.record_id)
+        try:ensure_write(db,owner,rec.task_id)
+        except HTTPException:raise ModelError('已移出班级，本轮指导停止；历史保留，重新加入后可手动重试。') from None
+
+
 async def execute(job_id, run_id):
     with SessionLocal() as db:
         job = db.get(ModelJob, job_id)
+        require_job_write(db,job)
         capability, data, file = job.capability, dict(job.input), None
+        if capability=='text' and not data.get('guidance') and job.record_id:
+            from .models import Account,StudentRecord
+            owner=db.get(Account,job.owner_id)
+            if owner.role=='student':
+                from .tutoring import prepare
+                data=prepare(db,owner,db.get(StudentRecord,job.record_id),data);data.pop('fileId',None)
         if job.retry_count and "结构" in job.error:
             data["repairStructure"] = True
         if job.file_id:
@@ -78,8 +96,11 @@ async def execute(job_id, run_id):
             event(db,job,'等待教师确认')
         return
     phase(job_id, {"document_parse": "正在解析原文", "document_ocr": "正在识别原文页面", "case_extract": "正在整理教学经验", "retrieval": "正在检索教学案例", "ocr": "正在识别题图", "text": "正在生成指导", "embedding": "正在生成向量", "rerank": "正在重排材料", "asr": "正在转写音频", "tts": "正在合成音频"}[capability])
-    result, model, source = await provider.call(capability, data, file=file, request_id=run_id)
-    if capability in ("text", "case_extract"):
+    if data.get('guidance'):
+        from .tutoring import run
+        result,model,source=await run(data,provider,run_id)
+    else:result, model, source = await provider.call(capability, data, file=file, request_id=run_id)
+    if capability in ("text", "case_extract") and not data.get("guidance"):
         phase(job_id, "正在核对数学表达")
         result["verification"] = await asyncio.to_thread(math_check, result.get("mathClaims", []))
         context = data.get('context') if isinstance(data.get('context'),dict) else {}
@@ -91,7 +112,7 @@ async def execute(job_id, run_id):
             provided = [{**matched,**primary,'role':'lesson','roles':['lesson','retrieval'] if matched else ['lesson']},
                         *[x for x in provided if x.get('versionId') != primary['versionId']]]
         result['sources'] = [{k:x.get(k) for k in ('id','title','source','versionId','version','references','role','roles','knowledgeIds','knowledgeMatches','matchReasons','matchedFields')} for x in provided]
-    if capability=='text' and context.get('retrieval'):
+    if capability=='text' and not data.get('guidance') and context.get('retrieval'):
         result['retrieval']=context['retrieval']
     if capability == "case_extract":
         original = {x['id']: x['text'] for x in data['units']}
@@ -106,6 +127,11 @@ async def execute(job_id, run_id):
     phase(job_id, "正在保存结果")
     with SessionLocal.begin() as db:
         job, run = db.get(ModelJob, job_id), db.get(ModelRun, run_id)
+        try:require_job_write(db,job)
+        except ModelError as error:
+            if data.get('guidance'):error.metrics=result.get('workflow',{});error.model=model;error.provider=source
+            raise
+        if job.status=="cancelled":raise asyncio.CancelledError()
         if capability == "document_ocr":
             from .models import MaterialUnit
             unit = db.get(MaterialUnit, data['unitId'])
@@ -128,12 +154,14 @@ async def execute(job_id, run_id):
             db.add(FileAsset(id=file_id, owner_id=job.owner_id, original_name="讲解音频.mp3", content_type=result["contentType"], size=len(contents), storage_key=key))
             db.flush()
             result.update(fileId=file_id, url="/api/files/" + file_id)
-        if capability == "text" and job.record_id:
+        if capability == "text" and job.record_id and data.get("strategy")!="try":
             # Stable ID prevents duplicate helper records if a caller repeats a task.
             help_id = help_record_id(job.id)
-            if not db.get(HelpRecord, help_id):
-                message = result["hint"] + "\n\n" + "\n".join(result["steps"])
-                db.add(HelpRecord(id=help_id, record_id=job.record_id, question=data.get("question"), kind="模型指导", message=message, file_id=job.file_id, attempt_number=data.get("attemptNumber", 1)))
+            entry=db.get(HelpRecord,help_id)
+            message=result['hint']+'\n\n'+'\n'.join(result['steps'])
+            if not entry:db.add(HelpRecord(id=help_id,record_id=job.record_id,question=data.get('question'),kind='模型指导',message=message,file_id=job.file_id,attempt_number=data.get('attemptNumber',1)))
+            else:entry.kind='模型指导';entry.message=message
+
         job.result, job.status, job.error = result, "succeeded", ""
         job.active_hash = None
         run.result, run.model, run.provider, run.status, run.ended_at = result, model, source, "succeeded", datetime.utcnow()
@@ -179,7 +207,7 @@ async def worker():
                 with SessionLocal.begin() as db:
                     job,run=db.get(ModelJob,job_id),db.get(ModelRun,run_id)
                     if job.status!='cancelled':raise
-                    run.status,run.error,run.ended_at='cancelled','教师取消',datetime.utcnow()
+                    run.status,run.error,run.ended_at='cancelled',job.error or '用户取消',datetime.utcnow()
             except Exception as error:
                 if isinstance(error, TimeoutError): error = ModelError("任务执行超时，可重试。", retryable=True)
                 known = isinstance(error, ModelError)
@@ -188,11 +216,12 @@ async def worker():
                 with SessionLocal.begin() as db:
                     job=db.scalar(select(ModelJob).where(ModelJob.id==job_id).with_for_update());run=db.get(ModelRun,run_id)
                     if job.status=='cancelled':
-                        run.status,run.error,run.ended_at='cancelled','教师取消',datetime.utcnow()
+                        run.status,run.error,run.ended_at='cancelled',job.error or '用户取消',datetime.utcnow()
                         continue
                     run.status, run.error, run.ended_at = "failed", message, datetime.utcnow()
                     run.model, run.provider = getattr(error, "model", ""), getattr(error, "provider", "")
-                    again = known and error.retryable and job.retry_count < (1 if job.capability=='lesson_agent' else 2)
+                    if getattr(error,"metrics",None):run.result={"workflow":error.metrics}
+                    again = known and error.retryable and not job.input.get('guidance') and not (job.capability=='text' and job.record_id) and job.retry_count < (1 if job.capability=='lesson_agent' else 2)
                     job.status, job.error = ("queued" if again else "failed"), message
                     if not again: job.active_hash = None
                     if again: job.retry_count += 1

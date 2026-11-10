@@ -12,7 +12,7 @@ from sqlalchemy.exc import IntegrityError
 
 from .ai_schemas import JobInput, CAPABILITIES
 from .database import get_db, SessionLocal
-from .models import Attempt, FileAsset, LearningTask, ModelJob, ModelRun, ModelEvent, StudentRecord
+from .models import Attempt, FileAsset, LearningTask, ModelJob, ModelRun, ModelEvent, StudentRecord, HelpRecord
 from .model_jobs import event, provider, help_record_id
 from .retrieval import search, published_documents, retrieve, knowledge_documents, validate_request, student_request
 
@@ -43,10 +43,12 @@ def serialize(job, detail=True):
         if isinstance(value,dict):return {k:public_context(v) for k,v in value.items() if k not in ('answer','hint','teacherNote','feedback','explanation')}
         return value
     exposed=copy.deepcopy(job.input)
+    exposed.pop("_validation",None)
+    exposed.pop("_requestFingerprint",None)
     if 'context' in exposed:exposed['context']=public_context(exposed['context'])
     result = job.result
     if result and not detail and "vectors" in result: result = {k:v for k,v in result.items() if k != "vectors"}
-    return {"id":job.id,"capability":job.capability,"lessonId":job.input.get("lessonId"),"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
+    return {"id":job.id,"capability":job.capability,"lessonId":job.input.get("lessonId"),"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" and job.input.get("strategy")!="try" else None,"question":job.input.get("question"),"blockId":job.input.get("blockId"),"strategy":job.input.get("strategy"),"prompt":job.input.get("prompt"),"parentJobId":job.input.get("parentJobId"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
 
 
 @router.get("/capabilities")
@@ -128,6 +130,12 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
     if user.role=="student" and record and record.student_id==user.id:
         from .teaching import ensure_write
         ensure_write(db,user,record.task_id)
+    if payload.capability=='text' and user.role=='student' and record:
+        from .tutoring import request_fingerprint
+        existing=db.scalar(select(ModelJob).where(ModelJob.owner_id==user.id,ModelJob.request_key==payload.requestKey))
+        if existing:
+            if existing.input.get('_requestFingerprint')!=request_fingerprint(payload):raise HTTPException(409,'同一请求标识对应不同指导内容。')
+            return serialize(existing)
     if payload.capability == "lesson_agent":
         if user.role != "teacher" or payload.recordId or payload.fileId:raise HTTPException(403,"请使用教师备课入口。")
         from .prepare_agent import build_input
@@ -166,7 +174,9 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
             question=data.get("question")
             if question is not None and (isinstance(question,bool) or not isinstance(question,int) or not 0<=question<len(task.questions)):
                 raise HTTPException(422,"当前题目不存在。")
-            data["context"]={"lesson":task.snapshot,"question":task.questions[question] if question is not None else None,"observation":record.observation}
+            from .curriculum import student_content
+            public_snapshot=student_content(task.snapshot)
+            data["context"]={"lesson":public_snapshot,"question":student_content({'questions':[task.questions[question]]})['questions'][0] if question is not None else None,"observation":record.observation}
             recognized = data.get("recognizedText", "")
             specification=student_request(task.snapshot,task.questions[question] if question is not None else None,record.observation,prompt,recognized if isinstance(recognized,str) else '')
             points=knowledge_documents(db);known={p['id'] for p in points}
@@ -191,6 +201,16 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
         items=data.get("candidates")
         if not isinstance(data.get("query"),str) or not data["query"].strip() or not isinstance(items,list) or not 1<=len(items)<=32 or any(not isinstance(i,dict) or not isinstance(i.get("text"),str) or not i["text"].strip() or not isinstance(i.get("id"),str) or not i["id"].strip() for i in items) or len({i["id"] for i in items})!=len(items): raise HTTPException(422,"请填写查询和带唯一编号的候选材料。")
     elif payload.capability=="tts" and (not isinstance(data.get("text"),str) or not 0<len(data["text"].strip())<=5000): raise HTTPException(422,"合成文本需为1至5000字。")
+    if payload.capability=='ocr' and record:
+        task=db.get(LearningTask,record.task_id);question=data.get('question');block=data.get('blockId')
+        if question is not None and (isinstance(question,bool) or not isinstance(question,int) or not 0<=question<len(task.questions)):raise HTTPException(422,'当前题目不存在。')
+        if block and not any(b.get('id')==block for b in task.snapshot.get('blocks',[])):raise HTTPException(422,'当前内容块不存在。')
+    if payload.capability=='text' and record and user.role=='student':
+        from .tutoring import prepare
+        data=prepare(db,user,record,payload.data)
+        from .tutoring import request_fingerprint
+        data["_requestFingerprint"]=request_fingerprint(payload)
+        file_id=data.pop('fileId')
     digest=hashlib.sha256(json.dumps({"cap":payload.capability,"data":data,"record":payload.recordId,"file":file_id},ensure_ascii=False,sort_keys=True).encode()).hexdigest()
     existing=db.scalar(select(ModelJob).where(ModelJob.owner_id==user.id,ModelJob.request_key==payload.requestKey))
     if existing:
@@ -202,6 +222,9 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
     db.add(job)
     try:
         db.flush()
+        if data.get('guidance') and data.get('strategy')!='try':
+            from .tutoring import STRATEGIES
+            db.add(HelpRecord(id=help_record_id(job.id),record_id=record.id,question=data.get('question'),kind='指导请求',message=STRATEGIES[data['strategy']]+'：'+data['prompt'],file_id=file_id,attempt_number=len(db.scalars(select(Attempt.id).where(Attempt.record_id==record.id)).all())+1))
         event(db,job,"排队中")
         db.commit()
     except IntegrityError:
@@ -241,6 +264,9 @@ def retry(job_id: str, request: Request, db=Depends(get_db)):
     user=user_for(request,db)
     job=db.scalar(select(ModelJob).where(ModelJob.id==job_id).with_for_update())
     if not job or job.owner_id!=user.id: raise HTTPException(404,"没有找到可重试的任务。")
+    if user.role=='student' and job.record_id:
+        from .teaching import ensure_write
+        record=db.get(StudentRecord,job.record_id);ensure_write(db,user,record.task_id)
     if job.status!="failed": raise HTTPException(409,"只有失败任务可以重试。")
     if db.scalar(select(ModelJob.id).where(ModelJob.owner_id==user.id,ModelJob.active_hash==job.input_hash,ModelJob.id!=job.id).limit(1)):
         raise HTTPException(409,"相同内容已有运行任务，请先查看该任务。")
@@ -254,6 +280,17 @@ def retry(job_id: str, request: Request, db=Depends(get_db)):
     except IntegrityError:
         db.rollback()
         raise HTTPException(409,"相同内容已有运行任务，请先查看该任务。") from None
+    return serialize(job)
+
+
+@router.post('/jobs/{job_id}/stop')
+def stop_guidance(job_id:str,request:Request,db=Depends(get_db)):
+    user=user_for(request,db);job=db.scalar(select(ModelJob).where(ModelJob.id==job_id).with_for_update())
+    if not job or job.owner_id!=user.id or not job.input.get('guidance'):raise HTTPException(404,'没有找到自己的指导。')
+    if job.status in ('queued','running'):
+        job.status='cancelled';job.error='已结束本轮，历史保留。';job.active_hash=None;event(db,job,'用户结束本轮指导');db.commit()
+        from .model_jobs import cancel_execution
+        cancel_execution(job.id)
     return serialize(job)
 
 
@@ -274,7 +311,7 @@ def events(job_id: str, request: Request, after: int=0, db=Depends(get_db)):
                 for row in rows:
                     cursor=row.id
                     chunks.append(f"id: {row.id}\nevent: progress\ndata: "+json.dumps({"id":row.id,"status":row.status,"step":row.step,"attemptNumber":row.attempt_number},ensure_ascii=False)+"\n\n")
-                terminal=job.status in ("succeeded","failed")
+                terminal=job.status in ("succeeded","failed","cancelled")
             for chunk in chunks: yield chunk
             if terminal:
                 yield 'event: done\ndata: {}\n\n'

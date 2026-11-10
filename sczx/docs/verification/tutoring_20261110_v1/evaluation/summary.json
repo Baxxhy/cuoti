@@ -1,0 +1,44 @@
+{
+  "scenarioCount": 25,
+  "comparisonRows": 100,
+  "model": "gpt-6-luna",
+  "effort": "low",
+  "realExternalCalls": 88,
+  "manualReviewers": 1,
+  "variants": {
+    "B0": {
+      "successfulRows": 25,
+      "automaticPass": 12,
+      "externalCalls": 25,
+      "programCheckpoints": 0,
+      "medianElapsedMs": 18831,
+      "medianExternalElapsedMs": 18831
+    },
+    "B1": {
+      "successfulRows": 25,
+      "automaticPass": 25,
+      "externalCalls": 21,
+      "programCheckpoints": 5,
+      "medianElapsedMs": 16161,
+      "medianExternalElapsedMs": 17659.0
+    },
+    "B2": {
+      "successfulRows": 25,
+      "automaticPass": 25,
+      "externalCalls": 22,
+      "programCheckpoints": 5,
+      "medianElapsedMs": 15610,
+      "medianExternalElapsedMs": 16089.0
+    },
+    "B3": {
+      "successfulRows": 25,
+      "automaticPass": 25,
+      "externalCalls": 20,
+      "programCheckpoints": 5,
+      "medianElapsedMs": 14803,
+      "medianExternalElapsedMs": 15123.5
+    }
+  },
+  "manualReviewedRows": 25,
+  "manualScope": "B3 q01—q25，用户单人复核认可"
+}

@@ -1,0 +1,24 @@
+teacher-publishes-task
+real-hint
+real-different-example
+real-rephrase
+real-foundation
+real-response-adjustment
+self-attempt-checkpoint
+helped-and-new-independent-attempts
+real-learning-submit
+real-original-image-ocr
+confirmed-ocr-guidance
+refresh-recovers-current-question-and-guidance
+teacher-reads-real-turns
+file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18
+  async eval(code,arg){const expression=typeof code==='function'?'('+code.toString()+')('+JSON.stringify(arg)+')':code;const r=await this.send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text);return r.result?.value}
+                                                                                                                                                                                                                                                 ^
+
+Error: TypeError: Cannot read properties of null (reading 'click')
+    at <anonymous>:1:67
+    at <anonymous>:1:76
+    at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+    at async file:///tmp/sczx-step12/flow.mjs:35:466
+
+Node.js v24.15.0

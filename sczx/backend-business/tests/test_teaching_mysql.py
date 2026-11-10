@@ -30,13 +30,13 @@ class DeadlineTests(unittest.TestCase):
         self.assertIsNone(cutoff(''));self.assertIsNone(cutoff('bad'))
         with self.assertRaises(Exception):cutoff('2026-02-30',True)
 
-def create_accounts(password):
+def create_accounts(password,account_prefix="teaching-"):
     with SessionLocal.begin() as db:
         for name,role in [('t1','teacher'),('t2','teacher')]+[('s'+str(i),'student') for i in range(11)]:
-            ident='teaching-'+name
+            ident=account_prefix+name
             db.add(Account(id=ident,username=ident,display_name={'t1':'陈老师','t2':'周老师'}.get(name,'同学'+name[1:]),role=role,password_hash=hash_password(password)))
 
-def fixture(prefix):
+def fixture(prefix,account_prefix="teaching-"):
     """2 teachers, 3 classes of 3, one cross-class student and a late joiner."""
     data=first_lesson();lesson=prefix+'-lesson';kp=prefix+'-kp'
     data.update(knowledgeIds=[kp],prerequisiteIds=[],caseId=None,caseVersionId=None)
@@ -47,9 +47,9 @@ def fixture(prefix):
         db.add(Lesson(id=lesson,course_id=prefix+'-course',title='等式性质'));db.add(KnowledgePoint(id=kp,name='等式性质',prerequisites=[],aliases=[]));db.flush()
         db.add(LessonContent(lesson_id=lesson,draft=None,status='published',reviewed=True));db.add(LessonVersion(id=prefix+'-version',lesson_id=lesson,number=1,data=data))
         for i in range(3):
-            room=Classroom(id=prefix+'-c'+str(i),teacher_id='teaching-t1' if i<2 else 'teaching-t2',name=['七年级一班','七年级二班','七年级三班'][i],grade='七年级',subject='数学');db.add(room);db.flush();classes.append(room.id)
-            students=['teaching-s'+str(i*3+j) for j in range(3)]
-            if i<2:students.append('teaching-s9')
+            room=Classroom(id=prefix+'-c'+str(i),teacher_id=account_prefix+'t1' if i<2 else account_prefix+'t2',name=['七年级一班','七年级二班','七年级三班'][i],grade='七年级',subject='数学');db.add(room);db.flush();classes.append(room.id)
+            students=[account_prefix+'s'+str(i*3+j) for j in range(3)]
+            if i<2:students.append(account_prefix+'s9')
             for student in students:db.add(ClassMember(classroom_id=room.id,student_id=student))
             db.flush()
             for j in range(2):

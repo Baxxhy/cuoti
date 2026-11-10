@@ -1,0 +1,22 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ clearing a pending create prevents the old job from reopening (1510.347733ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1324.885611ms)
+✔ assistant initialization cannot replace a newer user request (1403.193752ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1070.315085ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (1883.272558ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (1934.853249ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1301.818851ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (1652.946151ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1468.274624ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1269.874413ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5442.083598

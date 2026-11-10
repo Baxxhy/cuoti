@@ -1,0 +1,13 @@
+{
+  "database": "sczx_test_tutoring_browser_416d32",
+  "label": "25个项目自编情境，双课时及知识点夹具中的第一课时；真实双课时浏览器闭环另验",
+  "model": "gpt-6-luna",
+  "effort": "low",
+  "comparisons": [
+    "B0现有单次文字指导",
+    "B1多策略，无历史/知识来源",
+    "B2多策略+同一B1实际输出历史",
+    "B3同一历史+知识/前置/公开来源"
+  ],
+  "manualReview": "待人工复核"
+}

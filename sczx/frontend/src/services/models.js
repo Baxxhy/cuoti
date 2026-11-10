@@ -9,6 +9,7 @@ export const modelApi = {
   list: (recordId) => api.request(`/ai/jobs${recordId ? `?recordId=${encodeURIComponent(recordId)}` : ""}`),
   detail: (id) => api.request(`/ai/jobs/${encodeURIComponent(id)}`),
   create: (payload) => api.request("/ai/jobs", { method: "POST", body: JSON.stringify({ requestKey: crypto.randomUUID(), ...payload }) }),
+  stop: id=>api.request(`/ai/jobs/${encodeURIComponent(id)}/stop`,{method:'POST'}),
   retry: (id) => api.request(`/ai/jobs/${encodeURIComponent(id)}/retry`, { method: "POST" }),
   correct: (id, text) => api.request(`/ai/jobs/${encodeURIComponent(id)}/correction`, { method: "PUT", body: JSON.stringify({ text }) }),
   async upload(file) {
