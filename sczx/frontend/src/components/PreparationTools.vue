@@ -1,0 +1,33 @@
+<script setup>
+import {ref,computed,watch} from 'vue';
+import {useLearning} from '@/store.js';
+import {preparationApi} from '@/services/preparation.js';
+import {modelApi} from '@/services/models.js';
+import CaseArticle from './CaseArticle.vue';
+import LessonPreview from './LessonPreview.vue';
+import {Search,Download,History,BookOpen,ArrowUpRight,X} from 'lucide-vue-next';
+const store=useLearning();const tab=ref('references'),query=ref(''),knowledge=ref(''),items=ref([]),versions=ref([]),selected=ref(null),readCase=ref(null),error=ref(''),busy=ref(false),dialog=ref(false);let generation=0;
+const details=computed(()=>store.data.lessonDraft.planningDetails||{});
+const refs=computed(()=>[store.data.lessonDraft.caseSnapshot,...(details.value.references||[])].filter(Boolean));
+const points=ref([]);
+watch(()=>store.data.lesson?.id,async()=>{generation++;items.value=[];selected.value=null;versions.value=[];try{points.value=(await modelApi.searchOptions()).knowledge||[]}catch(e){error.value=e.message}},{immediate:true});
+async function search(){const version=++generation;busy.value=true;error.value='';try{const r=await modelApi.contextualSearch({query:query.value,filters:{knowledgeIds:knowledge.value?[knowledge.value]:[]},context:{goal:store.data.lessonDraft.goal},limit:8});if(version===generation)items.value=r.items}catch(e){if(version===generation)error.value=e.message}finally{if(version===generation)busy.value=false}}
+function use(item,primary){store.data.lessonDraft.planningDetails||={};if(primary){store.data.lessonDraft.caseId=item.id;store.data.lessonDraft.caseSnapshot=JSON.parse(JSON.stringify(item))}else{const refs=store.data.lessonDraft.planningDetails.references||=[];if(!refs.some(x=>x.versionId===item.versionId))refs.push(JSON.parse(JSON.stringify(item)))}store.touch()}
+async function history(){busy.value=true;try{if(!(await store.save()))throw Error(store.saveError);versions.value=await preparationApi.versions(store.data.lesson.id);tab.value='versions'}catch(e){error.value=e.message}finally{busy.value=false}}
+async function view(v){try{selected.value=await preparationApi.version(store.data.lesson.id,v.id);dialog.value=true}catch(e){error.value=e.message}}
+async function restore(){if(!confirm('恢复此版本将替换当前草稿，当前已保存版本仍可回看。继续？'))return;busy.value=true;store.externalUpdating=true;try{while(store.saving)await new Promise(r=>setTimeout(r,20));const data=await preparationApi.restore(store.data.lesson.id,versions.value.find(v=>v.number===selected.value.revision).id,store.data.lessonDraft.revision);store.data.lessonDraft=data;dialog.value=false;versions.value=await preparationApi.versions(store.data.lesson.id)}catch(e){error.value=e.message}finally{busy.value=false;store.externalUpdating=false}}
+async function download(versionId){busy.value=true;error.value='';try{if(!versionId&&!(await store.save()))throw Error(store.saveError);await preparationApi.export(store.data.lesson.id,versionId)}catch(e){error.value=e.message}finally{busy.value=false}}
+defineExpose({history,download});
+</script>
+<template>
+<div class="preparation-tool-heading"><AppTabs v-model="tab" :items="[{value:'references',label:'参考案例'},{value:'versions',label:'教案版本'}]"/><Button variant="ghost" size="icon-sm" aria-label="导出当前教案" :disabled="busy" @click="download()"><Download :size="16"/></Button></div>
+<p class="form-error" v-if="error" role="alert">{{ error }}</p>
+<section v-if="tab==='references'" class="preparation-references">
+<div class="preparation-selected" v-for="(item,index) in refs" :key="item.versionId"><div><Status>{{ index===0?'主要参考':'辅助参考' }}</Status><strong>{{ item.title }}</strong><span>v{{ item.version }}</span></div><Button variant="ghost" size="icon-sm" aria-label="阅读已引用案例" @click="readCase=item"><BookOpen :size="15"/></Button><Button v-if="index>0" variant="ghost" size="icon-sm" aria-label="移除辅助参考" @click="details.references=details.references.filter(x=>x.versionId!==item.versionId)"><X :size="15"/></Button></div>
+<form @submit.prevent="search" class="preparation-search"><Input v-model="query" aria-label="备课案例搜索" placeholder="教学目标或学生困难"/><AppSelect :model-value="knowledge||'all'" label="案例知识点" :options="[{value:'all',label:'全部知识点'},...points.map(p=>({value:p.id,label:p.name}))]" @update:model-value="knowledge=$event==='all'?'':$event"/><Button type="submit" variant="outline" :disabled="busy"><Search :size="15"/>检索</Button></form>
+<article v-for="item in items" :key="item.versionId" class="preparation-candidate"><header><h3>{{ item.title }}</h3><Status v-if="refs.some(r=>r.versionId===item.versionId)">已引用</Status><span>v{{ item.version }}</span></header><p>{{ item.experience?.difficulty||item.experience?.goal||item.content?.slice(0,120) }}</p><footer><Button variant="ghost" @click="readCase=item">阅读来源<ArrowUpRight :size="14"/></Button><Button variant="outline" @click="use(item,false)">辅助参考</Button><Button @click="use(item,true)">主要参考</Button></footer></article><p v-if="!busy&&!items.length" class="small-caption">输入教学问题检索案例</p>
+</section>
+<section v-else class="preparation-versions"><Button variant="outline" :disabled="busy" @click="history"><History :size="16"/>刷新版本</Button><button v-for="v in versions" :key="v.id" @click="view(v)"><strong>v{{ v.number }} · {{ v.reason }}</strong><time>{{ new Date(v.createdAt).toLocaleString('zh-CN') }}</time></button><p v-if="!versions.length">保存教案后可查看版本</p></section>
+<AppDialog :open="!!readCase" title="参考经验" content-class="lesson-preview-dialog" @update:open="value => { if (!value) readCase=null }"><CaseArticle v-if="readCase" :value="readCase"/></AppDialog>
+<AppDialog v-model:open="dialog" title="教案历史版本" content-class="lesson-preview-dialog"><div v-if="selected"><div class="version-actions"><Status>v{{ selected.revision }}</Status><Button variant="outline" :disabled="busy" @click="download(versions.find(v=>v.number===selected.revision).id)">导出此版本</Button><Button :disabled="busy" @click="restore">恢复为当前草稿</Button></div><LessonPreview :lesson="selected"/></div></AppDialog>
+</template>

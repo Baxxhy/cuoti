@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "finishedAt": "2026-11-10T02:18:42.290Z",
+  "sourceConflictBlocked": true,
+  "explicitRebase": true,
+  "realUiGeneration": "job-e6ae910c88db44aca725349c43c76d79",
+  "crossLessonHistory": true,
+  "backNavigation": true,
+  "refresh": true,
+  "wholeAndPartialConfirmed": true,
+  "differenceAndReject": true,
+  "historyRestoreRoundTrip": true,
+  "recoveredPreFixSavedVersion": 8,
+  "noAutoPublish": true,
+  "consoleErrors": []
+}

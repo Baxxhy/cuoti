@@ -1,0 +1,20 @@
+
+
+Fatal exception: Signal 11
+Stack:
+/usr/lib/libreoffice/program/libuno_sal.so.3(+0x3e043)[0x7f44f991e043]
+/usr/lib/libreoffice/program/libuno_sal.so.3(+0x3e1ba)[0x7f44f991e1ba]
+/lib/x86_64-linux-gnu/libc.so.6(+0x43090)[0x7f44f9727090]
+/usr/lib/libreoffice/program/libuno_cppu.so.3(+0x16e07)[0x7f44f7995e07]
+/usr/lib/libreoffice/program/libuno_cppu.so.3(uno_type_any_assign+0x93)[0x7f44f7995233]
+/usr/lib/libreoffice/program/libmergedlo.so(+0x284df81)[0x7f44fc18df81]
+/usr/lib/libreoffice/program/libmergedlo.so(+0x284e4ba)[0x7f44fc18e4ba]
+/usr/lib/libreoffice/program/libmergedlo.so(_ZN3utl10ConfigItemC2ERKN3rtl8OUStringE14ConfigItemMode+0x82)[0x7f44fc1881c2]
+/usr/lib/libreoffice/program/libmergedlo.so(+0x28885e6)[0x7f44fc1c85e6]
+/usr/lib/libreoffice/program/libmergedlo.so(_ZN19SvtSysLocaleOptionsC1Ev+0x129)[0x7f44fc1c9a89]
+/usr/lib/libreoffice/program/libmergedlo.so(_Z7InitVCLv+0x1b0)[0x7f44fc5a97d0]
+/usr/lib/libreoffice/program/libmergedlo.so(_Z10ImplSVMainv+0x115)[0x7f44fc5aada5]
+/usr/lib/libreoffice/program/libmergedlo.so(soffice_main+0xa3)[0x7f44fb6ee263]
+/usr/lib/libreoffice/program/soffice.bin(+0x10b0)[0x55d02e7990b0]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf3)[0x7f44f9708083]
+/usr/lib/libreoffice/program/soffice.bin(+0x10ee)[0x55d02e7990ee]

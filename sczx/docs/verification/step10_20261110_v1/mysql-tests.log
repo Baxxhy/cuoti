@@ -1,0 +1,58 @@
+/tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+test_active_duplicate_and_cross_role_access (test_agent_mysql.AgentMySQLTests.test_active_duplicate_and_cross_role_access) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:239: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:85: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:239: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+ok
+test_cancel_in_progress_keeps_prior_steps (test_agent_mysql.AgentMySQLTests.test_cancel_in_progress_keeps_prior_steps) ... ok
+test_confirm_draft_is_explicit_and_idempotent (test_agent_mysql.AgentMySQLTests.test_confirm_draft_is_explicit_and_idempotent) ... Executing <Task finished name='Task-31' coro=<RunnableCallable.ainvoke() done, defined at /tmp/sczx-venv/lib/python3.13/site-packages/langgraph/_internal/_runnable.py:484> result={'checkpoint': {'budgetStartedAt': '2026-11-10T0....057436+00:00', 'cases': [], 'context': {'constraints': '', 'goal': '旧备课目标', 'grade': '七年级', 'knowledgeIds': ['agent-kp'], ...}, 'decision': 'pending', ...}} created at /root/miniconda3/lib/python3.13/asyncio/tasks.py:412> took 0.106 seconds
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/model_jobs.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  run.result,run.status,run.model,run.provider,run.ended_at=result,'succeeded',result.get('model',''),'Codex CLI / LangGraph',datetime.utcnow()
+ok
+test_no_cases_materials_and_invalid_output_are_explicit (test_agent_mysql.AgentMySQLTests.test_no_cases_materials_and_invalid_output_are_explicit) ... ok
+test_step10_partial_rewrite_preserves_personalization (test_agent_mysql.AgentMySQLTests.test_step10_partial_rewrite_preserves_personalization) ... Executing <Task finished name='Task-80' coro=<RunnableCallable.ainvoke() done, defined at /tmp/sczx-venv/lib/python3.13/site-packages/langgraph/_internal/_runnable.py:484> result={'checkpoint': {'budgetStartedAt': '2026-11-10T0....579269+00:00', 'cases': [], 'context': {'constraints': '', 'goal': '教师手写目标', 'grade': '七年级', 'knowledgeIds': ['agent-kp'], ...}, 'decision': 'pending', ...}} created at /root/miniconda3/lib/python3.13/asyncio/tasks.py:412> took 0.105 seconds
+ok
+test_step10_saved_history_concurrency_restore_export_and_permissions (test_agent_mysql.AgentMySQLTests.test_step10_saved_history_concurrency_restore_export_and_permissions) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:85: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:239: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+ok
+test_step10_source_republish_blocks_old_agent_confirmation (test_agent_mysql.AgentMySQLTests.test_step10_source_republish_blocks_old_agent_confirmation) ... /tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/model_jobs.py:77: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  run.result,run.status,run.model,run.provider,run.ended_at=result,'succeeded',result.get('model',''),'Codex CLI / LangGraph',datetime.utcnow()
+ok
+test_timeout_retains_checkpoints_and_resume_does_not_repeat_success (test_agent_mysql.AgentMySQLTests.test_timeout_retains_checkpoints_and_resume_does_not_repeat_success) ... Executing <Task finished name='Task-124' coro=<RunnableCallable.ainvoke() done, defined at /tmp/sczx-venv/lib/python3.13/site-packages/langgraph/_internal/_runnable.py:484> exception=ModelError('controlled timeout') created at /root/miniconda3/lib/python3.13/asyncio/tasks.py:412> took 0.105 seconds
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/model_jobs.py:150: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  run.status, run.error, run.ended_at = "failed", job.error, datetime.utcnow()
+Executing <Task finished name='Task-135' coro=<RunnableCallable.ainvoke() done, defined at /tmp/sczx-venv/lib/python3.13/site-packages/langgraph/_internal/_runnable.py:484> result={'checkpoint': {'budgetStartedAt': '2026-11-10T0....040051+00:00', 'cases': [], 'context': {'constraints': '', 'goal': '旧备课目标', 'grade': '七年级', 'knowledgeIds': ['agent-kp'], ...}, 'decision': 'pending', ...}} created at /root/miniconda3/lib/python3.13/asyncio/tasks.py:412> took 0.100 seconds
+ok
+test_total_deadline_prevents_model_call (test_agent_mysql.AgentMySQLTests.test_total_deadline_prevents_model_call) ... ok
+test_unparsed_material_is_not_presented_as_evidence (test_agent_mysql.AgentMySQLTests.test_unparsed_material_is_not_presented_as_evidence) ... ok
+test_invalid_or_failed_ranking_keeps_all_candidates (test_fallback.RerankFallbackTests.test_invalid_or_failed_ranking_keeps_all_candidates) ... ok
+test_conflicts_missing_edges_and_cycles (test_knowledge.KnowledgeValidationTests.test_conflicts_missing_edges_and_cycles) ... ok
+test_invalid_types_never_reach_sets_or_orm (test_knowledge.KnowledgeValidationTests.test_invalid_types_never_reach_sets_or_orm) ... ok
+test_valid_missing_optional_fields_and_unicode_collisions (test_knowledge.KnowledgeValidationTests.test_valid_missing_optional_fields_and_unicode_collisions) ... ok
+test_expressions_equations_conditions_and_errors_are_distinct (test_math_claims.MathClaimTests.test_expressions_equations_conditions_and_errors_are_distinct) ... ok
+test_invalid_knowledge_has_no_partial_writes (test_mysql_api.MySQLApiTests.test_invalid_knowledge_has_no_partial_writes) ... ok
+test_revision_and_withdrawal_preserve_history (test_mysql_api.MySQLApiTests.test_revision_and_withdrawal_preserve_history) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/models.py:302: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  published_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.utcnow().replace(microsecond=0))
+ok
+test_roles_cannot_write_knowledge (test_mysql_api.MySQLApiTests.test_roles_cannot_write_knowledge) ... ok
+test_citation_and_block_contract (test_planning.PlanningValidationTests.test_citation_and_block_contract) ... ok
+test_client_cannot_supply_server_context (test_planning.PlanningValidationTests.test_client_cannot_supply_server_context) ... ok
+test_explicit_task_and_rule_recognition (test_planning.PlanningValidationTests.test_explicit_task_and_rule_recognition) ... ok
+test_partial_generation_only_accepts_target (test_planning.PlanningValidationTests.test_partial_generation_only_accepts_target) ... ok
+test_empty_long_context_and_invalid_grade (test_retrieval.RetrievalRegressionTests.test_empty_long_context_and_invalid_grade) ... ok
+test_frozen_baseline_and_context_orders (test_retrieval.RetrievalRegressionTests.test_frozen_baseline_and_context_orders) ... ok
+test_one_hop_toggle_and_wrong_topic (test_retrieval.RetrievalRegressionTests.test_one_hop_toggle_and_wrong_topic) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 21.474s
+
+OK

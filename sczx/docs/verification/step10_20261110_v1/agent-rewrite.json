@@ -1,0 +1,3525 @@
+{
+  "id": "job-22f3bf037ea043f8a225354d0d8f03f5",
+  "capability": "lesson_agent",
+  "summary": "改写天平活动：先问学生只改变一边会怎样，给出教师追问和学生可能回应的不同讲法。",
+  "recordId": null,
+  "fileId": null,
+  "helpRecordId": null,
+  "question": null,
+  "recognizedText": null,
+  "status": "succeeded",
+  "step": "等待教师确认",
+  "error": "",
+  "result": {
+    "plan": {
+      "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+      "title": "等式性质",
+      "blocks": [
+        {
+          "id": "eq-intro",
+          "title": "先预测：只改变一边会怎样？",
+          "content": "本地保留内容：先检查学生是否理解等式表示两边相等。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-balance",
+          "title": "先预测：只改变一边会怎样？",
+          "content": "先呈现两边各有5单位且保持平衡的天平，问：“如果只在左边增加相同数量，会怎样？为什么？”学生可能回答：“左边更重，会倾斜。”追问：“哪一边变了？右边的量变了吗？”再请学生预测两边同时增加相同的正量后天平会怎样，并观察验证。学生可能说：“两边都增加一样多，所以仍平衡。”追问：“两边分别做了什么？这和只改变一边有什么不同？”若学生说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-add-sub",
+          "title": "用等式写出共同运算",
+          "content": "若a = b，则a + c = b + c，a - c = b - c，其中c可以是正数、负数或零。追问：这两种写法中，左右两边分别做了什么？为什么不能只改变一边？",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-example-add",
+          "title": "例题：把“移项”说成两边的运算",
+          "content": "x - 3 = 5。请先说出要消去x旁边的−3，可以对等式两边同时做什么，再写出每一步：两边同时加3，x - 3 + 3 = 5 + 3，得到x = 8。追问：若只在左边加3，等式还成立吗？最后把8代回原式核对。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-practice",
+          "title": "练习：说清两边做了什么",
+          "content": "完成随堂练习时，每一步都写清等式两边共同进行了什么运算，并解释这样做如何保持相等。若只写“移项变号”，请补写等式两边实际进行的运算。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-mul-div",
+          "title": "同乘、同除时检查条件",
+          "content": "若a = b，则ac = bc；若c ≠ 0，则a / c = b / c。追问：同乘0后为什么不能总从结果恢复原方程？解方程时，为什么同除必须说明除数非零？每一步都检查变形是否保留原方程的信息。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-example-div",
+          "title": "例题：说明共同运算及其条件",
+          "content": "3z = 18，两边同时除以3，得z = 6。w / 4 = 3，两边同时乘4，得w = 12。若b / (−3) = 2，则b = −6。逐例追问：两边共同进行的运算是什么？除法中的除数满足什么条件？负数运算用等式表达，不用天平表示负重量。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-check",
+          "title": "独立检查：解释并核对",
+          "content": "独立作答并解释每一步：写出等式两边分别进行的相同运算，并说明除数条件。完成后核对结果是否使原等式成立；如需帮助，先学习当前题，再换新题重新独立检查。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        }
+      ],
+      "rationale": [
+        "保留教师当前教案，仅改写选定活动"
+      ],
+      "mathClaims": []
+    },
+    "cases": [
+      {
+        "id": "case-d4919db6ab774719a97c69ccbc1737a7",
+        "grade": "七年级",
+        "title": "等式性质：天平追问（第六步自编验收）",
+        "author": "项目成员（自编样本）",
+        "source": "自编验收材料，非真实教师评审",
+        "content": "本案例依据输入中的自编验收材料整理，材料注明其为验收样本，不是真实教师评审。教学聚焦于等式两边同时进行相同运算时，相等关系保持不变；通过天平预测、追问和例题，引导学生理解这一性质，并检查其是否仍只会机械记忆移项变号。\n人工核对：先预测，再操作，再解释。\n版本修订标记 onlyrevisionstep6",
+        "subject": "数学",
+        "version": 6,
+        "versionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954",
+        "experience": {
+          "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+          "steps": [
+            "展示天平并请学生先预测同时增加相同砝码后的情况。",
+            "结合例题 x - 3 = 5，引导学生写出等式两边同时加3的步骤，得到 x = 8。",
+            "进行独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+          ],
+          "boundary": "适用于已理解相等关系并掌握加减法的七年级学生。",
+          "questions": [
+            "如果只在左边加3，还会平衡吗？为什么？"
+          ],
+          "responses": [
+            "若学生只说“移项变号”，要求写出两边共同运算的步骤。"
+          ],
+          "adjustment": "当学生只用“移项变号”解释时，要求其写出等式两边共同进行的运算步骤。",
+          "difficulty": "学生可能只改变等式的一边，或机械记忆移项变号，而未说明等式两边共同进行的运算。",
+          "mathClaims": [
+            {
+              "left": "x - 3 = 5",
+              "right": "两边同时加3后，x = 8"
+            },
+            {
+              "left": "y + 4 = 11",
+              "right": "两边同时减4后，y = 7"
+            }
+          ],
+          "studentBase": "已理解相等关系并掌握加减法的七年级学生。",
+          "suggestions": [],
+          "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "knowledgePoints": [
+            "等式的性质",
+            "解一元一次方程的加减运算"
+          ]
+        },
+        "references": [
+          {
+            "label": "第 1 页",
+            "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          }
+        ],
+        "publishedAt": "2026-11-09T13:35:15Z",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "x - 3 = 5",
+              "right": "两边同时加3后，x = 8",
+              "status": "unverified"
+            },
+            {
+              "left": "y + 4 = 11",
+              "right": "两边同时减4后，y = 7",
+              "status": "unverified"
+            }
+          ],
+          "status": "unverified"
+        },
+        "knowledgeLinks": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "extractionJobId": "job-efe2742f7c5942f091a68ef9cdc55988"
+      },
+      {
+        "id": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "grade": "七年级",
+        "title": "等式性质：两边同时进行相同运算",
+        "author": "项目成员（自编样本）",
+        "source": "自编验收材料，非真实教师评审",
+        "content": "本案例依据一份自编验收材料，说明如何通过天平演示和共同运算步骤，帮助七年级学生理解等式两边同时加上相同的数，相等关系保持不变。材料注明此为验收样本，不是真实教师评审。",
+        "subject": "数学",
+        "version": 2,
+        "versionId": "version-b4f160db2af54728bff5018198074f02",
+        "experience": {
+          "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+          "steps": [
+            "展示保持平衡的天平，请学生先预测，再同时增加相同砝码。",
+            "讲解例题 x - 3 = 5，两边同时加3，得到 x = 8。",
+            "安排独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+          ],
+          "boundary": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+          "questions": [
+            "如果只在左边加3，还会平衡吗？为什么？"
+          ],
+          "responses": [
+            "若学生只说移项变号，要求写出两边共同运算的步骤。"
+          ],
+          "adjustment": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+          "difficulty": "学生只改变等式的一边，机械记忆移项变号。",
+          "mathClaims": [
+            {
+              "left": "5+3",
+              "right": "8"
+            },
+            {
+              "left": "11-4",
+              "right": "7"
+            }
+          ],
+          "studentBase": "适用于已理解相等关系并掌握加减法的七年级学生。",
+          "suggestions": [],
+          "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "knowledgePoints": [
+            "等式两边同时加上相同的数，相等关系保持不变。",
+            "解方程时可通过等式两边同时进行相同的加减运算。"
+          ]
+        },
+        "references": [
+          {
+            "field": "content",
+            "label": "第 1 页",
+            "quote": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "goal",
+            "label": "第 1 页",
+            "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "knowledgePoints.0",
+            "label": "第 1 页",
+            "quote": "理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "knowledgePoints.1",
+            "label": "第 1 页",
+            "quote": "x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "studentBase",
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "difficulty",
+            "label": "第 1 页",
+            "quote": "学生只改变等式的一边，机械记忆移项变号。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "introduction",
+            "label": "第 1 页",
+            "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.0",
+            "label": "第 1 页",
+            "quote": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.1",
+            "label": "第 1 页",
+            "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.2",
+            "label": "第 1 页",
+            "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "questions.0",
+            "label": "第 1 页",
+            "quote": "如果只在左边加3，还会平衡吗？为什么？",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "responses.0",
+            "label": "第 1 页",
+            "quote": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "adjustment",
+            "label": "第 1 页",
+            "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "boundary",
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          }
+        ],
+        "publishedAt": "2026-11-09T13:35:09Z",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "5+3",
+              "right": "8",
+              "status": "unverified"
+            },
+            {
+              "left": "11-4",
+              "right": "7",
+              "status": "unverified"
+            }
+          ],
+          "status": "unverified"
+        },
+        "knowledgeLinks": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "extractionJobId": "job-1bc0cff1af964aa8822294225ef858dc"
+      },
+      {
+        "id": "case-balance",
+        "grade": "",
+        "score": 1.730322,
+        "title": "天平与等式性质",
+        "author": "",
+        "legacy": true,
+        "source": "待补充核对的教学示例",
+        "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+        "subject": "数学",
+        "version": 1,
+        "bm25Score": 4.231328,
+        "textScore": 1.690322,
+        "versionId": "version-d9452ce605ba4cf190431e879f560bb6",
+        "experience": {},
+        "references": [],
+        "publishedAt": "2026-11-08T14:33:09Z",
+        "contextScore": 0.04,
+        "matchReasons": [
+          "匹配标题、正文",
+          "与课时适用信息一致"
+        ],
+        "matchedFields": [
+          {
+            "bm25": 0.827077,
+            "field": "title",
+            "label": "标题",
+            "score": 0.914971,
+            "matchedTerms": [
+              "天平",
+              "式性",
+              "性质",
+              "等式"
+            ],
+            "contextMatched": true
+          },
+          {
+            "bm25": 3.404251,
+            "field": "content",
+            "label": "正文",
+            "score": 0.775351,
+            "matchedTerms": [
+              "回应",
+              "学生",
+              "讲法"
+            ],
+            "contextMatched": true
+          }
+        ],
+        "retrievalText": "{}",
+        "knowledgeScore": 0.0,
+        "knowledgeMatches": []
+      },
+      {
+        "id": "case-draft-account-admin-demo",
+        "grade": "",
+        "score": 1.354667,
+        "title": "天平与等式性质 · 案例联调验收",
+        "author": "",
+        "legacy": true,
+        "source": "待补充核对的教学示例",
+        "content": "先让学生预测天平两边同时变化的结果，再要求用等式记录共同运算，并针对单边变化进行比较。",
+        "subject": "数学",
+        "version": 1,
+        "bm25Score": 1.639303,
+        "textScore": 1.314667,
+        "versionId": "version-cb3b863feee747a28d98181a8051cbea",
+        "experience": {},
+        "references": [],
+        "publishedAt": "2026-11-08T14:33:09Z",
+        "contextScore": 0.04,
+        "matchReasons": [
+          "匹配标题、正文",
+          "与课时适用信息一致"
+        ],
+        "matchedFields": [
+          {
+            "bm25": 0.651311,
+            "field": "title",
+            "label": "标题",
+            "score": 0.803264,
+            "matchedTerms": [
+              "天平",
+              "式性",
+              "性质",
+              "等式"
+            ],
+            "contextMatched": true
+          },
+          {
+            "bm25": 0.987992,
+            "field": "content",
+            "label": "正文",
+            "score": 0.511403,
+            "matchedTerms": [
+              "天平",
+              "学生",
+              "等式"
+            ],
+            "contextMatched": true
+          }
+        ],
+        "retrievalText": "{}",
+        "knowledgeScore": 0.0,
+        "knowledgeMatches": []
+      }
+    ],
+    "model": "gpt-6-luna",
+    "steps": [
+      {
+        "key": "context",
+        "tool": "curriculum.read",
+        "title": "理解任务与课时",
+        "output": {
+          "method": "显式选择或有限关键词规则；课时由服务端读取",
+          "recognizedType": "误解纠正",
+          "lessonVersionId": "lessonversion-619e68cc68234c4cbd37ded435"
+        },
+        "status": "succeeded",
+        "startedAt": "2026-11-10T01:56:50.033420+00:00",
+        "finishedAt": "2026-11-10T01:56:50.081319+00:00"
+      },
+      {
+        "key": "cases",
+        "tool": "retrieval.bm25",
+        "title": "检索教学案例",
+        "output": {
+          "rerank": false,
+          "versions": [
+            {
+              "id": "case-d4919db6ab774719a97c69ccbc1737a7",
+              "versionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+            },
+            {
+              "id": "case-cb7a37515e09454d863ceb82f50b64a7",
+              "versionId": "version-b4f160db2af54728bff5018198074f02"
+            },
+            {
+              "id": "case-balance",
+              "versionId": "version-d9452ce605ba4cf190431e879f560bb6"
+            },
+            {
+              "id": "case-draft-account-admin-demo",
+              "versionId": "version-cb3b863feee747a28d98181a8051cbea"
+            }
+          ],
+          "caseCount": 4
+        },
+        "status": "succeeded",
+        "startedAt": "2026-11-10T01:56:50.108341+00:00",
+        "finishedAt": "2026-11-10T01:56:50.167211+00:00"
+      },
+      {
+        "key": "materials",
+        "tool": "materials.read",
+        "title": "定位原文材料",
+        "output": {
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:6e1ba16588",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:969e3c4129",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:503b40cb98",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:099d9679e1",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:9171e4cef2",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e"
+          ],
+          "materialCount": 6
+        },
+        "status": "succeeded",
+        "startedAt": "2026-11-10T01:56:50.204260+00:00",
+        "finishedAt": "2026-11-10T01:56:50.270476+00:00"
+      },
+      {
+        "key": "generate",
+        "tool": "codex.lesson_plan",
+        "title": "生成备课建议",
+        "output": {
+          "model": "gpt-6-luna",
+          "origin": "模型生成，待教师核对",
+          "provider": "Codex CLI · low",
+          "onlyBlock": "eq-balance",
+          "blockCount": 8
+        },
+        "status": "succeeded",
+        "startedAt": "2026-11-10T01:56:50.307727+00:00",
+        "finishedAt": "2026-11-10T01:56:58.982424+00:00"
+      },
+      {
+        "key": "validate",
+        "tool": "plan.validate",
+        "title": "核验结构与依据",
+        "output": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified",
+          "structure": "passed",
+          "references": "passed",
+          "goalTermsOverlap": true,
+          "humanReviewRequired": true
+        },
+        "status": "succeeded",
+        "startedAt": "2026-11-10T01:56:59.023701+00:00",
+        "finishedAt": "2026-11-10T01:56:59.088871+00:00"
+      },
+      {
+        "key": "ready",
+        "tool": "teacher.review",
+        "title": "等待教师确认",
+        "output": {
+          "next": "教师编辑、确认后保存备课草稿；不自动发布"
+        },
+        "status": "succeeded",
+        "startedAt": "2026-11-10T01:56:59.154464+00:00",
+        "finishedAt": "2026-11-10T01:56:59.230790+00:00"
+      }
+    ],
+    "context": {
+      "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+      "task": "改写天平活动：先问学生只改变一边会怎样，给出教师追问和学生可能回应的不同讲法。",
+      "grade": "七年级",
+      "subject": "数学",
+      "lessonId": "lesson-equation",
+      "taskType": "misconception",
+      "taskLabel": "误解纠正",
+      "constraints": "只改指定活动，保留其余手写活动、目标和问题。",
+      "lessonTitle": "等式性质",
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "lessonVersionId": "lessonversion-619e68cc68234c4cbd37ded435",
+      "prerequisiteIds": [
+        "kp-equal",
+        "kp-operations",
+        "kp-expression"
+      ]
+    },
+    "decision": "pending",
+    "editable": {
+      "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+      "title": "等式性质",
+      "blocks": [
+        {
+          "id": "eq-intro",
+          "title": "先预测：只改变一边会怎样？",
+          "content": "本地保留内容：先检查学生是否理解等式表示两边相等。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-balance",
+          "title": "先预测：只改变一边会怎样？",
+          "content": "先呈现两边各有5单位且保持平衡的天平，问：“如果只在左边增加相同数量，会怎样？为什么？”学生可能回答：“左边更重，会倾斜。”追问：“哪一边变了？右边的量变了吗？”再请学生预测两边同时增加相同的正量后天平会怎样，并观察验证。学生可能说：“两边都增加一样多，所以仍平衡。”追问：“两边分别做了什么？这和只改变一边有什么不同？”若学生说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-add-sub",
+          "title": "用等式写出共同运算",
+          "content": "若a = b，则a + c = b + c，a - c = b - c，其中c可以是正数、负数或零。追问：这两种写法中，左右两边分别做了什么？为什么不能只改变一边？",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-example-add",
+          "title": "例题：把“移项”说成两边的运算",
+          "content": "x - 3 = 5。请先说出要消去x旁边的−3，可以对等式两边同时做什么，再写出每一步：两边同时加3，x - 3 + 3 = 5 + 3，得到x = 8。追问：若只在左边加3，等式还成立吗？最后把8代回原式核对。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-practice",
+          "title": "练习：说清两边做了什么",
+          "content": "完成随堂练习时，每一步都写清等式两边共同进行了什么运算，并解释这样做如何保持相等。若只写“移项变号”，请补写等式两边实际进行的运算。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-mul-div",
+          "title": "同乘、同除时检查条件",
+          "content": "若a = b，则ac = bc；若c ≠ 0，则a / c = b / c。追问：同乘0后为什么不能总从结果恢复原方程？解方程时，为什么同除必须说明除数非零？每一步都检查变形是否保留原方程的信息。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-example-div",
+          "title": "例题：说明共同运算及其条件",
+          "content": "3z = 18，两边同时除以3，得z = 6。w / 4 = 3，两边同时乘4，得w = 12。若b / (−3) = 2，则b = −6。逐例追问：两边共同进行的运算是什么？除法中的除数满足什么条件？负数运算用等式表达，不用天平表示负重量。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-check",
+          "title": "独立检查：解释并核对",
+          "content": "独立作答并解释每一步：写出等式两边分别进行的相同运算，并说明除数条件。完成后核对结果是否使原等式成立；如需帮助，先学习当前题，再换新题重新独立检查。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        }
+      ],
+      "rationale": [
+        "保留教师当前教案，仅改写选定活动"
+      ],
+      "mathClaims": []
+    },
+    "evidence": [
+      {
+        "id": "lesson:lessonversion-619e68cc68234c4cbd37ded435",
+        "url": "/#/courses",
+        "kind": "lesson",
+        "title": "等式性质",
+        "content": "先预测：只改变一边会怎样？：本地保留内容：先检查学生是否理解等式表示两边相等。\n先预测，再对比两边共同变化：两边各有5单位。先请学生预测：两边同时增加相同的正量后，天平会怎样？观察后，请学生说明两边共同做了什么。再对比追问：如果只给一边增加相同数量，天平还会平衡吗？为什么？若学生只说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。\n用等式写出共同运算：若a = b，则a + c = b + c，a - c = b - c，其中c可以是正数、负数或零。追问：这两种写法中，左右两边分别做了什么？为什么不能只改变一边？\n例题：把“移项”说成两边的运算：x - 3 = 5。请先说出要消去x旁边的−3，可以对等式两边同时做什么，再写出每一步：两边同时加3，x - 3 + 3 = 5 + 3，得到x = 8。追问：若只在左边加3，等式还成立吗？最后把8代回原式核对。\n练习：说清两边做了什么：完成随堂练习时，每一步都写清等式两边共同进行了什么运算，并解释这样做如何保持相等。若只写“移项变号”，请补写等式两边实际进行的运算。\n同乘、同除时检查条件：若a = b，则ac = bc；若c ≠ 0，则a / c = b / c。追问：同乘0后为什么不能总从结果恢复原方程？解方程时，为什么同除必须说明除数非零？每一步都检查变形是否保留原方程的信息。\n例题：说明共同运算及其条件：3z = 18，两边同时除以3，得z = 6。w / 4 = 3，两边同时乘4，得w = 12。若b / (−3) = 2，则b = −6。逐例追问：两边共同进行的运算是什么？除法中的除数满足什么条件？负数运算用等式表达，不用天平表示负重量。\n独立检查：解释并核对：独立作答并解释每一步：写出等式两边分别进行的相同运算，并说明除数条件。完成后核对结果是否使原等式成立；如需帮助，先学习当前题，再换新题重新独立检查。",
+        "versionId": "lessonversion-619e68cc68234c4cbd37ded435"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:6e1ba16588",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 10.457873,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "学生只改变等式的一边，机械记忆移项变号。",
+        "bm25Score": 10.457873,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:969e3c4129",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 7.077458,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+        "bm25Score": 7.077458,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:503b40cb98",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 4.15255,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+        "bm25Score": 4.15255,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:099d9679e1",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 2.444777,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+        "bm25Score": 2.444777,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:9171e4cef2",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 2.414757,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+        "bm25Score": 2.414757,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 2.141037,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+        "bm25Score": 2.141037,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+      }
+    ],
+    "warnings": [],
+    "generated": {
+      "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+      "title": "等式性质：天平活动",
+      "blocks": [
+        {
+          "id": "eq-balance",
+          "title": "先预测：只改变一边会怎样？",
+          "content": "先呈现两边各有5单位且保持平衡的天平，问：“如果只在左边增加相同数量，会怎样？为什么？”学生可能回答：“左边更重，会倾斜。”追问：“哪一边变了？右边的量变了吗？”再请学生预测两边同时增加相同的正量后天平会怎样，并观察验证。学生可能说：“两边都增加一样多，所以仍平衡。”追问：“两边分别做了什么？这和只改变一边有什么不同？”若学生说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        }
+      ],
+      "rationale": [
+        "先让学生预测只改变一边的结果，再比较两边共同增加相同数量的情形，帮助其发现单边变化会破坏平衡、两边相同变化可保持平衡。追问学生描述两边的实际运算；若只说“移项变号”，再要求写出运算步骤，以针对其只改变一边和机械记忆的困难。"
+      ],
+      "mathClaims": []
+    },
+    "materials": [
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:6e1ba16588",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 10.457873,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "学生只改变等式的一边，机械记忆移项变号。",
+        "bm25Score": 10.457873,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:969e3c4129",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 7.077458,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+        "bm25Score": 7.077458,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:503b40cb98",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 4.15255,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+        "bm25Score": 4.15255,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:099d9679e1",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 2.444777,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+        "bm25Score": 2.444777,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:9171e4cef2",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 2.414757,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+        "bm25Score": 2.414757,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+      },
+      {
+        "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e",
+        "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "kind": "material",
+        "label": "第 1 页",
+        "score": 2.141037,
+        "title": "第六步自编验收 mixed.pdf",
+        "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+        "content": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+        "bm25Score": 2.141037,
+        "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+        "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+      }
+    ],
+    "retrieval": {
+      "mode": "search",
+      "query": "改写天平活动：先问学生只改变一边会怎样，给出教师追问和学生可能回应的不同讲法。 等式性质",
+      "method": "field-bm25+knowledge+context",
+      "variant": "B3",
+      "warnings": [],
+      "elapsedMs": 7.763,
+      "matchedCount": 4,
+      "rerankApplied": false,
+      "totalDocuments": 4,
+      "algorithmVersion": "teaching-context-v1",
+      "eligibleDocuments": 4,
+      "queryUnderstanding": {
+        "scenario": "misconception_correction",
+        "knowledge": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质",
+            "source": "name",
+            "matchedNames": [
+              "等式性质"
+            ]
+          }
+        ],
+        "expansions": [
+          {
+            "text": "等式性质",
+            "source": "name",
+            "knowledgeId": "kp-equality"
+          }
+        ],
+        "normalizedQuery": "改写天平活动:先问学生只改变一边会怎样,给出教师追问和学生可能回应的不同讲法。 等式性质"
+      }
+    },
+    "startedAt": "2026-11-10T01:56:50.021272+00:00",
+    "modelCalls": 1,
+    "verification": {
+      "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+      "claims": [],
+      "status": "unverified",
+      "structure": "passed",
+      "references": "passed",
+      "goalTermsOverlap": true,
+      "humanReviewRequired": true
+    },
+    "budgetStartedAt": "2026-11-10T01:56:50.021293+00:00",
+    "workflowVersion": "teaching-plan-v1"
+  },
+  "attemptNumber": 1,
+  "createdAt": "2026-11-10T01:56:50Z",
+  "updatedAt": "2026-11-10T01:56:59Z",
+  "input": {
+    "task": "改写天平活动：先问学生只改变一边会怎样，给出教师追问和学生可能回应的不同讲法。",
+    "label": "改写天平活动：先问学生只改变一边会怎样，给出教师追问和学生可能回应的不同讲法。",
+    "lesson": {
+      "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+      "grade": "七年级",
+      "title": "等式性质",
+      "blocks": [
+        {
+          "id": "eq-intro",
+          "type": "explanation",
+          "title": "先预测：只改变一边会怎样？",
+          "content": "本地保留内容：先检查学生是否理解等式表示两边相等。",
+          "required": true,
+          "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+          "agentEvidence": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:503b40cb98"
+          ]
+        },
+        {
+          "id": "eq-balance",
+          "type": "activity",
+          "title": "先预测，再对比两边共同变化",
+          "content": "两边各有5单位。先请学生预测：两边同时增加相同的正量后，天平会怎样？观察后，请学生说明两边共同做了什么。再对比追问：如果只给一边增加相同数量，天平还会平衡吗？为什么？若学生只说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。",
+          "activity": {
+            "max": 10,
+            "base": 5,
+            "step": 1,
+            "type": "balance"
+          },
+          "required": true,
+          "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+          "agentEvidence": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e"
+          ]
+        },
+        {
+          "id": "eq-add-sub",
+          "type": "explanation",
+          "title": "用等式写出共同运算",
+          "content": "若a = b，则a + c = b + c，a - c = b - c，其中c可以是正数、负数或零。追问：这两种写法中，左右两边分别做了什么？为什么不能只改变一边？",
+          "required": true,
+          "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+          "agentEvidence": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-example-add",
+          "type": "example",
+          "title": "例题：把“移项”说成两边的运算",
+          "content": "x - 3 = 5。请先说出要消去x旁边的−3，可以对等式两边同时做什么，再写出每一步：两边同时加3，x - 3 + 3 = 5 + 3，得到x = 8。追问：若只在左边加3，等式还成立吗？最后把8代回原式核对。",
+          "required": true,
+          "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+          "agentEvidence": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e"
+          ]
+        },
+        {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "练习：说清两边做了什么",
+          "content": "完成随堂练习时，每一步都写清等式两边共同进行了什么运算，并解释这样做如何保持相等。若只写“移项变号”，请补写等式两边实际进行的运算。",
+          "required": true,
+          "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ],
+          "agentEvidence": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435",
+            "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e"
+          ]
+        },
+        {
+          "id": "eq-mul-div",
+          "type": "explanation",
+          "title": "同乘、同除时检查条件",
+          "content": "若a = b，则ac = bc；若c ≠ 0，则a / c = b / c。追问：同乘0后为什么不能总从结果恢复原方程？解方程时，为什么同除必须说明除数非零？每一步都检查变形是否保留原方程的信息。",
+          "required": true,
+          "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+          "agentEvidence": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-example-div",
+          "type": "example",
+          "title": "例题：说明共同运算及其条件",
+          "content": "3z = 18，两边同时除以3，得z = 6。w / 4 = 3，两边同时乘4，得w = 12。若b / (−3) = 2，则b = −6。逐例追问：两边共同进行的运算是什么？除法中的除数满足什么条件？负数运算用等式表达，不用天平表示负重量。",
+          "required": true,
+          "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+          "agentEvidence": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-check",
+          "type": "check",
+          "title": "独立检查：解释并核对",
+          "content": "独立作答并解释每一步：写出等式两边分别进行的相同运算，并说明除数条件。完成后核对结果是否使原等式成立；如需帮助，先学习当前题，再换新题重新独立检查。",
+          "required": true,
+          "agentJobId": "job-4f48a93629ab4f4da0f2c36db026d9b1",
+          "questionIds": [
+            "eq-check-divide",
+            "eq-check-multiply"
+          ],
+          "agentEvidence": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        }
+      ],
+      "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+      "source": "项目自编首课；教学示例，未经真实教师试用",
+      "subject": "数学",
+      "version": 2,
+      "duration": 35,
+      "lessonId": "lesson-equation",
+      "questions": [
+        {
+          "id": "eq-practice-add",
+          "hint": "把两边都写成加3后的算式。",
+          "kind": "practice",
+          "type": "expression",
+          "answer": "8",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "x - 3 + 3 = 5 + 3，所以x = 8。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        {
+          "id": "eq-practice-sub",
+          "hint": "只减左边会破坏相等关系。",
+          "kind": "practice",
+          "type": "expression",
+          "answer": "7",
+          "prompt": "两边同时减4，y等于多少？",
+          "equation": "y + 4 = 11",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "y + 4 - 4 = 11 - 4，所以y = 7。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        {
+          "id": "eq-check-divide",
+          "hint": "3不等于0，两边同除以3。",
+          "kind": "check",
+          "type": "expression",
+          "answer": "6",
+          "prompt": "求z，并解释两边为什么可以同时除以3。",
+          "equation": "3z = 18",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "3z ÷ 3 = 18 ÷ 3，所以z = 6。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        {
+          "id": "eq-check-multiply",
+          "hint": "两边同时乘4。",
+          "kind": "check",
+          "type": "expression",
+          "answer": "12",
+          "prompt": "求w，并写出两边共同进行的运算。",
+          "equation": "w / 4 = 3",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "(w / 4) × 4 = 3 × 4，所以w = 12。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        {
+          "id": "eq-new-combine",
+          "hint": "先两边除以2，再两边加1。",
+          "kind": "replacement",
+          "type": "expression",
+          "answer": "6",
+          "prompt": "先使a - 1单独在一边，再求a。",
+          "equation": "2(a - 1) = 10",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "a - 1 = 5，所以a = 6。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        {
+          "id": "eq-new-negative",
+          "hint": "两边同时乘-3，负数关系用公式表示。",
+          "kind": "replacement",
+          "type": "expression",
+          "answer": "-6",
+          "prompt": "求b，说明两边共同进行的运算。",
+          "equation": "b / (-3) = 2",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "b = 2 × (-3) = -6。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        }
+      ],
+      "versionId": "lessonversion-619e68cc68234c4cbd37ded435",
+      "publishedAt": "2026-11-08T17:00:49Z",
+      "studentBase": "学生会整数运算，但容易只改变等式一边。",
+      "caseSnapshot": {
+        "id": "case-d4919db6ab774719a97c69ccbc1737a7",
+        "grade": "七年级",
+        "title": "等式性质：天平追问（第六步自编验收）",
+        "author": "项目成员（自编样本）",
+        "source": "自编验收材料，非真实教师评审",
+        "content": "本案例依据输入中的自编验收材料整理，材料注明其为验收样本，不是真实教师评审。教学聚焦于等式两边同时进行相同运算时，相等关系保持不变；通过天平预测、追问和例题，引导学生理解这一性质，并检查其是否仍只会机械记忆移项变号。\n人工核对：先预测，再操作，再解释。\n版本修订标记 onlyrevisionstep6",
+        "subject": "数学",
+        "version": 6,
+        "versionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954",
+        "experience": {
+          "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+          "steps": [
+            "展示天平并请学生先预测同时增加相同砝码后的情况。",
+            "结合例题 x - 3 = 5，引导学生写出等式两边同时加3的步骤，得到 x = 8。",
+            "进行独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+          ],
+          "boundary": "适用于已理解相等关系并掌握加减法的七年级学生。",
+          "questions": [
+            "如果只在左边加3，还会平衡吗？为什么？"
+          ],
+          "responses": [
+            "若学生只说“移项变号”，要求写出两边共同运算的步骤。"
+          ],
+          "adjustment": "当学生只用“移项变号”解释时，要求其写出等式两边共同进行的运算步骤。",
+          "difficulty": "学生可能只改变等式的一边，或机械记忆移项变号，而未说明等式两边共同进行的运算。",
+          "mathClaims": [
+            {
+              "left": "x - 3 = 5",
+              "right": "两边同时加3后，x = 8"
+            },
+            {
+              "left": "y + 4 = 11",
+              "right": "两边同时减4后，y = 7"
+            }
+          ],
+          "studentBase": "已理解相等关系并掌握加减法的七年级学生。",
+          "suggestions": [],
+          "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "knowledgePoints": [
+            "等式的性质",
+            "解一元一次方程的加减运算"
+          ]
+        },
+        "references": [
+          {
+            "label": "第 1 页",
+            "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          }
+        ],
+        "publishedAt": "2026-11-09T13:35:15Z",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "x - 3 = 5",
+              "right": "两边同时加3后，x = 8",
+              "status": "unverified"
+            },
+            {
+              "left": "y + 4 = 11",
+              "right": "两边同时减4后，y = 7",
+              "status": "unverified"
+            }
+          ],
+          "status": "unverified"
+        },
+        "knowledgeLinks": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "extractionJobId": "job-efe2742f7c5942f091a68ef9cdc55988"
+      },
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "verification": {
+        "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+        "status": "verified"
+      },
+      "caseVersionId": "version-d9452ce605ba4cf190431e879f560bb6",
+      "planningDetails": {
+        "focus": "两边共同运算",
+        "difficulty": "",
+        "references": [
+          {
+            "id": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "grade": "七年级",
+            "title": "等式性质：两边同时进行相同运算",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "content": "本案例依据一份自编验收材料，说明如何通过天平演示和共同运算步骤，帮助七年级学生理解等式两边同时加上相同的数，相等关系保持不变。材料注明此为验收样本，不是真实教师评审。",
+            "subject": "数学",
+            "version": 2,
+            "versionId": "version-b4f160db2af54728bff5018198074f02",
+            "experience": {
+              "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+              "steps": [
+                "展示保持平衡的天平，请学生先预测，再同时增加相同砝码。",
+                "讲解例题 x - 3 = 5，两边同时加3，得到 x = 8。",
+                "安排独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+              ],
+              "boundary": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+              "questions": [
+                "如果只在左边加3，还会平衡吗？为什么？"
+              ],
+              "responses": [
+                "若学生只说移项变号，要求写出两边共同运算的步骤。"
+              ],
+              "adjustment": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+              "difficulty": "学生只改变等式的一边，机械记忆移项变号。",
+              "mathClaims": [
+                {
+                  "left": "5+3",
+                  "right": "8"
+                },
+                {
+                  "left": "11-4",
+                  "right": "7"
+                }
+              ],
+              "studentBase": "适用于已理解相等关系并掌握加减法的七年级学生。",
+              "suggestions": [],
+              "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+              "knowledgePoints": [
+                "等式两边同时加上相同的数，相等关系保持不变。",
+                "解方程时可通过等式两边同时进行相同的加减运算。"
+              ]
+            },
+            "references": [
+              {
+                "field": "content",
+                "label": "第 1 页",
+                "quote": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "goal",
+                "label": "第 1 页",
+                "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "knowledgePoints.0",
+                "label": "第 1 页",
+                "quote": "理解等式两边同时加上相同的数，相等关系保持不变。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "knowledgePoints.1",
+                "label": "第 1 页",
+                "quote": "x - 3 = 5，两边同时加3，得到 x = 8。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "studentBase",
+                "label": "第 1 页",
+                "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "difficulty",
+                "label": "第 1 页",
+                "quote": "学生只改变等式的一边，机械记忆移项变号。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "introduction",
+                "label": "第 1 页",
+                "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "steps.0",
+                "label": "第 1 页",
+                "quote": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "steps.1",
+                "label": "第 1 页",
+                "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "steps.2",
+                "label": "第 1 页",
+                "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "questions.0",
+                "label": "第 1 页",
+                "quote": "如果只在左边加3，还会平衡吗？为什么？",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "responses.0",
+                "label": "第 1 页",
+                "quote": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "adjustment",
+                "label": "第 1 页",
+                "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "boundary",
+                "label": "第 1 页",
+                "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              }
+            ],
+            "publishedAt": "2026-11-09T13:35:09Z",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "5+3",
+                  "right": "8",
+                  "status": "unverified"
+                },
+                {
+                  "left": "11-4",
+                  "right": "7",
+                  "status": "unverified"
+                }
+              ],
+              "status": "unverified"
+            },
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "extractionJobId": "job-1bc0cff1af964aa8822294225ef858dc"
+          }
+        ],
+        "adjustments": "",
+        "studentResponses": "",
+        "teacherQuestions": ""
+      },
+      "prerequisiteIds": [
+        "kp-equal",
+        "kp-operations",
+        "kp-expression"
+      ]
+    },
+    "draftId": "draft-3d6bf0304928417989a19dd6e9488fdf",
+    "ownerId": "account-cd8f774bacb74583bcc25632e41e6490",
+    "basePlan": {
+      "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+      "title": "等式性质",
+      "blocks": [
+        {
+          "id": "eq-intro",
+          "title": "先预测：只改变一边会怎样？",
+          "content": "本地保留内容：先检查学生是否理解等式表示两边相等。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-balance",
+          "title": "先预测，再对比两边共同变化",
+          "content": "两边各有5单位。先请学生预测：两边同时增加相同的正量后，天平会怎样？观察后，请学生说明两边共同做了什么。再对比追问：如果只给一边增加相同数量，天平还会平衡吗？为什么？若学生只说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-add-sub",
+          "title": "用等式写出共同运算",
+          "content": "若a = b，则a + c = b + c，a - c = b - c，其中c可以是正数、负数或零。追问：这两种写法中，左右两边分别做了什么？为什么不能只改变一边？",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-example-add",
+          "title": "例题：把“移项”说成两边的运算",
+          "content": "x - 3 = 5。请先说出要消去x旁边的−3，可以对等式两边同时做什么，再写出每一步：两边同时加3，x - 3 + 3 = 5 + 3，得到x = 8。追问：若只在左边加3，等式还成立吗？最后把8代回原式核对。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-practice",
+          "title": "练习：说清两边做了什么",
+          "content": "完成随堂练习时，每一步都写清等式两边共同进行了什么运算，并解释这样做如何保持相等。若只写“移项变号”，请补写等式两边实际进行的运算。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-mul-div",
+          "title": "同乘、同除时检查条件",
+          "content": "若a = b，则ac = bc；若c ≠ 0，则a / c = b / c。追问：同乘0后为什么不能总从结果恢复原方程？解方程时，为什么同除必须说明除数非零？每一步都检查变形是否保留原方程的信息。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-example-div",
+          "title": "例题：说明共同运算及其条件",
+          "content": "3z = 18，两边同时除以3，得z = 6。w / 4 = 3，两边同时乘4，得w = 12。若b / (−3) = 2，则b = −6。逐例追问：两边共同进行的运算是什么？除法中的除数满足什么条件？负数运算用等式表达，不用天平表示负重量。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        },
+        {
+          "id": "eq-check",
+          "title": "独立检查：解释并核对",
+          "content": "独立作答并解释每一步：写出等式两边分别进行的相同运算，并说明除数条件。完成后核对结果是否使原等式成立；如需帮助，先学习当前题，再换新题重新独立检查。",
+          "evidenceIds": [
+            "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+          ]
+        }
+      ],
+      "rationale": [
+        "保留教师当前教案，仅改写选定活动"
+      ],
+      "mathClaims": []
+    },
+    "lessonId": "lesson-equation",
+    "taskType": "misconception",
+    "documents": [
+      {
+        "id": "case-balance",
+        "grade": "",
+        "title": "天平与等式性质",
+        "author": "",
+        "legacy": true,
+        "source": "待补充核对的教学示例",
+        "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+        "subject": "数学",
+        "version": 1,
+        "versionId": "version-d9452ce605ba4cf190431e879f560bb6",
+        "experience": {},
+        "references": [],
+        "publishedAt": "2026-11-08T14:33:09Z",
+        "retrievalText": "{}"
+      },
+      {
+        "id": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "grade": "七年级",
+        "title": "等式性质：两边同时进行相同运算",
+        "author": "项目成员（自编样本）",
+        "source": "自编验收材料，非真实教师评审",
+        "content": "本案例依据一份自编验收材料，说明如何通过天平演示和共同运算步骤，帮助七年级学生理解等式两边同时加上相同的数，相等关系保持不变。材料注明此为验收样本，不是真实教师评审。",
+        "subject": "数学",
+        "version": 2,
+        "versionId": "version-b4f160db2af54728bff5018198074f02",
+        "experience": {
+          "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+          "steps": [
+            "展示保持平衡的天平，请学生先预测，再同时增加相同砝码。",
+            "讲解例题 x - 3 = 5，两边同时加3，得到 x = 8。",
+            "安排独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+          ],
+          "boundary": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+          "questions": [
+            "如果只在左边加3，还会平衡吗？为什么？"
+          ],
+          "responses": [
+            "若学生只说移项变号，要求写出两边共同运算的步骤。"
+          ],
+          "adjustment": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+          "difficulty": "学生只改变等式的一边，机械记忆移项变号。",
+          "mathClaims": [
+            {
+              "left": "5+3",
+              "right": "8"
+            },
+            {
+              "left": "11-4",
+              "right": "7"
+            }
+          ],
+          "studentBase": "适用于已理解相等关系并掌握加减法的七年级学生。",
+          "suggestions": [],
+          "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "knowledgePoints": [
+            "等式两边同时加上相同的数，相等关系保持不变。",
+            "解方程时可通过等式两边同时进行相同的加减运算。"
+          ]
+        },
+        "references": [
+          {
+            "field": "content",
+            "label": "第 1 页",
+            "quote": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "goal",
+            "label": "第 1 页",
+            "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "knowledgePoints.0",
+            "label": "第 1 页",
+            "quote": "理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "knowledgePoints.1",
+            "label": "第 1 页",
+            "quote": "x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "studentBase",
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "difficulty",
+            "label": "第 1 页",
+            "quote": "学生只改变等式的一边，机械记忆移项变号。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "introduction",
+            "label": "第 1 页",
+            "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.0",
+            "label": "第 1 页",
+            "quote": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.1",
+            "label": "第 1 页",
+            "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.2",
+            "label": "第 1 页",
+            "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "questions.0",
+            "label": "第 1 页",
+            "quote": "如果只在左边加3，还会平衡吗？为什么？",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "responses.0",
+            "label": "第 1 页",
+            "quote": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "adjustment",
+            "label": "第 1 页",
+            "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "boundary",
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          }
+        ],
+        "publishedAt": "2026-11-09T13:35:09Z",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "5+3",
+              "right": "8",
+              "status": "unverified"
+            },
+            {
+              "left": "11-4",
+              "right": "7",
+              "status": "unverified"
+            }
+          ],
+          "status": "unverified"
+        },
+        "retrievalText": "{\"goal\": \"理解等式两边同时加上相同的数，相等关系保持不变。\", \"steps\": [\"展示保持平衡的天平，请学生先预测，再同时增加相同砝码。\", \"讲解例题 x - 3 = 5，两边同时加3，得到 x = 8。\", \"安排独立检查：y + 4 = 11，两边同时减4，得到 y = 7。\"], \"boundary\": \"适用范围：已理解相等关系并掌握加减法的七年级学生。\", \"questions\": [\"如果只在左边加3，还会平衡吗？为什么？\"], \"responses\": [\"若学生只说移项变号，要求写出两边共同运算的步骤。\"], \"adjustment\": \"若学生只说移项变号，要求写出两边共同运算的步骤。\", \"difficulty\": \"学生只改变等式的一边，机械记忆移项变号。\", \"mathClaims\": [{\"left\": \"5+3\", \"right\": \"8\"}, {\"left\": \"11-4\", \"right\": \"7\"}], \"studentBase\": \"适用于已理解相等关系并掌握加减法的七年级学生。\", \"suggestions\": [], \"introduction\": \"展示保持平衡的天平，让学生先预测，再同时增加相同砝码。\", \"knowledgePoints\": [\"等式两边同时加上相同的数，相等关系保持不变。\", \"解方程时可通过等式两边同时进行相同的加减运算。\"]}",
+        "knowledgeLinks": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "extractionJobId": "job-1bc0cff1af964aa8822294225ef858dc"
+      },
+      {
+        "id": "case-d4919db6ab774719a97c69ccbc1737a7",
+        "grade": "七年级",
+        "title": "等式性质：天平追问（第六步自编验收）",
+        "author": "项目成员（自编样本）",
+        "source": "自编验收材料，非真实教师评审",
+        "content": "本案例依据输入中的自编验收材料整理，材料注明其为验收样本，不是真实教师评审。教学聚焦于等式两边同时进行相同运算时，相等关系保持不变；通过天平预测、追问和例题，引导学生理解这一性质，并检查其是否仍只会机械记忆移项变号。\n人工核对：先预测，再操作，再解释。\n版本修订标记 onlyrevisionstep6",
+        "subject": "数学",
+        "version": 6,
+        "versionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954",
+        "experience": {
+          "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+          "steps": [
+            "展示天平并请学生先预测同时增加相同砝码后的情况。",
+            "结合例题 x - 3 = 5，引导学生写出等式两边同时加3的步骤，得到 x = 8。",
+            "进行独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+          ],
+          "boundary": "适用于已理解相等关系并掌握加减法的七年级学生。",
+          "questions": [
+            "如果只在左边加3，还会平衡吗？为什么？"
+          ],
+          "responses": [
+            "若学生只说“移项变号”，要求写出两边共同运算的步骤。"
+          ],
+          "adjustment": "当学生只用“移项变号”解释时，要求其写出等式两边共同进行的运算步骤。",
+          "difficulty": "学生可能只改变等式的一边，或机械记忆移项变号，而未说明等式两边共同进行的运算。",
+          "mathClaims": [
+            {
+              "left": "x - 3 = 5",
+              "right": "两边同时加3后，x = 8"
+            },
+            {
+              "left": "y + 4 = 11",
+              "right": "两边同时减4后，y = 7"
+            }
+          ],
+          "studentBase": "已理解相等关系并掌握加减法的七年级学生。",
+          "suggestions": [],
+          "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "knowledgePoints": [
+            "等式的性质",
+            "解一元一次方程的加减运算"
+          ]
+        },
+        "references": [
+          {
+            "label": "第 1 页",
+            "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          }
+        ],
+        "publishedAt": "2026-11-09T13:35:15Z",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "x - 3 = 5",
+              "right": "两边同时加3后，x = 8",
+              "status": "unverified"
+            },
+            {
+              "left": "y + 4 = 11",
+              "right": "两边同时减4后，y = 7",
+              "status": "unverified"
+            }
+          ],
+          "status": "unverified"
+        },
+        "retrievalText": "{\"goal\": \"理解等式两边同时加上相同的数，相等关系保持不变。\", \"steps\": [\"展示天平并请学生先预测同时增加相同砝码后的情况。\", \"结合例题 x - 3 = 5，引导学生写出等式两边同时加3的步骤，得到 x = 8。\", \"进行独立检查：y + 4 = 11，两边同时减4，得到 y = 7。\"], \"boundary\": \"适用于已理解相等关系并掌握加减法的七年级学生。\", \"questions\": [\"如果只在左边加3，还会平衡吗？为什么？\"], \"responses\": [\"若学生只说“移项变号”，要求写出两边共同运算的步骤。\"], \"adjustment\": \"当学生只用“移项变号”解释时，要求其写出等式两边共同进行的运算步骤。\", \"difficulty\": \"学生可能只改变等式的一边，或机械记忆移项变号，而未说明等式两边共同进行的运算。\", \"mathClaims\": [{\"left\": \"x - 3 = 5\", \"right\": \"两边同时加3后，x = 8\"}, {\"left\": \"y + 4 = 11\", \"right\": \"两边同时减4后，y = 7\"}], \"studentBase\": \"已理解相等关系并掌握加减法的七年级学生。\", \"suggestions\": [], \"introduction\": \"展示保持平衡的天平，让学生先预测，再同时增加相同砝码。\", \"knowledgePoints\": [\"等式的性质\", \"解一元一次方程的加减运算\"]}",
+        "knowledgeLinks": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "extractionJobId": "job-efe2742f7c5942f091a68ef9cdc55988"
+      },
+      {
+        "id": "case-draft-account-admin-demo",
+        "grade": "",
+        "title": "天平与等式性质 · 案例联调验收",
+        "author": "",
+        "legacy": true,
+        "source": "待补充核对的教学示例",
+        "content": "先让学生预测天平两边同时变化的结果，再要求用等式记录共同运算，并针对单边变化进行比较。",
+        "subject": "数学",
+        "version": 1,
+        "versionId": "version-cb3b863feee747a28d98181a8051cbea",
+        "experience": {},
+        "references": [],
+        "publishedAt": "2026-11-08T14:33:09Z",
+        "retrievalText": "{}"
+      }
+    ],
+    "draftHash": "4eaa675716e68a6b7ef03de97c4a9a94259b7d3c5b91d1f33dfe69e2fcd49d07",
+    "knowledge": [
+      {
+        "id": "kp-equal",
+        "name": "相等关系",
+        "aliases": [],
+        "prerequisites": []
+      },
+      {
+        "id": "kp-equality",
+        "name": "等式性质",
+        "aliases": [
+          "等式两边同时变化"
+        ],
+        "prerequisites": [
+          "kp-equal",
+          "kp-expression"
+        ]
+      },
+      {
+        "id": "kp-expression",
+        "name": "算式含义",
+        "aliases": [],
+        "prerequisites": [
+          "kp-operations"
+        ]
+      },
+      {
+        "id": "kp-operations",
+        "name": "基本运算",
+        "aliases": [],
+        "prerequisites": []
+      }
+    ],
+    "constraints": "只改指定活动，保留其余手写活动、目标和问题。",
+    "parentJobId": null,
+    "rewriteBlockId": "eq-balance",
+    "workflowVersion": "teaching-plan-v1",
+    "regenerateBlockId": "eq-balance",
+    "selectedReferences": [
+      {
+        "id": "case-d4919db6ab774719a97c69ccbc1737a7",
+        "grade": "七年级",
+        "title": "等式性质：天平追问（第六步自编验收）",
+        "author": "项目成员（自编样本）",
+        "source": "自编验收材料，非真实教师评审",
+        "content": "本案例依据输入中的自编验收材料整理，材料注明其为验收样本，不是真实教师评审。教学聚焦于等式两边同时进行相同运算时，相等关系保持不变；通过天平预测、追问和例题，引导学生理解这一性质，并检查其是否仍只会机械记忆移项变号。\n人工核对：先预测，再操作，再解释。\n版本修订标记 onlyrevisionstep6",
+        "subject": "数学",
+        "version": 6,
+        "versionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954",
+        "experience": {
+          "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+          "steps": [
+            "展示天平并请学生先预测同时增加相同砝码后的情况。",
+            "结合例题 x - 3 = 5，引导学生写出等式两边同时加3的步骤，得到 x = 8。",
+            "进行独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+          ],
+          "boundary": "适用于已理解相等关系并掌握加减法的七年级学生。",
+          "questions": [
+            "如果只在左边加3，还会平衡吗？为什么？"
+          ],
+          "responses": [
+            "若学生只说“移项变号”，要求写出两边共同运算的步骤。"
+          ],
+          "adjustment": "当学生只用“移项变号”解释时，要求其写出等式两边共同进行的运算步骤。",
+          "difficulty": "学生可能只改变等式的一边，或机械记忆移项变号，而未说明等式两边共同进行的运算。",
+          "mathClaims": [
+            {
+              "left": "x - 3 = 5",
+              "right": "两边同时加3后，x = 8"
+            },
+            {
+              "left": "y + 4 = 11",
+              "right": "两边同时减4后，y = 7"
+            }
+          ],
+          "studentBase": "已理解相等关系并掌握加减法的七年级学生。",
+          "suggestions": [],
+          "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "knowledgePoints": [
+            "等式的性质",
+            "解一元一次方程的加减运算"
+          ]
+        },
+        "references": [
+          {
+            "label": "第 1 页",
+            "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          }
+        ],
+        "publishedAt": "2026-11-09T13:35:15Z",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "x - 3 = 5",
+              "right": "两边同时加3后，x = 8",
+              "status": "unverified"
+            },
+            {
+              "left": "y + 4 = 11",
+              "right": "两边同时减4后，y = 7",
+              "status": "unverified"
+            }
+          ],
+          "status": "unverified"
+        },
+        "knowledgeLinks": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "extractionJobId": "job-efe2742f7c5942f091a68ef9cdc55988"
+      },
+      {
+        "id": "case-cb7a37515e09454d863ceb82f50b64a7",
+        "grade": "七年级",
+        "title": "等式性质：两边同时进行相同运算",
+        "author": "项目成员（自编样本）",
+        "source": "自编验收材料，非真实教师评审",
+        "content": "本案例依据一份自编验收材料，说明如何通过天平演示和共同运算步骤，帮助七年级学生理解等式两边同时加上相同的数，相等关系保持不变。材料注明此为验收样本，不是真实教师评审。",
+        "subject": "数学",
+        "version": 2,
+        "versionId": "version-b4f160db2af54728bff5018198074f02",
+        "experience": {
+          "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+          "steps": [
+            "展示保持平衡的天平，请学生先预测，再同时增加相同砝码。",
+            "讲解例题 x - 3 = 5，两边同时加3，得到 x = 8。",
+            "安排独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+          ],
+          "boundary": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+          "questions": [
+            "如果只在左边加3，还会平衡吗？为什么？"
+          ],
+          "responses": [
+            "若学生只说移项变号，要求写出两边共同运算的步骤。"
+          ],
+          "adjustment": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+          "difficulty": "学生只改变等式的一边，机械记忆移项变号。",
+          "mathClaims": [
+            {
+              "left": "5+3",
+              "right": "8"
+            },
+            {
+              "left": "11-4",
+              "right": "7"
+            }
+          ],
+          "studentBase": "适用于已理解相等关系并掌握加减法的七年级学生。",
+          "suggestions": [],
+          "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+          "knowledgePoints": [
+            "等式两边同时加上相同的数，相等关系保持不变。",
+            "解方程时可通过等式两边同时进行相同的加减运算。"
+          ]
+        },
+        "references": [
+          {
+            "field": "content",
+            "label": "第 1 页",
+            "quote": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "goal",
+            "label": "第 1 页",
+            "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "knowledgePoints.0",
+            "label": "第 1 页",
+            "quote": "理解等式两边同时加上相同的数，相等关系保持不变。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "knowledgePoints.1",
+            "label": "第 1 页",
+            "quote": "x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "studentBase",
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "difficulty",
+            "label": "第 1 页",
+            "quote": "学生只改变等式的一边，机械记忆移项变号。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "introduction",
+            "label": "第 1 页",
+            "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.0",
+            "label": "第 1 页",
+            "quote": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.1",
+            "label": "第 1 页",
+            "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "steps.2",
+            "label": "第 1 页",
+            "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "questions.0",
+            "label": "第 1 页",
+            "quote": "如果只在左边加3，还会平衡吗？为什么？",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "responses.0",
+            "label": "第 1 页",
+            "quote": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "adjustment",
+            "label": "第 1 页",
+            "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          },
+          {
+            "field": "boundary",
+            "label": "第 1 页",
+            "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "sourceUrl": "",
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "materialTitle": "第六步自编验收 mixed.pdf"
+          }
+        ],
+        "publishedAt": "2026-11-09T13:35:09Z",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "5+3",
+              "right": "8",
+              "status": "unverified"
+            },
+            {
+              "left": "11-4",
+              "right": "7",
+              "status": "unverified"
+            }
+          ],
+          "status": "unverified"
+        },
+        "knowledgeLinks": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "extractionJobId": "job-1bc0cff1af964aa8822294225ef858dc"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "id": "run-8d10294afad547faba9a4de9966668f2",
+      "number": 1,
+      "status": "succeeded",
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI / LangGraph",
+      "error": "",
+      "result": {
+        "plan": {
+          "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+          "title": "等式性质",
+          "blocks": [
+            {
+              "id": "eq-intro",
+              "title": "先预测：只改变一边会怎样？",
+              "content": "本地保留内容：先检查学生是否理解等式表示两边相等。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-balance",
+              "title": "先预测：只改变一边会怎样？",
+              "content": "先呈现两边各有5单位且保持平衡的天平，问：“如果只在左边增加相同数量，会怎样？为什么？”学生可能回答：“左边更重，会倾斜。”追问：“哪一边变了？右边的量变了吗？”再请学生预测两边同时增加相同的正量后天平会怎样，并观察验证。学生可能说：“两边都增加一样多，所以仍平衡。”追问：“两边分别做了什么？这和只改变一边有什么不同？”若学生说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-add-sub",
+              "title": "用等式写出共同运算",
+              "content": "若a = b，则a + c = b + c，a - c = b - c，其中c可以是正数、负数或零。追问：这两种写法中，左右两边分别做了什么？为什么不能只改变一边？",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-example-add",
+              "title": "例题：把“移项”说成两边的运算",
+              "content": "x - 3 = 5。请先说出要消去x旁边的−3，可以对等式两边同时做什么，再写出每一步：两边同时加3，x - 3 + 3 = 5 + 3，得到x = 8。追问：若只在左边加3，等式还成立吗？最后把8代回原式核对。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-practice",
+              "title": "练习：说清两边做了什么",
+              "content": "完成随堂练习时，每一步都写清等式两边共同进行了什么运算，并解释这样做如何保持相等。若只写“移项变号”，请补写等式两边实际进行的运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-mul-div",
+              "title": "同乘、同除时检查条件",
+              "content": "若a = b，则ac = bc；若c ≠ 0，则a / c = b / c。追问：同乘0后为什么不能总从结果恢复原方程？解方程时，为什么同除必须说明除数非零？每一步都检查变形是否保留原方程的信息。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-example-div",
+              "title": "例题：说明共同运算及其条件",
+              "content": "3z = 18，两边同时除以3，得z = 6。w / 4 = 3，两边同时乘4，得w = 12。若b / (−3) = 2，则b = −6。逐例追问：两边共同进行的运算是什么？除法中的除数满足什么条件？负数运算用等式表达，不用天平表示负重量。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-check",
+              "title": "独立检查：解释并核对",
+              "content": "独立作答并解释每一步：写出等式两边分别进行的相同运算，并说明除数条件。完成后核对结果是否使原等式成立；如需帮助，先学习当前题，再换新题重新独立检查。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            }
+          ],
+          "rationale": [
+            "保留教师当前教案，仅改写选定活动"
+          ],
+          "mathClaims": []
+        },
+        "cases": [
+          {
+            "id": "case-d4919db6ab774719a97c69ccbc1737a7",
+            "grade": "七年级",
+            "title": "等式性质：天平追问（第六步自编验收）",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "content": "本案例依据输入中的自编验收材料整理，材料注明其为验收样本，不是真实教师评审。教学聚焦于等式两边同时进行相同运算时，相等关系保持不变；通过天平预测、追问和例题，引导学生理解这一性质，并检查其是否仍只会机械记忆移项变号。\n人工核对：先预测，再操作，再解释。\n版本修订标记 onlyrevisionstep6",
+            "subject": "数学",
+            "version": 6,
+            "versionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954",
+            "experience": {
+              "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+              "steps": [
+                "展示天平并请学生先预测同时增加相同砝码后的情况。",
+                "结合例题 x - 3 = 5，引导学生写出等式两边同时加3的步骤，得到 x = 8。",
+                "进行独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+              ],
+              "boundary": "适用于已理解相等关系并掌握加减法的七年级学生。",
+              "questions": [
+                "如果只在左边加3，还会平衡吗？为什么？"
+              ],
+              "responses": [
+                "若学生只说“移项变号”，要求写出两边共同运算的步骤。"
+              ],
+              "adjustment": "当学生只用“移项变号”解释时，要求其写出等式两边共同进行的运算步骤。",
+              "difficulty": "学生可能只改变等式的一边，或机械记忆移项变号，而未说明等式两边共同进行的运算。",
+              "mathClaims": [
+                {
+                  "left": "x - 3 = 5",
+                  "right": "两边同时加3后，x = 8"
+                },
+                {
+                  "left": "y + 4 = 11",
+                  "right": "两边同时减4后，y = 7"
+                }
+              ],
+              "studentBase": "已理解相等关系并掌握加减法的七年级学生。",
+              "suggestions": [],
+              "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+              "knowledgePoints": [
+                "等式的性质",
+                "解一元一次方程的加减运算"
+              ]
+            },
+            "references": [
+              {
+                "label": "第 1 页",
+                "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "label": "第 1 页",
+                "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "label": "第 1 页",
+                "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "label": "第 1 页",
+                "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "label": "第 1 页",
+                "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "label": "第 1 页",
+                "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              }
+            ],
+            "publishedAt": "2026-11-09T13:35:15Z",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "x - 3 = 5",
+                  "right": "两边同时加3后，x = 8",
+                  "status": "unverified"
+                },
+                {
+                  "left": "y + 4 = 11",
+                  "right": "两边同时减4后，y = 7",
+                  "status": "unverified"
+                }
+              ],
+              "status": "unverified"
+            },
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "extractionJobId": "job-efe2742f7c5942f091a68ef9cdc55988"
+          },
+          {
+            "id": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "grade": "七年级",
+            "title": "等式性质：两边同时进行相同运算",
+            "author": "项目成员（自编样本）",
+            "source": "自编验收材料，非真实教师评审",
+            "content": "本案例依据一份自编验收材料，说明如何通过天平演示和共同运算步骤，帮助七年级学生理解等式两边同时加上相同的数，相等关系保持不变。材料注明此为验收样本，不是真实教师评审。",
+            "subject": "数学",
+            "version": 2,
+            "versionId": "version-b4f160db2af54728bff5018198074f02",
+            "experience": {
+              "goal": "理解等式两边同时加上相同的数，相等关系保持不变。",
+              "steps": [
+                "展示保持平衡的天平，请学生先预测，再同时增加相同砝码。",
+                "讲解例题 x - 3 = 5，两边同时加3，得到 x = 8。",
+                "安排独立检查：y + 4 = 11，两边同时减4，得到 y = 7。"
+              ],
+              "boundary": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+              "questions": [
+                "如果只在左边加3，还会平衡吗？为什么？"
+              ],
+              "responses": [
+                "若学生只说移项变号，要求写出两边共同运算的步骤。"
+              ],
+              "adjustment": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+              "difficulty": "学生只改变等式的一边，机械记忆移项变号。",
+              "mathClaims": [
+                {
+                  "left": "5+3",
+                  "right": "8"
+                },
+                {
+                  "left": "11-4",
+                  "right": "7"
+                }
+              ],
+              "studentBase": "适用于已理解相等关系并掌握加减法的七年级学生。",
+              "suggestions": [],
+              "introduction": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+              "knowledgePoints": [
+                "等式两边同时加上相同的数，相等关系保持不变。",
+                "解方程时可通过等式两边同时进行相同的加减运算。"
+              ]
+            },
+            "references": [
+              {
+                "field": "content",
+                "label": "第 1 页",
+                "quote": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "goal",
+                "label": "第 1 页",
+                "quote": "教学目标：理解等式两边同时加上相同的数，相等关系保持不变。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "knowledgePoints.0",
+                "label": "第 1 页",
+                "quote": "理解等式两边同时加上相同的数，相等关系保持不变。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "knowledgePoints.1",
+                "label": "第 1 页",
+                "quote": "x - 3 = 5，两边同时加3，得到 x = 8。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "studentBase",
+                "label": "第 1 页",
+                "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "difficulty",
+                "label": "第 1 页",
+                "quote": "学生只改变等式的一边，机械记忆移项变号。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "introduction",
+                "label": "第 1 页",
+                "quote": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "steps.0",
+                "label": "第 1 页",
+                "quote": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "steps.1",
+                "label": "第 1 页",
+                "quote": "例题：x - 3 = 5，两边同时加3，得到 x = 8。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "steps.2",
+                "label": "第 1 页",
+                "quote": "独立检查：y + 4 = 11，两边同时减4，得到 y = 7。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "questions.0",
+                "label": "第 1 页",
+                "quote": "如果只在左边加3，还会平衡吗？为什么？",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "responses.0",
+                "label": "第 1 页",
+                "quote": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "adjustment",
+                "label": "第 1 页",
+                "quote": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              },
+              {
+                "field": "boundary",
+                "label": "第 1 页",
+                "quote": "适用范围：已理解相等关系并掌握加减法的七年级学生。",
+                "author": "项目成员（自编样本）",
+                "source": "自编验收材料，非真实教师评审",
+                "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+                "sourceUrl": "",
+                "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+                "materialTitle": "第六步自编验收 mixed.pdf"
+              }
+            ],
+            "publishedAt": "2026-11-09T13:35:09Z",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "5+3",
+                  "right": "8",
+                  "status": "unverified"
+                },
+                {
+                  "left": "11-4",
+                  "right": "7",
+                  "status": "unverified"
+                }
+              ],
+              "status": "unverified"
+            },
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "extractionJobId": "job-1bc0cff1af964aa8822294225ef858dc"
+          },
+          {
+            "id": "case-balance",
+            "grade": "",
+            "score": 1.730322,
+            "title": "天平与等式性质",
+            "author": "",
+            "legacy": true,
+            "source": "待补充核对的教学示例",
+            "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+            "subject": "数学",
+            "version": 1,
+            "bm25Score": 4.231328,
+            "textScore": 1.690322,
+            "versionId": "version-d9452ce605ba4cf190431e879f560bb6",
+            "experience": {},
+            "references": [],
+            "publishedAt": "2026-11-08T14:33:09Z",
+            "contextScore": 0.04,
+            "matchReasons": [
+              "匹配标题、正文",
+              "与课时适用信息一致"
+            ],
+            "matchedFields": [
+              {
+                "bm25": 0.827077,
+                "field": "title",
+                "label": "标题",
+                "score": 0.914971,
+                "matchedTerms": [
+                  "天平",
+                  "式性",
+                  "性质",
+                  "等式"
+                ],
+                "contextMatched": true
+              },
+              {
+                "bm25": 3.404251,
+                "field": "content",
+                "label": "正文",
+                "score": 0.775351,
+                "matchedTerms": [
+                  "回应",
+                  "学生",
+                  "讲法"
+                ],
+                "contextMatched": true
+              }
+            ],
+            "retrievalText": "{}",
+            "knowledgeScore": 0.0,
+            "knowledgeMatches": []
+          },
+          {
+            "id": "case-draft-account-admin-demo",
+            "grade": "",
+            "score": 1.354667,
+            "title": "天平与等式性质 · 案例联调验收",
+            "author": "",
+            "legacy": true,
+            "source": "待补充核对的教学示例",
+            "content": "先让学生预测天平两边同时变化的结果，再要求用等式记录共同运算，并针对单边变化进行比较。",
+            "subject": "数学",
+            "version": 1,
+            "bm25Score": 1.639303,
+            "textScore": 1.314667,
+            "versionId": "version-cb3b863feee747a28d98181a8051cbea",
+            "experience": {},
+            "references": [],
+            "publishedAt": "2026-11-08T14:33:09Z",
+            "contextScore": 0.04,
+            "matchReasons": [
+              "匹配标题、正文",
+              "与课时适用信息一致"
+            ],
+            "matchedFields": [
+              {
+                "bm25": 0.651311,
+                "field": "title",
+                "label": "标题",
+                "score": 0.803264,
+                "matchedTerms": [
+                  "天平",
+                  "式性",
+                  "性质",
+                  "等式"
+                ],
+                "contextMatched": true
+              },
+              {
+                "bm25": 0.987992,
+                "field": "content",
+                "label": "正文",
+                "score": 0.511403,
+                "matchedTerms": [
+                  "天平",
+                  "学生",
+                  "等式"
+                ],
+                "contextMatched": true
+              }
+            ],
+            "retrievalText": "{}",
+            "knowledgeScore": 0.0,
+            "knowledgeMatches": []
+          }
+        ],
+        "model": "gpt-6-luna",
+        "steps": [
+          {
+            "key": "context",
+            "tool": "curriculum.read",
+            "title": "理解任务与课时",
+            "output": {
+              "method": "显式选择或有限关键词规则；课时由服务端读取",
+              "recognizedType": "误解纠正",
+              "lessonVersionId": "lessonversion-619e68cc68234c4cbd37ded435"
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-10T01:56:50.033420+00:00",
+            "finishedAt": "2026-11-10T01:56:50.081319+00:00"
+          },
+          {
+            "key": "cases",
+            "tool": "retrieval.bm25",
+            "title": "检索教学案例",
+            "output": {
+              "rerank": false,
+              "versions": [
+                {
+                  "id": "case-d4919db6ab774719a97c69ccbc1737a7",
+                  "versionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+                },
+                {
+                  "id": "case-cb7a37515e09454d863ceb82f50b64a7",
+                  "versionId": "version-b4f160db2af54728bff5018198074f02"
+                },
+                {
+                  "id": "case-balance",
+                  "versionId": "version-d9452ce605ba4cf190431e879f560bb6"
+                },
+                {
+                  "id": "case-draft-account-admin-demo",
+                  "versionId": "version-cb3b863feee747a28d98181a8051cbea"
+                }
+              ],
+              "caseCount": 4
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-10T01:56:50.108341+00:00",
+            "finishedAt": "2026-11-10T01:56:50.167211+00:00"
+          },
+          {
+            "key": "materials",
+            "tool": "materials.read",
+            "title": "定位原文材料",
+            "output": {
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435",
+                "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:6e1ba16588",
+                "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:969e3c4129",
+                "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:503b40cb98",
+                "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:099d9679e1",
+                "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:9171e4cef2",
+                "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e"
+              ],
+              "materialCount": 6
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-10T01:56:50.204260+00:00",
+            "finishedAt": "2026-11-10T01:56:50.270476+00:00"
+          },
+          {
+            "key": "generate",
+            "tool": "codex.lesson_plan",
+            "title": "生成备课建议",
+            "output": {
+              "model": "gpt-6-luna",
+              "origin": "模型生成，待教师核对",
+              "provider": "Codex CLI · low",
+              "onlyBlock": "eq-balance",
+              "blockCount": 8
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-10T01:56:50.307727+00:00",
+            "finishedAt": "2026-11-10T01:56:58.982424+00:00"
+          },
+          {
+            "key": "validate",
+            "tool": "plan.validate",
+            "title": "核验结构与依据",
+            "output": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified",
+              "structure": "passed",
+              "references": "passed",
+              "goalTermsOverlap": true,
+              "humanReviewRequired": true
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-10T01:56:59.023701+00:00",
+            "finishedAt": "2026-11-10T01:56:59.088871+00:00"
+          },
+          {
+            "key": "ready",
+            "tool": "teacher.review",
+            "title": "等待教师确认",
+            "output": {
+              "next": "教师编辑、确认后保存备课草稿；不自动发布"
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-10T01:56:59.154464+00:00",
+            "finishedAt": "2026-11-10T01:56:59.230790+00:00"
+          }
+        ],
+        "context": {
+          "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+          "task": "改写天平活动：先问学生只改变一边会怎样，给出教师追问和学生可能回应的不同讲法。",
+          "grade": "七年级",
+          "subject": "数学",
+          "lessonId": "lesson-equation",
+          "taskType": "misconception",
+          "taskLabel": "误解纠正",
+          "constraints": "只改指定活动，保留其余手写活动、目标和问题。",
+          "lessonTitle": "等式性质",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "lessonVersionId": "lessonversion-619e68cc68234c4cbd37ded435",
+          "prerequisiteIds": [
+            "kp-equal",
+            "kp-operations",
+            "kp-expression"
+          ]
+        },
+        "decision": "pending",
+        "editable": {
+          "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+          "title": "等式性质",
+          "blocks": [
+            {
+              "id": "eq-intro",
+              "title": "先预测：只改变一边会怎样？",
+              "content": "本地保留内容：先检查学生是否理解等式表示两边相等。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-balance",
+              "title": "先预测：只改变一边会怎样？",
+              "content": "先呈现两边各有5单位且保持平衡的天平，问：“如果只在左边增加相同数量，会怎样？为什么？”学生可能回答：“左边更重，会倾斜。”追问：“哪一边变了？右边的量变了吗？”再请学生预测两边同时增加相同的正量后天平会怎样，并观察验证。学生可能说：“两边都增加一样多，所以仍平衡。”追问：“两边分别做了什么？这和只改变一边有什么不同？”若学生说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-add-sub",
+              "title": "用等式写出共同运算",
+              "content": "若a = b，则a + c = b + c，a - c = b - c，其中c可以是正数、负数或零。追问：这两种写法中，左右两边分别做了什么？为什么不能只改变一边？",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-example-add",
+              "title": "例题：把“移项”说成两边的运算",
+              "content": "x - 3 = 5。请先说出要消去x旁边的−3，可以对等式两边同时做什么，再写出每一步：两边同时加3，x - 3 + 3 = 5 + 3，得到x = 8。追问：若只在左边加3，等式还成立吗？最后把8代回原式核对。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-practice",
+              "title": "练习：说清两边做了什么",
+              "content": "完成随堂练习时，每一步都写清等式两边共同进行了什么运算，并解释这样做如何保持相等。若只写“移项变号”，请补写等式两边实际进行的运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-mul-div",
+              "title": "同乘、同除时检查条件",
+              "content": "若a = b，则ac = bc；若c ≠ 0，则a / c = b / c。追问：同乘0后为什么不能总从结果恢复原方程？解方程时，为什么同除必须说明除数非零？每一步都检查变形是否保留原方程的信息。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-example-div",
+              "title": "例题：说明共同运算及其条件",
+              "content": "3z = 18，两边同时除以3，得z = 6。w / 4 = 3，两边同时乘4，得w = 12。若b / (−3) = 2，则b = −6。逐例追问：两边共同进行的运算是什么？除法中的除数满足什么条件？负数运算用等式表达，不用天平表示负重量。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            },
+            {
+              "id": "eq-check",
+              "title": "独立检查：解释并核对",
+              "content": "独立作答并解释每一步：写出等式两边分别进行的相同运算，并说明除数条件。完成后核对结果是否使原等式成立；如需帮助，先学习当前题，再换新题重新独立检查。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            }
+          ],
+          "rationale": [
+            "保留教师当前教案，仅改写选定活动"
+          ],
+          "mathClaims": []
+        },
+        "evidence": [
+          {
+            "id": "lesson:lessonversion-619e68cc68234c4cbd37ded435",
+            "url": "/#/courses",
+            "kind": "lesson",
+            "title": "等式性质",
+            "content": "先预测：只改变一边会怎样？：本地保留内容：先检查学生是否理解等式表示两边相等。\n先预测，再对比两边共同变化：两边各有5单位。先请学生预测：两边同时增加相同的正量后，天平会怎样？观察后，请学生说明两边共同做了什么。再对比追问：如果只给一边增加相同数量，天平还会平衡吗？为什么？若学生只说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。\n用等式写出共同运算：若a = b，则a + c = b + c，a - c = b - c，其中c可以是正数、负数或零。追问：这两种写法中，左右两边分别做了什么？为什么不能只改变一边？\n例题：把“移项”说成两边的运算：x - 3 = 5。请先说出要消去x旁边的−3，可以对等式两边同时做什么，再写出每一步：两边同时加3，x - 3 + 3 = 5 + 3，得到x = 8。追问：若只在左边加3，等式还成立吗？最后把8代回原式核对。\n练习：说清两边做了什么：完成随堂练习时，每一步都写清等式两边共同进行了什么运算，并解释这样做如何保持相等。若只写“移项变号”，请补写等式两边实际进行的运算。\n同乘、同除时检查条件：若a = b，则ac = bc；若c ≠ 0，则a / c = b / c。追问：同乘0后为什么不能总从结果恢复原方程？解方程时，为什么同除必须说明除数非零？每一步都检查变形是否保留原方程的信息。\n例题：说明共同运算及其条件：3z = 18，两边同时除以3，得z = 6。w / 4 = 3，两边同时乘4，得w = 12。若b / (−3) = 2，则b = −6。逐例追问：两边共同进行的运算是什么？除法中的除数满足什么条件？负数运算用等式表达，不用天平表示负重量。\n独立检查：解释并核对：独立作答并解释每一步：写出等式两边分别进行的相同运算，并说明除数条件。完成后核对结果是否使原等式成立；如需帮助，先学习当前题，再换新题重新独立检查。",
+            "versionId": "lessonversion-619e68cc68234c4cbd37ded435"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:6e1ba16588",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 10.457873,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "学生只改变等式的一边，机械记忆移项变号。",
+            "bm25Score": 10.457873,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:969e3c4129",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 7.077458,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+            "bm25Score": 7.077458,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:503b40cb98",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 4.15255,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "bm25Score": 4.15255,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:099d9679e1",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 2.444777,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "bm25Score": 2.444777,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:9171e4cef2",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 2.414757,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "bm25Score": 2.414757,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 2.141037,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "bm25Score": 2.141037,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+          }
+        ],
+        "warnings": [],
+        "generated": {
+          "goal": "第十步自编验收：通过天平活动解释等式两边共同运算，避免机械移项。",
+          "title": "等式性质：天平活动",
+          "blocks": [
+            {
+              "id": "eq-balance",
+              "title": "先预测：只改变一边会怎样？",
+              "content": "先呈现两边各有5单位且保持平衡的天平，问：“如果只在左边增加相同数量，会怎样？为什么？”学生可能回答：“左边更重，会倾斜。”追问：“哪一边变了？右边的量变了吗？”再请学生预测两边同时增加相同的正量后天平会怎样，并观察验证。学生可能说：“两边都增加一样多，所以仍平衡。”追问：“两边分别做了什么？这和只改变一边有什么不同？”若学生说“移项变号”，请其写出等式两边实际进行的运算，并解释相等关系如何保持。天平只表示非负数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-619e68cc68234c4cbd37ded435"
+              ]
+            }
+          ],
+          "rationale": [
+            "先让学生预测只改变一边的结果，再比较两边共同增加相同数量的情形，帮助其发现单边变化会破坏平衡、两边相同变化可保持平衡。追问学生描述两边的实际运算；若只说“移项变号”，再要求写出运算步骤，以针对其只改变一边和机械记忆的困难。"
+          ],
+          "mathClaims": []
+        },
+        "materials": [
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:6e1ba16588",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 10.457873,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "学生只改变等式的一边，机械记忆移项变号。",
+            "bm25Score": 10.457873,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:969e3c4129",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 7.077458,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "自编验收材料：等式性质教学经验\n作者：项目成员；此为验收样本，不是真实教师评审。",
+            "bm25Score": 7.077458,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:503b40cb98",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 4.15255,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "回应与调整：若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "bm25Score": 4.15255,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:099d9679e1",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 2.444777,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "bm25Score": 2.444777,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:9171e4cef2",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 2.414757,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-d4919db6ab774719a97c69ccbc1737a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "引入：展示保持平衡的天平，让学生先预测，再同时增加相同砝码。",
+            "bm25Score": 2.414757,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b04305b3fa9b42c1bd39cc6bc82e9954"
+          },
+          {
+            "id": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec:40ed9fce1e",
+            "url": "/#/source?unit=unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "kind": "material",
+            "label": "第 1 页",
+            "score": 2.141037,
+            "title": "第六步自编验收 mixed.pdf",
+            "caseId": "case-cb7a37515e09454d863ceb82f50b64a7",
+            "unitId": "unit-07cc5f21eb3afe3fa382aa89e4feb5ec",
+            "content": "若学生只说移项变号，要求写出两边共同运算的步骤。",
+            "bm25Score": 2.141037,
+            "materialId": "material-3173af1a865d4ffab2d9f6370319750",
+            "caseVersionId": "version-b4f160db2af54728bff5018198074f02"
+          }
+        ],
+        "retrieval": {
+          "mode": "search",
+          "query": "改写天平活动：先问学生只改变一边会怎样，给出教师追问和学生可能回应的不同讲法。 等式性质",
+          "method": "field-bm25+knowledge+context",
+          "variant": "B3",
+          "warnings": [],
+          "elapsedMs": 7.763,
+          "matchedCount": 4,
+          "rerankApplied": false,
+          "totalDocuments": 4,
+          "algorithmVersion": "teaching-context-v1",
+          "eligibleDocuments": 4,
+          "queryUnderstanding": {
+            "scenario": "misconception_correction",
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质",
+                "source": "name",
+                "matchedNames": [
+                  "等式性质"
+                ]
+              }
+            ],
+            "expansions": [
+              {
+                "text": "等式性质",
+                "source": "name",
+                "knowledgeId": "kp-equality"
+              }
+            ],
+            "normalizedQuery": "改写天平活动:先问学生只改变一边会怎样,给出教师追问和学生可能回应的不同讲法。 等式性质"
+          }
+        },
+        "startedAt": "2026-11-10T01:56:50.021272+00:00",
+        "modelCalls": 1,
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified",
+          "structure": "passed",
+          "references": "passed",
+          "goalTermsOverlap": true,
+          "humanReviewRequired": true
+        },
+        "budgetStartedAt": "2026-11-10T01:56:50.021293+00:00",
+        "workflowVersion": "teaching-plan-v1"
+      },
+      "startedAt": "2026-11-10T01:56:50Z",
+      "endedAt": "2026-11-10T01:56:59Z"
+    }
+  ]
+}

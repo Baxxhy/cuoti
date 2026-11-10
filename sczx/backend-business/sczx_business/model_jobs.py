@@ -49,10 +49,11 @@ def phase(job_id, step):
 def math_check(claims):
     results = []
     for claim in claims:
-        equal, verified = compare_equivalence(claim["left"], claim["right"])
-        results.append({**claim, "status": "verified" if verified and equal else "inconsistent" if verified else "unverified"})
+        from .math_tools import compare_claim
+        equal, verified, reason = compare_claim(claim["left"], claim["right"])
+        results.append({**claim, "method":reason, "status": "verified" if verified and equal else "inconsistent" if verified else "unverified"})
     status = "inconsistent" if any(x["status"] == "inconsistent" for x in results) else "verified" if results and all(x["status"] == "verified" for x in results) else "unverified"
-    return {"status": status, "claims": results, "scope": "仅核对列出的表达式等价关系，不代表整份讲解已核对"}
+    return {"status": status, "claims": results, "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对"}
 
 
 async def execute(job_id, run_id):

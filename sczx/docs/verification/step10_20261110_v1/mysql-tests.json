@@ -1,0 +1,7 @@
+{
+  "startedAt": "2026-11-10T10:24:52.390397+08:00",
+  "finishedAt": "2026-11-10T10:25:15.876435+08:00",
+  "database": "sczx_test_step10_7b0f32a3",
+  "returnCode": 0,
+  "command": "PYTHONPATH=backend-business SCZX_RUN_MYSQL_TESTS=1 python -m unittest discover -s backend-business/tests -v"
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "type": "activity",
+    "input": {
+      "lessonId": "lesson-equation",
+      "taskType": "activity",
+      "task": "围绕当前教师已选择的案例，设计天平活动与追问，让学生解释两边共同变化。",
+      "constraints": "保持当前手写目标和学生基础，练习参考答案不变。"
+    },
+    "id": "job-b4cadede59574081a488558aebb475cd",
+    "startedAt": "2026-11-10T09:56:49.844854+08:00",
+    "status": "succeeded",
+    "error": "",
+    "finishedAt": "2026-11-10T09:57:23.198853+08:00"
+  },
+  {
+    "type": "foundation",
+    "input": {
+      "lessonId": "lesson-897e9ff4141e4a1db4a4ef2857be5fd6",
+      "taskType": "foundation",
+      "task": "为乘除应用课设计基础补救：先理解等量的份数，再解释等式两边为什么同乘或同除非零数。",
+      "constraints": "使用当前课时实际题目与ID，补充学生可能回应。"
+    },
+    "id": "job-f4a7d0798a4e494d80a804f28809d09f",
+    "startedAt": "2026-11-10T09:56:49.902083+08:00",
+    "status": "succeeded",
+    "error": "",
+    "finishedAt": "2026-11-10T09:57:40.048461+08:00"
+  },
+  {
+    "type": "rewrite",
+    "input": {
+      "lessonId": "lesson-equation",
+      "taskType": "misconception",
+      "task": "改写天平活动：先问学生只改变一边会怎样，给出教师追问和学生可能回应的不同讲法。",
+      "constraints": "只改指定活动，保留其余手写活动、目标和问题。",
+      "rewriteBlockId": "eq-balance"
+    },
+    "id": "job-22f3bf037ea043f8a225354d0d8f03f5",
+    "startedAt": "2026-11-10T09:56:49.971084+08:00",
+    "status": "succeeded",
+    "error": "",
+    "finishedAt": "2026-11-10T09:57:40.082455+08:00"
+  }
+]

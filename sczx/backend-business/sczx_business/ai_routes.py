@@ -46,7 +46,7 @@ def serialize(job, detail=True):
     if 'context' in exposed:exposed['context']=public_context(exposed['context'])
     result = job.result
     if result and not detail and "vectors" in result: result = {k:v for k,v in result.items() if k != "vectors"}
-    return {"id":job.id,"capability":job.capability,"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
+    return {"id":job.id,"capability":job.capability,"lessonId":job.input.get("lessonId"),"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" else None,"question":job.input.get("question"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
 
 
 @router.get("/capabilities")
@@ -292,7 +292,7 @@ def agent_draft_state(lessonId:str,request:Request,db=Depends(get_db)):
     user=user_for(request,db)
     if user.role!='teacher':raise HTTPException(403,'请使用教师账号。')
     row=current_draft(db,user.id,lessonId)
-    return {'draftHash':fingerprint(row),'goal':row.goal if row else '', 'blocks':[{'id':b['id'],'title':b['title']} for b in row.blocks] if row else []}
+    return {'draftHash':fingerprint(row),'goal':row.goal if row else '', 'blocks':row.blocks if row else [],'lessonVersionId':(row.lesson_snapshot or {}).get('versionId') if row else None,'sourceVersion':__import__('sczx_business.curriculum',fromlist=['published_lesson']).published_lesson(db,lessonId)}
 
 @router.put('/agent/{job_id}/draft')
 def agent_edit(job_id:str,body:dict,request:Request,db=Depends(get_db)):
@@ -327,11 +327,19 @@ def agent_confirm(job_id:str,body:dict,request:Request,db=Depends(get_db)):
     row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id==user.id,LessonDraft.lesson_id==job.input['lessonId']).with_for_update())
     if fingerprint(row)!=confirmation.expectedDraftHash:raise HTTPException(409,'备课草稿已变更，请重新查看当前草稿后再确认；本次建议已保留。')
     lesson=job.input['lesson']
+    from .curriculum import published_lesson
+    latest=published_lesson(db,job.input['lessonId'])
+    if not latest or latest['versionId']!=lesson['versionId']:raise HTTPException(409,'来源课时已重新发布或停用。本次历史结果保留，请使用最新课时重新生成，不能覆盖当前教案。')
+    from .drafts import preserve_original,checkpoint
+    if row:preserve_original(db,row)
     if row and {q['id'] for q in row.questions}!={q['id'] for q in lesson['questions']}:raise HTTPException(409,'当前题目与课时版本不同，请先在备课页确认使用发布课时。')
     if not row:
         row=LessonDraft(id=uid('draft'),teacher_id=user.id,lesson_id=job.input['lessonId'],case_id=lesson.get('caseId'),case_snapshot=lesson.get('caseSnapshot'),lesson_snapshot=lesson,questions=copy.deepcopy(lesson['questions']),student_base='',due_date='');db.add(row)
     row.lesson_snapshot=copy.deepcopy(lesson)
-    by_id={b['id']:b for b in plan['blocks']};row.blocks=[{**copy.deepcopy(b),'title':by_id[b['id']]['title'],'content':by_id[b['id']]['content'],'agentEvidence':by_id[b['id']]['evidenceIds'],'agentJobId':job.id} for b in lesson['blocks']];row.goal=plan['goal']
+    base_blocks=copy.deepcopy(row.blocks or lesson['blocks'])
+    target=job.input.get('regenerateBlockId')
+    by_id={b['id']:b for b in plan['blocks']};row.blocks=[{**copy.deepcopy(b),'title':by_id[b['id']]['title'],'content':by_id[b['id']]['content'],'agentEvidence':by_id[b['id']]['evidenceIds'],'agentJobId':job.id} if (not target or b['id']==target) else b for b in base_blocks];row.goal=row.goal if target else plan['goal']
+    checkpoint(db,row,'采用Agent建议')
     receipt={'draftId':row.id,'lessonId':row.lesson_id,'confirmedAt':now(),'jobId':job.id}
     result.update(accepted=receipt,decision='accepted');job.result=result;event(db,job,'已确认保存到备课草稿');db.commit();return {'accepted':receipt,'created':True}
 

@@ -89,6 +89,8 @@ class LessonDraft(Base):
     due_date: Mapped[str] = mapped_column(String(30), default="")
     blocks: Mapped[list] = mapped_column(JSON, default=list)
     questions: Mapped[list] = mapped_column(JSON, default=list)
+    revision: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
+    planning_details: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
 
 
@@ -333,3 +335,14 @@ class LessonVersion(Base):
     number: Mapped[int] = mapped_column(Integer)
     data: Mapped[dict] = mapped_column(JSON)
     published_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+class LessonDraftVersion(Base):
+    __tablename__ = 'lesson_draft_versions'
+    __table_args__ = (UniqueConstraint('draft_id','number',name='uq_draft_version_number'),)
+    id: Mapped[str] = mapped_column(String(40),primary_key=True)
+    draft_id: Mapped[str] = mapped_column(ForeignKey('lesson_drafts.id'),index=True)
+    number: Mapped[int] = mapped_column(Integer)
+    data: Mapped[dict] = mapped_column(JSON)
+    reason: Mapped[str] = mapped_column(String(100))
+    created_at: Mapped[datetime] = mapped_column(DateTime,server_default=func.now())

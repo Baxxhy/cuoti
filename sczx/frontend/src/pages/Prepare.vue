@@ -17,6 +17,7 @@ import {
   WandSparkles,
 } from "lucide-vue-next";
 import draggable from "vuedraggable";
+import PreparationTools from "@/components/PreparationTools.vue";
 import Workspace from "@/components/Workspace.vue";
 import LessonPreview from "@/components/LessonPreview.vue";
 import CaseArticle from "@/components/CaseArticle.vue";
@@ -26,9 +27,16 @@ import {useRoute} from "vue-router";
 const store = useLearning(),
   notify = inject("notify");
 
-const route=useRoute();const templateBusy=ref(false);
-watch(()=>route.query.lesson,async id=>{if(id&&id!==store.data.lesson?.id){try{await store.selectLesson(String(id))}catch(e){notify(e.message)}}},{immediate:true});
-async function applyPublished(){if(!confirm('使用当前发布课时替换本教案的目标、活动、题目与引用？学生基础、截止日期和已有任务保留。'))return;templateBusy.value=true;try{const data=await curriculumApi.lesson(store.data.lesson.id);Object.assign(store.data.lessonDraft,{lessonId:store.data.lesson.id,lessonSnapshot:data,goal:data.goal,blocks:structuredClone(data.blocks),questions:structuredClone(data.questions),caseId:data.caseId,caseSnapshot:data.caseSnapshot});store.touch();notify(await store.save()?'已使用发布课时内容':store.saveError)}catch(e){notify(e.message)}finally{templateBusy.value=false}}
+const tools=ref(null);
+const details=computed(()=>store.data.lessonDraft.planningDetails|| (store.data.lessonDraft.planningDetails={}));
+const route=useRoute();const templateBusy=ref(false),lessonSwitchBusy=ref(false);
+watch(()=>route.query.lesson,async id=>{
+ if(id&&id!==store.data.lesson?.id){
+  lessonSwitchBusy.value=true;
+  try{await store.selectLesson(String(id))}catch(e){notify(e.message)}finally{lessonSwitchBusy.value=false}
+ }
+},{immediate:true});
+async function applyPublished(){if(!confirm('使用当前发布课时替换本教案的目标、活动、题目与引用？学生基础、截止日期和已有任务保留。'))return;templateBusy.value=true;const draft=store.data.lessonDraft,id=store.data.lesson.id;try{const data=await curriculumApi.lesson(id);if(store.data.lessonDraft!==draft||store.data.lesson.id!==id)return;Object.assign(draft,{lessonId:id,lessonSnapshot:data,goal:data.goal,blocks:structuredClone(data.blocks),questions:structuredClone(data.questions),caseId:data.caseId,caseSnapshot:data.caseSnapshot});store.touch();notify(await store.save()?'已使用发布课时内容':store.saveError)}catch(e){notify(e.message)}finally{templateBusy.value=false}}
 const caseSnapshot = computed(() => store.data.lessonDraft.caseSnapshot);
 const fallbackCase=ref(null),referenceError=ref('');let referenceGeneration=0;
 const caseReference=computed(()=>caseSnapshot.value?.versionId?caseSnapshot.value:fallbackCase.value);
@@ -65,6 +73,8 @@ function reorderKeyboard(event, index) {
   store.data.lessonDraft.blocks = blocks;
   store.touch();
 }
+function backupLocal(){const draft=store.data.lessonDraft;const text=[draft.goal,draft.studentBase,...draft.blocks.map(b=>b.title+'\n'+b.content),...draft.questions.map(q=>[q.prompt,q.equation,q.answer].join('\n'))].join('\n\n');const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='本地教案修改.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),500)}
+async function reloadDraft(){if(!confirm('重新读取会替换当前未保存修改，请先下载本地修改。继续？'))return;store.externalUpdating=true;try{await store.load(store.data.lesson.id,true)}finally{store.externalUpdating=false}}
 async function saveDraft() {
   notify((await store.save()) ? "教案已保存" : store.saveError);
 }
@@ -88,19 +98,20 @@ async function publish() {
 }
 </script>
 <template>
+<p v-if="lessonSwitchBusy" role="status">读取课时教案…</p><template v-else>
   <div class="back-line">
     <Button variant="ghost" @click="navigate('teacher')"
       ><ArrowLeft />返回教学概览</Button
     ><span>我的教案 / {{ store.data.lesson?.title }}</span>
   </div>
   <PageHeading :title="(store.data.lesson?.title||'课时')+' · 备课'"
-    ><RouteButton :route="'agent?lesson='+store.data.lesson?.id" secondary>任务备课</RouteButton><Button variant="outline" :disabled="templateBusy" @click="applyPublished">使用发布课时</Button><RouteButton route="courses" secondary>选择课时</RouteButton><Button variant="outline" @click="saveDraft"><Save />保存教案</Button
+    ><RouteButton :route="'agent?lesson='+store.data.lesson?.id" secondary>AI 备课</RouteButton><Button variant="outline" @click="previewTab='tools';tools?.history()">版本</Button><Button variant="outline" @click="tools?.download()">导出 DOCX</Button><Button variant="outline" :disabled="templateBusy" @click="applyPublished">使用发布课时</Button><RouteButton route="courses" secondary>选择课时</RouteButton><Button variant="outline" @click="saveDraft"><Save />保存教案</Button
     ><Button variant="outline" @click="modal = 'preview'"
       ><Eye />学生预览</Button
     ><Button @click="modal = 'publish'"
       ><Send />{{ store.data.tasks.length ? "再次发布" : "发布任务" }}</Button
     ></PageHeading
-  ><Workspace
+  ><div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><Button variant="outline" @click="backupLocal">下载本地修改</Button><Button @click="reloadDraft">重新读取</Button></div><Workspace
     ><template #primary
       ><div class="lesson-editor">
         <div class="editor-intro">
@@ -124,7 +135,7 @@ async function publish() {
           id="student-base"
           v-model="store.data.lessonDraft.studentBase"
         />
-        <div class="editor-section-heading">
+        <details class="preparation-details"><summary>教学安排</summary><label v-for="(label,key) in {focus:'教学重点',difficulty:'教学难点',teacherQuestions:'教师提问',studentResponses:'学生可能回应',adjustments:'教师调整'}" :key="key">{{ label }}<Textarea v-model="details[key]"/></label></details><div class="editor-section-heading">
           <h2>教学活动</h2>
           <InfoTip label="调整活动顺序"
             >拖动手柄或聚焦手柄后按上下方向键调整顺序。</InfoTip
@@ -151,7 +162,7 @@ async function publish() {
                 >
                   <GripVertical :size="16" />
                 </button>
-                <h3>{{ block.title }}</h3>
+                <Input v-model="block.title" :aria-label="'活动标题'+(index+1)"/>
                 <Button
                   size="icon-xs"
                   variant="ghost"
@@ -165,7 +176,7 @@ async function publish() {
                 v-model="block.content"
                 :aria-label="block.title"
                 :disabled="busyBlock === block.id"
-              /></div></template></draggable
+              /><details class="preparation-block-notes"><summary>提问与调整</summary><label v-for="(label,key) in {teacherQuestion:'教师提问',studentResponse:'学生可能回应',adjustment:'调整建议'}" :key="key">{{ label }}<Textarea v-model="block[key]"/></label></details><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+block.id" secondary>AI 改写此活动</RouteButton></div></template></draggable
         ><details class="curriculum-teacher-questions"><summary>编辑题目 · {{ store.data.lessonDraft.questions?.length||0 }}</summary><div v-for="q in store.data.lessonDraft.questions" :key="q.id||q.equation"><label v-for="(label,key) in {prompt:'题干',equation:'方程',answer:'参考答案',hint:'提示'}" :key="key">{{ label }}<Input v-model="q[key]"/></label></div></details><button class="reference-link" @click="navigate(caseRoute)" :disabled="!store.data.lessonDraft.caseId">
           <LibraryBig :size="16" /><span>参考案例 · {{ caseReference?.title || '尚未选择' }}</span
           ><ArrowUpRight :size="15" />
@@ -177,11 +188,12 @@ async function publish() {
           :items="[
             { value: 'student', label: '学生内容' },
             { value: 'source', label: '参考经验' },
+            { value: 'tools', label: '案例与版本' },
           ]"
         />
       </div>
       <LessonPreview v-if="previewTab === 'student'" />
-      <div v-else class="preview-source">
+      <PreparationTools v-show="previewTab==='tools'" ref="tools"/><div v-if="previewTab==='source'" class="preview-source">
         <BookOpen :size="28" />
         <h2>{{ caseReference?.title || '尚未选择参考案例' }}</h2>
         <InfoTip v-if="caseReference&&!caseSnapshot?.versionId" label="参考版本说明">此教案尚未记录案例版本，当前展示最新发布内容；使用案例备课后会保存所选版本。</InfoTip><p v-if="referenceError" class="form-error">{{ referenceError }}</p><CaseArticle v-if="caseReference" :value="caseReference" />
@@ -226,4 +238,5 @@ async function publish() {
         >{{ store.publishing ? "发布中…" : "确认发布"
         }}<ArrowRight /></Button></template
   ></AppDialog>
+</template>
 </template>

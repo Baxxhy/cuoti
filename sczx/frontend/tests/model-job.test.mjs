@@ -31,3 +31,11 @@ test('assistant initialization cannot replace a newer user request',async()=>{
   try{await ready;const input=el.querySelector('#learning-question');input.value='为什么两边要同时加3？';input.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();[...el.querySelectorAll('button')].find(b=>b.textContent.trim()==='发送').click();for(let i=0;i<100&&!el.textContent.includes('新请求的指导');i++)await new Promise(r=>setTimeout(r,20));release();await new Promise(r=>setTimeout(r,100));return {newRequestVisible:el.textContent.includes('新请求的指导'),oldOCRVisible:!!el.querySelector('#confirmed-question')}}finally{window.fetch=original;app.unmount();el.remove();setActivePinia(priorPinia)}
  });assert.equal(result.newRequestVisible,true);assert.equal(result.oldOCRVisible,false);
 });
+
+test('a delayed platform save cannot attach its revision to another lesson',async()=>{
+ const result=await run(async()=>{
+  const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');const {useLearning}=await import('/src/store.js');const {api}=await import('/src/services/api.js');const old=api.savePlatform,prior=getActivePinia(),s=useLearning(createPinia());let release,calls=0;
+  s.data.lessonDraft={id:'old',revision:1};const first=s.data;api.savePlatform=()=>{calls++;return new Promise(r=>release=r)};
+  try{const pending=s.save();s.data={...s.data,lessonDraft:{id:'new',revision:7}};s.revision++;release({draftRevision:2});await pending;return {newRevision:s.data.lessonDraft.revision,oldRevision:first.lessonDraft.revision,calls}}finally{api.savePlatform=old;setActivePinia(prior)}
+ });assert.equal(result.newRevision,7);assert.equal(result.oldRevision,2);assert.equal(result.calls,1);
+});

@@ -22,7 +22,7 @@ def fingerprint(draft):
     fields=draft_fields(draft) if isinstance(draft,LessonDraft) else draft
     return hashlib.sha256(json.dumps(fields,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
 def draft_fields(row):
-    return {key:copy.deepcopy(getattr(row,key)) for key in ('goal','student_base','due_date','blocks','questions','case_id','case_snapshot','lesson_snapshot')}
+    return {key:copy.deepcopy(getattr(row,key)) for key in ('goal','student_base','due_date','blocks','questions','case_id','case_snapshot','lesson_snapshot','planning_details','revision')}
 def current_draft(db,owner,lesson):
     return db.scalar(select(LessonDraft).where(LessonDraft.teacher_id==owner,LessonDraft.lesson_id==lesson))
 def infer_task(text,selected='auto'):
@@ -38,7 +38,12 @@ def build_input(db,user,raw):
     version=published_lesson(db,request['lessonId']) if lesson else None
     if not version:raise HTTPException(422,'该课时尚未发布，请先选择可用课时。')
     draft=current_draft(db,user.id,lesson.id)
+    if draft and draft.lesson_snapshot and draft.lesson_snapshot.get('versionId')!=version['versionId']:
+        raise HTTPException(409,'教案仍使用旧课时来源，请先在备课页核对并使用当前发布课时，再开始新任务。历史Agent结果仍可查看。')
     baseline=draft_fields(draft) if draft else None
+    # Use the saved personalized draft, including its order and block IDs.
+    if draft:
+        version={**(draft.lesson_snapshot or version),'goal':draft.goal,'blocks':copy.deepcopy(draft.blocks),'questions':copy.deepcopy(draft.questions),'studentBase':draft.student_base,'planningDetails':copy.deepcopy(draft.planning_details or {}),'caseSnapshot':copy.deepcopy(draft.case_snapshot),'caseId':draft.case_id}
     data={**request,'taskType':infer_task(request['task'],request['taskType']),'lesson':version,
           'documents':published_documents(db),'knowledge':knowledge_documents(db),'draftHash':fingerprint(baseline),
           'draftId':draft.id if draft else None,'ownerId':user.id,'workflowVersion':'teaching-plan-v1','label':request['task'][:64]}
@@ -49,7 +54,15 @@ def build_input(db,user,raw):
         if not base or parent.input.get('lessonId')!=lesson.id or not request['regenerateBlockId']:raise HTTPException(422,'请选择原任务中的一个活动重新生成。')
         if request['regenerateBlockId'] not in {b['id'] for b in base['blocks']}:raise HTTPException(422,'活动不存在。')
         data.update(basePlan=copy.deepcopy(base),resumeFrom=copy.deepcopy(result),lesson=copy.deepcopy(parent.input['lesson']),documents=copy.deepcopy(parent.input['documents']),knowledge=copy.deepcopy(parent.input['knowledge']))
+    elif request.get('rewriteBlockId'):
+        target=request['rewriteBlockId']
+        if target not in {b['id'] for b in version['blocks']}:raise HTTPException(422,'活动不存在。')
+        data['regenerateBlockId']=target
+        data['basePlan']={'title':version['title'],'goal':version['goal'],'rationale':['保留教师当前教案，仅改写选定活动'],'blocks':[{'id':b['id'],'title':b['title'],'content':b['content'],'evidenceIds':['lesson:'+version['versionId']]} for b in version['blocks']],'mathClaims':[]}
     elif request['regenerateBlockId']:raise HTTPException(422,'单独生成需要对应原任务。')
+    details=(draft.planning_details or {}) if draft else {}
+    selected=[draft.case_snapshot if draft else None,*details.get('references',[])]
+    data['selectedReferences']=[copy.deepcopy(c) for c in selected if c and c.get('versionId')]
     return data
 
 def validate_plan(value,lesson,evidence,only=None):
@@ -112,7 +125,7 @@ async def run_agent(job_id,run_id,provider):
                 lesson=data['lesson'];query=(data['task']+' '+lesson['title'])[:2000]
                 context={'grade':lesson['grade'],'subject':lesson['subject'],'goal':lesson['goal'][:2000],'knowledgeIds':lesson.get('knowledgeIds',[]),'prerequisiteIds':lesson.get('prerequisiteIds',[])}
                 result=retrieve({'query':query,'context':context,'limit':4},data['documents'],data['knowledge'])
-                value['cases']=result['items'];value['retrieval']={k:v for k,v in result.items() if k not in ('items','candidateItems')}
+                selected=data.get('selectedReferences',[]); seen={c['versionId'] for c in selected}; value['cases']=[*selected,*[c for c in result['items'] if c['versionId'] not in seen]][:8];value['retrieval']={k:v for k,v in result.items() if k not in ('items','candidateItems')}
                 if not value['cases']:value['warnings'].append('未找到案例，仅依据当前课时生成；不编造案例出处。')
                 step['output']={'caseCount':len(value['cases']),'rerank':False,'versions':[{'id':c['id'],'versionId':c['versionId']} for c in value['cases']]}
             elif key=='materials':
@@ -124,7 +137,7 @@ async def run_agent(job_id,run_id,provider):
             elif key=='generate':
                 target=data.get('regenerateBlockId');blocks=[b for b in data['lesson']['blocks'] if not target or b['id']==target]
                 request={'task':data['task'],'taskType':TASK_TYPES[data['taskType']],'constraints':data['constraints'],'goal':data['lesson']['goal'],'grade':data['lesson']['grade'],'knowledge':[p for p in data['knowledge'] if p['id'] in set(data['lesson'].get('knowledgeIds',[]))],
-                         'blocks':blocks,'cases':[{'id':c['id'],'title':c['title'],'experience':c.get('experience',{})} for c in value['cases']],'evidence':value['evidence'],'currentPlan':data.get('basePlan')}
+                         'studentBase':data['lesson'].get('studentBase',''),'planningDetails':data['lesson'].get('planningDetails',{}),'blocks':blocks,'cases':[{'id':c['id'],'title':c['title'],'experience':c.get('experience',{})} for c in value['cases']],'evidence':value['evidence'],'currentPlan':data.get('basePlan')}
                 value['modelCalls']+=1;persist(value)
                 generated,model,source=await asyncio.wait_for(provider.call('lesson_plan',request,request_id=run_id),timeout=min(120,max(.01,remaining())))
                 value['generated']=generated

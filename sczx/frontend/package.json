@@ -7,7 +7,8 @@
     "dev": "vite --host 0.0.0.0 --port 5177",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0 --port 5177",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "test:unit": "node --test tests/*.test.js"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",

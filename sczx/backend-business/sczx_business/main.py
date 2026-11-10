@@ -191,7 +191,7 @@ def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
             if rec.get("feedback"):
                 task = next((item for item in task_json if item["id"] == task_id), None)
                 messages.append({"id": rec["id"], "taskId": task_id, "title": f"{task['title'] if task else '课程'} · 教师反馈", "createdAt": rec.get("feedbackAt")})
-    result = {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": published_case_json(db,case.id) if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "caseSnapshot": draft.case_snapshot, "lessonSnapshot": draft.lesson_snapshot, "lessonId":draft.lesson_id, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "supplements": supplements, "messages": messages}
+    result = {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": published_case_json(db,case.id) if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "caseSnapshot": draft.case_snapshot, "lessonSnapshot": draft.lesson_snapshot, "lessonId":draft.lesson_id, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "revision":draft.revision, "planningDetails":draft.planning_details or {}, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "supplements": supplements, "messages": messages}
     from .curriculum import apply_template, student_content
     if lesson and not draft:result['lessonDraft']=apply_template(db,lesson)
     if user.role=='student':
@@ -354,7 +354,7 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
             draft = data.get("lessonDraft") or {}
             lesson_id = draft.get("lessonId") or data.get("lesson", {}).get("id")
             if not lesson_id or not db.get(Lesson,lesson_id):raise HTTPException(422,"请选择有效课时。")
-            record = db.scalar(select(LessonDraft).where(LessonDraft.teacher_id == user.id, LessonDraft.lesson_id == lesson_id))
+            record = db.scalar(select(LessonDraft).where(LessonDraft.teacher_id == user.id, LessonDraft.lesson_id == lesson_id).with_for_update())
             if not record and db.get(Lesson, lesson_id):
                 record = LessonDraft(
                     id=f"draft-{uuid.uuid4().hex}",
@@ -369,6 +369,10 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                 )
                 db.add(record)
             if record:
+                from .drafts import check_revision, snapshot, preserve_original, checkpoint, normalized_details
+                check_revision(record,draft.get('revision',0))
+                before=snapshot(record)
+                if record.id and record.revision is not None:preserve_original(db,record)
                 previous_case_id = record.case_id
                 record.case_id = draft.get("caseId")
                 from .library import current_case
@@ -393,6 +397,9 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
                     chosen=published_lesson(db,lesson_id,supplied_lesson['versionId'])
                     if not chosen:raise HTTPException(422,'课时版本不存在。')
                     record.lesson_snapshot=chosen
+                record.planning_details=normalized_details(db,draft.get('planningDetails'))
+                after=snapshot(record)
+                if any(before.get(k)!=after.get(k) for k in after if k!='revision'):checkpoint(db,record,'教师保存')
             for task_id, record_data in (data.get("records") or {}).items():
                 if isinstance(record_data, list):
                     continue
@@ -484,7 +491,7 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
     except Exception:
         db.rollback()
         raise
-    return {"saved": True}
+    return {"saved": True, **({"draftRevision":record.revision} if user.role=="teacher" else {})}
 
 
 @app.put("/api/cases/draft")
@@ -532,7 +539,7 @@ def publish(payload: PublishInput, request: Request, db: DB) -> dict:
     existing = db.get(LearningTask, task_id)
     if existing:
         return {"taskId": existing.id, "created": False}
-    snapshot = {k: payload.lessonDraft.get(k) for k in ("id", "caseId", "goal", "studentBase", "dueDate", "blocks")}
+    snapshot = {k: payload.lessonDraft.get(k) for k in ("id", "caseId", "goal", "studentBase", "dueDate", "blocks", "planningDetails", "revision")}
     from .library import current_case
     supplied = payload.lessonDraft.get('caseSnapshot') or {}
     snapshot['caseSnapshot'] = current_case(db, snapshot.get('caseId'), supplied.get('versionId')) if snapshot.get('caseId') else None
@@ -742,7 +749,7 @@ def import_legacy(body: dict, request: Request, db: DB) -> dict:
         old_task_id = str(old_task.get("id", ""))
         old_record = records.get(old_task_id) or (records.get("task-legacy") if old_task_id == "task-legacy" else None) or {}
         snapshot = old_task.get("snapshot") or payload.get("lessonDraft") or {}
-        task = LearningTask(id=marker, classroom_id=classroom.id, teacher_id=user.id, lesson_id="lesson-equation", title=str(old_task.get("title") or "历史演示记录"), snapshot={k: snapshot.get(k) for k in ("id", "caseId", "goal", "studentBase", "dueDate", "blocks")}, questions=old_task.get("questions") or QUESTIONS, due_date=str(old_task.get("dueDate", snapshot.get("dueDate", ""))), source="legacy-demo", published_at=import_datetime(old_task.get("publishedAt")) or datetime.utcnow())
+        task = LearningTask(id=marker, classroom_id=classroom.id, teacher_id=user.id, lesson_id="lesson-equation", title=str(old_task.get("title") or "历史演示记录"), snapshot={k: snapshot.get(k) for k in ("id", "caseId", "goal", "studentBase", "dueDate", "blocks", "planningDetails", "revision")}, questions=old_task.get("questions") or QUESTIONS, due_date=str(old_task.get("dueDate", snapshot.get("dueDate", ""))), source="legacy-demo", published_at=import_datetime(old_task.get("publishedAt")) or datetime.utcnow())
         db.add(task)
         db.flush()
         rec = StudentRecord(id=f"record-{uuid.uuid4().hex[:32]}", task_id=task.id, student_id=legacy_student.id, observation=str(old_record.get("observation", "")), drafts=old_record.get("drafts") or {}, completed=bool(old_record.get("completed")), submitted_at=import_datetime(old_record.get("submittedAt")), feedback=str(old_record.get("feedback", "")), feedback_at=import_datetime(old_record.get("feedbackAt")), source="legacy-demo")
@@ -787,3 +794,6 @@ app.include_router(library_router)
 
 from .curriculum import router as curriculum_router
 app.include_router(curriculum_router)
+
+from .drafts import router as preparation_router
+app.include_router(preparation_router)

@@ -1,0 +1,22 @@
+
+> shicheng-zhixue@0.3.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 63 modules transformed.
+✗ Build failed in 5.65s
+error during build:
+[vite:vue] [plugin vite:vue] src/components/PreparationTools.vue (31:96): Error parsing JavaScript expression: Unexpected token (1:1)
+file: /root/Baxxhy/zhiwei/sczx/frontend/src/components/PreparationTools.vue:31:96
+SyntaxError: [plugin vite:vue] src/components/PreparationTools.vue (31:96): Error parsing JavaScript expression: Unexpected token (1:1)
+    at createCompilerError (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js:1374:17)
+    at emitError (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js:3006:5)
+    at createExp (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js:2999:7)
+    at Object.onattribend (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js:2550:29)
+    at Tokenizer.handleInAttrValue (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js:959:16)
+    at Tokenizer.stateInAttrValueDoubleQuotes (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js:969:10)
+    at Tokenizer.parse (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js:1113:16)
+    at Object.baseParse (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js:3038:13)
+    at Object.parse (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.prod.js:705:23)
+    at Object.parse$1 [as parse] (/root/Baxxhy/zhiwei/sczx/frontend/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1918:24)

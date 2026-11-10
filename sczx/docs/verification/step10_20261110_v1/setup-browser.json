@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "startedAt": "2026-11-10T01:56:08.706Z",
+  "caseSearch": true,
+  "readSource": true,
+  "mainAndAuxVersionSaved": true,
+  "manualEdit": true,
+  "refresh": true,
+  "historyPreview": true,
+  "exportButton": true,
+  "widths": [
+    1440,
+    1920,
+    2560
+  ],
+  "consoleErrors": []
+}

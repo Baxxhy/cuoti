@@ -40,7 +40,7 @@ class AgentMySQLTests(unittest.IsolatedAsyncioTestCase):
             db.add(LessonContent(lesson_id='agent-lesson',draft=None,status='published',reviewed=True))
             db.add(LessonVersion(id='agent-version',lesson_id='agent-lesson',number=1,data=data))
             db.add(LessonVersion(id='agent-old-version',lesson_id='agent-lesson',number=0,data={**data,'goal':'旧版本目标'}))
-            db.add(LessonDraft(id='agent-old-draft',teacher_id='agent-owner',lesson_id='agent-lesson',goal='旧备课目标',student_base='保留学生基础',due_date='2026-11-30',blocks=copy.deepcopy(data['blocks']),questions=copy.deepcopy(data['questions']),lesson_snapshot={**data,'versionId':'agent-old-version'}))
+            db.add(LessonDraft(id='agent-old-draft',teacher_id='agent-owner',lesson_id='agent-lesson',goal='旧备课目标',student_base='保留学生基础',due_date='2026-11-30',blocks=copy.deepcopy(data['blocks']),questions=copy.deepcopy(data['questions']),lesson_snapshot={**data,'versionId':'agent-version'}))
             db.add(Classroom(id='agent-class',teacher_id='agent-owner',name='Agent自编验收班',grade='七年级'));db.flush()
             db.add(LearningTask(id='agent-old-task',classroom_id='agent-class',teacher_id='agent-owner',lesson_id='agent-lesson',title='原任务',snapshot={'goal':'原目标','blocks':copy.deepcopy(data['blocks'])},questions=copy.deepcopy(data['questions']),due_date='2026-11-30'))
     async def asyncSetUp(self):
@@ -121,3 +121,54 @@ class AgentMySQLTests(unittest.IsolatedAsyncioTestCase):
             db.add(MaterialUnit(id='agent-pending-unit',material_id='agent-pending-material',position=1,label='第1页',kind='pdf',text='',original_text=''));db.flush()
             result=collect_materials(db,[{'id':'case-pending','versionId':'pending-version','references':[{'unitId':'agent-pending-unit','quote':'尚未解析的文字'}]}],'等式性质')
             self.assertEqual(result,[])
+
+    async def test_step10_source_republish_blocks_old_agent_confirmation(self):
+        from sczx_business.models import LessonVersion
+        job=await self.new_job();runid=self.begin(job['id']);provider=ControlledPlanProvider('wait')
+        with patch('sczx_business.model_jobs.provider',provider):
+            execution=asyncio.create_task(execute(job['id'],runid))
+            await asyncio.wait_for(provider.entered.wait(),10)
+            with SessionLocal.begin() as db:
+                number=max(v.number for v in db.scalars(select(LessonVersion).where(LessonVersion.lesson_id=='agent-lesson')))+1
+                new=LessonVersion(id='av-'+uuid.uuid4().hex,lesson_id='agent-lesson',number=number,data=copy.deepcopy(self.lesson));db.add(new)
+            provider.release.set();await execution
+        oldid=job['input']['lesson']['versionId']
+        state=(await self.c.get('/api/ai/agent/draft-state',params={'lessonId':'agent-lesson'})).json()
+        response=await self.c.post('/api/ai/agent/'+job['id']+'/confirm',json={'expectedDraftHash':state['draftHash'],'confirmed':True})
+        self.assertEqual(response.status_code,409,response.text)
+        self.assertEqual((await self.c.get('/api/ai/jobs/'+job['id'])).json()['input']['lesson']['versionId'],oldid)
+        preflight=await self.c.post('/api/ai/jobs',json={'capability':'lesson_agent','requestKey':str(uuid.uuid4()),'data':{'lessonId':'agent-lesson','task':'旧来源应先核对再生成'}})
+        self.assertEqual(preflight.status_code,409)
+
+        # Restore source alignment for the remaining independent test methods; history stays immutable.
+        with SessionLocal.begin() as db:
+            row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id=='agent-owner'));row.lesson_snapshot={**self.lesson,'versionId':new.id}
+
+    async def test_step10_saved_history_concurrency_restore_export_and_permissions(self):
+        import io
+        from docx import Document
+        lesson='agent-lesson'
+        platform=(await self.c.get('/api/platform',params={'lessonId':lesson})).json();draft=platform['lessonDraft'];original=copy.deepcopy(draft)
+        draft['goal']='并发验收：理解等式两边同时运算';draft['planningDetails']={'focus':'共同运算','difficulty':'只改变一边'}
+        saved=await self.c.put('/api/platform',json={'data':platform});self.assertEqual(saved.status_code,200,saved.text)
+        stale=await self.c.put('/api/platform',json={'data':platform});self.assertEqual(stale.status_code,409)
+        versions=(await self.c.get('/api/preparation/'+lesson+'/versions')).json();self.assertTrue(versions)
+        latest=versions[0];stored=(await self.c.get('/api/preparation/'+lesson+'/versions/'+latest['id'])).json();self.assertEqual(stored['goal'],draft['goal'])
+        file=await self.c.get('/api/preparation/'+lesson+'/export',params={'versionId':latest['id']});self.assertEqual(file.status_code,200)
+        text='\n'.join(p.text for p in Document(io.BytesIO(file.content)).paragraphs);self.assertIn(draft['goal'],text);self.assertIn('教学重点',text);self.assertNotIn('agent-owner',text);self.assertNotIn('ModelJob',text)
+        old=(await self.c.get('/api/preparation/'+lesson+'/versions/'+versions[-1]['id'])).json()
+        restore=await self.c.post('/api/preparation/'+lesson+'/restore',json={'versionId':versions[-1]['id'],'revision':saved.json()['draftRevision'],'confirmed':True});self.assertEqual(restore.status_code,200,restore.text);self.assertEqual(restore.json()['goal'],old['goal'])
+        self.assertEqual((await self.c.get('/api/preparation/'+lesson+'/versions/'+latest['id'])).json(),stored)
+        await self.login('agent-other');self.assertEqual((await self.c.get('/api/preparation/'+lesson+'/export',params={'versionId':latest['id']})).status_code,404)
+        self.assertEqual((await self.c.get('/api/preparation/'+lesson+'/versions/'+latest['id'])).status_code,404)
+
+    async def test_step10_partial_rewrite_preserves_personalization(self):
+        with SessionLocal.begin() as db:
+            row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id=='agent-owner'));data=copy.deepcopy(row.blocks);data[0]['content']='教师手写导入：比较5和5';data[0]['teacherQuestion']='怎样解释相等？';row.blocks=data;row.goal='教师手写目标'
+        payload={'capability':'lesson_agent','requestKey':str(uuid.uuid4()),'data':{'lessonId':'agent-lesson','task':'为第二个活动补充追问与回应，保留教师其他修改','rewriteBlockId':self.lesson['blocks'][1]['id']}}
+        job=(await self.c.post('/api/ai/jobs',json=payload)).json();runid=self.begin(job['id']);provider=ControlledPlanProvider()
+        with patch('sczx_business.model_jobs.provider',provider):await execute(job['id'],runid)
+        state=(await self.c.get('/api/ai/agent/draft-state',params={'lessonId':'agent-lesson'})).json()
+        reply=await self.c.post('/api/ai/agent/'+job['id']+'/confirm',json={'expectedDraftHash':state['draftHash'],'confirmed':True});self.assertEqual(reply.status_code,200,reply.text)
+        with SessionLocal() as db:
+            row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id=='agent-owner'));self.assertEqual(row.goal,'教师手写目标');self.assertEqual(row.blocks[0]['content'],'教师手写导入：比较5和5');self.assertEqual(row.blocks[0]['teacherQuestion'],'怎样解释相等？');self.assertTrue(row.blocks[1]['content'].startswith('受控生成'))

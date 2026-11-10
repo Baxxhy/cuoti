@@ -116,7 +116,7 @@ router.beforeEach(async (to) => {
 });
 let saveTimer;
 watch(
-  () => store.data,
+  () => { const draft={...store.data.lessonDraft}; delete draft.revision; return JSON.stringify({...store.data,lessonDraft:draft}); },
   () => {
     if (store.status !== "ready" || !store.user || store.externalUpdating) return;
     store.revision++;

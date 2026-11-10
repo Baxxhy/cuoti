@@ -187,3 +187,24 @@ def solve_text_equation(text: str) -> tuple[str, bool]:
         return ", ".join(f"{variable}={item}" for item in sorted(answers, key=sp.default_sort_key)), True
     except Exception:  # Treat every malformed external expression as unverifiable.
         return "", False
+
+
+def compare_claim(left: str, right: str) -> tuple[bool, bool, str]:
+    """Expressions or two bounded, single-variable real equations; never infer conditions."""
+    if '=' not in left and '=' not in right:
+        equal,verified=compare_equivalence(left,right)
+        return equal,verified,'表达式等价' if verified else '超出表达式核验范围'
+    try:
+        if any(word in left+right for word in ('若','则','且','≠','故','得',';','；','，')):raise ValueError()
+        def equation(text):
+            if text.count('=')!=1:raise ValueError()
+            a,b=text.split('=');return parse_math_expression(a)-parse_math_expression(b)
+        a,b=equation(left),equation(right);symbols=a.free_symbols|b.free_symbols
+        if len(symbols)!=1:raise ValueError()
+        x=next(iter(symbols))
+        if any(sp.Poly(e,x).degree()>2 for e in (a,b)):raise ValueError()
+        sa=sp.solveset(a,x,domain=sp.S.Reals);sb=sp.solveset(b,x,domain=sp.S.Reals)
+        if not isinstance(sa,(sp.FiniteSet,type(sp.S.EmptySet))) or not isinstance(sb,(sp.FiniteSet,type(sp.S.EmptySet))):raise ValueError()
+        return sa==sb,True,'单变量实数方程解集比较'
+    except Exception:
+        return False,False,'条件、定义域或多变量关系需人工核对'

@@ -108,14 +108,16 @@ export const useLearning = defineStore("platform", {
           await new Promise((resolve) => setTimeout(resolve, 20));
         return !this.saveError;
       }
+      const savingData=this.data;
       this.saving = true;
       this.saveError = "";
       try {
         let revision;
         do {
           revision = this.revision;
-          await api.savePlatform(this.data);
-        } while (revision !== this.revision);
+          const response=await api.savePlatform(savingData);
+          if (response.draftRevision!==undefined) savingData.lessonDraft.revision=response.draftRevision;
+        } while (savingData===this.data && revision !== this.revision);
         this.savedAt = new Date().toISOString();
         return true;
       } catch (error) {

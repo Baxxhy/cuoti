@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-10T10:26:16.404614+08:00",
+  "timezone": "Asia/Shanghai",
+  "baseRemoteCommit": "0b1902709dd10d88bf54f9cd2f9de040380bb3c1",
+  "python": "3.13.9",
+  "node": "v24.15.0",
+  "frontend": "Vue 3 + JavaScript / Vite / Pinia / Nova",
+  "database": "MySQL; isolated sczx_test_* for automated integration, existing demo accounts/class for real flow",
+  "models": "existing Codex CLI gpt-6-luna / low; no alternate credentials",
+  "evidence": {
+    "mysql-tests.log": {
+      "command": "PYTHONPATH=backend-business SCZX_RUN_MYSQL_TESTS=1 /tmp/sczx-venv/bin/python -m unittest discover -s backend-business/tests -v (isolated MySQL)",
+      "logCompletedAt": "2026-11-10T10:25:15.874768+08:00",
+      "sha256": "fea7bd0febe7267c0fed07c578c49778485873fb71e3e2721929b07604021e3e"
+    },
+    "core-tests.log": {
+      "command": "PYTHONPATH=backend-business /tmp/sczx-venv/bin/python -m unittest discover -s backend-business/tests -v",
+      "logCompletedAt": "2026-11-10T10:21:11.923125+08:00",
+      "sha256": "1c5d7ad63f39aca90c61b56e3c3495800ccbe6ca2da8b47c8fbbe2f192493a24"
+    },
+    "frontend-final.log": {
+      "command": "CHROME_PATH=<existing Chromium> npm --prefix frontend test",
+      "logCompletedAt": "2026-11-10T10:19:28.395355+08:00",
+      "sha256": "0d45bd7ec7ef9e07168a2af4917a8df6b19c3c4eae7ab1b0cce3475fb2f5b756"
+    },
+    "frontend-unit.log": {
+      "command": "npm --prefix frontend run test:unit",
+      "logCompletedAt": "2026-11-10T10:07:08.324010+08:00",
+      "sha256": "371d7f6a32579de03123d0ed45478c53936655d943ea223242c17cdc32cea754"
+    },
+    "build-final.log": {
+      "command": "npm --prefix frontend run build",
+      "logCompletedAt": "2026-11-10T10:13:48.275888+08:00",
+      "sha256": "0d8a75de8abf969726550d1a8e43fa4b6a47d0b5ee68b31a2b86c1add2ef0e3c"
+    },
+    "pip-check.log": {
+      "command": "/tmp/sczx-venv/bin/pip check",
+      "logCompletedAt": "2026-11-10T10:21:14.023121+08:00",
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    "libreoffice-minimal.log": {
+      "command": "existing libreoffice --headless --convert-to pdf (isolated profile; startup failed)",
+      "logCompletedAt": "2026-11-10T10:14:46.648258+08:00",
+      "sha256": "92b1eb4c24353008a9cc24d6488716b7284aadc5f926cc7475c63b2371d66dfa"
+    }
+  },
+  "officeReview": {
+    "status": "blocked",
+    "userResponse": "暂时无法复核",
+    "noRemoteCIExecution": true
+  }
+}

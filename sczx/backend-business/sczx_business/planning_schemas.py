@@ -12,6 +12,7 @@ class PlanningInput(StrictModel):
     constraints: str=Field(default='',max_length=1500)
     parentJobId: str|None=None
     regenerateBlockId: str|None=None
+    rewriteBlockId: str|None=None
 class PlanBlock(StrictModel):
     id: Text=Field(max_length=80)
     title: Text=Field(max_length=200)
