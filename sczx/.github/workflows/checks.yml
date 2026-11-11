@@ -4,7 +4,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
-      SCZX_STORAGE_DIR: ${{ runner.temp }}/sczx-basic-uploads
+      SCZX_STORAGE_DIR: /tmp/sczx-${{ github.run_id }}-basic-uploads
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,7 +44,7 @@ jobs:
       SCZX_DATABASE_URL: mysql+pymysql://root@127.0.0.1:3306/sczx_test_ci
       SCZX_RUN_MYSQL_TESTS: "1"
       PYTHONPATH: backend-business
-      SCZX_STORAGE_DIR: ${{ runner.temp }}/sczx-mysql-uploads
+      SCZX_STORAGE_DIR: /tmp/sczx-${{ github.run_id }}-mysql-uploads
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
