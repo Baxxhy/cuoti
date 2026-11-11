@@ -1,0 +1,31 @@
+{
+  "status": "succeeded",
+  "exitCode": 0,
+  "eventTypes": [
+    {
+      "type": "thread.started",
+      "itemType": null,
+      "errorCategory": null
+    },
+    {
+      "type": "turn.started",
+      "itemType": null,
+      "errorCategory": null
+    },
+    {
+      "type": "item.completed",
+      "itemType": "agent_message",
+      "errorCategory": null
+    },
+    {
+      "type": "turn.completed",
+      "itemType": null,
+      "errorCategory": null
+    }
+  ],
+  "seconds": 5.119,
+  "model": "gpt-6-luna",
+  "effort": "low",
+  "sameRuntimeEnvironment": true,
+  "backupCredentialsUsed": false
+}

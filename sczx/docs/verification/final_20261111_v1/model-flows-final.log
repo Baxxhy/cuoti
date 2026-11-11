@@ -1,0 +1,14 @@
+ocr succeeded
+ocr-confirmed succeeded
+wrong-analysis succeeded
+wrong-guidance succeeded
+wrong-practice succeeded
+wrong-retest failed
+Traceback (most recent call last):
+  File "/tmp/sczx-step20/model-flows.py", line 34, in <module>
+    variant=job(s,'wrong-'+phase,{'capability':'text','recordId':f['recordId'],'data':{**base,'mode':'variant','phase':phase,'prompt':'生成与原题结构相同、数字及解不同的方程。保留除数非零条件。'}});solved,ok=solve_text_equation(variant['result']['variant']['equation']);assert ok
+            ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/sczx-step20/model-flows.py", line 20, in job
+    if j['status']!='succeeded':raise RuntimeError(key+': '+j.get('error',''))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: wrong-retest: 变式只换字母或沿用同一答案，请改变数值。

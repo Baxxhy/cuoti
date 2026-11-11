@@ -1,0 +1,13 @@
+{
+  "database": "sczx_test_final_reg_dd7c6d",
+  "exitCode": 0,
+  "command": [
+    "/tmp/sczx-venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "backend-business/tests",
+    "-v"
+  ]
+}

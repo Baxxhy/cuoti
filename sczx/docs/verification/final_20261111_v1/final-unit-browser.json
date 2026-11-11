@@ -1,0 +1,102 @@
+{
+  "source": "f985287324a93dd4902feec2f8dc9211803a0265",
+  "checks": [
+    "latest assigned curriculum five completed after exam/live/groups and Agent republication"
+  ],
+  "screens": [
+    {
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "width": 2560,
+      "scroll": 2560,
+      "client": 2560
+    }
+  ],
+  "progress": {
+    "id": "unit-equation",
+    "title": "一元一次方程",
+    "lessons": [
+      {
+        "lessonId": "lesson-equation",
+        "title": "等式性质",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "versionId": "lessonversion-05548bc775c24080ab030dfee3",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已反馈",
+        "submittedAt": "2026-11-11T10:35:19Z",
+        "target": "/learn?task=task-6daf2f5fb78d3187a556ea93a19e3a3c"
+      },
+      {
+        "lessonId": "lesson-simple",
+        "title": "解简单的一元一次方程",
+        "taskId": "task-23f755e95c3856171c610b89803bd9d2",
+        "versionId": "lessonversion-a810db605e16465cb5f2c6940b",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已提交",
+        "submittedAt": "2026-11-11T11:05:12Z",
+        "target": "/learn?task=task-23f755e95c3856171c610b89803bd9d2"
+      },
+      {
+        "lessonId": "lesson-718041ce19ae47888e2ff95e33a554e7",
+        "title": "含括号与分母的方程",
+        "taskId": "task-93bc9542410cf0a716e8b866cc4133af",
+        "versionId": "lessonversion-4af3a0509e04454ba26be50f2c",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已提交",
+        "submittedAt": "2026-11-11T10:35:21Z",
+        "target": "/learn?task=task-93bc9542410cf0a716e8b866cc4133af"
+      },
+      {
+        "lessonId": "lesson-application",
+        "title": "用方程解决生活问题",
+        "taskId": "task-71e3a8b8603e7dfc87120886dab57859",
+        "versionId": "lessonversion-1b24b50fc3b44e0b836497e083",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已提交",
+        "submittedAt": "2026-11-11T10:35:21Z",
+        "target": "/learn?task=task-71e3a8b8603e7dfc87120886dab57859"
+      },
+      {
+        "lessonId": "lesson-285e7f380c074134b8d35a3b577b10d3",
+        "title": "一元一次方程单元复习",
+        "taskId": "task-518189bfa35d647fdb40d5fbc520a545",
+        "versionId": "lessonversion-2263f9dccbc84a608f76719979",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已提交",
+        "submittedAt": "2026-11-11T10:35:22Z",
+        "target": "/learn?task=task-518189bfa35d647fdb40d5fbc520a545"
+      }
+    ],
+    "completed": 5,
+    "assigned": 5,
+    "total": 5,
+    "scope": "本人已分配任务；完成不等于独立正确"
+  },
+  "groupTasksStillSeparate": [
+    {
+      "id": "task-b83e645217e5434c96e2f82073956e34",
+      "title": "巩固练习 · 交付验收共同运算检查",
+      "completed": false
+    }
+  ],
+  "consoleErrors": [],
+  "passed": true
+}

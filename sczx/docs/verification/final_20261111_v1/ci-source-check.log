@@ -1,0 +1,719 @@
+﻿2026-11-11T11:24:48.6763530Z Current runner version: '2.338.2'
+2026-11-11T11:24:48.6783845Z ##[group]Runner Image Provisioner
+2026-11-11T11:24:48.6784472Z Hosted Compute Agent
+2026-11-11T11:24:48.6784926Z Version: 20261028.624
+2026-11-11T11:24:48.6785338Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-11T11:24:48.6785796Z Build Date: 2026-10-28T21:51:42Z
+2026-11-11T11:24:48.6786264Z Worker ID: {7e89f193-4239-4291-94cc-ad67ab6b4dce}
+2026-11-11T11:24:48.6786739Z Region: centralus
+2026-11-11T11:24:48.6787070Z Cloud: Azure
+2026-11-11T11:24:48.6787459Z ##[endgroup]
+2026-11-11T11:24:48.6788265Z ##[group]Operating System
+2026-11-11T11:24:48.6788670Z Ubuntu
+2026-11-11T11:24:48.6789040Z 26.04.1
+2026-11-11T11:24:48.6789367Z LTS
+2026-11-11T11:24:48.6789755Z ##[endgroup]
+2026-11-11T11:24:48.6790092Z ##[group]Runner Image
+2026-11-11T11:24:48.6790476Z Image: ubuntu-26.04
+2026-11-11T11:24:48.6790876Z Version: 20261101.186.1
+2026-11-11T11:24:48.6792106Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-11T11:24:48.6793258Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+2026-11-11T11:24:48.6793902Z ##[endgroup]
+2026-11-11T11:24:48.6794633Z ##[group]GITHUB_TOKEN Permissions
+2026-11-11T11:24:48.6796085Z Contents: read
+2026-11-11T11:24:48.6796436Z Metadata: read
+2026-11-11T11:24:48.6796765Z Packages: read
+2026-11-11T11:24:48.6797184Z ##[endgroup]
+2026-11-11T11:24:48.6798927Z Secret source: Actions
+2026-11-11T11:24:48.6799543Z Cache mode: write
+2026-11-11T11:24:48.6800094Z Prepare workflow directory
+2026-11-11T11:24:48.7179131Z Prepare all required actions
+2026-11-11T11:24:48.7215390Z Getting action download info
+2026-11-11T11:24:48.9175147Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-11T11:24:48.9994408Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-11T11:24:49.0848081Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-11T11:24:49.2602107Z Complete job name: check
+2026-11-11T11:24:49.3190533Z ##[group]Run actions/checkout@v4
+2026-11-11T11:24:49.3192358Z with:
+2026-11-11T11:24:49.3192608Z   fetch-depth: 2
+2026-11-11T11:24:49.3193080Z   repository: Baxxhy/sczx
+2026-11-11T11:24:49.3195473Z   token: ***
+2026-11-11T11:24:49.3196734Z   ssh-strict: true
+2026-11-11T11:24:49.3197444Z   ssh-user: git
+2026-11-11T11:24:49.3197702Z   persist-credentials: true
+2026-11-11T11:24:49.3197975Z   clean: true
+2026-11-11T11:24:49.3198227Z   sparse-checkout-cone-mode: true
+2026-11-11T11:24:49.3198521Z   fetch-tags: false
+2026-11-11T11:24:49.3198773Z   show-progress: true
+2026-11-11T11:24:49.3199044Z   lfs: false
+2026-11-11T11:24:49.3200280Z   submodules: false
+2026-11-11T11:24:49.3200769Z   set-safe-directory: true
+2026-11-11T11:24:49.3201428Z   allow-unsafe-pr-checkout: false
+2026-11-11T11:24:49.3201797Z env:
+2026-11-11T11:24:49.3202071Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:24:49.3202457Z ##[endgroup]
+2026-11-11T11:24:49.5462553Z Syncing repository: Baxxhy/sczx
+2026-11-11T11:24:49.5464430Z ##[group]Getting Git version info
+2026-11-11T11:24:49.5464829Z Working directory is '/home/runner/work/sczx/sczx'
+2026-11-11T11:24:49.5465403Z [command]/usr/bin/git version
+2026-11-11T11:24:49.5482582Z git version 2.56.0
+2026-11-11T11:24:49.5496951Z ##[endgroup]
+2026-11-11T11:24:49.5508726Z Temporarily overriding HOME='/home/runner/work/_temp/0b41e443-76e0-49e8-b6b5-bda8b9c50340' before making global git config changes
+2026-11-11T11:24:49.5509813Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T11:24:49.5513309Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sczx/sczx
+2026-11-11T11:24:49.5593368Z Deleting the contents of '/home/runner/work/sczx/sczx'
+2026-11-11T11:24:49.5596583Z ##[group]Initializing the repository
+2026-11-11T11:24:49.5603280Z [command]/usr/bin/git init /home/runner/work/sczx/sczx
+2026-11-11T11:24:49.5920171Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-11T11:24:49.5921530Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-11T11:24:49.5924700Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-11T11:24:49.5926093Z hint: call:
+2026-11-11T11:24:49.5926331Z hint:
+2026-11-11T11:24:49.5926663Z hint: 	git config --global init.defaultBranch <name>
+2026-11-11T11:24:49.5927072Z hint:
+2026-11-11T11:24:49.5927567Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-11T11:24:49.5928279Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-11T11:24:49.5928766Z hint:
+2026-11-11T11:24:49.5929010Z hint: 	git branch -m <name>
+2026-11-11T11:24:49.5929284Z hint:
+2026-11-11T11:24:49.5930594Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-11T11:24:49.5955674Z Initialized empty Git repository in /home/runner/work/sczx/sczx/.git/
+2026-11-11T11:24:49.5972272Z [command]/usr/bin/git remote add origin https://github.com/Baxxhy/sczx
+2026-11-11T11:24:49.6060042Z ##[endgroup]
+2026-11-11T11:24:49.6060895Z ##[group]Disabling automatic garbage collection
+2026-11-11T11:24:49.6065753Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-11T11:24:49.6141878Z ##[endgroup]
+2026-11-11T11:24:49.6143880Z ##[group]Setting up auth
+2026-11-11T11:24:49.6160863Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T11:24:49.6239252Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T11:24:49.6804333Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T11:24:49.6836089Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T11:24:49.7070142Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T11:24:49.7104520Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T11:24:49.7360368Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-11T11:24:49.7407587Z ##[endgroup]
+2026-11-11T11:24:49.7408422Z ##[group]Fetching the repository
+2026-11-11T11:24:49.7415558Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=2 origin +f985287324a93dd4902feec2f8dc9211803a0265:refs/remotes/origin/main
+2026-11-11T11:24:50.9949578Z From https://github.com/Baxxhy/sczx
+2026-11-11T11:24:50.9950481Z  * [new ref]         f985287324a93dd4902feec2f8dc9211803a0265 -> origin/main
+2026-11-11T11:24:50.9952197Z ##[endgroup]
+2026-11-11T11:24:50.9952684Z ##[group]Determining the checkout info
+2026-11-11T11:24:50.9960485Z ##[endgroup]
+2026-11-11T11:24:50.9961361Z [command]/usr/bin/git sparse-checkout disable
+2026-11-11T11:24:51.0008413Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-11T11:24:51.0038492Z ##[group]Checking out the ref
+2026-11-11T11:24:51.0048795Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-11T11:24:51.2148119Z Switched to a new branch 'main'
+2026-11-11T11:24:51.2152557Z branch 'main' set up to track 'origin/main'.
+2026-11-11T11:24:51.2167453Z ##[endgroup]
+2026-11-11T11:24:51.2209948Z [command]/usr/bin/git log -1 --format=%H
+2026-11-11T11:24:51.2233513Z f985287324a93dd4902feec2f8dc9211803a0265
+2026-11-11T11:24:51.2552124Z ##[group]Run actions/setup-python@v5
+2026-11-11T11:24:51.2552999Z with:
+2026-11-11T11:24:51.2553473Z   python-version: 3.12
+2026-11-11T11:24:51.2554014Z   check-latest: false
+2026-11-11T11:24:51.2559904Z   token: ***
+2026-11-11T11:24:51.2560406Z   update-environment: true
+2026-11-11T11:24:51.2560981Z   allow-prereleases: false
+2026-11-11T11:24:51.2561527Z   freethreaded: false
+2026-11-11T11:24:51.2562019Z env:
+2026-11-11T11:24:51.2562554Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:24:51.2563365Z ##[endgroup]
+2026-11-11T11:24:51.3544855Z ##[group]Installed versions
+2026-11-11T11:24:51.3641841Z (node:2168) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T11:24:51.3643851Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T11:24:51.3645006Z Successfully set up CPython (3.12.16)
+2026-11-11T11:24:51.3646306Z ##[endgroup]
+2026-11-11T11:24:51.3869514Z ##[group]Run actions/setup-node@v4
+2026-11-11T11:24:51.3870121Z with:
+2026-11-11T11:24:51.3870557Z   node-version: 22
+2026-11-11T11:24:51.3871009Z   cache: npm
+2026-11-11T11:24:51.3871740Z   cache-dependency-path: frontend/package-lock.json
+2026-11-11T11:24:51.3872492Z   always-auth: false
+2026-11-11T11:24:51.3873109Z   check-latest: false
+2026-11-11T11:24:51.3878214Z   token: ***
+2026-11-11T11:24:51.3878640Z env:
+2026-11-11T11:24:51.3879154Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:24:51.3879973Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:24:51.3880925Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:24:51.3881850Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:24:51.3882677Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:24:51.3883645Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:24:51.3884540Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:24:51.3885255Z ##[endgroup]
+2026-11-11T11:24:51.4915141Z (node:2176) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T11:24:51.4916727Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T11:24:51.4921822Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+2026-11-11T11:24:51.8097398Z ##[group]Environment details
+2026-11-11T11:24:51.8097806Z node: v22.23.4
+2026-11-11T11:24:51.8098024Z npm: 10.9.9
+2026-11-11T11:24:51.8098245Z yarn: 1.22.22
+2026-11-11T11:24:51.8098584Z ##[endgroup]
+2026-11-11T11:24:51.8109729Z [command]/opt/hostedtoolcache/node/22.23.4/x64/bin/npm config get cache
+2026-11-11T11:24:51.8991998Z /home/runner/.npm
+2026-11-11T11:24:52.0455371Z Cache hit for: node-cache-Linux-x64-npm-624d692f385c594b08267eaf2fa35111d386b014d5df24889732312df54e6e5d
+2026-11-11T11:24:52.0526251Z (node:2176) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-11T11:24:52.7804034Z Received 27403527 of 27403527 (100.0%), 47.3 MBs/sec
+2026-11-11T11:24:52.7804612Z Cache Size: ~26 MB (27403527 B)
+2026-11-11T11:24:52.7822884Z [command]/usr/bin/tar -xf /home/runner/work/_temp/0298afda-2f95-4354-a1ad-ca73f571ff7f/cache.tzst -P -C /home/runner/work/sczx/sczx --use-compress-program unzstd
+2026-11-11T11:24:52.8267158Z Cache restored successfully
+2026-11-11T11:24:52.8281887Z Cache restored from key: node-cache-Linux-x64-npm-624d692f385c594b08267eaf2fa35111d386b014d5df24889732312df54e6e5d
+2026-11-11T11:24:52.8484871Z ##[group]Run pip install -e backend-business
+2026-11-11T11:24:52.8485172Z [36;1mpip install -e backend-business[0m
+2026-11-11T11:24:52.8543273Z shell: /usr/bin/bash -e {0}
+2026-11-11T11:24:52.8543454Z env:
+2026-11-11T11:24:52.8543636Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:24:52.8543865Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:24:52.8544102Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:24:52.8544343Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:24:52.8544799Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:24:52.8545024Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:24:52.8545240Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:24:52.8545424Z ##[endgroup]
+2026-11-11T11:24:53.5544693Z Obtaining file:///home/runner/work/sczx/sczx/backend-business
+2026-11-11T11:24:53.5552291Z   Installing build dependencies: started
+2026-11-11T11:24:54.1687241Z   Installing build dependencies: finished with status 'done'
+2026-11-11T11:24:54.1692056Z   Checking if build backend supports build_editable: started
+2026-11-11T11:24:54.4148277Z   Checking if build backend supports build_editable: finished with status 'done'
+2026-11-11T11:24:54.4155409Z   Getting requirements to build editable: started
+2026-11-11T11:24:54.6561507Z   Getting requirements to build editable: finished with status 'done'
+2026-11-11T11:24:54.6568842Z   Preparing editable metadata (pyproject.toml): started
+2026-11-11T11:24:54.7860253Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+2026-11-11T11:24:54.8637491Z Collecting fastapi<1,>=0.115 (from sczx-business==0.1.0)
+2026-11-11T11:24:54.9174458Z   Downloading fastapi-0.162.4-py3-none-any.whl.metadata (27 kB)
+2026-11-11T11:24:54.9518736Z Collecting uvicorn<1,>=0.30 (from sczx-business==0.1.0)
+2026-11-11T11:24:54.9671937Z   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T11:24:55.1741722Z Collecting SQLAlchemy<3,>=2.0 (from sczx-business==0.1.0)
+2026-11-11T11:24:55.1911735Z   Downloading sqlalchemy-2.1.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.7 kB)
+2026-11-11T11:24:55.3596219Z Collecting PyMySQL<2,>=1.1 (from sczx-business==0.1.0)
+2026-11-11T11:24:55.3748597Z   Downloading pymysql-1.2.4-py3-none-any.whl.metadata (4.2 kB)
+2026-11-11T11:24:55.5312997Z Collecting alembic<2,>=1.13 (from sczx-business==0.1.0)
+2026-11-11T11:24:55.5464473Z   Downloading alembic-1.20.1-py3-none-any.whl.metadata (7.3 kB)
+2026-11-11T11:24:55.8582269Z Collecting python-multipart<1,>=0.0.9 (from sczx-business==0.1.0)
+2026-11-11T11:24:55.8733250Z   Downloading python_multipart-0.0.33-py3-none-any.whl.metadata (6.3 kB)
+2026-11-11T11:24:55.9872909Z Collecting python-dotenv<2,>=1.0 (from sczx-business==0.1.0)
+2026-11-11T11:24:56.0026463Z   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+2026-11-11T11:24:56.0243703Z Collecting httpx<1,>=0.27 (from sczx-business==0.1.0)
+2026-11-11T11:24:56.0399027Z   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-11-11T11:24:56.0632606Z Collecting sympy<2,>=1.13 (from sczx-business==0.1.0)
+2026-11-11T11:24:56.0784493Z   Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+2026-11-11T11:24:56.1647036Z Collecting PyMuPDF<2,>=1.26 (from sczx-business==0.1.0)
+2026-11-11T11:24:56.1802491Z   Downloading pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (26 kB)
+2026-11-11T11:24:56.2004079Z Collecting python-docx<2,>=1.2 (from sczx-business==0.1.0)
+2026-11-11T11:24:56.2156302Z   Downloading python_docx-1.2.0-py3-none-any.whl.metadata (2.0 kB)
+2026-11-11T11:24:56.2453114Z Collecting langgraph<2,>=1.2.20 (from sczx-business==0.1.0)
+2026-11-11T11:24:56.2611442Z   Downloading langgraph-1.2.20-py3-none-any.whl.metadata (4.9 kB)
+2026-11-11T11:24:56.2805631Z Collecting Mako (from alembic<2,>=1.13->sczx-business==0.1.0)
+2026-11-11T11:24:56.2959497Z   Downloading mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
+2026-11-11T11:24:56.3171469Z Collecting typing-extensions>=4.12 (from alembic<2,>=1.13->sczx-business==0.1.0)
+2026-11-11T11:24:56.3327619Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-11-11T11:24:56.3561433Z Collecting starlette>=0.46.0 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T11:24:56.3713408Z   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T11:24:56.3952103Z Collecting anyio>=4.1.0 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T11:24:56.4126150Z   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+2026-11-11T11:24:56.5571893Z Collecting pydantic>=2.9.0 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T11:24:56.5728933Z   Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+2026-11-11T11:24:56.6133430Z Collecting typing-inspection>=0.4.2 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T11:24:56.6286206Z   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T11:24:56.6636155Z Collecting annotated-doc>=0.0.2 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T11:24:56.6791598Z   Downloading annotated_doc-0.0.6-py3-none-any.whl.metadata (6.5 kB)
+2026-11-11T11:24:56.6994923Z Collecting opentelemetry-api>=1.44.0 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T11:24:56.7147107Z   Downloading opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T11:24:56.7393963Z Collecting certifi (from httpx<1,>=0.27->sczx-business==0.1.0)
+2026-11-11T11:24:56.7546694Z   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+2026-11-11T11:24:56.7735768Z Collecting httpcore==1.* (from httpx<1,>=0.27->sczx-business==0.1.0)
+2026-11-11T11:24:56.7892080Z   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-11-11T11:24:56.8083543Z Collecting idna (from httpx<1,>=0.27->sczx-business==0.1.0)
+2026-11-11T11:24:56.8240548Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-11T11:24:56.8420948Z Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.27->sczx-business==0.1.0)
+2026-11-11T11:24:56.8575983Z   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-11-11T11:24:56.9026676Z Collecting langchain-core<2,>=1.4.7 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:56.9181341Z   Downloading langchain_core-1.7.7-py3-none-any.whl.metadata (4.8 kB)
+2026-11-11T11:24:56.9384071Z Collecting langgraph-checkpoint<5.0.0,>=4.3.0 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:56.9536263Z   Downloading langgraph_checkpoint-4.3.1-py3-none-any.whl.metadata (6.7 kB)
+2026-11-11T11:24:56.9724758Z Collecting langgraph-prebuilt<1.2.0,>=1.1.0 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:56.9878639Z   Downloading langgraph_prebuilt-1.1.1-py3-none-any.whl.metadata (6.9 kB)
+2026-11-11T11:24:57.0101894Z Collecting langgraph-sdk<0.5.0,>=0.4.6 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.0254553Z   Downloading langgraph_sdk-0.4.14-py3-none-any.whl.metadata (5.1 kB)
+2026-11-11T11:24:57.1453255Z Collecting xxhash>=3.5.0 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.1612980Z   Downloading xxhash-4.1.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (18 kB)
+2026-11-11T11:24:57.1826031Z Collecting jsonpatch>=1.33.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.1976781Z   Downloading jsonpatch-1.47-py3-none-any.whl.metadata (4.9 kB)
+2026-11-11T11:24:57.2150740Z Collecting langchain-protocol>=0.0.20 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.2305722Z   Downloading langchain_protocol-0.0.21-py3-none-any.whl.metadata (2.4 kB)
+2026-11-11T11:24:57.2729750Z Collecting langsmith<1.0.0,>=0.14.9 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.2883185Z   Downloading langsmith-0.14.17-py3-none-any.whl.metadata (39 kB)
+2026-11-11T11:24:57.3106558Z Collecting packaging>=23.2.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.3256829Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-11T11:24:57.3567762Z Collecting pyyaml>=5.3.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.3722589Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-11T11:24:57.3905438Z Collecting tenacity!=8.4.0,>=8.1.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.4055856Z   Downloading tenacity-9.2.1-py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T11:24:57.4858489Z Collecting uuid-utils>=0.12.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.5011718Z   Downloading uuid_utils-1.2.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+2026-11-11T11:24:57.5451034Z Collecting ormsgpack>=1.12.0 (from langgraph-checkpoint<5.0.0,>=4.3.0->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.5604974Z   Downloading ormsgpack-1.13.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.2 kB)
+2026-11-11T11:24:57.7490714Z Collecting orjson>=3.11.5 (from langgraph-sdk<0.5.0,>=0.4.6->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.7652521Z   Downloading orjson-3.13.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (42 kB)
+2026-11-11T11:24:57.8676147Z Collecting websockets>=14 (from langgraph-sdk<0.5.0,>=0.4.6->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.8829777Z   Downloading websockets-17.4-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+2026-11-11T11:24:57.9016818Z Collecting distro<2,>=1.7.0 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.9168071Z   Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+2026-11-11T11:24:57.9345228Z Collecting httpx2<3,>=2 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.9493738Z   Downloading httpx2-2.16.0-py3-none-any.whl.metadata (10 kB)
+2026-11-11T11:24:57.9700689Z Collecting requests-toolbelt>=1.0.0 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:57.9851361Z   Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl.metadata (14 kB)
+2026-11-11T11:24:58.0086119Z Collecting requests>=2.0.0 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:58.0238667Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-11-11T11:24:58.0402134Z Collecting sniffio (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:58.0554507Z   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+2026-11-11T11:24:58.0599139Z Collecting uuid-utils>=0.12.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:58.0752432Z   Downloading uuid_utils-0.19.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+2026-11-11T11:24:58.1346215Z Collecting zstandard>=0.23.0 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:58.1501346Z   Downloading zstandard-0.25.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.3 kB)
+2026-11-11T11:24:58.1717276Z Collecting httpcore2==2.16.0 (from httpx2<3,>=2->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:58.1867201Z   Downloading httpcore2-2.16.0-py3-none-any.whl.metadata (27 kB)
+2026-11-11T11:24:58.2050129Z Collecting truststore>=0.10 (from httpx2<3,>=2->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:58.2201356Z   Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+2026-11-11T11:24:58.2380867Z Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T11:24:58.2533346Z   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-11-11T11:24:58.7005621Z Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T11:24:58.7159529Z   Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+2026-11-11T11:24:58.9170963Z Collecting lxml>=3.1.0 (from python-docx<2,>=1.2->sczx-business==0.1.0)
+2026-11-11T11:24:58.9327922Z   Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+2026-11-11T11:24:58.9543534Z Collecting mpmath<1.4,>=1.1.0 (from sympy<2,>=1.13->sczx-business==0.1.0)
+2026-11-11T11:24:58.9697750Z   Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+2026-11-11T11:24:58.9915294Z Collecting click>=7.0 (from uvicorn<1,>=0.30->sczx-business==0.1.0)
+2026-11-11T11:24:59.0068190Z   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T11:24:59.0268005Z Collecting jsonpointer>=3.8 (from jsonpatch>=1.33.0->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:59.0418404Z   Downloading jsonpointer-3.12-py3-none-any.whl.metadata (2.7 kB)
+2026-11-11T11:24:59.1228043Z Collecting charset_normalizer<4,>=2 (from requests>=2.0.0->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:59.1381696Z   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-11T11:24:59.1625684Z Collecting urllib3<3,>=1.26 (from requests>=2.0.0->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T11:24:59.1778241Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-11-11T11:24:59.2322476Z Collecting MarkupSafe>=2.0 (from Mako->alembic<2,>=1.13->sczx-business==0.1.0)
+2026-11-11T11:24:59.2478260Z   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-11-11T11:24:59.2675412Z Downloading alembic-1.20.1-py3-none-any.whl (270 kB)
+2026-11-11T11:24:59.2999144Z Downloading fastapi-0.162.4-py3-none-any.whl (151 kB)
+2026-11-11T11:24:59.3183610Z Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-11-11T11:24:59.3354780Z Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-11-11T11:24:59.3526510Z Downloading langgraph-1.2.20-py3-none-any.whl (263 kB)
+2026-11-11T11:24:59.3728885Z Downloading langchain_core-1.7.7-py3-none-any.whl (580 kB)
+2026-11-11T11:24:59.3907882Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 580.7/580.7 kB 22.2 MB/s  0:00:00
+2026-11-11T11:24:59.4059800Z Downloading langgraph_checkpoint-4.3.1-py3-none-any.whl (58 kB)
+2026-11-11T11:24:59.4228981Z Downloading langgraph_prebuilt-1.1.1-py3-none-any.whl (42 kB)
+2026-11-11T11:24:59.4397368Z Downloading langgraph_sdk-0.4.14-py3-none-any.whl (171 kB)
+2026-11-11T11:24:59.4570072Z Downloading langsmith-0.14.17-py3-none-any.whl (940 kB)
+2026-11-11T11:24:59.4796093Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 940.8/940.8 kB 33.1 MB/s  0:00:00
+2026-11-11T11:24:59.4951337Z Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+2026-11-11T11:24:59.5127395Z Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+2026-11-11T11:24:59.5300890Z Downloading httpx2-2.16.0-py3-none-any.whl (97 kB)
+2026-11-11T11:24:59.5474802Z Downloading httpcore2-2.16.0-py3-none-any.whl (85 kB)
+2026-11-11T11:24:59.5652671Z Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+2026-11-11T11:24:59.5840170Z Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+2026-11-11T11:24:59.6118040Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 78.2 MB/s  0:00:00
+2026-11-11T11:24:59.6282486Z Downloading pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl (25.8 MB)
+2026-11-11T11:24:59.8170437Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 25.8/25.8 MB 137.2 MB/s  0:00:00
+2026-11-11T11:24:59.8322529Z Downloading pymysql-1.2.4-py3-none-any.whl (46 kB)
+2026-11-11T11:24:59.8495746Z Downloading python_docx-1.2.0-py3-none-any.whl (252 kB)
+2026-11-11T11:24:59.8663338Z Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+2026-11-11T11:24:59.9006766Z Downloading python_multipart-0.0.33-py3-none-any.whl (32 kB)
+2026-11-11T11:24:59.9173320Z Downloading sqlalchemy-2.1.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.7 MB)
+2026-11-11T11:24:59.9473099Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 159.8 MB/s  0:00:00
+2026-11-11T11:24:59.9625312Z Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-11-11T11:25:00.0000876Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 167.8 MB/s  0:00:00
+2026-11-11T11:25:00.0148093Z Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-11-11T11:25:00.0181590Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 140.0 MB/s  0:00:00
+2026-11-11T11:25:00.0328228Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-11T11:25:00.0494546Z Downloading uuid_utils-0.19.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (330 kB)
+2026-11-11T11:25:00.0660566Z Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+2026-11-11T11:25:00.0831297Z Downloading annotated_doc-0.0.6-py3-none-any.whl (5.3 kB)
+2026-11-11T11:25:00.1008882Z Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-11-11T11:25:00.1177079Z Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+2026-11-11T11:25:00.1350073Z Downloading click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-11T11:25:00.1531230Z Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+2026-11-11T11:25:00.1700378Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-11T11:25:00.1874910Z Downloading jsonpatch-1.47-py3-none-any.whl (25 kB)
+2026-11-11T11:25:00.2045039Z Downloading jsonpointer-3.12-py3-none-any.whl (10 kB)
+2026-11-11T11:25:00.2215455Z Downloading langchain_protocol-0.0.21-py3-none-any.whl (7.4 kB)
+2026-11-11T11:25:00.2385677Z Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+2026-11-11T11:25:00.2705751Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 165.9 MB/s  0:00:00
+2026-11-11T11:25:00.2862044Z Downloading opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+2026-11-11T11:25:00.3104627Z Downloading orjson-3.13.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (130 kB)
+2026-11-11T11:25:00.3283316Z Downloading ormsgpack-1.13.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (273 kB)
+2026-11-11T11:25:00.3459294Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-11T11:25:00.3633947Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-11T11:25:00.3684216Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 183.2 MB/s  0:00:00
+2026-11-11T11:25:00.3837686Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-11T11:25:00.4009995Z Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+2026-11-11T11:25:00.4185504Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-11T11:25:00.4359794Z Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+2026-11-11T11:25:00.4534669Z Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+2026-11-11T11:25:00.4709839Z Downloading tenacity-9.2.1-py3-none-any.whl (32 kB)
+2026-11-11T11:25:00.4880472Z Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+2026-11-11T11:25:00.5130025Z Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+2026-11-11T11:25:00.5300954Z Downloading websockets-17.4-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (226 kB)
+2026-11-11T11:25:00.5478587Z Downloading xxhash-4.1.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (472 kB)
+2026-11-11T11:25:00.5661340Z Downloading zstandard-0.25.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.5 MB)
+2026-11-11T11:25:00.5995369Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 168.5 MB/s  0:00:00
+2026-11-11T11:25:00.6149532Z Downloading mako-1.4.3-py3-none-any.whl (80 kB)
+2026-11-11T11:25:00.6323374Z Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-11-11T11:25:00.6493007Z Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+2026-11-11T11:25:00.7648527Z Building wheels for collected packages: sczx-business
+2026-11-11T11:25:00.7655760Z   Building editable for sczx-business (pyproject.toml): started
+2026-11-11T11:25:00.9175199Z   Building editable for sczx-business (pyproject.toml): finished with status 'done'
+2026-11-11T11:25:00.9179496Z   Created wheel for sczx-business: filename=sczx_business-0.1.0-0.editable-py3-none-any.whl size=2886 sha256=ce77d0d2f119c0d5b99df8028b179c7f210d0d7354ed8840b39003bdf8e59810
+2026-11-11T11:25:00.9180598Z   Stored in directory: /tmp/pip-ephem-wheel-cache-wh_31ny5/wheels/02/c8/63/80201cf5d51e01bd94f3a2c9232055e33108248a4bacfd9620
+2026-11-11T11:25:00.9191367Z Successfully built sczx-business
+2026-11-11T11:25:00.9802884Z Installing collected packages: mpmath, zstandard, xxhash, websockets, uuid-utils, urllib3, typing-extensions, truststore, tenacity, sympy, sniffio, pyyaml, python-multipart, python-dotenv, PyMySQL, PyMuPDF, packaging, ormsgpack, orjson, MarkupSafe, lxml, jsonpointer, idna, h11, distro, click, charset_normalizer, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, SQLAlchemy, requests, python-docx, pydantic-core, opentelemetry-api, Mako, langchain-protocol, jsonpatch, httpcore2, httpcore, anyio, starlette, requests-toolbelt, pydantic, httpx2, httpx, alembic, langsmith, fastapi, langchain-core, langgraph-sdk, langgraph-checkpoint, langgraph-prebuilt, langgraph, sczx-business
+2026-11-11T11:25:10.2195937Z
+2026-11-11T11:25:10.2225822Z Successfully installed Mako-1.4.3 MarkupSafe-3.0.4 PyMuPDF-1.28.2 PyMySQL-1.2.4 SQLAlchemy-2.1.8 alembic-1.20.1 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 certifi-2026.10.23 charset_normalizer-3.5.2 click-8.5.1 distro-1.9.0 fastapi-0.162.4 h11-0.16.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 idna-3.20 jsonpatch-1.47 jsonpointer-3.12 langchain-core-1.7.7 langchain-protocol-0.0.21 langgraph-1.2.20 langgraph-checkpoint-4.3.1 langgraph-prebuilt-1.1.1 langgraph-sdk-0.4.14 langsmith-0.14.17 lxml-6.1.3 mpmath-1.3.0 opentelemetry-api-1.45.2 orjson-3.13.0 ormsgpack-1.13.1 packaging-26.3 pydantic-2.14.3 pydantic-core-2.50.4 python-docx-1.2.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 requests-2.34.2 requests-toolbelt-1.0.0 sczx-business-0.1.0 sniffio-1.3.1 starlette-1.10.0 sympy-1.14.0 tenacity-9.2.1 truststore-0.10.5 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 uuid-utils-0.19.0 uvicorn-0.54.0 websockets-17.4 xxhash-4.1.0 zstandard-0.25.0
+2026-11-11T11:25:10.2232884Z
+2026-11-11T11:25:10.2233151Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-11T11:25:10.2233473Z [notice] To update, run: pip install --upgrade pip
+2026-11-11T11:25:10.5981018Z ##[group]Run PYTHONPATH=backend-business python -m unittest discover -s backend-business/tests -v
+2026-11-11T11:25:10.5981442Z [36;1mPYTHONPATH=backend-business python -m unittest discover -s backend-business/tests -v[0m
+2026-11-11T11:25:10.6024639Z shell: /usr/bin/bash -e {0}
+2026-11-11T11:25:10.6024796Z env:
+2026-11-11T11:25:10.6024978Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:25:10.6025197Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:10.6025440Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:25:10.6025680Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:10.6025900Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:10.6026120Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:10.6026340Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:25:10.6026528Z ##[endgroup]
+2026-11-11T11:25:12.1802234Z test_active_duplicate_and_cross_role_access (test_agent_mysql.AgentMySQLTests.test_active_duplicate_and_cross_role_access) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1804265Z test_cancel_in_progress_keeps_prior_steps (test_agent_mysql.AgentMySQLTests.test_cancel_in_progress_keeps_prior_steps) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1805958Z test_confirm_draft_is_explicit_and_idempotent (test_agent_mysql.AgentMySQLTests.test_confirm_draft_is_explicit_and_idempotent) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1807426Z test_no_cases_materials_and_invalid_output_are_explicit (test_agent_mysql.AgentMySQLTests.test_no_cases_materials_and_invalid_output_are_explicit) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1808947Z test_step10_partial_rewrite_preserves_personalization (test_agent_mysql.AgentMySQLTests.test_step10_partial_rewrite_preserves_personalization) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1810449Z test_step10_saved_history_concurrency_restore_export_and_permissions (test_agent_mysql.AgentMySQLTests.test_step10_saved_history_concurrency_restore_export_and_permissions) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1812006Z test_step10_source_republish_blocks_old_agent_confirmation (test_agent_mysql.AgentMySQLTests.test_step10_source_republish_blocks_old_agent_confirmation) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1813852Z test_timeout_retains_checkpoints_and_resume_does_not_repeat_success (test_agent_mysql.AgentMySQLTests.test_timeout_retains_checkpoints_and_resume_does_not_repeat_success) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1815440Z test_total_deadline_prevents_model_call (test_agent_mysql.AgentMySQLTests.test_total_deadline_prevents_model_call) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1816859Z test_unparsed_material_is_not_presented_as_evidence (test_agent_mysql.AgentMySQLTests.test_unparsed_material_is_not_presented_as_evidence) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1818308Z test_word_export_options_never_modify_saved_teacher_text (test_agent_mysql.AgentMySQLTests.test_word_export_options_never_modify_saved_teacher_text) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1819915Z test_word_quality_revision_is_single_and_preserves_parent_history (test_agent_mysql.AgentMySQLTests.test_word_quality_revision_is_single_and_preserves_parent_history) ... skipped 'isolated MySQL integration is opt-in'
+2026-11-11T11:25:12.1821366Z test_concurrent_duplicate_answers_count_once (test_classroom_mysql.ClassroomTests.test_concurrent_duplicate_answers_count_once) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.1823276Z test_draft_restore_submit_idempotency_stats_feedback_end_and_growth (test_classroom_mysql.ClassroomTests.test_draft_restore_submit_idempotency_stats_feedback_end_and_growth) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.1824860Z test_group_evidence_manual_adjust_publish_targets_and_new_attempt (test_classroom_mysql.ClassroomTests.test_group_evidence_manual_adjust_publish_targets_and_new_attempt) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.1826511Z test_group_rejects_other_class_duplicate_members_and_unreviewed_paper (test_classroom_mysql.ClassroomTests.test_group_rejects_other_class_duplicate_members_and_unreviewed_paper) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.1828009Z test_live_source_permission_and_no_answer_leak (test_classroom_mysql.ClassroomTests.test_live_source_permission_and_no_answer_leak) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.1829380Z test_no_unpublished_case_or_foreign_private_plan_share (test_classroom_mysql.ClassroomTests.test_no_unpublished_case_or_foreign_private_plan_share) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.1830849Z test_old_activity_cannot_accept_late_answer_after_push (test_classroom_mysql.ClassroomTests.test_old_activity_cannot_accept_late_answer_after_push) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.1832262Z test_share_bookmark_discussion_adapt_provenance_and_withdraw (test_classroom_mysql.ClassroomTests.test_share_bookmark_discussion_adapt_provenance_and_withdraw) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.2314226Z test_fonts_color_a4_spacing_and_page_field_are_explicit (test_docx_export.WordExportTests.test_fonts_color_a4_spacing_and_page_field_are_explicit) ... ok
+2026-11-11T11:25:12.2317035Z test_marker_cleanup_is_bounded_explicit_and_preserves_math_and_sources (test_docx_export.WordExportTests.test_marker_cleanup_is_bounded_explicit_and_preserves_math_and_sources) ... ok
+2026-11-11T11:25:12.3464328Z test_modes_deduplicate_sources_without_touching_original_text (test_docx_export.WordExportTests.test_modes_deduplicate_sources_without_touching_original_text) ... ok
+2026-11-11T11:25:12.3471958Z test_quality_warnings_do_not_rewrite_or_mislabel_conditions (test_docx_export.WordExportTests.test_quality_warnings_do_not_rewrite_or_mislabel_conditions) ... ok
+2026-11-11T11:25:12.3898538Z test_nonzero_reversible_steps_and_no_arbitrary_code (test_exams_mysql.EquationMathTests.test_nonzero_reversible_steps_and_no_arbitrary_code) ... ok
+2026-11-11T11:25:12.3899643Z test_answer_secrecy_drafts_revision_submit_idempotency (test_exams_mysql.ExamTests.test_answer_secrecy_drafts_revision_submit_idempotency) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3900477Z test_application_manual_grading_audit_release_wrong_and_unchanged_original (test_exams_mysql.ExamTests.test_application_manual_grading_audit_release_wrong_and_unchanged_original) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3901208Z test_bank_versions_and_reference_rejection (test_exams_mysql.ExamTests.test_bank_versions_and_reference_rejection) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3901891Z test_candidate_job_is_owned_and_not_implicitly_approved (test_exams_mysql.ExamTests.test_candidate_job_is_owned_and_not_implicitly_approved) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3902566Z test_constraints_report_shortage_and_do_not_pad (test_exams_mysql.ExamTests.test_constraints_report_shortage_and_do_not_pad) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3903407Z test_course_import_and_unreviewed_cannot_enter_paper (test_exams_mysql.ExamTests.test_course_import_and_unreviewed_cannot_enter_paper) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3904080Z test_equation_replay_restore_undo_and_other_student (test_exams_mysql.ExamTests.test_equation_replay_restore_undo_and_other_student) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3904759Z test_exam_snapshot_survives_question_and_paper_edits (test_exams_mysql.ExamTests.test_exam_snapshot_survives_question_and_paper_edits) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3905700Z test_exports_black_font_student_secrecy (test_exams_mysql.ExamTests.test_exports_black_font_student_secrecy) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3906354Z test_future_start_and_cross_student_class_permissions (test_exams_mysql.ExamTests.test_future_start_and_cross_student_class_permissions) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3907071Z test_grading_out_of_range_and_stale_revision_do_not_overwrite (test_exams_mysql.ExamTests.test_grading_out_of_range_and_stale_revision_do_not_overwrite) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3907702Z test_learning_record_export_scope (test_exams_mysql.ExamTests.test_learning_record_export_scope) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.3908306Z test_server_deadline_submits_only_saved_answers (test_exams_mysql.ExamTests.test_server_deadline_submits_only_saved_answers) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4083486Z test_invalid_or_failed_ranking_keeps_all_candidates (test_fallback.RerankFallbackTests.test_invalid_or_failed_ranking_keeps_all_candidates) ... ok
+2026-11-11T11:25:12.4089736Z test_admin_only_system_content_and_legacy_read_preserved (test_insights_mysql.InsightsTests.test_admin_only_system_content_and_legacy_read_preserved) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4091017Z test_all_intervention_types_real_wrong_and_prerequisite_target (test_insights_mysql.InsightsTests.test_all_intervention_types_real_wrong_and_prerequisite_target) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4092357Z test_append_review_preserves_original_verification (test_insights_mysql.InsightsTests.test_append_review_preserves_original_verification) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4093376Z test_class_scoping_cross_student_and_removed (test_insights_mysql.InsightsTests.test_class_scoping_cross_student_and_removed) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4094349Z test_dashboard_record_and_class_same_metric_definitions (test_insights_mysql.InsightsTests.test_dashboard_record_and_class_same_metric_definitions) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4095110Z test_difficulty_requires_evidence_and_confirmation_targets (test_insights_mysql.InsightsTests.test_difficulty_requires_evidence_and_confirmation_targets) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4096242Z test_helped_unknown_and_manual_never_auto_correct (test_insights_mysql.InsightsTests.test_helped_unknown_and_manual_never_auto_correct) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4097006Z test_intervention_concurrent_idempotent_reject_changed_payload (test_insights_mysql.InsightsTests.test_intervention_concurrent_idempotent_reject_changed_payload) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4097808Z test_intervention_delivery_submission_not_retest_and_new_answer (test_insights_mysql.InsightsTests.test_intervention_delivery_submission_not_retest_and_new_answer) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4098577Z test_intervention_repeated_old_question_not_new_retest (test_insights_mysql.InsightsTests.test_intervention_repeated_old_question_not_new_retest) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4099476Z test_issue_concurrent_revision_and_creation_replay (test_insights_mysql.InsightsTests.test_issue_concurrent_revision_and_creation_replay) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4100233Z test_model_failure_queue_admin_metadata_and_current_owner_retry (test_insights_mysql.InsightsTests.test_model_failure_queue_admin_metadata_and_current_owner_retry) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4100980Z test_multi_issues_reply_close_history_and_private (test_insights_mysql.InsightsTests.test_multi_issues_reply_close_history_and_private) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4101658Z test_retries_count_unique_and_latest (test_insights_mysql.InsightsTests.test_retries_count_unique_and_latest) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4102682Z test_retry_rejects_withdrawn_case_and_stale_lesson (test_insights_mysql.InsightsTests.test_retry_rejects_withdrawn_case_and_stale_lesson) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4103540Z test_stale_platform_cannot_erase_reply_or_state (test_insights_mysql.InsightsTests.test_stale_platform_cannot_erase_reply_or_state) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4104304Z test_targets_personal_wrong_other_student_and_other_class_rejected (test_insights_mysql.InsightsTests.test_targets_personal_wrong_other_student_and_other_class_rejected) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4105235Z test_time_range_and_sql_session_timezone_consistent (test_insights_mysql.InsightsTests.test_time_range_and_sql_session_timezone_consistent) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4105938Z test_latest_helped_or_unknown_not_earlier_independent_success (test_insights_rules.InsightRulesTests.test_latest_helped_or_unknown_not_earlier_independent_success) ... ok
+2026-11-11T11:25:12.4106953Z test_practice_does_not_inflate_check_and_replacement_is_check (test_insights_rules.InsightRulesTests.test_practice_does_not_inflate_check_and_replacement_is_check) ... ok
+2026-11-11T11:25:12.4107613Z test_tied_contradictory_results_not_arbitrary_success (test_insights_rules.InsightRulesTests.test_tied_contradictory_results_not_arbitrary_success) ... ok
+2026-11-11T11:25:12.4108397Z test_unique_key_includes_student_task_published_question (test_insights_rules.InsightRulesTests.test_unique_key_includes_student_task_published_question) ... ok
+2026-11-11T11:25:12.4109115Z test_utc_closed_open_range_and_unknown_exclusion (test_insights_rules.InsightRulesTests.test_utc_closed_open_range_and_unknown_exclusion) ... ok
+2026-11-11T11:25:12.4109689Z test_conflicts_missing_edges_and_cycles (test_knowledge.KnowledgeValidationTests.test_conflicts_missing_edges_and_cycles) ... ok
+2026-11-11T11:25:12.4110245Z test_invalid_types_never_reach_sets_or_orm (test_knowledge.KnowledgeValidationTests.test_invalid_types_never_reach_sets_or_orm) ... ok
+2026-11-11T11:25:12.4110880Z test_valid_missing_optional_fields_and_unicode_collisions (test_knowledge.KnowledgeValidationTests.test_valid_missing_optional_fields_and_unicode_collisions) ... ok
+2026-11-11T11:25:12.4111673Z test_distinct_questions_and_configured_time (test_learning_memory.MemoryRuleTests.test_distinct_questions_and_configured_time) ... ok
+2026-11-11T11:25:12.4112166Z test_does_not_mutate_sources (test_learning_memory.MemoryRuleTests.test_does_not_mutate_sources) ... ok
+2026-11-11T11:25:12.4114461Z test_fixed_scenarios (test_learning_memory.MemoryRuleTests.test_fixed_scenarios) ... ok
+2026-11-11T11:25:12.4115176Z test_same_timestamp_conflict_does_not_invent_progress (test_learning_memory.MemoryRuleTests.test_same_timestamp_conflict_does_not_invent_progress) ... ok
+2026-11-11T11:25:12.4116484Z test_concurrent_change_replay_and_different_edits_conflict (test_learning_memory_mysql.MemoryMySQLTests.test_concurrent_change_replay_and_different_edits_conflict) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4117366Z test_correction_append_only_conflict_and_replay (test_learning_memory_mysql.MemoryMySQLTests.test_correction_append_only_conflict_and_replay) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4118169Z test_cross_class_same_student_filters_other_teacher_and_personal (test_learning_memory_mysql.MemoryMySQLTests.test_cross_class_same_student_filters_other_teacher_and_personal) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4118941Z test_current_one_layer_only_memory_and_budget (test_learning_memory_mysql.MemoryMySQLTests.test_current_one_layer_only_memory_and_budget) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4119665Z test_legacy_and_unknown_never_count_as_independent (test_learning_memory_mysql.MemoryMySQLTests.test_legacy_and_unknown_never_count_as_independent) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4120608Z test_prerequisite_one_layer_recommendation_requires_actual_errors (test_learning_memory_mysql.MemoryMySQLTests.test_prerequisite_one_layer_recommendation_requires_actual_errors) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4121410Z test_reads_do_not_create_model_jobs_or_repeat_facts (test_learning_memory_mysql.MemoryMySQLTests.test_reads_do_not_create_model_jobs_or_repeat_facts) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4122144Z test_snooze_idempotent_and_new_evidence_reopens (test_learning_memory_mysql.MemoryMySQLTests.test_snooze_idempotent_and_new_evidence_reopens) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4123022Z test_stable_ids_aggregation_and_help_separation (test_learning_memory_mysql.MemoryMySQLTests.test_stable_ids_aggregation_and_help_separation) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4123841Z test_teacher_review_instruction_retires_only_after_new_actual_answer (test_learning_memory_mysql.MemoryMySQLTests.test_teacher_review_instruction_retires_only_after_new_actual_answer) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4124623Z test_teacher_scope_cross_student_and_removal (test_learning_memory_mysql.MemoryMySQLTests.test_teacher_scope_cross_student_and_removal) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4159947Z test_expressions_equations_conditions_and_errors_are_distinct (test_math_claims.MathClaimTests.test_expressions_equations_conditions_and_errors_are_distinct) ... ok
+2026-11-11T11:25:12.4161245Z test_invalid_knowledge_has_no_partial_writes (test_mysql_api.MySQLApiTests.test_invalid_knowledge_has_no_partial_writes) ... skipped 'set SCZX_RUN_MYSQL_TESTS=1 with isolated SCZX_DATABASE_URL'
+2026-11-11T11:25:12.4162593Z test_revision_and_withdrawal_preserve_history (test_mysql_api.MySQLApiTests.test_revision_and_withdrawal_preserve_history) ... skipped 'set SCZX_RUN_MYSQL_TESTS=1 with isolated SCZX_DATABASE_URL'
+2026-11-11T11:25:12.4163459Z test_roles_cannot_write_knowledge (test_mysql_api.MySQLApiTests.test_roles_cannot_write_knowledge) ... skipped 'set SCZX_RUN_MYSQL_TESTS=1 with isolated SCZX_DATABASE_URL'
+2026-11-11T11:25:12.4164244Z test_assigned_snapshot_image_access_without_publishing_private_file (test_offline_mysql.OfflineTests.test_assigned_snapshot_image_access_without_publishing_private_file) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4165046Z test_changed_content_version_rejects (test_offline_mysql.OfflineTests.test_changed_content_version_rejects) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4165907Z test_completed_record_immutable (test_offline_mysql.OfflineTests.test_completed_record_immutable) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4166911Z test_concurrent_same_operation_only_one_write (test_offline_mysql.OfflineTests.test_concurrent_same_operation_only_one_write) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4167610Z test_cross_identity_and_unknown_question_rejects (test_offline_mysql.OfflineTests.test_cross_identity_and_unknown_question_rejects) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4168378Z test_draft_sync_does_not_submit_grade_or_change_teacher_feedback (test_offline_mysql.OfflineTests.test_draft_sync_does_not_submit_grade_or_change_teacher_feedback) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4169067Z test_exam_and_live_class_never_download (test_offline_mysql.OfflineTests.test_exam_and_live_class_never_download) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4169715Z test_help_cannot_be_reset_and_only_allowed_fields (test_offline_mysql.OfflineTests.test_help_cannot_be_reset_and_only_allowed_fields) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4170474Z test_package_allowlist_no_answers_other_students_or_private_notes (test_offline_mysql.OfflineTests.test_package_allowlist_no_answers_other_students_or_private_notes) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4171216Z test_position_scoped_and_other_records_unchanged (test_offline_mysql.OfflineTests.test_position_scoped_and_other_records_unchanged) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4171946Z test_removed_member_rejects_sync (test_offline_mysql.OfflineTests.test_removed_member_rejects_sync) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4172569Z test_same_operation_id_retry_and_changed_payload (test_offline_mysql.OfflineTests.test_same_operation_id_retry_and_changed_payload) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4173419Z test_server_deadline_not_local_clock (test_offline_mysql.OfflineTests.test_server_deadline_not_local_clock) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4174127Z test_server_edit_conflicts_and_explicit_new_revision_can_retry (test_offline_mysql.OfflineTests.test_server_edit_conflicts_and_explicit_new_revision_can_retry) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4174928Z test_withdrawn_task_rejects_sync_and_online_write (test_offline_mysql.OfflineTests.test_withdrawn_task_rejects_sync_and_online_write) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:12.4175592Z test_citation_and_block_contract (test_planning.PlanningValidationTests.test_citation_and_block_contract) ... ok
+2026-11-11T11:25:12.4176230Z test_client_cannot_supply_server_context (test_planning.PlanningValidationTests.test_client_cannot_supply_server_context) ... ok
+2026-11-11T11:25:12.4176771Z test_explicit_task_and_rule_recognition (test_planning.PlanningValidationTests.test_explicit_task_and_rule_recognition) ... ok
+2026-11-11T11:25:12.4177324Z test_partial_generation_only_accepts_target (test_planning.PlanningValidationTests.test_partial_generation_only_accepts_target) ... ok
+2026-11-11T11:25:12.4178019Z test_configuration_only_parses_does_not_create_paths (test_release_tools.ReleaseToolsTests.test_configuration_only_parses_does_not_create_paths) ... ok
+2026-11-11T11:25:13.7883073Z test_direct_production_migrate_command_refused (test_release_tools.ReleaseToolsTests.test_direct_production_migrate_command_refused) ... ok
+2026-11-11T11:25:13.7901296Z test_exiting_empty_command_is_gone_but_unrelated_pid_is_refused (test_release_tools.ReleaseToolsTests.test_exiting_empty_command_is_gone_but_unrelated_pid_is_refused) ... ok
+2026-11-11T11:25:13.7909007Z test_external_connection_or_model_job_blocks_mutations (test_release_tools.ReleaseToolsTests.test_external_connection_or_model_job_blocks_mutations) ... ok
+2026-11-11T11:25:13.7911740Z test_formal_target_requires_approval_even_if_mislabeled_staging (test_release_tools.ReleaseToolsTests.test_formal_target_requires_approval_even_if_mislabeled_staging) ... ok
+2026-11-11T11:25:13.7916470Z test_mysql_credentials_not_command_line_and_no_newline_injection (test_release_tools.ReleaseToolsTests.test_mysql_credentials_not_command_line_and_no_newline_injection) ... ok
+2026-11-11T11:25:13.8194320Z test_package_uses_sczx_root_tree_from_parent_git_repository (test_release_tools.ReleaseToolsTests.test_package_uses_sczx_root_tree_from_parent_git_repository) ... ok
+2026-11-11T11:25:14.0013528Z test_preflight_does_not_create_state_or_call_migration (test_release_tools.ReleaseToolsTests.test_preflight_does_not_create_state_or_call_migration) ... /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/alembic/config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+2026-11-11T11:25:14.0014543Z   util.warn_deprecated(
+2026-11-11T11:25:14.0112094Z ok
+2026-11-11T11:25:16.2197233Z test_production_application_refuses_insecure_cookie_or_auto_schema (test_release_tools.ReleaseToolsTests.test_production_application_refuses_insecure_cookie_or_auto_schema) ... ok
+2026-11-11T11:25:16.2209231Z test_release_tamper_detected_and_does_not_guess_parent_git_head (test_release_tools.ReleaseToolsTests.test_release_tamper_detected_and_does_not_guess_parent_git_head) ... ok
+2026-11-11T11:25:16.2216608Z test_start_mismatch_refuses_without_implicit_migration (test_release_tools.ReleaseToolsTests.test_start_mismatch_refuses_without_implicit_migration) ... ok
+2026-11-11T11:25:16.2409313Z test_actual_equation_and_unknown (test_remediation.RemediationTests.test_actual_equation_and_unknown) ... ok
+2026-11-11T11:25:16.2420344Z test_topic_coverage_prevents_known_off_topic (test_remediation.RemediationTests.test_topic_coverage_prevents_known_off_topic) ... ok
+2026-11-11T11:25:16.2729394Z test_variant_rejects_wrong_unknown_and_identical (test_remediation.RemediationTests.test_variant_rejects_wrong_unknown_and_identical) ... ok
+2026-11-11T11:25:16.2731150Z test_visualization_single_both_boundary_and_schema (test_remediation.RemediationTests.test_visualization_single_both_boundary_and_schema) ... ok
+2026-11-11T11:25:16.2732129Z test_actual_dynamic_scoring_replay_help_and_foreign_job (test_remediation_mysql.RemediationMySQLTests.test_actual_dynamic_scoring_replay_help_and_foreign_job) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.2733126Z test_concurrent_repair_replay_returns_one_immutable_attempt (test_remediation_mysql.RemediationMySQLTests.test_concurrent_repair_replay_returns_one_immutable_attempt) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.2734355Z test_course_unknown_answer_teacher_review_preserves_program_result (test_remediation_mysql.RemediationMySQLTests.test_course_unknown_answer_teacher_review_preserves_program_result) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.2735159Z test_course_wrong_retains_uploaded_question_source (test_remediation_mysql.RemediationMySQLTests.test_course_wrong_retains_uploaded_question_source) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.2736166Z test_image_requires_confirmed_owned_ocr_and_crop (test_remediation_mysql.RemediationMySQLTests.test_image_requires_confirmed_owned_ocr_and_crop) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.2736873Z test_independent_dedup_roles_and_refresh (test_remediation_mysql.RemediationMySQLTests.test_independent_dedup_roles_and_refresh) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.2737546Z test_legacy_snapshot_and_removed_course (test_remediation_mysql.RemediationMySQLTests.test_legacy_snapshot_and_removed_course) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.2775628Z test_empty_long_context_and_invalid_grade (test_retrieval.RetrievalRegressionTests.test_empty_long_context_and_invalid_grade) ... ok
+2026-11-11T11:25:16.3213478Z test_frozen_baseline_and_context_orders (test_retrieval.RetrievalRegressionTests.test_frozen_baseline_and_context_orders) ... ok
+2026-11-11T11:25:16.3224897Z test_one_hop_toggle_and_wrong_topic (test_retrieval.RetrievalRegressionTests.test_one_hop_toggle_and_wrong_topic) ... ok
+2026-11-11T11:25:16.3226597Z test_shanghai_end_of_day_and_exact_boundary (test_teaching_mysql.DeadlineTests.test_shanghai_end_of_day_and_exact_boundary) ... ok
+2026-11-11T11:25:16.3227609Z test_class_isolation_edit_members_and_empty_tasks (test_teaching_mysql.TeachingMySQLTests.test_class_isolation_edit_members_and_empty_tasks) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3230281Z test_concurrent_notification_reads_and_backfill_are_idempotent (test_teaching_mysql.TeachingMySQLTests.test_concurrent_notification_reads_and_backfill_are_idempotent) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3231504Z test_invite_join_expire_revoke_and_throttle (test_teaching_mysql.TeachingMySQLTests.test_invite_join_expire_revoke_and_throttle) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3232677Z test_late_join_backfill_idempotence_and_removal_readonly (test_teaching_mysql.TeachingMySQLTests.test_late_join_backfill_idempotence_and_removal_readonly) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3233624Z test_messages_persist_read_private_and_no_duplicates (test_teaching_mysql.TeachingMySQLTests.test_messages_persist_read_private_and_no_duplicates) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3234353Z test_note_correction_cancel_and_legacy_notes (test_teaching_mysql.TeachingMySQLTests.test_note_correction_cancel_and_legacy_notes) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3235608Z test_original_learning_submit_retry_keeps_first_time_and_single_message (test_teaching_mysql.TeachingMySQLTests.test_original_learning_submit_retry_keeps_first_time_and_single_message) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3236461Z test_publish_snapshot_repeat_and_feedback_notification (test_teaching_mysql.TeachingMySQLTests.test_publish_snapshot_repeat_and_feedback_notification) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3237209Z test_supplement_lifecycle_targets_privacy_and_feedback (test_teaching_mysql.TeachingMySQLTests.test_supplement_lifecycle_targets_privacy_and_feedback) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3237927Z test_teacher_stats_personal_status_and_dashboard (test_teaching_mysql.TeachingMySQLTests.test_teacher_stats_personal_status_and_dashboard) ... skipped 'requires isolated MySQL'
+2026-11-11T11:25:16.3238837Z test_canonical_context_is_bounded_and_excludes_internal_fields (test_tutoring_mysql.TutoringMySQLTests.test_canonical_context_is_bounded_and_excludes_internal_fields) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3239606Z test_failed_manual_retry_stop_and_duplicate_request (test_tutoring_mysql.TutoringMySQLTests.test_failed_manual_retry_stop_and_duplicate_request) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3240422Z test_invalid_math_and_original_answer_blocked_after_one_repair (test_tutoring_mysql.TutoringMySQLTests.test_invalid_math_and_original_answer_blocked_after_one_repair) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3241314Z test_legacy_student_client_cannot_bypass_guidance_policy (test_tutoring_mysql.TutoringMySQLTests.test_legacy_student_client_cannot_bypass_guidance_policy) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3242087Z test_ocr_scope_confirmation_and_text_fallback (test_tutoring_mysql.TutoringMySQLTests.test_ocr_scope_confirmation_and_text_fallback) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3243001Z test_removal_during_generation_does_not_write_guidance (test_tutoring_mysql.TutoringMySQLTests.test_removal_during_generation_does_not_write_guidance) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3244144Z test_removed_retry_new_and_queued_execution_blocked_history_retained (test_tutoring_mysql.TutoringMySQLTests.test_removed_retry_new_and_queued_execution_blocked_history_retained) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3244976Z test_replay_after_context_change_keeps_first_job_and_help_record (test_tutoring_mysql.TutoringMySQLTests.test_replay_after_context_change_keeps_first_job_and_help_record) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3245693Z test_self_attempt_no_model_or_help_reset (test_tutoring_mysql.TutoringMySQLTests.test_self_attempt_no_model_or_help_reset) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3246382Z test_strategy_chain_parent_scope_and_four_turn_bound (test_tutoring_mysql.TutoringMySQLTests.test_strategy_chain_parent_scope_and_four_turn_bound) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.3247082Z test_fake_practice_and_check_marks_cannot_replace_answers (test_tutoring_policy.PracticeCompletionTests.test_fake_practice_and_check_marks_cannot_replace_answers) ... ok
+2026-11-11T11:25:16.3247823Z test_oversized_sources_are_bounded_without_mutating_original_evidence (test_tutoring_policy.PracticeCompletionTests.test_oversized_sources_are_bounded_without_mutating_original_evidence) ... ok
+2026-11-11T11:25:16.4084604Z test_all_thirty_reference_answers_and_prose_conditions (test_unit_conditions.UnitMathTests.test_all_thirty_reference_answers_and_prose_conditions) ... ok
+2026-11-11T11:25:16.4088404Z test_fourteen_math_condition_scenarios (test_unit_conditions.UnitMathTests.test_fourteen_math_condition_scenarios) ... ok
+2026-11-11T11:25:16.4105949Z test_installer_rejects_changed_review_digest_before_any_write (test_unit_conditions.UnitMathTests.test_installer_rejects_changed_review_digest_before_any_write) ... ok
+2026-11-11T11:25:16.4178890Z test_no_unique_solution_domain_and_substitution (test_unit_conditions.UnitMathTests.test_no_unique_solution_domain_and_substitution) ... ok
+2026-11-11T11:25:16.4180511Z test_observed_combined_division_rule_is_blocked_even_with_no_claims (test_unit_conditions.UnitMathTests.test_observed_combined_division_rule_is_blocked_even_with_no_claims) ... ok
+2026-11-11T11:25:16.4183343Z test_word_modeling_is_not_auto_correct_from_numeric_match (test_unit_conditions.UnitMathTests.test_word_modeling_is_not_auto_correct_from_numeric_match) ... ok
+2026-11-11T11:25:16.4184661Z test_exam_live_and_group_records_do_not_replace_curriculum_progress (test_unit_mysql.UnitMySQLTests.test_exam_live_and_group_records_do_not_replace_curriculum_progress) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.4185955Z test_known_conditions_block_review_and_publication (test_unit_mysql.UnitMySQLTests.test_known_conditions_block_review_and_publication) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.4192612Z test_order_validates_real_ids_and_repeated_or_invalid_values (test_unit_mysql.UnitMySQLTests.test_order_validates_real_ids_and_repeated_or_invalid_values) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.4193565Z test_other_student_and_teacher_do_not_gain_records (test_unit_mysql.UnitMySQLTests.test_other_student_and_teacher_do_not_gain_records) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.4194352Z test_progress_uses_real_latest_assignment_and_preserves_readonly (test_unit_mysql.UnitMySQLTests.test_progress_uses_real_latest_assignment_and_preserves_readonly) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.4195394Z test_review_is_recorded_and_old_version_immutable (test_unit_mysql.UnitMySQLTests.test_review_is_recorded_and_old_version_immutable) ... skipped 'isolated MySQL required'
+2026-11-11T11:25:16.4195734Z
+2026-11-11T11:25:16.4195896Z ----------------------------------------------------------------------
+2026-11-11T11:25:16.4196167Z Ran 163 tests in 4.239s
+2026-11-11T11:25:16.4196263Z
+2026-11-11T11:25:16.4196323Z OK (skipped=113)
+2026-11-11T11:25:17.0124935Z ##[group]Run python -m compileall -q backend-business/sczx_business
+2026-11-11T11:25:17.0125346Z [36;1mpython -m compileall -q backend-business/sczx_business[0m
+2026-11-11T11:25:17.0167901Z shell: /usr/bin/bash -e {0}
+2026-11-11T11:25:17.0168058Z env:
+2026-11-11T11:25:17.0168215Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:25:17.0168438Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:17.0168708Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:25:17.0168961Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:17.0169177Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:17.0169396Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:17.0169612Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:25:17.0169798Z ##[endgroup]
+2026-11-11T11:25:17.0581594Z ##[group]Run PYTHONPATH=backend-business python -c "import sczx_business.main"
+2026-11-11T11:25:17.0581937Z [36;1mPYTHONPATH=backend-business python -c "import sczx_business.main"[0m
+2026-11-11T11:25:17.0624817Z shell: /usr/bin/bash -e {0}
+2026-11-11T11:25:17.0624975Z env:
+2026-11-11T11:25:17.0625136Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:25:17.0625359Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:17.0625597Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:25:17.0625848Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:17.0626065Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:17.0626285Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:17.0626503Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:25:17.0626687Z ##[endgroup]
+2026-11-11T11:25:18.1659908Z ##[group]Run npm --prefix frontend ci
+2026-11-11T11:25:18.1660144Z [36;1mnpm --prefix frontend ci[0m
+2026-11-11T11:25:18.1704131Z shell: /usr/bin/bash -e {0}
+2026-11-11T11:25:18.1704289Z env:
+2026-11-11T11:25:18.1704461Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:25:18.1704682Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:18.1704930Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:25:18.1705167Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:18.1705399Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:18.1705617Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:18.1705839Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:25:18.1706025Z ##[endgroup]
+2026-11-11T11:25:20.2961263Z
+2026-11-11T11:25:20.2962014Z added 99 packages, and audited 106 packages in 2s
+2026-11-11T11:25:20.2962321Z
+2026-11-11T11:25:20.2962426Z 25 packages are looking for funding
+2026-11-11T11:25:20.2962619Z   run `npm fund` for details
+2026-11-11T11:25:20.2968041Z
+2026-11-11T11:25:20.2968154Z found 0 vulnerabilities
+2026-11-11T11:25:20.3466691Z ##[group]Run npm --prefix frontend run test:unit
+2026-11-11T11:25:20.3466923Z [36;1mnpm --prefix frontend run test:unit[0m
+2026-11-11T11:25:20.3512387Z shell: /usr/bin/bash -e {0}
+2026-11-11T11:25:20.3512548Z env:
+2026-11-11T11:25:20.3512788Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:25:20.3513010Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:20.3513411Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:25:20.3513651Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:20.3513866Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:20.3514093Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:20.3514312Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:25:20.3514498Z ##[endgroup]
+2026-11-11T11:25:20.4222424Z
+2026-11-11T11:25:20.4223273Z > shicheng-zhixue@0.3.0 test:unit
+2026-11-11T11:25:20.4223858Z > node --test tests/*.test.js
+2026-11-11T11:25:20.4224080Z
+2026-11-11T11:25:20.4671050Z TAP version 13
+2026-11-11T11:25:20.5015105Z # Subtest: knowledge correction remains auditable from old and new knowledge
+2026-11-11T11:25:20.5016652Z ok 1 - knowledge correction remains auditable from old and new knowledge
+2026-11-11T11:25:20.5017284Z   ---
+2026-11-11T11:25:20.5017879Z   duration_ms: 0.885401
+2026-11-11T11:25:20.5018438Z   type: 'test'
+2026-11-11T11:25:20.5018890Z   ...
+2026-11-11T11:25:20.5019537Z # Subtest: review targets retain return scope without accepting arbitrary destinations
+2026-11-11T11:25:20.5037704Z ok 2 - review targets retain return scope without accepting arbitrary destinations
+2026-11-11T11:25:20.5037987Z   ---
+2026-11-11T11:25:20.5038123Z   duration_ms: 0.557982
+2026-11-11T11:25:20.5038268Z   type: 'test'
+2026-11-11T11:25:20.5038394Z   ...
+2026-11-11T11:25:20.5071718Z # Subtest: agent identity includes both lesson and job
+2026-11-11T11:25:20.5074152Z ok 3 - agent identity includes both lesson and job
+2026-11-11T11:25:20.5074509Z   ---
+2026-11-11T11:25:20.5074893Z   duration_ms: 0.499996
+2026-11-11T11:25:20.5075310Z   type: 'test'
+2026-11-11T11:25:20.5075508Z   ...
+2026-11-11T11:25:20.5106372Z # Subtest: balance single and common actions preserve actual relation and bounds
+2026-11-11T11:25:20.5107012Z ok 4 - balance single and common actions preserve actual relation and bounds
+2026-11-11T11:25:20.5107424Z   ---
+2026-11-11T11:25:20.5107648Z   duration_ms: 1.515091
+2026-11-11T11:25:20.5107907Z   type: 'test'
+2026-11-11T11:25:20.5108121Z   ...
+2026-11-11T11:25:20.5108327Z 1..4
+2026-11-11T11:25:20.5108536Z # tests 4
+2026-11-11T11:25:20.5108748Z # suites 0
+2026-11-11T11:25:20.5108960Z # pass 4
+2026-11-11T11:25:20.5109179Z # fail 0
+2026-11-11T11:25:20.5109379Z # cancelled 0
+2026-11-11T11:25:20.5109585Z # skipped 0
+2026-11-11T11:25:20.5109767Z # todo 0
+2026-11-11T11:25:20.5109972Z # duration_ms 60.363431
+2026-11-11T11:25:20.5241620Z ##[group]Run npm --prefix frontend run build
+2026-11-11T11:25:20.5241847Z [36;1mnpm --prefix frontend run build[0m
+2026-11-11T11:25:20.5286281Z shell: /usr/bin/bash -e {0}
+2026-11-11T11:25:20.5286455Z env:
+2026-11-11T11:25:20.5286618Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:25:20.5286848Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:20.5287097Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:25:20.5287372Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:20.5287590Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:20.5287820Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:20.5288062Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:25:20.5288256Z ##[endgroup]
+2026-11-11T11:25:20.6013459Z
+2026-11-11T11:25:20.6014105Z > shicheng-zhixue@0.3.0 build
+2026-11-11T11:25:20.6014619Z > vite build
+2026-11-11T11:25:20.6014739Z
+2026-11-11T11:25:20.9842904Z [36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
+2026-11-11T11:25:21.0331896Z transforming...
+2026-11-11T11:25:25.1168268Z [32m✓[39m 2903 modules transformed.
+2026-11-11T11:25:25.5679165Z rendering chunks...
+2026-11-11T11:25:25.5777440Z computing gzip size...
+2026-11-11T11:25:25.6011293Z [2mdist/[22m[32mindex.html                                            [39m[1m[2m    0.41 kB[22m[1m[22m[2m │ gzip:   0.30 kB[22m
+2026-11-11T11:25:25.6012385Z [2mdist/[22m[32msw.js                                                 [39m[1m[2m    1.38 kB[22m[1m[22m
+2026-11-11T11:25:25.6013205Z [2mdist/[22m[2massets/[22m[32mgeist-cyrillic-ext-wght-normal-DjL33-gN.woff2  [39m[1m[2m    7.42 kB[22m[1m[22m
+2026-11-11T11:25:25.6013808Z [2mdist/[22m[2massets/[22m[32mgeist-vietnamese-wght-normal-6IgcOCM7.woff2    [39m[1m[2m    8.00 kB[22m[1m[22m
+2026-11-11T11:25:25.6014348Z [2mdist/[22m[2massets/[22m[32mgeist-cyrillic-wght-normal-BEAKL7Jp.woff2      [39m[1m[2m   15.08 kB[22m[1m[22m
+2026-11-11T11:25:25.6014893Z [2mdist/[22m[2massets/[22m[32mgeist-latin-ext-wght-normal-DC-KSUi6.woff2     [39m[1m[2m   16.51 kB[22m[1m[22m
+2026-11-11T11:25:25.6015406Z [2mdist/[22m[2massets/[22m[32mgeist-latin-wght-normal-BgDaEnEv.woff2         [39m[1m[2m   29.40 kB[22m[1m[22m
+2026-11-11T11:25:25.6016277Z [2mdist/[22m[2massets/[22m[35mindex-BY5kvk8B.css                             [39m[1m[2m  154.94 kB[22m[1m[22m[2m │ gzip:  30.14 kB[22m
+2026-11-11T11:25:25.6017140Z [2mdist/[22m[2massets/[22m[36mindex-CVdrktue.js                              [39m[1m[33m1,082.24 kB[39m[22m[2m │ gzip: 357.26 kB[22m
+2026-11-11T11:25:25.6017636Z [33m
+2026-11-11T11:25:25.6017984Z (!) Some chunks are larger than 500 kB after minification. Consider:
+2026-11-11T11:25:25.6018408Z - Using dynamic import() to code-split the application
+2026-11-11T11:25:25.6019109Z - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+2026-11-11T11:25:25.6019861Z - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+2026-11-11T11:25:25.6020278Z [32m✓ built in 4.60s[39m
+2026-11-11T11:25:25.6939357Z ##[group]Run git diff --check HEAD~1 HEAD
+2026-11-11T11:25:25.6939574Z [36;1mgit diff --check HEAD~1 HEAD[0m
+2026-11-11T11:25:25.6981239Z shell: /usr/bin/bash -e {0}
+2026-11-11T11:25:25.6981397Z env:
+2026-11-11T11:25:25.6981546Z   SCZX_STORAGE_DIR: /tmp/sczx-43011729568-basic-uploads
+2026-11-11T11:25:25.6981765Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:25.6982006Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T11:25:25.6982249Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:25.6982467Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:25.6982687Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T11:25:25.6983080Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T11:25:25.6983263Z ##[endgroup]
+2026-11-11T11:25:25.7134277Z Post job cleanup.
+2026-11-11T11:25:25.8039376Z (node:2433) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T11:25:25.8039863Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T11:25:25.8042087Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-624d692f385c594b08267eaf2fa35111d386b014d5df24889732312df54e6e5d, not saving cache.
+2026-11-11T11:25:25.8152340Z Post job cleanup.
+2026-11-11T11:25:25.9058012Z (node:2441) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T11:25:25.9058476Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T11:25:25.9269084Z Post job cleanup.
+2026-11-11T11:25:25.9884626Z [command]/usr/bin/git version
+2026-11-11T11:25:25.9919976Z git version 2.56.0
+2026-11-11T11:25:25.9943801Z Temporarily overriding HOME='/home/runner/work/_temp/f5d59d0f-d760-40c6-9470-868725af2b5f' before making global git config changes
+2026-11-11T11:25:25.9944771Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T11:25:25.9962436Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sczx/sczx
+2026-11-11T11:25:25.9999601Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T11:25:26.0040474Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T11:25:26.0316479Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T11:25:26.0343214Z http.https://github.com/.extraheader
+2026-11-11T11:25:26.0363041Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-11T11:25:26.0390503Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T11:25:26.0643534Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T11:25:26.0675394Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T11:25:26.1039918Z Cleaning up orphan processes
+2026-11-11T11:25:26.1306809Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

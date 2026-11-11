@@ -1,0 +1,74 @@
+{
+  "originalFilesUnchanged": true,
+  "originalCount": 82,
+  "addedCount": 6,
+  "matches": [
+    {
+      "storageKey": "9e5006af26994f8b82eaf1ec5ac54104",
+      "testRun": "initial",
+      "originalName": "test.png"
+    },
+    {
+      "storageKey": "f2588cff506d44f39ddcc1dd975fcd34",
+      "testRun": "initial",
+      "originalName": "test.png"
+    },
+    {
+      "storageKey": "aef86ae01dc447f7b09791ee50715bce",
+      "testRun": "initial",
+      "originalName": "course.png"
+    },
+    {
+      "storageKey": "5a1cc8293c3a43de869214497420514d",
+      "testRun": "final",
+      "originalName": "test.png"
+    },
+    {
+      "storageKey": "5c71c61e08ea40ac9c90b0d65c04a1fa",
+      "testRun": "final",
+      "originalName": "test.png"
+    },
+    {
+      "storageKey": "7bd27d8595b748a1b9c0bebe338d4197",
+      "testRun": "final",
+      "originalName": "course.png"
+    }
+  ],
+  "addedDigests": {
+    "5a1cc8293c3a43de869214497420514d": {
+      "bytes": 68,
+      "sha256": "6dbe4d08b0839a126878e4822c881cf734ed3fac0131233afbb8ea0134db8abd"
+    },
+    "5c71c61e08ea40ac9c90b0d65c04a1fa": {
+      "bytes": 68,
+      "sha256": "b1eb33a905010229fa525e4b61acd41b2955b0aac71794c31802a26ef2b4458b"
+    },
+    "7bd27d8595b748a1b9c0bebe338d4197": {
+      "bytes": 20,
+      "sha256": "f1f0b0b2377061ce9956ce7821700c0bcc6bb447f1864548a200f83ef741c162"
+    },
+    "9e5006af26994f8b82eaf1ec5ac54104": {
+      "bytes": 68,
+      "sha256": "b1eb33a905010229fa525e4b61acd41b2955b0aac71794c31802a26ef2b4458b"
+    },
+    "aef86ae01dc447f7b09791ee50715bce": {
+      "bytes": 20,
+      "sha256": "f1f0b0b2377061ce9956ce7821700c0bcc6bb447f1864548a200f83ef741c162"
+    },
+    "f2588cff506d44f39ddcc1dd975fcd34": {
+      "bytes": 68,
+      "sha256": "6dbe4d08b0839a126878e4822c881cf734ed3fac0131233afbb8ea0134db8abd"
+    }
+  },
+  "formalReferenceCounts": {
+    "5a1cc8293c3a43de869214497420514d": 0,
+    "5c71c61e08ea40ac9c90b0d65c04a1fa": 0,
+    "7bd27d8595b748a1b9c0bebe338d4197": 0,
+    "9e5006af26994f8b82eaf1ec5ac54104": 0,
+    "aef86ae01dc447f7b09791ee50715bce": 0,
+    "f2588cff506d44f39ddcc1dd975fcd34": 0
+  },
+  "filesMoved": false,
+  "filesDeleted": false,
+  "pendingUserApproval": true
+}

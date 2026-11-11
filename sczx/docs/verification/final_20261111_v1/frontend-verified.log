@@ -1,0 +1,35 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ exam page restores a saved reactive answer and preserves edits on failed save (4321.135889ms)
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (3867.860034ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1369.001256ms)
+✔ microphone refusal falls back to text and retry remains available (1274.775026ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (4405.913319ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1808.646244ms)
+✔ memory return controls preserve original learning task and knowledge route (4108.65371ms)
+✔ late memory response cannot overwrite a different task suggestion (1630.670228ms)
+✔ classroom polling preserves unsaved input, recovers errors and ignores old-room responses (4531.09222ms)
+✔ clearing a pending create prevents the old job from reopening (4250.180598ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1593.460486ms)
+✔ assistant initialization cannot replace a newer user request (1461.969883ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1173.386427ms)
+✔ late session initialization and older platform reads cannot replace a newer signed-in user or lesson (4213.459646ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (4245.848062ms)
+✔ independent wrong detail ignores an old response after switching questions (4157.538228ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (4086.268981ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1705.359034ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (4854.275476ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1587.292692ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1390.076767ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (4606.018145ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1407.388734ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8675.974766

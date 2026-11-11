@@ -1,0 +1,122 @@
+{
+  "manuals": 9,
+  "format": "A4",
+  "eastAsiaFont": "宋体",
+  "latinFont": "Times New Roman",
+  "color": "000000",
+  "docxEditableProgrammatically": true,
+  "wordWpsManualReview": false,
+  "pdfRendered": true,
+  "renderer": "existing LibreOffice25.2",
+  "pages": [
+    {
+      "page": 1,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 2,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 3,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 4,
+      "fonts": [
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 5,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 6,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 7,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 8,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 9,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 10,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    },
+    {
+      "page": 11,
+      "fonts": [
+        "SimSun",
+        "TimesNewRomanPSMT"
+      ],
+      "pureBlack": true,
+      "a4": true,
+      "withinPage": true
+    }
+  ]
+}

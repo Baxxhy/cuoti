@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-11T11:29:01.535Z",
+  "sczxCommit": "f985287324a93dd4902feec2f8dc9211803a0265",
+  "runId": 43011729568,
+  "url": "https://github.com/Baxxhy/sczx/actions/runs/43011729568",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 130492742646,
+      "name": "mysql-integration",
+      "conclusion": "success",
+      "startedAt": "2026-11-11T11:24:47Z",
+      "completedAt": "2026-11-11T11:26:09Z"
+    },
+    {
+      "id": 130492743092,
+      "name": "check",
+      "conclusion": "success",
+      "startedAt": "2026-11-11T11:24:48Z",
+      "completedAt": "2026-11-11T11:25:28Z"
+    }
+  ],
+  "mysql": {
+    "tests": 163,
+    "skipped": 0,
+    "result": "OK"
+  },
+  "basic": {
+    "tests": 163,
+    "skipped": 113,
+    "result": "OK; expected database-free scope"
+  },
+  "initialConfigurationFailure": {
+    "runId": 43011221140,
+    "jobsStarted": 0,
+    "cause": "runner context not available in jobs.<id>.env",
+    "fixed": "use github.run_id in isolated upload paths",
+    "reference": "https://docs.github.com/en/actions/reference/workflows-and-actions/contexts"
+  }
+}

@@ -1,0 +1,15 @@
+complete-0016-backup
+empty16-restore-full-rows-files
+restored16-actual-login-unit-exam-memory-feedback
+paired0013-empty-restore
+old-compatible-release-started-login-read
+Running as unit: sczx-step20-staging.service
+{"backend": "127.0.0.1:8095", "publicTestUrl": "https://127.0.0.1:9443", "fixedSczxCommit": "bd7fafc9959a82797f6d38ac3b5b42adbbfc9f43", "certificateVerified": true, "cookieSecure": true, "cookieHttpOnly": true, "cookieSameSite": "lax", "actualHostPID1": "systemd", "systemdUnit": "sczx-step20-staging", "productionHTTPS": false, "hostReboot": false}
+Traceback (most recent call last):
+  File "/tmp/sczx-step20/backup-rollback.py", line 48, in <module>
+    finally:command('stop',env13)
+            ~~~~~~~^^^^^^^^^^^^^^
+  File "/tmp/sczx-step20/backup-rollback.py", line 11, in command
+    if r.returncode:raise RuntimeError(r.stderr)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: PID身份不符，不停止其他进程

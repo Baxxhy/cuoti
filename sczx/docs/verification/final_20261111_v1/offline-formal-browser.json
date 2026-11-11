@@ -1,0 +1,256 @@
+{
+  "at": "2026-11-11T11:02:26.518Z",
+  "actions": [
+    {
+      "name": "offline-synced-student-completes-online-original-course-and-submit",
+      "at": "2026-11-11T11:02:36.652Z"
+    }
+  ],
+  "screens": [],
+  "record": {
+    "metrics": {
+      "attempts": 9,
+      "answeredQuestions": 4,
+      "independentQuestions": 2,
+      "independentCorrectQuestions": 2,
+      "independentCorrectStudents": 1,
+      "unverifiedQuestions": 0,
+      "helpedQuestions": 0
+    },
+    "memberActive": true,
+    "id": "record-a9bb86dc6fa04a0285dd5f73aa395aac",
+    "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+    "studentId": "account-3b24226dba5d424aa7d614681d879c8e",
+    "studentName": "交付验收·s2",
+    "observation": "两边同时加1，仍然相等。",
+    "drafts": {
+      "blocks": {
+        "eq-intro": {
+          "completed": true
+        },
+        "eq-add-sub": {
+          "completed": true
+        },
+        "eq-balance": {
+          "weight": 1,
+          "completed": true,
+          "explanation": "两边同时加1，仍然相等。",
+          "visualization": {
+            "state": {
+              "left": 6,
+              "right": 6
+            },
+            "actions": [
+              "both_add"
+            ]
+          }
+        },
+        "eq-mul-div": {
+          "completed": true
+        },
+        "eq-example-add": {
+          "completed": true
+        },
+        "eq-example-div": {
+          "completed": true
+        }
+      },
+      "questions": {
+        "eq-check-divide": {
+          "hint": "",
+          "answer": "6",
+          "helped": false,
+          "reason": "两边进行相同运算，除数非零，代回核对。"
+        },
+        "eq-practice-add": {
+          "hint": "",
+          "answer": "8",
+          "helped": false,
+          "reason": "两边进行相同运算，除数非零，代回核对。"
+        },
+        "eq-practice-sub": {
+          "hint": "",
+          "answer": "7",
+          "helped": false,
+          "reason": "两边进行相同运算，除数非零，代回核对。"
+        },
+        "eq-check-multiply": {
+          "hint": "",
+          "answer": "12",
+          "helped": false,
+          "reason": "两边进行相同运算，除数非零，代回核对。"
+        }
+      },
+      "lessonPosition": {
+        "blockId": "eq-practice",
+        "question": null
+      }
+    },
+    "attempts": [
+      {
+        "id": "attempt-9c3efa56837041c7bc858036fa3f514a",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 0,
+        "questionId": "eq-practice-add",
+        "answer": "8",
+        "reason": "我把两边同时加3，再把8代回原式。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T18:41:32"
+      },
+      {
+        "id": "attempt-fe205cf4652940358480c687f2f58e25",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 0,
+        "questionId": "eq-practice-add",
+        "answer": "8",
+        "reason": "两边进行相同运算，除数非零，代回核对。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T19:01:02"
+      },
+      {
+        "id": "attempt-f55a2a84a0974b7688cef4ee404bd56e",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 1,
+        "questionId": "eq-practice-sub",
+        "answer": "7",
+        "reason": "两边进行相同运算，除数非零，代回核对。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T19:01:03"
+      },
+      {
+        "id": "attempt-69196abe16414f23a35ea4524b664e68",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 2,
+        "questionId": "eq-check-divide",
+        "answer": "6",
+        "reason": "两边进行相同运算，除数非零，代回核对。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T19:01:05"
+      },
+      {
+        "id": "attempt-1d1fbb11bf154fc3935283d3a30c11ca",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 3,
+        "questionId": "eq-check-multiply",
+        "answer": "12",
+        "reason": "两边进行相同运算，除数非零，代回核对。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T19:01:06"
+      },
+      {
+        "id": "attempt-c16b7068fe0846008b416a75454456f4",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 0,
+        "questionId": "eq-practice-add",
+        "answer": "8",
+        "reason": "两边进行相同运算，除数非零，代回核对。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T19:02:31"
+      },
+      {
+        "id": "attempt-6544a806e70547d78bd8dffcfb701de6",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 1,
+        "questionId": "eq-practice-sub",
+        "answer": "7",
+        "reason": "两边进行相同运算，除数非零，代回核对。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T19:02:32"
+      },
+      {
+        "id": "attempt-7c7c6089e67f479b8a8abfe2202398ec",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 2,
+        "questionId": "eq-check-divide",
+        "answer": "6",
+        "reason": "两边进行相同运算，除数非零，代回核对。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T19:02:33"
+      },
+      {
+        "id": "attempt-138eee295d814a72bff320f899a0d938",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "question": 3,
+        "questionId": "eq-check-multiply",
+        "answer": "12",
+        "reason": "两边进行相同运算，除数非零，代回核对。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T19:02:34"
+      }
+    ],
+    "helps": [],
+    "repairs": [],
+    "wrongQuestions": [],
+    "completed": true,
+    "submittedAt": "2026-11-11T11:02:36",
+    "feedback": "",
+    "feedbackAt": null,
+    "updatedAt": "2026-11-11T19:02:36"
+  },
+  "frames": 202,
+  "passed": true,
+  "consoleErrors": []
+}

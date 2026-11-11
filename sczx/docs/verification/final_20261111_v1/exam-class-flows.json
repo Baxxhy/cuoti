@@ -1,0 +1,517 @@
+{
+  "at": "2026-11-11T10:37:58.133207+00:00",
+  "checks": [
+    {
+      "name": "exam-assemble-review-publish-draft-submit-grade-release",
+      "examId": "exam-f5d06f9854524e889c891f33ad27c039",
+      "participants": 3,
+      "studentTotal": 0
+    },
+    {
+      "name": "live-two-actual-students-ended-history",
+      "live": {
+        "id": "live-85df839b5b8a437386791573c4edaaa5",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "lessonId": "lesson-equation",
+        "title": "等式性质",
+        "versionId": "lessonversion-05548bc775c24080ab030dfee3",
+        "status": "ended",
+        "revision": 2,
+        "currentId": "act-a1085f4b0e21485c86f9fca41340086a",
+        "taskId": "task-edec4140ff7f498dacc88dc03b166c98",
+        "joined": 2,
+        "members": [
+          {
+            "id": "account-3b24226dba5d424aa7d614681d879c8e",
+            "name": "交付验收·s2"
+          },
+          {
+            "id": "account-d21c4a05101d4863b72c683836706ad6",
+            "name": "交付验收·s1"
+          }
+        ],
+        "activities": [
+          {
+            "id": "act-a1085f4b0e21485c86f9fca41340086a",
+            "position": 1,
+            "question": {
+              "id": "eq-practice-add",
+              "hint": "把两边都写成加3后的算式。",
+              "kind": "practice",
+              "type": "expression",
+              "answer": "8",
+              "prompt": "两边同时加3，x等于多少？",
+              "equation": "x - 3 = 5",
+              "feedback": [
+                {
+                  "answer": "5",
+                  "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+                }
+              ],
+              "explanation": "x - 3 + 3 = 5 + 3，所以x = 8。",
+              "knowledgeIds": [
+                "kp-equality"
+              ]
+            },
+            "feedback": "",
+            "answers": [
+              {
+                "id": "liveans-d75c59938468466384a31dd8c47652ec",
+                "studentId": "account-3b24226dba5d424aa7d614681d879c8e",
+                "studentName": "交付验收·s2",
+                "answer": "8",
+                "reason": "两边同时加3。",
+                "revision": 1,
+                "submittedAt": "2026-11-11T10:38:01Z",
+                "verification": {
+                  "scope": "参考答案的数值或表达式等价性",
+                  "status": "verified",
+                  "correct": true,
+                  "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+                }
+              },
+              {
+                "id": "liveans-f33cafe2e422493881f074bcbc92e6c3",
+                "studentId": "account-d21c4a05101d4863b72c683836706ad6",
+                "studentName": "交付验收·s1",
+                "answer": "8",
+                "reason": "两边同时加3。",
+                "revision": 1,
+                "submittedAt": "2026-11-11T10:38:01Z",
+                "verification": {
+                  "scope": "参考答案的数值或表达式等价性",
+                  "status": "verified",
+                  "correct": true,
+                  "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+                }
+              }
+            ],
+            "stats": {
+              "submitted": 2,
+              "correct": 2,
+              "incorrect": 0,
+              "unverified": 0
+            }
+          }
+        ],
+        "pollSeconds": 3,
+        "availableQuestions": [
+          {
+            "index": 0,
+            "prompt": "两边同时加3，x等于多少？",
+            "equation": "x - 3 = 5"
+          },
+          {
+            "index": 1,
+            "prompt": "两边同时减4，y等于多少？",
+            "equation": "y + 4 = 11"
+          },
+          {
+            "index": 2,
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18"
+          },
+          {
+            "index": 3,
+            "prompt": "求w，并写出两边共同进行的运算。",
+            "equation": "w / 4 = 3"
+          },
+          {
+            "index": 4,
+            "prompt": "先使a - 1单独在一边，再求a。",
+            "equation": "2(a - 1) = 10"
+          },
+          {
+            "index": 5,
+            "prompt": "求b，说明两边共同进行的运算。",
+            "equation": "b / (-3) = 2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "groups-publish-and-real-followup",
+      "group": {
+        "id": "group-6478eeb62cca4053b4219bc08a827bbc",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "knowledgeId": "kp-equality",
+        "revision": 1,
+        "published": true,
+        "groups": [
+          {
+            "label": "巩固",
+            "versionId": "pv-4b2f09c4aa8142a1a562cc4cc8a206b0",
+            "studentIds": [
+              "account-d21c4a05101d4863b72c683836706ad6"
+            ]
+          },
+          {
+            "label": "拓展",
+            "versionId": "pv-4b2f09c4aa8142a1a562cc4cc8a206b0",
+            "studentIds": [
+              "account-3b24226dba5d424aa7d614681d879c8e"
+            ]
+          }
+        ],
+        "evidence": {
+          "account-23e238a369f44394aa775fc51ada818f": {
+            "name": "交付验收·s5",
+            "state": {
+              "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+              "status": "independent",
+              "basisIds": [
+                "attempt:attempt-8480ff3d51504a38ac97861fc04095be:kp-equality",
+                "attempt:attempt-f14e2a45af7045648e904c41ee2c587b:kp-equality"
+              ],
+              "dayCount": 1,
+              "legacyCount": 0,
+              "statusLabel": "已有独立正确证据",
+              "evidenceCount": 3,
+              "helpedCorrect": 0,
+              "verifiedCount": 2,
+              "lastPracticedAt": "2026-11-11T10:38:00Z",
+              "unverifiedCount": 0,
+              "lastIndependentAt": "2026-11-11T10:38:00Z",
+              "independentCorrect": 2,
+              "recentVerifiedCount": 2,
+              "independentIncorrect": 0
+            },
+            "studentId": "account-23e238a369f44394aa775fc51ada818f",
+            "suggestion": "拓展",
+            "evidenceIds": [
+              "attempt:attempt-8480ff3d51504a38ac97861fc04095be",
+              "attempt:attempt-f14e2a45af7045648e904c41ee2c587b",
+              "feedback:record-a4d5808d0a7e4ff5b59d015b80f6b7a7:2026-11-11T10:38:01Z"
+            ]
+          },
+          "account-3b24226dba5d424aa7d614681d879c8e": {
+            "name": "交付验收·s2",
+            "state": {
+              "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+              "status": "independent",
+              "basisIds": [
+                "attempt:attempt-3484441ecd00476d8a69dc6e6e9ea78c:kp-equality",
+                "attempt:attempt-4b12c2b2eb754352abb984cb26c4009e:kp-equality",
+                "attempt:attempt-52601da2eac8475ab20e91eae783568f:kp-equality"
+              ],
+              "dayCount": 1,
+              "legacyCount": 0,
+              "statusLabel": "已有独立正确证据",
+              "evidenceCount": 4,
+              "helpedCorrect": 0,
+              "verifiedCount": 3,
+              "lastPracticedAt": "2026-11-11T10:38:01Z",
+              "unverifiedCount": 0,
+              "lastIndependentAt": "2026-11-11T10:38:01Z",
+              "independentCorrect": 3,
+              "recentVerifiedCount": 3,
+              "independentIncorrect": 0
+            },
+            "studentId": "account-3b24226dba5d424aa7d614681d879c8e",
+            "suggestion": "拓展",
+            "evidenceIds": [
+              "attempt:attempt-3484441ecd00476d8a69dc6e6e9ea78c",
+              "attempt:attempt-4b12c2b2eb754352abb984cb26c4009e",
+              "attempt:attempt-52601da2eac8475ab20e91eae783568f",
+              "feedback:record-3a6f32feb84a43c38ebb6410525b9d96:2026-11-11T10:38:01Z"
+            ]
+          },
+          "account-d21c4a05101d4863b72c683836706ad6": {
+            "name": "交付验收·s1",
+            "state": {
+              "reason": "错误之后新增了独立正确证据，可继续检查。",
+              "status": "improving",
+              "basisIds": [
+                "attempt:attempt-fddab21789e2458bb4bea1a5fa71fd00:kp-linear-transform",
+                "attempt:attempt-5403ac5b998641e39fcbe215e177d6e0:kp-equality",
+                "attempt:attempt-5403ac5b998641e39fcbe215e177d6e0:kp-linear-simple",
+                "attempt:attempt-5864aea310be4b468e4403ef6b9bd2de:kp-equality",
+                "attempt:attempt-7868a43448fb41c0b709f9609714b66c:kp-equality",
+                "attempt:attempt-80aff21c4ccb4ab6ab738e9aafec8813:kp-equality"
+              ],
+              "dayCount": 1,
+              "legacyCount": 0,
+              "statusLabel": "正在改善",
+              "evidenceCount": 18,
+              "helpedCorrect": 0,
+              "verifiedCount": 13,
+              "lastPracticedAt": "2026-11-11T10:38:01Z",
+              "unverifiedCount": 0,
+              "lastIndependentAt": "2026-11-11T10:38:01Z",
+              "independentCorrect": 10,
+              "recentVerifiedCount": 13,
+              "independentIncorrect": 3
+            },
+            "studentId": "account-d21c4a05101d4863b72c683836706ad6",
+            "suggestion": "巩固",
+            "evidenceIds": [
+              "attempt:attempt-358502f7acc74563b4bed3ecb5f1cc17",
+              "attempt:attempt-51922ddcebba40b1814d538c9e115e8c",
+              "attempt:attempt-5f6b5285139d4de89c97f8e881be8b5c",
+              "attempt:attempt-894ff21a584b4dd48cc26c63728c0e78",
+              "attempt:attempt-b200823ca2ab4645bc827179b21a4a9c",
+              "attempt:attempt-db67fac629ac409dbfed8a14bef001ca",
+              "wrong:wrong-6d688bfe4aaa449c95cf9dbc8d05cd9f",
+              "attempt:attempt-fddab21789e2458bb4bea1a5fa71fd00",
+              "attempt:attempt-fddab21789e2458bb4bea1a5fa71fd00",
+              "attempt:attempt-5403ac5b998641e39fcbe215e177d6e0",
+              "attempt:attempt-5403ac5b998641e39fcbe215e177d6e0",
+              "feedback:record-91610a9d7ecb48bbaea54bc929d4e2db:2026-11-11T10:35:23Z",
+              "attempt:attempt-5864aea310be4b468e4403ef6b9bd2de",
+              "attempt:attempt-7868a43448fb41c0b709f9609714b66c",
+              "wrong:wrong-3b6a46c1815a44eb81bf7c2afcd87482",
+              "wrong:wrong-5dc71dd2f8a54a3abf6fffaa50950cb4",
+              "attempt:attempt-80aff21c4ccb4ab6ab738e9aafec8813",
+              "feedback:record-bcb18d9d19d44310a350991fb49bc465:2026-11-11T10:38:01Z"
+            ]
+          }
+        },
+        "tasks": [
+          {
+            "id": "task-0b20f914edc44160922d8aae925cb093",
+            "title": "拓展练习 · 交付验收共同运算检查",
+            "assigned": 1,
+            "submitted": 0,
+            "independentCorrectStudents": 0,
+            "evidence": []
+          },
+          {
+            "id": "task-b83e645217e5434c96e2f82073956e34",
+            "title": "巩固练习 · 交付验收共同运算检查",
+            "assigned": 1,
+            "submitted": 0,
+            "independentCorrectStudents": 0,
+            "evidence": [
+              {
+                "rawOccurredAt": "2026-11-11T18:38:57",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "attempt:attempt-fc1122d2431d40c4b3f2800de0760dd2",
+                "sourceType": "attempt",
+                "sourceId": "attempt-fc1122d2431d40c4b3f2800de0760dd2",
+                "studentId": "account-d21c4a05101d4863b72c683836706ad6",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T10:38:57Z",
+                "taskId": "task-b83e645217e5434c96e2f82073956e34",
+                "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+                "lessonVersionId": null,
+                "readOnly": false,
+                "target": "/result?task=task-b83e645217e5434c96e2f82073956e34",
+                "prompt": "解方程并代回核对",
+                "equation": "x+7=12",
+                "answer": "2",
+                "reason": "先减6再除2，代回。",
+                "helped": false,
+                "verification": "verified_incorrect",
+                "outcome": "independent_incorrect",
+                "questionKind": "check",
+                "questionIndex": 0,
+                "questionKey": "lesson-equation:qv-2ed291883b734e3bacb04cf123ff8694",
+                "recordId": "record-3154f413adfb4eb48b55092f788146da",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "attempt:attempt-fc1122d2431d40c4b3f2800de0760dd2:kp-equality",
+                "label": "独立错误"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "community-source-version-preserved",
+      "shareId": "share-4045274d942344679b46362148fa3ea5"
+    },
+    {
+      "name": "intervention-sent-started-submitted-feedback",
+      "supplementId": "sup-afda9e3199c8081a74d533539517adc0"
+    }
+  ],
+  "metrics": [
+    {
+      "operation": "POST /exams/bank",
+      "seconds": 0.2002
+    },
+    {
+      "operation": "POST /exams/bank/bq-b09bc4c0997340b3819255884979be1e/review",
+      "seconds": 0.0648
+    },
+    {
+      "operation": "POST /exams/bank",
+      "seconds": 0.0405
+    },
+    {
+      "operation": "POST /exams/bank/bq-95ecfd3835824872bf268aa778490af0/review",
+      "seconds": 0.0417
+    },
+    {
+      "operation": "POST /exams/assemble",
+      "seconds": 0.0236
+    },
+    {
+      "operation": "POST /exams/papers",
+      "seconds": 0.0971
+    },
+    {
+      "operation": "POST /exams/papers/paper-c852339b39ee40788e4ed2244e4e664c/review",
+      "seconds": 0.0529
+    },
+    {
+      "operation": "POST /exams",
+      "seconds": 0.0502
+    },
+    {
+      "operation": "POST /exams/exam-f5d06f9854524e889c891f33ad27c039/start",
+      "seconds": 0.0393
+    },
+    {
+      "operation": "PUT /exams/exam-f5d06f9854524e889c891f33ad27c039/answers",
+      "seconds": 0.0403
+    },
+    {
+      "operation": "POST /exams/exam-f5d06f9854524e889c891f33ad27c039/submit",
+      "seconds": 0.0593
+    },
+    {
+      "operation": "POST /exams/exam-f5d06f9854524e889c891f33ad27c039/start",
+      "seconds": 0.0475
+    },
+    {
+      "operation": "PUT /exams/exam-f5d06f9854524e889c891f33ad27c039/answers",
+      "seconds": 0.0354
+    },
+    {
+      "operation": "POST /exams/exam-f5d06f9854524e889c891f33ad27c039/submit",
+      "seconds": 0.038
+    },
+    {
+      "operation": "POST /exams/exam-f5d06f9854524e889c891f33ad27c039/start",
+      "seconds": 0.0325
+    },
+    {
+      "operation": "PUT /exams/exam-f5d06f9854524e889c891f33ad27c039/answers",
+      "seconds": 0.039
+    },
+    {
+      "operation": "POST /exams/exam-f5d06f9854524e889c891f33ad27c039/submit",
+      "seconds": 0.0995
+    },
+    {
+      "operation": "GET /exams/exam-f5d06f9854524e889c891f33ad27c039",
+      "seconds": 0.0317
+    },
+    {
+      "operation": "PUT /exams/exam-f5d06f9854524e889c891f33ad27c039/submissions/sub-68fdcc0a97974603962e98da7ac458cf/grades",
+      "seconds": 0.0408
+    },
+    {
+      "operation": "PUT /exams/exam-f5d06f9854524e889c891f33ad27c039/submissions/sub-f8e418aeb5e44fe3a1ea9420ae3162db/grades",
+      "seconds": 0.0344
+    },
+    {
+      "operation": "PUT /exams/exam-f5d06f9854524e889c891f33ad27c039/submissions/sub-73b4230be57943fb96620b830c96ddce/grades",
+      "seconds": 0.0408
+    },
+    {
+      "operation": "POST /exams/exam-f5d06f9854524e889c891f33ad27c039/results",
+      "seconds": 0.212
+    },
+    {
+      "operation": "GET /exams/exam-f5d06f9854524e889c891f33ad27c039",
+      "seconds": 0.0216
+    },
+    {
+      "operation": "POST /live",
+      "seconds": 0.0854
+    },
+    {
+      "operation": "POST /live/live-85df839b5b8a437386791573c4edaaa5/push",
+      "seconds": 0.0777
+    },
+    {
+      "operation": "POST /live/live-85df839b5b8a437386791573c4edaaa5/join",
+      "seconds": 0.0569
+    },
+    {
+      "operation": "PUT /live/live-85df839b5b8a437386791573c4edaaa5/activities/act-a1085f4b0e21485c86f9fca41340086a/answer",
+      "seconds": 0.0461
+    },
+    {
+      "operation": "POST /live/live-85df839b5b8a437386791573c4edaaa5/join",
+      "seconds": 0.0389
+    },
+    {
+      "operation": "PUT /live/live-85df839b5b8a437386791573c4edaaa5/activities/act-a1085f4b0e21485c86f9fca41340086a/answer",
+      "seconds": 0.0498
+    },
+    {
+      "operation": "GET /live/live-85df839b5b8a437386791573c4edaaa5",
+      "seconds": 0.0256
+    },
+    {
+      "operation": "POST /live/live-85df839b5b8a437386791573c4edaaa5/end",
+      "seconds": 0.1157
+    },
+    {
+      "operation": "GET /exams/exam-f5d06f9854524e889c891f33ad27c039",
+      "seconds": 0.032
+    },
+    {
+      "operation": "GET /exams/papers",
+      "seconds": 0.0217
+    },
+    {
+      "operation": "GET /groups/suggestions?classId=class-cae37285faf441eca5e6293dfdb48f9c&knowledgeId=kp-equality",
+      "seconds": 0.0665
+    },
+    {
+      "operation": "POST /groups",
+      "seconds": 0.1068
+    },
+    {
+      "operation": "POST /groups/group-6478eeb62cca4053b4219bc08a827bbc/publish",
+      "seconds": 0.0926
+    },
+    {
+      "operation": "POST /records/task-b83e645217e5434c96e2f82073956e34/attempts",
+      "seconds": 0.0514
+    },
+    {
+      "operation": "GET /groups",
+      "seconds": 0.0609
+    },
+    {
+      "operation": "POST /community",
+      "seconds": 0.0633
+    },
+    {
+      "operation": "PUT /community/share-4045274d942344679b46362148fa3ea5/bookmark",
+      "seconds": 0.0361
+    },
+    {
+      "operation": "POST /community/share-4045274d942344679b46362148fa3ea5/events",
+      "seconds": 0.043
+    },
+    {
+      "operation": "POST /teaching/tasks/task-6daf2f5fb78d3187a556ea93a19e3a3c/supplements",
+      "seconds": 0.0999
+    },
+    {
+      "operation": "POST /teaching/supplements/sup-afda9e3199c8081a74d533539517adc0/start",
+      "seconds": 0.0485
+    },
+    {
+      "operation": "POST /teaching/supplements/sup-afda9e3199c8081a74d533539517adc0/submit",
+      "seconds": 0.0369
+    },
+    {
+      "operation": "PUT /teaching/supplements/sup-afda9e3199c8081a74d533539517adc0/students/account-d21c4a05101d4863b72c683836706ad6/feedback",
+      "seconds": 0.0528
+    }
+  ],
+  "passed": true
+}

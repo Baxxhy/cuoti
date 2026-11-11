@@ -1,0 +1,120 @@
+{
+  "environment": "fixed release7731bf8; MySQL23320; loopbackTLS9443; host shared; one sequential browser/operator; classroom2 actual students",
+  "concurrency": 1,
+  "api": [
+    {
+      "path": "/api/health",
+      "samplesMs": [
+        12.69,
+        10.8,
+        10.61,
+        10.72,
+        10.87
+      ],
+      "medianMs": 10.8,
+      "maxMs": 12.69
+    },
+    {
+      "path": "/api/platform",
+      "samplesMs": [
+        168.4,
+        156.25,
+        170.73,
+        174.12,
+        157.63
+      ],
+      "medianMs": 168.4,
+      "maxMs": 174.12
+    },
+    {
+      "path": "/api/memory",
+      "samplesMs": [
+        51.86,
+        45.69,
+        51.8,
+        50.21,
+        48.07
+      ],
+      "medianMs": 50.21,
+      "maxMs": 51.86
+    },
+    {
+      "path": "/api/units/unit-equation/progress",
+      "samplesMs": [
+        68.73,
+        61.33,
+        57.09,
+        56.55,
+        59.82
+      ],
+      "medianMs": 59.82,
+      "maxMs": 68.73
+    },
+    {
+      "path": "/api/exams",
+      "samplesMs": [
+        26.26,
+        19.47,
+        18.43,
+        17.59,
+        18.33
+      ],
+      "medianMs": 18.43,
+      "maxMs": 26.26
+    }
+  ],
+  "realModelCalls": [
+    {
+      "kind": "agent",
+      "seconds": 233.959,
+      "status": "failed"
+    },
+    {
+      "kind": "agent",
+      "seconds": 35.793,
+      "status": "succeeded"
+    },
+    {
+      "kind": "text-hint",
+      "seconds": 8.162,
+      "status": "succeeded"
+    },
+    {
+      "kind": "ocr",
+      "seconds": 8.933,
+      "status": "succeeded"
+    },
+    {
+      "kind": "ocr-confirmed",
+      "seconds": 8.187,
+      "status": "succeeded"
+    },
+    {
+      "kind": "wrong-analysis",
+      "seconds": 9.016,
+      "status": "succeeded"
+    },
+    {
+      "kind": "wrong-guidance",
+      "seconds": 10.681,
+      "status": "succeeded"
+    },
+    {
+      "kind": "wrong-practice",
+      "seconds": 7.941,
+      "status": "succeeded"
+    },
+    {
+      "kind": "wrong-retest",
+      "seconds": 11.098,
+      "status": "failed"
+    },
+    {
+      "kind": "wrong-retest",
+      "seconds": 14.154,
+      "status": "succeeded"
+    }
+  ],
+  "uploadSeconds": 0.064,
+  "businessMetricsSource": "exam-class-flows.json metrics: exam draft/submit and live answer/read; no load-test claim"
+}

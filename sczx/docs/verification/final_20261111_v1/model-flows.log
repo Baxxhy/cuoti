@@ -1,0 +1,9 @@
+agent failed
+Traceback (most recent call last):
+  File "/tmp/sczx-step20/model-flows.py", line 22, in <module>
+    agent=job(t,'agent',{'capability':'lesson_agent','data':{'lessonId':f['lessons'][1],'task':'纠正机械移项：保留本课题目，要求两边同时运算、除数非零并代回。','taskType':'misconception','constraints':'使用已有来源。只写具体教师提问和学生动作，保持活动ID和题目不变。'}});f['agentJob']=agent['id']
+          ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/sczx-step20/model-flows.py", line 20, in job
+    if j['status']!='succeeded':raise RuntimeError(key+': '+j.get('error',''))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: agent: Codex CLI 执行超时，可重试。

@@ -1,0 +1,85 @@
+{
+  "at": 1794394233.2372434,
+  "checks": [
+    {
+      "name": "upload-parse-reread-original",
+      "materialId": "material-99ba86c514004973961fea56ab8d76d",
+      "units": 3
+    },
+    {
+      "name": "edit-verify-review-publish-with-original-reference",
+      "caseId": "case-a0398d41b97d45708825121e1511caf9",
+      "case": {
+        "id": "case-a0398d41b97d45708825121e1511caf9",
+        "status": "published",
+        "draft": null,
+        "versions": [
+          {
+            "id": "version-0a891671d04d4f52b4f302747fbbf210",
+            "number": 1,
+            "publishedAt": "2026-11-11T10:50:35Z"
+          }
+        ],
+        "published": {
+          "grade": "七年级",
+          "title": "交付验收：共同运算追问",
+          "author": "项目工程验收",
+          "source": "交付验收自编共同运算材料",
+          "content": "出示x−3=5，先问两边同时进行什么运算，再写等式并代回。",
+          "subject": "数学",
+          "reviewed": false,
+          "updatedAt": "2026-11-11T10:50:35.163629Z",
+          "experience": {},
+          "references": [
+            {
+              "label": "段落 1",
+              "quote": "共同运算核对",
+              "author": "项目工程验收",
+              "source": "合成示例，非真实课堂材料",
+              "unitId": "unit-f2a1996cc19c0305dc3acc674efed9f3",
+              "sourceUrl": "",
+              "materialId": "material-99ba86c514004973961fea56ab8d76d",
+              "materialTitle": "交付验收自编共同运算材料"
+            },
+            {
+              "label": "段落 2",
+              "quote": "出示x−3=5。问：如果左边加3，右边应怎样变化？让学生写出x−3+3=5+3，再得x=8，代回8−3=5。",
+              "author": "项目工程验收",
+              "source": "合成示例，非真实课堂材料",
+              "unitId": "unit-a1c1296dabdc20d00b8f1ee6d4365bff",
+              "sourceUrl": "",
+              "materialId": "material-99ba86c514004973961fea56ab8d76d",
+              "materialTitle": "交付验收自编共同运算材料"
+            }
+          ],
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "knowledgeLinks": [
+            {
+              "id": "kp-equality",
+              "name": "等式性质"
+            }
+          ],
+          "id": "case-a0398d41b97d45708825121e1511caf9",
+          "versionId": "version-0a891671d04d4f52b4f302747fbbf210",
+          "version": 1,
+          "publishedAt": "2026-11-11T10:50:35Z"
+        }
+      }
+    },
+    {
+      "name": "admin-existing-feedback-and-model-abnormality-list",
+      "issues": 0,
+      "modelJobs": 3,
+      "failedJobs": 0
+    }
+  ],
+  "uploadSeconds": 0.078,
+  "passed": true
+}

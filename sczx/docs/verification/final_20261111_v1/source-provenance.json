@@ -1,0 +1,15 @@
+{
+  "initialFlowSource": "7731bf86b2b074aca7ccee237a4c28ea7783386a",
+  "finalFixedSource": "f985287324a93dd4902feec2f8dc9211803a0265",
+  "changedPaths": [
+    ".github/workflows/checks.yml",
+    "backend-business/sczx_business/unit_learning.py",
+    "backend-business/tests/README.md",
+    "backend-business/tests/test_release_tools.py",
+    "backend-business/tests/test_unit_mysql.py",
+    "deploy/manage.py"
+  ],
+  "unchangedModelsAndFrontend": true,
+  "finalUnitAPIRechecked": true,
+  "historicalVoiceV01V03": "approved environment exceptions; not changed to passed"
+}

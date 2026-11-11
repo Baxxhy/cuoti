@@ -1,0 +1,3 @@
+/tmp/sczx-step20/compatibility-read.py:23: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  with Session(engine) as db:db.add(LoginSession(id=hashlib.sha256(token.encode()).hexdigest(),account_id=account,expires_at=datetime.utcnow()+timedelta(minutes=10)));db.commit()
+restored/migrated original serialization, new audit admin login and original role reads PASS; no raw private records archived

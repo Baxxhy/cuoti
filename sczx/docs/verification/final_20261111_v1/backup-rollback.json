@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-11-11T11:21:16.594769+00:00",
+  "checks": [
+    {
+      "name": "complete-0016-backup",
+      "backup": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/backups/preproduction-0016-8c118d",
+      "verified": true,
+      "tables": 52,
+      "files": 6
+    },
+    {
+      "name": "empty16-restore-full-rows-files",
+      "restored": true,
+      "database": "sczx_test_final_restore16_594f6e",
+      "tables": 52,
+      "files": 6
+    },
+    {
+      "name": "restored16-actual-login-unit-exam-memory-feedback",
+      "tasks": 5,
+      "recordCount": 9
+    },
+    {
+      "name": "paired0013-empty-restore",
+      "restored": true,
+      "database": "sczx_test_final_rollback13_316ca3",
+      "tables": 35,
+      "files": 82
+    },
+    {
+      "name": "old-compatible-release-started-login-read",
+      "sczxCommit": "1a240257658881c46a584d9219fa525dfadc39dc",
+      "revision": "0013_teaching_insights",
+      "newDataRetainedIn16Backup": true
+    }
+  ],
+  "completedAt": "2026-11-11T11:22:13.335438+00:00"
+}

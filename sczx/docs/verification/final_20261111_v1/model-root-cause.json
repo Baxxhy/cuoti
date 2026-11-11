@@ -1,0 +1,14 @@
+{
+  "cause": "systemd runtime lacked terminal routing proxy; default provider deliberately strips proxies",
+  "withoutProxy": "workspace routing discovery timed out; 70s minimal probe timed out",
+  "withExistingTerminalProxy": "same existing Codex login, same luna/low, 5.119s success",
+  "change": "private staging env opt-in SCZX_CODEX_INHERIT_PROXY=true and pass existing proxy variables",
+  "copiedVariableNames": [
+    "HTTP_PROXY",
+    "HTTPS_PROXY",
+    "ALL_PROXY",
+    "NO_PROXY"
+  ],
+  "backupCredentialsUsed": false,
+  "newSupplier": false
+}

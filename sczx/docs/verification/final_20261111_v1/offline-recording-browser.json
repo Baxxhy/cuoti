@@ -1,0 +1,206 @@
+{
+  "checks": [
+    "online-download-one-authorized-package/offline-save-IDB",
+    "actual-browser-close-reopen-offline-shell/unlock/restored-original-answer-and-reason",
+    "online-identity-CAS-sync/server-reread/repeated-sync-idempotent",
+    "online-learning-displays-synced-answer-and-program-check"
+  ],
+  "screens": [
+    {
+      "name": "offline-reader",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "offline-reader",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "offline-reader",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "serviceWorker": {
+    "controller": true,
+    "caches": [
+      "sczx-shell-5c9ff077b8b0ad5d"
+    ],
+    "apiCached": false
+  },
+  "encryptedStorage": [
+    {
+      "schema": 1,
+      "encrypted": true,
+      "bytes": 4605,
+      "keys": [
+        "schema",
+        "salt",
+        "iv",
+        "ciphertext"
+      ]
+    }
+  ],
+  "serverDraft": {
+    "schema": 1,
+    "userId": "account-3b24226dba5d424aa7d614681d879c8e",
+    "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+    "lessonId": "lesson-equation",
+    "title": "等式性质",
+    "publishedVersionId": "lessonversion-05548bc775c24080ab030dfee3",
+    "versionId": "adcdea9767b105c24fe4c3cc8e8a16f2372018da343729be49ded811ad65917b",
+    "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。 写出运算依据并代回核对。",
+    "blocks": [
+      {
+        "id": "eq-intro",
+        "title": "相等的两边",
+        "type": "explanation",
+        "content": "等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。"
+      },
+      {
+        "id": "eq-balance",
+        "title": "让天平两边一起变化",
+        "type": "activity",
+        "content": "天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。"
+      },
+      {
+        "id": "eq-add-sub",
+        "title": "同加、同减",
+        "type": "explanation",
+        "content": "若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。"
+      },
+      {
+        "id": "eq-example-add",
+        "title": "例题：消去减去的数",
+        "type": "example",
+        "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。"
+      },
+      {
+        "id": "eq-practice",
+        "title": "随堂练习",
+        "type": "practice",
+        "content": "每一步都说明两边进行了什么运算。",
+        "questionIds": [
+          "eq-practice-add",
+          "eq-practice-sub"
+        ]
+      },
+      {
+        "id": "eq-mul-div",
+        "title": "同乘、同除的条件",
+        "type": "explanation",
+        "content": "若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。"
+      },
+      {
+        "id": "eq-example-div",
+        "title": "例题：共同除以非零数",
+        "type": "example",
+        "content": "3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。"
+      },
+      {
+        "id": "eq-check",
+        "title": "独立检查",
+        "type": "check",
+        "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+        "questionIds": [
+          "eq-check-divide",
+          "eq-check-multiply"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "eq-practice-add",
+        "kind": "practice",
+        "prompt": "两边同时加3，x等于多少？",
+        "equation": "x - 3 = 5",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 0
+      },
+      {
+        "id": "eq-practice-sub",
+        "kind": "practice",
+        "prompt": "两边同时减4，y等于多少？",
+        "equation": "y + 4 = 11",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 1
+      },
+      {
+        "id": "eq-check-divide",
+        "kind": "check",
+        "prompt": "求z，并解释两边为什么可以同时除以3。",
+        "equation": "3z = 18",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 2
+      },
+      {
+        "id": "eq-check-multiply",
+        "kind": "check",
+        "prompt": "求w，并写出两边共同进行的运算。",
+        "equation": "w / 4 = 3",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 3
+      },
+      {
+        "id": "eq-new-combine",
+        "kind": "replacement",
+        "prompt": "先使a - 1单独在一边，再求a。",
+        "equation": "2(a - 1) = 10",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 4
+      },
+      {
+        "id": "eq-new-negative",
+        "kind": "replacement",
+        "prompt": "求b，说明两边共同进行的运算。",
+        "equation": "b / (-3) = 2",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 5
+      }
+    ],
+    "knowledgeIds": [
+      "kp-equality"
+    ],
+    "downloadedAt": "2026-11-11T10:55:26.097876Z",
+    "offlineUntil": "2026-11-14T10:55:26.097897Z",
+    "baseRevision": "e891d6b9ef3ff62b9e34cfc331ae3a5add168158ff4646b05495b39fd402c5d9",
+    "drafts": {
+      "questions": {
+        "eq-practice-add": {
+          "answer": "8",
+          "reason": "我把两边同时加3，再把8代回原式。",
+          "helped": false
+        },
+        "eq-practice-sub": {},
+        "eq-check-divide": {},
+        "eq-check-multiply": {},
+        "eq-new-combine": {},
+        "eq-new-negative": {}
+      },
+      "lessonPosition": {
+        "blockId": "eq-practice",
+        "question": null
+      }
+    },
+    "readOnly": false,
+    "contentHash": "bad59fff0dc1fc506dd964e5e016c780510ea6986e5838352452be5710c1951f"
+  },
+  "passedThroughSync": true,
+  "consoleErrors": []
+}

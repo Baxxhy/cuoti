@@ -1,0 +1,32 @@
+{
+  "serializedOriginalRecords": 16,
+  "originalSerializationDigest": "d5c9ede0e78e99d6c9f59f1b9f49ddff6f381333be8f3f8c3fd98d3600b9198d",
+  "auditAccountIsolated": true,
+  "originalPasswordsNotChanged": true,
+  "roleReads": {
+    "/api/curriculum/courses": {
+      "status": 200,
+      "sha256": "202bce0f67d7c575a9782815ebb55a4d10a33ccc2db37c38a9273fd1b239d1aa",
+      "items": 2
+    },
+    "/api/curriculum/knowledge": {
+      "status": 200,
+      "sha256": "979336eaf3c3377fc780436b8f77c8897815c230b8e9efbda965e2d06f496e33",
+      "items": 8
+    },
+    "teacher": {
+      "status": 200,
+      "tasks": 1,
+      "records": 1,
+      "sha256": "ef49b70f4535ff615388402f4b802e59f3480d24ccaeb838e7c736239e0ddfb6"
+    },
+    "student": {
+      "status": 200,
+      "tasks": 1,
+      "records": 1,
+      "sha256": "32c25cf58420edc985a011dc1bff18c56117398c71fb6708f6c121de5a48070c"
+    }
+  },
+  "adminLogin": 200,
+  "passed": true
+}

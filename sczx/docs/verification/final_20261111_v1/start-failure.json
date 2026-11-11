@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-11T18:56:48.437542",
+  "actualBindFailure": true,
+  "port": 9443,
+  "onlyIsolatedCopyDatabase": true,
+  "serviceLogRetained": true,
+  "exitCode": 1,
+  "message": "服务启动失败，保留service.log和PID记录"
+}

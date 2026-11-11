@@ -1,0 +1,252 @@
+{
+  "date": "2026-11-11",
+  "formalReadOnly": true,
+  "formalCurrent": "0013_teaching_insights",
+  "backupPath": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/backups/formal-0013-4913c850",
+  "sqlBytes": 4371346,
+  "sqlSha256": "191a94d4ffae3ec220bff57dd9ef4babe1dde4ae881eabd80d5b3e9d2dba3c95",
+  "uploadArchiveSha256": "83416864e3869ac74cac9014c92216878dcce93807c1de0734074bba88e84485",
+  "originalTables": {
+    "accounts": {
+      "rows": 12,
+      "sha256": "2a75d6b9576b5275f8fef47fd81df3a9823d4a59ebd8f2800ba069d37e47e998"
+    },
+    "attempts": {
+      "rows": 35,
+      "sha256": "a4fbab936290cb7491e0da3d3ff27bb35b2a8209a6966495c66a62e8be101471"
+    },
+    "business_messages": {
+      "rows": 6,
+      "sha256": "ba54a00313c36b293a403a773d9ac49bd5bfde27f0c9d4cd60fd0e45f320920c"
+    },
+    "case_draft_contents": {
+      "rows": 3,
+      "sha256": "855fcc5feca16d1812a154120f8eb4bbaf4134364962cf75eb370109cb719818"
+    },
+    "case_versions": {
+      "rows": 16,
+      "sha256": "3c7077c48afab36eb502d332d10cd69512b15de7797f34839825907d182b6d05"
+    },
+    "class_invites": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "class_join_throttles": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "class_members": {
+      "rows": 6,
+      "sha256": "ca4668520c68b2c46dbb5d41661dad45f5de8cb0f5620d04eeb452defe9618d6"
+    },
+    "classrooms": {
+      "rows": 6,
+      "sha256": "535f2091d658db1cd24186467df1e895745b3d0630f6f53fdffcad50cdc322b1"
+    },
+    "course_units": {
+      "rows": 2,
+      "sha256": "f9078cbeec59189a1cdd30ab76215a8345fa607e1bf1aa5aedeb767db31fe0d1"
+    },
+    "courses": {
+      "rows": 2,
+      "sha256": "64f229bb3a8273094732718b9b4dc81c1d7cbd63fb133ddb8052bb7245d6f215"
+    },
+    "file_assets": {
+      "rows": 33,
+      "sha256": "289e5032870efe67389dd1b04ef28b3efaee1d5c6672f191bcf52ac5357219a1"
+    },
+    "help_records": {
+      "rows": 21,
+      "sha256": "043d2928b67399f10451f0e7b4f99278954c116910f2a48f116fc07efebe216a"
+    },
+    "knowledge_points": {
+      "rows": 8,
+      "sha256": "a8d19648bbae3161b15d2e9e22fc0a76de693830901f7b6801f50dedb22c27cc"
+    },
+    "learning_memory_changes": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "learning_tasks": {
+      "rows": 16,
+      "sha256": "b4e00e3a0e6eb44e1f4b5c1e1e3920fbeaa20e6847e11c23f73cf7570e71bf32"
+    },
+    "lesson_contents": {
+      "rows": 7,
+      "sha256": "b3e361bf54f3c23b354108bf37a30674e75f0c0a886c5ce2c51d6de0c52003a2"
+    },
+    "lesson_draft_versions": {
+      "rows": 17,
+      "sha256": "1ace225b98bd8b71c3c8acab3f6e1950b2f37aef829abf433f755227f711bcb1"
+    },
+    "lesson_drafts": {
+      "rows": 6,
+      "sha256": "842a620b594d27ec97b7e5c37a01df8c5de57ad353ba892f2c9f4d9571534441"
+    },
+    "lesson_versions": {
+      "rows": 11,
+      "sha256": "92080c3bbb10d70af2b0b3ec9a7ba78eec44709a82346ca408d0677a864edc8f"
+    },
+    "lessons": {
+      "rows": 7,
+      "sha256": "7e6cb2d7cc10ac72ad25af2daf360e08e4b2ac81f90748a16e9c6a8eafdc88bc"
+    },
+    "login_sessions": {
+      "rows": 243,
+      "sha256": "4cb038f213ccf096fc39ef48f983df9955f7fd2a0493e8f1a5ae69d9a14c4cee"
+    },
+    "material_units": {
+      "rows": 24,
+      "sha256": "e76b02afaa131fad0d36cbfaea4fc338602b4bd75379fcd3af95fb8ccfc4916e"
+    },
+    "model_events": {
+      "rows": 483,
+      "sha256": "6430b164c5dcf49afcc803791e74200cec2da38427ed23bd67e4f7d7adf4396b"
+    },
+    "model_jobs": {
+      "rows": 67,
+      "sha256": "a5ea831b00efa702820811207c48f9b29b6cfb72af4e4853b0664c57fb559446"
+    },
+    "model_runs": {
+      "rows": 77,
+      "sha256": "3cad71eb0b904ea3b223e70d025dc6abb3e0d36c97d601a4ac125fe6a409321d"
+    },
+    "repair_attempts": {
+      "rows": 6,
+      "sha256": "ea9c8ce3254b3bc148b31d7e194f747890b49f199f63ac4a06c30b9020066565"
+    },
+    "source_materials": {
+      "rows": 12,
+      "sha256": "93cdef92171ceb70b79744f6db0baf7f8c0d64d96a10a6147655ab21dee4aaa5"
+    },
+    "student_records": {
+      "rows": 16,
+      "sha256": "abbc303c2c5ba2b6117dd1589a1b5d5c47a6455dfce204c35df754621dfb5793"
+    },
+    "supplement_recipients": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "supplemental_instructions": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "support_issue_events": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "support_issues": {
+      "rows": 2,
+      "sha256": "43a94bf6d16e99a4864303b67e0373a8358fc4d4db73ba8ce2d1e8142a2a3c7d"
+    },
+    "teaching_cases": {
+      "rows": 11,
+      "sha256": "e6b9bd082403e99af8fcc99c73a116a89cc74bb48cdb4c73dd0b812181c87122"
+    },
+    "wrong_questions": {
+      "rows": 7,
+      "sha256": "fc84654d0d5f2de746b9a504540f6f8a76e618fd87d7e9ec8a1a69a055ffd343"
+    }
+  },
+  "originalFileCount": 82,
+  "originalFilesDigest": "79207a960f2f30886c10bb8ac2ab29b5082a721d4ece2dd145a725b15f6cdb36",
+  "emptyRestoreVerified": true,
+  "startAt0013RefusedWithoutSideEffects": true,
+  "externalDormantWriterDetected": true,
+  "migrationSteps": [
+    {
+      "from": "0013_teaching_insights",
+      "target": "0014_examinations",
+      "oldRowsUnchanged": true,
+      "newTables": {
+        "bank_questions": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "class_exams": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equation_progress": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exam_grade_audits": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exam_papers": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exam_submissions": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "paper_versions": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "question_versions": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "from": "0014_examinations",
+      "target": "0015_classroom_community",
+      "oldRowsUnchanged": true,
+      "newTables": {
+        "community_bookmarks": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "community_events": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "community_shares": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "live_activities": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "live_answers": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "live_classes": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "live_presences": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "teaching_group_plans": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "from": "0015_classroom_community",
+      "target": "0016_offline_drafts",
+      "oldRowsUnchanged": true,
+      "newTables": {
+        "offline_operations": {
+          "rows": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "finalHeads": [
+    "0016_offline_drafts"
+  ],
+  "originalFilesUnchanged": true,
+  "formalMigrationExecuted": false
+}

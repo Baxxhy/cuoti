@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-11T09:56:48.993192+00:00",
+  "environment": "staging",
+  "database": "sczx",
+  "current": "0013_teaching_insights",
+  "target": "0016_offline_drafts",
+  "plan": [
+    "0014_examinations",
+    "0015_classroom_community",
+    "0016_offline_drafts"
+  ],
+  "otherSessions": [],
+  "processWriters": [],
+  "activeModelJobs": 0,
+  "tableCount": 36,
+  "release": {
+    "fixed": false,
+    "sczxCommit": null,
+    "candidateOnly": true
+  },
+  "runtimeIssues": [
+    "正式目标必须配置HTTPS与Secure Cookie"
+  ],
+  "sideEffects": false
+}

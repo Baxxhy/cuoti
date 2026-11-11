@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-11T10:59:03.414Z",
+  "actions": [
+    {
+      "name": "teacher-feedback-written-by-UI",
+      "at": "2026-11-11T10:59:07.874Z"
+    },
+    {
+      "name": "same-feedback-read-after-role-login",
+      "at": "2026-11-11T10:59:10.449Z"
+    },
+    {
+      "name": "verified-retest-history-and-return-original-task",
+      "at": "2026-11-11T10:59:13.555Z"
+    },
+    {
+      "name": "real-released-exam-detail",
+      "at": "2026-11-11T10:59:15.648Z"
+    }
+  ],
+  "screens": [],
+  "frames": 147,
+  "passed": true,
+  "consoleErrors": []
+}

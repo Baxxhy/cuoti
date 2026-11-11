@@ -1,0 +1,459 @@
+{
+  "startedAt": 1794393313.3762994,
+  "checks": [
+    {
+      "name": "lesson-submitted",
+      "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c"
+    },
+    {
+      "name": "lesson-submitted",
+      "taskId": "task-3361641357616810add3c3fda3f777cb"
+    },
+    {
+      "name": "lesson-submitted",
+      "taskId": "task-93bc9542410cf0a716e8b866cc4133af"
+    },
+    {
+      "name": "lesson-submitted",
+      "taskId": "task-71e3a8b8603e7dfc87120886dab57859"
+    },
+    {
+      "name": "lesson-submitted",
+      "taskId": "task-518189bfa35d647fdb40d5fbc520a545"
+    },
+    {
+      "name": "five-lessons-assigned",
+      "progress": {
+        "id": "unit-equation",
+        "title": "一元一次方程",
+        "lessons": [
+          {
+            "lessonId": "lesson-equation",
+            "title": "等式性质",
+            "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+            "versionId": "lessonversion-05548bc775c24080ab030dfee3",
+            "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+            "completed": true,
+            "readOnly": false,
+            "status": "已提交",
+            "submittedAt": "2026-11-11T10:35:19Z",
+            "target": "/learn?task=task-6daf2f5fb78d3187a556ea93a19e3a3c"
+          },
+          {
+            "lessonId": "lesson-simple",
+            "title": "解简单的一元一次方程",
+            "taskId": "task-3361641357616810add3c3fda3f777cb",
+            "versionId": "lessonversion-a810db605e16465cb5f2c6940b",
+            "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+            "completed": true,
+            "readOnly": false,
+            "status": "已提交",
+            "submittedAt": "2026-11-11T10:35:20Z",
+            "target": "/learn?task=task-3361641357616810add3c3fda3f777cb"
+          },
+          {
+            "lessonId": "lesson-718041ce19ae47888e2ff95e33a554e7",
+            "title": "含括号与分母的方程",
+            "taskId": "task-93bc9542410cf0a716e8b866cc4133af",
+            "versionId": "lessonversion-4af3a0509e04454ba26be50f2c",
+            "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+            "completed": true,
+            "readOnly": false,
+            "status": "已提交",
+            "submittedAt": "2026-11-11T10:35:21Z",
+            "target": "/learn?task=task-93bc9542410cf0a716e8b866cc4133af"
+          },
+          {
+            "lessonId": "lesson-application",
+            "title": "用方程解决生活问题",
+            "taskId": "task-71e3a8b8603e7dfc87120886dab57859",
+            "versionId": "lessonversion-1b24b50fc3b44e0b836497e083",
+            "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+            "completed": true,
+            "readOnly": false,
+            "status": "已提交",
+            "submittedAt": "2026-11-11T10:35:21Z",
+            "target": "/learn?task=task-71e3a8b8603e7dfc87120886dab57859"
+          },
+          {
+            "lessonId": "lesson-285e7f380c074134b8d35a3b577b10d3",
+            "title": "一元一次方程单元复习",
+            "taskId": "task-518189bfa35d647fdb40d5fbc520a545",
+            "versionId": "lessonversion-2263f9dccbc84a608f76719979",
+            "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+            "completed": true,
+            "readOnly": false,
+            "status": "已提交",
+            "submittedAt": "2026-11-11T10:35:22Z",
+            "target": "/learn?task=task-518189bfa35d647fdb40d5fbc520a545"
+          }
+        ],
+        "completed": 5,
+        "assigned": 5,
+        "total": 5,
+        "scope": "本人已分配任务；完成不等于独立正确"
+      }
+    },
+    {
+      "name": "feedback-roundtrip",
+      "recordId": "record-91610a9d7ecb48bbaea54bc929d4e2db"
+    },
+    {
+      "name": "permission-denied",
+      "path": "/teaching/tasks/task-6daf2f5fb78d3187a556ea93a19e3a3c",
+      "status": 404
+    },
+    {
+      "name": "permission-denied",
+      "path": "/teaching/tasks/task-6daf2f5fb78d3187a556ea93a19e3a3c",
+      "status": 404
+    },
+    {
+      "name": "permission-denied",
+      "path": "/equation-tools/record-91610a9d7ecb48bbaea54bc929d4e2db/0",
+      "status": 404
+    },
+    {
+      "name": "equation-tool-saved"
+    }
+  ],
+  "metrics": [
+    {
+      "operation": "GET /accounts",
+      "seconds": 0.0198
+    },
+    {
+      "operation": "GET /teaching/classes",
+      "seconds": 0.0196
+    },
+    {
+      "operation": "POST /teaching/classes/class-cae37285faf441eca5e6293dfdb48f9c/invites",
+      "seconds": 0.0429
+    },
+    {
+      "operation": "POST /teaching/join",
+      "seconds": 0.0335
+    },
+    {
+      "operation": "POST /teaching/join",
+      "seconds": 0.0329
+    },
+    {
+      "operation": "POST /teaching/join",
+      "seconds": 0.0631
+    },
+    {
+      "operation": "GET /teaching/classes",
+      "seconds": 0.018
+    },
+    {
+      "operation": "POST /teaching/classes/class-379e4f054f9b402ab0101344a4ffc881/invites",
+      "seconds": 0.0211
+    },
+    {
+      "operation": "POST /teaching/join",
+      "seconds": 0.0286
+    },
+    {
+      "operation": "POST /teaching/join",
+      "seconds": 0.059
+    },
+    {
+      "operation": "POST /teaching/join",
+      "seconds": 0.0427
+    },
+    {
+      "operation": "GET /curriculum/courses",
+      "seconds": 0.0411
+    },
+    {
+      "operation": "GET /curriculum/lessons/lesson-equation",
+      "seconds": 0.02
+    },
+    {
+      "operation": "GET /curriculum/lessons/lesson-simple",
+      "seconds": 0.0179
+    },
+    {
+      "operation": "GET /curriculum/lessons/lesson-718041ce19ae47888e2ff95e33a554e7",
+      "seconds": 0.0175
+    },
+    {
+      "operation": "GET /curriculum/lessons/lesson-application",
+      "seconds": 0.0187
+    },
+    {
+      "operation": "GET /curriculum/lessons/lesson-285e7f380c074134b8d35a3b577b10d3",
+      "seconds": 0.0209
+    },
+    {
+      "operation": "POST /ai/search",
+      "seconds": 0.0471
+    },
+    {
+      "operation": "GET /platform?lessonId=lesson-equation",
+      "seconds": 0.0585
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.1796
+    },
+    {
+      "operation": "POST /tasks/publish",
+      "seconds": 0.2802
+    },
+    {
+      "operation": "GET /platform?lessonId=lesson-simple",
+      "seconds": 0.1018
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.0985
+    },
+    {
+      "operation": "POST /tasks/publish",
+      "seconds": 0.1412
+    },
+    {
+      "operation": "GET /platform?lessonId=lesson-718041ce19ae47888e2ff95e33a554e7",
+      "seconds": 0.128
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.0961
+    },
+    {
+      "operation": "POST /tasks/publish",
+      "seconds": 0.1419
+    },
+    {
+      "operation": "GET /platform?lessonId=lesson-application",
+      "seconds": 0.1648
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.1883
+    },
+    {
+      "operation": "POST /tasks/publish",
+      "seconds": 0.1635
+    },
+    {
+      "operation": "GET /platform?lessonId=lesson-285e7f380c074134b8d35a3b577b10d3",
+      "seconds": 0.2447
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.1474
+    },
+    {
+      "operation": "POST /tasks/publish",
+      "seconds": 0.1807
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.0981
+    },
+    {
+      "operation": "POST /records/task-6daf2f5fb78d3187a556ea93a19e3a3c/attempts",
+      "seconds": 0.0523
+    },
+    {
+      "operation": "POST /records/task-6daf2f5fb78d3187a556ea93a19e3a3c/attempts",
+      "seconds": 0.0491
+    },
+    {
+      "operation": "POST /records/task-6daf2f5fb78d3187a556ea93a19e3a3c/attempts",
+      "seconds": 0.0354
+    },
+    {
+      "operation": "POST /records/task-6daf2f5fb78d3187a556ea93a19e3a3c/attempts",
+      "seconds": 0.0433
+    },
+    {
+      "operation": "POST /records/task-6daf2f5fb78d3187a556ea93a19e3a3c/attempts",
+      "seconds": 0.2076
+    },
+    {
+      "operation": "POST /records/task-6daf2f5fb78d3187a556ea93a19e3a3c/attempts",
+      "seconds": 0.078
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.1038
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.0502
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.0971
+    },
+    {
+      "operation": "POST /records/task-3361641357616810add3c3fda3f777cb/attempts",
+      "seconds": 0.0469
+    },
+    {
+      "operation": "POST /records/task-3361641357616810add3c3fda3f777cb/attempts",
+      "seconds": 0.0453
+    },
+    {
+      "operation": "POST /records/task-3361641357616810add3c3fda3f777cb/attempts",
+      "seconds": 0.0658
+    },
+    {
+      "operation": "POST /records/task-3361641357616810add3c3fda3f777cb/attempts",
+      "seconds": 0.0379
+    },
+    {
+      "operation": "POST /records/task-3361641357616810add3c3fda3f777cb/attempts",
+      "seconds": 0.0398
+    },
+    {
+      "operation": "POST /records/task-3361641357616810add3c3fda3f777cb/attempts",
+      "seconds": 0.0386
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.0974
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.0992
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.0952
+    },
+    {
+      "operation": "POST /records/task-93bc9542410cf0a716e8b866cc4133af/attempts",
+      "seconds": 0.0309
+    },
+    {
+      "operation": "POST /records/task-93bc9542410cf0a716e8b866cc4133af/attempts",
+      "seconds": 0.041
+    },
+    {
+      "operation": "POST /records/task-93bc9542410cf0a716e8b866cc4133af/attempts",
+      "seconds": 0.095
+    },
+    {
+      "operation": "POST /records/task-93bc9542410cf0a716e8b866cc4133af/attempts",
+      "seconds": 0.0328
+    },
+    {
+      "operation": "POST /records/task-93bc9542410cf0a716e8b866cc4133af/attempts",
+      "seconds": 0.0311
+    },
+    {
+      "operation": "POST /records/task-93bc9542410cf0a716e8b866cc4133af/attempts",
+      "seconds": 0.0465
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.093
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.0399
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.0856
+    },
+    {
+      "operation": "POST /records/task-71e3a8b8603e7dfc87120886dab57859/attempts",
+      "seconds": 0.0382
+    },
+    {
+      "operation": "POST /records/task-71e3a8b8603e7dfc87120886dab57859/attempts",
+      "seconds": 0.0521
+    },
+    {
+      "operation": "POST /records/task-71e3a8b8603e7dfc87120886dab57859/attempts",
+      "seconds": 0.0376
+    },
+    {
+      "operation": "POST /records/task-71e3a8b8603e7dfc87120886dab57859/attempts",
+      "seconds": 0.0491
+    },
+    {
+      "operation": "POST /records/task-71e3a8b8603e7dfc87120886dab57859/attempts",
+      "seconds": 0.0699
+    },
+    {
+      "operation": "POST /records/task-71e3a8b8603e7dfc87120886dab57859/attempts",
+      "seconds": 0.0693
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.1047
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.0634
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.107
+    },
+    {
+      "operation": "POST /records/task-518189bfa35d647fdb40d5fbc520a545/attempts",
+      "seconds": 0.0603
+    },
+    {
+      "operation": "POST /records/task-518189bfa35d647fdb40d5fbc520a545/attempts",
+      "seconds": 0.0406
+    },
+    {
+      "operation": "POST /records/task-518189bfa35d647fdb40d5fbc520a545/attempts",
+      "seconds": 0.0546
+    },
+    {
+      "operation": "POST /records/task-518189bfa35d647fdb40d5fbc520a545/attempts",
+      "seconds": 0.0611
+    },
+    {
+      "operation": "POST /records/task-518189bfa35d647fdb40d5fbc520a545/attempts",
+      "seconds": 0.1149
+    },
+    {
+      "operation": "POST /records/task-518189bfa35d647fdb40d5fbc520a545/attempts",
+      "seconds": 0.0375
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.1036
+    },
+    {
+      "operation": "PUT /platform",
+      "seconds": 0.0646
+    },
+    {
+      "operation": "GET /units/unit-equation/progress?classId=class-cae37285faf441eca5e6293dfdb48f9c",
+      "seconds": 0.0698
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.1025
+    },
+    {
+      "operation": "GET /wrongs",
+      "seconds": 0.0309
+    },
+    {
+      "operation": "PUT /records/record-91610a9d7ecb48bbaea54bc929d4e2db/feedback",
+      "seconds": 0.0412
+    },
+    {
+      "operation": "GET /platform",
+      "seconds": 0.1043
+    },
+    {
+      "operation": "PUT /equation-tools/record-91610a9d7ecb48bbaea54bc929d4e2db/0",
+      "seconds": 0.0545
+    }
+  ],
+  "completedAt": 1794393322.8880181
+}

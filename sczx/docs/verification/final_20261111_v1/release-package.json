@@ -1,0 +1,9 @@
+{
+  "release": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/releases/f985287324a93dd4902feec2f8dc9211803a0265",
+  "bundle": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/releases/f985287324a93dd4902feec2f8dc9211803a0265.tar.gz",
+  "sczxCommit": "f985287324a93dd4902feec2f8dc9211803a0265",
+  "sha256": "35be3dd4b2bf1d99cf82dd6c930111c2413757a9e7127e7366ed5771cf476e77",
+  "manifestSha256": "f53bd3b68592871414517fb12b239b0d27b025d2d79754b39c579b18a640f304",
+  "frontendInputsVerified": true,
+  "realSczxCommitNotParentHead": true
+}

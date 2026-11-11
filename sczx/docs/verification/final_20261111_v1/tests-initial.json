@@ -1,0 +1,13 @@
+{
+  "database": "sczx_test_final_reg_403583",
+  "exitCode": 0,
+  "command": [
+    "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/runtime/venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "backend-business/tests",
+    "-v"
+  ]
+}

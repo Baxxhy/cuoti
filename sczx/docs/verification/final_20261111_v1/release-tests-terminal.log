@@ -1,0 +1,18 @@
+test_configuration_only_parses_does_not_create_paths (test_release_tools.ReleaseToolsTests.test_configuration_only_parses_does_not_create_paths) ... ok
+test_direct_production_migrate_command_refused (test_release_tools.ReleaseToolsTests.test_direct_production_migrate_command_refused) ... ok
+test_exiting_empty_command_is_gone_but_unrelated_pid_is_refused (test_release_tools.ReleaseToolsTests.test_exiting_empty_command_is_gone_but_unrelated_pid_is_refused) ... ok
+test_external_connection_or_model_job_blocks_mutations (test_release_tools.ReleaseToolsTests.test_external_connection_or_model_job_blocks_mutations) ... ok
+test_formal_target_requires_approval_even_if_mislabeled_staging (test_release_tools.ReleaseToolsTests.test_formal_target_requires_approval_even_if_mislabeled_staging) ... ok
+test_mysql_credentials_not_command_line_and_no_newline_injection (test_release_tools.ReleaseToolsTests.test_mysql_credentials_not_command_line_and_no_newline_injection) ... ok
+test_package_uses_sczx_root_tree_from_parent_git_repository (test_release_tools.ReleaseToolsTests.test_package_uses_sczx_root_tree_from_parent_git_repository) ... ok
+test_preflight_does_not_create_state_or_call_migration (test_release_tools.ReleaseToolsTests.test_preflight_does_not_create_state_or_call_migration) ... /tmp/sczx-venv/lib/python3.13/site-packages/alembic/config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+  util.warn_deprecated(
+ok
+test_production_application_refuses_insecure_cookie_or_auto_schema (test_release_tools.ReleaseToolsTests.test_production_application_refuses_insecure_cookie_or_auto_schema) ... ok
+test_release_tamper_detected_and_does_not_guess_parent_git_head (test_release_tools.ReleaseToolsTests.test_release_tamper_detected_and_does_not_guess_parent_git_head) ... ok
+test_start_mismatch_refuses_without_implicit_migration (test_release_tools.ReleaseToolsTests.test_start_mismatch_refuses_without_implicit_migration) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 5.708s
+
+OK

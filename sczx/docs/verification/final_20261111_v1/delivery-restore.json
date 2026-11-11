@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-11T11:26:34.209186+00:00",
+  "source": "f985287324a93dd4902feec2f8dc9211803a0265",
+  "backup": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/backups/delivery-702a35",
+  "backupVerified": true,
+  "restore": {
+    "restored": true,
+    "database": "sczx_test_delivery_6ff812",
+    "tables": 52,
+    "files": 6
+  },
+  "loginAndOriginal5TasksRead": true,
+  "latestUnitFiveCompleted": true,
+  "retestPassedRead": true,
+  "gracefulStopPassed": true
+}

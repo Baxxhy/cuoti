@@ -1,0 +1,59 @@
+{
+  "source": "Chrome DevTools Page.startScreencast live JPEG frames",
+  "stillsSlideshow": false,
+  "sound": "无音轨；实际网页操作录制",
+  "segments": [
+    {
+      "file": "teacher-student.mp4",
+      "frames": 716,
+      "actualSeconds": 49.665,
+      "bytes": 2581938,
+      "sha256": "728807cc589614a8cd44ab57fc07f7771fe5159240a8f4a967ea8ee1e39a4de0",
+      "fullDecodePassed": true
+    },
+    {
+      "file": "repair-feedback-final.mp4",
+      "frames": 147,
+      "actualSeconds": 9.321,
+      "bytes": 424537,
+      "sha256": "bf658a162fb0194a1cc01c3e834641e04ac7dabd28a6c62537ce6b408a9217b4",
+      "fullDecodePassed": true
+    },
+    {
+      "file": "offline-final-0.mp4",
+      "frames": 34,
+      "actualSeconds": 3.731,
+      "bytes": 152517,
+      "sha256": "72125f77156623fa22dfead94198cb0e22bc61b027e63607e7f4e7e3507707da",
+      "fullDecodePassed": true
+    },
+    {
+      "file": "offline-final-1.mp4",
+      "frames": 39,
+      "actualSeconds": 4.271,
+      "bytes": 141579,
+      "sha256": "8721c3c4f0043d7db15b4183453abb0286e2d618eb02b1fb7770f602331f4002",
+      "fullDecodePassed": true
+    },
+    {
+      "file": "offline-formal-final.mp4",
+      "frames": 202,
+      "actualSeconds": 8.516,
+      "bytes": 300362,
+      "sha256": "83551c0be5ee1896444e031aa8c7bbcc69cb0f05429ea76a2119229084378c44",
+      "fullDecodePassed": true
+    }
+  ],
+  "combined": "师承智学实际操作演示.mp4",
+  "combinedBytes": 3598345,
+  "combinedSha256": "c7789604c1c405863db0d126e404796317f9333ba21a34d35b6de7f4ec681cfc",
+  "fullDecodePassed": true,
+  "chromiumPlayback": {
+    "duration": 85.12,
+    "currentTime": 0.9593,
+    "width": 1440,
+    "height": 810,
+    "paused": false,
+    "error": null
+  }
+}

@@ -1,0 +1,7 @@
+complete-0016-backup
+empty16-restore-full-rows-files
+restored16-actual-login-unit-exam-memory-feedback
+paired0013-empty-restore
+old-compatible-release-started-login-read
+Running as unit: sczx-step20-staging.service
+{"backend": "127.0.0.1:8095", "publicTestUrl": "https://127.0.0.1:9443", "fixedSczxCommit": "94e1ea9777dee3efed408c655d4a82eae74fd07f", "certificateVerified": true, "cookieSecure": true, "cookieHttpOnly": true, "cookieSameSite": "lax", "actualHostPID1": "systemd", "systemdUnit": "sczx-step20-staging", "productionHTTPS": false, "hostReboot": false}

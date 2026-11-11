@@ -1,0 +1,9 @@
+{
+  "status": "timeout",
+  "timeoutSeconds": 70,
+  "seconds": 70.025,
+  "model": "gpt-6-luna",
+  "effort": "low",
+  "sameRuntimeEnvironment": true,
+  "backupCredentialsUsed": false
+}
