@@ -6,7 +6,7 @@ export const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 export class Browser {
   static async launch(options={}){
     const b=new Browser();b.profile=options.profile||await mkdtemp(join(tmpdir(),'sczx-browser-'));b.retainProfile=!!options.profile;b.pending=new Map();b.errors=[];b.next=0;
-    b.process=spawn(process.env.CHROME_PATH||'chromium',['--headless=new','--no-sandbox','--disable-dev-shm-usage','--remote-debugging-port=0','--user-data-dir='+b.profile,'about:blank'],{stdio:['ignore','ignore','pipe']});
+    b.process=spawn(process.env.CHROME_PATH||'chromium',[...(options.args||[]),'--headless=new','--no-sandbox','--disable-dev-shm-usage','--remote-debugging-port=0','--user-data-dir='+b.profile,'about:blank'],{stdio:['ignore','ignore','pipe']});
     try{
       const endpoint=await new Promise((resolve,reject)=>{let log='';const timeout=setTimeout(()=>reject(Error('Chrome startup timed out; set CHROME_PATH')),15000);b.process.once('error',e=>{clearTimeout(timeout);reject(e)});b.process.stderr.on('data',chunk=>{log+=chunk;const hit=log.match(/DevTools listening on (ws:\/\/\S+)/);if(hit){clearTimeout(timeout);resolve(hit[1])}})});
       b.socket=new WebSocket(endpoint);await new Promise((r,j)=>{b.socket.addEventListener('open',r,{once:true});b.socket.addEventListener('error',j,{once:true})});

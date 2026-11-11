@@ -29,7 +29,8 @@ app = FastAPI(title="师承智学业务服务", version="0.1.0")
 async def model_configuration_error(request: Request, error: ModelError):
     return JSONResponse(status_code=422, content={"detail": str(error)})
 
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5177", "http://127.0.0.1:5177", "http://localhost:5178", "http://127.0.0.1:5178"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+allowed_origins=[x.strip() for x in os.getenv("SCZX_ALLOWED_ORIGINS", "" if os.getenv("SCZX_ENV")=="production" else "http://localhost:5177,http://127.0.0.1:5177,http://localhost:5178,http://127.0.0.1:5178").split(",") if x.strip()]
+app.add_middleware(CORSMiddleware, allow_origins=allowed_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 DB = Annotated[Session, Depends(get_db)]
 COOKIE = "sczx_session"
 COOKIE_SECURE = os.getenv("SCZX_COOKIE_SECURE", "false").lower() == "true"
@@ -214,6 +215,8 @@ def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
 
 @app.on_event("startup")
 def startup() -> None:
+    if os.getenv("SCZX_ENV")=="production" and (not COOKIE_SECURE or os.getenv("SCZX_AUTO_CREATE_SCHEMA","false").lower()!="false"):
+        raise RuntimeError("正式环境要求Secure Cookie，禁止自动建表。")
     if os.getenv("SCZX_AUTO_CREATE_SCHEMA", "false").lower() == "true":
         from .database import Base, engine
         Base.metadata.create_all(engine)

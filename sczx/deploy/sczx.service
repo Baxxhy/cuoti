@@ -1,0 +1,27 @@
+[Unit]
+Description=Shicheng Zhixue fixed release
+After=network-online.target mysql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sczx
+Group=sczx
+WorkingDirectory=/opt/sczx/ops
+EnvironmentFile=/etc/sczx/production.env
+ExecStartPre=/opt/sczx/runtime/venv/bin/python /opt/sczx/ops/deploy/manage.py check --env /etc/sczx/production.env
+ExecStart=/opt/sczx/runtime/venv/bin/python /opt/sczx/ops/deploy/manage.py serve --env /etc/sczx/production.env
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=150
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/sczx /var/log/sczx
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

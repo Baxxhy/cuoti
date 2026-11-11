@@ -108,7 +108,7 @@ async def call(capability, data, file=None):
         try:
             with (root / "events.jsonl").open("wb") as events, (root / "stderr.log").open("wb") as errors:
                 process = await asyncio.create_subprocess_exec(*args, stdin=asyncio.subprocess.PIPE, stdout=events, stderr=errors, env=env, start_new_session=True)
-                await asyncio.wait_for(process.communicate(prompt.encode()), timeout=115)
+                await asyncio.wait_for(process.communicate(prompt.encode()), timeout=max(10,min(600,float(os.getenv("SCZX_CODEX_TIMEOUT_SECONDS","115")))))
             if process.returncode != 0:
                 raise ModelError("Codex CLI 调用失败，请检查该运行账号的登录与模型可用状态。", retryable=True)
             if not output.is_file() or output.stat().st_size > 2_000_000:

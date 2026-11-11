@@ -1,0 +1,16 @@
+{
+  "notice": "Template only; does not grant permission. Record actual user approval before use.",
+  "approvedBy": "REAL_APPROVER",
+  "changeId": "APPROVED_CHANGE_ID",
+  "database": "sczx",
+  "host": "127.0.0.1",
+  "port": 3306,
+  "releaseCommit": "EXACT_SCZX_FULL_SHA",
+  "targetRevision": "0016_offline_drafts",
+  "publicUrl": "https://YOUR_APPROVED_DOMAIN",
+  "storagePath": "/var/lib/sczx/uploads",
+  "backupPath": "/var/backups/sczx/VERIFIED_BACKUP",
+  "maintenanceWindow": "EXPLICIT_APPROVED_WINDOW",
+  "expiresAt": "2000-01-01T00:00:00Z",
+  "actions": ["migrate", "start", "stop"]
+}
