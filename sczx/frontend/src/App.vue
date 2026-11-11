@@ -20,6 +20,7 @@ import {
   Bell,
   Menu,
   ArrowUpRight,
+  ArrowLeft,
   CircleHelp,
   Check,
   GraduationCap,
@@ -52,6 +53,7 @@ watch(
 
 const navigation=Object.fromEntries(Object.entries(routeNavigation).map(([role,items])=>[role,items.map(([route,label,icon])=>({route,label,icon}))]));
 const role = computed(() => store.user?.role || "student");
+const studyFocus=computed(()=>role.value==='student'&&['learn','check','repair'].includes(route.name));
 const roleLabel = computed(
   () => ({ student: "学生空间", teacher: "教学空间", admin: "内容管理" })[role.value],
 );
@@ -140,11 +142,12 @@ async function submitFeedback() {
   <MotionConfig reduced-motion="user"
     ><TooltipProvider :delay-duration="100">
       <RouterView v-if="!store.user || route.name==='offline'" />
-      <div v-else class="app-shell">
+      <div v-else :class="['app-shell',{'is-study':studyFocus}]">
         <a href="#main-content" class="skip-link" @click.prevent="focusContent()">跳至主要内容</a>
-        <aside class="desktop-sidebar"><SidebarContent /></aside>
+        <aside v-if="!studyFocus" class="desktop-sidebar"><SidebarContent /></aside>
         <div class="app-body">
-          <header class="topbar">
+          <header v-if="studyFocus" class="study-topbar"><a href="#/home"><ArrowLeft :size="17"/>我的学习</a><a href="#/home" class="study-brand"><BookOpenText :size="22"/>师承智学</a><Button variant="ghost" @click="mobileOpen=true"><Menu :size="17"/>导航</Button></header>
+          <header v-else class="topbar">
             <div class="topbar-start">
               <Button
                 variant="ghost"

@@ -1,0 +1,187 @@
+{
+  "lessons": [
+    {
+      "name": "lesson-equation",
+      "width": 1100,
+      "scroll": 1085,
+      "visibleBlocks": 1,
+      "text": "等式性质\n目录\n1 / 8\n相等的两边\n\n等式表示两边的值相等，例如\n5 \n=\n 5\n。\n\n只改变一边通常不能保持相等。\n\n先预测两边同时增加相同数量后会怎样。\n\n上一步\n下一步\n问一问",
+      "primary": 636
+    },
+    {
+      "name": "lesson-equation",
+      "width": 1440,
+      "scroll": 1425,
+      "visibleBlocks": 1,
+      "text": "等式性质\n目录\n1 / 8\n相等的两边\n\n等式表示两边的值相等，例如\n5 \n=\n 5\n。\n\n只改变一边通常不能保持相等。\n\n先预测两边同时增加相同数量后会怎样。\n\n上一步\n下一步\n问一问",
+      "primary": 636
+    },
+    {
+      "name": "lesson-equation",
+      "width": 1920,
+      "scroll": 1905,
+      "visibleBlocks": 1,
+      "text": "等式性质\n目录\n1 / 8\n相等的两边\n\n等式表示两边的值相等，例如\n5 \n=\n 5\n。\n\n只改变一边通常不能保持相等。\n\n先预测两边同时增加相同数量后会怎样。\n\n上一步\n下一步\n问一问",
+      "primary": 676
+    },
+    {
+      "name": "balance-activity",
+      "width": 1100,
+      "scroll": 1085,
+      "visibleBlocks": 1,
+      "text": "等式性质\n目录\n2 / 8\n让天平两边一起变化\n\n天平两边各有5单位。\n\n两边同时增加相同的正量，观察结果，再用自己的话解释。\n\n此实物类比只展示非负数量。\n\n6\n=\n6\n6\n6\n左边\n右边\n两边一起\n1\n1\n\n两边相等\n\n你观察到了什么？\n上一步\n保存中…\n下一步\n问一问",
+      "primary": 972.484375
+    },
+    {
+      "name": "balance-activity",
+      "width": 1440,
+      "scroll": 1425,
+      "visibleBlocks": 1,
+      "text": "等式性质\n目录\n2 / 8\n让天平两边一起变化\n\n天平两边各有5单位。\n\n两边同时增加相同的正量，观察结果，再用自己的话解释。\n\n此实物类比只展示非负数量。\n\n6\n=\n6\n6\n6\n左边\n右边\n两边一起\n1\n1\n\n两边相等\n\n你观察到了什么？\n上一步\n下一步\n问一问",
+      "primary": 972.484375
+    },
+    {
+      "name": "balance-activity",
+      "width": 1920,
+      "scroll": 1905,
+      "visibleBlocks": 1,
+      "text": "等式性质\n目录\n2 / 8\n让天平两边一起变化\n\n天平两边各有5单位。\n\n两边同时增加相同的正量，观察结果，再用自己的话解释。\n\n此实物类比只展示非负数量。\n\n6\n=\n6\n6\n6\n左边\n右边\n两边一起\n1\n1\n\n两边相等\n\n你观察到了什么？\n上一步\n下一步\n问一问",
+      "primary": 1007.484375
+    },
+    {
+      "name": "lesson-simple",
+      "width": 1100,
+      "scroll": 1085,
+      "visibleBlocks": 1,
+      "text": "解简单的一元一次方程\n目录\n1 / 7\n确定未知量与运算顺序\n\n一元一次方程含一个未知数，未知数最高次数为1。\n\n先看未知项外面做了什么运算，再逆向逐步消去；\n\n每一步两边必须同时进行相同运算。\n\n本课例题\n2x+3\n=\n11\nx\n未知数\n上一步\n保存中…\n下一步\n问一问",
+      "primary": 668.5
+    },
+    {
+      "name": "lesson-simple",
+      "width": 1440,
+      "scroll": 1425,
+      "visibleBlocks": 1,
+      "text": "解简单的一元一次方程\n目录\n1 / 7\n确定未知量与运算顺序\n\n一元一次方程含一个未知数，未知数最高次数为1。\n\n先看未知项外面做了什么运算，再逆向逐步消去；\n\n每一步两边必须同时进行相同运算。\n\n本课例题\n2x+3\n=\n11\nx\n未知数\n上一步\n下一步\n问一问",
+      "primary": 675.359375
+    },
+    {
+      "name": "lesson-simple",
+      "width": 1920,
+      "scroll": 1905,
+      "visibleBlocks": 1,
+      "text": "解简单的一元一次方程\n目录\n1 / 7\n确定未知量与运算顺序\n\n一元一次方程含一个未知数，未知数最高次数为1。\n\n先看未知项外面做了什么运算，再逆向逐步消去；\n\n每一步两边必须同时进行相同运算。\n\n本课例题\n2x+3\n=\n11\nx\n未知数\n上一步\n下一步\n问一问",
+      "primary": 717.09375
+    },
+    {
+      "name": "simple-practice",
+      "width": 1100,
+      "scroll": 1085,
+      "visibleBlocks": 1,
+      "text": "解简单的一元一次方程\n目录\n6 / 7\n活动：比较、求解并验算\n\n先独立写出每一步，再与原式比较；\n\n把答案代回左右两边。\n\n求x，并说明消去7的方法。\nx+7\n=\n12\n你的答案\n解释你的运算\n提交作答\n需要提示\n上一步\n保存中…\n下一题\n问一问",
+      "primary": 823.09375
+    },
+    {
+      "name": "simple-practice",
+      "width": 1440,
+      "scroll": 1425,
+      "visibleBlocks": 1,
+      "text": "解简单的一元一次方程\n目录\n6 / 7\n活动：比较、求解并验算\n\n先独立写出每一步，再与原式比较；\n\n把答案代回左右两边。\n\n求x，并说明消去7的方法。\nx+7\n=\n12\n你的答案\n解释你的运算\n提交作答\n需要提示\n上一步\n保存中…\n下一题\n问一问",
+      "primary": 830.359375
+    },
+    {
+      "name": "simple-practice",
+      "width": 1920,
+      "scroll": 1905,
+      "visibleBlocks": 1,
+      "text": "解简单的一元一次方程\n目录\n6 / 7\n活动：比较、求解并验算\n\n先独立写出每一步，再与原式比较；\n\n把答案代回左右两边。\n\n求x，并说明消去7的方法。\nx+7\n=\n12\n你的答案\n解释你的运算\n提交作答\n需要提示\n上一步\n1 / 2 题\n下一题\n问一问",
+      "primary": 872.09375
+    },
+    {
+      "name": "lesson-transform",
+      "width": 1100,
+      "scroll": 1085,
+      "visibleBlocks": 1,
+      "text": "含括号与分母的方程\n目录\n1 / 7\n移项来自共同运算\n\n从\n2x+3\n=\n11\n到\n2x\n=\n11-3\n，实际是两边同时减3。\n\n移项后的符号变化来自共同运算，不能只移动一个符号而不检查等式。\n\n上一步\n保存中…\n下一步\n问一问",
+      "primary": 636
+    },
+    {
+      "name": "lesson-transform",
+      "width": 1440,
+      "scroll": 1425,
+      "visibleBlocks": 1,
+      "text": "含括号与分母的方程\n目录\n1 / 7\n移项来自共同运算\n\n从\n2x+3\n=\n11\n到\n2x\n=\n11-3\n，实际是两边同时减3。\n\n移项后的符号变化来自共同运算，不能只移动一个符号而不检查等式。\n\n上一步\n下一步\n问一问",
+      "primary": 636
+    },
+    {
+      "name": "lesson-transform",
+      "width": 1920,
+      "scroll": 1905,
+      "visibleBlocks": 1,
+      "text": "含括号与分母的方程\n目录\n1 / 7\n移项来自共同运算\n\n从\n2x+3\n=\n11\n到\n2x\n=\n11-3\n，实际是两边同时减3。\n\n移项后的符号变化来自共同运算，不能只移动一个符号而不检查等式。\n\n上一步\n下一步\n问一问",
+      "primary": 676
+    },
+    {
+      "name": "lesson-application",
+      "width": 1100,
+      "scroll": 1085,
+      "visibleBlocks": 1,
+      "text": "用方程解决生活问题\n目录\n1 / 7\n先说明未知量\n\n先写“设每支笔x元”，明确数量和单位。\n\n找到同一个量的两种表达，或总量与各部分的关系，再用等号连接。\n\n数值答案正确不能证明列式过程正确。\n\n本课例题\n3x+6\n=\n21\n上一步\n保存中…\n下一步\n问一问",
+      "primary": 668.5
+    },
+    {
+      "name": "lesson-application",
+      "width": 1440,
+      "scroll": 1425,
+      "visibleBlocks": 1,
+      "text": "用方程解决生活问题\n目录\n1 / 7\n先说明未知量\n\n先写“设每支笔x元”，明确数量和单位。\n\n找到同一个量的两种表达，或总量与各部分的关系，再用等号连接。\n\n数值答案正确不能证明列式过程正确。\n\n本课例题\n3x+6\n=\n21\n上一步\n下一步\n问一问",
+      "primary": 668.5
+    },
+    {
+      "name": "lesson-application",
+      "width": 1920,
+      "scroll": 1905,
+      "visibleBlocks": 1,
+      "text": "用方程解决生活问题\n目录\n1 / 7\n先说明未知量\n\n先写“设每支笔x元”，明确数量和单位。\n\n找到同一个量的两种表达，或总量与各部分的关系，再用等号连接。\n\n数值答案正确不能证明列式过程正确。\n\n本课例题\n3x+6\n=\n21\n上一步\n下一步\n问一问",
+      "primary": 703.5
+    },
+    {
+      "name": "lesson-unit-review",
+      "width": 1100,
+      "scroll": 1085,
+      "visibleBlocks": 1,
+      "text": "一元一次方程单元复习\n目录\n1 / 7\n选择解题路径\n\n先辨认结构：加减、乘除、括号或常数分母。\n\n每一步写明依据。\n\n需要前置知识时回看对应课时，不把记住“移项变号”替代等式运算。\n\n本课例题\n5(x-2)\n=\n2x+8\n上一步\n保存中…\n下一步\n问一问",
+      "primary": 668.5
+    },
+    {
+      "name": "lesson-unit-review",
+      "width": 1440,
+      "scroll": 1425,
+      "visibleBlocks": 1,
+      "text": "一元一次方程单元复习\n目录\n1 / 7\n选择解题路径\n\n先辨认结构：加减、乘除、括号或常数分母。\n\n每一步写明依据。\n\n需要前置知识时回看对应课时，不把记住“移项变号”替代等式运算。\n\n本课例题\n5(x-2)\n=\n2x+8\n上一步\n下一步\n问一问",
+      "primary": 668.5
+    },
+    {
+      "name": "lesson-unit-review",
+      "width": 1920,
+      "scroll": 1905,
+      "visibleBlocks": 1,
+      "text": "一元一次方程单元复习\n目录\n1 / 7\n选择解题路径\n\n先辨认结构：加减、乘除、括号或常数分母。\n\n每一步写明依据。\n\n需要前置知识时回看对应课时，不把记住“移项变号”替代等式运算。\n\n本课例题\n5(x-2)\n=\n2x+8\n上一步\n下一步\n问一问",
+      "primary": 703.5
+    }
+  ],
+  "interactions": [
+    {
+      "name": "real balance interaction and explanation can continue",
+      "passed": true
+    },
+    {
+      "name": "server save + browser refresh restores same block",
+      "passed": true,
+      "before": "simple-explain-1",
+      "after": "simple-explain-1"
+    }
+  ],
+  "console": [],
+  "passed": true,
+  "originalFormalAttemptsPreserved": true
+}

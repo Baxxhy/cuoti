@@ -11,7 +11,7 @@ const props = defineProps({
   canRetry: { type: Boolean, default: true },
 });
 defineEmits(["retry"]);
-const expanded = ref(false);
+const expanded = ref(false), stepIndex=ref(0);
 const uniqueReferences = (refs) => [
   ...new Map((refs || []).map((item) => [item.unitId, item])).values(),
 ];
@@ -19,6 +19,7 @@ watch(
   () => props.job?.id,
   () => {
     expanded.value = false;
+    stepIndex.value=0;
   },
 );
 const result = computed(() => props.job?.result);
@@ -73,12 +74,12 @@ const verification = computed(
       <template v-else-if="job.capability === 'text'">
         <SpeechReader
           :text="
-            [result.title, result.hint, ...(expanded ? result.steps || [] : [])]
+            [result.title, result.hint, ...(expanded ? [result.steps?.[stepIndex]] : [])]
               .filter(Boolean)
               .join('。')
           "
         />
-        <Status v-if="job.strategy">{{
+        <Status v-if="showSource&&job.strategy">{{
           {
             hint: "提示",
             example: "举例",
@@ -90,14 +91,13 @@ const verification = computed(
         <h3>{{ result.title }}</h3>
         <p class="model-prose">{{ result.hint }}</p>
         <Button
-          variant="outline"
+          v-if="result.steps?.length"
+          variant="ghost"
           @click="expanded = !expanded"
           :aria-expanded="expanded"
-          >{{ expanded ? "收起讲解" : "展开分步讲解" }}</Button
+          >{{ expanded ? "收起步骤" : "一步步看" }}</Button
         >
-        <ol v-if="expanded" class="model-steps">
-          <li v-for="(step, index) in result.steps" :key="index">{{ step }}</li>
-        </ol>
+        <div v-if="expanded&&result.steps?.length" class="student-model-step"><span>{{stepIndex+1}} / {{result.steps.length}}</span><p>{{result.steps[stepIndex]}}</p><div class="action-row"><Button variant="ghost" size="sm" :disabled="stepIndex===0" @click="stepIndex--">上一步</Button><Button variant="outline" size="sm" :disabled="stepIndex===result.steps.length-1" @click="stepIndex++">下一步</Button></div></div>
         <p v-if="result.question" class="model-followup">
           {{ result.question }}
         </p>
@@ -199,7 +199,7 @@ const verification = computed(
         preload="metadata"
       />
     </template>
-    <div v-if="result?.workflow" class="tutoring-audit">
+    <div v-if="showSource&&result?.workflow" class="tutoring-audit">
       <InfoTip label="本轮指导记录"
         >最近{{ result.workflow.historyTurns }}轮 ·
         {{ result.workflow.modelCalls }}次模型调用 ·
@@ -208,7 +208,7 @@ const verification = computed(
         }}</InfoTip
       >
     </div>
-    <details v-if="job.runs?.length" class="model-run-history model-technical-details">
+    <details v-if="showSource&&job.runs?.length" class="model-run-history model-technical-details">
       <summary>执行记录 · {{ job.runs.length }}</summary>
       <div v-for="run in job.runs" :key="run.id">
         <span

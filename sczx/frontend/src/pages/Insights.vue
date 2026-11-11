@@ -13,6 +13,8 @@ import ModelHistory from "@/components/ModelHistory.vue";
 const store = useLearning(),
   notify = inject("notify"),
   studentOpen = ref(false),
+  studentTab = ref("answers"),
+  feedbackSaving = ref(false),
   draft = ref(store.record?.feedback || ""),
   error = ref("");
 async function reviewRepair(repair,correct){
@@ -40,14 +42,17 @@ watch(
   },
 );
 async function feedback() {
+  if(feedbackSaving.value)return;
+  feedbackSaving.value=true;error.value="";
   try {
     await store.saveFeedback(draft.value);
     notify("反馈已发送到学生结果页");
   } catch (problem) {
     error.value = problem.message;
-  }
+  } finally {feedbackSaving.value=false}
 }
 function openStudent(id) {
+  studentTab.value="answers";error.value="";
   store.selectStudent(id);
   draft.value = store.record?.feedback || "";
   studentOpen.value = true;
@@ -129,49 +134,25 @@ function openStudent(id) {
               </td>
               <td>
                 <Button variant="ghost" @click="openStudent(student.id)"
-                  >查看过程<ArrowUpRight
+                  >查看与反馈<ArrowUpRight
                 /></Button>
               </td>
             </tr>
           </tbody>
         </table></div
     ></Surface>
-    <details v-if="store.record" class="ops-disclosure insight-detail"><summary>{{store.record.studentName || '当前学生'}} · 查看概况与反馈</summary><div class="two-column">
-      <Surface
-        ><SectionHeading title="作答概况" />
-        <h3>
-          {{ store.record.attempts.length }} 次尝试 ·
-          {{ store.record.repairs.length }} 次补救
-        </h3>
-        <p v-if="store.record.observation" class="preserve-lines">
-          {{ store.record.observation }}
-        </p>
-        <RouteButton route="cases" secondary>查找教学案例</RouteButton></Surface
-      ><Surface
-        ><SectionHeading
-          :title="`给${store.record.studentName || '学生'}的反馈`"
-        /><Textarea v-model="draft" aria-label="教师反馈" />
-        <p v-if="error" class="form-error" role="alert">{{ error }}</p>
-        <div class="paper-actions">
-          <Button @click="feedback"><Check />确认并保存</Button>
-        </div></Surface
-      >
-    </div></details>
-    <Surface v-else class="records-surface"
-      ><SectionHeading title="学生学习过程" />
-      <p>班级还没有学生。先添加学生账号，再发布学习任务。</p></Surface
-    >
+    <Surface v-if="!store.record" class="records-surface"><p>还没有学生作答记录。</p></Surface>
     <AppDialog
       v-model:open="studentOpen"
       :title="`${store.record?.studentName || '学生'}的学习过程`"
       content-class="student-detail-dialog"
-      ><div class="attempt-timeline">
-        <section v-if="store.record"><RouteButton :route="'memory?studentId='+store.record.studentId+'&classId='+store.task.classId" secondary>查看学习记忆</RouteButton>
-          <h3>自己的解释</h3>
-          <p>{{ store.record.observation || "尚未填写" }}</p>
+      ><AppTabs v-model="studentTab" :items="[{value:'answers',label:'作答'},{value:'help',label:'求助'},{value:'repairs',label:'补救'},{value:'feedback',label:'教师反馈'}]"/><div v-if="studentTab==='feedback'&&store.record" class="focus-student-feedback"><label class="field-label" for="student-feedback">给{{store.record.studentName||'学生'}}的反馈</label><Textarea id="student-feedback" v-model="draft" :disabled="feedbackSaving"/><p v-if="error" class="form-error" role="alert">{{error}}</p><Button :disabled="feedbackSaving" @click="feedback"><Check :size="16"/>{{feedbackSaving?'保存中…':'保存反馈'}}</Button></div><div v-else class="attempt-timeline">
+        <section v-if="store.record&&studentTab==='answers'"><RouteButton :route="'memory?studentId='+store.record.studentId+'&classId='+store.task.classId" secondary>查看学习记忆</RouteButton>
+          <h3 v-if="store.record.observation">自己的解释</h3>
+          <p v-if="store.record.observation">{{ store.record.observation }}</p>
         </section>
         <section
-          v-for="attempt in store.record?.attempts || []"
+          v-for="attempt in studentTab==='answers'?store.record?.attempts || []:[]"
           :key="attempt.id"
         >
           <small>{{
@@ -193,11 +174,11 @@ function openStudent(id) {
                 : "需订正"
           }}</Status>
         </section>
-        <ModelHistory
+        <ModelHistory v-if="studentTab==='help'"
           :record-id="store.record?.id"
           @covered-helps="coveredHelpIds = $event"
         />
-        <section v-for="help in visibleHelps" :key="help.id">
+        <section v-for="help in studentTab==='help'?visibleHelps:[]" :key="help.id">
           <h3>{{ help.kind }}</h3>
           <p>{{ help.message }}</p>
           <img
@@ -208,7 +189,7 @@ function openStudent(id) {
           />
           <small>{{ new Date(help.createdAt).toLocaleString("zh-CN") }}</small>
         </section>
-        <section v-for="repair in store.record?.repairs || []" :key="repair.id">
+        <section v-for="repair in studentTab==='repairs'?store.record?.repairs || []:[]" :key="repair.id">
           <h3>{{ repair.details?.equation || '历史固定示例 z + 2 = 9' }} → {{ repair.answer }}</h3>
           <p>{{ repair.reason }}</p><p v-if="repair.details?.version==='dynamic_v1'">{{repair.details.phase==='retest'?'独立新题':'补救练习'}}{{repair.details.helped?' · 使用过帮助':''}}</p><p v-else>历史固定示例，不能证明原题已掌握。</p><div v-if="repair.verification?.status==='unverified'" class="paper-actions"><Button variant="outline" @click="reviewRepair(repair,true)">人工确认正确</Button><Button variant="outline" @click="reviewRepair(repair,false)">人工确认有误</Button></div><p v-if="repair.details?.teacherReview">教师核对：{{repair.details.teacherReview.correct?'正确':'有误'}}</p>
           <Status :tone="repair.correct ? 'green' : 'amber'">{{
@@ -220,13 +201,9 @@ function openStudent(id) {
           }}</Status>
         </section>
         <p
-          v-if="
-            store.record &&
-            !store.record.attempts.length &&
-            !store.record.helps.length
-          "
+          v-if="store.record&&(studentTab==='answers'&&!store.record.attempts.length||studentTab==='help'&&!store.record.helps.length||studentTab==='repairs'&&!store.record.repairs.length)"
         >
-          尚无作答和求助记录
+          暂无对应记录
         </p>
       </div></AppDialog
     ><SupplementPanel :task-id="store.task.id" teacher /></template

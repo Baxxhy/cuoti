@@ -7,7 +7,8 @@ const props = defineProps({
   index: { type: Number, required: true },
   preview: Boolean,
 });
-const emit = defineEmits(["guide"]);
+const emit = defineEmits(["guide", "submitted"]);
+const helpOpen=ref(false);
 const store = useLearning(),
   notify = inject("notify", () => {});
 const key = computed(() => props.question.id || String(props.index));
@@ -80,6 +81,7 @@ async function submit() {
       helped.value,
     );
     notify("作答已保存");
+    emit("submitted");
   } catch (e) {
     error.value = e.message;
   } finally {
@@ -135,11 +137,8 @@ async function ask() {
       role="status"
       :class="['curriculum-answer-result', latest.correct ? 'correct' : '']"
     >
-      {{
-        latest.verification?.message ||
-        (latest.correct ? "数值正确" : "需核对或订正")
-      }}
-      · {{ latest.helped ? "获得过帮助" : "独立尝试" }}
+      <span v-if="latest.answer!==answer||latest.reason!==reason" class="student-previous-answer">上次作答</span>{{ latest.verification?.status==='unverified'?'需要核对':latest.correct?'数值正确':'再检查一下' }}
+      <span>{{latest.helped?'用过帮助':'独立作答'}}</span><InfoTip v-if="latest.verification?.message" label="查看核对结果">{{latest.verification.message}}</InfoTip>
     </p>
     <p v-if="error" role="alert" class="form-error">{{ error }}</p>
     <div class="library-actions">
@@ -147,18 +146,8 @@ async function ask() {
         :disabled="(!preview && store.task?.readOnly) || busy || !answer.trim()"
         @click="submit"
         >{{ busy ? "保存中…" : "提交作答" }}</Button
-      ><details class="question-help"><summary>需要帮助</summary><div><Button
-        variant="ghost"
-        :disabled="(!preview && store.task?.readOnly) || busy"
-        @click="ask"
-        >我需要提示</Button
-      ><Button
-        v-if="!preview"
-        variant="ghost"
-        :disabled="busy || store.task?.readOnly"
-        @click.stop="emit('guide', index)"
-        >向学习助手提问</Button
-      ></div></details>
+      ><Button variant="ghost" :disabled="(!preview&&store.task?.readOnly)||busy" @click="helpOpen=true">需要提示</Button>
     </div>
+    <AppDialog v-model:open="helpOpen" title="这道题需要帮助吗？"><p class="student-help-consequence">{{preview?'预览不会保存作答或帮助记录。':'获得提示后，本题会记为使用过帮助。'}}</p><div class="student-help-choices"><Button :disabled="busy" @click="helpOpen=false;ask()">给我一点提示</Button><Button v-if="!preview" variant="outline" :disabled="busy" @click="helpOpen=false;emit('guide',index)">向学习助手提问</Button></div></AppDialog>
   </div>
 </template>

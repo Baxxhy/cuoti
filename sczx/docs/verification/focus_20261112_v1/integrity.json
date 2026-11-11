@@ -1,0 +1,7 @@
+{
+  "oldTaskSnapshotsUnchanged": 21,
+  "deployedFrontendSourceHashesMatch": true,
+  "backendRestarted": false,
+  "databaseRestarted": false,
+  "runtime": "http://127.0.0.1:8099"
+}

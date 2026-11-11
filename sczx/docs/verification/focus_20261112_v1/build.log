@@ -1,0 +1,28 @@
+
+> shicheng-zhixue@0.3.0 build
+> vite build --outDir /tmp/sczx-focus/final-build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 2913 modules transformed.
+
+(!) outDir /tmp/sczx-focus/final-build is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+rendering chunks...
+computing gzip size...
+../../../../../tmp/sczx-focus/final-build/index.html                                                0.41 kB │ gzip:   0.30 kB
+../../../../../tmp/sczx-focus/final-build/sw.js                                                     1.38 kB
+../../../../../tmp/sczx-focus/final-build/assets/geist-cyrillic-ext-wght-normal-DjL33-gN.woff2      7.42 kB
+../../../../../tmp/sczx-focus/final-build/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2        8.00 kB
+../../../../../tmp/sczx-focus/final-build/assets/geist-cyrillic-wght-normal-BEAKL7Jp.woff2         15.08 kB
+../../../../../tmp/sczx-focus/final-build/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2        16.51 kB
+../../../../../tmp/sczx-focus/final-build/assets/geist-latin-wght-normal-BgDaEnEv.woff2            29.40 kB
+../../../../../tmp/sczx-focus/final-build/assets/index-D6pfe8EH.css                               235.79 kB │ gzip:  43.42 kB
+../../../../../tmp/sczx-focus/final-build/assets/index-l1LEmVRU.js                              1,101.25 kB │ gzip: 360.68 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.15s

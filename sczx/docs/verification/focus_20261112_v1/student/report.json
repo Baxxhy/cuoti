@@ -1,0 +1,160 @@
+{
+  "pages": [
+    {
+      "name": "check",
+      "width": 1440,
+      "overflow": false,
+      "h1": "独立练习",
+      "words": 99,
+      "alerts": []
+    },
+    {
+      "name": "check",
+      "width": 1024,
+      "overflow": false,
+      "h1": "独立练习",
+      "words": 99,
+      "alerts": []
+    },
+    {
+      "name": "check",
+      "width": 1920,
+      "overflow": false,
+      "h1": "独立练习",
+      "words": 99,
+      "alerts": []
+    },
+    {
+      "name": "result",
+      "width": 1440,
+      "overflow": false,
+      "h1": "学习结果",
+      "words": 67,
+      "alerts": []
+    },
+    {
+      "name": "result",
+      "width": 1024,
+      "overflow": false,
+      "h1": "学习结果",
+      "words": 67,
+      "alerts": []
+    },
+    {
+      "name": "result",
+      "width": 1920,
+      "overflow": false,
+      "h1": "学习结果",
+      "words": 67,
+      "alerts": []
+    },
+    {
+      "name": "records",
+      "width": 1440,
+      "overflow": false,
+      "h1": "学习记录",
+      "words": 268,
+      "alerts": []
+    },
+    {
+      "name": "records",
+      "width": 1024,
+      "overflow": false,
+      "h1": "学习记录",
+      "words": 268,
+      "alerts": []
+    },
+    {
+      "name": "records",
+      "width": 1920,
+      "overflow": false,
+      "h1": "学习记录",
+      "words": 268,
+      "alerts": []
+    },
+    {
+      "name": "wrong",
+      "width": 1440,
+      "overflow": false,
+      "h1": "错题帮",
+      "words": 143,
+      "alerts": []
+    },
+    {
+      "name": "wrong",
+      "width": 1024,
+      "overflow": false,
+      "h1": "错题帮",
+      "words": 143,
+      "alerts": []
+    },
+    {
+      "name": "wrong",
+      "width": 1920,
+      "overflow": false,
+      "h1": "错题帮",
+      "words": 143,
+      "alerts": []
+    },
+    {
+      "name": "memory",
+      "width": 1440,
+      "overflow": false,
+      "h1": "复习",
+      "words": 303,
+      "alerts": []
+    },
+    {
+      "name": "memory",
+      "width": 1024,
+      "overflow": false,
+      "h1": "复习",
+      "words": 303,
+      "alerts": []
+    },
+    {
+      "name": "memory",
+      "width": 1920,
+      "overflow": false,
+      "h1": "复习",
+      "words": 303,
+      "alerts": []
+    },
+    {
+      "name": "repair",
+      "width": 1440,
+      "overflow": false,
+      "h1": "错题订正",
+      "words": 76,
+      "alerts": []
+    },
+    {
+      "name": "repair",
+      "width": 1024,
+      "overflow": false,
+      "h1": "错题订正",
+      "words": 76,
+      "alerts": []
+    },
+    {
+      "name": "repair",
+      "width": 1920,
+      "overflow": false,
+      "h1": "错题订正",
+      "words": 76,
+      "alerts": []
+    }
+  ],
+  "interactions": [
+    {
+      "name": "help-dialog",
+      "passed": true
+    },
+    {
+      "name": "original-answer-dialog",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

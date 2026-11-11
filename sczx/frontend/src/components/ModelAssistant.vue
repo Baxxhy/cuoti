@@ -17,6 +17,7 @@ const props = defineProps({
   question: { default: null },
   blockId: { default: null },
   compact: Boolean,
+  showHeading: {type:Boolean,default:true},
 });
 const emit = defineEmits(["help"]);
 const store = useLearning();
@@ -298,7 +299,7 @@ onBeforeUnmount(() => interaction++);
   >
     <header class="ai-assistant-heading">
 
-      <h3>学习助手</h3>
+      <h3 v-if="showHeading">学习助手</h3>
       <Button
         v-if="job"
         variant="ghost"
@@ -317,17 +318,6 @@ onBeforeUnmount(() => interaction++);
     <p v-else-if="blockId" class="tutoring-context">
       {{ store.task?.snapshot?.blocks?.find((b) => b.id === blockId)?.title }}
     </p>
-    <details class="study-disclosure tutoring-strategy-picker"><summary>指导方式 · {{strategies.find(s=>s[0]===strategy)?.[1]}}</summary><div class="tutoring-strategies" aria-label="指导方式">
-      <Button
-        v-for="[value, label] in strategies"
-        :key="value"
-        :variant="strategy === value ? 'secondary' : 'ghost'"
-        :aria-pressed="strategy === value"
-        :disabled="busy || store.task?.readOnly"
-        @click="strategy = value"
-        >{{ label }}</Button
-      >
-    </div></details>
     <details v-if="earlier.length" class="tutoring-history">
       <summary>前面的指导 · {{ earlier.length }}</summary>
       <article v-for="item in earlier" :key="item.id">
@@ -386,7 +376,7 @@ onBeforeUnmount(() => interaction++);
           parentId ? '写下你对追问的回答…' : '写下还没想明白的地方…'
         "
       />
-      <div class="ai-compose-actions">
+      <div class="ai-compose-actions"><label class="sr-only" for="guidance-style">指导方式</label><select id="guidance-style" v-model="strategy" :disabled="busy||uploading||store.task?.readOnly" class="student-guidance-style"><option v-for="[value,label] in strategies" :key="value" :value="value">{{label}}</option></select>
         <SpeechInput
           :context-key="scope"
           :disabled="busy || uploading || store.task?.readOnly"
@@ -434,7 +424,7 @@ onBeforeUnmount(() => interaction++);
         variant="ghost"
         :disabled="busy || store.task?.readOnly"
         @click="send('try')"
-        >我想自己试试<ArrowUpRight :size="14" /></Button
+        >自己试试<ArrowUpRight :size="14" /></Button
       ><RouteButton v-if="job?.strategy === 'try'" route="check" secondary
         >回到原题作答</RouteButton
       >

@@ -1,4 +1,5 @@
 <script setup>
+import MathExpression from "@/components/MathExpression.vue";
 import MemoryReturn from "@/components/MemoryReturn.vue";
 import { computed, ref, watch, onBeforeUnmount } from "vue";
 import { useRoute } from "vue-router";
@@ -26,7 +27,7 @@ const route = useRoute(),
   cause = ref("其他或待确认"),
   confirmed = ref(false),
   lastAttempt = ref(null),
-  assistantOpen = ref(false);
+  assistantOpen = ref(false), originalOpen=ref(false), phase=ref("analysis"), correctionIndex=ref(0);
 const strategies = [
   ["hint", "给我提示"],
   ["example", "举个例子"],
@@ -68,6 +69,14 @@ const parent = computed(() =>
 const guidance = computed(() =>
   jobs.value.filter((j) => j.input.mode === "guidance"),
 );
+const repairStatus=computed(()=>({pending:'待订正',learning:'订正中',awaiting_retest:'再试一题',retest_passed:'已复测',retest_failed:'继续订正',needs_review:'需核对'})[wrong.value?.status]||wrongStatuses[wrong.value?.status]);
+const correctionStep=computed(()=>analysis.value?.result.steps?.[correctionIndex.value]||'');
+watch(()=>[wrong.value?.id,analysis.value?.id,variant.value?.id,lastAttempt.value?.id],([id,a,v,last],[oldId,oldA,oldV,oldLast]=[])=>{
+ if(id!==oldId){phase.value=v?'practice':last?'result':'analysis';correctionIndex.value=0;originalOpen.value=assistantOpen.value=false;}
+ else if(v&&v!==oldV) phase.value='practice';
+ else if(last&&last!==oldLast) phase.value='result';
+ else if(a&&a!==oldA){phase.value='analysis';correctionIndex.value=0;}
+});
 const knowledgeNames = computed(() =>
   options.value.knowledge
     .filter((p) => wrong.value?.details.knowledgeIds?.includes(p.id))
@@ -167,6 +176,7 @@ async function confirmCause() {
 }
 async function create(mode, strategy = "hint", phase = "practice") {
   if (!wrong.value || wrong.value.readOnly || job.busy.value) return;
+  if(mode==='guidance')assistantOpen.value=true;
   const data = {
     wrongId: wrong.value.id,
     mode,
@@ -236,297 +246,33 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
-<MemoryReturn/>
-  <div class="back-line">
-    <Button variant="ghost" @click="navigate('wrong')"
-      ><ArrowLeft />错题帮</Button
-    >
-  </div>
-  <p v-if="loading" role="status">正在读取原题与补救记录…</p>
-  <Surface v-else-if="error && !wrong"
-    ><h2>无法打开错题</h2>
-    <p role="alert">{{ error }}</p>
-    <Button @click="load()">重新读取</Button></Surface
-  >
-  <template v-else-if="wrong"
-    ><PageHeading title="错题订正"
-      ><Status :tone="wrong.status === 'retest_passed' ? 'green' : 'amber'">{{
-        wrongStatuses[wrong.status]
-      }}</Status
-      ><Button
-        v-if="wrong.taskId"
-        variant="outline"
-        @click="navigate('result?task=' + wrong.taskId)"
-        >返回原任务<ArrowUpRight /></Button
-    ></PageHeading>
-    <p v-if="wrong.readOnly" role="status" class="inline-notice">
-      已移出班级，此任务的原题和历史记录仅供回看。
-    </p>
-    <div
-      class="remediation-workspace"
-      :class="{ 'without-guidance': !guidance.length }"
-    >
+  <MemoryReturn/>
+  <p v-if="loading" role="status">正在读取错题…</p>
+  <Surface v-else-if="error&&!wrong"><h2>无法打开错题</h2><p role="alert">{{error}}</p><Button @click="load()">重新读取</Button></Surface>
+  <template v-else-if="wrong">
+    <PageHeading title="错题订正"><Button variant="ghost" @click="navigate('wrong')"><ArrowLeft :size="16"/>错题帮</Button></PageHeading>
+    <p v-if="wrong.readOnly" role="status" class="inline-notice">此任务已转为历史记录，仅可回看。</p>
+    <div class="remediation-workspace student-repair-focus">
       <aside class="remediation-original">
-        <div class="question-meta">
-          <Status>{{ wrong.details.subject || "数学" }}</Status
-          ><span>{{
-            knowledgeNames ||
-            { course: "课程作答", manual: "个人录入", image: "题图识别" }[
-              wrong.source
-            ]
-          }}</span>
-        </div>
-        <h2>{{ wrong.prompt }}</h2>
-        <a
-          v-if="wrong.image"
-          :href="wrong.image"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="打开原始题图"
-          ><img
-            class="wrong-detail-image"
-            :src="wrong.image"
-            alt="原始题图" /></a
-        ><img
-          v-if="wrong.details.cropFileId"
-          class="wrong-detail-image"
-          :src="'/api/files/' + wrong.details.cropFileId"
-          alt="本题裁剪图"
-        />
-        <div class="original-attempt">
-          <h3>原来的作答</h3>
-          <p class="math-equation">{{ wrong.answer || "未填写" }}</p>
-          <p class="preserve-lines">{{ wrong.reason }}</p>
-        </div>
-        <details class="study-disclosure"><summary>错因分类</summary><label class="field-label" for="cause">错因</label
-        ><select id="cause" v-model="cause" :disabled="wrong.readOnly">
-          <option v-for="r in options.reasons" :key="r">{{ r }}</option></select
-        ><label class="capture-confirm"
-          ><input
-            v-model="confirmed"
-            type="checkbox"
-            :disabled="wrong.readOnly"
-          />确认本题错因</label
-        ><Button
-          variant="outline"
-          :disabled="wrong.readOnly || saving"
-          @click="confirmCause"
-          >保存分类</Button
-        ></details>
-        <details v-if="wrong.repairs.length" class="repair-history">
-          <summary>补救记录 · {{ wrong.repairs.length }}</summary>
-          <article v-for="a in wrong.repairs" :key="a.id">
-            <Status>{{
-              a.details.version === "legacy_fixed"
-                ? "历史固定示例"
-                : a.details.phase === "retest"
-                  ? "独立复测"
-                  : "有帮助练习"
-            }}</Status>
-            <p>{{ a.details.equation }}</p>
-            <p>作答 {{ a.answer }}</p>
-            <p>{{ a.reason }}</p>
-            <strong
-              >{{
-                a.verification?.status === "unverified"
-                  ? "需要核对"
-                  : a.correct
-                    ? "核验正确"
-                    : "核验不一致"
-              }}{{ a.details.helped ? " · 使用过帮助" : "" }}</strong
-            >
-            <p v-if="a.details.version === 'legacy_fixed'">
-              {{ a.details.scope }}
-            </p>
-          </article>
-        </details>
+        <div><span class="student-original-label">原题</span><h2>{{wrong.prompt}}</h2></div>
+        <Button variant="outline" @click="originalOpen=true">原来的作答<ChevronRight :size="15"/></Button>
       </aside>
+      <nav class="student-repair-path" aria-label="错题订正步骤"><button :class="{active:phase==='analysis'}" :aria-current="phase==='analysis'?'step':undefined" @click="phase='analysis'"><span>1</span>找错因</button><button :disabled="!analysis" :class="{active:phase==='understand'}" :aria-current="phase==='understand'?'step':undefined" @click="phase='understand'"><span>2</span>订正</button><button :disabled="!variant&&!lastAttempt" :class="{active:['practice','result'].includes(phase)}" :aria-current="['practice','result'].includes(phase)?'step':undefined" @click="phase=variant?'practice':'result'"><span>3</span>再练一题</button></nav>
       <main class="remediation-main">
-        <section class="remediation-section">
-          <div class="remediation-section-heading">
-            <span class="remediation-step">01</span>
-            <h2>找到问题</h2>
-            <Button
-              :disabled="wrong.readOnly || job.busy.value"
-              :variant="analysis ? 'outline' : 'default'"
-              size="sm"
-              @click="create('analysis')"
-              >{{ analysis ? "重新分析" : "分析错因" }}</Button
-            >
-          </div>
-          <template v-if="analysis"
-            ><p class="remediation-goal">{{ analysis.result.goal }}</p>
-            <blockquote v-if="analysis.result.evidence">
-              {{ analysis.result.evidence }}
-            </blockquote>
-            <p>建议检查：{{ analysis.result.cause }}</p>
-            <InfoTip v-if="analysis.result.uncertainty" label="分析范围">{{ analysis.result.uncertainty }}</InfoTip></template
-          >
+        <div v-if="job.busy.value" class="inline-notice" role="status"><RefreshCw class="animate-spin" :size="16"/>{{job.job.value?.step||'正在准备…'}}<Button v-if="job.job.value?.input?.guidance" size="sm" variant="ghost" @click="stop">停止</Button></div>
+        <div v-if="job.error.value||job.job.value?.status==='failed'" class="form-error" role="alert">{{job.error.value||job.job.value.error}}<Button :disabled="job.busy.value||wrong.readOnly" variant="outline" @click="job.job.value?.status==='failed'?job.retry():load(false)">重试</Button></div>
+        <section v-if="phase==='analysis'" class="remediation-section student-repair-analysis">
+          <template v-if="analysis"><h2>{{analysis.result.goal}}</h2><blockquote v-if="analysis.result.evidence">{{analysis.result.evidence}}</blockquote><div class="student-cause-answer"><span>这次先看</span><strong>{{analysis.result.cause}}</strong><InfoTip v-if="analysis.result.uncertainty" label="分析说明">{{analysis.result.uncertainty}}</InfoTip></div><Button @click="phase='understand'">开始订正<ChevronRight :size="16"/></Button><Button variant="ghost" :disabled="wrong.readOnly||job.busy.value" @click="create('analysis')">重新分析</Button></template>
+          <template v-else><h2>先看看错在哪里</h2><p class="student-original-inline">你的答案 <strong>{{wrong.answer||'未填写'}}</strong></p><Button :disabled="wrong.readOnly||job.busy.value" @click="create('analysis')">分析这道题<ChevronRight :size="16"/></Button></template>
         </section>
-        <section v-if="analysis" class="remediation-section">
-          <div class="remediation-section-heading">
-            <span class="remediation-step">02</span>
-            <h2>分步订正</h2>
-          </div>
-          <ol class="remediation-steps">
-            <li v-for="(step, i) in analysis.result.steps" :key="i">
-              {{ step }}
-            </li>
-          </ol>
-          <div class="remediation-question">
-            {{ analysis.result.checkQuestion }}
-          </div>
-          <label class="field-label" for="repair-response">你的理解</label
-          ><Textarea
-            id="repair-response"
-            v-model="response"
-            :disabled="wrong.readOnly"
-          />
-          <div class="paper-actions">
-            <Button
-              :disabled="wrong.readOnly || job.busy.value || !response.trim()"
-              @click="create('guidance', 'continue')"
-              >继续订正<ChevronRight /></Button
-            ><Button
-              variant="outline"
-              :disabled="wrong.readOnly || job.busy.value"
-              @click="create('variant')"
-              >生成变式练习</Button
-            >
-          </div>
-        </section>
-        <section v-if="variant" class="remediation-section">
-          <div class="remediation-section-heading">
-            <span class="remediation-step">03</span>
-            <h2>
-              {{ variant.input.phase === "retest" ? "独立新题" : "变式练习" }}
-            </h2>
-          </div>
-          <p>{{ variant.result.variant.prompt }}</p>
-          <div class="question-equation">
-            {{ variant.result.variant.equation }}
-          </div>
-          <form @submit.prevent="submit">
-            <label class="field-label" for="repair-answer">本题答案</label
-            ><Input
-              id="repair-answer"
-              v-model="answer"
-              :disabled="wrong.readOnly || saving"
-              required
-            /><label class="field-label" for="repair-reason">解题过程</label
-            ><Textarea
-              id="repair-reason"
-              v-model="reason"
-              :disabled="wrong.readOnly || saving"
-            /><Button
-              type="submit"
-              :disabled="wrong.readOnly || saving || !answer.trim()"
-              >{{ saving ? "正在保存…" : "提交本题" }}</Button
-            >
-          </form>
-        </section>
-        <section v-if="lastAttempt" class="remediation-section repair-outcome">
-          <CheckCircle2 />
-          <h2>
-            {{
-              lastAttempt.verification?.status === "unverified"
-                ? "需要人工核对"
-                : lastAttempt.correct
-                  ? "本题核验正确"
-                  : "再检查这一步"
-            }}
-          </h2>
-          <p>{{ lastAttempt.details.equation }} → {{ lastAttempt.answer }}</p>
-          <p v-if="lastAttempt.details.helped">
-            本题使用过帮助，原帮助记录已保留。
-          </p>
-          <p v-if="lastAttempt.details.version === 'legacy_fixed'">
-            {{ lastAttempt.details.scope }}
-          </p>
-          <div class="paper-actions">
-            <Button
-              v-if="!variant"
-              :disabled="wrong.readOnly || job.busy.value"
-              @click="create('variant', 'hint', 'retest')"
-              >生成独立新题</Button
-            ><Button
-              variant="outline"
-              @click="
-                navigate(wrong.taskId ? 'result?task=' + wrong.taskId : 'wrong')
-              "
-              >{{ wrong.taskId ? "返回原任务" : "返回错题帮" }}</Button
-            >
-          </div>
-        </section>
+        <section v-if="phase==='understand'&&analysis" class="remediation-section student-repair-correction"><div class="student-correction-counter">{{correctionIndex+1}} / {{analysis.result.steps.length}}</div><h2>一步步订正</h2><p class="student-correction-step">{{correctionStep}}</p><div v-if="correctionIndex<analysis.result.steps.length-1" class="student-correction-navigation"><Button variant="ghost" :disabled="correctionIndex===0" @click="correctionIndex--">上一步</Button><Button @click="correctionIndex++">下一步<ChevronRight :size="16"/></Button></div><template v-else><p class="remediation-question">{{analysis.result.checkQuestion}}</p><label class="field-label" for="repair-response">写下你的想法</label><Textarea id="repair-response" v-model="response" :disabled="wrong.readOnly"/><div class="paper-actions"><Button :disabled="wrong.readOnly||job.busy.value" @click="create('variant')">练一道类似的题<ChevronRight :size="16"/></Button><Button variant="ghost" :disabled="wrong.readOnly||job.busy.value||!response.trim()" @click="create('guidance','continue')">请帮我看看</Button><Button variant="ghost" :disabled="correctionIndex===0" @click="correctionIndex--">上一步</Button></div></template></section>
+        <section v-if="phase==='practice'&&variant" class="remediation-section student-repair-practice"><span class="student-correction-counter">{{variant.input.phase==='retest'?'独立练习':'类似的题'}}</span><h2>{{variant.result.variant.prompt}}</h2><div class="question-equation"><MathExpression :text="variant.result.variant.equation"/></div><form @submit.prevent="submit"><label class="field-label" for="repair-answer">你的答案</label><Input id="repair-answer" v-model="answer" :disabled="wrong.readOnly||saving" required/><label class="field-label" for="repair-reason">解题过程</label><Textarea id="repair-reason" v-model="reason" :disabled="wrong.readOnly||saving"/><Button type="submit" :disabled="wrong.readOnly||saving||!answer.trim()">{{saving?'正在保存…':'提交答案'}}</Button></form></section>
+        <section v-if="phase==='result'&&lastAttempt" class="remediation-section repair-outcome"><CheckCircle2/><h2>{{lastAttempt.verification?.status==='unverified'?'请老师核对一下':lastAttempt.correct?'答案核对正确':'再检查一下'}}</h2><p class="math-equation">{{lastAttempt.details.equation}} → {{lastAttempt.answer}}</p><p v-if="lastAttempt.details.helped">这次用过帮助</p><p v-if="lastAttempt.details.version==='legacy_fixed'">{{lastAttempt.details.scope}}</p><div class="paper-actions"><Button :disabled="wrong.readOnly||job.busy.value" @click="create('variant','hint','retest')">独立再试一题</Button><Button variant="outline" @click="navigate(wrong.taskId?'result?task='+wrong.taskId:'wrong')">{{wrong.taskId?'返回本课':'返回错题帮'}}</Button></div></section>
+        <div class="student-repair-help"><Button variant="ghost" @click="assistantOpen=true">需要一点提示</Button><Status :tone="wrong.status==='retest_passed'?'green':'neutral'">{{repairStatus}}</Status></div>
       </main>
-      <aside class="remediation-assistant"><details class="study-disclosure" :open="assistantOpen||guidance.length>0"><summary>订正时需要帮助</summary>
-        <div class="remediation-assistant-heading">
-          <span class="assistant-orbit" />
-          <h2>学习助手</h2>
-        </div>
-        <div class="remediation-strategies">
-          <Button
-            v-for="[value, label] in strategies"
-            :key="value"
-            variant="outline"
-            :disabled="wrong.readOnly || job.busy.value"
-            @click="create('guidance', value)"
-            >{{ label }}</Button
-          >
-        </div>
-        <div v-if="job.busy.value" class="inline-notice" role="status">
-          <RefreshCw class="animate-spin" :size="16" />{{
-            job.job.value?.step || "正在提交…"
-          }}<Button
-            v-if="job.job.value?.input?.guidance"
-            size="sm"
-            variant="ghost"
-            @click="stop"
-            >结束本轮</Button
-          >
-        </div>
-        <div
-          v-if="job.error.value || job.job.value?.status === 'failed'"
-          role="alert"
-          class="form-error"
-        >
-          {{ job.error.value || job.job.value.error
-          }}<Button
-            :disabled="job.busy.value || wrong.readOnly"
-            variant="outline"
-            @click="
-              job.job.value?.status === 'failed' ? job.retry() : load(false)
-            "
-            >重试</Button
-          >
-        </div>
-        <article v-for="j in guidance" :key="j.id" class="remediation-turn">
-          <p class="remediation-student">{{ j.prompt }}</p>
-          <template v-if="j.result"
-            ><h3>{{ j.result.title }}</h3>
-            <p>{{ j.result.hint }}</p>
-            <ol>
-              <li v-for="step in j.result.steps" :key="step">{{ step }}</li>
-            </ol>
-            <p class="remediation-question">{{ j.result.question }}</p>
-            <a
-              v-for="source in j.result.sources || []"
-              :key="source.versionId"
-              :href="
-                '#/source?case=' + source.id + '&version=' + source.versionId
-              "
-              >{{ source.title }}</a
-            ></template
-          >
-          <p v-else>{{ j.error || j.step }}</p>
-        </article></details>
-      </aside>
     </div>
-    <div v-if="error" role="alert" class="form-error">
-      {{ error
-      }}<Button variant="outline" :disabled="saving" @click="confirmCause"
-        >重试保存</Button
-      >
-    </div>
+    <p v-if="error" role="alert" class="form-error">{{error}}<Button variant="outline" :disabled="saving" @click="confirmCause">重试保存</Button></p>
+    <AppDialog v-model:open="originalOpen" title="原题与作答" content-class="student-original-dialog"><h2>{{wrong.prompt}}</h2><a v-if="wrong.image" :href="wrong.image" target="_blank" rel="noreferrer"><img class="wrong-detail-image" :src="wrong.image" alt="原始题图"/></a><img v-if="wrong.details.cropFileId" class="wrong-detail-image" :src="'/api/files/'+wrong.details.cropFileId" alt="本题裁剪图"/><div class="original-attempt"><h3>你的答案</h3><p class="math-equation">{{wrong.answer||'未填写'}}</p><p class="preserve-lines">{{wrong.reason}}</p></div><details class="study-disclosure"><summary>错因分类</summary><label class="field-label" for="cause">错因</label><select id="cause" v-model="cause" :disabled="wrong.readOnly"><option v-for="r in options.reasons" :key="r">{{r}}</option></select><label class="capture-confirm"><input v-model="confirmed" type="checkbox" :disabled="wrong.readOnly"/>确认本题错因</label><Button variant="outline" :disabled="wrong.readOnly||saving" @click="confirmCause">保存分类</Button></details><details v-if="wrong.repairs.length" class="repair-history"><summary>以前的练习 · {{wrong.repairs.length}}</summary><article v-for="a in wrong.repairs" :key="a.id"><Status>{{a.details.version==='legacy_fixed'?'历史示例':a.details.phase==='retest'?'独立练习':'用过帮助'}}</Status><p>{{a.details.equation}}</p><p>作答 {{a.answer}}</p><p>{{a.reason}}</p><strong>{{a.verification?.status==='unverified'?'需要核对':a.correct?'数值正确':'需要订正'}}</strong><p v-if="a.details.version==='legacy_fixed'">{{a.details.scope}}</p></article></details></AppDialog>
+    <AppDialog v-model:open="assistantOpen" title="学习助手" content-class="student-help-dialog"><p v-if="job.busy.value" role="status" class="inline-notice">{{job.job.value?.step||'正在准备提示…'}}</p><p v-if="job.error.value||job.job.value?.status==='failed'" role="alert" class="form-error">{{job.error.value||job.job.value.error}}<Button :disabled="job.busy.value||wrong.readOnly" variant="outline" @click="job.job.value?.status==='failed'?job.retry():load(false)">重试</Button></p><div class="remediation-strategies"><Button v-for="[value,label] in strategies" :key="value" variant="outline" :disabled="wrong.readOnly||job.busy.value" @click="create('guidance',value)">{{label}}</Button></div><article v-for="j in guidance.slice(-1)" :key="j.id" class="remediation-turn"><p v-if="j.prompt" class="remediation-student">{{j.prompt}}</p><template v-if="j.result"><h3>{{j.result.title}}</h3><p>{{j.result.hint}}</p><ol><li v-for="step in j.result.steps" :key="step">{{step}}</li></ol><p class="remediation-question">{{j.result.question}}</p><details v-if="j.result.sources?.length"><summary>参考来源</summary><div v-for="source in j.result.sources" :key="source.versionId"><strong>{{source.title}}</strong><a v-for="ref in source.references||[]" :key="ref.unitId" :href="'#/source?unit='+ref.unitId" target="_blank" rel="noopener">{{ref.materialTitle||'原文'}} · {{ref.label}}</a></div></details></template><p v-else>{{j.error||j.step}}</p></article><details v-if="guidance.length>1" class="study-disclosure"><summary>前面的指导 · {{guidance.length-1}}</summary><article v-for="j in guidance.slice(0,-1)" :key="j.id"><p>{{j.prompt}}</p><h3>{{j.result?.title}}</h3><p>{{j.result?.hint||j.error||j.step}}</p><ol><li v-for="step in j.result?.steps||[]" :key="step">{{step}}</li></ol><p>{{j.result?.question}}</p></article></details></AppDialog>
   </template>
 </template>

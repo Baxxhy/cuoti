@@ -1,6 +1,6 @@
 # 师承智学
 
-2026-11-12 · v32 · 本地软件作品
+2026-11-12 · v33 · 本地软件作品
 
 教师经验、备课、课程班级、学生学习、错题帮和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；沿用Nova、shadcn-vue、Lucide。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
 
@@ -20,13 +20,13 @@
 
 ## 本轮界面更新
 
-全站按任务重新组织，使用黑白中性色Nova适配，收起筛选、历史与额外工具；保持现有Vue/JavaScript组件体系。所有功能入口保留。
+学习页一次一节，练习一次一题，公式独立排版；目录、助手和历史按需打开。教师备课与批阅、管理资料也围绕当前对象组织。沿用Vue/JavaScript和现有组件体系，没有增加依赖。
 
-[当前进度v32](docs/planning/当前进度_20261112_v1.md) · [重构与专项终验](docs/planning/全界面重构与专项终验_20261112_v1.md) · [新版网页使用](docs/manuals/web_20261112_v1/README.md) · [截图及实际验证](docs/verification/redesign_20261112_v1/README.md)
+[当前进度v33](docs/planning/当前进度_20261112_v2.md) · [低文字量与分步学习](docs/planning/低文字量与分步学习改造_20261112_v1.md) · [截图及实际验证](docs/verification/focus_20261112_v1/README.md)
 
-本轮168项MySQL测试、28项浏览器回归和4项JS单元检查通过；全新实例F01—F12通过。33个角色页面×三种桌面宽度检查无横向溢出和脚本错误，五课学生正文及旧任务快照已核对。
+本轮33项浏览器回归、7项JS单元检查与构建通过；新界面的五课与师生发布作答流程已实际验证。上轮168项MySQL和F01—F12结果保留，后端源码不变。
 
-![新版学习首页](docs/verification/redesign_20261112_v1/screens/student-home-1440.png)
+![单节学习](docs/verification/focus_20261112_v1/learning/lesson-simple-1440.png)
 
 ## 前序交付结果
 

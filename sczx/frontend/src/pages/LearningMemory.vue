@@ -30,6 +30,7 @@ const data = ref(null),
   selectedStudent = ref(String(route.query.studentId || "")),
   query = ref(""),
   filter = ref("all"),
+  evidenceOpen=ref(null),
   editing = ref(null),
   reason = ref(""),
   note = ref(""),
@@ -72,6 +73,8 @@ const filtered = computed(
 const evidence = computed(
   () => selected.value?.evidence || data.value?.unlinkedEvidence || [],
 );
+const studentState=item=>teacher.value?item.state.statusLabel:({none:'还没有练习',improving:'正在进步',insufficient:'还需练习',strengthen:'再练一练',review_due:'该复习了',independent:'有独立答对记录'})[item.state.status]||item.state.statusLabel;
+const evidenceLabel=e=>teacher.value?e.label:({independent_correct:'独立答对',independent_incorrect:'需要订正',helped_correct:'提示后答对',retest_passed:'独立复测答对',retest_failed:'复测需订正'})[e.outcome]||e.label;
 const time = (value) =>
   value
     ? new Date(value).toLocaleString("zh-CN", {
@@ -218,7 +221,7 @@ const targets = computed(() => {
 });
 </script>
 <template>
-  <PageHeading :title="teacher ? '学生学习记忆' : '学习记忆'"
+  <PageHeading :title="teacher ? '学生学习记忆' : '复习'"
     ><Button
       v-if="route.query.returnTask"
       variant="outline"
@@ -251,7 +254,7 @@ const targets = computed(() => {
       </select></label
     >
   </div>
-  <p v-if="loading" role="status">正在整理学习证据…</p>
+  <p v-if="loading" role="status">正在读取学习记录…</p>
   <div v-if="error" class="form-error" role="alert">
     {{ error }}<Button variant="ghost" @click="load">重新读取</Button>
   </div>
@@ -269,7 +272,7 @@ const targets = computed(() => {
     >
   </div>
   <template v-if="data"
-    ><div class="memory-summary">
+    ><div v-if="!selected&&teacher" class="memory-summary">
       <div>
         <span>{{ teacher ? data.studentName : "我的知识点" }}</span
         ><strong>{{ data.items.length }}</strong>
@@ -279,7 +282,7 @@ const targets = computed(() => {
         ><strong>{{ data.recommendations.length }}</strong>
       </div>
       <div>
-        <span>独立正确证据</span><strong>{{ independentTotal }}</strong>
+        <span>独立答对次数</span><strong>{{ independentTotal }}</strong>
       </div>
       <InfoTip label="状态计算范围"
         >规则建议，依据实际作答与核验；不代表已掌握。近期{{
@@ -287,6 +290,7 @@ const targets = computed(() => {
         }}小时，复习间隔{{ data.rules.reviewDays }}天。</InfoTip
       >
     </div>
+    <div v-if="!selected&&!teacher" class="student-review-context"><span>{{data.recommendations.length?data.recommendations.length+'项待复习':'查看学过的知识点'}}</span><InfoTip label="学习记录统计">{{data.items.length}}个知识点，{{independentTotal}}次独立数值正确记录；不代表已经掌握。</InfoTip></div>
     <section
       v-if="!selected && data.recommendations.length"
       class="memory-review-strip"
@@ -296,8 +300,8 @@ const targets = computed(() => {
     >
       <article v-for="r in data.recommendations.slice(0, 1)" :key="r.id">
         <span>{{ data.items.find((i) => i.id === r.knowledgeId)?.name }}</span>
-        <h2>{{ r.label }}</h2>
-        <p>{{ r.reason }}</p>
+        <h2>{{r.label==='继续补救'?'继续订正':r.label}}</h2>
+        <InfoTip label="为什么建议复习">{{r.reason}}</InfoTip>
         <div>
           <Button @click="openTarget(r.target,r.knowledgeId)">{{teacher?'查看对应任务':'开始复习'}}<ArrowRight /></Button
           ><Button
@@ -310,8 +314,8 @@ const targets = computed(() => {
         </div>
       </article>
     </section>
-    <div class="memory-workspace" :class="{ 'has-detail': selected }">
-      <section class="memory-list-pane">
+    <div class="memory-workspace" :class="{ 'has-detail': selected,'student-memory-focus':!teacher }">
+      <section v-if="!selected" class="memory-list-pane">
         <div class="memory-list-tools">
           <Input
             v-model="query"
@@ -320,7 +324,7 @@ const targets = computed(() => {
           /><select v-model="filter" aria-label="筛选学习状态">
             <option value="all">全部状态</option>
             <option value="needs">待检查</option>
-            <option value="independent">有独立正确证据</option>
+            <option value="independent">有独立答对次数</option>
           </select>
         </div>
         <div v-if="filtered.length" class="memory-table">
@@ -333,11 +337,11 @@ const targets = computed(() => {
           >
             <div>
               <strong>{{ item.name }}</strong
-              ><span>{{ item.state.statusLabel }}</span>
+              ><span>{{ studentState(item) }}</span>
             </div>
             <div class="memory-row-counts">
-              <span>{{ item.state.independentCorrect }} 独立正确</span
-              ><span>{{ item.state.evidenceCount }} 条记录</span>
+              <span>{{ item.state.independentCorrect }} 次独立答对</span
+              ><span>{{ item.state.evidenceCount }} 次练习</span>
             </div>
             <time>{{ time(item.state.lastPracticedAt) }}</time
             ><ChevronRight :size="17" />
@@ -346,7 +350,7 @@ const targets = computed(() => {
         <div v-else class="empty-state">
           <BookOpen />
           <h2>
-            {{ data.items.length ? "没有匹配的知识点" : "还没有学习证据" }}
+            {{ data.items.length ? "没有匹配的知识点" : "还没有学习记录" }}
           </h2>
           <RouteButton v-if="!teacher" route="courses">查看课程</RouteButton>
         </div>
@@ -369,8 +373,8 @@ const targets = computed(() => {
           >
         </div>
         <template v-if="selected"
-          ><Status>{{ selected.state.statusLabel }}</Status>
-          <p class="memory-state-reason">{{ selected.state.reason }}</p>
+          ><Status>{{ studentState(selected) }}</Status>
+          <InfoTip label="当前状态说明">{{selected.state.reason}}</InfoTip>
           <p v-if="selected.state.reviewRequested" class="inline-notice">
             教师已标记需要复核，原核验结果保留。
           </p>
@@ -378,7 +382,7 @@ const targets = computed(() => {
             v-if="selected.prerequisites.length"
             class="memory-prerequisites"
           >
-            <span>前置知识</span
+            <span>先前学过</span
             ><Button
               v-for="p in selected.prerequisites"
               :key="p.id"
@@ -389,7 +393,7 @@ const targets = computed(() => {
             >
           </div>
           <div v-if="selected.recommendation" class="memory-next">
-            <p>{{ selected.recommendation.reason }}</p>
+            <InfoTip label="复习建议说明">{{selected.recommendation.reason}}</InfoTip>
             <Button
               variant="outline"
               @click="openTarget(selected.recommendation.target,selected.id)"
@@ -422,10 +426,11 @@ const targets = computed(() => {
                   ? 'amber'
                   : 'neutral'
               "
-              >{{ e.label }}</Status
+              >{{ evidenceLabel(e) }}</Status
             ><time>{{ e.timeReliable===false?'时间待核对':time(e.occurredAt) }}</time>
           </div>
-          <h3>{{ e.equation || e.prompt || e.label }}</h3>
+          <button class="student-memory-evidence-toggle" :aria-expanded="evidenceOpen===e.evidenceId" @click="evidenceOpen=evidenceOpen===e.evidenceId?null:e.evidenceId"><h3>{{e.equation||e.prompt||e.label}}</h3><ChevronRight :size="16"/></button>
+          <template v-if="evidenceOpen===e.evidenceId">
           <p v-if="e.answer" class="memory-answer">原作答 {{ e.answer }}</p>
           <p v-if="e.reason" class="preserve-lines">{{ e.reason }}</p>
           <p v-if="e.sourceType === 'wrong'">
@@ -451,6 +456,7 @@ const targets = computed(() => {
             <p>{{ e.lessonVersionId || "个人独立记录，无课程版本" }}</p>
             <p>{{ e.verification }}{{ e.helped ? " · 使用帮助" : "" }}</p>
           </details>
+          </template>
         </article>
         <details v-if="selected?.stateHistory.length" class="memory-audit">
           <summary>
@@ -463,7 +469,7 @@ const targets = computed(() => {
           </p>
         </details>
         <p v-if="!evidence.length" class="memory-empty-evidence">
-          目前还缺少足够的独立练习证据。
+          再完成一些独立练习后，这里会更新。
         </p>
         <details v-if="data.audit.length" class="memory-audit">
           <summary>修订记录</summary>
@@ -497,7 +503,7 @@ const targets = computed(() => {
   >
   <AppDialog
     :open="!!editing"
-    title="核对学习证据"
+    title="核对学习记录"
     @update:open="!$event && (editing = null)"
     ><template v-if="editing"
       ><p>{{ editing.equation || editing.prompt || editing.label }}</p>

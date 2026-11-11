@@ -67,8 +67,8 @@ async function workspaceScenario(mode){
       // persist the chosen block without making a formal answer submission.
       task.snapshot.blocks=[{id:'intro',type:'explanation',title:'共同变化',content:'等式两边同时减3。'},{id:'example',type:'example',title:'验算',content:'把x=5代回原式。'}];
       s.data.tasks=[{...task}];await nextTick();await new Promise(r=>setTimeout(r,70));
-      el.querySelector('.curriculum-outline>button:last-child').click();await nextTick();
-      return{initial,destination,selected:{...s.record.drafts.lessonPosition},outline:el.querySelector('.curriculum-outline [aria-current=step]')?.textContent,writes};
+      [...el.querySelectorAll('button')].find(b=>b.textContent.trim().startsWith('目录')).click();await nextTick();document.querySelector('[role=dialog] .curriculum-outline>button:last-child').click();await nextTick();
+      return{initial,destination,selected:{...s.record.drafts.lessonPosition},outline:el.querySelector('.focused-reading .curriculum-block-heading')?.textContent,writes};
     }
     if(mode==='missing'){
       await router.push('/learn?task=missing-task');await nextTick();await new Promise(r=>setTimeout(r,260));

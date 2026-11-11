@@ -35,10 +35,10 @@ async function importNow() {
 
 <template>
   <section class="legacy-import">
-    <SectionHeading title="历史记录" />
+
     <p v-if="result" role="status">{{ result }}</p>
-    <p v-else-if="legacy?.data">找到一份浏览器历史记录，可预览后导入历史演示班级。</p>
-    <p v-else-if="!legacy">没有待导入的浏览器历史记录。</p>
+    <p v-else-if="legacy?.data">找到一份旧记录。</p>
+    <p v-else-if="!legacy">没有可导入的旧记录。</p>
     <p v-if="error" class="form-error" role="alert">{{ error }}</p>
     <Button v-if="legacy?.data" variant="outline" @click="open = true">预览并导入</Button>
     <AppDialog v-model:open="open" title="导入历史演示记录">

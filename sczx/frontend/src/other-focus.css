@@ -1,0 +1,61 @@
+/* Teaching workspaces: choose an object, then edit or review that object. */
+.focus-preparation{display:grid;grid-template-columns:248px minmax(0,1fr);border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--card);min-height:480px;align-items:start}
+.focus-activity-list{padding:14px 10px;min-width:0;border-right:1px solid var(--border);align-self:stretch;background:#fafafa}
+.focus-activity-item{display:flex;align-items:center;border-radius:6px;margin-bottom:3px;min-width:0}
+.focus-activity-item.selected,.focus-question-choice.selected{background:#ececec}
+.focus-activity-item>.drag-handle{width:23px;min-width:23px;height:34px;display:grid;place-items:center;color:#737373;padding:0;cursor:grab}
+.focus-activity-item>button:last-child{display:flex;align-items:start;gap:10px;text-align:left;padding:13px 10px 13px 1px;flex:1;min-width:0}
+.focus-activity-item span,.focus-question-choice>span{font-size:11px;color:#737373;line-height:22px;font-variant-numeric:tabular-nums}
+.focus-activity-item strong,.focus-question-choice>strong{font-size:13px;font-weight:450;line-height:22px}
+.focus-activity-item.selected strong,.focus-question-choice.selected strong{color:#171717;font-weight:600}
+.focus-activity-editor{padding:25px 32px 30px;width:100%;min-width:0;max-width:1050px}
+.focus-editor-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.focus-activity-editor .field-label{margin:16px 0 8px;font-size:13px}
+.focus-activity-editor [data-slot=textarea]{min-height:175px;font-size:15px;line-height:1.9}
+.focus-activity-editor .preparation-block-notes [data-slot=textarea]{min-height:100px;font-size:14px}
+.focus-activity-editor .preparation-block-notes{border:0;border-top:1px solid var(--border);border-radius:0;background:transparent;padding:16px 0 0;margin-top:20px;font-size:13px}
+.focus-activity-editor .preparation-block-notes summary{cursor:pointer;color:#555;font-size:13px}
+.focus-activity-editor .preparation-block-notes label{display:grid;gap:8px;margin:16px 0}
+.focus-editor-footer{display:flex;justify-content:space-between;gap:14px;margin-top:28px;flex-wrap:wrap}
+.focus-preparation-settings{border:1px solid var(--border);border-radius:10px;padding:26px 32px;background:var(--card);max-width:1100px}
+.focus-preparation-settings .field-label{margin:18px 0 8px}
+.focus-preparation-settings>.field-label:first-child{margin-top:0}
+.focus-settings-pair{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.focus-settings-pair label,.focus-preparation-settings .ops-disclosure>label{display:grid;gap:9px;font-size:13px}
+.focus-question-choice{display:flex;align-items:start;gap:12px;padding:14px 12px;border-radius:6px;width:100%;text-align:left;margin-bottom:4px}
+.focus-grading-nav{display:flex;gap:7px;flex-wrap:wrap;padding:15px 0 18px;border-bottom:1px solid var(--border)}
+.focus-grading-nav button{display:flex;align-items:center;justify-content:center;gap:4px;min-width:35px;height:34px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:#5e5e5e}
+.focus-grading-nav button.active{background:#272727;color:white;border-color:#272727}
+.focus-grading-actions{display:flex;justify-content:flex-end;align-items:center;gap:9px;padding-top:18px}
+.exam-grading .exam-grade-question{padding-top:24px}
+.exam-grading .exam-grade-question .exam-original{display:grid;gap:10px;margin:20px 0;padding:20px}
+.exam-grading .exam-grade-question .exam-form-grid{grid-template-columns:130px minmax(0,1fr)}
+@media(max-width:1150px){.focus-preparation{grid-template-columns:210px minmax(0,1fr)}.focus-activity-editor{padding:22px}.focus-settings-pair{gap:16px}}
+@media(max-width:800px){.focus-preparation{grid-template-columns:1fr}.focus-activity-list{border-right:0;border-bottom:1px solid var(--border);max-height:230px;overflow:auto}.focus-activity-editor{padding:20px}.focus-settings-pair{grid-template-columns:1fr}.focus-preparation-settings{padding:22px}}
+.focus-plan-activities{display:grid;grid-template-columns:205px minmax(0,1fr);gap:22px;margin-top:22px}
+.focus-plan-activities>nav{display:grid;align-content:start;gap:4px}
+.focus-plan-activities>nav button{display:flex;align-items:start;gap:10px;padding:12px 10px;border-radius:6px;text-align:left;font-size:13px}
+.focus-plan-activities>nav button.active{background:var(--muted)}
+.focus-plan-activities>nav span{color:var(--muted-foreground);font-size:11px;line-height:22px}
+.focus-plan-activities>nav strong{font-weight:450;line-height:22px}
+.focus-plan-activities>nav .active strong{font-weight:600}
+.focus-plan-activities .planning-block{margin:0;min-width:0;padding:20px}
+.focus-plan-activities .planning-block>[data-slot=textarea]{min-height:210px;line-height:1.9;font-size:15px}
+.focus-agent-goal{border-bottom:1px solid var(--border);padding:14px 0 20px}
+.focus-agent-goal>summary{font-size:13px;color:var(--muted-foreground);cursor:pointer}
+.focus-agent-goal[open]>summary{margin-bottom:16px}
+.focus-question-stats{display:flex;gap:23px;flex-wrap:wrap;margin:18px 0 20px;font-variant-numeric:tabular-nums}
+.focus-question-stats dt{font-size:11px;color:var(--muted-foreground)}
+.focus-question-stats dd{margin:5px 0 0;font-size:22px;font-weight:450;color:var(--foreground)}
+.focus-exam-voice{margin-top:9px;font-size:12px;color:var(--muted-foreground)}
+.focus-exam-voice>summary{cursor:pointer}.focus-exam-voice[open]>summary{margin-bottom:14px}
+@media(max-width:1150px){.focus-plan-activities{grid-template-columns:170px minmax(0,1fr);gap:14px}}
+@media(max-width:850px){.focus-plan-activities{grid-template-columns:1fr}.focus-plan-activities>nav{display:flex;overflow:auto}.focus-plan-activities>nav button{min-width:160px}}
+.planning-plan [readonly]{opacity:1;color:var(--foreground);cursor:text}
+.exam-heading{padding:0 0 17px;border-bottom:1px solid var(--border)}
+.exam-heading>div{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.exam-heading p{margin:0;font-size:12px}
+.exam-heading+.teacher-grading-toolbar{margin:15px 0}
+.exam-grading .exam-grade-question .exam-original p:first-child{font-size:17px}
+.focus-student-feedback{display:grid;gap:14px;padding:18px 0}.focus-student-feedback textarea{min-height:150px}.focus-student-feedback button{justify-self:end}
+.exam-math>.reading-equation{font-size:32px;gap:9px}.exam-bank-row .exam-math>.reading-equation{font-size:28px}

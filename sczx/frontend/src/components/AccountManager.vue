@@ -39,8 +39,8 @@ onMounted(load);
       <Button type="submit" :disabled="busy">{{ busy ? "创建中…" : "创建账号" }}</Button>
       <p v-if="error" role="alert" class="form-error">{{error}}</p>
     </form></AppDialog>
-    <div class="account-list" aria-label="已有账号">
-      <div v-for="account in accounts" :key="account.id" class="account-row"><span class="avatar">{{ account.displayName.slice(0,1) }}</span><strong>{{ account.displayName }}</strong><span>{{ account.role === "teacher" ? "教师" : account.role === "student" ? "学生" : "管理员" }}</span><small>{{ account.username }}</small></div>
+    <div class="account-list admin-account-table" aria-label="已有账号"><div class="admin-account-header"><span>名称</span><span>账号</span><span>身份</span></div>
+      <div v-for="account in accounts" :key="account.id" class="account-row"><div><span class="avatar">{{ account.displayName.slice(0,1) }}</span><strong>{{ account.displayName }}</strong></div><span>{{ account.username }}</span><span>{{ account.role === "teacher" ? "教师" : account.role === "student" ? "学生" : "管理员" }}</span></div>
       <p v-if="!accounts.length" class="muted">暂无账号</p>
     </div>
   </section>

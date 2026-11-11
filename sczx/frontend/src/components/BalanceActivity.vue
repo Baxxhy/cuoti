@@ -1,6 +1,6 @@
 <script setup>
-import { computed, ref, watch } from "vue";
-import { Plus, Minus, RotateCcw, Scale } from "lucide-vue-next";
+import { computed, ref } from "vue";
+import { Plus, Minus, RotateCcw } from "lucide-vue-next";
 import { balanceSpec, applyBalance } from "@/lib/visualization.js";
 const props = defineProps({
     config: {
@@ -31,15 +31,6 @@ const current = computed(
     },
 );
 const balanced = computed(() => current.value.left === current.value.right);
-const labels = {
-  left_add: "左侧加",
-  right_add: "右侧加",
-  both_add: "两边同时加",
-  left_subtract: "左侧减",
-  right_subtract: "右侧减",
-  both_subtract: "两边同时减",
-  reset: "重置天平",
-};
 function disabled(a) {
   if (!spec.value) return true;
   try {
@@ -104,22 +95,8 @@ function act(action) {
         </div>
       </div>
     </div>
-    <div class="balance-toolbar">
-      <Status :tone="balanced ? 'green' : 'amber'"
-        ><Scale :size="14" />{{ balanced ? "两边相等" : "两边不相等" }}</Status
-      ><Button
-        v-for="action in spec.actions"
-        :key="action"
-        size="sm"
-        :variant="action.startsWith('both') ? 'outline' : 'ghost'"
-        :disabled="disabled(action)"
-        @click="act(action)"
-        ><RotateCcw v-if="action === 'reset'" /><Minus
-          v-else-if="action.endsWith('subtract')"
-        /><Plus v-else />{{ labels[action]
-        }}{{ action === "reset" ? "" : " " + spec.step }}</Button
-      >
-    </div>
+    <div class="balance-side-controls"><div v-for="side in ['left','right']" :key="side"><span>{{side==='left'?'左边':'右边'}}</span><Button v-if="spec.actions.includes(side+'_subtract')" variant="outline" size="icon-sm" :aria-label="(side==='left'?'左边':'右边')+'减'+spec.step" :disabled="disabled(side+'_subtract')" @click="act(side+'_subtract')"><Minus :size="15"/></Button><Button v-if="spec.actions.includes(side+'_add')" variant="outline" size="icon-sm" :aria-label="(side==='left'?'左边':'右边')+'加'+spec.step" :disabled="disabled(side+'_add')" @click="act(side+'_add')"><Plus :size="15"/></Button></div></div>
+    <div class="balance-common-controls"><span>两边一起</span><Button v-if="spec.actions.includes('both_add')" size="sm" :disabled="disabled('both_add')" :aria-label="'两边同时加'+spec.step" @click="act('both_add')"><Plus :size="15"/>{{spec.step}}</Button><Button v-if="spec.actions.includes('both_subtract')" variant="outline" size="sm" :disabled="disabled('both_subtract')" :aria-label="'两边同时减'+spec.step" @click="act('both_subtract')"><Minus :size="15"/>{{spec.step}}</Button><Button v-if="spec.actions.includes('reset')" variant="ghost" size="icon-sm" aria-label="重置天平" title="重置天平" @click="act('reset')"><RotateCcw :size="15"/></Button></div><p class="sr-only" role="status">{{balanced?'两边相等':'两边不相等'}}</p>
     <p v-if="failure" role="alert">{{ failure }}</p>
   </div>
 </template>

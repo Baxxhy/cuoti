@@ -23,7 +23,7 @@ function backToMemory() {
       @click="navigate('learn?task=' + route.query.returnTask)"
       ><ArrowLeft />返回当前课时</Button
     ><Button variant="ghost" @click="backToMemory"
-      ><History />查看复习后的证据</Button
+      ><History />查看复习记录</Button
     >
   </div>
 </template>

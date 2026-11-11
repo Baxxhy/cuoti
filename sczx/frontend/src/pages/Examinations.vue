@@ -1,10 +1,14 @@
 <script setup>
-import{computed,ref,watch,onBeforeUnmount}from'vue';import{useRoute,useRouter}from'vue-router';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Plus,ArrowUp,ArrowDown,Trash2,ClipboardList,Check,FileDown,RefreshCw}from'lucide-vue-next';import draggable from'vuedraggable';import SpeechConfirm from'@/components/SpeechConfirm.vue';import SpeechReader from'@/components/SpeechReader.vue';
+import{computed,ref,watch,onBeforeUnmount}from'vue';import{useRoute,useRouter}from'vue-router';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Plus,ArrowUp,ArrowDown,Trash2,ClipboardList,Check,FileDown,RefreshCw}from'lucide-vue-next';import draggable from'vuedraggable';import MathExpression from'@/components/MathExpression.vue';import SpeechConfirm from'@/components/SpeechConfirm.vue';import SpeechReader from'@/components/SpeechReader.vue';
 const route=useRoute(),router=useRouter(),store=useLearning(),teacher=computed(()=>store.user?.role==='teacher');const tab=computed(()=>route.path==='/exam-bank'?'bank':route.path==='/exam-papers'?'papers':'exams');
 const error=ref(''),busy=ref(false),loading=ref(true),notice=ref(''),bank=ref([]),papers=ref([]),exams=ref([]),units=ref([]),knowledge=ref([]),classes=ref([]),lessons=ref([]),lessonId=ref(''),activePaper=ref(null),exam=ref(null),questionOpen=ref(false),questionEdit=ref(null),question=ref({}),entries=ref([]),paperTitle=ref(''),unitId=ref('unit-equation'),filters=ref({knowledgeIds:['kp-equality'],count:3,total:30,kind:'',difficulty:''}),missing=ref(''),candidate=ref(null),candidateInput=ref({knowledgeIds:['kp-equality'],kind:'calculation',difficulty:'easy'}),publishOpen=ref(false),room=ref(''),starts=ref(''),ends=ref(''),minutes=ref(30),studentPreview=ref(false),answers=ref({}),activeQuestion=ref(0),selectedSubmission=ref(''),marks=ref({}),countdown=ref('');let generation=0,timer;
 const candidateOpen=ref(false),importOpen=ref(false),pickerOpen=ref(false),pickerMode=ref('auto'),paperEditing=ref(false),paperToolsOpen=ref(false),bankSearch=ref(''),bankFilter=ref('all');
 const visibleBank=computed(()=>bank.value.filter(q=>(bankFilter.value==='all'||(bankFilter.value==='reviewed')===!!q.reviewed)&&(q.draft.prompt+' '+q.draft.equation).includes(bankSearch.value.trim())));
 const paperSaved=computed(()=>!!activePaper.value&&paperTitle.value===activePaper.value.draft.title&&unitId.value===activePaper.value.draft.unitId&&JSON.stringify(entries.value.map(e=>[e.versionId,Number(e.points)]))===JSON.stringify(activePaper.value.draft.entries.map(e=>[e.versionId,Number(e.points)])));
+const gradingQuestion=ref(0);
+const gradingEntry=computed(()=>exam.value?.paper?.entries?.[gradingQuestion.value]);
+watch(selectedSubmission,()=>gradingQuestion.value=0);
+async function markNext(){await mark();if(!error.value&&gradingQuestion.value<(exam.value?.paper.entries.length||0)-1)gradingQuestion.value++}
 const statusLabel=value=>({verified:'已核验正确',inconsistent:'核验不一致',unverified:'需人工核对',succeeded:'已生成',queued:'等待生成',running:'正在生成',failed:'生成失败',cancelled:'已取消'})[value]||'待核对';
 const clone=value=>JSON.parse(JSON.stringify(value));
 const call=(path,method='GET',body)=>api.request('/exams'+path,{method,...(body?{body:JSON.stringify(body)}:{})});
@@ -29,6 +33,7 @@ function publishDialog(){starts.value=new Date(Date.now()-60000).toISOString().s
 async function publish(){await run(async()=>{const r=await call('','POST',{versionId:activePaper.value.versions[0].id,classId:room.value,startsAt:starts.value+':00Z',endsAt:ends.value+':00Z',minutes:Number(minutes.value),requestKey:crypto.randomUUID()});publishOpen.value=false;router.push('/exams?exam='+r.id)})}
 async function start(){await run(async()=>{exam.value=await call('/'+exam.value.id+'/start','POST',{});answers.value=clone(exam.value.submission.answers||{})})}
 async function saveAnswers(submit=false){if(submit&&!confirm('提交后答卷只读，无法继续修改。确认交卷？'))return;await run(async()=>{exam.value=await call('/'+exam.value.id+(submit?'/submit':'/answers'),submit?'POST':'PUT',{revision:exam.value.submission.revision,answers:answers.value});notice.value=submit?'答卷已提交':'草稿已保存'})}
+async function nextAnswerQuestion(){if(pending.value)await saveAnswers(false);if(!error.value&&activeQuestion.value<exam.value.paper.entries.length-1)activeQuestion.value++}
 function answerModel(){const key=current.value?.versionId;if(key&&!answers.value[key])answers.value[key]={answer:'',reason:''};return key?answers.value[key]:{answer:'',reason:''}}
 watch(current,()=>answerModel());
 async function mark(){await run(async()=>{await call('/'+exam.value.id+'/submissions/'+sub.value.id+'/grades','PUT',{revision:sub.value.revision,grades:Object.fromEntries(Object.entries(marks.value).map(([k,v])=>[k,{score:Number(v.score),comment:v.comment}]))});await load();notice.value='批阅已保存，原答案及程序核验保留'})}
@@ -37,7 +42,7 @@ function exportFile(mode){const q=selectedSubmission.value?'?submissionId='+enco
 timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submittedAt){countdown.value='';return}const n=Math.max(0,Math.floor((new Date(s.deadline)-Date.now())/1000));countdown.value=Math.floor(n/60)+':'+String(n%60).padStart(2,'0')},1000);onBeforeUnmount(()=>{clearInterval(timer);generation++});
 </script>
 <template>
-<PageHeading :title="tab==='bank'?'题库':tab==='papers'?'组卷与考试':'考试'">
+<PageHeading :title="tab==='bank'?'题库':tab==='papers'?'组卷与考试':exam?.title||'考试'">
 <Button v-if="teacher&&tab==='bank'" @click="editQuestion(null)"><Plus :size="16"/>录入题目</Button>
 <Button v-if="teacher&&tab==='papers'&&!paperEditing" @click="editPaper(null)"><Plus :size="16"/>新建试卷</Button>
 </PageHeading>
@@ -59,7 +64,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <div>
 <Status>{{q.reviewed?'已审核 v'+q.versions[0]?.number:'待审核'}}</Status>
 <h3>{{q.draft.prompt}}</h3>
-<p class="exam-math">{{q.draft.equation}}</p>
+<div class="exam-math"><MathExpression :text="q.draft.equation"/></div>
 <span>{{q.draft.kind==='application'?'应用':q.draft.kind==='explanation'?'解释':'计算'}} · {{q.draft.points}}分 · {{q.draft.source}}</span>
 </div>
 <div class="exam-toolbar">
@@ -69,7 +74,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <details>
 <summary>参考解答与版本</summary>
 <p>{{q.draft.answer}} · {{q.draft.explanation}}</p>
-<p>参考方程：{{statusLabel(q.draft.referenceVerification?.status)}}</p>
+<p>方程核验：{{statusLabel(q.draft.referenceVerification?.status)}}</p>
 <p v-for="v in q.versions" :key="v.id">v{{v.number}} · {{v.data.prompt}} · {{v.data.answer}} · {{v.id}}</p>
 </details>
 </article><div v-if="bank.length&&!visibleBank.length" class="empty-state"><h3>没有匹配的题目</h3><Button variant="outline" @click="bankSearch='';bankFilter='all'">清空筛选</Button></div>
@@ -95,7 +100,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <button class="exam-drag" :aria-label="'拖动第'+(i+1)+'题'">{{String(i+1).padStart(2,'0')}}</button>
 <div>
 <h3>{{e.question.prompt}}</h3>
-<p class="exam-math">{{e.question.equation}}</p>
+<div class="exam-math"><MathExpression :text="e.question.equation"/></div>
 <label>分值<Input v-model="e.points" type="number" min="1" max="100"/>
 </label>
 </div>
@@ -147,8 +152,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <template v-else>
 <div class="exam-heading">
 <div>
-<Status>{{exam.resultsAt?'成绩已发布':'固定试卷版本'}}</Status>
-<h2>{{exam.title}}</h2>
+<Status>{{exam.resultsAt?'成绩已发布':teacher?'成绩待发布':exam.submission?.submittedAt?'已交卷':exam.submission?.startedAt?'考试中':'未开始'}}</Status>
 <p>{{new Date(exam.startsAt).toLocaleString('zh-CN')}} — {{new Date(exam.endsAt).toLocaleString('zh-CN')}} · {{exam.minutes}}分钟</p>
 </div>
 <RouteButton route="exams" secondary :aria-current="tab==='exams'?'page':undefined">考试列表</RouteButton>
@@ -169,14 +173,15 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <Button variant="ghost" :disabled="!sub.submittedAt" @click="exportFile('submission')">导出答卷</Button>
 <Button variant="ghost" :disabled="!sub.submittedAt" @click="exportFile('learning')">学习记录</Button>
 </div>
-<article v-for="(e,i) in exam.paper.entries" :key="e.versionId" class="exam-grade-question">
-<h3>{{i+1}}. {{e.question.prompt}}（{{e.points}}分）</h3>
-<p class="exam-math">{{e.question.equation}}</p>
+<nav class="focus-grading-nav" aria-label="批阅题目"><button v-for="(entry,i) in exam.paper.entries" :key="entry.versionId" :aria-label="'批阅第'+(i+1)+'题'" :aria-current="gradingQuestion===i?'step':undefined" :class="{active:gradingQuestion===i}" @click="gradingQuestion=i">{{i+1}}<Check v-if="sub.grades[entry.versionId]" :size="12"/></button></nav>
+<article v-for="e in gradingEntry?[gradingEntry]:[]" :key="e.versionId" class="exam-grade-question">
+<h3>{{gradingQuestion+1}}. {{e.question.prompt}}（{{e.points}}分）</h3>
+<div class="exam-math"><MathExpression :text="e.question.equation"/></div>
 <div class="exam-original">
 <p>原答：{{sub.answers[e.versionId]?.answer||'未填写'}}</p>
 <p>解释：{{sub.answers[e.versionId]?.reason||'未填写'}}</p>
 </div>
-<p>程序核验：{{statusLabel(sub.automatic[e.versionId]?.status)}}</p>
+<Status>{{statusLabel(sub.automatic[e.versionId]?.status)}}</Status>
 <details class="teacher-grade-reference"><summary>参考解答</summary><p>{{e.question.answer}}</p><p>{{e.question.explanation}}</p></details>
 <div class="exam-form-grid">
 <label>得分<Input v-if="marks[e.versionId]" v-model="marks[e.versionId].score" type="number" min="0" :max="e.points" :readonly="!!exam.resultsAt"/>
@@ -185,7 +190,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </label>
 </div>
 </article>
-<Button :disabled="busy||!sub.submittedAt||!!exam.resultsAt" @click="mark">保存批阅</Button>
+<div class="focus-grading-actions"><Button variant="outline" :disabled="!gradingQuestion" @click="gradingQuestion--">上一题</Button><Button :disabled="busy||!sub.submittedAt||!!exam.resultsAt" @click="markNext">{{gradingQuestion<exam.paper.entries.length-1?'保存并下一题':'保存批阅'}}</Button><Button v-if="exam.resultsAt&&gradingQuestion<exam.paper.entries.length-1" variant="outline" @click="gradingQuestion++">下一题</Button></div>
 <details class="teacher-grade-audit">
 <summary>批阅记录 · {{sub.audits?.length||0}}</summary>
 <p v-for="a in sub.audits" :key="a.id">{{new Date(a.at).toLocaleString('zh-CN')}} · {{a.actorId}} · {{a.id}}</p>
@@ -204,7 +209,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <aside class="exam-answer-nav">
 <strong>{{exam.submission.submittedAt?'已交卷':countdown}}</strong>
 <nav aria-label="试题导航">
-<button v-for="(e,i) in exam.paper.entries" :key="e.versionId" :class="{active:i===activeQuestion,answered:answers[e.versionId]?.answer}" @click="activeQuestion=i">{{String(i+1).padStart(2,'0')}}</button>
+<button v-for="(e,i) in exam.paper.entries" :key="e.versionId" :class="{active:i===activeQuestion,answered:answers[e.versionId]?.answer}" :aria-label="'第'+(i+1)+'题'" :aria-current="activeQuestion===i?'step':undefined" @click="activeQuestion=i">{{String(i+1).padStart(2,'0')}}</button>
 </nav>
 <p v-if="exam.resultsAt">总分 {{exam.submission.total}} / {{exam.paper.total}}</p>
 </aside>
@@ -214,16 +219,16 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <SpeechReader :context-key="current.versionId" :text="current.question.prompt+'。'+current.question.equation"/>
 </div>
 <h2>{{current.question.prompt}}</h2>
-<div class="exam-math">{{current.question.equation}}</div>
+<div class="exam-math"><MathExpression :text="current.question.equation"/></div>
 <label>答案<Input :model-value="answerModel().answer" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().answer=$event"/>
 </label>
-<SpeechConfirm v-if="pending" :context-key="current.versionId" :disabled="busy" @confirmed="answerModel().answer=$event"/>
+<details v-if="pending" class="focus-exam-voice"><summary>语音输入</summary><SpeechConfirm :context-key="current.versionId" :disabled="busy" @confirmed="answerModel().answer=$event"/></details>
 <label>解题过程与解释<Textarea :model-value="answerModel().reason" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().reason=$event"/>
 </label>
 <div class="exam-toolbar">
-<Button v-if="pending" :disabled="busy" @click="saveAnswers(false)">保存草稿</Button>
-<Button v-if="pending" :disabled="busy" variant="outline" @click="saveAnswers(true)">确认交卷</Button>
-<Button v-if="activeQuestion<exam.paper.entries.length-1" variant="ghost" @click="activeQuestion++">下一题</Button>
+<Button v-if="pending" variant="outline" :disabled="busy" @click="saveAnswers(false)">保存草稿</Button>
+<Button v-if="pending" :disabled="busy" :variant="activeQuestion===exam.paper.entries.length-1?'default':'outline'" @click="saveAnswers(true)">确认交卷</Button>
+<Button v-if="activeQuestion<exam.paper.entries.length-1" :disabled="busy" @click="nextAnswerQuestion">下一题</Button>
 </div>
 <template v-if="exam.resultsAt">
 <div class="exam-result-grade">
@@ -369,7 +374,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppDialog v-model:open="studentPreview" title="学生试卷预览">
 <h2>{{paperTitle}}</h2>
 <section v-for="(e,i) in entries" :key="e.versionId" class="exam-grade-question">
-<h3>{{i+1}}. {{e.question.prompt}}（{{e.points}}分）</h3>
+<h3>{{gradingQuestion+1}}. {{e.question.prompt}}（{{e.points}}分）</h3>
 <p>{{e.question.equation}}</p>
 </section>
 </AppDialog>

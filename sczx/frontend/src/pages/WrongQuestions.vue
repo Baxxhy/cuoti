@@ -46,6 +46,7 @@ const knowledgeName = (i) =>
     .filter((p) => i.details.knowledgeIds?.includes(p.id))
     .map((p) => p.name)
     .join(" · ");
+const studentStatus=value=>({pending:'待订正',learning:'订正中',awaiting_retest:'再试一题',retest_passed:'已复测',retest_failed:'继续订正',needs_review:'请老师核对'})[value]||wrongStatuses[value];
 function saved(item) {
   open.value = false;
   load();
@@ -62,8 +63,8 @@ onMounted(load);
       v-model="status"
       :items="[
         { value: 'all', label: `全部 ${items.length}` },
-        { value: 'pending', label: '待补救' },
-        { value: 'done', label: '复测通过' },
+        { value: 'pending', label: '待订正' },
+        { value: 'done', label: '已复测' },
       ]"
     />
     <div class="wrong-filters">
@@ -129,7 +130,7 @@ onMounted(load);
       </div>
       <div class="wrong-row-end">
         <Status :tone="item.status === 'retest_passed' ? 'green' : 'amber'">{{
-          wrongStatuses[item.status]
+          studentStatus(item.status)
         }}</Status
         ><ArrowUpRight :size="19" />
       </div>

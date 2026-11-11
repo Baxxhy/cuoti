@@ -32,6 +32,11 @@ function ensureStudentCopy(block) {
 }
 
 const workTab=ref("edit"), moreOpen=ref(false);
+const selectedActivity=ref(''),selectedQuestion=ref('');
+const activeBlock=computed(()=>store.blocks.find(b=>b.id===selectedActivity.value)||store.blocks[0]);
+const activeQuestion=computed(()=>store.data.lessonDraft.questions?.find(q=>q.id===selectedQuestion.value)||store.data.lessonDraft.questions?.[0]);
+watch(()=>store.data.lesson?.id,()=>{selectedActivity.value='';selectedQuestion.value=''});
+
 const details=computed(()=>store.data.lessonDraft.planningDetails|| (store.data.lessonDraft.planningDetails={}));
 const route=useRoute();
 watch(()=>route.query.class,id=>{if(id&&store.data.classrooms.some(c=>c.id===id))store.data.publishClassId=String(id)},{immediate:true});const templateBusy=ref(false),lessonSwitchBusy=ref(false);
@@ -104,11 +109,10 @@ async function publish() {
 <p v-if="lessonSwitchBusy" role="status">读取课时教案…</p><template v-else>
   <PageHeading :title="store.data.lesson?.title || '我的教案'">
     <Button variant="outline" :disabled="store.saving" @click="saveDraft"><Save :size="16"/>{{ store.saving?'保存中…':'保存' }}</Button>
-    <Button variant="outline" @click="workTab='preview'"><Eye :size="16"/>学生预览</Button>
     <Button @click="modal='publish'"><Send :size="16"/>发布任务</Button>
   </PageHeading>
   <div class="teacher-workbar">
-    <AppTabs v-model="workTab" :items="[{value:'edit',label:'编辑教案'},{value:'preview',label:'学生预览'},{value:'references',label:'案例与版本'}]"/>
+    <AppTabs v-model="workTab" :items="[{value:'edit',label:'教学活动'},{value:'settings',label:'课时设置'},{value:'questions',label:'练习题'},{value:'preview',label:'学生预览'},{value:'references',label:'资料与版本'}]"/>
     <div class="teacher-workbar-actions">
       <RouteButton :route="'agent?lesson='+store.data.lesson?.id" secondary><WandSparkles :size="15"/>AI 备课</RouteButton>
       <Button variant="ghost" @click="moreOpen=true">更多操作</Button>
@@ -121,74 +125,32 @@ async function publish() {
     <RouteButton route="courses" secondary>选择其他课时</RouteButton>
     <RouteButton route="teacher" secondary>返回教学概览</RouteButton>
   </div></AppDialog>
-  <div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><Button variant="outline" @click="backupLocal">下载本地修改</Button><Button @click="reloadDraft">重新读取</Button></div><section v-if="workTab==='edit'" class="teacher-editor-sheet"><div class="lesson-editor">
-        <div class="editor-intro">
-          <span><FileText :size="16" />教案草稿</span
-          ><Status>{{
-            store.saving
-              ? "保存中"
-              : store.saveError
-                ? "保存失败"
-                : store.savedAt
-                  ? "已保存"
-                  : "已连接"
-          }}</Status>
-        </div>
-        <label class="field-label" for="lesson-goal">本课目标</label
-        ><Input id="lesson-goal" v-model="store.data.lessonDraft.goal" /><label
-          class="field-label"
-          for="student-base"
-          >学生基础</label
-        ><Input
-          id="student-base"
-          v-model="store.data.lessonDraft.studentBase"
-        />
-        <details class="preparation-details"><summary>教学安排</summary><label v-for="(label,key) in {focus:'教学重点',difficulty:'教学难点',teacherQuestions:'教师提问',studentResponses:'学生可能回应',adjustments:'教师调整'}" :key="key">{{ label }}<Textarea v-model="details[key]"/></label></details><div class="editor-section-heading">
-          <h2>教学活动</h2>
-          <InfoTip label="调整活动顺序"
-            >拖动手柄或聚焦手柄后按上下方向键调整顺序。</InfoTip
-          >
-        </div>
-        <draggable
-          v-model="store.data.lessonDraft.blocks"
-          item-key="id"
-          handle=".drag-handle"
-          :force-fallback="true"
-          :fallback-on-body="true"
-          :fallback-tolerance="3"
-          class="sortable-list"
-          :animation="0"
-          ghost-class="dragging"
-          @end="notify('教学活动与学生预览已同步排序')"
-          ><template #item="{ element: block, index }"
-            ><details class="editor-block teacher-activity" :open="index===0"><summary><span class="teacher-activity-number">{{ String(index+1).padStart(2,'0') }}</span><strong>{{ block.title }}</strong></summary>
-              <div class="editor-block-heading">
-                <button
-                  class="drag-handle"
-                  :aria-label="`拖动排序：${block.title}`"
-                  @keydown="reorderKeyboard($event, index)"
-                >
-                  <GripVertical :size="16" />
-                </button>
-                <Input v-model="block.title" :aria-label="'活动标题'+(index+1)"/>
-                <Button
-                  size="icon-xs"
-                  variant="ghost"
-                  :aria-label="`恢复原稿：${block.title}`"
-                  :disabled="busyBlock === block.id"
-                  @click="regenerate(block.id)"
-                  ><WandSparkles
-                /></Button>
-              </div>
-              <Textarea
-                v-model="block.content"
-                :aria-label="block.title"
-                :disabled="busyBlock === block.id"
-              /><details v-if="block.studentContent!==undefined||block.agentJobId" class="preparation-block-notes" @toggle="$event.target.open&&ensureStudentCopy(block)"><summary>学生正文</summary><label>学生标题<Input v-model="block.studentTitle" :aria-label="'学生标题'+(index+1)"/></label><label>学生正文<Textarea v-model="block.studentContent" :aria-label="'学生正文'+(index+1)"/></label></details><details class="preparation-block-notes"><summary>提问与调整</summary><label v-for="(label,key) in {teacherQuestion:'教师提问',studentResponse:'学生可能回应',adjustment:'调整建议'}" :key="key">{{ label }}<Textarea v-model="block[key]"/></label></details><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+block.id" secondary>AI 改写此活动</RouteButton></details></template></draggable
-        ><details class="curriculum-teacher-questions"><summary>编辑题目 · {{ store.data.lessonDraft.questions?.length||0 }}</summary><div v-for="q in store.data.lessonDraft.questions" :key="q.id||q.equation"><label v-for="(label,key) in {prompt:'题干',equation:'方程',answer:'参考答案',hint:'提示'}" :key="key">{{ label }}<Input v-model="q[key]"/></label></div></details><button class="reference-link" @click="navigate(caseRoute)" :disabled="!store.data.lessonDraft.caseId">
-          <LibraryBig :size="16" /><span>参考案例 · {{ caseReference?.title || '尚未选择' }}</span
-          ><ArrowUpRight :size="15" />
-        </button></div></section>
+  <div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><Button variant="outline" @click="backupLocal">下载本地修改</Button><Button @click="reloadDraft">重新读取</Button></div><section v-if="workTab==='edit'" class="focus-preparation">
+    <aside class="focus-activity-list" aria-label="教学活动顺序">
+      <draggable v-model="store.data.lessonDraft.blocks" item-key="id" handle=".drag-handle" :force-fallback="true" :fallback-on-body="true" :fallback-tolerance="3" :animation="0" @end="notify('活动顺序已更新')">
+        <template #item="{element:block,index}"><div class="focus-activity-item" :class="{selected:activeBlock?.id===block.id}"><button class="drag-handle" :aria-label="'调整顺序：'+block.title" @keydown="reorderKeyboard($event,index)"><GripVertical :size="13"/></button><button :aria-current="activeBlock?.id===block.id?'step':undefined" @click="selectedActivity=block.id"><span>{{String(index+1).padStart(2,'0')}}</span><strong>{{block.title}}</strong></button></div></template>
+      </draggable>
+    </aside>
+    <div v-if="activeBlock" class="focus-activity-editor lesson-editor" :key="activeBlock.id">
+      <div class="focus-editor-toolbar"><Status>{{store.saving?'保存中':store.saveError?'保存失败':store.savedAt?'已保存':'草稿'}}</Status><Button size="icon-sm" variant="ghost" :aria-label="'恢复原稿：'+activeBlock.title" :disabled="busyBlock===activeBlock.id" @click="regenerate(activeBlock.id)"><WandSparkles :size="16"/></Button></div>
+      <label class="field-label" for="activity-title">活动名称</label><Input id="activity-title" v-model="activeBlock.title"/>
+      <label class="field-label" for="activity-content">课堂说明</label><Textarea id="activity-content" v-model="activeBlock.content" :disabled="busyBlock===activeBlock.id"/>
+      <details v-if="activeBlock.studentContent!==undefined||activeBlock.agentJobId" class="preparation-block-notes" @toggle="$event.target.open&&ensureStudentCopy(activeBlock)"><summary>学生正文</summary><label>学生标题<Input v-model="activeBlock.studentTitle" aria-label="学生标题"/></label><label>学生正文<Textarea v-model="activeBlock.studentContent" aria-label="学生正文"/></label></details>
+      <details class="preparation-block-notes"><summary>提问与调整</summary><label v-for="(label,key) in {teacherQuestion:'教师提问',studentResponse:'学生可能回应',adjustment:'调整建议'}" :key="key">{{label}}<Textarea v-model="activeBlock[key]"/></label></details>
+      <div class="focus-editor-footer"><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+activeBlock.id" secondary><WandSparkles :size="15"/>AI 改写此活动</RouteButton><Button variant="ghost" @click="workTab='preview'">学生预览<Eye :size="15"/></Button></div>
+    </div>
+    <div v-else class="empty-state">当前教案没有活动</div>
+  </section>
+  <section v-else-if="workTab==='settings'" class="focus-preparation-settings">
+    <label class="field-label" for="lesson-goal">本课目标</label><Textarea id="lesson-goal" v-model="store.data.lessonDraft.goal"/>
+    <label class="field-label" for="student-base">学生基础</label><Input id="student-base" v-model="store.data.lessonDraft.studentBase"/>
+    <div class="focus-settings-pair"><label v-for="(label,key) in {focus:'教学重点',difficulty:'教学难点'}" :key="key">{{label}}<Textarea v-model="details[key]"/></label></div>
+    <details class="ops-disclosure"><summary>整课提问与调整</summary><label v-for="(label,key) in {teacherQuestions:'教师提问',studentResponses:'学生可能回应',adjustments:'教师调整'}" :key="key">{{label}}<Textarea v-model="details[key]"/></label></details>
+  </section>
+  <section v-else-if="workTab==='questions'" class="focus-preparation">
+    <aside class="focus-activity-list" aria-label="练习题"><button v-for="(q,index) in store.data.lessonDraft.questions" :key="q.id||q.equation" :class="['focus-question-choice',{selected:activeQuestion===q}]" :aria-current="activeQuestion===q?'step':undefined" @click="selectedQuestion=q.id"><span>{{String(index+1).padStart(2,'0')}}</span><strong>{{q.equation||q.prompt}}</strong></button></aside>
+    <div v-if="activeQuestion" class="focus-activity-editor"><label v-for="(label,key) in {prompt:'题干',equation:'方程',answer:'参考答案',hint:'提示'}" :key="key" class="field-label">{{label}}<Textarea v-if="key==='hint'" v-model="activeQuestion[key]"/><Input v-else v-model="activeQuestion[key]"/></label></div><div v-else class="empty-state">当前教案没有练习题</div>
+  </section>
       <section v-else-if="workTab==='preview'" class="teacher-student-preview"><LessonPreview/></section>
       <section v-show="workTab==='references'" class="teacher-reference-sheet"><PreparationTools ref="tools"/><details class="teacher-source-detail"><summary>当前主要参考 · {{ caseReference?.title || '尚未选择' }}</summary><p v-if="referenceError" class="form-error">{{ referenceError }}</p><CaseArticle v-if="caseReference" :value="caseReference"/><RouteButton v-if="store.data.lessonDraft.caseId" :route="caseRoute" secondary>阅读完整案例</RouteButton></details></section>
   <AppDialog

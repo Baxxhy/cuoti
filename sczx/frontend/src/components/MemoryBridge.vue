@@ -45,7 +45,7 @@ onBeforeUnmount(() => generation++);
         variant="ghost"
         size="sm"
         @click="navigate('memory' + (task ? '?returnTask=' + task.id : ''))"
-        >学习记忆<ArrowRight
+        >查看复习<ArrowRight
       /></Button>
     </div>
     <p v-if="error" role="alert">

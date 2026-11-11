@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "name": "teacher changes one field and saves to API",
+      "passed": true
+    },
+    {
+      "name": "teacher confirms publication and a new snapshot task is assigned",
+      "passed": true
+    },
+    {
+      "name": "student opens published step, submits a practice answer, and original attempt is persisted",
+      "passed": true
+    },
+    {
+      "name": "new task browser refresh restores current practice and answer",
+      "passed": true
+    }
+  ],
+  "questionId": "eq-practice-add",
+  "taskId": "task-3c6fde7d2d3ac66870fa8099d730001d",
+  "versionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+  "recordId": "record-46f69a990b284c70ace8f4f145c06887",
+  "attemptId": "attempt-e805cce9dda54ffcbd046951661edd1f",
+  "errors": [],
+  "passed": true
+}

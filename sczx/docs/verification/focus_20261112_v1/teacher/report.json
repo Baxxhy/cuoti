@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "name": "only one activity editor",
+      "passed": true
+    },
+    {
+      "name": "switch activity",
+      "passed": true
+    },
+    {
+      "name": "settings separated from activities",
+      "passed": true
+    },
+    {
+      "name": "one selected question",
+      "passed": true
+    },
+    {
+      "name": "preview reachable",
+      "passed": true
+    },
+    {
+      "name": "version tools reachable",
+      "passed": true
+    },
+    {
+      "name": "one AI activity",
+      "passed": true
+    },
+    {
+      "name": "accepted AI activity navigation remains enabled",
+      "passed": true
+    },
+    {
+      "name": "one grading question",
+      "passed": true
+    },
+    {
+      "name": "grading next visible question",
+      "passed": true
+    },
+    {
+      "name": "student record views separated",
+      "passed": true
+    },
+    {
+      "name": "feedback editor reachable",
+      "passed": true
+    },
+    {
+      "name": "no script errors",
+      "passed": true
+    }
+  ],
+  "screens": [
+    {
+      "name": "prepare-activity",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "prepare-settings",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "prepare-question",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "agent-activity",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "paper-list",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "grading-first",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "grading-second",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "insights",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "student-feedback",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "classes",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "live",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "groups",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "community",
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "name": "cases",
+      "width": 1440,
+      "scroll": 1425
+    },
+    {
+      "name": "prepare-1100",
+      "width": 1100,
+      "scroll": 1100
+    },
+    {
+      "name": "prepare-1920",
+      "width": 1920,
+      "scroll": 1920
+    }
+  ],
+  "observedWrites": [
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/ai/search",
+      "method": "POST"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    },
+    {
+      "path": "/api/ai/search",
+      "method": "POST"
+    },
+    {
+      "path": "/api/platform",
+      "method": "PUT"
+    }
+  ],
+  "console": [],
+  "passed": true,
+  "verificationNotes": [
+    "真实教师界面检查未点击保存/发布/提交/批阅/反馈等业务写入按钮。",
+    "应用在路由离开时自动PUT /api/platform保存导航/草稿上下文；POST /api/ai/search为只读检索。不能将请求日志称为零HTTP写请求。",
+    "新增teacher-focus测试使用隔离内存fixture与响应mock，专门验证草稿保持和批阅失败/恢复，不写业务数据库。"
+  ],
+  "build": {
+    "command": "npm --prefix frontend run build -- --outDir /tmp/sczx-focus-other-build",
+    "passed": true,
+    "log": "/tmp/sczx-other-focus/build.log"
+  },
+  "regression": {
+    "teacherFocus": 2,
+    "existingRelated": 5,
+    "passed": true,
+    "log": "/tmp/sczx-other-tests.log"
+  }
+}

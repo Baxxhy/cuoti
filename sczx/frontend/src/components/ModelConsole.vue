@@ -62,24 +62,24 @@ async function saveCorrection() {
 }
 </script>
 <template>
-  <div class="model-console-heading"><SectionHeading title="模型与任务" /><Button variant="ghost" size="icon-sm" aria-label="刷新模型与任务" @click="load"><RefreshCw :size="17" /></Button></div>
-  <div class="model-capability-tabs" role="group" aria-label="选择模型能力"><button v-for="(name, key) in tabs" :key="key" :class="{ active: selected === key }" :disabled="uploading || submitting" @click="selectCapability(key)" :aria-pressed="selected === key">{{ name }}</button></div>
+  <div class="model-console-heading"><AppSelect :model-value="selected" label="验证能力" :options="Object.entries(tabs).map(([value,label])=>({value,label}))" @update:model-value="selectCapability"/><Button variant="ghost" size="icon-sm" aria-label="刷新模型与任务" @click="load"><RefreshCw :size="17" /></Button></div>
+
   <div class="model-console-grid">
     <div class="model-console-form">
       <template v-if="nativeVoice">
-        <div class="model-config-state"><h3>{{ tabs[selected] }}</h3><InfoTip label="浏览器语音能力">使用浏览器与设备提供的语音服务；不支持时继续文字输入与阅读。朗读不生成音频文件。</InfoTip></div>
-        <label class="field-label" for="browser-voice-text">{{ selected === 'voice-input' ? '输入文字' : '朗读文字' }}</label><Textarea id="browser-voice-text" v-model="text" class="model-input-large" />
+
+        <label class="field-label" for="browser-voice-text">{{ selected === 'voice-input' ? '输入文字' : '朗读文字' }}<InfoTip label="浏览器语音能力">使用浏览器与设备提供的语音服务；不支持时继续文字输入与阅读。朗读不生成音频文件。</InfoTip></label><Textarea id="browser-voice-text" v-model="text" class="model-input-large" />
         <div class="browser-voice-actions"><SpeechInput v-if="selected === 'voice-input'" :context-key="selected" @text="text = [text.trim(), $event].filter(Boolean).join(' ')" /><SpeechReader :text="text" /></div>
       </template>
       <template v-else>
-      <div class="model-config-state"><h3>{{ tabs[selected] }}</h3><Status :tone="activeConfig?.lastStatus==='failed'||!activeConfig?.configured ? 'amber' : 'green'">{{ activeConfig?.configured ? activeConfig.lastStatus === 'succeeded' ? '最近调用成功' : activeConfig.lastStatus === 'failed' ? '最近调用失败' : '已配置 · 待验证' : activeConfig?.unavailableReason ? '暂不可用' : '未配置' }}</Status></div>
+      <div class="model-config-state"><Status :tone="activeConfig?.lastStatus==='failed'||!activeConfig?.configured ? 'amber' : 'green'">{{ activeConfig?.configured ? activeConfig.lastStatus === 'succeeded' ? '最近调用成功' : activeConfig.lastStatus === 'failed' ? '最近调用失败' : '已配置 · 待验证' : activeConfig?.unavailableReason ? '暂不可用' : '未配置' }}</Status><InfoTip v-if="activeConfig?.models?.length" label="模型配置">{{ activeConfig.models.map(x => `${x.model} · ${x.name}`).join(' / ') }}</InfoTip></div>
       <p v-if="activeConfig?.unavailableReason" role="status" class="model-model-name">{{ activeConfig.unavailableReason }}</p>
-      <InfoTip v-if="activeConfig?.models?.length" label="模型配置">{{ activeConfig.models.map(x => `${x.model} · ${x.name}`).join(' / ') }}</InfoTip>
+
       <template v-if="['ocr', 'asr'].includes(selected)"><label class="field-label" for="model-input-file">{{ selected === 'ocr' ? '题目原图' : '音频文件' }}</label><label class="model-file-picker"><FileAudio v-if="selected === 'asr'" :size="20" /><span>{{ file?.name || '选择文件' }}</span><input id="model-input-file" type="file" :accept="selected === 'ocr' ? 'image/*' : 'audio/*'" @change="file = $event.target.files?.[0] || null" /></label></template>
       <template v-else-if="selected === 'retrieval'"><label class="field-label" for="retrieval-query">知识点或学生困难</label><Input id="retrieval-query" v-model="query" @keydown.enter="run" /><label class="retrieval-rerank"><input v-model="rerank" type="checkbox" />语义重排</label></template>
       <template v-else-if="selected === 'rerank'"><label class="field-label" for="rerank-query">教学问题</label><Input id="rerank-query" v-model="query" /><label class="field-label" for="rerank-materials">候选材料，每行一段</label><Textarea id="rerank-materials" v-model="materials" class="model-input-large" /></template>
       <template v-else><label class="field-label" for="model-input-text">{{ selected === 'embedding' ? '文本，每行一段' : selected === 'tts' ? '朗读文字' : '问题' }}</label><Textarea id="model-input-text" v-model="text" class="model-input-large" /></template>
-      <Button class="model-run-button" :disabled="busy || uploading || !!activeConfig?.unavailableReason || !activeConfig" @click="run"><Play :size="15" />{{ uploading ? '上传中…' : busy ? '执行中…' : selected === 'retrieval' ? '检索案例' : '运行验证' }}</Button>
+      <Button class="model-run-button" :disabled="busy || uploading || !!activeConfig?.unavailableReason || !activeConfig" @click="run"><Play :size="15" />{{ uploading ? '上传中…' : busy ? '执行中…' : ({retrieval:'检索案例',text:'获取指导',ocr:'识别题图',rerank:'重排材料'})[selected]||'开始验证' }}</Button>
       </template>
       <p v-if="loadError || error" class="form-error" role="alert">{{ loadError || error }}</p>
       <ModelResult :job="job" :busy="busy" :can-retry="['text', 'ocr', 'retrieval', 'rerank'].includes(job?.capability)" show-source @retry="retry" />

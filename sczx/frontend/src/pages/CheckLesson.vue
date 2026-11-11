@@ -1,4 +1,5 @@
 <script setup>
+import MathExpression from "@/components/MathExpression.vue";
 import EquationTool from "@/components/EquationTool.vue";
 import {useRoute} from "vue-router";
 import MemoryReturn from "@/components/MemoryReturn.vue";
@@ -10,7 +11,7 @@ import ModelAssistant from "@/components/ModelAssistant.vue";
 import TaskEmpty from "@/components/TaskEmpty.vue";
 import { ArrowRight } from "lucide-vue-next";
 const route=useRoute();
-const helpOpen=ref(false);
+const helpOpen=ref(false), toolOpen=ref(false);
 const store = useLearning(),
   notify = inject("notify");
 const indices = computed(() =>
@@ -76,48 +77,20 @@ function markHelp() {
 }
 </script>
 <template>
-<MemoryReturn/>
-  <template v-if="store.task"
-    ><PageHeading :title="store.task.title + ' · 独立检查'"
-      ><RouteButton route="learn" secondary>返回本课</RouteButton></PageHeading
-    >
-    <div v-if="current" class="check-grid">
-      <Surface class="question-card"
-        ><div class="question-meta">
-          <span
-            >{{ indices.findIndex((q) => q.index === index) + 1 }} /
-            {{ indices.length }}</span
-          ><Status>{{
-            current.kind === "replacement" ? "新题检查" : "独立检查"
-          }}</Status>
-        </div>
-        <h2>{{ current.prompt }}</h2>
-        <p class="question-equation">{{ current.equation }}</p>
-        <fieldset class="history-fields" :disabled="store.task.readOnly">
-          <QuestionAttempt
-            :key="store.task.id + ':' + index"
-            :question="current"
-            :index="index"
-          /></fieldset
-      ></Surface>
-      <aside class="check-aside">
-        <div class="check-navigation"><h2>独立检查</h2><div class="check-question-links"><Button v-for="(item,n) in indices" :key="item.index" :variant="index===item.index?'default':'outline'" :aria-label="'第'+(n+1)+'题'" :aria-current="index===item.index?'step':undefined" @click="index=item.index">{{n+1}}</Button></div></div><details class="study-disclosure" :open="helpOpen" @toggle="helpOpen=$event.target.open"><summary>需要帮助</summary><ModelAssistant
-          :key="store.task.id + ':' + index"
-          :question="index"
-          :block-id="blockId"
-          compact
-          @help="markHelp"
-        /></details><InfoTip label="独立检查规则"
-          >本题获得帮助后保留指导记录；换题会重新记录独立尝试。提交只表示完成流程，是否独立正确单独记录。</InfoTip
-        ><Button variant="outline" :disabled="!hasNext" @click="next"
-          >{{ hasNext ? "换一道新题" : "暂无更多新题" }}<ArrowRight /></Button
-        ><RouteButton route="result" secondary>查看本课结果</RouteButton>
-      </aside>
-    </div>
-    <div v-else class="empty-state">
-      <h3>本任务没有可用检查题</h3>
-      <RouteButton route="result" secondary>返回学习结果</RouteButton>
-    </div></template
-  ><TaskEmpty v-else />
-<EquationTool v-if="store.record && current" :record-id="store.record.id" :question="index"/>
+  <MemoryReturn/>
+  <template v-if="store.task">
+    <PageHeading title="独立练习"><RouteButton :route="'learn?task='+store.task.id" secondary>返回本课</RouteButton></PageHeading>
+    <section v-if="current" class="student-check-focus">
+      <div class="student-check-topline"><span>{{store.task.title}}</span><div><Button variant="ghost" @click="helpOpen=true">需要帮助</Button><InfoTip label="获得帮助后的记录">本题获得帮助后会保留帮助记录，换题重新记录独立尝试。</InfoTip></div></div>
+      <nav class="student-question-dots" aria-label="练习题目"><button v-for="(item,n) in indices" :key="item.index" :class="{active:index===item.index,answered:store.record?.attempts.some(a=>a.question===item.index)}" :aria-label="'第'+(n+1)+'题'" :aria-current="index===item.index?'step':undefined" @click="index=item.index">{{n+1}}</button></nav>
+      <article class="question-card student-check-card">
+        <h2>{{current.prompt}}</h2><div v-if="current.equation" class="question-equation"><MathExpression :text="current.equation"/></div>
+        <fieldset class="history-fields" :disabled="store.task.readOnly"><QuestionAttempt :key="store.task.id+':'+index" :question="current" :index="index" @guide="helpOpen=true"/></fieldset>
+        <div class="student-question-next"><Button variant="ghost" @click="toolOpen=true">试着变形</Button><Button v-if="hasNext" variant="outline" @click="next">下一题<ArrowRight :size="16"/></Button><RouteButton v-else :route="'result?task='+store.task.id">完成练习</RouteButton></div>
+      </article>
+    </section>
+    <div v-else class="empty-state"><h3>本任务没有练习题</h3><RouteButton :route="'result?task='+store.task.id">查看学习结果</RouteButton></div>
+    <AppDialog v-model:open="helpOpen" title="学习助手" content-class="student-help-dialog"><ModelAssistant v-if="current" :key="store.task.id+':'+index" :question="index" :block-id="blockId" compact :show-heading="false" @help="markHelp"/></AppDialog>
+    <AppDialog v-model:open="toolOpen" title="方程变形" content-class="student-tool-dialog"><EquationTool v-if="store.record&&current" :record-id="store.record.id" :question="index"/></AppDialog>
+  </template><TaskEmpty v-else/>
 </template>

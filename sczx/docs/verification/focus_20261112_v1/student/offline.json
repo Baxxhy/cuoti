@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "name": "one-reading-block",
+      "passed": true
+    },
+    {
+      "name": "next-section",
+      "passed": true,
+      "first": "确定未知量与运算顺序",
+      "second": "系数与非零条件"
+    },
+    {
+      "name": "practice-tab",
+      "passed": true
+    },
+    {
+      "name": "draft-not-server-submission",
+      "passed": true,
+      "note": "Only read/download and local browser position draft, no sync or formal answer request."
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
