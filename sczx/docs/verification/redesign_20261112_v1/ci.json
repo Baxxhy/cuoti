@@ -1,0 +1,19 @@
+{
+  "sourceCommit": "bf375358d6ec841a74fcceebb4894bd164c8ec92",
+  "runId": 43054955693,
+  "url": "https://github.com/Baxxhy/sczx/actions/runs/43054955693",
+  "jobs": [
+    {
+      "id": 130641806144,
+      "name": "mysql-integration",
+      "conclusion": "success",
+      "completedAt": "2026-11-11T16:08:07Z"
+    },
+    {
+      "id": 130641806700,
+      "name": "check",
+      "conclusion": "success",
+      "completedAt": "2026-11-11T16:07:06Z"
+    }
+  ]
+}
