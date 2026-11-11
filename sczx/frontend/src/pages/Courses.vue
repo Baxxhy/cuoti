@@ -13,4 +13,34 @@ function taskFor(id){return store.data.tasks.find(t=>t.lessonId===id)}
 async function prepare(lesson){busy.value=true;error.value='';try{await store.selectLesson(lesson.id);navigate('prepare?lesson='+lesson.id)}catch(e){error.value=e.message}finally{busy.value=false}}
 onMounted(load);
 </script>
-<template><PageHeading :title="teacher?'课程与课时':'课程'"/><p v-if="error" class="form-error" role="alert">{{ error }}<Button variant="ghost" @click="load">重试</Button></p><p v-if="loading" role="status">读取中…</p><div v-else-if="!courses.length" class="empty-state"><BookOpen :size="30"/><h3>暂无已发布课程</h3></div><div class="curriculum-catalog"><section v-for="course in courses" :key="course.id" class="curriculum-course"><header><div class="curriculum-cover"><img src="/images/equation-balance.png" alt="数学课程插画"/></div><div><Status tone="blue">{{ course.grade }}</Status><h2>{{ course.title }}</h2><p>{{ course.units.length }} 个单元 · {{ course.units.reduce((n,u)=>n+u.lessons.length,0) }} 个已发布课时</p></div></header><div class="curriculum-unit" v-for="unit in course.units" :key="unit.id"><UnitJourney v-if="!teacher&&store.user?.role==='student'" :unit-id="unit.id"/><h3 v-if="unit.title!==course.title">{{ unit.title }}</h3><div class="curriculum-catalog-lessons"><Surface v-for="(lesson,i) in unit.lessons" :key="lesson.id"><div class="curriculum-catalog-number">{{unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)?'＋':String(i+1).padStart(2,'0')}}</div><div class="curriculum-catalog-info"><h4>{{ lesson.published.title }}</h4><Status v-if="unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)">补充课时 · 保留历史内容</Status><p>{{ lesson.published.goal }}</p><span><Clock :size="14"/>{{ lesson.published.duration }} 分钟<Status>v{{ lesson.published.version }}</Status></span></div><div class="curriculum-catalog-actions"><Button variant="ghost" @click="preview=lesson.published">预览课时</Button><Button v-if="teacher" :disabled="busy" @click="prepare(lesson)">进入备课<ArrowUpRight :size="16"/></Button><RouteButton v-else-if="taskFor(lesson.id)" :route="'learn?task='+taskFor(lesson.id).id">进入任务</RouteButton><Status v-else>尚无本课任务</Status></div></Surface></div></div></section></div><AppDialog :open="!!preview" @update:open="!$event&&(preview=null)" title="课时预览" content-class="library-preview"><LessonPreview v-if="preview" :lesson="preview"/></AppDialog></template>
+<template>
+  <PageHeading :title="teacher?'课程与课时':'课程'"/>
+  <p v-if="error" class="form-error" role="alert">{{ error }}<Button variant="ghost" @click="load">重试</Button></p>
+  <p v-if="loading" role="status">读取中…</p>
+  <div v-else-if="!courses.length" class="empty-state"><BookOpen :size="30"/><h3>暂无已发布课程</h3></div>
+  <div v-else class="student-catalog">
+    <section v-for="course in courses" :key="course.id" class="student-course">
+      <header class="student-course-header">
+        <BookOpen :size="25" :stroke-width="1.5"/>
+        <div><h2>{{ course.title }}</h2><span>{{ course.grade }} · {{course.units.reduce((n,u)=>n+u.lessons.length,0)}} 课时</span></div>
+      </header>
+      <section v-for="unit in course.units" :key="unit.id" class="student-course-unit">
+        <h3 v-if="unit.title!==course.title">{{unit.title}}</h3>
+        <div class="student-lesson-list">
+          <article v-for="(lesson,i) in unit.lessons" :key="lesson.id" class="student-lesson-row">
+            <span class="student-lesson-number">{{unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)?'＋':String(i+1).padStart(2,'0')}}</span>
+            <div class="student-lesson-name"><h3>{{lesson.published.title}}</h3><span>{{lesson.published.duration}} 分钟<span v-if="unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)"> · 补充课时</span></span></div>
+            <div class="student-lesson-actions">
+              <Button variant="ghost" @click="preview=lesson.published">预览</Button>
+              <Button v-if="teacher" :disabled="busy" @click="prepare(lesson)">开始备课<ArrowUpRight :size="16"/></Button>
+              <RouteButton v-else-if="taskFor(lesson.id)" :route="'learn?task='+taskFor(lesson.id).id">进入学习</RouteButton>
+              <span v-else class="muted">未分配任务</span>
+            </div>
+          </article>
+        </div>
+        <details v-if="!teacher&&store.user?.role==='student'" class="study-disclosure"><summary>单元进度</summary><UnitJourney :unit-id="unit.id"/></details>
+      </section>
+    </section>
+  </div>
+  <AppDialog :open="!!preview" @update:open="!$event&&(preview=null)" title="课时预览" content-class="library-preview"><LessonPreview v-if="preview" :lesson="preview"/></AppDialog>
+</template>

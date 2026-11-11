@@ -1,0 +1,143 @@
+{
+  "checks": [
+    {
+      "name": "prepare-edit",
+      "passed": true,
+      "activities": 8,
+      "open": 1,
+      "buttons": [
+        "保存",
+        "学生预览",
+        "发布任务"
+      ]
+    },
+    {
+      "name": "prepare-preview",
+      "passed": true,
+      "text": "学生预览等式性质理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。 写出运算依据并代回核对。01相等的两边讲解x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。标记完成02让天平两边一起变化互动天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。5=555两边相等左侧加 1右侧加 1两边同时加 1左侧减 1右侧减 1两边同时减 1重置天平用自己"
+    },
+    {
+      "name": "prepare-references",
+      "passed": true
+    },
+    {
+      "name": "prepare-more",
+      "passed": true,
+      "buttons": [
+        "跳至主要内容",
+        "师承智学",
+        "教学概览",
+        "教学案例",
+        "我的教案",
+        "组卷与考试",
+        "实时课堂",
+        "班级教学",
+        "课程与课时",
+        "题库",
+        "分层教学",
+        "教研交流",
+        "学习记忆",
+        "问题与回复",
+        "项目自编单元来源：等式性质 · 段落 1",
+        "查看历史版本",
+        "导出 DOCX",
+        "使用发布课时内容",
+        "选择其他课时",
+        "返回教学概览",
+        "关闭"
+      ]
+    },
+    {
+      "name": "cases-initial",
+      "passed": true,
+      "cards": 4
+    },
+    {
+      "name": "cases-filter",
+      "passed": true
+    },
+    {
+      "name": "case-detail",
+      "passed": true,
+      "foldedContext": true
+    },
+    {
+      "name": "agent-new",
+      "passed": true,
+      "historyOpen": false
+    },
+    {
+      "name": "agent-sources",
+      "passed": true
+    },
+    {
+      "name": "agent-process",
+      "passed": true
+    },
+    {
+      "name": "bank",
+      "passed": true,
+      "rows": 2,
+      "aiVisible": false
+    },
+    {
+      "name": "bank-generate-dialog",
+      "passed": true
+    },
+    {
+      "name": "bank-import-dialog",
+      "passed": true
+    },
+    {
+      "name": "paper-list",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "paper-editor",
+      "passed": true,
+      "questions": 2
+    },
+    {
+      "name": "paper-unsaved-cannot-publish",
+      "passed": true
+    },
+    {
+      "name": "paper-add-dialog",
+      "passed": true
+    },
+    {
+      "name": "paper-pick",
+      "passed": true
+    },
+    {
+      "name": "exam-grading",
+      "passed": true,
+      "submissions": 3,
+      "gradeRows": 2
+    },
+    {
+      "name": "exam-export-dialog",
+      "passed": true
+    },
+    {
+      "name": "narrow-desktop",
+      "passed": true,
+      "scroll": 1085,
+      "width": 1100
+    }
+  ],
+  "screens": [
+    "/tmp/sczx-redesign/teacher-prepare-edit.png",
+    "/tmp/sczx-redesign/teacher-prepare-preview.png",
+    "/tmp/sczx-redesign/teacher-cases.png",
+    "/tmp/sczx-redesign/teacher-case-detail.png",
+    "/tmp/sczx-redesign/teacher-agent.png",
+    "/tmp/sczx-redesign/teacher-agent-sources.png",
+    "/tmp/sczx-redesign/teacher-bank-dialog.png",
+    "/tmp/sczx-redesign/teacher-paper-editor.png",
+    "/tmp/sczx-redesign/teacher-exam-grading.png"
+  ],
+  "errors": [],
+  "passed": true
+}

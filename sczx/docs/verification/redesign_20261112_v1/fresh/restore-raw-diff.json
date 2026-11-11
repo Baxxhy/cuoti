@@ -1,0 +1,38 @@
+{
+  "differences": [
+    {
+      "path": "/exam/serverTime",
+      "before": "2026-11-11T15:59:37.483277Z",
+      "after": "2026-11-11T16:01:08.600808Z"
+    },
+    {
+      "path": "/offline/downloadedAt",
+      "before": "2026-11-11T15:59:37.517143Z",
+      "after": "2026-11-11T16:01:08.629958Z"
+    },
+    {
+      "path": "/offline/offlineUntil",
+      "before": "2026-11-14T15:59:37.517157Z",
+      "after": "2026-11-14T16:01:08.629973Z"
+    }
+  ],
+  "clockChecks": [
+    {
+      "path": "/exam/serverTime",
+      "secondsAdvanced": 91.117531,
+      "advancesWithCurrentClock": true
+    },
+    {
+      "path": "/offline/downloadedAt",
+      "secondsAdvanced": 91.112815,
+      "advancesWithCurrentClock": true
+    },
+    {
+      "path": "/offline/offlineUntil",
+      "secondsAdvanced": 91.112816,
+      "advancesWithCurrentClock": true
+    }
+  ],
+  "allOtherBusinessFieldsEqual": true,
+  "offlineGrantHours": 72
+}

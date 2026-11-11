@@ -43,7 +43,7 @@ watch(
   </div>
   <div class="case-detail-header">
     <div>
-      <Status tone="blue">教学案例</Status>
+
       <h1>{{ currentCase.title }}</h1>
     </div>
     <div class="heading-actions">
@@ -67,11 +67,10 @@ watch(
       >
     </div>
   </div>
-  <div class="case-detail-grid">
+  <div class="case-detail-grid teacher-case-reading">
     <article class="case-article"><CaseArticle :value="currentCase" /></article>
     <aside>
-      <Surface class="case-use-card"
-        ><h3>适用情境</h3><div v-for="(label,key) in {studentBase:'学生基础',difficulty:'学生困难',goal:'教学目标',boundary:'适用边界'}" v-show="currentCase.experience?.[key]" :key="key"><span>{{ label }}</span><p>{{ currentCase.experience?.[key] }}</p></div>
+      <details class="case-use-card teacher-context-card"><summary>适用情境</summary><div v-for="(label,key) in {studentBase:'学生基础',difficulty:'学生困难',goal:'教学目标',boundary:'适用边界'}" v-show="currentCase.experience?.[key]" :key="key"><span>{{ label }}</span><p>{{ currentCase.experience?.[key] }}</p></div>
         <div class="source-box">
           <BookOpen :size="16" />
           <p>
@@ -80,14 +79,7 @@ watch(
             >
           </p>
         </div>
-        <Button
-          v-if="store.user?.role === 'teacher'"
-          @click="
-            store.useCase(currentCase);
-            navigate('prepare');
-          "
-          >带入我的教案</Button
-        ></Surface
+</details
       >
     </aside>
   </div>

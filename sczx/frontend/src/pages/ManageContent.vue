@@ -1,4 +1,4 @@
 <script setup>
 import MaterialWorkbench from "@/components/MaterialWorkbench.vue";
 </script>
-<template><MaterialWorkbench /></template>
+<template><div class="ops-material-page"><MaterialWorkbench /></div></template>

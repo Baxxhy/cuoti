@@ -17,4 +17,4 @@ async function load() {
 }
 watch(() => props.recordId, load, { immediate: true });
 </script>
-<template><section class="model-learning-history"><div class="model-console-heading"><h3>识别与指导过程</h3><Button variant="ghost" size="sm" @click="load">刷新</Button></div><p v-if="loading" role="status">读取中…</p><p v-if="error" role="alert" class="form-error">{{ error }}</p><p v-if="!loading && !items.length && !error" class="ai-empty">暂无模型指导记录</p><ModelResult v-for="item in items" :key="item.id" :job="item" :busy="['queued','running'].includes(item.status)" :can-retry="false" show-source /></section></template>
+<template><section class="model-learning-history"><div class="model-console-heading"><h3>提问记录</h3><Button variant="ghost" size="sm" @click="load">刷新</Button></div><p v-if="loading" role="status">读取中…</p><p v-if="error" role="alert" class="form-error">{{ error }}</p><p v-if="!loading && !items.length && !error" class="ai-empty">还没有提问</p><ModelResult v-for="item in items" :key="item.id" :job="item" :busy="['queued','running'].includes(item.status)" :can-retry="false" show-source /></section></template>

@@ -34,6 +34,7 @@ async function submit() {
 
 <template>
   <main class="login-screen">
+    <aside class="login-identity" aria-hidden="true"><div class="login-identity-brand"><BookOpenText :size="30"/><strong>师承智学</strong></div><div class="login-equation"><span>x + 3 = 8</span><span>x = 5</span></div></aside>
     <section class="login-card" aria-labelledby="login-title">
       <div class="login-brand"><span class="brand-symbol"><BookOpenText :size="24" /></span><span>师承智学</span></div>
       <h1 id="login-title">登录</h1>
@@ -43,7 +44,7 @@ async function submit() {
         <label class="field-label" for="login-password">密码</label>
         <Input id="login-password" v-model="password" type="password" autocomplete="current-password" required />
         <p v-if="error" class="form-error" role="alert">{{ error }}</p>
-        <Button class="login-submit" type="submit" :disabled="busy">{{ busy ? "正在登录…" : "进入学习平台" }}<ArrowRight :size="17" /></Button>
+        <Button class="login-submit" type="submit" :disabled="busy">{{ busy ? "正在登录…" : "登录" }}<ArrowRight :size="17" /></Button>
       </form><a href="#/offline" class="offline-login-link">打开本机离线学习</a>
     </section>
   </main>

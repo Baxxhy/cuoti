@@ -3,6 +3,7 @@ import ClassAnalytics from "@/components/ClassAnalytics.vue";
 import { computed, inject, ref, watch } from "vue";
 import { ArrowUpRight, Check, Plus, Send } from "lucide-vue-next";
 import { useLearning } from "@/store.js";
+import { useRoute } from "vue-router";
 
 import { questions } from "@/data.js";
 import SupplementPanel from "@/components/SupplementPanel.vue";
@@ -17,6 +18,9 @@ const store = useLearning(),
 async function reviewRepair(repair,correct){
  try{await wrongApi.review(repair.wrongId,{attemptId:repair.id,correct,note:'教师在学情页面人工核对'});await store.refreshRecord();notify('人工确认已保存，程序核验原结果保留。')}catch(e){notify(e.message)}
 }
+const route=useRoute();
+const view = ref(route.query.task ? "task" : "overview");
+watch(()=>route.query.task, value=>{if(value)view.value="task"});
 const independent = computed(()=>store.record?.metrics?.independentCorrectQuestions || 0);
 const records = computed(
   () => store.data.studentRecords?.[store.task?.id] || [],
@@ -50,9 +54,11 @@ function openStudent(id) {
 }
 </script>
 <template>
-  <ClassAnalytics/><PageHeading title="任务学习过程"
-    ><RouteButton route="class" secondary>返回班级</RouteButton></PageHeading
-  ><template v-if="store.task"
+  <PageHeading title="学情反馈"><RouteButton route="class" secondary>返回班级</RouteButton></PageHeading>
+  <AppTabs v-model="view" :items="[{value:'overview',label:'班级概览'},{value:'task',label:'任务与反馈'}]"/>
+  <ClassAnalytics v-if="view==='overview'"/>
+  <template v-else>
+<template v-if="store.task"
     ><div class="back-line">
       <span
         >{{ store.task.className }} · {{ store.task.title }} ·
@@ -62,12 +68,9 @@ function openStudent(id) {
     <div class="insight-summary teaching-insight-metrics">
       <div
         v-for="(label, key) in {
-          members: '班级人数',
           assigned: '已分配',
-          started: '已开始',
           submitted: '已提交',
           unsubmitted: '未提交',
-          overdue: '逾期',
           feedback: '已反馈',
         }"
         :key="key"
@@ -133,7 +136,7 @@ function openStudent(id) {
           </tbody>
         </table></div
     ></Surface>
-    <div v-if="store.record" class="two-column insight-detail">
+    <details v-if="store.record" class="ops-disclosure insight-detail"><summary>{{store.record.studentName || '当前学生'}} · 查看概况与反馈</summary><div class="two-column">
       <Surface
         ><SectionHeading title="作答概况" />
         <h3>
@@ -153,7 +156,7 @@ function openStudent(id) {
           <Button @click="feedback"><Check />确认并保存</Button>
         </div></Surface
       >
-    </div>
+    </div></details>
     <Surface v-else class="records-surface"
       ><SectionHeading title="学生学习过程" />
       <p>班级还没有学生。先添加学生账号，再发布学习任务。</p></Surface
@@ -228,4 +231,5 @@ function openStudent(id) {
       </div></AppDialog
     ><SupplementPanel :task-id="store.task.id" teacher /></template
   ><TaskEmpty v-else />
+  </template>
 </template>

@@ -1,0 +1,32 @@
+[
+  {
+    "lessonId": "lesson-equation",
+    "beforeVersion": "lessonversion-1ee0a44de372461486f48cc321",
+    "afterVersion": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+    "version": 2
+  },
+  {
+    "lessonId": "lesson-simple",
+    "beforeVersion": "lessonversion-736df7c27fa84a95b3279d23e5",
+    "afterVersion": "lessonversion-1fef5b25f81c4846b7d9097ecd",
+    "version": 2
+  },
+  {
+    "lessonId": "lesson-a83e59fd932d4c63a3e4109e7a638b8c",
+    "beforeVersion": "lessonversion-4f7b830ccfd64b668df3cb9037",
+    "afterVersion": "lessonversion-ca5641fe5c254c258fc34ae24c",
+    "version": 2
+  },
+  {
+    "lessonId": "lesson-application",
+    "beforeVersion": "lessonversion-081a53a4c6404f00b872c9dc5f",
+    "afterVersion": "lessonversion-92099842ff6f40178610606347",
+    "version": 2
+  },
+  {
+    "lessonId": "lesson-1bf228629d0847c18227ca154c8d3a7a",
+    "beforeVersion": "lessonversion-66addb0d7df9479d865298c265",
+    "afterVersion": "lessonversion-5924ae513edb4fc1a9758e2082",
+    "version": 2
+  }
+]

@@ -14,6 +14,7 @@ import TaskEmpty from "@/components/TaskEmpty.vue";
 const store = useLearning(),
   notify = inject("notify");
 const saving = ref(false),
+  sideTab = ref("outline"),
   selectedBlock = ref(null),
   selectedQuestion = ref(null);
 function selectBlock(id, question = null) {
@@ -26,6 +27,7 @@ function selectBlock(id, question = null) {
 }
 function guide(id, question) {
   selectBlock(id, question);
+  sideTab.value = "help";
   nextTick(() => {
     const input = document.querySelector(
       ".tutoring-assistant #learning-question",
@@ -117,23 +119,19 @@ async function save() {
         :disabled="saving || store.task.readOnly"
         @click="save"
         >{{ saving ? "保存中…" : "保存进度" }}</Button
-      ><RouteButton route="check">独立检查</RouteButton
-      ><RouteButton route="result" secondary>学习结果</RouteButton></PageHeading
+      ><RouteButton :route="'check?task='+store.task.id">独立检查</RouteButton
+      ></PageHeading
     >
-    <div class="curriculum-study-meta">
+    <div v-if="lesson.blocks?.length" class="curriculum-study-meta">
       <span>{{ store.task.snapshot.lessonSnapshot?.grade || "课程学习" }}</span
-      ><span
-        >{{ completed }} / {{ lesson.blocks?.length || 0 }} 个内容块已标记</span
-      ><Status v-if="store.task.snapshot.lessonSnapshot"
-        >v{{ store.task.snapshot.lessonSnapshot.version }}</Status
-      >
+      ><span>{{ completed }} / {{ lesson.blocks?.length || 0 }} 已读</span><InfoTip v-if="store.task.snapshot.lessonSnapshot" label="课时版本">v{{ store.task.snapshot.lessonSnapshot.version }}</InfoTip>
     </div>
-    <Workspace
+    <Workspace v-if="lesson.blocks?.length"
       ><template #primary
         ><p v-if="store.task.readOnly" class="inline-notice">
           已移出班级，此任务仅可回看。
         </p>
-        <MemoryBridge :task="store.task" compact/><fieldset class="history-fields" :disabled="store.task.readOnly">
+        <fieldset class="history-fields" :disabled="store.task.readOnly">
           <LessonContent
             :lesson="lesson"
             :progress="progress"
@@ -146,15 +144,15 @@ async function save() {
                 :question="question"
                 :index="index"
                 @guide="guide(block.id, $event)"
-              /><RouteButton v-else route="check" secondary
+              /><RouteButton v-else :route="'check?task='+store.task.id" secondary
                 >进入独立检查</RouteButton
               ></template
             ></LessonContent
           >
         </fieldset>
-        <SupplementPanel :task-id="store.task.id" /></template
+        <details class="study-disclosure"><summary>教师补充内容</summary><SupplementPanel :task-id="store.task.id" /></details><div class="study-complete action-row"><RouteButton :route="'check?task='+store.task.id">开始独立检查</RouteButton><RouteButton :route="'result?task='+store.task.id" secondary>查看学习结果</RouteButton></div></template
       ><template #secondary
-        ><nav class="curriculum-outline" aria-label="本课内容">
+        ><AppTabs v-model="sideTab" :items="[{value:'outline',label:'本课目录'},{value:'help',label:'学习助手'}]"/><nav v-if="sideTab==='outline'" class="curriculum-outline" aria-label="本课内容">
           <div class="library-pane-heading">
             <h2>本课内容</h2>
             <InfoTip label="内容来源">{{
@@ -177,8 +175,19 @@ async function save() {
           </button>
         </nav>
         <ModelAssistant
+          v-else
           :key="store.task.id"
           :question="selectedQuestion"
-          :block-id="selectedBlock" /></template></Workspace></template
+          :block-id="selectedBlock" /></template></Workspace>
+    <section v-else class="student-practice-task">
+      <p v-if="lesson.goal" class="student-practice-goal">{{lesson.goal}}</p>
+      <template v-if="lesson.questions.length">
+        <div class="section-heading"><h2>本次练习</h2><span>{{lesson.questions.length}} 题</span></div>
+        <ol class="student-practice-preview"><li v-for="(question,i) in lesson.questions" :key="question.id||i"><span>{{String(i+1).padStart(2,'0')}}</span><div><strong>{{question.prompt}}</strong><p v-if="question.equation" class="math-equation">{{question.equation}}</p></div></li></ol>
+        <div class="action-row"><RouteButton :route="'check?task='+store.task.id">开始独立练习</RouteButton><RouteButton :route="'result?task='+store.task.id" secondary>查看学习结果</RouteButton></div>
+      </template>
+      <template v-else><p class="muted">本任务没有练习题。</p><RouteButton :route="'result?task='+store.task.id">查看学习结果</RouteButton></template>
+      <details class="study-disclosure"><summary>教师补充内容</summary><SupplementPanel :task-id="store.task.id"/></details>
+    </section></template
   ><TaskEmpty v-else />
-<UnitJourney v-if="store.task?.unitId||store.task?.snapshot.lessonSnapshot?.unitId" :unit-id="store.task.unitId||store.task.snapshot.lessonSnapshot.unitId" :task="store.task" compact/></template>
+<details v-if="store.task" class="study-disclosure"><summary>复习与单元进度</summary><MemoryBridge :task="store.task" compact/><UnitJourney v-if="store.task?.unitId||store.task?.snapshot.lessonSnapshot?.unitId" :unit-id="store.task.unitId||store.task.snapshot.lessonSnapshot.unitId" :task="store.task" compact/></details></template>

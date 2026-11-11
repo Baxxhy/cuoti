@@ -1,0 +1,22 @@
+[
+  {
+    "role": "student",
+    "url": "/courses",
+    "contrast": []
+  },
+  {
+    "role": "student",
+    "url": "/wrong",
+    "contrast": []
+  },
+  {
+    "role": "teacher",
+    "url": "/prepare",
+    "contrast": []
+  },
+  {
+    "role": "admin",
+    "url": "/manage",
+    "contrast": []
+  }
+]

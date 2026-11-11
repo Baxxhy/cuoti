@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "un-design": {
+      "name": "un-design",
+      "version": "1.0.0",
+      "source": "redskill",
+      "install_dir": "/root/Baxxhy/zhiwei/sczx/skills/un-design",
+      "installed_at": "1794411296306",
+      "sha256": "d0a5427059eca55e47a98f385fd2399632f4122c830095d0991c5cdce6a7d133"
+    }
+  }
+}

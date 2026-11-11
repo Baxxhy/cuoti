@@ -11,6 +11,10 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import "@fontsource-variable/geist";
 import "./index.css";
 import "./app.css";
+import "./workspace.css";
+import "./student-ui.css";
+import "./operations-ui.css";
+import "./teacher-ui.css";
 import App from "./App.vue";
 import Dashboard from "./pages/Dashboard.vue";
 import Courses from "./pages/Courses.vue";
@@ -122,7 +126,7 @@ router.beforeEach(async (to) => {
   if (!sessionReady) sessionReady = store.initialize();
   await sessionReady;
   if (!store.user) return { name: "login", query: { next: to.fullPath } };
-  if (!roleRoutes[store.user.role]?.has(to.name)) return { name: store.user.role === "teacher" ? "teacher" : store.user.role === "admin" ? "manage" : "home" };
+  if (to.name !== "not-found" && !roleRoutes[store.user.role]?.has(to.name)) return { name: store.user.role === "teacher" ? "teacher" : store.user.role === "admin" ? "manage" : "home" };
   if (store.status === "ready" && store.data) {
     const saved = await store.save();
     if (!saved && to.name !== router.currentRoute.value.name) return false;

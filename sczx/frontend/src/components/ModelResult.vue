@@ -33,7 +33,7 @@ const verification = computed(
 </script>
 <template>
   <section v-if="job" class="model-result" :aria-busy="busy">
-    <div class="model-status" role="status" aria-live="polite">
+    <div v-if="busy || job.status==='failed'" class="model-status" role="status" aria-live="polite">
       <LoaderCircle v-if="busy" :size="17" class="model-spinner" />
       <CircleAlert v-else-if="job.status === 'failed'" :size="17" />
       <Check v-else :size="17" />
@@ -208,7 +208,7 @@ const verification = computed(
         }}</InfoTip
       >
     </div>
-    <details v-if="job.runs?.length" class="model-run-history">
+    <details v-if="job.runs?.length" class="model-run-history model-technical-details">
       <summary>执行记录 · {{ job.runs.length }}</summary>
       <div v-for="run in job.runs" :key="run.id">
         <span

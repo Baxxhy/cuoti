@@ -4,7 +4,7 @@ import { deadlineText } from "@/services/teaching.js";
 import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
 import { FileText, ArrowRight } from "lucide-vue-next";
-const props = defineProps({ teacher: Boolean, tasks: Array });
+const props = defineProps({ teacher: Boolean, tasks: Array, emptyLabel: String });
 const store = useLearning();
 const visibleTasks = computed(() => props.tasks || store.data.tasks || []);
 function status(task) {
@@ -17,7 +17,8 @@ async function open(task, teacher) {
   if (!(await store.save())) return;
   await store.load(store.data.lesson?.id, true);
   store.selectTask(task.id);
-  navigate(`${teacher ? "insights" : "learn"}?task=${task.id}`);
+  const target=teacher?"insights":store.task?.snapshot?.blocks?.length?"learn":"check";
+  navigate(`${target}?task=${task.id}`);
 }
 </script>
 <template>
@@ -55,7 +56,7 @@ async function open(task, teacher) {
     </div>
   </div>
   <div v-else class="empty-state">
-    <h3>{{ teacher ? "当前班级暂无任务" : "暂无已分配任务" }}</h3>
+    <h3>{{ emptyLabel || (teacher ? "当前班级暂无任务" : "暂无已分配任务") }}</h3>
     <RouteButton v-if="teacher" route="prepare">开始备课</RouteButton>
   </div>
 </template>

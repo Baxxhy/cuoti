@@ -71,7 +71,7 @@ onMounted(load);
         v-model="search"
         aria-label="搜索错题"
         placeholder="搜索题目"
-      /><select v-model="subject" aria-label="筛选学科">
+      /><details class="student-filter-disclosure"><summary>筛选<span v-if="subject||knowledge||cause"> · 已筛选</span></summary><div class="student-filter-fields"><select v-model="subject" aria-label="筛选学科">
         <option value="">全部学科</option>
         <option
           v-for="s in [
@@ -89,7 +89,7 @@ onMounted(load);
       ><select v-model="cause" aria-label="筛选错因">
         <option value="">全部错因</option>
         <option v-for="r in options.reasons" :key="r">{{ r }}</option>
-      </select>
+      </select></div></details>
     </div>
   </div>
   <p v-if="loading" role="status">正在读取错题…</p>

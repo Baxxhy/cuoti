@@ -10,6 +10,7 @@ import ModelAssistant from "@/components/ModelAssistant.vue";
 import TaskEmpty from "@/components/TaskEmpty.vue";
 import { ArrowRight } from "lucide-vue-next";
 const route=useRoute();
+const helpOpen=ref(false);
 const store = useLearning(),
   notify = inject("notify");
 const indices = computed(() =>
@@ -100,13 +101,13 @@ function markHelp() {
           /></fieldset
       ></Surface>
       <aside class="check-aside">
-        <ModelAssistant
+        <div class="check-navigation"><h2>独立检查</h2><div class="check-question-links"><Button v-for="(item,n) in indices" :key="item.index" :variant="index===item.index?'default':'outline'" :aria-label="'第'+(n+1)+'题'" :aria-current="index===item.index?'step':undefined" @click="index=item.index">{{n+1}}</Button></div></div><details class="study-disclosure" :open="helpOpen" @toggle="helpOpen=$event.target.open"><summary>需要帮助</summary><ModelAssistant
           :key="store.task.id + ':' + index"
           :question="index"
           :block-id="blockId"
           compact
           @help="markHelp"
-        /><InfoTip label="独立检查规则"
+        /></details><InfoTip label="独立检查规则"
           >本题获得帮助后保留指导记录；换题会重新记录独立尝试。提交只表示完成流程，是否独立正确单独记录。</InfoTip
         ><Button variant="outline" :disabled="!hasNext" @click="next"
           >{{ hasNext ? "换一道新题" : "暂无更多新题" }}<ArrowRight /></Button

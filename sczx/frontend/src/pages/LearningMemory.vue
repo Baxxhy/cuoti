@@ -224,8 +224,8 @@ const targets = computed(() => {
       variant="outline"
       @click="navigate('learn?task=' + route.query.returnTask)"
       ><ArrowLeft />返回当前课时</Button
-    ><Button variant="outline" :disabled="loading" @click="load"
-      ><RotateCcw />刷新证据</Button
+    ><Button variant="ghost" :disabled="loading" @click="load"
+      ><RotateCcw />刷新</Button
     ></PageHeading
   >
   <div v-if="teacher" class="memory-scope">
@@ -291,10 +291,10 @@ const targets = computed(() => {
       v-if="!selected && data.recommendations.length"
       class="memory-review-strip"
       :style="{
-        gridTemplateColumns: `repeat(${Math.min(3, data.recommendations.length)},minmax(0,1fr))`,
+        gridTemplateColumns: '1fr',
       }"
     >
-      <article v-for="r in data.recommendations.slice(0, 3)" :key="r.id">
+      <article v-for="r in data.recommendations.slice(0, 1)" :key="r.id">
         <span>{{ data.items.find((i) => i.id === r.knowledgeId)?.name }}</span>
         <h2>{{ r.label }}</h2>
         <p>{{ r.reason }}</p>
@@ -337,8 +337,7 @@ const targets = computed(() => {
             </div>
             <div class="memory-row-counts">
               <span>{{ item.state.independentCorrect }} 独立正确</span
-              ><span>{{ item.state.independentIncorrect }} 独立错误</span
-              ><span>{{ item.state.evidenceCount }} 条依据</span>
+              ><span>{{ item.state.evidenceCount }} 条记录</span>
             </div>
             <time>{{ time(item.state.lastPracticedAt) }}</time
             ><ChevronRight :size="17" />
@@ -358,7 +357,6 @@ const targets = computed(() => {
       >
         <div class="memory-detail-heading">
           <div>
-            <span>依据与记录</span>
             <h2>{{ selected?.name || "尚未关联知识点" }}</h2>
           </div>
           <Button
@@ -467,8 +465,8 @@ const targets = computed(() => {
         <p v-if="!evidence.length" class="memory-empty-evidence">
           目前还缺少足够的独立练习证据。
         </p>
-        <section v-if="data.audit.length" class="memory-audit">
-          <h3>修订记录</h3>
+        <details v-if="data.audit.length" class="memory-audit">
+          <summary>修订记录</summary>
           <article v-for="a in auditEntries" :key="a.id">
             <time>{{ time(a.createdAt) }}</time
             ><strong>{{
@@ -488,7 +486,7 @@ const targets = computed(() => {
             </p>
             <p v-if="a.details.note">{{ a.details.note }}</p>
           </article>
-        </section>
+        </details>
       </section>
     </div></template
   >

@@ -1,6 +1,6 @@
 # 师承智学
 
-2026-11-11 · v31 · 本地软件作品
+2026-11-12 · v32 · 本地软件作品
 
 教师经验、备课、课程班级、学生学习、错题帮和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；沿用Nova、shadcn-vue、Lucide。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
 
@@ -18,7 +18,17 @@
 
 专用MySQL23321和网页8099仅回环监听，数据持久保存在`backend-business/var/local`。`./start-local.sh doctor`诊断，`backup`备份，`restore --archive 备份目录`在新库/新目录恢复并保留旧数据。不会改原23317库，不安排公网、域名或正式服务切换。
 
-## 交付结果
+## 本轮界面更新
+
+全站按任务重新组织，使用黑白中性色Nova适配，收起筛选、历史与额外工具；保持现有Vue/JavaScript组件体系。所有功能入口保留。
+
+[当前进度v32](docs/planning/当前进度_20261112_v1.md) · [重构与专项终验](docs/planning/全界面重构与专项终验_20261112_v1.md) · [新版网页使用](docs/manuals/web_20261112_v1/README.md) · [截图及实际验证](docs/verification/redesign_20261112_v1/README.md)
+
+本轮168项MySQL测试、27项浏览器回归和4项JS单元检查通过；全新实例F01—F12通过。33个角色页面×三种桌面宽度检查无横向溢出和脚本错误，五课学生正文及旧任务快照已核对。
+
+![新版学习首页](docs/verification/redesign_20261112_v1/screens/student-home-1440.png)
+
+## 前序交付结果
 
 - [当前进度](docs/planning/当前进度_20261111_v8.md)与[本地最终报告](docs/planning/本地软件最终交付报告_20261111_v1.md)
 - [本地验收表](docs/planning/本地软件最终交付验收表_20261111_v1.md)：23项本地工程/回退通过；原生语音2项保留设备限制，未伪称通过

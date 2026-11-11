@@ -1,0 +1,32 @@
+{
+  "helpTab": true,
+  "checkHelp": true,
+  "keyboardDisclosureClosed": true,
+  "wrong": "wrong-ab3944ac7b2f481f86367c18c6173ada",
+  "cause": true,
+  "remediationHelp": true,
+  "repair-width-1024": {
+    "scroll": 1024,
+    "client": 1024
+  },
+  "repair-width-1920": {
+    "scroll": 1920,
+    "client": 1920
+  },
+  "capture": {
+    "dialog": true,
+    "question": true,
+    "labels": [
+      "题目内容",
+      "本题数学表达式",
+      "学科",
+      "知识点",
+      "原来的答案",
+      "原来的解题过程"
+    ]
+  },
+  "captureImageTab": true,
+  "captureTextTab": true,
+  "errors": [],
+  "passed": true
+}

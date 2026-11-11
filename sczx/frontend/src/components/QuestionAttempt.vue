@@ -147,7 +147,7 @@ async function ask() {
         :disabled="(!preview && store.task?.readOnly) || busy || !answer.trim()"
         @click="submit"
         >{{ busy ? "保存中…" : "提交作答" }}</Button
-      ><Button
+      ><details class="question-help"><summary>需要帮助</summary><div><Button
         variant="ghost"
         :disabled="(!preview && store.task?.readOnly) || busy"
         @click="ask"
@@ -158,7 +158,7 @@ async function ask() {
         :disabled="busy || store.task?.readOnly"
         @click.stop="emit('guide', index)"
         >向学习助手提问</Button
-      >
+      ></div></details>
     </div>
   </div>
 </template>

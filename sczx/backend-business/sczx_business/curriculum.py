@@ -22,9 +22,15 @@ def published_lesson(db, lesson_id, version_id=None):
 
 def student_content(data):
     result=copy.deepcopy(data)
+    sources={b.get('id'):b for b in (data.get('lessonSnapshot') or {}).get('blocks',[])}
     for q in result.get('questions',[]):
         for key in ('answer','hint','explanation','feedback','teacherNote','verification'):q.pop(key,None)
     for b in result.get('blocks',[]):
+        source=sources.get(b.get('id'),{}) if b.get('agentJobId') else {}
+        for field,public in [('studentContent','content'),('studentTitle','title')]:
+            value=b.get(field,source.get(field,source.get(public)))
+            if isinstance(value,str) and value.strip():b[public]=value
+            b.pop(field,None)
         for key in ('teacherNote','teacherQuestion','studentResponse','adjustment','agentEvidence','agentJobId'):b.pop(key,None)
     result.pop('planningDetails',None)
     result.pop('caseSnapshot',None)
@@ -67,6 +73,8 @@ def content_errors(db,data):
         blockids.add(b.get('id'))
         if b.get('type') not in ('explanation','example','activity','practice','check'):errors.append(f'内容块{index+1}：不支持的类型')
         if not b.get('title') or not str(b.get('content','')).strip():errors.append(f'内容块{index+1}：标题或正文为空')
+        for field in ('studentContent','studentTitle'):
+            if field in b and (not isinstance(b[field],str) or not b[field].strip()):errors.append(f'内容块{index+1}：学生标题或正文为空')
         if any(q not in qids for q in b.get('questionIds',[])):errors.append(f'内容块{index+1}：引用题目不存在')
         if b.get('type') in ('practice','check') and not b.get('questionIds'):errors.append(f'内容块{index+1}：请选择题目')
         if b.get('type')=='activity':

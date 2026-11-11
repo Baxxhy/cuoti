@@ -1,0 +1,5320 @@
+{
+  "startedAt": "2026-11-11T15:52:23.778568+00:00",
+  "baseline": "746a2a1947a037ab6da1c30600570e85cc494a19",
+  "scope": "全新独立Linux实例；合成工程输入，不推断真人学习效果",
+  "checks": {
+    "F01": {
+      "passed": true,
+      "at": "2026-11-11T15:52:52.326544+00:00",
+      "initialAccounts": [
+        {
+          "role": "admin",
+          "username": "admin"
+        },
+        {
+          "role": "student",
+          "username": "student"
+        },
+        {
+          "role": "teacher",
+          "username": "teacher"
+        }
+      ],
+      "fiveLessons": [
+        {
+          "id": "lesson-equation",
+          "versionId": "lessonversion-1ee0a44de372461486f48cc321",
+          "title": "等式性质"
+        },
+        {
+          "id": "lesson-simple",
+          "versionId": "lessonversion-736df7c27fa84a95b3279d23e5",
+          "title": "解简单的一元一次方程"
+        },
+        {
+          "id": "lesson-a83e59fd932d4c63a3e4109e7a638b8c",
+          "versionId": "lessonversion-4f7b830ccfd64b668df3cb9037",
+          "title": "含括号与分母的方程"
+        },
+        {
+          "id": "lesson-application",
+          "versionId": "lessonversion-081a53a4c6404f00b872c9dc5f",
+          "title": "用方程解决生活问题"
+        },
+        {
+          "id": "lesson-1bf228629d0847c18227ca154c8d3a7a",
+          "versionId": "lessonversion-66addb0d7df9479d865298c265",
+          "title": "一元一次方程单元复习"
+        }
+      ],
+      "initialTasks": [
+        "task-c441c19e67774b54535b64e71157037f",
+        "task-180054c70e9c0d5fdfba942f0af9ceb5",
+        "task-c69cf993e9acc62a1bcc29e04e4578db",
+        "task-13259736a319e53f8d15e9c937388ea4",
+        "task-ad711ff024993eb7dde251057273e819"
+      ],
+      "instance": "8102 / MySQL23323",
+      "emptyInitialization": true
+    },
+    "F02": {
+      "passed": true,
+      "at": "2026-11-11T15:53:35.731168+00:00",
+      "materialId": "material-28573e2bb910419fab670e097461e04",
+      "fileId": "file-fe075460dee54c6aa3911d097710d3b4",
+      "units": [
+        "unit-c0f9f41d28b5d2e26d22e6c4d67950bf",
+        "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+        "unit-f55d54d18ce0329e65fc88da934d23bd"
+      ],
+      "savedTitle": "本轮专项：共同运算（已保存）",
+      "caseId": "case-60d7d898f642499f827ecc35b8e91362",
+      "caseVersion": "version-c4c55976bc76409aba16268f50f0092d",
+      "originalBytesSha256": "019c8236a8e93fa1f60fe012b6424b7257de1bee4cd59f35cdfbfc8d3c4090fe"
+    },
+    "F03": {
+      "passed": true,
+      "at": "2026-11-11T15:57:51.856421+00:00",
+      "jobId": "job-b677bf11c8a94aa0b442259a93b01f88",
+      "draftId": "draft-equation",
+      "revision": 4,
+      "teacherEditPersisted": true,
+      "manualRecovery": {
+        "retainedModelJob": "job-b677bf11c8a94aa0b442259a93b01f88",
+        "originalStatus": "failed",
+        "editedField": "eq-mul-div.teacherQuestion",
+        "mathClaims": "8-3=5，保留原模型候选，移除不可解析的说明式claim",
+        "finalStatus": "succeeded"
+      },
+      "studentCopySeparate": true,
+      "sourceVersion": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+      "receipt": {
+        "accepted": {
+          "draftId": "draft-equation",
+          "lessonId": "lesson-equation",
+          "confirmedAt": "2026-11-11T15:57:51.555397+00:00",
+          "jobId": "job-b677bf11c8a94aa0b442259a93b01f88"
+        },
+        "created": true
+      }
+    },
+    "F04": {
+      "passed": true,
+      "at": "2026-11-11T15:57:52.282319+00:00",
+      "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+      "studentId": "account-student-demo",
+      "secondStudent": "account-3d4952598ef549989e53963d7bca84dd",
+      "sourceVersion": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+      "studentReadProjectionVerified": true
+    },
+    "F05": {
+      "passed": true,
+      "at": "2026-11-11T15:58:02.568816+00:00",
+      "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+      "recordId": "record-28bfedf4435446399aa9536803a7f541",
+      "attemptId": "attempt-c8a4eeffd510431e8766520e315cfe50",
+      "answer": "0",
+      "helpJob": "job-08bdc7d23ad64c5c9372724f90bf6179",
+      "helpIds": [
+        "help-08bdc7d23ad64c5c9372724f90bf6179"
+      ],
+      "wrongId": "wrong-a5451c84b41044478f38f197c71456dd"
+    },
+    "F06": {
+      "passed": true,
+      "at": "2026-11-11T15:58:46.227287+00:00",
+      "wrongId": "wrong-a5451c84b41044478f38f197c71456dd",
+      "originalAnswerPreserved": "0",
+      "status": "retest_passed",
+      "attempts": [
+        {
+          "phase": "practice",
+          "equation": "x - 4 = 7",
+          "jobId": "job-2a38293cf9724b93a75fd7d830325d1b",
+          "solvedBySymPy": "x=11",
+          "attempt": {
+            "id": "repair-8f6a9e810fe949d79bdc6453d032dce1",
+            "wrongId": "wrong-a5451c84b41044478f38f197c71456dd",
+            "answer": "11",
+            "reason": "工程验收输入：解新方程并代回核验，非真实学生成绩。",
+            "correct": true,
+            "verification": {
+              "status": "verified_correct",
+              "correct": true,
+              "scope": "实际变式题的单变量单解实数方程与答案等价性"
+            },
+            "details": {
+              "version": "dynamic_v1",
+              "planJobId": "job-1390304507054c1cb0289983d2435d6e",
+              "variantJobId": "job-2a38293cf9724b93a75fd7d830325d1b",
+              "variantId": "job-2a38293cf9724b93a75fd7d830325d1b",
+              "equation": "x - 4 = 7",
+              "expected": "11",
+              "phase": "practice",
+              "helped": false,
+              "requestKey": "ed9391e532894ce197a73a973bcb15f7",
+              "verification": {
+                "status": "verified_correct",
+                "correct": true,
+                "scope": "实际变式题的单变量单解实数方程与答案等价性"
+              }
+            },
+            "createdAt": "2026-11-11T23:58:27"
+          }
+        },
+        {
+          "phase": "retest",
+          "equation": "x - 6 = 9",
+          "jobId": "job-e9cfffd0900c4742a17d0fd7e8f53df4",
+          "solvedBySymPy": "x=15",
+          "attempt": {
+            "id": "repair-01e47ccb0d09483e83cb6099e3ca2666",
+            "wrongId": "wrong-a5451c84b41044478f38f197c71456dd",
+            "answer": "15",
+            "reason": "工程验收输入：解新方程并代回核验，非真实学生成绩。",
+            "correct": true,
+            "verification": {
+              "status": "verified_correct",
+              "correct": true,
+              "scope": "实际变式题的单变量单解实数方程与答案等价性"
+            },
+            "details": {
+              "version": "dynamic_v1",
+              "planJobId": "job-1390304507054c1cb0289983d2435d6e",
+              "variantJobId": "job-e9cfffd0900c4742a17d0fd7e8f53df4",
+              "variantId": "job-e9cfffd0900c4742a17d0fd7e8f53df4",
+              "equation": "x - 6 = 9",
+              "expected": "15",
+              "phase": "retest",
+              "helped": false,
+              "requestKey": "8e835a0103174beaba525474861f271c",
+              "verification": {
+                "status": "verified_correct",
+                "correct": true,
+                "scope": "实际变式题的单变量单解实数方程与答案等价性"
+              }
+            },
+            "createdAt": "2026-11-11T23:58:46"
+          }
+        }
+      ]
+    },
+    "F07": {
+      "passed": true,
+      "at": "2026-11-11T15:58:47.472994+00:00",
+      "examId": "exam-644b71a4c80e4dfc8ddc150a9714a1b6",
+      "paperId": "paper-cdc4bfd783fb42b4aa0f1deeb277a37f",
+      "bankVersionIds": [
+        "qv-2391f76683b840ca83ac76e8b9023617",
+        "qv-a0a78e440ba94accb79f4741d82cf205"
+      ],
+      "students": 2,
+      "totals": [
+        0,
+        20
+      ],
+      "studentAnswersRetained": true,
+      "released": true
+    },
+    "F08": {
+      "passed": true,
+      "at": "2026-11-11T15:58:47.935780+00:00",
+      "liveId": "live-2948680d529149a4a04b7035991d222a",
+      "derivedTaskId": "task-aeac6cd06ee1455ab354c040534a9f41",
+      "students": [
+        "account-student-demo",
+        "account-3d4952598ef549989e53963d7bca84dd"
+      ],
+      "actualSubmitted": 2,
+      "snapshot": {
+        "id": "live-2948680d529149a4a04b7035991d222a",
+        "classId": "class-demo",
+        "lessonId": "lesson-equation",
+        "title": "等式性质",
+        "versionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+        "status": "ended",
+        "revision": 2,
+        "currentId": "act-95f10eeb4c2541cf81c76119230d049f",
+        "taskId": "task-aeac6cd06ee1455ab354c040534a9f41",
+        "joined": 2,
+        "members": [
+          {
+            "id": "account-3d4952598ef549989e53963d7bca84dd",
+            "name": "专项学生二"
+          },
+          {
+            "id": "account-student-demo",
+            "name": "演示学生"
+          }
+        ],
+        "activities": [
+          {
+            "id": "act-95f10eeb4c2541cf81c76119230d049f",
+            "position": 1,
+            "question": {
+              "id": "eq-practice-add",
+              "hint": "把两边都写成加3后的算式。",
+              "kind": "practice",
+              "type": "expression",
+              "answer": "8",
+              "prompt": "两边同时加3，x等于多少？",
+              "equation": "x - 3 = 5",
+              "feedback": [
+                {
+                  "answer": "5",
+                  "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+                }
+              ],
+              "explanation": "x - 3 + 3 = 5 + 3，所以x = 8。",
+              "knowledgeIds": [
+                "kp-equality"
+              ]
+            },
+            "feedback": "",
+            "answers": [
+              {
+                "id": "liveans-7a77f39dc8ea4341a17c0f756a005b27",
+                "studentId": "account-3d4952598ef549989e53963d7bca84dd",
+                "studentName": "专项学生二",
+                "answer": "8",
+                "reason": "工程输入：等式两边同时加3。",
+                "revision": 1,
+                "submittedAt": "2026-11-11T15:58:48Z",
+                "verification": {
+                  "scope": "参考答案的数值或表达式等价性",
+                  "status": "verified",
+                  "correct": true,
+                  "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+                }
+              },
+              {
+                "id": "liveans-83b27483abab4fad9f29ae888093e251",
+                "studentId": "account-student-demo",
+                "studentName": "演示学生",
+                "answer": "8",
+                "reason": "工程输入：等式两边同时加3。",
+                "revision": 1,
+                "submittedAt": "2026-11-11T15:58:48Z",
+                "verification": {
+                  "scope": "参考答案的数值或表达式等价性",
+                  "status": "verified",
+                  "correct": true,
+                  "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+                }
+              }
+            ],
+            "stats": {
+              "submitted": 2,
+              "correct": 2,
+              "incorrect": 0,
+              "unverified": 0
+            }
+          }
+        ],
+        "pollSeconds": 3,
+        "availableQuestions": [
+          {
+            "index": 0,
+            "prompt": "两边同时加3，x等于多少？",
+            "equation": "x - 3 = 5"
+          },
+          {
+            "index": 1,
+            "prompt": "两边同时减4，y等于多少？",
+            "equation": "y + 4 = 11"
+          },
+          {
+            "index": 2,
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18"
+          },
+          {
+            "index": 3,
+            "prompt": "求w，并写出两边共同进行的运算。",
+            "equation": "w / 4 = 3"
+          },
+          {
+            "index": 4,
+            "prompt": "先使a - 1单独在一边，再求a。",
+            "equation": "2(a - 1) = 10"
+          },
+          {
+            "index": 5,
+            "prompt": "求b，说明两边共同进行的运算。",
+            "equation": "b / (-3) = 2"
+          }
+        ]
+      }
+    },
+    "F09": {
+      "passed": true,
+      "at": "2026-11-11T15:58:48.043478+00:00",
+      "currentRunTask": "task-e47fe283a28a7d00b228d3e272a2a499",
+      "insightTaskEvidence": true,
+      "memoryTaskEvidence": true,
+      "insightStats": {
+        "attempts": 7,
+        "answeredQuestions": 7,
+        "independentQuestions": 6,
+        "independentCorrectQuestions": 4,
+        "independentCorrectStudents": 2,
+        "unverifiedQuestions": 0,
+        "helpedQuestions": 0,
+        "members": 2,
+        "tasks": 8,
+        "assignedStudents": 2,
+        "startedStudents": 2,
+        "submittedStudents": 2,
+        "unsubmittedStudents": 2,
+        "overdueStudents": 0,
+        "inactiveRecords": 0
+      },
+      "memory": {
+        "studentId": "account-student-demo",
+        "studentName": "演示学生",
+        "scope": "本人全部学习记录",
+        "rules": {
+          "version": "memory-rules-v1",
+          "minimumIndependent": 2,
+          "recentHours": 48,
+          "reviewDays": 7,
+          "snoozeDays": 1
+        },
+        "revision": "6e007e23b890e9b4dd15c4210af1911bffdec577e5ee0cfb651439e599f66ed3",
+        "items": [
+          {
+            "stateHistory": [],
+            "id": "kp-equal",
+            "name": "相等关系",
+            "prerequisites": [],
+            "state": {
+              "status": "none",
+              "statusLabel": "暂无证据",
+              "reason": "暂无作答记录。",
+              "evidenceCount": 0,
+              "verifiedCount": 0,
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "helpedCorrect": 0,
+              "unverifiedCount": 0,
+              "legacyCount": 0,
+              "lastPracticedAt": null,
+              "lastIndependentAt": null,
+              "basisIds": [],
+              "recentVerifiedCount": 0,
+              "dayCount": 0,
+              "reviewRequested": false
+            },
+            "evidence": [],
+            "recommendation": null,
+            "lessons": [],
+            "teacherDecisions": []
+          },
+          {
+            "stateHistory": [
+              {
+                "at": "2026-11-11T15:57:52Z",
+                "status": "insufficient",
+                "label": "证据不足",
+                "evidenceId": "attempt:attempt-c8a4eeffd510431e8766520e315cfe50:kp-equality"
+              },
+              {
+                "at": "2026-11-11T15:58:46Z",
+                "status": "improving",
+                "label": "正在改善",
+                "evidenceId": "repair:repair-01e47ccb0d09483e83cb6099e3ca2666:kp-equality"
+              },
+              {
+                "at": "2026-11-11T15:58:47Z",
+                "status": "independent",
+                "label": "已有独立正确证据",
+                "evidenceId": "attempt:attempt-3fc3cb90e8ef48aa942a277e31783be9:kp-equality"
+              },
+              {
+                "at": "2026-11-11T15:58:47Z",
+                "status": "insufficient",
+                "label": "证据不足",
+                "evidenceId": "attempt:attempt-e1c86fe5d903483f96106c2c27dffd97:kp-equality"
+              }
+            ],
+            "id": "kp-equality",
+            "name": "等式性质",
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "state": {
+              "status": "insufficient",
+              "statusLabel": "证据不足",
+              "reason": "同一时间的正确与错误证据顺序不确定，请补充一次独立检查。",
+              "evidenceCount": 12,
+              "verifiedCount": 6,
+              "independentCorrect": 2,
+              "independentIncorrect": 3,
+              "helpedCorrect": 1,
+              "unverifiedCount": 0,
+              "legacyCount": 0,
+              "lastPracticedAt": "2026-11-11T15:58:47Z",
+              "lastIndependentAt": "2026-11-11T15:58:47Z",
+              "basisIds": [
+                "attempt:attempt-c8a4eeffd510431e8766520e315cfe50:kp-equality",
+                "repair:repair-8f6a9e810fe949d79bdc6453d032dce1:kp-equality",
+                "repair:repair-01e47ccb0d09483e83cb6099e3ca2666:kp-equality",
+                "attempt:attempt-3fc3cb90e8ef48aa942a277e31783be9:kp-equality",
+                "attempt:attempt-e1c86fe5d903483f96106c2c27dffd97:kp-equality",
+                "attempt:attempt-f00f94553fa5405ebf1cc3f7901a312c:kp-equality"
+              ],
+              "recentVerifiedCount": 6,
+              "dayCount": 1,
+              "reviewRequested": false
+            },
+            "evidence": [
+              {
+                "rawOccurredAt": "2026-11-11T23:57:52",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "attempt:attempt-c8a4eeffd510431e8766520e315cfe50",
+                "sourceType": "attempt",
+                "sourceId": "attempt-c8a4eeffd510431e8766520e315cfe50",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:57:52Z",
+                "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+                "classId": "class-demo",
+                "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/result?task=task-e47fe283a28a7d00b228d3e272a2a499",
+                "prompt": "两边同时加3，x等于多少？",
+                "equation": "x - 3 = 5",
+                "answer": "0",
+                "reason": "本轮工程输入：只改变左边，暂保留错误答案。",
+                "helped": false,
+                "verification": "verified_incorrect",
+                "outcome": "independent_incorrect",
+                "questionKind": "practice",
+                "questionIndex": 0,
+                "questionKey": "lesson-equation:eq-practice-add",
+                "recordId": "record-28bfedf4435446399aa9536803a7f541",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "attempt:attempt-c8a4eeffd510431e8766520e315cfe50:kp-equality",
+                "label": "独立错误"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:57:52",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "help:help-08bdc7d23ad64c5c9372724f90bf6179",
+                "sourceType": "help",
+                "sourceId": "help-08bdc7d23ad64c5c9372724f90bf6179",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:57:52Z",
+                "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+                "classId": "class-demo",
+                "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/result?task=task-e47fe283a28a7d00b228d3e272a2a499",
+                "helped": true,
+                "verification": "unverified",
+                "outcome": "help",
+                "reason": "模型指导",
+                "recordId": "record-28bfedf4435446399aa9536803a7f541",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "help:help-08bdc7d23ad64c5c9372724f90bf6179:kp-equality",
+                "label": "帮助记录"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:57:52",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "wrong:wrong-a5451c84b41044478f38f197c71456dd",
+                "sourceType": "wrong",
+                "sourceId": "wrong-a5451c84b41044478f38f197c71456dd",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:57:52Z",
+                "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+                "classId": "class-demo",
+                "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/repair?wrong=wrong-a5451c84b41044478f38f197c71456dd",
+                "prompt": "x - 3 = 5",
+                "equation": "x - 3 = 5",
+                "answer": "0",
+                "reason": "本轮工程输入：只改变左边，暂保留错误答案。",
+                "wrongId": "wrong-a5451c84b41044478f38f197c71456dd",
+                "cause": "其他或待确认",
+                "causeConfirmed": true,
+                "outcome": "confirmed_cause",
+                "verification": "unverified",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "wrong:wrong-a5451c84b41044478f38f197c71456dd:kp-equality",
+                "label": "已确认错因",
+                "retestOutcome": "retest_passed",
+                "hasPractice": true
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:58:12",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "help:help-f47ab0065649492ca69d31b84ec74c79",
+                "sourceType": "help",
+                "sourceId": "help-f47ab0065649492ca69d31b84ec74c79",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:12Z",
+                "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+                "classId": "class-demo",
+                "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/result?task=task-e47fe283a28a7d00b228d3e272a2a499",
+                "helped": true,
+                "verification": "unverified",
+                "outcome": "help",
+                "reason": "模型指导",
+                "recordId": "record-28bfedf4435446399aa9536803a7f541",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "help:help-f47ab0065649492ca69d31b84ec74c79:kp-equality",
+                "label": "帮助记录"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:58:27",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "repair:repair-8f6a9e810fe949d79bdc6453d032dce1",
+                "sourceType": "repair",
+                "sourceId": "repair-8f6a9e810fe949d79bdc6453d032dce1",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:27Z",
+                "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+                "classId": "class-demo",
+                "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/repair?wrong=wrong-a5451c84b41044478f38f197c71456dd",
+                "equation": "x - 4 = 7",
+                "answer": "11",
+                "reason": "工程验收输入：解新方程并代回核验，非真实学生成绩。",
+                "wrongId": "wrong-a5451c84b41044478f38f197c71456dd",
+                "helped": true,
+                "verification": "verified_correct",
+                "outcome": "helped_correct",
+                "phase": "practice",
+                "questionKey": "job-2a38293cf9724b93a75fd7d830325d1b",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "repair:repair-8f6a9e810fe949d79bdc6453d032dce1:kp-equality",
+                "label": "帮助后正确"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:58:46",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "repair:repair-01e47ccb0d09483e83cb6099e3ca2666",
+                "sourceType": "repair",
+                "sourceId": "repair-01e47ccb0d09483e83cb6099e3ca2666",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:46Z",
+                "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+                "classId": "class-demo",
+                "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/repair?wrong=wrong-a5451c84b41044478f38f197c71456dd",
+                "equation": "x - 6 = 9",
+                "answer": "15",
+                "reason": "工程验收输入：解新方程并代回核验，非真实学生成绩。",
+                "wrongId": "wrong-a5451c84b41044478f38f197c71456dd",
+                "helped": false,
+                "verification": "verified_correct",
+                "outcome": "retest_passed",
+                "phase": "retest",
+                "questionKey": "job-e9cfffd0900c4742a17d0fd7e8f53df4",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "repair:repair-01e47ccb0d09483e83cb6099e3ca2666:kp-equality",
+                "label": "独立复测通过"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:58:47",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "attempt:attempt-3fc3cb90e8ef48aa942a277e31783be9",
+                "sourceType": "attempt",
+                "sourceId": "attempt-3fc3cb90e8ef48aa942a277e31783be9",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:47Z",
+                "taskId": "task-aeac6cd06ee1455ab354c040534a9f41",
+                "classId": "class-demo",
+                "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/result?task=task-aeac6cd06ee1455ab354c040534a9f41",
+                "prompt": "两边同时加3，x等于多少？",
+                "equation": "x - 3 = 5",
+                "answer": "8",
+                "reason": "工程输入：等式两边同时加3。",
+                "helped": false,
+                "verification": "verified_correct",
+                "outcome": "independent_correct",
+                "questionKind": "check",
+                "questionIndex": 0,
+                "questionKey": "lesson-equation:act-95f10eeb4c2541cf81c76119230d049f",
+                "recordId": "record-2ad2dd95bcb8402d91b0431ec8ddd122",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "attempt:attempt-3fc3cb90e8ef48aa942a277e31783be9:kp-equality",
+                "label": "独立正确"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:58:47",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "attempt:attempt-e1c86fe5d903483f96106c2c27dffd97",
+                "sourceType": "attempt",
+                "sourceId": "attempt-e1c86fe5d903483f96106c2c27dffd97",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:47Z",
+                "taskId": "task-52b415c7cb61491ca21ffd78f064cbbe",
+                "classId": "class-demo",
+                "lessonVersionId": null,
+                "readOnly": false,
+                "target": "/result?task=task-52b415c7cb61491ca21ffd78f064cbbe",
+                "prompt": "解方程并代回核对",
+                "equation": "2x+6=10",
+                "answer": "0",
+                "reason": "本轮工程输入：按共同运算规则计算。",
+                "helped": false,
+                "verification": "verified_incorrect",
+                "outcome": "independent_incorrect",
+                "questionKind": "check",
+                "questionIndex": 0,
+                "questionKey": "lesson-equation:qv-2391f76683b840ca83ac76e8b9023617",
+                "recordId": "record-0c11c5a067fa4dda839ae518210f0674",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "attempt:attempt-e1c86fe5d903483f96106c2c27dffd97:kp-equality",
+                "label": "独立错误"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:58:47",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "attempt:attempt-f00f94553fa5405ebf1cc3f7901a312c",
+                "sourceType": "attempt",
+                "sourceId": "attempt-f00f94553fa5405ebf1cc3f7901a312c",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:47Z",
+                "taskId": "task-52b415c7cb61491ca21ffd78f064cbbe",
+                "classId": "class-demo",
+                "lessonVersionId": null,
+                "readOnly": false,
+                "target": "/result?task=task-52b415c7cb61491ca21ffd78f064cbbe",
+                "prompt": "解方程并代回核对",
+                "equation": "x+7=12",
+                "answer": "0",
+                "reason": "本轮工程输入：按共同运算规则计算。",
+                "helped": false,
+                "verification": "verified_incorrect",
+                "outcome": "independent_incorrect",
+                "questionKind": "check",
+                "questionIndex": 1,
+                "questionKey": "lesson-equation:qv-a0a78e440ba94accb79f4741d82cf205",
+                "recordId": "record-0c11c5a067fa4dda839ae518210f0674",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "attempt:attempt-f00f94553fa5405ebf1cc3f7901a312c:kp-equality",
+                "label": "独立错误"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T15:58:47",
+                "timeBasis": "utc",
+                "timeReliable": true,
+                "eventId": "feedback:record-0c11c5a067fa4dda839ae518210f0674:2026-11-11T15:58:47Z",
+                "sourceType": "teacher_feedback",
+                "sourceId": "record-0c11c5a067fa4dda839ae518210f0674",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:47Z",
+                "taskId": "task-52b415c7cb61491ca21ffd78f064cbbe",
+                "classId": "class-demo",
+                "lessonVersionId": null,
+                "readOnly": false,
+                "target": "/result?task=task-52b415c7cb61491ca21ffd78f064cbbe",
+                "outcome": "teacher_feedback",
+                "verification": "unverified",
+                "reason": "本轮教师工程核对：保留原答与原解释。；本轮教师工程核对：保留原答与原解释。",
+                "teacherId": "account-teacher-demo",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "feedback:record-0c11c5a067fa4dda839ae518210f0674:2026-11-11T15:58:47Z:kp-equality",
+                "label": "教师反馈"
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:58:47",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "wrong:wrong-27311e5833af434f98f4053fca966358",
+                "sourceType": "wrong",
+                "sourceId": "wrong-27311e5833af434f98f4053fca966358",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:47Z",
+                "taskId": "task-52b415c7cb61491ca21ffd78f064cbbe",
+                "classId": "class-demo",
+                "lessonVersionId": null,
+                "readOnly": false,
+                "target": "/repair?wrong=wrong-27311e5833af434f98f4053fca966358",
+                "prompt": "x+7=12",
+                "equation": "x+7=12",
+                "answer": "0",
+                "reason": "本轮工程输入：按共同运算规则计算。",
+                "wrongId": "wrong-27311e5833af434f98f4053fca966358",
+                "cause": null,
+                "causeConfirmed": false,
+                "outcome": "suggested_cause",
+                "verification": "unverified",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "wrong:wrong-27311e5833af434f98f4053fca966358:kp-equality",
+                "label": "待确认错因",
+                "retestOutcome": null,
+                "hasPractice": false
+              },
+              {
+                "rawOccurredAt": "2026-11-11T23:58:47",
+                "timeBasis": "database_session",
+                "timeReliable": true,
+                "eventId": "wrong:wrong-2d82d9c4e3124192b5bdaffb3225b098",
+                "sourceType": "wrong",
+                "sourceId": "wrong-2d82d9c4e3124192b5bdaffb3225b098",
+                "studentId": "account-student-demo",
+                "knowledgeIds": [
+                  "kp-equality"
+                ],
+                "originalKnowledgeIds": [
+                  "kp-equality"
+                ],
+                "occurredAt": "2026-11-11T15:58:47Z",
+                "taskId": "task-52b415c7cb61491ca21ffd78f064cbbe",
+                "classId": "class-demo",
+                "lessonVersionId": null,
+                "readOnly": false,
+                "target": "/repair?wrong=wrong-2d82d9c4e3124192b5bdaffb3225b098",
+                "prompt": "2x+6=10",
+                "equation": "2x+6=10",
+                "answer": "0",
+                "reason": "本轮工程输入：按共同运算规则计算。",
+                "wrongId": "wrong-2d82d9c4e3124192b5bdaffb3225b098",
+                "cause": null,
+                "causeConfirmed": false,
+                "outcome": "suggested_cause",
+                "verification": "unverified",
+                "knowledgeId": "kp-equality",
+                "evidenceId": "wrong:wrong-2d82d9c4e3124192b5bdaffb3225b098:kp-equality",
+                "label": "待确认错因",
+                "retestOutcome": null,
+                "hasPractice": false
+              }
+            ],
+            "recommendation": {
+              "action": "continue_repair",
+              "label": "继续补救",
+              "target": "/repair?wrong=wrong-2d82d9c4e3124192b5bdaffb3225b098",
+              "reason": "已有原始错题，先继续针对性订正。",
+              "priority": 1,
+              "evidenceIds": [
+                "wrong:wrong-2d82d9c4e3124192b5bdaffb3225b098:kp-equality"
+              ],
+              "id": "review:account-student-demo:kp-equality",
+              "knowledgeId": "kp-equality"
+            },
+            "lessons": [
+              {
+                "taskId": "task-52b415c7cb61491ca21ffd78f064cbbe",
+                "title": "考试讲评 · 本轮专项：共同运算检查",
+                "lessonId": "lesson-equation",
+                "versionId": null,
+                "readOnly": false,
+                "target": "/learn?task=task-52b415c7cb61491ca21ffd78f064cbbe"
+              },
+              {
+                "taskId": "task-e47fe283a28a7d00b228d3e272a2a499",
+                "title": "等式性质",
+                "lessonId": "lesson-equation",
+                "versionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/learn?task=task-e47fe283a28a7d00b228d3e272a2a499"
+              },
+              {
+                "taskId": "task-aeac6cd06ee1455ab354c040534a9f41",
+                "title": "课堂记录 · 等式性质",
+                "lessonId": "lesson-equation",
+                "versionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "readOnly": false,
+                "target": "/learn?task=task-aeac6cd06ee1455ab354c040534a9f41"
+              },
+              {
+                "taskId": "task-ad711ff024993eb7dde251057273e819",
+                "title": "等式性质",
+                "lessonId": "lesson-equation",
+                "versionId": "lessonversion-1ee0a44de372461486f48cc321",
+                "readOnly": false,
+                "target": "/learn?task=task-ad711ff024993eb7dde251057273e819"
+              },
+              {
+                "taskId": "task-180054c70e9c0d5fdfba942f0af9ceb5",
+                "title": "一元一次方程单元复习",
+                "lessonId": "lesson-1bf228629d0847c18227ca154c8d3a7a",
+                "versionId": "lessonversion-66addb0d7df9479d865298c265",
+                "readOnly": false,
+                "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5"
+              }
+            ],
+            "teacherDecisions": []
+          },
+          {
+            "stateHistory": [],
+            "id": "kp-expression",
+            "name": "算式含义",
+            "prerequisites": [
+              {
+                "id": "kp-operations",
+                "name": "基本运算"
+              }
+            ],
+            "state": {
+              "status": "none",
+              "statusLabel": "暂无证据",
+              "reason": "暂无作答记录。",
+              "evidenceCount": 0,
+              "verifiedCount": 0,
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "helpedCorrect": 0,
+              "unverifiedCount": 0,
+              "legacyCount": 0,
+              "lastPracticedAt": null,
+              "lastIndependentAt": null,
+              "basisIds": [],
+              "recentVerifiedCount": 0,
+              "dayCount": 0,
+              "reviewRequested": false
+            },
+            "evidence": [],
+            "recommendation": null,
+            "lessons": [],
+            "teacherDecisions": []
+          },
+          {
+            "stateHistory": [],
+            "id": "kp-linear-model",
+            "name": "实际问题中的设元与列式",
+            "prerequisites": [
+              {
+                "id": "kp-linear-transform",
+                "name": "方程变形与验算"
+              }
+            ],
+            "state": {
+              "status": "none",
+              "statusLabel": "暂无证据",
+              "reason": "暂无作答记录。",
+              "evidenceCount": 0,
+              "verifiedCount": 0,
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "helpedCorrect": 0,
+              "unverifiedCount": 0,
+              "legacyCount": 0,
+              "lastPracticedAt": null,
+              "lastIndependentAt": null,
+              "basisIds": [],
+              "recentVerifiedCount": 0,
+              "dayCount": 0,
+              "reviewRequested": false
+            },
+            "evidence": [],
+            "recommendation": {
+              "action": "review_example",
+              "label": "查看例题",
+              "target": "/learn?task=task-c441c19e67774b54535b64e71157037f",
+              "reason": "先查看课时例题，再补充实际作答证据。",
+              "priority": 5,
+              "evidenceIds": [],
+              "id": "review:account-student-demo:kp-linear-model",
+              "knowledgeId": "kp-linear-model"
+            },
+            "lessons": [
+              {
+                "taskId": "task-c441c19e67774b54535b64e71157037f",
+                "title": "用方程解决生活问题",
+                "lessonId": "lesson-application",
+                "versionId": "lessonversion-081a53a4c6404f00b872c9dc5f",
+                "readOnly": false,
+                "target": "/learn?task=task-c441c19e67774b54535b64e71157037f"
+              },
+              {
+                "taskId": "task-180054c70e9c0d5fdfba942f0af9ceb5",
+                "title": "一元一次方程单元复习",
+                "lessonId": "lesson-1bf228629d0847c18227ca154c8d3a7a",
+                "versionId": "lessonversion-66addb0d7df9479d865298c265",
+                "readOnly": false,
+                "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5"
+              }
+            ],
+            "teacherDecisions": []
+          },
+          {
+            "stateHistory": [],
+            "id": "kp-linear-review",
+            "name": "一元一次方程综合检查",
+            "prerequisites": [
+              {
+                "id": "kp-linear-transform",
+                "name": "方程变形与验算"
+              },
+              {
+                "id": "kp-linear-model",
+                "name": "实际问题中的设元与列式"
+              }
+            ],
+            "state": {
+              "status": "none",
+              "statusLabel": "暂无证据",
+              "reason": "暂无作答记录。",
+              "evidenceCount": 0,
+              "verifiedCount": 0,
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "helpedCorrect": 0,
+              "unverifiedCount": 0,
+              "legacyCount": 0,
+              "lastPracticedAt": null,
+              "lastIndependentAt": null,
+              "basisIds": [],
+              "recentVerifiedCount": 0,
+              "dayCount": 0,
+              "reviewRequested": false
+            },
+            "evidence": [],
+            "recommendation": {
+              "action": "review_example",
+              "label": "查看例题",
+              "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5",
+              "reason": "先查看课时例题，再补充实际作答证据。",
+              "priority": 5,
+              "evidenceIds": [],
+              "id": "review:account-student-demo:kp-linear-review",
+              "knowledgeId": "kp-linear-review"
+            },
+            "lessons": [
+              {
+                "taskId": "task-180054c70e9c0d5fdfba942f0af9ceb5",
+                "title": "一元一次方程单元复习",
+                "lessonId": "lesson-1bf228629d0847c18227ca154c8d3a7a",
+                "versionId": "lessonversion-66addb0d7df9479d865298c265",
+                "readOnly": false,
+                "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5"
+              }
+            ],
+            "teacherDecisions": []
+          },
+          {
+            "stateHistory": [],
+            "id": "kp-linear-simple",
+            "name": "简单一元一次方程",
+            "prerequisites": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "state": {
+              "status": "none",
+              "statusLabel": "暂无证据",
+              "reason": "暂无作答记录。",
+              "evidenceCount": 0,
+              "verifiedCount": 0,
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "helpedCorrect": 0,
+              "unverifiedCount": 0,
+              "legacyCount": 0,
+              "lastPracticedAt": null,
+              "lastIndependentAt": null,
+              "basisIds": [],
+              "recentVerifiedCount": 0,
+              "dayCount": 0,
+              "reviewRequested": false
+            },
+            "evidence": [],
+            "recommendation": {
+              "id": "review:account-student-demo:kp-linear-simple",
+              "knowledgeId": "kp-linear-simple",
+              "action": "foundation",
+              "label": "补前置知识",
+              "target": "/learn?task=task-52b415c7cb61491ca21ffd78f064cbbe",
+              "reason": "等式性质有两条独立错误证据，可先检查这一层前置知识。",
+              "priority": 3,
+              "evidenceIds": [
+                "attempt:attempt-c8a4eeffd510431e8766520e315cfe50:kp-equality",
+                "repair:repair-8f6a9e810fe949d79bdc6453d032dce1:kp-equality",
+                "repair:repair-01e47ccb0d09483e83cb6099e3ca2666:kp-equality",
+                "attempt:attempt-3fc3cb90e8ef48aa942a277e31783be9:kp-equality",
+                "attempt:attempt-e1c86fe5d903483f96106c2c27dffd97:kp-equality",
+                "attempt:attempt-f00f94553fa5405ebf1cc3f7901a312c:kp-equality"
+              ],
+              "prerequisiteId": "kp-equality"
+            },
+            "lessons": [
+              {
+                "taskId": "task-13259736a319e53f8d15e9c937388ea4",
+                "title": "解简单的一元一次方程",
+                "lessonId": "lesson-simple",
+                "versionId": "lessonversion-736df7c27fa84a95b3279d23e5",
+                "readOnly": false,
+                "target": "/learn?task=task-13259736a319e53f8d15e9c937388ea4"
+              },
+              {
+                "taskId": "task-180054c70e9c0d5fdfba942f0af9ceb5",
+                "title": "一元一次方程单元复习",
+                "lessonId": "lesson-1bf228629d0847c18227ca154c8d3a7a",
+                "versionId": "lessonversion-66addb0d7df9479d865298c265",
+                "readOnly": false,
+                "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5"
+              }
+            ],
+            "teacherDecisions": []
+          },
+          {
+            "stateHistory": [],
+            "id": "kp-linear-transform",
+            "name": "方程变形与验算",
+            "prerequisites": [
+              {
+                "id": "kp-linear-simple",
+                "name": "简单一元一次方程"
+              }
+            ],
+            "state": {
+              "status": "none",
+              "statusLabel": "暂无证据",
+              "reason": "暂无作答记录。",
+              "evidenceCount": 0,
+              "verifiedCount": 0,
+              "independentCorrect": 0,
+              "independentIncorrect": 0,
+              "helpedCorrect": 0,
+              "unverifiedCount": 0,
+              "legacyCount": 0,
+              "lastPracticedAt": null,
+              "lastIndependentAt": null,
+              "basisIds": [],
+              "recentVerifiedCount": 0,
+              "dayCount": 0,
+              "reviewRequested": false
+            },
+            "evidence": [],
+            "recommendation": {
+              "action": "review_example",
+              "label": "查看例题",
+              "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5",
+              "reason": "先查看课时例题，再补充实际作答证据。",
+              "priority": 5,
+              "evidenceIds": [],
+              "id": "review:account-student-demo:kp-linear-transform",
+              "knowledgeId": "kp-linear-transform"
+            },
+            "lessons": [
+              {
+                "taskId": "task-c69cf993e9acc62a1bcc29e04e4578db",
+                "title": "含括号与分母的方程",
+                "lessonId": "lesson-a83e59fd932d4c63a3e4109e7a638b8c",
+                "versionId": "lessonversion-4f7b830ccfd64b668df3cb9037",
+                "readOnly": false,
+                "target": "/learn?task=task-c69cf993e9acc62a1bcc29e04e4578db"
+              },
+              {
+                "taskId": "task-180054c70e9c0d5fdfba942f0af9ceb5",
+                "title": "一元一次方程单元复习",
+                "lessonId": "lesson-1bf228629d0847c18227ca154c8d3a7a",
+                "versionId": "lessonversion-66addb0d7df9479d865298c265",
+                "readOnly": false,
+                "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5"
+              }
+            ],
+            "teacherDecisions": []
+          }
+        ],
+        "unlinkedEvidence": [],
+        "recommendations": [
+          {
+            "action": "continue_repair",
+            "label": "继续补救",
+            "target": "/repair?wrong=wrong-2d82d9c4e3124192b5bdaffb3225b098",
+            "reason": "已有原始错题，先继续针对性订正。",
+            "priority": 1,
+            "evidenceIds": [
+              "wrong:wrong-2d82d9c4e3124192b5bdaffb3225b098:kp-equality"
+            ],
+            "id": "review:account-student-demo:kp-equality",
+            "knowledgeId": "kp-equality"
+          },
+          {
+            "id": "review:account-student-demo:kp-linear-simple",
+            "knowledgeId": "kp-linear-simple",
+            "action": "foundation",
+            "label": "补前置知识",
+            "target": "/learn?task=task-52b415c7cb61491ca21ffd78f064cbbe",
+            "reason": "等式性质有两条独立错误证据，可先检查这一层前置知识。",
+            "priority": 3,
+            "evidenceIds": [
+              "attempt:attempt-c8a4eeffd510431e8766520e315cfe50:kp-equality",
+              "repair:repair-8f6a9e810fe949d79bdc6453d032dce1:kp-equality",
+              "repair:repair-01e47ccb0d09483e83cb6099e3ca2666:kp-equality",
+              "attempt:attempt-3fc3cb90e8ef48aa942a277e31783be9:kp-equality",
+              "attempt:attempt-e1c86fe5d903483f96106c2c27dffd97:kp-equality",
+              "attempt:attempt-f00f94553fa5405ebf1cc3f7901a312c:kp-equality"
+            ],
+            "prerequisiteId": "kp-equality"
+          },
+          {
+            "action": "review_example",
+            "label": "查看例题",
+            "target": "/learn?task=task-c441c19e67774b54535b64e71157037f",
+            "reason": "先查看课时例题，再补充实际作答证据。",
+            "priority": 5,
+            "evidenceIds": [],
+            "id": "review:account-student-demo:kp-linear-model",
+            "knowledgeId": "kp-linear-model"
+          },
+          {
+            "action": "review_example",
+            "label": "查看例题",
+            "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5",
+            "reason": "先查看课时例题，再补充实际作答证据。",
+            "priority": 5,
+            "evidenceIds": [],
+            "id": "review:account-student-demo:kp-linear-review",
+            "knowledgeId": "kp-linear-review"
+          },
+          {
+            "action": "review_example",
+            "label": "查看例题",
+            "target": "/learn?task=task-180054c70e9c0d5fdfba942f0af9ceb5",
+            "reason": "先查看课时例题，再补充实际作答证据。",
+            "priority": 5,
+            "evidenceIds": [],
+            "id": "review:account-student-demo:kp-linear-transform",
+            "knowledgeId": "kp-linear-transform"
+          }
+        ],
+        "audit": [],
+        "knowledgeOptions": [
+          {
+            "id": "kp-equal",
+            "name": "相等关系"
+          },
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          },
+          {
+            "id": "kp-expression",
+            "name": "算式含义"
+          },
+          {
+            "id": "kp-linear-model",
+            "name": "实际问题中的设元与列式"
+          },
+          {
+            "id": "kp-linear-review",
+            "name": "一元一次方程综合检查"
+          },
+          {
+            "id": "kp-linear-simple",
+            "name": "简单一元一次方程"
+          },
+          {
+            "id": "kp-linear-transform",
+            "name": "方程变形与验算"
+          },
+          {
+            "id": "kp-operations",
+            "name": "基本运算"
+          }
+        ]
+      }
+    },
+    "F10": {
+      "passed": true,
+      "at": "2026-11-11T15:59:37.291925+00:00",
+      "evidenceFile": "offline-browser.json",
+      "taskId": "task-13259736a319e53f8d15e9c937388ea4",
+      "checks": [
+        "online-download-one-authorized-package/offline-save-IDB",
+        "actual-browser-close-reopen-offline-shell/unlock/restored-original-answer-and-reason",
+        "online-identity-CAS-sync/server-reread/repeated-sync-idempotent"
+      ],
+      "serverDraft": {
+        "questions": {
+          "simple-p1": {
+            "answer": "5",
+            "reason": "两边同时减7得到5，代回5+7=12。",
+            "helped": false
+          },
+          "simple-p2": {},
+          "simple-c1": {},
+          "simple-c2": {},
+          "simple-r1": {},
+          "simple-r2": {}
+        },
+        "lessonPosition": {}
+      },
+      "realDisconnectAndBrowserRestart": true
+    },
+    "F11": {
+      "passed": true,
+      "at": "2026-11-11T15:59:41.390085+00:00",
+      "actualBackup": true,
+      "sqlBytes": 580792,
+      "uploadArchiveBytes": 68946,
+      "tables": 52,
+      "uploads": 2,
+      "manifestFileHashes": {
+        "uploads.tar.gz": "44706a57807d3529e5e2fe01e996dd130df8010ecc275a19c47997c84c0a3fe2",
+        "config.env.example": "bb250d1add670cfb9b52eebce5d51a1be16b92054f0ed05422c3daed8e0d6db1",
+        "database.sql": "23db01c0da84af73da9eaf344b94e7fec1da6f66b0e15156b6cdb48a9b6ac4b2"
+      }
+    },
+    "F12": {
+      "passed": true,
+      "at": "2026-11-11T16:01:09.323261+00:00",
+      "newDatabase": "sczx_test_local_restore_504dd237a3",
+      "newUploadDirectory": true,
+      "oldDatabaseAndUploadsPreserved": true,
+      "originalAccountsRestored": true,
+      "checks": {
+        "record": true,
+        "wrong": true,
+        "exam": true,
+        "live": true,
+        "material": true,
+        "offlineDrafts": true,
+        "originalUploadedDocxBytes": true,
+        "secondStudentAccountAndExam": true,
+        "originalFiveTaskSnapshots": true,
+        "offlinePackageVersionContentAndRevision": true,
+        "bothDatabasesStillExist": true
+      },
+      "volatileClockExcluded": {
+        "field": "exam.serverTime",
+        "before": "2026-11-11T15:59:37.483277Z",
+        "after": "2026-11-11T16:01:08.600808Z",
+        "reason": "响应当前时钟不是持久化业务字段；原始答卷/题目/分数逐字段相同"
+      },
+      "dynamicResponseComparison": {
+        "rawDiffFile": "restore-raw-diff.json",
+        "onlyDifferences": [
+          "/exam/serverTime",
+          "/offline/downloadedAt",
+          "/offline/offlineUntil"
+        ],
+        "allOtherFieldsEqual": true,
+        "clockChecks": [
+          {
+            "path": "/exam/serverTime",
+            "secondsAdvanced": 91.117531,
+            "advancesWithCurrentClock": true
+          },
+          {
+            "path": "/offline/downloadedAt",
+            "secondsAdvanced": 91.112815,
+            "advancesWithCurrentClock": true
+          },
+          {
+            "path": "/offline/offlineUntil",
+            "secondsAdvanced": 91.112816,
+            "advancesWithCurrentClock": true
+          }
+        ],
+        "offlineGrantHours": 72
+      },
+      "databaseRetention": {
+        "preservedOriginal": {
+          "database": "sczx_test_local_demo",
+          "tables": 53,
+          "exists": true
+        },
+        "restored": {
+          "database": "sczx_test_local_restore_504dd237a3",
+          "tables": 53,
+          "exists": true
+        }
+      }
+    }
+  },
+  "jobs": {
+    "teacher-plan": {
+      "id": "job-ce262c54e8b6446687f50145922e6484",
+      "status": "failed",
+      "seconds": 41.393,
+      "transport": null,
+      "result": {
+        "plan": {
+          "goal": "能通过观察等式两边的共同变化解释同加、同减、同乘及同除以非零数的求解步骤。",
+          "title": "等式两边共同运算",
+          "blocks": [
+            {
+              "id": "eq-intro",
+              "title": "相等的两边",
+              "content": "1. 出示5 = 5，请学生判断只改变一边后是否仍相等。\n2. 请学生预测两边同时增加相同数量的结果，并说明理由。",
+              "adjustment": "若学生只报结论，请其分别说出等式左右两边发生了什么变化。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "判断等式两边变化后是否仍相等，并说明判断依据。",
+              "studentResponse": "预期回答：只改变一边通常不能保持相等；两边同时增加相同数量，仍相等。",
+              "teacherQuestion": "若只改变一边，相等关系会怎样？两边同时增加相同数量呢？"
+            },
+            {
+              "id": "eq-balance",
+              "title": "让天平两边一起变化",
+              "content": "1. 出示两边各有5单位的天平模型，说明此类比只展示非负数量。\n2. 两边同时增加相同的正量，请学生观察并解释结果。",
+              "adjustment": "若学生只关注一边，引导其逐边指出增加的数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "观察两边同时增加相同正量后的天平，并用自己的话解释。",
+              "studentResponse": "预期回答：两边增加相同数量，平衡关系不变。",
+              "teacherQuestion": "两边分别增加了什么？为什么天平仍平衡？"
+            },
+            {
+              "id": "eq-add-sub",
+              "title": "同加、同减",
+              "content": "1. 出示a = b及两条同加、同减关系，请学生辨认两边进行的共同运算。\n2. 请学生说明c可取正数、负数或零，等式两边仍须进行相同运算。",
+              "adjustment": "若回答只提到移项变号，请追问原式两边各进行了什么运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出等式两边分别进行了什么运算。",
+              "studentResponse": "预期回答：不能；要保持等式关系，两边须同时加相同的c。",
+              "teacherQuestion": "若只在左边加c，能否直接得到a + c = b + c？为什么？"
+            },
+            {
+              "id": "eq-example-add",
+              "title": "例题：消去减去的数",
+              "content": "1. 出示x - 3 = 5，请学生说明要消去左边减去的3，可以对两边做什么共同运算。\n2. 展示两边同时加3的算式，化简得x = 8。\n3. 请学生把8代回原式核对。",
+              "adjustment": "若学生直接报x = 8，请其补写两边同时加3的等式。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "说明共同运算，写出每一步并代回检验。",
+              "studentResponse": "预期回答：右边也加3；只改变一边不能保证等式仍成立。",
+              "teacherQuestion": "左边加3时，右边应怎样变化？只改变左边会怎样？"
+            },
+            {
+              "id": "eq-practice",
+              "title": "随堂练习",
+              "content": "1. 出示eq-practice-add与eq-practice-sub两题及原有题目提示。\n2. 学生逐步作答，并在每步标明等式两边共同进行的运算。\n3. 核对答案时检查是否只改变一边。",
+              "adjustment": "若出现只改变一边的写法，请学生回到原等式补写另一边的同一运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06"
+              ],
+              "studentTask": "完成两题，每一步写明两边共同进行的运算。",
+              "studentResponse": "预期回答：左右两边进行同一种运算；对应答案分别为8和7。",
+              "teacherQuestion": "你的每一步对等式左右两边分别做了什么？若只对一边运算，能否保证相等？"
+            },
+            {
+              "id": "eq-mul-div",
+              "title": "同乘、同除的条件",
+              "content": "1. 出示a = b时同乘c的关系及c ≠ 0时同除c的关系，请学生圈出同除条件。\n2. 展示x = 2两边同乘0得到0 = 0，请学生判断能否由此恢复x = 2。",
+              "adjustment": "若学生认为同乘0可逆，请其比较x = 2与0 = 0包含的信息。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出同除条件，并判断同乘0是否是可逆求解步骤。",
+              "studentResponse": "预期回答：除数必须非零；同乘0会丢失原方程信息，不能从0 = 0恢复x = 2。",
+              "teacherQuestion": "同除时除数必须满足什么条件？为什么同乘0不能用于可逆求解？"
+            },
+            {
+              "id": "eq-example-div",
+              "title": "例题：共同除以非零数",
+              "content": "1. 出示3z = 18，追问3是否为零；展示两边同除以3，得z = 6。\n2. 出示w / 4 = 3，展示两边同乘4，得w = 12。\n3. 出示b / (-3) = 2，用公式说明两边同乘-3，得b = -6；不把负数放入天平类比。",
+              "adjustment": "若未说明非零条件，请补问除数是否为零及这对变形的影响。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "逐题写出共同运算及结果，并说明同除的非零条件。",
+              "studentResponse": "预期回答：3 ≠ 0；负数运算用公式表示，不纳入天平实物类比。",
+              "teacherQuestion": "第一题为什么可以同除以3？第三题为何用同乘-3表示？"
+            },
+            {
+              "id": "eq-check",
+              "title": "独立检查",
+              "content": "1. 出示eq-check-divide与eq-check-multiply两题，学生独立作答并解释共同运算。\n2. 检查是否写明同除以3时3 ≠ 0，并核对两题答案。\n3. 若需帮助，先学习当前题，再用原有新题重新检查。",
+              "adjustment": "若只改变一边或漏写非零条件，指出相应步骤后让学生独立修正。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "独立求解两题，写出两边共同运算并解释同除条件。",
+              "studentResponse": "预期回答：两题答案分别为6和12；因3 ≠ 0，可以两边同除以3。",
+              "teacherQuestion": "两题各自对等式两边做了什么？同除以3为何允许？"
+            }
+          ],
+          "rationale": [
+            "先预测共同变化并观察天平，再用符号表达等式性质，帮助学生从机械记忆移项变号转向说明两边实际进行的运算。",
+            "练习和独立检查要求说出共同运算；追问聚焦是否只改变一边及同除数是否非零，以暴露并纠正关键误解。"
+          ],
+          "mathClaims": [
+            {
+              "left": "若a=b，则a+c=b+c",
+              "right": "两边同加c"
+            },
+            {
+              "left": "若a=b，则a-c=b-c",
+              "right": "两边同减c"
+            },
+            {
+              "left": "若a=b，则ac=bc",
+              "right": "两边同乘c"
+            },
+            {
+              "left": "若a=b且c≠0，则a/c=b/c",
+              "right": "两边同除以非零数c"
+            },
+            {
+              "left": "x-3=5",
+              "right": "x=8"
+            },
+            {
+              "left": "3z=18",
+              "right": "z=6"
+            },
+            {
+              "left": "w/4=3",
+              "right": "w=12"
+            },
+            {
+              "left": "b/(-3)=2",
+              "right": "b=-6"
+            }
+          ]
+        },
+        "cases": [
+          {
+            "id": "case-60d7d898f642499f827ecc35b8e91362",
+            "grade": "七年级",
+            "title": "本轮专项：共同运算追问",
+            "author": "工程验收",
+            "source": "本轮专项：共同运算（已保存）",
+            "content": "给出x−3=5。两边同时加3，再把x=8代回核对。除法只能除以同一个非零数。",
+            "subject": "数学",
+            "version": 1,
+            "reviewed": false,
+            "updatedAt": "2026-11-11T15:53:35.462261Z",
+            "versionId": "version-c4c55976bc76409aba16268f50f0092d",
+            "experience": {},
+            "references": [
+              {
+                "label": "段落 2",
+                "quote": "本轮专项验收自编材料。x−3=5，两边同时加3得x=8，代回8−3=5。",
+                "author": "项目工程验收",
+                "source": "本轮合成工程材料，非真实课堂资料",
+                "unitId": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+                "sourceUrl": "",
+                "materialId": "material-28573e2bb910419fab670e097461e04",
+                "materialTitle": "本轮专项：共同运算（已保存）"
+              }
+            ],
+            "publishedAt": "2026-11-11T15:53:35Z",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified"
+            },
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ]
+          },
+          {
+            "id": "case-balance",
+            "grade": "七年级",
+            "score": 1.508796,
+            "title": "天平与等式性质",
+            "author": "",
+            "legacy": true,
+            "source": "待补充核对的教学示例",
+            "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+            "subject": "数学",
+            "version": 1,
+            "bm25Score": 2.222304,
+            "textScore": 1.388796,
+            "versionId": "version-1d25262f02eb47f5a2bdd35b725e2d61",
+            "experience": {},
+            "references": [],
+            "publishedAt": "2026-11-11T15:49:32Z",
+            "contextScore": 0.12,
+            "matchReasons": [
+              "匹配标题",
+              "与课时适用信息一致"
+            ],
+            "matchedFields": [
+              {
+                "bm25": 2.222304,
+                "field": "title",
+                "label": "标题",
+                "score": 1.383114,
+                "matchedTerms": [
+                  "式性",
+                  "性质",
+                  "等式"
+                ],
+                "contextMatched": true
+              },
+              {
+                "bm25": 0,
+                "field": "content",
+                "label": "正文",
+                "score": 0.005682,
+                "matchedTerms": [],
+                "contextMatched": true
+              }
+            ],
+            "retrievalText": "{}",
+            "knowledgeScore": 0.0,
+            "knowledgeMatches": []
+          }
+        ],
+        "model": "gpt-6-luna",
+        "steps": [
+          {
+            "key": "context",
+            "tool": "curriculum.read",
+            "title": "理解任务与课时",
+            "output": {
+              "method": "显式选择或有限关键词规则；课时由服务端读取",
+              "recognizedType": "误解纠正",
+              "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a"
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-11T15:53:40.370070+00:00",
+            "finishedAt": "2026-11-11T15:53:40.402123+00:00"
+          },
+          {
+            "key": "cases",
+            "tool": "retrieval.bm25",
+            "title": "检索教学案例",
+            "output": {
+              "rerank": false,
+              "versions": [
+                {
+                  "id": "case-60d7d898f642499f827ecc35b8e91362",
+                  "versionId": "version-c4c55976bc76409aba16268f50f0092d"
+                },
+                {
+                  "id": "case-balance",
+                  "versionId": "version-1d25262f02eb47f5a2bdd35b725e2d61"
+                }
+              ],
+              "caseCount": 2
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-11T15:53:40.429758+00:00",
+            "finishedAt": "2026-11-11T15:53:40.498571+00:00"
+          },
+          {
+            "key": "materials",
+            "tool": "materials.read",
+            "title": "定位原文材料",
+            "output": {
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06"
+              ],
+              "materialCount": 1
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-11T15:53:40.544755+00:00",
+            "finishedAt": "2026-11-11T15:53:40.606937+00:00"
+          },
+          {
+            "key": "generate",
+            "tool": "codex.lesson_plan",
+            "title": "生成备课建议",
+            "output": {
+              "model": "gpt-6-luna",
+              "origin": "模型生成，待教师核对",
+              "provider": "Codex CLI · low",
+              "onlyBlock": null,
+              "blockCount": 8
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-11T15:53:40.633685+00:00",
+            "finishedAt": "2026-11-11T15:54:20.819007+00:00"
+          },
+          {
+            "key": "validate",
+            "tool": "plan.validate",
+            "error": "数学条件需修订，结果未采用：同乘零不能作为保留原解的可逆变形。",
+            "title": "核验结构与依据",
+            "status": "failed",
+            "startedAt": "2026-11-11T15:54:20.866345+00:00",
+            "finishedAt": "2026-11-11T15:54:20.979350+00:00"
+          }
+        ],
+        "context": {
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "task": "纠正只改变等式一边的错误，用本轮共同运算材料设计追问。保留本课全部活动与题目。",
+          "grade": "七年级",
+          "subject": "数学",
+          "lessonId": "lesson-equation",
+          "taskType": "misconception",
+          "taskLabel": "误解纠正",
+          "constraints": "每段写清操作、追问和要观察的回答。保持除数非零条件。",
+          "lessonTitle": "等式性质",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+          "prerequisiteIds": [
+            "kp-equal",
+            "kp-operations",
+            "kp-expression"
+          ]
+        },
+        "decision": "pending",
+        "editable": {
+          "goal": "能通过观察等式两边的共同变化解释同加、同减、同乘及同除以非零数的求解步骤。",
+          "title": "等式两边共同运算",
+          "blocks": [
+            {
+              "id": "eq-intro",
+              "title": "相等的两边",
+              "content": "1. 出示5 = 5，请学生判断只改变一边后是否仍相等。\n2. 请学生预测两边同时增加相同数量的结果，并说明理由。",
+              "adjustment": "若学生只报结论，请其分别说出等式左右两边发生了什么变化。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "判断等式两边变化后是否仍相等，并说明判断依据。",
+              "studentResponse": "预期回答：只改变一边通常不能保持相等；两边同时增加相同数量，仍相等。",
+              "teacherQuestion": "若只改变一边，相等关系会怎样？两边同时增加相同数量呢？"
+            },
+            {
+              "id": "eq-balance",
+              "title": "让天平两边一起变化",
+              "content": "1. 出示两边各有5单位的天平模型，说明此类比只展示非负数量。\n2. 两边同时增加相同的正量，请学生观察并解释结果。",
+              "adjustment": "若学生只关注一边，引导其逐边指出增加的数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "观察两边同时增加相同正量后的天平，并用自己的话解释。",
+              "studentResponse": "预期回答：两边增加相同数量，平衡关系不变。",
+              "teacherQuestion": "两边分别增加了什么？为什么天平仍平衡？"
+            },
+            {
+              "id": "eq-add-sub",
+              "title": "同加、同减",
+              "content": "1. 出示a = b及两条同加、同减关系，请学生辨认两边进行的共同运算。\n2. 请学生说明c可取正数、负数或零，等式两边仍须进行相同运算。",
+              "adjustment": "若回答只提到移项变号，请追问原式两边各进行了什么运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出等式两边分别进行了什么运算。",
+              "studentResponse": "预期回答：不能；要保持等式关系，两边须同时加相同的c。",
+              "teacherQuestion": "若只在左边加c，能否直接得到a + c = b + c？为什么？"
+            },
+            {
+              "id": "eq-example-add",
+              "title": "例题：消去减去的数",
+              "content": "1. 出示x - 3 = 5，请学生说明要消去左边减去的3，可以对两边做什么共同运算。\n2. 展示两边同时加3的算式，化简得x = 8。\n3. 请学生把8代回原式核对。",
+              "adjustment": "若学生直接报x = 8，请其补写两边同时加3的等式。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "说明共同运算，写出每一步并代回检验。",
+              "studentResponse": "预期回答：右边也加3；只改变一边不能保证等式仍成立。",
+              "teacherQuestion": "左边加3时，右边应怎样变化？只改变左边会怎样？"
+            },
+            {
+              "id": "eq-practice",
+              "title": "随堂练习",
+              "content": "1. 出示eq-practice-add与eq-practice-sub两题及原有题目提示。\n2. 学生逐步作答，并在每步标明等式两边共同进行的运算。\n3. 核对答案时检查是否只改变一边。",
+              "adjustment": "若出现只改变一边的写法，请学生回到原等式补写另一边的同一运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06"
+              ],
+              "studentTask": "完成两题，每一步写明两边共同进行的运算。",
+              "studentResponse": "预期回答：左右两边进行同一种运算；对应答案分别为8和7。",
+              "teacherQuestion": "你的每一步对等式左右两边分别做了什么？若只对一边运算，能否保证相等？"
+            },
+            {
+              "id": "eq-mul-div",
+              "title": "同乘、同除的条件",
+              "content": "1. 出示a = b时同乘c的关系及c ≠ 0时同除c的关系，请学生圈出同除条件。\n2. 展示x = 2两边同乘0得到0 = 0，请学生判断能否由此恢复x = 2。",
+              "adjustment": "若学生认为同乘0可逆，请其比较x = 2与0 = 0包含的信息。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出同除条件，并判断同乘0是否是可逆求解步骤。",
+              "studentResponse": "预期回答：除数必须非零；同乘0会丢失原方程信息，不能从0 = 0恢复x = 2。",
+              "teacherQuestion": "同除时除数必须满足什么条件？为什么同乘0不能用于可逆求解？"
+            },
+            {
+              "id": "eq-example-div",
+              "title": "例题：共同除以非零数",
+              "content": "1. 出示3z = 18，追问3是否为零；展示两边同除以3，得z = 6。\n2. 出示w / 4 = 3，展示两边同乘4，得w = 12。\n3. 出示b / (-3) = 2，用公式说明两边同乘-3，得b = -6；不把负数放入天平类比。",
+              "adjustment": "若未说明非零条件，请补问除数是否为零及这对变形的影响。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "逐题写出共同运算及结果，并说明同除的非零条件。",
+              "studentResponse": "预期回答：3 ≠ 0；负数运算用公式表示，不纳入天平实物类比。",
+              "teacherQuestion": "第一题为什么可以同除以3？第三题为何用同乘-3表示？"
+            },
+            {
+              "id": "eq-check",
+              "title": "独立检查",
+              "content": "1. 出示eq-check-divide与eq-check-multiply两题，学生独立作答并解释共同运算。\n2. 检查是否写明同除以3时3 ≠ 0，并核对两题答案。\n3. 若需帮助，先学习当前题，再用原有新题重新检查。",
+              "adjustment": "若只改变一边或漏写非零条件，指出相应步骤后让学生独立修正。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "独立求解两题，写出两边共同运算并解释同除条件。",
+              "studentResponse": "预期回答：两题答案分别为6和12；因3 ≠ 0，可以两边同除以3。",
+              "teacherQuestion": "两题各自对等式两边做了什么？同除以3为何允许？"
+            }
+          ],
+          "rationale": [
+            "先预测共同变化并观察天平，再用符号表达等式性质，帮助学生从机械记忆移项变号转向说明两边实际进行的运算。",
+            "练习和独立检查要求说出共同运算；追问聚焦是否只改变一边及同除数是否非零，以暴露并纠正关键误解。"
+          ],
+          "mathClaims": [
+            {
+              "left": "若a=b，则a+c=b+c",
+              "right": "两边同加c"
+            },
+            {
+              "left": "若a=b，则a-c=b-c",
+              "right": "两边同减c"
+            },
+            {
+              "left": "若a=b，则ac=bc",
+              "right": "两边同乘c"
+            },
+            {
+              "left": "若a=b且c≠0，则a/c=b/c",
+              "right": "两边同除以非零数c"
+            },
+            {
+              "left": "x-3=5",
+              "right": "x=8"
+            },
+            {
+              "left": "3z=18",
+              "right": "z=6"
+            },
+            {
+              "left": "w/4=3",
+              "right": "w=12"
+            },
+            {
+              "left": "b/(-3)=2",
+              "right": "b=-6"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "id": "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+            "url": "/#/courses",
+            "kind": "lesson",
+            "title": "等式性质",
+            "content": "相等的两边：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。\n让天平两边一起变化：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。\n同加、同减：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。\n例题：消去减去的数：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。\n随堂练习：每一步都说明两边进行了什么运算。\n同乘、同除的条件：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。\n例题：共同除以非零数：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。\n独立检查：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "versionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a"
+          },
+          {
+            "id": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06",
+            "url": "/#/source?unit=unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+            "kind": "material",
+            "label": "段落 2",
+            "score": 2.000075,
+            "title": "本轮专项：共同运算（已保存）",
+            "caseId": "case-60d7d898f642499f827ecc35b8e91362",
+            "unitId": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+            "content": "本轮专项验收自编材料。x−3=5，两边同时加3得x=8，代回8−3=5。",
+            "bm25Score": 2.000075,
+            "materialId": "material-28573e2bb910419fab670e097461e04",
+            "caseVersionId": "version-c4c55976bc76409aba16268f50f0092d"
+          }
+        ],
+        "warnings": [],
+        "generated": {
+          "goal": "能通过观察等式两边的共同变化解释同加、同减、同乘及同除以非零数的求解步骤。",
+          "title": "等式两边共同运算",
+          "blocks": [
+            {
+              "id": "eq-intro",
+              "title": "相等的两边",
+              "content": "1. 出示5 = 5，请学生判断只改变一边后是否仍相等。\n2. 请学生预测两边同时增加相同数量的结果，并说明理由。",
+              "adjustment": "若学生只报结论，请其分别说出等式左右两边发生了什么变化。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "判断等式两边变化后是否仍相等，并说明判断依据。",
+              "studentResponse": "预期回答：只改变一边通常不能保持相等；两边同时增加相同数量，仍相等。",
+              "teacherQuestion": "若只改变一边，相等关系会怎样？两边同时增加相同数量呢？"
+            },
+            {
+              "id": "eq-balance",
+              "title": "让天平两边一起变化",
+              "content": "1. 出示两边各有5单位的天平模型，说明此类比只展示非负数量。\n2. 两边同时增加相同的正量，请学生观察并解释结果。",
+              "adjustment": "若学生只关注一边，引导其逐边指出增加的数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "观察两边同时增加相同正量后的天平，并用自己的话解释。",
+              "studentResponse": "预期回答：两边增加相同数量，平衡关系不变。",
+              "teacherQuestion": "两边分别增加了什么？为什么天平仍平衡？"
+            },
+            {
+              "id": "eq-add-sub",
+              "title": "同加、同减",
+              "content": "1. 出示a = b及两条同加、同减关系，请学生辨认两边进行的共同运算。\n2. 请学生说明c可取正数、负数或零，等式两边仍须进行相同运算。",
+              "adjustment": "若回答只提到移项变号，请追问原式两边各进行了什么运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出等式两边分别进行了什么运算。",
+              "studentResponse": "预期回答：不能；要保持等式关系，两边须同时加相同的c。",
+              "teacherQuestion": "若只在左边加c，能否直接得到a + c = b + c？为什么？"
+            },
+            {
+              "id": "eq-example-add",
+              "title": "例题：消去减去的数",
+              "content": "1. 出示x - 3 = 5，请学生说明要消去左边减去的3，可以对两边做什么共同运算。\n2. 展示两边同时加3的算式，化简得x = 8。\n3. 请学生把8代回原式核对。",
+              "adjustment": "若学生直接报x = 8，请其补写两边同时加3的等式。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "说明共同运算，写出每一步并代回检验。",
+              "studentResponse": "预期回答：右边也加3；只改变一边不能保证等式仍成立。",
+              "teacherQuestion": "左边加3时，右边应怎样变化？只改变左边会怎样？"
+            },
+            {
+              "id": "eq-practice",
+              "title": "随堂练习",
+              "content": "1. 出示eq-practice-add与eq-practice-sub两题及原有题目提示。\n2. 学生逐步作答，并在每步标明等式两边共同进行的运算。\n3. 核对答案时检查是否只改变一边。",
+              "adjustment": "若出现只改变一边的写法，请学生回到原等式补写另一边的同一运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06"
+              ],
+              "studentTask": "完成两题，每一步写明两边共同进行的运算。",
+              "studentResponse": "预期回答：左右两边进行同一种运算；对应答案分别为8和7。",
+              "teacherQuestion": "你的每一步对等式左右两边分别做了什么？若只对一边运算，能否保证相等？"
+            },
+            {
+              "id": "eq-mul-div",
+              "title": "同乘、同除的条件",
+              "content": "1. 出示a = b时同乘c的关系及c ≠ 0时同除c的关系，请学生圈出同除条件。\n2. 展示x = 2两边同乘0得到0 = 0，请学生判断能否由此恢复x = 2。",
+              "adjustment": "若学生认为同乘0可逆，请其比较x = 2与0 = 0包含的信息。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出同除条件，并判断同乘0是否是可逆求解步骤。",
+              "studentResponse": "预期回答：除数必须非零；同乘0会丢失原方程信息，不能从0 = 0恢复x = 2。",
+              "teacherQuestion": "同除时除数必须满足什么条件？为什么同乘0不能用于可逆求解？"
+            },
+            {
+              "id": "eq-example-div",
+              "title": "例题：共同除以非零数",
+              "content": "1. 出示3z = 18，追问3是否为零；展示两边同除以3，得z = 6。\n2. 出示w / 4 = 3，展示两边同乘4，得w = 12。\n3. 出示b / (-3) = 2，用公式说明两边同乘-3，得b = -6；不把负数放入天平类比。",
+              "adjustment": "若未说明非零条件，请补问除数是否为零及这对变形的影响。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "逐题写出共同运算及结果，并说明同除的非零条件。",
+              "studentResponse": "预期回答：3 ≠ 0；负数运算用公式表示，不纳入天平实物类比。",
+              "teacherQuestion": "第一题为什么可以同除以3？第三题为何用同乘-3表示？"
+            },
+            {
+              "id": "eq-check",
+              "title": "独立检查",
+              "content": "1. 出示eq-check-divide与eq-check-multiply两题，学生独立作答并解释共同运算。\n2. 检查是否写明同除以3时3 ≠ 0，并核对两题答案。\n3. 若需帮助，先学习当前题，再用原有新题重新检查。",
+              "adjustment": "若只改变一边或漏写非零条件，指出相应步骤后让学生独立修正。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "独立求解两题，写出两边共同运算并解释同除条件。",
+              "studentResponse": "预期回答：两题答案分别为6和12；因3 ≠ 0，可以两边同除以3。",
+              "teacherQuestion": "两题各自对等式两边做了什么？同除以3为何允许？"
+            }
+          ],
+          "rationale": [
+            "先预测共同变化并观察天平，再用符号表达等式性质，帮助学生从机械记忆移项变号转向说明两边实际进行的运算。",
+            "练习和独立检查要求说出共同运算；追问聚焦是否只改变一边及同除数是否非零，以暴露并纠正关键误解。"
+          ],
+          "mathClaims": [
+            {
+              "left": "若a=b，则a+c=b+c",
+              "right": "两边同加c"
+            },
+            {
+              "left": "若a=b，则a-c=b-c",
+              "right": "两边同减c"
+            },
+            {
+              "left": "若a=b，则ac=bc",
+              "right": "两边同乘c"
+            },
+            {
+              "left": "若a=b且c≠0，则a/c=b/c",
+              "right": "两边同除以非零数c"
+            },
+            {
+              "left": "x-3=5",
+              "right": "x=8"
+            },
+            {
+              "left": "3z=18",
+              "right": "z=6"
+            },
+            {
+              "left": "w/4=3",
+              "right": "w=12"
+            },
+            {
+              "left": "b/(-3)=2",
+              "right": "b=-6"
+            }
+          ]
+        },
+        "materials": [
+          {
+            "id": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06",
+            "url": "/#/source?unit=unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+            "kind": "material",
+            "label": "段落 2",
+            "score": 2.000075,
+            "title": "本轮专项：共同运算（已保存）",
+            "caseId": "case-60d7d898f642499f827ecc35b8e91362",
+            "unitId": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+            "content": "本轮专项验收自编材料。x−3=5，两边同时加3得x=8，代回8−3=5。",
+            "bm25Score": 2.000075,
+            "materialId": "material-28573e2bb910419fab670e097461e04",
+            "caseVersionId": "version-c4c55976bc76409aba16268f50f0092d"
+          }
+        ],
+        "retrieval": {
+          "mode": "search",
+          "query": "纠正只改变等式一边的错误，用本轮共同运算材料设计追问。保留本课全部活动与题目。 等式性质",
+          "method": "field-bm25+knowledge+context",
+          "variant": "B3",
+          "warnings": [],
+          "elapsedMs": 11.2,
+          "matchedCount": 2,
+          "rerankApplied": false,
+          "totalDocuments": 2,
+          "algorithmVersion": "teaching-context-v1",
+          "eligibleDocuments": 2,
+          "queryUnderstanding": {
+            "scenario": "misconception_correction",
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质",
+                "source": "name",
+                "matchedNames": [
+                  "等式性质"
+                ]
+              }
+            ],
+            "expansions": [
+              {
+                "text": "等式性质",
+                "source": "name",
+                "knowledgeId": "kp-equality"
+              }
+            ],
+            "normalizedQuery": "纠正只改变等式一边的错误,用本轮共同运算材料设计追问。保留本课全部活动与题目。 等式性质"
+          }
+        },
+        "startedAt": "2026-11-11T15:53:40.360503+00:00",
+        "modelCalls": 1,
+        "budgetStartedAt": "2026-11-11T15:53:40.360522+00:00",
+        "workflowVersion": "teaching-plan-v1"
+      },
+      "error": "数学条件需修订，结果未采用：同乘零不能作为保留原解的可逆变形。"
+    },
+    "teacher-plan-corrected": {
+      "id": "job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": "succeeded",
+      "seconds": 33.937,
+      "transport": null,
+      "result": {
+        "plan": {
+          "goal": "能说明解方程时两边进行的共同运算，并用代入检验结果。",
+          "title": "等式两边共同运算",
+          "blocks": [
+            {
+              "id": "eq-intro",
+              "title": "相等的两边",
+              "content": "出示5=5，追问只改变一边是否仍相等。引出两边同时进行同一运算。",
+              "adjustment": "若只说“移项变号”，追问具体是哪两边分别进行了什么运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "判断只改变一边后是否仍相等，并说明理由。",
+              "studentResponse": "通常不成立；两边的值不再相等。",
+              "teacherQuestion": "如果只改变等式一边，等式还成立吗？"
+            },
+            {
+              "id": "eq-balance",
+              "title": "让天平两边一起变化",
+              "content": "出示两边各有5单位的天平。两边同时增加相同正量，观察并描述两边仍相等。",
+              "adjustment": "说明此天平示意只展示非负数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "观察两边同时增加相同正量后的天平，并描述结果。",
+              "studentResponse": "还平衡。",
+              "teacherQuestion": "两边各增加相同数量后，天平还平衡吗？"
+            },
+            {
+              "id": "eq-add-sub",
+              "title": "同加、同减",
+              "content": "出示a=b及两边同加c、同减c的式子。指出两边进行相同运算；移项可解释为两边共同加减同一个数。",
+              "adjustment": "追问是否只改变了一边，并让学生标出等式左右两侧的同一运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出式子两边分别进行了什么运算。",
+              "studentResponse": "两边都减去c。",
+              "teacherQuestion": "从a=b得到a−c=b−c，两边共同做了什么？"
+            },
+            {
+              "id": "eq-example-add",
+              "title": "例题：两边同时加3",
+              "content": "出示x−3=5。追问怎样消去左边的−3；写出两边同时加3，得到x=8；代回检验8−3=5。",
+              "adjustment": "若只回答“移项变号”，追问把等式左右两边分别加上什么写出来。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06"
+              ],
+              "studentTask": "说明两边共同进行的运算，并代回检验。",
+              "studentResponse": "两边同时加3；这样两边仍进行相同运算，得到x=8。代回有8−3=5。",
+              "teacherQuestion": "要消去左边减去的3，两边应同时加还是减3？为什么右边也要这样做？"
+            },
+            {
+              "id": "eq-practice",
+              "title": "随堂练习",
+              "content": "出示原练习题。要求每一步写明两边共同进行的运算，并核对答案。",
+              "adjustment": "若只改动一边，提示比较等式两侧的运算并订正。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "完成题目，并说明每一步两边进行了什么运算。",
+              "studentResponse": "",
+              "teacherQuestion": "这一步两边分别做了什么？"
+            },
+            {
+              "id": "eq-mul-div",
+              "title": "同乘、同除的条件",
+              "content": "出示同乘与同除的等式关系。说明两边同除以同一个数时，该数必须非零。",
+              "adjustment": "追问若除数为0，是否符合除法定义。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出同除规则的非零条件。",
+              "studentResponse": "c≠0。",
+              "teacherQuestion": "两边同除以c时，c需要满足什么条件？"
+            },
+            {
+              "id": "eq-example-div",
+              "title": "例题：共同除以非零数",
+              "content": "出示原例题。先指出3≠0，再两边同除以3求z；其余例题按原式说明共同运算。",
+              "adjustment": "若未说明条件，要求补写除数非零。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "按题目要求写出两边共同进行的运算。",
+              "studentResponse": "因为3≠0。",
+              "teacherQuestion": "两边为什么可以同时除以3？"
+            },
+            {
+              "id": "eq-check",
+              "title": "独立检查",
+              "content": "出示原检查题，独立作答并写明两边的共同运算及必要条件。",
+              "adjustment": "依据作答追问遗漏的共同运算或非零条件。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "独立求解并解释每一步。",
+              "studentResponse": "",
+              "teacherQuestion": "共同运算是什么？若同除，除数是否非零？"
+            }
+          ],
+          "rationale": [
+            "先追问共同变化如何保持相等，再用x−3=5追问为何两边同加3，针对学生机械记忆移项变号的困难。",
+            "随后代回核对，并在后续活动中明确同除必须除以非零数。"
+          ],
+          "mathClaims": [
+            {
+              "left": "x−3=5 ⇒ x−3+3=5+3",
+              "right": "x=8"
+            },
+            {
+              "left": "8−3",
+              "right": "5"
+            },
+            {
+              "left": "3≠0",
+              "right": "两边可同除以3"
+            }
+          ]
+        },
+        "cases": [
+          {
+            "id": "case-60d7d898f642499f827ecc35b8e91362",
+            "grade": "七年级",
+            "title": "本轮专项：共同运算追问",
+            "author": "工程验收",
+            "source": "本轮专项：共同运算（已保存）",
+            "content": "给出x−3=5。两边同时加3，再把x=8代回核对。除法只能除以同一个非零数。",
+            "subject": "数学",
+            "version": 1,
+            "reviewed": false,
+            "updatedAt": "2026-11-11T15:53:35.462261Z",
+            "versionId": "version-c4c55976bc76409aba16268f50f0092d",
+            "experience": {},
+            "references": [
+              {
+                "label": "段落 2",
+                "quote": "本轮专项验收自编材料。x−3=5，两边同时加3得x=8，代回8−3=5。",
+                "author": "项目工程验收",
+                "source": "本轮合成工程材料，非真实课堂资料",
+                "unitId": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+                "sourceUrl": "",
+                "materialId": "material-28573e2bb910419fab670e097461e04",
+                "materialTitle": "本轮专项：共同运算（已保存）"
+              }
+            ],
+            "publishedAt": "2026-11-11T15:53:35Z",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified"
+            },
+            "knowledgeLinks": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ]
+          },
+          {
+            "id": "case-balance",
+            "grade": "七年级",
+            "score": 1.666398,
+            "title": "天平与等式性质",
+            "author": "",
+            "legacy": true,
+            "source": "待补充核对的教学示例",
+            "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+            "subject": "数学",
+            "version": 1,
+            "bm25Score": 2.409391,
+            "textScore": 1.546398,
+            "versionId": "version-1d25262f02eb47f5a2bdd35b725e2d61",
+            "experience": {},
+            "references": [],
+            "publishedAt": "2026-11-11T15:49:32Z",
+            "contextScore": 0.12,
+            "matchReasons": [
+              "匹配标题、正文",
+              "与课时适用信息一致"
+            ],
+            "matchedFields": [
+              {
+                "bm25": 2.222304,
+                "field": "title",
+                "label": "标题",
+                "score": 1.383114,
+                "matchedTerms": [
+                  "式性",
+                  "性质",
+                  "等式"
+                ],
+                "contextMatched": true
+              },
+              {
+                "bm25": 0.187087,
+                "field": "content",
+                "label": "正文",
+                "score": 0.163284,
+                "matchedTerms": [
+                  "同时"
+                ],
+                "contextMatched": true
+              }
+            ],
+            "retrievalText": "{}",
+            "knowledgeScore": 0.0,
+            "knowledgeMatches": []
+          }
+        ],
+        "model": "gpt-6-luna",
+        "steps": [
+          {
+            "key": "context",
+            "tool": "curriculum.read",
+            "title": "理解任务与课时",
+            "output": {
+              "method": "显式选择或有限关键词规则；课时由服务端读取",
+              "recognizedType": "误解纠正",
+              "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a"
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-11T15:55:09.580323+00:00",
+            "finishedAt": "2026-11-11T15:55:09.626177+00:00"
+          },
+          {
+            "key": "cases",
+            "tool": "retrieval.bm25",
+            "title": "检索教学案例",
+            "output": {
+              "rerank": false,
+              "versions": [
+                {
+                  "id": "case-60d7d898f642499f827ecc35b8e91362",
+                  "versionId": "version-c4c55976bc76409aba16268f50f0092d"
+                },
+                {
+                  "id": "case-balance",
+                  "versionId": "version-1d25262f02eb47f5a2bdd35b725e2d61"
+                }
+              ],
+              "caseCount": 2
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-11T15:55:09.649160+00:00",
+            "finishedAt": "2026-11-11T15:55:09.735881+00:00"
+          },
+          {
+            "key": "materials",
+            "tool": "materials.read",
+            "title": "定位原文材料",
+            "output": {
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06"
+              ],
+              "materialCount": 1
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-11T15:55:09.766350+00:00",
+            "finishedAt": "2026-11-11T15:55:09.892648+00:00"
+          },
+          {
+            "key": "generate",
+            "tool": "codex.lesson_plan",
+            "title": "生成备课建议",
+            "output": {
+              "model": "gpt-6-luna",
+              "origin": "模型生成，待教师核对",
+              "provider": "Codex CLI · low",
+              "onlyBlock": null,
+              "blockCount": 8
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-11T15:55:09.927934+00:00",
+            "finishedAt": "2026-11-11T15:55:42.087836+00:00"
+          },
+          {
+            "key": "validate",
+            "tool": "plan.validate",
+            "error": "数学条件需修订，结果未采用：涉及同除的规则必须明确非零条件。",
+            "title": "核验结构与依据",
+            "status": "failed",
+            "startedAt": "2026-11-11T15:55:42.334184+00:00",
+            "finishedAt": "2026-11-11T15:55:42.411350+00:00"
+          }
+        ],
+        "context": {
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "task": "围绕x−3=5设计等式两边同时加3的追问，再代回8−3=5核对。保留全部活动ID和题目。讲解只使用两边同时加减同一个数；已有除法例题明确除数非零。",
+          "grade": "七年级",
+          "subject": "数学",
+          "lessonId": "lesson-equation",
+          "taskType": "misconception",
+          "taskLabel": "误解纠正",
+          "constraints": "只解释同加、同减与除以同一个非零数。不要把同乘零作为可逆求解步骤；若说明乘零，必须明确这会丢失原方程信息且不可逆。每段写清操作和具体追问，不扩写无关性质。",
+          "lessonTitle": "等式性质",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "lessonVersionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a",
+          "prerequisiteIds": [
+            "kp-equal",
+            "kp-operations",
+            "kp-expression"
+          ]
+        },
+        "decision": "pending",
+        "editable": {
+          "goal": "能说明解方程时两边进行的共同运算，并用代入检验结果。",
+          "title": "等式两边共同运算",
+          "blocks": [
+            {
+              "id": "eq-intro",
+              "title": "相等的两边",
+              "content": "出示5=5，追问只改变一边是否仍相等。引出两边同时进行同一运算。",
+              "adjustment": "若只说“移项变号”，追问具体是哪两边分别进行了什么运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "判断只改变一边后是否仍相等，并说明理由。",
+              "studentResponse": "通常不成立；两边的值不再相等。",
+              "teacherQuestion": "如果只改变等式一边，等式还成立吗？"
+            },
+            {
+              "id": "eq-balance",
+              "title": "让天平两边一起变化",
+              "content": "出示两边各有5单位的天平。两边同时增加相同正量，观察并描述两边仍相等。",
+              "adjustment": "说明此天平示意只展示非负数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "观察两边同时增加相同正量后的天平，并描述结果。",
+              "studentResponse": "还平衡。",
+              "teacherQuestion": "两边各增加相同数量后，天平还平衡吗？"
+            },
+            {
+              "id": "eq-add-sub",
+              "title": "同加、同减",
+              "content": "出示a=b及两边同加c、同减c的式子。指出两边进行相同运算；移项可解释为两边共同加减同一个数。",
+              "adjustment": "追问是否只改变了一边，并让学生标出等式左右两侧的同一运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出式子两边分别进行了什么运算。",
+              "studentResponse": "两边都减去c。",
+              "teacherQuestion": "从a=b得到a−c=b−c，两边共同做了什么？"
+            },
+            {
+              "id": "eq-example-add",
+              "title": "例题：两边同时加3",
+              "content": "出示x−3=5。追问怎样消去左边的−3；写出两边同时加3，得到x=8；代回检验8−3=5。",
+              "adjustment": "若只回答“移项变号”，追问把等式左右两边分别加上什么写出来。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06"
+              ],
+              "studentTask": "说明两边共同进行的运算，并代回检验。",
+              "studentResponse": "两边同时加3；这样两边仍进行相同运算，得到x=8。代回有8−3=5。",
+              "teacherQuestion": "要消去左边减去的3，两边应同时加还是减3？为什么右边也要这样做？"
+            },
+            {
+              "id": "eq-practice",
+              "title": "随堂练习",
+              "content": "出示原练习题。要求每一步写明两边共同进行的运算，并核对答案。",
+              "adjustment": "若只改动一边，提示比较等式两侧的运算并订正。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "完成题目，并说明每一步两边进行了什么运算。",
+              "studentResponse": "",
+              "teacherQuestion": "这一步两边分别做了什么？"
+            },
+            {
+              "id": "eq-mul-div",
+              "title": "同乘、同除的条件",
+              "content": "出示同乘与同除的等式关系。说明两边同除以同一个数时，该数必须非零。",
+              "adjustment": "追问若除数为0，是否符合除法定义。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出同除规则的非零条件。",
+              "studentResponse": "c≠0。",
+              "teacherQuestion": "两边同除以c时，c需要满足什么条件？"
+            },
+            {
+              "id": "eq-example-div",
+              "title": "例题：共同除以非零数",
+              "content": "出示原例题。先指出3≠0，再两边同除以3求z；其余例题按原式说明共同运算。",
+              "adjustment": "若未说明条件，要求补写除数非零。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "按题目要求写出两边共同进行的运算。",
+              "studentResponse": "因为3≠0。",
+              "teacherQuestion": "两边为什么可以同时除以3？"
+            },
+            {
+              "id": "eq-check",
+              "title": "独立检查",
+              "content": "出示原检查题，独立作答并写明两边的共同运算及必要条件。",
+              "adjustment": "依据作答追问遗漏的共同运算或非零条件。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "独立求解并解释每一步。",
+              "studentResponse": "",
+              "teacherQuestion": "共同运算是什么？若同除，除数是否非零？"
+            }
+          ],
+          "rationale": [
+            "先追问共同变化如何保持相等，再用x−3=5追问为何两边同加3，针对学生机械记忆移项变号的困难。",
+            "随后代回核对，并在后续活动中明确同除必须除以非零数。"
+          ],
+          "mathClaims": [
+            {
+              "left": "x−3=5 ⇒ x−3+3=5+3",
+              "right": "x=8"
+            },
+            {
+              "left": "8−3",
+              "right": "5"
+            },
+            {
+              "left": "3≠0",
+              "right": "两边可同除以3"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "id": "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+            "url": "/#/courses",
+            "kind": "lesson",
+            "title": "等式性质",
+            "content": "相等的两边：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。\n让天平两边一起变化：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。\n同加、同减：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。\n例题：消去减去的数：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。\n随堂练习：每一步都说明两边进行了什么运算。\n同乘、同除的条件：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。\n例题：共同除以非零数：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。\n独立检查：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "versionId": "lessonversion-f417c4b1ac0f4f77a164ffb17a"
+          },
+          {
+            "id": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06",
+            "url": "/#/source?unit=unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+            "kind": "material",
+            "label": "段落 2",
+            "score": 3.630274,
+            "title": "本轮专项：共同运算（已保存）",
+            "caseId": "case-60d7d898f642499f827ecc35b8e91362",
+            "unitId": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+            "content": "本轮专项验收自编材料。x−3=5，两边同时加3得x=8，代回8−3=5。",
+            "bm25Score": 3.630274,
+            "materialId": "material-28573e2bb910419fab670e097461e04",
+            "caseVersionId": "version-c4c55976bc76409aba16268f50f0092d"
+          }
+        ],
+        "warnings": [],
+        "generated": {
+          "goal": "能说明解方程时两边进行的共同运算，并用代入检验结果。",
+          "title": "等式两边共同运算",
+          "blocks": [
+            {
+              "id": "eq-intro",
+              "title": "相等的两边",
+              "content": "出示5=5，追问只改变一边是否仍相等。引出两边同时进行同一运算。",
+              "adjustment": "若只说“移项变号”，追问具体是哪两边分别进行了什么运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "判断只改变一边后是否仍相等，并说明理由。",
+              "studentResponse": "通常不成立；两边的值不再相等。",
+              "teacherQuestion": "如果只改变等式一边，等式还成立吗？"
+            },
+            {
+              "id": "eq-balance",
+              "title": "让天平两边一起变化",
+              "content": "出示两边各有5单位的天平。两边同时增加相同正量，观察并描述两边仍相等。",
+              "adjustment": "说明此天平示意只展示非负数量。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "观察两边同时增加相同正量后的天平，并描述结果。",
+              "studentResponse": "还平衡。",
+              "teacherQuestion": "两边各增加相同数量后，天平还平衡吗？"
+            },
+            {
+              "id": "eq-add-sub",
+              "title": "同加、同减",
+              "content": "出示a=b及两边同加c、同减c的式子。指出两边进行相同运算；移项可解释为两边共同加减同一个数。",
+              "adjustment": "追问是否只改变了一边，并让学生标出等式左右两侧的同一运算。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出式子两边分别进行了什么运算。",
+              "studentResponse": "两边都减去c。",
+              "teacherQuestion": "从a=b得到a−c=b−c，两边共同做了什么？"
+            },
+            {
+              "id": "eq-example-add",
+              "title": "例题：两边同时加3",
+              "content": "出示x−3=5。追问怎样消去左边的−3；写出两边同时加3，得到x=8；代回检验8−3=5。",
+              "adjustment": "若只回答“移项变号”，追问把等式左右两边分别加上什么写出来。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a",
+                "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06"
+              ],
+              "studentTask": "说明两边共同进行的运算，并代回检验。",
+              "studentResponse": "两边同时加3；这样两边仍进行相同运算，得到x=8。代回有8−3=5。",
+              "teacherQuestion": "要消去左边减去的3，两边应同时加还是减3？为什么右边也要这样做？"
+            },
+            {
+              "id": "eq-practice",
+              "title": "随堂练习",
+              "content": "出示原练习题。要求每一步写明两边共同进行的运算，并核对答案。",
+              "adjustment": "若只改动一边，提示比较等式两侧的运算并订正。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "完成题目，并说明每一步两边进行了什么运算。",
+              "studentResponse": "",
+              "teacherQuestion": "这一步两边分别做了什么？"
+            },
+            {
+              "id": "eq-mul-div",
+              "title": "同乘、同除的条件",
+              "content": "出示同乘与同除的等式关系。说明两边同除以同一个数时，该数必须非零。",
+              "adjustment": "追问若除数为0，是否符合除法定义。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "指出同除规则的非零条件。",
+              "studentResponse": "c≠0。",
+              "teacherQuestion": "两边同除以c时，c需要满足什么条件？"
+            },
+            {
+              "id": "eq-example-div",
+              "title": "例题：共同除以非零数",
+              "content": "出示原例题。先指出3≠0，再两边同除以3求z；其余例题按原式说明共同运算。",
+              "adjustment": "若未说明条件，要求补写除数非零。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "按题目要求写出两边共同进行的运算。",
+              "studentResponse": "因为3≠0。",
+              "teacherQuestion": "两边为什么可以同时除以3？"
+            },
+            {
+              "id": "eq-check",
+              "title": "独立检查",
+              "content": "出示原检查题，独立作答并写明两边的共同运算及必要条件。",
+              "adjustment": "依据作答追问遗漏的共同运算或非零条件。",
+              "evidenceIds": [
+                "lesson:lessonversion-f417c4b1ac0f4f77a164ffb17a"
+              ],
+              "studentTask": "独立求解并解释每一步。",
+              "studentResponse": "",
+              "teacherQuestion": "共同运算是什么？若同除，除数是否非零？"
+            }
+          ],
+          "rationale": [
+            "先追问共同变化如何保持相等，再用x−3=5追问为何两边同加3，针对学生机械记忆移项变号的困难。",
+            "随后代回核对，并在后续活动中明确同除必须除以非零数。"
+          ],
+          "mathClaims": [
+            {
+              "left": "x−3=5 ⇒ x−3+3=5+3",
+              "right": "x=8"
+            },
+            {
+              "left": "8−3",
+              "right": "5"
+            },
+            {
+              "left": "3≠0",
+              "right": "两边可同除以3"
+            }
+          ]
+        },
+        "materials": [
+          {
+            "id": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78:1e32287a06",
+            "url": "/#/source?unit=unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+            "kind": "material",
+            "label": "段落 2",
+            "score": 3.630274,
+            "title": "本轮专项：共同运算（已保存）",
+            "caseId": "case-60d7d898f642499f827ecc35b8e91362",
+            "unitId": "unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+            "content": "本轮专项验收自编材料。x−3=5，两边同时加3得x=8，代回8−3=5。",
+            "bm25Score": 3.630274,
+            "materialId": "material-28573e2bb910419fab670e097461e04",
+            "caseVersionId": "version-c4c55976bc76409aba16268f50f0092d"
+          }
+        ],
+        "retrieval": {
+          "mode": "search",
+          "query": "围绕x−3=5设计等式两边同时加3的追问，再代回8−3=5核对。保留全部活动ID和题目。讲解只使用两边同时加减同一个数；已有除法例题明确除数非零。 等式性质",
+          "method": "field-bm25+knowledge+context",
+          "variant": "B3",
+          "warnings": [],
+          "elapsedMs": 4.301,
+          "matchedCount": 2,
+          "rerankApplied": false,
+          "totalDocuments": 2,
+          "algorithmVersion": "teaching-context-v1",
+          "eligibleDocuments": 2,
+          "queryUnderstanding": {
+            "scenario": "activity_design",
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质",
+                "source": "name",
+                "matchedNames": [
+                  "等式性质"
+                ]
+              }
+            ],
+            "expansions": [
+              {
+                "text": "等式性质",
+                "source": "name",
+                "knowledgeId": "kp-equality"
+              }
+            ],
+            "normalizedQuery": "围绕x-3=5设计等式两边同时加3的追问,再代回8-3=5核对。保留全部活动id和题目。讲解只使用两边同时加减同一个数;已有除法例题明确除数非零。 等式性质"
+          }
+        },
+        "startedAt": "2026-11-11T15:55:09.574165+00:00",
+        "modelCalls": 1,
+        "budgetStartedAt": "2026-11-11T15:55:09.574187+00:00",
+        "workflowVersion": "teaching-plan-v1"
+      },
+      "error": "数学条件需修订，结果未采用：涉及同除的规则必须明确非零条件。",
+      "statusAtModelReturn": "failed",
+      "manuallyEditedAndConfirmed": true
+    },
+    "student-hint": {
+      "id": "job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": "succeeded",
+      "seconds": 9.834,
+      "transport": null,
+      "result": {
+        "hint": "在左边加3的同时，右边也加3；想一想右边变成什么。",
+        "steps": [
+          "等式两边同时加3，保持相等关系。"
+        ],
+        "title": "两边同时加3",
+        "sources": [],
+        "question": "右边的5加3后，等式会变成什么？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 9368,
+          "modelCalls": 1,
+          "contextChars": 1422,
+          "historyTurns": 0
+        },
+        "mathClaims": [],
+        "needCoverage": {
+          "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+          "missing": [],
+          "required": []
+        },
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "prerequisiteId": "kp-equal",
+        "representation": "symbolic",
+        "usedCaseVersionIds": []
+      },
+      "error": ""
+    },
+    "wrong-analysis": {
+      "id": "job-1390304507054c1cb0289983d2435d6e",
+      "status": "succeeded",
+      "seconds": 9.321,
+      "transport": null,
+      "result": {
+        "goal": "判断从 x - 3 = 5 求 x 时，如何保持等式成立。",
+        "cause": "其他或待确认",
+        "steps": [
+          "提示：想一想要对等式两边做什么相同的运算，才能单独留下 x。",
+          "把该运算同时用于等式两边，再计算并检查结果是否满足原方程。"
+        ],
+        "evidence": "0",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-a5451c84b41044478f38f197c71456dd",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [],
+        "uncertainty": "原解释说明本轮工程输入暂保留错误答案，未提供学生作答过程；无法确定错误原因。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified"
+        },
+        "checkQuestion": "为了单独留下 x，你会对等式两边同时做什么运算？",
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        }
+      },
+      "error": ""
+    },
+    "wrong-guidance": {
+      "id": "job-f47ab0065649492ca69d31b84ec74c79",
+      "status": "succeeded",
+      "seconds": 8.299,
+      "transport": null,
+      "result": {
+        "hint": "想一想，减去 3 的相反运算是什么？",
+        "steps": [
+          "根据相等关系，为保持等式成立，左边和右边要做相同的运算。",
+          "试着在等式两边都加上 3，观察左边的 −3 会怎样。"
+        ],
+        "title": "等式两边共同运算",
+        "sources": [],
+        "question": "等式两边同时加上 3 后，左边会变成什么？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 7672,
+          "modelCalls": 1,
+          "contextChars": 606,
+          "historyTurns": 1
+        },
+        "mathClaims": [],
+        "needCoverage": {
+          "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+          "missing": [],
+          "required": []
+        },
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "prerequisiteId": "kp-equal",
+        "representation": "symbolic",
+        "usedCaseVersionIds": []
+      },
+      "error": ""
+    },
+    "wrong-practice": {
+      "id": "job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": "succeeded",
+      "seconds": 7.263,
+      "transport": null,
+      "result": {
+        "variant": {
+          "prompt": "先想：要让左边的“减 4”消失，可以对等式两边做什么相同的运算？",
+          "equation": "x - 4 = 7",
+          "rationale": "与原题一样，未知数减去一个数等于另一数；新方程的减数和右边数值不同，解也不同。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-a5451c84b41044478f38f197c71456dd",
+          "modelCalls": 1
+        },
+        "mathClaims": [
+          {
+            "left": "11 - 4",
+            "right": "7"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "11 - 4",
+              "right": "7",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "x - 4 = 7"
+        }
+      },
+      "error": ""
+    },
+    "wrong-retest": {
+      "id": "job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": "succeeded",
+      "seconds": 18.154,
+      "transport": null,
+      "result": {
+        "variant": {
+          "prompt": "求解方程。",
+          "equation": "x - 6 = 9",
+          "rationale": "与原题一样，未知数在左侧先减去一个数，再等于常数；更换了数值，且解不同。"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-a5451c84b41044478f38f197c71456dd",
+          "modelCalls": 2
+        },
+        "mathClaims": [
+          {
+            "left": "15 - 6",
+            "right": "9"
+          }
+        ],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [
+            {
+              "left": "15 - 6",
+              "right": "9",
+              "method": "表达式等价",
+              "status": "verified"
+            }
+          ],
+          "status": "verified"
+        },
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "variantVerification": {
+          "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+          "status": "verified",
+          "equation": "x - 6 = 9"
+        }
+      },
+      "error": ""
+    }
+  },
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.526
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.245
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.227
+    },
+    {
+      "method": "GET",
+      "path": "/accounts",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/courses",
+      "status": 200,
+      "seconds": 0.027
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-equation",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-simple",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-a83e59fd932d4c63a3e4109e7a638b8c",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-application",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-1bf228629d0847c18227ca154c8d3a7a",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "GET",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.087
+    },
+    {
+      "method": "GET",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.129
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.251
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.206
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.214
+    },
+    {
+      "method": "GET",
+      "path": "/accounts",
+      "status": 200,
+      "seconds": 0.006
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/courses",
+      "status": 200,
+      "seconds": 0.024
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-equation",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-simple",
+      "status": 200,
+      "seconds": 0.009
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-a83e59fd932d4c63a3e4109e7a638b8c",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-application",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-1bf228629d0847c18227ca154c8d3a7a",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.082
+    },
+    {
+      "method": "GET",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.129
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-e7c600e0026642db8b938ec33fe0b16",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-e7c600e0026642db8b938ec33fe0b16",
+      "status": 200,
+      "seconds": 0.116
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-e7c600e0026642db8b938ec33fe0b16",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-e7c600e0026642db8b938ec33fe0b16",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "PUT",
+      "path": "/library/materials/material-e7c600e0026642db8b938ec33fe0b16",
+      "status": 200,
+      "seconds": 0.038
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-e7c600e0026642db8b938ec33fe0b16",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/library/units/unit-797ab8670223c992440dbe2d4903fe82",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.265
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.437
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.205
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-28573e2bb910419fab670e097461e04",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-28573e2bb910419fab670e097461e04",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-28573e2bb910419fab670e097461e04",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-28573e2bb910419fab670e097461e04",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "PUT",
+      "path": "/library/materials/material-28573e2bb910419fab670e097461e04",
+      "status": 200,
+      "seconds": 0.04
+    },
+    {
+      "method": "GET",
+      "path": "/library/materials/material-28573e2bb910419fab670e097461e04",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/library/units/unit-c0f9f41d28b5d2e26d22e6c4d67950bf",
+      "status": 200,
+      "seconds": 0.009
+    },
+    {
+      "method": "GET",
+      "path": "/library/units/unit-0c84ea5b6bf6cf106bdda8f50ccd9f78",
+      "status": 200,
+      "seconds": 0.009
+    },
+    {
+      "method": "GET",
+      "path": "/library/units/unit-f55d54d18ce0329e65fc88da934d23bd",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "POST",
+      "path": "/library/cases",
+      "status": 201,
+      "seconds": 0.045
+    },
+    {
+      "method": "PUT",
+      "path": "/library/cases/case-60d7d898f642499f827ecc35b8e91362/draft",
+      "status": 200,
+      "seconds": 0.044
+    },
+    {
+      "method": "POST",
+      "path": "/library/cases/case-60d7d898f642499f827ecc35b8e91362/verify",
+      "status": 200,
+      "seconds": 0.034
+    },
+    {
+      "method": "POST",
+      "path": "/library/cases/case-60d7d898f642499f827ecc35b8e91362/review",
+      "status": 200,
+      "seconds": 0.027
+    },
+    {
+      "method": "POST",
+      "path": "/library/cases/case-60d7d898f642499f827ecc35b8e91362/publish",
+      "status": 200,
+      "seconds": 0.128
+    },
+    {
+      "method": "POST",
+      "path": "/accounts",
+      "status": 201,
+      "seconds": 0.252
+    },
+    {
+      "method": "POST",
+      "path": "/classrooms/class-demo/members",
+      "status": 201,
+      "seconds": 0.045
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.251
+    },
+    {
+      "method": "GET",
+      "path": "/platform?lessonId=lesson-equation",
+      "status": 200,
+      "seconds": 0.132
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-equation",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "PUT",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.142
+    },
+    {
+      "method": "POST",
+      "path": "/ai/jobs",
+      "status": 201,
+      "seconds": 0.729
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.286
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.02
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.02
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.02
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.056
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-ce262c54e8b6446687f50145922e6484",
+      "status": 200,
+      "seconds": 0.02
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.313
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.205
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.208
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.198
+    },
+    {
+      "method": "GET",
+      "path": "/platform?lessonId=lesson-equation",
+      "status": 200,
+      "seconds": 0.129
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-equation",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "PUT",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "POST",
+      "path": "/ai/jobs",
+      "status": 201,
+      "seconds": 0.046
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.311
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.02
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.02
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.301
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.223
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.196
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.209
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.198
+    },
+    {
+      "method": "GET",
+      "path": "/platform?lessonId=lesson-equation",
+      "status": 200,
+      "seconds": 0.122
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-equation",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "PUT",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "PUT",
+      "path": "/ai/agent/job-b677bf11c8a94aa0b442259a93b01f88/draft",
+      "status": 422,
+      "seconds": 0.013
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.257
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.239
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.202
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200,
+      "seconds": 0.204
+    },
+    {
+      "method": "GET",
+      "path": "/platform?lessonId=lesson-equation",
+      "status": 200,
+      "seconds": 0.117
+    },
+    {
+      "method": "GET",
+      "path": "/curriculum/lessons/lesson-equation",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "PUT",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-b677bf11c8a94aa0b442259a93b01f88",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "PUT",
+      "path": "/ai/agent/job-b677bf11c8a94aa0b442259a93b01f88/draft",
+      "status": 200,
+      "seconds": 0.169
+    },
+    {
+      "method": "GET",
+      "path": "/ai/agent/draft-state?lessonId=lesson-equation",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "POST",
+      "path": "/ai/agent/job-b677bf11c8a94aa0b442259a93b01f88/confirm",
+      "status": 200,
+      "seconds": 0.214
+    },
+    {
+      "method": "GET",
+      "path": "/platform?lessonId=lesson-equation",
+      "status": 200,
+      "seconds": 0.132
+    },
+    {
+      "method": "GET",
+      "path": "/platform?lessonId=lesson-equation",
+      "status": 200,
+      "seconds": 0.13
+    },
+    {
+      "method": "POST",
+      "path": "/tasks/publish",
+      "status": 201,
+      "seconds": 0.131
+    },
+    {
+      "method": "GET",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.099
+    },
+    {
+      "method": "GET",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.039
+    },
+    {
+      "method": "GET",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.099
+    },
+    {
+      "method": "POST",
+      "path": "/records/task-e47fe283a28a7d00b228d3e272a2a499/attempts",
+      "status": 201,
+      "seconds": 0.104
+    },
+    {
+      "method": "POST",
+      "path": "/ai/jobs",
+      "status": 201,
+      "seconds": 0.075
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.023
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-08bdc7d23ad64c5c9372724f90bf6179",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/platform",
+      "status": 200,
+      "seconds": 0.11
+    },
+    {
+      "method": "GET",
+      "path": "/wrongs",
+      "status": 200,
+      "seconds": 0.02
+    },
+    {
+      "method": "POST",
+      "path": "/ai/jobs",
+      "status": 201,
+      "seconds": 0.076
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.01
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.017
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-1390304507054c1cb0289983d2435d6e",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "PUT",
+      "path": "/wrongs/wrong-a5451c84b41044478f38f197c71456dd",
+      "status": 200,
+      "seconds": 0.065
+    },
+    {
+      "method": "POST",
+      "path": "/ai/jobs",
+      "status": 201,
+      "seconds": 0.081
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-f47ab0065649492ca69d31b84ec74c79",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "POST",
+      "path": "/ai/jobs",
+      "status": 201,
+      "seconds": 0.071
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.015
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-2a38293cf9724b93a75fd7d830325d1b",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "POST",
+      "path": "/wrongs/wrong-a5451c84b41044478f38f197c71456dd/attempts",
+      "status": 201,
+      "seconds": 0.052
+    },
+    {
+      "method": "POST",
+      "path": "/ai/jobs",
+      "status": 201,
+      "seconds": 0.066
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.019
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.011
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.012
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.014
+    },
+    {
+      "method": "GET",
+      "path": "/ai/jobs/job-e9cfffd0900c4742a17d0fd7e8f53df4",
+      "status": 200,
+      "seconds": 0.016
+    },
+    {
+      "method": "POST",
+      "path": "/wrongs/wrong-a5451c84b41044478f38f197c71456dd/attempts",
+      "status": 201,
+      "seconds": 0.049
+    },
+    {
+      "method": "GET",
+      "path": "/wrongs/wrong-a5451c84b41044478f38f197c71456dd",
+      "status": 200,
+      "seconds": 0.033
+    },
+    {
+      "method": "POST",
+      "path": "/exams/bank",
+      "status": 201,
+      "seconds": 0.048
+    },
+    {
+      "method": "POST",
+      "path": "/exams/bank/bq-1c02e8852ab14fd3bacdf878a8ccc77c/review",
+      "status": 200,
+      "seconds": 0.078
+    },
+    {
+      "method": "POST",
+      "path": "/exams/bank",
+      "status": 201,
+      "seconds": 0.031
+    },
+    {
+      "method": "POST",
+      "path": "/exams/bank/bq-a776c45868134fab850741f53b10686b/review",
+      "status": 200,
+      "seconds": 0.043
+    },
+    {
+      "method": "POST",
+      "path": "/exams/assemble",
+      "status": 200,
+      "seconds": 0.025
+    },
+    {
+      "method": "POST",
+      "path": "/exams/papers",
+      "status": 201,
+      "seconds": 0.039
+    },
+    {
+      "method": "POST",
+      "path": "/exams/papers/paper-cdc4bfd783fb42b4aa0f1deeb277a37f/review",
+      "status": 200,
+      "seconds": 0.098
+    },
+    {
+      "method": "POST",
+      "path": "/exams",
+      "status": 201,
+      "seconds": 0.061
+    },
+    {
+      "method": "POST",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/start",
+      "status": 200,
+      "seconds": 0.029
+    },
+    {
+      "method": "PUT",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/answers",
+      "status": 200,
+      "seconds": 0.036
+    },
+    {
+      "method": "POST",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/submit",
+      "status": 200,
+      "seconds": 0.084
+    },
+    {
+      "method": "POST",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/start",
+      "status": 200,
+      "seconds": 0.026
+    },
+    {
+      "method": "PUT",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/answers",
+      "status": 200,
+      "seconds": 0.262
+    },
+    {
+      "method": "POST",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/submit",
+      "status": 200,
+      "seconds": 0.029
+    },
+    {
+      "method": "GET",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6",
+      "status": 200,
+      "seconds": 0.02
+    },
+    {
+      "method": "PUT",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/submissions/sub-db68ca151bb14112906fbe5f676eec89/grades",
+      "status": 200,
+      "seconds": 0.047
+    },
+    {
+      "method": "PUT",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/submissions/sub-ee67ac5a42d3446db35fc310b91bd484/grades",
+      "status": 200,
+      "seconds": 0.037
+    },
+    {
+      "method": "POST",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6/results",
+      "status": 200,
+      "seconds": 0.116
+    },
+    {
+      "method": "GET",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "GET",
+      "path": "/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6",
+      "status": 200,
+      "seconds": 0.013
+    },
+    {
+      "method": "POST",
+      "path": "/live",
+      "status": 201,
+      "seconds": 0.05
+    },
+    {
+      "method": "POST",
+      "path": "/live/live-2948680d529149a4a04b7035991d222a/push",
+      "status": 200,
+      "seconds": 0.058
+    },
+    {
+      "method": "POST",
+      "path": "/live/live-2948680d529149a4a04b7035991d222a/join",
+      "status": 200,
+      "seconds": 0.043
+    },
+    {
+      "method": "PUT",
+      "path": "/live/live-2948680d529149a4a04b7035991d222a/activities/act-95f10eeb4c2541cf81c76119230d049f/answer",
+      "status": 200,
+      "seconds": 0.11
+    },
+    {
+      "method": "POST",
+      "path": "/live/live-2948680d529149a4a04b7035991d222a/join",
+      "status": 200,
+      "seconds": 0.036
+    },
+    {
+      "method": "PUT",
+      "path": "/live/live-2948680d529149a4a04b7035991d222a/activities/act-95f10eeb4c2541cf81c76119230d049f/answer",
+      "status": 200,
+      "seconds": 0.03
+    },
+    {
+      "method": "GET",
+      "path": "/live/live-2948680d529149a4a04b7035991d222a",
+      "status": 200,
+      "seconds": 0.018
+    },
+    {
+      "method": "POST",
+      "path": "/live/live-2948680d529149a4a04b7035991d222a/end",
+      "status": 200,
+      "seconds": 0.078
+    },
+    {
+      "method": "GET",
+      "path": "/insights?classId=class-demo",
+      "status": 200,
+      "seconds": 0.064
+    },
+    {
+      "method": "GET",
+      "path": "/memory",
+      "status": 200,
+      "seconds": 0.029
+    }
+  ],
+  "harnessCorrections": [
+    {
+      "at": "2026-11-11T15:52:53.257808+00:00",
+      "message": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/sczx-redesign/fresh/flows.py\", line 52, in <module>\n    unit=back['units'][0];read=api(admin,'GET','/library/units/'+unit['id']);assert 'x' in read['text'] or 'x' in read['originalText']\n                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    }
+  ],
+  "recoveryHistory": [
+    {
+      "at": "2026-11-11T15:57:05.112024+00:00",
+      "message": "PUT /ai/agent/job-b677bf11c8a94aa0b442259a93b01f88/draft 422: {\"detail\":\"数学条件需修订，结果未采用：除数不能为零。\"}",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/sczx-redesign/fresh/flows.py\", line 76, in <module>\n    plan['goal']=plan['goal']+' 本轮教师修订：用代回原式核对运算。';plan['blocks'][0]['teacherQuestion']='两边同时加3后，为什么还相等？';edited=api(teacher,'PUT','/ai/agent/'+j['id']+'/draft',plan)\n                                                                                                                                                ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/sczx-redesign/fresh/flows.py\", line 19, in api\n    if not r.is_success:raise RuntimeError(f'{method} {path} {r.status_code}: '+r.text[:1500])\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: PUT /ai/agent/job-b677bf11c8a94aa0b442259a93b01f88/draft 422: {\"detail\":\"数学条件需修订，结果未采用：除数不能为零。\"}\n"
+    }
+  ],
+  "historicalSnapshots": {
+    "count": 5,
+    "unchanged": true,
+    "hashes": {
+      "task-180054c70e9c0d5fdfba942f0af9ceb5": "df8d26c76347f24947f25a66a9d12ae4b279eb162e274e72157abd976370402f",
+      "task-c441c19e67774b54535b64e71157037f": "ab108f2814459af5a9afce71b2a6e83a234f1742aa60ea12cafe6544e97a20f1",
+      "task-13259736a319e53f8d15e9c937388ea4": "1eb349499bf02caa2cef9323ecf35a5af5648b6f70263406281bfb30b270afd5",
+      "task-ad711ff024993eb7dde251057273e819": "7707f8ebd1a6bbe3a28ef1e9fefdbab74be311e4fc527839866399b56ce5b4ea",
+      "task-c69cf993e9acc62a1bcc29e04e4578db": "480c75fbfdb8ee8213b7704b8e99d0b335517e0ba9d3f7581e55766c4ddf5f3e"
+    }
+  },
+  "completedAt": "2026-11-11T16:01:09.349028+00:00",
+  "allF01ToF12Passed": true
+}

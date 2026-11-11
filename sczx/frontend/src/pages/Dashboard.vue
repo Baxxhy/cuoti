@@ -7,6 +7,7 @@ import { teachingApi, deadlineText } from "@/services/teaching.js";
 import TaskList from "@/components/TaskList.vue";
 import MessageCenter from "@/components/MessageCenter.vue";
 import { ArrowRight, Users, BookOpen, Inbox } from "lucide-vue-next";
+const taskTab=ref("pending");
 const store = useLearning(),
   route = useRoute(),
   router = useRouter(),
@@ -64,114 +65,41 @@ async function select() {
 onBeforeUnmount(() => {
   generation++;
 });
+const pendingTasks=computed(()=>(overview.value?.tasks||[]).filter(t=>!["已提交","已反馈","历史只读"].includes(t.status)));
+const nextTask=computed(()=>pendingTasks.value[0]);
+const nextHasReading=computed(()=>!!(store.data.tasks.find(t=>t.id===nextTask.value?.id)?.snapshot?.blocks?.length));
+const visibleTasks=computed(()=>teacher.value?overview.value?.tasks||[]:taskTab.value==='pending'?pendingTasks.value:(overview.value?.tasks||[]).filter(t=>!pendingTasks.value.includes(t)));
+const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.tasks||0],['未提交',overview.value?.stats.unsubmittedStudents||0],['待反馈',overview.value?.stats.waitingFeedback||0]]:[['待完成',overview.value?.stats.pending||0],['学习中',overview.value?.stats.inProgress||0],['已提交',overview.value?.stats.submitted||0]]);
 </script>
 <template>
-  <PageHeading :title="teacher ? '教学概览' : '我的学习'"
-    ><RouteButton
-      v-if="teacher"
-      :route="'prepare' + (selected ? '?class=' + selected : '')"
-      >备课并发布</RouteButton
-    ><RouteButton v-else route="class" secondary
-      >我的班级</RouteButton
-    ></PageHeading
-  >
-  <p v-if="error" class="form-error" role="alert">{{ error }}</p>
-  <RouteButton v-if="teacher" :route="'insights?class='+selected" secondary>班级学情与补充教学</RouteButton>
-  <div
-    v-if="teacher && overview?.classes.length"
-    class="teaching-class-toolbar"
-  >
-    <AppSelect
-      v-model="selected"
-      label="概览班级"
-      :options="overview.classes.map((c) => ({ value: c.id, label: c.name }))"
-      @update:model-value="select"
-    />
-  </div>
-  <p v-if="loading" role="status">读取中…</p>
-  <MemoryBridge v-if="!teacher&&overview" compact/>
-  <template v-if="overview"
-    ><div class="teaching-metrics">
-      <Surface
-        v-for="(label, key) in teacher
-          ? {
-              tasks: '班级任务',
-              unsubmittedStudents: '未提交学生',
-              waitingFeedback: '待反馈记录',
-            }
-          : { pending: '待完成', inProgress: '学习中', submitted: '已提交' }"
-        :key="key"
-        ><span>{{ label }}</span
-        ><strong>{{ overview.stats[key] || 0 }}</strong></Surface
-      >
-    </div>
-    <div class="teaching-dashboard">
-      <main>
-        <section class="lesson-hero">
-          <img src="/images/equation-balance.png" alt="数学课程插画" />
-          <div class="hero-copy">
-            <span class="hero-category">{{
-              teacher
-                ? overview.classes.find((c) => c.id === selected)?.name ||
-                  "教学空间"
-                : "学习空间"
-            }}</span>
-            <h2>
-              {{
-                teacher
-                  ? store.data.lesson?.title || "准备下一课"
-                  : overview.tasks.find(
-                      (t) =>
-                        !["已提交", "已反馈", "历史只读"].includes(t.status),
-                    )?.title || "我的课程"
-              }}
-            </h2>
-            <RouteButton
-              :route="
-                teacher
-                  ? 'prepare' + (selected ? '?class=' + selected : '')
-                  : 'courses'
-              "
-              >{{ teacher ? "继续备课" : "探索课程" }}</RouteButton
-            >
-          </div>
-        </section>
-        <SectionHeading
-          :title="teacher ? '当前班级任务' : '我的任务'"
-        /><Surface
-          ><TaskList :teacher="teacher" :tasks="overview.tasks" /></Surface
-        ><Surface v-if="teacher" class="recent-submissions"
-          ><SectionHeading title="最近提交" />
-          <article
-            v-for="item in overview.recentSubmissions"
-            :key="item.recordId"
-          >
-            <strong>{{ item.studentName }}</strong
-            ><span>{{ item.taskTitle }}</span
-            ><time>{{ deadlineText(item.submittedAt) }}</time
-            ><RouteButton :route="'insights?task=' + item.taskId" secondary
-              >查看记录</RouteButton
-            >
-          </article>
-          <p v-if="!overview.recentSubmissions.length" class="muted">
-            暂无提交
-          </p></Surface
-        >
-      </main>
-      <aside>
-        <Surface class="dashboard-messages"
-          ><SectionHeading
-            :title="teacher ? '业务消息' : '新消息与反馈'" /><MessageCenter
-            compact /></Surface
-        ><Surface class="dashboard-class-entry"
-          ><Users :size="24" />
-          <h2>{{ teacher ? "班级与成员" : "我的班级" }}</h2>
-          <p>{{ overview.classes.length }} 个班级</p>
-          <RouteButton route="class" secondary>{{
-            teacher ? "管理班级" : "加入或查看班级"
-          }}</RouteButton></Surface
-        >
+  <PageHeading :title="teacher?'教学概览':'我的学习'">
+    <AppSelect v-if="teacher && overview?.classes.length" v-model="selected" label="当前班级" :options="overview.classes.map(c=>({value:c.id,label:c.name}))" @update:model-value="select"/>
+  </PageHeading>
+  <div v-if="error" class="form-error" role="alert">{{error}}<Button variant="outline" @click="load">重试</Button></div>
+  <div v-if="loading" class="workspace-loading" role="status"><span/>正在读取任务…</div>
+  <template v-if="overview">
+    <section class="overview-next" aria-labelledby="next-task-heading">
+      <div class="overview-next-copy">
+        <span class="overview-context">{{teacher?'下一节课':nextTask?'待完成任务':'课程学习'}}</span>
+        <h2 id="next-task-heading">{{teacher?store.data.lessonDraft?.title||store.data.lesson?.title||'准备一节新课':nextTask?.title||'开始你的下一课'}}</h2>
+        <span class="overview-class" v-if="teacher">{{overview.classes.find(c=>c.id===selected)?.name||'尚未选择班级'}}</span>
+        <span class="overview-class" v-else-if="nextTask">{{nextTask.className||'我的班级'}}</span>
+        <div class="overview-next-actions"><RouteButton :route="teacher?'prepare'+(selected?'?class='+selected:''):nextTask?(nextHasReading?'learn':'check')+'?task='+nextTask.id:'courses'">{{teacher?'继续备课':nextTask?(nextHasReading?(nextTask.status==='学习中'?'继续学习':'开始学习'):'开始练习'):'浏览课程'}}<ArrowRight :size="16"/></RouteButton><a v-if="teacher" :href="'#/insights?class='+selected" class="text-link">查看班级学情</a><a v-else href="#/courses" class="text-link">全部课程</a></div>
+      </div>
+      <dl class="overview-counts"><div v-for="[label,value] in metrics" :key="label"><dt>{{label}}</dt><dd>{{value}}</dd></div></dl>
+    </section>
+    <div class="overview-grid">
+      <section class="overview-task-panel">
+        <div class="section-heading"><h2>{{teacher?'班级任务':'学习任务'}}</h2><a href="#/class" class="text-link">{{teacher?'管理班级':'我的班级'}}<ArrowRight :size="14"/></a></div>
+        <AppTabs v-if="!teacher" v-model="taskTab" :items="[{value:'pending',label:'待完成'},{value:'completed',label:'已提交'}]"/>
+        <TaskList :teacher="teacher" :tasks="visibleTasks" :empty-label="!teacher?(taskTab==='completed'?'还没有已提交的任务':'当前任务已完成'):undefined"/>
+        <section v-if="teacher" class="overview-recent"><div class="section-heading"><h2>最近提交</h2></div><article v-for="item in overview.recentSubmissions.slice(0,5)" :key="item.recordId"><span><strong>{{item.studentName}}</strong><small>{{item.taskTitle}}</small></span><time>{{deadlineText(item.submittedAt)}}</time><RouteButton :route="'insights?task='+item.taskId" secondary>查看</RouteButton></article><p v-if="!overview.recentSubmissions.length" class="muted">还没有学生提交</p></section>
+      </section>
+      <aside class="overview-aside">
+        <section class="overview-shortcuts"><h2>{{teacher?'教学工作':'学习工具'}}</h2><a :href="teacher?'#/cases':'#/wrong'"><component :is="teacher?BookOpen:Inbox" :size="18"/><span>{{teacher?'查找教学案例':'整理错题'}}</span><ArrowRight :size="15"/></a><a :href="teacher?'#/exam-papers':'#/exams'"><BookOpen :size="18"/><span>{{teacher?'组卷与考试':'我的考试'}}</span><ArrowRight :size="15"/></a><a href="#/live"><Users :size="18"/><span>{{teacher?'开展实时课堂':'进入课堂'}}</span><ArrowRight :size="15"/></a></section>
+        <section class="overview-inbox"><h2>消息与反馈<span v-if="store.unreadCount">{{store.unreadCount}}</span></h2><MessageCenter compact/></section>
+        <MemoryBridge v-if="!teacher" compact/>
       </aside>
-    </div></template
-  >
+    </div>
+  </template>
 </template>

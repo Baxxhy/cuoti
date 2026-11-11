@@ -297,7 +297,7 @@ onBeforeUnmount(() => interaction++);
     :class="{ 'is-compact': compact }"
   >
     <header class="ai-assistant-heading">
-      <Sparkles :size="18" />
+
       <h3>学习助手</h3>
       <Button
         v-if="job"
@@ -317,7 +317,7 @@ onBeforeUnmount(() => interaction++);
     <p v-else-if="blockId" class="tutoring-context">
       {{ store.task?.snapshot?.blocks?.find((b) => b.id === blockId)?.title }}
     </p>
-    <div class="tutoring-strategies" aria-label="指导方式">
+    <details class="study-disclosure tutoring-strategy-picker"><summary>指导方式 · {{strategies.find(s=>s[0]===strategy)?.[1]}}</summary><div class="tutoring-strategies" aria-label="指导方式">
       <Button
         v-for="[value, label] in strategies"
         :key="value"
@@ -327,7 +327,7 @@ onBeforeUnmount(() => interaction++);
         @click="strategy = value"
         >{{ label }}</Button
       >
-    </div>
+    </div></details>
     <details v-if="earlier.length" class="tutoring-history">
       <summary>前面的指导 · {{ earlier.length }}</summary>
       <article v-for="item in earlier" :key="item.id">
@@ -398,7 +398,7 @@ onBeforeUnmount(() => interaction++);
             accept="image/*"
             :disabled="busy || uploading || store.task?.readOnly"
             @change="chooseFile" /></label
-        ><span class="ai-file-name">{{ file?.name || "题图" }}</span
+        ><span class="ai-file-name">{{ file?.name || "" }}</span
         ><Button
           :disabled="busy || uploading || !recordId || store.task?.readOnly"
           @click="send()"

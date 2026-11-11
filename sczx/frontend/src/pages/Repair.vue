@@ -25,7 +25,8 @@ const route = useRoute(),
   reason = ref(""),
   cause = ref("其他或待确认"),
   confirmed = ref(false),
-  lastAttempt = ref(null);
+  lastAttempt = ref(null),
+  assistantOpen = ref(false);
 const strategies = [
   ["hint", "给我提示"],
   ["example", "举个例子"],
@@ -297,7 +298,7 @@ onBeforeUnmount(() => {
           <p class="math-equation">{{ wrong.answer || "未填写" }}</p>
           <p class="preserve-lines">{{ wrong.reason }}</p>
         </div>
-        <label class="field-label" for="cause">错因</label
+        <details class="study-disclosure"><summary>错因分类</summary><label class="field-label" for="cause">错因</label
         ><select id="cause" v-model="cause" :disabled="wrong.readOnly">
           <option v-for="r in options.reasons" :key="r">{{ r }}</option></select
         ><label class="capture-confirm"
@@ -311,7 +312,7 @@ onBeforeUnmount(() => {
           :disabled="wrong.readOnly || saving"
           @click="confirmCause"
           >保存分类</Button
-        >
+        ></details>
         <details v-if="wrong.repairs.length" class="repair-history">
           <summary>补救记录 · {{ wrong.repairs.length }}</summary>
           <article v-for="a in wrong.repairs" :key="a.id">
@@ -359,7 +360,7 @@ onBeforeUnmount(() => {
               {{ analysis.result.evidence }}
             </blockquote>
             <p>建议检查：{{ analysis.result.cause }}</p>
-            <p class="muted">{{ analysis.result.uncertainty }}</p></template
+            <InfoTip v-if="analysis.result.uncertainty" label="分析范围">{{ analysis.result.uncertainty }}</InfoTip></template
           >
           <p v-else class="muted">
             {{ wrong.reason || "保留原作答，先确认错误发生在哪一步。" }}
@@ -461,7 +462,7 @@ onBeforeUnmount(() => {
           </div>
         </section>
       </main>
-      <aside class="remediation-assistant">
+      <aside class="remediation-assistant"><details class="study-disclosure" :open="assistantOpen||guidance.length>0"><summary>订正时需要帮助</summary>
         <div class="remediation-assistant-heading">
           <span class="assistant-orbit" />
           <h2>学习助手</h2>
@@ -521,7 +522,7 @@ onBeforeUnmount(() => {
             ></template
           >
           <p v-else>{{ j.error || j.step }}</p>
-        </article>
+        </article></details>
       </aside>
     </div>
     <div v-if="error" role="alert" class="form-error">

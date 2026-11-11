@@ -1,0 +1,28 @@
+
+> shicheng-zhixue@0.3.0 build
+> vite build --outDir /tmp/sczx-redesign/release
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 2906 modules transformed.
+
+(!) outDir /tmp/sczx-redesign/release is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+rendering chunks...
+computing gzip size...
+../../../../../tmp/sczx-redesign/release/index.html                                                0.41 kB │ gzip:   0.30 kB
+../../../../../tmp/sczx-redesign/release/sw.js                                                     1.38 kB
+../../../../../tmp/sczx-redesign/release/assets/geist-cyrillic-ext-wght-normal-DjL33-gN.woff2      7.42 kB
+../../../../../tmp/sczx-redesign/release/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2        8.00 kB
+../../../../../tmp/sczx-redesign/release/assets/geist-cyrillic-wght-normal-BEAKL7Jp.woff2         15.08 kB
+../../../../../tmp/sczx-redesign/release/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2        16.51 kB
+../../../../../tmp/sczx-redesign/release/assets/geist-latin-wght-normal-BgDaEnEv.woff2            29.40 kB
+../../../../../tmp/sczx-redesign/release/assets/index-BxeXEoex.css                               202.33 kB │ gzip:  37.84 kB
+../../../../../tmp/sczx-redesign/release/assets/index-CIU-MeTb.js                              1,104.51 kB │ gzip: 363.27 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.52s

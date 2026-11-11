@@ -29,6 +29,7 @@ const form = ref({
   requestKey: crypto.randomUUID(),
   ...saved,
 });
+const captureMode = ref(form.value.fileId ? "image" : "text");
 const working = ref(false),
   error = ref(""),
   local = ref(""),
@@ -188,8 +189,9 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
-  <div class="capture-grid">
-    <section>
+  <AppTabs v-model="captureMode" :items="[{value:'text',label:'输入题目'},{value:'image',label:'上传题图'}]"/>
+  <div class="capture-grid" :class="{'capture-text-mode':captureMode==='text'}">
+    <section v-if="captureMode==='image'">
       <label class="upload-dropzone"
         ><Upload /><strong>选择原始题图</strong
         ><input
@@ -223,7 +225,7 @@ onBeforeUnmount(() => {
           }"
         />
       </div>
-      <div v-if="form.fileId" class="capture-coordinates">
+      <details v-if="form.fileId" class="study-disclosure"><summary>精确调整裁剪</summary><div class="capture-coordinates">
         <label
           v-for="(label, k) in { x: '左', y: '上', w: '宽', h: '高' }"
           :key="k"
@@ -234,7 +236,7 @@ onBeforeUnmount(() => {
             min="0"
             :max="k === 'w' ? 100 - rect.x : k === 'h' ? 100 - rect.y : 100"
         /></label>
-      </div>
+      </div></details>
       <div v-if="form.fileId" class="paper-actions">
         <Button
           variant="outline"
@@ -283,7 +285,7 @@ onBeforeUnmount(() => {
           :disabled="!form.ocrJobId || job.job.value?.status !== 'succeeded'"
         />已核对文字、符号，并选定一道题</label
       >
-      <div class="capture-fields">
+      <details class="study-disclosure"><summary>学科与知识点</summary><div class="capture-fields">
         <div>
           <label class="field-label" for="wrong-subject">学科</label
           ><Input id="wrong-subject" v-model="form.subject" />
@@ -296,7 +298,7 @@ onBeforeUnmount(() => {
             </option>
           </select>
         </div>
-      </div>
+      </div></details>
       <label class="field-label" for="wrong-answer">原来的答案</label
       ><Input id="wrong-answer" v-model="form.answer" />
       <label class="field-label" for="wrong-reason">原来的解题过程</label

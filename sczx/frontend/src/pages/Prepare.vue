@@ -1,13 +1,11 @@
 <script setup>
-import { computed, inject, ref, onBeforeUnmount, watch } from "vue";
+import { computed, inject, ref, watch } from "vue";
 import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
 
 import {
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  BookOpen,
   Send,
   Eye,
   FileText,
@@ -18,7 +16,6 @@ import {
 } from "lucide-vue-next";
 import draggable from "vuedraggable";
 import PreparationTools from "@/components/PreparationTools.vue";
-import Workspace from "@/components/Workspace.vue";
 import LessonPreview from "@/components/LessonPreview.vue";
 import CaseArticle from "@/components/CaseArticle.vue";
 import { modelApi } from "@/services/models.js";
@@ -28,6 +25,7 @@ const store = useLearning(),
   notify = inject("notify");
 
 const tools=ref(null);
+const workTab=ref("edit"), moreOpen=ref(false);
 const details=computed(()=>store.data.lessonDraft.planningDetails|| (store.data.lessonDraft.planningDetails={}));
 const route=useRoute();
 watch(()=>route.query.class,id=>{if(id&&store.data.classrooms.some(c=>c.id===id))store.data.publishClassId=String(id)},{immediate:true});const templateBusy=ref(false),lessonSwitchBusy=ref(false);
@@ -44,7 +42,6 @@ const caseReference=computed(()=>caseSnapshot.value?.versionId?caseSnapshot.valu
 watch(()=>[store.data.lessonDraft.caseId,caseSnapshot.value?.versionId],async([id,versionId])=>{const generation=++referenceGeneration;fallbackCase.value=null;referenceError.value='';if(!id||versionId)return;try{const item=await modelApi.caseDetail(id);if(generation===referenceGeneration)fallbackCase.value=item}catch(e){if(generation===referenceGeneration)referenceError.value=e.message}},{immediate:true});
 const caseRoute = computed(() => 'case-detail?caseId='+encodeURIComponent(store.data.lessonDraft.caseId||'')+(caseSnapshot.value?.versionId?'&versionId='+encodeURIComponent(caseSnapshot.value.versionId):''));
 const modal = ref(""),
-  previewTab = ref("student"),
   busyBlock = ref(""),
   publishClass = ref(store.data.publishClassId || store.data.classroom?.id || store.data.classrooms?.[0]?.id || ""),
   publishError = ref("");
@@ -58,13 +55,11 @@ const dialogOpen = computed({
     if (!value) modal.value = "";
   },
 });
-let timer;
 function regenerate(id) {
   const original=store.data.lessonDraft.lessonSnapshot?.blocks?.find(b=>b.id===id);
   if(!original)return notify('此活动没有对应发布原稿，请直接编辑。');
   if(confirm('恢复此活动的发布原稿？其他活动保留。')){store.data.lessonDraft.blocks.find(b=>b.id===id).content=original.content;store.touch()}
 }
-onBeforeUnmount(() => clearTimeout(timer));
 function reorderKeyboard(event, index) {
   if (!["ArrowUp", "ArrowDown"].includes(event.key)) return;
   event.preventDefault();
@@ -101,23 +96,28 @@ async function publish() {
 </script>
 <template>
 <p v-if="lessonSwitchBusy" role="status">读取课时教案…</p><template v-else>
-  <div class="back-line">
-    <Button variant="ghost" @click="navigate('teacher')"
-      ><ArrowLeft />返回教学概览</Button
-    ><span>我的教案 / {{ store.data.lesson?.title }}</span>
+  <PageHeading :title="store.data.lesson?.title || '我的教案'">
+    <Button variant="outline" :disabled="store.saving" @click="saveDraft"><Save :size="16"/>{{ store.saving?'保存中…':'保存' }}</Button>
+    <Button variant="outline" @click="workTab='preview'"><Eye :size="16"/>学生预览</Button>
+    <Button @click="modal='publish'"><Send :size="16"/>发布任务</Button>
+  </PageHeading>
+  <div class="teacher-workbar">
+    <AppTabs v-model="workTab" :items="[{value:'edit',label:'编辑教案'},{value:'preview',label:'学生预览'},{value:'references',label:'案例与版本'}]"/>
+    <div class="teacher-workbar-actions">
+      <RouteButton :route="'agent?lesson='+store.data.lesson?.id" secondary><WandSparkles :size="15"/>AI 备课</RouteButton>
+      <Button variant="ghost" @click="moreOpen=true">更多操作</Button>
+    </div>
   </div>
-  <PageHeading :title="(store.data.lesson?.title||'课时')+' · 备课'"
-    ><RouteButton :route="'agent?lesson='+store.data.lesson?.id" secondary>AI 备课</RouteButton><Button variant="outline" @click="previewTab='tools';tools?.history()">版本</Button><Button variant="outline" @click="tools?.download()">导出 DOCX</Button><Button variant="outline" :disabled="templateBusy" @click="applyPublished">使用发布课时</Button><RouteButton route="courses" secondary>选择课时</RouteButton><Button variant="outline" @click="saveDraft"><Save />保存教案</Button
-    ><Button variant="outline" @click="modal = 'preview'"
-      ><Eye />学生预览</Button
-    ><Button @click="modal = 'publish'"
-      ><Send />{{ store.data.tasks.length ? "再次发布" : "发布任务" }}</Button
-    ></PageHeading
-  ><div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><Button variant="outline" @click="backupLocal">下载本地修改</Button><Button @click="reloadDraft">重新读取</Button></div><Workspace
-    ><template #primary
-      ><div class="lesson-editor">
+  <AppDialog v-model:open="moreOpen" title="教案操作"><div class="teacher-more-actions">
+    <Button variant="outline" @click="workTab='references';moreOpen=false;tools?.history()">查看历史版本</Button>
+    <Button variant="outline" @click="moreOpen=false;tools?.download()">导出 DOCX</Button>
+    <Button variant="outline" :disabled="templateBusy" @click="applyPublished">使用发布课时内容</Button>
+    <RouteButton route="courses" secondary>选择其他课时</RouteButton>
+    <RouteButton route="teacher" secondary>返回教学概览</RouteButton>
+  </div></AppDialog>
+  <div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><Button variant="outline" @click="backupLocal">下载本地修改</Button><Button @click="reloadDraft">重新读取</Button></div><section v-if="workTab==='edit'" class="teacher-editor-sheet"><div class="lesson-editor">
         <div class="editor-intro">
-          <span><FileText :size="16" />教师教学安排</span
+          <span><FileText :size="16" />教案草稿</span
           ><Status>{{
             store.saving
               ? "保存中"
@@ -155,7 +155,7 @@ async function publish() {
           ghost-class="dragging"
           @end="notify('教学活动与学生预览已同步排序')"
           ><template #item="{ element: block, index }"
-            ><div class="editor-block">
+            ><details class="editor-block teacher-activity" :open="index===0"><summary><span class="teacher-activity-number">{{ String(index+1).padStart(2,'0') }}</span><strong>{{ block.title }}</strong></summary>
               <div class="editor-block-heading">
                 <button
                   class="drag-handle"
@@ -178,31 +178,14 @@ async function publish() {
                 v-model="block.content"
                 :aria-label="block.title"
                 :disabled="busyBlock === block.id"
-              /><details class="preparation-block-notes"><summary>提问与调整</summary><label v-for="(label,key) in {teacherQuestion:'教师提问',studentResponse:'学生可能回应',adjustment:'调整建议'}" :key="key">{{ label }}<Textarea v-model="block[key]"/></label></details><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+block.id" secondary>AI 改写此活动</RouteButton></div></template></draggable
+              /><details v-if="block.studentContent!==undefined" class="preparation-block-notes"><summary>学生正文</summary><label>学生标题<Input v-model="block.studentTitle" :aria-label="'学生标题'+(index+1)"/></label><label>学生正文<Textarea v-model="block.studentContent" :aria-label="'学生正文'+(index+1)"/></label></details><details class="preparation-block-notes"><summary>提问与调整</summary><label v-for="(label,key) in {teacherQuestion:'教师提问',studentResponse:'学生可能回应',adjustment:'调整建议'}" :key="key">{{ label }}<Textarea v-model="block[key]"/></label></details><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+block.id" secondary>AI 改写此活动</RouteButton></details></template></draggable
         ><details class="curriculum-teacher-questions"><summary>编辑题目 · {{ store.data.lessonDraft.questions?.length||0 }}</summary><div v-for="q in store.data.lessonDraft.questions" :key="q.id||q.equation"><label v-for="(label,key) in {prompt:'题干',equation:'方程',answer:'参考答案',hint:'提示'}" :key="key">{{ label }}<Input v-model="q[key]"/></label></div></details><button class="reference-link" @click="navigate(caseRoute)" :disabled="!store.data.lessonDraft.caseId">
           <LibraryBig :size="16" /><span>参考案例 · {{ caseReference?.title || '尚未选择' }}</span
           ><ArrowUpRight :size="15" />
-        </button></div></template
-    ><template #secondary
-      ><div class="preview-pane-tabs">
-        <AppTabs
-          v-model="previewTab"
-          :items="[
-            { value: 'student', label: '学生内容' },
-            { value: 'source', label: '参考经验' },
-            { value: 'tools', label: '案例与版本' },
-          ]"
-        />
-      </div>
-      <LessonPreview v-if="previewTab === 'student'" />
-      <PreparationTools v-show="previewTab==='tools'" ref="tools"/><div v-if="previewTab==='source'" class="preview-source">
-        <BookOpen :size="28" />
-        <h2>{{ caseReference?.title || '尚未选择参考案例' }}</h2>
-        <InfoTip v-if="caseReference&&!caseSnapshot?.versionId" label="参考版本说明">此教案尚未记录案例版本，当前展示最新发布内容；使用案例备课后会保存所选版本。</InfoTip><p v-if="referenceError" class="form-error">{{ referenceError }}</p><CaseArticle v-if="caseReference" :value="caseReference" />
-        <RouteButton v-if="store.data.lessonDraft.caseId" :route="caseRoute" secondary>阅读完整案例</RouteButton>
-      </div></template
-    ></Workspace
-  ><AppDialog
+        </button></div></section>
+      <section v-else-if="workTab==='preview'" class="teacher-student-preview"><LessonPreview/></section>
+      <section v-show="workTab==='references'" class="teacher-reference-sheet"><PreparationTools ref="tools"/><details class="teacher-source-detail"><summary>当前主要参考 · {{ caseReference?.title || '尚未选择' }}</summary><p v-if="referenceError" class="form-error">{{ referenceError }}</p><CaseArticle v-if="caseReference" :value="caseReference"/><RouteButton v-if="store.data.lessonDraft.caseId" :route="caseRoute" secondary>阅读完整案例</RouteButton></details></section>
+  <AppDialog
     v-model:open="dialogOpen"
     :title="modal === 'preview' ? '学生预览' : '发布学习任务'"
     :content-class="
@@ -235,7 +218,7 @@ async function publish() {
         id="due-date"
         v-model="store.data.lessonDraft.dueDate"
         type="date" />
-      <p class="small-caption">发布后，所选班级的学生可从任务列表进入本课。</p>
+      <p class="small-caption">发布后，所选班级的学生将收到本次教案的固定版本；后续编辑不改变本次任务。</p>
       <Button @click="publish" :disabled="store.publishing || !store.data.classrooms.length"
         >{{ store.publishing ? "发布中…" : "确认发布"
         }}<ArrowRight /></Button></template

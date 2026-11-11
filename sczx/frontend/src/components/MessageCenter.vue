@@ -13,7 +13,7 @@ const store = useLearning(),
   busy = ref(false);
 let generation = 0;
 const visible = computed(() =>
-  props.compact ? rows.value.slice(0, 5) : rows.value,
+  props.compact ? rows.value.slice(0, 3) : rows.value,
 );
 async function load() {
   const version = ++generation;
@@ -60,8 +60,8 @@ async function open(item) {
 onMounted(load);
 </script>
 <template>
-  <div class="message-center">
-    <header>
+  <div :class="['message-center',{'message-center-compact':compact}]">
+    <header v-if="!compact">
       <AppTabs
         v-model="box"
         :items="
@@ -84,7 +84,8 @@ onMounted(load);
     </header>
     <p v-if="error" role="alert" class="form-error">{{ error }}</p>
     <p v-if="busy" role="status">读取中…</p>
-    <article
+    <template v-if="compact"><button v-for="item in visible" :key="item.id" class="compact-message" @click="open(item)"><span :class="{'compact-message-unread':!item.readAt}" aria-hidden="true"/><span><strong>{{item.title}}</strong><time>{{deadlineText(item.createdAt)}}</time></span><ArrowUpRight :size="14"/></button></template>
+    <article v-else
       v-for="item in visible"
       :key="item.id"
       :class="{ unread: !item.readAt }"

@@ -53,7 +53,7 @@ async function selectJob(item) {
   if (item.capability === 'rerank') { query.value = input.query || ''; materials.value = (input.candidates || []).map(x => x.text).join('\n'); }
 }
 function selectCapability(capability) { selected.value = capability; file.value = null; loadError.value = ''; open(null); }
-onMounted(async () => { await load(); if (history.value.length) await selectJob(history.value[0]); });
+onMounted(load);
 async function saveCorrection() {
   correcting.value = true;
   try { await open(await modelApi.correct(job.value.id, transcript.value)); }
@@ -74,7 +74,7 @@ async function saveCorrection() {
       <template v-else>
       <div class="model-config-state"><h3>{{ tabs[selected] }}</h3><Status :tone="activeConfig?.lastStatus==='failed'||!activeConfig?.configured ? 'amber' : 'green'">{{ activeConfig?.configured ? activeConfig.lastStatus === 'succeeded' ? '最近调用成功' : activeConfig.lastStatus === 'failed' ? '最近调用失败' : '已配置 · 待验证' : activeConfig?.unavailableReason ? '暂不可用' : '未配置' }}</Status></div>
       <p v-if="activeConfig?.unavailableReason" role="status" class="model-model-name">{{ activeConfig.unavailableReason }}</p>
-      <p v-if="activeConfig?.models?.length" class="model-model-name">{{ activeConfig.models.map(x => `${x.model} · ${x.name}`).join(' / ') }}</p>
+      <InfoTip v-if="activeConfig?.models?.length" label="模型配置">{{ activeConfig.models.map(x => `${x.model} · ${x.name}`).join(' / ') }}</InfoTip>
       <template v-if="['ocr', 'asr'].includes(selected)"><label class="field-label" for="model-input-file">{{ selected === 'ocr' ? '题目原图' : '音频文件' }}</label><label class="model-file-picker"><FileAudio v-if="selected === 'asr'" :size="20" /><span>{{ file?.name || '选择文件' }}</span><input id="model-input-file" type="file" :accept="selected === 'ocr' ? 'image/*' : 'audio/*'" @change="file = $event.target.files?.[0] || null" /></label></template>
       <template v-else-if="selected === 'retrieval'"><label class="field-label" for="retrieval-query">知识点或学生困难</label><Input id="retrieval-query" v-model="query" @keydown.enter="run" /><label class="retrieval-rerank"><input v-model="rerank" type="checkbox" />语义重排</label></template>
       <template v-else-if="selected === 'rerank'"><label class="field-label" for="rerank-query">教学问题</label><Input id="rerank-query" v-model="query" /><label class="field-label" for="rerank-materials">候选材料，每行一段</label><Textarea id="rerank-materials" v-model="materials" class="model-input-large" /></template>
@@ -85,6 +85,6 @@ async function saveCorrection() {
       <ModelResult :job="job" :busy="busy" :can-retry="['text', 'ocr', 'retrieval', 'rerank'].includes(job?.capability)" show-source @retry="retry" />
       <template v-if="job?.capability === 'asr' && job.status === 'succeeded'"><label class="field-label" for="asr-correction">修订转写文字</label><Textarea id="asr-correction" v-model="transcript" /><div class="paper-actions"><Button variant="outline" :disabled="correcting" @click="saveCorrection">{{ correcting ? '保存中…' : '保存修订' }}</Button><Button variant="outline" @click="selected = 'read-aloud'; text = transcript">朗读修订文字</Button></div></template>
     </div>
-    <div class="model-task-list"><h3>最近任务</h3><p v-if="!history.length" class="ai-empty">暂无运行记录</p><button v-for="item in history" :key="item.id" :disabled="uploading || submitting" @click="selectJob(item)" :class="{ active: job?.id === item.id }"><div><strong>{{ capabilityNames[item.capability] }}</strong><span>{{ item.step }}</span></div><time>{{ new Date(item.createdAt).toLocaleString('zh-CN') }}</time></button></div>
+    <details class="model-task-list ops-disclosure"><summary>最近任务 · {{history.length}}</summary><p v-if="!history.length" class="ai-empty">暂无运行记录</p><button v-for="item in history" :key="item.id" :disabled="uploading || submitting" @click="selectJob(item)" :class="{ active: job?.id === item.id }"><div><strong>{{ capabilityNames[item.capability] }}</strong><span>{{ item.step }}</span></div><time>{{ new Date(item.createdAt).toLocaleString('zh-CN') }}</time></button></details>
   </div>
 </template>

@@ -58,6 +58,7 @@ const roleLabel = computed(
 const active = computed(
   () =>
     ({
+      exams: role.value==='teacher'?'exam-papers':'exams',
       learn: "home",
       check: "home",
       result: "home",
@@ -112,6 +113,7 @@ watch(
     document.title = `${pageLabel.value} · 师承智学`;
   },
 );
+function focusContent(){ document.getElementById('main-content')?.focus(); }
 function keyboard(event) {
   if ((event.metaKey || event.ctrlKey) && event.key === "k") {
     event.preventDefault();
@@ -120,13 +122,12 @@ function keyboard(event) {
 }
 onMounted(() => window.addEventListener("keydown", keyboard));
 onBeforeUnmount(() => window.removeEventListener("keydown", keyboard));
-const results = computed(() =>
-  [
-    { route: "learn", title: "等式性质", subtitle: "七年级数学 · 第 1 课" },
-    { route: "wrong", title: "错题帮", subtitle: "错题记录" },
-    { route: "cases", title: "天平与等式 · 教学案例", subtitle: "教学案例" },
-  ].filter((item) => (item.title + item.subtitle).includes(search.value)),
-);
+const results = computed(() => {
+  const items = navigation[role.value].map(item => ({route:item.route,title:item.label,subtitle:''}));
+  if(role.value==='student') for(const task of store.data.tasks||[]) items.push({route:'learn?task='+task.id,title:task.title,subtitle:task.className||'学习任务'});
+  if(role.value==='teacher') for(const item of store.data.cases||[]) items.push({route:'case-detail?caseId='+item.id,title:item.title,subtitle:'教学案例'});
+  return items.filter(item=>(item.title+item.subtitle).includes(search.value.trim())).slice(0,12);
+});
 const issueRequest = ref(crypto.randomUUID()), issueBusy = ref(false);
 async function submitFeedback() {
   if (issueBusy.value || !issueNote.value.trim()) return;
@@ -140,6 +141,7 @@ async function submitFeedback() {
     ><TooltipProvider :delay-duration="100">
       <RouterView v-if="!store.user || route.name==='offline'" />
       <div v-else class="app-shell">
+        <a href="#main-content" class="skip-link" @click.prevent="focusContent()">跳至主要内容</a>
         <aside class="desktop-sidebar"><SidebarContent /></aside>
         <div class="app-body">
           <header class="topbar">
@@ -160,9 +162,9 @@ async function submitFeedback() {
               <Button
                 variant="ghost"
                 class="search-trigger"
-                aria-label="搜索课程和案例"
+                aria-label="搜索页面与任务"
                 @click="searchOpen = true"
-                ><Search :size="16" /><span>搜索课程、案例</span
+                ><Search :size="16" /><span>搜索页面、任务</span
                 ><kbd>⌘ K</kbd></Button
               ><Button
                 variant="ghost"
@@ -171,14 +173,10 @@ async function submitFeedback() {
                 aria-label="查看消息"
                 @click="notifications = true"
                 ><Bell :size="18" /><span v-if="store.unreadCount" class="notification-badge">{{ store.unreadCount }}</span></Button
-              ><span class="topbar-demo"
-                >{{ store.status === "ready" ? "已连接" : "连接中" }}<InfoTip label="数据状态"
-                  >页面数据由当前账号从业务服务读取；课程讲解仍为固定演示内容。</InfoTip
-                ></span
-              >
+              ><span class="connection-indicator" :class="{ready:store.status==='ready'}" :aria-label="store.status==='ready'?'服务已连接':'正在连接服务'" role="status"><span aria-hidden="true"/></span>
             </div>
           </header>
-          <main>
+          <main id="main-content" tabindex="-1">
             <div v-if="store.saveError" class="save-error" role="alert">
               <span>{{ store.saveError }}</span
               ><Button
@@ -225,7 +223,7 @@ async function submitFeedback() {
         content-class="search-dialog"
         ><Input
           v-model="search"
-          placeholder="试试“等式”或“天平”"
+          placeholder="输入页面或任务名称"
           aria-label="搜索内容"
         />
         <div class="search-results">

@@ -408,7 +408,8 @@ def agent_confirm(job_id:str,body:dict,request:Request,db=Depends(get_db)):
     row.lesson_snapshot=copy.deepcopy(lesson)
     base_blocks=copy.deepcopy(row.blocks or lesson['blocks'])
     target=job.input.get('regenerateBlockId')
-    by_id={b['id']:b for b in plan['blocks']};row.blocks=[{**copy.deepcopy(b),'title':by_id[b['id']]['title'],'content':by_id[b['id']]['content'],'agentEvidence':by_id[b['id']]['evidenceIds'],'agentJobId':job.id,**{key:by_id[b['id']][key] for key in ('studentTask','teacherQuestion','studentResponse','adjustment') if by_id[b['id']].get(key)}} if (not target or b['id']==target) else b for b in base_blocks];row.goal=row.goal if target else plan['goal']
+    source_blocks={b['id']:b for b in latest['blocks']}
+    by_id={b['id']:b for b in plan['blocks']};row.blocks=[{**copy.deepcopy(b),'title':by_id[b['id']]['title'],'content':by_id[b['id']]['content'],'studentContent':b.get('studentContent',source_blocks[b['id']].get('studentContent',source_blocks[b['id']]['content'])),'studentTitle':b.get('studentTitle',source_blocks[b['id']].get('studentTitle',source_blocks[b['id']]['title'])),'agentEvidence':by_id[b['id']]['evidenceIds'],'agentJobId':job.id,**{key:by_id[b['id']][key] for key in ('studentTask','teacherQuestion','studentResponse','adjustment') if by_id[b['id']].get(key)}} if (not target or b['id']==target) else b for b in base_blocks];row.goal=row.goal if target else plan['goal']
     checkpoint(db,row,'采用Agent建议')
     receipt={'draftId':row.id,'lessonId':row.lesson_id,'confirmedAt':now(),'jobId':job.id}
     result.update(accepted=receipt,decision='accepted');job.result=result;event(db,job,'已确认保存到备课草稿');db.commit();return {'accepted':receipt,'created':True}

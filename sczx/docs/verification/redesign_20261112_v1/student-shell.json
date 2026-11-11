@@ -1,0 +1,40 @@
+{
+  "login": true,
+  "homeStart": {
+    "target": "task-b83e645217e5434c96e2f82073956e34",
+    "actual": "task-b83e645217e5434c96e2f82073956e34"
+  },
+  "supplementPractice": {
+    "hasQuestions": 2,
+    "emptyOutline": false,
+    "zeroMeta": false
+  },
+  "outline": {
+    "selected": "simple-check",
+    "active": "07独立检查"
+  },
+  "more": true,
+  "search": [
+    "课堂记录 · 等式性质最终交付1班",
+    "等式性质最终交付1班"
+  ],
+  "searchTask": {
+    "title": "课堂记录 · 等式性质",
+    "hash": "#/learn?task=task-edec4140ff7f498dacc88dc03b166c98"
+  },
+  "skip": {
+    "hash": "#/learn?task=task-edec4140ff7f498dacc88dc03b166c98",
+    "active": "main-content"
+  },
+  "width1024": {
+    "scroll": 1009,
+    "client": 1009
+  },
+  "width2560": {
+    "scroll": 2560,
+    "client": 2560
+  },
+  "missingTaskRecover": true,
+  "errors": [],
+  "pass": true
+}
