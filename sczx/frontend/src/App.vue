@@ -1,32 +1,12 @@
 <script setup>
 import {navigation as routeNavigation} from "@/lib/navigation-items.js";
-import { supportApi } from "@/services/insights.js";
+import {workspaceFor} from "@/lib/workspace-navigation.js";
+import WorkspaceNavigation from "@/components/WorkspaceNavigation.vue";
 import { computed, onMounted, onBeforeUnmount, provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { AnimatePresence, motion, MotionConfig } from "motion-v";
 import { TooltipProvider } from "@/components/ui/tooltip/index.js";
-import {
-  Download,
-  BookOpen,
-  BookOpenText,
-  LayoutDashboard,
-  NotebookPen,
-  History,
-  LibraryBig,
-  Users,
-  FileText,
-  Settings2,
-  Search,
-  Bell,
-  Menu,
-  ArrowUpRight,
-  ArrowLeft,
-  CircleHelp,
-  Check,
-  GraduationCap,
-  Layers,
-  MessageSquareText,
-} from "lucide-vue-next";
+import {BookOpen,BookOpenText,Search,Bell,Menu,ArrowUpRight,ArrowLeft} from "lucide-vue-next";
 import { navigate } from "@/lib/navigation.js";
 import SidebarContent from "@/components/SidebarContent.vue";
 import { useLearning } from "@/store.js";
@@ -53,10 +33,8 @@ watch(
 
 const navigation=Object.fromEntries(Object.entries(routeNavigation).map(([role,items])=>[role,items.map(([route,label,icon])=>({route,label,icon}))]));
 const role = computed(() => store.user?.role || "student");
+const currentWorkspace=computed(()=>workspaceFor(role.value,route.name));
 const studyFocus=computed(()=>role.value==='student'&&['learn','check','repair'].includes(route.name));
-const roleLabel = computed(
-  () => ({ student: "学生空间", teacher: "教学空间", admin: "内容管理" })[role.value],
-);
 const active = computed(
   () =>
     ({
@@ -80,16 +58,16 @@ const notice = ref("");
 const mobileOpen = ref(false);
 const searchOpen = ref(false);
 const notifications = ref(false);
-const helpOpen = ref(false);
+
 const search = ref("");
-const issueNote = ref("");
+
 const notify = (message) => {
   notice.value = message;
 };
 provide("notify", notify);
 provide("shell", {
   openHelp: () => {
-    helpOpen.value = true;
+    mobileOpen.value=false;navigate('issues'+(role.value==='admin'?'?section=queue':''));
   },
   logout: async () => {
     try {
@@ -130,13 +108,6 @@ const results = computed(() => {
   if(role.value==='teacher') for(const item of store.data.cases||[]) items.push({route:'case-detail?caseId='+item.id,title:item.title,subtitle:'教学案例'});
   return items.filter(item=>(item.title+item.subtitle).includes(search.value.trim())).slice(0,12);
 });
-const issueRequest = ref(crypto.randomUUID()), issueBusy = ref(false);
-async function submitFeedback() {
-  if (issueBusy.value || !issueNote.value.trim()) return;
-  issueBusy.value=true;
-  try { await supportApi.create({text:issueNote.value,category:'system',requestKey:issueRequest.value});helpOpen.value=false;issueNote.value='';issueRequest.value=crypto.randomUUID();notify('反馈已提交'); }
-  catch(e){notify(e.message)} finally{issueBusy.value=false}
-}
 </script>
 <template>
   <MotionConfig reduced-motion="user"
@@ -157,8 +128,7 @@ async function submitFeedback() {
                 @click="mobileOpen = true"
                 ><Menu /></Button
               ><span class="topbar-breadcrumb"
-                >{{ roleLabel }}<span>/</span
-                ><strong>{{ pageLabel }}</strong></span
+                ><strong>{{ currentWorkspace?.label || pageLabel }}</strong></span
               >
             </div>
             <div class="topbar-actions">
@@ -180,7 +150,7 @@ async function submitFeedback() {
             </div>
           </header>
           <main id="main-content" tabindex="-1">
-            <div v-if="store.saveError" class="save-error" role="alert">
+            <div v-if="store.saveError && route.name!=='prepare'" class="save-error" role="alert">
               <span>{{ store.saveError }}</span
               ><Button
                 variant="outline"
@@ -205,7 +175,7 @@ async function submitFeedback() {
                   :animate="{ opacity: 1, y: 0 }"
                   :exit="{ opacity: 0, y: -4 }"
                   :transition="{ duration: 0.2 }"
-                  ><component
+                  ><WorkspaceNavigation v-if="!studyFocus"/><component
                     :is="Component"
                     :key="
                       pageKey(currentRoute)
@@ -247,13 +217,6 @@ async function submitFeedback() {
         </div></AppDialog
       >
       <AppDialog v-model:open="notifications" title="消息与提醒"><MessageCenter @navigate="notifications=false"/></AppDialog
-      ><AppDialog v-model:open="helpOpen" title="帮助与反馈"
-        ><label class="field-label" for="issue-note">体验反馈</label
-        ><Textarea
-          id="issue-note"
-          v-model="issueNote"
-          placeholder="填写反馈"
-        /><Button :disabled="issueBusy" @click="submitFeedback">提交反馈</Button><RouteButton route="issues" secondary>查看反馈记录</RouteButton></AppDialog
       >
       <AnimatePresence
         ><motion.div
@@ -263,7 +226,7 @@ async function submitFeedback() {
           :initial="{ opacity: 0, y: 20 }"
           :animate="{ opacity: 1, y: 0 }"
           :exit="{ opacity: 0, y: 10 }"
-          ><Check :size="16" />{{ notice }}</motion.div
+          >{{ notice }}</motion.div
         ></AnimatePresence
       >
     </TooltipProvider></MotionConfig

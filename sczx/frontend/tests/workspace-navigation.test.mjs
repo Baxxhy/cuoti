@@ -45,14 +45,15 @@ async function workspaceScenario(mode){
     if(mode==='shell'){
       const skip=el.querySelector('.skip-link'),before=location.hash;skip.focus();skip.click();
       const skipResult={unchanged:location.hash===before,main:document.activeElement===el.querySelector('main#main-content')};
-      el.querySelector('.navigation-more>summary').click();await nextTick();
-      const more=el.querySelector('.navigation-more').open&&[...el.querySelectorAll('.navigation-more a')].some(a=>a.textContent.includes('学习记录'));
+      const groups=[...el.querySelectorAll('.workspace-main-nav>a')].map(a=>a.textContent.trim());
+      const children=[...el.querySelectorAll('.workspace-section-nav>a')].map(a=>({label:a.textContent,href:a.getAttribute('href')}));
+      const more=!!el.querySelector('.navigation-more');
       el.querySelector('.search-trigger').click();await nextTick();
       const input=document.querySelector('[role=dialog] input');input.value='两边同时减3';input.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();
       const results=[...document.querySelectorAll('.search-results button')];
       const names=results.map(e=>e.textContent.trim());results[0]?.click();
       const destination=location.hash;
-      return{skipResult,more,names,destination,writes};
+      return{skipResult,more,groups,children,names,destination,writes};
     }
     if(mode==='dashboard'){
       const primary=el.querySelector('.overview-next-actions button');primary.click();const destination=location.hash;
@@ -80,7 +81,7 @@ async function workspaceScenario(mode){
 
 async function run(mode){const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.viewport(1440,1000);const result=await b.eval(workspaceScenario,mode);assert.deepEqual(b.errors,[]);assert.deepEqual(result.writes,[]);return result}finally{await b.close()}}
 
-test('skip link keeps the current route, more navigation opens, and search uses assigned tasks',async()=>{const r=await run('shell');assert.deepEqual(r.skipResult,{unchanged:true,main:true});assert(r.more);assert(r.names.some(s=>s.includes('补充练习：两边同时减3')));assert.equal(r.destination,'#/learn?task=test-ui-next')});
+test('skip link keeps the route, three business groups expose learning children, and search retains all tasks',async()=>{const r=await run('shell');assert.deepEqual(r.skipResult,{unchanged:true,main:true});assert.equal(r.more,false);assert.deepEqual(r.groups,['学习','错题与复习','班级']);assert.deepEqual(r.children.map(x=>x.label),['学习任务','课程','学习记录','离线学习']);assert.equal(r.children.find(x=>x.label==='学习记录').href,'#/records');assert(r.names.some(s=>s.includes('补充练习：两边同时减3')));assert.equal(r.destination,'#/learn?task=test-ui-next')});
 test('the home next action opens its own task and the empty submitted tab names the right state',async()=>{const r=await run('dashboard');assert.equal(r.destination,'#/check?task=test-ui-next');assert(r.empty.includes('还没有已提交的任务'));assert(!r.empty.includes('当前任务已完成'))});
 test('a questions-only task exposes its exercise without an empty reading workspace; directory changes retain task context',async()=>{const r=await run('lesson');assert(r.initial.practice);assert(!r.initial.readingMeta);assert(!r.initial.emptyOutline);assert(r.initial.text.includes('x+3=8'));assert.equal(r.destination,'#/check?task=test-ui-next');assert.equal(r.selected.blockId,'example');assert(r.outline.includes('验算'))});
 test('an unknown assigned task gives a recovery action back to the home screen',async()=>{const r=await run('missing');assert.equal(r.heading,'找不到这个页面');assert.equal(r.destination,'#/home')});

@@ -1,0 +1,360 @@
+{
+  "role": "管理员",
+  "research_type": "AI模拟角色的浏览器认知走查；不是真人用户测试或实际用户满意度",
+  "round": "retest1",
+  "date": "2026-11-12",
+  "base_url": "http://127.0.0.1:8102",
+  "served_assets": [
+    "/assets/index-BxirpJC8.js",
+    "/assets/index-BRBChled.css"
+  ],
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "method": "独立模拟管理员，新Chrome profile从登录开始，仅用真实按钮/链接和表单寻路；不改源码；新增合成数据，不改既有发布版本。沿用基线100分rubric及其扣分规则。",
+  "baseline_total": 94,
+  "tasks": [
+    {
+      "id": "A1",
+      "goal": "上传并保存合成材料",
+      "score": 5,
+      "max": 5,
+      "result": "3/3已就绪与解析完成一致；元信息保存成功，保存通知未被旧解析通知覆盖。",
+      "path": [
+        "登录",
+        "上传材料",
+        "选择新合成DOCX",
+        "填写标题",
+        "上传并解析",
+        "编辑信息",
+        "保存信息"
+      ],
+      "evidence": [
+        "A1 parse completed",
+        "A1 save metadata",
+        "02-material-parsed.png"
+      ]
+    },
+    {
+      "id": "A2",
+      "goal": "从材料整理并查看案例",
+      "score": 5,
+      "max": 5,
+      "result": "仅创建新合成草稿；标题清楚；离开后返回并刷新均恢复同一案例及正文。",
+      "path": [
+        "整理成案例",
+        "手动整理",
+        "填写案例",
+        "保存修改",
+        "预览",
+        "Escape"
+      ],
+      "evidence": [
+        "A2 save draft",
+        "A2 preview",
+        "R1 restored selection",
+        "R2 reload complete",
+        "03-case-preview.png",
+        "fonts-case-preview.json"
+      ]
+    },
+    {
+      "id": "A3",
+      "goal": "编辑课程草稿并学生预览",
+      "score": 5,
+      "max": 5,
+      "result": "新课程/单元/课时草稿保存成功，学生预览显示同减4及代回过程；未发布或改变既有课时。",
+      "path": [
+        "课程内容",
+        "新建课程",
+        "单元",
+        "课时",
+        "添加内容块",
+        "填写标题正文",
+        "保存草稿",
+        "预览",
+        "Escape"
+      ],
+      "evidence": [
+        "A3 save lesson draft",
+        "A3 student preview",
+        "04-course-student-preview.png",
+        "fonts-course-preview.json"
+      ]
+    },
+    {
+      "id": "A4",
+      "goal": "提交并处理问题",
+      "score": 5,
+      "max": 5,
+      "result": "新合成问题由待处理改为已回复，处理意见可回看；帮助与反馈按钮进入同一问题页。",
+      "path": [
+        "管理与运行",
+        "提交问题",
+        "填写合成问题",
+        "提交",
+        "处理意见",
+        "保存处理"
+      ],
+      "evidence": [
+        "A4 save resolution",
+        "05-issue-resolved.png",
+        "H1 issue page loaded",
+        "16-help-issue-page.png"
+      ]
+    },
+    {
+      "id": "A5",
+      "goal": "创建学生账号并检查服务",
+      "score": 5,
+      "max": 5,
+      "result": "新合成学生创建成功且服务数据库已连接；重复账号真实失败、表单保留、改名重试成功。",
+      "path": [
+        "账号",
+        "新建账号",
+        "填写学生账号/私有密码",
+        "创建账号",
+        "检查连接"
+      ],
+      "evidence": [
+        "A5 created result",
+        "A5 check connection",
+        "07-student-created-service-ready.png",
+        "K2 duplicate error",
+        "K2 retry success",
+        "10-duplicate-account-error.png",
+        "11-account-recovered.png"
+      ]
+    },
+    {
+      "id": "A6",
+      "goal": "找到能力验证、失败任务与重试入口",
+      "score": 5,
+      "max": 5,
+      "result": "最近已完成的真实文字指导可重新读取并显示结果；历史失败显示AI备课；重试按原提交者限制禁用且提示原因。本轮未发起新模型调用，也未把未执行的重试称为成功。",
+      "path": [
+        "能力验证",
+        "最近任务",
+        "选择已成功文字指导",
+        "失败与重试"
+      ],
+      "evidence": [
+        "A6 restore successful guidance",
+        "A6 failed jobs",
+        "08-capabilities-and-failed-jobs.png",
+        "09-successful-guidance-restored.png"
+      ]
+    }
+  ],
+  "resolved": [
+    {
+      "id": "ADM-01",
+      "status": "已修复",
+      "evidence": [
+        "A1 parse completed",
+        "A1 save metadata",
+        "02-material-parsed.png"
+      ],
+      "observation": "终态已就绪3/3同时提示解析完成；后续保存信息提示优先。"
+    },
+    {
+      "id": "ADM-02",
+      "status": "已修复",
+      "evidence": [
+        "03-case-preview.png",
+        "18-case-preview-settled.png",
+        "fonts-case-preview.json"
+      ],
+      "observation": "案例业务标题24px/650，正文15px，层级恢复。"
+    },
+    {
+      "id": "ADM-03",
+      "status": "已修复",
+      "evidence": [
+        "06-account-service.png",
+        "08-capabilities-and-failed-jobs.png"
+      ],
+      "observation": "一级管理与运行可预测账号和能力归属，三个一级入口保持简洁。"
+    },
+    {
+      "id": "ADM-04",
+      "status": "已修复",
+      "evidence": [
+        "08-capabilities-and-failed-jobs.png"
+      ],
+      "observation": "失败业务任务标题中文AI备课，不再由内部标识承担任务名称。"
+    },
+    {
+      "id": "ADM-05",
+      "status": "已修复",
+      "evidence": [
+        "R1 restored selection",
+        "R2 reload complete",
+        "12-case-context-restored.png",
+        "13-case-reload-restored.png"
+      ],
+      "observation": "跨一级页返回恢复案例tab和同一草稿；刷新后仍恢复，无须点列表。"
+    }
+  ],
+  "remaining_findings": [
+    {
+      "id": "ADM-R1-01",
+      "severity": "P3",
+      "observation": "账号tab离开到案例、刷新案例后，再点管理与运行进入默认问题反馈；查看账号需再点一次账号tab。账号tab自身带section=accounts URL刷新则正确恢复。",
+      "recommendation": "可记住最后管理分区，使跨一级页返回与材料案例的记忆行为一致。",
+      "evidence": [
+        "R3 return to management section",
+        "R3 account tab restored",
+        "14-account-section-restored.png",
+        "R4 account refresh complete",
+        "17-account-section-url-refresh.png"
+      ],
+      "deduction": "导航/返回上下文5→4；轻微一次额外选择，无任务阻断。"
+    }
+  ],
+  "score": {
+    "task_completion": {
+      "score": 30,
+      "max": 30,
+      "items": [
+        {
+          "id": "A1",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A2",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A3",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A4",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A5",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A6",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "navigation": {
+      "score": 24,
+      "max": 25,
+      "items": {
+        "分组明确": 5,
+        "无重复混淆": 5,
+        "子功能可找": 5,
+        "返回上下文": 4,
+        "主次清晰": 5
+      }
+    },
+    "information_hierarchy": {
+      "score": 20,
+      "max": 20,
+      "items": {
+        "材料": 5,
+        "课程编辑": 5,
+        "问题反馈": 5,
+        "能力验证": 5
+      }
+    },
+    "typography": {
+      "score": 15,
+      "max": 15,
+      "items": {
+        "UI同字族": 5,
+        "正文层级": 5,
+        "数学协调": 5
+      }
+    },
+    "feedback_keyboard": {
+      "score": 10,
+      "max": 10,
+      "items": {
+        "保存与失败恢复": 5,
+        "焦点键盘": 5
+      }
+    },
+    "total": 99
+  },
+  "verification": {
+    "console_errors": [],
+    "driver_errors": [],
+    "keyboard": [
+      "案例和学生预览Escape关闭",
+      "Tab至刷新与跳至主要内容，computed outline均2px实线"
+    ],
+    "keyboard_evidence": [
+      "focus-models.json",
+      "focus-accounts.json"
+    ],
+    "font_family": "采样UI/表单/预览正文/公式均为Geist Variable / Noto Sans CJK SC / Microsoft YaHei / sans-serif。",
+    "new_model_requests": 0,
+    "failure_recovery": "重复账号服务器拒绝可见、表单保留，改名重试后创建成功。",
+    "routing": [
+      "案例跨页/刷新恢复成功",
+      "管理section参数刷新恢复成功",
+      "帮助与反馈进入同一问题页"
+    ],
+    "limitations": [
+      "模拟认知走查，不代表真实用户满意度或全部UI的完美结论。",
+      "本轮只复用已真实成功文字指导；未新增付费模型请求；受限历史任务未执行重试。",
+      "评分基于六项管理任务及四个代表视图，复杂数学和其他角色由其专项验证覆盖。"
+    ]
+  },
+  "created_qa_data": {
+    "material": "material-8567591399ea4c92a588217ef47713c",
+    "case": "case-b2db9a6b757e439f99e7c914e7d7b06f",
+    "course": "course-a61ac6c1f09b4de496f3f70be56a9e17",
+    "lesson": "lesson-a31802234a8144408b567d481ce7c675",
+    "accounts": [
+      "persona-admin-r1-student",
+      "persona-admin-r1-student-b"
+    ],
+    "note": "口令仅留私有测试文件，报告/事件/截图不包含口令；未删除或撤回现有资料。"
+  },
+  "evidence_files": [
+    "01-login-landing.png",
+    "02-material-parsed.png",
+    "03-case-preview.png",
+    "04-course-student-preview.png",
+    "05-issue-resolved.png",
+    "06-account-service.png",
+    "07-student-created-service-ready.png",
+    "08-capabilities-and-failed-jobs.png",
+    "09-successful-guidance-restored.png",
+    "10-duplicate-account-error.png",
+    "11-account-recovered.png",
+    "12-case-context-restored.png",
+    "13-case-reload-restored.png",
+    "14-account-section-restored.png",
+    "15-account-section-reload.png",
+    "16-help-issue-page.png",
+    "17-account-section-url-refresh.png",
+    "18-case-preview-settled.png",
+    "19-final-content-context.png",
+    "events.json",
+    "focus-accounts.json",
+    "focus-models.json",
+    "fonts-accounts.json",
+    "fonts-case-preview-settled.json",
+    "fonts-case-preview.json",
+    "fonts-course-preview.json",
+    "fonts-models.json",
+    "served-assets.json",
+    "复测合成材料.docx"
+  ]
+}

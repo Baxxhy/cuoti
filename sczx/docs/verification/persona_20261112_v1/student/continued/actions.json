@@ -1,0 +1,5278 @@
+{
+  "actions": [
+    {
+      "action": {
+        "action": "login",
+        "name": "continued-home"
+      },
+      "result": {
+        "x": 1080,
+        "y": 677.890625,
+        "tag": "BUTTON",
+        "label": "登录",
+        "href": null
+      },
+      "screenshot": "./continued/01-continued-home.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/home",
+        "h1": "我的学习",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的学习\n搜索页面、任务\n⌘ K\n10\n我的学习\n待完成任务\n等式性质\n七年级一班\n开始学习\n全部课程\n待完成\n8\n学习中\n6\n已提交\n2\n学习任务\n我的班级\n待完成\n已提交\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n学习中\n进入任务\n用方程解决生活问题\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n一元一次方程单元复习\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n含括号与分母的方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n解简单的一元一次方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n待开始\n进入任务\n学习工具\n整理错题\n我的考试\n进入课堂\n消息与反馈\n10\n新学习任务 · 等式性质\n2026/11/12 01:27\n新学习任务 · 等式性质\n2026/11/12 01:00\n教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59\n接着练习\n查看复习\n等式性质\n\n已有原始错题，先继续针对性订正。\n\n继续补救",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/issues"
+          },
+          {
+            "text": "全部课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "整理错题",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "进入课堂",
+            "aria": null,
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始学习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待完成",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已提交",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:27",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:00",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看复习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "继续补救",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "我的课堂",
+        "name": "live-list"
+      },
+      "result": {
+        "x": 107.5,
+        "y": 256.484375,
+        "tag": "A",
+        "label": "我的课堂",
+        "href": "#/live"
+      },
+      "screenshot": "./continued/02-live-list.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/live",
+        "h1": "我的课堂",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的课堂\n搜索页面、任务\n⌘ K\n10\n我的课堂\n已结束\n等式性质\n回看课堂",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/issues"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "刷新课堂",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "回看课堂",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "回看课堂",
+        "name": "live-replay"
+      },
+      "result": {
+        "x": 1331.9921875,
+        "y": 213.1875,
+        "tag": "BUTTON",
+        "label": "回看课堂",
+        "href": null
+      },
+      "screenshot": "./continued/03-live-replay.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/live?session=live-2948680d529149a4a04b7035991d222a",
+        "h1": "我的课堂",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的课堂\n搜索页面、任务\n⌘ K\n10\n我的课堂\n等式性质\n课堂列表\n课堂已结束\n第 1 题\n两边同时加3，x等于多少？\n\nx - 3 = 5\n\n答案\n我的解释\n已提交，原答保留\n课堂记录 · 1 次活动",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/issues"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "刷新课堂",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "课堂列表",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "课堂记录 · 1 次活动",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "",
+            "label": null,
+            "type": "text",
+            "value": "8"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "label": null,
+            "type": "textarea",
+            "value": "工程输入：等式两边同时加3。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "更多功能",
+        "name": "offline-menu"
+      },
+      "result": {
+        "x": 107.5,
+        "y": 352.578125,
+        "tag": "SUMMARY",
+        "label": "更多功能",
+        "href": null
+      },
+      "screenshot": "./continued/04-offline-menu.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/live?session=live-2948680d529149a4a04b7035991d222a",
+        "h1": "我的课堂",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n复习\n学习记录\n离线学习\n我的班级\n问题与回复\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的课堂\n搜索页面、任务\n⌘ K\n10\n我的课堂\n等式性质\n课堂列表\n课堂已结束\n第 1 题\n两边同时加3，x等于多少？\n\nx - 3 = 5\n\n答案\n我的解释\n已提交，原答保留\n课堂记录 · 1 次活动",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "复习",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "学习记录",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "离线学习",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "问题与回复",
+            "aria": null,
+            "href": "#/issues"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "刷新课堂",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "课堂列表",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "课堂记录 · 1 次活动",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "",
+            "label": null,
+            "type": "text",
+            "value": "8"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "label": null,
+            "type": "textarea",
+            "value": "工程输入：等式两边同时加3。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "离线学习",
+        "name": "offline-entry"
+      },
+      "result": {
+        "x": 107.5,
+        "y": 467.671875,
+        "tag": "A",
+        "label": "离线学习",
+        "href": "#/offline"
+      },
+      "screenshot": "./continued/05-offline-entry.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/offline",
+        "h1": "离线学习",
+        "text": "师承智学\n学习服务已连接\n在线登录\n离线学习\n打开离线课程\n账号\n离线口令 \n解锁\n首次使用，设置离线口令",
+        "links": [
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "在线登录",
+            "aria": null,
+            "href": "#/login"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "检查学习服务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "解锁",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "首次使用，设置离线口令",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "offline-user",
+            "label": null,
+            "type": "text",
+            "value": "student"
+          },
+          {
+            "tag": "INPUT",
+            "id": "offline-phrase",
+            "label": null,
+            "type": "password",
+            "value": "[hidden]"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "首次使用，设置离线口令",
+        "name": "offline-setup"
+      },
+      "result": {
+        "x": 720,
+        "y": 602.78125,
+        "tag": "BUTTON",
+        "label": "首次使用，设置离线口令",
+        "href": null
+      },
+      "screenshot": "./continued/06-offline-setup.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/offline",
+        "h1": "离线学习",
+        "text": "师承智学\n学习服务已连接\n在线登录\n离线学习\n首次离线学习\n账号\n离线口令 \n确认离线口令\n启用并加密保存\n已有下载，解锁",
+        "links": [
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "在线登录",
+            "aria": null,
+            "href": "#/login"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "检查学习服务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "启用并加密保存",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已有下载，解锁",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "offline-user",
+            "label": null,
+            "type": "text",
+            "value": "student"
+          },
+          {
+            "tag": "INPUT",
+            "id": "offline-phrase",
+            "label": null,
+            "type": "password",
+            "value": "[hidden]"
+          },
+          {
+            "tag": "INPUT",
+            "id": "offline-confirm",
+            "label": null,
+            "type": "password",
+            "value": "[hidden]"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "type",
+        "selector": "#offline-phrase",
+        "value": "student-ui-review-20261112",
+        "name": "offline-phrase"
+      },
+      "result": {
+        "field": "#offline-phrase",
+        "value": "student-ui-review-20261112"
+      },
+      "screenshot": "./continued/07-offline-phrase.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/offline",
+        "h1": "离线学习",
+        "text": "师承智学\n学习服务已连接\n在线登录\n离线学习\n首次离线学习\n账号\n离线口令 \n确认离线口令\n启用并加密保存\n已有下载，解锁",
+        "links": [
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "在线登录",
+            "aria": null,
+            "href": "#/login"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "检查学习服务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "启用并加密保存",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已有下载，解锁",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "offline-user",
+            "label": null,
+            "type": "text",
+            "value": "student"
+          },
+          {
+            "tag": "INPUT",
+            "id": "offline-phrase",
+            "label": null,
+            "type": "password",
+            "value": "[hidden]"
+          },
+          {
+            "tag": "INPUT",
+            "id": "offline-confirm",
+            "label": null,
+            "type": "password",
+            "value": "[hidden]"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "type",
+        "selector": "#offline-confirm",
+        "value": "student-ui-review-20261112",
+        "name": "offline-confirm"
+      },
+      "result": {
+        "field": "#offline-confirm",
+        "value": "student-ui-review-20261112"
+      },
+      "screenshot": "./continued/08-offline-confirm.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/offline",
+        "h1": "离线学习",
+        "text": "师承智学\n学习服务已连接\n在线登录\n离线学习\n首次离线学习\n账号\n离线口令 \n确认离线口令\n启用并加密保存\n已有下载，解锁",
+        "links": [
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "在线登录",
+            "aria": null,
+            "href": "#/login"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "检查学习服务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "启用并加密保存",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已有下载，解锁",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "offline-user",
+            "label": null,
+            "type": "text",
+            "value": "student"
+          },
+          {
+            "tag": "INPUT",
+            "id": "offline-phrase",
+            "label": null,
+            "type": "password",
+            "value": "[hidden]"
+          },
+          {
+            "tag": "INPUT",
+            "id": "offline-confirm",
+            "label": null,
+            "type": "password",
+            "value": "[hidden]"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "启用并加密保存",
+        "name": "offline-enabled"
+      },
+      "result": {
+        "x": 720,
+        "y": 668.171875,
+        "tag": "BUTTON",
+        "label": "启用并加密保存",
+        "href": null
+      },
+      "screenshot": "./continued/09-offline-enabled.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/offline",
+        "h1": "离线学习",
+        "text": "师承智学\n学习服务已连接\n在线登录\n离线学习\n同步进度\n锁定\n0 个已下载课时\n0.00 MB\n0 条待同步\n下载课时\n等式性质\n含括号与分母的方程\n等式性质\n解简单的一元一次方程\n等式性质\n用方程解决生活问题\n等式性质\n一元一次方程单元复习\n下载课时\n\n联网选择课时并下载\n\n选择已下载课时，继续学习\n退出时保留加密下载\n锁定并退出\n清除全部下载",
+        "links": [
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "在线登录",
+            "aria": null,
+            "href": "#/login"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "检查学习服务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "同步进度",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "锁定",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下载课时",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "锁定并退出",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "清除全部下载",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "SELECT",
+            "id": "offline-task",
+            "label": null,
+            "type": "select-one",
+            "value": "task-e47fe283a28a7d00b228d3e272a2a499"
+          },
+          {
+            "tag": "INPUT",
+            "id": "",
+            "label": null,
+            "type": "checkbox",
+            "value": "on"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "下载课时",
+        "name": "offline-download"
+      },
+      "result": {
+        "x": 877.9921875,
+        "y": 326,
+        "tag": "BUTTON",
+        "label": "下载课时",
+        "href": null
+      },
+      "screenshot": "./continued/10-offline-download.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/offline",
+        "h1": "离线学习",
+        "text": "师承智学\n学习服务已连接\n在线登录\n离线学习\n同步进度\n锁定\n\n课时已下载，可断网阅读\n\n1 个已下载课时\n0.00 MB\n0 条待同步\n下载课时\n等式性质\n含括号与分母的方程\n等式性质\n解简单的一元一次方程\n等式性质\n用方程解决生活问题\n等式性质\n一元一次方程单元复习\n下载课时\n等式性质\n2026/11/12 下载\n选择已下载课时，继续学习\n退出时保留加密下载\n锁定并退出\n清除全部下载",
+        "links": [
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "在线登录",
+            "aria": null,
+            "href": "#/login"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "检查学习服务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "同步进度",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "锁定",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下载课时",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "等式性质\n2026/11/12 下载",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "锁定并退出",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "清除全部下载",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "SELECT",
+            "id": "offline-task",
+            "label": null,
+            "type": "select-one",
+            "value": "task-e47fe283a28a7d00b228d3e272a2a499"
+          },
+          {
+            "tag": "INPUT",
+            "id": "",
+            "label": null,
+            "type": "checkbox",
+            "value": "on"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "wait",
+        "ms": 1000,
+        "name": "offline-ready"
+      },
+      "result": {
+        "waited": 1000
+      },
+      "screenshot": "./continued/11-offline-ready.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/offline",
+        "h1": "离线学习",
+        "text": "师承智学\n学习服务已连接\n在线登录\n离线学习\n同步进度\n锁定\n\n课时已下载，可断网阅读\n\n1 个已下载课时\n0.00 MB\n0 条待同步\n下载课时\n等式性质\n含括号与分母的方程\n等式性质\n解简单的一元一次方程\n等式性质\n用方程解决生活问题\n等式性质\n一元一次方程单元复习\n下载课时\n等式性质\n2026/11/12 下载\n选择已下载课时，继续学习\n退出时保留加密下载\n锁定并退出\n清除全部下载",
+        "links": [
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "在线登录",
+            "aria": null,
+            "href": "#/login"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "检查学习服务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "同步进度",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "锁定",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下载课时",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "等式性质\n2026/11/12 下载",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "锁定并退出",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "清除全部下载",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "SELECT",
+            "id": "offline-task",
+            "label": null,
+            "type": "select-one",
+            "value": "task-e47fe283a28a7d00b228d3e272a2a499"
+          },
+          {
+            "tag": "INPUT",
+            "id": "",
+            "label": null,
+            "type": "checkbox",
+            "value": "on"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "等式性质 2026/11/12 下载",
+        "name": "offline-read"
+      },
+      "result": {
+        "x": 190,
+        "y": 511.484375,
+        "tag": "BUTTON",
+        "label": "等式性质\n2026/11/12 下载",
+        "href": null
+      },
+      "screenshot": "./continued/12-offline-read.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/offline",
+        "h1": "离线学习",
+        "text": "师承智学\n学习服务已连接\n在线登录\n离线学习\n同步进度\n锁定\n\n课时已下载，可断网阅读\n\n1 个已下载课时\n0.00 MB\n0 条待同步\n下载课时\n等式性质\n含括号与分母的方程\n等式性质\n解简单的一元一次方程\n等式性质\n用方程解决生活问题\n等式性质\n一元一次方程单元复习\n下载课时\n等式性质\n2026/11/12 下载\n等式性质\n删除下载\n课时内容\n做练习\n2 / 8\n让天平两边一起变化\n\n出示两边各有5单位的天平。两边同时增加相同正量，观察并描述两边仍相等。\n\n已读到这里\n上一节\n下一节\n退出时保留加密下载\n锁定并退出\n清除全部下载",
+        "links": [
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "在线登录",
+            "aria": null,
+            "href": "#/login"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "检查学习服务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "同步进度",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "锁定",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下载课时",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "等式性质\n2026/11/12 下载",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "删除下载",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "课时内容",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "做练习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "本课目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已读到这里",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一节",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一节",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "锁定并退出",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "清除全部下载",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "SELECT",
+            "id": "offline-task",
+            "label": null,
+            "type": "select-one",
+            "value": "task-e47fe283a28a7d00b228d3e272a2a499"
+          },
+          {
+            "tag": "INPUT",
+            "id": "",
+            "label": null,
+            "type": "checkbox",
+            "value": "on"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "师承智学",
+        "name": "offline-return-home"
+      },
+      "result": {
+        "x": 98,
+        "y": 62,
+        "tag": "A",
+        "label": "师承智学",
+        "href": "#/home"
+      },
+      "screenshot": "./continued/13-offline-return-home.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/home",
+        "h1": "我的学习",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的学习\n搜索页面、任务\n⌘ K\n10\n我的学习\n待完成任务\n等式性质\n七年级一班\n开始学习\n全部课程\n待完成\n8\n学习中\n6\n已提交\n2\n学习任务\n我的班级\n待完成\n已提交\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n学习中\n进入任务\n用方程解决生活问题\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n一元一次方程单元复习\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n含括号与分母的方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n解简单的一元一次方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n待开始\n进入任务\n学习工具\n整理错题\n我的考试\n进入课堂\n消息与反馈\n10\n新学习任务 · 等式性质\n2026/11/12 01:27\n新学习任务 · 等式性质\n2026/11/12 01:00\n教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59\n接着练习\n查看复习\n等式性质\n\n已有原始错题，先继续针对性订正。\n\n继续补救",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/issues"
+          },
+          {
+            "text": "全部课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "整理错题",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "进入课堂",
+            "aria": null,
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始学习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待完成",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已提交",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:27",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:00",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看复习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "继续补救",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "帮助与反馈",
+        "name": "feedback-open"
+      },
+      "result": {
+        "x": 107.5,
+        "y": 899.609375,
+        "tag": "BUTTON",
+        "label": "帮助与反馈",
+        "href": null
+      },
+      "screenshot": "./continued/14-feedback-open.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/home",
+        "h1": "我的学习",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的学习\n搜索页面、任务\n⌘ K\n10\n我的学习\n待完成任务\n等式性质\n七年级一班\n开始学习\n全部课程\n待完成\n8\n学习中\n6\n已提交\n2\n学习任务\n我的班级\n待完成\n已提交\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n学习中\n进入任务\n用方程解决生活问题\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n一元一次方程单元复习\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n含括号与分母的方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n解简单的一元一次方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n待开始\n进入任务\n学习工具\n整理错题\n我的考试\n进入课堂\n消息与反馈\n10\n新学习任务 · 等式性质\n2026/11/12 01:27\n新学习任务 · 等式性质\n2026/11/12 01:00\n教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59\n接着练习\n查看复习\n等式性质\n\n已有原始错题，先继续针对性订正。\n\n继续补救\n帮助与反馈\n\n帮助与反馈\n\n体验反馈\n提交反馈\n查看反馈记录\n关闭",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/issues"
+          },
+          {
+            "text": "全部课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "整理错题",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "进入课堂",
+            "aria": null,
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始学习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待完成",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已提交",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:27",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:00",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看复习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "继续补救",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看反馈记录",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "关闭",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "TEXTAREA",
+            "id": "issue-note",
+            "label": null,
+            "type": "textarea",
+            "value": ""
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "type",
+        "selector": "#issue-note",
+        "value": "模拟学生界面复核：希望把错题与复习、班级与考试课堂放在一起，减少寻找入口。",
+        "name": "feedback-input"
+      },
+      "result": {
+        "field": "#issue-note",
+        "value": "模拟学生界面复核：希望把错题与复习、班级与考试课堂放在一起，减少寻找入口。"
+      },
+      "screenshot": "./continued/15-feedback-input.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/home",
+        "h1": "我的学习",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的学习\n搜索页面、任务\n⌘ K\n10\n我的学习\n待完成任务\n等式性质\n七年级一班\n开始学习\n全部课程\n待完成\n8\n学习中\n6\n已提交\n2\n学习任务\n我的班级\n待完成\n已提交\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n学习中\n进入任务\n用方程解决生活问题\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n一元一次方程单元复习\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n含括号与分母的方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n解简单的一元一次方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n待开始\n进入任务\n学习工具\n整理错题\n我的考试\n进入课堂\n消息与反馈\n10\n新学习任务 · 等式性质\n2026/11/12 01:27\n新学习任务 · 等式性质\n2026/11/12 01:00\n教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59\n接着练习\n查看复习\n等式性质\n\n已有原始错题，先继续针对性订正。\n\n继续补救\n帮助与反馈\n\n帮助与反馈\n\n体验反馈\n提交反馈\n查看反馈记录\n关闭",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/issues"
+          },
+          {
+            "text": "全部课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "整理错题",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "进入课堂",
+            "aria": null,
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始学习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待完成",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已提交",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:27",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:00",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看复习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "继续补救",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看反馈记录",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "关闭",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "TEXTAREA",
+            "id": "issue-note",
+            "label": null,
+            "type": "textarea",
+            "value": "模拟学生界面复核：希望把错题与复习、班级与考试课堂放在一起，减少寻找入口。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "提交反馈",
+        "name": "feedback-submit"
+      },
+      "result": {
+        "x": 720,
+        "y": 592.890625,
+        "tag": "BUTTON",
+        "label": "提交反馈",
+        "href": null
+      },
+      "screenshot": "./continued/16-feedback-submit.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/home",
+        "h1": "我的学习",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的学习\n搜索页面、任务\n⌘ K\n10\n我的学习\n待完成任务\n等式性质\n七年级一班\n开始学习\n全部课程\n待完成\n8\n学习中\n6\n已提交\n2\n学习任务\n我的班级\n待完成\n已提交\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n学习中\n进入任务\n用方程解决生活问题\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n一元一次方程单元复习\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n含括号与分母的方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n解简单的一元一次方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n待开始\n进入任务\n学习工具\n整理错题\n我的考试\n进入课堂\n消息与反馈\n10\n新学习任务 · 等式性质\n2026/11/12 01:27\n新学习任务 · 等式性质\n2026/11/12 01:00\n教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59\n接着练习\n查看复习\n等式性质\n\n已有原始错题，先继续针对性订正。\n\n继续补救\n反馈已提交",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/issues"
+          },
+          {
+            "text": "全部课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "整理错题",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "进入课堂",
+            "aria": null,
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始学习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待完成",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已提交",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:27",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:00",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看复习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "继续补救",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "帮助与反馈",
+        "name": "feedback-reopen"
+      },
+      "result": {
+        "x": 107.5,
+        "y": 899.609375,
+        "tag": "BUTTON",
+        "label": "帮助与反馈",
+        "href": null
+      },
+      "screenshot": "./continued/17-feedback-reopen.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/home",
+        "h1": "我的学习",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的学习\n搜索页面、任务\n⌘ K\n10\n我的学习\n待完成任务\n等式性质\n七年级一班\n开始学习\n全部课程\n待完成\n8\n学习中\n6\n已提交\n2\n学习任务\n我的班级\n待完成\n已提交\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n学习中\n进入任务\n用方程解决生活问题\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n一元一次方程单元复习\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n含括号与分母的方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n解简单的一元一次方程\n\n七年级一班 · 无截止时间\n\n学习中\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n待开始\n进入任务\n学习工具\n整理错题\n我的考试\n进入课堂\n消息与反馈\n10\n新学习任务 · 等式性质\n2026/11/12 01:27\n新学习任务 · 等式性质\n2026/11/12 01:00\n教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59\n接着练习\n查看复习\n等式性质\n\n已有原始错题，先继续针对性订正。\n\n继续补救\n帮助与反馈\n\n帮助与反馈\n\n体验反馈\n提交反馈\n查看反馈记录\n关闭",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "",
+            "aria": null,
+            "href": "#/issues"
+          },
+          {
+            "text": "全部课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "整理错题",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "进入课堂",
+            "aria": null,
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始学习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待完成",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已提交",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:27",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质\n2026/11/12 01:00",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "教师反馈 · 考试讲评 · 本轮专项：共同运算检查\n2026/11/11 23:59",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看复习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "继续补救",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看反馈记录",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "关闭",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "TEXTAREA",
+            "id": "issue-note",
+            "label": null,
+            "type": "textarea",
+            "value": ""
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "查看反馈记录",
+        "name": "feedback-records"
+      },
+      "result": {
+        "x": 720,
+        "y": 646.890625,
+        "tag": "BUTTON",
+        "label": "查看反馈记录",
+        "href": null
+      },
+      "screenshot": "./continued/18-feedback-records.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/issues",
+        "h1": "问题与回复",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n复习\n学习记录\n离线学习\n我的班级\n问题与回复\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n问题与回复\n搜索页面、任务\n⌘ K\n10\n问题与回复\n提交问题\n全部状态\n刷新\n待处理\n为什么只改变一边，等式就不成立了？\n演示学生 · 历史学习问题\n待处理\n模拟学生界面复核：希望把错题与复习、班级与考试课堂放在一起，减少寻找入口。\n演示学生 · 系统反馈\n未完成的后台任务\n帮助与反馈\n\n帮助与反馈\n\n体验反馈\n提交反馈\n查看反馈记录\n关闭",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "复习",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "学习记录",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "离线学习",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "问题与回复",
+            "aria": null,
+            "href": "#/issues"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交问题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "全部状态",
+            "aria": "问题状态筛选",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "刷新",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待处理\n为什么只改变一边，等式就不成立了？\n演示学生 · 历史学习问题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待处理\n模拟学生界面复核：希望把错题与复习、班级与考试课堂放在一起，减少寻找入口。\n演示学生 · 系统反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "未完成的后台任务",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看反馈记录",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "关闭",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "",
+            "label": "搜索问题",
+            "type": "text",
+            "value": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "issue-note",
+            "label": null,
+            "type": "textarea",
+            "value": ""
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "key",
+        "key": "Escape",
+        "name": "feedback-close"
+      },
+      "result": {
+        "active": "<button data-slot=\"button\" data-variant=\"ghost\" data-size=\"default\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:b",
+        "outline": "rgb(74, 74, 74) solid 2px"
+      },
+      "screenshot": "./continued/19-feedback-close.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/issues",
+        "h1": "问题与回复",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n复习\n学习记录\n离线学习\n我的班级\n问题与回复\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n问题与回复\n搜索页面、任务\n⌘ K\n10\n问题与回复\n提交问题\n全部状态\n刷新\n待处理\n为什么只改变一边，等式就不成立了？\n演示学生 · 历史学习问题\n待处理\n模拟学生界面复核：希望把错题与复习、班级与考试课堂放在一起，减少寻找入口。\n演示学生 · 系统反馈\n未完成的后台任务",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "复习",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "学习记录",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "离线学习",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "问题与回复",
+            "aria": null,
+            "href": "#/issues"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交问题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "全部状态",
+            "aria": "问题状态筛选",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "刷新",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待处理\n为什么只改变一边，等式就不成立了？\n演示学生 · 历史学习问题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待处理\n模拟学生界面复核：希望把错题与复习、班级与考试课堂放在一起，减少寻找入口。\n演示学生 · 系统反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "未完成的后台任务",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "",
+            "label": "搜索问题",
+            "type": "text",
+            "value": ""
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "学习记录",
+        "name": "record-return"
+      },
+      "result": {
+        "x": 107.5,
+        "y": 428.671875,
+        "tag": "A",
+        "label": "学习记录",
+        "href": "#/records"
+      },
+      "screenshot": "./continued/20-record-return.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/records",
+        "h1": "学习记录",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n复习\n学习记录\n离线学习\n我的班级\n问题与回复\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n学习记录\n搜索页面、任务\n⌘ K\n10\n学习记录\n导出记录\n等式性质\n2026/11/12\n0 次作答\n等式性质\n2026/11/12\n5 次作答\n课堂记录 · 等式性质\n2026/11/11\n1 次作答\n考试讲评 · 本轮专项：共同运算检查\n2026/11/11\n2 次作答\n等式性质\n2026/11/11\n1 次作答\n用方程解决生活问题\n2026/11/11\n0 次作答\n一元一次方程单元复习\n2026/11/11\n0 次作答\n含括号与分母的方程\n2026/11/11\n0 次作答\n解简单的一元一次方程\n2026/11/11\n0 次作答\n等式性质\n2026/11/11\n0 次作答",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "复习",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "学习记录",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "离线学习",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "问题与回复",
+            "aria": null,
+            "href": "#/issues"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "导出记录",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "等式性质\n2026/11/12\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "等式性质\n2026/11/12\n5 次作答",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "课堂记录 · 等式性质\n2026/11/11\n1 次作答",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "考试讲评 · 本轮专项：共同运算检查\n2026/11/11\n2 次作答",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "等式性质\n2026/11/11\n1 次作答",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "用方程解决生活问题\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "一元一次方程单元复习\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "含括号与分母的方程\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "解简单的一元一次方程\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "等式性质\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "等式性质 2026/11/12 5 次作答",
+        "name": "record-open-saved"
+      },
+      "result": {
+        "x": 820.5,
+        "y": 308.82525634765625,
+        "tag": "SUMMARY",
+        "label": "等式性质\n2026/11/12\n5 次作答",
+        "href": null
+      },
+      "screenshot": "./continued/21-record-open-saved.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/records",
+        "h1": "学习记录",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n复习\n学习记录\n离线学习\n我的班级\n问题与回复\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n学习记录\n搜索页面、任务\n⌘ K\n10\n学习记录\n导出记录\n等式性质\n2026/11/12\n0 次作答\n等式性质\n2026/11/12\n5 次作答\nx - 3 = 5 → 8\n数值正确\n3z = 18 → 6\n数值正确\nw / 4 = 3 → 12\n数值正确\n2(a - 1) = 10 → 6\n数值正确\nb / (-3) = 2 → -6\n数值正确\n查看学习结果\n课堂记录 · 等式性质\n2026/11/11\n1 次作答\n考试讲评 · 本轮专项：共同运算检查\n2026/11/11\n2 次作答\n等式性质\n2026/11/11\n1 次作答\n用方程解决生活问题\n2026/11/11\n0 次作答\n一元一次方程单元复习\n2026/11/11\n0 次作答\n含括号与分母的方程\n2026/11/11\n0 次作答\n解简单的一元一次方程\n2026/11/11\n0 次作答\n等式性质\n2026/11/11\n0 次作答",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "复习",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "学习记录",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "离线学习",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "问题与回复",
+            "aria": null,
+            "href": "#/issues"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "导出记录",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "等式性质\n2026/11/12\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "等式性质\n2026/11/12\n5 次作答",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "x - 3 = 5 → 8\n数值正确",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "3z = 18 → 6\n数值正确",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "w / 4 = 3 → 12\n数值正确",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "2(a - 1) = 10 → 6\n数值正确",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "b / (-3) = 2 → -6\n数值正确",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学习结果",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "课堂记录 · 等式性质\n2026/11/11\n1 次作答",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "考试讲评 · 本轮专项：共同运算检查\n2026/11/11\n2 次作答",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "等式性质\n2026/11/11\n1 次作答",
+            "aria": null
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "用方程解决生活问题\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "一元一次方程单元复习\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "含括号与分母的方程\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "解简单的一元一次方程\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "等式性质\n2026/11/11\n0 次作答",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "查看学习结果",
+        "name": "record-to-result"
+      },
+      "result": {
+        "x": 345.0078125,
+        "y": 499.5,
+        "tag": "BUTTON",
+        "label": "查看学习结果",
+        "href": null
+      },
+      "screenshot": "./continued/22-record-to-result.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/result?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "学习结果",
+        "text": "跳至主要内容\n师承智学\n学生工作区\n我的学习\n探索课程\n我的考试\n我的课堂\n错题帮\n更多功能\n复习\n学习记录\n离线学习\n我的班级\n问题与回复\n帮助与反馈\n演\n演示学生\n学生\n学生空间\n/\n我的学习\n搜索页面、任务\n⌘ K\n10\n学习结果\n返回本课\n等式性质\n准备交给老师\n交给老师\n4\n作答记录\n4\n独立答对\n0\n错题练习\n返回学习首页\n本课资料与进度",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "aria": "师承智学首页",
+            "href": "#/home"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "探索课程",
+            "aria": null,
+            "href": "#/courses"
+          },
+          {
+            "text": "我的考试",
+            "aria": null,
+            "href": "#/exams"
+          },
+          {
+            "text": "我的课堂",
+            "aria": null,
+            "href": "#/live"
+          },
+          {
+            "text": "错题帮",
+            "aria": null,
+            "href": "#/wrong"
+          },
+          {
+            "text": "复习",
+            "aria": null,
+            "href": "#/memory"
+          },
+          {
+            "text": "学习记录",
+            "aria": null,
+            "href": "#/records"
+          },
+          {
+            "text": "离线学习",
+            "aria": null,
+            "href": "#/offline"
+          },
+          {
+            "text": "我的班级",
+            "aria": null,
+            "href": "#/class"
+          },
+          {
+            "text": "问题与回复",
+            "aria": null,
+            "href": "#/issues"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "SUMMARY",
+            "text": "更多功能",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务\n⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "10",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "返回本课",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "独立正确范围",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "交给老师",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "4\n作答记录",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "4\n独立答对",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "0\n错题练习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "返回学习首页",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "本课资料与进度",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "返回本课",
+        "name": "result-to-lesson"
+      },
+      "result": {
+        "x": 1352.9921875,
+        "y": 112.056884765625,
+        "tag": "BUTTON",
+        "label": "返回本课",
+        "href": null
+      },
+      "screenshot": "./continued/23-result-to-lesson.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n8 / 8\n独立检查\n\n独立作答并解释。\n\n需要帮助可以先学习当前题，再换新题重新检查。\n\n2 道题\n\n上一步\n开始练习\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n8 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始练习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "selector": ".lesson-step-toolbar>button",
+        "name": "lesson-dir-resume"
+      },
+      "result": {
+        "x": 126.8359375,
+        "y": 179,
+        "tag": "BUTTON",
+        "label": "目录\n8 / 8",
+        "href": null
+      },
+      "screenshot": "./continued/24-lesson-dir-resume.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n8 / 8\n独立检查\n\n独立作答并解释。\n\n需要帮助可以先学习当前题，再换新题重新检查。\n\n2 道题\n\n上一步\n开始练习\n问一问\n本课目录\n\n本课目录\n\n01\n相等的两边\n02\n让天平两边一起变化\n03\n同加、同减\n04\n例题：消去减去的数\n05\n随堂练习\n06\n同乘、同除的条件\n07\n例题：共同除以非零数\n08\n独立检查\n关闭",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n8 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始练习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "01\n相等的两边",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "02\n让天平两边一起变化",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "03\n同加、同减",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "04\n例题：消去减去的数",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "05\n随堂练习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "06\n同乘、同除的条件",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "07\n例题：共同除以非零数",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "08\n独立检查",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "关闭",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "02 让天平两边一起变化",
+        "name": "lesson-balance"
+      },
+      "result": {
+        "x": 720,
+        "y": 373.21875,
+        "tag": "BUTTON",
+        "label": "02\n让天平两边一起变化",
+        "href": null
+      },
+      "screenshot": "./continued/25-lesson-balance.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n2 / 8\n让天平两边一起变化\n\n天平两边各有5单位。\n\n两边同时增加相同的正量，观察结果，再用自己的话解释。\n\n此实物类比只展示非负数量。\n\n5\n=\n5\n5\n5\n左边\n右边\n两边一起\n1\n1\n\n两边相等\n\n你观察到了什么？\n上一步\n下一步\n问一问\n完成互动并写下观察",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n2 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "左边减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "左边加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "右边减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "右边加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "两边同时加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "两边同时减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "重置天平",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一步",
+            "aria": null,
+            "disabled": true
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "TEXTAREA",
+            "id": "explain-eq-balance",
+            "label": null,
+            "type": "textarea",
+            "value": ""
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "两边同时加1",
+        "name": "balance-both-add"
+      },
+      "result": {
+        "x": 699.359375,
+        "y": 588.59375,
+        "tag": "BUTTON",
+        "label": "1",
+        "href": null
+      },
+      "screenshot": "./continued/26-balance-both-add.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n2 / 8\n让天平两边一起变化\n\n天平两边各有5单位。\n\n两边同时增加相同的正量，观察结果，再用自己的话解释。\n\n此实物类比只展示非负数量。\n\n6\n=\n6\n6\n6\n左边\n右边\n两边一起\n1\n1\n\n两边相等\n\n你观察到了什么？\n上一步\n下一步\n问一问\n完成互动并写下观察",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n2 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "左边减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "左边加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "右边减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "右边加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "两边同时加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "两边同时减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "重置天平",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一步",
+            "aria": null,
+            "disabled": true
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "TEXTAREA",
+            "id": "explain-eq-balance",
+            "label": null,
+            "type": "textarea",
+            "value": ""
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "type",
+        "selector": "#explain-eq-balance",
+        "value": "两边同时加1后仍然相等，都变成6。",
+        "name": "balance-observation"
+      },
+      "result": {
+        "field": "#explain-eq-balance",
+        "value": "两边同时加1后仍然相等，都变成6。"
+      },
+      "screenshot": "./continued/27-balance-observation.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n2 / 8\n让天平两边一起变化\n\n天平两边各有5单位。\n\n两边同时增加相同的正量，观察结果，再用自己的话解释。\n\n此实物类比只展示非负数量。\n\n6\n=\n6\n6\n6\n左边\n右边\n两边一起\n1\n1\n\n两边相等\n\n你观察到了什么？\n上一步\n下一步\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n2 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "左边减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "左边加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "右边减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "右边加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "两边同时加1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "两边同时减1",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "重置天平",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "TEXTAREA",
+            "id": "explain-eq-balance",
+            "label": null,
+            "type": "textarea",
+            "value": "两边同时加1后仍然相等，都变成6。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "下一步",
+        "name": "balance-completed"
+      },
+      "result": {
+        "x": 1263.5,
+        "y": 853.984375,
+        "tag": "BUTTON",
+        "label": "下一步",
+        "href": null
+      },
+      "screenshot": "./continued/28-balance-completed.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n3 / 8\n同加、同减\n\n若\na \n=\n b\n，那么\na + c \n=\n b + c\n，\na - c \n=\n b - c\n。\n\nc可以为正数、负数或零。\n\n关键是两边同时进行相同运算。\n\n上一步\n下一步\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n3 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "下一步",
+        "name": "lesson-example"
+      },
+      "result": {
+        "x": 1263.5,
+        "y": 612.5,
+        "tag": "BUTTON",
+        "label": "下一步",
+        "href": null
+      },
+      "screenshot": "./continued/29-lesson-example.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n4 / 8\n例题：消去减去的数\n1\n\nx - 3 \n=\n 5\n\n2\n\n两边同时加3：\nx - 3 + 3 \n=\n 5 + 3\n\n3\n\n得到\nx \n=\n 8\n。\n\n4\n\n把8代回，\n8 - 3 \n=\n 5\n，成立。\n\n上一步\n下一步\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n4 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "下一步",
+        "name": "lesson-practice-restored"
+      },
+      "result": {
+        "x": 1263.5,
+        "y": 790,
+        "tag": "BUTTON",
+        "label": "下一步",
+        "href": null
+      },
+      "screenshot": "./continued/30-lesson-practice-restored.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n5 / 8\n随堂练习\n\n每一步都说明两边进行了什么运算。\n\n两边同时加3，x等于多少？\nx - 3 \n=\n 5\n你的答案\n解释你的运算\n\n数值正确 独立作答\n\n提交作答\n需要提示\n上一步\n1 / 2 题\n下一题\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n5 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "查看核对结果",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交作答",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "需要提示",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "answer-eq-practice-add",
+            "label": null,
+            "type": "text",
+            "value": "8"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "reason-eq-practice-add",
+            "label": null,
+            "type": "textarea",
+            "value": "两边进行相同运算，再代回原方程核对。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "问一问",
+        "name": "help-restored"
+      },
+      "result": {
+        "x": 116.0078125,
+        "y": 926.359375,
+        "tag": "BUTTON",
+        "label": "问一问",
+        "href": null
+      },
+      "screenshot": "./continued/31-help-restored.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n5 / 8\n随堂练习\n\n每一步都说明两边进行了什么运算。\n\n两边同时加3，x等于多少？\nx - 3 \n=\n 5\n你的答案\n解释你的运算\n\n数值正确 独立作答\n\n提交作答\n需要提示\n上一步\n1 / 2 题\n下一题\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n5 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "查看核对结果",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交作答",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "需要提示",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "answer-eq-practice-add",
+            "label": null,
+            "type": "text",
+            "value": "8"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "reason-eq-practice-add",
+            "label": null,
+            "type": "textarea",
+            "value": "两边进行相同运算，再代回原方程核对。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "inspect",
+        "name": "help-restored-ready"
+      },
+      "result": {
+        "inspect": true
+      },
+      "screenshot": "./continued/32-help-restored-ready.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n5 / 8\n随堂练习\n\n每一步都说明两边进行了什么运算。\n\n两边同时加3，x等于多少？\nx - 3 \n=\n 5\n你的答案\n解释你的运算\n\n数值正确 独立作答\n\n提交作答\n需要提示\n上一步\n1 / 2 题\n下一题\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n5 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "查看核对结果",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交作答",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "需要提示",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "answer-eq-practice-add",
+            "label": null,
+            "type": "text",
+            "value": "8"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "reason-eq-practice-add",
+            "label": null,
+            "type": "textarea",
+            "value": "两边进行相同运算，再代回原方程核对。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "click",
+        "text": "问一问",
+        "name": "help-click-stable"
+      },
+      "result": {
+        "x": 116.0078125,
+        "y": 925.359375,
+        "tag": "BUTTON",
+        "label": "问一问",
+        "href": null
+      },
+      "screenshot": "./continued/33-help-click-stable.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n5 / 8\n随堂练习\n\n每一步都说明两边进行了什么运算。\n\n两边同时加3，x等于多少？\nx - 3 \n=\n 5\n你的答案\n解释你的运算\n\n数值正确 独立作答\n\n提交作答\n需要提示\n上一步\n保存中…\n下一题\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n5 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "查看核对结果",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交作答",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "需要提示",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "answer-eq-practice-add",
+            "label": null,
+            "type": "text",
+            "value": "8"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "reason-eq-practice-add",
+            "label": null,
+            "type": "textarea",
+            "value": "两边进行相同运算，再代回原方程核对。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "wait",
+        "ms": 3000,
+        "name": "help-after-save"
+      },
+      "result": {
+        "waited": 3000
+      },
+      "screenshot": "./continued/34-help-after-save.png",
+      "state": {
+        "url": "http://127.0.0.1:8102/#/learn?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "h1": "等式性质",
+        "text": "跳至主要内容\n我的学习\n师承智学\n导航\n等式性质\n目录\n5 / 8\n随堂练习\n\n每一步都说明两边进行了什么运算。\n\n两边同时加3，x等于多少？\nx - 3 \n=\n 5\n你的答案\n解释你的运算\n\n数值正确 独立作答\n\n提交作答\n需要提示\n上一步\n1 / 2 题\n下一题\n问一问",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "aria": null,
+            "href": "#main-content"
+          },
+          {
+            "text": "我的学习",
+            "aria": null,
+            "href": "#/home"
+          },
+          {
+            "text": "师承智学",
+            "aria": null,
+            "href": "#/home"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "导航",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "更多学习操作",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录\n5 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "学习目标",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "查看核对结果",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "提交作答",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "需要提示",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "问一问",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "id": "answer-eq-practice-add",
+            "label": null,
+            "type": "text",
+            "value": "8"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "reason-eq-practice-add",
+            "label": null,
+            "type": "textarea",
+            "value": "两边进行相同运算，再代回原方程核对。"
+          }
+        ],
+        "alerts": []
+      }
+    },
+    {
+      "action": {
+        "action": "fonts"
+      },
+      "result": [
+        {
+          "tag": "A",
+          "text": "跳至主要内容",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "14px",
+          "weight": "400",
+          "line": "22.4px"
+        },
+        {
+          "tag": "A",
+          "text": "我的学习",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "400",
+          "line": "20.8px"
+        },
+        {
+          "tag": "A",
+          "text": "师承智学",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "16px",
+          "weight": "600",
+          "line": "25.6px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "导航",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "H1",
+          "text": "等式性质",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "24px",
+          "weight": "550",
+          "line": "33.6px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "更多学习操作",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "目录\n5 / 8",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "学习目标",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "H2",
+          "text": "随堂练习",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "27px",
+          "weight": "550",
+          "line": "40.5px"
+        },
+        {
+          "tag": "P",
+          "text": "每一步都说明两边进行了什么运算。",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "15px",
+          "weight": "400",
+          "line": "27px"
+        },
+        {
+          "tag": "SPAN",
+          "text": "x - 3 \n=\n 5",
+          "font": "\"Cambria Math\", \"STIX Two Math\", \"Times New Roman\", serif",
+          "size": "47.52px",
+          "weight": "400",
+          "line": "71.28px"
+        },
+        {
+          "tag": "LABEL",
+          "text": "你的答案",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "20.8px"
+        },
+        {
+          "tag": "INPUT",
+          "text": "answer-eq-practice-add",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "400",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "LABEL",
+          "text": "解释你的运算",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "20.8px"
+        },
+        {
+          "tag": "TEXTAREA",
+          "text": "reason-eq-practice-add",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "400",
+          "line": "24.05px"
+        },
+        {
+          "tag": "P",
+          "text": "数值正确 独立作答",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "400",
+          "line": "22.1px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "查看核对结果",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "14px",
+          "weight": "500",
+          "line": "20px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "提交作答",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "需要提示",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "上一步",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "下一题",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        },
+        {
+          "tag": "BUTTON",
+          "text": "问一问",
+          "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+          "size": "13px",
+          "weight": "500",
+          "line": "18.5714px"
+        }
+      ],
+      "screenshot": null,
+      "state": null
+    }
+  ],
+  "console": []
+}

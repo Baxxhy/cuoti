@@ -1,0 +1,409 @@
+{
+  "review_type": "AI模拟教师角色评审；非真人研究，非总体用户满意度统计",
+  "round": "retest1",
+  "environment": {
+    "url": "http://127.0.0.1:8102",
+    "viewport": "1440×1000",
+    "browser": "Chromium 1248 CDP，全新空profile",
+    "account_role": "teacher",
+    "project_source_modified": false,
+    "date": "2026-11-12",
+    "source_modified": false
+  },
+  "method": "真实CDP鼠标点击与键盘；字段输入用DOM input/change事件。未用手工hash跳转替代入口发现。",
+  "total": 98,
+  "target": 95,
+  "passed": true,
+  "sections": {
+    "tasks": {
+      "score": 30,
+      "max": 30,
+      "items": [
+        {
+          "label": "T1",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T2",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T3",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T4",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T5",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T6",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "navigation": {
+      "score": 24,
+      "max": 25,
+      "items": [
+        {
+          "label": "业务分组明确",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "无重复混淆",
+          "score": 4,
+          "max": 5,
+          "deduction": "备课全局子页签AI备课与教案工具AI备课同时可见，轻微重复；retest1/save-failure.png"
+        },
+        {
+          "label": "子功能可找",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "返回上下文",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "主次清楚",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "information": {
+      "score": 20,
+      "max": 20,
+      "items": [
+        {
+          "label": "教学概览",
+          "score": 5,
+          "max": 5,
+          "evidence": "retest1/overview-loaded.png：最近提交与班级任务同顶416.7px，默认5任务"
+        },
+        {
+          "label": "活动备课",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "题库/组卷",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "学生学习记忆",
+          "score": 5,
+          "max": 5,
+          "evidence": "retest1/memory-detail.png：414px上下文列+621px证据列，来源已有时间与状态"
+        }
+      ]
+    },
+    "typography": {
+      "score": 14,
+      "max": 15,
+      "items": [
+        {
+          "label": "UI同字族",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "正文层级一致",
+          "score": 4,
+          "max": 5,
+          "deduction": "学生预览正文21px内的5=5仍28.35px，轻微跳大；retest1/prepare-preview.png与actions.json的fonts结果"
+        },
+        {
+          "label": "数学协调",
+          "score": 5,
+          "max": 5,
+          "evidence": "题库公式28px，子项继承28px，等号23.8px；全部同Geist/Noto字体栈"
+        }
+      ]
+    },
+    "feedback_keyboard": {
+      "score": 10,
+      "max": 10,
+      "items": [
+        {
+          "label": "保存/失败恢复",
+          "score": 5,
+          "max": 5,
+          "evidence": "retest1/save-failure.png：一次PUT模拟中断后单处错误、保留输入、就地重新保存成功，无失败成功勾toast"
+        },
+        {
+          "label": "焦点/键盘",
+          "score": 5,
+          "max": 5,
+          "evidence": "Tab进入dialog学习记忆、Escape关闭返回原按钮；保存后Tab活动排序按钮，2px solid焦点；retest1/save-retry-focus.png"
+        }
+      ]
+    }
+  },
+  "stories": [
+    {
+      "id": "T1",
+      "name": "概览→案例阅读选用",
+      "score": 5,
+      "max": 5,
+      "result": "完成",
+      "clicks": [
+        "教学资源",
+        "输入“两边同时加3”",
+        "检索",
+        "阅读案例（共同运算追问）",
+        "用于备课"
+      ],
+      "evidence": [
+        "retest1/actions.json#10-20",
+        "retest1/case-search.png",
+        "retest1/case-detail.png"
+      ],
+      "detail": "本轮真实提交检索并阅读选用结果，未通过手工hash找页面。"
+    },
+    {
+      "id": "T2",
+      "name": "备课编辑保存、学生预览、AI入口",
+      "score": 5,
+      "max": 5,
+      "result": "完成",
+      "clicks": [
+        "修改课堂说明",
+        "保存",
+        "学生预览",
+        "AI 备课",
+        "我的教案"
+      ],
+      "evidence": [
+        "retest1/actions.json#21-29",
+        "retest1/prepare-preview.png"
+      ],
+      "detail": "实际保存QA教案，查看学生预览、AI任务页和已有任务列表。未执行新AI生成，不将入口可用等同本轮模型验收。"
+    },
+    {
+      "id": "T3",
+      "name": "发布班级任务并找成员",
+      "score": 5,
+      "max": 5,
+      "result": "完成",
+      "clicks": [
+        "发布任务",
+        "确认发布",
+        "成员与邀请",
+        "学习任务"
+      ],
+      "evidence": [
+        "retest1/actions.json#30-37",
+        "retest1/publish-task.png",
+        "retest1/class-members.png"
+      ],
+      "detail": "实际新发布一条QA任务，读取2名班级成员；任务固定版本后果保留。"
+    },
+    {
+      "id": "T4",
+      "name": "查看当前作答并保存反馈",
+      "score": 5,
+      "max": 5,
+      "result": "完成且学生确认收到",
+      "clicks": [
+        "班级教学",
+        "1/2已提交的等式性质：查看学情",
+        "演示学生：查看与反馈",
+        "作答",
+        "求助",
+        "补救",
+        "教师反馈",
+        "输入反馈",
+        "保存反馈"
+      ],
+      "evidence": [
+        "retest1/actions.json#50-73",
+        "retest1/student-original-answers.png",
+        "retest1/student-help-history.png",
+        "retest1/teacher-feedback-saved.png",
+        "/tmp/sczx-persona/student/retest1/69-feedback-result-refreshed.png"
+      ],
+      "detail": "task-4a0bc55e09bc401d707d0204362460a4：读到本轮6次原答、天平观察、1次求助；补救为空。新反馈保存后已反馈0→1，学生代理从学习记录→学习结果刷新已确认可见。基线弹窗阻断修复。"
+    },
+    {
+      "id": "T5",
+      "name": "题库→试卷→考试答卷",
+      "score": 5,
+      "max": 5,
+      "result": "完成新考试提交/批阅/成绩闭环",
+      "clicks": [
+        "题库与考试",
+        "题库",
+        "组卷",
+        "打开本轮1题QA试卷",
+        "发布考试",
+        "确认发布考试",
+        "考试与批阅",
+        "查看答卷",
+        "演示学生",
+        "填写讲评",
+        "保存批阅",
+        "发布成绩（提示仍有未交卷）",
+        "专项学生二新profile：班级→考试→最新考试→开始→填写→确认交卷",
+        "教师重新读取新考试",
+        "保存学生二批阅",
+        "发布成绩"
+      ],
+      "evidence": [
+        "retest1/actions.json#45-49",
+        "retest1/actions.json#75-83",
+        "retest1/actions.json#113-124",
+        "retest1/actions.json#142-150",
+        "retest1/bank-fonts.png",
+        "retest1/exam-beijing-time.png",
+        "retest1/exam-grading-saved.png",
+        "retest1/exam-results-published.png",
+        "retest1/student2/actions.json",
+        "retest1/student2/new-exam-second-submitted.png"
+      ],
+      "detail": "复用本轮新建1题10分QA试卷发布exam-a15978b2fecf4111917264153ce812e4，02:05—03:06北京时间。学生代理提交演示学生新答卷；本评审用专项学生二独立空profile只提交这个新考试。教师分别保存讲评（均10分）；1/2交卷时发布被明确拒绝，2/2后发布成功。学生代理已从UI回看10/10和本轮讲评。未改写任何旧考试成绩。"
+    },
+    {
+      "id": "T6",
+      "name": "实时课堂、分层、教研、复习依据与返回",
+      "score": 5,
+      "max": 5,
+      "result": "入口/回看完成",
+      "clicks": [
+        "班级教学",
+        "实时课堂",
+        "回看课堂",
+        "分层教学",
+        "新建安排",
+        "等式性质→读取分组建议",
+        "返回列表",
+        "学生复习",
+        "等式性质详情",
+        "收起",
+        "教学资源",
+        "教研交流",
+        "分享内容",
+        "关闭",
+        "备课"
+      ],
+      "evidence": [
+        "retest1/actions.json#84-112",
+        "retest1/actions.json#125-130",
+        "retest1/live-review.png",
+        "retest1/layer-suggestions-loaded.png",
+        "retest1/memory-detail.png",
+        "retest1/community-share.png"
+      ],
+      "detail": "班级子页签把实时课堂、分层、学生复习放在同一语境，query保留class-demo；分层确实读到2名学生证据与建议。教研归教学资源。未新发分层或教研分享，按原故事入口和返回验收。"
+    }
+  ],
+  "issues": [
+    {
+      "id": "TE-P3-01",
+      "priority": "P3",
+      "title": "备课AI入口轻微重复",
+      "evidence": [
+        "retest1/save-failure.png"
+      ],
+      "suggestion": "后续可合并全局AI备课页签与教案AI备课快捷按钮；当前均指向正确位置，不阻断。"
+    },
+    {
+      "id": "TE-P3-02",
+      "priority": "P3",
+      "title": "学生预览行内公式字号仍略大",
+      "evidence": [
+        "retest1/prepare-preview.png",
+        "retest1/actions.json#25"
+      ],
+      "observed": "正文21px，行内公式28.35px",
+      "suggestion": "可将行内简单式限制为接近正文大小，独立公式保留更大字号。"
+    }
+  ],
+  "scope_notes": [
+    "采用与基线相同六故事/100分rubric；98是本次模拟评审分数，不代表真人研究结果或所有页面绝对无改进空间。",
+    "AI入口和教研分享弹窗只按入口可达范围验收；未新运行AI备课、未发布分层安排、未发布教研分享。",
+    "新考试师生闭环实际完成，复用了本轮已审核QA试卷；基线已验证新建/审核试卷，复测未重复建立相同卷。",
+    "错误恢复仅当前profile一次PUT故障注入；恢复fetch后重新保存成功，无服务端故障推论。",
+    "actions.json中少量no clickable match来自页面过渡中点击过早，以及一次测试器select:last-of-type误选班级字段；均等待完成/纠正selector后重试，未伪称产品故障。",
+    "根代理后续两处列表/题数小改尚未部署，不属于本次版本，本报告分数只针对记录assets。"
+  ],
+  "qa_writes": [
+    "案例用于备课后课堂说明保存为“先预测，再让两边同时加3；用x=8代回原式检查。”。",
+    "新发布一条QA等式性质任务。",
+    "本轮学生新任务task-4a0bc55e09bc401d707d0204362460a4新增教师反馈。",
+    "新发布考试exam-a15978b2fecf4111917264153ce812e4，两个新答卷均由本轮UI提交；新增两条批阅并发布成绩（10/10）。",
+    "未修改既有学生原答、旧考试分数或正式8099/qmx环境。"
+  ],
+  "js_errors": [],
+  "build": {
+    "js": "index-BxirpJC8.js",
+    "css": "index-BRBChled.css"
+  },
+  "fixed_baseline_issues": [
+    {
+      "id": "TE-P1-01",
+      "status": "本轮已验证修复",
+      "evidence": [
+        "retest1/student-original-answers.png",
+        "retest1/teacher-feedback-saved.png"
+      ]
+    },
+    {
+      "id": "TE-P2-01",
+      "status": "本轮已验证修复",
+      "evidence": [
+        "retest1/class-members.png",
+        "retest1/bank-fonts.png",
+        "retest1/community-share.png"
+      ]
+    },
+    {
+      "id": "TE-P2-02",
+      "status": "本轮已验证修复",
+      "evidence": [
+        "retest1/overview-loaded.png"
+      ]
+    },
+    {
+      "id": "TE-P2-03",
+      "status": "本轮已验证修复",
+      "evidence": [
+        "retest1/bank-fonts.png"
+      ]
+    },
+    {
+      "id": "TE-P2-04",
+      "status": "本轮已验证修复",
+      "evidence": [
+        "retest1/memory-detail.png"
+      ]
+    },
+    {
+      "id": "TE-P2-05",
+      "status": "本轮已验证修复",
+      "evidence": [
+        "retest1/exam-beijing-time.png"
+      ]
+    },
+    {
+      "id": "TE-P2-06",
+      "status": "本轮已验证修复",
+      "evidence": [
+        "retest1/save-failure.png"
+      ]
+    }
+  ]
+}

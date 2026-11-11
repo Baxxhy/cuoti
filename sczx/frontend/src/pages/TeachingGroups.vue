@@ -1,9 +1,11 @@
 <script setup>
-import{ref,watch,onMounted}from'vue';import{api}from'@/services/api.js';import{RefreshCw,Users}from'lucide-vue-next';
+import{ref,watch,onMounted}from'vue';import{api}from'@/services/api.js';import{useRoute}from'vue-router';import{useLearning}from'@/store.js';
+const route=useRoute(),store=useLearning();import{RefreshCw,Users}from'lucide-vue-next';
 const rooms=ref([]),knowledge=ref([]),papers=ref([]),plans=ref([]),room=ref(''),kid=ref(''),students=ref([]),selection=ref({}),versions=ref({}),active=ref(null),error=ref(''),notice=ref(''),busy=ref(false),labels=['补基础','巩固','拓展','证据不足'];const editing=ref(false);let generation=0;
 const call=(path,method='GET',body)=>api.request('/groups'+path,{method,...(body?{body:JSON.stringify(body)}:{})});
 async function load(){try{plans.value=await call('');if(active.value){const fresh=plans.value.find(p=>p.id===active.value.id);if(fresh)active.value=fresh}}catch(e){error.value=e.message}}
-onMounted(async()=>{try{[rooms.value,knowledge.value,papers.value]=await Promise.all([api.request('/teaching/classes'),api.request('/curriculum/knowledge'),api.request('/exams/papers')]);room.value=rooms.value[0]?.id||'';kid.value=knowledge.value[0]?.id||'';await load()}catch(e){error.value=e.message}});
+onMounted(async()=>{try{[rooms.value,knowledge.value,papers.value]=await Promise.all([api.request('/teaching/classes'),api.request('/curriculum/knowledge'),api.request('/exams/papers')]);room.value=rooms.value.find(c=>c.id===String(route.query.class||store.currentClassId))?.id||rooms.value[0]?.id||'';kid.value=knowledge.value[0]?.id||'';await load()}catch(e){error.value=e.message}});
+watch(()=>route.query.class,id=>{if(id&&rooms.value.some(c=>c.id===String(id)))room.value=String(id)});
 watch([room,kid],()=>{generation++;students.value=[];selection.value={};active.value=null;notice.value=''});
 async function suggest(){const g=++generation;busy.value=true;try{const r=await call('/suggestions?classId='+encodeURIComponent(room.value)+'&knowledgeId='+encodeURIComponent(kid.value));if(g!==generation)return;students.value=r.students;selection.value=Object.fromEntries(r.students.map(s=>[s.studentId,s.suggestion]));notice.value='已读取建议';error.value=''}catch(e){if(g===generation)error.value=e.message}finally{busy.value=false}}
 function open(plan){editing.value=true;active.value=plan;room.value=plan.classId;kid.value=plan.knowledgeId;setTimeout(()=>{active.value=plan;students.value=Object.values(plan.evidence);selection.value=Object.fromEntries(plan.groups.flatMap(g=>g.studentIds.map(id=>[id,g.label])));versions.value=Object.fromEntries(plan.groups.map(g=>[g.label,g.versionId]))},0)}

@@ -1,0 +1,22 @@
+
+> shicheng-zhixue@0.3.0 test:unit
+> node --test tests/*.test.js
+
+✔ knowledge correction remains auditable from old and new knowledge (1.304392ms)
+✔ review targets retain return scope without accepting arbitrary destinations (0.718458ms)
+✔ all five lessons retain every original clause and mathematical condition in presentation fragments (4.744917ms)
+✔ the example visual comes from the same lesson, never from a check answer (1.364231ms)
+✔ legacy AI text and explicit student revisions retain their own frozen source without mutation (0.328827ms)
+✔ agent identity includes both lesson and job (1.185418ms)
+✔ balance single and common actions preserve actual relation and bounds (2.983732ms)
+✔ each existing destination has one business home and detail routes stay with their parent (1.539339ms)
+✔ class and lesson context survives navigation with the route-specific parameter names (0.447575ms)
+✔ a result offers the first required uncompleted step and respects question evidence (1.485432ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 131.998319

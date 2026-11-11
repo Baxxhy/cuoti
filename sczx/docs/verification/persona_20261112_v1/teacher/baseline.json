@@ -1,0 +1,395 @@
+{
+  "review_type": "AI模拟教师角色评审；不是真人研究",
+  "round": "baseline",
+  "environment": {
+    "url": "http://127.0.0.1:8102",
+    "viewport": "1440×1000",
+    "browser": "Chromium 1248 CDP、新建空profile",
+    "account_role": "teacher",
+    "project_source_modified": false
+  },
+  "method": "真实CDP鼠标点击与键盘；字段输入用DOM input/change事件。未用手工hash跳转替代入口发现。",
+  "total": 84,
+  "target": 95,
+  "passed": false,
+  "sections": {
+    "tasks": {
+      "score": 25,
+      "max": 30,
+      "items": [
+        {
+          "label": "T1",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T2",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T3",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T4",
+          "score": 0,
+          "max": 5
+        },
+        {
+          "label": "T5",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "T6",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "navigation": {
+      "score": 20,
+      "max": 25,
+      "items": [
+        {
+          "label": "业务分组明确",
+          "score": 3,
+          "max": 5,
+          "deduction": "更多承载跨业务入口，TE-P2-01"
+        },
+        {
+          "label": "无重复混淆",
+          "score": 4,
+          "max": 5,
+          "deduction": "题库重复侧栏与页签，TE-P2-01"
+        },
+        {
+          "label": "子功能可找",
+          "score": 4,
+          "max": 5,
+          "deduction": "分层/学生复习缺少班级语境，TE-P2-01"
+        },
+        {
+          "label": "返回上下文",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "主次清楚",
+          "score": 4,
+          "max": 5,
+          "deduction": "6个常驻+6个更多同级，TE-P2-01"
+        }
+      ]
+    },
+    "information": {
+      "score": 18,
+      "max": 20,
+      "items": [
+        {
+          "label": "教学概览",
+          "score": 4,
+          "max": 5,
+          "deduction": "TE-P2-02"
+        },
+        {
+          "label": "活动备课",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "题库/组卷",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "学生学习记忆",
+          "score": 4,
+          "max": 5,
+          "deduction": "TE-P2-04"
+        }
+      ]
+    },
+    "typography": {
+      "score": 12,
+      "max": 15,
+      "items": [
+        {
+          "label": "UI同字族",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "label": "正文层级一致",
+          "score": 4,
+          "max": 5,
+          "deduction": "公式场景字号失衡，TE-P2-03"
+        },
+        {
+          "label": "数学协调",
+          "score": 3,
+          "max": 5,
+          "deduction": "数学另设衬线且子span覆盖为13px，TE-P2-03"
+        }
+      ]
+    },
+    "feedback_keyboard": {
+      "score": 9,
+      "max": 10,
+      "items": [
+        {
+          "label": "保存/失败恢复",
+          "score": 4,
+          "max": 5,
+          "deduction": "恢复成功且内容保留；重复错误与成功勾造成干扰，TE-P2-06"
+        },
+        {
+          "label": "焦点/键盘",
+          "score": 5,
+          "max": 5,
+          "evidence": "实际Tab依次保存、发布任务、教学活动；2px solid焦点，baseline-save-retry-focus.png"
+        }
+      ]
+    }
+  },
+  "stories": [
+    {
+      "id": "T1",
+      "name": "概览→案例阅读选用",
+      "score": 5,
+      "max": 5,
+      "result": "完成",
+      "clicks": [
+        "教学案例",
+        "阅读案例（天平与等式性质）",
+        "用于备课"
+      ],
+      "evidence": [
+        "actions.json#7-15",
+        "baseline-case.png"
+      ],
+      "detail": "从页面入口进入案例并将选定版本带入教案。检索页及详情读取正常。本轮未发送新检索查询。"
+    },
+    {
+      "id": "T2",
+      "name": "备课编辑保存、学生预览、AI入口",
+      "score": 5,
+      "max": 5,
+      "result": "完成",
+      "clicks": [
+        "课堂说明输入框修改",
+        "保存",
+        "学生预览",
+        "AI 备课",
+        "我的教案"
+      ],
+      "evidence": [
+        "actions.json#16-27",
+        "baseline-prepare.png",
+        "baseline-preview-fonts.png",
+        "baseline-ai-entry.png"
+      ],
+      "detail": "实际修改QA教案并保存；学生预览可读；AI任务备课入口可见已有成功及失败记录，本轮不将进入页面称为完成一次模型生成。"
+    },
+    {
+      "id": "T3",
+      "name": "发布班级任务并找成员",
+      "score": 5,
+      "max": 5,
+      "result": "完成",
+      "clicks": [
+        "发布任务",
+        "确认发布",
+        "班级教学",
+        "成员与邀请",
+        "学习任务"
+      ],
+      "evidence": [
+        "actions.json#28-37",
+        "baseline-members.png"
+      ],
+      "detail": "实际新发布等式性质任务，班级任务9→10；可看2名成员。发布后的固定版本提示明确。"
+    },
+    {
+      "id": "T4",
+      "name": "查看当前作答并保存反馈",
+      "score": 0,
+      "max": 5,
+      "result": "阻断",
+      "clicks": [
+        "班级教学",
+        "课堂记录 · 等式性质的查看学情",
+        "演示学生的查看与反馈",
+        "专项学生二的查看与反馈"
+      ],
+      "evidence": [
+        "actions.json#38-46",
+        "baseline-feedback.png"
+      ],
+      "detail": "两次真实鼠标点击后均没有学习过程弹窗，没有错误反馈，无法读取原答和提交反馈。未改写既有学生原答或反馈。"
+    },
+    {
+      "id": "T5",
+      "name": "题库→试卷→考试答卷",
+      "score": 5,
+      "max": 5,
+      "result": "完成当前可测范围",
+      "clicks": [
+        "组卷与考试",
+        "题库页签",
+        "组卷",
+        "新建试卷",
+        "添加题目",
+        "从题库选择",
+        "选择2x+6=10",
+        "完成选择",
+        "保存试卷",
+        "学生预览",
+        "关闭",
+        "核对并审核",
+        "发布考试",
+        "确认发布考试",
+        "考试",
+        "原有已发布成绩考试的查看答卷",
+        "第2题",
+        "演示学生",
+        "下一题"
+      ],
+      "evidence": [
+        "actions.json#47-82",
+        "baseline-bank.png",
+        "baseline-paper-preview.png",
+        "baseline-exam-timezone.png",
+        "baseline-exam-results.png"
+      ],
+      "detail": "新建并审核1题10分QA试卷，实际发布新QA考试；现有已发布成绩考试可切换学生、题目及阅读原答。因不改写既有成绩，本轮没有点击保存批阅或发布成绩；不将只读批阅检查称为新考试全流程验收。"
+    },
+    {
+      "id": "T6",
+      "name": "实时课堂、分层、教研、复习依据与返回",
+      "score": 5,
+      "max": 5,
+      "result": "入口与阅读完成",
+      "clicks": [
+        "实时课堂",
+        "回看课堂",
+        "分层教学",
+        "新建安排",
+        "教研交流",
+        "分享内容",
+        "关闭",
+        "学习记忆",
+        "等式性质",
+        "我的教案"
+      ],
+      "evidence": [
+        "actions.json#83-105",
+        "baseline-layer-nav.png",
+        "baseline-community-empty.png",
+        "baseline-memory.png",
+        "baseline-memory-detail.png"
+      ],
+      "detail": "课堂已结束数据可回看；分层新建页可读班级知识点；教研空列表及分享指定版本弹窗可用；记忆选择知识点后可回看证据并从侧栏返回。只检查入口/回看，不称为新分层或教研发布验收。脚本误把分层新建页当弹窗尝试关闭（找不到按钮），属于测试脚本误判，未记为产品缺陷。"
+    }
+  ],
+  "issues": [
+    {
+      "id": "TE-P1-01",
+      "priority": "P1",
+      "title": "学生学习过程打开后立即关闭",
+      "expected": "点击查看与反馈能稳定进入原答、求助、补救、教师反馈",
+      "observed": "两个学生均点击无可见结果",
+      "evidence": [
+        "baseline-feedback.png",
+        "actions.json#40-46"
+      ],
+      "placement": "保留在班级教学→任务→学生；修复打开学生与监听重置的时序",
+      "code_hint": "Insights.vue openStudent内selectStudent后设置studentOpen，而activeStudentId监听也设置studentOpen=false；仅作为调查线索。"
+    },
+    {
+      "id": "TE-P2-01",
+      "priority": "P2",
+      "title": "更多功能缺乏业务分组且重复题库",
+      "observed": "课程与课时、题库、分层教学、教研交流、学习记忆、问题与回复同级藏于更多；题库又在组卷页签出现",
+      "evidence": [
+        "baseline-layer-nav.png",
+        "baseline-bank.png"
+      ],
+      "placement": "题库归组卷与考试页签；分层、学习记忆归班级教学；教研归教学案例或教研独立分区；课程归备课。保留旧URL但减少一级入口。"
+    },
+    {
+      "id": "TE-P2-02",
+      "priority": "P2",
+      "title": "教学概览全量任务压低最近提交",
+      "observed": "九条任务全部铺开，首屏只显示前六条；最近提交被压在任务下方",
+      "evidence": [
+        "baseline-overview.png"
+      ],
+      "placement": "概览保留最近3—4条/待处理，完整任务在班级教学；最近提交置于更高区域。"
+    },
+    {
+      "id": "TE-P2-03",
+      "priority": "P2",
+      "title": "网页数学字体与正文不协调，题库公式过小",
+      "observed": "UI同Geist/Noto字体栈；公式另用Cambria Math/STIX/Times serif。题库reading-equation根28px、其span13px，截图公式明显小于正文；学生预览内5=5又大于邻文",
+      "evidence": [
+        "baseline-bank.png",
+        "baseline-preview-fonts.png"
+      ],
+      "computed": {
+        "ui": "Geist Variable, Noto Sans CJK SC, Microsoft YaHei, sans-serif",
+        "math": "Cambria Math, STIX Two Math, Times New Roman, serif",
+        "bank_root": "28px",
+        "bank_span": "13px"
+      },
+      "placement": "统一网页文字字族；公式按场景受控字号，避免祖先span规则覆盖公式子节点。DOCX字体要求不属于网页本项。"
+    },
+    {
+      "id": "TE-P2-04",
+      "priority": "P2",
+      "title": "学习记忆详情单列留大块空白，关联任务难区分",
+      "observed": "大卡片右侧大量留空；左侧多个等式性质按钮无日期/任务状态辨识，同名来源反复出现",
+      "evidence": [
+        "baseline-memory-detail.png"
+      ],
+      "placement": "作为班级教学中的学生复习/成长记录；桌面用概览与证据并列，来源任务显示必要时间或来源类型。"
+    },
+    {
+      "id": "TE-P2-05",
+      "priority": "P2",
+      "title": "考试发布时间要求UTC与其余页面北京时间不一致",
+      "observed": "发布考试表单写UTC，发布后列表转换为北京时间；学习任务截止时间已经写北京时间",
+      "evidence": [
+        "baseline-exam-timezone.png",
+        "actions.json#72-78"
+      ],
+      "placement": "面向教师统一北京时间输入与显示，转换交由服务。"
+    },
+    {
+      "id": "TE-P2-06",
+      "priority": "P2",
+      "title": "保存失败重复三份提示且toast带对勾",
+      "observed": "一次注入PUT网络失败后全局横幅、页面错误块、底部toast重复同一长错误；底部失败toast仍显示勾",
+      "evidence": [
+        "baseline-save-failure.png"
+      ],
+      "placement": "一个紧邻保存操作的失败状态与重试主操作，保留本地内容/导出能力；全局错误避免重复。"
+    }
+  ],
+  "scope_notes": [
+    "六故事覆盖UI入口和已说明的操作范围，不等于所有业务全量回归。",
+    "基线AI入口未触发新模型；新考试尚无学生作答，读取旧QA成绩未改写。",
+    "失败恢复使用仅当前浏览器的一次PUT模拟网络中断，恢复fetch后点击重新保存成功；不是生产服务故障演练。",
+    "无脚本异常；actions.json中的seq92为测试器误找关闭按钮，已剔除产品缺陷。"
+  ],
+  "qa_writes": [
+    "用于备课将天平案例带入当前QA教案。",
+    "第一活动课堂说明改为：先预测两边是否相等，再一起加3，最后用自己的话解释。保存成功。",
+    "新发布一条等式性质任务到QA七年级一班。",
+    "新建并审核1题10分试卷“教师模拟走查 · 共同运算”，发布考试exam-85853a55895b42248177ab49fce333cd。",
+    "未改写既有学生原答、分数或反馈。"
+  ],
+  "js_errors": []
+}

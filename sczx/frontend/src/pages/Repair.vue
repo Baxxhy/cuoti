@@ -57,23 +57,25 @@ const variant = computed(() =>
         !wrong.value.repairs.some((a) => a.details.variantJobId === j.id),
     ),
 );
+const helpTarget = computed(()=>phase.value==='practice'?variant.value?.id||null:null);
 const parent = computed(() =>
   [...jobs.value]
     .reverse()
     .find(
       (j) =>
         ["analysis", "guidance"].includes(j.input.mode) &&
-        j.status === "succeeded",
+        j.status === "succeeded" &&
+        (j.input.variantJobId||null)===helpTarget.value,
     ),
 );
 const guidance = computed(() =>
-  jobs.value.filter((j) => j.input.mode === "guidance"),
+  jobs.value.filter((j) => j.input.mode === "guidance" && (j.input.variantJobId||null)===helpTarget.value),
 );
 const repairStatus=computed(()=>({pending:'待订正',learning:'订正中',awaiting_retest:'再试一题',retest_passed:'已复测',retest_failed:'继续订正',needs_review:'需核对'})[wrong.value?.status]||wrongStatuses[wrong.value?.status]);
 const correctionStep=computed(()=>analysis.value?.result.steps?.[correctionIndex.value]||'');
 watch(()=>[wrong.value?.id,analysis.value?.id,variant.value?.id,lastAttempt.value?.id],([id,a,v,last],[oldId,oldA,oldV,oldLast]=[])=>{
  if(id!==oldId){phase.value=v?'practice':last?'result':'analysis';correctionIndex.value=0;originalOpen.value=assistantOpen.value=false;}
- else if(v&&v!==oldV) phase.value='practice';
+ else if(v&&v!==oldV){phase.value='practice';assistantOpen.value=false;response.value='';}
  else if(last&&last!==oldLast) phase.value='result';
  else if(a&&a!==oldA){phase.value='analysis';correctionIndex.value=0;}
 });
@@ -184,6 +186,7 @@ async function create(mode, strategy = "hint", phase = "practice") {
     phase,
     prompt: mode === "guidance" ? response.value : "",
     parentJobId: mode === "guidance" ? parent.value?.id : null,
+    ...(mode==='guidance'&&helpTarget.value?{variantJobId:helpTarget.value}:{}),
   };
   const key = JSON.stringify(data);
   requestKeys[key] ||= crypto.randomUUID();
@@ -266,7 +269,7 @@ onBeforeUnmount(() => {
           <template v-else><h2>先看看错在哪里</h2><p class="student-original-inline">你的答案 <strong>{{wrong.answer||'未填写'}}</strong></p><Button :disabled="wrong.readOnly||job.busy.value" @click="create('analysis')">分析这道题<ChevronRight :size="16"/></Button></template>
         </section>
         <section v-if="phase==='understand'&&analysis" class="remediation-section student-repair-correction"><div class="student-correction-counter">{{correctionIndex+1}} / {{analysis.result.steps.length}}</div><h2>一步步订正</h2><p class="student-correction-step">{{correctionStep}}</p><div v-if="correctionIndex<analysis.result.steps.length-1" class="student-correction-navigation"><Button variant="ghost" :disabled="correctionIndex===0" @click="correctionIndex--">上一步</Button><Button @click="correctionIndex++">下一步<ChevronRight :size="16"/></Button></div><template v-else><p class="remediation-question">{{analysis.result.checkQuestion}}</p><label class="field-label" for="repair-response">写下你的想法</label><Textarea id="repair-response" v-model="response" :disabled="wrong.readOnly"/><div class="paper-actions"><Button :disabled="wrong.readOnly||job.busy.value" @click="create('variant')">练一道类似的题<ChevronRight :size="16"/></Button><Button variant="ghost" :disabled="wrong.readOnly||job.busy.value||!response.trim()" @click="create('guidance','continue')">请帮我看看</Button><Button variant="ghost" :disabled="correctionIndex===0" @click="correctionIndex--">上一步</Button></div></template></section>
-        <section v-if="phase==='practice'&&variant" class="remediation-section student-repair-practice"><span class="student-correction-counter">{{variant.input.phase==='retest'?'独立练习':'类似的题'}}</span><h2>{{variant.result.variant.prompt}}</h2><div class="question-equation"><MathExpression :text="variant.result.variant.equation"/></div><form @submit.prevent="submit"><label class="field-label" for="repair-answer">你的答案</label><Input id="repair-answer" v-model="answer" :disabled="wrong.readOnly||saving" required/><label class="field-label" for="repair-reason">解题过程</label><Textarea id="repair-reason" v-model="reason" :disabled="wrong.readOnly||saving"/><Button type="submit" :disabled="wrong.readOnly||saving||!answer.trim()">{{saving?'正在保存…':'提交答案'}}</Button></form></section>
+        <section v-if="phase==='practice'&&variant" class="remediation-section student-repair-practice"><span class="student-correction-counter">{{variant.input.phase==='retest'?'独立练习':'类似的题'}}</span><h2>解方程，写出解题过程</h2><div class="question-equation"><MathExpression :text="variant.result.variant.equation"/></div><form @submit.prevent="submit"><label class="field-label" for="repair-answer">你的答案</label><Input id="repair-answer" v-model="answer" :disabled="wrong.readOnly||saving" required/><label class="field-label" for="repair-reason">解题过程</label><Textarea id="repair-reason" v-model="reason" :disabled="wrong.readOnly||saving"/><Button type="submit" :disabled="wrong.readOnly||saving||!answer.trim()">{{saving?'正在保存…':'提交答案'}}</Button></form></section>
         <section v-if="phase==='result'&&lastAttempt" class="remediation-section repair-outcome"><CheckCircle2/><h2>{{lastAttempt.verification?.status==='unverified'?'请老师核对一下':lastAttempt.correct?'答案核对正确':'再检查一下'}}</h2><p class="math-equation">{{lastAttempt.details.equation}} → {{lastAttempt.answer}}</p><p v-if="lastAttempt.details.helped">这次用过帮助</p><p v-if="lastAttempt.details.version==='legacy_fixed'">{{lastAttempt.details.scope}}</p><div class="paper-actions"><Button :disabled="wrong.readOnly||job.busy.value" @click="create('variant','hint','retest')">独立再试一题</Button><Button variant="outline" @click="navigate(wrong.taskId?'result?task='+wrong.taskId:'wrong')">{{wrong.taskId?'返回本课':'返回错题帮'}}</Button></div></section>
         <div class="student-repair-help"><Button variant="ghost" @click="assistantOpen=true">需要一点提示</Button><Status :tone="wrong.status==='retest_passed'?'green':'neutral'">{{repairStatus}}</Status></div>
       </main>

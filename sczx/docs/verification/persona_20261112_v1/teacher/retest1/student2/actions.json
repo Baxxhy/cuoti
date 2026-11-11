@@ -1,0 +1,1018 @@
+{
+  "actions": [
+    {
+      "seq": 1,
+      "action": "wait",
+      "label": "",
+      "result": {
+        "url": "#/login",
+        "title": "登录",
+        "text": "师承智学\nx + 3 = 8\nx = 5\n师承智学\n登录\n账号\n密码\n登录\n打开本机离线学习",
+        "links": [
+          {
+            "text": "打开本机离线学习",
+            "href": "#/offline"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "登录",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": [
+          {
+            "tag": "INPUT",
+            "id": "login-username",
+            "type": "text",
+            "label": null,
+            "placeholder": "",
+            "value": ""
+          },
+          {
+            "tag": "INPUT",
+            "id": "login-password",
+            "type": "password",
+            "label": null,
+            "placeholder": "",
+            "value": "[redacted]"
+          }
+        ]
+      },
+      "url": "#/login"
+    },
+    {
+      "seq": 2,
+      "action": "login",
+      "label": "",
+      "result": "登录",
+      "url": "#/home"
+    },
+    {
+      "seq": 3,
+      "action": "wait",
+      "label": "",
+      "result": {
+        "url": "#/home",
+        "title": "我的学习",
+        "text": "跳至主要内容\n师承智学\n学习\n错题与复习\n班级\n帮助与反馈\n专\n专项学生二\n学生\n学习\n搜索页面、任务\n⌘ K\n6\n学习任务\n课程\n学习记录\n离线学习\n我的学习\n待完成任务\n等式性质\n七年级一班\n开始学习\n全部课程\n待完成\n4\n学习中\n0\n已提交\n2\n学习任务\n学习记录\n待完成\n已提交\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n待开始\n进入任务\n消息与反馈\n6\n新学习任务 · 等式性质\n2026/11/12 02:02\n新学习任务 · 等式性质\n2026/11/12 01:27\n新学习任务 · 等式性质\n2026/11/12 01:00",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/home"
+          },
+          {
+            "text": "学习",
+            "href": "#/home"
+          },
+          {
+            "text": "错题与复习",
+            "href": "#/wrong"
+          },
+          {
+            "text": "班级",
+            "href": "#/class"
+          },
+          {
+            "text": "学习任务",
+            "href": "#/home"
+          },
+          {
+            "text": "课程",
+            "href": "#/courses"
+          },
+          {
+            "text": "学习记录",
+            "href": "#/records"
+          },
+          {
+            "text": "离线学习",
+            "href": "#/offline"
+          },
+          {
+            "text": "全部课程",
+            "href": "#/courses"
+          },
+          {
+            "text": "学习记录",
+            "href": "#/records"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "6",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始学习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待完成",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已提交",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质2026/11/12 02:02",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质2026/11/12 01:27",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质2026/11/12 01:00",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/home"
+    },
+    {
+      "seq": 4,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/home",
+        "title": "我的学习",
+        "text": "跳至主要内容\n师承智学\n学习\n错题与复习\n班级\n帮助与反馈\n专\n专项学生二\n学生\n学习\n搜索页面、任务\n⌘ K\n6\n学习任务\n课程\n学习记录\n离线学习\n我的学习\n待完成任务\n等式性质\n七年级一班\n开始学习\n全部课程\n待完成\n4\n学习中\n0\n已提交\n2\n学习任务\n学习记录\n待完成\n已提交\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 无截止时间\n\n待开始\n进入任务\n等式性质\n\n七年级一班 · 2026/11/14 23:59\n\n待开始\n进入任务\n消息与反馈\n6\n新学习任务 · 等式性质\n2026/11/12 02:02\n新学习任务 · 等式性质\n2026/11/12 01:27\n新学习任务 · 等式性质\n2026/11/12 01:00",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/home"
+          },
+          {
+            "text": "学习",
+            "href": "#/home"
+          },
+          {
+            "text": "错题与复习",
+            "href": "#/wrong"
+          },
+          {
+            "text": "班级",
+            "href": "#/class"
+          },
+          {
+            "text": "学习任务",
+            "href": "#/home"
+          },
+          {
+            "text": "课程",
+            "href": "#/courses"
+          },
+          {
+            "text": "学习记录",
+            "href": "#/records"
+          },
+          {
+            "text": "离线学习",
+            "href": "#/offline"
+          },
+          {
+            "text": "全部课程",
+            "href": "#/courses"
+          },
+          {
+            "text": "学习记录",
+            "href": "#/records"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "6",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始学习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "待完成",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "已提交",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质2026/11/12 02:02",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质2026/11/12 01:27",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新学习任务 · 等式性质2026/11/12 01:00",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/home"
+    },
+    {
+      "seq": 5,
+      "action": "click",
+      "label": "班级",
+      "result": "班级",
+      "url": "#/class"
+    },
+    {
+      "seq": 6,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/class",
+        "title": "我的班级",
+        "text": "跳至主要内容\n师承智学\n学习\n错题与复习\n班级\n帮助与反馈\n专\n专项学生二\n学生\n班级\n搜索页面、任务\n⌘ K\n6\n我的班级\n考试\n课堂\n我的班级\n加入班级\n七年级一班\n\n七年级数学 · 演示教师\n\n查看学习任务",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/home"
+          },
+          {
+            "text": "学习",
+            "href": "#/home"
+          },
+          {
+            "text": "错题与复习",
+            "href": "#/wrong"
+          },
+          {
+            "text": "班级",
+            "href": "#/class"
+          },
+          {
+            "text": "我的班级",
+            "href": "#/class"
+          },
+          {
+            "text": "考试",
+            "href": "#/exams"
+          },
+          {
+            "text": "课堂",
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "6",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "加入班级",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学习任务",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/class"
+    },
+    {
+      "seq": 7,
+      "action": "click",
+      "label": "考试",
+      "result": "考试",
+      "url": "#/exams"
+    },
+    {
+      "seq": 8,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/exams",
+        "title": "考试",
+        "text": "跳至主要内容\n师承智学\n学习\n错题与复习\n班级\n帮助与反馈\n专\n专项学生二\n学生\n班级\n搜索页面、任务\n⌘ K\n6\n我的班级\n考试\n课堂\n考试\n进行中 / 待开始\n教师模拟走查 · 共同运算\n\n2026/11/12 02:05 — 2026/11/12 03:06 · 30分钟\n\n进入考试\n进行中 / 待开始\n教师模拟走查 · 共同运算\n\n2026/11/12 01:31 — 2026/11/12 02:32 · 30分钟\n\n进入考试\n成绩已发布\n本轮专项：共同运算检查\n\n2026/11/11 23:57 — 2026/11/12 05:58 · 120分钟\n\n进入考试",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/home"
+          },
+          {
+            "text": "学习",
+            "href": "#/home"
+          },
+          {
+            "text": "错题与复习",
+            "href": "#/wrong"
+          },
+          {
+            "text": "班级",
+            "href": "#/class"
+          },
+          {
+            "text": "我的班级",
+            "href": "#/class"
+          },
+          {
+            "text": "考试",
+            "href": "#/exams"
+          },
+          {
+            "text": "课堂",
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "6",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "刷新考试工作区",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入考试",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入考试",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "进入考试",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/exams"
+    },
+    {
+      "seq": 9,
+      "action": "click",
+      "label": "进入考试",
+      "result": "进入考试",
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "seq": 10,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4",
+        "title": "教师模拟走查 · 共同运算",
+        "text": "跳至主要内容\n师承智学\n学习\n错题与复习\n班级\n帮助与反馈\n专\n专项学生二\n学生\n班级\n搜索页面、任务\n⌘ K\n6\n我的班级\n考试\n课堂\n教师模拟走查 · 共同运算\n未开始\n\n2026/11/12 02:05 — 2026/11/12 03:06 · 30分钟\n\n考试列表\n准备开始\n\n开始后按服务器记录计时，提交后答卷只读。\n\n开始考试",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/home"
+          },
+          {
+            "text": "学习",
+            "href": "#/home"
+          },
+          {
+            "text": "错题与复习",
+            "href": "#/wrong"
+          },
+          {
+            "text": "班级",
+            "href": "#/class"
+          },
+          {
+            "text": "我的班级",
+            "href": "#/class"
+          },
+          {
+            "text": "考试",
+            "href": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+          },
+          {
+            "text": "课堂",
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "6",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "刷新考试工作区",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "考试列表",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "开始考试",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "seq": 11,
+      "action": "click",
+      "label": "开始考试",
+      "result": "开始考试",
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "seq": 12,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4",
+        "title": "教师模拟走查 · 共同运算",
+        "text": "跳至主要内容\n师承智学\n学习\n错题与复习\n班级\n帮助与反馈\n专\n专项学生二\n学生\n班级\n搜索页面、任务\n⌘ K\n6\n我的班级\n考试\n课堂\n教师模拟走查 · 共同运算\n考试中\n\n2026/11/12 02:05 — 2026/11/12 03:06 · 30分钟\n\n考试列表\n29:59\n01\n第 1 题 · 10分\n朗读\n解方程并代回核对\n2x+6\n=\n10\n答案\n语音输入\n解题过程与解释\n保存草稿\n确认交卷",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/home"
+          },
+          {
+            "text": "学习",
+            "href": "#/home"
+          },
+          {
+            "text": "错题与复习",
+            "href": "#/wrong"
+          },
+          {
+            "text": "班级",
+            "href": "#/class"
+          },
+          {
+            "text": "我的班级",
+            "href": "#/class"
+          },
+          {
+            "text": "考试",
+            "href": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+          },
+          {
+            "text": "课堂",
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "6",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "刷新考试工作区",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "考试列表",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "01",
+            "aria": "第1题",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "朗读",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "语音输入",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "语音输入",
+            "aria": "语音输入",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "保存草稿",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "确认交卷",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": [
+          {
+            "tag": "INPUT",
+            "id": "",
+            "type": "text",
+            "label": null,
+            "placeholder": "",
+            "value": ""
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "type": "textarea",
+            "label": null,
+            "placeholder": "",
+            "value": ""
+          }
+        ]
+      },
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "seq": 13,
+      "action": "set",
+      "label": ".page-content input",
+      "result": ".page-content input",
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "seq": 14,
+      "action": "set",
+      "label": ".page-content textarea",
+      "result": ".page-content textarea",
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "seq": 15,
+      "action": "click",
+      "label": "确认交卷",
+      "result": "确认交卷",
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "seq": 16,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4",
+        "title": "教师模拟走查 · 共同运算",
+        "text": "跳至主要内容\n师承智学\n学习\n错题与复习\n班级\n帮助与反馈\n专\n专项学生二\n学生\n班级\n搜索页面、任务\n⌘ K\n6\n我的班级\n考试\n课堂\n教师模拟走查 · 共同运算\n\n答卷已提交\n\n已交卷\n\n2026/11/12 02:05 — 2026/11/12 03:06 · 30分钟\n\n考试列表\n已交卷\n01\n第 1 题 · 10分\n朗读\n解方程并代回核对\n2x+6\n=\n10\n答案\n解题过程与解释\n\n答卷已保存，等待教师发布成绩与讲评。",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/home"
+          },
+          {
+            "text": "学习",
+            "href": "#/home"
+          },
+          {
+            "text": "错题与复习",
+            "href": "#/wrong"
+          },
+          {
+            "text": "班级",
+            "href": "#/class"
+          },
+          {
+            "text": "我的班级",
+            "href": "#/class"
+          },
+          {
+            "text": "考试",
+            "href": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+          },
+          {
+            "text": "课堂",
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "6",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "刷新考试工作区",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "考试列表",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "01",
+            "aria": "第1题",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "朗读",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": [
+          {
+            "tag": "INPUT",
+            "id": "",
+            "type": "text",
+            "label": null,
+            "placeholder": "",
+            "value": "2"
+          },
+          {
+            "tag": "TEXTAREA",
+            "id": "",
+            "type": "textarea",
+            "label": null,
+            "placeholder": "",
+            "value": "两边同时减6得到2x=4，再同时除以非零的2得到x=2，代回成立。"
+          }
+        ]
+      },
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "seq": 17,
+      "action": "screen",
+      "label": "new-exam-second-submitted",
+      "result": "./retest1/student2/new-exam-second-submitted.png",
+      "url": "#/exams?exam=exam-a15978b2fecf4111917264153ce812e4"
+    }
+  ],
+  "network": [
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/dashboard"
+    },
+    {
+      "method": "GET",
+      "path": "/api/memory"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/messages"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/exam-a15978b2fecf4111917264153ce812e4"
+    },
+    {
+      "method": "POST",
+      "path": "/api/exams/exam-a15978b2fecf4111917264153ce812e4/start"
+    },
+    {
+      "method": "POST",
+      "path": "/api/exams/exam-a15978b2fecf4111917264153ce812e4/submit"
+    }
+  ],
+  "dialogs": [
+    {
+      "type": "confirm",
+      "message": "提交后答卷只读，无法继续修改。确认交卷？"
+    }
+  ],
+  "errors": []
+}

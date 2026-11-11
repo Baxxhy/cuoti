@@ -1,0 +1,198 @@
+{
+  "role": "student",
+  "kind": "AI模拟角色定向复测，非真人测试",
+  "date": "2026-11-12",
+  "round": "retest2",
+  "origin": "http://127.0.0.1:8102",
+  "assets_observed": [
+    "/assets/index-CxoPIcBj.js",
+    "/assets/index-BRBChled.css"
+  ],
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "profile": "全新Chrome临时profile",
+  "scope": "仅复测首复测剩余两项，合并有效首复测六故事证据；未重跑已通过故事。",
+  "checks": [
+    {
+      "id": "R1-01",
+      "status": "verified_fixed",
+      "route": "登录→首页开始学习→本课目录→08独立检查→开始练习",
+      "actual": "介绍明确显示4道题，实际练习页有第1、2、3、4题四个可访问按钮；与介绍一致。未填写答案或提交。",
+      "evidence": [
+        "./retest2/06-introduction-ready.png",
+        "./retest2/08-actual-check-ready.png"
+      ]
+    },
+    {
+      "id": "R1-02",
+      "status": "verified_fixed",
+      "route": "登录→首页等待任务读取完成",
+      "actual": "同班同名等式性质任务分别显示11/12 02:02发布、11/12 01:00发布、11/11 23:57发布、11/11 23:49发布；有截止的任务显示截止时间，无截止的任务不显示空文案。",
+      "evidence": [
+        "./retest2/02-home-dates.png"
+      ]
+    }
+  ],
+  "new_issues": [],
+  "scores": {
+    "tasks": {
+      "score": 30,
+      "max": 30,
+      "items": [
+        {
+          "id": "T1",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "T2",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "T3",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "T4",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "T5",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "T6",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "navigation": {
+      "score": 25,
+      "max": 25,
+      "items": [
+        {
+          "item": "分组明确",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "item": "无重复入口混淆",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "item": "子功能可找",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "item": "返回上下文",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "item": "主次清晰",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "information": {
+      "score": 20,
+      "max": 20,
+      "items": [
+        {
+          "view": "首页",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "view": "学习页含独立检查介绍",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "view": "类似题订正",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "view": "学习记录",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "typography": {
+      "score": 15,
+      "max": 15,
+      "items": [
+        {
+          "item": "界面同一字族",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "item": "正文层级一致",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "item": "数学与界面协调",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "feedback_keyboard": {
+      "score": 10,
+      "max": 10,
+      "items": [
+        {
+          "item": "保存/失败反馈",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "item": "焦点及键盘",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "total": 100,
+    "max": 100
+  },
+  "score_change": {
+    "baseline": 89,
+    "retest1": 98,
+    "retest2_combined_final": 100,
+    "explanation": "两个原扣分各1的轻问题均以真实点击与截图关闭，恢复对应原分；冻结评分规则未改。满分仅表示本次固定量表未保留扣分，不代表所有使用情境或真人满意度均满分。"
+  },
+  "evidence_inherited": {
+    "retest1_report": "./retest1.md",
+    "retest1_json": "./retest1.json",
+    "retest1_actions": "./retest1/actions.json",
+    "covered": "六故事、同一任务师生反馈、考试完整批阅回看、真实变式帮助、旧求助恢复、断网重试、离线读同步、字体计算及键盘。"
+  },
+  "evidence_current": {
+    "actions": "./retest2/actions.json",
+    "screenshots_dir": "./retest2",
+    "actions_count": 8,
+    "console_errors": [],
+    "tool_errors": [],
+    "source_changes": false
+  },
+  "limitations": [
+    "这是固定六故事的AI角色模拟走查和主观UI量表，不能称真实学生满意度或真人测试。",
+    "本轮只桌面网页1440×1000；未做手机适配、真实语音设备或课堂现场验证。",
+    "后端模型生成会经历排队/处理中；本轮实际等待后均返回。"
+  ]
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "tag": "BUTTON",
+    "text": "帮助与反馈",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "搜索页面、任务\n⌘ K",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "H1",
+    "text": "管理与运行",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "26px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "问题反馈",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "能力验证",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "账号",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "600"
+  },
+  {
+    "tag": "H2",
+    "text": "账号管理",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "15px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "新建账号",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "12px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "检查连接",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "导入旧记录",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  }
+]

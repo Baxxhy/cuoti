@@ -1,0 +1,49 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test --test-concurrency=4 tests/*.test.mjs
+
+✔ material parsing reaches a terminal notice without overwriting a newer save; saved case selection survives leaving the workbench (8270.733505ms)
+✔ admin operation sections follow their URL and failed tasks use a business name (1517.467587ms)
+✔ exam page restores a saved reactive answer and preserves edits on failed save (1987.472071ms)
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (1967.25126ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1392.105639ms)
+✔ microphone refusal falls back to text and retry remains available (1302.883751ms)
+✔ one learning step remains visible, activity completion gates next, and practice drafts survive moving between steps (2440.321483ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (1711.982224ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1598.123361ms)
+✔ memory return controls preserve original learning task and knowledge route (1467.660083ms)
+✔ late memory response cannot overwrite a different task suggestion (1568.37377ms)
+✔ legacy AI draft offers editable student copy and preview preserves teacher instructions (1468.783788ms)
+✔ classroom polling preserves unsaved input, recovers errors and ignores old-room responses (1626.045677ms)
+✔ clearing a pending create prevents the old job from reopening (1331.741168ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1441.650446ms)
+✔ assistant initialization cannot replace a newer user request (1564.28602ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1238.509802ms)
+✔ late session initialization and older platform reads cannot replace a newer signed-in user or lesson (1208.739839ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (1805.278363ms)
+✔ independent wrong detail ignores an old response after switching questions (1601.653534ms)
+✔ wrong correction reveals one step at a time and preserves original work (1741.858955ms)
+✔ guidance steps remain fully reachable without showing a wall of text (1391.468345ms)
+✔ switching a focused activity retains unsaved edits without writes (1561.997467ms)
+✔ failed focused grading stays on question; successful save moves next and preserves original answers (1671.402964ms)
+✔ student selection keeps feedback dialog open; feedback targets the selected record and task changes close it (1835.023199ms)
+✔ exam dates use Beijing input and convert to UTC requests independent of the host timezone (1624.779851ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (1704.330024ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1536.039937ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (1751.600244ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1606.292915ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1444.709149ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (1661.928881ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1312.022694ms)
+✔ skip link keeps the route, three business groups expose learning children, and search retains all tasks (1742.614654ms)
+✔ the home next action opens its own task and the empty submitted tab names the right state (1610.765921ms)
+✔ a questions-only task exposes its exercise without an empty reading workspace; directory changes retain task context (1721.639341ms)
+✔ an unknown assigned task gives a recovery action back to the home screen (1827.627854ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20547.271888

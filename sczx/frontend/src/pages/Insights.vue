@@ -34,13 +34,17 @@ const visibleHelps = computed(() =>
   ),
 );
 const independentCount = computed(()=>store.task?.summary?.metrics?.independentCorrectQuestions || 0);
-watch(
-  () => [store.data.activeStudentId,store.task?.id],
-  () => {
-    draft.value = store.record?.feedback || "";
-    studentOpen.value = false;
-  },
-);
+// Selecting a row updates activeStudentId in the same event that opens the
+// dialog. Reset its content without closing the dialog after Vue flushes it.
+watch(() => store.data.activeStudentId, () => {
+  draft.value = store.record?.feedback || "";
+  coveredHelpIds.value = [];
+});
+watch(() => store.task?.id, () => {
+  draft.value = store.record?.feedback || "";
+  coveredHelpIds.value = [];
+  studentOpen.value = false;
+});
 async function feedback() {
   if(feedbackSaving.value)return;
   feedbackSaving.value=true;error.value="";
@@ -53,7 +57,7 @@ async function feedback() {
 }
 function openStudent(id) {
   studentTab.value="answers";error.value="";
-  store.selectStudent(id);
+  if (!store.selectStudent(id)) return;
   draft.value = store.record?.feedback || "";
   studentOpen.value = true;
 }

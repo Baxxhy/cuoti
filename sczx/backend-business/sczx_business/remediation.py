@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Literal
 from fastapi import APIRouter,Depends,HTTPException,Request
 from pydantic import Field
-from sqlalchemy import select,or_
+from sqlalchemy import select,or_,func
 from .database import get_db
 from .models import WrongQuestion,RepairAttempt,StudentRecord,LearningTask,FileAsset,ModelJob,KnowledgePoint
 from .ai_schemas import StrictResult,MathClaim
@@ -134,8 +134,9 @@ def save_attempt(db,actor,item,body):
     if any((a.details or {}).get('variantJobId')==jid for a in previous):raise HTTPException(409,'本题已有作答，请生成独立新题再试。')
     verification=assess_repair(answer,variant.get('equation',''),variant.get('expected'))
     helped=bool(body.get('helped')) or bool(result.get('helpRequested'))
-    # Any guidance created after this variant is help for this actual attempt.
-    helped=helped or bool(db.scalar(select(ModelJob.id).where(ModelJob.owner_id==actor.id,ModelJob.created_at>=job.created_at,ModelJob.id!=jid,ModelJob.input['wrongId'].as_string()==item.id,ModelJob.input['mode'].as_string()=='guidance',ModelJob.input['strategy'].as_string()!='try')))
+    # New help belongs to its exact variant. Unscoped historical help remains
+    # conservatively helped; its missing scope cannot establish independence.
+    helped=helped or bool(db.scalar(select(ModelJob.id).where(ModelJob.owner_id==actor.id,ModelJob.created_at>=job.created_at,ModelJob.id!=jid,ModelJob.input['wrongId'].as_string()==item.id,ModelJob.input['mode'].as_string()=='guidance',or_(ModelJob.input['variantJobId'].as_string()==jid,func.json_contains_path(ModelJob.input,'one','$.variantJobId')==0),ModelJob.input['strategy'].as_string()!='try')))
     row=RepairAttempt(id=uid('repair'),wrong_id=item.id,answer=answer,reason=str(body.get('reason',''))[:6000],correct=verification['correct'],verification=verification,details={'version':'dynamic_v1','planJobId':(item.details or {}).get('planJobId'),'variantJobId':jid,'variantId':jid,'equation':variant['equation'],'expected':variant['expected'],'phase':phase,'helped':helped,'requestKey':key,'verification':verification})
     db.add(row);db.commit();return repair_json(row)
 
@@ -171,16 +172,30 @@ def equation_for(item):return str((item.details or {}).get('equation') or item.p
 def prepare(db,actor,item,data):
     mode=data.get('mode','analysis')
     if mode not in ('analysis','guidance','variant'):raise HTTPException(422,'补救操作无效。')
+    variant_id=data.get('variantJobId') or None
+    if variant_id and mode!='guidance':raise HTTPException(422,'只有当前变式题的指导可关联变式。')
+    original_question={'prompt':item.prompt,'equation':equation_for(item)}
+    question=copy.deepcopy(original_question)
+    if variant_id:
+        variant_job=db.get(ModelJob,variant_id) if isinstance(variant_id,str) else None
+        if not variant_job or variant_job.owner_id!=actor.id or variant_job.capability!='text' or variant_job.input.get('wrongId')!=item.id or variant_job.input.get('mode')!='variant' or variant_job.status!='succeeded':raise HTTPException(422,'请选择本题本人已完成的变式题。')
+        result=variant_job.result or {};variant=result.get('variant') or {}
+        equation=variant.get('equation','')
+        if result.get('variantVerification',{}).get('status')!='verified' or assess_repair(variant.get('expected',''),equation,variant.get('expected'))['status']!='verified_correct':raise HTTPException(422,'变式题尚未通过数学核验，不能进入指导。')
+        # Generated titles and client-provided context are not trusted as the current exercise.
+        question={'prompt':'解方程，说明每一步两边进行的共同运算。','equation':equation}
     if mode=='variant' and data.get('phase','practice') not in ('practice','retest'):raise HTTPException(422,'练习阶段无效。')
     if mode=='variant' and data.get('phase')=='retest':
         practice=db.scalars(select(RepairAttempt).where(RepairAttempt.wrong_id==item.id)).all()
         if not (item.details or {}).get('planJobId') or not any((a.details or {}).get('version')=='dynamic_v1' and a.details.get('phase')=='practice' for a in practice):raise HTTPException(422,'先完成本题补救与变式练习，再生成独立新题。')
     history=[];parent_id=data.get('parentJobId')
-    cursor=parent_id
+    cursor=parent_id;seen=set()
     for _ in range(4):
         if not cursor:break
-        parent=db.get(ModelJob,cursor)
+        if not isinstance(cursor,str) or cursor in seen:raise HTTPException(422,'补救历史关联无效。')
+        seen.add(cursor);parent=db.get(ModelJob,cursor)
         if not parent or parent.owner_id!=actor.id or parent.input.get('wrongId')!=item.id or parent.status!='succeeded' or parent.input.get('mode') not in ('analysis','guidance'):raise HTTPException(422,'只能关联本题已完成的补救历史。')
+        if (parent.input.get('variantJobId') or None)!=variant_id or (variant_id and parent.input.get('mode')!='guidance'):raise HTTPException(422,'原题与不同变式题的指导不能混用，请开始新一轮。')
         history.insert(0,{'student':parent.input.get('prompt',''),'strategy':parent.input.get('strategy','hint'),'representation':(parent.result or {}).get('representation','question'),'hint':str((parent.result or {}).get('hint') or (parent.result or {}).get('goal',''))[:1000],'question':(parent.result or {}).get('question') or (parent.result or {}).get('checkQuestion','')})
         cursor=parent.input.get('parentJobId')
     details=serialize(db,item)['details'];points=[db.get(KnowledgePoint,k) for k in details.get('knowledgeIds',[])];points=[p for p in points if p]
@@ -188,9 +203,11 @@ def prepare(db,actor,item,data):
     if strategy=='continue':strategy='foundation' if re.search('不懂|不会|不知道|不明白',prompt) else 'try' if re.search('懂了|明白了|自己试',prompt) else 'hint'
     from .tutoring import STRATEGIES
     if strategy not in STRATEGIES:raise HTTPException(422,'指导方式无效。')
-    context={'question':{'prompt':item.prompt,'equation':equation_for(item)},'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':[{'id':p.id,'name':p.name} for p in db.scalars(select(KnowledgePoint).where(KnowledgePoint.id.in_(list({i for p in points for i in p.prerequisites}) or ['']))).all()],'teachingCases':[],'originalAnswer':item.answer,'originalReason':item.reason,'confirmedCause':details.get('cause') if details.get('causeConfirmed') else None}
+    context={'question':question,'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':[{'id':p.id,'name':p.name} for p in db.scalars(select(KnowledgePoint).where(KnowledgePoint.id.in_(list({i for p in points for i in p.prerequisites}) or ['']))).all()],'teachingCases':[],'originalAnswer':'' if variant_id else item.answer,'originalReason':'' if variant_id else item.reason,'confirmedCause':details.get('cause') if details.get('causeConfirmed') else None}
+    if variant_id:context['originalQuestion']=original_question
     past=db.scalars(select(ModelJob).where(ModelJob.owner_id==actor.id,ModelJob.input['wrongId'].as_string()==item.id,ModelJob.input['mode'].as_string()=='variant',ModelJob.status=='succeeded')).all()
-    return {'remediation':True,'wrongId':item.id,'mode':mode,'phase':data.get('phase','practice'),'strategy':strategy,'prompt':prompt or '请依据本题和我的原作答提供针对性补救。','context':context,'history':history,'parentJobId':parent_id,'previousEquations':[(j.result or {}).get('variant',{}).get('equation','') for j in past][-30:],'_validation':{'equation':equation_for(item)},'guidance':mode=='guidance'}
+    default_prompt='请依据当前变式题给我提示，不直接给出答案。' if variant_id else '请依据本题和我的原作答提供针对性补救。'
+    return {'remediation':True,'wrongId':item.id,'mode':mode,'variantJobId':variant_id,'phase':data.get('phase','practice'),'strategy':strategy,'prompt':prompt or default_prompt,'context':context,'history':history,'parentJobId':parent_id,'previousEquations':[(j.result or {}).get('variant',{}).get('equation','') for j in past][-30:],'_validation':{'equation':question['equation']},'guidance':mode=='guidance'}
 
 def validate(result,data):
     from .model_jobs import math_check

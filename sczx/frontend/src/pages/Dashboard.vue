@@ -8,6 +8,7 @@ import TaskList from "@/components/TaskList.vue";
 import MessageCenter from "@/components/MessageCenter.vue";
 import { ArrowRight, Users, BookOpen, Inbox } from "lucide-vue-next";
 const taskTab=ref("pending");
+const allTasksOpen=ref(false);
 const store = useLearning(),
   route = useRoute(),
   router = useRouter(),
@@ -65,16 +66,19 @@ async function select() {
 onBeforeUnmount(() => {
   generation++;
 });
-const pendingTasks=computed(()=>(overview.value?.tasks||[]).filter(t=>!["已提交","已反馈","历史只读"].includes(t.status)));
+const studentClass=computed(()=>!teacher.value&&overview.value?.classes.find(c=>c.id===String(route.query.class||'')));
+const studentTasks=computed(()=>(overview.value?.tasks||[]).filter(t=>!studentClass.value||t.classId===studentClass.value.id));
+const pendingTasks=computed(()=>studentTasks.value.filter(t=>!["已提交","已反馈","历史只读"].includes(t.status)));
 const nextTask=computed(()=>pendingTasks.value[0]);
 const nextHasReading=computed(()=>!!(store.data.tasks.find(t=>t.id===nextTask.value?.id)?.snapshot?.blocks?.length));
-const visibleTasks=computed(()=>teacher.value?overview.value?.tasks||[]:taskTab.value==='pending'?pendingTasks.value:(overview.value?.tasks||[]).filter(t=>!pendingTasks.value.includes(t)));
-const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.tasks||0],['未提交',overview.value?.stats.unsubmittedStudents||0],['待反馈',overview.value?.stats.waitingFeedback||0]]:[['待完成',overview.value?.stats.pending||0],['学习中',overview.value?.stats.inProgress||0],['已提交',overview.value?.stats.submitted||0]]);
+const visibleTasks=computed(()=>teacher.value?(allTasksOpen.value?overview.value?.tasks||[]:(overview.value?.tasks||[]).slice(0,5)):taskTab.value==='pending'?pendingTasks.value:studentTasks.value.filter(t=>!pendingTasks.value.includes(t)));
+const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.tasks||0],['未提交',overview.value?.stats.unsubmittedStudents||0],['待反馈',overview.value?.stats.waitingFeedback||0]]:[['待完成',studentClass.value?pendingTasks.value.length:overview.value?.stats.pending||0],['学习中',studentClass.value?studentTasks.value.filter(t=>t.status==='学习中').length:overview.value?.stats.inProgress||0],['已提交',studentClass.value?studentTasks.value.filter(t=>['已提交','已反馈'].includes(t.status)).length:overview.value?.stats.submitted||0]]);
 </script>
 <template>
   <PageHeading :title="teacher?'教学概览':'我的学习'">
     <AppSelect v-if="teacher && overview?.classes.length" v-model="selected" label="当前班级" :options="overview.classes.map(c=>({value:c.id,label:c.name}))" @update:model-value="select"/>
   </PageHeading>
+  <div v-if="studentClass" class="dashboard-class-filter"><span>{{studentClass.name}}</span><a href="#/home" class="text-link">全部班级</a></div>
   <div v-if="error" class="form-error" role="alert">{{error}}<Button variant="outline" @click="load">重试</Button></div>
   <div v-if="loading" class="workspace-loading" role="status"><span/>正在读取任务…</div>
   <template v-if="overview">
@@ -90,16 +94,22 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
     </section>
     <div class="overview-grid">
       <section class="overview-task-panel">
-        <div class="section-heading"><h2>{{teacher?'班级任务':'学习任务'}}</h2><a href="#/class" class="text-link">{{teacher?'管理班级':'我的班级'}}<ArrowRight :size="14"/></a></div>
+        <div class="section-heading"><h2>{{teacher?'班级任务':'学习任务'}}</h2><a :href="teacher?'#/class?class='+selected:'#/records'" class="text-link">{{teacher?'管理班级':'学习记录'}}<ArrowRight :size="14"/></a></div>
         <AppTabs v-if="!teacher" v-model="taskTab" :items="[{value:'pending',label:'待完成'},{value:'completed',label:'已提交'}]"/>
         <TaskList :teacher="teacher" :tasks="visibleTasks" :empty-label="!teacher?(taskTab==='completed'?'还没有已提交的任务':'当前任务已完成'):undefined"/>
-        <section v-if="teacher" class="overview-recent"><div class="section-heading"><h2>最近提交</h2></div><article v-for="item in overview.recentSubmissions.slice(0,5)" :key="item.recordId"><span><strong>{{item.studentName}}</strong><small>{{item.taskTitle}}</small></span><time>{{deadlineText(item.submittedAt)}}</time><RouteButton :route="'insights?task='+item.taskId" secondary>查看</RouteButton></article><p v-if="!overview.recentSubmissions.length" class="muted">还没有学生提交</p></section>
+        <Button v-if="teacher&&overview.tasks.length>5" variant="ghost" class="overview-task-toggle" :aria-expanded="allTasksOpen" @click="allTasksOpen=!allTasksOpen">{{allTasksOpen?'收起任务':'查看全部 '+overview.tasks.length+' 项任务'}}</Button>
+
       </section>
       <aside class="overview-aside">
-        <section class="overview-shortcuts"><h2>{{teacher?'教学工作':'学习工具'}}</h2><a :href="teacher?'#/cases':'#/wrong'"><component :is="teacher?BookOpen:Inbox" :size="18"/><span>{{teacher?'查找教学案例':'整理错题'}}</span><ArrowRight :size="15"/></a><a :href="teacher?'#/exam-papers':'#/exams'"><BookOpen :size="18"/><span>{{teacher?'组卷与考试':'我的考试'}}</span><ArrowRight :size="15"/></a><a href="#/live"><Users :size="18"/><span>{{teacher?'开展实时课堂':'进入课堂'}}</span><ArrowRight :size="15"/></a></section>
+        <section v-if="teacher" class="overview-recent"><div class="section-heading"><h2>最近提交</h2></div><article v-for="item in overview.recentSubmissions.slice(0,5)" :key="item.recordId"><span><strong>{{item.studentName}}</strong><small>{{item.taskTitle}}</small></span><time>{{deadlineText(item.submittedAt)}}</time><RouteButton :route="'insights?task='+item.taskId" secondary>查看</RouteButton></article><p v-if="!overview.recentSubmissions.length" class="muted">还没有学生提交</p></section>
+        <section v-if="teacher" class="overview-shortcuts"><h2>{{teacher?'教学工作':'学习工具'}}</h2><a :href="teacher?'#/cases':'#/wrong'"><component :is="teacher?BookOpen:Inbox" :size="18"/><span>{{teacher?'查找教学案例':'整理错题'}}</span><ArrowRight :size="15"/></a><a :href="teacher?'#/exam-papers':'#/exams'"><BookOpen :size="18"/><span>{{teacher?'组卷与考试':'我的考试'}}</span><ArrowRight :size="15"/></a><a href="#/live"><Users :size="18"/><span>{{teacher?'开展实时课堂':'进入课堂'}}</span><ArrowRight :size="15"/></a></section>
         <section class="overview-inbox"><h2>消息与反馈<span v-if="store.unreadCount">{{store.unreadCount}}</span></h2><MessageCenter compact/></section>
         <MemoryBridge v-if="!teacher" compact/>
       </aside>
     </div>
   </template>
 </template>
+
+<style scoped>
+.overview-aside>.overview-recent{margin:0 0 28px;padding:0;border:0}.overview-recent article{flex-wrap:wrap;gap:8px}.overview-recent article>span{min-width:130px}.overview-recent time{font-size:11px}.overview-task-toggle{margin-top:12px}.dashboard-class-filter{display:flex;align-items:center;gap:18px;margin:-10px 0 20px;font-size:13px}
+</style>

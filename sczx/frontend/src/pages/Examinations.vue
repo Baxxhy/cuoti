@@ -1,5 +1,5 @@
 <script setup>
-import{computed,ref,watch,onBeforeUnmount}from'vue';import{useRoute,useRouter}from'vue-router';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Plus,ArrowUp,ArrowDown,Trash2,ClipboardList,Check,FileDown,RefreshCw}from'lucide-vue-next';import draggable from'vuedraggable';import MathExpression from'@/components/MathExpression.vue';import SpeechConfirm from'@/components/SpeechConfirm.vue';import SpeechReader from'@/components/SpeechReader.vue';
+import{computed,ref,watch,onBeforeUnmount}from'vue';import{useRoute,useRouter}from'vue-router';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Plus,ArrowUp,ArrowDown,Trash2,ClipboardList,Check,FileDown,RefreshCw}from'lucide-vue-next';import draggable from'vuedraggable';import{deadlineText}from'@/services/teaching.js';import MathExpression from'@/components/MathExpression.vue';import SpeechConfirm from'@/components/SpeechConfirm.vue';import SpeechReader from'@/components/SpeechReader.vue';
 const route=useRoute(),router=useRouter(),store=useLearning(),teacher=computed(()=>store.user?.role==='teacher');const tab=computed(()=>route.path==='/exam-bank'?'bank':route.path==='/exam-papers'?'papers':'exams');
 const error=ref(''),busy=ref(false),loading=ref(true),notice=ref(''),bank=ref([]),papers=ref([]),exams=ref([]),units=ref([]),knowledge=ref([]),classes=ref([]),lessons=ref([]),lessonId=ref(''),activePaper=ref(null),exam=ref(null),questionOpen=ref(false),questionEdit=ref(null),question=ref({}),entries=ref([]),paperTitle=ref(''),unitId=ref('unit-equation'),filters=ref({knowledgeIds:['kp-equality'],count:3,total:30,kind:'',difficulty:''}),missing=ref(''),candidate=ref(null),candidateInput=ref({knowledgeIds:['kp-equality'],kind:'calculation',difficulty:'easy'}),publishOpen=ref(false),room=ref(''),starts=ref(''),ends=ref(''),minutes=ref(30),studentPreview=ref(false),answers=ref({}),activeQuestion=ref(0),selectedSubmission=ref(''),marks=ref({}),countdown=ref('');let generation=0,timer;
 const candidateOpen=ref(false),importOpen=ref(false),pickerOpen=ref(false),pickerMode=ref('auto'),paperEditing=ref(false),paperToolsOpen=ref(false),bankSearch=ref(''),bankFilter=ref('all');
@@ -29,8 +29,11 @@ async function reviewPaper(){if(!activePaper.value)return;if(!confirm('确认已
 async function generateCandidate(){await run(async()=>{candidate.value=await api.request('/ai/jobs',{method:'POST',body:JSON.stringify({capability:'text',requestKey:crypto.randomUUID(),data:{examCandidate:true,unitId:unitId.value,...candidateInput.value}})})})}
 async function refreshCandidate(){await run(async()=>{candidate.value=await api.request('/ai/jobs/'+candidate.value.id)})}
 async function adopt(){await run(async()=>{await call('/bank/candidate/'+candidate.value.id,'POST',{});candidate.value=null;await load();candidateOpen.value=false;notice.value='已存为待审核题目'})}
-function publishDialog(){starts.value=new Date(Date.now()-60000).toISOString().slice(0,16);ends.value=new Date(Date.now()+3600000).toISOString().slice(0,16);publishOpen.value=true}
-async function publish(){await run(async()=>{const r=await call('','POST',{versionId:activePaper.value.versions[0].id,classId:room.value,startsAt:starts.value+':00Z',endsAt:ends.value+':00Z',minutes:Number(minutes.value),requestKey:crypto.randomUUID()});publishOpen.value=false;router.push('/exams?exam='+r.id)})}
+// datetime-local has no timezone. Teachers always enter Beijing time, even
+// when this browser or the local Linux service runs in another timezone.
+const beijingInput=value=>new Date(value+8*3600000).toISOString().slice(0,16);
+function publishDialog(){starts.value=beijingInput(Date.now()-60000);ends.value=beijingInput(Date.now()+3600000);publishOpen.value=true}
+async function publish(){await run(async()=>{const r=await call('','POST',{versionId:activePaper.value.versions[0].id,classId:room.value,startsAt:new Date(starts.value+':00+08:00').toISOString(),endsAt:new Date(ends.value+':00+08:00').toISOString(),minutes:Number(minutes.value),requestKey:crypto.randomUUID()});publishOpen.value=false;router.push('/exams?exam='+r.id)})}
 async function start(){await run(async()=>{exam.value=await call('/'+exam.value.id+'/start','POST',{});answers.value=clone(exam.value.submission.answers||{})})}
 async function saveAnswers(submit=false){if(submit&&!confirm('提交后答卷只读，无法继续修改。确认交卷？'))return;await run(async()=>{exam.value=await call('/'+exam.value.id+(submit?'/submit':'/answers'),submit?'POST':'PUT',{revision:exam.value.submission.revision,answers:answers.value});notice.value=submit?'答卷已提交':'草稿已保存'})}
 async function nextAnswerQuestion(){if(pending.value)await saveAnswers(false);if(!error.value&&activeQuestion.value<exam.value.paper.entries.length-1)activeQuestion.value++}
@@ -42,11 +45,12 @@ function exportFile(mode){const q=selectedSubmission.value?'?submissionId='+enco
 timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submittedAt){countdown.value='';return}const n=Math.max(0,Math.floor((new Date(s.deadline)-Date.now())/1000));countdown.value=Math.floor(n/60)+':'+String(n%60).padStart(2,'0')},1000);onBeforeUnmount(()=>{clearInterval(timer);generation++});
 </script>
 <template>
-<PageHeading :title="tab==='bank'?'题库':tab==='papers'?'组卷与考试':exam?.title||'考试'">
+<PageHeading :title="tab==='bank'?'题库':tab==='papers'?'组卷':exam?.title||'考试'">
 <Button v-if="teacher&&tab==='bank'" @click="editQuestion(null)"><Plus :size="16"/>录入题目</Button>
 <Button v-if="teacher&&tab==='papers'&&!paperEditing" @click="editPaper(null)"><Plus :size="16"/>新建试卷</Button>
+<Button variant="ghost" size="icon" aria-label="刷新考试工作区" :disabled="loading" @click="load"><RefreshCw :size="16"/></Button>
 </PageHeading>
-<nav class="exam-toolbar exam-tabs" aria-label="考试工作区"><a v-if="teacher" href="#/exam-bank" :aria-current="tab==='bank'?'page':undefined">题库</a><a v-if="teacher" href="#/exam-papers" :aria-current="tab==='papers'?'page':undefined">组卷</a><a href="#/exams" :aria-current="tab==='exams'?'page':undefined">考试</a><Button variant="ghost" size="icon" aria-label="刷新考试工作区" @click="load"><RefreshCw :size="16"/></Button></nav>
+
 <p v-if="error" class="form-error" role="alert">{{error}}<Button variant="ghost" @click="load">重新读取</Button>
 </p>
 <p v-if="notice" role="status" class="exam-notice">{{notice}}</p>
@@ -137,7 +141,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <div>
 <Status>{{e.resultsAt?'成绩已发布':'进行中 / 待开始'}}</Status>
 <h2>{{e.title}}</h2>
-<p>{{new Date(e.startsAt).toLocaleString('zh-CN')}} — {{new Date(e.endsAt).toLocaleString('zh-CN')}} · {{e.minutes}}分钟</p>
+<p>{{deadlineText(e.startsAt)}} — {{deadlineText(e.endsAt)}} · {{e.minutes}}分钟</p>
 </div>
 <RouteButton :route="'exams?exam='+e.id">{{teacher?'查看答卷':'进入考试'}}</RouteButton>
 </div>
@@ -153,7 +157,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <div class="exam-heading">
 <div>
 <Status>{{exam.resultsAt?'成绩已发布':teacher?'成绩待发布':exam.submission?.submittedAt?'已交卷':exam.submission?.startedAt?'考试中':'未开始'}}</Status>
-<p>{{new Date(exam.startsAt).toLocaleString('zh-CN')}} — {{new Date(exam.endsAt).toLocaleString('zh-CN')}} · {{exam.minutes}}分钟</p>
+<p>{{deadlineText(exam.startsAt)}} — {{deadlineText(exam.endsAt)}} · {{exam.minutes}}分钟</p>
 </div>
 <RouteButton route="exams" secondary :aria-current="tab==='exams'?'page':undefined">考试列表</RouteButton>
 </div>
@@ -374,7 +378,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppDialog v-model:open="studentPreview" title="学生试卷预览">
 <h2>{{paperTitle}}</h2>
 <section v-for="(e,i) in entries" :key="e.versionId" class="exam-grade-question">
-<h3>{{gradingQuestion+1}}. {{e.question.prompt}}（{{e.points}}分）</h3>
+<h3>{{i+1}}. {{e.question.prompt}}（{{e.points}}分）</h3>
 <p>{{e.question.equation}}</p>
 </section>
 </AppDialog>
@@ -384,9 +388,9 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <option v-for="c in classes" :key="c.id" :value="c.id">{{c.name}}</option>
 </select>
 </label>
-<label>开始时间（UTC）<Input v-model="starts" type="datetime-local" required/>
+<label>开始时间（北京时间）<Input v-model="starts" type="datetime-local" required/>
 </label>
-<label>截止时间（UTC）<Input v-model="ends" type="datetime-local" required/>
+<label>截止时间（北京时间）<Input v-model="ends" type="datetime-local" required/>
 </label>
 <label>作答限时（分钟）<Input v-model="minutes" type="number" min="1" max="240"/>
 </label>

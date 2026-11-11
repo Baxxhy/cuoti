@@ -1,0 +1,18 @@
+{
+  "origin": "http://127.0.0.1:8099",
+  "health": {
+    "status": "ok",
+    "database": "ok"
+  },
+  "student_login": {
+    "passed": true,
+    "role": "student",
+    "learning_records_written": false
+  },
+  "assets": [
+    "/assets/index-CxoPIcBj.js",
+    "/assets/index-BRBChled.css"
+  ],
+  "matches_tested_candidate": true,
+  "indexSha256": "07ab6916f7aa263f6eb1c8d1927989426e699605c0c28c58b4f7bf715573ace5"
+}

@@ -1,0 +1,261 @@
+[
+  {
+    "tag": "BUTTON",
+    "text": "帮助与反馈",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "搜索页面、任务\n⌘ K",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "H1",
+    "text": "资料与案例",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "26px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "刷新",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "上传材料",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "材料",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "案例",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "新建案例",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "管理员独立复测案例 R1\n编辑中 · 草稿",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "模拟管理员共同运算案例\n编辑中 · 草稿",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "本轮专项：共同运算追问\n已发布",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "天平与等式性质\n已发布",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "H2",
+    "text": "案例草稿",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "20px",
+    "weight": "650"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "对照原文",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "保存草稿",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "预览",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "发布案例",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "正文",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "教学经验",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "出处",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "知识关联",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "LABEL",
+    "text": "案例标题",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "INPUT",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "400"
+  },
+  {
+    "tag": "LABEL",
+    "text": "案例正文",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "TEXTAREA",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "400"
+  },
+  {
+    "tag": "LABEL",
+    "text": "已对照原文核对内容",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "INPUT",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "500"
+  },
+  {
+    "tag": "H2",
+    "text": "案例预览",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "19px",
+    "weight": "600"
+  },
+  {
+    "tag": "P",
+    "text": "案例预览",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "H2",
+    "text": "管理员独立复测案例 R1",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "24px",
+    "weight": "650"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "朗读",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "P",
+    "text": "比较x+4=10两边同时减4前后的等式。让学生先求得x=6，再代回核验。",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "15px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "关闭",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  }
+]

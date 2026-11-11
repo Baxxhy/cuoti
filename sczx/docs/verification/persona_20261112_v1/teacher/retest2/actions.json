@@ -1,0 +1,1750 @@
+{
+  "actions": [
+    {
+      "seq": 1,
+      "action": "wait",
+      "label": "",
+      "result": {
+        "url": "#/login",
+        "title": "登录",
+        "text": "师承智学\nx + 3 = 8\nx = 5\n师承智学\n登录\n账号\n密码\n登录\n打开本机离线学习",
+        "links": [
+          {
+            "text": "打开本机离线学习",
+            "href": "#/offline"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "登录",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": [
+          {
+            "tag": "INPUT",
+            "id": "login-username",
+            "type": "text",
+            "label": null,
+            "placeholder": "",
+            "value": ""
+          },
+          {
+            "tag": "INPUT",
+            "id": "login-password",
+            "type": "password",
+            "label": null,
+            "placeholder": "",
+            "value": "[redacted]"
+          }
+        ]
+      },
+      "url": "#/login"
+    },
+    {
+      "seq": 2,
+      "action": "login",
+      "label": "",
+      "result": "登录",
+      "url": "#/login"
+    },
+    {
+      "seq": 3,
+      "action": "wait",
+      "label": "",
+      "result": {
+        "url": "#/teacher",
+        "title": "教学概览",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n教学概览\n搜索页面、任务\n⌘ K\n1\n教学概览\n七年级一班\n下一节课\n等式性质\n七年级一班\n继续备课\n查看班级学情\n班级任务\n12\n未提交\n2\n待反馈\n2\n班级任务\n管理班级\n考试讲评 · 教师模拟走查 · 共同运算\n\n七年级一班\n\n2/2 已提交\n已完成反馈\n查看学情\n等式性质\n\n七年级一班 · 11/12 02:02 发布\n\n0/2 已提交\n学习中\n查看学情\n等式性质\n\n七年级一班 · 11/12 01:27 发布\n\n1/2 已提交\n学习中\n查看学情\n等式性质\n\n七年级一班 · 11/12 01:00 发布\n\n0/2 已提交\n学习中\n查看学情\n课堂记录 · 等式性质\n\n七年级一班\n\n2/2 已提交\n全员已提交\n查看学情\n查看全部 12 项任务\n最近提交\n专项学生二\n考试讲评 · 教师模拟走查 · 共同运算\n2026/11/12 02:13\n查看\n演示学生\n考试讲评 · 教师模拟走查 · 共同运算\n2026/11/12 02:08\n查看\n演示学生\n等式性质\n2026/11/12 02:02\n查看\n专项学生二\n课堂记录 · 等式性质\n2026/11/11 23:58\n查看\n演示学生\n课堂记录 · 等式性质\n2026/11/11 23:58\n查看\n教学工作\n查找教学案例\n组卷与考试\n开展实时课堂\n消息与反馈\n1\n学生已提交 · 等式性质\n2026/11/12 02:02",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "查看班级学情",
+            "href": "#/insights?class=class-demo"
+          },
+          {
+            "text": "管理班级",
+            "href": "#/class?class=class-demo"
+          },
+          {
+            "text": "查找教学案例",
+            "href": "#/cases"
+          },
+          {
+            "text": "组卷与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "开展实时课堂",
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "七年级一班",
+            "aria": "当前班级",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "继续备课",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看全部 12 项任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "学生已提交 · 等式性质2026/11/12 02:02",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/teacher"
+    },
+    {
+      "seq": 4,
+      "action": "eval",
+      "label": "",
+      "result": {
+        "scripts": [
+          "http://127.0.0.1:8102/assets/index-CxoPIcBj.js"
+        ],
+        "styles": [
+          "http://127.0.0.1:8102/assets/index-BRBChled.css"
+        ]
+      },
+      "url": "#/teacher"
+    },
+    {
+      "seq": 5,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/teacher",
+        "title": "教学概览",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n教学概览\n搜索页面、任务\n⌘ K\n1\n教学概览\n七年级一班\n下一节课\n等式性质\n七年级一班\n继续备课\n查看班级学情\n班级任务\n12\n未提交\n2\n待反馈\n2\n班级任务\n管理班级\n考试讲评 · 教师模拟走查 · 共同运算\n\n七年级一班\n\n2/2 已提交\n已完成反馈\n查看学情\n等式性质\n\n七年级一班 · 11/12 02:02 发布\n\n0/2 已提交\n学习中\n查看学情\n等式性质\n\n七年级一班 · 11/12 01:27 发布\n\n1/2 已提交\n学习中\n查看学情\n等式性质\n\n七年级一班 · 11/12 01:00 发布\n\n0/2 已提交\n学习中\n查看学情\n课堂记录 · 等式性质\n\n七年级一班\n\n2/2 已提交\n全员已提交\n查看学情\n查看全部 12 项任务\n最近提交\n专项学生二\n考试讲评 · 教师模拟走查 · 共同运算\n2026/11/12 02:13\n查看\n演示学生\n考试讲评 · 教师模拟走查 · 共同运算\n2026/11/12 02:08\n查看\n演示学生\n等式性质\n2026/11/12 02:02\n查看\n专项学生二\n课堂记录 · 等式性质\n2026/11/11 23:58\n查看\n演示学生\n课堂记录 · 等式性质\n2026/11/11 23:58\n查看\n教学工作\n查找教学案例\n组卷与考试\n开展实时课堂\n消息与反馈\n1\n学生已提交 · 等式性质\n2026/11/12 02:02",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "查看班级学情",
+            "href": "#/insights?class=class-demo"
+          },
+          {
+            "text": "管理班级",
+            "href": "#/class?class=class-demo"
+          },
+          {
+            "text": "查找教学案例",
+            "href": "#/cases"
+          },
+          {
+            "text": "组卷与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "开展实时课堂",
+            "href": "#/live"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "七年级一班",
+            "aria": "当前班级",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "继续备课",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看全部 12 项任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "学生已提交 · 等式性质2026/11/12 02:02",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/teacher"
+    },
+    {
+      "seq": 6,
+      "action": "screen",
+      "label": "teacher-overview-published-dates",
+      "result": "./retest2/teacher-overview-published-dates.png",
+      "url": "#/teacher"
+    },
+    {
+      "seq": 7,
+      "action": "click",
+      "label": "查看学情",
+      "result": "查看学情",
+      "url": "#/insights?task=task-4a0bc55e09bc401d707d0204362460a4"
+    },
+    {
+      "seq": 8,
+      "action": "wait",
+      "label": "",
+      "result": {
+        "url": "#/insights?task=task-4a0bc55e09bc401d707d0204362460a4",
+        "title": "学情反馈",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n班级教学\n搜索页面、任务\n⌘ K\n1\n班级与任务\n学情反馈\n实时课堂\n分层教学\n学生复习\n学情反馈\n返回班级\n班级概览\n任务与反馈\n七年级一班 · 等式性质 · 2026/11/12 01:27:09\n已分配\n2\n已提交\n1\n未提交\n1\n已反馈\n1\n独立正确题目\n4\n学生学习过程\n学生\t学习进度\t获得的帮助\t独立检查\t\n操作\n\n\n专\n专项学生二\n\t\n未开始\n\t0 次帮助\t待独立检查\t查看与反馈\n\n\n演\n演示学生\n\t\n已提交\n\t1 次帮助\t独立检查正确\t查看与反馈\n补充与订正\n新增安排\n\n暂无补充安排",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "班级与任务",
+            "href": "#/class?class=class-demo"
+          },
+          {
+            "text": "学情反馈",
+            "href": "#/insights?task=task-4a0bc55e09bc401d707d0204362460a4"
+          },
+          {
+            "text": "实时课堂",
+            "href": "#/live?class=class-demo"
+          },
+          {
+            "text": "分层教学",
+            "href": "#/groups?class=class-demo"
+          },
+          {
+            "text": "学生复习",
+            "href": "#/memory?classId=class-demo"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "返回班级",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "班级概览",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "任务与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新增安排",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/insights?task=task-4a0bc55e09bc401d707d0204362460a4"
+    },
+    {
+      "seq": 9,
+      "action": "screen",
+      "label": "correct-0127-task-insights",
+      "result": "./retest2/correct-0127-task-insights.png",
+      "url": "#/insights?task=task-4a0bc55e09bc401d707d0204362460a4"
+    },
+    {
+      "seq": 10,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/insights?task=task-4a0bc55e09bc401d707d0204362460a4",
+        "title": "学情反馈",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n班级教学\n搜索页面、任务\n⌘ K\n1\n班级与任务\n学情反馈\n实时课堂\n分层教学\n学生复习\n学情反馈\n返回班级\n班级概览\n任务与反馈\n七年级一班 · 等式性质 · 2026/11/12 01:27:09\n已分配\n2\n已提交\n1\n未提交\n1\n已反馈\n1\n独立正确题目\n4\n学生学习过程\n学生\t学习进度\t获得的帮助\t独立检查\t\n操作\n\n\n专\n专项学生二\n\t\n未开始\n\t0 次帮助\t待独立检查\t查看与反馈\n\n\n演\n演示学生\n\t\n已提交\n\t1 次帮助\t独立检查正确\t查看与反馈\n补充与订正\n新增安排\n\n暂无补充安排",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "班级与任务",
+            "href": "#/class?class=class-demo"
+          },
+          {
+            "text": "学情反馈",
+            "href": "#/insights?task=task-4a0bc55e09bc401d707d0204362460a4"
+          },
+          {
+            "text": "实时课堂",
+            "href": "#/live?class=class-demo"
+          },
+          {
+            "text": "分层教学",
+            "href": "#/groups?class=class-demo"
+          },
+          {
+            "text": "学生复习",
+            "href": "#/memory?classId=class-demo"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "返回班级",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "班级概览",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "任务与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新增安排",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/insights?task=task-4a0bc55e09bc401d707d0204362460a4"
+    },
+    {
+      "seq": 11,
+      "action": "click",
+      "label": "返回班级",
+      "result": "返回班级",
+      "url": "#/class"
+    },
+    {
+      "seq": 12,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/class",
+        "title": "班级教学",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n班级教学\n搜索页面、任务\n⌘ K\n1\n班级与任务\n学情反馈\n实时课堂\n分层教学\n学生复习\n班级教学\n新建班级\n发布学习任务\n七年级一班\n七年级数学 · · 2 人\n班级设置\n学习任务\n成员与邀请\n考试讲评 · 教师模拟走查 · 共同运算\n\n七年级一班\n\n2/2 已提交\n已完成反馈\n查看学情\n等式性质\n\n七年级一班 · 11/12 02:02 发布\n\n0/2 已提交\n学习中\n查看学情\n等式性质\n\n七年级一班 · 11/12 01:27 发布\n\n1/2 已提交\n学习中\n查看学情\n等式性质\n\n七年级一班 · 11/12 01:00 发布\n\n0/2 已提交\n学习中\n查看学情\n课堂记录 · 等式性质\n\n七年级一班\n\n2/2 已提交\n全员已提交\n查看学情\n考试讲评 · 本轮专项：共同运算检查\n\n七年级一班\n\n2/2 已提交\n已完成反馈\n查看学情\n等式性质\n\n七年级一班 · 11/11 23:57 发布 · 2026/11/14 23:59 截止\n\n0/2 已提交\n学习中\n查看学情\n一元一次方程单元复习\n\n七年级一班\n\n0/1 已提交\n学习中\n查看学情\n用方程解决生活问题\n\n七年级一班\n\n0/1 已提交\n学习中\n查看学情\n解简单的一元一次方程\n\n七年级一班\n\n0/1 已提交\n学习中\n查看学情\n等式性质\n\n七年级一班 · 11/11 23:49 发布 · 2026/11/14 23:59 截止\n\n0/1 已提交\n待开始\n查看学情\n含括号与分母的方程\n\n七年级一班\n\n0/1 已提交\n学习中\n查看学情\n补发历史任务",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "班级与任务",
+            "href": "#/class"
+          },
+          {
+            "text": "学情反馈",
+            "href": "#/insights?class=class-demo"
+          },
+          {
+            "text": "实时课堂",
+            "href": "#/live?class=class-demo"
+          },
+          {
+            "text": "分层教学",
+            "href": "#/groups?class=class-demo"
+          },
+          {
+            "text": "学生复习",
+            "href": "#/memory?classId=class-demo"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新建班级",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "发布学习任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "七年级一班",
+            "aria": "当前班级",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "刷新班级",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "班级设置",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "学习任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "成员与邀请",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看学情",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "SUMMARY",
+            "text": "补发历史任务",
+            "aria": null
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "补发给当前成员",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/class"
+    },
+    {
+      "seq": 13,
+      "action": "screen",
+      "label": "class-task-dates",
+      "result": "./retest2/class-task-dates.png",
+      "url": "#/class"
+    },
+    {
+      "seq": 14,
+      "action": "click",
+      "label": "查看学情",
+      "result": "查看学情",
+      "url": "#/insights?task=task-3c6fde7d2d3ac66870fa8099d730001d"
+    },
+    {
+      "seq": 15,
+      "action": "wait",
+      "label": "",
+      "result": {
+        "url": "#/insights?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "title": "学情反馈",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n班级教学\n搜索页面、任务\n⌘ K\n1\n班级与任务\n学情反馈\n实时课堂\n分层教学\n学生复习\n学情反馈\n返回班级\n班级概览\n任务与反馈\n七年级一班 · 等式性质 · 2026/11/12 01:00:09\n已分配\n2\n已提交\n0\n未提交\n2\n已反馈\n0\n独立正确题目\n4\n学生学习过程\n学生\t学习进度\t获得的帮助\t独立检查\t\n操作\n\n\n专\n专项学生二\n\t\n未开始\n\t0 次帮助\t待独立检查\t查看与反馈\n\n\n演\n演示学生\n\t\n学习中\n\t1 次帮助\t独立检查正确\t查看与反馈\n补充与订正\n新增安排\n\n暂无补充安排",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "班级与任务",
+            "href": "#/class?class=class-demo"
+          },
+          {
+            "text": "学情反馈",
+            "href": "#/insights?task=task-3c6fde7d2d3ac66870fa8099d730001d"
+          },
+          {
+            "text": "实时课堂",
+            "href": "#/live?class=class-demo"
+          },
+          {
+            "text": "分层教学",
+            "href": "#/groups?class=class-demo"
+          },
+          {
+            "text": "学生复习",
+            "href": "#/memory?classId=class-demo"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "返回班级",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "班级概览",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "任务与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新增安排",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/insights?task=task-3c6fde7d2d3ac66870fa8099d730001d"
+    },
+    {
+      "seq": 16,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/insights?task=task-3c6fde7d2d3ac66870fa8099d730001d",
+        "title": "学情反馈",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n班级教学\n搜索页面、任务\n⌘ K\n1\n班级与任务\n学情反馈\n实时课堂\n分层教学\n学生复习\n学情反馈\n返回班级\n班级概览\n任务与反馈\n七年级一班 · 等式性质 · 2026/11/12 01:00:09\n已分配\n2\n已提交\n0\n未提交\n2\n已反馈\n0\n独立正确题目\n4\n学生学习过程\n学生\t学习进度\t获得的帮助\t独立检查\t\n操作\n\n\n专\n专项学生二\n\t\n未开始\n\t0 次帮助\t待独立检查\t查看与反馈\n\n\n演\n演示学生\n\t\n学习中\n\t1 次帮助\t独立检查正确\t查看与反馈\n补充与订正\n新增安排\n\n暂无补充安排",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "班级与任务",
+            "href": "#/class?class=class-demo"
+          },
+          {
+            "text": "学情反馈",
+            "href": "#/insights?task=task-3c6fde7d2d3ac66870fa8099d730001d"
+          },
+          {
+            "text": "实时课堂",
+            "href": "#/live?class=class-demo"
+          },
+          {
+            "text": "分层教学",
+            "href": "#/groups?class=class-demo"
+          },
+          {
+            "text": "学生复习",
+            "href": "#/memory?classId=class-demo"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "返回班级",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "班级概览",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "任务与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "查看与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "新增安排",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/insights?task=task-3c6fde7d2d3ac66870fa8099d730001d"
+    },
+    {
+      "seq": 17,
+      "action": "screen",
+      "label": "correct-0100-task-insights",
+      "result": "./retest2/correct-0100-task-insights.png",
+      "url": "#/insights?task=task-3c6fde7d2d3ac66870fa8099d730001d"
+    },
+    {
+      "seq": 18,
+      "action": "click",
+      "label": "备课",
+      "result": "备课",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 19,
+      "action": "click",
+      "label": "学生预览",
+      "result": "学生预览",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 20,
+      "action": "click",
+      "label": "目录 1 / 8",
+      "result": "目录 1 / 8",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 21,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/prepare",
+        "title": "等式性质",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n备课\n搜索页面、任务\n⌘ K\n1\n课程\n教案\nAI备课\n等式性质\n保存\n发布任务\n教学活动\n课时设置\n练习题\n学生预览\n资料与版本\nAI 备课\n更多操作\n等式性质\n目录 1 / 8\n1　相等的两边\n2　让天平两边一起变化\n3　同加、同减\n4　例题：消去减去的数\n5　随堂练习\n6　同乘、同除的条件\n7　例题：共同除以非零数\n8　独立检查\n相等的两边\n\n等式表示两边的值相等，例如\n5 \n=\n 5\n。\n\n只改变一边通常不能保持相等。\n\n先预测两边同时增加相同数量后会怎样。\n\n上一步\n下一步",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "课程",
+            "href": "#/courses"
+          },
+          {
+            "text": "教案",
+            "href": "#/prepare"
+          },
+          {
+            "text": "AI备课",
+            "href": "#/agent"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "保存",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "发布任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "教学活动",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "课时设置",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "练习题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "学生预览",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "资料与版本",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "AI 备课",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "更多操作",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录 1 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1　相等的两边",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "2　让天平两边一起变化",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "3　同加、同减",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "4　例题：消去减去的数",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "5　随堂练习",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "6　同乘、同除的条件",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "7　例题：共同除以非零数",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "8　独立检查",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": true
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一步",
+            "aria": null,
+            "disabled": false
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/prepare"
+    },
+    {
+      "seq": 22,
+      "action": "click",
+      "label": "8　独立检查",
+      "result": "8　独立检查",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 23,
+      "action": "inspect",
+      "label": "",
+      "result": {
+        "url": "#/prepare",
+        "title": "等式性质",
+        "text": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n演\n演示教师\n教师\n备课\n搜索页面、任务\n⌘ K\n1\n课程\n教案\nAI备课\n等式性质\n保存\n发布任务\n教学活动\n课时设置\n练习题\n学生预览\n资料与版本\nAI 备课\n更多操作\n等式性质\n目录 8 / 8\n独立检查\n\n独立作答并解释。\n\n需要帮助可以先学习当前题，再换新题重新检查。\n\n4 道题\n\n上一步\n下一步",
+        "links": [
+          {
+            "text": "跳至主要内容",
+            "href": "#main-content"
+          },
+          {
+            "text": "师承智学",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学概览",
+            "href": "#/teacher"
+          },
+          {
+            "text": "教学资源",
+            "href": "#/cases"
+          },
+          {
+            "text": "备课",
+            "href": "#/prepare"
+          },
+          {
+            "text": "班级教学",
+            "href": "#/class"
+          },
+          {
+            "text": "题库与考试",
+            "href": "#/exam-papers"
+          },
+          {
+            "text": "课程",
+            "href": "#/courses"
+          },
+          {
+            "text": "教案",
+            "href": "#/prepare"
+          },
+          {
+            "text": "AI备课",
+            "href": "#/agent"
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "text": "帮助与反馈",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "",
+            "aria": "退出登录",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "搜索页面、任务⌘ K",
+            "aria": "搜索页面与任务",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "1",
+            "aria": "查看消息",
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "保存",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "发布任务",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "教学活动",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "课时设置",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "练习题",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "学生预览",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "资料与版本",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "AI 备课",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "更多操作",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "目录 8 / 8",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "上一步",
+            "aria": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "text": "下一步",
+            "aria": null,
+            "disabled": true
+          }
+        ],
+        "fields": []
+      },
+      "url": "#/prepare"
+    },
+    {
+      "seq": 24,
+      "action": "screen",
+      "label": "preview-four-checks",
+      "result": "./retest2/preview-four-checks.png",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 25,
+      "action": "eval",
+      "label": "",
+      "result": {
+        "questionText": [
+          "独立作答并解释。",
+          "需要帮助可以先学习当前题，再换新题重新检查。",
+          "4 道题",
+          "给出x−3=5。两边同时加3，再把x=8代回核对。除法只能除以同一个非零数。"
+        ],
+        "url": "#/prepare"
+      },
+      "url": "#/prepare"
+    }
+  ],
+  "network": [
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/dashboard"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/messages"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/tasks/task-4a0bc55e09bc401d707d0204362460a4/supplements"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/accounts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/classrooms/class-demo/members"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes/class-demo/tasks"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes/class-demo/invites"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/tasks/task-3c6fde7d2d3ac66870fa8099d730001d/supplements"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/search-options"
+    }
+  ],
+  "dialogs": [],
+  "errors": []
+}

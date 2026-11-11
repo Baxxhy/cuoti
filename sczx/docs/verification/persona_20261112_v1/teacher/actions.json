@@ -1,0 +1,1331 @@
+{
+  "actions": [
+    {
+      "seq": 1,
+      "action": "wait",
+      "label": "",
+      "url": "#/login"
+    },
+    {
+      "seq": 2,
+      "action": "login",
+      "label": "",
+      "url": "#/teacher"
+    },
+    {
+      "seq": 3,
+      "action": "inspect",
+      "label": "",
+      "url": "#/teacher"
+    },
+    {
+      "seq": 4,
+      "action": "wait",
+      "label": "",
+      "url": "#/teacher"
+    },
+    {
+      "seq": 5,
+      "action": "screen",
+      "label": "baseline-overview",
+      "url": "#/teacher"
+    },
+    {
+      "seq": 6,
+      "action": "fonts",
+      "label": "",
+      "url": "#/teacher"
+    },
+    {
+      "seq": 7,
+      "action": "click",
+      "label": "教学案例",
+      "url": "#/cases?prerequisites=true"
+    },
+    {
+      "seq": 8,
+      "action": "wait",
+      "label": "",
+      "url": "#/cases?prerequisites=true"
+    },
+    {
+      "seq": 9,
+      "action": "click",
+      "label": "阅读案例",
+      "url": "#/case-detail?caseId=case-balance&versionId=version-1d25262f02eb47f5a2bdd35b725e2d61"
+    },
+    {
+      "seq": 10,
+      "action": "wait",
+      "label": "",
+      "url": "#/case-detail?caseId=case-balance&versionId=version-1d25262f02eb47f5a2bdd35b725e2d61"
+    },
+    {
+      "seq": 11,
+      "action": "screen",
+      "label": "baseline-case",
+      "url": "#/case-detail?caseId=case-balance&versionId=version-1d25262f02eb47f5a2bdd35b725e2d61"
+    },
+    {
+      "seq": 12,
+      "action": "click",
+      "label": "用于备课",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 13,
+      "action": "wait",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 14,
+      "action": "inspect",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 15,
+      "action": "screen",
+      "label": "baseline-prepare",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 16,
+      "action": "set",
+      "label": "#activity-content",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 17,
+      "action": "click",
+      "label": "保存",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 18,
+      "action": "wait",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 19,
+      "action": "click",
+      "label": "学生预览",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 20,
+      "action": "wait",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 21,
+      "action": "fonts",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 22,
+      "action": "screen",
+      "label": "baseline-preview-fonts",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 23,
+      "action": "click",
+      "label": "AI 备课",
+      "url": "#/agent?lesson=lesson-equation"
+    },
+    {
+      "seq": 24,
+      "action": "wait",
+      "label": "",
+      "url": "#/agent?lesson=lesson-equation"
+    },
+    {
+      "seq": 25,
+      "action": "inspect",
+      "label": "",
+      "url": "#/agent?lesson=lesson-equation"
+    },
+    {
+      "seq": 26,
+      "action": "screen",
+      "label": "baseline-ai-entry",
+      "url": "#/agent?lesson=lesson-equation"
+    },
+    {
+      "seq": 27,
+      "action": "click",
+      "label": "我的教案",
+      "url": "#/prepare?lesson=lesson-equation"
+    },
+    {
+      "seq": 28,
+      "action": "click",
+      "label": "发布任务",
+      "url": "#/prepare?lesson=lesson-equation"
+    },
+    {
+      "seq": 29,
+      "action": "inspect",
+      "label": "",
+      "url": "#/prepare?lesson=lesson-equation"
+    },
+    {
+      "seq": 30,
+      "action": "click",
+      "label": "确认发布",
+      "url": "#/class"
+    },
+    {
+      "seq": 31,
+      "action": "inspect",
+      "label": "",
+      "url": "#/class"
+    },
+    {
+      "seq": 32,
+      "action": "click",
+      "label": "班级教学",
+      "url": "#/class"
+    },
+    {
+      "seq": 33,
+      "action": "inspect",
+      "label": "",
+      "url": "#/class"
+    },
+    {
+      "seq": 34,
+      "action": "click",
+      "label": "成员与邀请",
+      "url": "#/class"
+    },
+    {
+      "seq": 35,
+      "action": "screen",
+      "label": "baseline-members",
+      "url": "#/class"
+    },
+    {
+      "seq": 36,
+      "action": "inspect",
+      "label": "",
+      "url": "#/class"
+    },
+    {
+      "seq": 37,
+      "action": "click",
+      "label": "学习任务",
+      "url": "#/class"
+    },
+    {
+      "seq": 38,
+      "action": "click",
+      "label": "查看学情",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 39,
+      "action": "inspect",
+      "label": "",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 40,
+      "action": "click",
+      "label": "查看与反馈",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 41,
+      "action": "inspect",
+      "label": "",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 42,
+      "action": "screen",
+      "label": "baseline-feedback",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 43,
+      "action": "wait",
+      "label": "",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 44,
+      "action": "click",
+      "label": "查看与反馈",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 45,
+      "action": "inspect",
+      "label": "",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 46,
+      "action": "eval",
+      "label": "",
+      "url": "#/insights?task=task-aeac6cd06ee1455ab354c040534a9f41"
+    },
+    {
+      "seq": 47,
+      "action": "click",
+      "label": "组卷与考试",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 48,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 49,
+      "action": "screen",
+      "label": "baseline-exams",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 50,
+      "action": "click",
+      "label": "题库",
+      "url": "#/exam-bank"
+    },
+    {
+      "seq": 51,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exam-bank"
+    },
+    {
+      "seq": 52,
+      "action": "screen",
+      "label": "baseline-bank",
+      "url": "#/exam-bank"
+    },
+    {
+      "seq": 53,
+      "action": "eval",
+      "label": "",
+      "url": "#/exam-bank"
+    },
+    {
+      "seq": 54,
+      "action": "click",
+      "label": "组卷",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 55,
+      "action": "click",
+      "label": "新建试卷",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 56,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 57,
+      "action": "set",
+      "label": ".page-content input",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 58,
+      "action": "click",
+      "label": "添加题目",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 59,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 60,
+      "action": "click",
+      "label": "从题库选择",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 61,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 62,
+      "action": "click",
+      "label": "解方程并代回核对 · 2x+6=10",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 63,
+      "action": "click",
+      "label": "完成选择 · 1 题",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 64,
+      "action": "click",
+      "label": "保存试卷",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 65,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 66,
+      "action": "click",
+      "label": "学生预览",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 67,
+      "action": "screen",
+      "label": "baseline-paper-preview",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 68,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 69,
+      "action": "click",
+      "label": "关闭",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 70,
+      "action": "click",
+      "label": "核对并审核",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 71,
+      "action": "click",
+      "label": "发布考试",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 72,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 73,
+      "action": "screen",
+      "label": "baseline-exam-timezone",
+      "url": "#/exam-papers"
+    },
+    {
+      "seq": 74,
+      "action": "click",
+      "label": "确认发布考试",
+      "url": "#/exams?exam=exam-85853a55895b42248177ab49fce333cd"
+    },
+    {
+      "seq": 75,
+      "action": "click",
+      "label": "考试",
+      "url": "#/exams"
+    },
+    {
+      "seq": 76,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exams"
+    },
+    {
+      "seq": 77,
+      "action": "click",
+      "label": "查看答卷",
+      "url": "#/exams?exam=exam-644b71a4c80e4dfc8ddc150a9714a1b6"
+    },
+    {
+      "seq": 78,
+      "action": "inspect",
+      "label": "",
+      "url": "#/exams?exam=exam-644b71a4c80e4dfc8ddc150a9714a1b6"
+    },
+    {
+      "seq": 79,
+      "action": "screen",
+      "label": "baseline-exam-results",
+      "url": "#/exams?exam=exam-644b71a4c80e4dfc8ddc150a9714a1b6"
+    },
+    {
+      "seq": 80,
+      "action": "click",
+      "label": "",
+      "url": "#/exams?exam=exam-644b71a4c80e4dfc8ddc150a9714a1b6"
+    },
+    {
+      "seq": 81,
+      "action": "click",
+      "label": "演示学生已交卷 · 0分 · 2 / 2 已核对",
+      "url": "#/exams?exam=exam-644b71a4c80e4dfc8ddc150a9714a1b6"
+    },
+    {
+      "seq": 82,
+      "action": "click",
+      "label": "下一题",
+      "url": "#/exams?exam=exam-644b71a4c80e4dfc8ddc150a9714a1b6"
+    },
+    {
+      "seq": 83,
+      "action": "click",
+      "label": "实时课堂",
+      "url": "#/live"
+    },
+    {
+      "seq": 84,
+      "action": "inspect",
+      "label": "",
+      "url": "#/live"
+    },
+    {
+      "seq": 85,
+      "action": "click",
+      "label": "回看课堂",
+      "url": "#/live?session=live-2948680d529149a4a04b7035991d222a"
+    },
+    {
+      "seq": 86,
+      "action": "inspect",
+      "label": "",
+      "url": "#/live?session=live-2948680d529149a4a04b7035991d222a"
+    },
+    {
+      "seq": 87,
+      "action": "click",
+      "label": "分层教学",
+      "url": "#/groups"
+    },
+    {
+      "seq": 88,
+      "action": "inspect",
+      "label": "",
+      "url": "#/groups"
+    },
+    {
+      "seq": 89,
+      "action": "screen",
+      "label": "baseline-layer-nav",
+      "url": "#/groups"
+    },
+    {
+      "seq": 90,
+      "action": "click",
+      "label": "新建安排",
+      "url": "#/groups"
+    },
+    {
+      "seq": 91,
+      "action": "inspect",
+      "label": "",
+      "url": "#/groups"
+    },
+    {
+      "seq": 92,
+      "error": "Error: no clickable match\n    at <anonymous>:1:337\n    at <anonymous>:1:502"
+    },
+    {
+      "seq": 93,
+      "action": "click",
+      "label": "教研交流",
+      "url": "#/community"
+    },
+    {
+      "seq": 94,
+      "action": "inspect",
+      "label": "",
+      "url": "#/community"
+    },
+    {
+      "seq": 95,
+      "action": "screen",
+      "label": "baseline-community-empty",
+      "url": "#/community"
+    },
+    {
+      "seq": 96,
+      "action": "click",
+      "label": "分享内容",
+      "url": "#/community"
+    },
+    {
+      "seq": 97,
+      "action": "inspect",
+      "label": "",
+      "url": "#/community"
+    },
+    {
+      "seq": 98,
+      "action": "click",
+      "label": "关闭",
+      "url": "#/community"
+    },
+    {
+      "seq": 99,
+      "action": "click",
+      "label": "学习记忆",
+      "url": "#/memory"
+    },
+    {
+      "seq": 100,
+      "action": "wait",
+      "label": "",
+      "url": "#/memory"
+    },
+    {
+      "seq": 101,
+      "action": "screen",
+      "label": "baseline-memory",
+      "url": "#/memory"
+    },
+    {
+      "seq": 102,
+      "action": "click",
+      "label": "等式性质已有独立正确证据3 次独立答对4 次练习11/11 23:58",
+      "url": "#/memory?knowledge=kp-equality"
+    },
+    {
+      "seq": 103,
+      "action": "inspect",
+      "label": "",
+      "url": "#/memory?knowledge=kp-equality"
+    },
+    {
+      "seq": 104,
+      "action": "screen",
+      "label": "baseline-memory-detail",
+      "url": "#/memory?knowledge=kp-equality"
+    },
+    {
+      "seq": 105,
+      "action": "click",
+      "label": "我的教案",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 106,
+      "action": "eval",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 107,
+      "action": "set",
+      "label": "#activity-content",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 108,
+      "action": "click",
+      "label": "保存",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 109,
+      "action": "inspect",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 110,
+      "action": "screen",
+      "label": "baseline-save-failure",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 111,
+      "action": "eval",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 112,
+      "action": "click",
+      "label": "重新保存",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 113,
+      "action": "inspect",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 114,
+      "action": "key",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 115,
+      "action": "key",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 116,
+      "action": "key",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 117,
+      "action": "eval",
+      "label": "",
+      "url": "#/prepare"
+    },
+    {
+      "seq": 118,
+      "action": "screen",
+      "label": "baseline-save-retry-focus",
+      "url": "#/prepare"
+    }
+  ],
+  "network": [
+    {
+      "method": "GET",
+      "path": "/api/auth/me"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login"
+    },
+    {
+      "method": "GET",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/dashboard"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/messages"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/search-options"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ai/search"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/search-options"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ai/search"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/cases/case-balance"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/search-options"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/jobs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/lessons/lesson-equation"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/search-options"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "POST",
+      "path": "/api/tasks/publish"
+    },
+    {
+      "method": "GET",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/search-options"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/accounts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/classrooms/class-demo/members"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes/class-demo/tasks"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes/class-demo/invites"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/tasks/task-aeac6cd06ee1455ab354c040534a9f41/supplements"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/bank"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/bank"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/bank"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "POST",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/bank"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "POST",
+      "path": "/api/exams/papers/paper-7d568ad975db4235ad3df8c4c7701df9/review"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/bank"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "POST",
+      "path": "/api/exams"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/bank"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/exam-85853a55895b42248177ab49fce333cd"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/bank"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/bank"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/exam-644b71a4c80e4dfc8ddc150a9714a1b6"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/live/live-2948680d529149a4a04b7035991d222a"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/knowledge"
+    },
+    {
+      "method": "GET",
+      "path": "/api/exams/papers"
+    },
+    {
+      "method": "GET",
+      "path": "/api/groups"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/community"
+    },
+    {
+      "method": "GET",
+      "path": "/api/curriculum/courses"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/search"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/classrooms/class-demo/members"
+    },
+    {
+      "method": "GET",
+      "path": "/api/memory"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/teaching/classes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/classrooms/class-demo/members"
+    },
+    {
+      "method": "GET",
+      "path": "/api/memory"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    },
+    {
+      "method": "GET",
+      "path": "/api/ai/search-options"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/platform"
+    }
+  ],
+  "dialogs": [
+    {
+      "type": "confirm",
+      "message": "确认已核对学生试卷、题目顺序、分值及教师参考解答？"
+    }
+  ],
+  "errors": []
+}

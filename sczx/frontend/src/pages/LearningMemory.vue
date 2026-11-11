@@ -204,6 +204,11 @@ async function snooze(r) {
     saving.value = false;
   }
 }
+function lessonContext(lesson) {
+  const task=store.data.tasks.find(t=>t.id===lesson.taskId);
+  const published=task?.publishedAt;
+  return [published?new Date(published).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}):'',lesson.readOnly?'历史任务':task?.summary?.status||task?.status||''].filter(Boolean).join(' · ');
+}
 const targets = computed(() => {
   const rows =
     data.value?.items.flatMap((i) =>
@@ -314,7 +319,7 @@ const targets = computed(() => {
         </div>
       </article>
     </section>
-    <div class="memory-workspace" :class="{ 'has-detail': selected,'student-memory-focus':!teacher }">
+    <div class="memory-workspace" :class="{ 'has-detail': selected,'student-memory-focus':!teacher,'teacher-memory-focus':teacher }">
       <section v-if="!selected" class="memory-list-pane">
         <div class="memory-list-tools">
           <Input
@@ -359,7 +364,7 @@ const targets = computed(() => {
         v-if="selected || data.unlinkedEvidence.length"
         class="memory-detail"
       >
-        <div class="memory-detail-heading">
+        <div class="memory-detail-context"><div class="memory-detail-heading">
           <div>
             <h2>{{ selected?.name || "尚未关联知识点" }}</h2>
           </div>
@@ -407,12 +412,11 @@ const targets = computed(() => {
               variant="ghost"
               size="sm"
               @click="openTarget(l.target,selected.id)"
-              ><BookOpen />{{ l.title
-              }}{{ l.readOnly ? " · 历史" : "" }}</Button
+              ><BookOpen :size="16"/><span><strong>{{ l.title }}</strong><small v-if="lessonContext(l)">{{ lessonContext(l) }}</small></span></Button
             >
           </div></template
-        >
-        <article
+        ></div>
+        <div class="memory-evidence-list"><article
           v-for="e in [...evidence].reverse()"
           :key="e.evidenceId"
           class="memory-evidence"
@@ -493,7 +497,7 @@ const targets = computed(() => {
             <p v-if="a.details.note">{{ a.details.note }}</p>
           </article>
         </details>
-      </section>
+      </div></section>
     </div></template
   >
   <Surface v-else-if="!loading && !error"
@@ -567,3 +571,16 @@ const targets = computed(() => {
     ></AppDialog
   >
 </template>
+
+<style scoped>
+.teacher-memory-focus.has-detail{display:block}
+.teacher-memory-focus.has-detail .memory-detail{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:32px;border-left:0}
+.memory-detail-context,.memory-evidence-list{min-width:0}
+.teacher-memory-focus .memory-evidence:first-child{padding-top:0;border-top:0}
+.memory-linked-lessons{flex-direction:column;align-items:stretch}
+.memory-linked-lessons>button{justify-content:flex-start;text-align:left;height:auto;min-height:42px;white-space:normal;padding:9px 10px;gap:10px}
+.memory-linked-lessons>button>svg{flex-shrink:0}
+.memory-linked-lessons strong{display:block;font-size:13px;font-weight:500}
+.memory-linked-lessons small{display:block;font-size:11px;line-height:1.7;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+@media(max-width:1100px){.teacher-memory-focus.has-detail .memory-detail{grid-template-columns:1fr}.teacher-memory-focus .memory-evidence:first-child{padding-top:20px;border-top:1px solid var(--border)}}
+</style>

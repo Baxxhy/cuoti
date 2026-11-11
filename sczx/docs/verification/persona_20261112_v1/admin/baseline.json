@@ -1,0 +1,326 @@
+{
+  "role": "管理员",
+  "research_type": "AI模拟角色的浏览器认知走查；不是真人用户测试或实际用户满意度",
+  "date": "2026-11-12",
+  "base_url": "http://127.0.0.1:8102",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "method": "空浏览器登录；通过可见按钮、链接和表单寻路；没有用改hash替代导航。独立评审员未改源码。",
+  "tasks": [
+    {
+      "id": "A1",
+      "goal": "上传并保存合成材料",
+      "path": [
+        "登录",
+        "上传材料",
+        "选择模拟资料.docx",
+        "上传并解析",
+        "等待3/3已就绪",
+        "编辑信息",
+        "保存信息"
+      ],
+      "result": "完成；DOCX解析3段，标题已保存为模拟管理员走查资料 20261112",
+      "score": 5,
+      "evidence": [
+        "T1 submit upload",
+        "T1 parse completion",
+        "T1 save metadata"
+      ]
+    },
+    {
+      "id": "A2",
+      "goal": "从材料整理并查看案例",
+      "path": [
+        "整理成案例",
+        "手动整理",
+        "填写标题和正文",
+        "保存修改",
+        "预览",
+        "Escape",
+        "对照原文"
+      ],
+      "result": "完成；只创建自有草稿，未发布。离开后通过案例列表重开，正文恢复。",
+      "score": 5,
+      "evidence": [
+        "T2 manual organize",
+        "T2 save current draft",
+        "T2 preview",
+        "R1 draft restore"
+      ]
+    },
+    {
+      "id": "A3",
+      "goal": "编辑课程草稿并学生预览",
+      "path": [
+        "课程内容",
+        "新建课程",
+        "单元",
+        "课时",
+        "添加内容块",
+        "填写标题正文",
+        "保存草稿",
+        "预览"
+      ],
+      "result": "完成；新建模拟课程/单元/课时，预览显示x−3=5与x=8，未改既有发布内容。",
+      "score": 5,
+      "evidence": [
+        "T3 create course",
+        "T3 create lesson",
+        "T3 save lesson draft",
+        "T3 student preview"
+      ]
+    },
+    {
+      "id": "A4",
+      "goal": "提交并处理问题",
+      "path": [
+        "反馈与运行",
+        "提交问题",
+        "填写合成问题",
+        "提交",
+        "填写处理意见",
+        "保存处理"
+      ],
+      "result": "完成；合成问题由待处理变为已回复，原问题与处理意见可读。",
+      "score": 5,
+      "evidence": [
+        "T4 submitted result",
+        "T4 save resolution",
+        "baseline-issue-resolved"
+      ]
+    },
+    {
+      "id": "A5",
+      "goal": "创建学生账号并检查服务",
+      "path": [
+        "反馈与运行",
+        "账号",
+        "新建账号",
+        "填写账号/名称/学生身份/私有密码",
+        "创建账号",
+        "检查连接"
+      ],
+      "result": "完成；创建合成学生账号，服务与数据库已连接；重复账号真实报错后改名重试成功。",
+      "score": 5,
+      "evidence": [
+        "T5 service status",
+        "K1 duplicate error visible",
+        "K1 recovery result"
+      ]
+    },
+    {
+      "id": "A6",
+      "goal": "找到能力验证、失败任务与重试入口",
+      "path": [
+        "能力验证",
+        "获取指导",
+        "最近任务",
+        "失败与重试"
+      ],
+      "result": "完成；实际文字指导成功并在最近任务显示已完成。历史失败任务可查看，重试明确提示仅原提交者可用且禁用；未绕过归属执行重试。",
+      "score": 5,
+      "evidence": [
+        "T6 request guidance",
+        "T6 failure retry entry",
+        "baseline-model-status"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "ADM-01",
+      "severity": "P2",
+      "observation": "上传解析已完成，列表和详情均为已就绪3/3时，顶部仍为原文件已保存，正在解析，直到另一操作更新通知。",
+      "impact": "成功与处理中两种状态冲突。",
+      "recommendation": "解析轮询进入完成/失败终态时同步替换通知；通知只陈述当前状态。",
+      "evidence": {
+        "events": [
+          "T1 parse completion",
+          "T1 edit metadata"
+        ]
+      },
+      "score_item": "反馈：保存与失败恢复 -1"
+    },
+    {
+      "id": "ADM-02",
+      "severity": "P2",
+      "observation": "案例预览的业务标题h2为14px/400，正文p为15px/400；对话框标题19px/600。",
+      "impact": "案例题名比正文更弱，正文与层级难分。",
+      "recommendation": "预览内的业务标题使用与其他详情一致的标题字号/字重；保留统一正文和数学样式。",
+      "evidence": {
+        "screenshot": "baseline-case-preview.png",
+        "computed": "baseline-fonts-case.json"
+      },
+      "score_item": "字体：正文层级 -2"
+    },
+    {
+      "id": "ADM-03",
+      "severity": "P3",
+      "observation": "账号管理与服务连接放在反馈与运行→账号，一级名称只指向问题/运行。",
+      "impact": "首次专门找账号时，分组名称不能直接预测归属；本轮在问题任务后已见该tab，未发生外部指路。",
+      "recommendation": "将问题、账号和服务能力归入命名清楚的系统管理，或给账号明确入口；保持侧栏短。",
+      "evidence": {
+        "screenshot": "baseline-account-service.png",
+        "events": [
+          "T4 feedback loaded",
+          "T5 account entry"
+        ]
+      },
+      "score_item": "导航：分组明确 -1"
+    },
+    {
+      "id": "ADM-04",
+      "severity": "P3",
+      "observation": "失败与重试的业务任务标题显示lesson_agent。",
+      "impact": "内部标识承担了用户所需的任务识别。",
+      "recommendation": "显示中文业务名称，技术标识放详情或tooltip。",
+      "evidence": {
+        "screenshot": "baseline-model-jobs.png",
+        "events": [
+          "T6 failure retry entry"
+        ]
+      },
+      "score_item": "信息主次：能力验证 -1"
+    },
+    {
+      "id": "ADM-05",
+      "severity": "P3",
+      "observation": "从反馈与运行点击内容工作台后，再点案例，已保存的案例不恢复选中，出现还没有选中案例，需再次点同一草稿。",
+      "impact": "跨一级页面返回时丢失最近案例上下文，一次额外选择。",
+      "recommendation": "记住上次选中案例或保留当前上下文查询参数。",
+      "evidence": {
+        "events": [
+          "R1 return material",
+          "R1 cases return",
+          "R1 draft restore"
+        ]
+      },
+      "score_item": "导航：返回上下文 -1"
+    }
+  ],
+  "score": {
+    "task_completion": {
+      "score": 30,
+      "max": 30,
+      "items": [
+        {
+          "id": "A1",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A2",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A3",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A4",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A5",
+          "score": 5,
+          "max": 5
+        },
+        {
+          "id": "A6",
+          "score": 5,
+          "max": 5
+        }
+      ]
+    },
+    "navigation": {
+      "score": 23,
+      "max": 25,
+      "items": {
+        "分组明确": 4,
+        "无重复混淆": 5,
+        "子功能可找": 5,
+        "返回上下文": 4,
+        "主次清晰": 5
+      }
+    },
+    "information_hierarchy": {
+      "score": 19,
+      "max": 20,
+      "items": {
+        "材料": 5,
+        "课程编辑": 5,
+        "问题反馈": 5,
+        "能力验证": 4
+      }
+    },
+    "typography": {
+      "score": 13,
+      "max": 15,
+      "items": {
+        "UI同字族": 5,
+        "正文层级": 3,
+        "数学协调": 5
+      }
+    },
+    "feedback_keyboard": {
+      "score": 9,
+      "max": 10,
+      "items": {
+        "保存与失败恢复": 4,
+        "焦点键盘": 5
+      }
+    },
+    "total": 94
+  },
+  "verification": {
+    "console_errors": [],
+    "keyboard": [
+      "案例与学生预览Escape关闭",
+      "Tab进入刷新按钮，2px实体outline",
+      "账号弹窗关闭后Tab进入检查连接按钮，2px实体outline"
+    ],
+    "failure_recovery": "重复账号返回此账号名已存在，保留表单，修改账号名后成功创建。",
+    "font_family": "已采样UI、表单、预览正文均为Geist Variable / Noto Sans CJK SC / Microsoft YaHei / sans-serif。",
+    "limitations": [
+      "认知走查不是未受提示真人实验；不将94分解释成真实用户满意度。",
+      "本轮数学检查覆盖已有示例及新草稿短式；不代表所有复杂公式均已专项测试。",
+      "历史失败任务不属于当前账号，已验证受限重试状态，没有越权重试。",
+      "选择器失配和动态按钮文案导致的两次驱动not found属于测试工具错误，已按当前可见按钮继续，不作为产品扣分。"
+    ]
+  },
+  "created_qa_data": {
+    "material": "material-2aaeb1a8a62f40f2801231808c0cb02",
+    "case": "case-6691472f4c5546eca95309b6e567c051",
+    "course": "course-48275525053d49e49e23c6583b7e6f27",
+    "lesson": "lesson-7bb8ce7609d44bb9af03009efea469c3",
+    "accounts": [
+      "persona-admin-student-20261112",
+      "persona-admin-student-20261112-b"
+    ],
+    "note": "仅本轮合成资料和账号；未撤回/删除既有资料课时。密码不在报告。"
+  },
+  "evidence_files": [
+    "baseline-account-error.png",
+    "baseline-account-service.png",
+    "baseline-case-preview.png",
+    "baseline-case-source.png",
+    "baseline-course-preview.png",
+    "baseline-focus-account.json",
+    "baseline-focus-model.json",
+    "baseline-fonts-case.json",
+    "baseline-fonts-model.json",
+    "baseline-issue-resolved.png",
+    "baseline-issue-validation.png",
+    "baseline-materials.png",
+    "baseline-model-jobs.png",
+    "baseline-model-status.png",
+    "baseline-upload-complete-stale-notice.png",
+    "baseline-upload-dialog.png",
+    "events.json"
+  ]
+}

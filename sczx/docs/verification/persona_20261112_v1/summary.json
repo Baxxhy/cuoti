@@ -1,0 +1,96 @@
+{
+  "method": "固定协议下的独立AI三角色浏览器模拟走查，非真人研究",
+  "threshold": 95,
+  "rubric_frozen": true,
+  "roles": [
+    {
+      "role": "student",
+      "baseline": 89,
+      "retest1": 98,
+      "final": 100,
+      "breakdown": [
+        30,
+        25,
+        20,
+        15,
+        10
+      ],
+      "report": "student/score.md"
+    },
+    {
+      "role": "teacher",
+      "baseline": 84,
+      "retest1": 98,
+      "final": 98,
+      "breakdown": [
+        30,
+        24,
+        20,
+        14,
+        10
+      ],
+      "report": "teacher/retest2.md"
+    },
+    {
+      "role": "admin",
+      "baseline": 94,
+      "retest1": 99,
+      "final": 99,
+      "breakdown": [
+        30,
+        24,
+        20,
+        15,
+        10
+      ],
+      "report": "admin/retest1.md"
+    }
+  ],
+  "all_passed": true,
+  "candidateAssets": [
+    "index-CxoPIcBj.js",
+    "index-BRBChled.css"
+  ],
+  "checks": {
+    "browser": {
+      "total": 37,
+      "passed": 37
+    },
+    "js_unit": {
+      "total": 10,
+      "passed": 10
+    },
+    "mysql_targeted": {
+      "total": 12,
+      "passed": 12,
+      "isolated": true
+    },
+    "python_basic": {
+      "total": 173,
+      "passed": 55,
+      "skipped_mysql": 118
+    },
+    "layout": {
+      "pages": 33,
+      "widths": [
+        1440,
+        1920,
+        2560
+      ],
+      "checks": 99,
+      "overflows": 0,
+      "script_errors": 0
+    },
+    "targeted_final_layout": {
+      "pages": 5,
+      "checks": 15,
+      "overflows": 0,
+      "script_errors": 0
+    }
+  },
+  "residual": [
+    "教师：备课AI入口轻微重复",
+    "教师：预览中行内公式比例略大",
+    "管理员：离开账号页后重新点管理入口，默认回问题分类"
+  ]
+}

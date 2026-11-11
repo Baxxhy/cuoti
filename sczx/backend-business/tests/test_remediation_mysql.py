@@ -36,7 +36,7 @@ class RemediationMySQLTests(unittest.IsolatedAsyncioTestCase):
   with SessionLocal.begin() as db:db.get(WrongQuestion,w['id']).details={**db.get(WrongQuestion,w['id']).details,'planJobId':'controlled-plan'}
   j=await self.job(w);self.succeed(j);body={'variantJobId':j['id'],'answer':'5','reason':'两边除以4','requestKey':uuid.uuid4().hex};r=await self.c.post('/api/wrongs/'+w['id']+'/attempts',json=body);self.assertEqual(r.status_code,201,r.text);a=r.json();self.assertEqual(a['verification']['status'],'verified_correct');self.assertEqual((await self.c.post('/api/wrongs/'+w['id']+'/attempts',json=body)).json()['id'],a['id'])
   other=await self.wrong();self.assertEqual((await self.c.post('/api/wrongs/'+other['id']+'/attempts',json=body)).status_code,422)
-  j2=await self.job(w,phase='retest');self.succeed(j2,'5x=45','9');await self.job(w,'guidance',strategy='hint',prompt='我不知道怎么解')
+  j2=await self.job(w,phase='retest');self.succeed(j2,'5x=45','9');await self.job(w,'guidance',variantJobId=j2['id'],strategy='hint',prompt='我不知道怎么解')
   r=await self.c.post('/api/wrongs/'+w['id']+'/attempts',json={'variantJobId':j2['id'],'answer':'9','requestKey':uuid.uuid4().hex});self.assertTrue(r.json()['details']['helped']);self.assertEqual((await self.c.get('/api/wrongs/'+w['id'])).json()['status'],'retest_failed')
  async def test_legacy_snapshot_and_removed_course(self):
   task=self.fx['tasks'][0]
@@ -81,3 +81,72 @@ class RemediationMySQLTests(unittest.IsolatedAsyncioTestCase):
   responses=await asyncio.gather(*[self.c.post('/api/wrongs/'+w['id']+'/attempts',json=body) for _ in range(2)])
   self.assertTrue(all(r.status_code==201 for r in responses),[r.text for r in responses]);self.assertEqual(responses[0].json()['id'],responses[1].json()['id'])
   rows=(await self.c.get('/api/wrongs/'+w['id'])).json()['repairs'];self.assertEqual(len(rows),1)
+
+ async def test_variant_guidance_rebuilds_current_equation_and_does_not_send_expected_answer(self):
+  import json
+  from sczx_business.tutoring import model_input,validate_result
+  from sczx_business.model_provider import ModelError
+  w=await self.wrong(prompt='x+7=12',equation='x+7=12',answer='99',reason='原题曾经误算')
+  variant=await self.job(w);self.succeed(variant,'x+5=13','8')
+  guidance=await self.job(w,'guidance',variantJobId=variant['id'],strategy='hint',context={'question':{'equation':'x+7=12','expected':'99'}},originalAnswer='伪造新题答案',originalReason='伪造新题理由')
+  with SessionLocal() as db:data=copy.deepcopy(db.get(ModelJob,guidance['id']).input)
+  self.assertEqual(data['variantJobId'],variant['id']);self.assertEqual(data['context']['question']['equation'],'x+5=13');self.assertEqual(data['_validation']['equation'],'x+5=13')
+  self.assertEqual(data['context']['originalQuestion'],{'prompt':'x+7=12','equation':'x+7=12'})
+  self.assertEqual(data['context']['originalAnswer'],'');self.assertEqual(data['context']['originalReason'],'')
+  public=model_input(data);self.assertNotIn('expected',json.dumps(public));self.assertNotIn('伪造',json.dumps(public,ensure_ascii=False));self.assertNotIn('99',json.dumps(public))
+  # Leaking this variant's answer must be checked against x+5=13, not the old x+7=12.
+  leaked={'title':'新题指导','hint':'x=8','steps':['两边进行共同运算'],'question':'现在知道怎么做了吗？','strategy':'hint','representation':'question','usedCaseVersionIds':[],'mathClaims':[]}
+  with self.assertRaises(ModelError):validate_result(leaked,data)
+
+ async def test_variant_guidance_rejects_foreign_wrong_unready_unverified_and_wrong_capability(self):
+  w=await self.wrong(prompt='x+7=12',equation='x+7=12');variant=await self.job(w);self.succeed(variant,'x+5=13','8')
+  other=await self.wrong();other_variant=await self.job(other);self.succeed(other_variant)
+  async def refused(jid):
+   response=await self.c.post('/api/ai/jobs',json={'capability':'text','recordId':w['recordId'],'requestKey':uuid.uuid4().hex,'data':{'wrongId':w['id'],'mode':'guidance','variantJobId':jid,'strategy':'hint'}})
+   self.assertEqual(response.status_code,422,response.text)
+  await refused(other_variant['id']);await refused('missing-variant')
+  with SessionLocal() as db:original=copy.deepcopy(db.get(ModelJob,variant['id']).result)
+  for changed in ['foreign','running','unverified','capability','mode']:
+   with self.subTest(changed=changed):
+    with SessionLocal.begin() as db:
+     row=db.get(ModelJob,variant['id']);row.owner_id='repair-s1' if changed=='foreign' else 'repair-s0';row.status='running' if changed=='running' else 'succeeded';row.capability='ocr' if changed=='capability' else 'text';row.input={**row.input,'mode':'analysis' if changed=='mode' else 'variant'};row.result={**original,'variantVerification':{'status':'unverified'}} if changed=='unverified' else copy.deepcopy(original)
+    await refused(variant['id'])
+
+ async def test_guidance_history_keeps_original_question_and_each_variant_separate(self):
+  w=await self.wrong();first=await self.job(w);self.succeed(first)
+  second=await self.job(w);self.succeed(second,'5x=45','9')
+  original=await self.job(w,'guidance',prompt='原题追问')
+  original_analysis=await self.job(w,'analysis')
+  first_guidance=await self.job(w,'guidance',variantJobId=first['id'],prompt='第一道新题追问')
+  for j in [original,original_analysis,first_guidance]:
+   with SessionLocal.begin() as db:
+    row=db.get(ModelJob,j['id']);row.status='succeeded';row.active_hash=None;row.result={'hint':'请比较两边的共同运算','question':'下一步是什么？','representation':'question'}
+  same=await self.job(w,'guidance',variantJobId=first['id'],parentJobId=first_guidance['id'],prompt='同一题继续追问')
+  with SessionLocal() as db:
+   data=db.get(ModelJob,same['id']).input;self.assertEqual(len(data['history']),1);self.assertEqual(data['history'][0]['student'],'第一道新题追问')
+  for mode,variant_id,parent_id in [('guidance',first['id'],original['id']),('guidance',first['id'],original_analysis['id']),('guidance',second['id'],first_guidance['id']),('guidance',None,first_guidance['id']),('analysis',None,first_guidance['id']),('variant',first['id'],None),('analysis',first['id'],None)]:
+   with self.subTest(mode=mode,variant=variant_id,parent=parent_id):
+    response=await self.c.post('/api/ai/jobs',json={'capability':'text','recordId':w['recordId'],'requestKey':uuid.uuid4().hex,'data':{'wrongId':w['id'],'mode':mode,'variantJobId':variant_id,'parentJobId':parent_id,'prompt':'不能混合上下文'}})
+    self.assertEqual(response.status_code,422,response.text)
+  # Legacy original-question guidance still continues its own original thread.
+  original_next=await self.job(w,'guidance',parentJobId=original['id'],prompt='原题继续追问')
+  with SessionLocal() as db:
+   data=db.get(ModelJob,original_next['id']).input;self.assertEqual(data['context']['question']['equation'],'3x=18');self.assertEqual(data['history'][0]['student'],'原题追问')
+
+ async def test_guidance_marks_only_its_exact_variant_as_helped(self):
+  w=await self.wrong();first=await self.job(w);self.succeed(first)
+  second=await self.job(w);self.succeed(second,'5x=45','9')
+  await self.job(w,'guidance',variantJobId=first['id'],prompt='第一道新题求助')
+  await self.job(w,'guidance',prompt='原题求助')
+  plain=await self.c.post('/api/wrongs/'+w['id']+'/attempts',json={'variantJobId':second['id'],'answer':'9','helped':False,'requestKey':uuid.uuid4().hex})
+  self.assertEqual(plain.status_code,201,plain.text);self.assertFalse(plain.json()['details']['helped'])
+  helped=await self.c.post('/api/wrongs/'+w['id']+'/attempts',json={'variantJobId':first['id'],'answer':'5','helped':False,'requestKey':uuid.uuid4().hex})
+  self.assertEqual(helped.status_code,201,helped.text);self.assertTrue(helped.json()['details']['helped'])
+
+ async def test_legacy_unscoped_help_remains_conservatively_helped(self):
+  w=await self.wrong();variant=await self.job(w);self.succeed(variant)
+  legacy=await self.job(w,'guidance',prompt='旧版本求助')
+  with SessionLocal.begin() as db:
+   row=db.get(ModelJob,legacy['id']);value=copy.deepcopy(row.input);value.pop('variantJobId',None);row.input=value
+  answer=await self.c.post('/api/wrongs/'+w['id']+'/attempts',json={'variantJobId':variant['id'],'answer':'5','requestKey':uuid.uuid4().hex})
+  self.assertEqual(answer.status_code,201,answer.text);self.assertTrue(answer.json()['details']['helped'])

@@ -1,0 +1,401 @@
+[
+  {
+    "tag": "BUTTON",
+    "text": "帮助与反馈",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "搜索页面、任务\n⌘ K",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "H1",
+    "text": "课程内容",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "26px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "刷新目录",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "新建课程",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "P",
+    "text": "课时草稿已保存",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "管理员复测课程 R1",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "400"
+  },
+  {
+    "tag": "LABEL",
+    "text": "搜索课时",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "INPUT",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "单元",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "课时",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "H3",
+    "text": "共同运算复测单元",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "650"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "01\n两边同时减4\n草稿",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "编辑课程目录",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "知识前置关系",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "H2",
+    "text": "两边同时减4",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "21px",
+    "weight": "650"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "预览",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "保存草稿",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "核对内容",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "发布",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "课时内容",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "题目",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "知识与出处",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "课时设置",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "讲解",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "LABEL",
+    "text": "标题",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "INPUT",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "LABEL",
+    "text": "正文",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "TEXTAREA",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "LABEL",
+    "text": "选择插图",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "INPUT",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "LABEL",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "INPUT",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "LABEL",
+    "text": "完成本课必需",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "INPUT",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "550"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "添加内容块",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "H2",
+    "text": "学生预览",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "19px",
+    "weight": "600"
+  },
+  {
+    "tag": "P",
+    "text": "学生预览",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "H2",
+    "text": "两边同时减4",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "18px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "目录 1 / 1",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "H2",
+    "text": "先比较，再求解",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "25px",
+    "weight": "400"
+  },
+  {
+    "tag": "P",
+    "text": "x+4\n=\n10\n，两边同时减4，得到\nx\n=\n6\n。",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "21px",
+    "weight": "450"
+  },
+  {
+    "tag": "SPAN",
+    "text": "x+4\n=\n10",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "28.35px",
+    "weight": "500"
+  },
+  {
+    "tag": "SPAN",
+    "text": "x\n=\n6",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "28.35px",
+    "weight": "500"
+  },
+  {
+    "tag": "P",
+    "text": "代回：\n6+4\n=\n10\n。",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "17px",
+    "weight": "400"
+  },
+  {
+    "tag": "SPAN",
+    "text": "6+4\n=\n10",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "22.95px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "上一步",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "下一步",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "关闭",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  }
+]

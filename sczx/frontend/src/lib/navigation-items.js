@@ -2,5 +2,5 @@ import {LayoutDashboard,BookOpen,BookOpenText,NotebookPen,History,LibraryBig,Use
 export const navigation={
  student:[['home','我的学习',LayoutDashboard],['courses','探索课程',BookOpen],['exams','我的考试',FileText],['live','我的课堂',Users],['wrong','错题帮',NotebookPen],['memory','复习',History],['records','学习记录',History],['offline','离线学习',Download],['class','我的班级',Users],['issues','问题与回复',MessageSquareText]],
  teacher:[['teacher','教学概览',LayoutDashboard],['cases','教学案例',LibraryBig],['courses','课程与课时',BookOpen],['prepare','我的教案',FileText],['exam-bank','题库',BookOpenText],['exam-papers','组卷与考试',FileText],['live','实时课堂',Users],['groups','分层教学',Users],['community','教研交流',LibraryBig],['class','班级教学',Users],['memory','学习记忆',History],['issues','问题与回复',MessageSquareText]],
- admin:[['manage','内容工作台',Layers],['content','课程内容',BookOpenText],['issues','反馈与运行',MessageSquareText]],
+ admin:[['manage','资料与案例',Layers],['content','课程内容',BookOpenText],['issues','管理与运行',MessageSquareText]],
 };

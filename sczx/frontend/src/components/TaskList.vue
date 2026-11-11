@@ -7,6 +7,8 @@ import { FileText, ArrowRight } from "lucide-vue-next";
 const props = defineProps({ teacher: Boolean, tasks: Array, emptyLabel: String });
 const store = useLearning();
 const visibleTasks = computed(() => props.tasks || store.data.tasks || []);
+function repeated(task){return visibleTasks.value.filter(t=>t.title===task.title&&t.classId===task.classId).length>1}
+function published(task){return new Date(task.publishedAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})}
 function status(task) {
   return props.teacher
     ? task.summary?.status || "待开始"
@@ -28,8 +30,7 @@ async function open(task, teacher) {
       <div class="task-description">
         <h3>{{ task.title }}</h3>
         <p>
-          {{ task.className || store.data.classroom?.name || "班级" }} ·
-          {{ deadlineText(task.dueAt) }}
+          {{ task.className || store.data.classroom?.name || "班级" }}<template v-if="repeated(task)&&task.publishedAt"> · {{ published(task) }} 发布</template><template v-if="task.dueAt"> · {{ deadlineText(task.dueAt) }} 截止</template>
         </p>
       </div>
       <div class="task-progress-summary">

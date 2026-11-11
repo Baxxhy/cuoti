@@ -1,0 +1,149 @@
+[
+  {
+    "tag": "BUTTON",
+    "text": "帮助与反馈",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "搜索页面、任务\n⌘ K",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "H1",
+    "text": "管理与运行",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "26px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "问题反馈",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "能力验证",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "账号",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "文字指导",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "550"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "500"
+  },
+  {
+    "tag": "LABEL",
+    "text": "问题",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "500"
+  },
+  {
+    "tag": "TEXTAREA",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "获取指导",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "文字指导\n已完成\n2026/11/12 01:31:53",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "H2",
+    "text": "失败任务",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "15px",
+    "weight": "600"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "刷新",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "12px",
+    "weight": "500"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "500"
+  },
+  {
+    "tag": "P",
+    "text": "业务任务失败，请由原提交者核对来源后处理。",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "P",
+    "text": "仅原提交账号可重试。",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "14px",
+    "weight": "400"
+  },
+  {
+    "tag": "BUTTON",
+    "text": "重试",
+    "font": "\"Geist Variable\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+    "size": "13px",
+    "weight": "500"
+  }
+]

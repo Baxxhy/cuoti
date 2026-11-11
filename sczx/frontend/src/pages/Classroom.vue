@@ -248,7 +248,7 @@ async function join() {
     </template>
     <Surface v-else><div class="empty-state"><Users :size="28"/><h2>还没有班级</h2><Button @click="edit(true)">新建班级</Button></div></Surface>
   </template>
-  <template v-else><div class="ops-student-classes"><Surface v-for="item in rooms" :key="item.id" class="student-class"><div class="ops-row-title"><Users :size="22"/><h2>{{item.name}}</h2></div><p>{{item.grade}} · {{item.subject}} · {{item.teacherName}}</p><RouteButton route="home">查看学习任务</RouteButton></Surface><Surface v-if="!rooms.length"><div class="empty-state"><Users :size="28"/><h2>还没有加入班级</h2><Button @click="joinOpen=true">输入邀请码</Button></div></Surface></div></template>
+  <template v-else><div class="ops-student-classes"><Surface v-for="item in rooms" :key="item.id" class="student-class"><div class="ops-row-title"><Users :size="22"/><h2>{{item.name}}</h2></div><p>{{[item.grade,item.subject,item.teacherName].filter(Boolean).join(' · ')}}</p><RouteButton :route="'home?class='+item.id">查看学习任务</RouteButton></Surface><Surface v-if="!rooms.length"><div class="empty-state"><Users :size="28"/><h2>还没有加入班级</h2><Button @click="joinOpen=true">输入邀请码</Button></div></Surface></div></template>
   <AppDialog v-model:open="joinOpen" title="加入班级"><form class="class-edit-form" @submit.prevent="join"><label class="field-label">班级邀请码<Input v-model="joinCode" autocomplete="off" required/></label><p v-if="error" class="form-error" role="alert">{{error}}</p><Button :disabled="busy||!joinCode.trim()">加入班级</Button></form></AppDialog>
   <AppDialog
     :open="!!dialog"

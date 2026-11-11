@@ -19,4 +19,4 @@ export const modelApi = {
   },
 };
 
-export const capabilityNames = { document_parse: "文档解析", document_ocr: "原文识别", case_extract: "案例提取", retrieval: "案例检索", text: "文字指导", ocr: "题图识别", embedding: "文本向量", rerank: "材料重排", asr: "语音转写", tts: "讲解音频" };
+export const capabilityNames = { lesson_agent: "AI备课", document_parse: "文档解析", document_ocr: "原文识别", case_extract: "案例提取", retrieval: "案例检索", text: "文字指导", ocr: "题图识别", embedding: "文本向量", rerank: "材料重排", asr: "语音转写", tts: "讲解音频" };

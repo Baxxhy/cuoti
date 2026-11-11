@@ -1,6 +1,7 @@
 <script setup>
 import {computed,ref,onMounted,onBeforeUnmount,watch} from 'vue';
 import {useRoute,useRouter} from 'vue-router';
+import {useLearning} from '@/store.js';
 import {libraryApi} from '@/services/library.js';
 import {modelApi} from '@/services/models.js';
 import {useModelJob} from '@/lib/useModelJob.js';
@@ -12,7 +13,10 @@ import CaseArticle from './CaseArticle.vue';
 import MathVerification from './MathVerification.vue';
 import ModelResult from './ModelResult.vue';
 import {Upload,Plus,RefreshCw,Download,FileText,BookOpen,ArrowLeft,Check,LoaderCircle,X} from 'lucide-vue-next';
-const route=useRoute(),router=useRouter();
+const route=useRoute(),router=useRouter(),store=useLearning();
+const contextKey=`sczx:library-context:${store.user?.id||'anonymous'}`;
+function savedContext(){try{return JSON.parse(sessionStorage.getItem(contextKey)||'null')}catch{return null}}
+function rememberContext(){if(initializing||disposed)return;try{sessionStorage.setItem(contextKey,JSON.stringify({tab:tab.value,case:selectedCase.value?.id,material:material.value?.id,unit:unitId.value}))}catch{}}
 const knowledge=ref([]);
 const materials=ref([]),cases=ref([]),extractionJobs=ref([]),material=ref(null),selectedCase=ref(null),unitId=ref(''),selectedUnits=ref([]),tab=ref('materials'),editorTab=ref('body'),sourceTab=ref('original');
 const listError=ref(''),initialLoad=ref(true),showSource=ref(false),materialMode=ref('read'),metadataOpen=ref(false),experienceSection=ref('goal'),metadataSaving=ref(false);
@@ -22,6 +26,13 @@ const actionBusy=ref(false);
 const error=ref(''),notice=ref(''),loading=ref(false),saving=ref(false),uploading=ref(false),uploadOpen=ref(false),preview=ref(false),confirmAction=ref(''),dirty=ref(false),edited=ref(null),reviewed=ref(false),unitText=ref('');
 const metadata=ref({title:'',author:'',sourceUrl:'',sourceNote:'',grade:'七年级',subject:'数学'}),uploadFile=ref(null);
 let timer,disposed=false,selection=0,materialSelection=0,initializing=true;
+const uploadedMaterial=ref(null);
+const uploadNotice=computed(()=>{
+ if(!uploadedMaterial.value)return '';
+ const item=materials.value.find(item=>item.id===uploadedMaterial.value.id)||uploadedMaterial.value;
+ return ({ready:'原文件已保存，解析完成',partial:'原文件已保存，部分内容未完成解析',failed:'原文件已保存，解析失败，请重试'})[item.status]||'原文件已保存，正在解析';
+});
+watch(()=>[tab.value,selectedCase.value?.id,material.value?.id,unitId.value],rememberContext);
 const currentUnit=computed(()=>material.value?.units.find(u=>u.id===unitId.value));
 const labels={knowledgePoints:'知识点',goal:'教学目标',studentBase:'学生基础',difficulty:'学生困难',introduction:'引入方法',steps:'讲解步骤',questions:'教师提问',responses:'可能回应',adjustment:'回应后的调整',boundary:'适用边界',suggestions:'模型建议'};
 const arrays=new Set(['knowledgePoints','steps','questions','responses','suggestions']);
@@ -37,7 +48,7 @@ watch(()=>[currentUnit.value?.id,currentUnit.value?.text],([id,text],[oldId,oldT
 function changed(){dirty.value=true;reviewed.value=false}
 async function saveCase(){if(!selectedCase.value?.draft||!edited.value)return true;const id=selectedCase.value.id;saving.value=true;error.value='';try{const result=await libraryApi.save(id,edited.value);if(selectedCase.value?.id===id)applyCase(result);notice.value='草稿已保存';await loadLists();return true}catch(e){error.value=e.message;return false}finally{saving.value=false}}
 async function action(name){if(actionBusy.value||!selectedCase.value)return;const id=selectedCase.value.id;actionBusy.value=true;error.value='';try{if(name==='verify'){if(!(await saveCase()))return;const result=await libraryApi.action(id,'verify');if(selectedCase.value?.id===id)applyCase(result);notice.value='列出的数学表达已重新核对';return}if(name==='review'){if(!(await saveCase()))return;await libraryApi.action(id,'review');if(selectedCase.value?.id===id){reviewed.value=true;selectedCase.value.draft.reviewed=true;}notice.value='已记录人工核对';return}if(name==='publish'&&!(await saveCase()))return;const result=await libraryApi.action(id,name);if(selectedCase.value?.id===id)applyCase(result);confirmAction.value='';await loadLists();notice.value=name==='publish'?'案例已发布':name==='withdraw'?'已停止新检索，历史版本保留':'已创建修订草稿'}catch(e){error.value=e.message}finally{actionBusy.value=false}}
-async function upload(){if(!uploadFile.value){error.value='请选择原文件。';return}uploading.value=true;error.value='';try{const form=new FormData();form.append('file',uploadFile.value);for(const[k,v]of Object.entries(metadata.value))form.append(k,v);const item=await libraryApi.upload(form);uploadOpen.value=false;await loadLists();tab.value='materials';await selectMaterial(item.id);notice.value='原文件已保存，正在解析'}catch(e){error.value=e.message}finally{uploading.value=false}}
+async function upload(){if(!uploadFile.value){error.value='请选择原文件。';return}uploading.value=true;error.value='';try{const form=new FormData();form.append('file',uploadFile.value);for(const[k,v]of Object.entries(metadata.value))form.append(k,v);const item=await libraryApi.upload(form);uploadedMaterial.value=item;notice.value='';uploadOpen.value=false;await loadLists();tab.value='materials';await selectMaterial(item.id)}catch(e){error.value=e.message}finally{uploading.value=false}}
 async function saveUnit(){try{await libraryApi.saveUnit(unitId.value,unitText.value);await selectMaterial(material.value.id,unitId.value,false);notice.value='识别文本已保存'}catch(e){error.value=e.message}}
 async function extract(){if(!selectedUnits.value.length){error.value='请选择要整理的原文位置。';return}try{const response=await libraryApi.extract(selectedUnits.value);await router.replace({query:{...route.query,job:response.jobId}});await open(await modelApi.detail(response.jobId));notice.value='正在整理选中的原文，离开后任务继续执行'}catch(e){error.value=e.message}}
 async function create(){try{const item=await libraryApi.newCase(selectedUnits.value);await loadLists();await selectCase(item.id)}catch(e){error.value=e.message}}
@@ -49,14 +60,28 @@ function setField(key,value){edited.value.experience||={};edited.value.experienc
 async function originalVersion(id){const item=await libraryApi.case(selectedCase.value.id);if(id===item.published?.versionId){versionPreview.value=item.published;preview.value=true;return}const version=await modelApi.caseDetail(item.id,id);versionPreview.value=version;preview.value=true}
 const versionPreview=ref(null);
 async function addReferences(){try{edited.value.references||=[];for(const id of selectedUnits.value){const unit=await libraryApi.unit(id);edited.value.references.push({unitId:id,materialId:unit.materialId,materialTitle:unit.materialTitle,label:unit.label,quote:unit.text.slice(0,1000),author:unit.metadata.author,source:unit.metadata.sourceNote,sourceUrl:unit.metadata.sourceUrl})}changed()}catch(e){error.value=e.message}}
-onMounted(async()=>{try{knowledge.value=await curriculumApi.knowledge()}catch(e){error.value=e.message}const requested={case:route.query.case,material:route.query.material,unit:route.query.unit,job:route.query.job};await loadLists();if(requested.case)await selectCase(String(requested.case));if(requested.material)await selectMaterial(String(requested.material),requested.unit?String(requested.unit):null);else if(!material.value&&materials.value[0])await selectMaterial(materials.value[0].id);if(requested.job)await inspectJob({id:String(requested.job)});initializing=false;timer=setInterval(()=>refresh().catch(e=>error.value=e.message),3000)});
+onMounted(async()=>{
+ try{knowledge.value=await curriculumApi.knowledge()}catch(e){error.value=e.message}
+ const requested={case:route.query.case,material:route.query.material,unit:route.query.unit,job:route.query.job};
+ const remembered=Object.values(requested).some(Boolean)?null:savedContext();
+ await loadLists();
+ const caseId=requested.case||(remembered?.tab==='cases'&&cases.value.some(item=>item.id===remembered.case)?remembered.case:null);
+ const materialId=requested.material||(!caseId&&materials.value.some(item=>item.id===remembered?.material)?remembered.material:null);
+ if(caseId)await selectCase(String(caseId));
+ if(materialId)await selectMaterial(String(materialId),String(requested.unit||remembered?.unit||'')||null);
+ else if(!material.value&&materials.value[0])await selectMaterial(materials.value[0].id);
+ if(!caseId&&remembered?.tab==='cases')tab.value='cases';
+ if(requested.job)await inspectJob({id:String(requested.job)});
+ initializing=false;rememberContext();
+ timer=setInterval(()=>refresh().catch(e=>error.value=e.message),3000);
+});
 watch(()=>[route.query.case,route.query.material,route.query.unit,route.query.job],async([caseId,materialId,unit,jobId])=>{if(initializing||disposed)return;if(caseId&&caseId!==selectedCase.value?.id)await selectCase(String(caseId));if(materialId&&(materialId!==material.value?.id||(unit&&unit!==unitId.value)))await selectMaterial(String(materialId),unit?String(unit):null,false);if(jobId&&jobId!==job.value?.id)await inspectJob({id:String(jobId)})});
 async function inspectJob(item){tab.value='materials';try{await router.replace({query:{...route.query,job:item.id}});await open(await modelApi.detail(item.id));const first=job.value?.input?.units?.[0];if(first&&job.value.status!=='succeeded')await selectMaterial(first.materialId,first.id);materialMode.value='organize'}catch(e){error.value=e.message}}
 onBeforeUnmount(()=>{disposed=true;selection++;clearInterval(timer)});
 </script>
 <template>
   <PageHeading title="资料与案例"><Button variant="outline" @click="loadLists"><RefreshCw :size="16" />刷新</Button><Button @click="uploadOpen=true"><Upload :size="16" />上传材料</Button></PageHeading>
-  <p v-if="error||listError||jobError" role="alert" class="form-error">{{ error||listError||jobError }}</p><p v-if="initialLoad||loading" role="status" class="library-notice">读取中…</p><p v-if="notice" role="status" class="library-notice">{{ notice }}</p>
+  <p v-if="error||listError||jobError" role="alert" class="form-error">{{ error||listError||jobError }}</p><p v-if="initialLoad||loading" role="status" class="library-notice">读取中…</p><p v-if="notice||uploadNotice" role="status" class="library-notice">{{ notice||uploadNotice }}</p>
   <div class="library-layout">
     <aside class="library-rail"><AppTabs v-model="tab" :items="[{value:'materials',label:'材料'},{value:'cases',label:'案例'}]" /><div class="library-list" v-if="tab==='materials'"><p v-if="!materials.length" class="ai-empty">上传一份材料开始整理</p><button v-for="item in materials" :key="item.id" :class="{active:material?.id===item.id}" @click="selectMaterial(item.id)"><FileText :size="17" /><span><strong>{{ item.title }}</strong><small>{{ stateName(item.status) }} · {{ item.ready }}/{{ item.total }}</small></span></button></div><div class="library-list" v-else><Button variant="ghost" @click="create"><Plus :size="16" />新建案例</Button><button v-for="item in cases" :key="item.id" :disabled="saving||actionBusy" :class="{active:selectedCase?.id===item.id}" @click="selectCase(item.id)"><BookOpen :size="17" /><span><strong>{{ item.draft?.title||item.published?.title }}</strong><small>{{ item.draft?'编辑中 · ':'' }}{{ stateName(item.status) }}</small></span></button></div><details class="library-job-history"><summary>整理任务</summary><button v-for="item in extractionJobs" :key="item.id" @click="inspectJob(item)"><strong>{{ item.summary||'教学经验提取' }}</strong><span>{{ item.step }}</span><time>{{ new Date(item.createdAt).toLocaleString('zh-CN') }}</time></button></details></aside>
     <div class="library-main"><div :class="['ops-material-workspace',{'with-source':tab==='cases'&&showSource}]">
@@ -79,6 +104,10 @@ onBeforeUnmount(()=>{disposed=true;selection++;clearInterval(timer)});
   </div>
   <AppDialog v-model:open="metadataOpen" title="材料信息"><form v-if="material" class="library-upload-form" @submit.prevent="saveMeta"><label>标题<Input v-model="material.title"/></label><label v-for="(label,key) in {author:'作者或机构',sourceUrl:'来源链接',sourceNote:'来源说明',grade:'适用年级',subject:'学科'}" :key="key">{{label}}<Input v-model="material.metadata[key]"/></label><p v-if="error" class="form-error" role="alert">{{error}}</p><Button type="submit" :disabled="metadataSaving">{{metadataSaving?'保存中…':'保存信息'}}</Button></form></AppDialog>
   <AppDialog v-model:open="uploadOpen" title="上传原始材料"><form class="library-upload-form" @submit.prevent="upload"><label for="material-file">原文件<InfoTip label="文件范围">PDF、DOCX、PNG/JPEG，最多30MB；PDF最多30页，Word最多300个片段。</InfoTip></label><input id="material-file" type="file" accept=".pdf,.docx,.png,.jpg,.jpeg" @change="uploadFile=$event.target.files?.[0]" /><label v-for="(label,key) in {title:'材料标题',author:'作者或机构',sourceUrl:'来源链接',sourceNote:'来源说明',grade:'适用年级',subject:'学科'}" :key="key">{{ label }}<Input v-model="metadata[key]" /></label><p v-if="error" class="form-error" role="alert">{{ error }}</p><Button :disabled="uploading" type="submit">{{ uploading?'上传中…':'上传并解析' }}</Button></form></AppDialog>
-  <AppDialog v-model:open="preview" title="案例预览" content-class="library-preview"><h2>{{ (versionPreview||edited)?.title }}</h2><CaseArticle :value="versionPreview||edited" /></AppDialog>
+  <AppDialog v-model:open="preview" title="案例预览" content-class="library-preview"><h2 class="case-preview-title">{{ (versionPreview||edited)?.title }}</h2><CaseArticle :value="versionPreview||edited" /></AppDialog>
   <AppDialog :open="!!confirmAction" @update:open="!$event&&(confirmAction='')" :title="confirmAction==='publish'?'发布案例':'撤回案例'"><p>{{ confirmAction==='publish'?'发布后教师可检索和用于备课，学生指导可使用该版本。':'撤回后不再进入新检索；已发布版本及历史任务引用仍保留。' }}</p><p v-if="error" role="alert" class="form-error">{{ error }}</p><Button :disabled="actionBusy" @click="action(confirmAction)">{{ actionBusy ? '处理中…' : confirmAction==='publish'?'确认发布':'确认撤回' }}</Button></AppDialog>
 </template>
+
+<style scoped>
+.case-preview-title{font-size:24px;font-weight:650;line-height:1.45;letter-spacing:-.02em;margin:4px 0 12px;}
+</style>

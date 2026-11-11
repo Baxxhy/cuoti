@@ -1,0 +1,413 @@
+{
+  "role": "student",
+  "kind": "AI模拟角色可用性走查，非真人研究",
+  "date": "2026-11-12",
+  "origin": "http://127.0.0.1:8102",
+  "baseline": "3f64静态前端（主代理确认）",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "method": "仅真实指针/键盘点击路径；首次仅打开登录URL；私读学生账号。未读取路由源码猜入口、未发脚本业务API请求、未编辑源码。",
+  "tasks": [
+    {
+      "id": "T1",
+      "task": "登录、任务、学习/目录/求助、独立练习与结果",
+      "score": 4,
+      "max": 5,
+      "entry_clicks": 1,
+      "entry_path": "登录→首页继续学习（1次入口点击）→目录→独立检查→开始练习→逐题提交→完成练习→学习结果",
+      "result": "4道新独立题均保存且显示正确；随堂旧原答未改。求助请求已发送但恢复后未看到结果。结果确认提交提示缺少6块学习，返回本课补齐一次，未宣称已交给教师。",
+      "detour": "一次：结果提交才获知学习未完成，返回本课。",
+      "evidence": [
+        "./15-submit-check.png",
+        "./28-check-result.png",
+        "./32-submit-confirmed.png"
+      ]
+    },
+    {
+      "id": "T2",
+      "task": "找错题、订正与复习",
+      "score": 5,
+      "max": 5,
+      "entry_clicks": 1,
+      "entry_path": "错题帮→x+7=12→分析这道题→开始订正→下一步×2→填写解释→练一道类似的题→输入8与过程→提交；返回错题帮→更多功能→复习（复习2次入口点击）",
+      "result": "原题原答0保留；新类似题x+5=13答8保存且显示答案核对正确。复习页可见新的练习次数。",
+      "detour": "入口直接找到；额外查看原列表是主动观察恢复，不算绕路。",
+      "evidence": [
+        "./35-wrong-list.png",
+        "./49-repair-submitted.png",
+        "./52-review-page.png"
+      ]
+    },
+    {
+      "id": "T3",
+      "task": "回看学习记录",
+      "score": 5,
+      "max": 5,
+      "entry_clicks": 2,
+      "entry_path": "更多功能→学习记录→等式性质/2026-11-12/5次作答→查看学习结果",
+      "result": "可回看已存答案、正确状态，并回到对应任务结果/本课。首次记录入口需展开更多；已展开时1次。",
+      "detour": "无错误路径。",
+      "evidence": [
+        "./54-record-expanded.png",
+        "./continued/22-record-to-result.png"
+      ]
+    },
+    {
+      "id": "T4",
+      "task": "找班级、考试、课堂",
+      "score": 5,
+      "max": 5,
+      "entry_clicks": {
+        "class": 2,
+        "exams": 1,
+        "live": 1
+      },
+      "entry_path": "更多功能→我的班级→查看学习任务回首页；我的考试→进入考试→开始考试→填写2与过程→保存草稿→刷新；重新登录→我的课堂→回看课堂",
+      "result": "三个入口均可点击找到。新考试草稿刷新恢复成功；课堂为已结束，可回看原答案。考试确认交卷触发CDP超时，未宣称交卷成功。",
+      "detour": "无产品阻断入口。浏览器工具故障单独记录。",
+      "evidence": [
+        "./55-class-page.png",
+        "./63-exam-recovery.png",
+        "./continued/03-live-replay.png"
+      ]
+    },
+    {
+      "id": "T5",
+      "task": "找到离线学习并返回",
+      "score": 5,
+      "max": 5,
+      "entry_clicks": 2,
+      "entry_path": "更多功能→离线学习→首次使用设置口令→启用并加密保存→下载课时→打开下载课时→师承智学品牌回首页",
+      "result": "全新浏览器档案成功下载一个课时并打开，点品牌可返回在线首页。未清除已有学生数据。",
+      "detour": "无。",
+      "evidence": [
+        "./continued/05-offline-entry.png",
+        "./continued/12-offline-read.png",
+        "./continued/13-offline-return-home.png"
+      ]
+    },
+    {
+      "id": "T6",
+      "task": "提交反馈并查看记录入口",
+      "score": 4,
+      "max": 5,
+      "entry_clicks": 1,
+      "entry_path": "帮助与反馈→填写模拟学生意见→提交反馈→重新打开帮助与反馈→查看反馈记录→Escape关闭遮挡弹窗",
+      "result": "系统反馈成功保存，记录中看到本次意见。教师教学反馈仅观察到首页已有消息入口，未完成本次教师回评闭环。",
+      "detour": "一次：跳转记录后额外关闭旧帮助弹窗。",
+      "evidence": [
+        "./continued/16-feedback-submit.png",
+        "./continued/18-feedback-records.png",
+        "./continued/19-feedback-close.png"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "S01",
+      "severity": "P1",
+      "observation": "类似题 x+5=13 的引导仍让学生抵消 +7，和新题不对应。",
+      "inference": "学生照提示操作会减错数。",
+      "suggestion": "类似题提示绑定当前题；没有可信提示时仅保留题目与输入。",
+      "evidence": [
+        "./46-repair-new-question-ready.png"
+      ]
+    },
+    {
+      "id": "S02",
+      "severity": "P2",
+      "observation": "主栏5项，更多功能再列复习、学习记录、离线学习、我的班级、问题与回复5项；复习与错题、班级与课堂/考试分散。",
+      "inference": "相关活动之间需要跨分组寻找，更多功能标签无法预测内容。",
+      "suggestion": "使用学习、错题与复习、班级三个稳定分组；记录归入学习，考试/课堂归入班级，离线归入课程，反馈归入帮助。",
+      "evidence": [
+        "./34-more-open-independent.png",
+        "./52-review-page.png",
+        "./55-class-page.png"
+      ]
+    },
+    {
+      "id": "S03",
+      "severity": "P2",
+      "observation": "帮助弹窗点查看反馈记录后路由已到问题与回复，但弹窗仍保持打开；额外按 Escape 才能看记录。",
+      "inference": "入口已完成导航而覆盖层仍遮挡目的地，产生一次额外回退操作。",
+      "suggestion": "导航前关闭帮助弹窗，保留一个反馈中心。",
+      "evidence": [
+        "./continued/18-feedback-records.png",
+        "./continued/19-feedback-close.png"
+      ]
+    },
+    {
+      "id": "S04",
+      "severity": "P2",
+      "observation": "目录可直接进入独立检查；4题答完结果显示准备交给老师。确认提交才提示6项学习未完成，一整行列出缺项。",
+      "inference": "结果主操作与实际完成条件不一致，需要返回本课补齐。",
+      "suggestion": "结果页在主按钮前呈现可点击未完成项，主按钮直接继续未完成学习；完成后再显示交给老师。",
+      "evidence": [
+        "./11-check-entry.png",
+        "./28-check-result.png",
+        "./32-submit-confirmed.png",
+        "./continued/23-result-to-lesson.png"
+      ]
+    },
+    {
+      "id": "S05",
+      "severity": "P2",
+      "observation": "正文/控件计算字体为Geist Variable/Noto Sans CJK SC/Microsoft YaHei；数学公式计算字体另用Cambria Math/STIX Two Math/Times New Roman serif。练习公式47.52px，题干15px，公式x为明显衬线斜体。",
+      "inference": "数学与普通文本的字形切换是当前异体感的可证来源；未发现普通控件随意使用多个字族。",
+      "suggestion": "网页数学统一一套与界面协调的字族、字重和比例；保留必需的数学语义，不牵动DOCX导出字体。",
+      "evidence": [
+        "./02-continue-learning.png",
+        "./continued/33-help-click-stable.png",
+        "actions.json action=fonts",
+        "continued/actions.json action=fonts"
+      ]
+    },
+    {
+      "id": "S06",
+      "severity": "P2",
+      "observation": "首次问一问弹窗能发送请求并显示处理中。换浏览器登录回同一任务同一题后，再点问一问仅短暂显示保存中，等待3秒后仍无弹窗、结果或错误。",
+      "inference": "可能存在恢复/请求状态与打开弹窗之间的时序问题，需实现方复现；本次未看到真实指导结果。",
+      "suggestion": "弹窗立即打开并呈现加载、恢复结果或可重试错误；不让保存阻止入口却无说明。",
+      "evidence": [
+        "./03-ask-dialog.png",
+        "./05-help-request.png",
+        "./continued/33-help-click-stable.png",
+        "./continued/34-help-after-save.png"
+      ]
+    },
+    {
+      "id": "S07",
+      "severity": "P3",
+      "observation": "首页学习工具重复给出整理错题、我的考试、进入课堂；已有相同侧栏目的地，名称也不同。",
+      "inference": "轻度重复，增加页面常驻信息。",
+      "suggestion": "保留当前任务、待办和消息，重复工具改为上下文需要时出现。",
+      "evidence": [
+        "./01-home.png"
+      ]
+    },
+    {
+      "id": "S08",
+      "severity": "P3",
+      "observation": "我的班级卡副文案为“七年级数学 · · 演示教师”，存在双分隔符。",
+      "inference": "空字段没有过滤。",
+      "suggestion": "仅拼接有值的字段。",
+      "evidence": [
+        "./55-class-page.png"
+      ]
+    }
+  ],
+  "scores": {
+    "tasks": {
+      "score": 28,
+      "max": 30,
+      "items": [
+        {
+          "id": "T1",
+          "score": 4,
+          "max": 5,
+          "detour": "一次：结果提交才获知学习未完成，返回本课。"
+        },
+        {
+          "id": "T2",
+          "score": 5,
+          "max": 5,
+          "detour": "入口直接找到；额外查看原列表是主动观察恢复，不算绕路。"
+        },
+        {
+          "id": "T3",
+          "score": 5,
+          "max": 5,
+          "detour": "无错误路径。"
+        },
+        {
+          "id": "T4",
+          "score": 5,
+          "max": 5,
+          "detour": "无产品阻断入口。浏览器工具故障单独记录。"
+        },
+        {
+          "id": "T5",
+          "score": 5,
+          "max": 5,
+          "detour": "无。"
+        },
+        {
+          "id": "T6",
+          "score": 4,
+          "max": 5,
+          "detour": "一次：跳转记录后额外关闭旧帮助弹窗。"
+        }
+      ]
+    },
+    "navigation": {
+      "score": 20,
+      "max": 25,
+      "items": [
+        {
+          "item": "分组明确",
+          "score": 3,
+          "max": 5,
+          "deductions": [
+            {
+              "points": 2,
+              "issue": "S02"
+            }
+          ]
+        },
+        {
+          "item": "无重复入口混淆",
+          "score": 4,
+          "max": 5,
+          "deductions": [
+            {
+              "points": 1,
+              "issue": "S07"
+            }
+          ]
+        },
+        {
+          "item": "子功能可找",
+          "score": 4,
+          "max": 5,
+          "deductions": [
+            {
+              "points": 1,
+              "issue": "S02",
+              "detail": "记录、复习、班级的入口需展开泛化的更多功能"
+            }
+          ]
+        },
+        {
+          "item": "返回上下文",
+          "score": 4,
+          "max": 5,
+          "deductions": [
+            {
+              "points": 1,
+              "issue": "S03"
+            }
+          ]
+        },
+        {
+          "item": "主次清晰",
+          "score": 5,
+          "max": 5,
+          "deductions": []
+        }
+      ]
+    },
+    "information": {
+      "score": 18,
+      "max": 20,
+      "items": [
+        {
+          "view": "首页",
+          "score": 4,
+          "max": 5,
+          "deductions": [
+            {
+              "points": 1,
+              "issue": "S07"
+            }
+          ]
+        },
+        {
+          "view": "学习页",
+          "score": 5,
+          "max": 5,
+          "deductions": []
+        },
+        {
+          "view": "类似题订正",
+          "score": 4,
+          "max": 5,
+          "deductions": [
+            {
+              "points": 1,
+              "issue": "S01",
+              "detail": "与当前题不相关的旧提示仍常驻"
+            }
+          ]
+        },
+        {
+          "view": "学习记录",
+          "score": 5,
+          "max": 5,
+          "deductions": []
+        }
+      ]
+    },
+    "typography": {
+      "score": 14,
+      "max": 15,
+      "items": [
+        {
+          "item": "界面同一字族",
+          "score": 5,
+          "max": 5,
+          "deductions": []
+        },
+        {
+          "item": "正文层级一致",
+          "score": 5,
+          "max": 5,
+          "deductions": []
+        },
+        {
+          "item": "数学与界面协调",
+          "score": 4,
+          "max": 5,
+          "deductions": [
+            {
+              "points": 1,
+              "issue": "S05"
+            }
+          ]
+        }
+      ]
+    },
+    "feedback_keyboard": {
+      "score": 9,
+      "max": 10,
+      "items": [
+        {
+          "item": "保存/失败反馈",
+          "score": 4,
+          "max": 5,
+          "deductions": [
+            {
+              "points": 1,
+              "issue": "S06"
+            }
+          ]
+        },
+        {
+          "item": "焦点及键盘",
+          "score": 5,
+          "max": 5,
+          "deductions": []
+        }
+      ]
+    },
+    "total": 89,
+    "max": 100
+  },
+  "limitations": [
+    "考试确认交卷后CDP Input.dispatchMouseEvent/Page.captureScreenshot超时；外部处理原生对话框返回No dialog，不以工具超时判产品bug。新浏览器重新登录后继续其余路径。考试交卷未验收。",
+    "本轮课程结果提交被未读学习块校验拦住，之后只补齐天平活动和一部分课时；未宣称教学任务已交给教师。",
+    "求助真实请求已发起，初次弹窗关闭后未看到结果；恢复后入口问题需要主代理定位。",
+    "教学反馈仅观察入口，未验证本次教师反馈回写。",
+    "未人为制造接口断网失败；已验证必填禁用、异步处理中、保存成功、提交校验失败、刷新恢复和Escape归焦。",
+    "普通界面字体一致，字体问题只按实测数学异体扣1分；SR-only重复可访问名称未计入可见文案堆叠。"
+  ],
+  "evidence": {
+    "actions": [
+      "./actions.json",
+      "./continued/actions.json"
+    ],
+    "console_errors": [],
+    "source_changes": false
+  }
+}

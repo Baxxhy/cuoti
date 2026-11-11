@@ -45,7 +45,7 @@ function selectBlock(id,question){
  else if(changed){const block=blocks.value.find(b=>b.id===id);selectedQuestion.value=lesson.value.questions.findIndex(q=>block?.questionIds?.includes(q.id));if(selectedQuestion.value<0)selectedQuestion.value=null}
  persistPosition();
 }
-watch(()=>[store.task?.id,store.record?.id,blocks.value.map(b=>b.id).join('|')],()=>{
+watch([()=>store.task?.id,()=>store.record?.id,()=>blocks.value.map(b=>b.id).join('|')],()=>{
  const position=store.record?.drafts.lessonPosition;
  selectedBlock.value=blocks.value.some(b=>b.id===position?.blockId)?position.blockId:blocks.value[0]?.id||null;
  const candidates=lesson.value.questions.map((q,index)=>({...q,index})).filter(q=>current.value?.questionIds?.includes(q.id));

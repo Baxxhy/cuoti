@@ -24,7 +24,7 @@ function update(block,patch){emit('progress',block.id,{...props.progress[block.i
    <p v-else-if="block.type==='activity'" class="form-error">该互动暂不支持，请联系教师。</p>
    <template v-if="block.type==='activity'"><label :for="'explain-'+block.id" class="field-label">你观察到了什么？</label><Textarea :id="'explain-'+block.id" :model-value="progress[block.id]?.explanation||''" @update:model-value="update(block,{explanation:$event,completed:false})"/></template>
    <template v-if="block.type==='practice'||(block.type==='check'&&!focused)"><div v-for="q in blockQuestions(block)" :key="q.id" class="curriculum-question-preview"><strong>{{q.prompt}}</strong><MathExpression v-if="q.equation" :text="q.equation"/><slot name="question" :question="q" :index="q.index" :block="block"><p v-if="preview" class="muted">{{block.type==='practice'?'随堂练习':'独立练习'}}</p></slot></div></template>
-   <p v-if="focused&&block.type==='check'" class="step-check-count">{{block.questionIds?.length||questions.filter(q=>q.kind!=='practice').length}} 道题</p>
+   <p v-if="focused&&block.type==='check'" class="step-check-count">{{questions.filter(q=>q.kind!=='practice').length}} 道题</p>
    <Button v-if="!focused&&!['practice','check'].includes(block.type)" variant="outline" size="sm" :disabled="block.type==='activity'&&(!(progress[block.id]?.weight>0)||!progress[block.id]?.explanation?.trim())" @click="update(block,{completed:!progress[block.id]?.completed})">{{progress[block.id]?.completed?'已完成':'标记完成'}}</Button>
   </section>
  </article>

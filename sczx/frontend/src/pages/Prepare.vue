@@ -84,7 +84,7 @@ function reorderKeyboard(event, index) {
 function backupLocal(){const draft=store.data.lessonDraft;const text=[draft.goal,draft.studentBase,...draft.blocks.map(b=>b.title+'\n'+b.content),...draft.questions.map(q=>[q.prompt,q.equation,q.answer].join('\n'))].join('\n\n');const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='本地教案修改.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),500)}
 async function reloadDraft(){if(!confirm('重新读取会替换当前未保存修改，请先下载本地修改。继续？'))return;store.externalUpdating=true;try{await store.load(store.data.lesson.id,true)}finally{store.externalUpdating=false}}
 async function saveDraft() {
-  notify((await store.save()) ? "教案已保存" : store.saveError);
+  if (await store.save()) notify("教案已保存");
 }
 async function publish() {
   publishError.value = "";
@@ -125,7 +125,7 @@ async function publish() {
     <RouteButton route="courses" secondary>选择其他课时</RouteButton>
     <RouteButton route="teacher" secondary>返回教学概览</RouteButton>
   </div></AppDialog>
-  <div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><Button variant="outline" @click="backupLocal">下载本地修改</Button><Button @click="reloadDraft">重新读取</Button></div><section v-if="workTab==='edit'" class="focus-preparation">
+  <div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><Button :disabled="store.saving" @click="saveDraft">重新保存</Button><Button variant="outline" @click="backupLocal">下载本地修改</Button><Button variant="ghost" @click="reloadDraft">重新读取</Button></div><section v-if="workTab==='edit'" class="focus-preparation">
     <aside class="focus-activity-list" aria-label="教学活动顺序">
       <draggable v-model="store.data.lessonDraft.blocks" item-key="id" handle=".drag-handle" :force-fallback="true" :fallback-on-body="true" :fallback-tolerance="3" :animation="0" @end="notify('活动顺序已更新')">
         <template #item="{element:block,index}"><div class="focus-activity-item" :class="{selected:activeBlock?.id===block.id}"><button class="drag-handle" :aria-label="'调整顺序：'+block.title" @keydown="reorderKeyboard($event,index)"><GripVertical :size="13"/></button><button :aria-current="activeBlock?.id===block.id?'step':undefined" @click="selectedActivity=block.id"><span>{{String(index+1).padStart(2,'0')}}</span><strong>{{block.title}}</strong></button></div></template>
