@@ -83,6 +83,18 @@
     "bytes": 83984,
     "sha256": "b3edf53deefe81ade60c54ca12cbb941c38ff05f2eb03d75c9bb13ee724e9ce1"
   },
+  "main-protection.json": {
+    "bytes": 629,
+    "sha256": "8c03e2462338543a576ac00790b3e27fd451721d229a37d5a14376fcae9d0e87"
+  },
+  "ci-receipt.json": {
+    "bytes": 3831,
+    "sha256": "581691abee989399bed1b7070bba6ae1c9a62e5c216d55d936c03d15bea1dbfc"
+  },
+  "main-protect-after.log": {
+    "bytes": 82,
+    "sha256": "1e6c1a900feb9ac32aad8a5c6228ea8d93e73fbfb436c21f6fb817c0800f6924"
+  },
   "tests-initial.json": {
     "bytes": 239,
     "sha256": "28f35efce1dc7c988b677e96b38b4038773fdcb06eff5e619e892975874f5763"
@@ -276,8 +288,8 @@
     "sha256": "455a1978ec226d30d8eb8b5a8dc9d19de9f3ba2204865fbdbead302179433a5d"
   },
   "README.md": {
-    "bytes": 2637,
-    "sha256": "5bf33be9026b4d116a998a54ec11aa8fb144aaff500d7a762723171090bf0185"
+    "bytes": 2718,
+    "sha256": "13619916354cd72a45c42ac04194f24d6555ceee5c0c1c4ac396e3811c91b3a5"
   },
   "tests-delivery.log": {
     "bytes": 55685,
@@ -390,13 +402,5 @@
   "scripts/exam-repair.py": {
     "bytes": 3308,
     "sha256": "9999dc0f765d5897d608636657718cf46977e4fb980436bcca9c4feba2bd3ad1"
-  },
-  "main-protection.json": {
-    "bytes": 629,
-    "sha256": "8c03e2462338543a576ac00790b3e27fd451721d229a37d5a14376fcae9d0e87"
-  },
-  "main-protect-after.log": {
-    "bytes": 82,
-    "sha256": "1e6c1a900feb9ac32aad8a5c6228ea8d93e73fbfb436c21f6fb817c0800f6924"
   }
 }
