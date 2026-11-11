@@ -25,6 +25,12 @@ const store = useLearning(),
   notify = inject("notify");
 
 const tools=ref(null);
+function ensureStudentCopy(block) {
+  const source=store.data.lessonDraft.lessonSnapshot?.blocks?.find(item=>item.id===block.id)||block;
+  if(block.studentTitle===undefined) block.studentTitle=source.studentTitle??source.title;
+  if(block.studentContent===undefined) block.studentContent=source.studentContent??source.content;
+}
+
 const workTab=ref("edit"), moreOpen=ref(false);
 const details=computed(()=>store.data.lessonDraft.planningDetails|| (store.data.lessonDraft.planningDetails={}));
 const route=useRoute();
@@ -178,7 +184,7 @@ async function publish() {
                 v-model="block.content"
                 :aria-label="block.title"
                 :disabled="busyBlock === block.id"
-              /><details v-if="block.studentContent!==undefined" class="preparation-block-notes"><summary>学生正文</summary><label>学生标题<Input v-model="block.studentTitle" :aria-label="'学生标题'+(index+1)"/></label><label>学生正文<Textarea v-model="block.studentContent" :aria-label="'学生正文'+(index+1)"/></label></details><details class="preparation-block-notes"><summary>提问与调整</summary><label v-for="(label,key) in {teacherQuestion:'教师提问',studentResponse:'学生可能回应',adjustment:'调整建议'}" :key="key">{{ label }}<Textarea v-model="block[key]"/></label></details><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+block.id" secondary>AI 改写此活动</RouteButton></details></template></draggable
+              /><details v-if="block.studentContent!==undefined||block.agentJobId" class="preparation-block-notes" @toggle="$event.target.open&&ensureStudentCopy(block)"><summary>学生正文</summary><label>学生标题<Input v-model="block.studentTitle" :aria-label="'学生标题'+(index+1)"/></label><label>学生正文<Textarea v-model="block.studentContent" :aria-label="'学生正文'+(index+1)"/></label></details><details class="preparation-block-notes"><summary>提问与调整</summary><label v-for="(label,key) in {teacherQuestion:'教师提问',studentResponse:'学生可能回应',adjustment:'调整建议'}" :key="key">{{ label }}<Textarea v-model="block[key]"/></label></details><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+block.id" secondary>AI 改写此活动</RouteButton></details></template></draggable
         ><details class="curriculum-teacher-questions"><summary>编辑题目 · {{ store.data.lessonDraft.questions?.length||0 }}</summary><div v-for="q in store.data.lessonDraft.questions" :key="q.id||q.equation"><label v-for="(label,key) in {prompt:'题干',equation:'方程',answer:'参考答案',hint:'提示'}" :key="key">{{ label }}<Input v-model="q[key]"/></label></div></details><button class="reference-link" @click="navigate(caseRoute)" :disabled="!store.data.lessonDraft.caseId">
           <LibraryBig :size="16" /><span>参考案例 · {{ caseReference?.title || '尚未选择' }}</span
           ><ArrowUpRight :size="15" />

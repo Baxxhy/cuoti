@@ -19,10 +19,10 @@ computing gzip size...
 ../../../../../tmp/sczx-redesign/final-build/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2        16.51 kB
 ../../../../../tmp/sczx-redesign/final-build/assets/geist-latin-wght-normal-BgDaEnEv.woff2            29.40 kB
 ../../../../../tmp/sczx-redesign/final-build/assets/index-BxeXEoex.css                               202.33 kB │ gzip:  37.84 kB
-../../../../../tmp/sczx-redesign/final-build/assets/index-D9bzej-0.js                              1,104.42 kB │ gzip: 363.22 kB
+../../../../../tmp/sczx-redesign/final-build/assets/index-B4zis2t3.js                              1,104.74 kB │ gzip: 363.24 kB
 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 8.69s
+✓ built in 8.39s

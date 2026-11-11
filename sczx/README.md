@@ -24,7 +24,7 @@
 
 [当前进度v32](docs/planning/当前进度_20261112_v1.md) · [重构与专项终验](docs/planning/全界面重构与专项终验_20261112_v1.md) · [新版网页使用](docs/manuals/web_20261112_v1/README.md) · [截图及实际验证](docs/verification/redesign_20261112_v1/README.md)
 
-本轮168项MySQL测试、27项浏览器回归和4项JS单元检查通过；全新实例F01—F12通过。33个角色页面×三种桌面宽度检查无横向溢出和脚本错误，五课学生正文及旧任务快照已核对。
+本轮168项MySQL测试、28项浏览器回归和4项JS单元检查通过；全新实例F01—F12通过。33个角色页面×三种桌面宽度检查无横向溢出和脚本错误，五课学生正文及旧任务快照已核对。
 
 ![新版学习首页](docs/verification/redesign_20261112_v1/screens/student-home-1440.png)
 

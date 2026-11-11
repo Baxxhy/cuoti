@@ -6,7 +6,7 @@
 - screens/：99张主要页面截图，另含登录、原文、未知路由、五课正文与编辑/批阅状态。
 - before/：相同账号和桌面宽度的旧版参考。
 - teacher-interactions.json、operations-interactions.json、student-shell.json、student-details.json：真实鼠标/键盘交互。
-- frontend-tests-final.log：27项浏览器回归。unit-tests-final.log：4项JS单元检查。
+- frontend-tests-final.log：28项浏览器回归。unit-tests-final.log：4项JS单元检查。
 - backend-tests.log：168项独立MySQL测试，无跳过。
 - student-reading-and-routes.json：qmx登录、五课学生正文、原文与未知路由。
 - local-update.json：原21个任务快照未改，数据库未重启。
