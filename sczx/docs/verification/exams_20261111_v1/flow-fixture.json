@@ -1,0 +1,292 @@
+{
+  "bank": [
+    {
+      "id": "bq-fe04a8fd1d964e71ae07b17fe6c69282",
+      "revision": 2,
+      "reviewed": true,
+      "draft": {
+        "kind": "calculation",
+        "grade": "七年级",
+        "answer": "2",
+        "points": 10,
+        "prompt": "共同运算求解",
+        "source": "项目自编考试验收",
+        "unitId": "unit-equation",
+        "subject": "数学",
+        "equation": "2x+6=10",
+        "difficulty": "easy",
+        "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "referenceVerification": {
+          "status": "verified"
+        },
+        "requiresTeacherReview": false
+      },
+      "versions": [
+        {
+          "id": "qv-06dc10593e6d4b52be12fea193e1975b",
+          "number": 1,
+          "data": {
+            "prompt": "共同运算求解",
+            "equation": "2x+6=10",
+            "answer": "2",
+            "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+            "subject": "数学",
+            "grade": "七年级",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "unitId": "unit-equation",
+            "kind": "calculation",
+            "difficulty": "easy",
+            "points": 10,
+            "source": "项目自编考试验收",
+            "requiresTeacherReview": false,
+            "referenceVerification": {
+              "status": "verified"
+            },
+            "verification": {
+              "status": "verified",
+              "correct": true,
+              "scope": "参考答案的数值或表达式等价性",
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            },
+            "conditionCheck": {
+              "status": "no_known_issue",
+              "issues": [],
+              "humanReviewRequired": true,
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+            },
+            "reviewRecord": {
+              "actorId": "unit-t1",
+              "at": "2026-11-11T02:32:55.748654Z",
+              "scope": "题干、条件、解答人工核对"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "bq-6cacd5330db9463c94baaf1e6847b685",
+      "revision": 2,
+      "reviewed": true,
+      "draft": {
+        "kind": "calculation",
+        "grade": "七年级",
+        "answer": "5",
+        "points": 10,
+        "prompt": "加法方程求解",
+        "source": "项目自编考试验收",
+        "unitId": "unit-equation",
+        "subject": "数学",
+        "equation": "x+7=12",
+        "difficulty": "easy",
+        "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "referenceVerification": {
+          "status": "verified"
+        },
+        "requiresTeacherReview": false
+      },
+      "versions": [
+        {
+          "id": "qv-8d8086e7843040d3a4d0c8ebf65b468f",
+          "number": 1,
+          "data": {
+            "prompt": "加法方程求解",
+            "equation": "x+7=12",
+            "answer": "5",
+            "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+            "subject": "数学",
+            "grade": "七年级",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "unitId": "unit-equation",
+            "kind": "calculation",
+            "difficulty": "easy",
+            "points": 10,
+            "source": "项目自编考试验收",
+            "requiresTeacherReview": false,
+            "referenceVerification": {
+              "status": "verified"
+            },
+            "verification": {
+              "status": "verified",
+              "correct": true,
+              "scope": "参考答案的数值或表达式等价性",
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            },
+            "conditionCheck": {
+              "status": "no_known_issue",
+              "issues": [],
+              "humanReviewRequired": true,
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+            },
+            "reviewRecord": {
+              "actorId": "unit-t1",
+              "at": "2026-11-11T02:32:55.882913Z",
+              "scope": "题干、条件、解答人工核对"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "bq-62fdc5b2c8d14045b59956e30251f21f",
+      "revision": 2,
+      "reviewed": true,
+      "draft": {
+        "kind": "application",
+        "grade": "七年级",
+        "answer": "5",
+        "points": 10,
+        "prompt": "三件商品加一次运费共21元，求每件单价。",
+        "source": "项目自编考试验收",
+        "unitId": "unit-equation",
+        "subject": "数学",
+        "equation": "3x+6=21",
+        "difficulty": "easy",
+        "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+        "knowledgeIds": [
+          "kp-linear-model"
+        ],
+        "verification": {
+          "scope": "应用题文字建模不自动判定正确",
+          "status": "unverified",
+          "correct": false,
+          "message": "数值与参考方程相符；设元、列式和情境条件仍需教师核对。",
+          "numericVerification": {
+            "scope": "参考答案的数值或表达式等价性",
+            "status": "verified",
+            "correct": true,
+            "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+          }
+        },
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "referenceVerification": {
+          "status": "verified"
+        },
+        "requiresTeacherReview": true
+      },
+      "versions": [
+        {
+          "id": "qv-785c349998674977bd96ea8d8e1e7314",
+          "number": 1,
+          "data": {
+            "prompt": "三件商品加一次运费共21元，求每件单价。",
+            "equation": "3x+6=21",
+            "answer": "5",
+            "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+            "subject": "数学",
+            "grade": "七年级",
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "unitId": "unit-equation",
+            "kind": "application",
+            "difficulty": "easy",
+            "points": 10,
+            "source": "项目自编考试验收",
+            "requiresTeacherReview": true,
+            "referenceVerification": {
+              "status": "verified"
+            },
+            "verification": {
+              "status": "unverified",
+              "correct": false,
+              "numericVerification": {
+                "status": "verified",
+                "correct": true,
+                "scope": "参考答案的数值或表达式等价性",
+                "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+              },
+              "message": "数值与参考方程相符；设元、列式和情境条件仍需教师核对。",
+              "scope": "应用题文字建模不自动判定正确"
+            },
+            "conditionCheck": {
+              "status": "no_known_issue",
+              "issues": [],
+              "humanReviewRequired": true,
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+            },
+            "reviewRecord": {
+              "actorId": "unit-t1",
+              "at": "2026-11-11T02:32:55.953814Z",
+              "scope": "题干、条件、解答人工核对"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "candidate": {
+    "id": "job-f0ca077f8ec14e88a3359d23a15780f2",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": null,
+    "fileId": null,
+    "helpRecordId": null,
+    "question": null,
+    "blockId": null,
+    "strategy": null,
+    "prompt": "生成一道符合以上约束、等待人工审核的候选题。",
+    "parentJobId": null,
+    "recognizedText": null,
+    "status": "queued",
+    "step": "排队中",
+    "error": "",
+    "result": null,
+    "attemptNumber": 0,
+    "retryCount": 0,
+    "createdAt": "2026-11-11T02:32:55.998536Z",
+    "updatedAt": "2026-11-11T02:32:55.998541Z",
+    "input": {
+      "examCandidate": true,
+      "unitId": "unit-equation",
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "kind": "calculation",
+      "difficulty": "easy",
+      "prompt": "生成一道符合以上约束、等待人工审核的候选题。"
+    }
+  }
+}

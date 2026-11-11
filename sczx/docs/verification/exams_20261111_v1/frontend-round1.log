@@ -1,0 +1,32 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (4097.695459ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1448.187886ms)
+✔ microphone refusal falls back to text and retry remains available (1171.425754ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (3961.593159ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1673.649522ms)
+✔ memory return controls preserve original learning task and knowledge route (3536.735509ms)
+✔ late memory response cannot overwrite a different task suggestion (1476.011848ms)
+✔ clearing a pending create prevents the old job from reopening (3387.093299ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1365.299264ms)
+✔ assistant initialization cannot replace a newer user request (1409.805159ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1138.419498ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (4225.012832ms)
+✔ independent wrong detail ignores an old response after switching questions (4096.37773ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (4484.687318ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1466.902806ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (4206.664646ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1633.623993ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1347.934387ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (4219.364215ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1460.629456ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7469.997849

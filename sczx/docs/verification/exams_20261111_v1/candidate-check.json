@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "job": {
+    "id": "job-f0ca077f8ec14e88a3359d23a15780f2",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": null,
+    "fileId": null,
+    "helpRecordId": null,
+    "question": null,
+    "blockId": null,
+    "strategy": null,
+    "prompt": "生成一道符合以上约束、等待人工审核的候选题。",
+    "parentJobId": null,
+    "recognizedText": null,
+    "status": "succeeded",
+    "step": "已完成",
+    "error": "",
+    "result": {
+      "answer": "待教师审核的考试候选题；参考答案：x=4。",
+      "prompt": "提示：先对等式两边进行相同的运算，消去含x一侧的常数项；再根据等式性质求出x。\\n题目：解方程 2x+3=11。",
+      "sources": [],
+      "equation": "2x+3=11",
+      "explanation": "1. 两边同时减去3，得到2x=8。这是对等式两边施加相同的运算。\\n2. 两边同除以2，得到x=4。因为2≠0，同除以2不会改变方程的解。\\n3. 检验：将x=4代入原方程，左边为2×4+3=11，与右边相等。",
+      "verification": {
+        "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+        "claims": [],
+        "status": "unverified"
+      },
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      }
+    },
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-11T02:32:56Z",
+    "updatedAt": "2026-11-11T02:33:15Z",
+    "input": {
+      "kind": "calculation",
+      "prompt": "生成一道符合以上约束、等待人工审核的候选题。",
+      "unitId": "unit-equation",
+      "difficulty": "easy",
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "examCandidate": true
+    },
+    "runs": [
+      {
+        "id": "run-89c39cd5e67c469dbc12e66624fe2190",
+        "number": 1,
+        "status": "succeeded",
+        "model": "gpt-6-luna",
+        "provider": "Codex CLI · low",
+        "error": "",
+        "result": {
+          "answer": "待教师审核的考试候选题；参考答案：x=4。",
+          "prompt": "提示：先对等式两边进行相同的运算，消去含x一侧的常数项；再根据等式性质求出x。\\n题目：解方程 2x+3=11。",
+          "sources": [],
+          "equation": "2x+3=11",
+          "explanation": "1. 两边同时减去3，得到2x=8。这是对等式两边施加相同的运算。\\n2. 两边同除以2，得到x=4。因为2≠0，同除以2不会改变方程的解。\\n3. 检验：将x=4代入原方程，左边为2×4+3=11，与右边相等。",
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "startedAt": "2026-11-11T02:32:56Z",
+        "endedAt": "2026-11-11T02:33:15Z"
+      }
+    ]
+  },
+  "question": {
+    "id": "bq-f0ca077f8ec14e88a3359d23a15780f2",
+    "revision": 1,
+    "reviewed": false,
+    "draft": {
+      "prompt": "提示：先对等式两边进行相同的运算，消去含x一侧的常数项；再根据等式性质求出x。\\n题目：解方程 2x+3=11。",
+      "equation": "2x+3=11",
+      "answer": "待教师审核的考试候选题；参考答案：x=4。",
+      "explanation": "1. 两边同时减去3，得到2x=8。这是对等式两边施加相同的运算。\\n2. 两边同除以2，得到x=4。因为2≠0，同除以2不会改变方程的解。\\n3. 检验：将x=4代入原方程，左边为2×4+3=11，与右边相等。",
+      "subject": "数学",
+      "grade": "七年级",
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "unitId": "unit-equation",
+      "kind": "calculation",
+      "difficulty": "easy",
+      "points": 10,
+      "source": "AI候选，待教师审核；ModelJob job-f0ca077f8ec14e88a3359d23a15780f2",
+      "requiresTeacherReview": false,
+      "referenceVerification": {
+        "status": "unverified"
+      },
+      "verification": {
+        "status": "unverified",
+        "correct": false,
+        "scope": "参考答案的数值或表达式等价性",
+        "message": "暂时无法核对该输入，请用可读数学表达式填写；解释仍保留供教师查看。"
+      },
+      "conditionCheck": {
+        "status": "no_known_issue",
+        "issues": [],
+        "humanReviewRequired": true,
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确"
+      },
+      "candidateJobId": "job-f0ca077f8ec14e88a3359d23a15780f2"
+    },
+    "versions": []
+  },
+  "explicitlyAdoptedAsDraft": true,
+  "notAutoReviewed": true
+}

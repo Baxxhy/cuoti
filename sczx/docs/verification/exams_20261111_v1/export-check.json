@@ -1,0 +1,50 @@
+{
+  "files": [
+    {
+      "mode": "student",
+      "file": "学生版试卷.docx",
+      "fontBlackA4Template": true,
+      "fixedVersion": "pv-64fdf4d8f93e46bd8186096780f50bef"
+    },
+    {
+      "mode": "teacher",
+      "file": "教师版试卷.docx",
+      "fontBlackA4Template": true,
+      "fixedVersion": "pv-64fdf4d8f93e46bd8186096780f50bef"
+    },
+    {
+      "mode": "submission",
+      "file": "学生原始答卷.docx",
+      "fontBlackA4Template": true,
+      "fixedVersion": "pv-64fdf4d8f93e46bd8186096780f50bef"
+    },
+    {
+      "mode": "grades",
+      "file": "班级成绩.docx",
+      "fontBlackA4Template": true,
+      "fixedVersion": "pv-64fdf4d8f93e46bd8186096780f50bef"
+    },
+    {
+      "mode": "learning",
+      "file": "考试学习记录.docx",
+      "fontBlackA4Template": true,
+      "fixedVersion": "pv-64fdf4d8f93e46bd8186096780f50bef"
+    }
+  ],
+  "permissions": [
+    {
+      "path": "/api/exams/exam-4d355a4e4a7f4d5c892ba97fa7d60807/export/teacher",
+      "status": 403
+    },
+    {
+      "path": "/api/exams/exam-4d355a4e4a7f4d5c892ba97fa7d60807/export/grades",
+      "status": 403
+    },
+    {
+      "path": "/api/exams/learning-records/export?studentId=unit-s1",
+      "status": 404
+    }
+  ],
+  "restartPersistence": true,
+  "passed": true
+}

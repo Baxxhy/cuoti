@@ -431,3 +431,5 @@ class SupportIssueEvent(Base):
     new_status: Mapped[str] = mapped_column(String(24))
     content: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(MySQLDateTime(fsp=6),default=datetime.utcnow)
+
+from .exam_models import BankQuestion,QuestionVersion,ExamPaper,PaperVersion,ClassExam,ExamSubmission,ExamGradeAudit

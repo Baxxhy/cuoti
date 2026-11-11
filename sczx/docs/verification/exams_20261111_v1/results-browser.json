@@ -1,0 +1,65 @@
+{
+  "screens": [
+    {
+      "page": "student-result",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "student-result",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "student-result",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "page": "exam-wrong-repair",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "exam-wrong-repair",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "exam-wrong-repair",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "page": "teacher-exam-memory",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "teacher-exam-memory",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "teacher-exam-memory",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "checks": [
+    "student-relogin-sees-only-published-results-and-original-answers",
+    "exam-wrong-original-source-and-retest-visible",
+    "teacher-browser-reviews-new-memory-evidence"
+  ],
+  "consoleErrors": [],
+  "passed": true
+}

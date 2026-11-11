@@ -128,6 +128,9 @@ class ModelProvider:
         schema = None
         if capability in ("text", "ocr") or chat_rerank:
             schema = RankingResult if chat_rerank else OCRResult if capability == "ocr" else GuidanceResult
+            if data.get("examCandidate"):
+                from .exam_schemas import ExamCandidate
+                schema=ExamCandidate
             instruction = "你是师承智学数学教师。只返回符合给定JSON Schema的JSON，不使用Markdown围栏。不得编造来源或把学生的原作答替换成参考答案。"
             if chat_rerank:
                 instruction = "你是教学经验检索的语义重排器。根据query评价candidates与教学困难的相关程度，排序后返回JSON。每个候选ID必须恰好出现一次，score在0到1之间，按score降序。分值是本组候选的相对相关程度，不是正确概率。只使用给定候选，不增加新ID。"

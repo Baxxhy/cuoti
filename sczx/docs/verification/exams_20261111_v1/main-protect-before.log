@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/sczx-step17/main-protect.py", line 16, in <module>
+    pid=int(re.search(r'pid=(\d+)',ps).group(1));proc=Path('/proc')/str(pid);env=dict(x.split(b'=',1) for x in (proc/'environ').read_bytes().split(b'\0') if b'=' in x);cwd=(proc/'cwd').resolve();from dotenv import dotenv_values
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'group'

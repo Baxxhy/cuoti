@@ -1,0 +1,20 @@
+{
+  "allOriginalProtectedRowsUnchanged": true,
+  "allOriginalUploadBytesUnchanged": true,
+  "protectedTables": {
+    "attempts": 35,
+    "case_versions": 16,
+    "file_assets": 33,
+    "help_records": 21,
+    "learning_tasks": 16,
+    "lesson_draft_versions": 17,
+    "lesson_drafts": 6,
+    "lesson_versions": 11,
+    "repair_attempts": 6,
+    "student_records": 16,
+    "wrong_questions": 7
+  },
+  "originalFiles": 69,
+  "oldDigest": "2f9b5c787456e9a6eaf22e796824a86d373bfc2aed7323c783300727705ebdac",
+  "scope": "Only reviewed unit additions, empty drafts, metadata and new source versions may be added; originals preserved"
+}

@@ -10,6 +10,9 @@ def validate_retry(db,job):
     owner=db.get(Account,job.owner_id)
     if not owner or not owner.active:raise HTTPException(409,'提交账号已停用。')
     data=job.input or {}
+    if data.get('examCandidate'):
+        from .models import CourseUnit,KnowledgePoint
+        if owner.role!='teacher' or not db.get(CourseUnit,data.get('unitId')) or any(not db.get(KnowledgePoint,k) for k in data.get('knowledgeIds',[])):raise HTTPException(409,'题库生成来源已失效。')
     if job.capability=='lesson_agent':
         from .curriculum import published_lesson
         latest=published_lesson(db,data.get('lessonId'))
@@ -19,7 +22,7 @@ def validate_retry(db,job):
             row=db.get(TeachingCase,data[key])
             if not row or row.status!='published':raise HTTPException(409,'案例来源已撤回。')
     if data.get('materialId') and not db.get(SourceMaterial,data['materialId']):raise HTTPException(409,'原资料已不存在。')
-    if data.get('unitId') and not db.get(MaterialUnit,data['unitId']):raise HTTPException(409,'原文片段已不存在。')
+    if data.get('unitId') and not data.get('examCandidate') and not db.get(MaterialUnit,data['unitId']):raise HTTPException(409,'原文片段已不存在。')
     for unit in data.get('units',[]):
         row=db.get(MaterialUnit,unit.get('id'))
         if not row or row.text!=unit.get('text'):raise HTTPException(409,'原文已修订，请基于当前片段重新整理。')

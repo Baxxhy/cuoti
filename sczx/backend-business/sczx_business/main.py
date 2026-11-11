@@ -845,6 +845,11 @@ app.include_router(support_router)
 from .unit_learning import router as unit_learning_router
 app.include_router(unit_learning_router)
 
+from .equation_tool import router as equation_router
+app.include_router(equation_router)
+from .exams import router as exams_router
+app.include_router(exams_router)
+
 # Optional production frontend: hash routes share the same origin as the API.
 if os.getenv('SCZX_FRONTEND_DIST'):
     from fastapi.staticfiles import StaticFiles

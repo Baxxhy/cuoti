@@ -1,0 +1,45 @@
+{
+  "checks": [
+    "saved-paper-restored-after-reopening-without-reactive-clone-error"
+  ],
+  "screens": [
+    {
+      "page": "exam-bank",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "exam-bank",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "exam-bank",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "page": "exam-papers",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "page": "exam-papers",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "page": "exam-papers",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "consoleErrors": [],
+  "passed": true
+}

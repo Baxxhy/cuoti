@@ -1,3 +1,4 @@
+import Examinations from "./pages/Examinations.vue";
 import LearningMemory from './pages/LearningMemory.vue';
 import SourcePage from './pages/Source.vue';
 import { createApp, watch } from "vue";
@@ -47,6 +48,9 @@ if (location.hash && !location.hash.startsWith("#/"))
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
+    {path:"/exam-bank",name:"exam-bank",component:Examinations},
+    {path:"/exam-papers",name:"exam-papers",component:Examinations},
+    {path:"/exams",name:"exams",component:Examinations},
     { path: "/", redirect: "/home" },
     { path: "/login", name: "login", component: Login, meta: { public: true } },
     { path: "/home", name: "home", component: Dashboard },
@@ -95,8 +99,8 @@ for (const [name, component] of Object.entries({
 const store = useLearning();
 let sessionReady;
 const roleRoutes = {
-  student: new Set(["memory", "source", "home", "class", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
-  teacher: new Set(["memory", "source", "teacher", "courses", "cases", "case-detail", "prepare", "agent", "class", "insights", "issues"]),
+  student: new Set(["exams","memory", "source", "home", "class", "courses", "records", "learn", "check", "result", "wrong", "repair", "issues"]),
+  teacher: new Set(["exam-bank","exam-papers","exams","memory", "source", "teacher", "courses", "cases", "case-detail", "prepare", "agent", "class", "insights", "issues"]),
   admin: new Set(["source", "manage", "content", "issues", "cases", "case-detail", "courses"]),
 };
 router.beforeEach(async (to) => {

@@ -1,0 +1,85 @@
+{
+  "checks": [
+    "saved-original-answer-survives-browser-reload",
+    "student-submission-readonly-and-no-unpublished-grades-or-answers"
+  ],
+  "examId": "exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+  "result": {
+    "id": "exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+    "classId": "unit-c0",
+    "versionId": "pv-64fdf4d8f93e46bd8186096780f50bef",
+    "title": "第十七步真实单元检查",
+    "startsAt": "2026-11-11T02:33:00Z",
+    "endsAt": "2026-11-11T03:34:00Z",
+    "minutes": 30,
+    "serverTime": "2026-11-11T02:40:00.338873Z",
+    "resultsAt": null,
+    "submission": {
+      "id": "sub-5300da92338e429883c823e3b86ec1f0",
+      "studentId": "unit-s0",
+      "studentName": "单元验收·s0",
+      "revision": 6,
+      "answers": {
+        "qv-06dc10593e6d4b52be12fea193e1975b": {
+          "answer": "0",
+          "reason": "我直接猜0，没有核对共同运算。"
+        },
+        "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+          "answer": "0",
+          "reason": "我直接猜0，没有核对共同运算。"
+        },
+        "qv-785c349998674977bd96ea8d8e1e7314": {
+          "answer": "5",
+          "reason": "设每件商品x元，三件3x元加一次运费6元，共21元；列3x+6=21，代回并核对单位。"
+        }
+      },
+      "startedAt": "2026-11-11T02:35:30Z",
+      "submittedAt": "2026-11-11T02:40:00Z",
+      "deadline": "2026-11-11T03:05:30Z"
+    },
+    "paper": {
+      "title": "第十七步真实单元检查",
+      "total": 35,
+      "entries": [
+        {
+          "versionId": "qv-1afcdf2d4d5e4f9992f56f35c711f9cf",
+          "points": 10,
+          "question": {
+            "prompt": "演示考试：共同运算验收",
+            "equation": "x-4=8",
+            "kind": "calculation",
+            "knowledgeIds": [
+              "kp-equality"
+            ]
+          }
+        },
+        {
+          "versionId": "qv-785c349998674977bd96ea8d8e1e7314",
+          "points": 15,
+          "question": {
+            "prompt": "三件商品加一次运费共21元，求每件单价。",
+            "equation": "3x+6=21",
+            "kind": "application",
+            "knowledgeIds": [
+              "kp-linear-model"
+            ]
+          }
+        },
+        {
+          "versionId": "qv-06dc10593e6d4b52be12fea193e1975b",
+          "points": 10,
+          "question": {
+            "prompt": "共同运算求解",
+            "equation": "2x+6=10",
+            "kind": "calculation",
+            "knowledgeIds": [
+              "kp-equality"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "consoleErrors": [],
+  "passed": true
+}

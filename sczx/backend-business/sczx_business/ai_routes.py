@@ -149,6 +149,13 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
         pass
     elif payload.capability=='ocr' and user.role=='student' and data.get('wrongCapture') is True and not payload.recordId:
         pass
+    elif payload.capability=="text" and data.get("examCandidate"):
+        if user.role!="teacher" or payload.recordId or payload.fileId:raise HTTPException(403,"请使用教师题库入口。")
+        from .exam_schemas import BankInput
+        from .models import CourseUnit,KnowledgePoint
+        if not db.get(CourseUnit,data.get("unitId")) or not data.get("knowledgeIds") or any(not db.get(KnowledgePoint,k) for k in data["knowledgeIds"]):raise HTTPException(422,"请选择真实单元和知识点。")
+        if data.get("kind") not in ("calculation","application","explanation") or data.get("difficulty") not in ("easy","medium","hard"):raise HTTPException(422,"请选择题型和难度。")
+        data={k:data[k] for k in ("examCandidate","unitId","knowledgeIds","kind","difficulty")};data["prompt"]="生成一道符合以上约束、等待人工审核的候选题。"
     elif payload.capability == "lesson_agent":
         if user.role != "teacher" or payload.recordId or payload.fileId:raise HTTPException(403,"请使用教师备课入口。")
         from .prepare_agent import build_input

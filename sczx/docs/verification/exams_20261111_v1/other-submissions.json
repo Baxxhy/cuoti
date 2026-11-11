@@ -1,0 +1,80 @@
+[
+  {
+    "student": "unit-s1",
+    "submission": {
+      "id": "sub-a341f1bc398547c1a6fdfdbf97034056",
+      "studentId": "unit-s1",
+      "studentName": "单元验收·s1",
+      "revision": 2,
+      "answers": {
+        "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+          "answer": "12",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        },
+        "qv-785c349998674977bd96ea8d8e1e7314": {
+          "answer": "5",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        },
+        "qv-06dc10593e6d4b52be12fea193e1975b": {
+          "answer": "2",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        }
+      },
+      "startedAt": "2026-11-11T02:36:45Z",
+      "submittedAt": "2026-11-11T02:36:44.890411Z",
+      "deadline": "2026-11-11T03:06:45Z"
+    }
+  },
+  {
+    "student": "unit-s2",
+    "submission": {
+      "id": "sub-28148f73047a4fcaa32907a1a51a2b1f",
+      "studentId": "unit-s2",
+      "studentName": "单元验收·s2",
+      "revision": 2,
+      "answers": {
+        "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+          "answer": "12",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        },
+        "qv-785c349998674977bd96ea8d8e1e7314": {
+          "answer": "5",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        },
+        "qv-06dc10593e6d4b52be12fea193e1975b": {
+          "answer": "2",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        }
+      },
+      "startedAt": "2026-11-11T02:36:45Z",
+      "submittedAt": "2026-11-11T02:36:45.343141Z",
+      "deadline": "2026-11-11T03:06:45Z"
+    }
+  },
+  {
+    "student": "unit-s6",
+    "submission": {
+      "id": "sub-78239e7f4c75442fbbfbe1389e980b8e",
+      "studentId": "unit-s6",
+      "studentName": "单元验收·s6",
+      "revision": 2,
+      "answers": {
+        "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+          "answer": "12",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        },
+        "qv-785c349998674977bd96ea8d8e1e7314": {
+          "answer": "5",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        },
+        "qv-06dc10593e6d4b52be12fea193e1975b": {
+          "answer": "2",
+          "reason": "工程验收：对照实际自编方程作答，非课堂效果样本。"
+        }
+      },
+      "startedAt": "2026-11-11T02:36:46Z",
+      "submittedAt": "2026-11-11T02:36:45.794016Z",
+      "deadline": "2026-11-11T03:06:46Z"
+    }
+  }
+]

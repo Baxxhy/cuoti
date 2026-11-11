@@ -1,0 +1,53 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✖ exam page restores a saved reactive answer and preserves edits on failed save (1981.528028ms)
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (2697.884876ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1744.517109ms)
+✔ microphone refusal falls back to text and retry remains available (1215.520812ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (2560.382526ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1892.707791ms)
+✔ memory return controls preserve original learning task and knowledge route (2672.597898ms)
+✔ late memory response cannot overwrite a different task suggestion (1890.261527ms)
+✔ clearing a pending create prevents the old job from reopening (1818.386756ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1462.826138ms)
+✔ assistant initialization cannot replace a newer user request (1686.052138ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1121.62552ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (2993.551855ms)
+✔ independent wrong detail ignores an old response after switching questions (2424.58435ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (2717.645935ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1936.556628ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (2674.370178ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1858.015526ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1417.219608ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (2960.134982ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1723.813609ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6256.590244
+
+✖ failing tests:
+
+test at tests/exam-draft.test.mjs:2:1
+✖ exam page restores a saved reactive answer and preserves edits on failed save (1981.528028ms)
+  Error: TypeError: Cannot read properties of undefined (reading 'path')
+      at selectedSubmission.value (http://127.0.0.1:5190/src/pages/Examinations.vue:15:18)
+      at callWithErrorHandling (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:2676:33)
+      at callWithAsyncErrorHandling (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:2683:17)
+      at baseWatchOptions.call (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:3369:47)
+      at ReactiveEffect.getter [as fn] (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:1575:29)
+      at ReactiveEffect.run (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:1918:23)
+      at job (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:1627:32)
+      at watch (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:1679:7)
+      at doWatch (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:3398:23)
+      at watch2 (http://127.0.0.1:5190/node_modules/.vite/deps/chunk-XOVT4IVO.js?v=98cf5154:3330:10)
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/exam-draft.test.mjs:2:220)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)

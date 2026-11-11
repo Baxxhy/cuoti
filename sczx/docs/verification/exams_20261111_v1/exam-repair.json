@@ -1,0 +1,2711 @@
+{
+  "jobs": [
+    {
+      "seconds": 43.833,
+      "job": {
+        "id": "job-104cc3b63778461d89e230dc4c6cea84",
+        "mode": "analysis",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "只依据本题原答案分析。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写。不可猜测学生能力。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "goal": "用两边同时进行相同运算的方法，求出 x-4=8 中的 x。",
+          "cause": "其他或待确认",
+          "steps": [
+            "提示：想一想，怎样用同一个运算消去左边的−4？",
+            "在等式两边同时加4，得到 x−4+4=8+4。",
+            "化简得 x=12。两边同时加4保持等式相等；这里不涉及除以数或乘以0。"
+          ],
+          "evidence": "0",
+          "strategy": "hint",
+          "workflow": {
+            "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "modelCalls": 2
+          },
+          "confirmed": false,
+          "mathClaims": [
+            {
+              "left": "x-4=8",
+              "right": "x=12"
+            }
+          ],
+          "uncertainty": "原答案只有字符“0”，无法据此确认具体错因；错因仅作待确认建议。",
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x-4=8",
+                "right": "x=12",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "checkQuestion": "为了保持等式两边相等，x-4=8 两边应同时加上什么数？",
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-11T02:49:03Z",
+        "updatedAt": "2026-11-11T02:49:46Z",
+        "input": {
+          "mode": "analysis",
+          "phase": "practice",
+          "prompt": "只依据本题原答案分析。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写。不可猜测学生能力。",
+          "context": {
+            "question": {
+              "prompt": "x-4=8",
+              "equation": "x-4=8"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": null,
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对共同运算。"
+          },
+          "history": [],
+          "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-6bae7dbd3bea47aca7631a3893335d0a",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "goal": "用两边同时进行相同运算的方法，求出 x-4=8 中的 x。",
+              "cause": "其他或待确认",
+              "steps": [
+                "提示：想一想，怎样用同一个运算消去左边的−4？",
+                "在等式两边同时加4，得到 x−4+4=8+4。",
+                "化简得 x=12。两边同时加4保持等式相等；这里不涉及除以数或乘以0。"
+              ],
+              "evidence": "0",
+              "strategy": "hint",
+              "workflow": {
+                "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+                "modelCalls": 2
+              },
+              "confirmed": false,
+              "mathClaims": [
+                {
+                  "left": "x-4=8",
+                  "right": "x=12"
+                }
+              ],
+              "uncertainty": "原答案只有字符“0”，无法据此确认具体错因；错因仅作待确认建议。",
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "x-4=8",
+                    "right": "x=12",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "checkQuestion": "为了保持等式两边相等，x-4=8 两边应同时加上什么数？",
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              }
+            },
+            "startedAt": "2026-11-11T02:49:03Z",
+            "endedAt": "2026-11-11T02:49:46Z"
+          }
+        ]
+      }
+    },
+    {
+      "seconds": 21.643,
+      "job": {
+        "id": "job-f7d7d8f0fa5d4994845cae39857ddee2",
+        "mode": "guidance",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+        "fileId": null,
+        "helpRecordId": "help-f7d7d8f0fa5d4994845cae39857ddee2",
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "针对原错给一个共同运算提示，不公布原题答案。",
+        "parentJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "你之前说直接猜 0、没有核对；利用相等关系的前置知识，在等式两边同时加 4，看看左边的减 4 会怎样。",
+          "steps": [
+            "两边进行相同的运算，等式才保持相等。"
+          ],
+          "title": "用共同运算检查等式",
+          "sources": [],
+          "question": "两边同时加 4 后，左边的 −4 和 +4 会怎样？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 20988,
+            "modelCalls": 1,
+            "contextChars": 615,
+            "historyTurns": 1
+          },
+          "mathClaims": [
+            {
+              "left": "x-4=8",
+              "right": "x-4+4=8+4"
+            }
+          ],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [
+              {
+                "left": "x-4=8",
+                "right": "x-4+4=8+4",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equal",
+          "representation": "symbolic",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-11T02:49:46Z",
+        "updatedAt": "2026-11-11T02:50:08Z",
+        "input": {
+          "mode": "guidance",
+          "phase": "practice",
+          "prompt": "针对原错给一个共同运算提示，不公布原题答案。",
+          "context": {
+            "question": {
+              "prompt": "x-4=8",
+              "equation": "x-4=8"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对共同运算。"
+          },
+          "history": [
+            {
+              "hint": "用两边同时进行相同运算的方法，求出 x-4=8 中的 x。",
+              "student": "只依据本题原答案分析。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写。不可猜测学生能力。",
+              "question": "为了保持等式两边相等，x-4=8 两边应同时加上什么数？",
+              "strategy": "hint",
+              "representation": "question"
+            }
+          ],
+          "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "guidance": true,
+          "strategy": "hint",
+          "parentJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-0745b4171618413c9610f828061b962a",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "hint": "你之前说直接猜 0、没有核对；利用相等关系的前置知识，在等式两边同时加 4，看看左边的减 4 会怎样。",
+              "steps": [
+                "两边进行相同的运算，等式才保持相等。"
+              ],
+              "title": "用共同运算检查等式",
+              "sources": [],
+              "question": "两边同时加 4 后，左边的 −4 和 +4 会怎样？",
+              "strategy": "hint",
+              "workflow": {
+                "nodes": [
+                  "固定学习上下文",
+                  "读取公开案例与一层前置知识",
+                  "生成本轮指导",
+                  "核验并等待学生回应"
+                ],
+                "elapsedMs": 20988,
+                "modelCalls": 1,
+                "contextChars": 615,
+                "historyTurns": 1
+              },
+              "mathClaims": [
+                {
+                  "left": "x-4=8",
+                  "right": "x-4+4=8+4"
+                }
+              ],
+              "needCoverage": {
+                "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+                "missing": [],
+                "required": []
+              },
+              "nextStrategy": "try",
+              "verification": {
+                "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+                "claims": [
+                  {
+                    "left": "x-4=8",
+                    "right": "x-4+4=8+4",
+                    "method": "单变量实数方程解集比较",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "prerequisites": [],
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "prerequisiteId": "kp-equal",
+              "representation": "symbolic",
+              "usedCaseVersionIds": []
+            },
+            "startedAt": "2026-11-11T02:49:47Z",
+            "endedAt": "2026-11-11T02:50:08Z"
+          }
+        ]
+      }
+    },
+    {
+      "seconds": 20.116,
+      "job": {
+        "id": "job-75a731b332ea44b1af0c7313e4cb6a36",
+        "mode": "variant",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与原题同运算结构但数值和解不同的新题，保持非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "先想想怎样对等式两边做相同的运算来解出 x，再把结果代回原方程检验。",
+            "equation": "x-6=5",
+            "rationale": "保留原题“未知数减一个数等于一个数”的结构；新题的数值和解都不同，可练习对等式两边做相同运算并检验。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "modelCalls": 1
+          },
+          "mathClaims": [
+            {
+              "left": "11-6",
+              "right": "5"
+            }
+          ],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "11-6",
+                "right": "5",
+                "method": "表达式等价",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x-6=5"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-11T02:50:08Z",
+        "updatedAt": "2026-11-11T02:50:28Z",
+        "input": {
+          "mode": "variant",
+          "phase": "practice",
+          "prompt": "生成与原题同运算结构但数值和解不同的新题，保持非零条件。",
+          "context": {
+            "question": {
+              "prompt": "x-4=8",
+              "equation": "x-4=8"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对共同运算。"
+          },
+          "history": [],
+          "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        },
+        "runs": [
+          {
+            "id": "run-42a22704bf3c4c10adaaf8010c13e22e",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "先想想怎样对等式两边做相同的运算来解出 x，再把结果代回原方程检验。",
+                "equation": "x-6=5",
+                "rationale": "保留原题“未知数减一个数等于一个数”的结构；新题的数值和解都不同，可练习对等式两边做相同运算并检验。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+                "modelCalls": 1
+              },
+              "mathClaims": [
+                {
+                  "left": "11-6",
+                  "right": "5"
+                }
+              ],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "11-6",
+                    "right": "5",
+                    "method": "表达式等价",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "x-6=5"
+              }
+            },
+            "startedAt": "2026-11-11T02:50:08Z",
+            "endedAt": "2026-11-11T02:50:28Z"
+          }
+        ]
+      }
+    },
+    {
+      "seconds": 17.008,
+      "job": {
+        "id": "job-2a92073cd5e64ff2bcc2e8ffedf360f3",
+        "mode": "variant",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "phase": "retest",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与原题同运算结构但数值和解不同的新题，保持非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：x-3=10",
+            "equation": "x-3=10",
+            "rationale": "与原题一样，方程中未知数减去一个数等于另一个数；更换了数值，解也不同。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "modelCalls": 1
+          },
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x-3=10"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-11T02:50:28Z",
+        "updatedAt": "2026-11-11T02:50:45Z",
+        "input": {
+          "mode": "variant",
+          "phase": "retest",
+          "prompt": "生成与原题同运算结构但数值和解不同的新题，保持非零条件。",
+          "context": {
+            "question": {
+              "prompt": "x-4=8",
+              "equation": "x-4=8"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对共同运算。"
+          },
+          "history": [],
+          "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": [
+            "x-6=5"
+          ]
+        },
+        "runs": [
+          {
+            "id": "run-9412951a8a5148fda0f30bbaffced79f",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "result": {
+              "variant": {
+                "prompt": "解方程：x-3=10",
+                "equation": "x-3=10",
+                "rationale": "与原题一样，方程中未知数减去一个数等于另一个数；更换了数值，解也不同。"
+              },
+              "workflow": {
+                "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+                "modelCalls": 1
+              },
+              "mathClaims": [],
+              "verification": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "variantVerification": {
+                "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+                "status": "verified",
+                "equation": "x-3=10"
+              }
+            },
+            "startedAt": "2026-11-11T02:50:29Z",
+            "endedAt": "2026-11-11T02:50:45Z"
+          }
+        ]
+      }
+    }
+  ],
+  "examId": "exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+  "before": {
+    "id": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+    "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+    "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+    "attemptId": "attempt-1c14737be7ac4a209bf42a2e0a3ab4d4",
+    "source": "exam",
+    "prompt": "x-4=8",
+    "answer": "0",
+    "reason": "我直接猜0，没有核对共同运算。",
+    "image": "",
+    "details": {
+      "grade": {
+        "score": 0,
+        "source": "teacher",
+        "actorId": "unit-t1",
+        "comment": "保留原答0；两边共同运算后代回核对。"
+      },
+      "examId": "exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+      "source": "exam",
+      "version": "dynamic_v1",
+      "equation": "x-4=8",
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "submissionId": "sub-5300da92338e429883c823e3b86ec1f0",
+      "causeConfirmed": false,
+      "originalPrompt": "演示考试：共同运算验收",
+      "paperVersionId": "pv-64fdf4d8f93e46bd8186096780f50bef",
+      "questionVersionId": "qv-1afcdf2d4d5e4f9992f56f35c711f9cf"
+    },
+    "status": "pending",
+    "readOnly": false,
+    "taskTitle": "考试讲评 · 第十七步真实单元检查",
+    "repairs": [],
+    "createdAt": "2026-11-11T10:44:56"
+  },
+  "variants": [
+    {
+      "actualEquation": "x-6=5",
+      "attempt": {
+        "id": "repair-7ecce44782d44b1390c48fb6f5bfd540",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "answer": "11",
+        "reason": "工程验收：解实际新题并代回，不把答案直接用于原始答卷。",
+        "correct": true,
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        },
+        "details": {
+          "version": "dynamic_v1",
+          "planJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+          "variantJobId": "job-75a731b332ea44b1af0c7313e4cb6a36",
+          "variantId": "job-75a731b332ea44b1af0c7313e4cb6a36",
+          "equation": "x-6=5",
+          "expected": "11",
+          "phase": "practice",
+          "helped": false,
+          "requestKey": "9da978596ff74847ae92319168c524c6",
+          "verification": {
+            "status": "verified_correct",
+            "correct": true,
+            "scope": "实际变式题的单变量单解实数方程与答案等价性"
+          }
+        },
+        "createdAt": "2026-11-11T10:50:28"
+      }
+    },
+    {
+      "actualEquation": "x-3=10",
+      "attempt": {
+        "id": "repair-fe995770abb647b2adec810eb7cf274d",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "answer": "13",
+        "reason": "工程验收：解实际新题并代回，不把答案直接用于原始答卷。",
+        "correct": true,
+        "verification": {
+          "status": "verified_correct",
+          "correct": true,
+          "scope": "实际变式题的单变量单解实数方程与答案等价性"
+        },
+        "details": {
+          "version": "dynamic_v1",
+          "planJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+          "variantJobId": "job-2a92073cd5e64ff2bcc2e8ffedf360f3",
+          "variantId": "job-2a92073cd5e64ff2bcc2e8ffedf360f3",
+          "equation": "x-3=10",
+          "expected": "13",
+          "phase": "retest",
+          "helped": false,
+          "requestKey": "7bcd83f2149743a481de4bd9af8d6d4e",
+          "verification": {
+            "status": "verified_correct",
+            "correct": true,
+            "scope": "实际变式题的单变量单解实数方程与答案等价性"
+          }
+        },
+        "createdAt": "2026-11-11T10:50:45"
+      }
+    }
+  ],
+  "after": {
+    "id": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+    "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+    "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+    "attemptId": "attempt-1c14737be7ac4a209bf42a2e0a3ab4d4",
+    "source": "exam",
+    "prompt": "x-4=8",
+    "answer": "0",
+    "reason": "我直接猜0，没有核对共同运算。",
+    "image": "",
+    "details": {
+      "cause": "其他或待确认",
+      "draft": {},
+      "grade": {
+        "score": 0,
+        "source": "teacher",
+        "actorId": "unit-t1",
+        "comment": "保留原答0；两边共同运算后代回核对。"
+      },
+      "examId": "exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+      "source": "exam",
+      "version": "dynamic_v1",
+      "equation": "x-4=8",
+      "planJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+      "explanation": "",
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "submissionId": "sub-5300da92338e429883c823e3b86ec1f0",
+      "causeConfirmed": true,
+      "originalPrompt": "演示考试：共同运算验收",
+      "paperVersionId": "pv-64fdf4d8f93e46bd8186096780f50bef",
+      "questionVersionId": "qv-1afcdf2d4d5e4f9992f56f35c711f9cf"
+    },
+    "status": "retest_passed",
+    "readOnly": false,
+    "taskTitle": "考试讲评 · 第十七步真实单元检查",
+    "repairs": [
+      {
+        "id": "repair-7ecce44782d44b1390c48fb6f5bfd540",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "answer": "11",
+        "reason": "工程验收：解实际新题并代回，不把答案直接用于原始答卷。",
+        "correct": true,
+        "verification": {
+          "scope": "实际变式题的单变量单解实数方程与答案等价性",
+          "status": "verified_correct",
+          "correct": true
+        },
+        "details": {
+          "phase": "practice",
+          "helped": false,
+          "version": "dynamic_v1",
+          "equation": "x-6=5",
+          "expected": "11",
+          "planJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+          "variantId": "job-75a731b332ea44b1af0c7313e4cb6a36",
+          "requestKey": "9da978596ff74847ae92319168c524c6",
+          "variantJobId": "job-75a731b332ea44b1af0c7313e4cb6a36",
+          "verification": {
+            "scope": "实际变式题的单变量单解实数方程与答案等价性",
+            "status": "verified_correct",
+            "correct": true
+          }
+        },
+        "createdAt": "2026-11-11T10:50:28"
+      },
+      {
+        "id": "repair-fe995770abb647b2adec810eb7cf274d",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "answer": "13",
+        "reason": "工程验收：解实际新题并代回，不把答案直接用于原始答卷。",
+        "correct": true,
+        "verification": {
+          "scope": "实际变式题的单变量单解实数方程与答案等价性",
+          "status": "verified_correct",
+          "correct": true
+        },
+        "details": {
+          "phase": "retest",
+          "helped": false,
+          "version": "dynamic_v1",
+          "equation": "x-3=10",
+          "expected": "13",
+          "planJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+          "variantId": "job-2a92073cd5e64ff2bcc2e8ffedf360f3",
+          "requestKey": "7bcd83f2149743a481de4bd9af8d6d4e",
+          "variantJobId": "job-2a92073cd5e64ff2bcc2e8ffedf360f3",
+          "verification": {
+            "scope": "实际变式题的单变量单解实数方程与答案等价性",
+            "status": "verified_correct",
+            "correct": true
+          }
+        },
+        "createdAt": "2026-11-11T10:50:45"
+      }
+    ],
+    "createdAt": "2026-11-11T10:44:56",
+    "jobs": [
+      {
+        "id": "job-104cc3b63778461d89e230dc4c6cea84",
+        "mode": "analysis",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "只依据本题原答案分析。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写。不可猜测学生能力。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "goal": "用两边同时进行相同运算的方法，求出 x-4=8 中的 x。",
+          "cause": "其他或待确认",
+          "steps": [
+            "提示：想一想，怎样用同一个运算消去左边的−4？",
+            "在等式两边同时加4，得到 x−4+4=8+4。",
+            "化简得 x=12。两边同时加4保持等式相等；这里不涉及除以数或乘以0。"
+          ],
+          "evidence": "0",
+          "strategy": "hint",
+          "workflow": {
+            "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "modelCalls": 2
+          },
+          "confirmed": false,
+          "mathClaims": [
+            {
+              "left": "x-4=8",
+              "right": "x=12"
+            }
+          ],
+          "uncertainty": "原答案只有字符“0”，无法据此确认具体错因；错因仅作待确认建议。",
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x-4=8",
+                "right": "x=12",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "checkQuestion": "为了保持等式两边相等，x-4=8 两边应同时加上什么数？",
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-11T02:49:03Z",
+        "updatedAt": "2026-11-11T02:49:46Z",
+        "input": {
+          "mode": "analysis",
+          "phase": "practice",
+          "prompt": "只依据本题原答案分析。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写。不可猜测学生能力。",
+          "context": {
+            "question": {
+              "prompt": "x-4=8",
+              "equation": "x-4=8"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": null,
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对共同运算。"
+          },
+          "history": [],
+          "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        }
+      },
+      {
+        "id": "job-f7d7d8f0fa5d4994845cae39857ddee2",
+        "mode": "guidance",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+        "fileId": null,
+        "helpRecordId": "help-f7d7d8f0fa5d4994845cae39857ddee2",
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "针对原错给一个共同运算提示，不公布原题答案。",
+        "parentJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "你之前说直接猜 0、没有核对；利用相等关系的前置知识，在等式两边同时加 4，看看左边的减 4 会怎样。",
+          "steps": [
+            "两边进行相同的运算，等式才保持相等。"
+          ],
+          "title": "用共同运算检查等式",
+          "sources": [],
+          "question": "两边同时加 4 后，左边的 −4 和 +4 会怎样？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 20988,
+            "modelCalls": 1,
+            "contextChars": 615,
+            "historyTurns": 1
+          },
+          "mathClaims": [
+            {
+              "left": "x-4=8",
+              "right": "x-4+4=8+4"
+            }
+          ],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [
+              {
+                "left": "x-4=8",
+                "right": "x-4+4=8+4",
+                "method": "单变量实数方程解集比较",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equal",
+          "representation": "symbolic",
+          "usedCaseVersionIds": []
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-11T02:49:46Z",
+        "updatedAt": "2026-11-11T02:50:08Z",
+        "input": {
+          "mode": "guidance",
+          "phase": "practice",
+          "prompt": "针对原错给一个共同运算提示，不公布原题答案。",
+          "context": {
+            "question": {
+              "prompt": "x-4=8",
+              "equation": "x-4=8"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对共同运算。"
+          },
+          "history": [
+            {
+              "hint": "用两边同时进行相同运算的方法，求出 x-4=8 中的 x。",
+              "student": "只依据本题原答案分析。证据字段逐字复制原答案的单个字符0，不添加引号、前缀或改写。不可猜测学生能力。",
+              "question": "为了保持等式两边相等，x-4=8 两边应同时加上什么数？",
+              "strategy": "hint",
+              "representation": "question"
+            }
+          ],
+          "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "guidance": true,
+          "strategy": "hint",
+          "parentJobId": "job-104cc3b63778461d89e230dc4c6cea84",
+          "remediation": true,
+          "previousEquations": []
+        }
+      },
+      {
+        "id": "job-75a731b332ea44b1af0c7313e4cb6a36",
+        "mode": "variant",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "phase": "practice",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与原题同运算结构但数值和解不同的新题，保持非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "先想想怎样对等式两边做相同的运算来解出 x，再把结果代回原方程检验。",
+            "equation": "x-6=5",
+            "rationale": "保留原题“未知数减一个数等于一个数”的结构；新题的数值和解都不同，可练习对等式两边做相同运算并检验。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "modelCalls": 1
+          },
+          "mathClaims": [
+            {
+              "left": "11-6",
+              "right": "5"
+            }
+          ],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "11-6",
+                "right": "5",
+                "method": "表达式等价",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x-6=5"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-11T02:50:08Z",
+        "updatedAt": "2026-11-11T02:50:28Z",
+        "input": {
+          "mode": "variant",
+          "phase": "practice",
+          "prompt": "生成与原题同运算结构但数值和解不同的新题，保持非零条件。",
+          "context": {
+            "question": {
+              "prompt": "x-4=8",
+              "equation": "x-4=8"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对共同运算。"
+          },
+          "history": [],
+          "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": []
+        }
+      },
+      {
+        "id": "job-2a92073cd5e64ff2bcc2e8ffedf360f3",
+        "mode": "variant",
+        "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+        "phase": "retest",
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": "hint",
+        "prompt": "生成与原题同运算结构但数值和解不同的新题，保持非零条件。",
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "variant": {
+            "prompt": "解方程：x-3=10",
+            "equation": "x-3=10",
+            "rationale": "与原题一样，方程中未知数减去一个数等于另一个数；更换了数值，解也不同。"
+          },
+          "workflow": {
+            "scope": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "modelCalls": 1
+          },
+          "mathClaims": [],
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified"
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "variantVerification": {
+            "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+            "status": "verified",
+            "equation": "x-3=10"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-11T02:50:28Z",
+        "updatedAt": "2026-11-11T02:50:45Z",
+        "input": {
+          "mode": "variant",
+          "phase": "retest",
+          "prompt": "生成与原题同运算结构但数值和解不同的新题，保持非零条件。",
+          "context": {
+            "question": {
+              "prompt": "x-4=8",
+              "equation": "x-4=8"
+            },
+            "knowledge": [
+              {
+                "id": "kp-equality",
+                "name": "等式性质"
+              }
+            ],
+            "prerequisites": [
+              {
+                "id": "kp-equal",
+                "name": "相等关系"
+              },
+              {
+                "id": "kp-expression",
+                "name": "算式含义"
+              }
+            ],
+            "teachingCases": [],
+            "confirmedCause": "其他或待确认",
+            "originalAnswer": "0",
+            "originalReason": "我直接猜0，没有核对共同运算。"
+          },
+          "history": [],
+          "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "guidance": false,
+          "strategy": "hint",
+          "parentJobId": null,
+          "remediation": true,
+          "previousEquations": [
+            "x-6=5"
+          ]
+        }
+      }
+    ]
+  },
+  "studentMemory": {
+    "studentId": "unit-s0",
+    "studentName": "单元验收·s0",
+    "scope": "本人全部学习记录",
+    "rules": {
+      "version": "memory-rules-v1",
+      "minimumIndependent": 2,
+      "recentHours": 48,
+      "reviewDays": 7,
+      "snoozeDays": 1
+    },
+    "revision": "2cab2d968698e1c03a2c2edc75618847c0c22c2137ef6c160811e26e3d650e0f",
+    "items": [
+      {
+        "stateHistory": [],
+        "id": "kp-equal",
+        "name": "相等关系",
+        "prerequisites": [],
+        "state": {
+          "status": "none",
+          "statusLabel": "暂无证据",
+          "reason": "暂无作答记录。",
+          "evidenceCount": 0,
+          "verifiedCount": 0,
+          "independentCorrect": 0,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": null,
+          "lastIndependentAt": null,
+          "basisIds": [],
+          "recentVerifiedCount": 0,
+          "dayCount": 0,
+          "reviewRequested": false
+        },
+        "evidence": [],
+        "recommendation": null,
+        "lessons": [],
+        "teacherDecisions": []
+      },
+      {
+        "stateHistory": [
+          {
+            "at": "2026-11-11T02:44:56Z",
+            "status": "insufficient",
+            "label": "证据不足",
+            "evidenceId": "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4:kp-equality"
+          },
+          {
+            "at": "2026-11-11T02:44:56Z",
+            "status": "strengthen",
+            "label": "需要补强",
+            "evidenceId": "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb:kp-equality"
+          },
+          {
+            "at": "2026-11-11T02:50:45Z",
+            "status": "improving",
+            "label": "正在改善",
+            "evidenceId": "repair:repair-fe995770abb647b2adec810eb7cf274d:kp-equality"
+          }
+        ],
+        "id": "kp-equality",
+        "name": "等式性质",
+        "prerequisites": [
+          {
+            "id": "kp-equal",
+            "name": "相等关系"
+          },
+          {
+            "id": "kp-expression",
+            "name": "算式含义"
+          }
+        ],
+        "state": {
+          "status": "improving",
+          "statusLabel": "正在改善",
+          "reason": "错误之后新增了独立正确证据，可继续检查。",
+          "evidenceCount": 8,
+          "verifiedCount": 4,
+          "independentCorrect": 1,
+          "independentIncorrect": 2,
+          "helpedCorrect": 1,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": "2026-11-11T02:50:45Z",
+          "lastIndependentAt": "2026-11-11T02:50:45Z",
+          "basisIds": [
+            "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4:kp-equality",
+            "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb:kp-equality",
+            "repair:repair-7ecce44782d44b1390c48fb6f5bfd540:kp-equality",
+            "repair:repair-fe995770abb647b2adec810eb7cf274d:kp-equality"
+          ],
+          "recentVerifiedCount": 4,
+          "dayCount": 1,
+          "reviewRequested": false
+        },
+        "evidence": [
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4",
+            "sourceType": "attempt",
+            "sourceId": "attempt-1c14737be7ac4a209bf42a2e0a3ab4d4",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "prompt": "演示考试：共同运算验收",
+            "equation": "x-4=8",
+            "answer": "0",
+            "reason": "我直接猜0，没有核对共同运算。",
+            "helped": false,
+            "verification": "verified_incorrect",
+            "outcome": "independent_incorrect",
+            "questionKind": "check",
+            "questionIndex": 0,
+            "questionKey": "lesson-equation:qv-1afcdf2d4d5e4f9992f56f35c711f9cf",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4:kp-equality",
+            "label": "独立错误"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb",
+            "sourceType": "attempt",
+            "sourceId": "attempt-c1ba1f062dee47e4a335569b8b3083eb",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "prompt": "共同运算求解",
+            "equation": "2x+6=10",
+            "answer": "0",
+            "reason": "我直接猜0，没有核对共同运算。",
+            "helped": false,
+            "verification": "verified_incorrect",
+            "outcome": "independent_incorrect",
+            "questionKind": "check",
+            "questionIndex": 2,
+            "questionKey": "lesson-equation:qv-06dc10593e6d4b52be12fea193e1975b",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb:kp-equality",
+            "label": "独立错误"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T02:44:56",
+            "timeBasis": "utc",
+            "timeReliable": true,
+            "eventId": "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z",
+            "sourceType": "teacher_feedback",
+            "sourceId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "outcome": "teacher_feedback",
+            "verification": "unverified",
+            "reason": "保留原答0；两边共同运算后代回核对。；保留原答0；两边共同运算后代回核对。；设元、列式、数量关系和单位已核对。",
+            "teacherId": "unit-t1",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z:kp-equality",
+            "label": "教师反馈"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "sourceType": "wrong",
+            "sourceId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/repair?wrong=wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "prompt": "x-4=8",
+            "equation": "x-4=8",
+            "answer": "0",
+            "reason": "我直接猜0，没有核对共同运算。",
+            "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "cause": "其他或待确认",
+            "causeConfirmed": true,
+            "outcome": "confirmed_cause",
+            "verification": "unverified",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91:kp-equality",
+            "label": "已确认错因",
+            "retestOutcome": "retest_passed",
+            "hasPractice": true
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "wrong:wrong-993542535f504bcab29631e332d818a9",
+            "sourceType": "wrong",
+            "sourceId": "wrong-993542535f504bcab29631e332d818a9",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/repair?wrong=wrong-993542535f504bcab29631e332d818a9",
+            "prompt": "2x+6=10",
+            "equation": "2x+6=10",
+            "answer": "0",
+            "reason": "我直接猜0，没有核对共同运算。",
+            "wrongId": "wrong-993542535f504bcab29631e332d818a9",
+            "cause": null,
+            "causeConfirmed": false,
+            "outcome": "suggested_cause",
+            "verification": "unverified",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "wrong:wrong-993542535f504bcab29631e332d818a9:kp-equality",
+            "label": "待确认错因",
+            "retestOutcome": null,
+            "hasPractice": false
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:49:46",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "help:help-f7d7d8f0fa5d4994845cae39857ddee2",
+            "sourceType": "help",
+            "sourceId": "help-f7d7d8f0fa5d4994845cae39857ddee2",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:49:46Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "helped": true,
+            "verification": "unverified",
+            "outcome": "help",
+            "reason": "模型指导",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "help:help-f7d7d8f0fa5d4994845cae39857ddee2:kp-equality",
+            "label": "帮助记录"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:50:28",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "repair:repair-7ecce44782d44b1390c48fb6f5bfd540",
+            "sourceType": "repair",
+            "sourceId": "repair-7ecce44782d44b1390c48fb6f5bfd540",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:50:28Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/repair?wrong=wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "equation": "x-6=5",
+            "answer": "11",
+            "reason": "工程验收：解实际新题并代回，不把答案直接用于原始答卷。",
+            "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "helped": true,
+            "verification": "verified_correct",
+            "outcome": "helped_correct",
+            "phase": "practice",
+            "questionKey": "job-75a731b332ea44b1af0c7313e4cb6a36",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "repair:repair-7ecce44782d44b1390c48fb6f5bfd540:kp-equality",
+            "label": "帮助后正确"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:50:45",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "repair:repair-fe995770abb647b2adec810eb7cf274d",
+            "sourceType": "repair",
+            "sourceId": "repair-fe995770abb647b2adec810eb7cf274d",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:50:45Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/repair?wrong=wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "equation": "x-3=10",
+            "answer": "13",
+            "reason": "工程验收：解实际新题并代回，不把答案直接用于原始答卷。",
+            "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "helped": false,
+            "verification": "verified_correct",
+            "outcome": "retest_passed",
+            "phase": "retest",
+            "questionKey": "job-2a92073cd5e64ff2bcc2e8ffedf360f3",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "repair:repair-fe995770abb647b2adec810eb7cf274d:kp-equality",
+            "label": "独立复测通过"
+          }
+        ],
+        "recommendation": {
+          "action": "continue_repair",
+          "label": "继续补救",
+          "target": "/repair?wrong=wrong-993542535f504bcab29631e332d818a9",
+          "reason": "已有原始错题，先继续针对性订正。",
+          "priority": 1,
+          "evidenceIds": [
+            "wrong:wrong-993542535f504bcab29631e332d818a9:kp-equality"
+          ],
+          "id": "review:unit-s0:kp-equality",
+          "knowledgeId": "kp-equality"
+        },
+        "lessons": [
+          {
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "title": "考试讲评 · 第十七步真实单元检查",
+            "lessonId": "lesson-equation",
+            "versionId": null,
+            "readOnly": false,
+            "target": "/learn?task=task-4346c0c3ba4c4d239dc94776bd6bfca3"
+          }
+        ],
+        "teacherDecisions": []
+      },
+      {
+        "stateHistory": [],
+        "id": "kp-expression",
+        "name": "算式含义",
+        "prerequisites": [
+          {
+            "id": "kp-operations",
+            "name": "基本运算"
+          }
+        ],
+        "state": {
+          "status": "none",
+          "statusLabel": "暂无证据",
+          "reason": "暂无作答记录。",
+          "evidenceCount": 0,
+          "verifiedCount": 0,
+          "independentCorrect": 0,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": null,
+          "lastIndependentAt": null,
+          "basisIds": [],
+          "recentVerifiedCount": 0,
+          "dayCount": 0,
+          "reviewRequested": false
+        },
+        "evidence": [],
+        "recommendation": null,
+        "lessons": [],
+        "teacherDecisions": []
+      },
+      {
+        "stateHistory": [
+          {
+            "at": "2026-11-11T02:44:56Z",
+            "status": "insufficient",
+            "label": "证据不足",
+            "evidenceId": "attempt:attempt-511c875c3f3f483484d487b4faf26e34:kp-linear-model"
+          }
+        ],
+        "id": "kp-linear-model",
+        "name": "实际问题中的设元与列式",
+        "prerequisites": [
+          {
+            "id": "kp-linear-transform",
+            "name": "方程变形与验算"
+          }
+        ],
+        "state": {
+          "status": "insufficient",
+          "statusLabel": "证据不足",
+          "reason": "目前还缺少足够的独立练习证据。",
+          "evidenceCount": 3,
+          "verifiedCount": 0,
+          "independentCorrect": 0,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 1,
+          "legacyCount": 0,
+          "lastPracticedAt": "2026-11-11T02:44:56Z",
+          "lastIndependentAt": null,
+          "basisIds": [],
+          "recentVerifiedCount": 0,
+          "dayCount": 0,
+          "reviewRequested": false
+        },
+        "evidence": [
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "attempt:attempt-511c875c3f3f483484d487b4faf26e34",
+            "sourceType": "attempt",
+            "sourceId": "attempt-511c875c3f3f483484d487b4faf26e34",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "prompt": "三件商品加一次运费共21元，求每件单价。",
+            "equation": "3x+6=21",
+            "answer": "5",
+            "reason": "设每件商品x元，三件3x元加一次运费6元，共21元；列3x+6=21，代回并核对单位。",
+            "helped": false,
+            "verification": "unverified",
+            "outcome": "unverified",
+            "questionKind": "check",
+            "questionIndex": 1,
+            "questionKey": "lesson-equation:qv-785c349998674977bd96ea8d8e1e7314",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-linear-model",
+            "evidenceId": "attempt:attempt-511c875c3f3f483484d487b4faf26e34:kp-linear-model",
+            "label": "未核验作答"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T02:44:56",
+            "timeBasis": "utc",
+            "timeReliable": true,
+            "eventId": "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z",
+            "sourceType": "teacher_feedback",
+            "sourceId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "outcome": "teacher_feedback",
+            "verification": "unverified",
+            "reason": "保留原答0；两边共同运算后代回核对。；保留原答0；两边共同运算后代回核对。；设元、列式、数量关系和单位已核对。",
+            "teacherId": "unit-t1",
+            "knowledgeId": "kp-linear-model",
+            "evidenceId": "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z:kp-linear-model",
+            "label": "教师反馈"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:49:46",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "help:help-f7d7d8f0fa5d4994845cae39857ddee2",
+            "sourceType": "help",
+            "sourceId": "help-f7d7d8f0fa5d4994845cae39857ddee2",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:49:46Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "helped": true,
+            "verification": "unverified",
+            "outcome": "help",
+            "reason": "模型指导",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-linear-model",
+            "evidenceId": "help:help-f7d7d8f0fa5d4994845cae39857ddee2:kp-linear-model",
+            "label": "帮助记录"
+          }
+        ],
+        "recommendation": null,
+        "lessons": [
+          {
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "title": "考试讲评 · 第十七步真实单元检查",
+            "lessonId": "lesson-equation",
+            "versionId": null,
+            "readOnly": false,
+            "target": "/learn?task=task-4346c0c3ba4c4d239dc94776bd6bfca3"
+          }
+        ],
+        "teacherDecisions": []
+      },
+      {
+        "stateHistory": [],
+        "id": "kp-linear-transform",
+        "name": "方程变形与验算",
+        "prerequisites": [
+          {
+            "id": "kp-linear-simple",
+            "name": "简单一元一次方程"
+          }
+        ],
+        "state": {
+          "status": "none",
+          "statusLabel": "暂无证据",
+          "reason": "暂无作答记录。",
+          "evidenceCount": 0,
+          "verifiedCount": 0,
+          "independentCorrect": 0,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": null,
+          "lastIndependentAt": null,
+          "basisIds": [],
+          "recentVerifiedCount": 0,
+          "dayCount": 0,
+          "reviewRequested": false
+        },
+        "evidence": [],
+        "recommendation": null,
+        "lessons": [],
+        "teacherDecisions": []
+      }
+    ],
+    "unlinkedEvidence": [],
+    "recommendations": [
+      {
+        "action": "continue_repair",
+        "label": "继续补救",
+        "target": "/repair?wrong=wrong-993542535f504bcab29631e332d818a9",
+        "reason": "已有原始错题，先继续针对性订正。",
+        "priority": 1,
+        "evidenceIds": [
+          "wrong:wrong-993542535f504bcab29631e332d818a9:kp-equality"
+        ],
+        "id": "review:unit-s0:kp-equality",
+        "knowledgeId": "kp-equality"
+      }
+    ],
+    "audit": [],
+    "knowledgeOptions": [
+      {
+        "id": "kp-equal",
+        "name": "相等关系"
+      },
+      {
+        "id": "kp-equality",
+        "name": "等式性质"
+      },
+      {
+        "id": "kp-expression",
+        "name": "算式含义"
+      },
+      {
+        "id": "kp-linear-model",
+        "name": "实际问题中的设元与列式"
+      },
+      {
+        "id": "kp-linear-review",
+        "name": "一元一次方程综合检查"
+      },
+      {
+        "id": "kp-linear-simple",
+        "name": "简单一元一次方程"
+      },
+      {
+        "id": "kp-linear-transform",
+        "name": "方程变形与验算"
+      },
+      {
+        "id": "kp-operations",
+        "name": "基本运算"
+      }
+    ]
+  },
+  "teacherMemory": {
+    "studentId": "unit-s0",
+    "studentName": "单元验收·s0",
+    "scope": "当前有权限班级与本教师任务",
+    "rules": {
+      "version": "memory-rules-v1",
+      "minimumIndependent": 2,
+      "recentHours": 48,
+      "reviewDays": 7,
+      "snoozeDays": 1
+    },
+    "revision": "2cab2d968698e1c03a2c2edc75618847c0c22c2137ef6c160811e26e3d650e0f",
+    "items": [
+      {
+        "stateHistory": [],
+        "id": "kp-equal",
+        "name": "相等关系",
+        "prerequisites": [],
+        "state": {
+          "status": "none",
+          "statusLabel": "暂无证据",
+          "reason": "暂无作答记录。",
+          "evidenceCount": 0,
+          "verifiedCount": 0,
+          "independentCorrect": 0,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": null,
+          "lastIndependentAt": null,
+          "basisIds": [],
+          "recentVerifiedCount": 0,
+          "dayCount": 0,
+          "reviewRequested": false
+        },
+        "evidence": [],
+        "recommendation": null,
+        "lessons": [],
+        "teacherDecisions": []
+      },
+      {
+        "stateHistory": [
+          {
+            "at": "2026-11-11T02:44:56Z",
+            "status": "insufficient",
+            "label": "证据不足",
+            "evidenceId": "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4:kp-equality"
+          },
+          {
+            "at": "2026-11-11T02:44:56Z",
+            "status": "strengthen",
+            "label": "需要补强",
+            "evidenceId": "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb:kp-equality"
+          },
+          {
+            "at": "2026-11-11T02:50:45Z",
+            "status": "improving",
+            "label": "正在改善",
+            "evidenceId": "repair:repair-fe995770abb647b2adec810eb7cf274d:kp-equality"
+          }
+        ],
+        "id": "kp-equality",
+        "name": "等式性质",
+        "prerequisites": [
+          {
+            "id": "kp-equal",
+            "name": "相等关系"
+          },
+          {
+            "id": "kp-expression",
+            "name": "算式含义"
+          }
+        ],
+        "state": {
+          "status": "improving",
+          "statusLabel": "正在改善",
+          "reason": "错误之后新增了独立正确证据，可继续检查。",
+          "evidenceCount": 8,
+          "verifiedCount": 4,
+          "independentCorrect": 1,
+          "independentIncorrect": 2,
+          "helpedCorrect": 1,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": "2026-11-11T02:50:45Z",
+          "lastIndependentAt": "2026-11-11T02:50:45Z",
+          "basisIds": [
+            "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4:kp-equality",
+            "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb:kp-equality",
+            "repair:repair-7ecce44782d44b1390c48fb6f5bfd540:kp-equality",
+            "repair:repair-fe995770abb647b2adec810eb7cf274d:kp-equality"
+          ],
+          "recentVerifiedCount": 4,
+          "dayCount": 1,
+          "reviewRequested": false
+        },
+        "evidence": [
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4",
+            "sourceType": "attempt",
+            "sourceId": "attempt-1c14737be7ac4a209bf42a2e0a3ab4d4",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "prompt": "演示考试：共同运算验收",
+            "equation": "x-4=8",
+            "answer": "0",
+            "reason": "我直接猜0，没有核对共同运算。",
+            "helped": false,
+            "verification": "verified_incorrect",
+            "outcome": "independent_incorrect",
+            "questionKind": "check",
+            "questionIndex": 0,
+            "questionKey": "lesson-equation:qv-1afcdf2d4d5e4f9992f56f35c711f9cf",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4:kp-equality",
+            "label": "独立错误"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb",
+            "sourceType": "attempt",
+            "sourceId": "attempt-c1ba1f062dee47e4a335569b8b3083eb",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "prompt": "共同运算求解",
+            "equation": "2x+6=10",
+            "answer": "0",
+            "reason": "我直接猜0，没有核对共同运算。",
+            "helped": false,
+            "verification": "verified_incorrect",
+            "outcome": "independent_incorrect",
+            "questionKind": "check",
+            "questionIndex": 2,
+            "questionKey": "lesson-equation:qv-06dc10593e6d4b52be12fea193e1975b",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb:kp-equality",
+            "label": "独立错误"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T02:44:56",
+            "timeBasis": "utc",
+            "timeReliable": true,
+            "eventId": "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z",
+            "sourceType": "teacher_feedback",
+            "sourceId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "outcome": "teacher_feedback",
+            "verification": "unverified",
+            "reason": "保留原答0；两边共同运算后代回核对。；保留原答0；两边共同运算后代回核对。；设元、列式、数量关系和单位已核对。",
+            "teacherId": "unit-t1",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z:kp-equality",
+            "label": "教师反馈"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "sourceType": "wrong",
+            "sourceId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/repair?wrong=wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "prompt": "x-4=8",
+            "equation": "x-4=8",
+            "answer": "0",
+            "reason": "我直接猜0，没有核对共同运算。",
+            "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "cause": "其他或待确认",
+            "causeConfirmed": true,
+            "outcome": "confirmed_cause",
+            "verification": "unverified",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91:kp-equality",
+            "label": "已确认错因",
+            "retestOutcome": "retest_passed",
+            "hasPractice": true
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "wrong:wrong-993542535f504bcab29631e332d818a9",
+            "sourceType": "wrong",
+            "sourceId": "wrong-993542535f504bcab29631e332d818a9",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/repair?wrong=wrong-993542535f504bcab29631e332d818a9",
+            "prompt": "2x+6=10",
+            "equation": "2x+6=10",
+            "answer": "0",
+            "reason": "我直接猜0，没有核对共同运算。",
+            "wrongId": "wrong-993542535f504bcab29631e332d818a9",
+            "cause": null,
+            "causeConfirmed": false,
+            "outcome": "suggested_cause",
+            "verification": "unverified",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "wrong:wrong-993542535f504bcab29631e332d818a9:kp-equality",
+            "label": "待确认错因",
+            "retestOutcome": null,
+            "hasPractice": false
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:49:46",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "help:help-f7d7d8f0fa5d4994845cae39857ddee2",
+            "sourceType": "help",
+            "sourceId": "help-f7d7d8f0fa5d4994845cae39857ddee2",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:49:46Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "helped": true,
+            "verification": "unverified",
+            "outcome": "help",
+            "reason": "模型指导",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "help:help-f7d7d8f0fa5d4994845cae39857ddee2:kp-equality",
+            "label": "帮助记录"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:50:28",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "repair:repair-7ecce44782d44b1390c48fb6f5bfd540",
+            "sourceType": "repair",
+            "sourceId": "repair-7ecce44782d44b1390c48fb6f5bfd540",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:50:28Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/repair?wrong=wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "equation": "x-6=5",
+            "answer": "11",
+            "reason": "工程验收：解实际新题并代回，不把答案直接用于原始答卷。",
+            "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "helped": true,
+            "verification": "verified_correct",
+            "outcome": "helped_correct",
+            "phase": "practice",
+            "questionKey": "job-75a731b332ea44b1af0c7313e4cb6a36",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "repair:repair-7ecce44782d44b1390c48fb6f5bfd540:kp-equality",
+            "label": "帮助后正确"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:50:45",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "repair:repair-fe995770abb647b2adec810eb7cf274d",
+            "sourceType": "repair",
+            "sourceId": "repair-fe995770abb647b2adec810eb7cf274d",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:50:45Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/repair?wrong=wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "equation": "x-3=10",
+            "answer": "13",
+            "reason": "工程验收：解实际新题并代回，不把答案直接用于原始答卷。",
+            "wrongId": "wrong-6791801e90fc4b4aa66be73126f4ab91",
+            "helped": false,
+            "verification": "verified_correct",
+            "outcome": "retest_passed",
+            "phase": "retest",
+            "questionKey": "job-2a92073cd5e64ff2bcc2e8ffedf360f3",
+            "knowledgeId": "kp-equality",
+            "evidenceId": "repair:repair-fe995770abb647b2adec810eb7cf274d:kp-equality",
+            "label": "独立复测通过"
+          }
+        ],
+        "recommendation": {
+          "action": "continue_repair",
+          "label": "继续补救",
+          "target": "/repair?wrong=wrong-993542535f504bcab29631e332d818a9",
+          "reason": "已有原始错题，先继续针对性订正。",
+          "priority": 1,
+          "evidenceIds": [
+            "wrong:wrong-993542535f504bcab29631e332d818a9:kp-equality"
+          ],
+          "id": "review:unit-s0:kp-equality",
+          "knowledgeId": "kp-equality"
+        },
+        "lessons": [
+          {
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "title": "考试讲评 · 第十七步真实单元检查",
+            "lessonId": "lesson-equation",
+            "versionId": null,
+            "readOnly": false,
+            "target": "/learn?task=task-4346c0c3ba4c4d239dc94776bd6bfca3"
+          }
+        ],
+        "teacherDecisions": []
+      },
+      {
+        "stateHistory": [],
+        "id": "kp-expression",
+        "name": "算式含义",
+        "prerequisites": [
+          {
+            "id": "kp-operations",
+            "name": "基本运算"
+          }
+        ],
+        "state": {
+          "status": "none",
+          "statusLabel": "暂无证据",
+          "reason": "暂无作答记录。",
+          "evidenceCount": 0,
+          "verifiedCount": 0,
+          "independentCorrect": 0,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": null,
+          "lastIndependentAt": null,
+          "basisIds": [],
+          "recentVerifiedCount": 0,
+          "dayCount": 0,
+          "reviewRequested": false
+        },
+        "evidence": [],
+        "recommendation": null,
+        "lessons": [],
+        "teacherDecisions": []
+      },
+      {
+        "stateHistory": [
+          {
+            "at": "2026-11-11T02:44:56Z",
+            "status": "insufficient",
+            "label": "证据不足",
+            "evidenceId": "attempt:attempt-511c875c3f3f483484d487b4faf26e34:kp-linear-model"
+          }
+        ],
+        "id": "kp-linear-model",
+        "name": "实际问题中的设元与列式",
+        "prerequisites": [
+          {
+            "id": "kp-linear-transform",
+            "name": "方程变形与验算"
+          }
+        ],
+        "state": {
+          "status": "insufficient",
+          "statusLabel": "证据不足",
+          "reason": "目前还缺少足够的独立练习证据。",
+          "evidenceCount": 3,
+          "verifiedCount": 0,
+          "independentCorrect": 0,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 1,
+          "legacyCount": 0,
+          "lastPracticedAt": "2026-11-11T02:44:56Z",
+          "lastIndependentAt": null,
+          "basisIds": [],
+          "recentVerifiedCount": 0,
+          "dayCount": 0,
+          "reviewRequested": false
+        },
+        "evidence": [
+          {
+            "rawOccurredAt": "2026-11-11T10:44:56",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "attempt:attempt-511c875c3f3f483484d487b4faf26e34",
+            "sourceType": "attempt",
+            "sourceId": "attempt-511c875c3f3f483484d487b4faf26e34",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "prompt": "三件商品加一次运费共21元，求每件单价。",
+            "equation": "3x+6=21",
+            "answer": "5",
+            "reason": "设每件商品x元，三件3x元加一次运费6元，共21元；列3x+6=21，代回并核对单位。",
+            "helped": false,
+            "verification": "unverified",
+            "outcome": "unverified",
+            "questionKind": "check",
+            "questionIndex": 1,
+            "questionKey": "lesson-equation:qv-785c349998674977bd96ea8d8e1e7314",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-linear-model",
+            "evidenceId": "attempt:attempt-511c875c3f3f483484d487b4faf26e34:kp-linear-model",
+            "label": "未核验作答"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T02:44:56",
+            "timeBasis": "utc",
+            "timeReliable": true,
+            "eventId": "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z",
+            "sourceType": "teacher_feedback",
+            "sourceId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:44:56Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "outcome": "teacher_feedback",
+            "verification": "unverified",
+            "reason": "保留原答0；两边共同运算后代回核对。；保留原答0；两边共同运算后代回核对。；设元、列式、数量关系和单位已核对。",
+            "teacherId": "unit-t1",
+            "knowledgeId": "kp-linear-model",
+            "evidenceId": "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z:kp-linear-model",
+            "label": "教师反馈"
+          },
+          {
+            "rawOccurredAt": "2026-11-11T10:49:46",
+            "timeBasis": "database_session",
+            "timeReliable": true,
+            "eventId": "help:help-f7d7d8f0fa5d4994845cae39857ddee2",
+            "sourceType": "help",
+            "sourceId": "help-f7d7d8f0fa5d4994845cae39857ddee2",
+            "studentId": "unit-s0",
+            "knowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "originalKnowledgeIds": [
+              "kp-linear-model",
+              "kp-equality"
+            ],
+            "occurredAt": "2026-11-11T02:49:46Z",
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "classId": "unit-c0",
+            "lessonVersionId": null,
+            "readOnly": false,
+            "target": "/result?task=task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "helped": true,
+            "verification": "unverified",
+            "outcome": "help",
+            "reason": "模型指导",
+            "recordId": "record-be66d566a89c410a8974d5b4e074a5b1",
+            "knowledgeId": "kp-linear-model",
+            "evidenceId": "help:help-f7d7d8f0fa5d4994845cae39857ddee2:kp-linear-model",
+            "label": "帮助记录"
+          }
+        ],
+        "recommendation": null,
+        "lessons": [
+          {
+            "taskId": "task-4346c0c3ba4c4d239dc94776bd6bfca3",
+            "title": "考试讲评 · 第十七步真实单元检查",
+            "lessonId": "lesson-equation",
+            "versionId": null,
+            "readOnly": false,
+            "target": "/learn?task=task-4346c0c3ba4c4d239dc94776bd6bfca3"
+          }
+        ],
+        "teacherDecisions": []
+      },
+      {
+        "stateHistory": [],
+        "id": "kp-linear-transform",
+        "name": "方程变形与验算",
+        "prerequisites": [
+          {
+            "id": "kp-linear-simple",
+            "name": "简单一元一次方程"
+          }
+        ],
+        "state": {
+          "status": "none",
+          "statusLabel": "暂无证据",
+          "reason": "暂无作答记录。",
+          "evidenceCount": 0,
+          "verifiedCount": 0,
+          "independentCorrect": 0,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": null,
+          "lastIndependentAt": null,
+          "basisIds": [],
+          "recentVerifiedCount": 0,
+          "dayCount": 0,
+          "reviewRequested": false
+        },
+        "evidence": [],
+        "recommendation": null,
+        "lessons": [],
+        "teacherDecisions": []
+      }
+    ],
+    "unlinkedEvidence": [],
+    "recommendations": [
+      {
+        "action": "continue_repair",
+        "label": "继续补救",
+        "target": "/repair?wrong=wrong-993542535f504bcab29631e332d818a9",
+        "reason": "已有原始错题，先继续针对性订正。",
+        "priority": 1,
+        "evidenceIds": [
+          "wrong:wrong-993542535f504bcab29631e332d818a9:kp-equality"
+        ],
+        "id": "review:unit-s0:kp-equality",
+        "knowledgeId": "kp-equality"
+      }
+    ],
+    "audit": [],
+    "knowledgeOptions": [
+      {
+        "id": "kp-equal",
+        "name": "相等关系"
+      },
+      {
+        "id": "kp-equality",
+        "name": "等式性质"
+      },
+      {
+        "id": "kp-expression",
+        "name": "算式含义"
+      },
+      {
+        "id": "kp-linear-model",
+        "name": "实际问题中的设元与列式"
+      },
+      {
+        "id": "kp-linear-review",
+        "name": "一元一次方程综合检查"
+      },
+      {
+        "id": "kp-linear-simple",
+        "name": "简单一元一次方程"
+      },
+      {
+        "id": "kp-linear-transform",
+        "name": "方程变形与验算"
+      },
+      {
+        "id": "kp-operations",
+        "name": "基本运算"
+      }
+    ]
+  },
+  "originalExamAfterRepair": {
+    "id": "sub-5300da92338e429883c823e3b86ec1f0",
+    "studentId": "unit-s0",
+    "studentName": "单元验收·s0",
+    "revision": 7,
+    "answers": {
+      "qv-06dc10593e6d4b52be12fea193e1975b": {
+        "answer": "0",
+        "reason": "我直接猜0，没有核对共同运算。"
+      },
+      "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+        "answer": "0",
+        "reason": "我直接猜0，没有核对共同运算。"
+      },
+      "qv-785c349998674977bd96ea8d8e1e7314": {
+        "answer": "5",
+        "reason": "设每件商品x元，三件3x元加一次运费6元，共21元；列3x+6=21，代回并核对单位。"
+      }
+    },
+    "startedAt": "2026-11-11T02:35:30Z",
+    "submittedAt": "2026-11-11T02:40:00Z",
+    "deadline": "2026-11-11T03:05:30Z",
+    "automatic": {
+      "qv-06dc10593e6d4b52be12fea193e1975b": {
+        "scope": "参考答案的数值或表达式等价性",
+        "status": "inconsistent",
+        "correct": false,
+        "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+      },
+      "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+        "scope": "参考答案的数值或表达式等价性",
+        "status": "inconsistent",
+        "correct": false,
+        "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+      },
+      "qv-785c349998674977bd96ea8d8e1e7314": {
+        "scope": "应用题文字建模不自动判定正确",
+        "status": "unverified",
+        "correct": false,
+        "message": "数值与参考方程相符；设元、列式和情境条件仍需教师核对。",
+        "numericVerification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        }
+      }
+    },
+    "grades": {
+      "qv-06dc10593e6d4b52be12fea193e1975b": {
+        "score": 0,
+        "source": "teacher",
+        "actorId": "unit-t1",
+        "comment": "保留原答0；两边共同运算后代回核对。"
+      },
+      "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+        "score": 0,
+        "source": "teacher",
+        "actorId": "unit-t1",
+        "comment": "保留原答0；两边共同运算后代回核对。"
+      },
+      "qv-785c349998674977bd96ea8d8e1e7314": {
+        "score": 15,
+        "source": "teacher",
+        "actorId": "unit-t1",
+        "comment": "设元、列式、数量关系和单位已核对。"
+      }
+    },
+    "total": 15,
+    "audits": [
+      {
+        "id": "mark-eec904eb876d4f5a903b8a9062cc7032",
+        "actorId": "unit-t1",
+        "data": {
+          "after": {
+            "qv-06dc10593e6d4b52be12fea193e1975b": {
+              "score": 0,
+              "source": "teacher",
+              "actorId": "unit-t1",
+              "comment": "保留原答0；两边共同运算后代回核对。"
+            },
+            "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+              "score": 0,
+              "source": "teacher",
+              "actorId": "unit-t1",
+              "comment": "保留原答0；两边共同运算后代回核对。"
+            },
+            "qv-785c349998674977bd96ea8d8e1e7314": {
+              "score": 15,
+              "source": "teacher",
+              "actorId": "unit-t1",
+              "comment": "设元、列式、数量关系和单位已核对。"
+            }
+          },
+          "before": {
+            "qv-06dc10593e6d4b52be12fea193e1975b": {
+              "score": 0,
+              "source": "program",
+              "comment": "请检查左右两边是否进行了相同运算，再核对计算。"
+            },
+            "qv-1afcdf2d4d5e4f9992f56f35c711f9cf": {
+              "score": 0,
+              "source": "program",
+              "comment": "请检查左右两边是否进行了相同运算，再核对计算。"
+            }
+          },
+          "revision": 6
+        },
+        "at": "2026-11-11T02:44:55Z"
+      }
+    ]
+  },
+  "passed": true
+}

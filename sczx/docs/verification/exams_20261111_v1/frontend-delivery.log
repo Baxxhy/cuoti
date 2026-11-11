@@ -1,0 +1,33 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ exam page restores a saved reactive answer and preserves edits on failed save (3008.570656ms)
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (2487.959174ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1400.940755ms)
+✔ microphone refusal falls back to text and retry remains available (1216.370469ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (3224.168395ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1650.734063ms)
+✔ memory return controls preserve original learning task and knowledge route (2969.82411ms)
+✔ late memory response cannot overwrite a different task suggestion (1623.434428ms)
+✔ clearing a pending create prevents the old job from reopening (2650.579415ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1563.186899ms)
+✔ assistant initialization cannot replace a newer user request (1464.523873ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1167.115187ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (2763.955746ms)
+✔ independent wrong detail ignores an old response after switching questions (2890.19138ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (2287.571434ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1545.436754ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (2695.182914ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1708.75139ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1360.628514ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (2681.522489ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1546.915901ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7012.05633

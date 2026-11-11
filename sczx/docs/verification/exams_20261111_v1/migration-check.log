@@ -1,0 +1,10 @@
+{"restored": true, "database": "sczx_test_exam_migration_e9784c", "files": 69}
+INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade 0013_teaching_insights -> 0014_examinations, Add exams without rewriting any original teaching/learning row.
+INFO  [alembic.runtime.migration] Running upgrade 0013_teaching_insights -> 0014_examinations, Add exams without rewriting any original teaching/learning row.
+{"running": true, "created": true, "pid": 3390188}
+{"stopped": true}
+actual 0013 backup restored -> 0014 migration; every original table row unchanged and 8 new tables empty PASS

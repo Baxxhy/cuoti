@@ -51,6 +51,7 @@ watch(
 const navigation = {
   student: [
     { route: "home", label: "我的学习", icon: LayoutDashboard },
+    { route: "exams", label: "我的考试", icon: FileText },
     { route: "courses", label: "探索课程", icon: BookOpen },
     { route: "wrong", label: "错题帮", icon: NotebookPen },
     { route: "memory", label: "学习记忆", icon: History },
@@ -63,6 +64,8 @@ const navigation = {
     { route: "cases", label: "教学案例", icon: LibraryBig },
     { route: "courses", label: "课程与课时", icon: BookOpen },
     { route: "prepare", label: "我的教案", icon: FileText },
+    { route: "exam-bank", label: "题库", icon: BookOpenText },
+    { route: "exam-papers", label: "组卷与考试", icon: FileText },
     { route: "class", label: "班级教学", icon: Users },
     { route: "memory", label: "学习记忆", icon: History },
     { route: "issues", label: "问题与回复", icon: MessageSquareText },

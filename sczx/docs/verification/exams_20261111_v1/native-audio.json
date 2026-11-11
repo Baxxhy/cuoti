@@ -1,0 +1,67 @@
+{
+  "secureContext": true,
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "recognitionAvailable": true,
+  "synthesisAvailable": true,
+  "startedAt": "2026-11-11T03:23:45.545Z",
+  "devices": [
+    {
+      "kind": "audioinput",
+      "label": "Default"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Analog-Default Audio Device"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Analog-Front speakers"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Digital-IEC958 (S/PDIF) Digital Audio Output"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Analog-Direct sample snooping device"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Digital-Direct sample snooping device"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Analog-Direct hardware device without any conversions"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Digital-Direct hardware device without any conversions"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Analog-Hardware device with all software conversions"
+    },
+    {
+      "kind": "audioinput",
+      "label": "HDA Intel PCH, ALC888-VD Digital-Hardware device with all software conversions"
+    },
+    {
+      "kind": "audiooutput",
+      "label": "Default"
+    },
+    {
+      "kind": "audiooutput",
+      "label": "HDA Intel PCH, ALC888-VD Analog-Hardware device with all software conversions"
+    }
+  ],
+  "capture": "succeeded",
+  "recognition": "failed",
+  "voices": [],
+  "synthesis": "no_chinese_voice",
+  "probeCompletedAt": "2026-11-11T03:23:47.373Z",
+  "recognitionError": "aborted",
+  "actualNativeBrowserAPIs": true,
+  "mockEngine": false,
+  "physicalSuccess": false,
+  "note": "No fake device, audio file injection or mock recognition/synthesis used; simulated controls are separately logged."
+}

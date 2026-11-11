@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "server-transform-and-explanation-survive-refresh",
+    "server-rejects-division-by-zero-with-old-state-retained",
+    "undo-and-reset-replay-original-question"
+  ],
+  "consoleErrors": [],
+  "passed": true
+}

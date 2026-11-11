@@ -1,0 +1,52 @@
+test_nonzero_reversible_steps_and_no_arbitrary_code (test_exams_mysql.EquationMathTests.test_nonzero_reversible_steps_and_no_arbitrary_code) ... ok
+test_answer_secrecy_drafts_revision_submit_idempotency (test_exams_mysql.ExamTests.test_answer_secrecy_drafts_revision_submit_idempotency) ... /tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+Executing <Task pending name='Task-1' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.298 seconds
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:247: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:86: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/tmp/sczx-venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+FAIL
+test_application_manual_grading_audit_release_wrong_and_unchanged_original (test_exams_mysql.ExamTests.test_application_manual_grading_audit_release_wrong_and_unchanged_original) ... Executing <Task pending name='Task-6' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.223 seconds
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:247: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+ok
+test_bank_versions_and_reference_rejection (test_exams_mysql.ExamTests.test_bank_versions_and_reference_rejection) ... Executing <Task pending name='Task-11' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.277 seconds
+ok
+test_constraints_report_shortage_and_do_not_pad (test_exams_mysql.ExamTests.test_constraints_report_shortage_and_do_not_pad) ... Executing <Task pending name='Task-16' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.249 seconds
+ok
+test_course_import_and_unreviewed_cannot_enter_paper (test_exams_mysql.ExamTests.test_course_import_and_unreviewed_cannot_enter_paper) ... Executing <Task pending name='Task-21' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.262 seconds
+ok
+test_equation_replay_restore_undo_and_other_student (test_exams_mysql.ExamTests.test_equation_replay_restore_undo_and_other_student) ... Executing <Task pending name='Task-26' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.171 seconds
+ok
+test_exports_black_font_student_secrecy (test_exams_mysql.ExamTests.test_exports_black_font_student_secrecy) ... Executing <Task pending name='Task-31' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.199 seconds
+ok
+test_future_start_and_cross_student_class_permissions (test_exams_mysql.ExamTests.test_future_start_and_cross_student_class_permissions) ... Executing <Task pending name='Task-36' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.178 seconds
+ok
+test_server_deadline_submits_only_saved_answers (test_exams_mysql.ExamTests.test_server_deadline_submits_only_saved_answers) ... Executing <Task pending name='Task-41' coro=<ExamTests.asyncSetUp() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.157 seconds
+ok
+
+======================================================================
+FAIL: test_answer_secrecy_drafts_revision_submit_idempotency (test_exams_mysql.ExamTests.test_answer_secrecy_drafts_revision_submit_idempotency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/root/miniconda3/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py", line 46, in test_answer_secrecy_drafts_revision_submit_idempotency
+    q,p,e,body=await self.paper_exam();await self.call('POST','',body,201);await self.login('s0');d=await self.call('GET','/'+e);self.assertNotIn('paper',d);d=await self.call('POST','/'+e+'/start',{});self.assertNotIn('answer',d['paper']['entries'][0]['question']);self.assertNotIn('grades',d['submission']);k=q['versions'][0]['id'];answers={k:{'answer':'2','reason':'原始解释'}};d=await self.call('PUT','/'+e+'/answers',{'revision':0,'answers':answers});await self.call('PUT','/'+e+'/answers',{'revision':0,'answers':answers},409);d=await self.call('POST','/'+e+'/submit',{'revision':d['submission']['revision'],'answers':answers});self.assertNotIn('automatic',d['submission']);d2=await self.call('POST','/'+e+'/submit',{'revision':0,'answers':{}});self.assertEqual(d2['submission']['answers'],answers);await self.call('PUT','/'+e+'/answers',{'revision':d['submission']['revision'],'answers':{}},409)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/Baxxhy/zhiwei/sczx/backend-business/tests/test_exams_mysql.py", line 32, in call
+    r=await self.c.request(method,'/api/exams'+path,json=body);self.assertEqual(r.status_code,status,r.text);return r.json()
+                                                               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 409 != 201 : {"detail":"请求标识已用于其他发布内容。"}
+
+----------------------------------------------------------------------
+Ran 10 tests in 24.265s
+
+FAILED (failures=1)

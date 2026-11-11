@@ -2,9 +2,10 @@
 import { useLearning } from "@/store.js";
 import { questions } from "@/data.js";
 const store = useLearning();
+function exportRecords(){window.open("/api/exams/learning-records/export","_blank","noopener")}
 </script>
 <template>
-  <PageHeading title="学习记录" /><Surface
+  <PageHeading title="学习记录"><Button variant="outline" @click="exportRecords">导出学习记录</Button></PageHeading><Surface
     v-for="task in store.data.tasks"
     :key="task.id"
     class="records-surface"

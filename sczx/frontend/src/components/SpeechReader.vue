@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeUnmount, ref, watch } from 'vue';
 import { Volume2, Pause, Play, Square } from 'lucide-vue-next';
-const props = defineProps({ text: { type: String, default: '' } });
+const props = defineProps({ contextKey: [String, Number], text: { type: String, default: '' } });
 const synth = window.speechSynthesis;
 const available = !!(synth && window.SpeechSynthesisUtterance);
 const state = ref('idle'), error = ref('');
@@ -46,7 +46,7 @@ function togglePause() {
   if (state.value === 'paused') { synth.resume(); state.value = 'speaking'; }
   else if (state.value === 'speaking') { synth.pause(); state.value = 'paused'; }
 }
-watch(() => props.text, stop);
+watch(() => [props.text, props.contextKey], stop);
 onBeforeUnmount(stop);
 </script>
 <template>

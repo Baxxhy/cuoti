@@ -1,0 +1,225 @@
+{
+  "checks": [
+    "teacher-manually-records-and-reviews-question",
+    "deterministic-assemble-manual-add-reorder-score-preview-review-publish"
+  ],
+  "dialogs": [
+    "确认已核对题干、数学条件、参考答案和解析？将保存固定版本。",
+    "确认已核对学生试卷、题目顺序、分值及教师参考解答？"
+  ],
+  "examId": "exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+  "exam": {
+    "id": "exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+    "classId": "unit-c0",
+    "versionId": "pv-64fdf4d8f93e46bd8186096780f50bef",
+    "title": "第十七步真实单元检查",
+    "startsAt": "2026-11-11T02:33:00Z",
+    "endsAt": "2026-11-11T03:34:00Z",
+    "minutes": 30,
+    "serverTime": "2026-11-11T02:34:07.031323Z",
+    "resultsAt": null,
+    "paper": {
+      "title": "第十七步真实单元检查",
+      "total": 35,
+      "unitId": "unit-equation",
+      "entries": [
+        {
+          "points": 10,
+          "question": {
+            "kind": "calculation",
+            "grade": "七年级",
+            "answer": "12",
+            "points": 10,
+            "prompt": "演示考试：共同运算验收",
+            "source": "教师自编",
+            "unitId": "unit-equation",
+            "subject": "数学",
+            "equation": "x-4=8",
+            "difficulty": "easy",
+            "explanation": "两边同时加4，得到x=12，代回原式。",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "reviewRecord": {
+              "at": "2026-11-11T02:34:03.075184Z",
+              "scope": "题干、条件、解答人工核对",
+              "actorId": "unit-t1"
+            },
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            },
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "referenceVerification": {
+              "status": "verified"
+            },
+            "requiresTeacherReview": false
+          },
+          "versionId": "qv-1afcdf2d4d5e4f9992f56f35c711f9cf",
+          "questionId": "bq-19ee26d767bb411c8e4d089be86789ae"
+        },
+        {
+          "points": 15,
+          "question": {
+            "kind": "application",
+            "grade": "七年级",
+            "answer": "5",
+            "points": 10,
+            "prompt": "三件商品加一次运费共21元，求每件单价。",
+            "source": "项目自编考试验收",
+            "unitId": "unit-equation",
+            "subject": "数学",
+            "equation": "3x+6=21",
+            "difficulty": "easy",
+            "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+            "knowledgeIds": [
+              "kp-linear-model"
+            ],
+            "reviewRecord": {
+              "at": "2026-11-11T02:32:55.953814Z",
+              "scope": "题干、条件、解答人工核对",
+              "actorId": "unit-t1"
+            },
+            "verification": {
+              "scope": "应用题文字建模不自动判定正确",
+              "status": "unverified",
+              "correct": false,
+              "message": "数值与参考方程相符；设元、列式和情境条件仍需教师核对。",
+              "numericVerification": {
+                "scope": "参考答案的数值或表达式等价性",
+                "status": "verified",
+                "correct": true,
+                "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+              }
+            },
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "referenceVerification": {
+              "status": "verified"
+            },
+            "requiresTeacherReview": true
+          },
+          "versionId": "qv-785c349998674977bd96ea8d8e1e7314",
+          "questionId": "bq-62fdc5b2c8d14045b59956e30251f21f"
+        },
+        {
+          "points": 10,
+          "question": {
+            "kind": "calculation",
+            "grade": "七年级",
+            "answer": "2",
+            "points": 10,
+            "prompt": "共同运算求解",
+            "source": "项目自编考试验收",
+            "unitId": "unit-equation",
+            "subject": "数学",
+            "equation": "2x+6=10",
+            "difficulty": "easy",
+            "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+            "knowledgeIds": [
+              "kp-equality"
+            ],
+            "reviewRecord": {
+              "at": "2026-11-11T02:32:55.748654Z",
+              "scope": "题干、条件、解答人工核对",
+              "actorId": "unit-t1"
+            },
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            },
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "referenceVerification": {
+              "status": "verified"
+            },
+            "requiresTeacherReview": false
+          },
+          "versionId": "qv-06dc10593e6d4b52be12fea193e1975b",
+          "questionId": "bq-fe04a8fd1d964e71ae07b17fe6c69282"
+        }
+      ],
+      "reviewRecord": {
+        "at": "2026-11-11T02:34:05.841566Z",
+        "actorId": "unit-t1"
+      }
+    },
+    "submissions": [
+      {
+        "id": "sub-5300da92338e429883c823e3b86ec1f0",
+        "studentId": "unit-s0",
+        "studentName": "单元验收·s0",
+        "revision": 0,
+        "answers": {},
+        "startedAt": null,
+        "submittedAt": null,
+        "deadline": "2026-11-11T03:34:00Z",
+        "automatic": {},
+        "grades": {},
+        "total": 0,
+        "audits": []
+      },
+      {
+        "id": "sub-a341f1bc398547c1a6fdfdbf97034056",
+        "studentId": "unit-s1",
+        "studentName": "单元验收·s1",
+        "revision": 0,
+        "answers": {},
+        "startedAt": null,
+        "submittedAt": null,
+        "deadline": "2026-11-11T03:34:00Z",
+        "automatic": {},
+        "grades": {},
+        "total": 0,
+        "audits": []
+      },
+      {
+        "id": "sub-28148f73047a4fcaa32907a1a51a2b1f",
+        "studentId": "unit-s2",
+        "studentName": "单元验收·s2",
+        "revision": 0,
+        "answers": {},
+        "startedAt": null,
+        "submittedAt": null,
+        "deadline": "2026-11-11T03:34:00Z",
+        "automatic": {},
+        "grades": {},
+        "total": 0,
+        "audits": []
+      },
+      {
+        "id": "sub-78239e7f4c75442fbbfbe1389e980b8e",
+        "studentId": "unit-s6",
+        "studentName": "单元验收·s6",
+        "revision": 0,
+        "answers": {},
+        "startedAt": null,
+        "submittedAt": null,
+        "deadline": "2026-11-11T03:34:00Z",
+        "automatic": {},
+        "grades": {},
+        "total": 0,
+        "audits": []
+      }
+    ]
+  },
+  "consoleErrors": [],
+  "passed": true
+}

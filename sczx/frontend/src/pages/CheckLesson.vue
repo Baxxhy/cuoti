@@ -1,4 +1,5 @@
 <script setup>
+import EquationTool from "@/components/EquationTool.vue";
 import {useRoute} from "vue-router";
 import MemoryReturn from "@/components/MemoryReturn.vue";
 import SupplementPanel from "@/components/SupplementPanel.vue";
@@ -117,4 +118,5 @@ function markHelp() {
       <RouteButton route="result" secondary>返回学习结果</RouteButton>
     </div></template
   ><TaskEmpty v-else />
+<EquationTool v-if="store.record && current" :record-id="store.record.id" :question="index"/>
 </template>

@@ -1,0 +1,44 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✖ exam page restores a saved reactive answer and preserves edits on failed save (2552.682748ms)
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (2042.174524ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1340.958164ms)
+✔ microphone refusal falls back to text and retry remains available (1222.316465ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (2505.539608ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1706.255626ms)
+✔ memory return controls preserve original learning task and knowledge route (2610.937129ms)
+✔ late memory response cannot overwrite a different task suggestion (1594.801397ms)
+✔ clearing a pending create prevents the old job from reopening (2253.689856ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1578.183281ms)
+✔ assistant initialization cannot replace a newer user request (1404.680963ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1138.789995ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (2566.529068ms)
+✔ independent wrong detail ignores an old response after switching questions (2276.164049ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (2953.440866ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1491.642617ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (2781.831028ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1666.533139ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1306.25211ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (2236.210131ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1405.558783ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6547.398519
+
+✖ failing tests:
+
+test at tests/exam-draft.test.mjs:2:1
+✖ exam page restores a saved reactive answer and preserves edits on failed save (2552.682748ms)
+  Error: TypeError: Cannot read properties of null (reading '1')
+      at <anonymous>:1:317
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/exam-draft.test.mjs:2:220)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)

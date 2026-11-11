@@ -1,0 +1,198 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✖ speech recognition is editable and requires explicit confirmation; context change aborts old speech (1576.644808ms)
+✖ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (822.00813ms)
+✖ microphone refusal falls back to text and retry remains available (801.796206ms)
+✖ analytics ignores delayed class evidence and preserves the selected class in the URL (1454.855671ms)
+✖ a concurrent question update retains the teacher reply for reload and retry (841.858107ms)
+✖ memory return controls preserve original learning task and knowledge route (1423.973134ms)
+✖ late memory response cannot overwrite a different task suggestion (863.412548ms)
+✖ clearing a pending create prevents the old job from reopening (1399.950797ms)
+✖ SSE terminal status waits for detail; completion callback is idempotent (848.835527ms)
+✖ assistant initialization cannot replace a newer user request (829.827327ms)
+✖ a delayed platform save cannot attach its revision to another lesson (718.023781ms)
+✖ agent history follows route, rejects stale replies, guards edits and restores back navigation (1462.815847ms)
+✖ independent wrong detail ignores an old response after switching questions (1406.139688ms)
+✖ class switch ignores delayed old responses and empty teacher task records render (1393.987008ms)
+✖ leaving the dashboard before its response cannot redirect the next page (882.336659ms)
+✖ checking task switch restores that record question and answer without overwriting either draft (1572.012441ms)
+✖ late OCR upload after question switch cannot create or show guidance in the new context (839.280621ms)
+✖ switching failed OCR to text removes its persisted pending upload before the next request (788.321986ms)
+✖ late unit progress cannot replace the next task classroom and history stays readonly (1359.298313ms)
+✖ course card keeps its content grid inside CardContent at desktop widths (950.350113ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 0
+ℹ fail 20
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3950.736614
+
+✖ failing tests:
+
+test at tests/exam-speech.test.mjs:2:1
+✖ speech recognition is editable and requires explicit confirmation; context change aborts old speech (1576.644808ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/exam-speech.test.mjs:2:242)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/exam-speech.test.mjs:3:1
+✖ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (822.00813ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/exam-speech.test.mjs:3:236)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/exam-speech.test.mjs:4:1
+✖ microphone refusal falls back to text and retry remains available (801.796206ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/exam-speech.test.mjs:4:208)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/insights-queue.test.mjs:5:1
+✖ analytics ignores delayed class evidence and preserves the selected class in the URL (1454.855671ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/insights-queue.test.mjs:6:131)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/insights-queue.test.mjs:15:1
+✖ a concurrent question update retains the teacher reply for reload and retry (841.858107ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/insights-queue.test.mjs:16:131)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/learning-memory.test.mjs:4:1
+✖ memory return controls preserve original learning task and knowledge route (1423.973134ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/learning-memory.test.mjs:5:131)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/learning-memory.test.mjs:10:1
+✖ late memory response cannot overwrite a different task suggestion (863.412548ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/learning-memory.test.mjs:11:131)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/model-job.test.mjs:7:1
+✖ clearing a pending create prevents the old job from reopening (1399.950797ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async run (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/model-job.test.mjs:5:100)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/model-job.test.mjs:8:15)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/model-job.test.mjs:13:1
+✖ SSE terminal status waits for detail; completion callback is idempotent (848.835527ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async run (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/model-job.test.mjs:5:100)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/model-job.test.mjs:14:15)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/model-job.test.mjs:19:1
+✖ assistant initialization cannot replace a newer user request (829.827327ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async run (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/model-job.test.mjs:5:100)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/model-job.test.mjs:20:15)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/model-job.test.mjs:35:1
+✖ a delayed platform save cannot attach its revision to another lesson (718.023781ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/pinia.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async run (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/model-job.test.mjs:5:100)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/model-job.test.mjs:36:15)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/planning-history.test.mjs:4:1
+✖ agent history follows route, rejects stale replies, guards edits and restores back navigation (1462.815847ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/planning-history.test.mjs:7:15)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/remediation-scope.test.mjs:4:1
+✖ independent wrong detail ignores an old response after switching questions (1406.139688ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/remediation-scope.test.mjs:5:131)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/teaching-class.test.mjs:4:1
+✖ class switch ignores delayed old responses and empty teacher task records render (1393.987008ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/teaching-class.test.mjs:7:15)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/teaching-class.test.mjs:34:1
+✖ leaving the dashboard before its response cannot redirect the next page (882.336659ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/teaching-class.test.mjs:37:15)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/tutoring-scope.test.mjs:2:1
+✖ checking task switch restores that record question and answer without overwriting either draft (1572.012441ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/tutoring-scope.test.mjs:3:130)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/tutoring-scope.test.mjs:13:1
+✖ late OCR upload after question switch cannot create or show guidance in the new context (839.280621ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/tutoring-scope.test.mjs:14:131)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/tutoring-scope.test.mjs:22:1
+✖ switching failed OCR to text removes its persisted pending upload before the next request (788.321986ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/tutoring-scope.test.mjs:23:130)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at tests/unit-journey.test.mjs:2:1
+✖ late unit progress cannot replace the next task classroom and history stays readonly (1359.298313ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/unit-journey.test.mjs:2:232)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at tests/unit-journey.test.mjs:4:1
+✖ course card keeps its content grid inside CardContent at desktop widths (950.350113ms)
+  Error: TypeError: Failed to fetch dynamically imported module: chrome-error://chromewebdata/node_modules/.vite/deps/vue.js
+      at Browser.eval (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:18:242)
+      at async TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/unit-journey.test.mjs:4:280)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)

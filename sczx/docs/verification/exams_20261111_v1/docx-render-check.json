@@ -1,0 +1,96 @@
+{
+  "software": "existing LibreOffice25.2",
+  "documents": [
+    {
+      "file": "学生全部学习记录.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "fonts": [
+            "SimSun",
+            "TimesNewRomanPSMT"
+          ],
+          "pureBlack": true,
+          "a4": true,
+          "bounds": true
+        }
+      ]
+    },
+    {
+      "file": "学生原始答卷.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "fonts": [
+            "SimSun",
+            "TimesNewRomanPSMT"
+          ],
+          "pureBlack": true,
+          "a4": true,
+          "bounds": true
+        }
+      ]
+    },
+    {
+      "file": "学生版试卷.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "fonts": [
+            "SimSun",
+            "TimesNewRomanPSMT"
+          ],
+          "pureBlack": true,
+          "a4": true,
+          "bounds": true
+        }
+      ]
+    },
+    {
+      "file": "教师版试卷.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "fonts": [
+            "SimSun",
+            "TimesNewRomanPSMT"
+          ],
+          "pureBlack": true,
+          "a4": true,
+          "bounds": true
+        }
+      ]
+    },
+    {
+      "file": "班级成绩.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "fonts": [
+            "SimSun",
+            "TimesNewRomanPSMT"
+          ],
+          "pureBlack": true,
+          "a4": true,
+          "bounds": true
+        }
+      ]
+    },
+    {
+      "file": "考试学习记录.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "fonts": [
+            "SimSun",
+            "TimesNewRomanPSMT"
+          ],
+          "pureBlack": true,
+          "a4": true,
+          "bounds": true
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

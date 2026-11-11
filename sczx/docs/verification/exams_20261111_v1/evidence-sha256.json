@@ -1,0 +1,402 @@
+{
+  "native-audio.log": {
+    "bytes": 753,
+    "sha256": "8de4e973d944992087585628ddfd8e66bdd6c066185787700351ff6a7bafd5ed"
+  },
+  "candidate-check.json": {
+    "bytes": 5129,
+    "sha256": "7c86a8bd42ae6400e753e356f4778905b6c50ca9a5fd3a940552aada6fe49728"
+  },
+  "student-browser-retry.log": {
+    "bytes": 55,
+    "sha256": "97898265881cc3270582fb7f08e86bd619392b12f8130ca64c2589dd31d365e5"
+  },
+  "equation-tool-1920.png": {
+    "bytes": 107444,
+    "sha256": "5eddb646eb86f96b805f326bbb539b8fd497c3c4d7e9f81c91955742301874f7"
+  },
+  "final-pages.log": {
+    "bytes": 39,
+    "sha256": "8fcd79e3f46cea5fa62779b63bcdf3e6ad4cb0381328173bf89fbc93ca6e76cd"
+  },
+  "exam-wrong-repair-2560.png": {
+    "bytes": 174147,
+    "sha256": "03b774b2808152617c697560a495f1d3de15bbe5b9ad5f687119a114a86595c8"
+  },
+  "frontend-initial.log": {
+    "bytes": 14841,
+    "sha256": "3f456bd807d5f66aa10f451d501411fea05ec3a20bd938a9cb60f35283f167c5"
+  },
+  "student-submitted-2560.png": {
+    "bytes": 89160,
+    "sha256": "d1f8770862a8ab2b46a53e6b6b6b03115948693cbc03509d0f7b53d15132d5d3"
+  },
+  "student-submitted-1920.png": {
+    "bytes": 86075,
+    "sha256": "5823815d5d447befebd002539788b2568eed783ab6dd1f11d46ff55aeeb2cac9"
+  },
+  "exam-wrong-repair-1920.png": {
+    "bytes": 170248,
+    "sha256": "3b9cb90174ffa129b2943cca37b6ad9e7e01e312876a0d3e63fd9e347795f4ce"
+  },
+  "main-protect-before.log": {
+    "bytes": 431,
+    "sha256": "435ccb3e5446fb9724c3c3cbf5432f405230d13e70d7e3763d925435bae1ad40"
+  },
+  "exam-papers-2560.png": {
+    "bytes": 108648,
+    "sha256": "e7abda9fc801d570aa7c5d8fda93b731762e2d0808368f18fc0992cacdd5a1fd"
+  },
+  "restart-final.log": {
+    "bytes": 323,
+    "sha256": "4b9b7713e823b159d317a81ebf2000e8bd6d7a39fe208cfa9d0af0c280313c42"
+  },
+  "exam-papers-1440.png": {
+    "bytes": 101713,
+    "sha256": "63df60beb86deebaab3271ad35a81d88c153e31532e738c0394f90b45e9a4473"
+  },
+  "frontend-unit.log": {
+    "bytes": 322,
+    "sha256": "0d9eaab1f9b416749cffadf1ac6d926aa0d91cb28647904c964c7d31c74a9b05"
+  },
+  "exam-bank-2560.png": {
+    "bytes": 131314,
+    "sha256": "283eca4e3026625027273bea04fb2c8b07965b13b24c1192e5096c30e468cc94"
+  },
+  "exam-repair.log": {
+    "bytes": 98,
+    "sha256": "ae04b6c6251e8f14283909a0500bc2c1ba1544ca76b1f5467432f128e532e814"
+  },
+  "migration-check.log": {
+    "bytes": 830,
+    "sha256": "636102e36fb684e646d71beb577f86a2cfda79e9bb6cecc0e9ce062de8174d1f"
+  },
+  "teacher-exam-memory-1440.png": {
+    "bytes": 114666,
+    "sha256": "255e5254bc26697c594fd2f65f7bfbf99ea0b569a83eb56a381d166510c42c12"
+  },
+  "frontend-delivery.log": {
+    "bytes": 2252,
+    "sha256": "8eaa7a3c97f636e8003207fa8e0939b8f82811cb0851e59d2523c2ff81c44cd6"
+  },
+  "student-result-1920.png": {
+    "bytes": 83984,
+    "sha256": "b3edf53deefe81ade60c54ca12cbb941c38ff05f2eb03d75c9bb13ee724e9ce1"
+  },
+  "tests-initial.json": {
+    "bytes": 239,
+    "sha256": "28f35efce1dc7c988b677e96b38b4038773fdcb06eff5e619e892975874f5763"
+  },
+  "teacher-grading-1440.png": {
+    "bytes": 130141,
+    "sha256": "27db5f4882a8c7f2ed3f2553fe8dd173d5914a267766e7c800d05ed7e44f5b71"
+  },
+  "frontend-final-2.log": {
+    "bytes": 2852,
+    "sha256": "88613da5374071a17787165c804d397640cd7db635a126c638897ec9808354c1"
+  },
+  "native-audio-permission-initial.json": {
+    "bytes": 891,
+    "sha256": "815b59717a7e8abf762e169d7e3ca5f286fbd8d93b8179c395a369fa9ebf5473"
+  },
+  "teacher-browser.log": {
+    "bytes": 55,
+    "sha256": "9b0328a7e6110dde737b808283e9a76c8e1f3771da4ed3d23fea9a0d50cbf363"
+  },
+  "frontend-final-3.log": {
+    "bytes": 2253,
+    "sha256": "4c152aa55a5919d58a676110f096808601845b0b4f5d65dd6965314101ff3ada"
+  },
+  "results-browser-final.log": {
+    "bytes": 89,
+    "sha256": "449d657d92a4c16e238e90954a5cf372cfe319b64f6018533d2a6afad1bb79c7"
+  },
+  "main-protect-before-2.log": {
+    "bytes": 45,
+    "sha256": "8f048e1b8eecca74022fd02edd5ff61dbf286d6ba12211b754ff783efac33a20"
+  },
+  "tests-round1.json": {
+    "bytes": 239,
+    "sha256": "ed831baf2e064008d465d789fe510f9c608b4687f0bd4370e0483d8fb40a465b"
+  },
+  "教师版试卷-page-1.png": {
+    "bytes": 39999,
+    "sha256": "8b448c8f66885445a9ccc7b20d323f77304337509781f743613ce830a31dc14b"
+  },
+  "teacher-browser.json": {
+    "bytes": 7737,
+    "sha256": "2a7eae244985ca170a9866b82b8df5930a41ff5fe36f5efb9b1dc3e8978f3ebc"
+  },
+  "export-check.log": {
+    "bytes": 93,
+    "sha256": "233cac9d77c48c38e849e6e8e22ea942bacdd0b0fa074be319e3b2ade962dca1"
+  },
+  "content-installed.json": {
+    "bytes": 5364,
+    "sha256": "42b88e62cefa2de1263c7710bec44b44717c8f4b388a330eda1d01bac7f65896"
+  },
+  "final-pages.json": {
+    "bytes": 783,
+    "sha256": "633cd2ab9bee750f6531362d95b4afb312d0943c99701e5a82d92c6424f93dc0"
+  },
+  "student-browser-failure.png": {
+    "bytes": 82674,
+    "sha256": "0878f29ad4241ef140e6fdef7d214126ede9a3b8893b5c02bf1bd20d25a05bea"
+  },
+  "grading-browser.log": {
+    "bytes": 84,
+    "sha256": "12248733006941219f461032007a7f8555e6e0d0e773a0f8a802ae421dfd8535"
+  },
+  "frontend-final.log": {
+    "bytes": 3913,
+    "sha256": "1add2a80cd91f77bc5ce1c502421cc958e1dcd93b62cf4e74470f581247adbcc"
+  },
+  "tests-round1.log": {
+    "bytes": 8631,
+    "sha256": "2b075232057caf4a13b3c6eae794422c55413c8e73d205002f28f3687d822159"
+  },
+  "teacher-exam-memory-2560.png": {
+    "bytes": 121463,
+    "sha256": "9ad8a7f6ebfa4360fbbd008cfd29fb7ef2492411e894532c004b205bc1a3b6d8"
+  },
+  "student-result-2560.png": {
+    "bytes": 87124,
+    "sha256": "77cb069b8b7fca0d190e0cea1f79e24a3fced6855dc10e9a2692de496958bf10"
+  },
+  "exam-bank-1920.png": {
+    "bytes": 127686,
+    "sha256": "234b777677787b63347d82d6a2327bd3343967ecbd7b69a445c6c9d1c83ee0d5"
+  },
+  "equation-browser.json": {
+    "bytes": 227,
+    "sha256": "7e74a25043cc3afc5a56ee8791110783f0c2c75a1eb27f7c4608a3d1ecd94b9b"
+  },
+  "build-initial.log": {
+    "bytes": 1172,
+    "sha256": "3ed63d82ee464d09f567d5a321a695c5eed46e9fbb41d176b09d6c2b051793ec"
+  },
+  "docx-render-check.json": {
+    "bytes": 1775,
+    "sha256": "705324a8a8b3a1b8732ae6db22f86f173d3d43ed5a4ce7b837c2600321ed7a70"
+  },
+  "results-browser.json": {
+    "bytes": 1261,
+    "sha256": "d16566bf04bbb571ab2c3c969e9b9be924fe99419013969a2068c654d204de84"
+  },
+  "tests-full-round1.log": {
+    "bytes": 54203,
+    "sha256": "9d22f4c877cc88539358fa35f2acbd5e76ea4279d7a0e9937019b5ffa007ca89"
+  },
+  "source-sha256.json": {
+    "bytes": 27393,
+    "sha256": "402a6c60bb0e6a361262ce8111b9b31fa8508205b9142392ab9e5d97a86cbd28"
+  },
+  "tests-initial.log": {
+    "bytes": 17364,
+    "sha256": "39566ca171d6bf152824b7f363032281059aa6598c7e89c3b748240b9e7e5cb4"
+  },
+  "学生版试卷-page-1.png": {
+    "bytes": 24635,
+    "sha256": "c5d5df93d486eda2d469bc1a344a9d9bec6ee2477a4114f3fe7cf38052e2a086"
+  },
+  "equation-browser.log": {
+    "bytes": 73,
+    "sha256": "8efeeeb1c506c5d5813e116a31790e7bee1a597659896b92deb198b5ea854452"
+  },
+  "native-audio.json": {
+    "bytes": 2083,
+    "sha256": "c749849915397130f194f91b8c522d9c41ae7b6eb28641de437bb39d8eff8e8d"
+  },
+  "frontend-round1.log": {
+    "bytes": 2157,
+    "sha256": "cae63d8b601d65eea33709c7bd8a8b6a2f3077221b19aa37a7c1cdc81bd4ac63"
+  },
+  "exam-repair.json": {
+    "bytes": 99675,
+    "sha256": "afcd4f7b068a9c519a4c12642eee6b88d6af4d3659e5907da4a6a21ca0d8ca19"
+  },
+  "student-browser.log": {
+    "bytes": 2893,
+    "sha256": "501a7350e62d3ca2d241baa466fa0da869d6204b369105d8623aafbbc6caab55"
+  },
+  "migration-check.json": {
+    "bytes": 5855,
+    "sha256": "3d146306cbf83c8c5c04933ea60e226f35179f3b9eff342ece1c16af1e1f1289"
+  },
+  "teacher-exam-memory-1920.png": {
+    "bytes": 118043,
+    "sha256": "ceb0b1a6c7e64d56d65d5a36ada71bcdbc634a67f43ef5903f062beca3573399"
+  },
+  "results-browser.log": {
+    "bytes": 89,
+    "sha256": "449d657d92a4c16e238e90954a5cf372cfe319b64f6018533d2a6afad1bb79c7"
+  },
+  "paper-preview-1920.png": {
+    "bytes": 115163,
+    "sha256": "1a877c666d52b4af73f91db107c97e3d5c83ce47379beae727cc619291416259"
+  },
+  "flow-fixture.json": {
+    "bytes": 9971,
+    "sha256": "5cdbb443d802275e82404a0816db194cc55f4733f5742c32aa9d07f6c47f9f2b"
+  },
+  "student-browser.json": {
+    "bytes": 2604,
+    "sha256": "c9d515ed087baf09eeedf7f56049d13cdfb92e0db716f190ddc260e8b15fde99"
+  },
+  "candidate-check.log": {
+    "bytes": 70,
+    "sha256": "806037b9d996f434a05683c81f0f709cec2eefc2a689f9fbc7314f632c539772"
+  },
+  "teacher-grading-2560.png": {
+    "bytes": 138061,
+    "sha256": "673034772229713ec061c46f91dc07791f3d8fe4539e3f15f918b2030a541c3d"
+  },
+  "student-submitted-1440.png": {
+    "bytes": 82952,
+    "sha256": "01e57715c182146c683af3fcfa4a332ab616c9523c9f2fff9f9dea67258935d2"
+  },
+  "build-frozen.log": {
+    "bytes": 1171,
+    "sha256": "cf3aa77f9f32dff40386698b7a7ab6084a4c740aa020848054943ee9fd9c781e"
+  },
+  "tests-final.log": {
+    "bytes": 54582,
+    "sha256": "35ba26605f6e6780e16830ebf4ba49505d19c8f3e0e5f1e2d892b7f3685a26ec"
+  },
+  "tests-delivery.json": {
+    "bytes": 202,
+    "sha256": "6e42b6bca6b071a9cc055034c90cffc54b3f2367dc2ada07950cae753a8d3505"
+  },
+  "tests-final.json": {
+    "bytes": 202,
+    "sha256": "8ea4e9d0aa0f2e7b52f9467fa62f8fdd4bfcd231c38e764cbb06476758ffeea7"
+  },
+  "student-result-1440.png": {
+    "bytes": 81076,
+    "sha256": "455a1978ec226d30d8eb8b5a8dc9d19de9f3ba2204865fbdbead302179433a5d"
+  },
+  "README.md": {
+    "bytes": 2637,
+    "sha256": "5bf33be9026b4d116a998a54ec11aa8fb144aaff500d7a762723171090bf0185"
+  },
+  "tests-delivery.log": {
+    "bytes": 55685,
+    "sha256": "c5a85f96d235b867be954e04fa3fc8f44d9e6a615b254c401dfa97e584406c2d"
+  },
+  "docx-render.log": {
+    "bytes": 1124,
+    "sha256": "fff15141c3c4da6e06d2561fd31c682900abc2b533d51cdad2cb9d70848bc6a7"
+  },
+  "student-browser-initial.json": {
+    "bytes": 129,
+    "sha256": "798e5ab2238ab05e90fac7990d51cd167dd09f7dab72d617a877e1b8ea582718"
+  },
+  "native-audio-granted.log": {
+    "bytes": 1704,
+    "sha256": "0ef60bcec5f97cfcdfc8ed54e2ee0ee22d94fa1b92740776d001cf6c648c93a1"
+  },
+  "export-check.json": {
+    "bytes": 1281,
+    "sha256": "48735a75295a82955f161d5482a39669db282b83788af2ffa6480e5765fea890"
+  },
+  "exam-papers-1920.png": {
+    "bytes": 105488,
+    "sha256": "8585f6b71f6beb65bfd25bf0808f1c4f477fc2adb43baa9c8952e802a1f79001"
+  },
+  "grading-browser.json": {
+    "bytes": 24080,
+    "sha256": "01527ca01fac36d93fb50a4bef11837f347bddaeaa56047d118c047842e74fd2"
+  },
+  "班级成绩-page-1.png": {
+    "bytes": 30691,
+    "sha256": "598758e168104e12aef2e236734529d151fc8987ad5e2fcb36dba72b83155cd2"
+  },
+  "exam-bank-1440.png": {
+    "bytes": 123598,
+    "sha256": "fd05fb31382fb0c3f139f0e5d94c66e508611a7f9a770406b039b1874c499ce8"
+  },
+  "other-submissions.json": {
+    "bytes": 2729,
+    "sha256": "a406fcbf68317521549b61fa8119ec83547d1bbf5aa72f3b0496c70b9c23877c"
+  },
+  "exam-wrong-repair-1440.png": {
+    "bytes": 167908,
+    "sha256": "c231243680c1aa0156fefde52bd6d19629210e596c6b3ef2edc0c27f25167ff8"
+  },
+  "tests-full-round1.json": {
+    "bytes": 202,
+    "sha256": "b53dacddea70e95f2d7c7ee5828459ba2599a2abc614537066fca01e0655a553"
+  },
+  "teacher-grading-1920.png": {
+    "bytes": 134330,
+    "sha256": "4110ad3d11c9373cf066b6259498a0bbb86b99f462b11b046b095408867f0888"
+  },
+  "scripts/other-submissions.py": {
+    "bytes": 1047,
+    "sha256": "3e9f8d59683458bac221ab8869e90680662951e21f3042e679c5e8038793984d"
+  },
+  "scripts/results-browser.mjs": {
+    "bytes": 2676,
+    "sha256": "fa0e7dd1eaf85f734fe4e2250cf6efda3aa4bc4d7345b45dc9a8720ad211c9dc"
+  },
+  "scripts/candidate-check.py": {
+    "bytes": 1059,
+    "sha256": "9c0da75773e6a5267e578b3d0a1b4a518240fd994efe0789bb25e7e0652a6224"
+  },
+  "scripts/grading-browser.mjs": {
+    "bytes": 3801,
+    "sha256": "929b34442820421f1bd8b03b761017e90d79758e235f4a8a32a97741ef6e685d"
+  },
+  "scripts/final-pages.mjs": {
+    "bytes": 1609,
+    "sha256": "bf7cbbd577539002f61fedb444b558a14d69d1425e256692eb56527e5e2278b8"
+  },
+  "scripts/native-audio-granted.mjs": {
+    "bytes": 3101,
+    "sha256": "79bbb8d17dabe96e0222f0930dd3184843a9faf0cd6bf178b0cd766890220289"
+  },
+  "scripts/run-tests.py": {
+    "bytes": 982,
+    "sha256": "b41b53b4eb69e16f907b7e43ec5b7b2f7b3142521e2df445e54d9f2557d82a87"
+  },
+  "scripts/equation-browser.mjs": {
+    "bytes": 3036,
+    "sha256": "339a8400351f8c288d8e5d5168bb78fa9a2b07a6d6fc5526a33d7cf0a2ff1510"
+  },
+  "scripts/teacher-browser.mjs": {
+    "bytes": 4975,
+    "sha256": "c34d8c419144868bad18e3819befa63c4f38a2b0419235ea958f16a3ce3f4866"
+  },
+  "scripts/native-audio.mjs": {
+    "bytes": 2992,
+    "sha256": "415ca16465249ae64312a7783c0c9c0c45b2d0371147f7dbc661966cd537cda0"
+  },
+  "scripts/prepare-flow.py": {
+    "bytes": 1573,
+    "sha256": "9d3beb514521e4fe7dd7dade820251db1ff3645f60bbf20eb8b905571061701a"
+  },
+  "scripts/migration-check.py": {
+    "bytes": 2128,
+    "sha256": "ea47262b495bef1a63baad273f2818db23f9d93797f7cd3c43334eef43f96b03"
+  },
+  "scripts/student-browser.mjs": {
+    "bytes": 3866,
+    "sha256": "5f31cb7ecf681708c6ed97a08eb21ae064119f1606fb8ea446fc0b3947a4f8d4"
+  },
+  "scripts/export-check.py": {
+    "bytes": 2687,
+    "sha256": "7b8a00e501bb90e719b526eb6e436d0421bb0f8eb429772f67a947780ba36e92"
+  },
+  "scripts/exam-repair.py": {
+    "bytes": 3308,
+    "sha256": "9999dc0f765d5897d608636657718cf46977e4fb980436bcca9c4feba2bd3ad1"
+  },
+  "main-protection.json": {
+    "bytes": 629,
+    "sha256": "8c03e2462338543a576ac00790b3e27fd451721d229a37d5a14376fcae9d0e87"
+  },
+  "main-protect-after.log": {
+    "bytes": 82,
+    "sha256": "1e6c1a900feb9ac32aad8a5c6228ea8d93e73fbfb436c21f6fb817c0800f6924"
+  }
+}
