@@ -1,0 +1,106 @@
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Obtaining file:///root/Baxxhy/zhiwei/sczx/backend-business
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: fastapi<1,>=0.115 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (0.162.2)
+Requirement already satisfied: uvicorn<1,>=0.30 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (0.54.0)
+Requirement already satisfied: SQLAlchemy<3,>=2.0 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (2.1.8)
+Requirement already satisfied: PyMySQL<2,>=1.1 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (1.2.3)
+Requirement already satisfied: alembic<2,>=1.13 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (1.20.1)
+Requirement already satisfied: python-multipart<1,>=0.0.9 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (0.0.33)
+Requirement already satisfied: python-dotenv<2,>=1.0 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (1.2.4)
+Requirement already satisfied: httpx<1,>=0.27 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (0.28.1)
+Requirement already satisfied: sympy<2,>=1.13 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (1.14.0)
+Requirement already satisfied: PyMuPDF<2,>=1.26 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (1.28.2)
+Requirement already satisfied: python-docx<2,>=1.2 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (1.2.0)
+Requirement already satisfied: langgraph<2,>=1.2.20 in ./.venv/lib/python3.13/site-packages (from sczx-business==0.1.0) (1.2.20)
+Requirement already satisfied: Mako in ./.venv/lib/python3.13/site-packages (from alembic<2,>=1.13->sczx-business==0.1.0) (1.4.3)
+Requirement already satisfied: typing-extensions>=4.12 in ./.venv/lib/python3.13/site-packages (from alembic<2,>=1.13->sczx-business==0.1.0) (4.16.0)
+Requirement already satisfied: starlette>=0.46.0 in ./.venv/lib/python3.13/site-packages (from fastapi<1,>=0.115->sczx-business==0.1.0) (1.10.0)
+Requirement already satisfied: pydantic>=2.9.0 in ./.venv/lib/python3.13/site-packages (from fastapi<1,>=0.115->sczx-business==0.1.0) (2.14.3)
+Requirement already satisfied: typing-inspection>=0.4.2 in ./.venv/lib/python3.13/site-packages (from fastapi<1,>=0.115->sczx-business==0.1.0) (0.4.5)
+Requirement already satisfied: annotated-doc>=0.0.2 in ./.venv/lib/python3.13/site-packages (from fastapi<1,>=0.115->sczx-business==0.1.0) (0.0.5)
+Requirement already satisfied: opentelemetry-api>=1.44.0 in ./.venv/lib/python3.13/site-packages (from fastapi<1,>=0.115->sczx-business==0.1.0) (1.45.2)
+Requirement already satisfied: anyio in ./.venv/lib/python3.13/site-packages (from httpx<1,>=0.27->sczx-business==0.1.0) (4.16.0)
+Requirement already satisfied: certifi in ./.venv/lib/python3.13/site-packages (from httpx<1,>=0.27->sczx-business==0.1.0) (2026.10.23)
+Requirement already satisfied: httpcore==1.* in ./.venv/lib/python3.13/site-packages (from httpx<1,>=0.27->sczx-business==0.1.0) (1.0.9)
+Requirement already satisfied: idna in ./.venv/lib/python3.13/site-packages (from httpx<1,>=0.27->sczx-business==0.1.0) (3.20)
+Requirement already satisfied: h11>=0.16 in ./.venv/lib/python3.13/site-packages (from httpcore==1.*->httpx<1,>=0.27->sczx-business==0.1.0) (0.16.0)
+Requirement already satisfied: langchain-core<2,>=1.4.7 in ./.venv/lib/python3.13/site-packages (from langgraph<2,>=1.2.20->sczx-business==0.1.0) (1.7.6)
+Requirement already satisfied: langgraph-checkpoint<5.0.0,>=4.3.0 in ./.venv/lib/python3.13/site-packages (from langgraph<2,>=1.2.20->sczx-business==0.1.0) (4.3.1)
+Requirement already satisfied: langgraph-prebuilt<1.2.0,>=1.1.0 in ./.venv/lib/python3.13/site-packages (from langgraph<2,>=1.2.20->sczx-business==0.1.0) (1.1.1)
+Requirement already satisfied: langgraph-sdk<0.5.0,>=0.4.6 in ./.venv/lib/python3.13/site-packages (from langgraph<2,>=1.2.20->sczx-business==0.1.0) (0.4.14)
+Requirement already satisfied: xxhash>=3.5.0 in ./.venv/lib/python3.13/site-packages (from langgraph<2,>=1.2.20->sczx-business==0.1.0) (4.0.2)
+Requirement already satisfied: jsonpatch>=1.33.0 in ./.venv/lib/python3.13/site-packages (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (1.44)
+Requirement already satisfied: langchain-protocol>=0.0.20 in ./.venv/lib/python3.13/site-packages (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (0.0.21)
+Requirement already satisfied: langsmith<1.0.0,>=0.14.9 in ./.venv/lib/python3.13/site-packages (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (0.14.17)
+Requirement already satisfied: packaging>=23.2.0 in ./.venv/lib/python3.13/site-packages (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (26.3)
+Requirement already satisfied: pyyaml>=5.3.0 in ./.venv/lib/python3.13/site-packages (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (6.0.3)
+Requirement already satisfied: tenacity!=8.4.0,>=8.1.0 in ./.venv/lib/python3.13/site-packages (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (9.2.1)
+Requirement already satisfied: uuid-utils>=0.12.0 in ./.venv/lib/python3.13/site-packages (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (0.19.0)
+Requirement already satisfied: ormsgpack>=1.12.0 in ./.venv/lib/python3.13/site-packages (from langgraph-checkpoint<5.0.0,>=4.3.0->langgraph<2,>=1.2.20->sczx-business==0.1.0) (1.13.1)
+Requirement already satisfied: orjson>=3.11.5 in ./.venv/lib/python3.13/site-packages (from langgraph-sdk<0.5.0,>=0.4.6->langgraph<2,>=1.2.20->sczx-business==0.1.0) (3.13.0)
+Requirement already satisfied: websockets>=14 in ./.venv/lib/python3.13/site-packages (from langgraph-sdk<0.5.0,>=0.4.6->langgraph<2,>=1.2.20->sczx-business==0.1.0) (17.4)
+Requirement already satisfied: distro<2,>=1.7.0 in ./.venv/lib/python3.13/site-packages (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (1.9.0)
+Requirement already satisfied: httpx2<3,>=2 in ./.venv/lib/python3.13/site-packages (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (2.16.0)
+Requirement already satisfied: requests-toolbelt>=1.0.0 in ./.venv/lib/python3.13/site-packages (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (1.0.0)
+Requirement already satisfied: requests>=2.0.0 in ./.venv/lib/python3.13/site-packages (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (2.34.2)
+Requirement already satisfied: sniffio in ./.venv/lib/python3.13/site-packages (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (1.3.1)
+Requirement already satisfied: zstandard>=0.23.0 in ./.venv/lib/python3.13/site-packages (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (0.25.0)
+Requirement already satisfied: httpcore2==2.16.0 in ./.venv/lib/python3.13/site-packages (from httpx2<3,>=2->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (2.16.0)
+Requirement already satisfied: truststore>=0.10 in ./.venv/lib/python3.13/site-packages (from httpx2<3,>=2->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (0.10.5)
+Requirement already satisfied: annotated-types>=0.6.0 in ./.venv/lib/python3.13/site-packages (from pydantic>=2.9.0->fastapi<1,>=0.115->sczx-business==0.1.0) (0.8.0)
+Requirement already satisfied: pydantic-core==2.50.4 in ./.venv/lib/python3.13/site-packages (from pydantic>=2.9.0->fastapi<1,>=0.115->sczx-business==0.1.0) (2.50.4)
+Requirement already satisfied: lxml>=3.1.0 in ./.venv/lib/python3.13/site-packages (from python-docx<2,>=1.2->sczx-business==0.1.0) (6.1.3)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./.venv/lib/python3.13/site-packages (from sympy<2,>=1.13->sczx-business==0.1.0) (1.3.0)
+Requirement already satisfied: click>=7.0 in ./.venv/lib/python3.13/site-packages (from uvicorn<1,>=0.30->sczx-business==0.1.0) (8.5.1)
+Requirement already satisfied: jsonpointer>=3.8 in ./.venv/lib/python3.13/site-packages (from jsonpatch>=1.33.0->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (3.10)
+Requirement already satisfied: charset_normalizer<4,>=2 in ./.venv/lib/python3.13/site-packages (from requests>=2.0.0->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (3.5.2)
+Requirement already satisfied: urllib3<3,>=1.26 in ./.venv/lib/python3.13/site-packages (from requests>=2.0.0->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0) (2.8.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.venv/lib/python3.13/site-packages (from Mako->alembic<2,>=1.13->sczx-business==0.1.0) (3.0.4)
+Building wheels for collected packages: sczx-business
+  Building editable for sczx-business (pyproject.toml): started
+  Building editable for sczx-business (pyproject.toml): finished with status 'done'
+  Created wheel for sczx-business: filename=sczx_business-0.1.0-0.editable-py3-none-any.whl size=2887 sha256=b61cb1eb9f6f858de67ae643fbeeb647da0e9bbcef720d96a1bcb478e6422c10
+  Stored in directory: /tmp/pip-ephem-wheel-cache-aq4tb8t_/wheels/b6/a7/d1/4915d09e55073b69a510dfed68c097f550eb637ca8910f678e
+Successfully built sczx-business
+Installing collected packages: sczx-business
+Successfully installed sczx-business-0.1.0
+
+added 99 packages in 4s
+
+25 packages are looking for funding
+  run `npm fund` for details
+
+> shicheng-zhixue@0.3.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 2903 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                0.41 kB │ gzip:   0.30 kB
+dist/sw.js                                                     1.38 kB
+dist/assets/geist-cyrillic-ext-wght-normal-DjL33-gN.woff2      7.42 kB
+dist/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2        8.00 kB
+dist/assets/geist-cyrillic-wght-normal-BEAKL7Jp.woff2         15.08 kB
+dist/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2        16.51 kB
+dist/assets/geist-latin-wght-normal-BgDaEnEv.woff2            29.40 kB
+dist/assets/index-BY5kvk8B.css                               154.94 kB │ gzip:  30.14 kB
+dist/assets/index-CVdrktue.js                              1,082.24 kB │ gzip: 357.26 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.62s
+frontend build inputs recorded; no private runtime configuration included
+本地初始化完成；演示账号保存在 /root/Baxxhy/zhiwei/sczx/backend-business/var/local/accounts.json
+安装完成。运行 ./start-local.sh；账号见 backend-business/var/local/accounts.json。

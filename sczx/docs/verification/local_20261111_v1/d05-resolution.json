@@ -1,0 +1,48 @@
+{
+  "at": "2026-11-11T13:33:12.490820+00:00",
+  "authorization": "用户明确批准，仅可逆整理这6个测试文件",
+  "files": [
+    {
+      "from": "/tmp/sczx-uploads/5a1cc8293c3a43de869214497420514d",
+      "to": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/tests/retained-misplaced-uploads/5a1cc8293c3a43de869214497420514d",
+      "bytes": 68,
+      "sha256": "6dbe4d08b0839a126878e4822c881cf734ed3fac0131233afbb8ea0134db8abd"
+    },
+    {
+      "from": "/tmp/sczx-uploads/5c71c61e08ea40ac9c90b0d65c04a1fa",
+      "to": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/tests/retained-misplaced-uploads/5c71c61e08ea40ac9c90b0d65c04a1fa",
+      "bytes": 68,
+      "sha256": "b1eb33a905010229fa525e4b61acd41b2955b0aac71794c31802a26ef2b4458b"
+    },
+    {
+      "from": "/tmp/sczx-uploads/7bd27d8595b748a1b9c0bebe338d4197",
+      "to": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/tests/retained-misplaced-uploads/7bd27d8595b748a1b9c0bebe338d4197",
+      "bytes": 20,
+      "sha256": "f1f0b0b2377061ce9956ce7821700c0bcc6bb447f1864548a200f83ef741c162"
+    },
+    {
+      "from": "/tmp/sczx-uploads/9e5006af26994f8b82eaf1ec5ac54104",
+      "to": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/tests/retained-misplaced-uploads/9e5006af26994f8b82eaf1ec5ac54104",
+      "bytes": 68,
+      "sha256": "b1eb33a905010229fa525e4b61acd41b2955b0aac71794c31802a26ef2b4458b"
+    },
+    {
+      "from": "/tmp/sczx-uploads/aef86ae01dc447f7b09791ee50715bce",
+      "to": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/tests/retained-misplaced-uploads/aef86ae01dc447f7b09791ee50715bce",
+      "bytes": 20,
+      "sha256": "f1f0b0b2377061ce9956ce7821700c0bcc6bb447f1864548a200f83ef741c162"
+    },
+    {
+      "from": "/tmp/sczx-uploads/f2588cff506d44f39ddcc1dd975fcd34",
+      "to": "/root/Baxxhy/zhiwei/sczx/backend-business/var/final_20261111/tests/retained-misplaced-uploads/f2588cff506d44f39ddcc1dd975fcd34",
+      "bytes": 68,
+      "sha256": "6dbe4d08b0839a126878e4822c881cf734ed3fac0131233afbb8ea0134db8abd"
+    }
+  ],
+  "status": "completed",
+  "all82OriginalBytesUnchanged": true,
+  "allFormalRowsUnchanged": true,
+  "filesDeleted": 0,
+  "formalReferences": 0,
+  "rollback": "逐项核对目标摘要，原路径不存在时移回；只处理本清单6文件，不覆盖已有文件"
+}

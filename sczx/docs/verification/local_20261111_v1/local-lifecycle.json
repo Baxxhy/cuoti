@@ -1,0 +1,106 @@
+{
+  "at": 1794404664.7589276,
+  "checks": [
+    {
+      "command": "start",
+      "seconds": 1.049,
+      "output": "打开 http://127.0.0.1:8099；账号见 /root/Baxxhy/zhiwei/sczx/backend-business/var/local/accounts.json"
+    },
+    {
+      "command": "stop",
+      "seconds": 0.683,
+      "output": "本地网页与专用MySQL已停止；所有数据保留。"
+    },
+    {
+      "command": "start",
+      "seconds": 6.723,
+      "output": "打开 http://127.0.0.1:8099；账号见 /root/Baxxhy/zhiwei/sczx/backend-business/var/local/accounts.json"
+    },
+    {
+      "command": "backup",
+      "seconds": 3.989,
+      "output": "{\"backup\": \"/root/Baxxhy/zhiwei/sczx/backend-business/var/local/backups/local-90d1e177ffc0\", \"verified\": true, \"tables\": 52, \"files\": 6}"
+    },
+    {
+      "command": "restore --archive /root/Baxxhy/zhiwei/sczx/backend-business/var/local/backups/local-90d1e177ffc0",
+      "seconds": 24.635,
+      "output": "已恢复到新的本地库和上传目录，原库及原文件保留。"
+    },
+    {
+      "command": "doctor",
+      "seconds": 0.432,
+      "output": "{\"python\": \"3.13.9\", \"mysqlBinary\": true, \"mysqlOwnedAndReady\": true, \"frontend\": true, \"codexBinary\": true, \"url\": \"http://127.0.0.1:8099\", \"accountsFile\": \"/root/Baxxhy/zhiwei/sczx/backend-business/var/local/accounts.json\"}"
+    }
+  ],
+  "unitBeforeAndAfter": {
+    "id": "unit-equation",
+    "title": "一元一次方程",
+    "lessons": [
+      {
+        "lessonId": "lesson-equation",
+        "title": "等式性质",
+        "taskId": "task-6daf2f5fb78d3187a556ea93a19e3a3c",
+        "versionId": "lessonversion-05548bc775c24080ab030dfee3",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已反馈",
+        "submittedAt": "2026-11-11T10:35:19Z",
+        "target": "/learn?task=task-6daf2f5fb78d3187a556ea93a19e3a3c"
+      },
+      {
+        "lessonId": "lesson-simple",
+        "title": "解简单的一元一次方程",
+        "taskId": "task-23f755e95c3856171c610b89803bd9d2",
+        "versionId": "lessonversion-a810db605e16465cb5f2c6940b",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已提交",
+        "submittedAt": "2026-11-11T11:05:12Z",
+        "target": "/learn?task=task-23f755e95c3856171c610b89803bd9d2"
+      },
+      {
+        "lessonId": "lesson-718041ce19ae47888e2ff95e33a554e7",
+        "title": "含括号与分母的方程",
+        "taskId": "task-93bc9542410cf0a716e8b866cc4133af",
+        "versionId": "lessonversion-4af3a0509e04454ba26be50f2c",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已提交",
+        "submittedAt": "2026-11-11T10:35:21Z",
+        "target": "/learn?task=task-93bc9542410cf0a716e8b866cc4133af"
+      },
+      {
+        "lessonId": "lesson-application",
+        "title": "用方程解决生活问题",
+        "taskId": "task-71e3a8b8603e7dfc87120886dab57859",
+        "versionId": "lessonversion-1b24b50fc3b44e0b836497e083",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已提交",
+        "submittedAt": "2026-11-11T10:35:21Z",
+        "target": "/learn?task=task-71e3a8b8603e7dfc87120886dab57859"
+      },
+      {
+        "lessonId": "lesson-285e7f380c074134b8d35a3b577b10d3",
+        "title": "一元一次方程单元复习",
+        "taskId": "task-518189bfa35d647fdb40d5fbc520a545",
+        "versionId": "lessonversion-2263f9dccbc84a608f76719979",
+        "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+        "completed": true,
+        "readOnly": false,
+        "status": "已提交",
+        "submittedAt": "2026-11-11T10:35:22Z",
+        "target": "/learn?task=task-518189bfa35d647fdb40d5fbc520a545"
+      }
+    ],
+    "completed": 5,
+    "assigned": 5,
+    "total": 5,
+    "scope": "本人已分配任务；完成不等于独立正确"
+  },
+  "passed": true
+}

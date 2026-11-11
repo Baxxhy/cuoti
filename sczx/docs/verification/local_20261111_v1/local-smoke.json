@@ -1,0 +1,497 @@
+{
+  "at": 1794405242.1845582,
+  "checks": [
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/teaching/classes",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/insights?classId=class-cae37285faf441eca5e6293dfdb48f9c",
+      "status": 200,
+      "count": 9
+    },
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/groups",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/community",
+      "status": 200,
+      "count": 3
+    },
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/live",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/exams/papers",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/exams/bank",
+      "status": 200,
+      "count": 2
+    },
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/exams",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "teacher",
+      "method": "GET",
+      "path": "/preparation/lesson-simple/export-options",
+      "status": 200,
+      "count": 3
+    },
+    {
+      "role": "student",
+      "method": "GET",
+      "path": "/curriculum/courses",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "student",
+      "method": "GET",
+      "path": "/memory",
+      "status": 200,
+      "count": 10
+    },
+    {
+      "role": "student",
+      "method": "GET",
+      "path": "/wrongs",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "role": "student",
+      "method": "GET",
+      "path": "/exams",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "student",
+      "method": "GET",
+      "path": "/live",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "student",
+      "method": "GET",
+      "path": "/teaching/messages",
+      "status": 200,
+      "count": 9
+    },
+    {
+      "role": "student",
+      "method": "GET",
+      "path": "/offline/tasks",
+      "status": 200,
+      "count": 7
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/library/materials",
+      "status": 200,
+      "count": 3
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/library/cases",
+      "status": 200,
+      "count": 4
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/curriculum/courses",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/support",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "role": "admin",
+      "method": "GET",
+      "path": "/ai/capabilities",
+      "status": 200,
+      "count": 7
+    }
+  ],
+  "exportDocx": true,
+  "newIssueReplyId": "issue-f8607371975a4c39b5cd410a0dfe9715",
+  "crossTeacherDenied": 404,
+  "actualLocalModel": {
+    "seconds": 12.06,
+    "job": {
+      "id": "job-cb906dd1d2af46afb0e09d5aca955ad2",
+      "mode": null,
+      "wrongId": null,
+      "phase": null,
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-8576a18802a44974ae9a04225a2c8efa",
+      "fileId": null,
+      "helpRecordId": "help-cb906dd1d2af46afb0e09d5aca955ad2",
+      "question": 0,
+      "blockId": "simple-practice",
+      "strategy": "hint",
+      "prompt": "我想只改变等式左边，请围绕当前题给一步提示，不给答案。",
+      "parentJobId": null,
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "想想要让左边的“+7”抵消，应对等式两边同时做什么运算？",
+        "steps": [
+          "回想等式性质：为了保持相等，左右两边要进行相同的运算。"
+        ],
+        "title": "消去加上的数",
+        "sources": [],
+        "question": "你会选择对等式两边同时加几或减几来消去左边的7？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 11037,
+          "modelCalls": 1,
+          "contextChars": 5113,
+          "historyTurns": 0
+        },
+        "mathClaims": [],
+        "needCoverage": {
+          "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+          "missing": [],
+          "required": []
+        },
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "prerequisiteId": "kp-equality",
+        "representation": "question",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "retryCount": 0,
+      "createdAt": "2026-11-11T13:54:07Z",
+      "updatedAt": "2026-11-11T13:54:18Z",
+      "input": {
+        "scope": {
+          "taskId": "task-23f755e95c3856171c610b89803bd9d2",
+          "classId": "class-cae37285faf441eca5e6293dfdb48f9c",
+          "lessonId": "lesson-simple",
+          "studentId": "account-3b24226dba5d424aa7d614681d879c8e",
+          "questionId": "simple-p1",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "lessonVersionId": "lessonversion-a810db605e16465cb5f2c6940b"
+        },
+        "prompt": "我想只改变等式左边，请围绕当前题给一步提示，不给答案。",
+        "blockId": "simple-practice",
+        "context": {
+          "block": {
+            "id": "simple-practice",
+            "type": "practice",
+            "title": "活动：比较、求解并验算",
+            "content": "1. 出示题目simple-p1、simple-p2，学生独立写出每步对等式两边所作的运算；检查是否保持等式及是否满足非零条件。\n2. 学生将所得解代回各自原方程，计算左右两边并比较；检查是否相等。",
+            "questionIds": [
+              "simple-p1",
+              "simple-p2"
+            ]
+          },
+          "lesson": {
+            "id": "lesson-simple",
+            "goal": "能说明每步等式变形的共同运算及依据，解加减、乘除和两步方程，并代回原式验算。 写出两边共同运算的依据。",
+            "grade": "七年级",
+            "title": "解简单的一元一次方程",
+            "versionId": "lessonversion-a810db605e16465cb5f2c6940b"
+          },
+          "question": {
+            "id": "simple-p1",
+            "kind": "practice",
+            "prompt": "求x，并说明消去7的方法。",
+            "equation": "x+7=12",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ]
+          },
+          "knowledge": [
+            {
+              "id": "kp-linear-simple",
+              "name": "简单一元一次方程"
+            }
+          ],
+          "observation": "",
+          "prerequisites": [
+            {
+              "id": "kp-equality",
+              "name": "等式性质"
+            }
+          ],
+          "teachingCases": [
+            {
+              "id": "case-8f4074b5c5f64b059e00f4fe9ca3ef7b",
+              "title": "项目自编：例题：消去减去的数",
+              "source": "用户单人复核的项目自编单元",
+              "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+              "version": 1,
+              "versionId": "version-c46da458320b40ac8b41ed2dc801715f",
+              "references": [
+                {
+                  "label": "段落 1",
+                  "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                  "author": "项目自编、AI辅助整理",
+                  "source": "用户单人复核的单元草案；非真实教师课堂材料",
+                  "unitId": "unit-8c70c810dceaec0a43083e1fcf54da8b",
+                  "sourceUrl": "",
+                  "materialId": "material-3d1ac1290daf4a96a07cea12602738a",
+                  "materialTitle": "项目自编单元来源：等式性质"
+                }
+              ]
+            },
+            {
+              "id": "case-a0398d41b97d45708825121e1511caf9",
+              "title": "交付验收：共同运算追问",
+              "source": "交付验收自编共同运算材料",
+              "content": "出示x−3=5，先问两边同时进行什么运算，再写等式并代回。",
+              "version": 1,
+              "versionId": "version-0a891671d04d4f52b4f302747fbbf210",
+              "references": [
+                {
+                  "label": "段落 1",
+                  "quote": "共同运算核对",
+                  "author": "项目工程验收",
+                  "source": "合成示例，非真实课堂材料",
+                  "unitId": "unit-f2a1996cc19c0305dc3acc674efed9f3",
+                  "sourceUrl": "",
+                  "materialId": "material-99ba86c514004973961fea56ab8d76d",
+                  "materialTitle": "交付验收自编共同运算材料"
+                },
+                {
+                  "label": "段落 2",
+                  "quote": "出示x−3=5。问：如果左边加3，右边应怎样变化？让学生写出x−3+3=5+3，再得x=8，代回8−3=5。",
+                  "author": "项目工程验收",
+                  "source": "合成示例，非真实课堂材料",
+                  "unitId": "unit-a1c1296dabdc20d00b8f1ee6d4365bff",
+                  "sourceUrl": "",
+                  "materialId": "material-99ba86c514004973961fea56ab8d76d",
+                  "materialTitle": "交付验收自编共同运算材料"
+                }
+              ]
+            },
+            {
+              "id": "case-balance",
+              "title": "天平与等式性质",
+              "source": "待补充核对的教学示例",
+              "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+              "version": 1,
+              "versionId": "version-6c4af288f6a349c6b9e5e29ba11d3f75",
+              "references": []
+            }
+          ],
+          "learningMemory": [
+            {
+              "helped": false,
+              "outcome": "teacher_feedback",
+              "summary": "已核对原始作答与过程。；已核对原始作答与过程。",
+              "relation": "一层前置知识",
+              "sourceId": "record-3a6f32feb84a43c38ebb6410525b9d96",
+              "evidenceId": "feedback:record-3a6f32feb84a43c38ebb6410525b9d96:2026-11-11T10:38:01Z:kp-equality",
+              "occurredAt": "2026-11-11T10:38:01Z",
+              "sourceType": "teacher_feedback",
+              "knowledgeId": "kp-equality",
+              "verification": "unverified",
+              "teacherConfirmed": true,
+              "knowledgeCorrectionId": null
+            },
+            {
+              "helped": false,
+              "outcome": "independent_correct",
+              "summary": "两边进行相同运算，除数非零，代回核对。",
+              "relation": "一层前置知识",
+              "sourceId": "attempt-138eee295d814a72bff320f899a0d938",
+              "evidenceId": "attempt:attempt-138eee295d814a72bff320f899a0d938:kp-equality",
+              "occurredAt": "2026-11-11T11:02:34Z",
+              "sourceType": "attempt",
+              "knowledgeId": "kp-equality",
+              "verification": "verified_correct",
+              "teacherConfirmed": false,
+              "knowledgeCorrectionId": null
+            },
+            {
+              "helped": false,
+              "outcome": "independent_correct",
+              "summary": "两边进行相同运算，除数非零，代回核对。",
+              "relation": "一层前置知识",
+              "sourceId": "attempt-7c7c6089e67f479b8a8abfe2202398ec",
+              "evidenceId": "attempt:attempt-7c7c6089e67f479b8a8abfe2202398ec:kp-equality",
+              "occurredAt": "2026-11-11T11:02:33Z",
+              "sourceType": "attempt",
+              "knowledgeId": "kp-equality",
+              "verification": "verified_correct",
+              "teacherConfirmed": false,
+              "knowledgeCorrectionId": null
+            },
+            {
+              "helped": false,
+              "outcome": "independent_correct",
+              "summary": "两边进行相同运算，除数非零，代回核对。",
+              "relation": "一层前置知识",
+              "sourceId": "attempt-6544a806e70547d78bd8dffcfb701de6",
+              "evidenceId": "attempt:attempt-6544a806e70547d78bd8dffcfb701de6:kp-equality",
+              "occurredAt": "2026-11-11T11:02:32Z",
+              "sourceType": "attempt",
+              "knowledgeId": "kp-equality",
+              "verification": "verified_correct",
+              "teacherConfirmed": false,
+              "knowledgeCorrectionId": null
+            },
+            {
+              "helped": false,
+              "outcome": "independent_correct",
+              "summary": "两边进行相同运算，除数非零，代回核对。",
+              "relation": "一层前置知识",
+              "sourceId": "attempt-c16b7068fe0846008b416a75454456f4",
+              "evidenceId": "attempt:attempt-c16b7068fe0846008b416a75454456f4:kp-equality",
+              "occurredAt": "2026-11-11T11:02:31Z",
+              "sourceType": "attempt",
+              "knowledgeId": "kp-equality",
+              "verification": "verified_correct",
+              "teacherConfirmed": false,
+              "knowledgeCorrectionId": null
+            },
+            {
+              "helped": false,
+              "outcome": "independent_correct",
+              "summary": "两边进行相同运算，除数非零，代回核对。",
+              "relation": "一层前置知识",
+              "sourceId": "attempt-1d1fbb11bf154fc3935283d3a30c11ca",
+              "evidenceId": "attempt:attempt-1d1fbb11bf154fc3935283d3a30c11ca:kp-equality",
+              "occurredAt": "2026-11-11T11:01:06Z",
+              "sourceType": "attempt",
+              "knowledgeId": "kp-equality",
+              "verification": "verified_correct",
+              "teacherConfirmed": false,
+              "knowledgeCorrectionId": null
+            }
+          ]
+        },
+        "history": [],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": 0,
+        "strategy": "hint",
+        "confirmed": false,
+        "parentJobId": null,
+        "recognizedText": "",
+        "selectedStrategy": "hint",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-5d91e2d80d08497d8602601ae5b1808c",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "想想要让左边的“+7”抵消，应对等式两边同时做什么运算？",
+            "steps": [
+              "回想等式性质：为了保持相等，左右两边要进行相同的运算。"
+            ],
+            "title": "消去加上的数",
+            "sources": [],
+            "question": "你会选择对等式两边同时加几或减几来消去左边的7？",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 11037,
+              "modelCalls": 1,
+              "contextChars": 5113,
+              "historyTurns": 0
+            },
+            "mathClaims": [],
+            "needCoverage": {
+              "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+              "missing": [],
+              "required": []
+            },
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "prerequisiteId": "kp-equality",
+            "representation": "question",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-11T13:54:07Z",
+          "endedAt": "2026-11-11T13:54:18Z"
+        }
+      ]
+    }
+  },
+  "passed": true
+}

@@ -1,0 +1,200 @@
+{
+  "checks": [
+    "online-download-one-authorized-package/offline-save-IDB",
+    "actual-browser-close-reopen-offline-shell/unlock/restored-original-answer-and-reason",
+    "online-identity-CAS-sync/server-reread/repeated-sync-idempotent",
+    "online-learning-displays-synced-answer-and-program-check"
+  ],
+  "screens": [
+    {
+      "name": "offline-reader",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "offline-reader",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "offline-reader",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "serviceWorker": {
+    "controller": true,
+    "caches": [
+      "sczx-shell-e9aaa252ceaa2a82"
+    ],
+    "apiCached": false
+  },
+  "encryptedStorage": [
+    {
+      "schema": 1,
+      "encrypted": true,
+      "bytes": 5069,
+      "keys": [
+        "schema",
+        "salt",
+        "iv",
+        "ciphertext"
+      ]
+    }
+  ],
+  "serverDraft": {
+    "schema": 1,
+    "userId": "account-3b24226dba5d424aa7d614681d879c8e",
+    "taskId": "task-23f755e95c3856171c610b89803bd9d2",
+    "lessonId": "lesson-simple",
+    "title": "解简单的一元一次方程",
+    "publishedVersionId": "lessonversion-a810db605e16465cb5f2c6940b",
+    "versionId": "eb7606e45de1649529203a5406de4faf946810a0efd5c27dfe00ee911d21bf60",
+    "goal": "能说明每步等式变形的共同运算及依据，解加减、乘除和两步方程，并代回原式验算。 写出两边共同运算的依据。",
+    "blocks": [
+      {
+        "id": "simple-explain-0",
+        "title": "确定未知量与运算顺序",
+        "type": "explanation",
+        "content": "1. 出示一元一次方程的定义，学生指出未知数及其最高次数；检查能否识别一个未知数且最高次数为1。\n2. 出示本课方程，学生说明未知项外的运算，并写出等式两边共同进行的运算；检查变形前后是否仍为等式。"
+      },
+      {
+        "id": "simple-explain-1",
+        "title": "系数与非零条件",
+        "type": "explanation",
+        "content": "1. 出示4x=20，学生写出两边同时除以4，并说明4不为0；检查是否写出除数非零条件。\n2. 出示x/(-3)=4，学生写出两边同时乘以-3；检查是否对等式两边作相同运算，并核对所得式。"
+      },
+      {
+        "id": "simple-explain-2",
+        "title": "代回原式",
+        "type": "explanation",
+        "content": "1. 出示候选解和原方程，学生把候选值代入原式，分别计算等式左右两边；检查计算是否对应原方程。\n2. 学生比较左右两边是否相等，并说明代回只能核对候选值是否满足原式。"
+      },
+      {
+        "id": "simple-example-0",
+        "title": "例题：先加减后乘除",
+        "type": "example",
+        "content": "1. 出示2x+3=11，学生写出两边同时减3，得到2x=8；检查是否两边均减3。\n2. 学生写出两边同时除以非零数2，得到x=4；检查是否写明2不为0。\n3. 学生把x=4代回原式，计算并比较两边；检查2×4+3是否等于11。"
+      },
+      {
+        "id": "simple-example-1",
+        "title": "例题：负数系数",
+        "type": "example",
+        "content": "1. 出示-2x+5=13，学生写出两边同时减5，得到-2x=8；检查是否两边均减5。\n2. 学生写出两边同时除以-2，得到x=-4，并说明除数-2不为0；检查运算和条件。\n3. 学生把x=-4代回原式，计算并比较两边；检查-2×(-4)+5是否等于13。"
+      },
+      {
+        "id": "simple-practice",
+        "title": "活动：比较、求解并验算",
+        "type": "practice",
+        "content": "1. 出示题目simple-p1、simple-p2，学生独立写出每步对等式两边所作的运算；检查是否保持等式及是否满足非零条件。\n2. 学生将所得解代回各自原方程，计算左右两边并比较；检查是否相等。",
+        "questionIds": [
+          "simple-p1",
+          "simple-p2"
+        ]
+      },
+      {
+        "id": "simple-check",
+        "title": "独立检查",
+        "type": "check",
+        "content": "1. 出示题目simple-c1、simple-c2，学生独立写出两边共同运算、求解步骤和非零条件；检查推理是否逐步保持等式。\n2. 学生将所得解代回原方程，计算左右两边并比较；检查是否相等。",
+        "questionIds": [
+          "simple-c1",
+          "simple-c2"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "simple-p1",
+        "kind": "practice",
+        "prompt": "求x，并说明消去7的方法。",
+        "equation": "x+7=12",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "index": 0
+      },
+      {
+        "id": "simple-p2",
+        "kind": "practice",
+        "prompt": "求x，说明同除条件。",
+        "equation": "4x=20",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "index": 1
+      },
+      {
+        "id": "simple-c1",
+        "kind": "check",
+        "prompt": "求x并验算。",
+        "equation": "x/(-3)=4",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "index": 2
+      },
+      {
+        "id": "simple-c2",
+        "kind": "check",
+        "prompt": "求x，写出两步共同运算。",
+        "equation": "-2x+5=13",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "index": 3
+      },
+      {
+        "id": "simple-r1",
+        "kind": "replacement",
+        "prompt": "求x并代回。",
+        "equation": "x/5+2=1",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "index": 4
+      },
+      {
+        "id": "simple-r2",
+        "kind": "replacement",
+        "prompt": "求x并解释。",
+        "equation": "3x-4=11",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "index": 5
+      }
+    ],
+    "knowledgeIds": [
+      "kp-linear-simple"
+    ],
+    "downloadedAt": "2026-11-11T14:02:00.449607Z",
+    "offlineUntil": "2026-11-14T14:02:00.449630Z",
+    "baseRevision": "0e98e04ae0cd4e329b3148db6137326e0673805ab92ff653526bc3ecb452f867",
+    "drafts": {
+      "questions": {
+        "simple-p1": {
+          "answer": "5",
+          "reason": "两边同时减7得到5，代回5+7=12。",
+          "helped": true
+        },
+        "simple-p2": {},
+        "simple-c1": {},
+        "simple-c2": {},
+        "simple-r1": {},
+        "simple-r2": {}
+      },
+      "lessonPosition": {
+        "blockId": "simple-practice",
+        "question": null
+      }
+    },
+    "readOnly": false,
+    "contentHash": "1e2f6779b577de9642accd33f03ac3eb92abad6c8dc4fd8f5a7fd43a0bd6026d"
+  },
+  "passedThroughSync": true,
+  "consoleErrors": []
+}

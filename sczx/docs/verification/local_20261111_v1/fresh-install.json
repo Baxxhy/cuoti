@@ -1,0 +1,24 @@
+{
+  "roles": [
+    {
+      "role": "admin",
+      "username": "admin",
+      "tasks": 0
+    },
+    {
+      "role": "teacher",
+      "username": "teacher",
+      "tasks": 5
+    },
+    {
+      "role": "student",
+      "username": "student",
+      "tasks": 5
+    }
+  ],
+  "freshDatabase": true,
+  "unitLessons": 5,
+  "repeatInitPreservesAccounts": true,
+  "repeatStartPassed": true,
+  "passed": true
+}

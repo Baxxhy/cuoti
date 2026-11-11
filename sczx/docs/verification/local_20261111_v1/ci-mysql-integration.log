@@ -1,0 +1,763 @@
+﻿2026-11-11T14:02:52.2683881Z Current runner version: '2.338.2'
+2026-11-11T14:02:52.2711428Z ##[group]Runner Image Provisioner
+2026-11-11T14:02:52.2712505Z Hosted Compute Agent
+2026-11-11T14:02:52.2713127Z Version: 20261028.624
+2026-11-11T14:02:52.2713746Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-11T14:02:52.2714564Z Build Date: 2026-10-28T21:51:42Z
+2026-11-11T14:02:52.2715625Z Worker ID: {d466601b-1814-4bb3-a6f6-1c5fb4eb098a}
+2026-11-11T14:02:52.2716526Z Region: westus2
+2026-11-11T14:02:52.2717146Z Cloud: Azure
+2026-11-11T14:02:52.2717689Z ##[endgroup]
+2026-11-11T14:02:52.2719429Z ##[group]Operating System
+2026-11-11T14:02:52.2720114Z Ubuntu
+2026-11-11T14:02:52.2720702Z 26.04.1
+2026-11-11T14:02:52.2721270Z LTS
+2026-11-11T14:02:52.2721781Z ##[endgroup]
+2026-11-11T14:02:52.2722377Z ##[group]Runner Image
+2026-11-11T14:02:52.2722988Z Image: ubuntu-26.04
+2026-11-11T14:02:52.2723984Z Version: 20261101.186.1
+2026-11-11T14:02:52.2725664Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-11T14:02:52.2727332Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+2026-11-11T14:02:52.2728309Z ##[endgroup]
+2026-11-11T14:02:52.2729637Z ##[group]GITHUB_TOKEN Permissions
+2026-11-11T14:02:52.2732106Z Contents: read
+2026-11-11T14:02:52.2732717Z Metadata: read
+2026-11-11T14:02:52.2733385Z Packages: read
+2026-11-11T14:02:52.2733941Z ##[endgroup]
+2026-11-11T14:02:52.2736618Z Secret source: Actions
+2026-11-11T14:02:52.2737579Z Cache mode: write
+2026-11-11T14:02:52.2738616Z Prepare workflow directory
+2026-11-11T14:02:52.3388952Z Prepare all required actions
+2026-11-11T14:02:52.3443883Z Getting action download info
+2026-11-11T14:02:52.6940684Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-11T14:02:52.8379510Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-11T14:02:53.0411900Z Complete job name: mysql-integration
+2026-11-11T14:02:53.0983549Z ##[group]Checking docker version
+2026-11-11T14:02:53.0996706Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+2026-11-11T14:02:54.2578963Z '1.54'
+2026-11-11T14:02:54.2596299Z Docker daemon API version: '1.54'
+2026-11-11T14:02:54.2597454Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+2026-11-11T14:02:54.2827388Z '1.54'
+2026-11-11T14:02:54.2844588Z Docker client API version: '1.54'
+2026-11-11T14:02:54.2852557Z ##[endgroup]
+2026-11-11T14:02:54.2856320Z ##[group]Clean up resources from previous jobs
+2026-11-11T14:02:54.2862601Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=1b5e0a"
+2026-11-11T14:02:54.3042449Z ##[command]/usr/bin/docker network prune --force --filter "label=1b5e0a"
+2026-11-11T14:02:54.3252401Z ##[endgroup]
+2026-11-11T14:02:54.3253655Z ##[group]Create local container network
+2026-11-11T14:02:54.3266193Z ##[command]/usr/bin/docker network create --label 1b5e0a github_network_6166763ceace4c808ba9be5a319d479f
+2026-11-11T14:02:54.3779173Z 56efd28a5b5e76517d15f37a9c9aabbe01adf54cebf0919138cd01c685f59059
+2026-11-11T14:02:54.3815670Z ##[endgroup]
+2026-11-11T14:02:54.3851710Z ##[group]Starting mysql service container
+2026-11-11T14:02:54.3875001Z ##[command]/usr/bin/docker pull mysql:8.0
+2026-11-11T14:02:55.1807717Z 8.0: Pulling from library/mysql
+2026-11-11T14:02:55.4560262Z 6ef6c7b50a93: Pulling fs layer
+2026-11-11T14:02:55.4561205Z 96d30d9fbee8: Pulling fs layer
+2026-11-11T14:02:55.4564828Z e3e5d1ac74c1: Pulling fs layer
+2026-11-11T14:02:55.4565681Z 0d74d296605b: Pulling fs layer
+2026-11-11T14:02:55.4569497Z 297d04cfe470: Pulling fs layer
+2026-11-11T14:02:55.4569877Z 4c8a3e0d4e4b: Pulling fs layer
+2026-11-11T14:02:55.4570192Z a63160a5eda1: Pulling fs layer
+2026-11-11T14:02:55.4570681Z edf85873f64e: Pulling fs layer
+2026-11-11T14:02:55.4571098Z 7534d1db9f8d: Pulling fs layer
+2026-11-11T14:02:55.4571391Z 49ec2dab01d9: Pulling fs layer
+2026-11-11T14:02:55.4571672Z ab24264a27e9: Pulling fs layer
+2026-11-11T14:02:55.7095955Z 6ef6c7b50a93: Download complete
+2026-11-11T14:02:55.7104573Z 0d74d296605b: Download complete
+2026-11-11T14:02:55.7121295Z 96d30d9fbee8: Download complete
+2026-11-11T14:02:55.7123827Z e3e5d1ac74c1: Download complete
+2026-11-11T14:02:55.7127245Z 297d04cfe470: Download complete
+2026-11-11T14:02:55.7129656Z 4c8a3e0d4e4b: Download complete
+2026-11-11T14:02:55.7132838Z 7534d1db9f8d: Download complete
+2026-11-11T14:02:55.7144538Z ab24264a27e9: Download complete
+2026-11-11T14:02:55.9147494Z 796812c73292: Download complete
+2026-11-11T14:02:56.0113540Z a63160a5eda1: Download complete
+2026-11-11T14:02:56.0117393Z af166387641d: Download complete
+2026-11-11T14:02:56.0128530Z edf85873f64e: Download complete
+2026-11-11T14:02:56.3096666Z 49ec2dab01d9: Download complete
+2026-11-11T14:02:57.1108214Z 6ef6c7b50a93: Pull complete
+2026-11-11T14:02:57.1150299Z e3e5d1ac74c1: Pull complete
+2026-11-11T14:02:57.1220171Z edf85873f64e: Pull complete
+2026-11-11T14:02:57.2108854Z 0d74d296605b: Pull complete
+2026-11-11T14:02:57.2155240Z 297d04cfe470: Pull complete
+2026-11-11T14:02:57.2177775Z 4c8a3e0d4e4b: Pull complete
+2026-11-11T14:02:57.8135619Z a63160a5eda1: Pull complete
+2026-11-11T14:02:57.9136501Z 7534d1db9f8d: Pull complete
+2026-11-11T14:03:02.2673852Z 96d30d9fbee8: Pull complete
+2026-11-11T14:03:02.2687429Z ab24264a27e9: Pull complete
+2026-11-11T14:03:02.2701097Z 49ec2dab01d9: Pull complete
+2026-11-11T14:03:02.2705697Z Digest: sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b
+2026-11-11T14:03:02.2711002Z Status: Downloaded newer image for mysql:8.0
+2026-11-11T14:03:02.2734478Z docker.io/library/mysql:8.0
+2026-11-11T14:03:02.2806683Z ##[command]/usr/bin/docker create --name 61a60fc56c774f7797ecf753195fb986_mysql80_e29fcf --label 1b5e0a --network github_network_6166763ceace4c808ba9be5a319d479f --network-alias mysql -p 3306:3306 --health-cmd="mysqladmin ping -h localhost" --health-interval=10s --health-timeout=5s --health-retries=10 -e "MYSQL_ALLOW_EMPTY_PASSWORD=yes" -e "MYSQL_DATABASE=sczx_test_ci" -e GITHUB_ACTIONS=true -e CI=true mysql:8.0
+2026-11-11T14:03:04.2008243Z f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:03:04.2037971Z ##[command]/usr/bin/docker start f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:03:04.9522111Z f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:03:04.9552184Z ##[command]/usr/bin/docker ps --all --filter id=f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+2026-11-11T14:03:04.9822073Z f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8 Up Less than a second (health: starting)
+2026-11-11T14:03:04.9854236Z ##[command]/usr/bin/docker port f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:03:05.0030445Z 3306/tcp -> 0.0.0.0:3306
+2026-11-11T14:03:05.0030921Z 3306/tcp -> [::]:3306
+2026-11-11T14:03:05.0089799Z ##[endgroup]
+2026-11-11T14:03:05.0099669Z ##[group]Waiting for all services to be ready
+2026-11-11T14:03:05.0113221Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:03:05.0277824Z starting
+2026-11-11T14:03:05.0302361Z mysql service is starting, waiting 2 seconds before checking again.
+2026-11-11T14:03:07.0302799Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:03:07.0443103Z starting
+2026-11-11T14:03:07.0459401Z mysql service is starting, waiting 3 seconds before checking again.
+2026-11-11T14:03:10.9718487Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:03:10.9860810Z starting
+2026-11-11T14:03:10.9879712Z mysql service is starting, waiting 7 seconds before checking again.
+2026-11-11T14:03:18.6106624Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:03:18.6246526Z healthy
+2026-11-11T14:03:18.6267419Z mysql service is healthy.
+2026-11-11T14:03:18.6268382Z ##[endgroup]
+2026-11-11T14:03:18.6556427Z ##[group]Run actions/checkout@v4
+2026-11-11T14:03:18.6557042Z with:
+2026-11-11T14:03:18.6557256Z   repository: Baxxhy/sczx
+2026-11-11T14:03:18.6559765Z   token: ***
+2026-11-11T14:03:18.6559983Z   ssh-strict: true
+2026-11-11T14:03:18.6560191Z   ssh-user: git
+2026-11-11T14:03:18.6560400Z   persist-credentials: true
+2026-11-11T14:03:18.6560641Z   clean: true
+2026-11-11T14:03:18.6560858Z   sparse-checkout-cone-mode: true
+2026-11-11T14:03:18.6561111Z   fetch-depth: 1
+2026-11-11T14:03:18.6561305Z   fetch-tags: false
+2026-11-11T14:03:18.6561523Z   show-progress: true
+2026-11-11T14:03:18.6561738Z   lfs: false
+2026-11-11T14:03:18.6561925Z   submodules: false
+2026-11-11T14:03:18.6562154Z   set-safe-directory: true
+2026-11-11T14:03:18.6562396Z   allow-unsafe-pr-checkout: false
+2026-11-11T14:03:18.6562825Z env:
+2026-11-11T14:03:18.6563122Z   SCZX_DATABASE_URL: mysql+pymysql://root@127.0.0.1:3306/sczx_test_ci
+2026-11-11T14:03:18.6563508Z   SCZX_RUN_MYSQL_TESTS: 1
+2026-11-11T14:03:18.6563787Z   PYTHONPATH: backend-business
+2026-11-11T14:03:18.6564077Z   SCZX_STORAGE_DIR: /tmp/sczx-43034697984-mysql-uploads
+2026-11-11T14:03:18.6564376Z ##[endgroup]
+2026-11-11T14:03:18.9376218Z Syncing repository: Baxxhy/sczx
+2026-11-11T14:03:18.9378286Z ##[group]Getting Git version info
+2026-11-11T14:03:18.9378932Z Working directory is '/home/runner/work/sczx/sczx'
+2026-11-11T14:03:18.9379934Z [command]/usr/bin/git version
+2026-11-11T14:03:18.9380400Z git version 2.56.0
+2026-11-11T14:03:18.9396929Z ##[endgroup]
+2026-11-11T14:03:18.9413558Z Temporarily overriding HOME='/home/runner/work/_temp/c97b92f5-a3c1-46c7-854a-ad0932aaa250' before making global git config changes
+2026-11-11T14:03:18.9415562Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T14:03:18.9419819Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sczx/sczx
+2026-11-11T14:03:18.9485911Z Deleting the contents of '/home/runner/work/sczx/sczx'
+2026-11-11T14:03:18.9490370Z ##[group]Initializing the repository
+2026-11-11T14:03:18.9496141Z [command]/usr/bin/git init /home/runner/work/sczx/sczx
+2026-11-11T14:03:18.9611997Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-11T14:03:18.9613144Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-11T14:03:18.9615176Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-11T14:03:18.9616261Z hint: call:
+2026-11-11T14:03:18.9616842Z hint:
+2026-11-11T14:03:18.9617376Z hint: 	git config --global init.defaultBranch <name>
+2026-11-11T14:03:18.9617762Z hint:
+2026-11-11T14:03:18.9618072Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-11T14:03:18.9618619Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-11T14:03:18.9619023Z hint:
+2026-11-11T14:03:18.9619231Z hint: 	git branch -m <name>
+2026-11-11T14:03:18.9619472Z hint:
+2026-11-11T14:03:18.9620093Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-11T14:03:18.9627432Z Initialized empty Git repository in /home/runner/work/sczx/sczx/.git/
+2026-11-11T14:03:18.9640163Z [command]/usr/bin/git remote add origin https://github.com/Baxxhy/sczx
+2026-11-11T14:03:18.9716473Z ##[endgroup]
+2026-11-11T14:03:18.9717340Z ##[group]Disabling automatic garbage collection
+2026-11-11T14:03:18.9718100Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-11T14:03:18.9743473Z ##[endgroup]
+2026-11-11T14:03:18.9744174Z ##[group]Setting up auth
+2026-11-11T14:03:18.9753271Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T14:03:18.9788605Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T14:03:19.0290165Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T14:03:19.0329464Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T14:03:19.0610195Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T14:03:19.0647831Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T14:03:19.0921445Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-11T14:03:19.0962722Z ##[endgroup]
+2026-11-11T14:03:19.0971969Z ##[group]Fetching the repository
+2026-11-11T14:03:19.0972850Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9d02b049f5cd1a343dc8f3e4ecc3bd17272f1de1:refs/remotes/origin/main
+2026-11-11T14:03:21.6306473Z From https://github.com/Baxxhy/sczx
+2026-11-11T14:03:21.6307252Z  * [new ref]         9d02b049f5cd1a343dc8f3e4ecc3bd17272f1de1 -> origin/main
+2026-11-11T14:03:21.6312170Z ##[endgroup]
+2026-11-11T14:03:21.6312978Z ##[group]Determining the checkout info
+2026-11-11T14:03:21.6315239Z ##[endgroup]
+2026-11-11T14:03:21.6321224Z [command]/usr/bin/git sparse-checkout disable
+2026-11-11T14:03:21.6370797Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-11T14:03:21.6400671Z ##[group]Checking out the ref
+2026-11-11T14:03:21.6405779Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-11T14:03:21.9851966Z Switched to a new branch 'main'
+2026-11-11T14:03:21.9857355Z branch 'main' set up to track 'origin/main'.
+2026-11-11T14:03:21.9881238Z ##[endgroup]
+2026-11-11T14:03:21.9936012Z [command]/usr/bin/git log -1 --format=%H
+2026-11-11T14:03:21.9961234Z 9d02b049f5cd1a343dc8f3e4ecc3bd17272f1de1
+2026-11-11T14:03:22.0231248Z ##[group]Run actions/setup-python@v5
+2026-11-11T14:03:22.0231549Z with:
+2026-11-11T14:03:22.0231747Z   python-version: 3.12
+2026-11-11T14:03:22.0231971Z   check-latest: false
+2026-11-11T14:03:22.0234430Z   token: ***
+2026-11-11T14:03:22.0234653Z   update-environment: true
+2026-11-11T14:03:22.0234905Z   allow-prereleases: false
+2026-11-11T14:03:22.0235131Z   freethreaded: false
+2026-11-11T14:03:22.0235593Z env:
+2026-11-11T14:03:22.0235905Z   SCZX_DATABASE_URL: mysql+pymysql://root@127.0.0.1:3306/sczx_test_ci
+2026-11-11T14:03:22.0236281Z   SCZX_RUN_MYSQL_TESTS: 1
+2026-11-11T14:03:22.0236519Z   PYTHONPATH: backend-business
+2026-11-11T14:03:22.0236810Z   SCZX_STORAGE_DIR: /tmp/sczx-43034697984-mysql-uploads
+2026-11-11T14:03:22.0237110Z ##[endgroup]
+2026-11-11T14:03:22.1620086Z ##[group]Installed versions
+2026-11-11T14:03:22.1790165Z (node:3488) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T14:03:22.1791067Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T14:03:22.1791986Z Successfully set up CPython (3.12.16)
+2026-11-11T14:03:22.1792798Z ##[endgroup]
+2026-11-11T14:03:22.1914590Z ##[group]Run pip install -e backend-business
+2026-11-11T14:03:22.1915085Z [36;1mpip install -e backend-business[0m
+2026-11-11T14:03:22.2081405Z shell: /usr/bin/bash -e {0}
+2026-11-11T14:03:22.2081851Z env:
+2026-11-11T14:03:22.2082374Z   SCZX_DATABASE_URL: mysql+pymysql://root@127.0.0.1:3306/sczx_test_ci
+2026-11-11T14:03:22.2082999Z   SCZX_RUN_MYSQL_TESTS: 1
+2026-11-11T14:03:22.2083398Z   PYTHONPATH: backend-business
+2026-11-11T14:03:22.2083837Z   SCZX_STORAGE_DIR: /tmp/sczx-43034697984-mysql-uploads
+2026-11-11T14:03:22.2084236Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T14:03:22.2085750Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T14:03:22.2086495Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T14:03:22.2087136Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T14:03:22.2087788Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T14:03:22.2088410Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T14:03:22.2089009Z ##[endgroup]
+2026-11-11T14:03:24.8178858Z Obtaining file:///home/runner/work/sczx/sczx/backend-business
+2026-11-11T14:03:24.8193791Z   Installing build dependencies: started
+2026-11-11T14:03:26.0601606Z   Installing build dependencies: finished with status 'done'
+2026-11-11T14:03:26.0608719Z   Checking if build backend supports build_editable: started
+2026-11-11T14:03:26.4248524Z   Checking if build backend supports build_editable: finished with status 'done'
+2026-11-11T14:03:26.4257083Z   Getting requirements to build editable: started
+2026-11-11T14:03:26.7563005Z   Getting requirements to build editable: finished with status 'done'
+2026-11-11T14:03:26.7571463Z   Preparing editable metadata (pyproject.toml): started
+2026-11-11T14:03:26.9504675Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+2026-11-11T14:03:27.0408963Z Collecting fastapi<1,>=0.115 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.0719714Z   Downloading fastapi-0.162.4-py3-none-any.whl.metadata (27 kB)
+2026-11-11T14:03:27.1053637Z Collecting uvicorn<1,>=0.30 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.1117012Z   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T14:03:27.4286986Z Collecting SQLAlchemy<3,>=2.0 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.4358082Z   Downloading sqlalchemy-2.1.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.7 kB)
+2026-11-11T14:03:27.4578417Z Collecting PyMySQL<2,>=1.1 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.4642812Z   Downloading pymysql-1.2.4-py3-none-any.whl.metadata (4.2 kB)
+2026-11-11T14:03:27.4863818Z Collecting alembic<2,>=1.13 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.4932591Z   Downloading alembic-1.20.1-py3-none-any.whl.metadata (7.3 kB)
+2026-11-11T14:03:27.5097163Z Collecting python-multipart<1,>=0.0.9 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.5160275Z   Downloading python_multipart-0.0.33-py3-none-any.whl.metadata (6.3 kB)
+2026-11-11T14:03:27.5328570Z Collecting python-dotenv<2,>=1.0 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.5394893Z   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+2026-11-11T14:03:27.5611889Z Collecting httpx<1,>=0.27 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.5677804Z   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-11-11T14:03:27.5880587Z Collecting sympy<2,>=1.13 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.5944121Z   Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+2026-11-11T14:03:27.7296037Z Collecting PyMuPDF<2,>=1.26 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.7364308Z   Downloading pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (26 kB)
+2026-11-11T14:03:27.7525110Z Collecting python-docx<2,>=1.2 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.7592663Z   Downloading python_docx-1.2.0-py3-none-any.whl.metadata (2.0 kB)
+2026-11-11T14:03:27.7971871Z Collecting langgraph<2,>=1.2.20 (from sczx-business==0.1.0)
+2026-11-11T14:03:27.8038655Z   Downloading langgraph-1.2.20-py3-none-any.whl.metadata (4.9 kB)
+2026-11-11T14:03:27.8245819Z Collecting Mako (from alembic<2,>=1.13->sczx-business==0.1.0)
+2026-11-11T14:03:27.8308968Z   Downloading mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
+2026-11-11T14:03:27.8497803Z Collecting typing-extensions>=4.12 (from alembic<2,>=1.13->sczx-business==0.1.0)
+2026-11-11T14:03:27.8563983Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-11-11T14:03:27.8824075Z Collecting starlette>=0.46.0 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T14:03:27.8892253Z   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T14:03:27.9139404Z Collecting anyio>=4.1.0 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T14:03:27.9204039Z   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+2026-11-11T14:03:28.0356488Z Collecting pydantic>=2.9.0 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T14:03:28.0426521Z   Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+2026-11-11T14:03:28.0672686Z Collecting typing-inspection>=0.4.2 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T14:03:28.0738140Z   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T14:03:28.0869808Z Collecting annotated-doc>=0.0.2 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T14:03:28.0937070Z   Downloading annotated_doc-0.0.6-py3-none-any.whl.metadata (6.5 kB)
+2026-11-11T14:03:28.1133510Z Collecting opentelemetry-api>=1.44.0 (from fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T14:03:28.1198443Z   Downloading opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T14:03:28.1435738Z Collecting certifi (from httpx<1,>=0.27->sczx-business==0.1.0)
+2026-11-11T14:03:28.1500393Z   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+2026-11-11T14:03:28.1681638Z Collecting httpcore==1.* (from httpx<1,>=0.27->sczx-business==0.1.0)
+2026-11-11T14:03:28.1756340Z   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-11-11T14:03:28.1945702Z Collecting idna (from httpx<1,>=0.27->sczx-business==0.1.0)
+2026-11-11T14:03:28.2020751Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-11T14:03:28.2182200Z Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.27->sczx-business==0.1.0)
+2026-11-11T14:03:28.2252232Z   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-11-11T14:03:28.2690268Z Collecting langchain-core<2,>=1.4.7 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.2760176Z   Downloading langchain_core-1.7.7-py3-none-any.whl.metadata (4.8 kB)
+2026-11-11T14:03:28.2959357Z Collecting langgraph-checkpoint<5.0.0,>=4.3.0 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.3030010Z   Downloading langgraph_checkpoint-4.3.1-py3-none-any.whl.metadata (6.7 kB)
+2026-11-11T14:03:28.3216310Z Collecting langgraph-prebuilt<1.2.0,>=1.1.0 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.3283793Z   Downloading langgraph_prebuilt-1.1.1-py3-none-any.whl.metadata (6.9 kB)
+2026-11-11T14:03:28.3518567Z Collecting langgraph-sdk<0.5.0,>=0.4.6 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.3585746Z   Downloading langgraph_sdk-0.4.14-py3-none-any.whl.metadata (5.1 kB)
+2026-11-11T14:03:28.5539150Z Collecting xxhash>=3.5.0 (from langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.5608771Z   Downloading xxhash-4.1.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (18 kB)
+2026-11-11T14:03:28.5813270Z Collecting jsonpatch>=1.33.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.5880348Z   Downloading jsonpatch-1.47-py3-none-any.whl.metadata (4.9 kB)
+2026-11-11T14:03:28.6021504Z Collecting langchain-protocol>=0.0.20 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.6087841Z   Downloading langchain_protocol-0.0.21-py3-none-any.whl.metadata (2.4 kB)
+2026-11-11T14:03:28.6663025Z Collecting langsmith<1.0.0,>=0.14.9 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.6727994Z   Downloading langsmith-0.14.17-py3-none-any.whl.metadata (39 kB)
+2026-11-11T14:03:28.6971947Z Collecting packaging>=23.2.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.7035610Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-11T14:03:28.7429594Z Collecting pyyaml>=5.3.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.7496419Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-11T14:03:28.7673499Z Collecting tenacity!=8.4.0,>=8.1.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.7736744Z   Downloading tenacity-9.2.1-py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T14:03:28.9010521Z Collecting uuid-utils>=0.12.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.9077719Z   Downloading uuid_utils-1.2.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+2026-11-11T14:03:28.9628627Z Collecting ormsgpack>=1.12.0 (from langgraph-checkpoint<5.0.0,>=4.3.0->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:28.9692323Z   Downloading ormsgpack-1.13.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.2 kB)
+2026-11-11T14:03:29.2339321Z Collecting orjson>=3.11.5 (from langgraph-sdk<0.5.0,>=0.4.6->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.2407441Z   Downloading orjson-3.13.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (42 kB)
+2026-11-11T14:03:29.3636153Z Collecting websockets>=14 (from langgraph-sdk<0.5.0,>=0.4.6->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.3702046Z   Downloading websockets-17.4-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+2026-11-11T14:03:29.3867986Z Collecting distro<2,>=1.7.0 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.3931189Z   Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+2026-11-11T14:03:29.4102017Z Collecting httpx2<3,>=2 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.4171324Z   Downloading httpx2-2.16.0-py3-none-any.whl.metadata (10 kB)
+2026-11-11T14:03:29.4388051Z Collecting requests-toolbelt>=1.0.0 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.4454393Z   Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl.metadata (14 kB)
+2026-11-11T14:03:29.4721925Z Collecting requests>=2.0.0 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.4788322Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-11-11T14:03:29.4932602Z Collecting sniffio (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.5000895Z   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+2026-11-11T14:03:29.5060825Z Collecting uuid-utils>=0.12.0 (from langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.5129981Z   Downloading uuid_utils-0.19.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+2026-11-11T14:03:29.5826047Z Collecting zstandard>=0.23.0 (from langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.5893900Z   Downloading zstandard-0.25.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.3 kB)
+2026-11-11T14:03:29.6106302Z Collecting httpcore2==2.16.0 (from httpx2<3,>=2->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.6172312Z   Downloading httpcore2-2.16.0-py3-none-any.whl.metadata (27 kB)
+2026-11-11T14:03:29.6340337Z Collecting truststore>=0.10 (from httpx2<3,>=2->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:29.6406739Z   Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+2026-11-11T14:03:29.6573979Z Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T14:03:29.6639304Z   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-11-11T14:03:30.3466427Z Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi<1,>=0.115->sczx-business==0.1.0)
+2026-11-11T14:03:30.3538668Z   Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+2026-11-11T14:03:30.6170866Z Collecting lxml>=3.1.0 (from python-docx<2,>=1.2->sczx-business==0.1.0)
+2026-11-11T14:03:30.6239383Z   Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+2026-11-11T14:03:30.6444684Z Collecting mpmath<1.4,>=1.1.0 (from sympy<2,>=1.13->sczx-business==0.1.0)
+2026-11-11T14:03:30.6507837Z   Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+2026-11-11T14:03:30.6732799Z Collecting click>=7.0 (from uvicorn<1,>=0.30->sczx-business==0.1.0)
+2026-11-11T14:03:30.6799236Z   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T14:03:30.7032493Z Collecting jsonpointer>=3.8 (from jsonpatch>=1.33.0->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:30.7105618Z   Downloading jsonpointer-3.12-py3-none-any.whl.metadata (2.7 kB)
+2026-11-11T14:03:30.8361849Z Collecting charset_normalizer<4,>=2 (from requests>=2.0.0->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:30.8430934Z   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-11T14:03:30.8704190Z Collecting urllib3<3,>=1.26 (from requests>=2.0.0->langsmith<1.0.0,>=0.14.9->langchain-core<2,>=1.4.7->langgraph<2,>=1.2.20->sczx-business==0.1.0)
+2026-11-11T14:03:30.8774046Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-11-11T14:03:30.9469564Z Collecting MarkupSafe>=2.0 (from Mako->alembic<2,>=1.13->sczx-business==0.1.0)
+2026-11-11T14:03:30.9537327Z   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-11-11T14:03:30.9652771Z Downloading alembic-1.20.1-py3-none-any.whl (270 kB)
+2026-11-11T14:03:30.9785098Z Downloading fastapi-0.162.4-py3-none-any.whl (151 kB)
+2026-11-11T14:03:30.9871832Z Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-11-11T14:03:30.9958556Z Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-11-11T14:03:31.0043476Z Downloading langgraph-1.2.20-py3-none-any.whl (263 kB)
+2026-11-11T14:03:31.0131775Z Downloading langchain_core-1.7.7-py3-none-any.whl (580 kB)
+2026-11-11T14:03:31.0203991Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 580.7/580.7 kB 73.8 MB/s  0:00:00
+2026-11-11T14:03:31.0268773Z Downloading langgraph_checkpoint-4.3.1-py3-none-any.whl (58 kB)
+2026-11-11T14:03:31.0389708Z Downloading langgraph_prebuilt-1.1.1-py3-none-any.whl (42 kB)
+2026-11-11T14:03:31.0471479Z Downloading langgraph_sdk-0.4.14-py3-none-any.whl (171 kB)
+2026-11-11T14:03:31.0559469Z Downloading langsmith-0.14.17-py3-none-any.whl (940 kB)
+2026-11-11T14:03:31.0625473Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 940.8/940.8 kB 164.1 MB/s  0:00:00
+2026-11-11T14:03:31.0690412Z Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+2026-11-11T14:03:31.0774927Z Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+2026-11-11T14:03:31.0859425Z Downloading httpx2-2.16.0-py3-none-any.whl (97 kB)
+2026-11-11T14:03:31.0942881Z Downloading httpcore2-2.16.0-py3-none-any.whl (85 kB)
+2026-11-11T14:03:31.1028560Z Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+2026-11-11T14:03:31.1131037Z Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+2026-11-11T14:03:31.1258580Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 208.3 MB/s  0:00:00
+2026-11-11T14:03:31.1324018Z Downloading pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl (25.8 MB)
+2026-11-11T14:03:31.2136447Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 25.8/25.8 MB 326.9 MB/s  0:00:00
+2026-11-11T14:03:31.2202189Z Downloading pymysql-1.2.4-py3-none-any.whl (46 kB)
+2026-11-11T14:03:31.2287290Z Downloading python_docx-1.2.0-py3-none-any.whl (252 kB)
+2026-11-11T14:03:31.2382056Z Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+2026-11-11T14:03:31.2469434Z Downloading python_multipart-0.0.33-py3-none-any.whl (32 kB)
+2026-11-11T14:03:31.2580316Z Downloading sqlalchemy-2.1.8-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.7 MB)
+2026-11-11T14:03:31.2736984Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 339.2 MB/s  0:00:00
+2026-11-11T14:03:31.2808478Z Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+2026-11-11T14:03:31.3015651Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 331.7 MB/s  0:00:00
+2026-11-11T14:03:31.3084627Z Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+2026-11-11T14:03:31.3133647Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 104.2 MB/s  0:00:00
+2026-11-11T14:03:31.3206394Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-11T14:03:31.3291622Z Downloading uuid_utils-0.19.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (330 kB)
+2026-11-11T14:03:31.3389678Z Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+2026-11-11T14:03:31.3477619Z Downloading annotated_doc-0.0.6-py3-none-any.whl (5.3 kB)
+2026-11-11T14:03:31.3562255Z Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-11-11T14:03:31.3668977Z Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+2026-11-11T14:03:31.3754602Z Downloading click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-11T14:03:31.3840253Z Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+2026-11-11T14:03:31.3923963Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-11T14:03:31.4014519Z Downloading jsonpatch-1.47-py3-none-any.whl (25 kB)
+2026-11-11T14:03:31.4098570Z Downloading jsonpointer-3.12-py3-none-any.whl (10 kB)
+2026-11-11T14:03:31.4183777Z Downloading langchain_protocol-0.0.21-py3-none-any.whl (7.4 kB)
+2026-11-11T14:03:31.4267265Z Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+2026-11-11T14:03:31.4432765Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 351.8 MB/s  0:00:00
+2026-11-11T14:03:31.4500206Z Downloading opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+2026-11-11T14:03:31.4582280Z Downloading orjson-3.13.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (130 kB)
+2026-11-11T14:03:31.4670942Z Downloading ormsgpack-1.13.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (273 kB)
+2026-11-11T14:03:31.4781447Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-11T14:03:31.4874310Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-11T14:03:31.4925860Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 187.9 MB/s  0:00:00
+2026-11-11T14:03:31.4989876Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-11T14:03:31.5075149Z Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+2026-11-11T14:03:31.5162620Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-11T14:03:31.5248198Z Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+2026-11-11T14:03:31.5330030Z Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+2026-11-11T14:03:31.5415928Z Downloading tenacity-9.2.1-py3-none-any.whl (32 kB)
+2026-11-11T14:03:31.5501905Z Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+2026-11-11T14:03:31.5583185Z Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+2026-11-11T14:03:31.5664719Z Downloading websockets-17.4-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (226 kB)
+2026-11-11T14:03:31.5751716Z Downloading xxhash-4.1.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (472 kB)
+2026-11-11T14:03:31.5852883Z Downloading zstandard-0.25.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.5 MB)
+2026-11-11T14:03:31.6034280Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 341.4 MB/s  0:00:00
+2026-11-11T14:03:31.6102579Z Downloading mako-1.4.3-py3-none-any.whl (80 kB)
+2026-11-11T14:03:31.6188418Z Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-11-11T14:03:31.6266469Z Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+2026-11-11T14:03:31.8134761Z Building wheels for collected packages: sczx-business
+2026-11-11T14:03:31.8143531Z   Building editable for sczx-business (pyproject.toml): started
+2026-11-11T14:03:32.0284253Z   Building editable for sczx-business (pyproject.toml): finished with status 'done'
+2026-11-11T14:03:32.0289826Z   Created wheel for sczx-business: filename=sczx_business-0.1.0-0.editable-py3-none-any.whl size=2886 sha256=554cdaaa6c079efb58310f62ea4dcc272690382b48be4dc14a7afc296ead3f65
+2026-11-11T14:03:32.0291288Z   Stored in directory: /tmp/pip-ephem-wheel-cache-t2owkqqc/wheels/02/c8/63/80201cf5d51e01bd94f3a2c9232055e33108248a4bacfd9620
+2026-11-11T14:03:32.0305935Z Successfully built sczx-business
+2026-11-11T14:03:32.1393980Z Installing collected packages: mpmath, zstandard, xxhash, websockets, uuid-utils, urllib3, typing-extensions, truststore, tenacity, sympy, sniffio, pyyaml, python-multipart, python-dotenv, PyMySQL, PyMuPDF, packaging, ormsgpack, orjson, MarkupSafe, lxml, jsonpointer, idna, h11, distro, click, charset_normalizer, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, SQLAlchemy, requests, python-docx, pydantic-core, opentelemetry-api, Mako, langchain-protocol, jsonpatch, httpcore2, httpcore, anyio, starlette, requests-toolbelt, pydantic, httpx2, httpx, alembic, langsmith, fastapi, langchain-core, langgraph-sdk, langgraph-checkpoint, langgraph-prebuilt, langgraph, sczx-business
+2026-11-11T14:03:44.6790127Z
+2026-11-11T14:03:44.6839813Z Successfully installed Mako-1.4.3 MarkupSafe-3.0.4 PyMuPDF-1.28.2 PyMySQL-1.2.4 SQLAlchemy-2.1.8 alembic-1.20.1 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 certifi-2026.10.23 charset_normalizer-3.5.2 click-8.5.1 distro-1.9.0 fastapi-0.162.4 h11-0.16.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 idna-3.20 jsonpatch-1.47 jsonpointer-3.12 langchain-core-1.7.7 langchain-protocol-0.0.21 langgraph-1.2.20 langgraph-checkpoint-4.3.1 langgraph-prebuilt-1.1.1 langgraph-sdk-0.4.14 langsmith-0.14.17 lxml-6.1.3 mpmath-1.3.0 opentelemetry-api-1.45.2 orjson-3.13.0 ormsgpack-1.13.1 packaging-26.3 pydantic-2.14.3 pydantic-core-2.50.4 python-docx-1.2.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 requests-2.34.2 requests-toolbelt-1.0.0 sczx-business-0.1.0 sniffio-1.3.1 starlette-1.10.0 sympy-1.14.0 tenacity-9.2.1 truststore-0.10.5 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 uuid-utils-0.19.0 uvicorn-0.54.0 websockets-17.4 xxhash-4.1.0 zstandard-0.25.0
+2026-11-11T14:03:44.6851314Z
+2026-11-11T14:03:44.6851561Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-11T14:03:44.6851957Z [notice] To update, run: pip install --upgrade pip
+2026-11-11T14:03:44.9161478Z ##[group]Run python -m unittest discover -s backend-business/tests -v
+2026-11-11T14:03:44.9162051Z [36;1mpython -m unittest discover -s backend-business/tests -v[0m
+2026-11-11T14:03:44.9212657Z shell: /usr/bin/bash -e {0}
+2026-11-11T14:03:44.9212922Z env:
+2026-11-11T14:03:44.9213244Z   SCZX_DATABASE_URL: mysql+pymysql://root@127.0.0.1:3306/sczx_test_ci
+2026-11-11T14:03:44.9213647Z   SCZX_RUN_MYSQL_TESTS: 1
+2026-11-11T14:03:44.9213899Z   PYTHONPATH: backend-business
+2026-11-11T14:03:44.9235210Z   SCZX_STORAGE_DIR: /tmp/sczx-43034697984-mysql-uploads
+2026-11-11T14:03:44.9235896Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T14:03:44.9236359Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-11T14:03:44.9236802Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T14:03:44.9237190Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T14:03:44.9237613Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-11T14:03:44.9237999Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-11T14:03:44.9238324Z ##[endgroup]
+2026-11-11T14:03:49.3028340Z /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:49.3031774Z   return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+2026-11-11T14:03:49.3801813Z test_active_duplicate_and_cross_role_access (test_agent_mysql.AgentMySQLTests.test_active_duplicate_and_cross_role_access) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:49.3804980Z   session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+2026-11-11T14:03:49.4014378Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:49.4016814Z   if not session or session.expires_at < datetime.utcnow():
+2026-11-11T14:03:49.5103724Z /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:49.5106000Z   return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+2026-11-11T14:03:49.5721232Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:49.5723664Z   session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+2026-11-11T14:03:49.6593640Z ok
+2026-11-11T14:03:49.8277058Z test_cancel_in_progress_keeps_prior_steps (test_agent_mysql.AgentMySQLTests.test_cancel_in_progress_keeps_prior_steps) ... ok
+2026-11-11T14:03:50.0275622Z test_confirm_draft_is_explicit_and_idempotent (test_agent_mysql.AgentMySQLTests.test_confirm_draft_is_explicit_and_idempotent) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/model_jobs.py:95: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:50.0278156Z   run.result,run.status,run.model,run.provider,run.ended_at=result,'succeeded',result.get('model',''),'Codex CLI / LangGraph',datetime.utcnow()
+2026-11-11T14:03:50.1054914Z ok
+2026-11-11T14:03:50.3865842Z test_no_cases_materials_and_invalid_output_are_explicit (test_agent_mysql.AgentMySQLTests.test_no_cases_materials_and_invalid_output_are_explicit) ... ok
+2026-11-11T14:03:50.6028889Z test_step10_partial_rewrite_preserves_personalization (test_agent_mysql.AgentMySQLTests.test_step10_partial_rewrite_preserves_personalization) ... ok
+2026-11-11T14:03:50.7397727Z test_step10_saved_history_concurrency_restore_export_and_permissions (test_agent_mysql.AgentMySQLTests.test_step10_saved_history_concurrency_restore_export_and_permissions) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:50.7400931Z   if not session or session.expires_at < datetime.utcnow():
+2026-11-11T14:03:50.9332275Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:50.9334606Z   session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+2026-11-11T14:03:50.9527885Z ok
+2026-11-11T14:03:51.0121025Z test_step10_source_republish_blocks_old_agent_confirmation (test_agent_mysql.AgentMySQLTests.test_step10_source_republish_blocks_old_agent_confirmation) ... /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:51.0124731Z   return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+2026-11-11T14:03:51.1311298Z /home/runner/work/sczx/sczx/backend-business/sczx_business/model_jobs.py:95: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:51.1314164Z   run.result,run.status,run.model,run.provider,run.ended_at=result,'succeeded',result.get('model',''),'Codex CLI / LangGraph',datetime.utcnow()
+2026-11-11T14:03:51.1773838Z ok
+2026-11-11T14:03:51.3144448Z test_timeout_retains_checkpoints_and_resume_does_not_repeat_success (test_agent_mysql.AgentMySQLTests.test_timeout_retains_checkpoints_and_resume_does_not_repeat_success) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/model_jobs.py:186: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:51.3146853Z   run.status, run.error, run.ended_at = "failed", job.error, datetime.utcnow()
+2026-11-11T14:03:51.4802643Z ok
+2026-11-11T14:03:51.5584919Z test_total_deadline_prevents_model_call (test_agent_mysql.AgentMySQLTests.test_total_deadline_prevents_model_call) ... ok
+2026-11-11T14:03:51.6145478Z test_unparsed_material_is_not_presented_as_evidence (test_agent_mysql.AgentMySQLTests.test_unparsed_material_is_not_presented_as_evidence) ... ok
+2026-11-11T14:03:51.8478305Z test_word_export_options_never_modify_saved_teacher_text (test_agent_mysql.AgentMySQLTests.test_word_export_options_never_modify_saved_teacher_text) ... ok
+2026-11-11T14:03:52.0898378Z test_word_quality_revision_is_single_and_preserves_parent_history (test_agent_mysql.AgentMySQLTests.test_word_quality_revision_is_single_and_preserves_parent_history) ... ok
+2026-11-11T14:03:53.2933801Z test_concurrent_duplicate_answers_count_once (test_classroom_mysql.ClassroomTests.test_concurrent_duplicate_answers_count_once) ... Executing <Task pending name='Task-199' coro=<ClassroomTests.asyncSetUp() running at /home/runner/work/sczx/sczx/backend-business/tests/test_classroom_mysql.py:21> cb=[_run_until_complete_cb() at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/base_events.py:181] created at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/runners.py:100> took 0.101 seconds
+2026-11-11T14:03:53.3751301Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:53.3752743Z   if not session or session.expires_at < datetime.utcnow():
+2026-11-11T14:03:53.3818414Z /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:53.3828305Z   return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+2026-11-11T14:03:53.4454902Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:53.4457683Z   session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+2026-11-11T14:03:53.5484164Z ok
+2026-11-11T14:03:53.9909393Z test_draft_restore_submit_idempotency_stats_feedback_end_and_growth (test_classroom_mysql.ClassroomTests.test_draft_restore_submit_idempotency_stats_feedback_end_and_growth) ... ok
+2026-11-11T14:03:54.1398834Z test_group_evidence_manual_adjust_publish_targets_and_new_attempt (test_classroom_mysql.ClassroomTests.test_group_evidence_manual_adjust_publish_targets_and_new_attempt) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:54.1401126Z   if not session or session.expires_at < datetime.utcnow():
+2026-11-11T14:03:54.1779756Z /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:54.1781308Z   return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+2026-11-11T14:03:54.3522510Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:54.3524892Z   session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+2026-11-11T14:03:54.6149060Z ok
+2026-11-11T14:03:54.8258497Z test_group_rejects_other_class_duplicate_members_and_unreviewed_paper (test_classroom_mysql.ClassroomTests.test_group_rejects_other_class_duplicate_members_and_unreviewed_paper) ... ok
+2026-11-11T14:03:55.1571987Z test_live_source_permission_and_no_answer_leak (test_classroom_mysql.ClassroomTests.test_live_source_permission_and_no_answer_leak) ... ok
+2026-11-11T14:03:55.3005230Z test_no_unpublished_case_or_foreign_private_plan_share (test_classroom_mysql.ClassroomTests.test_no_unpublished_case_or_foreign_private_plan_share) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/models.py:318: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:55.3008806Z   published_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.utcnow().replace(microsecond=0))
+2026-11-11T14:03:55.3109460Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:55.3110990Z   if not session or session.expires_at < datetime.utcnow():
+2026-11-11T14:03:55.3647489Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:55.3650478Z   session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+2026-11-11T14:03:55.3752545Z ok
+2026-11-11T14:03:55.3791493Z test_old_activity_cannot_accept_late_answer_after_push (test_classroom_mysql.ClassroomTests.test_old_activity_cannot_accept_late_answer_after_push) ... /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:55.3795158Z   return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+2026-11-11T14:03:55.6142001Z ok
+2026-11-11T14:03:55.7492138Z test_share_bookmark_discussion_adapt_provenance_and_withdraw (test_classroom_mysql.ClassroomTests.test_share_bookmark_discussion_adapt_provenance_and_withdraw) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/models.py:318: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:03:55.7496246Z   published_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.utcnow().replace(microsecond=0))
+2026-11-11T14:03:56.0456564Z ok
+2026-11-11T14:03:56.1317712Z test_fonts_color_a4_spacing_and_page_field_are_explicit (test_docx_export.WordExportTests.test_fonts_color_a4_spacing_and_page_field_are_explicit) ... ok
+2026-11-11T14:03:56.1319746Z test_marker_cleanup_is_bounded_explicit_and_preserves_math_and_sources (test_docx_export.WordExportTests.test_marker_cleanup_is_bounded_explicit_and_preserves_math_and_sources) ... ok
+2026-11-11T14:03:56.3322698Z test_modes_deduplicate_sources_without_touching_original_text (test_docx_export.WordExportTests.test_modes_deduplicate_sources_without_touching_original_text) ... ok
+2026-11-11T14:03:56.3324558Z test_quality_warnings_do_not_rewrite_or_mislabel_conditions (test_docx_export.WordExportTests.test_quality_warnings_do_not_rewrite_or_mislabel_conditions) ... ok
+2026-11-11T14:03:56.3645721Z test_nonzero_reversible_steps_and_no_arbitrary_code (test_exams_mysql.EquationMathTests.test_nonzero_reversible_steps_and_no_arbitrary_code) ... ok
+2026-11-11T14:03:57.7680065Z test_answer_secrecy_drafts_revision_submit_idempotency (test_exams_mysql.ExamTests.test_answer_secrecy_drafts_revision_submit_idempotency) ... ok
+2026-11-11T14:03:58.2163461Z test_application_manual_grading_audit_release_wrong_and_unchanged_original (test_exams_mysql.ExamTests.test_application_manual_grading_audit_release_wrong_and_unchanged_original) ... ok
+2026-11-11T14:03:58.4725753Z test_bank_versions_and_reference_rejection (test_exams_mysql.ExamTests.test_bank_versions_and_reference_rejection) ... ok
+2026-11-11T14:03:58.6929942Z test_candidate_job_is_owned_and_not_implicitly_approved (test_exams_mysql.ExamTests.test_candidate_job_is_owned_and_not_implicitly_approved) ... ok
+2026-11-11T14:03:58.8910932Z test_constraints_report_shortage_and_do_not_pad (test_exams_mysql.ExamTests.test_constraints_report_shortage_and_do_not_pad) ... ok
+2026-11-11T14:03:59.1011251Z test_course_import_and_unreviewed_cannot_enter_paper (test_exams_mysql.ExamTests.test_course_import_and_unreviewed_cannot_enter_paper) ... ok
+2026-11-11T14:03:59.4178828Z test_equation_replay_restore_undo_and_other_student (test_exams_mysql.ExamTests.test_equation_replay_restore_undo_and_other_student) ... ok
+2026-11-11T14:03:59.6819328Z test_exam_snapshot_survives_question_and_paper_edits (test_exams_mysql.ExamTests.test_exam_snapshot_survives_question_and_paper_edits) ... ok
+2026-11-11T14:04:00.0057787Z test_exports_black_font_student_secrecy (test_exams_mysql.ExamTests.test_exports_black_font_student_secrecy) ... ok
+2026-11-11T14:04:00.3641710Z test_future_start_and_cross_student_class_permissions (test_exams_mysql.ExamTests.test_future_start_and_cross_student_class_permissions) ... ok
+2026-11-11T14:04:00.7187000Z test_grading_out_of_range_and_stale_revision_do_not_overwrite (test_exams_mysql.ExamTests.test_grading_out_of_range_and_stale_revision_do_not_overwrite) ... ok
+2026-11-11T14:04:01.0851195Z test_learning_record_export_scope (test_exams_mysql.ExamTests.test_learning_record_export_scope) ... ok
+2026-11-11T14:04:01.2931228Z test_server_deadline_submits_only_saved_answers (test_exams_mysql.ExamTests.test_server_deadline_submits_only_saved_answers) ... Executing <Task pending name='Task-301' coro=<ExamTests.asyncSetUp() running at /home/runner/work/sczx/sczx/backend-business/tests/test_exams_mysql.py:27> cb=[_run_until_complete_cb() at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/base_events.py:181] created at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/runners.py:100> took 0.207 seconds
+2026-11-11T14:04:01.4916566Z ok
+2026-11-11T14:04:01.5037004Z test_invalid_or_failed_ranking_keeps_all_candidates (test_fallback.RerankFallbackTests.test_invalid_or_failed_ranking_keeps_all_candidates) ... ok
+2026-11-11T14:04:02.9416748Z test_admin_only_system_content_and_legacy_read_preserved (test_insights_mysql.InsightsTests.test_admin_only_system_content_and_legacy_read_preserved) ... ok
+2026-11-11T14:04:03.3904070Z test_all_intervention_types_real_wrong_and_prerequisite_target (test_insights_mysql.InsightsTests.test_all_intervention_types_real_wrong_and_prerequisite_target) ... ok
+2026-11-11T14:04:03.5738854Z test_append_review_preserves_original_verification (test_insights_mysql.InsightsTests.test_append_review_preserves_original_verification) ... ok
+2026-11-11T14:04:03.8106603Z test_class_scoping_cross_student_and_removed (test_insights_mysql.InsightsTests.test_class_scoping_cross_student_and_removed) ... ok
+2026-11-11T14:04:05.0280379Z test_dashboard_record_and_class_same_metric_definitions (test_insights_mysql.InsightsTests.test_dashboard_record_and_class_same_metric_definitions) ... ok
+2026-11-11T14:04:05.2123217Z test_difficulty_requires_evidence_and_confirmation_targets (test_insights_mysql.InsightsTests.test_difficulty_requires_evidence_and_confirmation_targets) ... ok
+2026-11-11T14:04:05.3998846Z test_helped_unknown_and_manual_never_auto_correct (test_insights_mysql.InsightsTests.test_helped_unknown_and_manual_never_auto_correct) ... ok
+2026-11-11T14:04:05.5768962Z test_intervention_concurrent_idempotent_reject_changed_payload (test_insights_mysql.InsightsTests.test_intervention_concurrent_idempotent_reject_changed_payload) ... ok
+2026-11-11T14:04:05.8488411Z test_intervention_delivery_submission_not_retest_and_new_answer (test_insights_mysql.InsightsTests.test_intervention_delivery_submission_not_retest_and_new_answer) ... ok
+2026-11-11T14:04:06.0342445Z test_intervention_repeated_old_question_not_new_retest (test_insights_mysql.InsightsTests.test_intervention_repeated_old_question_not_new_retest) ... ok
+2026-11-11T14:04:06.2970295Z test_issue_concurrent_revision_and_creation_replay (test_insights_mysql.InsightsTests.test_issue_concurrent_revision_and_creation_replay) ... ok
+2026-11-11T14:04:06.5800158Z test_model_failure_queue_admin_metadata_and_current_owner_retry (test_insights_mysql.InsightsTests.test_model_failure_queue_admin_metadata_and_current_owner_retry) ... ok
+2026-11-11T14:04:07.0452142Z test_multi_issues_reply_close_history_and_private (test_insights_mysql.InsightsTests.test_multi_issues_reply_close_history_and_private) ... ok
+2026-11-11T14:04:09.6754832Z test_retries_count_unique_and_latest (test_insights_mysql.InsightsTests.test_retries_count_unique_and_latest) ... ok
+2026-11-11T14:04:09.8251373Z test_retry_rejects_withdrawn_case_and_stale_lesson (test_insights_mysql.InsightsTests.test_retry_rejects_withdrawn_case_and_stale_lesson) ... ok
+2026-11-11T14:04:10.1518230Z test_stale_platform_cannot_erase_reply_or_state (test_insights_mysql.InsightsTests.test_stale_platform_cannot_erase_reply_or_state) ... ok
+2026-11-11T14:04:10.3236029Z test_targets_personal_wrong_other_student_and_other_class_rejected (test_insights_mysql.InsightsTests.test_targets_personal_wrong_other_student_and_other_class_rejected) ... ok
+2026-11-11T14:04:10.5721629Z test_time_range_and_sql_session_timezone_consistent (test_insights_mysql.InsightsTests.test_time_range_and_sql_session_timezone_consistent) ... ok
+2026-11-11T14:04:10.5728480Z test_latest_helped_or_unknown_not_earlier_independent_success (test_insights_rules.InsightRulesTests.test_latest_helped_or_unknown_not_earlier_independent_success) ... ok
+2026-11-11T14:04:10.5730287Z test_practice_does_not_inflate_check_and_replacement_is_check (test_insights_rules.InsightRulesTests.test_practice_does_not_inflate_check_and_replacement_is_check) ... ok
+2026-11-11T14:04:10.5731797Z test_tied_contradictory_results_not_arbitrary_success (test_insights_rules.InsightRulesTests.test_tied_contradictory_results_not_arbitrary_success) ... ok
+2026-11-11T14:04:10.5733101Z test_unique_key_includes_student_task_published_question (test_insights_rules.InsightRulesTests.test_unique_key_includes_student_task_published_question) ... ok
+2026-11-11T14:04:10.5734299Z test_utc_closed_open_range_and_unknown_exclusion (test_insights_rules.InsightRulesTests.test_utc_closed_open_range_and_unknown_exclusion) ... ok
+2026-11-11T14:04:10.5736347Z test_conflicts_missing_edges_and_cycles (test_knowledge.KnowledgeValidationTests.test_conflicts_missing_edges_and_cycles) ... ok
+2026-11-11T14:04:10.5740626Z test_invalid_types_never_reach_sets_or_orm (test_knowledge.KnowledgeValidationTests.test_invalid_types_never_reach_sets_or_orm) ... ok
+2026-11-11T14:04:10.5742317Z test_valid_missing_optional_fields_and_unicode_collisions (test_knowledge.KnowledgeValidationTests.test_valid_missing_optional_fields_and_unicode_collisions) ... ok
+2026-11-11T14:04:10.5744517Z test_distinct_questions_and_configured_time (test_learning_memory.MemoryRuleTests.test_distinct_questions_and_configured_time) ... ok
+2026-11-11T14:04:10.5750222Z test_does_not_mutate_sources (test_learning_memory.MemoryRuleTests.test_does_not_mutate_sources) ... ok
+2026-11-11T14:04:10.5755090Z test_fixed_scenarios (test_learning_memory.MemoryRuleTests.test_fixed_scenarios) ... ok
+2026-11-11T14:04:10.5756950Z test_same_timestamp_conflict_does_not_invent_progress (test_learning_memory.MemoryRuleTests.test_same_timestamp_conflict_does_not_invent_progress) ... ok
+2026-11-11T14:04:11.7856123Z test_concurrent_change_replay_and_different_edits_conflict (test_learning_memory_mysql.MemoryMySQLTests.test_concurrent_change_replay_and_different_edits_conflict) ... /home/runner/work/sczx/sczx/backend-business/tests/test_learning_memory_mysql.py:24: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:11.7859964Z   row=Attempt(id='attempt-'+uuid.uuid4().hex,record_id=record or self.rid,question=question,answer=answer,reason='原始过程',correct=correct,helped=helped,verification=verification or {'status':'verified' if correct else 'inconsistent','correct':correct},created_at=when or datetime.utcnow());db.add(row);return row.id
+2026-11-11T14:04:11.8433617Z ok
+2026-11-11T14:04:12.1226030Z test_correction_append_only_conflict_and_replay (test_learning_memory_mysql.MemoryMySQLTests.test_correction_append_only_conflict_and_replay) ... ok
+2026-11-11T14:04:12.4321504Z test_cross_class_same_student_filters_other_teacher_and_personal (test_learning_memory_mysql.MemoryMySQLTests.test_cross_class_same_student_filters_other_teacher_and_personal) ... ok
+2026-11-11T14:04:12.5969348Z test_current_one_layer_only_memory_and_budget (test_learning_memory_mysql.MemoryMySQLTests.test_current_one_layer_only_memory_and_budget) ... ok
+2026-11-11T14:04:12.7742708Z test_legacy_and_unknown_never_count_as_independent (test_learning_memory_mysql.MemoryMySQLTests.test_legacy_and_unknown_never_count_as_independent) ... ok
+2026-11-11T14:04:12.9528817Z test_prerequisite_one_layer_recommendation_requires_actual_errors (test_learning_memory_mysql.MemoryMySQLTests.test_prerequisite_one_layer_recommendation_requires_actual_errors) ... ok
+2026-11-11T14:04:13.1527718Z test_reads_do_not_create_model_jobs_or_repeat_facts (test_learning_memory_mysql.MemoryMySQLTests.test_reads_do_not_create_model_jobs_or_repeat_facts) ... ok
+2026-11-11T14:04:13.4019438Z test_snooze_idempotent_and_new_evidence_reopens (test_learning_memory_mysql.MemoryMySQLTests.test_snooze_idempotent_and_new_evidence_reopens) ... /home/runner/work/sczx/sczx/backend-business/tests/test_learning_memory_mysql.py:57: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:13.4028162Z   self.attempt(correct=False,question=1,answer='0',when=datetime.utcnow()+timedelta(seconds=1));self.assertTrue(any(r['knowledgeId']==self.kp for r in (await self.get())['recommendations']))
+2026-11-11T14:04:13.4312886Z ok
+2026-11-11T14:04:13.6650546Z test_stable_ids_aggregation_and_help_separation (test_learning_memory_mysql.MemoryMySQLTests.test_stable_ids_aggregation_and_help_separation) ... ok
+2026-11-11T14:04:14.0753931Z test_teacher_review_instruction_retires_only_after_new_actual_answer (test_learning_memory_mysql.MemoryMySQLTests.test_teacher_review_instruction_retires_only_after_new_actual_answer) ... ok
+2026-11-11T14:04:14.4628912Z test_teacher_scope_cross_student_and_removal (test_learning_memory_mysql.MemoryMySQLTests.test_teacher_scope_cross_student_and_removal) ... ok
+2026-11-11T14:04:14.4647784Z test_foreign_mysql_listener_is_not_reused_or_stopped (test_local_entrypoints.LocalEntrypointsTests.test_foreign_mysql_listener_is_not_reused_or_stopped) ... ok
+2026-11-11T14:04:14.4656004Z test_production_database_configuration_is_rejected_before_database_access (test_local_entrypoints.LocalEntrypointsTests.test_production_database_configuration_is_rejected_before_database_access) ... ok
+2026-11-11T14:04:14.4713398Z test_expressions_equations_conditions_and_errors_are_distinct (test_math_claims.MathClaimTests.test_expressions_equations_conditions_and_errors_are_distinct) ... ok
+2026-11-11T14:04:15.3063204Z test_invalid_knowledge_has_no_partial_writes (test_mysql_api.MySQLApiTests.test_invalid_knowledge_has_no_partial_writes) ... ok
+2026-11-11T14:04:15.4767136Z test_revision_and_withdrawal_preserve_history (test_mysql_api.MySQLApiTests.test_revision_and_withdrawal_preserve_history) ... ok
+2026-11-11T14:04:15.6272290Z test_roles_cannot_write_knowledge (test_mysql_api.MySQLApiTests.test_roles_cannot_write_knowledge) ... ok
+2026-11-11T14:04:16.8449877Z test_assigned_snapshot_image_access_without_publishing_private_file (test_offline_mysql.OfflineTests.test_assigned_snapshot_image_access_without_publishing_private_file) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:16.8452166Z   if not session or session.expires_at < datetime.utcnow():
+2026-11-11T14:04:16.8931224Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:16.8933672Z   session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+2026-11-11T14:04:17.0403779Z ok
+2026-11-11T14:04:17.0447768Z test_changed_content_version_rejects (test_offline_mysql.OfflineTests.test_changed_content_version_rejects) ... /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:17.0451781Z   return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+2026-11-11T14:04:17.2121058Z ok
+2026-11-11T14:04:17.3735058Z test_completed_record_immutable (test_offline_mysql.OfflineTests.test_completed_record_immutable) ... ok
+2026-11-11T14:04:17.5397749Z test_concurrent_same_operation_only_one_write (test_offline_mysql.OfflineTests.test_concurrent_same_operation_only_one_write) ... ok
+2026-11-11T14:04:17.8433061Z test_cross_identity_and_unknown_question_rejects (test_offline_mysql.OfflineTests.test_cross_identity_and_unknown_question_rejects) ... ok
+2026-11-11T14:04:18.0187328Z test_draft_sync_does_not_submit_grade_or_change_teacher_feedback (test_offline_mysql.OfflineTests.test_draft_sync_does_not_submit_grade_or_change_teacher_feedback) ... ok
+2026-11-11T14:04:18.1838262Z test_exam_and_live_class_never_download (test_offline_mysql.OfflineTests.test_exam_and_live_class_never_download) ... ok
+2026-11-11T14:04:18.3690058Z test_help_cannot_be_reset_and_only_allowed_fields (test_offline_mysql.OfflineTests.test_help_cannot_be_reset_and_only_allowed_fields) ... ok
+2026-11-11T14:04:18.4703514Z test_package_allowlist_no_answers_other_students_or_private_notes (test_offline_mysql.OfflineTests.test_package_allowlist_no_answers_other_students_or_private_notes) ... Executing <Task pending name='Task-519' coro=<OfflineTests.asyncSetUp() running at /home/runner/work/sczx/sczx/backend-business/tests/test_offline_mysql.py:18> cb=[_run_until_complete_cb() at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/base_events.py:181] created at /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/runners.py:100> took 0.100 seconds
+2026-11-11T14:04:18.5476249Z ok
+2026-11-11T14:04:18.7241915Z test_position_scoped_and_other_records_unchanged (test_offline_mysql.OfflineTests.test_position_scoped_and_other_records_unchanged) ... ok
+2026-11-11T14:04:18.8802753Z test_removed_member_rejects_sync (test_offline_mysql.OfflineTests.test_removed_member_rejects_sync) ... ok
+2026-11-11T14:04:19.0543136Z test_same_operation_id_retry_and_changed_payload (test_offline_mysql.OfflineTests.test_same_operation_id_retry_and_changed_payload) ... ok
+2026-11-11T14:04:19.2119867Z test_server_deadline_not_local_clock (test_offline_mysql.OfflineTests.test_server_deadline_not_local_clock) ... ok
+2026-11-11T14:04:19.3855844Z test_server_edit_conflicts_and_explicit_new_revision_can_retry (test_offline_mysql.OfflineTests.test_server_edit_conflicts_and_explicit_new_revision_can_retry) ... ok
+2026-11-11T14:04:19.6539128Z test_withdrawn_task_rejects_sync_and_online_write (test_offline_mysql.OfflineTests.test_withdrawn_task_rejects_sync_and_online_write) ... ok
+2026-11-11T14:04:19.6549227Z test_citation_and_block_contract (test_planning.PlanningValidationTests.test_citation_and_block_contract) ... ok
+2026-11-11T14:04:19.6550762Z test_client_cannot_supply_server_context (test_planning.PlanningValidationTests.test_client_cannot_supply_server_context) ... ok
+2026-11-11T14:04:19.6552244Z test_explicit_task_and_rule_recognition (test_planning.PlanningValidationTests.test_explicit_task_and_rule_recognition) ... ok
+2026-11-11T14:04:19.6553204Z test_partial_generation_only_accepts_target (test_planning.PlanningValidationTests.test_partial_generation_only_accepts_target) ... ok
+2026-11-11T14:04:19.6559508Z test_configuration_only_parses_does_not_create_paths (test_release_tools.ReleaseToolsTests.test_configuration_only_parses_does_not_create_paths) ... ok
+2026-11-11T14:04:21.2792040Z test_direct_production_migrate_command_refused (test_release_tools.ReleaseToolsTests.test_direct_production_migrate_command_refused) ... ok
+2026-11-11T14:04:21.2814958Z test_exiting_empty_command_is_gone_but_unrelated_pid_is_refused (test_release_tools.ReleaseToolsTests.test_exiting_empty_command_is_gone_but_unrelated_pid_is_refused) ... ok
+2026-11-11T14:04:21.2824265Z test_external_connection_or_model_job_blocks_mutations (test_release_tools.ReleaseToolsTests.test_external_connection_or_model_job_blocks_mutations) ... ok
+2026-11-11T14:04:21.2828891Z test_formal_target_requires_approval_even_if_mislabeled_staging (test_release_tools.ReleaseToolsTests.test_formal_target_requires_approval_even_if_mislabeled_staging) ... ok
+2026-11-11T14:04:21.2836061Z test_mysql_credentials_not_command_line_and_no_newline_injection (test_release_tools.ReleaseToolsTests.test_mysql_credentials_not_command_line_and_no_newline_injection) ... ok
+2026-11-11T14:04:21.3158242Z test_package_uses_sczx_root_tree_from_parent_git_repository (test_release_tools.ReleaseToolsTests.test_package_uses_sczx_root_tree_from_parent_git_repository) ... ok
+2026-11-11T14:04:21.4078072Z test_preflight_does_not_create_state_or_call_migration (test_release_tools.ReleaseToolsTests.test_preflight_does_not_create_state_or_call_migration) ... /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/alembic/config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+2026-11-11T14:04:21.4081294Z   util.warn_deprecated(
+2026-11-11T14:04:21.4160689Z ok
+2026-11-11T14:04:23.9681979Z test_production_application_refuses_insecure_cookie_or_auto_schema (test_release_tools.ReleaseToolsTests.test_production_application_refuses_insecure_cookie_or_auto_schema) ... ok
+2026-11-11T14:04:23.9698045Z test_release_tamper_detected_and_does_not_guess_parent_git_head (test_release_tools.ReleaseToolsTests.test_release_tamper_detected_and_does_not_guess_parent_git_head) ... ok
+2026-11-11T14:04:23.9707209Z test_start_mismatch_refuses_without_implicit_migration (test_release_tools.ReleaseToolsTests.test_start_mismatch_refuses_without_implicit_migration) ... ok
+2026-11-11T14:04:24.0044427Z test_actual_equation_and_unknown (test_remediation.RemediationTests.test_actual_equation_and_unknown) ... ok
+2026-11-11T14:04:24.0065981Z test_topic_coverage_prevents_known_off_topic (test_remediation.RemediationTests.test_topic_coverage_prevents_known_off_topic) ... ok
+2026-11-11T14:04:24.0629183Z test_variant_rejects_wrong_unknown_and_identical (test_remediation.RemediationTests.test_variant_rejects_wrong_unknown_and_identical) ... ok
+2026-11-11T14:04:24.0631116Z test_visualization_single_both_boundary_and_schema (test_remediation.RemediationTests.test_visualization_single_both_boundary_and_schema) ... ok
+2026-11-11T14:04:25.1626628Z test_actual_dynamic_scoring_replay_help_and_foreign_job (test_remediation_mysql.RemediationMySQLTests.test_actual_dynamic_scoring_replay_help_and_foreign_job) ... /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:25.1628886Z   return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+2026-11-11T14:04:25.2845636Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:25.2848825Z   session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+2026-11-11T14:04:25.2969928Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:25.2973488Z   if not session or session.expires_at < datetime.utcnow():
+2026-11-11T14:04:25.4751867Z ok
+2026-11-11T14:04:25.6741318Z test_concurrent_repair_replay_returns_one_immutable_attempt (test_remediation_mysql.RemediationMySQLTests.test_concurrent_repair_replay_returns_one_immutable_attempt) ... ok
+2026-11-11T14:04:25.9250105Z test_course_unknown_answer_teacher_review_preserves_program_result (test_remediation_mysql.RemediationMySQLTests.test_course_unknown_answer_teacher_review_preserves_program_result) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/remediation.py:148: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:25.9252613Z   details=copy.deepcopy(row.details or {});details['teacherReview']={'teacherId':actor.id,'correct':bool(body.get('correct')),'note':str(body.get('note',''))[:3000],'at':datetime.utcnow().isoformat()};row.details=details;db.commit();return repair_json(row)
+2026-11-11T14:04:25.9292371Z ok
+2026-11-11T14:04:26.1594610Z test_course_wrong_retains_uploaded_question_source (test_remediation_mysql.RemediationMySQLTests.test_course_wrong_retains_uploaded_question_source) ... ok
+2026-11-11T14:04:26.4582067Z test_image_requires_confirmed_owned_ocr_and_crop (test_remediation_mysql.RemediationMySQLTests.test_image_requires_confirmed_owned_ocr_and_crop) ... ok
+2026-11-11T14:04:26.7790665Z test_independent_dedup_roles_and_refresh (test_remediation_mysql.RemediationMySQLTests.test_independent_dedup_roles_and_refresh) ... ok
+2026-11-11T14:04:27.1130196Z test_legacy_snapshot_and_removed_course (test_remediation_mysql.RemediationMySQLTests.test_legacy_snapshot_and_removed_course) ... ok
+2026-11-11T14:04:27.1205199Z test_empty_long_context_and_invalid_grade (test_retrieval.RetrievalRegressionTests.test_empty_long_context_and_invalid_grade) ... ok
+2026-11-11T14:04:27.2054093Z test_frozen_baseline_and_context_orders (test_retrieval.RetrievalRegressionTests.test_frozen_baseline_and_context_orders) ... ok
+2026-11-11T14:04:27.2078064Z test_one_hop_toggle_and_wrong_topic (test_retrieval.RetrievalRegressionTests.test_one_hop_toggle_and_wrong_topic) ... ok
+2026-11-11T14:04:27.2079941Z test_shanghai_end_of_day_and_exact_boundary (test_teaching_mysql.DeadlineTests.test_shanghai_end_of_day_and_exact_boundary) ... ok
+2026-11-11T14:04:28.5337054Z test_class_isolation_edit_members_and_empty_tasks (test_teaching_mysql.TeachingMySQLTests.test_class_isolation_edit_members_and_empty_tasks) ... ok
+2026-11-11T14:04:28.7934523Z test_concurrent_notification_reads_and_backfill_are_idempotent (test_teaching_mysql.TeachingMySQLTests.test_concurrent_notification_reads_and_backfill_are_idempotent) ... ok
+2026-11-11T14:04:29.2658298Z test_invite_join_expire_revoke_and_throttle (test_teaching_mysql.TeachingMySQLTests.test_invite_join_expire_revoke_and_throttle) ... ok
+2026-11-11T14:04:29.7383061Z test_late_join_backfill_idempotence_and_removal_readonly (test_teaching_mysql.TeachingMySQLTests.test_late_join_backfill_idempotence_and_removal_readonly) ... ok
+2026-11-11T14:04:30.5134140Z test_messages_persist_read_private_and_no_duplicates (test_teaching_mysql.TeachingMySQLTests.test_messages_persist_read_private_and_no_duplicates) ... ok
+2026-11-11T14:04:30.8201024Z test_note_correction_cancel_and_legacy_notes (test_teaching_mysql.TeachingMySQLTests.test_note_correction_cancel_and_legacy_notes) ... ok
+2026-11-11T14:04:31.0956223Z test_original_learning_submit_retry_keeps_first_time_and_single_message (test_teaching_mysql.TeachingMySQLTests.test_original_learning_submit_retry_keeps_first_time_and_single_message) ... ok
+2026-11-11T14:04:31.2654547Z test_publish_snapshot_repeat_and_feedback_notification (test_teaching_mysql.TeachingMySQLTests.test_publish_snapshot_repeat_and_feedback_notification) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:580: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:31.2658859Z   task = LearningTask(id=task_id, classroom_id=classroom.id, teacher_id=user.id, lesson_id=lesson.id, title=version["title"] if version else lesson.title, snapshot=snapshot, questions=payload.lessonDraft.get("questions", []), due_date=snapshot["dueDate"],published_at=datetime.utcnow())
+2026-11-11T14:04:31.3011059Z /home/runner/work/sczx/sczx/backend-business/sczx_business/main.py:680: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:31.3012332Z   rec.feedback_at = datetime.utcnow()
+2026-11-11T14:04:31.4163255Z ok
+2026-11-11T14:04:32.2372793Z test_supplement_lifecycle_targets_privacy_and_feedback (test_teaching_mysql.TeachingMySQLTests.test_supplement_lifecycle_targets_privacy_and_feedback) ... ok
+2026-11-11T14:04:33.2135021Z test_teacher_stats_personal_status_and_dashboard (test_teaching_mysql.TeachingMySQLTests.test_teacher_stats_personal_status_and_dashboard) ... ok
+2026-11-11T14:04:34.5359722Z test_canonical_context_is_bounded_and_excludes_internal_fields (test_tutoring_mysql.TutoringMySQLTests.test_canonical_context_is_bounded_and_excludes_internal_fields) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/model_jobs.py:175: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:34.5363421Z   run.result, run.model, run.provider, run.status, run.ended_at = result, model, source, "succeeded", datetime.utcnow()
+2026-11-11T14:04:34.5494493Z ok
+2026-11-11T14:04:34.7778030Z test_failed_manual_retry_stop_and_duplicate_request (test_tutoring_mysql.TutoringMySQLTests.test_failed_manual_retry_stop_and_duplicate_request) ... ok
+2026-11-11T14:04:35.1118328Z test_invalid_math_and_original_answer_blocked_after_one_repair (test_tutoring_mysql.TutoringMySQLTests.test_invalid_math_and_original_answer_blocked_after_one_repair) ... ok
+2026-11-11T14:04:35.3327522Z test_legacy_student_client_cannot_bypass_guidance_policy (test_tutoring_mysql.TutoringMySQLTests.test_legacy_student_client_cannot_bypass_guidance_policy) ... ok
+2026-11-11T14:04:35.5851017Z test_ocr_scope_confirmation_and_text_fallback (test_tutoring_mysql.TutoringMySQLTests.test_ocr_scope_confirmation_and_text_fallback) ... ok
+2026-11-11T14:04:35.8556136Z test_removal_during_generation_does_not_write_guidance (test_tutoring_mysql.TutoringMySQLTests.test_removal_during_generation_does_not_write_guidance) ... ok
+2026-11-11T14:04:36.1861502Z test_removed_retry_new_and_queued_execution_blocked_history_retained (test_tutoring_mysql.TutoringMySQLTests.test_removed_retry_new_and_queued_execution_blocked_history_retained) ... ok
+2026-11-11T14:04:36.3850654Z test_replay_after_context_change_keeps_first_job_and_help_record (test_tutoring_mysql.TutoringMySQLTests.test_replay_after_context_change_keeps_first_job_and_help_record) ... ok
+2026-11-11T14:04:36.7096664Z test_self_attempt_no_model_or_help_reset (test_tutoring_mysql.TutoringMySQLTests.test_self_attempt_no_model_or_help_reset) ... ok
+2026-11-11T14:04:37.5053433Z test_strategy_chain_parent_scope_and_four_turn_bound (test_tutoring_mysql.TutoringMySQLTests.test_strategy_chain_parent_scope_and_four_turn_bound) ... ok
+2026-11-11T14:04:37.5060955Z test_fake_practice_and_check_marks_cannot_replace_answers (test_tutoring_policy.PracticeCompletionTests.test_fake_practice_and_check_marks_cannot_replace_answers) ... ok
+2026-11-11T14:04:37.5076532Z test_oversized_sources_are_bounded_without_mutating_original_evidence (test_tutoring_policy.PracticeCompletionTests.test_oversized_sources_are_bounded_without_mutating_original_evidence) ... ok
+2026-11-11T14:04:37.6564393Z test_all_thirty_reference_answers_and_prose_conditions (test_unit_conditions.UnitMathTests.test_all_thirty_reference_answers_and_prose_conditions) ... ok
+2026-11-11T14:04:37.6571652Z test_fourteen_math_condition_scenarios (test_unit_conditions.UnitMathTests.test_fourteen_math_condition_scenarios) ... ok
+2026-11-11T14:04:37.6592366Z test_installer_rejects_changed_review_digest_before_any_write (test_unit_conditions.UnitMathTests.test_installer_rejects_changed_review_digest_before_any_write) ... ok
+2026-11-11T14:04:37.6717297Z test_no_unique_solution_domain_and_substitution (test_unit_conditions.UnitMathTests.test_no_unique_solution_domain_and_substitution) ... ok
+2026-11-11T14:04:37.6720127Z test_observed_combined_division_rule_is_blocked_even_with_no_claims (test_unit_conditions.UnitMathTests.test_observed_combined_division_rule_is_blocked_even_with_no_claims) ... ok
+2026-11-11T14:04:37.6722911Z test_word_modeling_is_not_auto_correct_from_numeric_match (test_unit_conditions.UnitMathTests.test_word_modeling_is_not_auto_correct_from_numeric_match) ... ok
+2026-11-11T14:04:38.9890147Z test_exam_live_and_group_records_do_not_replace_curriculum_progress (test_unit_mysql.UnitMySQLTests.test_exam_live_and_group_records_do_not_replace_curriculum_progress) ... /home/runner/work/sczx/sczx/backend-business/tests/test_unit_mysql.py:47: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:38.9894096Z   db.add(LearningTask(id=ident,classroom_id=parent.classroom_id,teacher_id=parent.teacher_id,lesson_id=parent.lesson_id,title=source,snapshot={},questions=[],due_date='',source=source,published_at=datetime.utcnow()+timedelta(minutes=index+1)));db.flush()
+2026-11-11T14:04:39.0252725Z ok
+2026-11-11T14:04:39.2369166Z test_known_conditions_block_review_and_publication (test_unit_mysql.UnitMySQLTests.test_known_conditions_block_review_and_publication) ... ok
+2026-11-11T14:04:39.4645705Z test_order_validates_real_ids_and_repeated_or_invalid_values (test_unit_mysql.UnitMySQLTests.test_order_validates_real_ids_and_repeated_or_invalid_values) ... ok
+2026-11-11T14:04:39.7099174Z test_other_student_and_teacher_do_not_gain_records (test_unit_mysql.UnitMySQLTests.test_other_student_and_teacher_do_not_gain_records) ... ok
+2026-11-11T14:04:39.9329197Z test_progress_uses_real_latest_assignment_and_preserves_readonly (test_unit_mysql.UnitMySQLTests.test_progress_uses_real_latest_assignment_and_preserves_readonly) ... ok
+2026-11-11T14:04:40.1428790Z test_review_is_recorded_and_old_version_immutable (test_unit_mysql.UnitMySQLTests.test_review_is_recorded_and_old_version_immutable) ... /home/runner/work/sczx/sczx/backend-business/sczx_business/curriculum.py:188: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+2026-11-11T14:04:40.1432178Z   actor=account(request,db,True);data=copy.deepcopy(content.draft);data['reviewRecord']={'actorId':actor.id,'at':datetime.utcnow().isoformat()+'Z','scope':'内容、条件与数量关系人工核对','conditions':inspect_conditions(data)};content.draft=data;content.reviewed=True
+2026-11-11T14:04:40.1900536Z ok
+2026-11-11T14:04:40.1906618Z
+2026-11-11T14:04:40.1906948Z ----------------------------------------------------------------------
+2026-11-11T14:04:40.1907538Z Ran 165 tests in 52.667s
+2026-11-11T14:04:40.1907778Z
+2026-11-11T14:04:40.1907915Z OK
+2026-11-11T14:04:40.6409534Z Post job cleanup.
+2026-11-11T14:04:40.7607306Z (node:4169) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T14:04:40.7608536Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T14:04:40.7742149Z Post job cleanup.
+2026-11-11T14:04:40.8642889Z [command]/usr/bin/git version
+2026-11-11T14:04:40.8688043Z git version 2.56.0
+2026-11-11T14:04:40.8727176Z Temporarily overriding HOME='/home/runner/work/_temp/97214aa2-ccd0-46f3-9ab0-39d36797b7da' before making global git config changes
+2026-11-11T14:04:40.8728966Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T14:04:40.8732319Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sczx/sczx
+2026-11-11T14:04:40.8775852Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T14:04:40.8816083Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T14:04:40.9153921Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T14:04:40.9181470Z http.https://github.com/.extraheader
+2026-11-11T14:04:40.9203021Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-11T14:04:40.9231363Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T14:04:40.9630081Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T14:04:40.9673633Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T14:04:41.0100182Z Print service container logs: 61a60fc56c774f7797ecf753195fb986_mysql80_e29fcf
+2026-11-11T14:04:41.0105240Z ##[command]/usr/bin/docker logs --details f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:04:41.0256956Z  2026-11-11T14:03:05.263362Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2026-11-11T14:04:41.0257991Z  2026-11-11 14:03:04+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.46-1.el9 started.
+2026-11-11T14:04:41.0259173Z  2026-11-11T14:03:05.263446Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.46) initializing of server in progress as process 81
+2026-11-11T14:04:41.0274203Z  2026-11-11T14:03:05.271365Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-11T14:04:41.0275139Z  2026-11-11 14:03:05+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-11-11T14:04:41.0276336Z  2026-11-11T14:03:05.416709Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-11-11T14:04:41.0277213Z  2026-11-11T14:03:06.060415Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2026-11-11T14:04:41.0278415Z  2026-11-11T14:03:08.416356Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2026-11-11T14:04:41.0279385Z  2026-11-11T14:03:08.417791Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.46) starting as process 125
+2026-11-11T14:04:41.0280028Z  2026-11-11T14:03:08.435408Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-11T14:04:41.0280576Z  2026-11-11T14:03:08.535047Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-11-11T14:04:41.0281144Z  2026-11-11T14:03:08.675606Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-11-11T14:04:41.0281984Z  2026-11-11T14:03:08.675639Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-11-11T14:04:41.0283172Z  2026-11-11T14:03:08.677259Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-11-11T14:04:41.0284238Z  2026-11-11T14:03:08.689824Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+2026-11-11T14:04:41.0285853Z  2026-11-11T14:03:08.689920Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.46'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2026-11-11T14:04:41.0287401Z  Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+2026-11-11T14:04:41.0288021Z  Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+2026-11-11T14:04:41.0288599Z  Warning: Unable to load '/usr/share/zoneinfo/leapseconds' as time zone. Skipping it.
+2026-11-11T14:04:41.0289134Z  Warning: Unable to load '/usr/share/zoneinfo/tzdata.zi' as time zone. Skipping it.
+2026-11-11T14:04:41.0289651Z  Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+2026-11-11T14:04:41.0290172Z  Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+2026-11-11T14:04:41.0291048Z  2026-11-11T14:03:10.390287Z 11 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.46).
+2026-11-11T14:04:41.0291927Z  2026-11-11T14:03:11.169011Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.46)  MySQL Community Server - GPL.
+2026-11-11T14:04:41.0293207Z  2026-11-11T14:03:11.616387Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2026-11-11T14:04:41.0294166Z  2026-11-11T14:03:11.617746Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.46) starting as process 1
+2026-11-11T14:04:41.0294789Z  2026-11-11T14:03:11.622778Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-11T14:04:41.0295574Z  2026-11-11T14:03:11.717947Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-11-11T14:04:41.0296224Z  2026-11-11T14:03:11.833701Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-11-11T14:04:41.0297065Z  2026-11-11T14:03:11.833734Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-11-11T14:04:41.0298246Z  2026-11-11T14:03:11.835380Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-11-11T14:04:41.0299397Z  2026-11-11T14:03:11.851420Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2026-11-11T14:04:41.0300506Z  2026-11-11T14:03:11.851493Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.46'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2026-11-11T14:04:41.0301443Z  2026-11-11 14:03:05+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.46-1.el9 started.
+2026-11-11T14:04:41.0301975Z  2026-11-11 14:03:05+00:00 [Note] [Entrypoint]: Initializing database files
+2026-11-11T14:04:41.0302405Z  2026-11-11 14:03:08+00:00 [Note] [Entrypoint]: Database files initialized
+2026-11-11T14:04:41.0302833Z  2026-11-11 14:03:08+00:00 [Note] [Entrypoint]: Starting temporary server
+2026-11-11T14:04:41.0303246Z  2026-11-11 14:03:08+00:00 [Note] [Entrypoint]: Temporary server started.
+2026-11-11T14:04:41.0303656Z  '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+2026-11-11T14:04:41.0304079Z  2026-11-11 14:03:10+00:00 [Note] [Entrypoint]: Creating database sczx_test_ci
+2026-11-11T14:04:41.0304428Z
+2026-11-11T14:04:41.0304683Z  2026-11-11 14:03:10+00:00 [Note] [Entrypoint]: Stopping temporary server
+2026-11-11T14:04:41.0305108Z  2026-11-11 14:03:11+00:00 [Note] [Entrypoint]: Temporary server stopped
+2026-11-11T14:04:41.0305705Z
+2026-11-11T14:04:41.0306033Z  2026-11-11 14:03:11+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+2026-11-11T14:04:41.0306585Z
+2026-11-11T14:04:41.0312530Z Stop and remove container: 61a60fc56c774f7797ecf753195fb986_mysql80_e29fcf
+2026-11-11T14:04:41.0317971Z ##[command]/usr/bin/docker rm --force f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:04:41.2136668Z f773c286539fbb9d61630576471a83472b754a001147bbc5a0633503ce1b54b8
+2026-11-11T14:04:41.2153839Z Remove container network: github_network_6166763ceace4c808ba9be5a319d479f
+2026-11-11T14:04:41.2158832Z ##[command]/usr/bin/docker network rm github_network_6166763ceace4c808ba9be5a319d479f
+2026-11-11T14:04:41.2801954Z github_network_6166763ceace4c808ba9be5a319d479f
+2026-11-11T14:04:41.2880054Z Cleaning up orphan processes
+2026-11-11T14:04:41.3279674Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

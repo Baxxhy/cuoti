@@ -1,0 +1,9 @@
+{
+  "baseline": "f985287324a93dd4902feec2f8dc9211803a0265",
+  "sameSourceAndBuiltApplicationFiles": 209,
+  "changedApplicationFiles": [],
+  "generatedServiceWorker": "重新构建更新sw.js缓存版本；源文件未变，另在本地重新验证离线关闭重开和同步",
+  "changes": "本轮新增本地启动控制、测试及文档；业务服务和前端未改",
+  "reusedEvidence": "docs/verification/final_20261111_v1；旧35项结果保留，不将复用写成新执行",
+  "generatedWorkerSameShellSetAndLogic": true
+}
