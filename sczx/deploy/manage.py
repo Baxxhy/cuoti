@@ -173,7 +173,11 @@ def pid_info(config):
     try:
         os.kill(pid,0);p=Path('/proc')/str(pid)
         if (p/'stat').read_text().split(')')[1].split()[0]=='Z':return file,None
-        if b'uvicorn' not in (p/'cmdline').read_bytes() or Path(os.readlink(p/'cwd')).resolve()!=(ROOT/'backend-business').resolve():raise RuntimeError('PID身份不符，不停止其他进程')
+        args=(p/'cmdline').read_bytes()
+        # During exit Linux can expose an empty cmdline before the zombie state.
+        # Treat that as gone; never signal a replacement or unrelated process.
+        if not args:return file,None
+        if b'uvicorn' not in args or Path(os.readlink(p/'cwd')).resolve()!=(ROOT/'backend-business').resolve():raise RuntimeError('PID身份不符，不停止其他进程')
         target=b'SCZX_DATABASE_URL='+config['SCZX_DATABASE_URL'].encode()
         if target not in (p/'environ').read_bytes().split(b'\0'):raise RuntimeError('PID目标数据库不符')
         return file,info

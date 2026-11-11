@@ -5,6 +5,13 @@ ROOT=Path(__file__).resolve().parents[2]
 spec=importlib.util.spec_from_file_location('sczx_deploy_manage',ROOT/'deploy/manage.py');manage=importlib.util.module_from_spec(spec);spec.loader.exec_module(manage)
 class ReleaseToolsTests(unittest.TestCase):
  def config(self,folder):return {'SCZX_ENV':'staging','SCZX_DATABASE_URL':'mysql+pymysql://root@127.0.0.1:3306/sczx_test_release_gate','SCZX_STORAGE_DIR':str(folder/'uploads'),'SCZX_FRONTEND_DIST':str(folder/'front'),'SCZX_RELEASE_PYTHON':os.sys.executable,'SCZX_RELEASE_STATE':str(folder/'state')}
+ def test_exiting_empty_command_is_gone_but_unrelated_pid_is_refused(self):
+  with tempfile.TemporaryDirectory() as t:
+   base=Path(t);cfg=self.config(base);state=Path(cfg['SCZX_RELEASE_STATE']);state.mkdir();(state/'process.json').write_text(json.dumps({'pid':4321}));proc=base/'proc/4321';proc.mkdir(parents=True);(proc/'stat').write_text('4321 (python) S rest');(proc/'cmdline').write_bytes(b'')
+   with patch.object(manage,'Path',side_effect=lambda p:base/'proc' if str(p)=='/proc' else Path(p)),patch.object(manage.os,'kill') as signal:
+    self.assertIsNone(manage.pid_info(cfg)[1]);signal.assert_called_once_with(4321,0)
+    (proc/'cmdline').write_bytes(b'python\0unrelated-program\0')
+    with self.assertRaisesRegex(RuntimeError,'PID身份不符'):manage.pid_info(cfg)
  def test_configuration_only_parses_does_not_create_paths(self):
   with tempfile.TemporaryDirectory() as t:
    base=Path(t);cfg=self.config(base);p=base/'private.env';p.write_text('\n'.join(k+'='+v for k,v in cfg.items()));loaded=manage.configuration(p);self.assertFalse((base/'state').exists());self.assertEqual(loaded['SCZX_ENV'],'staging')
