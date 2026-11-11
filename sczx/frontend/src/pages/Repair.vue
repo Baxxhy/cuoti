@@ -348,7 +348,7 @@ onBeforeUnmount(() => {
             <h2>找到问题</h2>
             <Button
               :disabled="wrong.readOnly || job.busy.value"
-              variant="outline"
+              :variant="analysis ? 'outline' : 'default'"
               size="sm"
               @click="create('analysis')"
               >{{ analysis ? "重新分析" : "分析错因" }}</Button
@@ -362,9 +362,6 @@ onBeforeUnmount(() => {
             <p>建议检查：{{ analysis.result.cause }}</p>
             <InfoTip v-if="analysis.result.uncertainty" label="分析范围">{{ analysis.result.uncertainty }}</InfoTip></template
           >
-          <p v-else class="muted">
-            {{ wrong.reason || "保留原作答，先确认错误发生在哪一步。" }}
-          </p>
         </section>
         <section v-if="analysis" class="remediation-section">
           <div class="remediation-section-heading">
