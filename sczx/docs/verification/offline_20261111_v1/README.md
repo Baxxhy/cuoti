@@ -9,6 +9,6 @@
 - tests-delivery.log为151项全量通过，tests-focused-delivery.log为后续15项当前读复验；frontend-verified.log为最终23项，无跳过；JS与构建日志齐全。
 - docx-check.json和回归教案.docx为新导出及字体颜色检查，导出实现与历史人工Office验收未改。
 - 初验/中间失败日志与failure.png保留，不作为最终通过截图；受控失败注入见流程说明，不伪造成功写入。
-- CI回执在推送后据实补齐。私有配置、口令、浏览器配置目录、SQL、上传备份及私人清单不入库。
+- ci-receipt.json与ci-mysql.log：2ab3a1e，运行42988746401，双Job成功，151项MySQL无跳过。私有配置、口令、浏览器配置目录、SQL、上传备份及私人清单不入库。
 
 脚本读取/tmp/sczx-step19/private.json，仅可用于专用合成验收环境；不能对正式库执行。日志归档只去除行尾空格，原日志在/tmp保留。

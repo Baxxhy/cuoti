@@ -1,6 +1,8 @@
 {
-  "README.md": "97d41d0602dedb98c418d38999bde50798a7e4b553f0c18fa0c29f197087414d",
+  "README.md": "1c7bfc0fc8ba1fc166d10f128e8d8d04f7332bc8ee564fb241d05fe4499b401f",
   "build-terminal.log": "29485f59f918fa59fb5fda755172d2596a8d86fbe2da8e3ed12a37afe9ec58a4",
+  "ci-mysql.log": "e65956c3eda3d0647f463e62447425a7366f3b9d8d8631bf5dc312156894695a",
+  "ci-receipt.json": "43fd329415233cc5591ff858afd922badce9c4859c5b089cb269ab0daa8370fa",
   "conflict-browser-failure.png": "aff5c17699403070ac504f7a89cda52868f6be38fb571ea67e98986a4e57b9cc",
   "conflict-browser-initial.log": "5aacd3cad4d672fdf00bd1a54c0948e25deef47c162181c10d3bc0e3c5806dbb",
   "conflict-browser-resume-2.log": "c089ed069ac5c4fbc184c7c33abea9d4b003fbe4a4237d5e1a2c3e6418b7806d",

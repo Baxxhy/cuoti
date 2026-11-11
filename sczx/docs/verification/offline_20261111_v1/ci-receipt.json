@@ -1,0 +1,150 @@
+{
+  "runId": 42988746401,
+  "headSha": "2ab3a1e0062f1e6b828dc8ab9f18532e3fe42011",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/Baxxhy/sczx/actions/runs/42988746401",
+  "remoteMySQLTests": 151,
+  "remoteMySQLSkipped": 0,
+  "jobs": [
+    {
+      "id": 130416132161,
+      "name": "mysql-integration",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Baxxhy/sczx/actions/runs/42988746401/job/130416132161",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Initialize containers",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip install -e backend-business",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m unittest discover -s backend-business/tests -v",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Stop containers",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 130416132617,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Baxxhy/sczx/actions/runs/42988746401/job/130416132617",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run pip install -e backend-business",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run PYTHONPATH=backend-business python -m unittest discover -s backend-business/tests -v",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m compileall -q backend-business/sczx_business",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run PYTHONPATH=backend-business python -c \"import sczx_business.main\"",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm --prefix frontend ci",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm --prefix frontend run test:unit",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm --prefix frontend run build",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run git diff --check HEAD~1 HEAD",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "localVerification": {
+    "backendFull": 151,
+    "affectedRecheck": 15,
+    "chromium": 23,
+    "javascript": 4,
+    "desktopWidths": [
+      1440,
+      1920,
+      2560
+    ]
+  },
+  "formalMigrationExecuted": false,
+  "formalServiceSwitched": false,
+  "voiceExceptions": [
+    "step17/V01",
+    "step17/V03"
+  ]
+}
