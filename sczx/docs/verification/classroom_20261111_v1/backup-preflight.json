@@ -1,0 +1,29 @@
+{
+  "target": "/root/Baxxhy/zhiwei/sczx/backend-business/var/backups/step17_before_0014_20261111",
+  "files": [
+    {
+      "name": "main-before-private.sql",
+      "bytes": 4371346,
+      "sha256": "510814f27adf6a8f3e6eea50af86d98ab587a86538c72a77a8a51e21cd35d621"
+    },
+    {
+      "name": "main-files-private.tar.gz",
+      "bytes": 1374145,
+      "sha256": "7340f3bf53b5d2cc9cc3e8738fcf347716b04a94465f092b825897c4eea8757e"
+    },
+    {
+      "name": "main-before-private.json",
+      "bytes": 1168764,
+      "sha256": "2f9b5c787456e9a6eaf22e796824a86d373bfc2aed7323c783300727705ebdac"
+    },
+    {
+      "name": "main-files-private.json",
+      "bytes": 8554,
+      "sha256": "9db67132049eb4b82d4038eecbd9d416ce9bb9d0cd4cc9ea825f3fc50b917b3d"
+    }
+  ],
+  "regularUploadFiles": 69,
+  "backupBytesVerified": true,
+  "formalMigrationExecuted": false,
+  "formalServiceRestarted": false
+}

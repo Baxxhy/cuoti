@@ -1,0 +1,345 @@
+{
+  "checks": [
+    "actual-evidence-suggestions-teacher-edits-saves-and-confirms-three-groups"
+  ],
+  "screens": [],
+  "suggestions": {
+    "students": [
+      {
+        "studentId": "unit-s0",
+        "name": "单元验收·s0",
+        "suggestion": "证据不足",
+        "state": {
+          "status": "insufficient",
+          "statusLabel": "证据不足",
+          "reason": "目前还缺少足够的独立练习证据。",
+          "evidenceCount": 12,
+          "verifiedCount": 5,
+          "independentCorrect": 1,
+          "independentIncorrect": 3,
+          "helpedCorrect": 1,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": "2026-11-11T06:59:16Z",
+          "lastIndependentAt": "2026-11-11T06:59:16Z",
+          "basisIds": [
+            "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4:kp-equality",
+            "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb:kp-equality",
+            "repair:repair-7ecce44782d44b1390c48fb6f5bfd540:kp-equality",
+            "repair:repair-fe995770abb647b2adec810eb7cf274d:kp-equality",
+            "attempt:attempt-3885671cb45c4739bca272dd8e69d42b:kp-equality"
+          ],
+          "recentVerifiedCount": 5,
+          "dayCount": 1
+        },
+        "evidenceIds": [
+          "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4",
+          "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb",
+          "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z",
+          "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z",
+          "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "wrong:wrong-993542535f504bcab29631e332d818a9",
+          "help:help-f7d7d8f0fa5d4994845cae39857ddee2",
+          "help:help-f7d7d8f0fa5d4994845cae39857ddee2",
+          "repair:repair-7ecce44782d44b1390c48fb6f5bfd540",
+          "repair:repair-fe995770abb647b2adec810eb7cf274d",
+          "attempt:attempt-3885671cb45c4739bca272dd8e69d42b",
+          "wrong:wrong-1800b5e0c8a04c2eb2504c1748043dc2"
+        ]
+      },
+      {
+        "studentId": "unit-s1",
+        "name": "单元验收·s1",
+        "suggestion": "拓展",
+        "state": {
+          "status": "independent",
+          "statusLabel": "已有独立正确证据",
+          "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+          "evidenceCount": 5,
+          "verifiedCount": 3,
+          "independentCorrect": 3,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": "2026-11-11T06:59:16Z",
+          "lastIndependentAt": "2026-11-11T06:59:16Z",
+          "basisIds": [
+            "attempt:attempt-4d1fd23b497a4135aac067c9ebc659a4:kp-equality",
+            "attempt:attempt-9b1515690b8b40cc8c672d2241044aa5:kp-equality",
+            "attempt:attempt-2dc84992fc604f74b8f5970ea93cf8db:kp-equality"
+          ],
+          "recentVerifiedCount": 3,
+          "dayCount": 1
+        },
+        "evidenceIds": [
+          "attempt:attempt-4d1fd23b497a4135aac067c9ebc659a4",
+          "attempt:attempt-9b1515690b8b40cc8c672d2241044aa5",
+          "feedback:record-7359f1b8acba4c4282e644514bcfaa1c:2026-11-11T02:44:56Z",
+          "feedback:record-7359f1b8acba4c4282e644514bcfaa1c:2026-11-11T02:44:56Z",
+          "attempt:attempt-2dc84992fc604f74b8f5970ea93cf8db"
+        ]
+      },
+      {
+        "studentId": "unit-s2",
+        "name": "单元验收·s2",
+        "suggestion": "拓展",
+        "state": {
+          "status": "independent",
+          "statusLabel": "已有独立正确证据",
+          "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+          "evidenceCount": 4,
+          "verifiedCount": 2,
+          "independentCorrect": 2,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": "2026-11-11T02:44:56Z",
+          "lastIndependentAt": "2026-11-11T02:44:56Z",
+          "basisIds": [
+            "attempt:attempt-95d234157442423f96ae632f9ba6284d:kp-equality",
+            "attempt:attempt-c5ae8ce4d3674561b088b15d35549dd4:kp-equality"
+          ],
+          "recentVerifiedCount": 2,
+          "dayCount": 1
+        },
+        "evidenceIds": [
+          "attempt:attempt-95d234157442423f96ae632f9ba6284d",
+          "attempt:attempt-c5ae8ce4d3674561b088b15d35549dd4",
+          "feedback:record-ddeb080e09c8491fb2db4a819a256c6e:2026-11-11T02:44:56Z",
+          "feedback:record-ddeb080e09c8491fb2db4a819a256c6e:2026-11-11T02:44:56Z"
+        ]
+      },
+      {
+        "studentId": "unit-s6",
+        "name": "单元验收·s6",
+        "suggestion": "拓展",
+        "state": {
+          "status": "independent",
+          "statusLabel": "已有独立正确证据",
+          "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+          "evidenceCount": 4,
+          "verifiedCount": 2,
+          "independentCorrect": 2,
+          "independentIncorrect": 0,
+          "helpedCorrect": 0,
+          "unverifiedCount": 0,
+          "legacyCount": 0,
+          "lastPracticedAt": "2026-11-11T02:44:56Z",
+          "lastIndependentAt": "2026-11-11T02:44:56Z",
+          "basisIds": [
+            "attempt:attempt-2fefca32b6b1480087e4598f66de8406:kp-equality",
+            "attempt:attempt-319fb476c78f4c67b016debf25007c97:kp-equality"
+          ],
+          "recentVerifiedCount": 2,
+          "dayCount": 1
+        },
+        "evidenceIds": [
+          "attempt:attempt-2fefca32b6b1480087e4598f66de8406",
+          "attempt:attempt-319fb476c78f4c67b016debf25007c97",
+          "feedback:record-3426ea8fea9f463396b5d2bee144106c:2026-11-11T02:44:56Z",
+          "feedback:record-3426ea8fea9f463396b5d2bee144106c:2026-11-11T02:44:56Z"
+        ]
+      }
+    ],
+    "requiresTeacherConfirmation": true
+  },
+  "plan": {
+    "id": "group-abaad50e6f21402088143b5d6b638a0f",
+    "classId": "unit-c0",
+    "knowledgeId": "kp-equality",
+    "revision": 2,
+    "published": true,
+    "groups": [
+      {
+        "label": "补基础",
+        "versionId": "pv-415592a8bca145bd9d175c6b82e1e916",
+        "studentIds": [
+          "unit-s0"
+        ]
+      },
+      {
+        "label": "巩固",
+        "versionId": "pv-415592a8bca145bd9d175c6b82e1e916",
+        "studentIds": [
+          "unit-s1",
+          "unit-s6"
+        ]
+      },
+      {
+        "label": "拓展",
+        "versionId": "pv-ef60b61b3109488f96bc2f0ab2469b59",
+        "studentIds": [
+          "unit-s2"
+        ]
+      }
+    ],
+    "evidence": {
+      "unit-s0": {
+        "name": "单元验收·s0",
+        "state": {
+          "reason": "目前还缺少足够的独立练习证据。",
+          "status": "insufficient",
+          "basisIds": [
+            "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4:kp-equality",
+            "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb:kp-equality",
+            "repair:repair-7ecce44782d44b1390c48fb6f5bfd540:kp-equality",
+            "repair:repair-fe995770abb647b2adec810eb7cf274d:kp-equality",
+            "attempt:attempt-3885671cb45c4739bca272dd8e69d42b:kp-equality"
+          ],
+          "dayCount": 1,
+          "legacyCount": 0,
+          "statusLabel": "证据不足",
+          "evidenceCount": 12,
+          "helpedCorrect": 1,
+          "verifiedCount": 5,
+          "lastPracticedAt": "2026-11-11T06:59:16Z",
+          "unverifiedCount": 0,
+          "lastIndependentAt": "2026-11-11T06:59:16Z",
+          "independentCorrect": 1,
+          "recentVerifiedCount": 5,
+          "independentIncorrect": 3
+        },
+        "studentId": "unit-s0",
+        "suggestion": "证据不足",
+        "evidenceIds": [
+          "attempt:attempt-1c14737be7ac4a209bf42a2e0a3ab4d4",
+          "attempt:attempt-c1ba1f062dee47e4a335569b8b3083eb",
+          "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z",
+          "feedback:record-be66d566a89c410a8974d5b4e074a5b1:2026-11-11T02:44:56Z",
+          "wrong:wrong-6791801e90fc4b4aa66be73126f4ab91",
+          "wrong:wrong-993542535f504bcab29631e332d818a9",
+          "help:help-f7d7d8f0fa5d4994845cae39857ddee2",
+          "help:help-f7d7d8f0fa5d4994845cae39857ddee2",
+          "repair:repair-7ecce44782d44b1390c48fb6f5bfd540",
+          "repair:repair-fe995770abb647b2adec810eb7cf274d",
+          "attempt:attempt-3885671cb45c4739bca272dd8e69d42b",
+          "wrong:wrong-1800b5e0c8a04c2eb2504c1748043dc2"
+        ]
+      },
+      "unit-s1": {
+        "name": "单元验收·s1",
+        "state": {
+          "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+          "status": "independent",
+          "basisIds": [
+            "attempt:attempt-4d1fd23b497a4135aac067c9ebc659a4:kp-equality",
+            "attempt:attempt-9b1515690b8b40cc8c672d2241044aa5:kp-equality",
+            "attempt:attempt-2dc84992fc604f74b8f5970ea93cf8db:kp-equality"
+          ],
+          "dayCount": 1,
+          "legacyCount": 0,
+          "statusLabel": "已有独立正确证据",
+          "evidenceCount": 5,
+          "helpedCorrect": 0,
+          "verifiedCount": 3,
+          "lastPracticedAt": "2026-11-11T06:59:16Z",
+          "unverifiedCount": 0,
+          "lastIndependentAt": "2026-11-11T06:59:16Z",
+          "independentCorrect": 3,
+          "recentVerifiedCount": 3,
+          "independentIncorrect": 0
+        },
+        "studentId": "unit-s1",
+        "suggestion": "拓展",
+        "evidenceIds": [
+          "attempt:attempt-4d1fd23b497a4135aac067c9ebc659a4",
+          "attempt:attempt-9b1515690b8b40cc8c672d2241044aa5",
+          "feedback:record-7359f1b8acba4c4282e644514bcfaa1c:2026-11-11T02:44:56Z",
+          "feedback:record-7359f1b8acba4c4282e644514bcfaa1c:2026-11-11T02:44:56Z",
+          "attempt:attempt-2dc84992fc604f74b8f5970ea93cf8db"
+        ]
+      },
+      "unit-s2": {
+        "name": "单元验收·s2",
+        "state": {
+          "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+          "status": "independent",
+          "basisIds": [
+            "attempt:attempt-95d234157442423f96ae632f9ba6284d:kp-equality",
+            "attempt:attempt-c5ae8ce4d3674561b088b15d35549dd4:kp-equality"
+          ],
+          "dayCount": 1,
+          "legacyCount": 0,
+          "statusLabel": "已有独立正确证据",
+          "evidenceCount": 4,
+          "helpedCorrect": 0,
+          "verifiedCount": 2,
+          "lastPracticedAt": "2026-11-11T02:44:56Z",
+          "unverifiedCount": 0,
+          "lastIndependentAt": "2026-11-11T02:44:56Z",
+          "independentCorrect": 2,
+          "recentVerifiedCount": 2,
+          "independentIncorrect": 0
+        },
+        "studentId": "unit-s2",
+        "suggestion": "拓展",
+        "evidenceIds": [
+          "attempt:attempt-95d234157442423f96ae632f9ba6284d",
+          "attempt:attempt-c5ae8ce4d3674561b088b15d35549dd4",
+          "feedback:record-ddeb080e09c8491fb2db4a819a256c6e:2026-11-11T02:44:56Z",
+          "feedback:record-ddeb080e09c8491fb2db4a819a256c6e:2026-11-11T02:44:56Z"
+        ]
+      },
+      "unit-s6": {
+        "name": "单元验收·s6",
+        "state": {
+          "reason": "已有不同题目的独立正确证据，仍可按间隔复习。",
+          "status": "independent",
+          "basisIds": [
+            "attempt:attempt-2fefca32b6b1480087e4598f66de8406:kp-equality",
+            "attempt:attempt-319fb476c78f4c67b016debf25007c97:kp-equality"
+          ],
+          "dayCount": 1,
+          "legacyCount": 0,
+          "statusLabel": "已有独立正确证据",
+          "evidenceCount": 4,
+          "helpedCorrect": 0,
+          "verifiedCount": 2,
+          "lastPracticedAt": "2026-11-11T02:44:56Z",
+          "unverifiedCount": 0,
+          "lastIndependentAt": "2026-11-11T02:44:56Z",
+          "independentCorrect": 2,
+          "recentVerifiedCount": 2,
+          "independentIncorrect": 0
+        },
+        "studentId": "unit-s6",
+        "suggestion": "拓展",
+        "evidenceIds": [
+          "attempt:attempt-2fefca32b6b1480087e4598f66de8406",
+          "attempt:attempt-319fb476c78f4c67b016debf25007c97",
+          "feedback:record-3426ea8fea9f463396b5d2bee144106c:2026-11-11T02:44:56Z",
+          "feedback:record-3426ea8fea9f463396b5d2bee144106c:2026-11-11T02:44:56Z"
+        ]
+      }
+    },
+    "tasks": [
+      {
+        "id": "task-1543ead604734833aec65ec306a9cb4d",
+        "title": "拓展练习 · 拓展共同运算",
+        "assigned": 1,
+        "submitted": 0,
+        "independentCorrectStudents": 0,
+        "evidence": []
+      },
+      {
+        "id": "task-c3f4aeca223045f0a29e17c11d806351",
+        "title": "巩固练习 · 基础共同运算",
+        "assigned": 2,
+        "submitted": 0,
+        "independentCorrectStudents": 0,
+        "evidence": []
+      },
+      {
+        "id": "task-d503f8ef6f1f414e98bc96f1f832902b",
+        "title": "补基础练习 · 基础共同运算",
+        "assigned": 1,
+        "submitted": 0,
+        "independentCorrectStudents": 0,
+        "evidence": []
+      }
+    ]
+  },
+  "failure": "Browser wait timed out: document.querySelector('.result-summary')?.textContent.includes('已提交')"
+}

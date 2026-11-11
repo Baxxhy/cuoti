@@ -1,0 +1,1030 @@
+{
+  "checks": [
+    "teacher-A-shares-fixed-case-B-bookmarks-discusses-and-adapts-private-draft",
+    "normal-save-review-preview-publish-adapted-version-and-link-actual-use-task"
+  ],
+  "screens": [
+    {
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "share": {
+    "id": "share-f204c74540cd4325a83d67b6a9b35247",
+    "ownerId": "unit-t1",
+    "author": "单元验收·t1",
+    "kind": "case",
+    "sourceId": "case-balance",
+    "snapshot": {
+      "id": "case-balance",
+      "grade": "七年级",
+      "title": "天平与等式性质",
+      "author": "",
+      "legacy": true,
+      "source": "待补充核对的教学示例",
+      "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+      "subject": "数学",
+      "version": 1,
+      "versionId": "version-6c4af288f6a349c6b9e5e29ba11d3f75",
+      "experience": {},
+      "references": [],
+      "publishedAt": "2026-11-11T02:28:53Z"
+    },
+    "active": true,
+    "createdAt": "2026-11-11T07:06:47Z",
+    "bookmarked": false,
+    "events": []
+  },
+  "original": "{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-6c4af288f6a349c6b9e5e29ba11d3f75\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-11T02:28:53Z\"}",
+  "adaptedDraft": {
+    "id": "draft-c6731ef69bfb4c01884daebaca7fca08",
+    "caseId": "case-balance",
+    "caseSnapshot": {
+      "id": "case-balance",
+      "grade": "七年级",
+      "title": "天平与等式性质",
+      "author": "",
+      "legacy": true,
+      "source": "待补充核对的教学示例",
+      "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+      "subject": "数学",
+      "version": 1,
+      "versionId": "version-6c4af288f6a349c6b9e5e29ba11d3f75",
+      "experience": {},
+      "references": [],
+      "publishedAt": "2026-11-11T02:28:53Z"
+    },
+    "lessonSnapshot": {
+      "goal": "用等式性质解加减、乘除及两步方程，并代回原式验算。",
+      "grade": "七年级",
+      "title": "解简单的一元一次方程",
+      "blocks": [
+        {
+          "id": "simple-explain-0",
+          "type": "explanation",
+          "title": "确定未知量与运算顺序",
+          "content": "一元一次方程含一个未知数，未知数最高次数为1。先看未知项外面做了什么运算，再逆向逐步消去；每一步两边必须同时进行相同运算。",
+          "required": true,
+          "teacherNote": "先让学生说明依据，再补充规范步骤。"
+        },
+        {
+          "id": "simple-explain-1",
+          "type": "explanation",
+          "title": "系数与非零条件",
+          "content": "解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。",
+          "required": true,
+          "teacherNote": "先让学生说明依据，再补充规范步骤。"
+        },
+        {
+          "id": "simple-explain-2",
+          "type": "explanation",
+          "title": "代回原式",
+          "content": "把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。",
+          "required": true,
+          "teacherNote": "先让学生说明依据，再补充规范步骤。"
+        },
+        {
+          "id": "simple-example-0",
+          "type": "example",
+          "title": "例题：先加减后乘除",
+          "content": "解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。",
+          "required": true,
+          "adjustment": "若只改变一边，回到原等式比较。",
+          "studentResponse": "写出两边相同的运算并说明条件。",
+          "teacherQuestion": "这一步对等式两边做了什么？"
+        },
+        {
+          "id": "simple-example-1",
+          "type": "example",
+          "title": "例题：负数系数",
+          "content": "解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。",
+          "required": true,
+          "adjustment": "若只改变一边，回到原等式比较。",
+          "studentResponse": "写出两边相同的运算并说明条件。",
+          "teacherQuestion": "这一步对等式两边做了什么？"
+        },
+        {
+          "id": "simple-practice",
+          "type": "practice",
+          "title": "活动：比较、求解并验算",
+          "content": "先独立写出每一步，再与原式比较；把答案代回左右两边。",
+          "required": true,
+          "questionIds": [
+            "simple-p1",
+            "simple-p2"
+          ],
+          "studentTask": "提交答案和运算解释，保留首次尝试。"
+        },
+        {
+          "id": "simple-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "不看例题独立作答。若请求帮助，之后换一道未作答新题检查。",
+          "required": true,
+          "questionIds": [
+            "simple-c1",
+            "simple-c2"
+          ]
+        }
+      ],
+      "caseId": "case-8f4074b5c5f64b059e00f4fe9ca3ef7b",
+      "source": "项目自编、AI辅助整理的一元一次方程单元；非教材摘录或真实教师经验，正式发布前须人工复核",
+      "unitId": "unit-equation",
+      "subject": "数学",
+      "version": 1,
+      "duration": 40,
+      "lessonId": "lesson-simple",
+      "questions": [
+        {
+          "id": "simple-p1",
+          "hint": "两边同时减7。",
+          "kind": "practice",
+          "type": "expression",
+          "answer": "5",
+          "prompt": "求x，并说明消去7的方法。",
+          "equation": "x+7=12",
+          "explanation": "x=5；5+7=12。",
+          "teacherNote": "核对每一步是否等价，要求代回原式。",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "requiresTeacherReview": false
+        },
+        {
+          "id": "simple-p2",
+          "hint": "4不为0，两边同时除以4。",
+          "kind": "practice",
+          "type": "expression",
+          "answer": "5",
+          "prompt": "求x，说明同除条件。",
+          "equation": "4x=20",
+          "explanation": "x=5；4×5=20。",
+          "teacherNote": "核对每一步是否等价，要求代回原式。",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "requiresTeacherReview": false
+        },
+        {
+          "id": "simple-c1",
+          "hint": "两边同时乘-3。",
+          "kind": "check",
+          "type": "expression",
+          "answer": "-12",
+          "prompt": "求x并验算。",
+          "equation": "x/(-3)=4",
+          "explanation": "x=-12；(-12)/(-3)=4。",
+          "teacherNote": "核对每一步是否等价，要求代回原式。",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "requiresTeacherReview": false
+        },
+        {
+          "id": "simple-c2",
+          "hint": "先两边减5。",
+          "kind": "check",
+          "type": "expression",
+          "answer": "-4",
+          "prompt": "求x，写出两步共同运算。",
+          "equation": "-2x+5=13",
+          "explanation": "-2x=8，x=-4。",
+          "teacherNote": "核对每一步是否等价，要求代回原式。",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "requiresTeacherReview": false
+        },
+        {
+          "id": "simple-r1",
+          "hint": "先减2，再乘5。",
+          "kind": "replacement",
+          "type": "expression",
+          "answer": "-5",
+          "prompt": "求x并代回。",
+          "equation": "x/5+2=1",
+          "explanation": "x/5=-1，x=-5。",
+          "teacherNote": "核对每一步是否等价，要求代回原式。",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "requiresTeacherReview": false
+        },
+        {
+          "id": "simple-r2",
+          "hint": "先加4，再除以非零数3。",
+          "kind": "replacement",
+          "type": "expression",
+          "answer": "5",
+          "prompt": "求x并解释。",
+          "equation": "3x-4=11",
+          "explanation": "3x=15，x=5。",
+          "teacherNote": "核对每一步是否等价，要求代回原式。",
+          "knowledgeIds": [
+            "kp-linear-simple"
+          ],
+          "requiresTeacherReview": false
+        }
+      ],
+      "versionId": "lessonversion-a810db605e16465cb5f2c6940b",
+      "authorship": {
+        "kind": "project_authored_ai_assisted",
+        "reviewDate": "2026-11-11",
+        "humanReview": "AI辅助拟稿、用户单人复核"
+      },
+      "publishedAt": "2026-11-11T02:29:01Z",
+      "caseSnapshot": {
+        "id": "case-8f4074b5c5f64b059e00f4fe9ca3ef7b",
+        "grade": "七年级",
+        "title": "项目自编：例题：消去减去的数",
+        "author": "AI辅助整理",
+        "source": "用户单人复核的项目自编单元",
+        "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+        "subject": "数学",
+        "version": 1,
+        "versionId": "version-c46da458320b40ac8b41ed2dc801715f",
+        "experience": {
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "difficulty": "先看数量关系和当前运算，保留学生的解释",
+          "introduction": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。"
+        },
+        "references": [
+          {
+            "label": "段落 1",
+            "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "author": "项目自编、AI辅助整理",
+            "source": "用户单人复核的单元草案；非真实教师课堂材料",
+            "unitId": "unit-8c70c810dceaec0a43083e1fcf54da8b",
+            "sourceUrl": "",
+            "materialId": "material-3d1ac1290daf4a96a07cea12602738a",
+            "materialTitle": "项目自编单元来源：等式性质"
+          }
+        ],
+        "publishedAt": "2026-11-11T02:28:59Z",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "knowledgeLinks": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ]
+      },
+      "knowledgeIds": [
+        "kp-linear-simple"
+      ],
+      "reviewRecord": {
+        "at": "2026-11-11T02:29:00.991341Z",
+        "scope": "内容、条件与数量关系人工核对",
+        "actorId": "unit-admin",
+        "conditions": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        }
+      },
+      "verification": {
+        "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+        "status": "verified"
+      },
+      "caseVersionId": "version-c46da458320b40ac8b41ed2dc801715f",
+      "contentPackage": {
+        "id": "linear-unit-20261111-v1",
+        "sourceId": "lesson-simple",
+        "approvedSha256": "e71797144ccc7306be88687bc5483fef54c95ff01ef13bc6c6ee722d1e7831ac"
+      },
+      "prerequisiteIds": [
+        "kp-equality"
+      ]
+    },
+    "lessonId": "lesson-simple",
+    "goal": "用等式性质解加减、乘除及两步方程，并代回原式验算。",
+    "studentBase": "",
+    "dueDate": "",
+    "blocks": [
+      {
+        "id": "simple-explain-0",
+        "type": "explanation",
+        "title": "确定未知量与运算顺序",
+        "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+        "required": true,
+        "teacherNote": "先让学生说明依据，再补充规范步骤。"
+      },
+      {
+        "id": "simple-explain-1",
+        "type": "explanation",
+        "title": "系数与非零条件",
+        "content": "解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。",
+        "required": true,
+        "teacherNote": "先让学生说明依据，再补充规范步骤。"
+      },
+      {
+        "id": "simple-explain-2",
+        "type": "explanation",
+        "title": "代回原式",
+        "content": "把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。",
+        "required": true,
+        "teacherNote": "先让学生说明依据，再补充规范步骤。"
+      },
+      {
+        "id": "simple-example-0",
+        "type": "example",
+        "title": "例题：先加减后乘除",
+        "content": "解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。",
+        "required": true,
+        "adjustment": "若只改变一边，回到原等式比较。",
+        "studentResponse": "写出两边相同的运算并说明条件。",
+        "teacherQuestion": "这一步对等式两边做了什么？"
+      },
+      {
+        "id": "simple-example-1",
+        "type": "example",
+        "title": "例题：负数系数",
+        "content": "解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。",
+        "required": true,
+        "adjustment": "若只改变一边，回到原等式比较。",
+        "studentResponse": "写出两边相同的运算并说明条件。",
+        "teacherQuestion": "这一步对等式两边做了什么？"
+      },
+      {
+        "id": "simple-practice",
+        "type": "practice",
+        "title": "活动：比较、求解并验算",
+        "content": "先独立写出每一步，再与原式比较；把答案代回左右两边。",
+        "required": true,
+        "questionIds": [
+          "simple-p1",
+          "simple-p2"
+        ],
+        "studentTask": "提交答案和运算解释，保留首次尝试。"
+      },
+      {
+        "id": "simple-check",
+        "type": "check",
+        "title": "独立检查",
+        "content": "不看例题独立作答。若请求帮助，之后换一道未作答新题检查。",
+        "required": true,
+        "questionIds": [
+          "simple-c1",
+          "simple-c2"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "simple-p1",
+        "hint": "两边同时减7。",
+        "kind": "practice",
+        "type": "expression",
+        "answer": "5",
+        "prompt": "求x，并说明消去7的方法。",
+        "equation": "x+7=12",
+        "explanation": "x=5；5+7=12。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-p2",
+        "hint": "4不为0，两边同时除以4。",
+        "kind": "practice",
+        "type": "expression",
+        "answer": "5",
+        "prompt": "求x，说明同除条件。",
+        "equation": "4x=20",
+        "explanation": "x=5；4×5=20。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-c1",
+        "hint": "两边同时乘-3。",
+        "kind": "check",
+        "type": "expression",
+        "answer": "-12",
+        "prompt": "求x并验算。",
+        "equation": "x/(-3)=4",
+        "explanation": "x=-12；(-12)/(-3)=4。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-c2",
+        "hint": "先两边减5。",
+        "kind": "check",
+        "type": "expression",
+        "answer": "-4",
+        "prompt": "求x，写出两步共同运算。",
+        "equation": "-2x+5=13",
+        "explanation": "-2x=8，x=-4。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-r1",
+        "hint": "先减2，再乘5。",
+        "kind": "replacement",
+        "type": "expression",
+        "answer": "-5",
+        "prompt": "求x并代回。",
+        "equation": "x/5+2=1",
+        "explanation": "x/5=-1，x=-5。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-r2",
+        "hint": "先加4，再除以非零数3。",
+        "kind": "replacement",
+        "type": "expression",
+        "answer": "5",
+        "prompt": "求x并解释。",
+        "equation": "3x-4=11",
+        "explanation": "3x=15，x=5。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      }
+    ],
+    "revision": 1,
+    "planningDetails": {},
+    "updatedAt": "2026-11-11T15:13:43"
+  },
+  "publishedTask": {
+    "id": "task-dae82f28cd798a74914dfca0a09e051a",
+    "lessonId": "lesson-simple",
+    "classId": "unit-c1",
+    "className": "单元预发布验收2班",
+    "title": "解简单的一元一次方程",
+    "snapshot": {
+      "id": "draft-c6731ef69bfb4c01884daebaca7fca08",
+      "goal": "用等式性质解加减、乘除及两步方程，并代回原式验算。 解释只改变一边为何不成立，保留案例原作者与来源。",
+      "blocks": [
+        {
+          "id": "simple-explain-0",
+          "type": "explanation",
+          "title": "确定未知量与运算顺序",
+          "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+          "required": true,
+          "teacherNote": "先让学生说明依据，再补充规范步骤。"
+        },
+        {
+          "id": "simple-explain-1",
+          "type": "explanation",
+          "title": "系数与非零条件",
+          "content": "解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。",
+          "required": true,
+          "teacherNote": "先让学生说明依据，再补充规范步骤。"
+        },
+        {
+          "id": "simple-explain-2",
+          "type": "explanation",
+          "title": "代回原式",
+          "content": "把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。",
+          "required": true,
+          "teacherNote": "先让学生说明依据，再补充规范步骤。"
+        },
+        {
+          "id": "simple-example-0",
+          "type": "example",
+          "title": "例题：先加减后乘除",
+          "content": "解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。",
+          "required": true,
+          "adjustment": "若只改变一边，回到原等式比较。",
+          "studentResponse": "写出两边相同的运算并说明条件。",
+          "teacherQuestion": "这一步对等式两边做了什么？"
+        },
+        {
+          "id": "simple-example-1",
+          "type": "example",
+          "title": "例题：负数系数",
+          "content": "解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。",
+          "required": true,
+          "adjustment": "若只改变一边，回到原等式比较。",
+          "studentResponse": "写出两边相同的运算并说明条件。",
+          "teacherQuestion": "这一步对等式两边做了什么？"
+        },
+        {
+          "id": "simple-practice",
+          "type": "practice",
+          "title": "活动：比较、求解并验算",
+          "content": "先独立写出每一步，再与原式比较；把答案代回左右两边。",
+          "required": true,
+          "questionIds": [
+            "simple-p1",
+            "simple-p2"
+          ],
+          "studentTask": "提交答案和运算解释，保留首次尝试。"
+        },
+        {
+          "id": "simple-check",
+          "type": "check",
+          "title": "独立检查",
+          "content": "不看例题独立作答。若请求帮助，之后换一道未作答新题检查。",
+          "required": true,
+          "questionIds": [
+            "simple-c1",
+            "simple-c2"
+          ]
+        }
+      ],
+      "caseId": "case-balance",
+      "dueDate": "",
+      "revision": 2,
+      "studentBase": "",
+      "caseSnapshot": {
+        "id": "case-balance",
+        "grade": "七年级",
+        "title": "天平与等式性质",
+        "author": "",
+        "legacy": true,
+        "source": "待补充核对的教学示例",
+        "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+        "subject": "数学",
+        "version": 1,
+        "versionId": "version-6c4af288f6a349c6b9e5e29ba11d3f75",
+        "experience": {},
+        "references": [],
+        "publishedAt": "2026-11-11T02:28:53Z"
+      },
+      "lessonSnapshot": {
+        "goal": "用等式性质解加减、乘除及两步方程，并代回原式验算。",
+        "grade": "七年级",
+        "title": "解简单的一元一次方程",
+        "blocks": [
+          {
+            "id": "simple-explain-0",
+            "type": "explanation",
+            "title": "确定未知量与运算顺序",
+            "content": "一元一次方程含一个未知数，未知数最高次数为1。先看未知项外面做了什么运算，再逆向逐步消去；每一步两边必须同时进行相同运算。",
+            "required": true,
+            "teacherNote": "先让学生说明依据，再补充规范步骤。"
+          },
+          {
+            "id": "simple-explain-1",
+            "type": "explanation",
+            "title": "系数与非零条件",
+            "content": "解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。",
+            "required": true,
+            "teacherNote": "先让学生说明依据，再补充规范步骤。"
+          },
+          {
+            "id": "simple-explain-2",
+            "type": "explanation",
+            "title": "代回原式",
+            "content": "把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。",
+            "required": true,
+            "teacherNote": "先让学生说明依据，再补充规范步骤。"
+          },
+          {
+            "id": "simple-example-0",
+            "type": "example",
+            "title": "例题：先加减后乘除",
+            "content": "解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。",
+            "required": true,
+            "adjustment": "若只改变一边，回到原等式比较。",
+            "studentResponse": "写出两边相同的运算并说明条件。",
+            "teacherQuestion": "这一步对等式两边做了什么？"
+          },
+          {
+            "id": "simple-example-1",
+            "type": "example",
+            "title": "例题：负数系数",
+            "content": "解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。",
+            "required": true,
+            "adjustment": "若只改变一边，回到原等式比较。",
+            "studentResponse": "写出两边相同的运算并说明条件。",
+            "teacherQuestion": "这一步对等式两边做了什么？"
+          },
+          {
+            "id": "simple-practice",
+            "type": "practice",
+            "title": "活动：比较、求解并验算",
+            "content": "先独立写出每一步，再与原式比较；把答案代回左右两边。",
+            "required": true,
+            "questionIds": [
+              "simple-p1",
+              "simple-p2"
+            ],
+            "studentTask": "提交答案和运算解释，保留首次尝试。"
+          },
+          {
+            "id": "simple-check",
+            "type": "check",
+            "title": "独立检查",
+            "content": "不看例题独立作答。若请求帮助，之后换一道未作答新题检查。",
+            "required": true,
+            "questionIds": [
+              "simple-c1",
+              "simple-c2"
+            ]
+          }
+        ],
+        "caseId": "case-8f4074b5c5f64b059e00f4fe9ca3ef7b",
+        "source": "项目自编、AI辅助整理的一元一次方程单元；非教材摘录或真实教师经验，正式发布前须人工复核",
+        "unitId": "unit-equation",
+        "subject": "数学",
+        "version": 1,
+        "duration": 40,
+        "lessonId": "lesson-simple",
+        "questions": [
+          {
+            "id": "simple-p1",
+            "hint": "两边同时减7。",
+            "kind": "practice",
+            "type": "expression",
+            "answer": "5",
+            "prompt": "求x，并说明消去7的方法。",
+            "equation": "x+7=12",
+            "explanation": "x=5；5+7=12。",
+            "teacherNote": "核对每一步是否等价，要求代回原式。",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "requiresTeacherReview": false
+          },
+          {
+            "id": "simple-p2",
+            "hint": "4不为0，两边同时除以4。",
+            "kind": "practice",
+            "type": "expression",
+            "answer": "5",
+            "prompt": "求x，说明同除条件。",
+            "equation": "4x=20",
+            "explanation": "x=5；4×5=20。",
+            "teacherNote": "核对每一步是否等价，要求代回原式。",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "requiresTeacherReview": false
+          },
+          {
+            "id": "simple-c1",
+            "hint": "两边同时乘-3。",
+            "kind": "check",
+            "type": "expression",
+            "answer": "-12",
+            "prompt": "求x并验算。",
+            "equation": "x/(-3)=4",
+            "explanation": "x=-12；(-12)/(-3)=4。",
+            "teacherNote": "核对每一步是否等价，要求代回原式。",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "requiresTeacherReview": false
+          },
+          {
+            "id": "simple-c2",
+            "hint": "先两边减5。",
+            "kind": "check",
+            "type": "expression",
+            "answer": "-4",
+            "prompt": "求x，写出两步共同运算。",
+            "equation": "-2x+5=13",
+            "explanation": "-2x=8，x=-4。",
+            "teacherNote": "核对每一步是否等价，要求代回原式。",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "requiresTeacherReview": false
+          },
+          {
+            "id": "simple-r1",
+            "hint": "先减2，再乘5。",
+            "kind": "replacement",
+            "type": "expression",
+            "answer": "-5",
+            "prompt": "求x并代回。",
+            "equation": "x/5+2=1",
+            "explanation": "x/5=-1，x=-5。",
+            "teacherNote": "核对每一步是否等价，要求代回原式。",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "requiresTeacherReview": false
+          },
+          {
+            "id": "simple-r2",
+            "hint": "先加4，再除以非零数3。",
+            "kind": "replacement",
+            "type": "expression",
+            "answer": "5",
+            "prompt": "求x并解释。",
+            "equation": "3x-4=11",
+            "explanation": "3x=15，x=5。",
+            "teacherNote": "核对每一步是否等价，要求代回原式。",
+            "knowledgeIds": [
+              "kp-linear-simple"
+            ],
+            "requiresTeacherReview": false
+          }
+        ],
+        "versionId": "lessonversion-a810db605e16465cb5f2c6940b",
+        "authorship": {
+          "kind": "project_authored_ai_assisted",
+          "reviewDate": "2026-11-11",
+          "humanReview": "AI辅助拟稿、用户单人复核"
+        },
+        "publishedAt": "2026-11-11T02:29:01Z",
+        "caseSnapshot": {
+          "id": "case-8f4074b5c5f64b059e00f4fe9ca3ef7b",
+          "grade": "七年级",
+          "title": "项目自编：例题：消去减去的数",
+          "author": "AI辅助整理",
+          "source": "用户单人复核的项目自编单元",
+          "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+          "subject": "数学",
+          "version": 1,
+          "versionId": "version-c46da458320b40ac8b41ed2dc801715f",
+          "experience": {
+            "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+            "difficulty": "先看数量关系和当前运算，保留学生的解释",
+            "introduction": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。"
+          },
+          "references": [
+            {
+              "label": "段落 1",
+              "quote": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+              "author": "项目自编、AI辅助整理",
+              "source": "用户单人复核的单元草案；非真实教师课堂材料",
+              "unitId": "unit-8c70c810dceaec0a43083e1fcf54da8b",
+              "sourceUrl": "",
+              "materialId": "material-3d1ac1290daf4a96a07cea12602738a",
+              "materialTitle": "项目自编单元来源：等式性质"
+            }
+          ],
+          "publishedAt": "2026-11-11T02:28:59Z",
+          "knowledgeIds": [
+            "kp-equality"
+          ],
+          "knowledgeLinks": [
+            {
+              "id": "kp-equality",
+              "name": "等式性质"
+            }
+          ]
+        },
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "reviewRecord": {
+          "at": "2026-11-11T02:29:00.991341Z",
+          "scope": "内容、条件与数量关系人工核对",
+          "actorId": "unit-admin",
+          "conditions": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          }
+        },
+        "verification": {
+          "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+          "status": "verified"
+        },
+        "caseVersionId": "version-c46da458320b40ac8b41ed2dc801715f",
+        "contentPackage": {
+          "id": "linear-unit-20261111-v1",
+          "sourceId": "lesson-simple",
+          "approvedSha256": "e71797144ccc7306be88687bc5483fef54c95ff01ef13bc6c6ee722d1e7831ac"
+        },
+        "prerequisiteIds": [
+          "kp-equality"
+        ]
+      },
+      "planningDetails": {}
+    },
+    "questions": [
+      {
+        "id": "simple-p1",
+        "hint": "两边同时减7。",
+        "kind": "practice",
+        "type": "expression",
+        "answer": "5",
+        "prompt": "求x，并说明消去7的方法。",
+        "equation": "x+7=12",
+        "explanation": "x=5；5+7=12。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-p2",
+        "hint": "4不为0，两边同时除以4。",
+        "kind": "practice",
+        "type": "expression",
+        "answer": "5",
+        "prompt": "求x，说明同除条件。",
+        "equation": "4x=20",
+        "explanation": "x=5；4×5=20。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-c1",
+        "hint": "两边同时乘-3。",
+        "kind": "check",
+        "type": "expression",
+        "answer": "-12",
+        "prompt": "求x并验算。",
+        "equation": "x/(-3)=4",
+        "explanation": "x=-12；(-12)/(-3)=4。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-c2",
+        "hint": "先两边减5。",
+        "kind": "check",
+        "type": "expression",
+        "answer": "-4",
+        "prompt": "求x，写出两步共同运算。",
+        "equation": "-2x+5=13",
+        "explanation": "-2x=8，x=-4。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-r1",
+        "hint": "先减2，再乘5。",
+        "kind": "replacement",
+        "type": "expression",
+        "answer": "-5",
+        "prompt": "求x并代回。",
+        "equation": "x/5+2=1",
+        "explanation": "x/5=-1，x=-5。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      },
+      {
+        "id": "simple-r2",
+        "hint": "先加4，再除以非零数3。",
+        "kind": "replacement",
+        "type": "expression",
+        "answer": "5",
+        "prompt": "求x并解释。",
+        "equation": "3x-4=11",
+        "explanation": "3x=15，x=5。",
+        "teacherNote": "核对每一步是否等价，要求代回原式。",
+        "knowledgeIds": [
+          "kp-linear-simple"
+        ],
+        "requiresTeacherReview": false
+      }
+    ],
+    "publishedAt": "2026-11-11T07:13:45Z",
+    "dueDate": "",
+    "source": "published",
+    "unitId": "unit-equation",
+    "dueAt": null,
+    "teacherName": "单元验收·t2",
+    "summary": {
+      "metrics": {
+        "attempts": 0,
+        "answeredQuestions": 0,
+        "independentQuestions": 0,
+        "independentCorrectQuestions": 0,
+        "independentCorrectStudents": 0,
+        "unverifiedQuestions": 0,
+        "helpedQuestions": 0
+      },
+      "members": 4,
+      "assigned": 4,
+      "started": 0,
+      "submitted": 0,
+      "unsubmitted": 4,
+      "overdue": 0,
+      "feedback": 0,
+      "inactive": 0,
+      "status": "待开始"
+    }
+  },
+  "final": {
+    "id": "share-f204c74540cd4325a83d67b6a9b35247",
+    "ownerId": "unit-t1",
+    "author": "单元验收·t1",
+    "kind": "case",
+    "sourceId": "case-balance",
+    "snapshot": {
+      "id": "case-balance",
+      "grade": "七年级",
+      "title": "天平与等式性质",
+      "author": "",
+      "legacy": true,
+      "source": "待补充核对的教学示例",
+      "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+      "subject": "数学",
+      "version": 1,
+      "versionId": "version-6c4af288f6a349c6b9e5e29ba11d3f75",
+      "experience": {},
+      "references": [],
+      "publishedAt": "2026-11-11T02:28:53Z"
+    },
+    "active": true,
+    "createdAt": "2026-11-11T07:06:47Z",
+    "bookmarked": false,
+    "events": [
+      {
+        "id": "ce-88ea3e72977147949810aebd5b56b6a6",
+        "ownerId": "unit-t2",
+        "author": "单元验收·t2",
+        "kind": "discussion",
+        "data": {
+          "text": "先比较只改一边与两边共同变化，保留原作者的共同运算依据。",
+          "basis": "个人讨论或自述，未验证课堂效果",
+          "taskId": null
+        },
+        "withdrawn": false,
+        "at": "2026-11-11T07:06:50Z"
+      },
+      {
+        "id": "ce-77a67afea46f480fab6adb0693aeffc2",
+        "ownerId": "unit-t2",
+        "author": "单元验收·t2",
+        "kind": "adaptation",
+        "data": {
+          "status": "私有草稿，需经原有核对/预览/发布流程",
+          "draftId": "draft-c6731ef69bfb4c01884daebaca7fca08",
+          "lessonId": "lesson-simple",
+          "sourceAuthor": "原案例未署名",
+          "sourceShareId": "share-f204c74540cd4325a83d67b6a9b35247",
+          "sourceVersionId": "version-6c4af288f6a349c6b9e5e29ba11d3f75"
+        },
+        "withdrawn": false,
+        "at": "2026-11-11T07:13:43Z"
+      },
+      {
+        "id": "ce-ed9e937876334f3781499b8db385224e",
+        "ownerId": "unit-t2",
+        "author": "单元验收·t2",
+        "kind": "discussion",
+        "data": {
+          "text": "先比较只改一边与两边共同变化，保留原作者的共同运算依据。",
+          "basis": "个人讨论或自述，未验证课堂效果",
+          "taskId": null
+        },
+        "withdrawn": false,
+        "at": "2026-11-11T07:13:43Z"
+      },
+      {
+        "id": "ce-ecd8e54644c1423cbce12f4bab924146",
+        "ownerId": "unit-t2",
+        "author": "单元验收·t2",
+        "kind": "feedback",
+        "data": {
+          "text": "已用于本次改编备课并发布给本班，尚未据此断言真实课堂效果。",
+          "basis": "关联实际任务，仅为作者自述",
+          "taskId": "task-dae82f28cd798a74914dfca0a09e051a"
+        },
+        "withdrawn": false,
+        "at": "2026-11-11T07:13:46Z"
+      }
+    ]
+  },
+  "consoleErrors": [],
+  "passed": true,
+  "initialHarnessFailure": "Browser wait timed out: !!document.querySelector('#lesson-goal')"
+}

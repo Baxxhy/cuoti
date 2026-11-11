@@ -1,0 +1,318 @@
+{
+  "checks": [
+    "two-real-students-join-receive-poll-answer-and-teacher-sees-real-stats",
+    "draft-refresh-and-public-feedback",
+    "new-activity-clears-old-editor",
+    "end-freezes-and-relogin-restores-original-history"
+  ],
+  "screens": [
+    {
+      "name": "teacher-live",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "teacher-live",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "teacher-live",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    },
+    {
+      "name": "student-live",
+      "width": 1440,
+      "scroll": 1440,
+      "client": 1440
+    },
+    {
+      "name": "student-live",
+      "width": 1920,
+      "scroll": 1920,
+      "client": 1920
+    },
+    {
+      "name": "student-live",
+      "width": 2560,
+      "scroll": 2560,
+      "client": 2560
+    }
+  ],
+  "id": "live-0345aaf96b70485b9cadbe0df52cef16",
+  "active": {
+    "id": "live-0345aaf96b70485b9cadbe0df52cef16",
+    "classId": "unit-c0",
+    "lessonId": "lesson-equation",
+    "title": "等式性质",
+    "versionId": "lessonversion-05548bc775c24080ab030dfee3",
+    "status": "active",
+    "revision": 1,
+    "currentId": "act-58e916ee95804db585a13b5c881afdc4",
+    "taskId": null,
+    "joined": 2,
+    "members": [
+      {
+        "id": "unit-s0",
+        "name": "单元验收·s0"
+      },
+      {
+        "id": "unit-s1",
+        "name": "单元验收·s1"
+      }
+    ],
+    "activities": [
+      {
+        "id": "act-58e916ee95804db585a13b5c881afdc4",
+        "position": 1,
+        "question": {
+          "id": "eq-practice-add",
+          "hint": "把两边都写成加3后的算式。",
+          "kind": "practice",
+          "type": "expression",
+          "answer": "8",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "x - 3 + 3 = 5 + 3，所以x = 8。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        "feedback": "",
+        "answers": [
+          {
+            "id": "liveans-b293dd893e2d46e48066a2886da638e6",
+            "studentId": "unit-s0",
+            "studentName": "单元验收·s0",
+            "answer": "0",
+            "reason": "我先猜0，没有核对两边。",
+            "revision": 2,
+            "submittedAt": "2026-11-11T06:59:08Z",
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "inconsistent",
+              "correct": false,
+              "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+            }
+          },
+          {
+            "id": "liveans-f39832f8306e401bbcac5a3730993478",
+            "studentId": "unit-s1",
+            "studentName": "单元验收·s1",
+            "answer": "8",
+            "reason": "两边共同加3，代回成立。",
+            "revision": 1,
+            "submittedAt": "2026-11-11T06:59:08Z",
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            }
+          }
+        ],
+        "stats": {
+          "submitted": 2,
+          "correct": 1,
+          "incorrect": 1,
+          "unverified": 0
+        }
+      }
+    ],
+    "pollSeconds": 3,
+    "availableQuestions": [
+      {
+        "index": 0,
+        "prompt": "两边同时加3，x等于多少？",
+        "equation": "x - 3 = 5"
+      },
+      {
+        "index": 1,
+        "prompt": "两边同时减4，y等于多少？",
+        "equation": "y + 4 = 11"
+      },
+      {
+        "index": 2,
+        "prompt": "求z，并解释两边为什么可以同时除以3。",
+        "equation": "3z = 18"
+      },
+      {
+        "index": 3,
+        "prompt": "求w，并写出两边共同进行的运算。",
+        "equation": "w / 4 = 3"
+      },
+      {
+        "index": 4,
+        "prompt": "先使a - 1单独在一边，再求a。",
+        "equation": "2(a - 1) = 10"
+      },
+      {
+        "index": 5,
+        "prompt": "求b，说明两边共同进行的运算。",
+        "equation": "b / (-3) = 2"
+      }
+    ]
+  },
+  "ended": {
+    "id": "live-0345aaf96b70485b9cadbe0df52cef16",
+    "classId": "unit-c0",
+    "lessonId": "lesson-equation",
+    "title": "等式性质",
+    "versionId": "lessonversion-05548bc775c24080ab030dfee3",
+    "status": "ended",
+    "revision": 3,
+    "currentId": "act-7578542ffbd4465bb4af500aac39ea43",
+    "taskId": "task-974a321f5fad4894aa788bb8074de6fb",
+    "joined": 2,
+    "members": [
+      {
+        "id": "unit-s0",
+        "name": "单元验收·s0"
+      },
+      {
+        "id": "unit-s1",
+        "name": "单元验收·s1"
+      }
+    ],
+    "activities": [
+      {
+        "id": "act-58e916ee95804db585a13b5c881afdc4",
+        "position": 1,
+        "question": {
+          "id": "eq-practice-add",
+          "hint": "把两边都写成加3后的算式。",
+          "kind": "practice",
+          "type": "expression",
+          "answer": "8",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "x - 3 + 3 = 5 + 3，所以x = 8。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        "feedback": "对照原答，等式两边同时加3，再代回核对。",
+        "answers": [
+          {
+            "id": "liveans-b293dd893e2d46e48066a2886da638e6",
+            "studentId": "unit-s0",
+            "studentName": "单元验收·s0",
+            "answer": "0",
+            "reason": "我先猜0，没有核对两边。",
+            "revision": 2,
+            "submittedAt": "2026-11-11T06:59:08Z",
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "inconsistent",
+              "correct": false,
+              "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+            }
+          },
+          {
+            "id": "liveans-f39832f8306e401bbcac5a3730993478",
+            "studentId": "unit-s1",
+            "studentName": "单元验收·s1",
+            "answer": "8",
+            "reason": "两边共同加3，代回成立。",
+            "revision": 1,
+            "submittedAt": "2026-11-11T06:59:08Z",
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            }
+          }
+        ],
+        "stats": {
+          "submitted": 2,
+          "correct": 1,
+          "incorrect": 1,
+          "unverified": 0
+        }
+      },
+      {
+        "id": "act-7578542ffbd4465bb4af500aac39ea43",
+        "position": 2,
+        "question": {
+          "id": "eq-practice-sub",
+          "hint": "只减左边会破坏相等关系。",
+          "kind": "practice",
+          "type": "expression",
+          "answer": "7",
+          "prompt": "两边同时减4，y等于多少？",
+          "equation": "y + 4 = 11",
+          "feedback": [
+            {
+              "answer": "5",
+              "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+            }
+          ],
+          "explanation": "y + 4 - 4 = 11 - 4，所以y = 7。",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        "feedback": "",
+        "answers": [],
+        "stats": {
+          "submitted": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "unverified": 0
+        }
+      }
+    ],
+    "pollSeconds": 3,
+    "availableQuestions": [
+      {
+        "index": 0,
+        "prompt": "两边同时加3，x等于多少？",
+        "equation": "x - 3 = 5"
+      },
+      {
+        "index": 1,
+        "prompt": "两边同时减4，y等于多少？",
+        "equation": "y + 4 = 11"
+      },
+      {
+        "index": 2,
+        "prompt": "求z，并解释两边为什么可以同时除以3。",
+        "equation": "3z = 18"
+      },
+      {
+        "index": 3,
+        "prompt": "求w，并写出两边共同进行的运算。",
+        "equation": "w / 4 = 3"
+      },
+      {
+        "index": 4,
+        "prompt": "先使a - 1单独在一边，再求a。",
+        "equation": "2(a - 1) = 10"
+      },
+      {
+        "index": 5,
+        "prompt": "求b，说明两边共同进行的运算。",
+        "equation": "b / (-3) = 2"
+      }
+    ]
+  },
+  "consoleErrors": [],
+  "passed": true
+}

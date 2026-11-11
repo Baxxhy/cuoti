@@ -850,6 +850,13 @@ app.include_router(equation_router)
 from .exams import router as exams_router
 app.include_router(exams_router)
 
+from .live_classroom import router as live_router
+from .teaching_groups import router as groups_router
+from .community import router as community_router
+app.include_router(live_router)
+app.include_router(groups_router)
+app.include_router(community_router)
+
 # Optional production frontend: hash routes share the same origin as the API.
 if os.getenv('SCZX_FRONTEND_DIST'):
     from fastapi.staticfiles import StaticFiles

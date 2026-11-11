@@ -1,0 +1,34 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ exam page restores a saved reactive answer and preserves edits on failed save (2873.569417ms)
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (2595.169949ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1479.30984ms)
+✔ microphone refusal falls back to text and retry remains available (1190.148025ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (3113.03991ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1601.975739ms)
+✔ memory return controls preserve original learning task and knowledge route (2252.188353ms)
+✔ late memory response cannot overwrite a different task suggestion (1625.357555ms)
+✔ classroom polling preserves unsaved input, recovers errors and ignores old-room responses (2821.001752ms)
+✔ clearing a pending create prevents the old job from reopening (2203.60314ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1529.823512ms)
+✔ assistant initialization cannot replace a newer user request (1428.741464ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1161.571348ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (2600.301322ms)
+✔ independent wrong detail ignores an old response after switching questions (2911.371241ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (2453.414875ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1661.355312ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (2665.056745ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1705.795346ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1317.13261ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (2844.6536ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1471.390185ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6509.835986

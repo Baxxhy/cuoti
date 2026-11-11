@@ -1,0 +1,213 @@
+{
+  "database": "sczx_test_classroom_preview_94de32",
+  "allOriginalRowsUnchanged": true,
+  "before": {
+    "accounts": {
+      "rows": 15,
+      "sha256": "213297033f0b416a35ef9811485876ad3901e62353183a981ab826f567f860f4"
+    },
+    "attempts": {
+      "rows": 12,
+      "sha256": "a710d83fc8a00c73314fd4bd6e3805888abc9a6f9e716f030e7d394d08fa6aa3"
+    },
+    "bank_questions": {
+      "rows": 11,
+      "sha256": "6d3c565b3f257f76fdc3c70441aca70ba75be0a61a0ce10eac2f4e63f0e7a7c2"
+    },
+    "business_messages": {
+      "rows": 4,
+      "sha256": "8c26c0db66d71d92799e92cb601bb7d74af689cdb1befc55fc49483ec24f6f43"
+    },
+    "case_draft_contents": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "case_versions": {
+      "rows": 3,
+      "sha256": "e1fb60add073438e400a96baec40646200fb2418e3cf80742ce7934c1bc2c967"
+    },
+    "class_exams": {
+      "rows": 1,
+      "sha256": "b329e72a844a8f1903acdaa44854acafb70e16b8c8c04a74161185a50e244789"
+    },
+    "class_invites": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "class_join_throttles": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "class_members": {
+      "rows": 9,
+      "sha256": "f77ae7fb4b2b62f9907db6773bfc71b56f00e86be4c1c2ed78a4c41b1d66a2eb"
+    },
+    "classrooms": {
+      "rows": 3,
+      "sha256": "487ac621ffdd70b1081466d4f199e599bce8f1339cfbc2262bee5206552d5137"
+    },
+    "course_units": {
+      "rows": 1,
+      "sha256": "1182e0433389d525d4a2c810b4bcc73d61b3d0be47d6354352f5d2569da555b1"
+    },
+    "courses": {
+      "rows": 1,
+      "sha256": "35017e268c0a7addfc943c7bfd3b89da7b49e378d3043a91af72a27c3b1c1e1b"
+    },
+    "equation_progress": {
+      "rows": 1,
+      "sha256": "7dd4535681414d4201e871b660c5c12f1a670110ffadadda10afb616abef7fe7"
+    },
+    "exam_grade_audits": {
+      "rows": 4,
+      "sha256": "cec478b93768ccd6011c870919c36960b14e989ce54298d0a1f7fe198a4f78d2"
+    },
+    "exam_papers": {
+      "rows": 1,
+      "sha256": "574acc0e3418efcd227227d8805f7965ffbdeda718968e79b5215ad12dcbd77e"
+    },
+    "exam_submissions": {
+      "rows": 4,
+      "sha256": "e7e24bf147ee55a3bb006f4712a8810575cd4e9c7bfd1d56b2e1010c461f7f37"
+    },
+    "file_assets": {
+      "rows": 2,
+      "sha256": "aa1319e8b097c1d59efed7042d036da4e5b97bbbf335dec7ac10451a3ad202f5"
+    },
+    "help_records": {
+      "rows": 1,
+      "sha256": "2651ec0299ae24e8ed572f7b279258092d3578f795387f0b97458bb8da075693"
+    },
+    "knowledge_points": {
+      "rows": 8,
+      "sha256": "553d788d48169b6f6a4319092fa339722cba3e53f7ed3a70c8d2d8e81e42f61e"
+    },
+    "learning_memory_changes": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "learning_tasks": {
+      "rows": 1,
+      "sha256": "a2ae429f2f64fe5c8f3388e7bfe23b30d35390d7c854f003e5d0ef03f5bca8dd"
+    },
+    "lesson_contents": {
+      "rows": 5,
+      "sha256": "231bb961b5cc8e11fc26218ecb08f35ea388449da31f70dca69e0d665bd3975e"
+    },
+    "lesson_draft_versions": {
+      "rows": 1,
+      "sha256": "a84727b342a2ef8d6af8550b6feb5192c0ac70b1c381687497e0037d2cad09b2"
+    },
+    "lesson_drafts": {
+      "rows": 2,
+      "sha256": "a8341faf35a91565c0690ca853165acd383b1902c36e7e2bf9e0da198faa2df1"
+    },
+    "lesson_versions": {
+      "rows": 5,
+      "sha256": "91dc7a1b31fbf4c0cb20384fa43091006ac2fea72aebe4097c70b118e58c8652"
+    },
+    "lessons": {
+      "rows": 5,
+      "sha256": "6696135fe6e78fdf6c672c9ac9e9bfc0d57fe4c72e3f6e69038330e33d27370a"
+    },
+    "login_sessions": {
+      "rows": 19,
+      "sha256": "83475666af64db83d696a1dff68ff5d57fd878392a9aa4c5921b91f037259b46"
+    },
+    "material_units": {
+      "rows": 2,
+      "sha256": "e6bee0e22136a2b78c57073493754148c32613dbde3080e75bfde4a3b48e0e77"
+    },
+    "model_events": {
+      "rows": 38,
+      "sha256": "aad094268ec3ddbbe6ade25c531071ef7635c18962fe1d1084cb606974e60be8"
+    },
+    "model_jobs": {
+      "rows": 7,
+      "sha256": "968085ebd6fd5c506c83c4e181567400e5f22ace918541eb71a15b5739d8c62d"
+    },
+    "model_runs": {
+      "rows": 7,
+      "sha256": "1684c37524b8121ee0c23b5484930751d638e5d67eb2234f0e746a0a97c81e82"
+    },
+    "paper_versions": {
+      "rows": 1,
+      "sha256": "ade141ebed64758c92b05643f69f05691c27778e926566596d40b6fefc46e453"
+    },
+    "question_versions": {
+      "rows": 4,
+      "sha256": "bbfca34c27ac76b7c21780e06bd0d3690737da80958e8e9b1e6732e3e2419f4c"
+    },
+    "repair_attempts": {
+      "rows": 2,
+      "sha256": "71504e327702e5ee9ca2d84d85c4ee34deb82894eee8b4f63de893175d454a96"
+    },
+    "source_materials": {
+      "rows": 2,
+      "sha256": "f081bd8ce88d9e24eb013e21b5f9e086a252e6a5587c65c9ee234bb0692e1a67"
+    },
+    "student_records": {
+      "rows": 4,
+      "sha256": "256096ce65d9ec790697b7c90de9bfd51c3ab093b94c39fa1f831ab3a4e6a8e3"
+    },
+    "supplement_recipients": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "supplemental_instructions": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "support_issue_events": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "support_issues": {
+      "rows": 1,
+      "sha256": "40b5312927cf17161dc539d133cbd163f428f11b0b7a2cf2f082a1c80f34ed81"
+    },
+    "teaching_cases": {
+      "rows": 3,
+      "sha256": "1000b4c6e7892402ff9338c98e745fef7ed73d882fd87d4868a214f08c1dcd9e"
+    },
+    "wrong_questions": {
+      "rows": 5,
+      "sha256": "d386d7c9533cc4c12400b950cba7b8601434f92c4e2982a91b57b8dd24a34780"
+    }
+  },
+  "newTables": {
+    "community_bookmarks": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "community_events": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "community_shares": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "live_activities": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "live_answers": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "live_classes": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "live_presences": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "teaching_group_plans": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "formalDatabaseTouched": false
+}

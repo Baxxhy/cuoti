@@ -433,3 +433,4 @@ class SupportIssueEvent(Base):
     created_at: Mapped[datetime] = mapped_column(MySQLDateTime(fsp=6),default=datetime.utcnow)
 
 from .exam_models import BankQuestion,QuestionVersion,ExamPaper,PaperVersion,ClassExam,ExamSubmission,ExamGradeAudit
+from .classroom_models import LiveClass,LivePresence,LiveActivity,LiveAnswer,TeachingGroupPlan,CommunityShare,CommunityBookmark,CommunityEvent

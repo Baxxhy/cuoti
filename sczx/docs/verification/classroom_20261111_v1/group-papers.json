@@ -1,0 +1,208 @@
+[
+  {
+    "paper": {
+      "id": "paper-3f5628de327c4a55a5cd3211b68c37ba",
+      "revision": 2,
+      "reviewed": true,
+      "draft": {
+        "title": "基础共同运算",
+        "total": 10,
+        "unitId": "unit-equation",
+        "entries": [
+          {
+            "points": 10,
+            "question": {
+              "kind": "calculation",
+              "grade": "七年级",
+              "answer": "12",
+              "points": 10,
+              "prompt": "演示考试：共同运算验收",
+              "source": "教师自编",
+              "unitId": "unit-equation",
+              "subject": "数学",
+              "equation": "x-4=8",
+              "difficulty": "easy",
+              "explanation": "两边同时加4，得到x=12，代回原式。",
+              "knowledgeIds": [
+                "kp-equality"
+              ],
+              "reviewRecord": {
+                "at": "2026-11-11T02:34:03.075184Z",
+                "scope": "题干、条件、解答人工核对",
+                "actorId": "unit-t1"
+              },
+              "verification": {
+                "scope": "参考答案的数值或表达式等价性",
+                "status": "verified",
+                "correct": true,
+                "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "referenceVerification": {
+                "status": "verified"
+              },
+              "requiresTeacherReview": false
+            },
+            "versionId": "qv-1afcdf2d4d5e4f9992f56f35c711f9cf",
+            "questionId": "bq-19ee26d767bb411c8e4d089be86789ae"
+          }
+        ]
+      },
+      "versions": [
+        {
+          "id": "pv-415592a8bca145bd9d175c6b82e1e916",
+          "number": 1
+        }
+      ]
+    },
+    "question": {
+      "id": "qv-1afcdf2d4d5e4f9992f56f35c711f9cf",
+      "number": 1,
+      "data": {
+        "kind": "calculation",
+        "grade": "七年级",
+        "answer": "12",
+        "points": 10,
+        "prompt": "演示考试：共同运算验收",
+        "source": "教师自编",
+        "unitId": "unit-equation",
+        "subject": "数学",
+        "equation": "x-4=8",
+        "difficulty": "easy",
+        "explanation": "两边同时加4，得到x=12，代回原式。",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "reviewRecord": {
+          "at": "2026-11-11T02:34:03.075184Z",
+          "scope": "题干、条件、解答人工核对",
+          "actorId": "unit-t1"
+        },
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "referenceVerification": {
+          "status": "verified"
+        },
+        "requiresTeacherReview": false
+      }
+    }
+  },
+  {
+    "paper": {
+      "id": "paper-24c65373997740518fddffa7bfad1371",
+      "revision": 2,
+      "reviewed": true,
+      "draft": {
+        "title": "拓展共同运算",
+        "total": 10,
+        "unitId": "unit-equation",
+        "entries": [
+          {
+            "points": 10,
+            "question": {
+              "kind": "calculation",
+              "grade": "七年级",
+              "answer": "2",
+              "points": 10,
+              "prompt": "共同运算求解",
+              "source": "项目自编考试验收",
+              "unitId": "unit-equation",
+              "subject": "数学",
+              "equation": "2x+6=10",
+              "difficulty": "easy",
+              "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+              "knowledgeIds": [
+                "kp-equality"
+              ],
+              "reviewRecord": {
+                "at": "2026-11-11T02:32:55.748654Z",
+                "scope": "题干、条件、解答人工核对",
+                "actorId": "unit-t1"
+              },
+              "verification": {
+                "scope": "参考答案的数值或表达式等价性",
+                "status": "verified",
+                "correct": true,
+                "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+              },
+              "conditionCheck": {
+                "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+                "issues": [],
+                "status": "no_known_issue",
+                "humanReviewRequired": true
+              },
+              "referenceVerification": {
+                "status": "verified"
+              },
+              "requiresTeacherReview": false
+            },
+            "versionId": "qv-06dc10593e6d4b52be12fea193e1975b",
+            "questionId": "bq-fe04a8fd1d964e71ae07b17fe6c69282"
+          }
+        ]
+      },
+      "versions": [
+        {
+          "id": "pv-ef60b61b3109488f96bc2f0ab2469b59",
+          "number": 1
+        }
+      ]
+    },
+    "question": {
+      "id": "qv-06dc10593e6d4b52be12fea193e1975b",
+      "number": 1,
+      "data": {
+        "kind": "calculation",
+        "grade": "七年级",
+        "answer": "2",
+        "points": 10,
+        "prompt": "共同运算求解",
+        "source": "项目自编考试验收",
+        "unitId": "unit-equation",
+        "subject": "数学",
+        "equation": "2x+6=10",
+        "difficulty": "easy",
+        "explanation": "两边进行相同运算；同除必须非零，结果代回原式。",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "reviewRecord": {
+          "at": "2026-11-11T02:32:55.748654Z",
+          "scope": "题干、条件、解答人工核对",
+          "actorId": "unit-t1"
+        },
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "referenceVerification": {
+          "status": "verified"
+        },
+        "requiresTeacherReview": false
+      }
+    }
+  }
+]

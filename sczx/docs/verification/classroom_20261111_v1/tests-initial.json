@@ -1,0 +1,15 @@
+{
+  "database": "sczx_test_classroom_3705f3",
+  "exitCode": 1,
+  "command": [
+    "/tmp/sczx-venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "backend-business/tests",
+    "-v",
+    "-p",
+    "test_classroom_mysql.py"
+  ]
+}

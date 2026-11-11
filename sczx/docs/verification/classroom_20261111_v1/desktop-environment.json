@@ -1,0 +1,16 @@
+{
+  "os": "Linux",
+  "release": "4.15.0-76-generic",
+  "display": false,
+  "wayland": false,
+  "browsers": {
+    "microsoft-edge": null,
+    "google-chrome": null,
+    "chromium": null,
+    "powershell.exe": null
+  },
+  "desktopControlToolAvailable": false,
+  "headlessResultNotWindowsEvidence": true,
+  "environmentRepairsAttemptedThisRound": 0,
+  "status": "no_controllable_desktop_environment"
+}
