@@ -3,7 +3,7 @@ from pathlib import Path
 import httpx
 from sqlalchemy import select
 from sczx_business.database import engine,SessionLocal
-from sczx_business.models import Account,Course,CourseUnit,Lesson,LessonContent,LessonVersion,StudentRecord,ClassMember
+from sczx_business.models import Account,Course,CourseUnit,Lesson,LessonContent,LessonVersion,StudentRecord,ClassMember,LearningTask
 from sczx_business.main import app
 from test_teaching_mysql import create_accounts,fixture
 from sczx_business.security import hash_password
@@ -37,5 +37,17 @@ class UnitMySQLTests(unittest.IsolatedAsyncioTestCase):
  async def test_order_validates_real_ids_and_repeated_or_invalid_values(self):
   for order in [[self.fx['lesson'],self.fx['lesson']],['absent'],[{}]]:await self.call('PUT','/curriculum/courses/'+self.course,{'title':'单元','metadata':{'unitPlans':{self.unit:order}}},422)
   await self.call('PUT','/curriculum/courses/'+self.course,{'title':'单元','metadata':{'unitPlans':{self.unit:[self.fx['lesson']]}}});await self.login('s0');r=await self.call('GET','/units/'+self.unit+'/progress');self.assertEqual(r['lessons'][0]['lessonId'],self.fx['lesson'])
+ async def test_exam_live_and_group_records_do_not_replace_curriculum_progress(self):
+  from datetime import datetime,timedelta
+  await self.login('s0');original=(await self.call('GET','/units/'+self.unit+'/progress'))['lessons'][0]['taskId']
+  with SessionLocal.begin() as db:
+   parent=db.get(LearningTask,original)
+   for index,source in enumerate(['exam','live-class','group']):
+    ident='derived-'+uuid.uuid4().hex
+    db.add(LearningTask(id=ident,classroom_id=parent.classroom_id,teacher_id=parent.teacher_id,lesson_id=parent.lesson_id,title=source,snapshot={},questions=[],due_date='',source=source,published_at=datetime.utcnow()+timedelta(minutes=index+1)));db.flush()
+    db.add(StudentRecord(id='rec-'+uuid.uuid4().hex,task_id=ident,student_id='unit-test-s0',completed=source!='group'))
+  result=await self.call('GET','/units/'+self.unit+'/progress');self.assertEqual(result['lessons'][0]['taskId'],original);self.assertEqual(result['completed'],0)
+  with SessionLocal.begin() as db:db.scalar(select(StudentRecord).where(StudentRecord.task_id==original,StudentRecord.student_id=='unit-test-s0')).completed=True
+  self.assertEqual((await self.call('GET','/units/'+self.unit+'/progress'))['completed'],1)
  async def test_other_student_and_teacher_do_not_gain_records(self):
   await self.login('s10');r=await self.call('GET','/units/'+self.unit+'/progress');self.assertEqual(r['assigned'],0);self.assertTrue(all(not x['taskId'] for x in r['lessons']));await self.login('t2');await self.call('GET','/units/'+self.unit+'/progress',status=404)

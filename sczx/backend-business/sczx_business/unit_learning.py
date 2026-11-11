@@ -23,7 +23,9 @@ def progress(ident:str,request:Request,classId:str|None=None,db=Depends(get_db))
     rows=[]
     for lesson_id in lesson_order(db,unit):
         published=published_lesson(db,lesson_id)
-        query=select(LearningTask,StudentRecord).join(StudentRecord,StudentRecord.task_id==LearningTask.id).where(LearningTask.lesson_id==lesson_id,StudentRecord.student_id==user.id).order_by(LearningTask.published_at.desc(),LearningTask.id)
+        # Exams, group practice and live history share a lesson ID, but do not
+        # replace the student's assigned curriculum lesson or its completion.
+        query=select(LearningTask,StudentRecord).join(StudentRecord,StudentRecord.task_id==LearningTask.id).where(LearningTask.lesson_id==lesson_id,LearningTask.source.in_(['published','legacy-demo']),StudentRecord.student_id==user.id).order_by(LearningTask.published_at.desc(),LearningTask.id)
         if classId:query=query.where(LearningTask.classroom_id==classId)
         pairs=db.execute(query).all()
         writable=[(t,r) for t,r in pairs if member(db,t.classroom_id,user.id)]

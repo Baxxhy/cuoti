@@ -8,6 +8,8 @@ PYTHONPATH=backend-business python -m unittest discover -s backend-business/test
 
 MySQL/API集成测试默认跳过。先新建仅供测试的 `sczx_test_*` 库，再设置 `SCZX_DATABASE_URL` 和 `SCZX_RUN_MYSQL_TESTS=1` 运行同一命令。测试拒绝任何其他库名，会执行迁移并创建测试账号、案例和版本，不删除数据库。使用独立新库运行；不要指向正式sczx库。凭据通过环境配置，不写进测试文件。
 
+同时显式设置 `SCZX_STORAGE_DIR` 为本轮新建的独立测试上传目录；不能继承正式服务的上传目录。数据库和文件存储必须一起隔离。第二十步当前完整162项，另有23项Chromium、4项JavaScript；历史段落中的数量按当时版本保留。
+
 前端在Vite运行后执行 `CHROME_PATH=/path/to/chromium npm --prefix frontend test`。Node22以上，使用内置test、WebSocket和现有Chrome；SCZX_TEST_ORIGIN可改本地地址，默认5177。浏览器并发用例控制响应只验证状态竞争；真实模型联调另记验收结果。
 
 第十步补充：生成期间发布新课时、旧来源预检查、草稿并发冲突、不可变历史/恢复、DOCX固定版本与权限、局部改写保留手写属性，以及表达式/方程/条件三态核验。MySQL完整25项；无MySQL时12通过、13跳过。
