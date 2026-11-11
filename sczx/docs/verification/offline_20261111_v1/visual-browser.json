@@ -1,0 +1,841 @@
+{
+  "pages": [
+    {
+      "role": "teacher",
+      "label": "home",
+      "url": "/teacher",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "教学概览",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        },
+        {
+          "width": 1920,
+          "title": "教学概览",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        },
+        {
+          "width": 2560,
+          "title": "教学概览",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "cases",
+      "url": "/cases",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "教学案例",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "教学案例",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "教学案例",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "courses",
+      "url": "/courses",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "课程与课时",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        },
+        {
+          "width": 1920,
+          "title": "课程与课时",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        },
+        {
+          "width": 2560,
+          "title": "课程与课时",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "prepare",
+      "url": "/prepare",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "等式性质 · 备课",
+          "scroll": 1440,
+          "client": 1440,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "等式性质 · 备课",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "等式性质 · 备课",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "classes",
+      "url": "/class",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "单元预发布验收1班",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "单元预发布验收1班",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "单元预发布验收1班",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "insights",
+      "url": "/insights?task=task-974a321f5fad4894aa788bb8074de6fb",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "班级学情",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "班级学情",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "班级学情",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "bank",
+      "url": "/exam-bank",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "题库",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "题库",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "题库",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "papers",
+      "url": "/exam-papers",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "组卷工作台",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "组卷工作台",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "组卷工作台",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "grading",
+      "url": "/exams?exam=exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "考试",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "考试",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "考试",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "live",
+      "url": "/live?session=live-0345aaf96b70485b9cadbe0df52cef16",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "实时课堂",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "实时课堂",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "实时课堂",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "groups",
+      "url": "/groups",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "分层教学",
+          "scroll": 1440,
+          "client": 1440,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "分层教学",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "分层教学",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "teacher",
+      "label": "community",
+      "url": "/community",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "教研交流",
+          "scroll": 1440,
+          "client": 1440,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "教研交流",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "教研交流",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "student",
+      "label": "home",
+      "url": "/home",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "我的学习",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        },
+        {
+          "width": 1920,
+          "title": "我的学习",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        },
+        {
+          "width": 2560,
+          "title": "我的学习",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "student",
+      "label": "courses",
+      "url": "/courses",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "课程",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        },
+        {
+          "width": 1920,
+          "title": "课程",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        },
+        {
+          "width": 2560,
+          "title": "课程",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "cover"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "student",
+      "label": "lesson",
+      "url": "/learn?task=offline-images-7deae8f5",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "图文课时下载",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "contain"
+            }
+          ]
+        },
+        {
+          "width": 1920,
+          "title": "图文课时下载",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "contain"
+            }
+          ]
+        },
+        {
+          "width": 2560,
+          "title": "图文课时下载",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": [
+            {
+              "complete": true,
+              "width": 1536,
+              "fit": "contain"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "student",
+      "label": "check",
+      "url": "/check?task=offline-images-7deae8f5",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "图文课时下载 · 独立检查",
+          "scroll": 1440,
+          "client": 1440,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "图文课时下载 · 独立检查",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "图文课时下载 · 独立检查",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "student",
+      "label": "wrong",
+      "url": "/wrong",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "错题帮",
+          "scroll": 1440,
+          "client": 1440,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "错题帮",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "错题帮",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "student",
+      "label": "memory",
+      "url": "/memory",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "学习记忆",
+          "scroll": 1440,
+          "client": 1440,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "学习记忆",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "学习记忆",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "student",
+      "label": "exams",
+      "url": "/exams?exam=exam-4d355a4e4a7f4d5c892ba97fa7d60807",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "考试",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "考试",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "考试",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "student",
+      "label": "live",
+      "url": "/live?session=live-0345aaf96b70485b9cadbe0df52cef16",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "实时课堂",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "实时课堂",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "实时课堂",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "admin",
+      "label": "materials",
+      "url": "/manage",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "资料与案例",
+          "scroll": 1440,
+          "client": 1440,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "资料与案例",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "资料与案例",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "admin",
+      "label": "curriculum",
+      "url": "/content",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "课程内容",
+          "scroll": 1425,
+          "client": 1425,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "课程内容",
+          "scroll": 1905,
+          "client": 1905,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "课程内容",
+          "scroll": 2545,
+          "client": 2545,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    },
+    {
+      "role": "admin",
+      "label": "feedback",
+      "url": "/issues",
+      "widths": [
+        {
+          "width": 1440,
+          "title": "反馈与运行",
+          "scroll": 1440,
+          "client": 1440,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 1920,
+          "title": "反馈与运行",
+          "scroll": 1920,
+          "client": 1920,
+          "alerts": [],
+          "images": []
+        },
+        {
+          "width": 2560,
+          "title": "反馈与运行",
+          "scroll": 2560,
+          "client": 2560,
+          "alerts": [],
+          "images": []
+        }
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "AI-hint-offline-real-network",
+      "message": [
+        "无法连接到学习服务，请检查网络后重试。重新保存导出记录",
+        "无法连接到学习服务，请检查网络后重试。"
+      ]
+    },
+    {
+      "name": "admin-empty-search",
+      "text": "反馈与运行提交问题问题反馈模型任务账号与运行全部状态刷新暂无问题反馈选择一条问题查看来源和处理历史"
+    }
+  ],
+  "teacherNavigation": [
+    "教学概览",
+    "教学案例",
+    "课程与课时",
+    "我的教案",
+    "题库",
+    "组卷与考试",
+    "实时课堂",
+    "分层教学",
+    "教研交流",
+    "班级教学",
+    "学习记忆",
+    "问题与回复"
+  ],
+  "keyboard": {
+    "tag": "A",
+    "name": "师承智学首页",
+    "outline": "1px"
+  },
+  "consoleErrors": [],
+  "passed": true
+}

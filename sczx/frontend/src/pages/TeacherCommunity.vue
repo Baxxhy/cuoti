@@ -1,4 +1,5 @@
 <script setup>
+const confirm=window.confirm.bind(window);
 import{ref,onMounted}from'vue';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Bookmark,Share2,MessageSquare,RefreshCw}from'lucide-vue-next';import{navigate}from'@/lib/navigation.js';
 const store=useLearning(),items=ref([]),cases=ref([]),lessons=ref([]),active=ref(null),error=ref(''),busy=ref(false),shareOpen=ref(false),kind=ref('case'),source=ref(''),version=ref(''),savedVersions=ref([]),draftId=ref(''),target=ref(''),text=ref(''),eventKind=ref('discussion'),taskId=ref('');
 const call=(path,method='GET',body)=>api.request('/community'+path,{method,...(body?{body:JSON.stringify(body)}:{})});

@@ -1,0 +1,12 @@
+{
+  "ordinaryTask": "offline-normal-3cba0eb3",
+  "originalAnswer": "8",
+  "originalReason": "我把两边同时加3，再把8代回原式。",
+  "actualFormalSubmission": true,
+  "actualFormalAttempts": 1,
+  "syncReceipts": 3,
+  "conflictConfirmedAnswer": "0",
+  "withdrawnTaskPackageStatus": 403,
+  "withdrawnAt": "2026-11-11T08:03:27.571639Z",
+  "onlySyntheticData": true
+}

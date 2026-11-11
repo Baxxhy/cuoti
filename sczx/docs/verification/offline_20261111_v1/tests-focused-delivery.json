@@ -1,0 +1,15 @@
+{
+  "database": "sczx_test_offline_41928d",
+  "exitCode": 0,
+  "command": [
+    "/tmp/sczx-venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "backend-business/tests",
+    "-v",
+    "-p",
+    "test_offline_mysql.py"
+  ]
+}

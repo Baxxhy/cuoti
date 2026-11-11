@@ -1,0 +1,8 @@
+file:///tmp/sczx-step19/conflict-browser.mjs:15
+ mkdirSync(dir+'/local-exports',{recursive:true});await b.send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:dir+'/local-exports'},false);await b.eval(()=>[...document.querySelectorAll('.offline-operations article')].find(e=>e.textContent.includes('发生冲突')).querySelectorAll('button')[1].click());await sleep(450);report.exportFiles=readdirSync(dir+'/local-exports');if(!report.exportFiles.length)throw Error('no exported local copy');await click('确认后重新同步');await b.wait("!document.body.innerText.includes('发生冲突')");report.afterConfirm=await call(b,'/offline/packages/'+f.conflictTask);if(report.afterConfirm.drafts.questions[pkg.questions[0].id].answer!=='0')throw Error('confirmation sync mismatch');report.checks.push('actual-other-browser-write/CAS-conflict/both-values-visible/local-export/explicit-confirm-sync');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^
+
+ReferenceError: pkg is not defined
+    at file:///tmp/sczx-step19/conflict-browser.mjs:15:641
+
+Node.js v24.15.0

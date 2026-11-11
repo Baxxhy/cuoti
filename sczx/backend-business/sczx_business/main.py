@@ -424,10 +424,10 @@ def save_platform(payload: PlatformInput, request: Request, db: DB) -> dict:
             pass  # 案例独立接口保存；聚合自动保存不改写案例草稿或发布版本。
         elif user.role == "student":
             for task_id, record_data in (data.get("records") or {}).items():
-                rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
+                rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id).with_for_update())
                 if not rec:
                     continue
-                if not db.get(ClassMember,(db.get(LearningTask,rec.task_id).classroom_id,user.id)):continue
+                if not db.get(ClassMember,(db.get(LearningTask,rec.task_id).classroom_id,user.id)) or rec.completed or db.get(LearningTask,rec.task_id).snapshot.get("withdrawnAt"):continue
                 rec.observation = str(record_data.get("observation", ""))
                 from .visualization import validate_progress
                 drafts=record_data.get("drafts") or {}
@@ -589,7 +589,7 @@ def add_attempt(task_id: str, body: dict, request: Request, db: DB) -> dict:
     from .teaching import ensure_write
     ensure_write(db,user,task_id)
     require_role(user, "student")
-    rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
+    rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id).with_for_update())
     task = db.get(LearningTask, task_id)
     if not rec or not task:
         raise HTTPException(404, "没有找到本人的学习任务。")
@@ -619,7 +619,7 @@ def add_help(task_id: str, body: dict, request: Request, db: DB) -> dict:
     user = current_user(request, db)
     from .teaching import ensure_write
     ensure_write(db,user,task_id)
-    rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
+    rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id).with_for_update())
     if not rec:
         raise HTTPException(404, "没有找到本人的学习任务。")
     item = HelpRecord(id=f"help-{uuid.uuid4().hex}", record_id=rec.id, question=body.get("question"), kind=str(body.get("kind", "提示")), message=str(body.get("message", "")), attempt_number=len(db.scalars(select(Attempt).where(Attempt.record_id == rec.id)).all()) + 1)
@@ -646,7 +646,7 @@ def submit_task(task_id: str, request: Request, db: DB) -> dict:
     user = current_user(request, db)
     from .teaching import ensure_write
     ensure_write(db,user,task_id)
-    rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id))
+    rec = db.scalar(select(StudentRecord).where(StudentRecord.task_id == task_id, StudentRecord.student_id == user.id).with_for_update())
     if not rec:
         raise HTTPException(404, "没有找到本人的学习任务。")
     from .curriculum import completion_missing
@@ -727,6 +727,14 @@ def read_file(file_id: str, request: Request, db: DB) -> Response:
         from .library import published_unit
         for unit in db.scalars(select(MaterialUnit).outerjoin(SourceMaterial, MaterialUnit.material_id==SourceMaterial.id).where((MaterialUnit.image_file_id==file_id) | (SourceMaterial.file_id==file_id))).all():
             if published_unit(db,unit.id): allowed=True; break
+    if not allowed and user.role in ('student','teacher'):
+        task_query=select(LearningTask)
+        if user.role=='student':task_query=task_query.join(StudentRecord).where(StudentRecord.student_id==user.id)
+        else:task_query=task_query.where(LearningTask.teacher_id==user.id)
+        image_url='/api/files/'+file_id
+        for assigned in db.scalars(task_query):
+            if any(b.get('imageUrl')==image_url for b in assigned.snapshot.get('blocks',[])) or any(q.get('imageUrl')==image_url for q in assigned.questions):
+                allowed=True;break
     if not allowed:
         from .models import LessonVersion
         for version in db.scalars(select(LessonVersion)).all():
@@ -856,6 +864,9 @@ from .community import router as community_router
 app.include_router(live_router)
 app.include_router(groups_router)
 app.include_router(community_router)
+
+from .offline import router as offline_router
+app.include_router(offline_router)
 
 # Optional production frontend: hash routes share the same origin as the API.
 if os.getenv('SCZX_FRONTEND_DIST'):

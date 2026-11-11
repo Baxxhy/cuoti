@@ -1,0 +1,5 @@
+{
+  "checks": [],
+  "screens": [],
+  "failure": "Browser wait timed out: document.body.innerText.includes('课时已下载')"
+}

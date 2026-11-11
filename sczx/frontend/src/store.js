@@ -1,3 +1,4 @@
+import {closeVault,pendingLogout,lockVault,vaultData} from "./services/offline/vault.js";
 import { defineStore } from "pinia";
 import {
   createPlatform,
@@ -12,6 +13,8 @@ export const useLearning = defineStore("platform", {
     currentClassId: "",
     user: null,
     authChecked: false,
+    authGeneration: 0,
+    loadGeneration: 0,
     status: "loading",
     error: "",
     saveError: "",
@@ -65,11 +68,15 @@ export const useLearning = defineStore("platform", {
   },
   actions: {
     async initialize() {
+      const generation=++this.authGeneration, initialUser=this.user;
       try {
         const result = await api.me();
+        if(generation!==this.authGeneration || (this.user!==initialUser && this.user)) return;
+        if(vaultData()&&vaultData().owner.id!==result.user.id)lockVault();
         this.user = result.user;
         await this.load();
       } catch (error) {
+        if(generation!==this.authGeneration || (this.user!==initialUser && this.user)) return;
         this.user = null;
         this.status = "unauthenticated";
         this.error = error.status === 401 ? "" : error.message;
@@ -78,26 +85,36 @@ export const useLearning = defineStore("platform", {
       }
     },
     async login(username, password) {
+      const generation=++this.authGeneration;
       const result = await api.login(username, password);
-      this.user = result.user;
+      if(generation!==this.authGeneration) return;
+      if(vaultData()&&vaultData().owner.id!==result.user.id)lockVault();
+        this.user = result.user;
       await this.load();
     },
     async logout() {
-      if (!(await this.save())) throw new Error(this.saveError || "当前修改尚未保存，请稍后重试退出。");
-      await api.logout();
+      this.authGeneration++;this.loadGeneration++;
+      if(navigator.onLine && !(await this.save()) && !this.saveError.includes("无法连接")) throw new Error(this.saveError || "当前修改尚未保存，请重试后退出。");
+      await closeVault({username:this.user?.username});
+      await pendingLogout(true);
+      try { await api.logout(); await pendingLogout(false); } catch {}
       this.user = null;
       this.notifications=[];
       this.data = createPlatform();
       this.status = "unauthenticated";
     },
     async load(lessonId=this.data.lesson?.id, background=false) {
+      const generation=++this.loadGeneration, auth=this.authGeneration, userId=this.user?.id;
       if (!background) this.status = "loading";
       this.error = "";
       try {
-        this.data = await api.platform(lessonId);
+        const loaded=await api.platform(lessonId);
+        if(generation!==this.loadGeneration || auth!==this.authGeneration || userId!==this.user?.id) return;
+        this.data = loaded;
         this.notifications=this.data.messages||[];
         this.status = "ready";
       } catch (error) {
+        if(generation!==this.loadGeneration || auth!==this.authGeneration || userId!==this.user?.id) return;
         this.error = error.message;
         this.status = "error";
       }

@@ -26,6 +26,7 @@ def ensure_write(db,user,task_id):
     task=db.get(LearningTask,task_id)
     if task:db.scalar(select(Classroom).where(Classroom.id==task.classroom_id).with_for_update())
     active=db.scalar(select(ClassMember).where(ClassMember.classroom_id==task.classroom_id,ClassMember.student_id==user.id).with_for_update()) if task else None
+    if task and task.snapshot.get('withdrawnAt'):raise HTTPException(409,'教师已撤回任务，仅可回看。')
     if not task or user.role!='student' or not active:raise HTTPException(403,'已移出班级的学习记录仅可回看，不能继续提交。')
     return task
 def accessible_task(db,user,ident,lock=False):
@@ -72,7 +73,7 @@ def task_json(db,user,task):
     elif rec:
         status=personal_status(rec,cutoff(task.due_date),member(db,task.classroom_id,user.id))
         if status=='待开始' and db.scalar(select(Attempt.id).where(Attempt.record_id==rec.id).limit(1)):status='学习中'
-        result.update(status=status,readOnly=not member(db,task.classroom_id,user.id))
+        result.update(status=status,readOnly=bool(task.snapshot.get('withdrawnAt')) or not member(db,task.classroom_id,user.id))
     return result
 
 def message(db,task,recipient,kind,body='',object_id=None,sender=None,event_key=None):

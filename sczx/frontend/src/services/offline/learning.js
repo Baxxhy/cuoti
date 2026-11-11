@@ -1,0 +1,20 @@
+import {api} from '../api.js';
+import {vaultData,mutateVault,storageMessage} from './vault.js';
+export const syncLabels={local:'已保存到本机',pending:'等待同步',syncing:'正在同步',synced:'已同步',conflict:'发生冲突',failed:'同步失败',invalid:'已失效，不能提交'};
+export async function downloadTask(taskId,onProgress=()=>{}){
+ const owner=vaultData()?.owner;if(!owner)throw Error('请先设置或解锁离线口令。');
+ const pkg=await api.request('/offline/packages/'+encodeURIComponent(taskId));if(pkg.userId!==owner.id)throw Error('当前在线账号与本机下载不一致。');
+ const urls=[...new Set([...pkg.blocks,...pkg.questions].map(x=>x.imageUrl).filter(Boolean))];pkg.resources={};onProgress({done:0,total:urls.length+1});
+ for(let i=0;i<urls.length;i++){const url=new URL(urls[i],location.origin);if(url.origin!==location.origin||!url.pathname.startsWith('/api/'))throw Error('此图片来源不能离线下载。');const response=await fetch(url,{credentials:'include'});if(!response.ok)throw Error('图片下载失败，请重试；原下载保留。');const blob=await response.blob();if(!blob.type.startsWith('image/'))throw Error('图片格式不正确。');pkg.resources[urls[i]]=await new Promise((resolve,reject)=>{const fr=new FileReader();fr.onload=()=>resolve(fr.result);fr.onerror=reject;fr.readAsDataURL(blob)});onProgress({done:i+1,total:urls.length+1})}
+ try{await mutateVault(data=>{const old=data.packages.find(p=>p.taskId===taskId);if(old&&data.operations.some(o=>o.taskId===taskId&&o.status!=='synced'))throw Error('此课时有未同步草稿，请先处理或导出，再更新版本。');data.packages=data.packages.filter(p=>p.taskId!==taskId);data.packages.push(pkg)});}catch(e){throw Error(storageMessage(e))}onProgress({done:urls.length+1,total:urls.length+1});return pkg;
+}
+export async function saveLocal(pkg,questionId,value){if(Date.now()>Date.parse(pkg.offlineUntil))throw Error('本机离线授权已到期，请联网重新下载；原草稿仍保留。');const body={operationId:crypto.randomUUID(),userId:pkg.userId,taskId:pkg.taskId,questionId,versionId:pkg.versionId,baseRevision:pkg.baseRevision,modifiedAt:new Date().toISOString(),answer:value.answer||'',reason:value.reason||'',helped:!!value.helped,position:value.position||''};await mutateVault(data=>{data.operations=data.operations.filter(o=>!(o.taskId===pkg.taskId&&o.questionId===questionId));data.operations.push({...body,status:'pending'});const p=data.packages.find(p=>p.taskId===pkg.taskId);if(questionId==='@position')p.drafts.lessonPosition={blockId:body.position};else p.drafts.questions[questionId]={answer:body.answer,reason:body.reason,helped:body.helped};});return body}
+export async function syncDrafts(onChange=()=>{}){
+ const me=await api.me();if(me.user.id!==vaultData()?.owner.id)throw Error('在线身份与本机草稿不同，请登录原账号。');
+ const ids=vaultData().operations.filter(o=>['pending','failed','local','syncing'].includes(o.status)).map(o=>o.operationId);const summary={synced:0,conflicts:0,failed:0};const blocked=new Set();
+ for(const id of ids){let op=vaultData()?.operations.find(o=>o.operationId===id);if(!op||blocked.has(op.taskId))continue;await mutateVault(d=>{d.operations.find(o=>o.operationId===id).status='syncing'});onChange();const {status,conflict,...body}=op;
+  try{const r=await api.request('/offline/sync',{method:'POST',body:JSON.stringify(body)});await mutateVault(d=>{d.operations.find(o=>o.operationId===id).status='synced';d.packages.find(p=>p.taskId===op.taskId).baseRevision=r.revision;for(const next of d.operations)if(next.taskId===op.taskId&&next.operationId!==id&&['pending','failed'].includes(next.status))next.baseRevision=r.revision});summary.synced++}
+  catch(e){await mutateVault(d=>{const item=d.operations.find(o=>o.operationId===id);item.status=e.status===409?(e.detail?.allowRetry?'conflict':'invalid'):'failed';item.conflict=e.detail||{message:e.message};});blocked.add(op.taskId);if(e.status===409)summary.conflicts++;else summary.failed++;}onChange();
+ }return summary;
+}
+export async function confirmConflict(id){await mutateVault(d=>{const op=d.operations.find(o=>o.operationId===id);if(!op?.conflict?.allowRetry)throw Error('此任务不可继续写入，请保留本地副本。');op.baseRevision=op.conflict.serverRevision;op.operationId=crypto.randomUUID();op.status='pending';delete op.conflict;})}

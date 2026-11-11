@@ -1,0 +1,166 @@
+{
+  "checks": [
+    "online-download-three-authorized-packages-and-real-images/offline-save-IDB",
+    "actual-browser-close-reopen-offline-shell/unlock/restored-original-answer-reason-and-image",
+    "online-identity-CAS-sync/server-reread/repeated-sync-idempotent",
+    "normal-online-original-answer-verification-and-formal-submission"
+  ],
+  "screens": [
+    {
+      "name": "offline-reader",
+      "width": 1440,
+      "scroll": 1425,
+      "client": 1425
+    },
+    {
+      "name": "offline-reader",
+      "width": 1920,
+      "scroll": 1905,
+      "client": 1905
+    },
+    {
+      "name": "offline-reader",
+      "width": 2560,
+      "scroll": 2545,
+      "client": 2545
+    }
+  ],
+  "serviceWorker": {
+    "controller": true,
+    "caches": [
+      "sczx-shell-b0619d397849dcbf"
+    ],
+    "apiCached": false
+  },
+  "encryptedStorage": [
+    {
+      "schema": 1,
+      "encrypted": true,
+      "bytes": 2674294,
+      "keys": [
+        "schema",
+        "salt",
+        "iv",
+        "ciphertext"
+      ]
+    }
+  ],
+  "serverDraft": {
+    "schema": 1,
+    "userId": "unit-s0",
+    "taskId": "offline-normal-3cba0eb3",
+    "lessonId": "lesson-equation",
+    "title": "离线学习与草稿同步",
+    "publishedVersionId": "offline-synthetic-v1",
+    "versionId": "28ce9fc43314f7adf43d2a961ce2b0e614f36fc9acfbbcbe505219e971f1c8ea",
+    "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+    "blocks": [
+      {
+        "id": "offline-read",
+        "title": "等式两边共同变化",
+        "type": "explanation",
+        "content": "x − 3 = 5。两边同时加3，得到x = 8；再代回核对。",
+        "imageUrl": "/api/files/file-e52c4205bbdf432d83b4d49814a7c467",
+        "imageAlt": "天平与等式共同变化的课程插图"
+      },
+      {
+        "id": "offline-check",
+        "title": "普通练习",
+        "type": "practice",
+        "content": "说明两边进行了什么运算。",
+        "questionIds": [
+          "eq-practice-add"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "eq-practice-add",
+        "kind": "practice",
+        "prompt": "两边同时加3，x等于多少？",
+        "equation": "x - 3 = 5",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 0
+      }
+    ],
+    "knowledgeIds": [
+      "kp-equality"
+    ],
+    "downloadedAt": "2026-11-11T07:54:14.377967Z",
+    "offlineUntil": "2026-11-14T07:54:14.377992Z",
+    "baseRevision": "84bce3de12cd1d9907ef5017fdabd5e085c323c14ccebd7eee906c6822e4c43e",
+    "drafts": {
+      "questions": {
+        "eq-practice-add": {
+          "answer": "8",
+          "reason": "我把两边同时加3，再把8代回原式。",
+          "helped": false
+        }
+      },
+      "lessonPosition": {}
+    },
+    "readOnly": false,
+    "contentHash": "6bc481a0dac059253e6bb245f0100f037fd9cb55e551f16437af9f9be4f59018"
+  },
+  "formalSubmission": {
+    "metrics": {
+      "attempts": 1,
+      "answeredQuestions": 1,
+      "independentQuestions": 0,
+      "independentCorrectQuestions": 0,
+      "independentCorrectStudents": 0,
+      "unverifiedQuestions": 0,
+      "helpedQuestions": 0
+    },
+    "memberActive": true,
+    "id": "record-8a3ecf3f2fb942cfaa327c2676dd3f58",
+    "taskId": "offline-normal-3cba0eb3",
+    "studentId": "unit-s0",
+    "studentName": "单元验收·s0",
+    "observation": "",
+    "drafts": {
+      "questions": {
+        "eq-practice-add": {
+          "answer": "8",
+          "helped": false,
+          "reason": "我把两边同时加3，再把8代回原式。"
+        }
+      },
+      "lessonPosition": {
+        "blockId": "offline-check",
+        "question": null
+      }
+    },
+    "attempts": [
+      {
+        "id": "attempt-6ed3c7d58e634b86a9356b1340220481",
+        "taskId": "offline-normal-3cba0eb3",
+        "question": 0,
+        "questionId": "eq-practice-add",
+        "answer": "8",
+        "reason": "我把两边同时加3，再把8代回原式。",
+        "helped": false,
+        "correct": true,
+        "verification": {
+          "scope": "参考答案的数值或表达式等价性",
+          "status": "verified",
+          "correct": true,
+          "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+        },
+        "createdAt": "2026-11-11T15:54:15"
+      }
+    ],
+    "helps": [],
+    "repairs": [],
+    "wrongQuestions": [],
+    "completed": true,
+    "submittedAt": "2026-11-11T07:54:16",
+    "feedback": "",
+    "feedbackAt": null,
+    "updatedAt": "2026-11-11T15:54:16"
+  },
+  "passedThroughSync": true,
+  "consoleErrors": []
+}

@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "same-browser-B-cannot-unlock-A-with-correct-phrase",
+    "A-correct-identity-and-independent-key-restores-retained-copy",
+    "default-offline-exit-immediate-access-revocation/IDB-clear/server-session-logout-on-reconnect"
+  ],
+  "pendingLogout": {
+    "pending": true,
+    "privateKeys": []
+  },
+  "passed": true,
+  "consoleErrors": []
+}

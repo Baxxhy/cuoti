@@ -1,0 +1,126 @@
+{
+  "checks": [
+    "actual-teacher-withdraw/invalid-write-rejected/local-original-retained",
+    "controlled-IDB-quota-failure/no-false-success/old-encrypted-draft-survives-lock-reopen",
+    "controlled-download-network-failure/previous-version-and-images-intact"
+  ],
+  "conflict": {
+    "schema": 1,
+    "userId": "unit-s0",
+    "taskId": "offline-conflict-9232c981",
+    "lessonId": "lesson-equation",
+    "title": "双端草稿冲突",
+    "publishedVersionId": "offline-synthetic-v1",
+    "versionId": "d9a690a64a2f17ad1a3a6542f2d8ed0289a531737df691d0661c8fba92e908c3",
+    "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+    "blocks": [
+      {
+        "id": "offline-read",
+        "title": "等式两边共同变化",
+        "type": "explanation",
+        "content": "x − 3 = 5。两边同时加3，得到x = 8；再代回核对。"
+      },
+      {
+        "id": "offline-check",
+        "title": "普通练习",
+        "type": "practice",
+        "content": "说明两边进行了什么运算。",
+        "questionIds": [
+          "eq-practice-add"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "eq-practice-add",
+        "kind": "practice",
+        "prompt": "两边同时加3，x等于多少？",
+        "equation": "x - 3 = 5",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 0
+      }
+    ],
+    "knowledgeIds": [
+      "kp-equality"
+    ],
+    "downloadedAt": "2026-11-11T07:56:41.642018Z",
+    "offlineUntil": "2026-11-14T07:56:41.642037Z",
+    "baseRevision": "a089e4ba6ae9cadbe0fb3bfd8610e0e5eecc63ae6467662d412bbd5ca9d1fa92",
+    "drafts": {
+      "questions": {
+        "eq-practice-add": {
+          "answer": "9",
+          "reason": "另一浏览器的新草稿",
+          "helped": false
+        }
+      },
+      "lessonPosition": {}
+    },
+    "readOnly": false,
+    "contentHash": "377db5a948e3dee635694e5f01787608ba484c4ee305df9689c91f0bff19016b"
+  },
+  "exportFiles": [
+    "学习草稿-offline-conflict-9232c981.json"
+  ],
+  "initialFailure": "pkg is not defined",
+  "afterConfirm": {
+    "schema": 1,
+    "userId": "unit-s0",
+    "taskId": "offline-conflict-9232c981",
+    "lessonId": "lesson-equation",
+    "title": "双端草稿冲突",
+    "publishedVersionId": "offline-synthetic-v1",
+    "versionId": "d9a690a64a2f17ad1a3a6542f2d8ed0289a531737df691d0661c8fba92e908c3",
+    "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+    "blocks": [
+      {
+        "id": "offline-read",
+        "title": "等式两边共同变化",
+        "type": "explanation",
+        "content": "x − 3 = 5。两边同时加3，得到x = 8；再代回核对。"
+      },
+      {
+        "id": "offline-check",
+        "title": "普通练习",
+        "type": "practice",
+        "content": "说明两边进行了什么运算。",
+        "questionIds": [
+          "eq-practice-add"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "eq-practice-add",
+        "kind": "practice",
+        "prompt": "两边同时加3，x等于多少？",
+        "equation": "x - 3 = 5",
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "index": 0
+      }
+    ],
+    "knowledgeIds": [
+      "kp-equality"
+    ],
+    "downloadedAt": "2026-11-11T08:01:04.483957Z",
+    "offlineUntil": "2026-11-14T08:01:04.483973Z",
+    "baseRevision": "a089e4ba6ae9cadbe0fb3bfd8610e0e5eecc63ae6467662d412bbd5ca9d1fa92",
+    "drafts": {
+      "questions": {
+        "eq-practice-add": {
+          "answer": "9",
+          "reason": "另一浏览器的新草稿",
+          "helped": false
+        }
+      },
+      "lessonPosition": {}
+    },
+    "readOnly": false,
+    "contentHash": "377db5a948e3dee635694e5f01787608ba484c4ee305df9689c91f0bff19016b"
+  },
+  "failure": "Browser wait timed out: document.querySelector('[role=alert]')?.textContent.includes('另一账号')"
+}

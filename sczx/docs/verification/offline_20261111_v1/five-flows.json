@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-11",
+  "environment": "8093 production build / independent MySQL / persistent Chromium profile",
+  "flows": [
+    {
+      "id": 1,
+      "name": "离线阅读与真实浏览器关闭重开",
+      "passed": true,
+      "evidence": [
+        "offline-browser.json"
+      ],
+      "checks": [
+        "online-download-three-authorized-packages-and-real-images/offline-save-IDB",
+        "actual-browser-close-reopen-offline-shell/unlock/restored-original-answer-reason-and-image"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "本机草稿、身份确认、幂等同步与原流程正式提交",
+      "passed": true,
+      "evidence": [
+        "offline-browser.json",
+        "server-final-facts.json"
+      ],
+      "formalAttempts": 1
+    },
+    {
+      "id": 3,
+      "name": "另一浏览器修改、真实冲突确认与教师撤回",
+      "passed": true,
+      "evidence": [
+        "conflict-browser.json",
+        "isolation-browser.json",
+        "server-final-facts.json"
+      ],
+      "checks": [
+        "actual-teacher-withdraw/invalid-write-rejected/local-original-retained",
+        "controlled-IDB-quota-failure/no-false-success/old-encrypted-draft-survives-lock-reopen",
+        "controlled-download-network-failure/previous-version-and-images-intact"
+      ],
+      "confirmedAnswer": "0",
+      "intermediateRunHadLaterAccountInputRace": true
+    },
+    {
+      "id": 4,
+      "name": "同浏览器账号隔离、恢复与离线退出注销",
+      "passed": true,
+      "evidence": [
+        "isolation-browser.json"
+      ],
+      "checks": [
+        "same-browser-B-cannot-unlock-A-with-correct-phrase",
+        "A-correct-identity-and-independent-key-restores-retained-copy",
+        "default-offline-exit-immediate-access-revocation/IDB-clear/server-session-logout-on-reconnect"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "三端视觉及原业务回归",
+      "passed": true,
+      "evidence": [
+        "visual-browser.json",
+        "visual-extra.json",
+        "docx-check.json"
+      ],
+      "pages": 23,
+      "widths": [
+        1440,
+        1920,
+        2560
+      ]
+    }
+  ],
+  "allPassed": true,
+  "controlledFailures": [
+    "QuotaExceededError injected into actual IndexedDB put; prior encrypted data re-read after lock",
+    "download fetch rejects with network TypeError; existing package/image retained"
+  ],
+  "realOutcomes": "All successful downloads, synchronization, answers, submission and withdrawal use actual HTTP/MySQL; failure injections never fabricate successful persistence."
+}

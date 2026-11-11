@@ -434,3 +434,4 @@ class SupportIssueEvent(Base):
 
 from .exam_models import BankQuestion,QuestionVersion,ExamPaper,PaperVersion,ClassExam,ExamSubmission,ExamGradeAudit
 from .classroom_models import LiveClass,LivePresence,LiveActivity,LiveAnswer,TeachingGroupPlan,CommunityShare,CommunityBookmark,CommunityEvent
+from .offline_models import OfflineOperation  # register append-only sync receipts

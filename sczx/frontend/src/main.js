@@ -1,3 +1,4 @@
+import OfflineLearning from "./pages/OfflineLearning.vue";
 import LiveClassroom from "./pages/LiveClassroom.vue";
 import TeachingGroups from "./pages/TeachingGroups.vue";
 import TeacherCommunity from "./pages/TeacherCommunity.vue";
@@ -51,6 +52,7 @@ if (location.hash && !location.hash.startsWith("#/"))
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
+    {path:"/offline",name:"offline",component:OfflineLearning,meta:{public:true}},
     {path:"/live",name:"live",component:LiveClassroom},
     {path:"/groups",name:"groups",component:TeachingGroups},
     {path:"/community",name:"community",component:TeacherCommunity},
@@ -110,6 +112,7 @@ const roleRoutes = {
   admin: new Set(["source", "manage", "content", "issues", "cases", "case-detail", "courses"]),
 };
 router.beforeEach(async (to) => {
+  if(to.name === "offline") return true;
   if (to.name === "login") {
     if (!sessionReady) sessionReady = store.initialize();
     await sessionReady;
@@ -139,3 +142,5 @@ watch(
 );
 app.use(router);
 app.mount("#root");
+
+if(import.meta.env.PROD && "serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(()=>{});

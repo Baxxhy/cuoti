@@ -1,10 +1,12 @@
 <script setup>
+import {navigation as routeNavigation} from "@/lib/navigation-items.js";
 import { supportApi } from "@/services/insights.js";
 import { computed, onMounted, onBeforeUnmount, provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { AnimatePresence, motion, MotionConfig } from "motion-v";
 import { TooltipProvider } from "@/components/ui/tooltip/index.js";
 import {
+  Download,
   BookOpen,
   BookOpenText,
   LayoutDashboard,
@@ -48,38 +50,7 @@ watch(
   { immediate: true },
 );
 
-const navigation = {
-  student: [
-    { route: "home", label: "我的学习", icon: LayoutDashboard },
-    { route: "exams", label: "我的考试", icon: FileText },
-    { route: "live", label: "我的课堂", icon: Users },
-    { route: "courses", label: "探索课程", icon: BookOpen },
-    { route: "wrong", label: "错题帮", icon: NotebookPen },
-    { route: "memory", label: "学习记忆", icon: History },
-    { route: "records", label: "学习记录", icon: History },
-    { route: "issues", label: "问题与回复", icon: MessageSquareText },
-    {route:"class",label:"我的班级",icon:Users},
-  ],
-  teacher: [
-    { route: "teacher", label: "教学概览", icon: LayoutDashboard },
-    { route: "cases", label: "教学案例", icon: LibraryBig },
-    { route: "courses", label: "课程与课时", icon: BookOpen },
-    { route: "prepare", label: "我的教案", icon: FileText },
-    { route: "exam-bank", label: "题库", icon: BookOpenText },
-    { route: "exam-papers", label: "组卷与考试", icon: FileText },
-    { route: "live", label: "实时课堂", icon: Users },
-    { route: "groups", label: "分层教学", icon: Users },
-    { route: "community", label: "教研交流", icon: LibraryBig },
-    { route: "class", label: "班级教学", icon: Users },
-    { route: "memory", label: "学习记忆", icon: History },
-    { route: "issues", label: "问题与回复", icon: MessageSquareText },
-  ],
-  admin: [
-    { route: "manage", label: "内容工作台", icon: Layers },
-    { route: "content", label: "课程内容", icon: BookOpenText },
-    { route: "issues", label: "反馈与运行", icon: MessageSquareText },
-  ],
-};
+const navigation=Object.fromEntries(Object.entries(routeNavigation).map(([role,items])=>[role,items.map(([route,label,icon])=>({route,label,icon}))]));
 const role = computed(() => store.user?.role || "student");
 const roleLabel = computed(
   () => ({ student: "学生空间", teacher: "教学空间", admin: "内容管理" })[role.value],
@@ -167,7 +138,7 @@ async function submitFeedback() {
 <template>
   <MotionConfig reduced-motion="user"
     ><TooltipProvider :delay-duration="100">
-      <RouterView v-if="!store.user" />
+      <RouterView v-if="!store.user || route.name==='offline'" />
       <div v-else class="app-shell">
         <aside class="desktop-sidebar"><SidebarContent /></aside>
         <div class="app-body">

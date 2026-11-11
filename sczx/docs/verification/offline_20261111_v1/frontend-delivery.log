@@ -1,0 +1,55 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test tests/*.test.mjs
+
+✔ exam page restores a saved reactive answer and preserves edits on failed save (2914.818075ms)
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (3013.120353ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1426.79723ms)
+✔ microphone refusal falls back to text and retry remains available (1201.454431ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (3408.557084ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1831.608542ms)
+✖ memory return controls preserve original learning task and knowledge route (2848.222048ms)
+✔ late memory response cannot overwrite a different task suggestion (1575.36869ms)
+✔ classroom polling preserves unsaved input, recovers errors and ignores old-room responses (3417.380628ms)
+✔ clearing a pending create prevents the old job from reopening (2157.362292ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1428.17472ms)
+✔ assistant initialization cannot replace a newer user request (1858.509743ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1278.171094ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (2758.852733ms)
+✔ independent wrong detail ignores an old response after switching questions (3322.012192ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (3455.714068ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1703.648846ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (3623.307698ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1780.652156ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1470.980843ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (3099.976254ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1435.692351ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 21
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7085.462281
+
+✖ failing tests:
+
+test at tests/learning-memory.test.mjs:4:1
+✖ memory return controls preserve original learning task and knowledge route (2848.222048ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + '/login'
+  - '/memory?knowledge=kp-A&returnTask=task-B'
+
+      at TestContext.<anonymous> (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/learning-memory.test.mjs:8:165)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '/login',
+    expected: '/memory?knowledge=kp-A&returnTask=task-B',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

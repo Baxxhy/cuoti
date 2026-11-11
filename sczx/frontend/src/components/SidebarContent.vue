@@ -1,4 +1,5 @@
 <script setup>
+import {navigation} from "@/lib/navigation-items.js";
 import { computed, inject } from "vue";
 import { useRoute } from "vue-router";
 import {
@@ -35,33 +36,7 @@ const active = computed(
       insights: "class",
     })[route.name] || route.name,
 );
-const items = computed(
-  () =>
-    ({
-      student: [
-        ["home", "我的学习", LayoutDashboard],
-        ["courses", "探索课程", BookOpen],
-        ["wrong", "错题帮", NotebookPen],
-        ["memory", "学习记忆", History],
-        ["records", "学习记录", History],
-        ["issues", "问题与回复", MessageSquareText],
-      ],
-      teacher: [
-        ["teacher", "教学概览", LayoutDashboard],
-        ["cases", "教学案例", LibraryBig],
-        ["courses", "课程与课时", BookOpen],
-        ["prepare", "我的教案", FileText],
-        ["class", "班级教学", Users],
-        ["memory", "学习记忆", History],
-        ["issues", "问题与回复", MessageSquareText],
-      ],
-      admin: [
-        ["manage", "内容工作台", Layers],
-        ["content", "课程内容", BookOpenText],
-        ["issues", "反馈与运行", MessageSquareText],
-      ],
-    })[role.value],
-);
+const items = computed(()=>navigation[role.value]);
 </script>
 <template>
   <a href="#/home" class="wordmark" aria-label="师承智学首页"

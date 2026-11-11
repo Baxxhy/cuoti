@@ -1,0 +1,21 @@
+// Only encrypted payloads persist. The independent unlock phrase is never stored.
+const DB='sczx-offline-v1', encoder=new TextEncoder(), decoder=new TextDecoder();
+let unlocked=null,queue=Promise.resolve();
+function transaction(mode,action){return new Promise((resolve,reject)=>{const opening=indexedDB.open(DB,1);opening.onupgradeneeded=()=>opening.result.createObjectStore('vaults');opening.onerror=()=>reject(opening.error);opening.onsuccess=()=>{const db=opening.result,tx=db.transaction('vaults',mode);let result;try{const request=action(tx.objectStore('vaults'));if(request)request.onsuccess=()=>{result=request.result}}catch(e){db.close();reject(e);return}tx.oncomplete=()=>{db.close();resolve(result)};tx.onabort=tx.onerror=()=>{db.close();reject(tx.error||new Error('本机存储失败，旧下载仍保留。'))}}})}
+const get=id=>transaction('readonly',s=>s.get(id));
+const put=(id,value)=>transaction('readwrite',s=>s.put(value,id));
+const remove=id=>transaction('readwrite',s=>s.delete(id));
+const hex=bytes=>Array.from(new Uint8Array(bytes),n=>n.toString(16).padStart(2,'0')).join('');
+async function identity(username){return 'user:'+hex(await crypto.subtle.digest('SHA-256',encoder.encode(username.trim().toLowerCase())))}
+async function keyFor(phrase,salt){const material=await crypto.subtle.importKey('raw',encoder.encode(phrase),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:210000,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function persist(value=unlocked?.data){if(!unlocked)throw Error('请先解锁本机下载。');const ctx=unlocked,iv=crypto.getRandomValues(new Uint8Array(12));const ciphertext=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:encoder.encode(ctx.id)},ctx.key,encoder.encode(JSON.stringify(value)));await put(ctx.id,{schema:1,salt:ctx.salt,iv,ciphertext});if(unlocked===ctx)ctx.data=value}
+export function vaultData(){return unlocked?.data||null}
+export async function enableVault(user,phrase){if(phrase.length<8)throw Error('离线口令至少8位，与登录密码分开设置。');const id=await identity(user.username);if(await get(id))throw Error('此账号已有本机下载，请先解锁。');const salt=crypto.getRandomValues(new Uint8Array(16));unlocked={id,salt,key:await keyFor(phrase,salt),data:{owner:{id:user.id,username:user.username,role:'student'},packages:[],operations:[]}};try{await persist()}catch(e){unlocked=null;throw e}return vaultData()}
+export async function unlockVault(username,phrase,onlineUser){const id=await identity(username),saved=await get(id);if(!saved)throw Error('本机没有此账号的下载。');try{const key=await keyFor(phrase,saved.salt);const raw=await crypto.subtle.decrypt({name:'AES-GCM',iv:saved.iv,additionalData:encoder.encode(id)},key,saved.ciphertext);const data=JSON.parse(decoder.decode(raw));if(data.owner.username.toLowerCase()!==username.trim().toLowerCase())throw Error('账号不匹配');if(onlineUser&&onlineUser.id!==data.owner.id)throw Error('当前登录的是另一账号，请先退出或登录原账号。');unlocked={id,salt:saved.salt,key,data};return data}catch(e){throw Error(e.message.includes('另一账号')?e.message:'账号或离线口令不正确，未打开任何私人内容。')}}
+export async function mutateVault(fn){const ctx=unlocked;const op=queue.catch(()=>{}).then(async()=>{if(!ctx||unlocked!==ctx)throw Error('本机已锁定，请重新解锁。');const next=structuredClone(ctx.data);await fn(next);await persist(next);return next});queue=op;return op}
+export function lockVault(){unlocked=null}
+export async function closeVault({retain=false,username}={}){await queue.catch(()=>{});const id=unlocked?.id||(username?await identity(username):null);lockVault();if(id&&!retain)await remove(id)}
+export async function pendingLogout(value){if(value!==undefined)await put('@logout',!!value);return !!(await get('@logout'))}
+export async function vaultBytes(username){const saved=await get(unlocked?.id||(await identity(username)));return saved?.ciphertext?.byteLength||0}
+export async function flushLogout(base=''){if(!(await pendingLogout()))return;const r=await fetch(base+'/api/auth/logout',{method:'POST',credentials:'include'});if(!r.ok)throw Error('上次退出尚未同步，请联网后重试。');await pendingLogout(false)}
+export function storageMessage(e){return e?.name==='QuotaExceededError'?'本机空间不足，请删除部分下载后重试；原内容保留。':e?.message||'本机存储失败，尚未保存。'}

@@ -1,11 +1,14 @@
+import {flushLogout} from "./offline/vault.js";
 const apiBase = import.meta.env.VITE_API_BASE || "";
 const uploadedImages = new Map();
 
 async function request(path, options = {}) {
   let response;
+  await flushLogout(apiBase);
   try {
     response = await fetch(`${apiBase}/api${path}`, {
       credentials: "include",
+      cache: "no-store",
       headers: options.body instanceof FormData ? options.headers : { "Content-Type": "application/json", ...options.headers },
       ...options,
     });
@@ -14,9 +17,10 @@ async function request(path, options = {}) {
   }
   const body = response.status === 204 ? null : await response.json().catch(() => null);
   if (!response.ok) {
-    const message = body?.detail || (response.status === 401 ? "登录已失效，请重新登录。" : "操作未能完成，请重试。");
+    const message = (typeof body?.detail === "object" ? body.detail.message : body?.detail) || (response.status === 401 ? "登录已失效，请重新登录。" : "操作未能完成，请重试。");
     const error = new Error(message);
     error.status = response.status;
+    error.detail = body?.detail;
     throw error;
   }
   return body;

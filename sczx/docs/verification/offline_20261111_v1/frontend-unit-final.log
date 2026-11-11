@@ -1,0 +1,16 @@
+
+> shicheng-zhixue@0.3.0 test:unit
+> node --test tests/*.test.js
+
+✔ knowledge correction remains auditable from old and new knowledge (1.276321ms)
+✔ review targets retain return scope without accepting arbitrary destinations (0.702201ms)
+✔ agent identity includes both lesson and job (1.264587ms)
+✔ balance single and common actions preserve actual relation and bounds (2.526762ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126.636431

@@ -1,0 +1,9 @@
+file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19
+  async wait(code,ms=20000){const end=Date.now()+ms;while(Date.now()<end){if(await this.eval(code))return;await sleep(80)}throw Error('Browser wait timed out: '+code)}
+                                                                                                                                ^
+
+Error: Browser wait timed out: !document.body.innerText.includes('发生冲突')
+    at Browser.wait (file:///root/Baxxhy/zhiwei/sczx/frontend/tests/cdp.mjs:19:129)
+    at async file:///tmp/sczx-step19/conflict-browser.mjs:14:473
+
+Node.js v24.15.0
