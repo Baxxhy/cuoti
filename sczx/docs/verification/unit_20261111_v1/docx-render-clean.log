@@ -5,7 +5,7 @@ If it is already installed then try removing ~/.config/libreoffice/4/user/config
 Warning: failed to read path from javaldx
 I18N: Operating system doesn't support locale ""
 I18N: Operating system doesn't support locale "en_US"
-/usr/lib/libreoffice/program/soffice.bin X11 error: Can't open display: 
+/usr/lib/libreoffice/program/soffice.bin X11 error: Can't open display:
    Set DISPLAY environment variable, use -display option
    or check permissions of your X-Server
    (See "man X" resp. "man xhost" for details)
