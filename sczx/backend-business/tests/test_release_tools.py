@@ -48,3 +48,12 @@ class ReleaseToolsTests(unittest.TestCase):
   import subprocess,sys
   for secure,automatic in [('false','false'),('true','true')]:
    r=subprocess.run([sys.executable,'-c','from sczx_business.main import startup; startup()'],cwd=ROOT/'backend-business',env={**os.environ,'SCZX_ENV':'production','SCZX_COOKIE_SECURE':secure,'SCZX_AUTO_CREATE_SCHEMA':automatic},text=True,capture_output=True);self.assertNotEqual(r.returncode,0);self.assertIn('禁止自动建表',r.stderr)
+ def test_package_uses_sczx_root_tree_from_parent_git_repository(self):
+  import subprocess
+  with tempfile.TemporaryDirectory() as tmp:
+   parent=Path(tmp)/'parent';root=parent/'sczx';(root/'backend-business').mkdir(parents=True);(root/'backend-business/app.py').write_text('source')
+   (root/'frontend/src').mkdir(parents=True);js=root/'frontend/src/app.js';js.write_text('const app=1');dist=root/'frontend/dist';dist.mkdir();(dist/'index.html').write_text('compiled app');(dist/'build-info.json').write_text(json.dumps({'sources':{'frontend/src/app.js':manage.sha(js)}}))
+   def git(*args):return subprocess.check_output(['git','-c','user.name=Fixture','-c','user.email=fixture@example.invalid',*args],cwd=parent,text=True).strip()
+   git('init','-q');git('add','sczx/backend-business','sczx/frontend/src');git('commit','-qm','parent fixture');tree=git('rev-parse','HEAD:sczx');revision=git('commit-tree',tree,'-m','sczx root fixture')
+   with patch.object(manage,'ROOT',root):result=manage.package(revision,dist,Path(tmp)/'release')
+   released=Path(result['release']);self.assertTrue((released/'backend-business/app.py').is_file());self.assertFalse((released/'sczx').exists());self.assertEqual(json.loads((released/'release-manifest.json').read_text())['sczxCommit'],revision)

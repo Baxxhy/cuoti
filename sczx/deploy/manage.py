@@ -280,13 +280,14 @@ def run(config,action,archive=None,output=None):
     raise ValueError('未知操作')
 def package(revision,frontend,output):
     if not re.fullmatch('[a-f0-9]{40}',revision):raise ValueError('必须指定完整sczx提交SHA')
-    subprocess.run(['git','cat-file','-e',revision+':backend-business'],cwd=ROOT,check=True,capture_output=True)
+    repository=Path(subprocess.check_output(['git','rev-parse','--show-toplevel'],cwd=ROOT,text=True).strip())
+    subprocess.run(['git','cat-file','-e',revision+':backend-business'],cwd=repository,check=True,capture_output=True)
     frontend=Path(frontend).resolve();build=json.loads((frontend/'build-info.json').read_text());dest=Path(output).resolve()
     if dest.exists():raise RuntimeError('发布目录必须不存在，不覆盖旧发布')
     dest.mkdir(parents=True)
     with tempfile.TemporaryDirectory() as tmp:
         archive=Path(tmp)/'source.tar'
-        with archive.open('wb') as stream:subprocess.run(['git','archive',revision],cwd=ROOT,stdout=stream,check=True)
+        with archive.open('wb') as stream:subprocess.run(['git','archive',revision],cwd=repository,stdout=stream,check=True)
         with tarfile.open(archive) as tar:tar.extractall(dest,filter='data')
     for file,digest in build['sources'].items():
         if sha(dest/file)!=digest:raise RuntimeError('构建与源码提交不符，保留失败目录：'+file)
