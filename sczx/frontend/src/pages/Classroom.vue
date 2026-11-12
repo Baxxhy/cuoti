@@ -13,7 +13,7 @@ import {
   Settings2,
   RefreshCw,
   X,
-} from "lucide-vue-next";
+} from "@/components/app/icons.js";
 const store = useLearning(),
   route = useRoute(),
   router = useRouter(),

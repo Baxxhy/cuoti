@@ -2,7 +2,7 @@
 import { ref, watch, computed } from "vue";
 import { useLearning } from "@/store.js";
 import { teachingApi, deadlineText } from "@/services/teaching.js";
-import { Plus, Send } from "lucide-vue-next";
+import { Plus, Send } from "@/components/app/icons.js";
 const props = defineProps({ taskId: String, teacher: Boolean });
 const store = useLearning(),
   items = ref([]),

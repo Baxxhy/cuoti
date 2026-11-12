@@ -5,7 +5,7 @@ import {curriculumApi} from '@/services/curriculum.js';
 import {useLearning} from '@/store.js';
 import {navigate} from '@/lib/navigation.js';
 import LessonPreview from '@/components/LessonPreview.vue';
-import {BookOpen,Clock,ArrowUpRight} from 'lucide-vue-next';
+import {BookOpen,Clock,ArrowUpRight} from '@/components/app/icons.js';
 const store=useLearning();const courses=ref([]),error=ref(''),loading=ref(true),preview=ref(null),busy=ref(false);
 const teacher=computed(()=>store.user?.role==='teacher');
 async function load(){loading.value=true;error.value='';try{courses.value=await curriculumApi.catalog()}catch(e){error.value=e.message}finally{loading.value=false}}

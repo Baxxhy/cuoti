@@ -10,7 +10,7 @@ import {
   RefreshCw,
   Send,
   ChevronRight,
-} from "lucide-vue-next";
+} from "@/components/app/icons.js";
 import { wrongApi, wrongStatuses } from "@/services/wrongs.js";
 import { modelApi } from "@/services/models.js";
 import { useModelJob } from "@/lib/useModelJob.js";

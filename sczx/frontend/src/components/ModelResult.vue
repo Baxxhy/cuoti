@@ -1,7 +1,7 @@
 <script setup>
 import MatchEvidence from "./MatchEvidence.vue";
 import { computed, ref, watch } from "vue";
-import { LoaderCircle, RotateCcw, Check, CircleAlert } from "lucide-vue-next";
+import { LoaderCircle, RotateCcw, Check, CircleAlert } from "@/components/app/icons.js";
 import SpeechReader from "./SpeechReader.vue";
 import { capabilityNames } from "@/services/models.js";
 const props = defineProps({

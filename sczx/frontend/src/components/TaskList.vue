@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { deadlineText } from "@/services/teaching.js";
 import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
-import { FileText, ArrowRight } from "lucide-vue-next";
+import { FileText, ArrowRight } from "@/components/app/icons.js";
 const props = defineProps({ teacher: Boolean, tasks: Array, emptyLabel: String });
 const store = useLearning();
 const visibleTasks = computed(() => props.tasks || store.data.tasks || []);

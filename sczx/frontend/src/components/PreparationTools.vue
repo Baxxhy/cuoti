@@ -5,7 +5,7 @@ import {preparationApi} from '@/services/preparation.js';
 import {modelApi} from '@/services/models.js';
 import CaseArticle from './CaseArticle.vue';
 import LessonPreview from './LessonPreview.vue';
-import {Search,Download,History,BookOpen,ArrowUpRight,X} from 'lucide-vue-next';
+import {Search,Download,History,BookOpen,ArrowUpRight,X} from '@/components/app/icons.js';
 const store=useLearning();const tab=ref('references'),query=ref(''),knowledge=ref(''),items=ref([]),versions=ref([]),selected=ref(null),readCase=ref(null),error=ref(''),busy=ref(false),dialog=ref(false);let generation=0;
 const details=computed(()=>store.data.lessonDraft.planningDetails||{});
 const refs=computed(()=>[store.data.lessonDraft.caseSnapshot,...(details.value.references||[])].filter(Boolean));

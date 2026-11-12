@@ -13,7 +13,7 @@ import {
   Eye,
   Star,
   FileText,
-} from "lucide-vue-next";
+} from "@/components/app/icons.js";
 const store = useLearning(),
   notify = inject("notify");
 const route = useRoute(), selectedCase = ref(null), loading = ref(false), error = ref('');

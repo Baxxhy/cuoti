@@ -1,6 +1,6 @@
 <script setup>
 import {computed,ref,watch} from 'vue';
-import {ChevronLeft,ChevronRight} from 'lucide-vue-next';
+import {ChevronLeft,ChevronRight} from '@/components/app/icons.js';
 import {useLearning} from '@/store.js';
 import LessonContent from './LessonContent.vue';
 import QuestionAttempt from './QuestionAttempt.vue';

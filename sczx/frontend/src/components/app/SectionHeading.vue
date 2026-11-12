@@ -1,5 +1,5 @@
 <script setup>
-import { ChevronRight } from "lucide-vue-next";
+import { ChevronRight } from "@/components/app/icons.js";
 import { navigate } from "@/lib/navigation.js";
 defineProps({ title: String, action: String, route: String });
 </script>

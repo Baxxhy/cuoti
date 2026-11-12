@@ -9,7 +9,7 @@ import { useRoute } from "vue-router";
 import { AnimatePresence, motion, MotionConfig } from "motion-v";
 import UiProvider from "@/components/app/Provider.vue";
 import {ElMessage} from "element-plus";
-import {BookOpen,BookOpenText,Search,Bell,Menu,ArrowUpRight,ArrowLeft} from "lucide-vue-next";
+import {BookOpen,BookOpenText,Search,Bell,Menu,ArrowUpRight,ArrowLeft} from "@/components/app/icons.js";
 import { navigate } from "@/lib/navigation.js";
 import SidebarContent from "@/components/SidebarContent.vue";
 import { useLearning } from "@/store.js";

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
-import { Plus, Minus, RotateCcw } from "lucide-vue-next";
+import { Plus, Minus, RotateCcw } from "@/components/app/icons.js";
 import { balanceSpec, applyBalance } from "@/lib/visualization.js";
 const props = defineProps({
     config: {

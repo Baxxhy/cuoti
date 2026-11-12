@@ -1,7 +1,7 @@
 <script setup>
 import ClassAnalytics from "@/components/ClassAnalytics.vue";
 import { computed, inject, ref, watch } from "vue";
-import { ArrowUpRight, Check, Plus, Send } from "lucide-vue-next";
+import { ArrowUpRight, Check, Plus, Send } from "@/components/app/icons.js";
 import { useLearning } from "@/store.js";
 import { useRoute } from "vue-router";
 

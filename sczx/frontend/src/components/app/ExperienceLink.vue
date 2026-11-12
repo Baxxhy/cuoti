@@ -1,5 +1,5 @@
 <script setup>
-import { BookOpen, ChevronRight } from "lucide-vue-next";
+import { BookOpen, ChevronRight } from "@/components/app/icons.js";
 import { navigate } from "@/lib/navigation.js";
 </script>
 <template>

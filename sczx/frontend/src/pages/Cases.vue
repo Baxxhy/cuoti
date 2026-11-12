@@ -7,7 +7,7 @@ import {modelApi} from '@/services/models.js';
 import {curriculumApi} from '@/services/curriculum.js';
 import {navigate} from '@/lib/navigation.js';
 import MatchEvidence from '@/components/MatchEvidence.vue';
-import {Search,ArrowUpRight,BookOpen,RefreshCw,SlidersHorizontal} from 'lucide-vue-next';
+import {Search,ArrowUpRight,BookOpen,RefreshCw,SlidersHorizontal} from '@/components/app/icons.js';
 const store=useLearning(),route=useRoute(),router=useRouter();
 const query=ref(String(route.query.q||'')),filters=ref({grade:String(route.query.grade||''),subject:String(route.query.subject||''),knowledgeIds:String(route.query.knowledge||'').split(',').filter(Boolean),scenario:String(route.query.scenario||'other')}),includePrerequisites=ref(route.query.prerequisites!=='false');
 const options=ref({grades:[],subjects:[],knowledge:[],scenarios:[]}),context=ref({}),items=ref([]),loading=ref(true),error=ref(''),warning=ref(''),tab=ref('all'),understanding=ref(null),mode=ref('browse'),filtersOpen=ref(false);let timer,generation=0,disposed=false,ready=false;

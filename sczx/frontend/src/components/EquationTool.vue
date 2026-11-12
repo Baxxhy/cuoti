@@ -1,5 +1,5 @@
 <script setup>
-import{ref,watch}from'vue';import{api}from'@/services/api.js';import{Undo2,RotateCcw}from'lucide-vue-next';
+import{ref,watch}from'vue';import{api}from'@/services/api.js';import{Undo2,RotateCcw}from'@/components/app/icons.js';
 const props=defineProps({recordId:String,question:Number});const data=ref(null),error=ref(''),busy=ref(false),operation=ref('add'),operand=ref('1'),explanation=ref('');let generation=0;
 const path=()=>'/equation-tools/'+props.recordId+'/'+props.question;
 watch(()=>[props.recordId,props.question],async()=>{const g=++generation;data.value=null;error.value='';if(!props.recordId)return;try{const r=await api.request(path());if(g===generation){data.value=r;explanation.value=r.explanation}}catch(e){if(g===generation)error.value=e.message}},{immediate:true});

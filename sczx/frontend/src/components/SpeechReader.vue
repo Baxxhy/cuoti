@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeUnmount, ref, watch } from 'vue';
-import { Volume2, Pause, Play, Square } from 'lucide-vue-next';
+import { Volume2, Pause, Play, Square } from '@/components/app/icons.js';
 const props = defineProps({ contextKey: [String, Number], text: { type: String, default: '' } });
 const synth = window.speechSynthesis;
 const available = !!(synth && window.SpeechSynthesisUtterance);

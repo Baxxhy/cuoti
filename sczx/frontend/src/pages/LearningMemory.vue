@@ -15,7 +15,7 @@ import {
   BookOpen,
   ChevronRight,
   FileCheck2,
-} from "lucide-vue-next";
+} from "@/components/app/icons.js";
 const route = useRoute(),
   router = useRouter(),
   store = useLearning(),

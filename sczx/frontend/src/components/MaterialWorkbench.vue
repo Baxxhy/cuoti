@@ -12,7 +12,7 @@ import SourceReader from './SourceReader.vue';
 import CaseArticle from './CaseArticle.vue';
 import MathVerification from './MathVerification.vue';
 import ModelResult from './ModelResult.vue';
-import {Upload,Plus,RefreshCw,Download,FileText,BookOpen,ArrowLeft,Check,LoaderCircle,X} from 'lucide-vue-next';
+import {Upload,Plus,RefreshCw,Download,FileText,BookOpen,ArrowLeft,Check,LoaderCircle,X} from '@/components/app/icons.js';
 const route=useRoute(),router=useRouter(),store=useLearning();
 const contextKey=`sczx:library-context:${store.user?.id||'anonymous'}`;
 function savedContext(){try{return JSON.parse(sessionStorage.getItem(contextKey)||'null')}catch{return null}}

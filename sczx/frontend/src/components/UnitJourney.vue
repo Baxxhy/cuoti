@@ -1,5 +1,5 @@
 <script setup>
-import {RefreshCw} from 'lucide-vue-next';
+import {RefreshCw} from '@/components/app/icons.js';
 import {ref,watch,onBeforeUnmount} from 'vue';import {useLearning} from '@/store.js';import {api} from '@/services/api.js';
 const props=defineProps({unitId:{default:'unit-equation'},task:Object,compact:Boolean});const store=useLearning(),data=ref(null),error=ref(''),loading=ref(false);let generation=0;
 async function load(){if(store.user?.role!=='student')return;const g=++generation;data.value=null;loading.value=true;error.value='';try{const value=await api.request('/units/'+encodeURIComponent(props.unitId)+'/progress'+(props.task?.classId?'?classId='+encodeURIComponent(props.task.classId):''));if(g===generation)data.value=value}catch(e){if(g===generation)error.value=e.message}finally{if(g===generation)loading.value=false}}

@@ -1,6 +1,6 @@
 <script setup>
 import {computed,ref,inject,watch,nextTick} from 'vue';
-import {ChevronLeft,ChevronRight,List,MessageCircle,MoreHorizontal} from 'lucide-vue-next';
+import {ChevronLeft,ChevronRight,List,MessageCircle,MoreHorizontal} from '@/components/app/icons.js';
 import {useLearning} from '@/store.js';
 import {navigate} from '@/lib/navigation.js';
 import LessonOutline from '@/components/LessonOutline.vue';

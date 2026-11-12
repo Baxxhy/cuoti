@@ -7,7 +7,7 @@ import {
   RotateCcw,
   Square,
   ArrowUpRight,
-} from "lucide-vue-next";
+} from "@/components/app/icons.js";
 import { useLearning } from "@/store.js";
 import { modelApi } from "@/services/models.js";
 import { useModelJob } from "@/lib/useModelJob.js";

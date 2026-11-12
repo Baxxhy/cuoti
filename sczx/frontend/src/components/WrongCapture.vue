@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref, watch, onBeforeUnmount } from "vue";
-import { Upload, Crop, ScanText, RotateCcw } from "lucide-vue-next";
+import { Upload, Crop, ScanText, RotateCcw } from "@/components/app/icons.js";
 import { modelApi } from "@/services/models.js";
 import { wrongApi } from "@/services/wrongs.js";
 import { useModelJob } from "@/lib/useModelJob.js";

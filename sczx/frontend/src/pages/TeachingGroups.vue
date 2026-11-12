@@ -1,6 +1,6 @@
 <script setup>
 import{ref,watch,onMounted}from'vue';import{api}from'@/services/api.js';import{useRoute}from'vue-router';import{useLearning}from'@/store.js';
-const route=useRoute(),store=useLearning();import{RefreshCw,Users}from'lucide-vue-next';
+const route=useRoute(),store=useLearning();import{RefreshCw,Users}from'@/components/app/icons.js';
 const rooms=ref([]),knowledge=ref([]),papers=ref([]),plans=ref([]),room=ref(''),kid=ref(''),students=ref([]),selection=ref({}),versions=ref({}),active=ref(null),error=ref(''),notice=ref(''),busy=ref(false),labels=['补基础','巩固','拓展','证据不足'];const editing=ref(false);let generation=0;
 const call=(path,method='GET',body)=>api.request('/groups'+path,{method,...(body?{body:JSON.stringify(body)}:{})});
 async function load(){try{plans.value=await call('');if(active.value){const fresh=plans.value.find(p=>p.id===active.value.id);if(fresh)active.value=fresh}}catch(e){error.value=e.message}}

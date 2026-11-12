@@ -7,7 +7,7 @@ import { useLearning } from "@/store.js";
 import { navigate } from "@/lib/navigation.js";
 import TaskEmpty from "@/components/TaskEmpty.vue";
 import {incompleteBlocks} from '@/lib/task-completion.js';
-import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-vue-next";
+import { ArrowRight, CheckCircle2, ChevronRight } from "@/components/app/icons.js";
 const store = useLearning(),
   notify = inject("notify");
 const submitting = ref(false), confirmOpen = ref(false), extraOpen=ref(false);

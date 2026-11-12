@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeUnmount, ref, watch } from 'vue';
-import { Mic, Square } from 'lucide-vue-next';
+import { Mic, Square } from '@/components/app/icons.js';
 const props = defineProps({ disabled: Boolean, contextKey: [String, Number] });
 const emit = defineEmits(['text']);
 const Engine = window.SpeechRecognition || window.webkitSpeechRecognition;

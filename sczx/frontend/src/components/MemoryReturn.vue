@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { navigate } from "@/lib/navigation.js";
-import { ArrowLeft, History } from "lucide-vue-next";
+import { ArrowLeft, History } from "@/components/app/icons.js";
 const route = useRoute();
 function backToMemory() {
   const params = new URLSearchParams();

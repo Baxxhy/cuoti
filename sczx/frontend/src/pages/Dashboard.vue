@@ -7,7 +7,7 @@ import { useLearning } from "@/store.js";
 import { teachingApi, deadlineText } from "@/services/teaching.js";
 import TaskList from "@/components/TaskList.vue";
 import MessageCenter from "@/components/MessageCenter.vue";
-import { ArrowRight, Users, BookOpen, Inbox } from "lucide-vue-next";
+import { ArrowRight, Users, BookOpen, Inbox } from "@/components/app/icons.js";
 const taskTab=ref("pending");
 const allTasksOpen=ref(false);
 const store = useLearning(),

@@ -13,7 +13,7 @@ import {
   Save,
   GripVertical,
   WandSparkles,
-} from "lucide-vue-next";
+} from "@/components/app/icons.js";
 import draggable from "vuedraggable";
 import PreparationTools from "@/components/PreparationTools.vue";
 import LessonPreview from "@/components/LessonPreview.vue";

@@ -1,7 +1,7 @@
 <script setup>
 import { ref,watch } from 'vue';
 import { libraryApi } from '@/services/library.js';
-import { ExternalLink,Download,RotateCcw } from 'lucide-vue-next';
+import { ExternalLink,Download,RotateCcw } from '@/components/app/icons.js';
 const props=defineProps({unitId:String,compact:Boolean});
 const unit=ref(null),error=ref(''),loading=ref(false),imageError=ref(false),attempt=ref(0);let generation=0;
 async function load(){const id=props.unitId,version=++generation;unit.value=null;error.value='';imageError.value=false;attempt.value++;if(!id){error.value='没有指定原文位置，请从案例出处重新打开。';return}loading.value=true;try{const result=await libraryApi.unit(id);if(version===generation)unit.value=result}catch(e){if(version===generation)error.value=e.message}finally{if(version===generation)loading.value=false}}

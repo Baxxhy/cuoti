@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from "vue";
 import { useLearning } from "@/store.js";
 import { teachingApi, deadlineText } from "@/services/teaching.js";
 import { navigate } from "@/lib/navigation.js";
-import { ArrowUpRight, RefreshCw, Check } from "lucide-vue-next";
+import { ArrowUpRight, RefreshCw, Check } from "@/components/app/icons.js";
 const props = defineProps({ compact: Boolean });
 const emit = defineEmits(["navigate"]);
 const store = useLearning(),

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref, onMounted } from "vue";
-import { Plus, ArrowUpRight, Search, NotebookPen } from "lucide-vue-next";
+import { Plus, ArrowUpRight, Search, NotebookPen } from "@/components/app/icons.js";
 import { wrongApi, wrongStatuses } from "@/services/wrongs.js";
 import WrongCapture from "@/components/WrongCapture.vue";
 import { navigate } from "@/lib/navigation.js";

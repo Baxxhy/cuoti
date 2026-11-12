@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, onBeforeUnmount, computed } from "vue";
-import { ArrowRight, History } from "lucide-vue-next";
+import { ArrowRight, History } from "@/components/app/icons.js";
 import { memoryApi, memoryTarget } from "@/services/memory.js";
 import { navigate } from "@/lib/navigation.js";
 const props = defineProps({

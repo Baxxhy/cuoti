@@ -2,7 +2,7 @@
 import {ref,computed,onMounted,watch} from 'vue';
 import {useRoute,useRouter} from 'vue-router';
 import draggable from 'vuedraggable';
-import {Plus,Save,Eye,Upload,ArrowUp,ArrowDown,Trash2,GripVertical,BookOpen,RefreshCw} from 'lucide-vue-next';
+import {Plus,Save,Eye,Upload,ArrowUp,ArrowDown,Trash2,GripVertical,BookOpen,RefreshCw} from '@/components/app/icons.js';
 import {curriculumApi as api} from '@/services/curriculum.js';
 import {modelApi} from '@/services/models.js';
 import {createId} from '@/services/platform.js';

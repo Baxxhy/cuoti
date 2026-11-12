@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { RefreshCw, Play, FileAudio } from "lucide-vue-next";
+import { RefreshCw, Play, FileAudio } from "@/components/app/icons.js";
 import { capabilityNames, modelApi } from "@/services/models.js";
 import { useModelJob } from "@/lib/useModelJob.js";
 import ModelResult from "./ModelResult.vue";

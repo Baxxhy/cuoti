@@ -1,7 +1,7 @@
 <script setup>
 import SpeechReader from './SpeechReader.vue';
 import MathVerification from './MathVerification.vue';
-import { BookOpen, ExternalLink } from 'lucide-vue-next';
+import { BookOpen, ExternalLink } from '@/components/app/icons.js';
 const props=defineProps({value:Object});
 const fieldLabel = field => field === 'content' || !field ? '案例正文' : (labels[field.split('.')[0]] || field)+(field.includes('.')?' '+(Number(field.split('.')[1])+1):'');
 const labels={knowledgePoints:'知识点',goal:'教学目标',studentBase:'学生基础',difficulty:'学生困难',introduction:'引入方法',steps:'讲解步骤',questions:'教师提问',responses:'可能回应',adjustment:'回应后的调整',boundary:'适用边界',suggestions:'模型建议'};

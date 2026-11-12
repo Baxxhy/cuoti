@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { BookOpenText, ArrowRight, Eye, EyeOff } from "lucide-vue-next";
+import { BookOpenText, ArrowRight, Eye, EyeOff } from "@/components/app/icons.js";
 import { useLearning } from "@/store.js";
 
 const store = useLearning();

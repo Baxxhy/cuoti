@@ -6,7 +6,7 @@ import {insightsApi} from '@/services/insights.js';
 import {teachingApi} from '@/services/teaching.js';
 import {memoryApi} from '@/services/memory.js';
 import InterventionComposer from './InterventionComposer.vue';
-import {RefreshCw,ArrowUpRight,Plus} from 'lucide-vue-next';
+import {RefreshCw,ArrowUpRight,Plus} from '@/components/app/icons.js';
 const route=useRoute(),router=useRouter(),store=useLearning();
 const rooms=ref([]),classId=ref(String(route.query.class||store.currentClassId||store.task?.classId||'')),taskId=ref(String(route.query.scopeTask||route.query.task||'')),start=ref(String(route.query.start||'')),end=ref(String(route.query.end||'')),data=ref(null),error=ref(''),loading=ref(false),tab=ref('knowledge'),selected=ref(null),student=ref(null),compose=ref(false),point=ref(null),review=ref(null),note=ref(''),decision=ref('confirmed'),busy=ref(false),reviewKey=ref('');let generation=0;
 const tabs=[{value:'knowledge',label:'知识点'},{value:'questions',label:'题目分析'},{value:'students',label:'学生'},{value:'review',label:'待核对'},{value:'interventions',label:'教学安排'}];

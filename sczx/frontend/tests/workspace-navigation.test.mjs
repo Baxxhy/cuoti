@@ -45,8 +45,8 @@ async function workspaceScenario(mode){
     if(mode==='shell'){
       const skip=el.querySelector('.skip-link'),before=location.hash;skip.focus();skip.click();
       const skipResult={unchanged:location.hash===before,main:document.activeElement===el.querySelector('main#main-content')};
-      const groups=[...el.querySelectorAll('.workspace-main-nav>a')].map(a=>a.textContent.trim());
-      const children=[...el.querySelectorAll('.workspace-section-nav>a')].map(a=>({label:a.textContent,href:a.getAttribute('href')}));
+      const groups=[...el.querySelectorAll('.workspace-main-nav a')].map(a=>a.textContent.trim());
+      const children=[...el.querySelectorAll('.workspace-section-nav a')].map(a=>({label:a.textContent,href:a.getAttribute('href')}));
       const more=!!el.querySelector('.navigation-more');
       el.querySelector('.search-trigger').click();await nextTick();
       const input=document.querySelector('[role=dialog] input');input.value='两边同时减3';input.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();

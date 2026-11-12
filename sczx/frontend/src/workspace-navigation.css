@@ -16,7 +16,6 @@ body,button,input,textarea,select,table,[data-slot="button"],[data-slot="input"]
 .step-reading:not(.worked-example) .reading-equation.is-inline{font-size:1.05em}
 /* Restrained blue accents; reading surfaces and body text remain neutral. */
 :root{--primary:#345baf;--primary-foreground:#fff;--accent:#eef3fc;--accent-foreground:#294d92;--ring:#416bc1;--sidebar-accent:#eaf0fb;--sidebar-accent-foreground:#294d92}
-.workspace-main-nav>a[aria-current=page],.workspace-main-nav>a.active{background:#eaf0fb;color:#294d92;box-shadow:inset 3px 0 #416bc1}
 .workspace-main-nav>a[aria-current=page] svg,.workspace-main-nav>a.active svg{color:#345baf}
 .workspace-section-nav>a[aria-current=page]{color:#345baf;border-bottom-color:#416bc1}
 [data-slot=button][data-variant=default],.login-submit{background:#345baf;color:#fff}

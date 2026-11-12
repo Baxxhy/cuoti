@@ -1,5 +1,5 @@
 <script setup>
-import { Check, ChevronRight } from 'lucide-vue-next';
+import { Check, ChevronRight } from '@/components/app/icons.js';
 import { readingValue } from '@/lib/lesson-reading.js';
 defineProps({ lesson:Object, blocks:Array, progress:Object, selected:String });
 defineEmits(['select']);

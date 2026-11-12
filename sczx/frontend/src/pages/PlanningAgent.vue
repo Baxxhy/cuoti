@@ -8,7 +8,7 @@ import {planningApi} from '@/services/planning.js';
 import {sameAgentRoute} from '@/lib/planningRoute.js';
 import {planningStep} from '@/lib/planning-progress.js';
 import {useModelJob} from '@/lib/useModelJob.js';
-import {ArrowLeft,ArrowUpRight,Check,LoaderCircle,Play,RefreshCw,Save,Square,X} from 'lucide-vue-next';
+import {ArrowLeft,ArrowUpRight,Check,LoaderCircle,Play,RefreshCw,Save,Square,X} from '@/components/app/icons.js';
 const route=useRoute(),router=useRouter(),store=useLearning();
 const selectedActivity=ref('');
 const activeActivity=computed(()=>edited.value?.blocks.find(b=>b.id===selectedActivity.value)||edited.value?.blocks[0]);

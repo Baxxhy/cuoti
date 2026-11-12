@@ -11,9 +11,9 @@
     "test:unit": "node --test tests/*.test.js"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "2.3.2",
     "@fontsource-variable/geist": "^5.3.0",
     "element-plus": "2.14.8",
-    "lucide-vue-next": "^0.577.0",
     "motion-v": "^1.0.0",
     "pinia": "^3.0.0",
     "vue": "^3.5.0",

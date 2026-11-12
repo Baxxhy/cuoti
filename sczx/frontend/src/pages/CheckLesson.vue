@@ -9,7 +9,7 @@ import { useLearning } from "@/store.js";
 import QuestionAttempt from "@/components/QuestionAttempt.vue";
 import ModelAssistant from "@/components/ModelAssistant.vue";
 import TaskEmpty from "@/components/TaskEmpty.vue";
-import { ArrowRight } from "lucide-vue-next";
+import { ArrowRight } from "@/components/app/icons.js";
 const route=useRoute();
 const helpOpen=ref(false), toolOpen=ref(false);
 const store = useLearning(),

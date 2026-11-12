@@ -1,6 +1,6 @@
 <script>
 import { defineComponent, h } from 'vue';
-import { Check, Clock3, CirclePlay, CircleAlert, Info } from 'lucide-vue-next';
+import { Check, Clock3, CirclePlay, CircleAlert, Info } from '@/components/app/icons.js';
 import { ElTag } from 'element-plus';
 import { statusTone, statusText } from '@/lib/status-tone.js';
 const icons={success:Check,pending:Clock3,active:CirclePlay,danger:CircleAlert,info:Info};
