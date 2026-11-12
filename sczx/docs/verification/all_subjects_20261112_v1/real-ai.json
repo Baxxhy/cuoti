@@ -1,0 +1,1533 @@
+[
+  {
+    "label": "英语真实指导",
+    "elapsedSeconds": 7.82,
+    "job": {
+      "id": "job-25a53b97a41f427db4adf273bdd50e7b",
+      "mode": null,
+      "wrongId": null,
+      "phase": null,
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": "record-cbd7319afe0e4f42b145e62daf888c54",
+      "fileId": null,
+      "helpRecordId": "help-25a53b97a41f427db4adf273bdd50e7b",
+      "question": 0,
+      "blockId": "check",
+      "strategy": "hint",
+      "prompt": "我总把book和books混淆，请用一句提示帮我判断词形，不直接告诉我本题选项。",
+      "parentJobId": null,
+      "recognizedText": "",
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "hint": "先看语境指一个还是多个，再判断名词要不要加复数词尾。",
+        "steps": [
+          "保留你的独立作答，先找句子里表示数量的线索。",
+          "单个通常用 book；多个通常用 books。"
+        ],
+        "title": "判断 book / books",
+        "sources": [],
+        "question": "题目里说的是一本书还是多本书？",
+        "strategy": "hint",
+        "workflow": {
+          "nodes": [
+            "固定学习上下文",
+            "读取公开案例与一层前置知识",
+            "生成本轮指导",
+            "核验并等待学生回应"
+          ],
+          "elapsedMs": 6837,
+          "modelCalls": 1,
+          "contextChars": 924,
+          "historyTurns": 0
+        },
+        "mathClaims": [],
+        "needCoverage": {
+          "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+          "missing": [],
+          "required": []
+        },
+        "nextStrategy": "try",
+        "verification": {
+          "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+          "claims": [],
+          "status": "unverified"
+        },
+        "prerequisites": [],
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "prerequisiteId": "",
+        "representation": "text",
+        "usedCaseVersionIds": []
+      },
+      "attemptNumber": 1,
+      "retryCount": 0,
+      "createdAt": "2026-11-12T09:59:21Z",
+      "updatedAt": "2026-11-12T09:59:28Z",
+      "input": {
+        "scope": {
+          "taskId": "task-ca3a0d9624384e9a7fbd67ba4c80c801",
+          "classId": "class-5a6585eb16d54c1e821b335260a4fbff",
+          "lessonId": "lesson-08011d2f99f746dd913a3655daa514b9",
+          "studentId": "subject-ui-student",
+          "questionId": "choice",
+          "knowledgeIds": [
+            "subject-english"
+          ],
+          "lessonVersionId": "lessonversion-d7b182ae99d64ae3976247eaef"
+        },
+        "prompt": "我总把book和books混淆，请用一句提示帮我判断词形，不直接告诉我本题选项。",
+        "blockId": "check",
+        "context": {
+          "block": {
+            "id": "check",
+            "type": "check",
+            "title": "独立作答",
+            "content": "按题目完成作答。",
+            "questionIds": [
+              "choice",
+              "multiple",
+              "writing"
+            ]
+          },
+          "lesson": {
+            "id": "lesson-08011d2f99f746dd913a3655daa514b9",
+            "goal": "依据材料独立作答并说明依据",
+            "grade": "高一",
+            "title": "语境中的词形",
+            "subject": "英语",
+            "versionId": "lessonversion-d7b182ae99d64ae3976247eaef"
+          },
+          "question": {
+            "id": "choice",
+            "kind": "check",
+            "prompt": "Choose the plural of book.",
+            "options": [
+              {
+                "id": "A",
+                "text": "book"
+              },
+              {
+                "id": "B",
+                "text": "books"
+              }
+            ],
+            "gradingMode": "exact",
+            "knowledgeIds": [
+              "subject-english"
+            ],
+            "responseType": "single_choice"
+          },
+          "knowledge": [
+            {
+              "id": "subject-english",
+              "name": "词形与语境"
+            }
+          ],
+          "observation": "",
+          "prerequisites": [],
+          "teachingCases": [],
+          "learningMemory": []
+        },
+        "history": [],
+        "guidance": true,
+        "ocrJobId": null,
+        "question": 0,
+        "strategy": "hint",
+        "confirmed": false,
+        "parentJobId": null,
+        "recognizedText": "",
+        "selectedStrategy": "hint",
+        "confirmedEquation": ""
+      },
+      "runs": [
+        {
+          "id": "run-01b303169845480a95633014f55c0f83",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "hint": "先看语境指一个还是多个，再判断名词要不要加复数词尾。",
+            "steps": [
+              "保留你的独立作答，先找句子里表示数量的线索。",
+              "单个通常用 book；多个通常用 books。"
+            ],
+            "title": "判断 book / books",
+            "sources": [],
+            "question": "题目里说的是一本书还是多本书？",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 6837,
+              "modelCalls": 1,
+              "contextChars": 924,
+              "historyTurns": 0
+            },
+            "mathClaims": [],
+            "needCoverage": {
+              "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+              "missing": [],
+              "required": []
+            },
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "prerequisiteId": "",
+            "representation": "text",
+            "usedCaseVersionIds": []
+          },
+          "startedAt": "2026-11-12T09:59:21Z",
+          "endedAt": "2026-11-12T09:59:28Z"
+        }
+      ]
+    }
+  },
+  {
+    "label": "语文真实错因指导",
+    "elapsedSeconds": 8.16,
+    "job": {
+      "id": "job-44cd038c773a4d4d9c65dcad58279659",
+      "mode": "analysis",
+      "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "goal": "把人物特点的判断建立在片段中实际写出的动作上，并引用原文依据。",
+        "cause": "题意理解错误",
+        "steps": [
+          "可操作提示：圈出人物做的两个动作，想想这些动作分别表现了他怎样对待物品和同桌。",
+          "片段写他把伞放回门边，还替同桌擦去书包上的雨水。回答时从这些动作概括特点，并直接引用动作作为依据；“有伞”本身不能证明人物富裕。"
+        ],
+        "evidence": "我觉得有伞的人都很富裕。",
+        "strategy": "hint",
+        "workflow": {
+          "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+          "modelCalls": 1
+        },
+        "confirmed": false,
+        "mathClaims": [],
+        "uncertainty": "这只是根据原作答提出的错因建议；不能据此判断学习者的整体能力。",
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified"
+        },
+        "checkQuestion": "片段中的哪个动作能作为人物关心同桌的依据？请引用原文，并说说它表现了什么。",
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        }
+      },
+      "attemptNumber": 1,
+      "retryCount": 0,
+      "createdAt": "2026-11-12T09:59:29Z",
+      "updatedAt": "2026-11-12T09:59:37Z",
+      "input": {
+        "mode": "analysis",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "grade": "八年级",
+          "subject": "语文",
+          "question": {
+            "prompt": "自编片段：他把伞放回门边，又替同桌擦去书包上的雨水。请结合动作描写说说人物特点，并给出原文依据。",
+            "equation": ""
+          },
+          "knowledge": [
+            {
+              "id": "subject-reading",
+              "name": "文本证据"
+            }
+          ],
+          "prerequisites": [],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "他一定很富裕。",
+          "originalReason": "我觉得有伞的人都很富裕。"
+        },
+        "history": [],
+        "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "variantJobId": null,
+        "previousEquations": [],
+        "previousQuestions": []
+      },
+      "runs": [
+        {
+          "id": "run-65994f32241e40dfa0c9798eddeceb57",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "goal": "把人物特点的判断建立在片段中实际写出的动作上，并引用原文依据。",
+            "cause": "题意理解错误",
+            "steps": [
+              "可操作提示：圈出人物做的两个动作，想想这些动作分别表现了他怎样对待物品和同桌。",
+              "片段写他把伞放回门边，还替同桌擦去书包上的雨水。回答时从这些动作概括特点，并直接引用动作作为依据；“有伞”本身不能证明人物富裕。"
+            ],
+            "evidence": "我觉得有伞的人都很富裕。",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [],
+            "uncertainty": "这只是根据原作答提出的错因建议；不能据此判断学习者的整体能力。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified"
+            },
+            "checkQuestion": "片段中的哪个动作能作为人物关心同桌的依据？请引用原文，并说说它表现了什么。",
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            }
+          },
+          "startedAt": "2026-11-12T09:59:29Z",
+          "endedAt": "2026-11-12T09:59:37Z"
+        }
+      ]
+    }
+  },
+  {
+    "label": "语文真实相关新题",
+    "elapsedSeconds": 7.14,
+    "job": {
+      "id": "job-3ddd23d03717473f9becffd42524e309",
+      "mode": "variant",
+      "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "failed",
+      "step": "执行失败",
+      "error": "Codex CLI 调用失败，请检查该运行账号的登录与模型可用状态。",
+      "result": null,
+      "attemptNumber": 1,
+      "retryCount": 0,
+      "createdAt": "2026-11-12T09:59:37Z",
+      "updatedAt": "2026-11-12T09:59:43Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "grade": "八年级",
+          "subject": "语文",
+          "question": {
+            "prompt": "自编片段：他把伞放回门边，又替同桌擦去书包上的雨水。请结合动作描写说说人物特点，并给出原文依据。",
+            "equation": ""
+          },
+          "knowledge": [
+            {
+              "id": "subject-reading",
+              "name": "文本证据"
+            }
+          ],
+          "prerequisites": [],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "他一定很富裕。",
+          "originalReason": "我觉得有伞的人都很富裕。"
+        },
+        "history": [],
+        "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "variantJobId": null,
+        "previousEquations": [],
+        "previousQuestions": []
+      },
+      "runs": [
+        {
+          "id": "run-641147deae3a48ec9d4fd8c43d14478b",
+          "number": 1,
+          "status": "failed",
+          "model": "",
+          "provider": "",
+          "error": "Codex CLI 调用失败，请检查该运行账号的登录与模型可用状态。",
+          "result": {
+            "workflow": {
+              "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+              "modelCalls": 2
+            }
+          },
+          "startedAt": "2026-11-12T09:59:37Z",
+          "endedAt": "2026-11-12T09:59:43Z"
+        }
+      ]
+    }
+  },
+  {
+    "label": "语文相关新题修订结构后重试",
+    "elapsedSeconds": 18.28,
+    "job": {
+      "id": "job-3ddd23d03717473f9becffd42524e309",
+      "mode": "variant",
+      "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "failed",
+      "step": "执行失败",
+      "error": "请选择有效题型",
+      "result": null,
+      "attemptNumber": 2,
+      "retryCount": 0,
+      "createdAt": "2026-11-12T09:59:37Z",
+      "updatedAt": "2026-11-12T10:05:11Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "grade": "八年级",
+          "subject": "语文",
+          "question": {
+            "prompt": "自编片段：他把伞放回门边，又替同桌擦去书包上的雨水。请结合动作描写说说人物特点，并给出原文依据。",
+            "equation": ""
+          },
+          "knowledge": [
+            {
+              "id": "subject-reading",
+              "name": "文本证据"
+            }
+          ],
+          "prerequisites": [],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "他一定很富裕。",
+          "originalReason": "我觉得有伞的人都很富裕。"
+        },
+        "history": [],
+        "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "variantJobId": null,
+        "previousEquations": [],
+        "previousQuestions": []
+      },
+      "runs": [
+        {
+          "id": "run-641147deae3a48ec9d4fd8c43d14478b",
+          "number": 1,
+          "status": "failed",
+          "model": "",
+          "provider": "",
+          "error": "Codex CLI 调用失败，请检查该运行账号的登录与模型可用状态。",
+          "result": {
+            "workflow": {
+              "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+              "modelCalls": 2
+            }
+          },
+          "startedAt": "2026-11-12T09:59:37Z",
+          "endedAt": "2026-11-12T09:59:43Z"
+        },
+        {
+          "id": "run-6374543987ba4aeda13a8029a7b302af",
+          "number": 2,
+          "status": "failed",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "请选择有效题型",
+          "result": {
+            "workflow": {
+              "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+              "modelCalls": 2
+            }
+          },
+          "startedAt": "2026-11-12T10:04:54Z",
+          "endedAt": "2026-11-12T10:05:11Z"
+        }
+      ]
+    }
+  },
+  {
+    "label": "语文相关新题修订结构后重试",
+    "elapsedSeconds": 10.16,
+    "job": {
+      "id": "job-3ddd23d03717473f9becffd42524e309",
+      "mode": "variant",
+      "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "先想一想：文中“把伞放回门边”和“替同桌擦去书包上的雨水”分别能让你观察到人物怎样的做法？请用其中一个动作作为依据，说说你对人物特点的理解。",
+          "options": [],
+          "equation": "",
+          "rationale": "原作答“他一定很富裕。”和理由“我觉得有伞的人都很富裕。”依据的是对物品的推测，片段没有说明人物是否富裕。先从人物实际做出的动作寻找证据，再提出有依据的人物特点。",
+          "gradingMode": "manual",
+          "responseType": "reading"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+          "modelCalls": 1
+        },
+        "mathClaims": [],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified"
+        },
+        "conditionCheck": {
+          "scope": "非方程专用练习，依据题意与评价要点评阅",
+          "issues": []
+        },
+        "variantVerification": {
+          "scope": "通用练习可作答；参考答案与主观评价等待教师核对",
+          "status": "unverified",
+          "submissionAllowed": true
+        }
+      },
+      "attemptNumber": 3,
+      "retryCount": 0,
+      "createdAt": "2026-11-12T09:59:37Z",
+      "updatedAt": "2026-11-12T10:06:11Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "grade": "八年级",
+          "subject": "语文",
+          "question": {
+            "prompt": "自编片段：他把伞放回门边，又替同桌擦去书包上的雨水。请结合动作描写说说人物特点，并给出原文依据。",
+            "equation": ""
+          },
+          "knowledge": [
+            {
+              "id": "subject-reading",
+              "name": "文本证据"
+            }
+          ],
+          "prerequisites": [],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "他一定很富裕。",
+          "originalReason": "我觉得有伞的人都很富裕。"
+        },
+        "history": [],
+        "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "variantJobId": null,
+        "previousEquations": [],
+        "previousQuestions": []
+      },
+      "runs": [
+        {
+          "id": "run-641147deae3a48ec9d4fd8c43d14478b",
+          "number": 1,
+          "status": "failed",
+          "model": "",
+          "provider": "",
+          "error": "Codex CLI 调用失败，请检查该运行账号的登录与模型可用状态。",
+          "result": {
+            "workflow": {
+              "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+              "modelCalls": 2
+            }
+          },
+          "startedAt": "2026-11-12T09:59:37Z",
+          "endedAt": "2026-11-12T09:59:43Z"
+        },
+        {
+          "id": "run-6374543987ba4aeda13a8029a7b302af",
+          "number": 2,
+          "status": "failed",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "请选择有效题型",
+          "result": {
+            "workflow": {
+              "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+              "modelCalls": 2
+            }
+          },
+          "startedAt": "2026-11-12T10:04:54Z",
+          "endedAt": "2026-11-12T10:05:11Z"
+        },
+        {
+          "id": "run-cbede41d3a354fd591574c93744af4c7",
+          "number": 3,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "先想一想：文中“把伞放回门边”和“替同桌擦去书包上的雨水”分别能让你观察到人物怎样的做法？请用其中一个动作作为依据，说说你对人物特点的理解。",
+              "options": [],
+              "equation": "",
+              "rationale": "原作答“他一定很富裕。”和理由“我觉得有伞的人都很富裕。”依据的是对物品的推测，片段没有说明人物是否富裕。先从人物实际做出的动作寻找证据，再提出有依据的人物特点。",
+              "gradingMode": "manual",
+              "responseType": "reading"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+              "modelCalls": 1
+            },
+            "mathClaims": [],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified"
+            },
+            "conditionCheck": {
+              "scope": "非方程专用练习，依据题意与评价要点评阅",
+              "issues": []
+            },
+            "variantVerification": {
+              "scope": "通用练习可作答；参考答案与主观评价等待教师核对",
+              "status": "unverified",
+              "submissionAllowed": true
+            }
+          },
+          "startedAt": "2026-11-12T10:06:00Z",
+          "endedAt": "2026-11-12T10:06:11Z"
+        }
+      ]
+    }
+  },
+  {
+    "label": "语文新题提交",
+    "attempt": {
+      "id": "repair-3c0d335377c847649fa25a128794e642",
+      "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+      "answer": "我先引用题目中人物帮助他人的动作，再说明我的推断。",
+      "reason": "用原文证据而不是猜测。",
+      "correct": false,
+      "verification": {
+        "status": "unverified",
+        "correct": false,
+        "scope": "主观答案与过程由教师依据评价要点评阅",
+        "message": "作答已保存，等待教师评阅。",
+        "requiresTeacherReview": true
+      },
+      "details": {
+        "version": "dynamic_v1",
+        "planJobId": "job-44cd038c773a4d4d9c65dcad58279659",
+        "variantJobId": "job-3ddd23d03717473f9becffd42524e309",
+        "variantId": "job-3ddd23d03717473f9becffd42524e309",
+        "equation": "",
+        "prompt": "先想一想：文中“把伞放回门边”和“替同桌擦去书包上的雨水”分别能让你观察到人物怎样的做法？请用其中一个动作作为依据，说说你对人物特点的理解。",
+        "subject": "语文",
+        "expected": "评价要点：指出人物可能细心、体贴或关心同桌等特点；引用“替同桌擦去书包上的雨水”或“把伞放回门边”作为文本依据；说明动作与特点之间的联系。允许其他有文本依据的解释。",
+        "phase": "practice",
+        "helped": false,
+        "requestKey": "5075b7bd11074efb80a2cbf29a18260b",
+        "verification": {
+          "status": "unverified",
+          "correct": false,
+          "scope": "主观答案与过程由教师依据评价要点评阅",
+          "message": "作答已保存，等待教师评阅。",
+          "requiresTeacherReview": true
+        }
+      },
+      "createdAt": "2026-11-12T18:06:10"
+    }
+  },
+  {
+    "label": "语文新材料相关练习",
+    "elapsedSeconds": 10.16,
+    "job": {
+      "id": "job-3c5027d04d614882b3f6d6ff6f657015",
+      "mode": "variant",
+      "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+      "phase": "practice",
+      "capability": "text",
+      "lessonId": null,
+      "summary": "",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": "hint",
+      "prompt": "请依据本题和我的原作答提供针对性补救。",
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "已完成",
+      "error": "",
+      "result": {
+        "variant": {
+          "prompt": "阅读下面的新片段，结合动作描写说说人物特点，并引用原文依据。片段：小林发现走廊的窗户没关，便放下手里的书，走过去把窗户关好。",
+          "options": [],
+          "equation": "",
+          "rationale": "先指出片段中的具体动作，再说明动作体现的特点；人物判断应有文本证据支持。",
+          "gradingMode": "manual",
+          "responseType": "reading"
+        },
+        "workflow": {
+          "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+          "modelCalls": 1
+        },
+        "mathClaims": [],
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified"
+        },
+        "conditionCheck": {
+          "scope": "非方程专用练习，依据题意与评价要点评阅",
+          "issues": []
+        },
+        "variantVerification": {
+          "scope": "通用练习可作答；参考答案与主观评价等待教师核对",
+          "status": "unverified",
+          "submissionAllowed": true
+        }
+      },
+      "attemptNumber": 1,
+      "retryCount": 0,
+      "createdAt": "2026-11-12T10:12:56Z",
+      "updatedAt": "2026-11-12T10:13:06Z",
+      "input": {
+        "mode": "variant",
+        "phase": "practice",
+        "prompt": "请依据本题和我的原作答提供针对性补救。",
+        "context": {
+          "grade": "八年级",
+          "subject": "语文",
+          "question": {
+            "prompt": "自编片段：他把伞放回门边，又替同桌擦去书包上的雨水。请结合动作描写说说人物特点，并给出原文依据。",
+            "equation": ""
+          },
+          "knowledge": [
+            {
+              "id": "subject-reading",
+              "name": "文本证据"
+            }
+          ],
+          "prerequisites": [],
+          "teachingCases": [],
+          "confirmedCause": null,
+          "originalAnswer": "他一定很富裕。",
+          "originalReason": "我觉得有伞的人都很富裕。"
+        },
+        "history": [],
+        "wrongId": "wrong-57ec408ea962f977c866195b6e31cc5b",
+        "guidance": false,
+        "strategy": "hint",
+        "parentJobId": null,
+        "remediation": true,
+        "variantJobId": null,
+        "previousEquations": [
+          ""
+        ],
+        "previousQuestions": [
+          "先想一想：文中“把伞放回门边”和“替同桌擦去书包上的雨水”分别能让你观察到人物怎样的做法？请用其中一个动作作为依据，说说你对人物特点的理解。"
+        ]
+      },
+      "runs": [
+        {
+          "id": "run-2fb42bc6d4574c5abf3d7f6f0f391288",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI · low",
+          "error": "",
+          "result": {
+            "variant": {
+              "prompt": "阅读下面的新片段，结合动作描写说说人物特点，并引用原文依据。片段：小林发现走廊的窗户没关，便放下手里的书，走过去把窗户关好。",
+              "options": [],
+              "equation": "",
+              "rationale": "先指出片段中的具体动作，再说明动作体现的特点；人物判断应有文本证据支持。",
+              "gradingMode": "manual",
+              "responseType": "reading"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-57ec408ea962f977c866195b6e31cc5b",
+              "modelCalls": 1
+            },
+            "mathClaims": [],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified"
+            },
+            "conditionCheck": {
+              "scope": "非方程专用练习，依据题意与评价要点评阅",
+              "issues": []
+            },
+            "variantVerification": {
+              "scope": "通用练习可作答；参考答案与主观评价等待教师核对",
+              "status": "unverified",
+              "submissionAllowed": true
+            }
+          },
+          "startedAt": "2026-11-12T10:12:57Z",
+          "endedAt": "2026-11-12T10:13:06Z"
+        }
+      ]
+    }
+  },
+  {
+    "label": "语文备课真实调用",
+    "elapsedSeconds": 14.23,
+    "job": {
+      "id": "job-71265b1f1b3b4a08a3e6d0f8a958961e",
+      "mode": null,
+      "wrongId": null,
+      "phase": null,
+      "capability": "lesson_agent",
+      "lessonId": "lesson-95da32cf52464acb9a2bf06dac95c514",
+      "summary": "围绕人物动作与原文证据设计一个简短阅读活动，保留原文与阅读目标，不套用数学活动。",
+      "recordId": null,
+      "fileId": null,
+      "helpRecordId": null,
+      "question": null,
+      "blockId": null,
+      "strategy": null,
+      "prompt": null,
+      "parentJobId": null,
+      "recognizedText": null,
+      "status": "succeeded",
+      "step": "等待教师确认",
+      "error": "",
+      "result": {
+        "plan": {
+          "goal": "依据动作描写独立表达对人物的理解，并引用文本说明依据。",
+          "title": "从动作描写寻找人物理解依据",
+          "blocks": [
+            {
+              "id": "read",
+              "title": "阅读与思考",
+              "content": "1. 出示片段：“他把伞放回门边，又替同桌擦去书包上的雨水。”\n2. 学生圈出人物做的两件事，并指出句中哪些内容是文本直接写出的。\n3. 检查圈画是否对应原句中的动作。",
+              "adjustment": "若把人物品质直接当成原文事实，请回到原句，分别标记动作和由动作引出的理解。",
+              "evidenceIds": [
+                "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+              ],
+              "studentTask": "圈出人物的动作，标明文本直接写出的内容。",
+              "studentResponse": "原文明确写出他把伞放回门边、替同桌擦去书包上的雨水；人物的性格或想法需要结合动作作出解释。",
+              "teacherQuestion": "句子写了人物做什么？哪些是原文明确写出的，哪些还需要推断？"
+            },
+            {
+              "id": "check",
+              "title": "独立作答",
+              "content": "1. 学生独立回答：“结合动作描写，说说你对人物的理解，并写出依据。”\n2. 学生检查答案是否写出具体动作，并说明该动作怎样支持自己的理解。",
+              "adjustment": "若答案只有评价词，请提示学生补写具体动作；若把推断说成原文事实，请提示区分引文与个人解释。",
+              "evidenceIds": [
+                "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+              ],
+              "studentTask": "独立作答，引用动作描写并说明依据；可以提出有文本支持的不同理解。",
+              "studentResponse": "",
+              "teacherQuestion": "你的理解依据是哪处动作？从动作到理解之间，你作了什么推断？"
+            }
+          ],
+          "rationale": [
+            "先辨认文本明确写出的动作，再区分动作事实与人物理解，最后独立作答并核对是否有文本依据。"
+          ],
+          "mathClaims": []
+        },
+        "cases": [],
+        "model": "gpt-6-luna",
+        "steps": [
+          {
+            "key": "context",
+            "tool": "curriculum.read",
+            "title": "理解任务与课时",
+            "output": {
+              "method": "显式选择或有限关键词规则；课时由服务端读取",
+              "recognizedType": "活动设计",
+              "lessonVersionId": "lessonversion-ba5d2ea792b84dacba65eee5c7"
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-12T10:13:07.295969+00:00",
+            "finishedAt": "2026-11-12T10:13:07.356980+00:00"
+          },
+          {
+            "key": "cases",
+            "tool": "retrieval.bm25",
+            "title": "检索教学案例",
+            "output": {
+              "rerank": false,
+              "versions": [],
+              "caseCount": 0
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-12T10:13:07.375668+00:00",
+            "finishedAt": "2026-11-12T10:13:07.421201+00:00"
+          },
+          {
+            "key": "materials",
+            "tool": "materials.read",
+            "title": "定位原文材料",
+            "output": {
+              "evidenceIds": [
+                "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+              ],
+              "materialCount": 0
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-12T10:13:07.451448+00:00",
+            "finishedAt": "2026-11-12T10:13:07.512444+00:00"
+          },
+          {
+            "key": "generate",
+            "tool": "codex.lesson_plan",
+            "title": "生成备课建议",
+            "output": {
+              "model": "gpt-6-luna",
+              "origin": "模型生成，待教师核对",
+              "provider": "Codex CLI · low",
+              "onlyBlock": null,
+              "blockCount": 2
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-12T10:13:07.533900+00:00",
+            "finishedAt": "2026-11-12T10:13:20.435316+00:00"
+          },
+          {
+            "key": "validate",
+            "tool": "plan.validate",
+            "title": "核验结构与依据",
+            "output": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified",
+              "structure": "passed",
+              "references": "passed",
+              "goalTermsOverlap": true,
+              "humanReviewRequired": true
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-12T10:13:20.484131+00:00",
+            "finishedAt": "2026-11-12T10:13:20.573485+00:00"
+          },
+          {
+            "key": "ready",
+            "tool": "teacher.review",
+            "title": "等待教师确认",
+            "output": {
+              "next": "教师编辑、确认后保存备课草稿；不自动发布"
+            },
+            "status": "succeeded",
+            "startedAt": "2026-11-12T10:13:20.617794+00:00",
+            "finishedAt": "2026-11-12T10:13:20.664766+00:00"
+          }
+        ],
+        "context": {
+          "goal": "依据材料独立作答并说明依据",
+          "task": "围绕人物动作与原文证据设计一个简短阅读活动，保留原文与阅读目标，不套用数学活动。",
+          "grade": "八年级",
+          "subject": "语文",
+          "lessonId": "lesson-95da32cf52464acb9a2bf06dac95c514",
+          "taskType": "activity",
+          "taskLabel": "活动设计",
+          "constraints": "",
+          "lessonTitle": "阅读中的证据表达",
+          "knowledgeIds": [
+            "subject-reading"
+          ],
+          "lessonVersionId": "lessonversion-ba5d2ea792b84dacba65eee5c7",
+          "prerequisiteIds": []
+        },
+        "decision": "pending",
+        "editable": {
+          "goal": "依据动作描写独立表达对人物的理解，并引用文本说明依据。",
+          "title": "从动作描写寻找人物理解依据",
+          "blocks": [
+            {
+              "id": "read",
+              "title": "阅读与思考",
+              "content": "1. 出示片段：“他把伞放回门边，又替同桌擦去书包上的雨水。”\n2. 学生圈出人物做的两件事，并指出句中哪些内容是文本直接写出的。\n3. 检查圈画是否对应原句中的动作。",
+              "adjustment": "若把人物品质直接当成原文事实，请回到原句，分别标记动作和由动作引出的理解。",
+              "evidenceIds": [
+                "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+              ],
+              "studentTask": "圈出人物的动作，标明文本直接写出的内容。",
+              "studentResponse": "原文明确写出他把伞放回门边、替同桌擦去书包上的雨水；人物的性格或想法需要结合动作作出解释。",
+              "teacherQuestion": "句子写了人物做什么？哪些是原文明确写出的，哪些还需要推断？"
+            },
+            {
+              "id": "check",
+              "title": "独立作答",
+              "content": "1. 学生独立回答：“结合动作描写，说说你对人物的理解，并写出依据。”\n2. 学生检查答案是否写出具体动作，并说明该动作怎样支持自己的理解。",
+              "adjustment": "若答案只有评价词，请提示学生补写具体动作；若把推断说成原文事实，请提示区分引文与个人解释。",
+              "evidenceIds": [
+                "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+              ],
+              "studentTask": "独立作答，引用动作描写并说明依据；可以提出有文本支持的不同理解。",
+              "studentResponse": "",
+              "teacherQuestion": "你的理解依据是哪处动作？从动作到理解之间，你作了什么推断？"
+            }
+          ],
+          "rationale": [
+            "先辨认文本明确写出的动作，再区分动作事实与人物理解，最后独立作答并核对是否有文本依据。"
+          ],
+          "mathClaims": []
+        },
+        "evidence": [
+          {
+            "id": "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7",
+            "url": "/#/courses",
+            "kind": "lesson",
+            "title": "阅读中的证据表达",
+            "content": "阅读与思考：自编片段：他把伞放回门边，又替同桌擦去书包上的雨水。\n独立作答：按题目完成作答。",
+            "versionId": "lessonversion-ba5d2ea792b84dacba65eee5c7"
+          }
+        ],
+        "warnings": [
+          "未找到案例，仅依据当前课时生成；不编造案例出处。",
+          "没有可定位的已解析原文；保留课时依据，待补充材料。"
+        ],
+        "generated": {
+          "goal": "依据动作描写独立表达对人物的理解，并引用文本说明依据。",
+          "title": "从动作描写寻找人物理解依据",
+          "blocks": [
+            {
+              "id": "read",
+              "title": "阅读与思考",
+              "content": "1. 出示片段：“他把伞放回门边，又替同桌擦去书包上的雨水。”\n2. 学生圈出人物做的两件事，并指出句中哪些内容是文本直接写出的。\n3. 检查圈画是否对应原句中的动作。",
+              "adjustment": "若把人物品质直接当成原文事实，请回到原句，分别标记动作和由动作引出的理解。",
+              "evidenceIds": [
+                "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+              ],
+              "studentTask": "圈出人物的动作，标明文本直接写出的内容。",
+              "studentResponse": "原文明确写出他把伞放回门边、替同桌擦去书包上的雨水；人物的性格或想法需要结合动作作出解释。",
+              "teacherQuestion": "句子写了人物做什么？哪些是原文明确写出的，哪些还需要推断？"
+            },
+            {
+              "id": "check",
+              "title": "独立作答",
+              "content": "1. 学生独立回答：“结合动作描写，说说你对人物的理解，并写出依据。”\n2. 学生检查答案是否写出具体动作，并说明该动作怎样支持自己的理解。",
+              "adjustment": "若答案只有评价词，请提示学生补写具体动作；若把推断说成原文事实，请提示区分引文与个人解释。",
+              "evidenceIds": [
+                "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+              ],
+              "studentTask": "独立作答，引用动作描写并说明依据；可以提出有文本支持的不同理解。",
+              "studentResponse": "",
+              "teacherQuestion": "你的理解依据是哪处动作？从动作到理解之间，你作了什么推断？"
+            }
+          ],
+          "rationale": [
+            "先辨认文本明确写出的动作，再区分动作事实与人物理解，最后独立作答并核对是否有文本依据。"
+          ],
+          "mathClaims": []
+        },
+        "materials": [],
+        "retrieval": {
+          "mode": "search",
+          "query": "围绕人物动作与原文证据设计一个简短阅读活动，保留原文与阅读目标，不套用数学活动。 阅读中的证据表达",
+          "method": "field-bm25+knowledge+context",
+          "variant": "B3",
+          "warnings": [],
+          "elapsedMs": 7.954,
+          "matchedCount": 0,
+          "rerankApplied": false,
+          "totalDocuments": 0,
+          "algorithmVersion": "teaching-context-v1",
+          "eligibleDocuments": 0,
+          "queryUnderstanding": {
+            "scenario": "activity_design",
+            "knowledge": [],
+            "expansions": [],
+            "normalizedQuery": "围绕人物动作与原文证据设计一个简短阅读活动,保留原文与阅读目标,不套用数学活动。 阅读中的证据表达"
+          }
+        },
+        "startedAt": "2026-11-12T10:13:07.285174+00:00",
+        "modelCalls": 1,
+        "textQuality": {
+          "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查",
+          "status": "passed",
+          "warnings": []
+        },
+        "verification": {
+          "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+          "claims": [],
+          "status": "unverified",
+          "structure": "passed",
+          "references": "passed",
+          "goalTermsOverlap": true,
+          "humanReviewRequired": true
+        },
+        "conditionCheck": {
+          "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+          "issues": [],
+          "status": "no_known_issue",
+          "humanReviewRequired": true
+        },
+        "budgetStartedAt": "2026-11-12T10:13:07.285204+00:00",
+        "workflowVersion": "teaching-plan-v1"
+      },
+      "attemptNumber": 1,
+      "retryCount": 0,
+      "createdAt": "2026-11-12T10:13:07Z",
+      "updatedAt": "2026-11-12T10:13:21Z",
+      "input": {
+        "task": "围绕人物动作与原文证据设计一个简短阅读活动，保留原文与阅读目标，不套用数学活动。",
+        "label": "围绕人物动作与原文证据设计一个简短阅读活动，保留原文与阅读目标，不套用数学活动。",
+        "lesson": {
+          "goal": "依据材料独立作答并说明依据",
+          "grade": "八年级",
+          "title": "阅读中的证据表达",
+          "blocks": [
+            {
+              "id": "read",
+              "type": "explanation",
+              "title": "阅读与思考",
+              "content": "自编片段：他把伞放回门边，又替同桌擦去书包上的雨水。",
+              "required": true
+            },
+            {
+              "id": "check",
+              "type": "check",
+              "title": "独立作答",
+              "content": "按题目完成作答。",
+              "required": true,
+              "questionIds": [
+                "reading"
+              ]
+            }
+          ],
+          "source": "项目自编工程验收材料，不是全套教材或真实教师审核样本",
+          "unitId": "unit-0627927646a141fba674afb7c2439810",
+          "subject": "语文",
+          "version": 1,
+          "duration": 30,
+          "lessonId": "lesson-95da32cf52464acb9a2bf06dac95c514",
+          "questions": [
+            {
+              "id": "reading",
+              "hint": "先找出人物做了哪些事。",
+              "kind": "check",
+              "answer": "引用文本动作并作出有依据的解释，允许合理的不同理解。",
+              "prompt": "结合动作描写，说说你对人物的理解，并写出依据。",
+              "explanation": "区分原文事实与个人推断。",
+              "gradingMode": "manual",
+              "knowledgeIds": [
+                "subject-reading"
+              ],
+              "responseType": "reading"
+            }
+          ],
+          "versionId": "lessonversion-ba5d2ea792b84dacba65eee5c7",
+          "publishedAt": "2026-11-12T09:55:13Z",
+          "knowledgeIds": [
+            "subject-reading"
+          ],
+          "reviewRecord": {
+            "at": "2026-11-12T09:55:12.490339Z",
+            "scope": "内容、条件与数量关系人工核对",
+            "actorId": "subject-ui-admin",
+            "conditions": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            }
+          },
+          "verification": {
+            "scope": "所列单解方程与参考答案；正文和教学方法仍经人工核对",
+            "status": "verified"
+          },
+          "prerequisiteIds": []
+        },
+        "draftId": null,
+        "ownerId": "subject-ui-teacher",
+        "lessonId": "lesson-95da32cf52464acb9a2bf06dac95c514",
+        "taskType": "activity",
+        "documents": [],
+        "draftHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "knowledge": [
+          {
+            "id": "subject-english",
+            "name": "词形与语境",
+            "aliases": [],
+            "prerequisites": []
+          },
+          {
+            "id": "subject-function",
+            "name": "函数条件",
+            "aliases": [],
+            "prerequisites": []
+          },
+          {
+            "id": "subject-reading",
+            "name": "文本证据",
+            "aliases": [],
+            "prerequisites": []
+          }
+        ],
+        "constraints": "",
+        "parentJobId": null,
+        "rewriteBlockId": null,
+        "workflowVersion": "teaching-plan-v1",
+        "qualityRevisionOf": null,
+        "regenerateBlockId": null,
+        "selectedReferences": []
+      },
+      "runs": [
+        {
+          "id": "run-325eaa23bf8146cebce45a9917ca0fd6",
+          "number": 1,
+          "status": "succeeded",
+          "model": "gpt-6-luna",
+          "provider": "Codex CLI / LangGraph",
+          "error": "",
+          "result": {
+            "plan": {
+              "goal": "依据动作描写独立表达对人物的理解，并引用文本说明依据。",
+              "title": "从动作描写寻找人物理解依据",
+              "blocks": [
+                {
+                  "id": "read",
+                  "title": "阅读与思考",
+                  "content": "1. 出示片段：“他把伞放回门边，又替同桌擦去书包上的雨水。”\n2. 学生圈出人物做的两件事，并指出句中哪些内容是文本直接写出的。\n3. 检查圈画是否对应原句中的动作。",
+                  "adjustment": "若把人物品质直接当成原文事实，请回到原句，分别标记动作和由动作引出的理解。",
+                  "evidenceIds": [
+                    "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+                  ],
+                  "studentTask": "圈出人物的动作，标明文本直接写出的内容。",
+                  "studentResponse": "原文明确写出他把伞放回门边、替同桌擦去书包上的雨水；人物的性格或想法需要结合动作作出解释。",
+                  "teacherQuestion": "句子写了人物做什么？哪些是原文明确写出的，哪些还需要推断？"
+                },
+                {
+                  "id": "check",
+                  "title": "独立作答",
+                  "content": "1. 学生独立回答：“结合动作描写，说说你对人物的理解，并写出依据。”\n2. 学生检查答案是否写出具体动作，并说明该动作怎样支持自己的理解。",
+                  "adjustment": "若答案只有评价词，请提示学生补写具体动作；若把推断说成原文事实，请提示区分引文与个人解释。",
+                  "evidenceIds": [
+                    "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+                  ],
+                  "studentTask": "独立作答，引用动作描写并说明依据；可以提出有文本支持的不同理解。",
+                  "studentResponse": "",
+                  "teacherQuestion": "你的理解依据是哪处动作？从动作到理解之间，你作了什么推断？"
+                }
+              ],
+              "rationale": [
+                "先辨认文本明确写出的动作，再区分动作事实与人物理解，最后独立作答并核对是否有文本依据。"
+              ],
+              "mathClaims": []
+            },
+            "cases": [],
+            "model": "gpt-6-luna",
+            "steps": [
+              {
+                "key": "context",
+                "tool": "curriculum.read",
+                "title": "理解任务与课时",
+                "output": {
+                  "method": "显式选择或有限关键词规则；课时由服务端读取",
+                  "recognizedType": "活动设计",
+                  "lessonVersionId": "lessonversion-ba5d2ea792b84dacba65eee5c7"
+                },
+                "status": "succeeded",
+                "startedAt": "2026-11-12T10:13:07.295969+00:00",
+                "finishedAt": "2026-11-12T10:13:07.356980+00:00"
+              },
+              {
+                "key": "cases",
+                "tool": "retrieval.bm25",
+                "title": "检索教学案例",
+                "output": {
+                  "rerank": false,
+                  "versions": [],
+                  "caseCount": 0
+                },
+                "status": "succeeded",
+                "startedAt": "2026-11-12T10:13:07.375668+00:00",
+                "finishedAt": "2026-11-12T10:13:07.421201+00:00"
+              },
+              {
+                "key": "materials",
+                "tool": "materials.read",
+                "title": "定位原文材料",
+                "output": {
+                  "evidenceIds": [
+                    "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+                  ],
+                  "materialCount": 0
+                },
+                "status": "succeeded",
+                "startedAt": "2026-11-12T10:13:07.451448+00:00",
+                "finishedAt": "2026-11-12T10:13:07.512444+00:00"
+              },
+              {
+                "key": "generate",
+                "tool": "codex.lesson_plan",
+                "title": "生成备课建议",
+                "output": {
+                  "model": "gpt-6-luna",
+                  "origin": "模型生成，待教师核对",
+                  "provider": "Codex CLI · low",
+                  "onlyBlock": null,
+                  "blockCount": 2
+                },
+                "status": "succeeded",
+                "startedAt": "2026-11-12T10:13:07.533900+00:00",
+                "finishedAt": "2026-11-12T10:13:20.435316+00:00"
+              },
+              {
+                "key": "validate",
+                "tool": "plan.validate",
+                "title": "核验结构与依据",
+                "output": {
+                  "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                  "claims": [],
+                  "status": "unverified",
+                  "structure": "passed",
+                  "references": "passed",
+                  "goalTermsOverlap": true,
+                  "humanReviewRequired": true
+                },
+                "status": "succeeded",
+                "startedAt": "2026-11-12T10:13:20.484131+00:00",
+                "finishedAt": "2026-11-12T10:13:20.573485+00:00"
+              },
+              {
+                "key": "ready",
+                "tool": "teacher.review",
+                "title": "等待教师确认",
+                "output": {
+                  "next": "教师编辑、确认后保存备课草稿；不自动发布"
+                },
+                "status": "succeeded",
+                "startedAt": "2026-11-12T10:13:20.617794+00:00",
+                "finishedAt": "2026-11-12T10:13:20.664766+00:00"
+              }
+            ],
+            "context": {
+              "goal": "依据材料独立作答并说明依据",
+              "task": "围绕人物动作与原文证据设计一个简短阅读活动，保留原文与阅读目标，不套用数学活动。",
+              "grade": "八年级",
+              "subject": "语文",
+              "lessonId": "lesson-95da32cf52464acb9a2bf06dac95c514",
+              "taskType": "activity",
+              "taskLabel": "活动设计",
+              "constraints": "",
+              "lessonTitle": "阅读中的证据表达",
+              "knowledgeIds": [
+                "subject-reading"
+              ],
+              "lessonVersionId": "lessonversion-ba5d2ea792b84dacba65eee5c7",
+              "prerequisiteIds": []
+            },
+            "decision": "pending",
+            "editable": {
+              "goal": "依据动作描写独立表达对人物的理解，并引用文本说明依据。",
+              "title": "从动作描写寻找人物理解依据",
+              "blocks": [
+                {
+                  "id": "read",
+                  "title": "阅读与思考",
+                  "content": "1. 出示片段：“他把伞放回门边，又替同桌擦去书包上的雨水。”\n2. 学生圈出人物做的两件事，并指出句中哪些内容是文本直接写出的。\n3. 检查圈画是否对应原句中的动作。",
+                  "adjustment": "若把人物品质直接当成原文事实，请回到原句，分别标记动作和由动作引出的理解。",
+                  "evidenceIds": [
+                    "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+                  ],
+                  "studentTask": "圈出人物的动作，标明文本直接写出的内容。",
+                  "studentResponse": "原文明确写出他把伞放回门边、替同桌擦去书包上的雨水；人物的性格或想法需要结合动作作出解释。",
+                  "teacherQuestion": "句子写了人物做什么？哪些是原文明确写出的，哪些还需要推断？"
+                },
+                {
+                  "id": "check",
+                  "title": "独立作答",
+                  "content": "1. 学生独立回答：“结合动作描写，说说你对人物的理解，并写出依据。”\n2. 学生检查答案是否写出具体动作，并说明该动作怎样支持自己的理解。",
+                  "adjustment": "若答案只有评价词，请提示学生补写具体动作；若把推断说成原文事实，请提示区分引文与个人解释。",
+                  "evidenceIds": [
+                    "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+                  ],
+                  "studentTask": "独立作答，引用动作描写并说明依据；可以提出有文本支持的不同理解。",
+                  "studentResponse": "",
+                  "teacherQuestion": "你的理解依据是哪处动作？从动作到理解之间，你作了什么推断？"
+                }
+              ],
+              "rationale": [
+                "先辨认文本明确写出的动作，再区分动作事实与人物理解，最后独立作答并核对是否有文本依据。"
+              ],
+              "mathClaims": []
+            },
+            "evidence": [
+              {
+                "id": "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7",
+                "url": "/#/courses",
+                "kind": "lesson",
+                "title": "阅读中的证据表达",
+                "content": "阅读与思考：自编片段：他把伞放回门边，又替同桌擦去书包上的雨水。\n独立作答：按题目完成作答。",
+                "versionId": "lessonversion-ba5d2ea792b84dacba65eee5c7"
+              }
+            ],
+            "warnings": [
+              "未找到案例，仅依据当前课时生成；不编造案例出处。",
+              "没有可定位的已解析原文；保留课时依据，待补充材料。"
+            ],
+            "generated": {
+              "goal": "依据动作描写独立表达对人物的理解，并引用文本说明依据。",
+              "title": "从动作描写寻找人物理解依据",
+              "blocks": [
+                {
+                  "id": "read",
+                  "title": "阅读与思考",
+                  "content": "1. 出示片段：“他把伞放回门边，又替同桌擦去书包上的雨水。”\n2. 学生圈出人物做的两件事，并指出句中哪些内容是文本直接写出的。\n3. 检查圈画是否对应原句中的动作。",
+                  "adjustment": "若把人物品质直接当成原文事实，请回到原句，分别标记动作和由动作引出的理解。",
+                  "evidenceIds": [
+                    "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+                  ],
+                  "studentTask": "圈出人物的动作，标明文本直接写出的内容。",
+                  "studentResponse": "原文明确写出他把伞放回门边、替同桌擦去书包上的雨水；人物的性格或想法需要结合动作作出解释。",
+                  "teacherQuestion": "句子写了人物做什么？哪些是原文明确写出的，哪些还需要推断？"
+                },
+                {
+                  "id": "check",
+                  "title": "独立作答",
+                  "content": "1. 学生独立回答：“结合动作描写，说说你对人物的理解，并写出依据。”\n2. 学生检查答案是否写出具体动作，并说明该动作怎样支持自己的理解。",
+                  "adjustment": "若答案只有评价词，请提示学生补写具体动作；若把推断说成原文事实，请提示区分引文与个人解释。",
+                  "evidenceIds": [
+                    "lesson:lessonversion-ba5d2ea792b84dacba65eee5c7"
+                  ],
+                  "studentTask": "独立作答，引用动作描写并说明依据；可以提出有文本支持的不同理解。",
+                  "studentResponse": "",
+                  "teacherQuestion": "你的理解依据是哪处动作？从动作到理解之间，你作了什么推断？"
+                }
+              ],
+              "rationale": [
+                "先辨认文本明确写出的动作，再区分动作事实与人物理解，最后独立作答并核对是否有文本依据。"
+              ],
+              "mathClaims": []
+            },
+            "materials": [],
+            "retrieval": {
+              "mode": "search",
+              "query": "围绕人物动作与原文证据设计一个简短阅读活动，保留原文与阅读目标，不套用数学活动。 阅读中的证据表达",
+              "method": "field-bm25+knowledge+context",
+              "variant": "B3",
+              "warnings": [],
+              "elapsedMs": 7.954,
+              "matchedCount": 0,
+              "rerankApplied": false,
+              "totalDocuments": 0,
+              "algorithmVersion": "teaching-context-v1",
+              "eligibleDocuments": 0,
+              "queryUnderstanding": {
+                "scenario": "activity_design",
+                "knowledge": [],
+                "expansions": [],
+                "normalizedQuery": "围绕人物动作与原文证据设计一个简短阅读活动,保留原文与阅读目标,不套用数学活动。 阅读中的证据表达"
+              }
+            },
+            "startedAt": "2026-11-12T10:13:07.285174+00:00",
+            "modelCalls": 1,
+            "textQuality": {
+              "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查",
+              "status": "passed",
+              "warnings": []
+            },
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [],
+              "status": "unverified",
+              "structure": "passed",
+              "references": "passed",
+              "goalTermsOverlap": true,
+              "humanReviewRequired": true
+            },
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "budgetStartedAt": "2026-11-12T10:13:07.285204+00:00",
+            "workflowVersion": "teaching-plan-v1"
+          },
+          "startedAt": "2026-11-12T10:13:07Z",
+          "endedAt": "2026-11-12T10:13:21Z"
+        }
+      ]
+    }
+  }
+]

@@ -22,3 +22,7 @@
 ## 前端组件路线
 
 2026-11-12 用户要求将可替换的界面控件改用 Element UI 生态。当前 Vue 3 工程采用 Element Plus，业务仍使用 JavaScript；按钮、表单、标签、弹窗、消息、表格、图片及空状态优先复用 Element Plus。原 shadcn/Reka 组件与直接依赖已移除，不再并行维护两套基础控件。Motion 和教学专用交互保留。2026-11-12 用户进一步要求图标与导航也统一使用 Element Plus；当前采用 Element Plus Icons、Menu 和 Tabs，已移除 Lucide。选中项不添加文字左侧装饰线。全局按钮使用 AppButton 名称，避免与 Element Plus 动态解析原生 button 冲突。
+
+## 全学科产品范围
+
+2026-11-12 用户要求支持初高中所有学科。课程、题目、任务、错题和AI按实际年级学科工作；一元一次方程只作现有数学示例及按需专项提示。禁止将新内容默认为七年级数学，禁止把开放题按单变量求解判错。分科提示词维护于backend-business/sczx_business/prompts；尚未录入的教材不得伪装为已经发布的真实课程。

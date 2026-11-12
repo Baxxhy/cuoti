@@ -1,4 +1,5 @@
 <script setup>
+import SubjectFields from "@/components/SubjectFields.vue";
 import { computed, ref, watch, onBeforeUnmount } from "vue";
 import { Upload, Crop, ScanText, RotateCcw } from "@/components/app/icons.js";
 import { modelApi } from "@/services/models.js";
@@ -20,7 +21,8 @@ const form = ref({
   equation: "",
   answer: "",
   reason: "",
-  subject: "数学",
+  subject: "",
+  grade: "",
   knowledgeIds: [],
   fileId: null,
   cropFileId: null,
@@ -167,7 +169,7 @@ async function recognize() {
   await job.create({
     capability: "ocr",
     fileId: form.value.cropFileId || form.value.fileId,
-    data: { wrongCapture: true },
+    data: { wrongCapture: true, subject: form.value.subject, grade: form.value.grade },
   });
 }
 async function save() {
@@ -258,7 +260,7 @@ onBeforeUnmount(() => {
         </li>
       </ul>
     </section>
-    <form @submit.prevent="save">
+    <form @submit.prevent="save"><SubjectFields v-model:grade="form.grade" v-model:subject="form.subject"/>
       <label class="field-label" for="wrong-prompt">题目内容</label
       ><Textarea
         id="wrong-prompt"
@@ -266,9 +268,9 @@ onBeforeUnmount(() => {
         required
         @update:model-value="form.confirmed = false"
       />
-      <label class="field-label" for="wrong-equation">本题数学表达式</label
+      <label v-if="form.subject==='数学'||form.equation" class="field-label" for="wrong-equation">数学表达式（可选）</label
       ><Input
-        id="wrong-equation"
+        v-if="form.subject==='数学'||form.equation" id="wrong-equation"
         v-model="form.equation"
         @update:model-value="form.confirmed = false"
       />

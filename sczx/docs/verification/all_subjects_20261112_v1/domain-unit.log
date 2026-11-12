@@ -1,0 +1,19 @@
+test_catalog_supports_both_stages_and_common_subjects (test_multisubject.MultiSubjectTests.test_catalog_supports_both_stages_and_common_subjects) ... ok
+test_choice_references_must_belong_to_actual_options (test_multisubject.MultiSubjectTests.test_choice_references_must_belong_to_actual_options) ... ok
+test_general_variant_is_submittable_without_false_automatic_verification (test_multisubject.MultiSubjectTests.test_general_variant_is_submittable_without_false_automatic_verification) ... ok
+test_linear_addon_is_scoped_by_actual_subject_and_equation (test_multisubject.MultiSubjectTests.test_linear_addon_is_scoped_by_actual_subject_and_equation) ... ok
+test_model_options_and_response_types_have_strict_schema (test_multisubject.MultiSubjectTests.test_model_options_and_response_types_have_strict_schema) ... ok
+test_non_equation_lesson_can_be_published_without_math (test_multisubject.MultiSubjectTests.test_non_equation_lesson_can_be_published_without_math) ... ok
+test_non_linear_mathematics_can_use_teacher_review (test_multisubject.MultiSubjectTests.test_non_linear_mathematics_can_use_teacher_review) ... ok
+test_objective_choice_multiple_and_judgement (test_multisubject.MultiSubjectTests.test_objective_choice_multiple_and_judgement) ... ok
+test_student_paper_keeps_choice_text_without_reference_flags (test_multisubject.MultiSubjectTests.test_student_paper_keeps_choice_text_without_reference_flags) ... ok
+test_student_view_preserves_options_but_not_reference_answers (test_multisubject.MultiSubjectTests.test_student_view_preserves_options_but_not_reference_answers) ... ok
+test_subject_prompt_never_injects_equation_rules_into_other_subjects (test_multisubject.MultiSubjectTests.test_subject_prompt_never_injects_equation_rules_into_other_subjects) ... ok
+test_subjective_answers_are_not_programmatically_marked_wrong (test_multisubject.MultiSubjectTests.test_subjective_answers_are_not_programmatically_marked_wrong) ... ok
+test_text_matching_is_explicit_and_can_preserve_case_rules (test_multisubject.MultiSubjectTests.test_text_matching_is_explicit_and_can_preserve_case_rules) ... ok
+test_tutoring_options_do_not_carry_reference_flags (test_multisubject.MultiSubjectTests.test_tutoring_options_do_not_carry_reference_flags) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.605s
+
+OK

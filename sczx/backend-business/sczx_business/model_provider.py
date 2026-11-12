@@ -131,7 +131,8 @@ class ModelProvider:
             if data.get("examCandidate"):
                 from .exam_schemas import ExamCandidate
                 schema=ExamCandidate
-            instruction = "你是师承智学数学教师。只返回符合给定JSON Schema的JSON，不使用Markdown围栏。不得编造来源或把学生的原作答替换成参考答案。"
+            from .subject_prompts import instruction as subject_instruction
+            instruction = subject_instruction(data)
             if chat_rerank:
                 instruction = "你是教学经验检索的语义重排器。根据query评价candidates与教学困难的相关程度，排序后返回JSON。每个候选ID必须恰好出现一次，score在0到1之间，按score降序。分值是本组候选的相对相关程度，不是正确概率。只使用给定候选，不增加新ID。"
             instruction += "\nSchema:" + json.dumps(schema.model_json_schema(), ensure_ascii=False)
@@ -140,7 +141,7 @@ class ModelProvider:
             if capability == "ocr":
                 if not file or not file[2].startswith("image/"):
                     raise ModelError("识别需要已上传的原始题图。")
-                content = [{"type": "text", "text": "逐字识别题目，保留数学符号，区分题干与学生答案；模糊处列入uncertainties。"}, {"type": "image_url", "image_url": {"url": f"data:{file[2]};base64,{base64.b64encode(file[1]).decode()}"}}]
+                content = [{"type": "text", "text": "逐字识别题目，保留原文、选项、公式和学科符号，区分题干与学生答案；模糊处列入uncertainties。"}, {"type": "image_url", "image_url": {"url": f"data:{file[2]};base64,{base64.b64encode(file[1]).decode()}"}}]
             else:
                 content = json.dumps(data, ensure_ascii=False)
                 if not chat_rerank:

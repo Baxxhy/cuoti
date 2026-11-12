@@ -174,7 +174,7 @@ function openStudent(id) {
             attempt.verification?.status === "unverified"
               ? "需核对"
               : attempt.correct
-                ? "数值正确"
+                ? "答案已核对"
                 : "需订正"
           }}</Status>
         </section>
@@ -200,7 +200,7 @@ function openStudent(id) {
             repair.verification?.status === "unverified"
               ? "需核对"
               : repair.correct
-                ? "数值正确"
+                ? "答案已核对"
                 : "需订正"
           }}</Status>
         </section>

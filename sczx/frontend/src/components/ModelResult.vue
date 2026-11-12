@@ -28,7 +28,7 @@ const verification = computed(
     ({
       verified: "列出的等式已核对",
       inconsistent: "发现数学不一致",
-      unverified: "数学需核对",
+      unverified: result.value?.verification?.claims?.length?"数学需核对":"待教师核对",
     })[result.value?.verification?.status],
 );
 </script>
@@ -107,7 +107,7 @@ const verification = computed(
               result.verification?.status === 'verified' ? 'green' : 'amber'
             "
             >{{ verification }}</Status
-          ><InfoTip label="数学核对范围">{{
+          ><InfoTip label="核对范围">{{
             result.verification?.scope
           }}</InfoTip>
         </div>

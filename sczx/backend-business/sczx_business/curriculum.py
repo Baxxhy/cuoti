@@ -24,7 +24,7 @@ def student_content(data):
     result=copy.deepcopy(data)
     sources={b.get('id'):b for b in (data.get('lessonSnapshot') or {}).get('blocks',[])}
     for q in result.get('questions',[]):
-        for key in ('answer','hint','explanation','feedback','teacherNote','verification'):q.pop(key,None)
+        for key in ('answer','acceptedAnswers','rubric','hint','explanation','feedback','teacherNote','verification'):q.pop(key,None)
     for b in result.get('blocks',[]):
         source=sources.get(b.get('id'),{}) if b.get('agentJobId') else {}
         for field,public in [('studentContent','content'),('studentTitle','title')]:
@@ -34,6 +34,9 @@ def student_content(data):
         for key in ('teacherNote','teacherQuestion','studentResponse','adjustment','agentEvidence','agentJobId'):b.pop(key,None)
     result.pop('planningDetails',None)
     result.pop('caseSnapshot',None)
+    for q in result.get('questions',[]):
+        for option in q.get('options',[]):
+            for key in ('correct','isCorrect','answer','feedback','score'):option.pop(key,None)
     return result
 
 
@@ -62,16 +65,18 @@ def content_errors(db,data):
         qids.add(q.get('id'))
         if q.get('kind')=='check':checks+=1
         if q.get('kind') not in ('practice','check','replacement'):errors.append(f'题目{index+1}：用途无效')
-        if not q.get('prompt') or not q.get('answer') or not q.get('equation') or not q.get('hint'):errors.append(f'题目{index+1}：请填写题干、算式、答案和提示')
-        if re.search(r'/\s*\(?\s*0\s*\)?(?:\s|$|[+\-*/=])',str(q.get('equation',''))):errors.append(f'题目{index+1}：除数不能为零')
-        solved,checked=solve_text_equation(str(q.get('equation','')))
-        equal,parsed=compare_equivalence(solved.split('=',1)[-1],str(q.get('answer',''))) if checked and ',' not in solved else (False,False)
-        if not checked or not parsed or not equal:errors.append(f'题目{index+1}：方程与答案无法核对，请使用可验证的单解方程')
+        from .education import question_errors,grading_mode
+        errors.extend(f'题目{index+1}：'+message for message in question_errors(q))
+        if grading_mode(q)=='math':
+            if re.search(r'/\s*\(?\s*0\s*\)?(?:\s|$|[+\-*/=])',str(q.get('equation',''))):errors.append(f'题目{index+1}：除数不能为零')
+            solved,checked=solve_text_equation(str(q.get('equation','')))
+            equal,parsed=compare_equivalence(solved.split('=',1)[-1],str(q.get('answer',''))) if checked and ',' not in solved else (False,False)
+            if not checked or not parsed or not equal:errors.append(f'题目{index+1}：当前数学核对无法验证方程与答案；可修订表达式或改用教师评阅')
     for index,b in enumerate(blocks):
         if not isinstance(b,dict):errors.append(f'内容块{index+1}格式无效');continue
         if not b.get('id') or b['id'] in blockids:errors.append(f'内容块{index+1}：ID缺失或重复')
         blockids.add(b.get('id'))
-        if b.get('type') not in ('explanation','example','activity','practice','check'):errors.append(f'内容块{index+1}：不支持的类型')
+        if b.get('type') not in ('explanation','example','activity','discussion','practice','check'):errors.append(f'内容块{index+1}：不支持的类型')
         if not b.get('title') or not str(b.get('content','')).strip():errors.append(f'内容块{index+1}：标题或正文为空')
         for field in ('studentContent','studentTitle'):
             if field in b and (not isinstance(b[field],str) or not b[field].strip()):errors.append(f'内容块{index+1}：学生标题或正文为空')
@@ -87,8 +92,16 @@ def content_errors(db,data):
     if data.get('caseId'):
         if not current_case(db,data['caseId'],data.get('caseVersionId')):errors.append('caseId：案例已撤回或版本不存在')
     from .math_conditions import inspect_conditions
-    errors.extend(i["message"] for i in inspect_conditions(data)["issues"])
+    from .education import is_mathematical
+    if is_mathematical(data.get('subject','数学')):errors.extend(i['message'] for i in inspect_conditions(data)['issues'])
     return list(dict.fromkeys(errors))
+
+
+@router.get('/subjects')
+def education_catalog(request:Request,db=Depends(get_db)):
+    account(request,db)
+    from .education import catalog
+    return catalog()
 
 
 @router.get('/courses')
@@ -111,7 +124,7 @@ def create_course(body:dict,request:Request,db=Depends(get_db)):
     account(request,db,True)
     title=str(body.get('title','')).strip()
     if not title:raise HTTPException(422,'请填写课程名称。')
-    row=Course(id=uid('course'),title=title[:200],grade=str(body.get('grade','七年级'))[:80],metadata_json={'subject':body.get('subject','数学')});db.add(row);db.commit();return {'id':row.id}
+    row=Course(id=uid('course'),title=title[:200],grade=str(body.get('grade',''))[:80],metadata_json={'subject':str(body.get('subject',''))[:80]});db.add(row);db.commit();return {'id':row.id}
 
 
 @router.put('/courses/{ident}')
@@ -149,7 +162,8 @@ def create_lesson(body:dict,request:Request,db=Depends(get_db)):
     account(request,db,True);unit=db.get(CourseUnit,body.get('unitId'))
     if not unit or not str(body.get('title','')).strip():raise HTTPException(422,'请选择单元并填写课时名称。')
     row=Lesson(id=uid('lesson'),course_id=unit.course_id,unit_id=unit.id,title=body['title'][:200],position=int(body.get('position',0)));db.add(row);db.flush()
-    db.add(LessonContent(lesson_id=row.id,draft={'title':row.title,'grade':'七年级','subject':'数学','source':'','goal':'','duration':30,'knowledgeIds':[],'prerequisiteIds':[],'blocks':[],'questions':[]}));db.commit();return lesson_json(db,row,True)
+    course=db.get(Course,unit.course_id)
+    db.add(LessonContent(lesson_id=row.id,draft={'title':row.title,'grade':course.grade,'subject':(course.metadata_json or {}).get('subject',''),'source':'','goal':'','duration':30,'knowledgeIds':[],'prerequisiteIds':[],'blocks':[],'questions':[]}));db.commit();return lesson_json(db,row,True)
 
 
 @router.get('/lessons/{ident}')
@@ -195,10 +209,12 @@ def lesson_action(ident:str,action:str,request:Request,db=Depends(get_db)):
             from .math_conditions import inspect_conditions
             actor=account(request,db,True);data=copy.deepcopy(content.draft);data['reviewRecord']={'actorId':actor.id,'at':datetime.utcnow().isoformat()+'Z','scope':'内容、条件与数量关系人工核对','conditions':inspect_conditions(data)};content.draft=data;content.reviewed=True
         if action=='publish':
-            if not content.reviewed:raise HTTPException(422,'请先完成内容和数学核对。')
+            if not content.reviewed:raise HTTPException(422,'请先完成内容核对。')
             data=copy.deepcopy(content.draft)
             if data.get('caseId'):data['caseSnapshot']=current_case(db,data['caseId'],data.get('caseVersionId'));data['caseVersionId']=data['caseSnapshot']['versionId']
-            data['verification']={'status':'verified','scope':'所列单解方程与参考答案；正文和教学方法仍经人工核对'}
+            from .education import grading_mode
+            mathematical=any(grading_mode(q)=='math' for q in data.get('questions',[]))
+            data['verification']={'status':'verified' if mathematical else 'unverified','scope':'所列单解方程与参考答案；正文和教学方法仍经人工核对' if mathematical else '发布内容已人工确认；主观题等待教师评阅，客观题按配置参考答案核对'}
             for k in ('versionId','version','publishedAt','lessonId'):data.pop(k,None)
             last=db.scalar(select(LessonVersion).where(LessonVersion.lesson_id==ident).order_by(LessonVersion.number.desc()).with_for_update().limit(1))
             db.add(LessonVersion(id=uid('lessonversion'),lesson_id=ident,number=last.number+1 if last else 1,data=data));content.status='published';content.draft=None;lesson.title=data['title']
@@ -248,6 +264,12 @@ def completion_missing(task,record,attempts):
 
 
 def assess_question(answer,question):
+    if question.get('responseType') or question.get('gradingMode') or not question.get('equation'):
+        from .education import assess_general
+        result=assess_general(answer,question)
+        if question.get('requiresTeacherReview') and result['correct']:
+            return {'status':'unverified','correct':False,'numericVerification':result,'message':'参考答案匹配，过程与题意等待教师评阅。','scope':'教师评阅优先'}
+        return result
     from .grading import assess
     result=assess(answer,question.get('answer',''),question.get('equation',''))
     if result['status']=='unverified':result['message']='暂时无法核对该输入，请用可读数学表达式填写；解释仍保留供教师查看。'
@@ -268,6 +290,8 @@ def hint(task_id:str,index:int,request:Request,db=Depends(get_db)):
     ensure_write(db,user,task_id)
     record=db.scalar(select(StudentRecord).where(StudentRecord.task_id==task_id,StudentRecord.student_id==user.id));task=db.get(LearningTask,task_id)
     if not record or not task or not 0<=index<len(task.questions):raise HTTPException(404,'题目不存在。')
-    text=task.questions[index].get('hint','请检查等式两边是否进行相同运算。')
+    from .education import grading_mode
+    question=task.questions[index]
+    text=question.get('hint') or ('请检查等式两边是否进行相同运算。' if grading_mode(question)=='math' else '先找出题目中的依据，再说明你的想法。')
     db.add(HelpRecord(id=uid('help'),record_id=record.id,question=index,kind='提示',message=text,attempt_number=len(db.scalars(select(Attempt).where(Attempt.record_id==record.id)).all())+1));db.commit()
     return {'hint':text,'questionId':task.questions[index].get('id')}

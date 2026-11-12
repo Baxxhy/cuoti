@@ -1,6 +1,6 @@
 # 师承智学
 
-2026-11-12 / v40 / 本地软件作品
+2026-11-12 / v41 / 本地软件作品
 
 教师经验、备课、课程班级、学生学习、我的错题和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；基础组件使用Element Plus，图标统一Element Plus Icons。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
 
@@ -17,6 +17,14 @@
 全新安装生成admin、teacher、student，随机密码保存在本机`backend-business/var/local/accounts.json`。当前验收实例导入完整隔离示例，使用handoff-admin、handoff-t1/t2、handoff-s1—s5，仍从该私有文件读取密码。账号和数据库、上传不提交Git。
 
 专用MySQL23321和网页8099仅回环监听，数据持久保存在`backend-business/var/local`。`./start-local.sh doctor`诊断，`backup`备份，`restore --archive 备份目录`在新库/新目录恢复并保留旧数据。不会改原23317库，不安排公网、域名或正式服务切换。
+
+## 初高中全学科支持
+
+课程、题库、作答、错题与AI已按实际学科和年级工作，支持19个常见学科预设、自定义学科及13类题型。管理员建课选择年级学科，新课时自动继承；教师发布、学生作答、保存恢复和反馈共用现有流程。开放题保留原答并等待教师评阅，不强制填写或求解方程。
+
+通用与分科提示词位于 `backend-business/sczx_business/prompts/`，一元一次方程作为专项规则按需附加。现有数学五课保留为示例，其他教材内容可录入或AI辅助生成后审核发布；当前没有预装六个年级的全部教材。
+
+[本轮交付与验收](docs/planning/初高中全学科通用化交付与验收_20261112_v1.md) / [实际三端截图与检查记录](docs/verification/all_subjects_20261112_v1/README.md)。
 
 ## 当前界面调整
 

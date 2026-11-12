@@ -1,4 +1,5 @@
 <script setup>
+import AnswerInput from "@/components/AnswerInput.vue";
 import { ref, computed, watch, inject, useId, nextTick } from "vue";
 import { useLearning } from "@/store.js";
 import { curriculumApi } from "@/services/curriculum.js";
@@ -121,11 +122,11 @@ async function ask() {
 <template>
   <div class="curriculum-answer" :data-question-id="key">
     <label :for="'answer-' + fieldId" class="field-label">你的答案</label
-    ><Input
+    ><AnswerInput :question="question"
       :id="'answer-' + fieldId"
       v-model="answer"
       :disabled="(!preview && store.task?.readOnly) || busy"
-    /><label :for="'reason-' + fieldId" class="field-label">解释你的运算</label
+    /><label :for="'reason-' + fieldId" class="field-label">说明你的思路与依据</label
     ><Textarea
       :id="'reason-' + fieldId"
       v-model="reason"
@@ -137,7 +138,7 @@ async function ask() {
       role="status"
       :class="['curriculum-answer-result', latest.correct ? 'correct' : '']"
     >
-      <span v-if="latest.answer!==answer||latest.reason!==reason" class="student-previous-answer">上次作答</span>{{ latest.verification?.status==='unverified'?'需要核对':latest.correct?'数值正确':'再检查一下' }}
+      <span v-if="latest.answer!==answer||latest.reason!==reason" class="student-previous-answer">上次作答</span>{{ latest.verification?.status==='unverified'?'需要核对':latest.correct?'答案已核对':'再检查一下' }}
       <span>{{latest.helped?'用过帮助':'独立作答'}}</span><InfoTip v-if="latest.verification?.message" label="查看核对结果">{{latest.verification.message}}</InfoTip>
     </p>
     <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>

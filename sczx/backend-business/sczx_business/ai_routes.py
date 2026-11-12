@@ -41,7 +41,7 @@ def job_for(db, user, job_id):
 def serialize(job, detail=True):
     def public_context(value):
         if isinstance(value,list):return [public_context(v) for v in value]
-        if isinstance(value,dict):return {k:public_context(v) for k,v in value.items() if k not in ('answer','hint','teacherNote','feedback','explanation')}
+        if isinstance(value,dict):return {k:public_context(v) for k,v in value.items() if k not in ('answer','hint','teacherNote','feedback','explanation','acceptedAnswers','rubric')}
         return value
     exposed=copy.deepcopy(job.input)
     exposed.pop("_validation",None)
@@ -50,6 +50,7 @@ def serialize(job, detail=True):
     result = copy.deepcopy(job.result)
     if result and isinstance(result.get("variant"),dict):
         result["variant"].pop("expected",None)
+        result["variant"].pop("rubric",None)
     if result and not detail and "vectors" in result: result = {k:v for k,v in result.items() if k != "vectors"}
     return {"id":job.id,"mode":job.input.get("mode"),"wrongId":job.input.get("wrongId"),"phase":job.input.get("phase"),"capability":job.capability,"lessonId":job.input.get("lessonId"),"summary":job.input.get("label") or job.input.get("task", "")[:64],"recordId":job.record_id,"fileId":job.file_id,"helpRecordId":help_record_id(job.id) if job.capability=="text" and job.record_id and job.status=="succeeded" and job.input.get("strategy")!="try" and (not job.input.get("remediation") or job.input.get("mode")=="guidance") else None,"question":job.input.get("question"),"blockId":job.input.get("blockId"),"strategy":job.input.get("strategy"),"prompt":job.input.get("prompt"),"parentJobId":job.input.get("parentJobId"),"recognizedText":job.input.get("recognizedText"),"status":job.status,"step":job.step,"error":job.error,"result":result,"attemptNumber":job.attempt_number,"retryCount":job.retry_count,"createdAt":job.created_at.isoformat()+"Z","updatedAt":job.updated_at.isoformat()+"Z", **({"input":exposed} if detail else {})}
 
@@ -179,10 +180,13 @@ def create_job(payload: JobInput, request: Request, db=Depends(get_db)):
     elif payload.capability=="text" and data.get("examCandidate"):
         if user.role!="teacher" or payload.recordId or payload.fileId:raise HTTPException(403,"请使用教师题库入口。")
         from .exam_schemas import BankInput
-        from .models import CourseUnit,KnowledgePoint
+        from .models import CourseUnit,Course,KnowledgePoint
         if not db.get(CourseUnit,data.get("unitId")) or not data.get("knowledgeIds") or any(not db.get(KnowledgePoint,k) for k in data["knowledgeIds"]):raise HTTPException(422,"请选择真实单元和知识点。")
-        if data.get("kind") not in ("calculation","application","explanation") or data.get("difficulty") not in ("easy","medium","hard"):raise HTTPException(422,"请选择题型和难度。")
+        if data.get("kind") not in ("calculation","application","explanation","single_choice","multiple_choice","true_false","fill_blank","short_answer","essay","proof","reading","writing","translation","experiment","programming") or data.get("difficulty") not in ("easy","medium","hard"):raise HTTPException(422,"请选择题型和难度。")
         data={k:data[k] for k in ("examCandidate","unitId","knowledgeIds","kind","difficulty")};data["prompt"]="生成一道符合以上约束、等待人工审核的候选题。"
+        course=db.get(Course,db.get(CourseUnit,data["unitId"]).course_id)
+        data["context"]={"subject":(course.metadata_json or {}).get("subject",""),"grade":course.grade}
+        data["subject"]=data["context"]["subject"];data["grade"]=course.grade
     elif payload.capability == "lesson_agent":
         if user.role != "teacher" or payload.recordId or payload.fileId:raise HTTPException(403,"请使用教师备课入口。")
         from .prepare_agent import build_input
@@ -293,7 +297,7 @@ def detail(job_id: str, request: Request, db=Depends(get_db)):
         current={(d['id'],d.get('versionId')) for d in published_documents(db)}
         result['liveItems']=[item for item in job.result.get('items',[]) if (item['id'],item.get('versionId')) in current]
         result['hasStaleItems']=len(result['liveItems'])!=len(job.result.get('items',[]))
-    result["runs"]=[{"id":run.id,"number":run.number,"status":run.status,"model":run.model,"provider":run.provider,"error":run.error,"result":({**run.result,"variant":{k:v for k,v in run.result["variant"].items() if k!="expected"}} if run.result and isinstance(run.result.get("variant"),dict) else run.result),"startedAt":run.started_at.isoformat()+"Z","endedAt":run.ended_at.isoformat()+"Z" if run.ended_at else None} for run in db.scalars(select(ModelRun).where(ModelRun.job_id==job.id).order_by(ModelRun.number)).all()]
+    result["runs"]=[{"id":run.id,"number":run.number,"status":run.status,"model":run.model,"provider":run.provider,"error":run.error,"result":({**run.result,"variant":{k:v for k,v in run.result["variant"].items() if k not in ("expected","rubric")}} if run.result and isinstance(run.result.get("variant"),dict) else run.result),"startedAt":run.started_at.isoformat()+"Z","endedAt":run.ended_at.isoformat()+"Z" if run.ended_at else None} for run in db.scalars(select(ModelRun).where(ModelRun.job_id==job.id).order_by(ModelRun.number)).all()]
     return result
 
 

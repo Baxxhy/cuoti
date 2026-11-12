@@ -1,4 +1,5 @@
 <script setup>
+import { gradingMode } from "@/services/education.js";
 import MathExpression from "@/components/MathExpression.vue";
 import EquationTool from "@/components/EquationTool.vue";
 import {useRoute} from "vue-router";
@@ -86,7 +87,7 @@ function markHelp() {
       <article class="question-card student-check-card">
         <div class="student-check-prompt"><h2>{{current.prompt}}</h2><div v-if="current.equation" class="question-equation"><MathExpression :text="current.equation"/></div></div>
         <fieldset class="history-fields" :disabled="store.task.readOnly"><QuestionAttempt :key="store.task.id+':'+index" :question="current" :index="index" @guide="helpOpen=true"/></fieldset>
-        <div class="student-question-next"><AppButton variant="ghost" @click="toolOpen=true">试着变形</AppButton><AppButton v-if="hasNext" variant="outline" @click="next">下一题<ArrowRight :size="16"/></AppButton><RouteButton v-else :route="'result?task='+store.task.id">完成练习</RouteButton></div>
+        <div class="student-question-next"><AppButton v-if="current.equation&&gradingMode(current)==='math'" variant="ghost" @click="toolOpen=true">试着变形</AppButton><AppButton v-if="hasNext" variant="outline" @click="next">下一题<ArrowRight :size="16"/></AppButton><RouteButton v-else :route="'result?task='+store.task.id">完成练习</RouteButton></div>
       </article>
     </section>
     <AppEmpty v-else class="empty-state"><h3>本任务没有练习题</h3><RouteButton :route="'result?task='+store.task.id">查看学习结果</RouteButton></AppEmpty>

@@ -1,0 +1,21 @@
+test_every_registered_subject_accepts_non_equation_content (test_multisubject_mysql.MultiSubjectMySQLTests.test_every_registered_subject_accepts_non_equation_content) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:253: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/root/Baxxhy/zhiwei/sczx/.venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:4362: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore[call-arg, no-any-return, no-untyped-call]  # noqa: E501
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/curriculum.py:210: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  actor=account(request,db,True);data=copy.deepcopy(content.draft);data['reviewRecord']={'actorId':actor.id,'at':datetime.utcnow().isoformat()+'Z','scope':'内容、条件与数量关系人工核对','conditions':inspect_conditions(data)};content.draft=data;content.reviewed=True
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:253: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+ok
+test_subjective_and_objective_tasks_keep_subject_context_and_feedback (test_multisubject_mysql.MultiSubjectMySQLTests.test_subjective_and_objective_tasks_keep_subject_context_and_feedback) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:584: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  task = LearningTask(id=task_id, classroom_id=classroom.id, teacher_id=user.id, lesson_id=lesson.id, title=version["title"] if version else lesson.title, snapshot=snapshot, questions=payload.lessonDraft.get("questions", []), due_date=snapshot["dueDate"],published_at=datetime.utcnow())
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:685: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  rec.feedback_at = datetime.utcnow()
+ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 47.483s
+
+OK

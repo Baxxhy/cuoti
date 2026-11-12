@@ -24,7 +24,7 @@ const experienceGroups=[{value:'goal',label:'目标与学情'},{value:'lesson',l
 const experienceFields=computed(()=>Object.fromEntries(Object.entries(labels).filter(([key])=>({goal:['goal','studentBase','difficulty'],lesson:['introduction','steps','questions','responses','adjustment'],scope:['knowledgePoints','boundary','suggestions']})[experienceSection.value].includes(key))));
 const actionBusy=ref(false);
 const error=ref(''),notice=ref(''),loading=ref(false),saving=ref(false),uploading=ref(false),uploadOpen=ref(false),preview=ref(false),confirmAction=ref(''),dirty=ref(false),edited=ref(null),reviewed=ref(false),unitText=ref('');
-const metadata=ref({title:'',author:'',sourceUrl:'',sourceNote:'',grade:'七年级',subject:'数学'}),uploadFile=ref(null);
+const metadata=ref({title:'',author:'',sourceUrl:'',sourceNote:'',grade:'',subject:''}),uploadFile=ref(null);
 let timer,disposed=false,selection=0,materialSelection=0,initializing=true;
 const uploadedMaterial=ref(null);
 const uploadNotice=computed(()=>{

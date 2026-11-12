@@ -40,7 +40,7 @@ def materials(request: Request, db=Depends(get_db)):
 
 
 @router.post('/materials', status_code=201)
-async def upload(request: Request, file: UploadFile=File(...), title: str=Form(''), author: str=Form(''), sourceUrl: str=Form(''), sourceNote: str=Form(''), grade: str=Form('七年级'), subject: str=Form('数学'), db=Depends(get_db)):
+async def upload(request: Request, file: UploadFile=File(...), title: str=Form(''), author: str=Form(''), sourceUrl: str=Form(''), sourceNote: str=Form(''), grade: str=Form(''), subject: str=Form(''), db=Depends(get_db)):
     user = account(request, db, True)
     suffix = Path(file.filename or '').suffix.lower()
     types = {'.pdf':'application/pdf', '.docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '.png':'image/png', '.jpg':'image/jpeg', '.jpeg':'image/jpeg'}
@@ -120,7 +120,7 @@ def new_case(body: dict, request: Request, db=Depends(get_db)):
     for ident in body.get('unitIds',[])[:8]:
         unit=db.get(MaterialUnit,ident)
         if unit and unit.text.strip():refs.append(reference(db,unit))
-    draft=create_draft(db,{'title':body.get('title','新教学案例'),'content':'','source':'','author':'','grade':'七年级','subject':'数学','experience':{},'references':refs})
+    draft=create_draft(db,{'title':body.get('title','新教学案例'),'content':'','source':'','author':'','grade':body.get('grade',''),'subject':body.get('subject',''),'experience':{},'references':refs})
     db.commit();return draft_json(db,db.get(TeachingCase,draft.case_id))
 
 

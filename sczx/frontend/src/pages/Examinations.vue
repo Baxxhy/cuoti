@@ -1,8 +1,12 @@
 <script setup>
+import QuestionEditor from "@/components/QuestionEditor.vue";
+import SubjectFields from "@/components/SubjectFields.vue";
+import AnswerInput from "@/components/AnswerInput.vue";
+import {useEducation} from "@/services/education.js";
 import {examExplanation} from "@/lib/exam-explanation.js";
 import{computed,ref,watch,onBeforeUnmount}from'vue';import{useRoute,useRouter}from'vue-router';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Plus,ArrowUp,ArrowDown,Trash2,ClipboardList,Check,FileDown,RefreshCw}from'@/components/app/icons.js';import draggable from'vuedraggable';import{deadlineText}from'@/services/teaching.js';import MathExpression from'@/components/MathExpression.vue';import SpeechConfirm from'@/components/SpeechConfirm.vue';import SpeechReader from'@/components/SpeechReader.vue';
 const route=useRoute(),router=useRouter(),store=useLearning(),teacher=computed(()=>store.user?.role==='teacher');const tab=computed(()=>route.path==='/exam-bank'?'bank':route.path==='/exam-papers'?'papers':'exams');
-const error=ref(''),busy=ref(false),loading=ref(true),notice=ref(''),bank=ref([]),papers=ref([]),exams=ref([]),units=ref([]),knowledge=ref([]),classes=ref([]),lessons=ref([]),lessonId=ref(''),activePaper=ref(null),exam=ref(null),questionOpen=ref(false),questionEdit=ref(null),question=ref({}),entries=ref([]),paperTitle=ref(''),unitId=ref('unit-equation'),filters=ref({knowledgeIds:['kp-equality'],count:3,total:30,kind:'',difficulty:''}),missing=ref(''),candidate=ref(null),candidateInput=ref({knowledgeIds:['kp-equality'],kind:'calculation',difficulty:'easy'}),publishOpen=ref(false),room=ref(''),starts=ref(''),ends=ref(''),minutes=ref(30),studentPreview=ref(false),answers=ref({}),activeQuestion=ref(0),selectedSubmission=ref(''),marks=ref({}),countdown=ref('');let generation=0,timer;
+const error=ref(''),busy=ref(false),loading=ref(true),notice=ref(''),bank=ref([]),papers=ref([]),exams=ref([]),units=ref([]),knowledge=ref([]),classes=ref([]),lessons=ref([]),lessonId=ref(''),activePaper=ref(null),exam=ref(null),questionOpen=ref(false),questionEdit=ref(null),question=ref({}),entries=ref([]),paperTitle=ref(''),unitId=ref(''),filters=ref({knowledgeIds:[],count:3,total:30,kind:'',difficulty:''}),missing=ref(''),candidate=ref(null),candidateInput=ref({knowledgeIds:[],kind:'calculation',difficulty:'easy'}),publishOpen=ref(false),room=ref(''),starts=ref(''),ends=ref(''),minutes=ref(30),studentPreview=ref(false),answers=ref({}),activeQuestion=ref(0),selectedSubmission=ref(''),marks=ref({}),countdown=ref('');let generation=0,timer;
 const candidateOpen=ref(false),importOpen=ref(false),pickerOpen=ref(false),pickerMode=ref('auto'),paperEditing=ref(false),paperToolsOpen=ref(false),bankSearch=ref(''),bankFilter=ref('all');
 const visibleBank=computed(()=>bank.value.filter(q=>(bankFilter.value==='all'||(bankFilter.value==='reviewed')===!!q.reviewed)&&(q.draft.prompt+' '+q.draft.equation).includes(bankSearch.value.trim())));
 const paperSaved=computed(()=>!!activePaper.value&&paperTitle.value===activePaper.value.draft.title&&unitId.value===activePaper.value.draft.unitId&&JSON.stringify(entries.value.map(e=>[e.versionId,Number(e.points)]))===JSON.stringify(activePaper.value.draft.entries.map(e=>[e.versionId,Number(e.points)])));
@@ -17,18 +21,19 @@ function examPhase(exam) {
  if(Number.isFinite(end)&&now>=end)return '已结束';
  return Number.isFinite(start)?'进行中':'待开始';
 }
+const {catalog:education}=useEducation();
 const statusLabel=value=>({verified:'已核验正确',inconsistent:'核验不一致',unverified:'需人工核对',succeeded:'已生成',queued:'等待生成',running:'正在生成',failed:'生成失败',cancelled:'已取消'})[value]||'待核对';
 const clone=value=>JSON.parse(JSON.stringify(value));
 const call=(path,method='GET',body)=>api.request('/exams'+path,{method,...(body?{body:JSON.stringify(body)}:{})});
 const current=computed(()=>exam.value?.paper?.entries?.[activeQuestion.value]);const sub=computed(()=>exam.value?.submissions?.find(s=>s.id===selectedSubmission.value));const pending=computed(()=>!!exam.value?.submission&&!exam.value.submission.submittedAt);const bankChoices=computed(()=>bank.value.filter(q=>q.versions.length&&q.versions[0].data.unitId===unitId.value));
 async function run(fn){if(busy.value)return;busy.value=true;error.value='';notice.value='';try{await fn()}catch(e){error.value=e.message}finally{busy.value=false}}
-async function load(){const g=++generation;loading.value=true;error.value='';try{const result=await Promise.all([call(''),teacher.value?call('/bank'):[],teacher.value?call('/papers'):[],api.request('/curriculum/courses'),api.request('/curriculum/knowledge'),api.request('/teaching/classes')]);if(g!==generation)return;[exams.value,bank.value,papers.value]=result;units.value=result[3].flatMap(c=>c.units);lessons.value=units.value.flatMap(u=>u.lessons);knowledge.value=result[4];classes.value=result[5];lessonId.value||=(lessons.value[0]?.id||'');room.value||=(classes.value[0]?.id||'');if(route.query.exam){const freshExam=await call('/'+encodeURIComponent(route.query.exam));if(g!==generation)return;exam.value=freshExam;answers.value=clone(exam.value.submission?.answers||{});if(exam.value.submissions?.length&&!selectedSubmission.value)selectedSubmission.value=exam.value.submissions[0].id}else exam.value=null}catch(e){if(g===generation)error.value=e.message}finally{if(g===generation)loading.value=false}}
+async function load(){const g=++generation;loading.value=true;error.value='';try{const result=await Promise.all([call(''),teacher.value?call('/bank'):[],teacher.value?call('/papers'):[],api.request('/curriculum/courses'),api.request('/curriculum/knowledge'),api.request('/teaching/classes')]);if(g!==generation)return;[exams.value,bank.value,papers.value]=result;units.value=result[3].flatMap(c=>c.units.map(u=>({...u,grade:c.grade,subject:c.metadata?.subject||''})));if(!units.value.some(u=>u.id===unitId.value))unitId.value=units.value[0]?.id||'';lessons.value=units.value.flatMap(u=>u.lessons);knowledge.value=result[4];classes.value=result[5];lessonId.value||=(lessons.value[0]?.id||'');room.value||=(classes.value[0]?.id||'');if(route.query.exam){const freshExam=await call('/'+encodeURIComponent(route.query.exam));if(g!==generation)return;exam.value=freshExam;answers.value=clone(exam.value.submission?.answers||{});if(exam.value.submissions?.length&&!selectedSubmission.value)selectedSubmission.value=exam.value.submissions[0].id}else exam.value=null}catch(e){if(g===generation)error.value=e.message}finally{if(g===generation)loading.value=false}}
 watch(()=>[route.path,route.query.exam],()=>{selectedSubmission.value='';activeQuestion.value=0;load()},{immediate:true});watch(sub,s=>{marks.value=Object.fromEntries((exam.value?.paper?.entries||[]).map(x=>[x.versionId,{score:s?.grades[x.versionId]?.score??0,comment:s?.grades[x.versionId]?.comment||''}]))});
-function editQuestion(row){questionEdit.value=row;question.value=row?Object.fromEntries(Object.entries(row.draft).filter(([k])=>['prompt','equation','answer','explanation','subject','grade','knowledgeIds','unitId','kind','difficulty','points','source','requiresTeacherReview'].includes(k))):{prompt:'',equation:'',answer:'',explanation:'',subject:'数学',grade:'七年级',knowledgeIds:['kp-equality'],unitId:unitId.value,kind:'calculation',difficulty:'easy',points:10,source:'教师自编',requiresTeacherReview:false};questionOpen.value=true}
+function editQuestion(row){questionEdit.value=row;question.value=row?Object.fromEntries(Object.entries(row.draft).filter(([k])=>['prompt','equation','answer','explanation','subject','grade','knowledgeIds','unitId','kind','difficulty','points','source','requiresTeacherReview','responseType','gradingMode','options','rubric','acceptedAnswers','caseSensitive'].includes(k))):{prompt:'',equation:'',answer:'',explanation:'',subject:units.value.find(u=>u.id===unitId.value)?.subject||'',grade:units.value.find(u=>u.id===unitId.value)?.grade||'',knowledgeIds:[],responseType:'short_answer',gradingMode:'manual',unitId:unitId.value,kind:'calculation',difficulty:'easy',points:10,source:'教师自编',requiresTeacherReview:false};questionOpen.value=true}
 async function saveQuestion(){await run(async()=>{const d={...question.value,points:Number(question.value.points)};await call('/bank'+(questionEdit.value?'/'+questionEdit.value.id:''),questionEdit.value?'PUT':'POST',{data:d,...(questionEdit.value?{revision:questionEdit.value.revision}:{})});questionOpen.value=false;await load();notice.value='题目已保存，等待审核'})}
-async function reviewQuestion(row){if(!confirm('确认已核对题干、数学条件、参考答案和解析？将保存固定版本。'))return;await run(async()=>{await call('/bank/'+row.id+'/review','POST',{revision:row.revision,confirmed:true});await load();notice.value='审核版本已保存'})}
+async function reviewQuestion(row){if(!confirm('确认已核对题干、适用条件、参考答案和解析？将保存固定版本。'))return;await run(async()=>{await call('/bank/'+row.id+'/review','POST',{revision:row.revision,confirmed:true});await load();notice.value='审核版本已保存'})}
 function leavePaper(){if(entries.value.length&&!paperSaved.value&&!confirm('当前试卷修改尚未保存。返回列表将保留当前编辑内容，重新打开其他试卷会替换这些内容。继续？'))return;paperEditing.value=false}
-function editPaper(p){paperEditing.value=true;activePaper.value=p;paperTitle.value=p?.draft.title||'单元检查';unitId.value=p?.draft.unitId||'unit-equation';entries.value=clone(p?.draft.entries||[])}
+function editPaper(p){paperEditing.value=true;activePaper.value=p;paperTitle.value=p?.draft.title||'单元检查';unitId.value=p?.draft.unitId||units.value[0]?.id||'';entries.value=clone(p?.draft.entries||[])}
 function toggle(q,event){const v=q.versions[0];if(event.target.checked)entries.value.push({versionId:v.id,points:v.data.points,question:v.data});else entries.value=entries.value.filter(x=>x.versionId!==v.id)}
 function move(i,delta){const target=i+delta;if(target<0||target>=entries.value.length)return;const [x]=entries.value.splice(i,1);entries.value.splice(target,0,x)}
 async function assemble(){await run(async()=>{const r=await call('/assemble','POST',{...filters.value,count:Number(filters.value.count),total:Number(filters.value.total),unitId:unitId.value});if(!r.sufficient){missing.value=r.missingKnowledge?'缺少知识点：'+r.missingKnowledge.join('、'):'符合条件 '+r.available+' 题，还缺 '+r.missing+' 题';return}missing.value='';entries.value=r.entries;pickerOpen.value=false;notice.value='试卷题目已添加，请核对顺序与分值'})}
@@ -222,11 +227,11 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <SpeechReader :context-key="current.versionId" :text="current.question.prompt+'。'+current.question.equation"/>
 </div>
 <h2>{{current.question.prompt}}</h2>
-<div class="exam-math"><MathExpression :text="current.question.equation"/></div>
-<label>答案<Input :model-value="answerModel().answer" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().answer=$event"/>
+<div v-if="current.question.equation" class="exam-math"><MathExpression :text="current.question.equation"/></div>
+<label>答案<AnswerInput :question="current.question" :model-value="answerModel().answer" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().answer=$event"/>
 </label>
 <details v-if="pending" class="focus-exam-voice"><summary>语音输入</summary><SpeechConfirm :context-key="current.versionId" :disabled="busy" @confirmed="answerModel().answer=$event"/></details>
-<label>解题过程与解释<Textarea :model-value="answerModel().reason" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().reason=$event"/>
+<label>思路与依据<Textarea :model-value="answerModel().reason" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().reason=$event"/>
 </label>
 <div class="exam-toolbar">
 <AppButton v-if="pending" variant="outline" :disabled="busy" @click="saveAnswers(false)">保存草稿</AppButton>
@@ -260,11 +265,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <option v-for="k in knowledge" :value="k.id" :key="k.id">{{k.name}}</option>
 </NativeSelect>
 </label>
-<label>题型<NativeSelect v-model="candidateInput.kind">
-<option value="calculation">计算题</option>
-<option value="application">应用题</option>
-<option value="explanation">解释题</option>
-</NativeSelect>
+<label>题型<NativeSelect v-model="candidateInput.kind"><option v-for="item in education.responseTypes" :key="item.value" :value="item.value">{{item.label}}</option><option value="application">应用题</option><option value="explanation">解释题</option></NativeSelect>
 </label>
 <label>难度<NativeSelect v-model="candidateInput.difficulty">
 <option value="easy">基础</option>
@@ -298,12 +299,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </label>
 <label>总分<Input v-model="filters.total" type="number" min="1"/>
 </label>
-<label>题型<NativeSelect v-model="filters.kind">
-<option value="">全部</option>
-<option value="calculation">计算</option>
-<option value="application">应用</option>
-<option value="explanation">解释</option>
-</NativeSelect>
+<label>题型<NativeSelect v-model="filters.kind"><option value="">全部题型</option><option v-for="item in education.responseTypes" :key="item.value" :value="item.value">{{item.label}}</option><option value="application">应用题</option><option value="explanation">解释题</option></NativeSelect>
 </label>
 <label>难度<NativeSelect v-model="filters.difficulty">
 <option value="">全部</option>
@@ -336,11 +332,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <option v-for="k in knowledge" :key="k.id" :value="k.id">{{k.name}}</option>
 </NativeSelect>
 </label>
-<label>题型<NativeSelect v-model="question.kind">
-<option value="calculation">计算题</option>
-<option value="application">应用题</option>
-<option value="explanation">解释题</option>
-</NativeSelect>
+<label>题型<NativeSelect v-model="question.kind"><option v-for="item in education.responseTypes" :key="item.value" :value="item.value">{{item.label}}</option><option value="application">应用题</option><option value="explanation">解释题</option></NativeSelect>
 </label>
 <label>难度<NativeSelect v-model="question.difficulty">
 <option value="easy">基础</option>
@@ -356,12 +348,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <label>题干<Textarea v-model="question.prompt" required/>
 </label>
 <SpeechConfirm context-key="bank-prompt" @confirmed="question.prompt=$event"/>
-<label>方程<Input v-model="question.equation"/>
-</label>
-<label>参考答案<Input v-model="question.answer" required/>
-</label>
-<label>解析<Textarea v-model="question.explanation" required/>
-</label>
+<SubjectFields v-model:grade="question.grade" v-model:subject="question.subject"/><QuestionEditor :question="question" :subject="question.subject"/>
 <div class="exam-form-grid">
 <label>分值<Input v-model="question.points" type="number" min="1" max="100"/>
 </label>

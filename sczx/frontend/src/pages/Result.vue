@@ -40,7 +40,7 @@ async function submitResult() {
   <template v-if="store.task">
     <PageHeading title="学习结果"><RouteButton route="learn" secondary>返回本课</RouteButton></PageHeading>
     <section class="student-result-summary">
-      <div><span class="student-result-task">{{store.task.title}}<InfoTip label="独立正确范围">未使用帮助且数值核验正确，不代表已经掌握。</InfoTip></span><h2>{{store.record.completed?'已交给老师':missing.length?'还有 '+missing.length+' 项待完成':'准备交给老师'}}</h2><p v-if="missing.length" class="result-next-block">下一项：{{missing[0].title}}</p></div>
+      <div><span class="student-result-task">{{store.task.title}}<InfoTip label="独立正确范围">未使用帮助且客观答案核对正确，不代表已经掌握。</InfoTip></span><h2>{{store.record.completed?'已交给老师':missing.length?'还有 '+missing.length+' 项待完成':'准备交给老师'}}</h2><p v-if="missing.length" class="result-next-block">下一项：{{missing[0].title}}</p></div>
       <AppButton v-if="missing.length&&!store.record.completed" :disabled="store.task.readOnly" @click="continueLearning">继续完成<ArrowRight :size="16"/></AppButton><AppButton v-else-if="!store.record.completed" :disabled="submitting||store.task.readOnly" @click="confirmOpen=true">交给老师<ArrowRight :size="16"/></AppButton><RouteButton v-else route="home">返回学习首页</RouteButton>
     </section>
     <div class="student-result-metrics">

@@ -146,7 +146,7 @@ async def run_agent(job_id,run_id,provider):
                 step['output']={'materialCount':len(value['materials']),'evidenceIds':[e['id'] for e in value['evidence']]}
             elif key=='generate':
                 target=data.get('regenerateBlockId');blocks=[b for b in data['lesson']['blocks'] if not target or b['id']==target]
-                request={'task':data['task'],'taskType':TASK_TYPES[data['taskType']],'constraints':data['constraints'],'goal':data['lesson']['goal'],'grade':data['lesson']['grade'],'knowledge':[p for p in data['knowledge'] if p['id'] in set(data['lesson'].get('knowledgeIds',[]))],
+                request={'task':data['task'],'taskType':TASK_TYPES[data['taskType']],'constraints':data['constraints'],'goal':data['lesson']['goal'],'grade':data['lesson']['grade'],'subject':data['lesson']['subject'],'knowledge':[p for p in data['knowledge'] if p['id'] in set(data['lesson'].get('knowledgeIds',[]))],
                          'rewriteBlockId':target,'qualityRevision':data.get('qualityRevision'),'studentBase':data['lesson'].get('studentBase',''),'planningDetails':data['lesson'].get('planningDetails',{}),'blocks':blocks,'questions':data['lesson']['questions'],'cases':[{'id':c['id'],'title':c['title'],'experience':c.get('experience',{})} for c in value['cases']],'evidence':value['evidence'],'currentPlan':data.get('basePlan')}
                 value['modelCalls']+=1;persist(value)
                 generated,model,source=await asyncio.wait_for(provider.call('lesson_plan',request,request_id=run_id),timeout=min(120,max(.01,remaining())))

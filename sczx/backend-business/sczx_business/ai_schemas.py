@@ -9,6 +9,15 @@ class StrictResult(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
 
+ResponseType = Literal['short_answer','single_choice','multiple_choice','true_false','fill_blank','essay','calculation','proof','reading','writing','translation','experiment','programming']
+GradingMode = Literal['manual','exact','math']
+
+
+class ChoiceOption(StrictResult):
+    id: str = Field(min_length=1, max_length=40)
+    text: str = Field(min_length=1, max_length=2000)
+
+
 class OCRResult(StrictResult):
     text: str = Field(min_length=1)
     equation: str = ""
@@ -61,7 +70,7 @@ class ExperienceResult(StrictResult):
     title: str = Field(min_length=1, max_length=240)
     content: str = Field(min_length=1)
     grade: str = ''
-    subject: str = '数学'
+    subject: str = ''
     knowledgePoints: list[str] = Field(default_factory=list)
     goal: str = ''
     studentBase: str = ''

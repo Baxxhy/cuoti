@@ -24,3 +24,6 @@ dependencies = [
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["sczx_business*"]
+
+[tool.setuptools.package-data]
+sczx_business = ["prompts/*.json", "prompts/*.md"]

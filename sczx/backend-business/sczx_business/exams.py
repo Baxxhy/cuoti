@@ -5,7 +5,7 @@ from fastapi import APIRouter,Depends,Request,HTTPException
 from fastapi.responses import Response
 from sqlalchemy import select,func
 from .database import get_db
-from .models import Account,KnowledgePoint,CourseUnit,Lesson,ClassMember,LearningTask,StudentRecord,Attempt,WrongQuestion,ModelJob
+from .models import Account,KnowledgePoint,Course,CourseUnit,Lesson,ClassMember,LearningTask,StudentRecord,Attempt,WrongQuestion,ModelJob
 from .exam_models import BankQuestion,QuestionVersion,ExamPaper,PaperVersion,ClassExam,ExamSubmission,ExamGradeAudit
 from .exam_schemas import BankInput
 from .teaching import user_for,owned_class,iso
@@ -26,15 +26,26 @@ def own(db,model,ident,u):
 def expected(row,body):
  if body.get('revision')!=row.revision:fail('内容已更新，请重新读取；本次输入保留。',409)
 def checked_question(db,raw):
+ raw=copy.deepcopy(raw)
+ unit=db.get(CourseUnit,raw.get('unitId',''));course=db.get(Course,unit.course_id) if unit else None
+ raw['subject']=raw.get('subject') or ((course.metadata_json or {}).get('subject','') if course else '') or ('数学' if raw.get('equation') else '')
+ raw['grade']=raw.get('grade') or (course.grade if course else '')
  try:d=BankInput.model_validate(raw).model_dump()
  except Exception:fail('题目信息不完整或格式无效。')
  if not db.get(CourseUnit,d['unitId']) or any(not db.get(KnowledgePoint,k) for k in d['knowledgeIds']):fail('请选择真实单元和知识点。')
- d['requiresTeacherReview']=d['requiresTeacherReview'] or d['kind']!='calculation'
+ from .education import grading_mode,question_errors
+ if d['kind'] not in ('calculation','application','explanation') and not d.get('responseType'):d['responseType']=d['kind']
+ issues=question_errors(d)
+ if issues:fail('；'.join(issues))
+ d['requiresTeacherReview']=d['requiresTeacherReview'] or grading_mode(d)=='manual' or (not d.get('responseType') and d['kind']!='calculation')
  from .math_tools import solve_text_equation,compare_equivalence
  solved,valid=solve_text_equation(d['equation'])
  if valid:
   equal,checked=compare_equivalence(solved.split('=',1)[1],d['answer']);d['referenceVerification']={'status':'verified' if checked and equal else 'inconsistent' if checked else 'unverified'}
- else:d['referenceVerification']={'status':'unverified'};d['requiresTeacherReview']=True
+ else:
+  d['referenceVerification']={'status':'unverified'}
+  if grading_mode(d)=='exact':d['referenceVerification']={'status':'verified','scope':'教师配置的客观答案'}
+  else:d['requiresTeacherReview']=True
  d['verification']=assess_question(d['answer'],d)
  d['conditionCheck']=inspect_conditions(d)
  return d
@@ -65,7 +76,7 @@ def import_course(body:dict,request:Request,db=Depends(get_db)):
  if not lesson:fail('请选择已发布课时。')
  ids=[]
  for q in lesson['questions']:
-  d=checked_question(db,{'prompt':q['prompt'],'equation':q.get('equation',''),'answer':str(q['answer']),'explanation':q.get('explanation') or '依据课时原解答核对。','knowledgeIds':q.get('knowledgeIds') or lesson['knowledgeIds'],'unitId':lesson['unitId'],'kind':'application' if q.get('requiresTeacherReview') else 'calculation','source':'课时 '+lesson['lessonId']+' / '+lesson['versionId']+' / '+q['id']})
+  d=checked_question(db,{'prompt':q['prompt'],'equation':q.get('equation',''),'answer':str(q['answer']),'explanation':q.get('explanation') or '依据课时原解答核对。','knowledgeIds':q.get('knowledgeIds') or lesson['knowledgeIds'],'unitId':lesson['unitId'],'subject':lesson.get('subject',''),'grade':lesson.get('grade',''),'responseType':q.get('responseType',''),'gradingMode':q.get('gradingMode',''),'options':q.get('options',[]),'rubric':q.get('rubric',''),'kind':'application' if q.get('requiresTeacherReview') else 'calculation','source':'课时 '+lesson['lessonId']+' / '+lesson['versionId']+' / '+q['id']})
   d['courseSource']={'lessonId':lesson['lessonId'],'versionId':lesson['versionId'],'questionId':q['id']};r=BankQuestion(id=uid('bq'),owner_id=u.id,draft=d,reviewed=False,revision=1);db.add(r);ids.append(r.id)
  db.commit();return {'ids':ids,'status':'待审核'}
 def paper_json(db,row):
@@ -145,7 +156,8 @@ def exam_access(db,u,ident,lock=False):
  return e,s
 def expired(e,s):return now()>=min(e.ends_at,s.started_at+timedelta(minutes=e.minutes)) if s.started_at else now()>=e.ends_at
 def student_paper(d):
- return {'title':d['title'],'total':d['total'],'entries':[{'versionId':x['versionId'],'points':x['points'],'question':{k:x['question'].get(k) for k in ['prompt','equation','kind','knowledgeIds']}} for x in d['entries']]}
+ from .curriculum import student_content
+ return {'title':d['title'],'total':d['total'],'entries':[{'versionId':x['versionId'],'points':x['points'],'question':student_content({'questions':[{k:x['question'].get(k,[] if k=='options' else None) for k in ['prompt','equation','kind','knowledgeIds','responseType','gradingMode','options']}]})['questions'][0]} for x in d['entries']]}
 def submission_json(db,s,e,teacher_view=False):
  shown=teacher_view or e.results_at is not None
  return {'id':s.id,'studentId':s.student_id,'studentName':db.get(Account,s.student_id).display_name,'revision':s.revision,'answers':s.answers,'startedAt':iso(s.started_at),'submittedAt':iso(s.submitted_at),'deadline':iso(min(e.ends_at,s.started_at+timedelta(minutes=e.minutes))) if s.started_at else iso(e.ends_at),**({'automatic':s.automatic,'grades':s.grades,'total':sum(v['score'] for v in s.grades.values()),'audits':[{'id':a.id,'actorId':a.actor_id,'data':a.data,'at':iso(a.created_at)} for a in db.scalars(select(ExamGradeAudit).where(ExamGradeAudit.submission_id==s.id))]} if shown else {})}
@@ -262,6 +274,7 @@ def export_exam(ident:str,mode:str,request:Request,submissionId:str|None=None,db
    if not s.submitted_at:fail('请先提交答卷。',409)
   for i,row in enumerate(paper['entries']):
    q=row['question'];key=row['versionId'];doc.add_heading(str(i+1)+'. '+q['prompt']+'（'+str(row['points'])+'分）',1);doc.add_paragraph(q.get('equation',''))
+   for option in q.get('options',[]):doc.add_paragraph(str(option['id'])+'　'+str(option['text']))
    if mode=='teacher':doc.add_paragraph('参考答案：'+q['answer']);doc.add_paragraph('解析：'+(candidate_explanation(q['explanation']) if q.get('candidateJobId') or re.match(r'^AI候选[，,；;]',q.get('source','')) else q['explanation']))
    elif mode in ['submission','learning']:
     a=s.answers.get(key,{});doc.add_paragraph('原答案：'+a.get('answer',''));doc.add_paragraph('原解释：'+a.get('reason',''))
@@ -278,7 +291,7 @@ def adopt_candidate(job_id:str,request:Request,db=Depends(get_db)):
  if not j or j.owner_id!=u.id or not j.input.get('examCandidate') or j.status!='succeeded':fail('候选任务不可采用。',404)
  old=db.scalar(select(BankQuestion).where(BankQuestion.id=='bq-'+j.id[4:36]))
  if old:return bank_json(db,old)
- d=checked_question(db,{**{k:j.result[k] for k in ['prompt','equation','answer','explanation']},'explanation':candidate_explanation(j.result['explanation']),**{k:j.input[k] for k in ['unitId','knowledgeIds','kind','difficulty']},'source':'AI生成；ModelJob '+j.id});d['candidateJobId']=j.id;r=BankQuestion(id='bq-'+j.id[4:36],owner_id=u.id,draft=d,reviewed=False,revision=1);db.add(r);db.commit();return bank_json(db,r)
+ d=checked_question(db,{**{k:j.result[k] for k in ['prompt','equation','answer','explanation']},'explanation':candidate_explanation(j.result['explanation']),**{k:j.input[k] for k in ['unitId','knowledgeIds','kind','difficulty']},**{k:j.result[k] for k in ['responseType','gradingMode','options','rubric'] if k in j.result},'subject':j.input.get('subject','数学'),'grade':j.input.get('grade','七年级'),'source':'AI生成；ModelJob '+j.id});d['candidateJobId']=j.id;r=BankQuestion(id='bq-'+j.id[4:36],owner_id=u.id,draft=d,reviewed=False,revision=1);db.add(r);db.commit();return bank_json(db,r)
 
 @router.get('/learning-records/export')
 def export_learning_records(request:Request,studentId:str|None=None,classId:str|None=None,db=Depends(get_db)):

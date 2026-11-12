@@ -352,7 +352,7 @@ onBeforeUnmount(() => interaction++);
           v-model="recognized"
           :disabled="store.task?.readOnly" /></label
       ><label class="field-label" for="confirmed-equation"
-        >数学表达式<Textarea
+        >公式或表达式（可选）<Textarea
           id="confirmed-equation"
           :maxlength="500"
           v-model="equation"

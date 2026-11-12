@@ -13,14 +13,17 @@ from .math_tools import solve_text_equation
 STRATEGIES={'hint':'给我提示','example':'举个例子','rephrase':'换一种讲法','foundation':'补基础','try':'自己试试'}
 class TutoringResult(GuidanceResult):
     strategy:Literal['hint','example','rephrase','foundation','try']
-    representation:Literal['question','numeric','balance','symbolic','comparison']
+    representation:Literal['question','numeric','balance','symbolic','comparison','text','example','evidence','diagram']
     nextStrategy:Literal['hint','example','rephrase','foundation','try']='hint'
     prerequisiteId:str=''
     usedCaseVersionIds:list[str]=Field(default_factory=list,max_length=5)
 
 PUBLIC_BLOCK=('id','type','title','content','activity','questionIds')
-PUBLIC_QUESTION=('id','kind','prompt','equation','knowledgeIds')
-def public_fields(value,fields):return {key:copy.deepcopy(value[key]) for key in fields if key in value}
+PUBLIC_QUESTION=('id','kind','prompt','equation','knowledgeIds','responseType','options','gradingMode')
+def public_fields(value,fields):
+    result={key:copy.deepcopy(value[key]) for key in fields if key in value}
+    if 'options' in result:result['options']=[{k:option[k] for k in ('id','text') if k in option} for option in result['options']]
+    return result
 def request_fingerprint(payload):
     keys=('guidance','strategy','prompt','question','blockId','parentJobId','ocrJobId','confirmed','recognizedText','confirmedEquation')
     request={key:payload.data.get(key) for key in keys}
@@ -78,12 +81,13 @@ def prepare(db,user,record,data):
         file_id=original.file_id
     confirmed_equation=str(data.get('confirmedEquation','')) if ocr_id else ''
     if len(confirmed_equation)>500:raise HTTPException(422,'数学表达式最多500字。')
-    context={'lesson':{'id':task.lesson_id,'versionId':lesson.get('versionId'),'title':task.title,'grade':lesson.get('grade',''),'goal':str(task.snapshot.get('goal',''))[:1200]},'block':public_fields(block,PUBLIC_BLOCK) if block else None,'question':public_fields(q,PUBLIC_QUESTION) if q else None,'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':prerequisites,'teachingCases':sources,'observation':str(record.observation or '')[:1200]}
+    context={'lesson':{'id':task.lesson_id,'versionId':lesson.get('versionId'),'title':task.title,'grade':lesson.get('grade',''),'subject':lesson.get('subject',task.snapshot.get('subject','')),'goal':str(task.snapshot.get('goal',''))[:1200]},'block':public_fields(block,PUBLIC_BLOCK) if block else None,'question':public_fields(q,PUBLIC_QUESTION) if q else None,'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':prerequisites,'teachingCases':sources,'observation':str(record.observation or '')[:1200]}
     from .learning_memory import related_memory
     context['learningMemory']=related_memory(db,user,record,ids)
     from .equality_guidance import numeric_equality_example
     example=numeric_equality_example(prompt)
-    if example:context['equalityExample']=example
+    from .education import is_mathematical
+    if example and is_mathematical(context['lesson']['subject'] or '数学'):context['equalityExample']=example
     if ocr_id:
         if not confirmed_equation:
             match=re.search(r'(?<![A-Za-z])([A-Za-z0-9(][A-Za-z0-9()+*/ .−-]{0,80}=[A-Za-z0-9()+*/ .−-]{1,80})',recognized)
@@ -160,7 +164,7 @@ async def run(data,provider,request_id):
     async def context(state):return {'request':model_input(state['data']),'nodes':['固定学习上下文']}
     async def evidence(state):return {'nodes':state['nodes']+['读取公开案例与一层前置知识']}
     async def generate(state):
-        if state['data']['strategy']=='try':return {'result':{'title':'自己试试','hint':'请写下你的答案和两边共同进行的运算。','steps':['回到原题作答；之前的帮助记录仍保留。'],'question':'你准备先对等式两边做什么？','mathClaims':[],'strategy':'try','representation':'question','nextStrategy':'hint','usedCaseVersionIds':[],'prerequisiteId':''},'model':'','provider':'程序检查点','calls':0,'nodes':state['nodes']+['等待自主作答']}
+        if state['data']['strategy']=='try':return {'result':{'title':'自己试试','hint':'请独立写下你的答案和依据。','steps':['回到原题作答；之前的帮助记录仍保留。'],'question':'你准备先从哪一步开始？','mathClaims':[],'strategy':'try','representation':'question','nextStrategy':'hint','usedCaseVersionIds':[],'prerequisiteId':''},'model':'','provider':'程序检查点','calls':0,'nodes':state['nodes']+['等待自主作答']}
         last=None
         for index in range(2):
             request=copy.deepcopy(state['request'])

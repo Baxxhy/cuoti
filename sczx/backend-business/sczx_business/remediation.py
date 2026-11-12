@@ -7,7 +7,7 @@ from pydantic import Field
 from sqlalchemy import select,or_,func
 from .database import get_db
 from .models import WrongQuestion,RepairAttempt,StudentRecord,LearningTask,FileAsset,ModelJob,KnowledgePoint
-from .ai_schemas import StrictResult,MathClaim
+from .ai_schemas import StrictResult,MathClaim,ChoiceOption,ResponseType,GradingMode
 from .grading import assess_repair
 from .math_tools import solve_text_equation,compare_equivalence
 from .model_provider import ModelError
@@ -53,6 +53,9 @@ def serialize(db,item):
     from .models import ClassMember,Attempt
     source_attempt=db.get(Attempt,item.attempt_id) if item.attempt_id else None
     source_question=(task.questions[source_attempt.question] if task and source_attempt and 0<=source_attempt.question<len(task.questions or []) else {})
+    lesson=(task.snapshot.get('lessonSnapshot') or {}) if task else {}
+    details.setdefault('subject',lesson.get('subject',''))
+    details.setdefault('grade',lesson.get('grade',''))
     details.setdefault('knowledgeIds',source_question.get('knowledgeIds') or (task.snapshot.get('lessonSnapshot') or {}).get('knowledgeIds',[]) if task else [])
     return {'id':item.id,'taskId':rec.task_id if rec else None,'recordId':item.record_id,'attemptId':item.attempt_id,'source':details.get('source','course' if rec else 'manual'),'prompt':item.prompt,'answer':item.answer,'reason':item.reason,'image':'/api/files/'+item.file_id if item.file_id else '', 'details':details,'status':status,'readOnly':bool(task and not db.get(ClassMember,(task.classroom_id,rec.student_id))),'taskTitle':task.title if task else None,'repairs':[repair_json(a) for a in attempts],'createdAt':item.created_at.isoformat()}
 
@@ -94,7 +97,7 @@ def create(body:dict,request:Request,db=Depends(get_db)):
     if not isinstance(ids,list) or len(ids)>16 or any(not db.get(KnowledgePoint,i) for i in ids):raise HTTPException(422,'知识点无效。')
     equation=str(body.get('equation','')).strip()
     if len(equation)>500:raise HTTPException(422,'请分开录入多道题。')
-    item=WrongQuestion(id=wid,owner_id=actor.id,record_id=None,prompt=prompt,answer=str(body.get('answer',''))[:6000],reason=str(body.get('reason',''))[:6000],file_id=file_id,details={'version':'dynamic_v1','source':'image' if file_id else 'manual','subject':str(body.get('subject','数学'))[:80],'equation':equation,'cropFileId':crop_id,'ocrJobId':ocr_id,'confirmedText':prompt if file_id else '', 'knowledgeIds':ids,'cause':'其他或待确认','causeConfirmed':False})
+    item=WrongQuestion(id=wid,owner_id=actor.id,record_id=None,prompt=prompt,answer=str(body.get('answer',''))[:6000],reason=str(body.get('reason',''))[:6000],file_id=file_id,details={'version':'dynamic_v1','source':'image' if file_id else 'manual','subject':str(body.get('subject',''))[:80],'grade':str(body.get('grade',''))[:80],'equation':equation,'cropFileId':crop_id,'ocrJobId':ocr_id,'confirmedText':prompt if file_id else '', 'knowledgeIds':ids,'cause':'其他或待确认','causeConfirmed':False})
     db.add(item);db.commit();return serialize(db,item)
 
 @router.get('/{wrong_id}')
@@ -129,15 +132,16 @@ def save_attempt(db,actor,item,body):
     jid=body.get('variantJobId');job=db.get(ModelJob,jid) if jid else None
     if not job or job.owner_id!=actor.id or job.input.get('wrongId')!=item.id or job.input.get('mode')!='variant' or job.status!='succeeded':raise HTTPException(422,'请先生成当前错题的可核验变式题。')
     result=job.result or {};variant=result.get('variant',{})
-    if result.get('variantVerification',{}).get('status')!='verified':raise HTTPException(422,'变式未通过数学核验，不能进入自动评分。')
+    if result.get('variantVerification',{}).get('status')!='verified' and not result.get('variantVerification',{}).get('submissionAllowed'):raise HTTPException(422,'本题尚不能提交，请重新生成或联系教师。')
     phase=job.input.get('phase','practice')
     if any((a.details or {}).get('variantJobId')==jid for a in previous):raise HTTPException(409,'本题已有作答，请生成独立新题再试。')
-    verification=assess_repair(answer,variant.get('equation',''),variant.get('expected'))
+    from .education import assess_general
+    verification=assess_general(answer,{**variant,'answer':variant.get('expected','')}) if result.get('variantVerification',{}).get('submissionAllowed') else assess_repair(answer,variant.get('equation',''),variant.get('expected'))
     helped=bool(body.get('helped')) or bool(result.get('helpRequested'))
     # New help belongs to its exact variant. Unscoped historical help remains
     # conservatively helped; its missing scope cannot establish independence.
     helped=helped or bool(db.scalar(select(ModelJob.id).where(ModelJob.owner_id==actor.id,ModelJob.created_at>=job.created_at,ModelJob.id!=jid,ModelJob.input['wrongId'].as_string()==item.id,ModelJob.input['mode'].as_string()=='guidance',or_(ModelJob.input['variantJobId'].as_string()==jid,func.json_contains_path(ModelJob.input,'one','$.variantJobId')==0),ModelJob.input['strategy'].as_string()!='try')))
-    row=RepairAttempt(id=uid('repair'),wrong_id=item.id,answer=answer,reason=str(body.get('reason',''))[:6000],correct=verification['correct'],verification=verification,details={'version':'dynamic_v1','planJobId':(item.details or {}).get('planJobId'),'variantJobId':jid,'variantId':jid,'equation':variant['equation'],'expected':variant['expected'],'phase':phase,'helped':helped,'requestKey':key,'verification':verification})
+    row=RepairAttempt(id=uid('repair'),wrong_id=item.id,answer=answer,reason=str(body.get('reason',''))[:6000],correct=verification['correct'],verification=verification,details={'version':'dynamic_v1','planJobId':(item.details or {}).get('planJobId'),'variantJobId':jid,'variantId':jid,'equation':variant.get('equation',''),'prompt':variant.get('prompt',''),'subject':(item.details or {}).get('subject',''),'expected':variant['expected'],'phase':phase,'helped':helped,'requestKey':key,'verification':verification})
     db.add(row);db.commit();return repair_json(row)
 
 @router.post('/{wrong_id}/review')
@@ -160,8 +164,12 @@ class Analysis(StrictResult):
 
 class Variant(StrictResult):
     prompt:str=Field(min_length=1,max_length=2000)
-    equation:str=Field(min_length=1,max_length=500)
-    expected:str=Field(min_length=1,max_length=500)
+    equation:str=Field(default='',max_length=500)
+    expected:str=Field(min_length=1,max_length=6000)
+    responseType:ResponseType='short_answer'
+    gradingMode:GradingMode='manual'
+    options:list[ChoiceOption]=Field(default_factory=list,max_length=12)
+    rubric:str=''
     rationale:str=Field(min_length=1,max_length=1000)
 class VariantResult(StrictResult):
     variant:Variant
@@ -174,16 +182,17 @@ def prepare(db,actor,item,data):
     if mode not in ('analysis','guidance','variant'):raise HTTPException(422,'补救操作无效。')
     variant_id=data.get('variantJobId') or None
     if variant_id and mode!='guidance':raise HTTPException(422,'只有当前变式题的指导可关联变式。')
-    original_question={'prompt':item.prompt,'equation':equation_for(item)}
+    domain=serialize(db,item)['details']
+    original_question={'prompt':item.prompt,'equation':str(domain.get('equation') or (equation_for(item) if domain.get('subject','数学')=='数学' else ''))}
     question=copy.deepcopy(original_question)
     if variant_id:
         variant_job=db.get(ModelJob,variant_id) if isinstance(variant_id,str) else None
         if not variant_job or variant_job.owner_id!=actor.id or variant_job.capability!='text' or variant_job.input.get('wrongId')!=item.id or variant_job.input.get('mode')!='variant' or variant_job.status!='succeeded':raise HTTPException(422,'请选择本题本人已完成的变式题。')
         result=variant_job.result or {};variant=result.get('variant') or {}
         equation=variant.get('equation','')
-        if result.get('variantVerification',{}).get('status')!='verified' or assess_repair(variant.get('expected',''),equation,variant.get('expected'))['status']!='verified_correct':raise HTTPException(422,'变式题尚未通过数学核验，不能进入指导。')
+        if not result.get('variantVerification',{}).get('submissionAllowed') and (result.get('variantVerification',{}).get('status')!='verified' or assess_repair(variant.get('expected',''),equation,variant.get('expected'))['status']!='verified_correct'):raise HTTPException(422,'变式题尚未通过数学核验，不能进入指导。')
         # Generated titles and client-provided context are not trusted as the current exercise.
-        question={'prompt':'解方程，说明每一步两边进行的共同运算。','equation':equation}
+        question={'prompt':variant.get('prompt') or '请独立作答并说明依据。','equation':equation,'responseType':variant.get('responseType',''),'options':variant.get('options',[])}
     if mode=='variant' and data.get('phase','practice') not in ('practice','retest'):raise HTTPException(422,'练习阶段无效。')
     if mode=='variant' and data.get('phase')=='retest':
         practice=db.scalars(select(RepairAttempt).where(RepairAttempt.wrong_id==item.id)).all()
@@ -203,21 +212,38 @@ def prepare(db,actor,item,data):
     if strategy=='continue':strategy='foundation' if re.search('不懂|不会|不知道|不明白',prompt) else 'try' if re.search('懂了|明白了|自己试',prompt) else 'hint'
     from .tutoring import STRATEGIES
     if strategy not in STRATEGIES:raise HTTPException(422,'指导方式无效。')
-    context={'question':question,'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':[{'id':p.id,'name':p.name} for p in db.scalars(select(KnowledgePoint).where(KnowledgePoint.id.in_(list({i for p in points for i in p.prerequisites}) or ['']))).all()],'teachingCases':[],'originalAnswer':'' if variant_id else item.answer,'originalReason':'' if variant_id else item.reason,'confirmedCause':details.get('cause') if details.get('causeConfirmed') else None}
+    context={'subject':domain.get('subject',''),'grade':domain.get('grade',''),'question':question,'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':[{'id':p.id,'name':p.name} for p in db.scalars(select(KnowledgePoint).where(KnowledgePoint.id.in_(list({i for p in points for i in p.prerequisites}) or ['']))).all()],'teachingCases':[],'originalAnswer':'' if variant_id else item.answer,'originalReason':'' if variant_id else item.reason,'confirmedCause':details.get('cause') if details.get('causeConfirmed') else None}
     if variant_id:context['originalQuestion']=original_question
     past=db.scalars(select(ModelJob).where(ModelJob.owner_id==actor.id,ModelJob.input['wrongId'].as_string()==item.id,ModelJob.input['mode'].as_string()=='variant',ModelJob.status=='succeeded')).all()
     default_prompt='请依据当前变式题给我提示，不直接给出答案。' if variant_id else '请依据本题和我的原作答提供针对性补救。'
-    return {'remediation':True,'wrongId':item.id,'mode':mode,'variantJobId':variant_id,'phase':data.get('phase','practice'),'strategy':strategy,'prompt':prompt or default_prompt,'context':context,'history':history,'parentJobId':parent_id,'previousEquations':[(j.result or {}).get('variant',{}).get('equation','') for j in past][-30:],'_validation':{'equation':question['equation']},'guidance':mode=='guidance'}
+    return {'remediation':True,'wrongId':item.id,'mode':mode,'variantJobId':variant_id,'phase':data.get('phase','practice'),'strategy':strategy,'prompt':prompt or default_prompt,'context':context,'history':history,'parentJobId':parent_id,'previousQuestions':[(j.result or {}).get('variant',{}).get('prompt','') for j in past][-30:],'previousEquations':[(j.result or {}).get('variant',{}).get('equation','') for j in past][-30:],'_validation':{'equation':question['equation']},'guidance':mode=='guidance'}
 
 def validate(result,data):
     from .model_jobs import math_check
+    from .education import linear_context,question_errors
+    if data['mode']=='variant' and not linear_context(data):
+        value=VariantResult.model_validate(result).model_dump();variant=value['variant']
+        variant['responseType']=variant.get('responseType') or 'short_answer'
+        variant['gradingMode']='manual'
+        issues=question_errors({**variant,'answer':variant['expected']})
+        if issues:raise ModelError('；'.join(issues))
+        normalize=lambda text:re.sub(r'\s+','',text).casefold()
+        original_prompt=data['context']['question'].get('prompt','')
+        if not original_prompt.strip():raise ModelError('请先确认完整原题，再生成相关练习。')
+        used=[original_prompt,*data.get('previousQuestions',[])]
+        if normalize(variant['prompt']) in [normalize(text) for text in used]:raise ModelError('练习题重复，请生成相关的新题。')
+        value['variantVerification']={'status':'unverified','submissionAllowed':True,'scope':'通用练习可作答；参考答案与主观评价等待教师核对'}
+        value['verification']=math_check(value.get('mathClaims',[]))
+        if value['verification']['status']=='inconsistent':raise ModelError('所列数学关系不一致。')
+        value['conditionCheck']={'issues':[],'scope':'非方程专用练习，依据题意与评价要点评阅'}
+        return value
     if data['mode']=='analysis':
         value=Analysis.model_validate(result).model_dump();evidence=value['evidence']
         originals='\n'.join([data['context']['originalAnswer'],data['context']['originalReason']])
         if evidence and evidence not in originals:raise ModelError('错因证据必须逐字来自原作答或解释。')
         value.update(confirmed=False)
     else:
-        value=VariantResult.model_validate(result).model_dump();v=value['variant'];original=data['context']['question']['equation']
+        value=VariantResult.model_validate(result).model_dump();v=value['variant'];v['responseType']='calculation';v['gradingMode']='math';original=data['context']['question']['equation']
         norm=lambda s:re.sub(r'\s','',s).replace('−','-')
         if norm(v['equation']) in [norm(original),*[norm(s) for s in data.get('previousEquations',[])]]:raise ModelError('变式必须是本题相关的新题，不能重复原题或已做题。')
         solved,ok=solve_text_equation(v['equation']);orig_solved,orig_ok=solve_text_equation(original)

@@ -1,0 +1,12 @@
+.subject-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.subject-fields>.field-label { margin:0; min-width:0; }
+.subject-fields .el-select { width:100%; }
+.general-question-editor { display:grid; gap:12px; }
+.general-question-editor>.field-label { margin:0; }
+.question-options-editor { display:grid; gap:8px; }
+.answer-options { display:flex; flex-direction:column; align-items:stretch; gap:10px; width:100%; }
+.answer-options .el-radio,.answer-options .el-checkbox { height:auto; min-height:32px; margin:0; white-space:normal; }
+.answer-options .el-radio__label { white-space:normal; line-height:1.7; }
+.course-filters { display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
+.course-filters .el-select { width:180px; }
+@media(max-width:700px){.subject-fields{grid-template-columns:1fr}}

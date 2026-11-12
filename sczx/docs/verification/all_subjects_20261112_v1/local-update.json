@@ -1,0 +1,15 @@
+{
+  "url": "http://127.0.0.1:8099",
+  "running": true,
+  "qmxLogin": true,
+  "subjectCount": 19,
+  "responseTypeCount": 13,
+  "businessTablesUnchangedBeforeSmokeLogin": true,
+  "uploadFilesUnchanged": true,
+  "originalUploadCount": 6,
+  "schema": [
+    "0017_case_bookmarks"
+  ],
+  "newSchemaMigration": false,
+  "backupVerified": true
+}

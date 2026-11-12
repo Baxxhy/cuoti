@@ -1,4 +1,6 @@
 <script setup>
+import {useEducation} from "@/services/education.js";
+import {ElSelect,ElOption} from "element-plus";
 import UnitJourney from "@/components/UnitJourney.vue";
 import {ref,onMounted,computed} from 'vue';
 import {curriculumApi} from '@/services/curriculum.js';
@@ -7,6 +9,9 @@ import {navigate} from '@/lib/navigation.js';
 import LessonPreview from '@/components/LessonPreview.vue';
 import {BookOpen,Clock,ArrowUpRight} from '@/components/app/icons.js';
 const store=useLearning();const courses=ref([]),error=ref(''),loading=ref(true),preview=ref(null),busy=ref(false);
+const {catalog:education}=useEducation();
+const selectedGrade=ref(''),selectedSubject=ref('');
+const visibleCourses=computed(()=>courses.value.filter(c=>(!selectedGrade.value||c.grade===selectedGrade.value)&&(!selectedSubject.value||c.metadata?.subject===selectedSubject.value)));
 const teacher=computed(()=>store.user?.role==='teacher');
 async function load(){loading.value=true;error.value='';try{courses.value=await curriculumApi.catalog()}catch(e){error.value=e.message}finally{loading.value=false}}
 function taskFor(id){return store.data.tasks.find(t=>t.lessonId===id)}
@@ -15,11 +20,13 @@ onMounted(load);
 </script>
 <template>
   <PageHeading :title="teacher?'课程与课时':'课程'"/>
+  <div class="course-filters"><ElSelect v-model="selectedGrade" clearable placeholder="全部年级" aria-label="筛选年级"><ElOption v-for="grade in education.stages.flatMap(s=>s.grades)" :key="grade" :value="grade" :label="grade"/></ElSelect><ElSelect v-model="selectedSubject" clearable filterable placeholder="全部学科" aria-label="筛选学科"><ElOption v-for="subject in [...new Set([...education.subjects.map(s=>s.value),...courses.map(c=>c.metadata?.subject).filter(Boolean)])]" :key="subject" :value="subject" :label="subject"/></ElSelect></div>
+  <AppEmpty v-if="!loading&&!visibleCourses.length&&!error"><h3>当前学科暂无已发布课程</h3></AppEmpty>
   <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}<AppButton variant="ghost" @click="load">重试</AppButton></AppAlert>
   <p v-if="loading" role="status">读取中…</p>
   <AppEmpty v-else-if="!courses.length" class="empty-state"><BookOpen :size="30"/><h3>暂无已发布课程</h3></AppEmpty>
   <div v-else class="student-catalog">
-    <section v-for="course in courses" :key="course.id" class="student-course">
+    <section v-for="course in visibleCourses" :key="course.id" class="student-course">
       <header class="student-course-header">
         <BookOpen :size="25" :stroke-width="1.5"/>
         <div><h2>{{ course.title }}</h2><span>{{ course.grade }} 　 {{course.units.reduce((n,u)=>n+u.lessons.length,0)}} 课时</span></div>

@@ -31,6 +31,7 @@ const progress=computed(()=>{
 });
 const canContinue=computed(()=>{
  if(store.task?.readOnly||!current.value)return true;
+ if(current.value.type==='discussion')return !!progress.value[current.value.id]?.explanation?.trim();
  if(current.value.type==='activity'){const p=progress.value[current.value.id];return !!(p?.weight>0&&p?.explanation?.trim())}
  if(current.value.type==='practice'&&currentQuestions.value.length)return !!store.record?.attempts.some(a=>a.question===selectedQuestion.value);
  return true;
@@ -61,7 +62,7 @@ function update(id,value){
 function forward(){
  if(!current.value||!canContinue.value)return;
  if(hasNextQuestion.value){selectedQuestion.value=currentQuestions.value[questionPosition.value+1].index;persistPosition();return}
- if(['explanation','example','activity'].includes(current.value.type))update(current.value.id,{...progress.value[current.value.id],completed:true});
+ if(['explanation','example','activity','discussion'].includes(current.value.type))update(current.value.id,{...progress.value[current.value.id],completed:true});
  if(blockIndex.value<blocks.value.length-1)selectBlock(blocks.value[blockIndex.value+1].id);
  else navigate('check?task='+store.task.id);
 }
