@@ -22,14 +22,14 @@ onMounted(load);
     <section v-for="course in courses" :key="course.id" class="student-course">
       <header class="student-course-header">
         <BookOpen :size="25" :stroke-width="1.5"/>
-        <div><h2>{{ course.title }}</h2><span>{{ course.grade }} · {{course.units.reduce((n,u)=>n+u.lessons.length,0)}} 课时</span></div>
+        <div><h2>{{ course.title }}</h2><span>{{ course.grade }} 　 {{course.units.reduce((n,u)=>n+u.lessons.length,0)}} 课时</span></div>
       </header>
       <section v-for="unit in course.units" :key="unit.id" class="student-course-unit">
         <h3 v-if="unit.title!==course.title">{{unit.title}}</h3>
         <div class="student-lesson-list">
           <article v-for="(lesson,i) in unit.lessons" :key="lesson.id" class="student-lesson-row">
             <span class="student-lesson-number">{{unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)?'＋':String(i+1).padStart(2,'0')}}</span>
-            <div class="student-lesson-name"><h3>{{lesson.published.title}}</h3><span>{{lesson.published.duration}} 分钟<span v-if="unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)"> · 补充课时</span></span></div>
+            <div class="student-lesson-name"><h3>{{lesson.published.title}}</h3><span>{{lesson.published.duration}} 分钟<span v-if="unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)"> 　 补充课时</span></span></div>
             <div class="student-lesson-actions">
               <Button variant="ghost" @click="preview=lesson.published">预览</Button>
               <Button v-if="teacher" :disabled="busy" @click="prepare(lesson)">开始备课<ArrowUpRight :size="16"/></Button>

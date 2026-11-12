@@ -45,7 +45,7 @@ const knowledgeName = (i) =>
   options.value.knowledge
     .filter((p) => i.details.knowledgeIds?.includes(p.id))
     .map((p) => p.name)
-    .join(" · ");
+    .join(" 　 ");
 const studentStatus=value=>({pending:'待订正',learning:'订正中',awaiting_retest:'再试一题',retest_passed:'已复测',retest_failed:'继续订正',needs_review:'请老师核对'})[value]||wrongStatuses[value];
 function saved(item) {
   open.value = false;
@@ -72,7 +72,7 @@ onMounted(load);
         v-model="search"
         aria-label="搜索错题"
         placeholder="搜索题目"
-      /><details class="student-filter-disclosure"><summary>筛选<span v-if="subject||knowledge||cause"> · 已筛选</span></summary><div class="student-filter-fields"><select v-model="subject" aria-label="筛选学科">
+      /><details class="student-filter-disclosure"><summary>筛选<span v-if="subject||knowledge||cause"> 　 已筛选</span></summary><div class="student-filter-fields"><select v-model="subject" aria-label="筛选学科">
         <option value="">全部学科</option>
         <option
           v-for="s in [

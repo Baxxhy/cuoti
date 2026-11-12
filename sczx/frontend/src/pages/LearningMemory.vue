@@ -207,7 +207,7 @@ async function snooze(r) {
 function lessonContext(lesson) {
   const task=store.data.tasks.find(t=>t.id===lesson.taskId);
   const published=task?.publishedAt;
-  return [published?new Date(published).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}):'',lesson.readOnly?'历史任务':task?.summary?.status||task?.status||''].filter(Boolean).join(' · ');
+  return [published?new Date(published).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}):'',lesson.readOnly?'历史任务':task?.summary?.status||task?.status||''].filter(Boolean).join(' 　 ');
 }
 const targets = computed(() => {
   const rows =
@@ -439,7 +439,7 @@ const targets = computed(() => {
           <p v-if="e.reason" class="preserve-lines">{{ e.reason }}</p>
           <p v-if="e.sourceType === 'wrong'">
             {{ e.causeConfirmed ? "已确认错因" : "错因待确认"
-            }}{{ e.cause ? " · " + e.cause : "" }}
+            }}{{ e.cause ? " 　 " + e.cause : "" }}
           </p>
           <div class="memory-evidence-actions">
             <Button
@@ -456,9 +456,9 @@ const targets = computed(() => {
           </div>
           <details>
             <summary>来源</summary>
-            <p>{{ e.evidenceId }}</p><p v-if="e.timeReliable===false">原始时间 {{e.rawOccurredAt}} · {{e.timeBasis}}</p>
+            <p>{{ e.evidenceId }}</p><p v-if="e.timeReliable===false">原始时间 {{e.rawOccurredAt}} 　 {{e.timeBasis}}</p>
             <p>{{ e.lessonVersionId || "个人独立记录，无课程版本" }}</p>
-            <p>{{ e.verification }}{{ e.helped ? " · 使用帮助" : "" }}</p>
+            <p>{{ e.verification }}{{ e.helped ? " 　 使用帮助" : "" }}</p>
           </details>
           </template>
         </article>
@@ -469,7 +469,7 @@ const targets = computed(() => {
             >
           </summary>
           <p v-for="s in selected.stateHistory" :key="s.evidenceId">
-            {{ time(s.at) }} · {{ s.label }}
+            {{ time(s.at) }} 　 {{ s.label }}
           </p>
         </details>
         <p v-if="!evidence.length" class="memory-empty-evidence">

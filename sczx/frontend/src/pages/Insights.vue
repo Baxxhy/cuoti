@@ -70,7 +70,7 @@ function openStudent(id) {
 <template v-if="store.task"
     ><div class="back-line">
       <span
-        >{{ store.task.className }} · {{ store.task.title }} ·
+        >{{ store.task.className }} 　 {{ store.task.title }} 　
         {{ new Date(store.task.publishedAt).toLocaleString("zh-CN") }}</span
       >
     </div>
@@ -195,7 +195,7 @@ function openStudent(id) {
         </section>
         <section v-for="repair in studentTab==='repairs'?store.record?.repairs || []:[]" :key="repair.id">
           <h3>{{ repair.details?.equation || '历史固定示例 z + 2 = 9' }} → {{ repair.answer }}</h3>
-          <p>{{ repair.reason }}</p><p v-if="repair.details?.version==='dynamic_v1'">{{repair.details.phase==='retest'?'独立新题':'补救练习'}}{{repair.details.helped?' · 使用过帮助':''}}</p><p v-else>历史固定示例，不能证明原题已掌握。</p><div v-if="repair.verification?.status==='unverified'" class="paper-actions"><Button variant="outline" @click="reviewRepair(repair,true)">人工确认正确</Button><Button variant="outline" @click="reviewRepair(repair,false)">人工确认有误</Button></div><p v-if="repair.details?.teacherReview">教师核对：{{repair.details.teacherReview.correct?'正确':'有误'}}</p>
+          <p>{{ repair.reason }}</p><p v-if="repair.details?.version==='dynamic_v1'">{{repair.details.phase==='retest'?'独立新题':'补救练习'}}{{repair.details.helped?' 　 使用过帮助':''}}</p><p v-else>历史固定示例，不能证明原题已掌握。</p><div v-if="repair.verification?.status==='unverified'" class="paper-actions"><Button variant="outline" @click="reviewRepair(repair,true)">人工确认正确</Button><Button variant="outline" @click="reviewRepair(repair,false)">人工确认有误</Button></div><p v-if="repair.details?.teacherReview">教师核对：{{repair.details.teacherReview.correct?'正确':'有误'}}</p>
           <Status :tone="repair.correct ? 'green' : 'amber'">{{
             repair.verification?.status === "unverified"
               ? "需核对"

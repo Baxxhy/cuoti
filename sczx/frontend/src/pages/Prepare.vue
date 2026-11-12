@@ -152,7 +152,7 @@ async function publish() {
     <div v-if="activeQuestion" class="focus-activity-editor"><label v-for="(label,key) in {prompt:'题干',equation:'方程',answer:'参考答案',hint:'提示'}" :key="key" class="field-label">{{label}}<Textarea v-if="key==='hint'" v-model="activeQuestion[key]"/><Input v-else v-model="activeQuestion[key]"/></label></div><div v-else class="empty-state">当前教案没有练习题</div>
   </section>
       <section v-else-if="workTab==='preview'" class="teacher-student-preview"><LessonPreview/></section>
-      <section v-show="workTab==='references'" class="teacher-reference-sheet"><PreparationTools ref="tools"/><details class="teacher-source-detail"><summary>当前主要参考 · {{ caseReference?.title || '尚未选择' }}</summary><p v-if="referenceError" class="form-error">{{ referenceError }}</p><CaseArticle v-if="caseReference" :value="caseReference"/><RouteButton v-if="store.data.lessonDraft.caseId" :route="caseRoute" secondary>阅读完整案例</RouteButton></details></section>
+      <section v-show="workTab==='references'" class="teacher-reference-sheet"><PreparationTools ref="tools"/><details class="teacher-source-detail"><summary>当前主要参考 　 {{ caseReference?.title || '尚未选择' }}</summary><p v-if="referenceError" class="form-error">{{ referenceError }}</p><CaseArticle v-if="caseReference" :value="caseReference"/><RouteButton v-if="store.data.lessonDraft.caseId" :route="caseRoute" secondary>阅读完整案例</RouteButton></details></section>
   <AppDialog
     v-model:open="dialogOpen"
     :title="modal === 'preview' ? '学生预览' : '发布学习任务'"
@@ -178,7 +178,7 @@ async function publish() {
         id="publish-class"
         v-model="publishClass"
         label="选择发布班级"
-        :options="store.data.classrooms.map((item) => ({ value: item.id, label: `${item.name} · ${item.grade}` }))" /><p v-if="!store.data.classrooms.length" class="form-error">先在班级教学中创建班级并添加学生。</p><label
+        :options="store.data.classrooms.map((item) => ({ value: item.id, label: `${item.name} 　 ${item.grade}` }))" /><p v-if="!store.data.classrooms.length" class="form-error">先在班级教学中创建班级并添加学生。</p><label
         class="field-label"
         for="due-date"
         >截止日期（北京时间）</label

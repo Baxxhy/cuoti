@@ -30,7 +30,7 @@ async function open(task, teacher) {
       <div class="task-description">
         <h3>{{ task.title }}</h3>
         <p>
-          {{ task.className || store.data.classroom?.name || "班级" }}<template v-if="repeated(task)&&task.publishedAt"> · {{ published(task) }} 发布</template><template v-if="task.dueAt"> · {{ deadlineText(task.dueAt) }} 截止</template>
+          {{ task.className || store.data.classroom?.name || "班级" }}<template v-if="repeated(task)&&task.publishedAt"> 　 {{ published(task) }} 发布</template><template v-if="task.dueAt"> 　 {{ deadlineText(task.dueAt) }} 截止</template>
         </p>
       </div>
       <div class="task-progress-summary">

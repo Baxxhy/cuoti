@@ -91,7 +91,7 @@ watch(
   () => {
     mobileOpen.value = false;
     window.scrollTo(0, 0);
-    document.title = `${pageLabel.value} · 师承智学`;
+    document.title = `${pageLabel.value} 　 师承智学`;
   },
 );
 function focusContent(){ document.getElementById('main-content')?.focus(); }

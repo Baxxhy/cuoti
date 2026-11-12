@@ -115,19 +115,19 @@ async function feedback(item, rec) {
       <div>
         <Status>{{ labels[item.kind] }}</Status
         ><Status v-if="item.status === 'cancelled'">已取消</Status
-        ><span>{{ item.teacherName }} · {{ item.className }}</span
+        ><span>{{ item.teacherName }} 　 {{ item.className }}</span
         ><time>{{ deadlineText(item.dueAt) }}</time>
       </div>
-      <p class="preserve-lines">{{ item.content }}</p><p v-if="item.case">参考：{{item.case.title}} · v{{item.case.version}} · {{item.case.source}}<RouteButton :route="'case-detail?caseId='+item.case.id+'&versionId='+item.case.versionId" secondary>案例原文</RouteButton></p>
+      <p class="preserve-lines">{{ item.content }}</p><p v-if="item.case">参考：{{item.case.title}} 　 v{{item.case.version}} 　 {{item.case.source}}<RouteButton :route="'case-detail?caseId='+item.case.id+'&versionId='+item.case.versionId" secondary>案例原文</RouteButton></p>
       <template v-if="!teacher&&item.recipients[0]?.outcome"><p>{{item.recipients[0].outcome.label}}</p><RouteButton v-if="item.recipients[0].outcome.target.wrongId" :route="'repair?wrong='+item.recipients[0].outcome.target.wrongId" secondary>进入原错题</RouteButton><RouteButton v-else :route="item.recipients[0].outcome.target.kind+'?task='+item.recipients[0].outcome.target.taskId" secondary>进入安排内容</RouteButton></template>
-      <details v-if="teacher" class="teacher-supplement-recipients"><summary>学生进度 · {{ item.recipients.filter(r=>r.completedAt).length }} / {{ item.recipients.length }}</summary><div
+      <details v-if="teacher" class="teacher-supplement-recipients"><summary>学生进度 　 {{ item.recipients.filter(r=>r.completedAt).length }} / {{ item.recipients.length }}</summary><div
           v-for="rec in item.recipients"
           :key="rec.studentId"
           class="supplement-recipient"
         >
           <strong>{{ rec.studentName }}</strong
           ><Status>{{ rec.status }}</Status>
-          <p v-if="rec.outcome">{{rec.outcome.label}} · {{rec.outcome.newAttempts}} 次新作答<span v-if="rec.outcome.needsHelp"> · 仍需帮助或核对</span></p><p v-if="rec.response">{{ rec.response }}</p>
+          <p v-if="rec.outcome">{{rec.outcome.label}} 　 {{rec.outcome.newAttempts}} 次新作答<span v-if="rec.outcome.needsHelp"> 　 仍需帮助或核对</span></p><p v-if="rec.response">{{ rec.response }}</p>
           <template v-if="rec.completedAt"
             ><Textarea
               v-model="feedbacks[item.id + rec.studentId]"

@@ -313,13 +313,13 @@ onBeforeUnmount(() => interaction++);
       v-if="job?.input?.context?.focus === 'confirmed_image'"
       class="tutoring-context"
     >
-      题图 · {{ job.input.context.question.equation || "已确认题目" }}
+      题图 　 {{ job.input.context.question.equation || "已确认题目" }}
     </p>
     <p v-else-if="blockId" class="tutoring-context">
       {{ store.task?.snapshot?.blocks?.find((b) => b.id === blockId)?.title }}
     </p>
     <details v-if="earlier.length" class="tutoring-history">
-      <summary>前面的指导 · {{ earlier.length }}</summary>
+      <summary>前面的指导 　 {{ earlier.length }}</summary>
       <article v-for="item in earlier" :key="item.id">
         <p class="tutoring-response">{{ item.prompt }}</p>
         <ModelResult :job="item" :can-retry="false" />

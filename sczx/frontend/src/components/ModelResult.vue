@@ -155,7 +155,7 @@ const verification = computed(
         >
       </div>
       <details v-if="result.sources?.length" class="model-run-history">
-        <summary>参考教学案例 · {{ result.sources.length }}</summary>
+        <summary>参考教学案例 　 {{ result.sources.length }}</summary>
         <section
           v-for="source in result.sources"
           :key="`${source.id}:${source.versionId || ''}`"
@@ -164,11 +164,11 @@ const verification = computed(
             {{
               source.role === "lesson"
                 ? source.roles?.includes("retrieval")
-                  ? "课时关联 / 情境检索 · "
-                  : "课时关联 · "
-                : "情境检索 · "
+                  ? "课时关联 / 情境检索 　 "
+                  : "课时关联 　 "
+                : "情境检索 　 "
             }}{{ source.title
-            }}{{ source.version ? " · v" + source.version : "" }}
+            }}{{ source.version ? " 　 v" + source.version : "" }}
           </p>
           <MatchEvidence :item="source" /><a
             v-for="(ref, index) in uniqueReferences(source.references)"
@@ -176,7 +176,7 @@ const verification = computed(
             :href="`/#/source?unit=${ref.unitId}`"
             target="_blank"
             rel="noopener"
-            >{{ ref.materialTitle }} · {{ ref.label }}</a
+            >{{ ref.materialTitle }} 　 {{ ref.label }}</a
           >
         </section>
       </details>
@@ -201,18 +201,18 @@ const verification = computed(
     </template>
     <div v-if="showSource&&result?.workflow" class="tutoring-audit">
       <InfoTip label="本轮指导记录"
-        >最近{{ result.workflow.historyTurns }}轮 ·
-        {{ result.workflow.modelCalls }}次模型调用 ·
+        >最近{{ result.workflow.historyTurns }}轮 　
+        {{ result.workflow.modelCalls }}次模型调用 　
         {{ (result.workflow.elapsedMs / 1000).toFixed(1) }}秒。{{
           result.workflow.nodes.join(" → ")
         }}</InfoTip
       >
     </div>
     <details v-if="showSource&&job.runs?.length" class="model-run-history model-technical-details">
-      <summary>执行记录 · {{ job.runs.length }}</summary>
+      <summary>执行记录 　 {{ job.runs.length }}</summary>
       <div v-for="run in job.runs" :key="run.id">
         <span
-          >第 {{ run.number }} 次 ·
+          >第 {{ run.number }} 次 　
           {{
             { running: "执行中", succeeded: "成功", failed: "失败" }[run.status]
           }}</span

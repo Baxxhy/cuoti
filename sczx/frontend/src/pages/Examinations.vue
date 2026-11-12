@@ -70,7 +70,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <Status>{{q.reviewed?'已审核 v'+q.versions[0]?.number:'待审核'}}</Status>
 <h3>{{q.draft.prompt}}</h3>
 <div class="exam-math"><MathExpression :text="q.draft.equation"/></div>
-<span>{{q.draft.kind==='application'?'应用':q.draft.kind==='explanation'?'解释':'计算'}} · {{q.draft.points}}分 · {{q.draft.source}}</span>
+<span>{{q.draft.kind==='application'?'应用':q.draft.kind==='explanation'?'解释':'计算'}} 　 {{q.draft.points}}分 　 {{q.draft.source}}</span>
 </div>
 <div class="exam-toolbar">
 <Button variant="ghost" @click="editQuestion(q)">编辑</Button>
@@ -78,16 +78,16 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </div>
 <details>
 <summary>参考解答与版本</summary>
-<p>{{q.draft.answer}} · {{examExplanation(q.draft)}}</p>
+<p>{{q.draft.answer}} 　 {{examExplanation(q.draft)}}</p>
 <p>方程核验：{{statusLabel(q.draft.referenceVerification?.status)}}</p>
-<p v-for="v in q.versions" :key="v.id">v{{v.number}} · {{v.data.prompt}} · {{v.data.answer}} · {{v.id}}</p>
+<p v-for="v in q.versions" :key="v.id">v{{v.number}} 　 {{v.data.prompt}} 　 {{v.data.answer}} 　 {{v.id}}</p>
 </details>
 </article><div v-if="bank.length&&!visibleBank.length" class="empty-state"><h3>没有匹配的题目</h3><Button variant="outline" @click="bankSearch='';bankFilter='all'">清空筛选</Button></div>
 </Surface>
 </div>
 </template>
 <template v-else-if="tab==='papers'&&teacher">
-<div v-if="!paperEditing" class="teacher-paper-list"><button v-for="p in papers" :key="p.id" class="teacher-paper-row" @click="editPaper(p)"><FileDown :size="21"/><span><strong>{{ p.draft.title }}</strong><small>{{ p.draft.entries.length }} 题 · {{ p.draft.total }} 分</small></span><Status>{{ p.reviewed?'已审核':'草稿' }}</Status><span>打开试卷</span></button><div v-if="!papers.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有试卷</h3><Button @click="editPaper(null)">新建第一份试卷</Button></div></div>
+<div v-if="!paperEditing" class="teacher-paper-list"><button v-for="p in papers" :key="p.id" class="teacher-paper-row" @click="editPaper(p)"><FileDown :size="21"/><span><strong>{{ p.draft.title }}</strong><small>{{ p.draft.entries.length }} 题 　 {{ p.draft.total }} 分</small></span><Status>{{ p.reviewed?'已审核':'草稿' }}</Status><span>打开试卷</span></button><div v-if="!papers.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有试卷</h3><Button @click="editPaper(null)">新建第一份试卷</Button></div></div>
 <div v-else class="teacher-paper-editor"><div class="teacher-paper-editor-bar"><Button variant="ghost" @click="leavePaper">返回试卷列表</Button><span>{{ activePaper?.reviewed&&paperSaved?'已审核':paperSaved?'已保存':'编辑中' }}</span></div><ol class="teacher-paper-steps" aria-label="组卷流程"><li :class="{current:!entries.length}">1 选择题目</li><li :class="{current:entries.length&&!activePaper?.reviewed}">2 核对并保存</li><li :class="{current:activePaper?.reviewed&&paperSaved}">3 发布考试</li></ol>
 <Surface>
 <div class="exam-form-grid">
@@ -125,7 +125,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </draggable>
 <div v-if="!entries.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有题目</h3><Button @click="pickerOpen=true">添加题目</Button></div>
 <footer class="exam-toolbar">
-<strong>{{entries.length}}题 · {{entries.reduce((n,e)=>n+Number(e.points),0)}}分</strong>
+<strong>{{entries.length}}题 　 {{entries.reduce((n,e)=>n+Number(e.points),0)}}分</strong>
 <Button :variant="activePaper?.reviewed&&paperSaved?'outline':'default'" :disabled="busy||!entries.length" @click="savePaper">保存试卷</Button>
 <Button variant="outline" :disabled="!entries.length" @click="studentPreview=true">学生预览</Button>
 <Button variant="outline" :disabled="busy||!paperSaved||activePaper.reviewed" @click="reviewPaper">核对并审核</Button>
@@ -142,7 +142,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <div>
 <Status>{{e.resultsAt?'成绩已发布':'进行中 / 待开始'}}</Status>
 <h2>{{e.title}}</h2>
-<p>{{deadlineText(e.startsAt)}} — {{deadlineText(e.endsAt)}} · {{e.minutes}}分钟</p>
+<p>{{deadlineText(e.startsAt)}} — {{deadlineText(e.endsAt)}} 　 {{e.minutes}}分钟</p>
 </div>
 <RouteButton :route="'exams?exam='+e.id">{{teacher?'查看答卷':'进入考试'}}</RouteButton>
 </div>
@@ -158,7 +158,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <div class="exam-heading">
 <div>
 <Status>{{exam.resultsAt?'成绩已发布':teacher?'成绩待发布':exam.submission?.submittedAt?'已交卷':exam.submission?.startedAt?'考试中':'未开始'}}</Status>
-<p>{{deadlineText(exam.startsAt)}} — {{deadlineText(exam.endsAt)}} · {{exam.minutes}}分钟</p>
+<p>{{deadlineText(exam.startsAt)}} — {{deadlineText(exam.endsAt)}} 　 {{exam.minutes}}分钟</p>
 </div>
 <RouteButton route="exams" secondary :aria-current="tab==='exams'?'page':undefined">考试列表</RouteButton>
 </div>
@@ -169,7 +169,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <h2>答卷</h2>
 <button v-for="s in exam.submissions" :key="s.id" class="exam-paper-link" :class="{'is-active':s.id===selectedSubmission}" @click="selectedSubmission=s.id">
 <strong>{{s.studentName}}</strong>
-<span>{{s.submittedAt?'已交卷':'未交卷'}} · {{s.total}}分 · {{Object.keys(s.grades).length}} / {{exam.paper.entries.length}} 已核对</span>
+<span>{{s.submittedAt?'已交卷':'未交卷'}} 　 {{s.total}}分 　 {{Object.keys(s.grades).length}} / {{exam.paper.entries.length}} 已核对</span>
 </button>
 </Surface>
 <Surface v-if="sub">
@@ -197,8 +197,8 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </article>
 <div class="focus-grading-actions"><Button variant="outline" :disabled="!gradingQuestion" @click="gradingQuestion--">上一题</Button><Button :disabled="busy||!sub.submittedAt||!!exam.resultsAt" @click="markNext">{{gradingQuestion<exam.paper.entries.length-1?'保存并下一题':'保存批阅'}}</Button><Button v-if="exam.resultsAt&&gradingQuestion<exam.paper.entries.length-1" variant="outline" @click="gradingQuestion++">下一题</Button></div>
 <details class="teacher-grade-audit">
-<summary>批阅记录 · {{sub.audits?.length||0}}</summary>
-<p v-for="a in sub.audits" :key="a.id">{{new Date(a.at).toLocaleString('zh-CN')}} · {{a.actorId}} · {{a.id}}</p>
+<summary>批阅记录 　 {{sub.audits?.length||0}}</summary>
+<p v-for="a in sub.audits" :key="a.id">{{new Date(a.at).toLocaleString('zh-CN')}} 　 {{a.actorId}} 　 {{a.id}}</p>
 </details>
 </Surface>
 </div>
@@ -220,7 +220,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </aside>
 <Surface v-if="current" class="exam-answer-paper">
 <div class="exam-toolbar">
-<Status>第 {{activeQuestion+1}} 题 · {{current.points}}分</Status>
+<Status>第 {{activeQuestion+1}} 题 　 {{current.points}}分</Status>
 <SpeechReader :context-key="current.versionId" :text="current.question.prompt+'。'+current.question.equation"/>
 </div>
 <h2>{{current.question.prompt}}</h2>
@@ -320,7 +320,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </p>
 </section><section v-else class="exam-question-picker">
 <label v-for="q in bankChoices" :key="q.id">
-<input type="checkbox" :checked="entries.some(e=>e.versionId===q.versions[0].id)" @change="toggle(q,$event)"/>{{q.versions[0].data.prompt}} · {{q.versions[0].data.equation}}</label><p v-if="!bankChoices.length" class="muted">本单元暂无已审核题目。</p><Button @click="pickerOpen=false">完成选择 · {{ entries.length }} 题</Button></section>
+<input type="checkbox" :checked="entries.some(e=>e.versionId===q.versions[0].id)" @change="toggle(q,$event)"/>{{q.versions[0].data.prompt}} 　 {{q.versions[0].data.equation}}</label><p v-if="!bankChoices.length" class="muted">本单元暂无已审核题目。</p><Button @click="pickerOpen=false">完成选择 　 {{ entries.length }} 题</Button></section>
 </AppDialog>
 <AppDialog v-model:open="paperToolsOpen" title="导出考试资料"><div class="exam-toolbar">
 <Button variant="outline" @click="exportFile('student')">

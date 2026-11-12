@@ -14,12 +14,24 @@ body,button,input,textarea,select,table,[data-slot="button"],[data-slot="input"]
 .result-next-block{margin:12px 0 0;color:#595959;font-size:14px}
 /* Inline mathematics follows the sentence rhythm; worked examples keep their display size. */
 .step-reading:not(.worked-example) .reading-equation.is-inline{font-size:1.05em}
-/* Restrained teal accents; reading surfaces and body text remain neutral. */
-:root{--primary:#167568;--primary-foreground:#fff;--accent:#edf7f4;--accent-foreground:#125c53;--ring:#228775;--sidebar-accent:#e7f3ef;--sidebar-accent-foreground:#125c53}
-.workspace-main-nav>a[aria-current=page],.workspace-main-nav>a.active{background:#e7f3ef;color:#125c53;box-shadow:inset 3px 0 #228775}
-.workspace-main-nav>a[aria-current=page] svg,.workspace-main-nav>a.active svg{color:#167568}
-.workspace-section-nav>a[aria-current=page]{color:#14695e;border-bottom-color:#228775}
-[data-slot=button][data-variant=default],.login-submit{background:#167568;color:#fff}
-[data-slot=button][data-variant=default]:hover,.login-submit:hover{background:#125e54}
-.page-content :where(button,a,input,textarea,select):focus-visible{outline:2px solid #228775;outline-offset:3px}
-.login-identity{background:#eef5f2}.login-identity-brand svg,.brand-symbol svg{color:#167568}
+/* Restrained blue accents; reading surfaces and body text remain neutral. */
+:root{--primary:#345baf;--primary-foreground:#fff;--accent:#eef3fc;--accent-foreground:#294d92;--ring:#416bc1;--sidebar-accent:#eaf0fb;--sidebar-accent-foreground:#294d92}
+.workspace-main-nav>a[aria-current=page],.workspace-main-nav>a.active{background:#eaf0fb;color:#294d92;box-shadow:inset 3px 0 #416bc1}
+.workspace-main-nav>a[aria-current=page] svg,.workspace-main-nav>a.active svg{color:#345baf}
+.workspace-section-nav>a[aria-current=page]{color:#345baf;border-bottom-color:#416bc1}
+[data-slot=button][data-variant=default],.login-submit{background:#345baf;color:#fff}
+[data-slot=button][data-variant=default]:hover,.login-submit:hover{background:#28498f}
+.page-content :where(button,a,input,textarea,select):focus-visible{outline:2px solid #416bc1;outline-offset:3px}
+.login-identity{background:#f1f4fa}.login-identity-brand svg,.brand-symbol svg{color:#345baf}
+
+.class-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px 20px;color:var(--muted-foreground);font-size:13px;margin:16px 0 24px}.class-meta span:empty{display:none}
+.login-screen.login-refined{display:grid;grid-template-columns:1fr;place-items:center;min-height:100dvh;padding:48px 24px;background:radial-gradient(ellipse at 50% 0%,#e8effc 0%,transparent 62%),#f5f6f8}
+.login-refined .login-card{width:min(424px,100%);padding:38px 40px 40px;background:#fff;border:1px solid #e2e7f0;border-radius:18px;box-shadow:0 12px 44px #233e6c0a;align-self:center;justify-self:center}
+.login-refined .login-brand{display:flex;align-items:center;gap:12px;margin:0 0 32px;color:#253650;font-size:19px;font-weight:600}
+.login-refined .brand-symbol{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:#edf2fc;color:#345baf}
+.login-refined h1{margin:0 0 28px;font-size:25px;font-weight:600;letter-spacing:-.6px;color:#1e293b}
+.login-refined form{display:flex;flex-direction:column;gap:20px}.login-field{display:flex;flex-direction:column;gap:9px}.login-field>label{font-size:13px;font-weight:500;color:#41516a}
+.login-refined [data-slot=input]{height:46px;margin:0;border-color:#dce2ec;border-radius:8px;background:#fff;font-size:14px}.login-refined [data-slot=input]::placeholder{color:#8793a6}
+.login-password{position:relative}.login-password input{padding-right:46px}.login-password>button{position:absolute;right:4px;top:4px;display:grid;place-items:center;width:38px;height:38px;border:0;background:transparent;color:#78869c;border-radius:6px}.login-password>button:hover{color:#345baf;background:#f1f5fc}
+.login-refined .login-submit{height:46px;min-height:46px;margin:8px 0 0;border-radius:8px;font-size:14px;background:#345baf}.login-refined .login-submit:hover{background:#28498f}.login-refined .form-error{margin:0;font-size:13px}
+@media(max-width:480px){.login-screen.login-refined{padding:24px 16px}.login-refined .login-card{padding:30px 26px}}

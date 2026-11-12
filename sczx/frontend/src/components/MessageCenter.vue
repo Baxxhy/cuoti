@@ -93,7 +93,7 @@ onMounted(load);
       <div>
         <Status>{{ item.readAt ? "已读" : "未读" }}</Status
         ><span
-          >{{ item.className }} ·
+          >{{ item.className }} 　
           {{ box === "sent" ? item.recipientName : item.senderName }}</span
         ><time>{{ deadlineText(item.createdAt) }}</time>
       </div>
