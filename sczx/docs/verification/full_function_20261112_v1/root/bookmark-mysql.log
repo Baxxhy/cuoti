@@ -1,0 +1,18 @@
+independent regression schema: sczx_test_full_audit_4ac25fc95
+test_invalid_role_and_withdrawn_case_do_not_rewrite_published_version (test_case_bookmarks_mysql.CaseBookmarkTests.test_invalid_role_and_withdrawn_case_do_not_rewrite_published_version) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/models.py:324: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  published_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.utcnow().replace(microsecond=0))
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:253: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:87: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:253: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+ok
+test_multiple_favorites_relogin_repeat_remove_and_teacher_isolation (test_case_bookmarks_mysql.CaseBookmarkTests.test_multiple_favorites_relogin_repeat_remove_and_teacher_isolation) ... /root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/models.py:324: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  published_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.utcnow().replace(microsecond=0))
+ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 35.122s
+
+OK

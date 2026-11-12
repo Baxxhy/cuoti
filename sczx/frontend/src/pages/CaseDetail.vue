@@ -18,6 +18,9 @@ const store = useLearning(),
   notify = inject("notify");
 const route = useRoute(), selectedCase = ref(null), loading = ref(false), error = ref('');
 const currentCase = computed(() => route.query.caseId ? selectedCase.value : store.data.publishedCase);
+const bookmarkBusy=ref(false),bookmarkError=ref('');
+const favorite=computed(()=>(store.data.favoriteCaseIds||[]).includes(currentCase.value?.id));
+async function toggleFavorite(){if(bookmarkBusy.value)return;bookmarkBusy.value=true;bookmarkError.value='';const selected=!favorite.value;try{if(await store.setCaseFavorite(currentCase.value.id,selected))notify(selected?'案例已加入收藏':'已取消收藏')}catch(e){bookmarkError.value=e.message}finally{bookmarkBusy.value=false}}
 let generation = 0;
 watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
   const version = ++generation; selectedCase.value = null; error.value = ''; loading.value = !!id;
@@ -26,10 +29,6 @@ watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
   catch (problem) { if (version === generation) error.value = problem.message; }
   finally { if (version === generation) loading.value = false; }
 }, { immediate: true });
-watch(
-  () => store.data.favorite,
-  () => store.touch(),
-);
 </script>
 <template>
   <RouteButton v-if="route.query.interventionClass&&currentCase" :route="'insights?class='+route.query.interventionClass+'&task='+(route.query.interventionTask||'')+'&interventionCase='+currentCase.id" secondary>用于补充教学</RouteButton>
@@ -48,25 +47,24 @@ watch(
     </div>
     <div class="heading-actions">
       <Button
-        v-if="currentCase.id === store.data.publishedCase?.id"
+        v-if="store.user?.role==='teacher'"
         variant="outline"
-        @click="
-          store.data.favorite = !store.data.favorite;
-          notify(store.data.favorite ? '案例已加入收藏' : '已取消收藏');
-        "
-        ><Star :fill="store.data.favorite ? 'currentColor' : 'none'" />{{
-          store.data.favorite ? "已收藏" : "收藏案例"
+        :disabled="bookmarkBusy"
+        @click="toggleFavorite"
+        ><Star :fill="favorite ? 'currentColor' : 'none'" />{{
+          favorite ? "已收藏" : "收藏案例"
         }}</Button
       ><Button
         v-if="store.user?.role === 'teacher'"
         @click="
           store.useCase(currentCase);
-          navigate('prepare');
+          navigate('prepare?lesson='+store.data.lesson.id);
         "
         >用于备课</Button
       >
     </div>
   </div>
+  <p v-if="bookmarkError" class="form-error" role="alert">{{bookmarkError}}</p>
   <div class="case-detail-grid teacher-case-reading">
     <article class="case-article"><CaseArticle :value="currentCase" /></article>
     <aside>

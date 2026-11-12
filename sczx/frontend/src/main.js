@@ -132,7 +132,9 @@ router.beforeEach(async (to) => {
   await sessionReady;
   if (!store.user) return { name: "login", query: { next: to.fullPath } };
   if (to.name !== "not-found" && !roleRoutes[store.user.role]?.has(to.name)) return { name: store.user.role === "teacher" ? "teacher" : store.user.role === "admin" ? "manage" : "home" };
-  if (store.status === "ready" && store.data) {
+  const task=store.data.tasks?.find(t=>t.id===String(to.query.task||store.data.activeTaskId||''));
+  if(store.user.role==='student'&&['learn','check'].includes(to.name)&&['exam','live-class'].includes(task?.source))return {name:'records',query:{task:task.id}};
+  if (store.status === "ready" && store.hasUnsavedChanges) {
     const saved = await store.save();
     if (!saved && to.name !== router.currentRoute.value.name) return false;
   }
@@ -140,15 +142,15 @@ router.beforeEach(async (to) => {
 });
 let saveTimer;
 watch(
-  () => { const draft={...store.data.lessonDraft}; delete draft.revision; return JSON.stringify({...store.data,lessonDraft:draft}); },
+  () => store.draftSignature,
   () => {
-    if (store.status !== "ready" || !store.user || store.externalUpdating) return;
-    store.revision++;
     clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => { if (!store.externalUpdating) store.save(); }, 300);
+    if (store.status !== "ready" || !store.user || store.externalUpdating || !store.hasUnsavedChanges) return;
+    saveTimer = setTimeout(() => { if (!store.externalUpdating&&store.hasUnsavedChanges) store.save(); }, 300);
   },
-  { deep: true },
+  { flush:'sync' },
 );
+window.addEventListener('beforeunload',event=>{if(store.user&&store.hasUnsavedChanges){event.preventDefault();event.returnValue=''}});
 app.use(router);
 app.mount("#root");
 

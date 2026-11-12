@@ -1,0 +1,14 @@
+{
+  "operationId": "43b90c19-962d-4fd5-8530-55e0dc1a3832",
+  "userId": "account-8d14eaefe853444e940b2a425eae1361",
+  "taskId": "task-122289cddb442a5f08fdbec2188b4420",
+  "questionId": "question-769c6964837a47ce8b8009fa7978e56d",
+  "versionId": "87204fe8e5ee94c4196446f0826408e30da1255fa6a17bef05cfb74c78ad3404",
+  "baseRevision": "c1c922e375407ea85a6b4e5f091bd7213b35568f67a5977877a26eb1e176fba9",
+  "modifiedAt": "2026-11-12T02:46:38.358Z",
+  "answer": "x=4",
+  "reason": "离线草稿1112：两边减3得2x=8，除以2得x=4。",
+  "helped": false,
+  "position": "",
+  "status": "synced"
+}

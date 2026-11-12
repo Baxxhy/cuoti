@@ -19,7 +19,7 @@ async function open(task, teacher) {
   if (!(await store.save())) return;
   await store.load(store.data.lesson?.id, true);
   store.selectTask(task.id);
-  const target=teacher?"insights":store.task?.snapshot?.blocks?.length?"learn":"check";
+  const target=teacher?"insights":["exam","live-class"].includes(store.task?.source)?"records":store.task?.snapshot?.blocks?.length?"learn":"check";
   navigate(`${target}?task=${task.id}`);
 }
 </script>

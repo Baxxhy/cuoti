@@ -1,0 +1,20 @@
+{
+  "kind": "第一次优雅停服中模型已先完成；不计失败恢复验收",
+  "url": "http://127.0.0.1:8103",
+  "schema": "0017_case_bookmarks",
+  "migration": "0017仅新增case_bookmarks；不更新或删除原表",
+  "jobAfterRestart": {
+    "id": "job-8c88019351bc4f83af67e8589a9f847a",
+    "status": "succeeded",
+    "error": "",
+    "attempt_number": 1
+  },
+  "frontend": "index-8bNtgQgl.js",
+  "restart": {
+    "running": true,
+    "created": true,
+    "pid": 3908662
+  },
+  "toolCorrection": "首次启动预检被主代理诊断连接池阻止；关闭本进程数据库连接后重新启动，未放宽预检。",
+  "modelRunsExpected": "此任务真实成功，实际失败恢复另见crash-recovery-r2及recovery-result-final"
+}

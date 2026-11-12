@@ -1,0 +1,151 @@
+# 教师全功能验收 R2 定点复测
+
+结论：T06收藏持久/取消/双教师隔离、T15旧纠正任务进度与原失败折叠、知识点内层连续筛选、T17私稿练习编辑保存恢复，共4项通过。
+
+新profile加载 `index-8bNtgQgl.js`，浏览器已正常关闭；未新建AI任务。基准和R1保持原文件。
+
+## R2-T06 案例收藏持久、取消与双教师隔离 — pass
+
+首页意图：从教学资源查找案例并收藏。
+
+路径：教学资源 → 阅读案例 → 收藏案例 → 刷新 → 退出登录并重登 → 已有收藏 → 已收藏取消 → 刷新 → 切换教师2验证 → 教师2另收藏 → 切回教师1验证。
+
+- 教师1分别收藏合成工程验收 E01 等式平衡与移项和天平与等式性质，各观察bookmark PUT200，刷新同详情仍已收藏。
+- 退出登录并重新登录，已有收藏列表包含两篇；取消新合成案例后PUT200，详情刷新回收藏案例，已有收藏列表只剩天平案例。
+- 教师2登录后已有收藏为空，没有继承教师1的天平收藏；教师2另收藏新合成案例，刷新保留且列表仅该篇；切回教师1仍只有天平案例，未继承教师2收藏。
+- 收藏仅改新增的本人收藏记录，发布案例正文与固定版本未改。教研share收藏不混用。
+
+保存/回看：两案例刷新、教师1重登及账号交叉登录全部验证。
+
+边界：取消后刷新不复活；另一案例收藏不受取消影响；两教师互不串收藏。
+
+入口：详情收藏和列表已有收藏语义一致，刷新/账号切换有真实持久行为。
+
+动作：2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062。
+
+观察网络：
+- `3918411.36` PUT /api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark → 200
+- `3918411.61` PUT /api/ai/cases/case-balance/bookmark → 200
+- `3918411.93` PUT /api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark → 200
+- `3918411.129` PUT /api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark → 200
+
+截图：
+- /tmp/sczx-full/teacher/r2/r2-T06-new-case-favorite-after-refresh.png
+- /tmp/sczx-full/teacher/r2/r2-T06-second-case-favorite-after-refresh.png
+- /tmp/sczx-full/teacher/r2/r2-T06-two-favorites-after-relogin.png
+- /tmp/sczx-full/teacher/r2/r2-T06-cancel-new-case-after-refresh.png
+- /tmp/sczx-full/teacher/r2/r2-T06-teacher1-only-other-case-remains.png
+- /tmp/sczx-full/teacher/r2/r2-T06-teacher2-no-inherited-favorites.png
+- /tmp/sczx-full/teacher/r2/r2-T06-teacher2-own-new-case-only.png
+- /tmp/sczx-full/teacher/r2/r2-T06-teacher1-unaffected-by-teacher2.png
+
+未测：
+- 本次未逐项重做断网/并发/服务停止，通用技术边界由root补测。
+
+## R2-T02 知识点筛选内层连续多选与前置开关保持展开 — pass
+
+首页意图：连续选择两个知识点并切换前置知识。
+
+路径：教学资源 → 检索结果 → 筛选 → 知识点summary → 相等关系 → 等式性质 → 包含一层前置知识。
+
+- 真实鼠标勾选kp-equal后立即再勾kp-equality，无需重开；DOM details.open=true、两项checked=true且所有复选框真实可见，URL knowledge=kp-equal,kp-equality。
+- 随后将包含一层前置知识切false，details仍open=true且两项选择保留，URL与请求体includePrerequisites一致。
+- 当前库这两个知识点的结果为0，未将其误记为前置知识扩展命中正例。
+
+保存/回看：连续多选和后续切换保持同一展开UI；不声称跨reload保存展开状态。
+
+边界：连续两次选择及后续前置开关均真实可见点击，不采用隐藏字段误点。
+
+入口：R1每次选择会关闭内层的障碍已修复，可连续选择。
+
+动作：2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073。
+
+观察网络：
+- `3918411.164` POST /api/ai/search → 200
+- `3918411.166` POST /api/ai/search → 200
+- `3918411.167` POST /api/ai/search → 200
+- `3918411.169` POST /api/ai/search → 200
+- `3918411.170` POST /api/ai/search → 200
+- `3918411.172` POST /api/ai/search → 200
+
+截图：
+- /tmp/sczx-full/teacher/r2/r2-T02-inner-filter-stays-open-multiselect.png
+- /tmp/sczx-full/teacher/r2/r2-T02-prerequisite-toggle-stays-open.png
+
+未测：
+- 前置扩展增加命中的正例仍未具备。
+
+## R2-T15 旧已人工纠正并采用任务的当前进度与原失败记录 — pass
+
+首页意图：从备课记录回看旧已纠正整课任务。
+
+路径：备课 → AI备课 → 备课记录 → 原本轮整课任务 → 执行进度 → 核验结构与依据 → 查看原生成失败 → 等待教师确认 → 刷新再看执行进度。
+
+- 同一原任务顶部已保存到备课，执行过程六步全部已完成，第5核验和第6等待确认不再与采用状态矛盾。
+- 展开第5步可见教师修订后已重新核验结构、引用和列出的数学关系，时间11:02:41；再展开查看原生成失败仍显示原数学表达式不一致消息及10:47:04，历史未抹掉。
+- 展开第6步明确已由教师确认保存到草稿及11:02:58；reload后六步完成仍在。
+- 错误尝试把执行进度按summary查找一次返回工具目标未找到，随后按可见按钮打开成功；该工具定位误差不作为产品失败。
+
+保存/回看：旧job由可见记录进入并reload复核，不创建新AI、不重设成功、不改E01稿。
+
+边界：原失败可展开、当前已纠正采用可回看，两个事实并存。
+
+入口：当前状态清楚，原失败保留在嵌套折叠中。
+
+动作：2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097。
+
+截图：
+- /tmp/sczx-full/teacher/r2/r2-T15-current-six-steps-completed.png
+- /tmp/sczx-full/teacher/r2/r2-T15-verification-current-and-old-record.png
+- /tmp/sczx-full/teacher/r2/r2-T15-original-failure-retained-and-accepted.png
+- /tmp/sczx-full/teacher/r2/r2-T15-progress-after-refresh.png
+
+未测：
+- 不重复生成/采用整课，基准真实采用已有完整证据。
+
+## R2-T17 教师2本轮未发布私稿练习编辑与恢复 — pass
+
+首页意图：编辑新目标课时私有教案的练习题。
+
+路径：教师2登录 → 备课 → 课程 → 本轮新教研目标开始备课 → 练习题 → 编辑题干/方程/答案/提示 → 保存 → 刷新 → 练习题读回 → 课程发布预览对照 → 教师1原E02任务查看原答。
+
+- 仅教师2本轮新目标私稿：把首练习改成R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。；方程x+2=6、参考答案4、提示含同减2及4+2=6。
+- 保存及自动保存共4次/platform PUT200；reload再开练习题，题干、方程、参考答案、提示全部恢复。
+- 同课时课程发布预览的随堂题仍为原x+1=4，未被私稿编辑替换。
+- 随后教师1从原E02任务回看，原2*x+3=11→x7错答、帮助后x4订正、x-2=5→x7独立正确及解释仍保持；没有改发布任务、原答或旧试卷。
+
+保存/回看：私稿编辑reload读回；发布版本和旧任务通过UI只读对照。
+
+边界：只改本轮未发布自有稿；未新发任务或触碰旧答案。
+
+入口：练习题独立tab可定位四字段，保存与刷新行为一致。
+
+动作：2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136。
+
+观察网络：
+- `3918411.219` PUT /api/platform → 200
+- `3918411.220` PUT /api/platform → 200
+- `3918411.221` PUT /api/platform → 200
+- `3918411.222` PUT /api/platform → 200
+
+截图：
+- /tmp/sczx-full/teacher/r2/r2-T17-private-question-original.png
+- /tmp/sczx-full/teacher/r2/r2-T17-private-question-edit-restored.png
+- /tmp/sczx-full/teacher/r2/r2-T17-published-target-question-unchanged.png
+- /tmp/sczx-full/teacher/r2/r2-T17-existing-E02-original-answers-unchanged.png
+
+未测：
+- 本目标此前未发任务，所以同课时已有任务快照变化无样本；已对照同课时发布版及既有E02历史。
+- 本次未逐项穷举非法数学/网络故障。
+
+## 交叉回执
+
+- 教师R1真实UI产生的retrieval job-131132785854414a8a830b930f171451最终succeeded，rerankApplied=true，rerankModel=gpt-6-luna。（root技术代理在R2恢复窗口后的消息；根数据库读回交叉证据，非本代理UI自行读取，不改变R1被动观察表述。）
+- 主学生实际读到R1教师指定复习完整说明，经同页11:00课堂x4证据查看原任务，读原讲评与x4，再回复习建议重读说明；指定条本身无直达按钮。（full_student R2回执；学生新profile独立UI验收，本代理未代操作。）
+
+## 保留范围
+
+- 此前未测项继续如实保留：同名班级重复创建、撤销码复用及自然过期、前置扩展命中正例、各写操作完整故障组合、真实语音设备。
+- R2只复测上述4项；基准和R1报告不覆盖重写，不把R2通过倒填为基准通过。
+
+证据：/tmp/sczx-full/teacher/r2/actions.jsonl、network.json、19张截图。136条日志动作（关闭动作2137另由driver正常exit0返回），8次非检索业务写请求。

@@ -1,0 +1,21 @@
+{
+  "jobId": "job-7a6f1a75d79e4780982bd41727fdf552",
+  "status": "succeeded",
+  "attemptNumber": 2,
+  "runs": [
+    {
+      "number": 1,
+      "status": "failed",
+      "model": "",
+      "provider": "",
+      "error": "服务中断，输入与已有结果已保留，可手动重试。"
+    },
+    {
+      "number": 2,
+      "status": "succeeded",
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "error": ""
+    }
+  ]
+}

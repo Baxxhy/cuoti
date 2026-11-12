@@ -1,0 +1,62 @@
+{
+  "kind": "主代理技术补验；允许源码与测试控制，非独立角色寻路",
+  "asset": "index-CConNtCE.js",
+  "checks": [
+    {
+      "id": "NAV01",
+      "status": "通过",
+      "routes": [
+        "#/cases?prerequisites=true",
+        "#/class",
+        "#/exam-papers",
+        "#/prepare?lesson=lesson-equation",
+        "#/teacher"
+      ],
+      "cleanWrites": 0,
+      "expected": 0
+    },
+    {
+      "id": "NAV02",
+      "status": "通过",
+      "hash": "#/cases",
+      "alerts": [
+        "无法连接到学习服务，请检查网络后重试。"
+      ],
+      "writes": 0
+    },
+    {
+      "id": "NAV03",
+      "status": "通过",
+      "hash": "#/prepare?lesson=lesson-equation",
+      "goal": "合成导航技术验收：保存失败仍保留本地修改，重试写入MySQL 1794454128844",
+      "error": "技术验收模拟保存失败503，原草稿应保留\n\n重新保存\n下载本地修改\n重新读取",
+      "backupControl": "下载本地修改"
+    },
+    {
+      "id": "NAV04",
+      "status": "通过",
+      "saved": {
+        "goal": "合成导航技术验收：保存失败仍保留本地修改，重试写入MySQL 1794454128844",
+        "revision": 3
+      },
+      "recoveredNavigation": true
+    },
+    {
+      "id": "LEG01",
+      "status": "通过",
+      "preview": "导入历史演示记录\n\n导入历史演示记录\n\n1学习任务\n1作答\n1求助\n1错题\n1补救\n\n记录将归入独立的历史演示班级和学生，不计入真实学生学情。导入不会删除原浏览器数据。\n\n取消\n确认导入\n关闭",
+      "originalLocalStoragePreserved": true
+    },
+    {
+      "id": "LEG02",
+      "status": "通过",
+      "dedupMessage": "这份记录之前已经导入。",
+      "originalLocalStoragePreserved": true
+    },
+    {
+      "id": "SCRIPT",
+      "status": "通过",
+      "runtimeErrors": []
+    }
+  ]
+}

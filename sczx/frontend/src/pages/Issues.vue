@@ -11,10 +11,15 @@ import ModelConsole from '@/components/ModelConsole.vue';
 const route=useRoute(),router=useRouter();
 const store=useLearning(),items=ref([]),selected=ref(null),loading=ref(false),error=ref(''),busy=ref(false),status=ref(''),query=ref(''),reply=ref(''),next=ref('replied'),createOpen=ref(false),text=ref(''),category=ref('learning'),taskId=ref(store.task?.id||''),key=ref(crypto.randomUUID()),editKey=ref(''),healthText=ref(''),section=ref('queue'),historyOpen=ref(false);
 const validSections=['queue','models','accounts'];
-function sectionFromRoute(){return store.user.role==='admin'&&validSections.includes(route.query.section)?route.query.section:'queue'}
+const sectionKey='sczx:operations-section:'+store.user.id;
+function sectionFromRoute(){
+ if(store.user.role!=='admin')return 'queue';
+ if(validSections.includes(route.query.section))return route.query.section;
+ try{const saved=sessionStorage.getItem(sectionKey);return validSections.includes(saved)?saved:'queue'}catch{return 'queue'}
+}
 section.value=sectionFromRoute();
 watch(()=>route.query.section,()=>{section.value=sectionFromRoute();historyOpen.value=false});
-function changeSection(value){if(!validSections.includes(value))return;section.value=value;historyOpen.value=false;router.replace({query:{...route.query,section:value==='queue'?undefined:value}})}
+function changeSection(value){if(!validSections.includes(value))return;section.value=value;try{sessionStorage.setItem(sectionKey,value)}catch{}historyOpen.value=false;router.replace({query:{...route.query,section:value}})}
 const conversation=computed(()=>(selected.value?.history||[]).filter((entry,index)=>entry.content&&!(index===0&&entry.content===selected.value?.text&&!entry.oldStatus)));let generation=0;
 const states=[{value:'',label:'全部状态'},{value:'pending',label:'待处理'},{value:'processing',label:'处理中'},{value:'replied',label:'已回复'},{value:'closed',label:'已关闭'}];
 const visible=computed(()=>items.value.filter(i=>(!status.value||i.status===status.value)&&(!query.value||i.text.includes(query.value))));

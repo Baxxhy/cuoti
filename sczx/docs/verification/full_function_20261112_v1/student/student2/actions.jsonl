@@ -1,0 +1,64 @@
+{"at":"2026-11-12T02:39:44.820Z","action":"login","file":"/root/Baxxhy/zhiwei/sczx/backend-business/var/full_audit_20261112/extra-accounts.json","username":"audit_student_xnq3r","password":"[redacted]"}
+{"at":"2026-11-12T02:39:44.845Z","action":"click","text":"登录","wait":900}
+{"at":"2026-11-12T02:39:45.780Z","action":"click","text":"班级"}
+{"at":"2026-11-12T02:39:46.307Z","action":"click","text":"课堂"}
+{"at":"2026-11-12T02:42:19.455Z","action":"click","text":"学习"}
+{"at":"2026-11-12T02:42:19.985Z","action":"click","text":"离线学习"}
+{"at":"2026-11-12T02:42:33.398Z","action":"click","text":"首次使用，设置离线口令"}
+{"at":"2026-11-12T02:42:49.649Z","action":"click","text":"启用并加密保存"}
+{"at":"2026-11-12T02:42:50.174Z","action":"secretfill","selector":"#offline-phrase"}
+{"at":"2026-11-12T02:42:50.179Z","action":"secretfill","selector":"#offline-confirm"}
+{"at":"2026-11-12T02:42:50.186Z","action":"click","text":"启用并加密保存","wait":1000}
+{"at":"2026-11-12T02:43:18.534Z","action":"dom","code":"[...document.querySelectorAll(\"#offline-task option\")].map(e=>({text:e.text,value:e.value}))"}
+{"at":"2026-11-12T02:43:49.912Z","action":"click","text":"返回学习"}
+{"at":"2026-11-12T02:43:50.444Z","action":"reload"}
+{"at":"2026-11-12T02:44:55.372Z","action":"reload"}
+{"at":"2026-11-12T02:44:56.389Z","action":"click","text":"离线学习"}
+{"at":"2026-11-12T02:44:56.924Z","action":"dom","code":"[...document.querySelectorAll(\"#offline-task option\")].map(e=>({text:e.text,value:e.value}))"}
+{"at":"2026-11-12T02:45:18.880Z","action":"secretfill","selector":"#offline-phrase"}
+{"at":"2026-11-12T02:45:18.889Z","action":"click","text":"解锁","wait":800}
+{"at":"2026-11-12T02:45:19.728Z","action":"dom","code":"[...document.querySelectorAll(\"#offline-task option\")].map(e=>({text:e.text,value:e.value}))"}
+{"at":"2026-11-12T02:45:32.964Z","action":"click","text":"下载课时","wait":1000}
+{"at":"2026-11-12T02:45:33.994Z","action":"shot","name":"E06-downloaded"}
+{"at":"2026-11-12T02:45:34.096Z","action":"offline","value":true}
+{"at":"2026-11-12T02:45:43.317Z","action":"click","text":"合成工程验收 E01 等式平衡短课\n2026/11/12 下载"}
+{"at":"2026-11-12T02:45:57.660Z","action":"click","text":"读到这里"}
+{"at":"2026-11-12T02:45:58.196Z","action":"click","text":"下一节"}
+{"at":"2026-11-12T02:45:58.733Z","action":"click","text":"做练习"}
+{"at":"2026-11-12T02:46:37.257Z","action":"click","text":"保存本机草稿"}
+{"at":"2026-11-12T02:46:37.796Z","action":"fill","selector":"#offline-answer","value":"x=4"}
+{"at":"2026-11-12T02:46:37.801Z","action":"fill","selector":"#offline-reason","value":"离线草稿1112：两边减3得2x=8，除以2得x=4。"}
+{"at":"2026-11-12T02:46:37.806Z","action":"click","text":"保存本机草稿"}
+{"at":"2026-11-12T02:46:38.350Z","action":"click","text":"保存本机草稿"}
+{"at":"2026-11-12T02:46:38.879Z","action":"shot","name":"E06-offline-draft"}
+{"at":"2026-11-12T02:46:53.454Z","action":"close"}
+{"at":"2026-11-12T02:47:12.954Z","action":"click","text":"打开本机离线学习"}
+{"at":"2026-11-12T02:47:13.526Z","action":"fill","selector":"#offline-user","value":"audit_student_xnq3r"}
+{"at":"2026-11-12T02:47:13.534Z","action":"secretfill","selector":"#offline-phrase"}
+{"at":"2026-11-12T02:47:13.540Z","action":"click","text":"解锁","wait":900}
+{"at":"2026-11-12T02:47:14.486Z","action":"click","text":"合成工程验收 E01 等式平衡短课\n2026/11/12 下载"}
+{"at":"2026-11-12T02:47:15.040Z","action":"click","text":"做练习"}
+{"at":"2026-11-12T02:47:15.573Z","action":"shot","name":"E06-reopened-offline-restored"}
+{"at":"2026-11-12T02:48:40.029Z","action":"offline","value":false}
+{"at":"2026-11-12T02:48:40.033Z","action":"click","text":"同步进度","wait":1000}
+{"at":"2026-11-12T02:48:41.070Z","action":"snapshot"}
+{"at":"2026-11-12T02:48:56.172Z","action":"shot","name":"E06-conflict-collapsed"}
+{"at":"2026-11-12T02:48:56.278Z","action":"dom","code":"[...document.querySelectorAll(\"details,summary,[data-slot=\\\"collapsible-trigger\\\"]\")].map(e=>({tag:e.tagName,text:e.innerText,html:e.outerHTML.slice(0,700)}))"}
+{"at":"2026-11-12T02:49:12.175Z","action":"click","selector":"summary","text":"本机草稿 · 2 条待处理"}
+{"at":"2026-11-12T02:49:12.696Z","action":"shot","name":"E06-conflict-compare"}
+{"at":"2026-11-12T02:49:43.499Z","action":"click","text":"确认后重新同步","wait":800}
+{"at":"2026-11-12T02:50:08.519Z","action":"dialog","accept":true}
+{"at":"2026-11-12T02:50:09.024Z","action":"wait","ms":1200}
+{"at":"2026-11-12T02:50:10.232Z","action":"shot","name":"E06-conflict-after-progress"}
+{"at":"2026-11-12T02:51:20.259Z","action":"click","text":"同步进度","wait":600}
+{"at":"2026-11-12T02:51:20.902Z","action":"click","text":"保存本地副本","index":1,"wait":600}
+{"at":"2026-11-12T02:52:39.224Z","action":"dom","code":"setTimeout(()=>[...document.querySelectorAll(\"button\")].find(e=>e.innerText.trim()===\"删除下载\").click(),200);({scheduled:\"删除下载\"})"}
+{"at":"2026-11-12T02:52:59.265Z","action":"dialog","accept":true}
+{"at":"2026-11-12T02:52:59.770Z","action":"shot","name":"E06-download-deleted"}
+{"at":"2026-11-12T02:52:59.870Z","action":"click","text":"锁定"}
+{"at":"2026-11-12T02:53:22.356Z","action":"secretfill","selector":"#offline-phrase"}
+{"at":"2026-11-12T02:53:22.364Z","action":"click","text":"解锁","wait":600}
+{"at":"2026-11-12T02:53:22.986Z","action":"click","text":"锁定并退出","wait":600}
+{"at":"2026-11-12T02:54:17.746Z","action":"dialog","accept":true}
+{"at":"2026-11-12T02:54:18.253Z","action":"shot","name":"E06-locked-exited"}
+{"at":"2026-11-12T02:58:48.516Z","action":"close"}

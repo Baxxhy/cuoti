@@ -12,3 +12,5 @@ body,button,input,textarea,select,table,[data-slot="button"],[data-slot="input"]
 .reading-equation .reading-equation-side,.reading-equation .reading-equation-side>span{font-size:inherit!important;font-family:inherit!important;line-height:inherit;color:inherit}
 .reading-equation>.reading-equals{font-size:.85em!important}
 .result-next-block{margin:12px 0 0;color:#595959;font-size:14px}
+/* Inline mathematics follows the sentence rhythm; worked examples keep their display size. */
+.step-reading:not(.worked-example) .reading-equation.is-inline{font-size:1.05em}

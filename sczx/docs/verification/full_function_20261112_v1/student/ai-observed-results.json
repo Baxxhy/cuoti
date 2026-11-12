@@ -1,0 +1,604 @@
+[
+  {
+    "profile": "main",
+    "id": "job-bd09956f5eea4828b16b8bfae285a352",
+    "status": "succeeded",
+    "capability": "text",
+    "prompt": "为什么等式两边都减去同一个负数仍然相等？请用5=5、c=-2说明。",
+    "strategy": "hint",
+    "recordId": "record-c4b3e16458c044ffb85591caaabf3498",
+    "blockId": "eq-add-sub",
+    "wrongId": null,
+    "result": {
+      "hint": "想想减去负数在算式中相当于什么：把5和−2都减去−2，会分别得到什么？",
+      "steps": [
+        "相等关系表示两边数值相同；对两边做同一种运算，结果仍相同。",
+        "用5=5说明：两边都减去−2，左边是5−(−2)，右边也是5−(−2)。",
+        "减去负数等于加上它的相反数，因此两边都增加2，仍然相等。"
+      ],
+      "title": "同减负数仍相等",
+      "sources": [],
+      "question": "5−(−2)和5分别等于多少？",
+      "strategy": "hint",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 10875,
+        "modelCalls": 1,
+        "contextChars": 1003,
+        "historyTurns": 0
+      },
+      "mathClaims": [
+        {
+          "left": "5-(-2)",
+          "right": "5+2"
+        },
+        {
+          "left": "5+2",
+          "right": "7"
+        },
+        {
+          "left": "5-(-2)",
+          "right": "5-(-2)"
+        }
+      ],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "try",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [
+          {
+            "left": "5-(-2)",
+            "right": "5+2",
+            "method": "表达式等价",
+            "status": "verified"
+          },
+          {
+            "left": "5+2",
+            "right": "7",
+            "method": "表达式等价",
+            "status": "verified"
+          },
+          {
+            "left": "5-(-2)",
+            "right": "5-(-2)",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "prerequisites": [],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "kp-equal",
+      "representation": "symbolic",
+      "usedCaseVersionIds": []
+    }
+  },
+  {
+    "profile": "main",
+    "id": "job-63dd35ae4e684fdcbc5cc1939d1b8849",
+    "status": "succeeded",
+    "capability": "text",
+    "prompt": "5-(-2)=7；等式另一边也应是5-(-2)=7。你刚才说把5和-2都减去-2似乎不符合5=5，请修正。",
+    "strategy": "hint",
+    "recordId": "record-c4b3e16458c044ffb85591caaabf3498",
+    "blockId": "eq-add-sub",
+    "wrongId": null,
+    "result": {
+      "hint": "把两边各自算出结果，再比较是否相等。",
+      "steps": [
+        "左边：5−(−2)=7。",
+        "右边：5−(−2)=7。",
+        "两边做相同的减法，结果仍相等；这里减去负数等于加2。"
+      ],
+      "title": "同减负数仍保持相等",
+      "sources": [],
+      "question": "你能说出两边为什么都得到7吗？",
+      "strategy": "hint",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 12664,
+        "modelCalls": 1,
+        "contextChars": 1199,
+        "historyTurns": 1
+      },
+      "mathClaims": [
+        {
+          "left": "5-(-2)",
+          "right": "7"
+        },
+        {
+          "left": "5-(-2)",
+          "right": "7"
+        }
+      ],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "try",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [
+          {
+            "left": "5-(-2)",
+            "right": "7",
+            "method": "表达式等价",
+            "status": "verified"
+          },
+          {
+            "left": "5-(-2)",
+            "right": "7",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "prerequisites": [],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "kp-equal",
+      "representation": "symbolic",
+      "usedCaseVersionIds": []
+    }
+  },
+  {
+    "profile": "main",
+    "id": "job-5a86ebf7dbf14dc081b214476aeaac85",
+    "status": "succeeded",
+    "capability": "ocr",
+    "prompt": "",
+    "strategy": null,
+    "recordId": "record-c4b3e16458c044ffb85591caaabf3498",
+    "blockId": "eq-add-sub",
+    "wrongId": null,
+    "result": {
+      "text": "Audit 2026-11-12\nSolve: 3x + 5 = 20\nMy answer: x = 6",
+      "equation": "3x + 5 = 20",
+      "studentAnswer": "x = 6",
+      "uncertainties": []
+    }
+  },
+  {
+    "profile": "main",
+    "id": "job-06e4f3cf30734954bc07dc731de54b08",
+    "status": "succeeded",
+    "capability": "text",
+    "prompt": "请检查这道题的第一步，同减5应怎样写？",
+    "strategy": "example",
+    "recordId": "record-c4b3e16458c044ffb85591caaabf3498",
+    "blockId": "eq-add-sub",
+    "wrongId": null,
+    "result": {
+      "hint": "先看两边同时减去同一个数，再用一个不含未知数的等式试写第一步。",
+      "steps": [
+        "例如从等式 8+5=13 出发，两边同时减去5。",
+        "得到 (8+5)-5=13-5；两边做了相同运算，等式仍成立。"
+      ],
+      "title": "用不同例子检查同减",
+      "sources": [],
+      "question": "回到你的题目，两边同减5后，等式应怎样写？",
+      "strategy": "example",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 9659,
+        "modelCalls": 1,
+        "contextChars": 1234,
+        "historyTurns": 0
+      },
+      "mathClaims": [
+        {
+          "left": "(8+5)-5",
+          "right": "13-5"
+        }
+      ],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "try",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [
+          {
+            "left": "(8+5)-5",
+            "right": "13-5",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "prerequisites": [],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "kp-equal",
+      "representation": "symbolic",
+      "usedCaseVersionIds": []
+    }
+  },
+  {
+    "profile": "main",
+    "id": "job-b1f4bc7378614138b9b04387601a12a7",
+    "status": "succeeded",
+    "capability": "text",
+    "prompt": "我已把2x+3=11算得x=4。请补基础：两边同时除以2保持相等的理由是什么？为什么除数不能为0？",
+    "strategy": "foundation",
+    "recordId": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+    "blockId": "block-f05b70a1d11443b7802b8d2b05487f79",
+    "wrongId": null,
+    "result": {
+      "hint": "想想：对两个相等的数同时乘上同一个非零数，结果会怎样？",
+      "steps": [
+        "依据前置知识“相等关系”：若两个量相等，对它们做相同运算，等式仍成立。",
+        "除以非零数等同于乘以它的倒数，因此两边同除以2，就是两边同乘1/2。",
+        "除数不能为0，因为0没有乘法逆元；同除规则要求除数非零。"
+      ],
+      "title": "为什么两边同除能保持相等？",
+      "sources": [],
+      "question": "你能用“两边同乘1/2”说明为什么等式两边同除以2后仍相等吗？",
+      "strategy": "foundation",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 10022,
+        "modelCalls": 1,
+        "contextChars": 5302,
+        "historyTurns": 0
+      },
+      "mathClaims": [
+        {
+          "left": "a=b",
+          "right": "a\\times\\frac12=b\\times\\frac12"
+        }
+      ],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "try",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [
+          {
+            "left": "a=b",
+            "right": "a\\times\\frac12=b\\times\\frac12",
+            "method": "条件、定义域或多变量关系需人工核对",
+            "status": "unverified"
+          }
+        ],
+        "status": "unverified"
+      },
+      "prerequisites": [
+        {
+          "id": "kp-equal",
+          "name": "相等关系"
+        },
+        {
+          "id": "kp-expression",
+          "name": "算式含义"
+        }
+      ],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "kp-equal",
+      "representation": "symbolic",
+      "usedCaseVersionIds": []
+    }
+  },
+  {
+    "profile": "main",
+    "id": "job-5874ff81edeb4fdab9814f918be0621b",
+    "status": "succeeded",
+    "capability": "text",
+    "prompt": "请换种讲法，不用移项这个词，用等式性质解释2x+3=11怎样保持两边相等。",
+    "strategy": "rephrase",
+    "recordId": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+    "blockId": "block-f05b70a1d11443b7802b8d2b05487f79",
+    "wrongId": null,
+    "result": {
+      "hint": "想想怎样对等式左右两边同时做同一个运算，才能消去左边的 +3。",
+      "steps": [
+        "相等关系表示左右两边的值相同；两边同时做相同的运算，仍保持相等。",
+        "对 2x+3=11 的两边同时减 3，得到 2x=8。",
+        "接下来想想怎样对两边做相同运算，能让左边只剩 x？"
+      ],
+      "title": "用等式性质理解方程",
+      "sources": [],
+      "question": "你会对 2x=8 的两边同时做什么运算？",
+      "strategy": "rephrase",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 8056,
+        "modelCalls": 1,
+        "contextChars": 5288,
+        "historyTurns": 0
+      },
+      "mathClaims": [
+        {
+          "left": "(2x+3)-3",
+          "right": "2x"
+        },
+        {
+          "left": "11-3",
+          "right": "8"
+        }
+      ],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "try",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [
+          {
+            "left": "(2x+3)-3",
+            "right": "2x",
+            "method": "表达式等价",
+            "status": "verified"
+          },
+          {
+            "left": "11-3",
+            "right": "8",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "prerequisites": [],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "kp-equal",
+      "representation": "symbolic",
+      "usedCaseVersionIds": []
+    }
+  },
+  {
+    "profile": "student3",
+    "id": "job-fd71dd147df24c76b070dbe23eae4508",
+    "status": "succeeded",
+    "capability": "text",
+    "prompt": "请依据本题和我的原作答提供针对性补救。",
+    "strategy": "hint",
+    "recordId": null,
+    "blockId": null,
+    "wrongId": "wrong-81618437f1ab36774a5cf102af8d61cf",
+    "result": {
+      "goal": "理解如何对等式两边做相同运算，将7从左边消去。",
+      "cause": "符号处理错误",
+      "steps": [
+        "提示：要消去左边的+7，应对等式两边同时减去7。",
+        "因此右边应计算19-7，再将所得结果除以2求x。",
+        "检验时把求得的x代回原方程，核对等式两边是否相等。"
+      ],
+      "evidence": "我把7移到右边写成加7，得到2x=26，所以x=13。",
+      "strategy": "hint",
+      "workflow": {
+        "scope": "wrong:wrong-81618437f1ab36774a5cf102af8d61cf",
+        "modelCalls": 1
+      },
+      "confirmed": false,
+      "mathClaims": [
+        {
+          "left": "2x+7-7=19-7",
+          "right": "2x=12"
+        },
+        {
+          "left": "2x=12",
+          "right": "x=6"
+        }
+      ],
+      "uncertainty": "原作答显示把常数移项后仍写成加7；错因判断仅为建议。",
+      "verification": {
+        "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+        "claims": [
+          {
+            "left": "2x+7-7=19-7",
+            "right": "2x=12",
+            "method": "单变量实数方程解集比较",
+            "status": "verified"
+          },
+          {
+            "left": "2x=12",
+            "right": "x=6",
+            "method": "单变量实数方程解集比较",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "checkQuestion": "为了消去左边的+7，两边应同时做什么运算？",
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      }
+    }
+  },
+  {
+    "profile": "student3",
+    "id": "job-19ecdaa76036426fb0d4b4fccc1d42fd",
+    "status": "succeeded",
+    "capability": "text",
+    "prompt": "请依据本题和我的原作答提供针对性补救。",
+    "strategy": "hint",
+    "recordId": null,
+    "blockId": null,
+    "wrongId": "wrong-81618437f1ab36774a5cf102af8d61cf",
+    "result": {
+      "variant": {
+        "prompt": "先想想：要消去左边的 +7，应对等式两边做什么相同的运算？然后解这道题。",
+        "equation": "3x+5=20",
+        "rationale": "原题把 +7 移项时仍写成加7；本题同样要通过对等式两边做相同运算消去常数项。"
+      },
+      "workflow": {
+        "scope": "wrong:wrong-81618437f1ab36774a5cf102af8d61cf",
+        "modelCalls": 1
+      },
+      "mathClaims": [
+        {
+          "left": "2x+7=19",
+          "right": "x=6"
+        },
+        {
+          "left": "3x+5=20",
+          "right": "x=5"
+        }
+      ],
+      "verification": {
+        "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+        "claims": [
+          {
+            "left": "2x+7=19",
+            "right": "x=6",
+            "method": "单变量实数方程解集比较",
+            "status": "verified"
+          },
+          {
+            "left": "3x+5=20",
+            "right": "x=5",
+            "method": "单变量实数方程解集比较",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "variantVerification": {
+        "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+        "status": "verified",
+        "equation": "3x+5=20"
+      }
+    }
+  },
+  {
+    "profile": "student3",
+    "id": "job-4db1acc82ae344878f0d2b2dd950e32f",
+    "status": "succeeded",
+    "capability": "text",
+    "prompt": "请依据本题和我的原作答提供针对性补救。",
+    "strategy": "hint",
+    "recordId": null,
+    "blockId": null,
+    "wrongId": "wrong-81618437f1ab36774a5cf102af8d61cf",
+    "result": {
+      "variant": {
+        "prompt": "解方程：4x+6=22。",
+        "equation": "4x+6=22",
+        "rationale": "保留原题先处理加数、再处理未知数系数的结构，数值和答案均不同。"
+      },
+      "workflow": {
+        "scope": "wrong:wrong-81618437f1ab36774a5cf102af8d61cf",
+        "modelCalls": 2
+      },
+      "mathClaims": [
+        {
+          "left": "4x+6=22",
+          "right": "x=4"
+        }
+      ],
+      "verification": {
+        "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+        "claims": [
+          {
+            "left": "4x+6=22",
+            "right": "x=4",
+            "method": "单变量实数方程解集比较",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "variantVerification": {
+        "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+        "status": "verified",
+        "equation": "4x+6=22"
+      }
+    }
+  },
+  {
+    "profile": "student3",
+    "id": "job-cc4c09b2bd0a46bda23db44deeccc915",
+    "status": "succeeded",
+    "capability": "ocr",
+    "prompt": null,
+    "strategy": null,
+    "recordId": null,
+    "blockId": null,
+    "wrongId": null,
+    "result": {
+      "text": "Solve: 3x + 5 = 20\nMy answer: x = 6",
+      "equation": "3x + 5 = 20",
+      "studentAnswer": "x = 6",
+      "uncertainties": []
+    }
+  }
+]

@@ -1,0 +1,238 @@
+{
+  "url": "http://127.0.0.1:8099",
+  "frontend": "index-8bNtgQgl.js",
+  "schema": "0017_case_bookmarks",
+  "scope": "用户现有Linux本地实例，仅新增案例收藏表；没有正式库或公网操作",
+  "backup": "本机私有backend-business/var/local/backups/full-function-v35-20261112",
+  "oldTableDigests": {
+    "accounts": {
+      "rows": 25,
+      "sha256": "23b096c09bd2b20f56a602fb85111ba2430a74dd001948451377f8c3a8abf7a3"
+    },
+    "attempts": {
+      "rows": 72,
+      "sha256": "b77f6650ea65914e499e8aaaf4b34f506535991c2b456ae7041f69c1f994674a"
+    },
+    "bank_questions": {
+      "rows": 13,
+      "sha256": "75d0dfbfb52142cd65275920c2329b503628cde2212abfb2a4cc5349787c6c69"
+    },
+    "business_messages": {
+      "rows": 71,
+      "sha256": "24ff3720b4811352bd170edbfbb370e77e3709428568848c52d29f3c6c7e5111"
+    },
+    "case_draft_contents": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "case_versions": {
+      "rows": 4,
+      "sha256": "019f24e38576b55885dfefbe2d3721ff5a9c103219d7ba7681d78f12c6475716"
+    },
+    "class_exams": {
+      "rows": 2,
+      "sha256": "72b9e4527444dfed6d0a6869ecdeed38493d20791ed9d646abe79d627deec6d3"
+    },
+    "class_invites": {
+      "rows": 4,
+      "sha256": "547225a41ff6b7c09fd9748247d15525b03e6daaee482676d28b0810854f3e1f"
+    },
+    "class_join_throttles": {
+      "rows": 5,
+      "sha256": "b3dada9ae2efa9b004d86e96517442d6fcf1ab0c4b73839578c51decdd1fc101"
+    },
+    "class_members": {
+      "rows": 16,
+      "sha256": "6c10a5af11096ab8ffea67ef1cd395ca2e79465e009893dcd29f4b54193a4a70"
+    },
+    "classrooms": {
+      "rows": 5,
+      "sha256": "22bc24f466ccce2c36d1fe1b2811fcef0816a4236d3f647995bca69b69bacea7"
+    },
+    "community_bookmarks": {
+      "rows": 1,
+      "sha256": "9f7eff31649efa2bd76c3aa450111dd8827566e090d08c61b698b7c47e1bd991"
+    },
+    "community_events": {
+      "rows": 5,
+      "sha256": "0bcae8c5fb1da2f08b46ba0d4de727f2637ab581bdb77bcf33f3dcd989939bd5"
+    },
+    "community_shares": {
+      "rows": 5,
+      "sha256": "a9aaeb9a2541b24f77bed5800209d5e9fb3c2bab149a630247729bb4d390080e"
+    },
+    "course_units": {
+      "rows": 1,
+      "sha256": "ef6f1e7d1b54918f007e693c425b9c9bd691d3a88c63b1fe0f5c8d8c4f333b6a"
+    },
+    "courses": {
+      "rows": 1,
+      "sha256": "e2d611b9c72d32e78d5c3bc69f264c94b092b3cfc14b69b57c7db8a6bf6e1c1e"
+    },
+    "equation_progress": {
+      "rows": 2,
+      "sha256": "fc6be2989f5165febe7c41797c40b7d1fa52d2e0bfa12da2dd1018b31648f22d"
+    },
+    "exam_grade_audits": {
+      "rows": 7,
+      "sha256": "2e517b1bbf86b2d672af664c9234d56300972782d8dc1e5abbe77906fd5e996d"
+    },
+    "exam_papers": {
+      "rows": 4,
+      "sha256": "d1aad64dc980528272d663e0fa5c42cb2d698018a084d2fdb3ac721f917f8128"
+    },
+    "exam_submissions": {
+      "rows": 7,
+      "sha256": "b7e673f4c979525b9e3fe7903a270ed92fce1559f9bea53e61250705b8f1074e"
+    },
+    "file_assets": {
+      "rows": 6,
+      "sha256": "2fdf097447c7580b3555729b5c45f8d601a7f2736e0e09666944b95f104094cd"
+    },
+    "help_records": {
+      "rows": 5,
+      "sha256": "60aa3d653c59a9fcb2b2372cb5c019d631754bcc50f27193dec78e3539bae754"
+    },
+    "knowledge_points": {
+      "rows": 8,
+      "sha256": "823fc7760b074e9980b2407cb970d876af5564e7be5ae55c6331ebdb313de8dd"
+    },
+    "learning_memory_changes": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "learning_tasks": {
+      "rows": 21,
+      "sha256": "26aa06f6e61a820a8dfc739a6e0152230e9a879ceae28a73740b548bc6942b57"
+    },
+    "lesson_contents": {
+      "rows": 5,
+      "sha256": "231bb961b5cc8e11fc26218ecb08f35ea388449da31f70dca69e0d665bd3975e"
+    },
+    "lesson_draft_versions": {
+      "rows": 13,
+      "sha256": "272144f26587dbc9d5ea106a2ef7df83d5589005a3b116808705380a4777f89e"
+    },
+    "lesson_drafts": {
+      "rows": 9,
+      "sha256": "9f9aad7db6339fecca1c617dfb1380d8147b328e47274642cba2b9cbe2f64a82"
+    },
+    "lesson_versions": {
+      "rows": 5,
+      "sha256": "b448c0b683e05b44395e116a48b082d2ee59282af93ba37d275614f33a0c4de0"
+    },
+    "lessons": {
+      "rows": 5,
+      "sha256": "42b7a997907768a74d8fa38e16ef27ffd8bc34a61097ba4b763cc2b2005b679f"
+    },
+    "live_activities": {
+      "rows": 4,
+      "sha256": "b88fb4475d0080f2cb0bb45001f5270522d9ee5a68d9907f097123fb754c8445"
+    },
+    "live_answers": {
+      "rows": 5,
+      "sha256": "ac874a760e026c3eeff23dbe5331fdd705c4d2835c63ea2407e1123da653532c"
+    },
+    "live_classes": {
+      "rows": 3,
+      "sha256": "478ad744e655beba926c78f7448ff1faddee3e1656761b839e033a278f70a828"
+    },
+    "live_presences": {
+      "rows": 5,
+      "sha256": "b1a30a7079e9617a1ea88e4cd1bbfd39038b178830cb4bee7e3fab71aa885137"
+    },
+    "login_sessions": {
+      "rows": 208,
+      "sha256": "7b2148e0ecccd0f03c0c13ffc2ff77fddedfea062e17f5b777f0a7a98463285c"
+    },
+    "material_units": {
+      "rows": 5,
+      "sha256": "fbd0ee1cac38bd0144952e2631cf44afdb2c14b89100c5feb79099345e173a08"
+    },
+    "model_events": {
+      "rows": 112,
+      "sha256": "2dbee3852d8849a7e2505186949e3c26384d412b3605d1a5a425c557db4f88f4"
+    },
+    "model_jobs": {
+      "rows": 18,
+      "sha256": "0c8bceafeb6cc9d0040877a9f37887c9b8ced257c7f4ef427b73a1c95917d54f"
+    },
+    "model_runs": {
+      "rows": 20,
+      "sha256": "1599924dcba414726f427df2538c279738af4409fe7a45a83a767882b38cd362"
+    },
+    "offline_operations": {
+      "rows": 8,
+      "sha256": "4b89004f37385203fdb32a7dc24975fcb42f6f99576e23c054783fb24acafccc"
+    },
+    "paper_versions": {
+      "rows": 4,
+      "sha256": "95c7b00b2caa3bc080c0c1b8d19bab9c19ac30a7c559f4227fa4cfdc0ddd1782"
+    },
+    "question_versions": {
+      "rows": 6,
+      "sha256": "c3e4e223bba95271b8fb6c48345d38f70ca43282277c1c6f04f2f7d545b0dd3f"
+    },
+    "repair_attempts": {
+      "rows": 4,
+      "sha256": "9f89a7f3a516b8ac2071edd9f9420cda6e45b68324ae37bb4844d1014ae176a5"
+    },
+    "source_materials": {
+      "rows": 3,
+      "sha256": "a156a9d4d09931b3bde1d238e8600b8168f7d57b4f025e8928e3285b44e6b44d"
+    },
+    "student_records": {
+      "rows": 54,
+      "sha256": "449f3dbd6455fdcf82d1c92ce3662965e43cc985cf038adfe6a3b2effedb3ba4"
+    },
+    "supplement_recipients": {
+      "rows": 1,
+      "sha256": "17c131283bfbd2996e340734f419c4fbf9f6fc4d26eb6daa876d9302fab54f9d"
+    },
+    "supplemental_instructions": {
+      "rows": 1,
+      "sha256": "ab401f690ac56d99de7eabc37d119d85e51e3752ba5cb69549d6d480dce12b90"
+    },
+    "support_issue_events": {
+      "rows": 2,
+      "sha256": "bac822bfbf6b58c0fc4c0b0f0645eda483ea578edcbd245be35701aba7e338a2"
+    },
+    "support_issues": {
+      "rows": 2,
+      "sha256": "be6e162aec24ae6a28378f28f127349e35e4c43ea4cb914516636ce195433d1c"
+    },
+    "teaching_cases": {
+      "rows": 4,
+      "sha256": "b7e38316f4d0a2762312ddc83a297ea19c800fe73c72c8b6b269fc96a1a82705"
+    },
+    "teaching_group_plans": {
+      "rows": 2,
+      "sha256": "aa147d857b02215224f898ad513788f2e9a8dee186d3460fd71b0dd05c31bd7d"
+    },
+    "wrong_questions": {
+      "rows": 10,
+      "sha256": "643e824c1dbef9694f6eddc2d45aa220b36f826d18e6c813e27aef26ee4ce5aa"
+    }
+  },
+  "oldTableRowsPreserved": true,
+  "addedTables": [
+    "case_bookmarks"
+  ],
+  "uploadManifestUnchanged": true,
+  "uploadFiles": 6,
+  "restart": {
+    "running": true,
+    "created": true,
+    "pid": 3921174
+  },
+  "health": {
+    "status": "ok",
+    "database": "ok"
+  },
+  "qmxLoginAndPlatform": {
+    "login": 200,
+    "role": "student",
+    "platform": 200
+  },
+  "noExistingLearningOrVersionRowsRewritten": true
+}

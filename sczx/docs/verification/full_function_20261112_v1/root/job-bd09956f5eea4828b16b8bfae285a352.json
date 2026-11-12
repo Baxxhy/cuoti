@@ -1,0 +1,157 @@
+{
+  "id": "job-bd09956f5eea4828b16b8bfae285a352",
+  "input": {
+    "scope": {
+      "taskId": "task-ad711ff024993eb7dde251057273e819",
+      "classId": "class-demo",
+      "lessonId": "lesson-equation",
+      "studentId": "account-student-demo",
+      "questionId": null,
+      "knowledgeIds": [
+        "kp-equality"
+      ],
+      "lessonVersionId": "lessonversion-264838c6d0484b7396d0824592"
+    },
+    "prompt": "为什么等式两边都减去同一个负数仍然相等？请用5=5、c=-2说明。",
+    "blockId": "eq-add-sub",
+    "context": {
+      "block": {
+        "id": "eq-add-sub",
+        "type": "explanation",
+        "title": "同加、同减",
+        "content": "若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。"
+      },
+      "lesson": {
+        "id": "lesson-equation",
+        "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+        "grade": "七年级",
+        "title": "等式性质",
+        "versionId": "lessonversion-264838c6d0484b7396d0824592"
+      },
+      "question": null,
+      "knowledge": [
+        {
+          "id": "kp-equality",
+          "name": "等式性质"
+        }
+      ],
+      "observation": "两边都从5增加到6，所以仍然相等；只增加左边会不平衡。",
+      "prerequisites": [
+        {
+          "id": "kp-equal",
+          "name": "相等关系"
+        },
+        {
+          "id": "kp-expression",
+          "name": "算式含义"
+        }
+      ],
+      "teachingCases": [
+        {
+          "id": "case-balance",
+          "title": "天平与等式性质",
+          "source": "待补充核对的教学示例",
+          "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+          "version": 1,
+          "versionId": "version-7fa8928d127c48a09375037fd2e814b4",
+          "references": []
+        }
+      ],
+      "learningMemory": []
+    },
+    "history": [],
+    "guidance": true,
+    "ocrJobId": null,
+    "question": null,
+    "strategy": "hint",
+    "confirmed": false,
+    "_validation": {
+      "answer": "",
+      "equation": ""
+    },
+    "parentJobId": null,
+    "recognizedText": "",
+    "selectedStrategy": "hint",
+    "confirmedEquation": "",
+    "_requestFingerprint": "edbd8bdf0efa5b7675d284c59507fb264c6e0f6c8725415a960b6f836f281c1e"
+  },
+  "result": {
+    "hint": "想想减去负数在算式中相当于什么：把5和−2都减去−2，会分别得到什么？",
+    "steps": [
+      "相等关系表示两边数值相同；对两边做同一种运算，结果仍相同。",
+      "用5=5说明：两边都减去−2，左边是5−(−2)，右边也是5−(−2)。",
+      "减去负数等于加上它的相反数，因此两边都增加2，仍然相等。"
+    ],
+    "title": "同减负数仍相等",
+    "sources": [],
+    "question": "5−(−2)和5分别等于多少？",
+    "strategy": "hint",
+    "workflow": {
+      "nodes": [
+        "固定学习上下文",
+        "读取公开案例与一层前置知识",
+        "生成本轮指导",
+        "核验并等待学生回应"
+      ],
+      "elapsedMs": 10875,
+      "modelCalls": 1,
+      "contextChars": 1003,
+      "historyTurns": 0
+    },
+    "mathClaims": [
+      {
+        "left": "5-(-2)",
+        "right": "5+2"
+      },
+      {
+        "left": "5+2",
+        "right": "7"
+      },
+      {
+        "left": "5-(-2)",
+        "right": "5-(-2)"
+      }
+    ],
+    "needCoverage": {
+      "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+      "missing": [],
+      "required": []
+    },
+    "nextStrategy": "try",
+    "verification": {
+      "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+      "claims": [
+        {
+          "left": "5-(-2)",
+          "right": "5+2",
+          "method": "表达式等价",
+          "status": "verified"
+        },
+        {
+          "left": "5+2",
+          "right": "7",
+          "method": "表达式等价",
+          "status": "verified"
+        },
+        {
+          "left": "5-(-2)",
+          "right": "5-(-2)",
+          "method": "表达式等价",
+          "status": "verified"
+        }
+      ],
+      "status": "verified"
+    },
+    "prerequisites": [],
+    "conditionCheck": {
+      "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+      "issues": [],
+      "status": "no_known_issue",
+      "humanReviewRequired": true
+    },
+    "prerequisiteId": "kp-equal",
+    "representation": "symbolic",
+    "usedCaseVersionIds": []
+  },
+  "status": "succeeded"
+}

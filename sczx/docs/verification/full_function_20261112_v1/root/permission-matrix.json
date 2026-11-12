@@ -1,0 +1,413 @@
+{
+  "kind": "主代理对真实角色现有业务API的技术核对，非独立UI寻路",
+  "baseUrl": "http://127.0.0.1:8103",
+  "checks": [
+    {
+      "id": "P01",
+      "actor": "t2",
+      "method": "GET",
+      "path": "/api/teaching/classes/class-demo/tasks",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到可管理的班级。"
+      }
+    },
+    {
+      "id": "P02",
+      "actor": "t2",
+      "method": "GET",
+      "path": "/api/insights?classId=class-demo",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到可管理的班级。"
+      }
+    },
+    {
+      "id": "P03",
+      "actor": "t2",
+      "method": "GET",
+      "path": "/api/teaching/tasks/task-122289cddb442a5f08fdbec2188b4420",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到有权限的学习任务。"
+      }
+    },
+    {
+      "id": "P04",
+      "actor": "t2",
+      "method": "PUT",
+      "path": "/api/teaching/classes/class-demo",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到可管理的班级。"
+      }
+    },
+    {
+      "id": "P05",
+      "actor": "t2",
+      "method": "GET",
+      "path": "/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到本人的考试。"
+      }
+    },
+    {
+      "id": "P06",
+      "actor": "t2",
+      "method": "GET",
+      "path": "/api/live/live-bbb98ba909f241fa9df02bbebc0852b6",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到有权限的课堂。"
+      }
+    },
+    {
+      "id": "P07",
+      "actor": "t2",
+      "method": "GET",
+      "path": "/api/memory?studentId=account-student-demo&classId=class-demo",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有当前班级学生的学习记忆权限。"
+      }
+    },
+    {
+      "id": "P08",
+      "actor": "outsider",
+      "method": "GET",
+      "path": "/api/teaching/tasks/task-122289cddb442a5f08fdbec2188b4420",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到有权限的学习任务。"
+      }
+    },
+    {
+      "id": "P09",
+      "actor": "outsider",
+      "method": "GET",
+      "path": "/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到本人的考试。"
+      }
+    },
+    {
+      "id": "P10",
+      "actor": "outsider",
+      "method": "GET",
+      "path": "/api/live/live-bbb98ba909f241fa9df02bbebc0852b6",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到有权限的课堂。"
+      }
+    },
+    {
+      "id": "P11",
+      "actor": "outsider",
+      "method": "GET",
+      "path": "/api/wrongs/wrong-4dfbae05a4914cc0b4f01a746aeb6188",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到有权限的错题。"
+      }
+    },
+    {
+      "id": "P12",
+      "actor": "outsider",
+      "method": "GET",
+      "path": "/api/equation-tools/record-b7b977e2ac9a4a058bb5904d7dd1432f/0",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到有权限的学习任务。"
+      }
+    },
+    {
+      "id": "P13",
+      "actor": "outsider",
+      "method": "GET",
+      "path": "/api/memory?studentId=account-student-demo",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到本人的学习记忆。"
+      }
+    },
+    {
+      "id": "P14",
+      "actor": "outsider",
+      "method": "GET",
+      "path": "/api/ai/jobs/job-5874ff81edeb4fdab9814f918be0621b",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到此运行任务。"
+      }
+    },
+    {
+      "id": "P15",
+      "actor": "t2",
+      "method": "POST",
+      "path": "/api/support/issue-3c5865cbf8bb4cd7a0e9bab463792f22/events",
+      "http": 404,
+      "expected": 404,
+      "status": "通过",
+      "result": {
+        "detail": "没有找到有权限的问题。"
+      }
+    },
+    {
+      "id": "P16",
+      "actor": "s1",
+      "method": "GET",
+      "path": "/api/accounts",
+      "http": 403,
+      "expected": 403,
+      "status": "通过",
+      "result": {
+        "detail": "当前账号没有此操作权限。"
+      }
+    },
+    {
+      "id": "P17",
+      "actor": "s1",
+      "method": "POST",
+      "path": "/api/classrooms",
+      "http": 403,
+      "expected": 403,
+      "status": "通过",
+      "result": {
+        "detail": "当前账号没有此操作权限。"
+      }
+    },
+    {
+      "id": "P18",
+      "actor": "s1",
+      "method": "POST",
+      "path": "/api/legacy-import",
+      "http": 403,
+      "expected": 403,
+      "status": "通过",
+      "result": {
+        "detail": "当前账号没有此操作权限。"
+      }
+    },
+    {
+      "id": "P19",
+      "actor": "s1",
+      "method": "PUT",
+      "path": "/api/curriculum/knowledge",
+      "http": 403,
+      "expected": 403,
+      "status": "通过",
+      "result": {
+        "detail": "此操作需要管理账号。"
+      }
+    },
+    {
+      "id": "P20",
+      "actor": "s1",
+      "method": "POST",
+      "path": "/api/records/task-775c048ebf6b444ea958823308713629/attempts",
+      "http": 409,
+      "expected": 409,
+      "status": "通过",
+      "result": {
+        "detail": "考试与课堂原始作答仅可回看，请从错题订正继续练习。"
+      }
+    },
+    {
+      "id": "P21",
+      "actor": "s1",
+      "method": "POST",
+      "path": "/api/records/task-2cbedcd2b9464a2cb83aacde500af1ed/attempts",
+      "http": 409,
+      "expected": 409,
+      "status": "通过",
+      "result": {
+        "detail": "考试与课堂原始作答仅可回看，请从错题订正继续练习。"
+      }
+    },
+    {
+      "id": "P22",
+      "actor": "t1",
+      "method": "PUT",
+      "path": "/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7/submissions/sub-8fbb45d5732b479aa1d224fc7baf393f/grades",
+      "http": 409,
+      "expected": 409,
+      "status": "通过",
+      "result": {
+        "detail": "成绩已发布，当前版本不可改写。"
+      }
+    },
+    {
+      "id": "P23",
+      "actor": "s1",
+      "method": "PUT",
+      "path": "/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7/answers",
+      "http": 409,
+      "expected": 409,
+      "status": "通过",
+      "result": {
+        "detail": "已提交答卷只读。"
+      }
+    },
+    {
+      "id": "P24",
+      "actor": "t1",
+      "method": "POST",
+      "path": "/api/live/live-bbb98ba909f241fa9df02bbebc0852b6/push",
+      "http": 409,
+      "expected": 409,
+      "status": "通过",
+      "result": {
+        "detail": "内容已更新，请重新读取；本次输入保留。"
+      }
+    },
+    {
+      "id": "P25",
+      "actor": "s1",
+      "method": "PUT",
+      "path": "/api/live/live-bbb98ba909f241fa9df02bbebc0852b6/activities/act-2d73444a059e40a686c74b308595c169/answer",
+      "http": 409,
+      "expected": 409,
+      "status": "通过",
+      "result": {
+        "detail": "正式回答已提交，只读保留。"
+      }
+    },
+    {
+      "id": "P26",
+      "actor": "t1",
+      "method": "POST",
+      "path": "/api/teaching/tasks/task-122289cddb442a5f08fdbec2188b4420/assign",
+      "http": 422,
+      "expected": 422,
+      "status": "通过",
+      "result": {
+        "detail": "请选择要补发的学生。"
+      }
+    },
+    {
+      "id": "P27",
+      "actor": "t1",
+      "method": "POST",
+      "path": "/api/teaching/tasks/task-122289cddb442a5f08fdbec2188b4420/assign",
+      "http": 422,
+      "expected": 422,
+      "status": "通过",
+      "result": {
+        "detail": "只能补发给当前班级成员。"
+      }
+    },
+    {
+      "id": "P28",
+      "actor": "admin",
+      "method": "POST",
+      "path": "/api/legacy-import",
+      "http": 422,
+      "expected": 422,
+      "status": "通过",
+      "result": {
+        "detail": "请先确认历史演示数据导入。"
+      }
+    },
+    {
+      "id": "P29",
+      "actor": "s2",
+      "method": "GET",
+      "path": "/api/platform",
+      "http": 200,
+      "status": "通过",
+      "scope": "检查普通课程任务题目投影，无answer/hint/rubric等教师字段",
+      "taskId": "task-122289cddb442a5f08fdbec2188b4420",
+      "questionKeys": [
+        [
+          "id",
+          "kind",
+          "type",
+          "prompt",
+          "equation",
+          "knowledgeIds"
+        ],
+        [
+          "id",
+          "kind",
+          "type",
+          "prompt",
+          "equation",
+          "knowledgeIds"
+        ]
+      ]
+    },
+    {
+      "id": "P30",
+      "actor": "s2",
+      "method": "GET",
+      "path": "/api/offline/packages/task-122289cddb442a5f08fdbec2188b4420",
+      "http": 200,
+      "status": "通过",
+      "scope": "离线内容白名单检查；不读取原本机草稿",
+      "questionKeys": [
+        [
+          "id",
+          "kind",
+          "prompt",
+          "equation",
+          "knowledgeIds",
+          "index"
+        ],
+        [
+          "id",
+          "kind",
+          "prompt",
+          "equation",
+          "knowledgeIds",
+          "index"
+        ]
+      ]
+    }
+  ],
+  "immutableBaseline": {
+    "tables": {
+      "case_versions": 4,
+      "lesson_versions": 8,
+      "paper_versions": 2,
+      "question_versions": 4,
+      "attempts": 17,
+      "repair_attempts": 4
+    },
+    "sha256": "7ca6c50a3f3efebcb43ae054990301cb7139f4ccb066df6e9805eaeeca68c6ec",
+    "allOriginalRowsUnchanged": true
+  },
+  "statusCounts": {
+    "通过": 30,
+    "失败": 0
+  }
+}

@@ -20,7 +20,7 @@ import LessonPreview from "@/components/LessonPreview.vue";
 import CaseArticle from "@/components/CaseArticle.vue";
 import { modelApi } from "@/services/models.js";
 import { curriculumApi } from "@/services/curriculum.js";
-import {useRoute} from "vue-router";
+import {useRoute,useRouter} from "vue-router";
 const store = useLearning(),
   notify = inject("notify");
 
@@ -38,9 +38,10 @@ const activeQuestion=computed(()=>store.data.lessonDraft.questions?.find(q=>q.id
 watch(()=>store.data.lesson?.id,()=>{selectedActivity.value='';selectedQuestion.value=''});
 
 const details=computed(()=>store.data.lessonDraft.planningDetails|| (store.data.lessonDraft.planningDetails={}));
-const route=useRoute();
+const route=useRoute(),router=useRouter();
 watch(()=>route.query.class,id=>{if(id&&store.data.classrooms.some(c=>c.id===id))store.data.publishClassId=String(id)},{immediate:true});const templateBusy=ref(false),lessonSwitchBusy=ref(false);
 watch(()=>route.query.lesson,async id=>{
+ if(!id&&store.data.lesson?.id){router.replace({query:{...route.query,lesson:store.data.lesson.id}});return}
  if(id&&id!==store.data.lesson?.id){
   lessonSwitchBusy.value=true;
   try{await store.selectLesson(String(id))}catch(e){notify(e.message)}finally{lessonSwitchBusy.value=false}
@@ -114,7 +115,6 @@ async function publish() {
   <div class="teacher-workbar">
     <AppTabs v-model="workTab" :items="[{value:'edit',label:'教学活动'},{value:'settings',label:'课时设置'},{value:'questions',label:'练习题'},{value:'preview',label:'学生预览'},{value:'references',label:'资料与版本'}]"/>
     <div class="teacher-workbar-actions">
-      <RouteButton :route="'agent?lesson='+store.data.lesson?.id" secondary><WandSparkles :size="15"/>AI 备课</RouteButton>
       <Button variant="ghost" @click="moreOpen=true">更多操作</Button>
     </div>
   </div>

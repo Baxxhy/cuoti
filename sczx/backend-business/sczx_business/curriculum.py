@@ -41,7 +41,7 @@ def lesson_json(db,lesson,admin=False):
     content=db.get(LessonContent,lesson.id)
     published=published_lesson(db,lesson.id)
     versions=db.scalars(select(LessonVersion).where(LessonVersion.lesson_id==lesson.id).order_by(LessonVersion.number.desc())).all() if admin else []
-    return {'id':lesson.id,'title':lesson.title,'courseId':lesson.course_id,'unitId':lesson.unit_id,'position':lesson.position,'status':content.status if content else 'draft','published':published if admin else student_content(published) if published else None,**({'draft':content.draft if content else None,'reviewed':content.reviewed if content else False,'versions':[{'id':v.id,'number':v.number} for v in versions]} if admin else {})}
+    return {'id':lesson.id,'title':lesson.title,'courseId':lesson.course_id,'unitId':lesson.unit_id,'position':lesson.position,'status':content.status if content else 'draft','published':published if admin else student_content(published) if published else None,**({'draft':content.draft if content else None,'lastPublished':published_lesson(db,lesson.id,versions[0].id) if versions and not published else None,'reviewed':content.reviewed if content else False,'versions':[{'id':v.id,'number':v.number} for v in versions]} if admin else {})}
 
 
 def content_errors(db,data):

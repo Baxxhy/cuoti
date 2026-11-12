@@ -1,0 +1,13 @@
+{
+  "purpose": "A28第二次真实QA崩溃模拟协调标识，非业务状态夹具",
+  "jobId": "job-7a6f1a75d79e4780982bd41727fdf552",
+  "observedRequestAt": "2026-11-12T06:08:41.000Z",
+  "requestStatus": 201,
+  "observedInitialStatus": "queued",
+  "capability": "text",
+  "networkN": 83,
+  "writtenAt": "2026-11-12T06:08:42.200937+00:00",
+  "phase": "提交后等待根确认恢复，不再操作",
+  "firstJobId": "job-8c88019351bc4f83af67e8589a9f847a",
+  "firstExperiment": "优雅退出等待SSE时先成功，不计失败恢复"
+}

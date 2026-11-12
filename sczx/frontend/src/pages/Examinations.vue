@@ -1,4 +1,5 @@
 <script setup>
+import {examExplanation} from "@/lib/exam-explanation.js";
 import{computed,ref,watch,onBeforeUnmount}from'vue';import{useRoute,useRouter}from'vue-router';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Plus,ArrowUp,ArrowDown,Trash2,ClipboardList,Check,FileDown,RefreshCw}from'lucide-vue-next';import draggable from'vuedraggable';import{deadlineText}from'@/services/teaching.js';import MathExpression from'@/components/MathExpression.vue';import SpeechConfirm from'@/components/SpeechConfirm.vue';import SpeechReader from'@/components/SpeechReader.vue';
 const route=useRoute(),router=useRouter(),store=useLearning(),teacher=computed(()=>store.user?.role==='teacher');const tab=computed(()=>route.path==='/exam-bank'?'bank':route.path==='/exam-papers'?'papers':'exams');
 const error=ref(''),busy=ref(false),loading=ref(true),notice=ref(''),bank=ref([]),papers=ref([]),exams=ref([]),units=ref([]),knowledge=ref([]),classes=ref([]),lessons=ref([]),lessonId=ref(''),activePaper=ref(null),exam=ref(null),questionOpen=ref(false),questionEdit=ref(null),question=ref({}),entries=ref([]),paperTitle=ref(''),unitId=ref('unit-equation'),filters=ref({knowledgeIds:['kp-equality'],count:3,total:30,kind:'',difficulty:''}),missing=ref(''),candidate=ref(null),candidateInput=ref({knowledgeIds:['kp-equality'],kind:'calculation',difficulty:'easy'}),publishOpen=ref(false),room=ref(''),starts=ref(''),ends=ref(''),minutes=ref(30),studentPreview=ref(false),answers=ref({}),activeQuestion=ref(0),selectedSubmission=ref(''),marks=ref({}),countdown=ref('');let generation=0,timer;
@@ -39,7 +40,7 @@ async function saveAnswers(submit=false){if(submit&&!confirm('提交后答卷只
 async function nextAnswerQuestion(){if(pending.value)await saveAnswers(false);if(!error.value&&activeQuestion.value<exam.value.paper.entries.length-1)activeQuestion.value++}
 function answerModel(){const key=current.value?.versionId;if(key&&!answers.value[key])answers.value[key]={answer:'',reason:''};return key?answers.value[key]:{answer:'',reason:''}}
 watch(current,()=>answerModel());
-async function mark(){await run(async()=>{await call('/'+exam.value.id+'/submissions/'+sub.value.id+'/grades','PUT',{revision:sub.value.revision,grades:Object.fromEntries(Object.entries(marks.value).map(([k,v])=>[k,{score:Number(v.score),comment:v.comment}]))});await load();notice.value='批阅已保存，原答案及程序核验保留'})}
+async function mark(){await run(async()=>{const entry=gradingEntry.value,record=sub.value;if(!entry||!record)return;const value=marks.value[entry.versionId];const score=Number(value.score);if(!Number.isInteger(score)||score<0||score>entry.points||!value.comment.trim())throw Error('请填写本题范围内的分数和批阅依据。');const saved=await call('/'+exam.value.id+'/submissions/'+record.id+'/grades','PUT',{revision:record.revision,grades:{[entry.versionId]:{score,comment:value.comment}}});if(sub.value===record)Object.assign(record,saved);notice.value='本题批阅已保存，原答案及程序核验保留'})}
 async function release(){if(!confirm('成绩发布后学生将看到答案和讲评，当前版本不能再修改。确认发布？'))return;await run(async()=>{await call('/'+exam.value.id+'/results','POST',{confirmed:true});await load();notice.value='成绩与讲评已发布'})}
 function exportFile(mode){const q=selectedSubmission.value?'?submissionId='+encodeURIComponent(selectedSubmission.value):'';window.open('/api/exams/'+exam.value.id+'/export/'+mode+q,'_blank','noopener')}
 timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submittedAt){countdown.value='';return}const n=Math.max(0,Math.floor((new Date(s.deadline)-Date.now())/1000));countdown.value=Math.floor(n/60)+':'+String(n%60).padStart(2,'0')},1000);onBeforeUnmount(()=>{clearInterval(timer);generation++});
@@ -77,7 +78,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </div>
 <details>
 <summary>参考解答与版本</summary>
-<p>{{q.draft.answer}} · {{q.draft.explanation}}</p>
+<p>{{q.draft.answer}} · {{examExplanation(q.draft)}}</p>
 <p>方程核验：{{statusLabel(q.draft.referenceVerification?.status)}}</p>
 <p v-for="v in q.versions" :key="v.id">v{{v.number}} · {{v.data.prompt}} · {{v.data.answer}} · {{v.id}}</p>
 </details>
@@ -186,7 +187,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <p>解释：{{sub.answers[e.versionId]?.reason||'未填写'}}</p>
 </div>
 <Status>{{statusLabel(sub.automatic[e.versionId]?.status)}}</Status>
-<details class="teacher-grade-reference"><summary>参考解答</summary><p>{{e.question.answer}}</p><p>{{e.question.explanation}}</p></details>
+<details class="teacher-grade-reference"><summary>参考解答</summary><p>{{e.question.answer}}</p><p>{{examExplanation(e.question)}}</p></details>
 <div class="exam-form-grid">
 <label>得分<Input v-if="marks[e.versionId]" v-model="marks[e.versionId].score" type="number" min="0" :max="e.points" :readonly="!!exam.resultsAt"/>
 </label>
@@ -239,7 +240,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <h3>{{exam.submission.grades[current.versionId]?.score}} / {{current.points}} 分</h3>
 <p>{{exam.submission.grades[current.versionId]?.comment}}</p>
 <p>参考：{{current.question.answer}}</p>
-<p>{{current.question.explanation}}</p>
+<p class="preserve-lines">{{examExplanation(current.question)}}</p>
 </div>
 <RouteButton route="wrong" secondary>去错题帮订正</RouteButton>
 <Button variant="ghost" @click="exportFile('learning')">导出学习记录</Button>

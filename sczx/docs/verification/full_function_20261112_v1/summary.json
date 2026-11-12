@@ -1,0 +1,16 @@
+{
+  "total": 169,
+  "attempted": 169,
+  "passed": 167,
+  "failed": 0,
+  "blocked": 2,
+  "untested": 0,
+  "placementIssuesBaseline": 5,
+  "placementIssuesFinal": 0,
+  "confirmedRedundantEntries": 1,
+  "mergedEntries": 1,
+  "repairs": 20,
+  "retainedIssues": 3,
+  "retainedProductP3": 1,
+  "deviceExceptions": 2
+}

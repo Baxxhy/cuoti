@@ -1,0 +1,107 @@
+[
+  {
+    "file": "r1-AD11-disabled-history-v1.png",
+    "bytes": 64721,
+    "sha256": "d9d88360fb452d7bb88a99b16ccbde061196d4b06310de67556fef95235ce613"
+  },
+  {
+    "file": "r1-AD11-draft-refresh.png",
+    "bytes": 108622,
+    "sha256": "0a5f8eac028c08c9d79294b0f6dbad90dc1a9426af6a7acebdb2cf54d8e14619"
+  },
+  {
+    "file": "r1-actions.jsonl",
+    "bytes": 34546,
+    "sha256": "be588af15b26c630942a077e37ca38c776dd82818133cae07fbb055418e44cec"
+  },
+  {
+    "file": "r1-AD11-revision-still-withdrawn.png",
+    "bytes": 110722,
+    "sha256": "20cff505ca795d43f986e73f8e4f3716630ef6749eac16c151af3b72826945a3"
+  },
+  {
+    "file": "retest-r1.md",
+    "bytes": 8430,
+    "sha256": "ef8c9d4f16d14296b390e461f1a8b6dd6e5ee72ff0ceb4deac915b93c4c9e2e0"
+  },
+  {
+    "file": "r1-AD17-source-reference.png",
+    "bytes": 95248,
+    "sha256": "239d2f122402e8e2c306d9a324071dea9006e3325adae8bf38aa7801325c09ca"
+  },
+  {
+    "file": "r1-models-refresh-section.png",
+    "bytes": 45278,
+    "sha256": "c94b44213a5b99522d04ca9c63f3b42329eb63ce0243351eea3685c2103a9906"
+  },
+  {
+    "file": "retest-r1.json",
+    "bytes": 14616,
+    "sha256": "15cb8254ec3c8c6a01210bf1a5abe26dabf128b962c1ca38817237e9e8d03cab"
+  },
+  {
+    "file": "r1-AD17-result-version-run.png",
+    "bytes": 95248,
+    "sha256": "239d2f122402e8e2c306d9a324071dea9006e3325adae8bf38aa7801325c09ca"
+  },
+  {
+    "file": "r1-AD16-ocr-run-restored.png",
+    "bytes": 86926,
+    "sha256": "e5230685bf081660178a0263501b95c73331ba86d29f8b37dc6e6180dbf16a8f"
+  },
+  {
+    "file": "r1-failure-widget-no-failures.png",
+    "bytes": 86914,
+    "sha256": "81f0127f8d7b26571d615102858dbb3612f22a53ac2c1d0b922e43d1c56db02e"
+  },
+  {
+    "file": "r1-accounts-return-refresh.png",
+    "bytes": 72238,
+    "sha256": "0d58808c9fc12b28052c9b590fa162f22f0bdaa27bd4c70cce661eb3b39db9df"
+  },
+  {
+    "file": "r1-accounts-refresh-section.png",
+    "bytes": 72238,
+    "sha256": "0d58808c9fc12b28052c9b590fa162f22f0bdaa27bd4c70cce661eb3b39db9df"
+  },
+  {
+    "file": "r1-models-leave-return.png",
+    "bytes": 45278,
+    "sha256": "c94b44213a5b99522d04ca9c63f3b42329eb63ce0243351eea3685c2103a9906"
+  },
+  {
+    "file": "r1-AD10-empty-name-hint.png",
+    "bytes": 111611,
+    "sha256": "15e029a135b9d69b46c28ae4f0e0242d1943c1ba0c40912a2938bc4cb16f779a"
+  },
+  {
+    "file": "r1-AD11-disabled-details.png",
+    "bytes": 78597,
+    "sha256": "7ec6d8c72961c9b122545640b95b3a74529049238594b7d9e1250a9ec4da59c1"
+  },
+  {
+    "file": "r1-network.jsonl",
+    "bytes": 649817,
+    "sha256": "9e950d34b261b9ce7be1b50b5b6a614d028d9b2e5986f144852b6f218b1b7ae9"
+  },
+  {
+    "file": "r1-AD15-text-run-restored.png",
+    "bytes": 79935,
+    "sha256": "39a9b92e759ddeee82329917254f92e4f1e7c2bde49a6dda7aa1bfac0bdca712"
+  },
+  {
+    "file": "r1-accounts-leave-return.png",
+    "bytes": 72238,
+    "sha256": "0d58808c9fc12b28052c9b590fa162f22f0bdaa27bd4c70cce661eb3b39db9df"
+  },
+  {
+    "file": "r1-AD17-retrieval-restored.png",
+    "bytes": 71226,
+    "sha256": "b34ce0e1a10d18d990874076ab77eb8e20d358c1cd2d18ad06adfefdbf2c2adf"
+  },
+  {
+    "file": "r1-help-explicit-queue.png",
+    "bytes": 47573,
+    "sha256": "a025ecfe3d4fa8cff8bb82467db364d5003592e6ec32cdc10795c79c6c1fe692"
+  }
+]

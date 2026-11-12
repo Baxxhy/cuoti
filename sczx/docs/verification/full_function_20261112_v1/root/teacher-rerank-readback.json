@@ -1,0 +1,26 @@
+{
+  "jobId": "job-131132785854414a8a830b930f171451",
+  "source": "教师UI实际发起，根只读MySQL核对，不代替角色寻路",
+  "status": "succeeded",
+  "rerankApplied": true,
+  "model": "gpt-6-luna",
+  "query": "等式",
+  "filters": {
+    "grade": "",
+    "subject": "",
+    "scenario": "other",
+    "knowledgeIds": []
+  },
+  "items": [
+    {
+      "id": "case-39e79087817f47218264ed6506c303f9",
+      "versionId": "version-96c75b97037c4cc8b0bae23c9412505c",
+      "title": "合成工程验收 E01 等式平衡与移项"
+    },
+    {
+      "id": "case-balance",
+      "versionId": "version-7fa8928d127c48a09375037fd2e814b4",
+      "title": "天平与等式性质"
+    }
+  ]
+}

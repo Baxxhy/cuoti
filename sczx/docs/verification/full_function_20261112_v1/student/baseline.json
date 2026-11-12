@@ -1,0 +1,1684 @@
+{
+  "schema": "sczx-student-visible-ui-audit/v1",
+  "date": "2026-11-12",
+  "round": "baseline",
+  "frontend_baseline_reported_by_parent": "f6b4b5d / CxoPIcBj",
+  "initial_url": "http://127.0.0.1:8103/",
+  "mode": "真实可见UI、合成新增、被动网络观察；没有业务API脚本、Vue/服务端状态改写、源码读取或Git提交",
+  "cases": [
+    {
+      "id": "S01",
+      "business_goal": "新会话登录、错误提示、退出重登和账号隔离",
+      "first_reaction": "首页登录",
+      "visible_path": "根URL→登录；学生3退出图标→正常重登",
+      "actual_result": "空登录被原生required拦截；错误密码401显示账号或密码不正确；主学生正常200进入首页；学生3退出后回登录并重登，自己的两条合成错题原答与已复测状态保留。",
+      "status": "已验证",
+      "profile": "main",
+      "evidence": [
+        "shots/S01-login-error.png",
+        "student3/shots/S01-student3-relogin.png",
+        "student3/shots/S12-relogin-retains-wrong-original-status.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "空/错误密码/正常/退出重登已做；锁号、会话自然过期未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/auth/me",
+          "status": 401,
+          "count": 2,
+          "first_time": "2026-11-12T02:35:27.120Z",
+          "evidence": "network.jsonl:1"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/auth/login",
+          "status": 401,
+          "count": 1,
+          "first_time": "2026-11-12T02:36:02.479Z",
+          "evidence": "network.jsonl:3"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/auth/login",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:36:03.492Z",
+          "evidence": "network.jsonl:4"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/auth/me",
+          "status": 200,
+          "count": 13,
+          "first_time": "2026-11-12T02:37:49.989Z",
+          "evidence": "network.jsonl:16"
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "business_goal": "找到任务、继续已有进度、待完成/已提交筛选",
+      "first_reaction": "首页开始学习/已提交",
+      "visible_path": "学习→开始学习/进入任务；待完成↔已提交",
+      "actual_result": "初始5个真实任务；已提交为正确空状态；新任务发布后出现；原等式课从学习中继续，任务状态与已提交卡片变化。",
+      "status": "已验证",
+      "profile": "main",
+      "evidence": [
+        "shots/S02-home.png",
+        "shots/S02-filter-realclick.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "刷新回读已做；服务端异常/强制超时/越权/过期撤回未注入。",
+      "entry_assessment": "任务主入口易找；已反馈卡片的进入任务仍回学习页，反馈须另经更多操作→学习结果，可增加直接查看反馈。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 30,
+          "first_time": "2026-11-12T02:36:03.807Z",
+          "evidence": "network.jsonl:5"
+        },
+        {
+          "profile": "main",
+          "method": "PUT",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 143,
+          "first_time": "2026-11-12T02:36:03.971Z",
+          "evidence": "network.jsonl:6"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/teaching/dashboard",
+          "status": 200,
+          "count": 9,
+          "first_time": "2026-11-12T02:36:04.267Z",
+          "evidence": "network.jsonl:8"
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "business_goal": "搜索页面/任务并阅读通知",
+      "first_reaction": "搜索页面与任务/消息铃铛",
+      "visible_path": "全局搜索→输入等式性质；查看消息→标为已读",
+      "actual_result": "搜索缩至对应任务；消息标读未读数5→4，API200且重开保留。",
+      "status": "已验证",
+      "profile": "main",
+      "evidence": [
+        "shots/S03-search-lesson.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "搜索实际命中、消息标读、刷新回读已做；消息撤回未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/teaching/messages",
+          "status": 200,
+          "count": 10,
+          "first_time": "2026-11-12T02:36:04.433Z",
+          "evidence": "network.jsonl:10"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/teaching/messages/:id/read",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:37:16.588Z",
+          "evidence": "network.jsonl:12"
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "business_goal": "课程目录、预览与进入正确课时",
+      "first_reaction": "课程→预览",
+      "visible_path": "学习→课程→等式性质预览→关闭→进入学习",
+      "actual_result": "课程初始5课目录；预览等式性质1/8；进入对应课时，课时题目/活动一致；新短课目录2块与发布内容一致。 学生3后加入双班仍未获历史任务，课程目录可预览新短课1/2，但无分配学习入口。",
+      "status": "已验证",
+      "profile": "main/student3",
+      "evidence": [
+        "shots/S05-balance.png",
+        "shots/E02-feedback-and-supplement.png",
+        "student3/shots/S04-student3-catalog.png",
+        "student3/shots/S04-new-version-preview.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "预览关闭/进入、课程正确内容已做；课程停用/版本回滚由管理员代理覆盖。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "预览仅阅读，进入学习保存进度；两者应维持清楚区别。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/curriculum/courses",
+          "status": 200,
+          "count": 12,
+          "first_time": "2026-11-12T02:37:18.575Z",
+          "evidence": "network.jsonl:14"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/units/unit-equation/progress",
+          "status": 200,
+          "count": 3,
+          "first_time": "2026-11-12T02:37:18.661Z",
+          "evidence": "network.jsonl:15"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/units/unit-8c1745431e5c43b8abad81db5f43f75d/progress",
+          "status": 200,
+          "count": 5,
+          "first_time": "2026-11-12T03:01:18.131Z",
+          "evidence": "network.jsonl:350"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/curriculum/courses",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:59:57.919Z",
+          "evidence": "student3/network.jsonl:200"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/units/unit-8c1745431e5c43b8abad81db5f43f75d/progress",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T03:10:13.481Z",
+          "evidence": "student3/network.jsonl:240"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/units/unit-equation/progress",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T03:10:13.480Z",
+          "evidence": "student3/network.jsonl:241"
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "business_goal": "分步学习、天平活动、解释门槛、保存恢复",
+      "first_reaction": "进入学习→下一步",
+      "visible_path": "等式性质1/8→天平2/8→双边互动+解释→3/8→更多操作保存→刷新",
+      "actual_result": "空解释时下一步禁用；单边加1显示不等，重置与双边加1正确；填写观察后可前进；刷新保持第3步，显式保存提示已保存；中途学习结果指出5项待完成并返回缺项。",
+      "status": "已验证",
+      "profile": "main",
+      "evidence": [
+        "shots/S05-balance.png",
+        "shots/S05-missing-submit.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "空解释、活动重置、刷新、保存和缺项路径已做；该种子8步课未提交，E02新短课完整提交。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 30,
+          "first_time": "2026-11-12T02:36:03.807Z",
+          "evidence": "network.jsonl:5"
+        },
+        {
+          "profile": "main",
+          "method": "PUT",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 143,
+          "first_time": "2026-11-12T02:36:03.971Z",
+          "evidence": "network.jsonl:6"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/records/:id/attempts",
+          "status": 201,
+          "count": 6,
+          "first_time": "2026-11-12T02:44:43.957Z",
+          "evidence": "network.jsonl:103"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/records/:id/submit",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:48:56.837Z",
+          "evidence": "network.jsonl:169"
+        }
+      ]
+    },
+    {
+      "id": "S06",
+      "business_goal": "真实AI指导、分步、策略、追问、停止",
+      "first_reaction": "问一问",
+      "visible_path": "等式性质第3步→问一问→给我提示→发送→一步步看→回答后继续；新一轮举例→停止；新短课当前题→补基础/换种讲法→发送→分步展开",
+      "actual_result": "真实hint模型返回并可展开3步；追问成功纠正前例混用5与-2；举例请求可停止，job取消且输入恢复；OCR确认补主提示后真实example返回。内容质量有一条已上报风险。 补基础和换种讲法也得到本题真实模型返回；同除以2/除数非零说明可见，分步展开可读，完整原文保存于ai-observed-results.json。",
+      "status": "功能已验证，内容风险待核",
+      "profile": "main",
+      "evidence": [
+        "shots/S06-ai-real-return.png",
+        "shots/S06-stopped.png",
+        "shots/S07-ocr-confirm-blocked.png",
+        "shots/S06-foundation-return.png",
+        "shots/S06-foundation-steps.png",
+        "shots/S06-rephrase-return.png",
+        "ai-observed-results.json"
+      ],
+      "write_readback": "通过可见提问按钮发起真实模型请求；保留首次提示、回应纠正、停止与各策略完整结果和jobId。至少一次结果有语义错误，未用核验标记代替人工内容检查。",
+      "abnormal_recovery": "空发送校验、真实结果、追问、新一轮、停止后再发成功已做；模型服务超时/503未注入。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:39:03.502Z",
+          "evidence": "network.jsonl:37"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/ai/jobs",
+          "status": 201,
+          "count": 7,
+          "first_time": "2026-11-12T02:39:15.017Z",
+          "evidence": "network.jsonl:41"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id",
+          "status": 200,
+          "count": 19,
+          "first_time": "2026-11-12T02:39:16.316Z",
+          "evidence": "network.jsonl:42"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id/events",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:39:16.393Z",
+          "evidence": "network.jsonl:43"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/ai/jobs/:id/stop",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:41:06.989Z",
+          "evidence": "network.jsonl:65"
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "business_goal": "上传题图、真实OCR、人工修订与确认",
+      "first_reaction": "问一问→选择题图",
+      "visible_path": "上传合成problem-1112.png→识别题图→编辑确认题目→确认获取指导",
+      "actual_result": "真实OCR识别3x+5=20及原答x=6；修订确认文字非空但主提问框为空时按钮报请写下问题；填主提问后成功发真实指导。",
+      "status": "缺陷：OCR确认依赖空主提示",
+      "profile": "main",
+      "evidence": [
+        "shots/S07-ocr-confirm-revised.png",
+        "shots/S07-ocr-confirm-blocked.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "真实识别/人工修订/失败恢复已做；模糊图、多题图、OCR服务错误未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:39:03.502Z",
+          "evidence": "network.jsonl:37"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/ai/jobs",
+          "status": 201,
+          "count": 7,
+          "first_time": "2026-11-12T02:39:15.017Z",
+          "evidence": "network.jsonl:41"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id",
+          "status": 200,
+          "count": 19,
+          "first_time": "2026-11-12T02:39:16.316Z",
+          "evidence": "network.jsonl:42"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id/events",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:39:16.393Z",
+          "evidence": "network.jsonl:43"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/ai/jobs/:id/stop",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:41:06.989Z",
+          "evidence": "network.jsonl:65"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/files",
+          "status": 201,
+          "count": 1,
+          "first_time": "2026-11-12T02:41:40.075Z",
+          "evidence": "network.jsonl:68"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/files/:id",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:41:49.396Z",
+          "evidence": "network.jsonl:75"
+        }
+      ]
+    },
+    {
+      "id": "S08",
+      "business_goal": "方程变形、非法除数、解释保存恢复",
+      "first_reaction": "独立练习→试着变形",
+      "visible_path": "x-2=5→两边同加2→执行→保存解释→刷新重开；同除0",
+      "actual_result": "变形得到x=7；表达式、历史步骤与解释刷新恢复；除以0被拦截为乘数/除数必须非零。",
+      "status": "已验证",
+      "profile": "main",
+      "evidence": [
+        "shots/S08-transform-restored.png",
+        "shots/S08-divide-zero.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "非法0除数和刷新恢复已做；撤销/重置及乘法分支未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/equation-tools/:id/1",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:47:13.004Z",
+          "evidence": "network.jsonl:154"
+        },
+        {
+          "profile": "main",
+          "method": "PUT",
+          "endpoint": "/api/equation-tools/:id/1",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:47:26.661Z",
+          "evidence": "network.jsonl:155"
+        },
+        {
+          "profile": "main",
+          "method": "PUT",
+          "endpoint": "/api/equation-tools/:id/1",
+          "status": 422,
+          "count": 1,
+          "first_time": "2026-11-12T02:48:08.894Z",
+          "evidence": "network.jsonl:162"
+        }
+      ]
+    },
+    {
+      "id": "S09",
+      "business_goal": "随堂/独立作答、解释、核验、帮助按题隔离",
+      "first_reaction": "新任务进入→提交作答",
+      "visible_path": "E02第1题新错答x7→提示→订正x4→第2题独立x7；学生2分层第1题提示→第2题独立",
+      "actual_result": "原答x7→帮助后x4与独立题x7均保存；随堂需答案和解释才可提交；新题不沿用提示/帮助标记，学生2分层第2题显示独立作答。",
+      "status": "已验证",
+      "profile": "main/student2-online",
+      "evidence": [
+        "shots/E02-original-wrong.png",
+        "shots/E02-assisted-correction.png",
+        "student2-online/shots/S09-new-question-help-reset.png",
+        "student2-online/shots/S09-question2-independent.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "空字段门槛、错答、帮助确认、订正、刷新、新题帮助重置已做。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "短课第2随堂题与独立练习用同一道题和已答内容；可标明同题复查，独立新题应另给新题。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 30,
+          "first_time": "2026-11-12T02:36:03.807Z",
+          "evidence": "network.jsonl:5"
+        },
+        {
+          "profile": "main",
+          "method": "PUT",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 143,
+          "first_time": "2026-11-12T02:36:03.971Z",
+          "evidence": "network.jsonl:6"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/curriculum/tasks/:id/questions/0/hint",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:44:43.299Z",
+          "evidence": "network.jsonl:99"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/records/:id/attempts",
+          "status": 201,
+          "count": 6,
+          "first_time": "2026-11-12T02:44:43.957Z",
+          "evidence": "network.jsonl:103"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 12,
+          "first_time": "2026-11-12T02:48:08.792Z",
+          "evidence": "student2-online/network.jsonl:3"
+        },
+        {
+          "profile": "student2-online",
+          "method": "PUT",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 56,
+          "first_time": "2026-11-12T02:48:08.855Z",
+          "evidence": "student2-online/network.jsonl:4"
+        },
+        {
+          "profile": "student2-online",
+          "method": "POST",
+          "endpoint": "/api/records/:id/attempts",
+          "status": 201,
+          "count": 3,
+          "first_time": "2026-11-12T02:48:10.574Z",
+          "evidence": "student2-online/network.jsonl:14"
+        },
+        {
+          "profile": "student2-online",
+          "method": "POST",
+          "endpoint": "/api/curriculum/tasks/:id/questions/0/hint",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:59:18.828Z",
+          "evidence": "student2-online/network.jsonl:158"
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "business_goal": "错题文字/原图/裁剪/OCR录入及搜索来源原答",
+      "first_reaction": "错题与复习→录入错题",
+      "visible_path": "文字录入2x+7=19、原答x13；另上传图→精确调整裁剪→保存→OCR→核对确认→保存；搜索待订正",
+      "actual_result": "新增两条合成错题；文字原答x13和原过程保持；图OCR后修订题干保留x6。原图1000x460与裁剪1000x253分别显示；搜索、待订正/已复测筛选正确。学生2考试错题回看x8和原解释。",
+      "status": "已验证",
+      "profile": "student3/student2-online",
+      "evidence": [
+        "student3/shots/S10-wrong-original-text.png",
+        "student3/shots/S10-crop-ocr-confirmed.png",
+        "student3/shots/S10-raw-crop-preserved.png",
+        "student3/shots/S10-search-filter-original.png",
+        "student2-online/shots/S10-exam-wrong-source.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "空保存禁用、OCR未确认保存禁用、上传裁剪、人工确认、刷新/重登原答保持已做；非图片/过大文件未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/wrongs/options",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T03:02:23.311Z",
+          "evidence": "student2-online/network.jsonl:188"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/wrongs",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T03:02:23.311Z",
+          "evidence": "student2-online/network.jsonl:189"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/wrongs/:id",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T03:03:54.960Z",
+          "evidence": "student2-online/network.jsonl:192"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/wrongs",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:44:10.457Z",
+          "evidence": "student3/network.jsonl:54"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/wrongs/options",
+          "status": 200,
+          "count": 21,
+          "first_time": "2026-11-12T02:44:10.457Z",
+          "evidence": "student3/network.jsonl:55"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/wrongs",
+          "status": 201,
+          "count": 2,
+          "first_time": "2026-11-12T02:44:31.552Z",
+          "evidence": "student3/network.jsonl:56"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/wrongs/:id",
+          "status": 200,
+          "count": 14,
+          "first_time": "2026-11-12T02:44:31.873Z",
+          "evidence": "student3/network.jsonl:61"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/ai/jobs",
+          "status": 201,
+          "count": 4,
+          "first_time": "2026-11-12T02:44:57.563Z",
+          "evidence": "student3/network.jsonl:62"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id",
+          "status": 200,
+          "count": 12,
+          "first_time": "2026-11-12T02:44:57.638Z",
+          "evidence": "student3/network.jsonl:63"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id/events",
+          "status": 200,
+          "count": 4,
+          "first_time": "2026-11-12T02:44:57.652Z",
+          "evidence": "student3/network.jsonl:64"
+        },
+        {
+          "profile": "student3",
+          "method": "PUT",
+          "endpoint": "/api/wrongs/:id",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:45:43.975Z",
+          "evidence": "student3/network.jsonl:71"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/wrongs/:id/attempts",
+          "status": 201,
+          "count": 2,
+          "first_time": "2026-11-12T02:46:37.312Z",
+          "evidence": "student3/network.jsonl:78"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/files",
+          "status": 201,
+          "count": 2,
+          "first_time": "2026-11-12T02:48:56.192Z",
+          "evidence": "student3/network.jsonl:103"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/files/:id",
+          "status": 200,
+          "count": 5,
+          "first_time": "2026-11-12T02:49:12.763Z",
+          "evidence": "student3/network.jsonl:104"
+        }
+      ]
+    },
+    {
+      "id": "S11",
+      "business_goal": "真实错因分析、指导、人工确认分类",
+      "first_reaction": "错题→分析这道题",
+      "visible_path": "文字新错题→分析→开始订正→三步→原来的作答→打开错因分类→确认→保存",
+      "actual_result": "真实分析定位符号处理错误，给同减7/同除2/代回三步；可见折叠区中选符号处理错误并勾确认、保存，刷新重登保持分类，原答x13不变。图题计算错误也从可见分类区保存。",
+      "status": "已验证",
+      "profile": "student3",
+      "evidence": [
+        "student3/shots/S11-cause-analysis-real.png",
+        "student3/shots/S11-cause-visible-saved-reread.png",
+        "student3/shots/S12-relogin-retains-wrong-original-status.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "空订正回应按钮禁用、真实生成、分类确认回读已做；重新分析未执行。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/wrongs/options",
+          "status": 200,
+          "count": 21,
+          "first_time": "2026-11-12T02:44:10.457Z",
+          "evidence": "student3/network.jsonl:55"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/wrongs/:id",
+          "status": 200,
+          "count": 14,
+          "first_time": "2026-11-12T02:44:31.873Z",
+          "evidence": "student3/network.jsonl:61"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/ai/jobs",
+          "status": 201,
+          "count": 4,
+          "first_time": "2026-11-12T02:44:57.563Z",
+          "evidence": "student3/network.jsonl:62"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id",
+          "status": 200,
+          "count": 12,
+          "first_time": "2026-11-12T02:44:57.638Z",
+          "evidence": "student3/network.jsonl:63"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id/events",
+          "status": 200,
+          "count": 4,
+          "first_time": "2026-11-12T02:44:57.652Z",
+          "evidence": "student3/network.jsonl:64"
+        },
+        {
+          "profile": "student3",
+          "method": "PUT",
+          "endpoint": "/api/wrongs/:id",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:45:43.975Z",
+          "evidence": "student3/network.jsonl:71"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/wrongs/:id/attempts",
+          "status": 201,
+          "count": 2,
+          "first_time": "2026-11-12T02:46:37.312Z",
+          "evidence": "student3/network.jsonl:78"
+        }
+      ]
+    },
+    {
+      "id": "S12",
+      "business_goal": "真实变式及独立复测，保留原答",
+      "first_reaction": "订正完成→练一道类似的题",
+      "visible_path": "写订正说明→真实生成3x+5=20→答x5→独立再试一题4x+6=22→答x4",
+      "actual_result": "变式正确后仍需独立复测；独立题正确后状态已复测；刷新和重登仍已复测；原错题x13未改。",
+      "status": "已验证",
+      "profile": "student3",
+      "evidence": [
+        "student3/shots/E03-independent-retest.png",
+        "student3/shots/S12-relogin-retains-wrong-original-status.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "空答案禁用、两次实际提交、刷新重开已做；复测求助后重新独立题分支未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/wrongs/options",
+          "status": 200,
+          "count": 21,
+          "first_time": "2026-11-12T02:44:10.457Z",
+          "evidence": "student3/network.jsonl:55"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/wrongs/:id",
+          "status": 200,
+          "count": 14,
+          "first_time": "2026-11-12T02:44:31.873Z",
+          "evidence": "student3/network.jsonl:61"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/ai/jobs",
+          "status": 201,
+          "count": 4,
+          "first_time": "2026-11-12T02:44:57.563Z",
+          "evidence": "student3/network.jsonl:62"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id",
+          "status": 200,
+          "count": 12,
+          "first_time": "2026-11-12T02:44:57.638Z",
+          "evidence": "student3/network.jsonl:63"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/ai/jobs/:id/events",
+          "status": 200,
+          "count": 4,
+          "first_time": "2026-11-12T02:44:57.652Z",
+          "evidence": "student3/network.jsonl:64"
+        },
+        {
+          "profile": "student3",
+          "method": "PUT",
+          "endpoint": "/api/wrongs/:id",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:45:43.975Z",
+          "evidence": "student3/network.jsonl:71"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/wrongs/:id/attempts",
+          "status": 201,
+          "count": 2,
+          "first_time": "2026-11-12T02:46:37.312Z",
+          "evidence": "student3/network.jsonl:78"
+        }
+      ]
+    },
+    {
+      "id": "S13",
+      "business_goal": "学习记忆知识点证据、复习与纠正",
+      "first_reaction": "错题与复习→复习建议",
+      "visible_path": "复习建议→简单方程→展开证据3x+5=20→提出纠正→理由→确认保存",
+      "actual_result": "待复习建议、关联知识点和未关联证据都可看；证据显示原答/过程/待确认错因；理由为空保存禁用，填理由后保存出现修订记录并刷新保留。",
+      "status": "已验证",
+      "profile": "student3",
+      "evidence": [
+        "student3/shots/S13-memory-evidence.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "证据展开、空理由禁用、保存修订、刷新已做；稍后延迟/完整复习队列未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/memory",
+          "status": 200,
+          "count": 13,
+          "first_time": "2026-11-12T02:38:32.072Z",
+          "evidence": "student3/network.jsonl:8"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/memory/changes",
+          "status": 201,
+          "count": 1,
+          "first_time": "2026-11-12T02:54:21.155Z",
+          "evidence": "student3/network.jsonl:125"
+        }
+      ]
+    },
+    {
+      "id": "S14",
+      "business_goal": "学习记录查看原答/多次作答并导出",
+      "first_reaction": "学习记录→展开任务",
+      "visible_path": "学习记录→点击新短课标题→三次作答→导出记录",
+      "actual_result": "显示x7需订正、x4正确、x7正确三条原始作答；docx实际下载35965字节，ZIP结构有效，document.xml含新任务、原错答与订正答案。",
+      "status": "已验证",
+      "profile": "main",
+      "evidence": [
+        "shots/S14-records-original-history.png",
+        "downloads/learning-records.docx"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "实际导出内容和刷新记录已做；导出失败/超大记录未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 30,
+          "first_time": "2026-11-12T02:36:03.807Z",
+          "evidence": "network.jsonl:5"
+        },
+        {
+          "profile": "main",
+          "method": "PUT",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 143,
+          "first_time": "2026-11-12T02:36:03.971Z",
+          "evidence": "network.jsonl:6"
+        }
+      ]
+    },
+    {
+      "id": "S15",
+      "business_goal": "邀请码加入、双班切换与固定分配隔离",
+      "first_reaction": "班级→输入邀请码",
+      "visible_path": "学生3空码/非法码→隔离班有效码→一班有效码→各班查看学习任务→全部班级",
+      "actual_result": "非法码明确无效，空码按钮禁用；两班加入刷新保持；两个班筛选标签/路由由点击生成且可返回全部；后来加入一班未自动得到既有固定任务/考试。",
+      "status": "已验证",
+      "profile": "student3",
+      "evidence": [
+        "student3/shots/S15-class-joined.png",
+        "student3/shots/S15-class-one-filter-no-old-task.png",
+        "student3/shots/S15-class-two-filter.png",
+        "student3/shots/S15-student3-no-old-exam.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "空/非法/有效、刷新/重登、班级切换和隔离已做；邀请码过期/重复加入未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/teaching/dashboard",
+          "status": 200,
+          "count": 9,
+          "first_time": "2026-11-12T02:38:31.997Z",
+          "evidence": "student3/network.jsonl:5"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/teaching/classes",
+          "status": 200,
+          "count": 9,
+          "first_time": "2026-11-12T02:38:32.616Z",
+          "evidence": "student3/network.jsonl:10"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/teaching/join",
+          "status": 422,
+          "count": 1,
+          "first_time": "2026-11-12T02:39:03.509Z",
+          "evidence": "student3/network.jsonl:11"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/teaching/join",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:39:04.246Z",
+          "evidence": "student3/network.jsonl:12"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/exams",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:59:57.919Z",
+          "evidence": "student3/network.jsonl:197"
+        }
+      ]
+    },
+    {
+      "id": "S16",
+      "business_goal": "考试开始、草稿恢复、原生确认交卷、成绩讲评",
+      "first_reaction": "班级→考试",
+      "visible_path": "两学生进入本轮新考试→开始→保存草稿→主刷新→原生确认→等待→成绩发布后回看",
+      "actual_result": "主学生取消空答交卷确认后继续；两人保存并实际交卷，原生提示提交后只读；成绩发布后主30/30、学生2 18/30，分题讲评和自己的原答只读。存在解析字面\\n及候选题文案问题。",
+      "status": "业务完成，解析展示缺陷",
+      "profile": "main/student2-online",
+      "evidence": [
+        "shots/E04-draft-restored.png",
+        "shots/E04-main-submitted.png",
+        "shots/E04-main-score30.png",
+        "student2-online/shots/E04-student2-score.png",
+        "student2-online/shots/E04-student2-wrong-comment.png",
+        "dialogs.jsonl"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "草稿刷新、交卷取消/确认、只读、发布后回看已做；自然超时自动交卷/并发交卷/考试撤回未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/exams",
+          "status": 200,
+          "count": 6,
+          "first_time": "2026-11-12T02:52:40.099Z",
+          "evidence": "network.jsonl:180"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/exams/:id",
+          "status": 200,
+          "count": 4,
+          "first_time": "2026-11-12T02:52:40.706Z",
+          "evidence": "network.jsonl:188"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/exams/:id/start",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:52:59.294Z",
+          "evidence": "network.jsonl:189"
+        },
+        {
+          "profile": "main",
+          "method": "PUT",
+          "endpoint": "/api/exams/:id/answers",
+          "status": 200,
+          "count": 3,
+          "first_time": "2026-11-12T02:53:34.428Z",
+          "evidence": "network.jsonl:190"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/exams/:id/submit",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:54:42.680Z",
+          "evidence": "network.jsonl:202"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/exams",
+          "status": 200,
+          "count": 5,
+          "first_time": "2026-11-12T02:51:58.604Z",
+          "evidence": "student2-online/network.jsonl:28"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/exams/:id",
+          "status": 200,
+          "count": 3,
+          "first_time": "2026-11-12T02:52:39.600Z",
+          "evidence": "student2-online/network.jsonl:37"
+        },
+        {
+          "profile": "student2-online",
+          "method": "POST",
+          "endpoint": "/api/exams/:id/start",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:52:59.298Z",
+          "evidence": "student2-online/network.jsonl:38"
+        },
+        {
+          "profile": "student2-online",
+          "method": "PUT",
+          "endpoint": "/api/exams/:id/answers",
+          "status": 200,
+          "count": 3,
+          "first_time": "2026-11-12T02:53:22.394Z",
+          "evidence": "student2-online/network.jsonl:39"
+        },
+        {
+          "profile": "student2-online",
+          "method": "POST",
+          "endpoint": "/api/exams/:id/submit",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:54:18.870Z",
+          "evidence": "student2-online/network.jsonl:42"
+        }
+      ]
+    },
+    {
+      "id": "S17",
+      "business_goal": "实时课堂双学生加入、回答、讲评",
+      "first_reaction": "班级→课堂",
+      "visible_path": "本轮课堂→进入→加入→当前题→主草稿刷新→两人提交→教师讲评",
+      "actual_result": "两人实际加入，主x4正确/学生2x7错误，提交后原答只读；双方收到讲评且刷新保留。教师UI反馈2参加2提交1对1错。归档入口出现空编辑框，另列观察。 从归档空框继续“完成练习”后可回到已交结果、原讲评和作答记录，因此不判为原答丢失。",
+      "status": "已验证",
+      "profile": "main/student2-online",
+      "evidence": [
+        "shots/E05-main-draft-restored.png",
+        "shots/E05-main-submitted.png",
+        "shots/E05-main-comment-persisted.png",
+        "student2-online/shots/E05-student2-submitted.png",
+        "student2-online/shots/E05-student2-comment.png",
+        "student2-online/shots/E05-student2-archive.png",
+        "student2-online/shots/E05-archive-result-feedback.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "未加入无提交按钮、空答禁用、保存刷新、提交后只读、讲评轮询已做；断线重连/撤题未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/live",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:54:44.629Z",
+          "evidence": "network.jsonl:213"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/live/:id",
+          "status": 200,
+          "count": 79,
+          "first_time": "2026-11-12T02:55:02.945Z",
+          "evidence": "network.jsonl:224"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/live/:id/join",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:55:13.306Z",
+          "evidence": "network.jsonl:229"
+        },
+        {
+          "profile": "main",
+          "method": "PUT",
+          "endpoint": "/api/live/:id/activities/:id/answer",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:55:41.905Z",
+          "evidence": "network.jsonl:240"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/live",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:54:42.949Z",
+          "evidence": "student2-online/network.jsonl:53"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/live/:id",
+          "status": 200,
+          "count": 78,
+          "first_time": "2026-11-12T02:55:02.881Z",
+          "evidence": "student2-online/network.jsonl:64"
+        },
+        {
+          "profile": "student2-online",
+          "method": "POST",
+          "endpoint": "/api/live/:id/join",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:55:13.307Z",
+          "evidence": "student2-online/network.jsonl:69"
+        },
+        {
+          "profile": "student2-online",
+          "method": "PUT",
+          "endpoint": "/api/live/:id/activities/:id/answer",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:55:41.906Z",
+          "evidence": "student2-online/network.jsonl:81"
+        }
+      ]
+    },
+    {
+      "id": "S18",
+      "business_goal": "学生反馈创建、回复、追加、状态、失败重试",
+      "first_reaction": "帮助与反馈",
+      "visible_path": "提交问题→无任务学习疑问被拦→改系统问题→新增→追加→管理员回复→学生回看追加→管理员关闭",
+      "actual_result": "系统反馈创建201并刷新保留；两次学生追加和管理员回复/关闭完整保留；已回复与已关闭筛选正常；断网刷新显示连接失败+重新读取，联网重读恢复。",
+      "status": "已验证",
+      "profile": "student3",
+      "evidence": [
+        "student3/shots/S18-feedback-added.png",
+        "student3/shots/S18-feedback-offline-error.png",
+        "student3/shots/S18-admin-reply-read.png",
+        "student3/shots/S18-feedback-closed.png",
+        "student3/shots/S18-closed-history.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "空文本禁用、无任务422校验、创建/追加/状态/断网恢复/重登已做；服务端500/提交超时未测。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/support",
+          "status": 200,
+          "count": 14,
+          "first_time": "2026-11-12T02:40:32.646Z",
+          "evidence": "student3/network.jsonl:26"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/ai/failures",
+          "status": 200,
+          "count": 8,
+          "first_time": "2026-11-12T02:40:32.646Z",
+          "evidence": "student3/network.jsonl:27"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/support",
+          "status": 422,
+          "count": 1,
+          "first_time": "2026-11-12T02:41:03.049Z",
+          "evidence": "student3/network.jsonl:28"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/support",
+          "status": 201,
+          "count": 1,
+          "first_time": "2026-11-12T02:41:33.088Z",
+          "evidence": "student3/network.jsonl:35"
+        },
+        {
+          "profile": "student3",
+          "method": "POST",
+          "endpoint": "/api/support/:id/events",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:42:12.458Z",
+          "evidence": "student3/network.jsonl:43"
+        },
+        {
+          "profile": "student3",
+          "method": "GET",
+          "endpoint": "/api/support",
+          "status": "net::ERR_INTERNET_DISCONNECTED",
+          "count": 1,
+          "first_time": "2026-11-12T02:43:41.632Z",
+          "evidence": "student3/network.jsonl:51"
+        }
+      ]
+    },
+    {
+      "id": "S19",
+      "business_goal": "教师补充、分层任务与提交/学情回看",
+      "first_reaction": "学习任务/本课资料与进度",
+      "visible_path": "主巩固/学生2证据不足→分别两题→完成→交老师确认；原短课结果→资料→补充→开始处理→提交说明",
+      "actual_result": "两账号只显示各自组任务，均两题真实提交并已交老师；教师刷新确认两组各1/1已交。主补充文本提交且刷新保留，教师确认1/1完成及完整文字。教师后续反馈按钮请求405，学生刷新仍无该反馈；该子功能失败。学生2未看到主学生的定向补充；两人均看到新增取消安排的已取消状态且无处理按钮。",
+      "status": "分层与补充提交已验证；后续反馈失败",
+      "profile": "main/student2-online",
+      "evidence": [
+        "shots/S19-main-groups-isolated.png",
+        "shots/S19-main-group-submitted.png",
+        "shots/S19-supplement-persisted.png",
+        "student2-online/shots/S19-student2-groups-isolated.png",
+        "student2-online/shots/S19-student2-group-submitted.png",
+        "shots/S19-followup-feedback-read.png",
+        "student2-online/shots/S19-student2-no-targeted-supplement.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "分组/定向隔离、空说明禁用、提交、刷新、撤销后只读已做；教师后续反馈405由教师真实按钮与网络复核，学生端无反馈可读。",
+      "entry_assessment": "分层新任务在首页易找；补充藏在结果页资料抽屉，首页提醒可提供直接到待处理补充。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/teaching/dashboard",
+          "status": 200,
+          "count": 9,
+          "first_time": "2026-11-12T02:36:04.267Z",
+          "evidence": "network.jsonl:8"
+        },
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/teaching/tasks/:id/supplements",
+          "status": 200,
+          "count": 8,
+          "first_time": "2026-11-12T02:43:49.953Z",
+          "evidence": "network.jsonl:89"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/records/:id/attempts",
+          "status": 201,
+          "count": 6,
+          "first_time": "2026-11-12T02:44:43.957Z",
+          "evidence": "network.jsonl:103"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/records/:id/submit",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:48:56.837Z",
+          "evidence": "network.jsonl:169"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/teaching/supplements/:id/start",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T03:02:20.828Z",
+          "evidence": "network.jsonl:354"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/teaching/supplements/:id/submit",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T03:02:49.005Z",
+          "evidence": "network.jsonl:356"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/teaching/dashboard",
+          "status": 200,
+          "count": 7,
+          "first_time": "2026-11-12T02:48:09.103Z",
+          "evidence": "student2-online/network.jsonl:5"
+        },
+        {
+          "profile": "student2-online",
+          "method": "POST",
+          "endpoint": "/api/records/:id/attempts",
+          "status": 201,
+          "count": 3,
+          "first_time": "2026-11-12T02:48:10.574Z",
+          "evidence": "student2-online/network.jsonl:14"
+        },
+        {
+          "profile": "student2-online",
+          "method": "POST",
+          "endpoint": "/api/records/:id/submit",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:59:59.013Z",
+          "evidence": "student2-online/network.jsonl:172"
+        },
+        {
+          "profile": "student2-online",
+          "method": "GET",
+          "endpoint": "/api/teaching/tasks/:id/supplements",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T03:08:26.241Z",
+          "evidence": "student2-online/network.jsonl:210"
+        }
+      ]
+    },
+    {
+      "id": "S20",
+      "business_goal": "实际离线下载、加密、断网草稿、关闭重开、冲突同步、导出删除锁定",
+      "first_reaction": "离线学习",
+      "visible_path": "学生2首次设口令→下载本轮课→真断网→阅读/草稿→关浏览器→断网重开→解锁恢复→另一profile在线新编辑→联网同步→冲突确认→导出副本→删除下载→锁定退出",
+      "actual_result": "下载和断网学习真实完成；重复保存同题仍2条待同步（位置+答案）；断网重开恢复x4和解释；并发在线x5导致409，但仅比较位置的确认随后自动把答案x4写掉x5，未逐题比较，属于缺陷；再次同步0条未重复写。副本591字节含x4；本机下载删除/锁定退出原生后果确认均已实际执行，仅自己新档案。",
+      "status": "缺陷：同任务其他草稿绕过比较",
+      "profile": "student2/student2-online",
+      "evidence": [
+        "student2/shots/E06-downloaded.png",
+        "student2/shots/E06-offline-draft.png",
+        "student2/shots/E06-reopened-offline-restored.png",
+        "student2/shots/E06-conflict-compare.png",
+        "student2/shots/E06-conflict-after-progress.png",
+        "student2-online/shots/E06-online-newer.png",
+        "student2-online/shots/E06-online-after-uncompared-answer.png",
+        "student2/shots/E06-download-deleted.png",
+        "student2/shots/E06-locked-exited.png",
+        "student2/dialogs.jsonl"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "实际断网/关闭重开/并发/409/本机确认/重复同步/导出/删除/锁定退出已做；坏口令/本机空间不足未测。",
+      "entry_assessment": "离线学习独立入口清楚；冲突列表默认折叠、位置比较无内容，必须提升可见性并逐草稿比较。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": [
+        {
+          "profile": "student2",
+          "method": "GET",
+          "endpoint": "/api/offline/tasks",
+          "status": 200,
+          "count": 5,
+          "first_time": "2026-11-12T02:42:20.046Z",
+          "evidence": "student2/network.jsonl:70"
+        },
+        {
+          "profile": "student2",
+          "method": "GET",
+          "endpoint": "/api/offline/packages/:id",
+          "status": 200,
+          "count": 1,
+          "first_time": "2026-11-12T02:45:32.997Z",
+          "evidence": "student2/network.jsonl:91"
+        },
+        {
+          "profile": "student2",
+          "method": "POST",
+          "endpoint": "/api/offline/sync",
+          "status": 409,
+          "count": 1,
+          "first_time": "2026-11-12T02:48:40.116Z",
+          "evidence": "student2/network.jsonl:100"
+        },
+        {
+          "profile": "student2",
+          "method": "POST",
+          "endpoint": "/api/offline/sync",
+          "status": 200,
+          "count": 2,
+          "first_time": "2026-11-12T02:50:08.622Z",
+          "evidence": "student2/network.jsonl:104"
+        },
+        {
+          "profile": "student2",
+          "method": "GET",
+          "endpoint": "/api/offline/tasks",
+          "status": 401,
+          "count": 1,
+          "first_time": "2026-11-12T02:54:17.824Z",
+          "evidence": "student2/network.jsonl:110"
+        }
+      ]
+    },
+    {
+      "id": "S21",
+      "business_goal": "原生语音输入/朗读及文字回退",
+      "first_reaction": "语音输入/朗读",
+      "visible_path": "学习助手语音输入；考试成绩朗读",
+      "actual_result": "ASR实际报未获得麦克风权限，请继续文字输入；TTS准备后报设备没有可用中文朗读声音，请继续阅读文字。文字输入和后续业务可继续，语音本身未通过。",
+      "status": "环境限制，语音未通过",
+      "profile": "main/student2-online",
+      "evidence": [
+        "shots/S21-asr-observed.png",
+        "student2-online/shots/S21-tts-after.png"
+      ],
+      "write_readback": "仅真实UI操作；对应网络记录见该profile network.jsonl，截图与动作/DOM快照可互相对照。",
+      "abnormal_recovery": "真实设备/权限失败提示与文字回退已做；没有伪造设备或成功转写。",
+      "entry_assessment": "入口与当前业务目标对应。",
+      "duplicate_recommendation": "保留一个主入口；次入口保持相同目标和文案。",
+      "observed_apis": []
+    },
+    {
+      "id": "S22",
+      "business_goal": "新学习问题绑定当前任务并回看教师回复",
+      "first_reaction": "帮助与反馈→提交问题",
+      "visible_path": "提交问题→学习疑问→可见任务选择新短课→填写新合成问题→提交→刷新→已回复问题→对话记录",
+      "actual_result": "新问题实际POST 201，绑定本轮新短课；教师真实回复后刷新显示已回复，打开看见两边同减3保持差为0、同除非零2得到x=4及代入检验的完整文字，历史问题未修改。",
+      "status": "已验证",
+      "profile": "main",
+      "evidence": [
+        "shots/S18-new-learning-issue-for-teacher.png",
+        "shots/S22-learning-issue-current.png",
+        "shots/S22-learning-issue-teacher-reply.png"
+      ],
+      "write_readback": "创建后刷新重读；教师回复后再次刷新并打开原问题读取完整回复，状态为已回复。",
+      "abnormal_recovery": "无任务学习疑问422已在S18验证；新问题创建/回复回读完成；本问题追加和关闭未重复测试，系统问题的追加/关闭见S18。",
+      "entry_assessment": "学习疑问需要在通用帮助页重新选任务；课内直接携带任务上下文会更清楚。",
+      "duplicate_recommendation": "问题与回复保留统一入口，课内求助可复用并预选当前任务。",
+      "observed_apis": [
+        {
+          "profile": "main",
+          "method": "GET",
+          "endpoint": "/api/support",
+          "status": 200,
+          "count": 6,
+          "first_time": "2026-11-12T03:10:26.422Z",
+          "evidence": "network.jsonl:415"
+        },
+        {
+          "profile": "main",
+          "method": "POST",
+          "endpoint": "/api/support",
+          "status": 201,
+          "count": 1,
+          "first_time": "2026-11-12T03:11:02.569Z",
+          "evidence": "network.jsonl:416"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "STU-F01",
+      "priority": "P1",
+      "case": "S20",
+      "title": "确认学习位置冲突会连带覆盖未比较的题目草稿",
+      "steps": [
+        "离线记录位置与x4答案",
+        "第二profile在线保存较新x5",
+        "联网同步返回位置409，serverDrafts已含x5",
+        "仅学习位置卡片显示比较且本机空/服务器暂无",
+        "确认本机位置后，位置和答案连续200，答案自动换用新revision",
+        "在线刷新x5变x4"
+      ],
+      "evidence": [
+        "student2/network.jsonl",
+        "student2/shots/E06-conflict-compare.png",
+        "student2-online/shots/E06-online-newer.png",
+        "student2-online/shots/E06-online-after-uncompared-answer.png"
+      ],
+      "expected": "每条尚未确认的题答案须比较；确认一条位置不能代确认所有答案。"
+    },
+    {
+      "id": "STU-F02",
+      "priority": "P2",
+      "case": "S07",
+      "title": "OCR确认按钮仍要求另填主提问框",
+      "actual": "人工确认题干非空、数学式非空，点击确认题目并获取指导却报请写下问题，未创建新AI请求；填主提问后才成功。",
+      "evidence": [
+        "shots/S07-ocr-confirm-revised.png",
+        "shots/S07-ocr-confirm-blocked.png",
+        "network.jsonl"
+      ]
+    },
+    {
+      "id": "STU-F03",
+      "priority": "P2-content",
+      "case": "S06",
+      "title": "真实AI例子混用原等式两边且仍显示核验标记",
+      "jobId": "job-bd09956f5eea4828b16b8bfae285a352",
+      "prompt": "为什么等式两边都减去同一个负数仍然相等？请用5=5、c=-2说明。",
+      "actual": "提示写把5和−2都减去−2，追问5−(−2)和5分别等于多少；同时列出的等式已核对。",
+      "continuationJob": "job-63dd35ae4e684fdcbc5cc1939d1b8849",
+      "followup": "学生追问后真实模型纠正为两边都7；未改旧结果。",
+      "evidence": [
+        "shots/S06-ai-real-return.png",
+        "network.jsonl",
+        "snapshots.jsonl"
+      ]
+    },
+    {
+      "id": "STU-F04",
+      "priority": "P2",
+      "case": "S16",
+      "title": "已发布考试解析出现字面换行符和候选题待审核文案",
+      "actual": "学生2第2题解析含字面\\n\\n分步解释及本题为待教师审核的候选题。",
+      "evidence": [
+        "student2-online/shots/E04-student2-wrong-comment.png",
+        "student2-online/network.jsonl"
+      ]
+    },
+    {
+      "id": "STU-O01",
+      "priority": "observation",
+      "case": "S17",
+      "title": "课堂归档的进入任务落到空答案独立练习",
+      "actual": "学生2课堂原答x7在实时页保留，已提交列表课堂记录进入后仅有上次作答状态，输入框为空。未在该入口再答，不能断言数据丢失。 继续完成练习后结果页仍显示已交、原讲评与作答记录，故这是入口展示问题，未断言数据丢失。",
+      "evidence": [
+        "student2-online/shots/E05-student2-archive.png",
+        "student2-online/shots/E05-archive-result-feedback.png"
+      ]
+    },
+    {
+      "id": "STU-F05",
+      "priority": "P2",
+      "case": "S19",
+      "title": "补充学习的教师后续反馈返回405，学生无法回看",
+      "actual": "学生完成补充并经教师确认1/1；教师点击发送后续反馈的POST /api/teaching/supplements/:id/students/:id/feedback返回405（教师代理真实网络复核）；学生刷新补充仍无后续反馈。",
+      "evidence": [
+        "shots/S19-followup-feedback-read.png",
+        "network.jsonl",
+        "教师代理/full_teacher基准报告中的405按钮/网络证据"
+      ],
+      "expected": "教师提交反馈应保存成功，学生刷新同一补充可以回看。",
+      "provenance": "学生端空反馈由本profile观察；405状态来自教师代理独立实测并已交主代理，非学生伪造请求。"
+    }
+  ],
+  "limits": [
+    "未全组合覆盖每个写操作的500、超时、权限过期/撤回和并发；已测异常逐项列出，不把未测记通过。",
+    "旧种子等式课只保存学习进度/新增作答，完整提交E02使用教师本轮新发布课。",
+    "初期helper曾把折叠details子元素列入DOM；相关无效动作剔除，错因确认通过实际打开折叠区重新完成。原始动作保留供审计。",
+    "ASR/TTS仅失败回退通过，音频采集/播放质量未通过。",
+    "本轮停止新增AI长请求；未将同一份接口成功返回、页面正常或主观评分当作全功能通过。无业务源码/API脚本读取和写入。"
+  ],
+  "pending": [
+    "R1新profile复测已上报缺陷及E06两profile逐条冲突；补充后续反馈405需教师端修复后重发、学生回看。"
+  ],
+  "artifacts": [
+    {
+      "profile": "main",
+      "network": "network.jsonl",
+      "actions": "actions.jsonl",
+      "snapshots": "snapshots.jsonl",
+      "network_events": 391,
+      "actions_count": 224,
+      "screenshots": 33
+    },
+    {
+      "profile": "student2",
+      "network": "student2/network.jsonl",
+      "actions": "student2/actions.jsonl",
+      "snapshots": "student2/snapshots.jsonl",
+      "network_events": 113,
+      "actions_count": 64,
+      "screenshots": 8
+    },
+    {
+      "profile": "student2-online",
+      "network": "student2-online/network.jsonl",
+      "actions": "student2-online/actions.jsonl",
+      "snapshots": "student2-online/snapshots.jsonl",
+      "network_events": 200,
+      "actions_count": 79,
+      "screenshots": 15
+    },
+    {
+      "profile": "student3",
+      "network": "student3/network.jsonl",
+      "actions": "student3/actions.jsonl",
+      "snapshots": "student3/snapshots.jsonl",
+      "network_events": 233,
+      "actions_count": 179,
+      "screenshots": 23
+    }
+  ],
+  "ai_results_file": "ai-observed-results.json",
+  "frozen_at_local": "2026-11-12 11:17 +08:00"
+}

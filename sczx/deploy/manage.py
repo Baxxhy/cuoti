@@ -132,9 +132,9 @@ def approval(config,action,target=None):
     if not (Path(a['backupPath'])/'release.json').is_file():raise RuntimeError('批准记录的完整备份不存在')
     if target and a.get('targetRevision')!=target:raise RuntimeError('批准记录的迁移目标不一致')
     if datetime.fromisoformat(a['expiresAt'].replace('Z','+00:00'))<=datetime.now(timezone.utc):raise RuntimeError('批准记录已过期')
-def quiescent(config):
+def quiescent(config,allow_interrupted_jobs=False):
     state=database_state(config);writers=process_writers(config)
-    if state['otherSessions'] or writers or state['activeModelJobs']:raise RuntimeError('存在其他连接/服务写入者或未结束模型任务；仅停止自己管理的进程不足以继续')
+    if state['otherSessions'] or writers or state['activeModelJobs'] and not allow_interrupted_jobs:raise RuntimeError('存在其他连接/服务写入者或未结束模型任务；仅停止自己管理的进程不足以继续')
 @contextlib.contextmanager
 def migration_lock(config):
     from sqlalchemy import text
@@ -236,7 +236,10 @@ def run(config,action,archive=None,output=None):
         if action=='start':approval(config,'start')
         else:active_release(config)
         start_checks(config)
-        if not info:quiescent(config)
+        # Startup marks orphaned running jobs failed and resumes queued jobs.
+        # A crashed worker must not prevent reaching that recovery code. Other
+        # sessions/writers still block startup; backup and migration stay strict.
+        if not info:quiescent(config,allow_interrupted_jobs=True)
         if action=='serve':
             os.chdir(ROOT/'backend-business')
             os.execvpe(config['SCZX_RELEASE_PYTHON'],serve_command(config),env_for(config))

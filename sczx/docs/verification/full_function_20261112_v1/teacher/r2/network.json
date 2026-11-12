@@ -1,0 +1,2539 @@
+[
+  {
+    "time": "2026-11-12T06:10:49.570Z",
+    "type": "request",
+    "id": "AF4C43CF4B94746DE9496A0A82D36940",
+    "url": "http://127.0.0.1:8103/",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:49.666Z",
+    "type": "response",
+    "id": "AF4C43CF4B94746DE9496A0A82D36940",
+    "url": "http://127.0.0.1:8103/",
+    "status": 200,
+    "mime": "text/html"
+  },
+  {
+    "time": "2026-11-12T06:10:49.687Z",
+    "type": "request",
+    "id": "3918411.2",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:49.688Z",
+    "type": "request",
+    "id": "3918411.3",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:49.704Z",
+    "type": "response",
+    "id": "3918411.3",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "status": 200,
+    "mime": "text/css"
+  },
+  {
+    "time": "2026-11-12T06:10:49.785Z",
+    "type": "response",
+    "id": "3918411.2",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "status": 200,
+    "mime": "application/javascript"
+  },
+  {
+    "time": "2026-11-12T06:10:49.991Z",
+    "type": "request",
+    "id": "3918411.16",
+    "url": "http://127.0.0.1:8103/favicon.ico",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:49.991Z",
+    "type": "response",
+    "id": "3918411.16",
+    "url": "http://127.0.0.1:8103/favicon.ico",
+    "status": 404,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:10:50.027Z",
+    "type": "request",
+    "id": "3918411.26",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:50.033Z",
+    "type": "response",
+    "id": "3918411.26",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "status": 401,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:10:50.089Z",
+    "type": "request",
+    "id": "3918411.10",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:50.099Z",
+    "type": "response",
+    "id": "3918411.10",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "status": 200,
+    "mime": "font/woff2"
+  },
+  {
+    "time": "2026-11-12T06:10:57.345Z",
+    "type": "request",
+    "id": "3918411.27",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "method": "POST",
+    "postBytes": 60
+  },
+  {
+    "time": "2026-11-12T06:10:57.592Z",
+    "type": "response",
+    "id": "3918411.27",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:10:57.640Z",
+    "type": "request",
+    "id": "3918411.28",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:58.031Z",
+    "type": "response",
+    "id": "3918411.28",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:10:58.280Z",
+    "type": "request",
+    "id": "3918411.29",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-demo",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:58.616Z",
+    "type": "response",
+    "id": "3918411.29",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-demo",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:10:58.719Z",
+    "type": "request",
+    "id": "3918411.30",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:10:58.762Z",
+    "type": "response",
+    "id": "3918411.30",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:00.003Z",
+    "type": "request",
+    "id": "3918411.31",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:00.022Z",
+    "type": "response",
+    "id": "3918411.31",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:00.025Z",
+    "type": "request",
+    "id": "3918411.32",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:11:00.041Z",
+    "type": "response",
+    "id": "3918411.32",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:00.265Z",
+    "type": "request",
+    "id": "3918411.33",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:00.277Z",
+    "type": "response",
+    "id": "3918411.33",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:00.280Z",
+    "type": "request",
+    "id": "3918411.34",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:11:00.292Z",
+    "type": "response",
+    "id": "3918411.34",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:25.191Z",
+    "type": "request",
+    "id": "3918411.35",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:25.208Z",
+    "type": "response",
+    "id": "3918411.35",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:26.022Z",
+    "type": "request",
+    "id": "3918411.36",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+    "method": "PUT",
+    "postBytes": 17,
+    "postData": "{\"selected\":true}"
+  },
+  {
+    "time": "2026-11-12T06:11:26.092Z",
+    "type": "response",
+    "id": "3918411.36",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:27.229Z",
+    "type": "request",
+    "id": "14E49A06DCDC1DE717CB4DCEE89E55D8",
+    "url": "http://127.0.0.1:8103/",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:27.243Z",
+    "type": "response",
+    "id": "14E49A06DCDC1DE717CB4DCEE89E55D8",
+    "url": "http://127.0.0.1:8103/",
+    "status": 200,
+    "mime": "text/html"
+  },
+  {
+    "time": "2026-11-12T06:11:27.275Z",
+    "type": "request",
+    "id": "3918411.39",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:27.275Z",
+    "type": "request",
+    "id": "3918411.40",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:27.276Z",
+    "type": "response",
+    "id": "3918411.40",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "status": 200,
+    "mime": "text/css"
+  },
+  {
+    "time": "2026-11-12T06:11:27.351Z",
+    "type": "response",
+    "id": "3918411.39",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "status": 200,
+    "mime": "application/javascript"
+  },
+  {
+    "time": "2026-11-12T06:11:27.429Z",
+    "type": "request",
+    "id": "3918411.53",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:27.430Z",
+    "type": "response",
+    "id": "3918411.53",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:27.446Z",
+    "type": "request",
+    "id": "3918411.47",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:27.448Z",
+    "type": "response",
+    "id": "3918411.47",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "status": 200,
+    "mime": "font/woff2"
+  },
+  {
+    "time": "2026-11-12T06:11:27.454Z",
+    "type": "request",
+    "id": "3918411.54",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:27.820Z",
+    "type": "response",
+    "id": "3918411.54",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:28.066Z",
+    "type": "request",
+    "id": "3918411.55",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:28.079Z",
+    "type": "response",
+    "id": "3918411.55",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:31.405Z",
+    "type": "request",
+    "id": "3918411.56",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:31.418Z",
+    "type": "response",
+    "id": "3918411.56",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:31.421Z",
+    "type": "request",
+    "id": "3918411.57",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:11:31.437Z",
+    "type": "response",
+    "id": "3918411.57",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:31.664Z",
+    "type": "request",
+    "id": "3918411.58",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:31.680Z",
+    "type": "response",
+    "id": "3918411.58",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:31.684Z",
+    "type": "request",
+    "id": "3918411.59",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:11:31.699Z",
+    "type": "response",
+    "id": "3918411.59",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:32.405Z",
+    "type": "request",
+    "id": "3918411.60",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-balance?versionId=version-7fa8928d127c48a09375037fd2e814b4",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:32.415Z",
+    "type": "response",
+    "id": "3918411.60",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-balance?versionId=version-7fa8928d127c48a09375037fd2e814b4",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:33.221Z",
+    "type": "request",
+    "id": "3918411.61",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-balance/bookmark",
+    "method": "PUT",
+    "postBytes": 17,
+    "postData": "{\"selected\":true}"
+  },
+  {
+    "time": "2026-11-12T06:11:33.274Z",
+    "type": "response",
+    "id": "3918411.61",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-balance/bookmark",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:33.832Z",
+    "type": "request",
+    "id": "CE4BD8CD9F5A984F403BED8A6EBA1DE3",
+    "url": "http://127.0.0.1:8103/",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:33.842Z",
+    "type": "response",
+    "id": "CE4BD8CD9F5A984F403BED8A6EBA1DE3",
+    "url": "http://127.0.0.1:8103/",
+    "status": 200,
+    "mime": "text/html"
+  },
+  {
+    "time": "2026-11-12T06:11:33.869Z",
+    "type": "request",
+    "id": "3918411.64",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:33.869Z",
+    "type": "response",
+    "id": "3918411.64",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "status": 200,
+    "mime": "application/javascript"
+  },
+  {
+    "time": "2026-11-12T06:11:33.870Z",
+    "type": "request",
+    "id": "3918411.65",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:33.871Z",
+    "type": "response",
+    "id": "3918411.65",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "status": 200,
+    "mime": "text/css"
+  },
+  {
+    "time": "2026-11-12T06:11:33.871Z",
+    "type": "request",
+    "id": "3918411.72",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:33.872Z",
+    "type": "response",
+    "id": "3918411.72",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "status": 200,
+    "mime": "font/woff2"
+  },
+  {
+    "time": "2026-11-12T06:11:33.945Z",
+    "type": "request",
+    "id": "3918411.78",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:33.945Z",
+    "type": "response",
+    "id": "3918411.78",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:33.959Z",
+    "type": "request",
+    "id": "3918411.79",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:34.317Z",
+    "type": "response",
+    "id": "3918411.79",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:34.557Z",
+    "type": "request",
+    "id": "3918411.80",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-balance?versionId=version-7fa8928d127c48a09375037fd2e814b4",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:34.572Z",
+    "type": "response",
+    "id": "3918411.80",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-balance?versionId=version-7fa8928d127c48a09375037fd2e814b4",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:55.645Z",
+    "type": "request",
+    "id": "3918411.81",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:11:55.697Z",
+    "type": "response",
+    "id": "3918411.81",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:55.700Z",
+    "type": "request",
+    "id": "3918411.82",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:11:55.704Z",
+    "type": "response",
+    "id": "3918411.82",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:55.755Z",
+    "type": "request",
+    "id": "3918411.83",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-balance?versionId=version-7fa8928d127c48a09375037fd2e814b4",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:55.756Z",
+    "type": "response",
+    "id": "3918411.83",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-balance?versionId=version-7fa8928d127c48a09375037fd2e814b4",
+    "status": 401,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:57.565Z",
+    "type": "request",
+    "id": "3918411.84",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "method": "POST",
+    "postBytes": 60
+  },
+  {
+    "time": "2026-11-12T06:11:57.816Z",
+    "type": "response",
+    "id": "3918411.84",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:57.842Z",
+    "type": "request",
+    "id": "3918411.85",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:58.175Z",
+    "type": "response",
+    "id": "3918411.85",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:58.404Z",
+    "type": "request",
+    "id": "3918411.86",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-demo",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:58.723Z",
+    "type": "response",
+    "id": "3918411.86",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-demo",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:11:58.773Z",
+    "type": "request",
+    "id": "3918411.87",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:11:58.813Z",
+    "type": "response",
+    "id": "3918411.87",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:00.217Z",
+    "type": "request",
+    "id": "3918411.88",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:00.232Z",
+    "type": "response",
+    "id": "3918411.88",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:00.234Z",
+    "type": "request",
+    "id": "3918411.89",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:12:00.250Z",
+    "type": "response",
+    "id": "3918411.89",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:00.480Z",
+    "type": "request",
+    "id": "3918411.90",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:00.498Z",
+    "type": "response",
+    "id": "3918411.90",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:00.500Z",
+    "type": "request",
+    "id": "3918411.91",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:12:00.517Z",
+    "type": "response",
+    "id": "3918411.91",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:03.455Z",
+    "type": "request",
+    "id": "3918411.92",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:03.468Z",
+    "type": "response",
+    "id": "3918411.92",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:04.183Z",
+    "type": "request",
+    "id": "3918411.93",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+    "method": "PUT",
+    "postBytes": 18,
+    "postData": "{\"selected\":false}"
+  },
+  {
+    "time": "2026-11-12T06:12:04.225Z",
+    "type": "response",
+    "id": "3918411.93",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:04.786Z",
+    "type": "request",
+    "id": "B580368CEC71DE2B47F9B05A2A32F4DF",
+    "url": "http://127.0.0.1:8103/",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:04.796Z",
+    "type": "response",
+    "id": "B580368CEC71DE2B47F9B05A2A32F4DF",
+    "url": "http://127.0.0.1:8103/",
+    "status": 200,
+    "mime": "text/html"
+  },
+  {
+    "time": "2026-11-12T06:12:04.823Z",
+    "type": "request",
+    "id": "3918411.96",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:04.823Z",
+    "type": "response",
+    "id": "3918411.96",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "status": 200,
+    "mime": "application/javascript"
+  },
+  {
+    "time": "2026-11-12T06:12:04.824Z",
+    "type": "request",
+    "id": "3918411.97",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:04.824Z",
+    "type": "response",
+    "id": "3918411.97",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "status": 200,
+    "mime": "text/css"
+  },
+  {
+    "time": "2026-11-12T06:12:04.825Z",
+    "type": "request",
+    "id": "3918411.104",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:04.825Z",
+    "type": "response",
+    "id": "3918411.104",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "status": 200,
+    "mime": "font/woff2"
+  },
+  {
+    "time": "2026-11-12T06:12:04.875Z",
+    "type": "request",
+    "id": "3918411.110",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:04.876Z",
+    "type": "response",
+    "id": "3918411.110",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:04.892Z",
+    "type": "request",
+    "id": "3918411.111",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:05.261Z",
+    "type": "response",
+    "id": "3918411.111",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:05.489Z",
+    "type": "request",
+    "id": "3918411.112",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:05.504Z",
+    "type": "response",
+    "id": "3918411.112",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:37.137Z",
+    "type": "request",
+    "id": "3918411.113",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:37.174Z",
+    "type": "response",
+    "id": "3918411.113",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:37.176Z",
+    "type": "request",
+    "id": "3918411.114",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:12:37.196Z",
+    "type": "response",
+    "id": "3918411.114",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:37.429Z",
+    "type": "request",
+    "id": "3918411.115",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:37.444Z",
+    "type": "response",
+    "id": "3918411.115",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:37.448Z",
+    "type": "request",
+    "id": "3918411.116",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:12:37.465Z",
+    "type": "response",
+    "id": "3918411.116",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:39.754Z",
+    "type": "request",
+    "id": "3918411.117",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:12:39.782Z",
+    "type": "response",
+    "id": "3918411.117",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:39.784Z",
+    "type": "request",
+    "id": "3918411.118",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:12:39.789Z",
+    "type": "response",
+    "id": "3918411.118",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:39.846Z",
+    "type": "request",
+    "id": "3918411.119",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:39.846Z",
+    "type": "response",
+    "id": "3918411.119",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 401,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:41.682Z",
+    "type": "request",
+    "id": "3918411.120",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "method": "POST",
+    "postBytes": 68
+  },
+  {
+    "time": "2026-11-12T06:12:41.920Z",
+    "type": "response",
+    "id": "3918411.120",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:41.947Z",
+    "type": "request",
+    "id": "3918411.121",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:41.971Z",
+    "type": "response",
+    "id": "3918411.121",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:42.200Z",
+    "type": "request",
+    "id": "3918411.122",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-7aff2d0833124276a2d99992e5daa55a",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:42.238Z",
+    "type": "response",
+    "id": "3918411.122",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-7aff2d0833124276a2d99992e5daa55a",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:42.267Z",
+    "type": "request",
+    "id": "3918411.123",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:42.282Z",
+    "type": "response",
+    "id": "3918411.123",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:44.333Z",
+    "type": "request",
+    "id": "3918411.124",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:44.351Z",
+    "type": "response",
+    "id": "3918411.124",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:44.354Z",
+    "type": "request",
+    "id": "3918411.125",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:12:44.370Z",
+    "type": "response",
+    "id": "3918411.125",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:44.597Z",
+    "type": "request",
+    "id": "3918411.126",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:12:44.615Z",
+    "type": "response",
+    "id": "3918411.126",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:12:44.617Z",
+    "type": "request",
+    "id": "3918411.127",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:12:44.633Z",
+    "type": "response",
+    "id": "3918411.127",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:01.702Z",
+    "type": "request",
+    "id": "3918411.128",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:01.716Z",
+    "type": "response",
+    "id": "3918411.128",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:02.533Z",
+    "type": "request",
+    "id": "3918411.129",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+    "method": "PUT",
+    "postBytes": 17,
+    "postData": "{\"selected\":true}"
+  },
+  {
+    "time": "2026-11-12T06:13:02.571Z",
+    "type": "response",
+    "id": "3918411.129",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:03.136Z",
+    "type": "request",
+    "id": "608CD71BD345CC1EF22D6B57A6F75F55",
+    "url": "http://127.0.0.1:8103/",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:03.148Z",
+    "type": "response",
+    "id": "608CD71BD345CC1EF22D6B57A6F75F55",
+    "url": "http://127.0.0.1:8103/",
+    "status": 200,
+    "mime": "text/html"
+  },
+  {
+    "time": "2026-11-12T06:13:03.174Z",
+    "type": "request",
+    "id": "3918411.132",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:03.175Z",
+    "type": "response",
+    "id": "3918411.132",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "status": 200,
+    "mime": "application/javascript"
+  },
+  {
+    "time": "2026-11-12T06:13:03.175Z",
+    "type": "request",
+    "id": "3918411.133",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:03.176Z",
+    "type": "response",
+    "id": "3918411.133",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "status": 200,
+    "mime": "text/css"
+  },
+  {
+    "time": "2026-11-12T06:13:03.176Z",
+    "type": "request",
+    "id": "3918411.140",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:03.177Z",
+    "type": "response",
+    "id": "3918411.140",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "status": 200,
+    "mime": "font/woff2"
+  },
+  {
+    "time": "2026-11-12T06:13:03.240Z",
+    "type": "request",
+    "id": "3918411.146",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:03.240Z",
+    "type": "response",
+    "id": "3918411.146",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:03.265Z",
+    "type": "request",
+    "id": "3918411.147",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:03.294Z",
+    "type": "response",
+    "id": "3918411.147",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:03.522Z",
+    "type": "request",
+    "id": "3918411.148",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:03.539Z",
+    "type": "response",
+    "id": "3918411.148",
+    "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9?versionId=version-96c75b97037c4cc8b0bae23c9412505c",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:06.586Z",
+    "type": "request",
+    "id": "3918411.149",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:06.603Z",
+    "type": "response",
+    "id": "3918411.149",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:06.605Z",
+    "type": "request",
+    "id": "3918411.150",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:06.623Z",
+    "type": "response",
+    "id": "3918411.150",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:06.859Z",
+    "type": "request",
+    "id": "3918411.151",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:06.878Z",
+    "type": "response",
+    "id": "3918411.151",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:06.880Z",
+    "type": "request",
+    "id": "3918411.152",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:06.898Z",
+    "type": "response",
+    "id": "3918411.152",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:08.636Z",
+    "type": "request",
+    "id": "3918411.153",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:13:08.672Z",
+    "type": "response",
+    "id": "3918411.153",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:08.674Z",
+    "type": "request",
+    "id": "3918411.154",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:13:08.679Z",
+    "type": "response",
+    "id": "3918411.154",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:08.718Z",
+    "type": "request",
+    "id": "3918411.155",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:08.718Z",
+    "type": "response",
+    "id": "3918411.155",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 401,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:10.548Z",
+    "type": "request",
+    "id": "3918411.156",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "method": "POST",
+    "postBytes": 60
+  },
+  {
+    "time": "2026-11-12T06:13:10.797Z",
+    "type": "response",
+    "id": "3918411.156",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:10.815Z",
+    "type": "request",
+    "id": "3918411.157",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:11.166Z",
+    "type": "response",
+    "id": "3918411.157",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:11.399Z",
+    "type": "request",
+    "id": "3918411.158",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-demo",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:11.747Z",
+    "type": "response",
+    "id": "3918411.158",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-demo",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:11.793Z",
+    "type": "request",
+    "id": "3918411.159",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:11.839Z",
+    "type": "response",
+    "id": "3918411.159",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:13.194Z",
+    "type": "request",
+    "id": "3918411.160",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:13.207Z",
+    "type": "response",
+    "id": "3918411.160",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:13.210Z",
+    "type": "request",
+    "id": "3918411.161",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:13.225Z",
+    "type": "response",
+    "id": "3918411.161",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:13.463Z",
+    "type": "request",
+    "id": "3918411.162",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:13.480Z",
+    "type": "response",
+    "id": "3918411.162",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:13.482Z",
+    "type": "request",
+    "id": "3918411.163",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 136,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:13.498Z",
+    "type": "response",
+    "id": "3918411.163",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:27.101Z",
+    "type": "request",
+    "id": "3918411.164",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 146,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\"],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:27.126Z",
+    "type": "response",
+    "id": "3918411.164",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:27.377Z",
+    "type": "request",
+    "id": "3918411.165",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:27.393Z",
+    "type": "response",
+    "id": "3918411.165",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:27.413Z",
+    "type": "request",
+    "id": "3918411.166",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 146,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\"],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:27.431Z",
+    "type": "response",
+    "id": "3918411.166",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:27.707Z",
+    "type": "request",
+    "id": "3918411.167",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 160,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\",\"kp-equality\"],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:27.726Z",
+    "type": "response",
+    "id": "3918411.167",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:27.974Z",
+    "type": "request",
+    "id": "3918411.168",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:27.992Z",
+    "type": "response",
+    "id": "3918411.168",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:28.007Z",
+    "type": "request",
+    "id": "3918411.169",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 160,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\",\"kp-equality\"],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:28.023Z",
+    "type": "response",
+    "id": "3918411.169",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:29.666Z",
+    "type": "request",
+    "id": "3918411.170",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 161,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\",\"kp-equality\"],\"scenario\":\"other\"},\"includePrerequisites\":false,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:29.686Z",
+    "type": "response",
+    "id": "3918411.170",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:29.940Z",
+    "type": "request",
+    "id": "3918411.171",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:29.955Z",
+    "type": "response",
+    "id": "3918411.171",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:29.972Z",
+    "type": "request",
+    "id": "3918411.172",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "method": "POST",
+    "postBytes": 161,
+    "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\",\"kp-equality\"],\"scenario\":\"other\"},\"includePrerequisites\":false,\"context\":{},\"limit\":8}"
+  },
+  {
+    "time": "2026-11-12T06:13:29.991Z",
+    "type": "response",
+    "id": "3918411.172",
+    "url": "http://127.0.0.1:8103/api/ai/search",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:48.635Z",
+    "type": "request",
+    "id": "3918411.173",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:48.660Z",
+    "type": "response",
+    "id": "3918411.173",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:48.890Z",
+    "type": "request",
+    "id": "3918411.174",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:48.907Z",
+    "type": "response",
+    "id": "3918411.174",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:49.593Z",
+    "type": "request",
+    "id": "3918411.175",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:49.643Z",
+    "type": "response",
+    "id": "3918411.175",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:49.646Z",
+    "type": "request",
+    "id": "3918411.176",
+    "url": "http://127.0.0.1:8103/api/ai/jobs",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:49.693Z",
+    "type": "response",
+    "id": "3918411.176",
+    "url": "http://127.0.0.1:8103/api/ai/jobs",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:13:49.700Z",
+    "type": "request",
+    "id": "3918411.177",
+    "url": "http://127.0.0.1:8103/api/curriculum/lessons/lesson-equation",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:13:49.715Z",
+    "type": "response",
+    "id": "3918411.177",
+    "url": "http://127.0.0.1:8103/api/curriculum/lessons/lesson-equation",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:14:17.652Z",
+    "type": "request",
+    "id": "3918411.178",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:14:17.701Z",
+    "type": "response",
+    "id": "3918411.178",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:14:17.704Z",
+    "type": "request",
+    "id": "3918411.179",
+    "url": "http://127.0.0.1:8103/api/ai/jobs",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:14:17.746Z",
+    "type": "response",
+    "id": "3918411.179",
+    "url": "http://127.0.0.1:8103/api/ai/jobs",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:14:17.752Z",
+    "type": "request",
+    "id": "3918411.180",
+    "url": "http://127.0.0.1:8103/api/ai/jobs/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:14:17.773Z",
+    "type": "response",
+    "id": "3918411.180",
+    "url": "http://127.0.0.1:8103/api/ai/jobs/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:14:17.777Z",
+    "type": "request",
+    "id": "3918411.181",
+    "url": "http://127.0.0.1:8103/api/curriculum/lessons/lesson-23043753a56245f28d0962f35b85c40f",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:14:17.791Z",
+    "type": "response",
+    "id": "3918411.181",
+    "url": "http://127.0.0.1:8103/api/curriculum/lessons/lesson-23043753a56245f28d0962f35b85c40f",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:14:17.794Z",
+    "type": "request",
+    "id": "3918411.182",
+    "url": "http://127.0.0.1:8103/api/ai/jobs/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:14:17.813Z",
+    "type": "response",
+    "id": "3918411.182",
+    "url": "http://127.0.0.1:8103/api/ai/jobs/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:31.693Z",
+    "type": "request",
+    "id": "80B0D08F95833A16EE1C8C72B12D5749",
+    "url": "http://127.0.0.1:8103/",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:31.709Z",
+    "type": "response",
+    "id": "80B0D08F95833A16EE1C8C72B12D5749",
+    "url": "http://127.0.0.1:8103/",
+    "status": 200,
+    "mime": "text/html"
+  },
+  {
+    "time": "2026-11-12T06:15:31.739Z",
+    "type": "request",
+    "id": "3918411.185",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:31.739Z",
+    "type": "response",
+    "id": "3918411.185",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "status": 200,
+    "mime": "application/javascript"
+  },
+  {
+    "time": "2026-11-12T06:15:31.739Z",
+    "type": "request",
+    "id": "3918411.186",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:31.740Z",
+    "type": "response",
+    "id": "3918411.186",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "status": 200,
+    "mime": "text/css"
+  },
+  {
+    "time": "2026-11-12T06:15:31.769Z",
+    "type": "request",
+    "id": "3918411.193",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:31.769Z",
+    "type": "response",
+    "id": "3918411.193",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "status": 200,
+    "mime": "font/woff2"
+  },
+  {
+    "time": "2026-11-12T06:15:31.781Z",
+    "type": "request",
+    "id": "3918411.199",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:31.794Z",
+    "type": "response",
+    "id": "3918411.199",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:31.814Z",
+    "type": "request",
+    "id": "3918411.200",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:32.182Z",
+    "type": "response",
+    "id": "3918411.200",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:32.435Z",
+    "type": "request",
+    "id": "3918411.201",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:32.482Z",
+    "type": "response",
+    "id": "3918411.201",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:32.486Z",
+    "type": "request",
+    "id": "3918411.202",
+    "url": "http://127.0.0.1:8103/api/ai/jobs",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:32.534Z",
+    "type": "response",
+    "id": "3918411.202",
+    "url": "http://127.0.0.1:8103/api/ai/jobs",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:32.542Z",
+    "type": "request",
+    "id": "3918411.203",
+    "url": "http://127.0.0.1:8103/api/ai/jobs/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:32.560Z",
+    "type": "response",
+    "id": "3918411.203",
+    "url": "http://127.0.0.1:8103/api/ai/jobs/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:32.564Z",
+    "type": "request",
+    "id": "3918411.204",
+    "url": "http://127.0.0.1:8103/api/curriculum/lessons/lesson-23043753a56245f28d0962f35b85c40f",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:32.579Z",
+    "type": "response",
+    "id": "3918411.204",
+    "url": "http://127.0.0.1:8103/api/curriculum/lessons/lesson-23043753a56245f28d0962f35b85c40f",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:32.582Z",
+    "type": "request",
+    "id": "3918411.205",
+    "url": "http://127.0.0.1:8103/api/ai/jobs/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:32.602Z",
+    "type": "response",
+    "id": "3918411.205",
+    "url": "http://127.0.0.1:8103/api/ai/jobs/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:36.280Z",
+    "type": "request",
+    "id": "3918411.206",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:15:36.321Z",
+    "type": "response",
+    "id": "3918411.206",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:36.324Z",
+    "type": "request",
+    "id": "3918411.207",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:15:36.329Z",
+    "type": "response",
+    "id": "3918411.207",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:36.391Z",
+    "type": "request",
+    "id": "3918411.208",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:36.400Z",
+    "type": "response",
+    "id": "3918411.208",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "status": 401,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:38.208Z",
+    "type": "request",
+    "id": "3918411.209",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "method": "POST",
+    "postBytes": 68
+  },
+  {
+    "time": "2026-11-12T06:15:38.445Z",
+    "type": "response",
+    "id": "3918411.209",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:38.470Z",
+    "type": "request",
+    "id": "3918411.210",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:38.490Z",
+    "type": "response",
+    "id": "3918411.210",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:38.727Z",
+    "type": "request",
+    "id": "3918411.211",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-7aff2d0833124276a2d99992e5daa55a",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:38.761Z",
+    "type": "response",
+    "id": "3918411.211",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-7aff2d0833124276a2d99992e5daa55a",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:38.792Z",
+    "type": "request",
+    "id": "3918411.212",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:38.809Z",
+    "type": "response",
+    "id": "3918411.212",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:40.891Z",
+    "type": "request",
+    "id": "3918411.213",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:40.905Z",
+    "type": "response",
+    "id": "3918411.213",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:41.139Z",
+    "type": "request",
+    "id": "3918411.214",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:41.157Z",
+    "type": "response",
+    "id": "3918411.214",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:15:41.867Z",
+    "type": "request",
+    "id": "3918411.215",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:15:41.921Z",
+    "type": "response",
+    "id": "3918411.215",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:16:49.154Z",
+    "type": "request",
+    "id": "3918411.216",
+    "url": "http://127.0.0.1:8103/api/platform?lessonId=lesson-cb28f7b0cc864cf4995551caf40845b5",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:16:49.195Z",
+    "type": "response",
+    "id": "3918411.216",
+    "url": "http://127.0.0.1:8103/api/platform?lessonId=lesson-cb28f7b0cc864cf4995551caf40845b5",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:16:49.226Z",
+    "type": "request",
+    "id": "3918411.217",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:16:49.254Z",
+    "type": "response",
+    "id": "3918411.217",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:16:49.475Z",
+    "type": "request",
+    "id": "3918411.218",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:16:49.492Z",
+    "type": "response",
+    "id": "3918411.218",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:21.203Z",
+    "type": "request",
+    "id": "3918411.219",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "PUT",
+    "postBytes": 4359,
+    "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":2,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}"
+  },
+  {
+    "time": "2026-11-12T06:17:21.266Z",
+    "type": "response",
+    "id": "3918411.219",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:21.806Z",
+    "type": "request",
+    "id": "3918411.220",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "PUT",
+    "postBytes": 4359,
+    "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":3,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}"
+  },
+  {
+    "time": "2026-11-12T06:17:21.860Z",
+    "type": "response",
+    "id": "3918411.220",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:22.415Z",
+    "type": "request",
+    "id": "3918411.221",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "PUT",
+    "postBytes": 4359,
+    "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":4,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"4\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}"
+  },
+  {
+    "time": "2026-11-12T06:17:22.463Z",
+    "type": "response",
+    "id": "3918411.221",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:23.028Z",
+    "type": "request",
+    "id": "3918411.222",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "PUT",
+    "postBytes": 4387,
+    "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":5,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"R2私稿提示1112：等式两边同时减2，得x=4；代入4+2=6成立。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"4\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}"
+  },
+  {
+    "time": "2026-11-12T06:17:23.102Z",
+    "type": "response",
+    "id": "3918411.222",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:25.358Z",
+    "type": "request",
+    "id": "B15A137E577E811683990E1034F5E4D4",
+    "url": "http://127.0.0.1:8103/",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:25.370Z",
+    "type": "response",
+    "id": "B15A137E577E811683990E1034F5E4D4",
+    "url": "http://127.0.0.1:8103/",
+    "status": 200,
+    "mime": "text/html"
+  },
+  {
+    "time": "2026-11-12T06:17:25.396Z",
+    "type": "request",
+    "id": "3918411.225",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:25.396Z",
+    "type": "response",
+    "id": "3918411.225",
+    "url": "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+    "status": 200,
+    "mime": "application/javascript"
+  },
+  {
+    "time": "2026-11-12T06:17:25.396Z",
+    "type": "request",
+    "id": "3918411.226",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:25.397Z",
+    "type": "response",
+    "id": "3918411.226",
+    "url": "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css",
+    "status": 200,
+    "mime": "text/css"
+  },
+  {
+    "time": "2026-11-12T06:17:25.397Z",
+    "type": "request",
+    "id": "3918411.233",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:25.398Z",
+    "type": "response",
+    "id": "3918411.233",
+    "url": "http://127.0.0.1:8103/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+    "status": 200,
+    "mime": "font/woff2"
+  },
+  {
+    "time": "2026-11-12T06:17:25.464Z",
+    "type": "request",
+    "id": "3918411.239",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:25.464Z",
+    "type": "response",
+    "id": "3918411.239",
+    "url": "http://127.0.0.1:8103/api/auth/me",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:25.491Z",
+    "type": "request",
+    "id": "3918411.240",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:25.519Z",
+    "type": "response",
+    "id": "3918411.240",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:25.742Z",
+    "type": "request",
+    "id": "3918411.241",
+    "url": "http://127.0.0.1:8103/api/platform?lessonId=lesson-cb28f7b0cc864cf4995551caf40845b5",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:25.769Z",
+    "type": "response",
+    "id": "3918411.241",
+    "url": "http://127.0.0.1:8103/api/platform?lessonId=lesson-cb28f7b0cc864cf4995551caf40845b5",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:25.853Z",
+    "type": "request",
+    "id": "3918411.242",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:25.871Z",
+    "type": "response",
+    "id": "3918411.242",
+    "url": "http://127.0.0.1:8103/api/ai/search-options",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:30.160Z",
+    "type": "request",
+    "id": "3918411.243",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:30.207Z",
+    "type": "response",
+    "id": "3918411.243",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:49.657Z",
+    "type": "request",
+    "id": "3918411.244",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:17:49.686Z",
+    "type": "response",
+    "id": "3918411.244",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:49.688Z",
+    "type": "request",
+    "id": "3918411.245",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "method": "POST"
+  },
+  {
+    "time": "2026-11-12T06:17:49.694Z",
+    "type": "response",
+    "id": "3918411.245",
+    "url": "http://127.0.0.1:8103/api/auth/logout",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:49.726Z",
+    "type": "request",
+    "id": "3918411.246",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:49.727Z",
+    "type": "response",
+    "id": "3918411.246",
+    "url": "http://127.0.0.1:8103/api/curriculum/courses",
+    "status": 401,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:51.585Z",
+    "type": "request",
+    "id": "3918411.247",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "method": "POST",
+    "postBytes": 60
+  },
+  {
+    "time": "2026-11-12T06:17:51.929Z",
+    "type": "response",
+    "id": "3918411.247",
+    "url": "http://127.0.0.1:8103/api/auth/login",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:51.951Z",
+    "type": "request",
+    "id": "3918411.248",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:52.318Z",
+    "type": "response",
+    "id": "3918411.248",
+    "url": "http://127.0.0.1:8103/api/platform",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:52.555Z",
+    "type": "request",
+    "id": "3918411.249",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-demo",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:52.886Z",
+    "type": "response",
+    "id": "3918411.249",
+    "url": "http://127.0.0.1:8103/api/teaching/dashboard?classId=class-demo",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:52.932Z",
+    "type": "request",
+    "id": "3918411.250",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:52.985Z",
+    "type": "response",
+    "id": "3918411.250",
+    "url": "http://127.0.0.1:8103/api/teaching/messages?box=inbox",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:54.224Z",
+    "type": "request",
+    "id": "3918411.251",
+    "url": "http://127.0.0.1:8103/api/teaching/classes",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:54.241Z",
+    "type": "response",
+    "id": "3918411.251",
+    "url": "http://127.0.0.1:8103/api/teaching/classes",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:54.260Z",
+    "type": "request",
+    "id": "3918411.252",
+    "url": "http://127.0.0.1:8103/api/accounts",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:54.276Z",
+    "type": "response",
+    "id": "3918411.252",
+    "url": "http://127.0.0.1:8103/api/accounts",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:54.280Z",
+    "type": "request",
+    "id": "3918411.253",
+    "url": "http://127.0.0.1:8103/api/classrooms/class-demo/members",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:54.281Z",
+    "type": "request",
+    "id": "3918411.254",
+    "url": "http://127.0.0.1:8103/api/teaching/classes/class-demo/tasks",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:54.281Z",
+    "type": "request",
+    "id": "3918411.255",
+    "url": "http://127.0.0.1:8103/api/teaching/classes/class-demo/invites",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:54.313Z",
+    "type": "response",
+    "id": "3918411.255",
+    "url": "http://127.0.0.1:8103/api/teaching/classes/class-demo/invites",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:54.319Z",
+    "type": "response",
+    "id": "3918411.253",
+    "url": "http://127.0.0.1:8103/api/classrooms/class-demo/members",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:54.573Z",
+    "type": "response",
+    "id": "3918411.254",
+    "url": "http://127.0.0.1:8103/api/teaching/classes/class-demo/tasks",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:55.057Z",
+    "type": "request",
+    "id": "3918411.256",
+    "url": "http://127.0.0.1:8103/api/platform?lessonId=lesson-equation",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:55.432Z",
+    "type": "response",
+    "id": "3918411.256",
+    "url": "http://127.0.0.1:8103/api/platform?lessonId=lesson-equation",
+    "status": 200,
+    "mime": "application/json"
+  },
+  {
+    "time": "2026-11-12T06:17:55.691Z",
+    "type": "request",
+    "id": "3918411.257",
+    "url": "http://127.0.0.1:8103/api/teaching/tasks/task-122289cddb442a5f08fdbec2188b4420/supplements",
+    "method": "GET"
+  },
+  {
+    "time": "2026-11-12T06:17:55.719Z",
+    "type": "response",
+    "id": "3918411.257",
+    "url": "http://127.0.0.1:8103/api/teaching/tasks/task-122289cddb442a5f08fdbec2188b4420/supplements",
+    "status": 200,
+    "mime": "application/json"
+  }
+]

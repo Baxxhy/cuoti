@@ -1,0 +1,16 @@
+{"at":"2026-11-12T06:16:32.949Z","action":"wait","ms":400}
+{"at":"2026-11-12T06:16:33.356Z","action":"login","password":"[redacted]"}
+{"at":"2026-11-12T06:16:33.380Z","action":"click","text":"登录","wait":900}
+{"at":"2026-11-12T06:16:34.318Z","action":"click","text":"课程","wait":700}
+{"at":"2026-11-12T06:16:35.062Z","action":"dom","code":"({details:[...document.querySelectorAll('summary')].map(e=>({text:e.innerText,visible:e.checkVisibility()})),unitElements:[...document.querySelectorAll('button,a,[role=button]')].filter(e=>(e.innerText+e.getAttribute('aria-label')).includes('单元')).map(e=>({tag:e.tagName,text:e.innerText,aria:e.getAttribute('aria-label'),visible:e.checkVisibility()}))})"}
+{"at":"2026-11-12T06:16:43.044Z","action":"click","selector":"summary","text":"单元进度","index":0,"wait":500}
+{"at":"2026-11-12T06:16:43.569Z","action":"shot","name":"r2-unit-progress-assigned-status"}
+{"at":"2026-11-12T06:17:12.876Z","action":"click","selector":"details[open] button","text":"进入学习","index":1,"wait":700}
+{"at":"2026-11-12T06:17:13.615Z","action":"shot","name":"r2-unit-next-lesson-correct-target"}
+{"at":"2026-11-12T06:17:13.717Z","action":"click","text":"我的学习","wait":800}
+{"at":"2026-11-12T06:17:14.553Z","action":"click","text":"课程","wait":700}
+{"at":"2026-11-12T06:17:15.284Z","action":"click","selector":"summary","text":"单元进度","index":0,"wait":300}
+{"at":"2026-11-12T06:17:15.614Z","action":"shot","name":"r2-unit-return-retains-status"}
+{"at":"2026-11-12T06:17:15.747Z","action":"click","selector":"summary","text":"单元进度","index":1,"wait":300}
+{"at":"2026-11-12T06:17:16.079Z","action":"shot","name":"r2-unit-completed-assigned-scope"}
+{"at":"2026-11-12T06:18:29.461Z","action":"close"}

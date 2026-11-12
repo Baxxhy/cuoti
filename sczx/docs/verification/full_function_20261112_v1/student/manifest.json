@@ -1,0 +1,562 @@
+[
+  {
+    "file": "network.jsonl",
+    "bytes": 13340676,
+    "sha256": "d39e6621aea136b4c97a8e18e320773dd1c1c1f74e5ebce6c8d07e78a0fb24fe"
+  },
+  {
+    "file": "ai-observed-results.json",
+    "bytes": 19224,
+    "sha256": "67d1bbd479d11ceb357d9f0885a046191c5b9c7630a9b3af7d27857851c0f002"
+  },
+  {
+    "file": "problem-1112.png",
+    "bytes": 20601,
+    "sha256": "930e8364dc83a29ab2bcaf18703529e8859425da6c7625e6bf48bd1f70f6dfd3"
+  },
+  {
+    "file": "dialogs.jsonl",
+    "bytes": 524,
+    "sha256": "9ba0bafa3997ef237e82d1d6d1d8e4e9b77ddbdb81b7758a1f433a966ea203cb"
+  },
+  {
+    "file": "baseline.md",
+    "bytes": 40168,
+    "sha256": "588f348f278cea48bde5d9540a55ba9c13cc9179461a0fd9eab3dfae772ee2df"
+  },
+  {
+    "file": "baseline.json",
+    "bytes": 68167,
+    "sha256": "361325ac69c1d049cd8c9967fe14fcd43e6005d914c30180dfdaeed373352052"
+  },
+  {
+    "file": "snapshots.jsonl",
+    "bytes": 415239,
+    "sha256": "929c9f64ea507d6b352d3f7c75bdac7bf3030ee4cc96314b445a12d0f2535fe1"
+  },
+  {
+    "file": "actions.jsonl",
+    "bytes": 23357,
+    "sha256": "ee24e888496233c848e90f5b2e1e3fc0ca03a4344189c988c1426bf92913c604"
+  },
+  {
+    "file": "student2/network.jsonl",
+    "bytes": 101616,
+    "sha256": "675df65df1de9090f71cfadf633de8269c2225c137f833c7b394f4ce4349e170"
+  },
+  {
+    "file": "student2/dialogs.jsonl",
+    "bytes": 723,
+    "sha256": "ce3a2f4fb9bfefd1c648678ec3086dc81eeca05dcb76deea68ea8c532bbe2422"
+  },
+  {
+    "file": "student2/snapshots.jsonl",
+    "bytes": 81861,
+    "sha256": "2ac6a6f42e2279ea4de9541447d377512483aa15dbd8d9c51252ae3fe5d0a5bb"
+  },
+  {
+    "file": "student2/actions.jsonl",
+    "bytes": 5722,
+    "sha256": "78caa90f366464a08726c5750e4780583879d9c5c9b9a5750b4d30cc636a94e3"
+  },
+  {
+    "file": "downloads/learning-records.docx",
+    "bytes": 35965,
+    "sha256": "d0d8ea1df3f8f33072a0adf958425ed2c48fc2d0206c3761003211be36251e02"
+  },
+  {
+    "file": "student3/network.jsonl",
+    "bytes": 631136,
+    "sha256": "e916eb0ccc8031dc2c526a82c71b3bc69edba3362a4d3c0489b7b11f9d36fe0b"
+  },
+  {
+    "file": "student3/snapshots.jsonl",
+    "bytes": 278464,
+    "sha256": "ce118c2ebe9bec30a396a63b6c1b2f73cb4e86c82d418de1b8b7b3e2ff653d7b"
+  },
+  {
+    "file": "student3/actions.jsonl",
+    "bytes": 17546,
+    "sha256": "57ec81d565d6c7c6209c5dd125b9ac97c4d0e24d9e4d24a77c37cf478626f3e0"
+  },
+  {
+    "file": "shots/S05-balance.png",
+    "bytes": 48001,
+    "sha256": "e4ca484e2daebfe6fca5bc5f4f299089ae1edb50bb212d6a21263e45415ac043"
+  },
+  {
+    "file": "shots/S22-learning-issue-teacher-reply.png",
+    "bytes": 94938,
+    "sha256": "73c50859a654f82dae85fe604830d9807ee7cd3fbe7e61afc2db38adc7005d49"
+  },
+  {
+    "file": "shots/S14-records-original-history.png",
+    "bytes": 73081,
+    "sha256": "dead2bdd8ffba52a68542199206ba9d72819caab642757d9d3af70975ca5e731"
+  },
+  {
+    "file": "shots/E05-main-comment-persisted.png",
+    "bytes": 76100,
+    "sha256": "10d7293529c1dd1c65dc58ea0e5446f771252e70b53cf6bf8a47f673cc932ec7"
+  },
+  {
+    "file": "shots/E05-main-submitted.png",
+    "bytes": 66739,
+    "sha256": "e3a319e3db2059146a68a1bd5730d8df792731d275960368f6ffd3d2b3f8ce79"
+  },
+  {
+    "file": "shots/E02-assisted-correction.png",
+    "bytes": 76402,
+    "sha256": "6a8c19bd8b54e9bfbfb4c47c3c9e23156dbe824837d1bf849cfc17054a3fdbc6"
+  },
+  {
+    "file": "shots/E02-submitted-confirmed.png",
+    "bytes": 47277,
+    "sha256": "faf5a3f0fea42195f03a761f4e3cd196e8b7c013b12bfcfad7c4dde9009bf14f"
+  },
+  {
+    "file": "shots/S03-search-lesson.png",
+    "bytes": 70452,
+    "sha256": "6ac2c10a48bf1c53852915c0656e3d5d2b57798727fc171adfe582e29a5c05d8"
+  },
+  {
+    "file": "shots/S19-supplement-submitted.png",
+    "bytes": 101300,
+    "sha256": "3eb757e80a2f6ef28fa99f48eb5d7b286044c16672e1fc15b36e5a5bf706421a"
+  },
+  {
+    "file": "shots/S06-rephrase-return.png",
+    "bytes": 93703,
+    "sha256": "8c8197f3c74f5a8c442fc94a48acc357df3f90e6c54a1ac44ad2ccb39a18ddc2"
+  },
+  {
+    "file": "shots/S02-filter-submitted.png",
+    "bytes": 103741,
+    "sha256": "794b356e0419cac916e153f90236c06879541d9abf8ee27bcb5d44e383fb7e66"
+  },
+  {
+    "file": "shots/S06-stopped.png",
+    "bytes": 76690,
+    "sha256": "fee07931bc2cca28c0bbf7fe8fbc1134c370d685b213ea6f3eedaff7dd7ed3e9"
+  },
+  {
+    "file": "shots/E04-main-submitted.png",
+    "bytes": 81460,
+    "sha256": "b5f894c008c97b624d7961f88ccef401ad9cbfa58425cf61dec10b21797093bd"
+  },
+  {
+    "file": "shots/E04-main-score30.png",
+    "bytes": 87858,
+    "sha256": "fa4e0092cf9cb5e7a7b98cc00db5f94dd22e9bb75fa92e909e818923231c9957"
+  },
+  {
+    "file": "shots/S18-new-learning-issue-for-teacher.png",
+    "bytes": 77016,
+    "sha256": "4206cf6e59a0cbb6df0cc5f870215e553994cbdfe1d3d5500182b207be6439d1"
+  },
+  {
+    "file": "shots/S19-main-groups-isolated.png",
+    "bytes": 95790,
+    "sha256": "2293823ee7e74fd4875fd3c16f5613c9e8678028196a6e43fa8f32ed1958f809"
+  },
+  {
+    "file": "shots/S07-ocr-confirm-revised.png",
+    "bytes": 67769,
+    "sha256": "f92cfdbda6be6393eafdbd3e7cb67453ca22ba6a4368f49b990cdab6c3073580"
+  },
+  {
+    "file": "shots/S05-missing-submit.png",
+    "bytes": 53661,
+    "sha256": "181f5b28cb0ed2436364f7306610091a50e82350389b8ce0a613e1fcb497bc6c"
+  },
+  {
+    "file": "shots/E04-draft-restored.png",
+    "bytes": 78335,
+    "sha256": "563f1c666fcd29e1480bf562e1ad20ce5c4e8615f6e8bdd1f0d32efb4a4890a8"
+  },
+  {
+    "file": "shots/E05-main-comment.png",
+    "bytes": 76100,
+    "sha256": "10d7293529c1dd1c65dc58ea0e5446f771252e70b53cf6bf8a47f673cc932ec7"
+  },
+  {
+    "file": "shots/S02-home.png",
+    "bytes": 103789,
+    "sha256": "cce0c9158fd725033da807940a6ad0fd583d735a804aecdeb5fafb985e26c11d"
+  },
+  {
+    "file": "shots/S06-foundation-steps.png",
+    "bytes": 99363,
+    "sha256": "14c337e31be927399c88e1d2fef93346ea82b4c189e78d9aee64b01bdd4f4538"
+  },
+  {
+    "file": "shots/S19-main-group-submitted.png",
+    "bytes": 54300,
+    "sha256": "c75df566c2f50bbb0b41a29b214e72f11388fdf098253a26045ccec2c1545143"
+  },
+  {
+    "file": "shots/S19-supplement-persisted.png",
+    "bytes": 105841,
+    "sha256": "39e03b6323850daabc55cc4e27b42dffac2be418c961483fc71e20e7e3d30329"
+  },
+  {
+    "file": "shots/E02-submitted.png",
+    "bytes": 48682,
+    "sha256": "5a1165c0ecc77571b88ccc0644757e4f04cf05c7d7d4a35de914bd4099ca3ebc"
+  },
+  {
+    "file": "shots/S06-ai-real-return.png",
+    "bytes": 74916,
+    "sha256": "7a9726fc7105387555a348d9af600fec6fecda62204e4f49008fae0c422525ae"
+  },
+  {
+    "file": "shots/S19-followup-feedback-read.png",
+    "bytes": 116798,
+    "sha256": "ecb972d4b6cfdfe28b0c8c83f52cd6d56ec13c27ee136a6d18f265c1d5662db2"
+  },
+  {
+    "file": "shots/S22-learning-issue-current.png",
+    "bytes": 54685,
+    "sha256": "54d8c3ed10ec259ffa02d719d753fd3e6561120e70262fbd9cbe4c3121cf5606"
+  },
+  {
+    "file": "shots/S01-login-error.png",
+    "bytes": 31717,
+    "sha256": "e2dafed31b05900e7d180a40fabff15ee94db458735de369ced4e42b2621a9a8"
+  },
+  {
+    "file": "shots/S06-foundation-return.png",
+    "bytes": 98704,
+    "sha256": "5c256c60b2209e3d82f5a7cbc35bdbaf68990ffc23c793ab23033a407695061b"
+  },
+  {
+    "file": "shots/S08-transform-restored.png",
+    "bytes": 45112,
+    "sha256": "0e1d9a12a0bce93a7044b50fa205161e051736330491721786eacef20e66506f"
+  },
+  {
+    "file": "shots/S02-filter-realclick.png",
+    "bytes": 79410,
+    "sha256": "288c1aebd573dc7f3d06d9f681f9cde5c057ec7c1607397df7b443e66aa62407"
+  },
+  {
+    "file": "shots/E02-teacher-feedback-read.png",
+    "bytes": 96839,
+    "sha256": "858adff6a8e11bb15c2a70a8b1f060ad5c6bdfb5f6da56580c2659d43b3621bc"
+  },
+  {
+    "file": "shots/S07-ocr-confirm-blocked.png",
+    "bytes": 66913,
+    "sha256": "30166b815c1aa541e3660ea7318c606f791d25bc98a4b7ac7f65d1dd0dadb94f"
+  },
+  {
+    "file": "shots/E05-main-draft-restored.png",
+    "bytes": 67854,
+    "sha256": "0137bdff2cc738309f46b8e247d6d046dcb8afb2e235c0098fabe575350e2feb"
+  },
+  {
+    "file": "shots/S14-records-list.png",
+    "bytes": 66974,
+    "sha256": "7b6093d71517b2529b91da18e8f9119ce4ecc4fccba0e43d48d0886771c0940e"
+  },
+  {
+    "file": "shots/S21-asr-observed.png",
+    "bytes": 64353,
+    "sha256": "5b5557c534f374aebecb310a6d369e5f69e1a8b80250665abc4eb8f736d0cbcf"
+  },
+  {
+    "file": "shots/E02-feedback-and-supplement.png",
+    "bytes": 81206,
+    "sha256": "d8ca07c1e9c5d58fe01be3bd08927b1693be44b7e45fab2d419f20ebefde88da"
+  },
+  {
+    "file": "shots/S08-divide-zero.png",
+    "bytes": 49497,
+    "sha256": "6873b5dc3a7afe9975d57d5e9ce961816c15979a95b63036cffb2cdd1504c49c"
+  },
+  {
+    "file": "shots/E02-original-wrong.png",
+    "bytes": 70599,
+    "sha256": "a795b6cbb68c84e1eca698df32faacdc7c2e7f6b3d5b10a09171eeb6bcd42af1"
+  },
+  {
+    "file": "student2-online/network.jsonl",
+    "bytes": 2102574,
+    "sha256": "9c9892677ee945f0155e0b00616cc6bc07d51a083e3b425d19d99058eeca7b45"
+  },
+  {
+    "file": "student2-online/dialogs.jsonl",
+    "bytes": 262,
+    "sha256": "4d1ef354822afee992b4e308993724e6fb789bf41ae86fd937242de8401700fa"
+  },
+  {
+    "file": "student2-online/snapshots.jsonl",
+    "bytes": 160683,
+    "sha256": "66eb1b093ca0ee71fff91309cf917a0dc68b9adeb76fde6b7c1b93a4dc607c09"
+  },
+  {
+    "file": "student2-online/actions.jsonl",
+    "bytes": 8313,
+    "sha256": "7afa8bd201e0d6d321a06b557f729a1ce5c80fe682cc27d7548d1c036b1cdce1"
+  },
+  {
+    "file": "student2-online/shots/E05-archive-result-feedback.png",
+    "bytes": 60870,
+    "sha256": "ead96556994e17213aebdb1a4fbffdb9bd240403d0f73ceaf0426d1ef5d71a44"
+  },
+  {
+    "file": "student2-online/shots/S19-student2-no-targeted-supplement.png",
+    "bytes": 66394,
+    "sha256": "1619e0a7ac4ac6c0b9b1c41ea8fbe56c65deb4aecd23c34bfd0ae61fe785c861"
+  },
+  {
+    "file": "student2-online/shots/S19-student2-groups-isolated.png",
+    "bytes": 100068,
+    "sha256": "4facce1c9257e222d2c511ed282355f75e26d4cfb370ad10186decf1f23c4bdf"
+  },
+  {
+    "file": "student2-online/shots/E06-online-after-uncompared-answer.png",
+    "bytes": 68657,
+    "sha256": "2584579dd4f884f1de68918392513e810976f9cdf896723db82e82532dc7a796"
+  },
+  {
+    "file": "student2-online/shots/E04-student2-score.png",
+    "bytes": 82731,
+    "sha256": "82698fa5f51a3e7ed8d276a165b875b6f1aeabc9860892ebe4497a8a7e7c3415"
+  },
+  {
+    "file": "student2-online/shots/S19-student2-submitted-reread.png",
+    "bytes": 50248,
+    "sha256": "8762295bb77ea9f9f17052191da59b89ed5791f4e319f0fc2a95c15bd6b4d62a"
+  },
+  {
+    "file": "student2-online/shots/S10-exam-wrong-source.png",
+    "bytes": 35547,
+    "sha256": "435d6848711597b0cfc9faec5c11d578f08831d756f57e2cbcff16bd0e2a1780"
+  },
+  {
+    "file": "student2-online/shots/E05-student2-archive.png",
+    "bytes": 52106,
+    "sha256": "9e88dadbd9d32fd204615bb2fcd8fb9b0af4580c2de25b5e9b2fb6a2be54f81e"
+  },
+  {
+    "file": "student2-online/shots/S09-new-question-help-reset.png",
+    "bytes": 45854,
+    "sha256": "88ee26f724f959739beb9c389c335906759a8babf232a437bdb6f3b6ba879f36"
+  },
+  {
+    "file": "student2-online/shots/S21-tts-observed.png",
+    "bytes": 75625,
+    "sha256": "67cf606641ba1738173aafe97dfde27656620f9edfd9607ea8d5d2777505d1cc"
+  },
+  {
+    "file": "student2-online/shots/S19-student2-group-submitted.png",
+    "bytes": 55399,
+    "sha256": "93269ffa5c02e8c33c5de844eb1dc3db15f12552c3430c4e5ddc71364372d57d"
+  },
+  {
+    "file": "student2-online/shots/E06-online-newer.png",
+    "bytes": 73319,
+    "sha256": "e0e1ffb6b333f36e4680e553073f6d7a0832f00c44c347b2554881077482c902"
+  },
+  {
+    "file": "student2-online/shots/S21-tts-after.png",
+    "bytes": 70891,
+    "sha256": "52a08e985d3d87ab979383414c663022fd6ea34e3455e10e35b011cb09922811"
+  },
+  {
+    "file": "student2-online/shots/S09-question2-independent.png",
+    "bytes": 54723,
+    "sha256": "46a7546dc417c1621db923cf66df886e062b7bcca3ec09d6fcc1385908bf64d7"
+  },
+  {
+    "file": "student2-online/shots/E05-student2-submitted.png",
+    "bytes": 67275,
+    "sha256": "88d2b849e37c6e0b011ec51c04e3aed22aef41ecf2d395c54d0e4fa200a824a5"
+  },
+  {
+    "file": "student2-online/shots/E04-student2-submitted.png",
+    "bytes": 76327,
+    "sha256": "9391dc35b6b4e0cf4721c4dee2d2a09bfefac06800608965c2c958d0a0bcb850"
+  },
+  {
+    "file": "student2-online/shots/E05-student2-comment.png",
+    "bytes": 76610,
+    "sha256": "096e303b5ad5411a52822046b0de98bc51f02b27fc10058c3a2a3bdb034f26b9"
+  },
+  {
+    "file": "student2-online/shots/E04-student2-wrong-comment.png",
+    "bytes": 80731,
+    "sha256": "cbde3e80e1230b2a6b23e7e4c95fe3d95ff4e3348f012380e57f66be13d7a8cb"
+  },
+  {
+    "file": "student3/shots/S15-class-joined.png",
+    "bytes": 43512,
+    "sha256": "8aaa2f4221b9c0f48531345376a50c0b9ff00f56ea72224a41e1895118a0330e"
+  },
+  {
+    "file": "student3/shots/S10-raw-crop-preserved.png",
+    "bytes": 66838,
+    "sha256": "babe431d839c99b11d7cf520709ea0676725a95d44781a4f0e4abff501fe4e22"
+  },
+  {
+    "file": "student3/shots/S18-feedback-closed.png",
+    "bytes": 46959,
+    "sha256": "880ca437d59d217c4ea63f250d26c365078318a570a6be0c2e01d055a2c5771a"
+  },
+  {
+    "file": "student3/shots/S04-new-version-preview.png",
+    "bytes": 72749,
+    "sha256": "26f6193c6c75528d2dedc055cfbe2cf1eb329b85de40edda27aec451c8e099c2"
+  },
+  {
+    "file": "student3/shots/S18-admin-reply-read.png",
+    "bytes": 93657,
+    "sha256": "9116ee0ebcd9a7c6d3cceca6e28b6536680fe0add1afb61c465a331583807f0a"
+  },
+  {
+    "file": "student3/shots/S11-cause-confirm-visible.png",
+    "bytes": 52392,
+    "sha256": "7c04cecc6ffda250ca129b86b5470475d00194e23bf07a37a7ffdb46516ea91f"
+  },
+  {
+    "file": "student3/shots/S18-closed-history.png",
+    "bytes": 99259,
+    "sha256": "f70c42e444ee660817f2f6de00fcab776a4c79b9d528bd923ffec6211cbea187"
+  },
+  {
+    "file": "student3/shots/S04-student3-catalog.png",
+    "bytes": 81108,
+    "sha256": "601a9bba1a8d427fa36f08c8edaf287ab6d959155fa7db1a6219b8ada7c42229"
+  },
+  {
+    "file": "student3/shots/S18-feedback-final-state.png",
+    "bytes": 47514,
+    "sha256": "9822f7c5900434197ed16dcbadb0184807255dff3683325f7752052614ec5e96"
+  },
+  {
+    "file": "student3/shots/S10-crop-ocr-confirmed.png",
+    "bytes": 76755,
+    "sha256": "0d2a10ac97b2ab7ad49c822497a74116d62b29cadbf1804be104a88e0bb5977f"
+  },
+  {
+    "file": "student3/shots/S18-feedback-offline-error.png",
+    "bytes": 54870,
+    "sha256": "bcbfff569759ba023248a3a97856c56bcab55bb6a2b7b12d87b9faaf7aa9f058"
+  },
+  {
+    "file": "student3/shots/S13-memory-evidence.png",
+    "bytes": 57322,
+    "sha256": "93a823caae7bde73fa41d84d9f66e3e6d729c877beeaa8a5f4de90f7a988596a"
+  },
+  {
+    "file": "student3/shots/S18-filter-reopened.png",
+    "bytes": 38138,
+    "sha256": "59764311143035d88d3d9e36073edae7683187266ca1ab439576578f1225d471"
+  },
+  {
+    "file": "student3/shots/S15-student3-no-old-exam.png",
+    "bytes": 31505,
+    "sha256": "d1e74ad89ff66ea75870b2ceb3b440cfdbd8090eef69129096b7d6e321b292fd"
+  },
+  {
+    "file": "student3/shots/S01-student3-relogin.png",
+    "bytes": 64278,
+    "sha256": "481194b72b9242eb2978a8feb27799e0e0f9351e0f6c749bbde4cf261d6ca77b"
+  },
+  {
+    "file": "student3/shots/S18-feedback-added.png",
+    "bytes": 76986,
+    "sha256": "9f29450705ab8338d320645da7427ded330f994af344889b27a05cabf3e1ca11"
+  },
+  {
+    "file": "student3/shots/S10-search-filter-original.png",
+    "bytes": 48722,
+    "sha256": "e8287d7f64439a568a622b67e600aceed20c47f4156af7fd9869764dfdf56141"
+  },
+  {
+    "file": "student3/shots/S11-cause-visible-saved-reread.png",
+    "bytes": 55458,
+    "sha256": "e04b3ce5841418fc815ec2652304ce492e9dea23d6273b824a166aa52711b36e"
+  },
+  {
+    "file": "student3/shots/S12-relogin-retains-wrong-original-status.png",
+    "bytes": 60303,
+    "sha256": "009c455f7c97bd4b0aab19c1b7ced6f43c9794dfb0e7ac9441eb0c04e54d9682"
+  },
+  {
+    "file": "student3/shots/S10-wrong-original-text.png",
+    "bytes": 47316,
+    "sha256": "00ca394893fe4fdfb583adc67c8c5574de78add671fbc9bfb410fc3df41486fc"
+  },
+  {
+    "file": "student3/shots/S15-class-one-filter-no-old-task.png",
+    "bytes": 66529,
+    "sha256": "9ed691f60274f3fd0d481c204f5ca37224ec50ce45f6ba85443d7097308baca0"
+  },
+  {
+    "file": "student3/shots/S11-cause-analysis-real.png",
+    "bytes": 54520,
+    "sha256": "c519722f04f2f93b96a74c9c082f81945e3bc2032194aba25529d792a819420e"
+  },
+  {
+    "file": "student3/shots/S15-class-two-filter.png",
+    "bytes": 68207,
+    "sha256": "46f0d18e7de7dc9ba4fb8915df2fc9f79752d6f39d6c1f4181d7c4d196ba05a9"
+  },
+  {
+    "file": "student3/shots/S11-cause-persisted.png",
+    "bytes": 52375,
+    "sha256": "c2fd3c09e7aae3b13c40cf487fabab715c88e01634fafabeb65f2432ee18762a"
+  },
+  {
+    "file": "student3/shots/E03-independent-retest.png",
+    "bytes": 43379,
+    "sha256": "3c918f58bccd388e9cd4fbaec69a3f4a16833ea1922be921f210951d7328d178"
+  },
+  {
+    "file": "student2/downloads/学习草稿-task-122289cddb442a5f08fdbec2188b4420.json",
+    "bytes": 591,
+    "sha256": "edad6bd0b176fc967632a22b43bd994f7b42937212e350deec49d23cab6e5cd6"
+  },
+  {
+    "file": "student2/shots/E06-conflict-compare.png",
+    "bytes": 74681,
+    "sha256": "16e50140556b63f9899a5ce99c61de55a888c17650d3de4cc250dd27fb72d155"
+  },
+  {
+    "file": "student2/shots/E06-download-deleted.png",
+    "bytes": 45954,
+    "sha256": "739f2db5875828aee99c695701e2c7eda5b6c3251d4cd8e2fce7b523688060e5"
+  },
+  {
+    "file": "student2/shots/E06-conflict-after-progress.png",
+    "bytes": 71997,
+    "sha256": "b697180994af888fa4e233fa54595d709c70bf6d93bcd6f1ae869f5d1efeb371"
+  },
+  {
+    "file": "student2/shots/E06-offline-draft.png",
+    "bytes": 70605,
+    "sha256": "bc1da91c8f1e912866c246576167b87bbb10204dac89d25f19a3a3ff21cb6b71"
+  },
+  {
+    "file": "student2/shots/E06-downloaded.png",
+    "bytes": 52826,
+    "sha256": "bb66cdab0a4a62f98aea3ec61b21a7be9abdbcb95fd52acb0eafe8a330800cf4"
+  },
+  {
+    "file": "student2/shots/E06-locked-exited.png",
+    "bytes": 36948,
+    "sha256": "4649139075ceab8be050ce964d24274fe58ecf9858c8d62bf49c9860d2056f39"
+  },
+  {
+    "file": "student2/shots/E06-conflict-collapsed.png",
+    "bytes": 73343,
+    "sha256": "8c4afe7dfc0e5a821bccd01b503e9aea70bb7ac4993b7745f54e1428783a067c"
+  },
+  {
+    "file": "student2/shots/E06-reopened-offline-restored.png",
+    "bytes": 67771,
+    "sha256": "a93ea395ae736cede1aea6f058e4bd086bb9547b944500cfb68ab635049d9f8e"
+  }
+]

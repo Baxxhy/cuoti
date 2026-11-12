@@ -1,0 +1,28 @@
+
+> shicheng-zhixue@0.3.0 build
+> vite build --outDir /tmp/sczx-full/candidate-r2
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 2923 modules transformed.
+
+(!) outDir /tmp/sczx-full/candidate-r2 is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+rendering chunks...
+computing gzip size...
+../../../../../tmp/sczx-full/candidate-r2/index.html                                                0.41 kB │ gzip:   0.30 kB
+../../../../../tmp/sczx-full/candidate-r2/sw.js                                                     1.38 kB
+../../../../../tmp/sczx-full/candidate-r2/assets/geist-cyrillic-ext-wght-normal-DjL33-gN.woff2      7.42 kB
+../../../../../tmp/sczx-full/candidate-r2/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2        8.00 kB
+../../../../../tmp/sczx-full/candidate-r2/assets/geist-cyrillic-wght-normal-BEAKL7Jp.woff2         15.08 kB
+../../../../../tmp/sczx-full/candidate-r2/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2        16.51 kB
+../../../../../tmp/sczx-full/candidate-r2/assets/geist-latin-wght-normal-BgDaEnEv.woff2            29.40 kB
+../../../../../tmp/sczx-full/candidate-r2/assets/index-CO-yA6Fi.css                               239.52 kB │ gzip:  44.30 kB
+../../../../../tmp/sczx-full/candidate-r2/assets/index-8bNtgQgl.js                              1,112.71 kB │ gzip: 364.62 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 9.64s

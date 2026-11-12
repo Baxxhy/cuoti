@@ -1,0 +1,17 @@
+{"at":"2026-11-12T06:11:14.592Z","action":"wait","ms":500}
+{"at":"2026-11-12T06:11:15.099Z","action":"login","file":"/root/Baxxhy/zhiwei/sczx/backend-business/var/full_audit_20261112/extra-accounts.json","username":"audit_student_xnq3r","password":"[redacted]"}
+{"at":"2026-11-12T06:11:15.121Z","action":"click","text":"登录","wait":1000}
+{"at":"2026-11-12T06:11:24.122Z","action":"click","text":"班级","wait":600}
+{"at":"2026-11-12T06:11:24.760Z","action":"click","text":"考试","wait":600}
+{"at":"2026-11-12T06:11:25.389Z","action":"click","text":"进入考试","index":1,"wait":500}
+{"at":"2026-11-12T06:11:25.919Z","action":"click","text":"下一题","wait":300}
+{"at":"2026-11-12T06:11:51.541Z","action":"dom","code":"({assets:[...document.scripts].map(e=>e.src).filter(Boolean),text:document.body.innerText,fields:[...document.querySelectorAll('input,textarea')].map(e=>({tag:e.tagName,value:e.value,readOnly:e.readOnly,disabled:e.disabled})),comment:[...document.querySelectorAll('p')].filter(e=>e.innerText.includes('分步解释')).map(e=>({text:e.innerText,whiteSpace:getComputedStyle(e).whiteSpace}))})"}
+{"at":"2026-11-12T06:11:51.545Z","action":"shot","name":"r2-original-exam-format-fixed"}
+{"at":"2026-11-12T06:12:05.847Z","action":"click","selector":"input","wait":100}
+{"at":"2026-11-12T06:12:05.976Z","action":"key","key":"Backspace"}
+{"at":"2026-11-12T06:12:06.286Z","action":"dom","code":"({answer:document.querySelector('input').value,reason:document.querySelector('textarea').value,readOnly:[...document.querySelectorAll('input,textarea')].map(e=>e.readOnly)})"}
+{"at":"2026-11-12T06:12:06.289Z","action":"shot","name":"r2-original-answer-readonly-unchanged"}
+{"at":"2026-11-12T06:13:16.394Z","action":"reload","wait":900}
+{"at":"2026-11-12T06:13:17.307Z","action":"click","text":"第2题","wait":250}
+{"at":"2026-11-12T06:13:17.580Z","action":"dom","code":"({scoreText:document.body.innerText.match(/总分[^\\n]*/),answer:document.querySelector('input').value,reason:document.querySelector('textarea').value,readOnly:[...document.querySelectorAll('input,textarea')].map(e=>e.readOnly),literalNewline:document.body.innerText.includes(String.fromCharCode(92)+'n'),candidateTail:document.body.innerText.includes('待教师审核的候选题')})"}
+{"at":"2026-11-12T06:15:54.297Z","action":"close"}

@@ -64,6 +64,7 @@ export const api = {
   login: (username, password) => request("/auth/login", { method: "POST", body: JSON.stringify({ username, password }) }),
   logout: () => request("/auth/logout", { method: "POST" }),
   async platform(lessonId) { return linkStudentRecords(await request("/platform"+(lessonId?"?lessonId="+encodeURIComponent(lessonId):""))); },
+  setCaseFavorite: (id,selected) => request('/ai/cases/'+encodeURIComponent(id)+'/bookmark',{method:'PUT',body:JSON.stringify({selected})}),
   async savePlatform(data) { linkStudentRecords(data); return request("/platform", { method: "PUT", body: JSON.stringify({ data: await externalizeImages(data) }) }); },
   async publish(classroomId, lessonDraft) { return request("/tasks/publish", { method: "POST", body: JSON.stringify({ classroomId, lessonId:lessonDraft.lessonId, lessonDraft: await externalizeImages(lessonDraft), idempotencyKey: crypto.randomUUID() }) }); },
   submitTask: (taskId) => request(`/records/${encodeURIComponent(taskId)}/submit`, { method: "POST" }),

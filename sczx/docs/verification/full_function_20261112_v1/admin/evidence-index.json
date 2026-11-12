@@ -1,0 +1,347 @@
+[
+  {
+    "file": "AD01-accounts-created.png",
+    "bytes": 66582,
+    "sha256": "19d05ae6d88077eabe9cddbd99136d63aecd096400f0c9d01863b508e3c2d791"
+  },
+  {
+    "file": "AD08-reorder-success-refresh.png",
+    "bytes": 83332,
+    "sha256": "e3e133fa3ebf7e655738ee34a41c2c108102f66a3bd8b15112cafc8417b7de67"
+  },
+  {
+    "file": "AD13-offline-connection.png",
+    "bytes": 68753,
+    "sha256": "a04c0ba387bb6552c8cd403ccb049a942b52309d7b2542e6cf85d4b3eb5efddb"
+  },
+  {
+    "file": "network.jsonl",
+    "bytes": 9322815,
+    "sha256": "12431dc7ad71b6ac79e0c2b4a3ed4ea139bdeb09860626779bd8559fa04fb4c3"
+  },
+  {
+    "file": "AD03-extraction-start.png",
+    "bytes": 84280,
+    "sha256": "0f6f68ee0f244d4c440c69ffad931c02ef79cc0f119e5cd0ed23347a2ab10e77"
+  },
+  {
+    "file": "AD07-case-version1-retained.png",
+    "bytes": 83782,
+    "sha256": "5d2d19a82852464dbc5bc29cafd183842bed9a64f396100bba3669500206d35f"
+  },
+  {
+    "file": "AD07-withdraw-refresh.png",
+    "bytes": 107459,
+    "sha256": "ee4aecb8f01a291ff7675f08b8e6480223a1fdec778a92222efb7cdc48b60c0b"
+  },
+  {
+    "file": "AD18-speech-stop.png",
+    "bytes": 51325,
+    "sha256": "c366b6a3d6123682a229cf2e86c382336f046733a10747829ea95a2d82832717"
+  },
+  {
+    "file": "AD12-feedback-replied.png",
+    "bytes": 93981,
+    "sha256": "ba33054278d9a96739c242f7658b12c6ac00679ead00abd8fcf0e546158394a4"
+  },
+  {
+    "file": "AD11-disabled-refresh.png",
+    "bytes": 58537,
+    "sha256": "bc3f173216d5ff50576b2a5fa20bc16365d54ff20d65bc5fac54aa91f47bc8ff"
+  },
+  {
+    "file": "network-concurrent.jsonl",
+    "bytes": 137074,
+    "sha256": "ea26f3cab640780658f1c127b63a139ed3273af5dd95fcb74fc42af9d630f3e8"
+  },
+  {
+    "file": "AD06-reverified-preview.png",
+    "bytes": 91306,
+    "sha256": "770c1ef705efc2ea22ac588f7ce487c87bbfeb1842721fe760017999d9d3e2a0"
+  },
+  {
+    "file": "AD08-directory-refresh.png",
+    "bytes": 75323,
+    "sha256": "69c9c81c274a4e3d191dfa223574c1dcc952b512eb02fe882d5c1f87e13d8925"
+  },
+  {
+    "file": "AD12-pending-empty-after-close.png",
+    "bytes": 38771,
+    "sha256": "f0af0db1ff0ae54c84d3a459f3f40c207c5574fdef212687eb68d758774228ba"
+  },
+  {
+    "file": "AD17-job-list-500-repeat.png",
+    "bytes": 48902,
+    "sha256": "a437a3792ec0ffb3a9cd44572702b94f1a1eef5c5838595f26d814189973caf1"
+  },
+  {
+    "file": "AD15-real-model-record.png",
+    "bytes": 78904,
+    "sha256": "0fd03ff108fa05e5426a3dcd8374a847b8e19fe271142fbf407349c2f5dc8a37"
+  },
+  {
+    "file": "AD06-verified-refresh.png",
+    "bytes": 96411,
+    "sha256": "788ecc79bb72c6fecac06eadad0a25cbb54dc50bcf9859087a8bc1b0af14395d"
+  },
+  {
+    "file": "AD05-original-preserved.png",
+    "bytes": 68162,
+    "sha256": "6026a2c1b896ac8a209d2bd3c839c2c3a8b07ee70abbe8fb1b938c986d00cec7"
+  },
+  {
+    "file": "AD15-guidance-restored-result.png",
+    "bytes": 76821,
+    "sha256": "3df4f10e6cff88000254700a606d586709cd217a9cac555063e2c84fecca14f9"
+  },
+  {
+    "file": "AD11-lesson-v2-history.png",
+    "bytes": 80357,
+    "sha256": "39a78f4162abd692512158fe1bdfb9c6fcc78c20da69e5370f0d5367ef84ecfc"
+  },
+  {
+    "file": "AD09-empty-lesson-publish.png",
+    "bytes": 68046,
+    "sha256": "408e748b7805473fd95e5ca4150a0498f2af24fb471bc457a90383d1bd3cbdd1"
+  },
+  {
+    "file": "AD11-lesson-v1-retained.png",
+    "bytes": 63147,
+    "sha256": "2075c0e6ee9e3558cd9ae26388d0586c7e379d50859dfc38a5355e2c9910142e"
+  },
+  {
+    "file": "synthetic-math.png",
+    "bytes": 24870,
+    "sha256": "0b628efce157fd654054432fca94ae923561d81a67231ad4060ba1ee445a6fdf"
+  },
+  {
+    "file": "AD04-case-confirmed-published.png",
+    "bytes": 128495,
+    "sha256": "a1fd3250ae94c1304826df716ca4ad5a6c2df83175b2fdc392c68fadb0a8e3d6"
+  },
+  {
+    "file": "AD19-speech-input-device.png",
+    "bytes": 47957,
+    "sha256": "c4789b15f3e33d5ee7219ad8ecd784de377136ebc4b81ce91507b7af1917eb14"
+  },
+  {
+    "file": "AD01-empty-account.png",
+    "bytes": 48804,
+    "sha256": "0b0b387e743a3fa7d58ff8a9d502853f2e8bf5696559132d7fb029aaa9ff7917"
+  },
+  {
+    "file": "AD01-duplicate-account.png",
+    "bytes": 57691,
+    "sha256": "12604847f1ad13f66ea1d61d189f8e72cd26855b088c6a5ba869a6ff0b6864b1"
+  },
+  {
+    "file": "AD09-lesson-published.png",
+    "bytes": 78439,
+    "sha256": "f0be2ffe183e1eb5b2ff77737d2d51dfb07ef6bbb3fce36e9c50025345dcf921"
+  },
+  {
+    "file": "AD05-recognized-revision-refresh.png",
+    "bytes": 69996,
+    "sha256": "eed29457273c025d98d14bd419e041e8e154e4cd0a3266b8fcc6cdb8ad127c58"
+  },
+  {
+    "file": "AD04-case-published.png",
+    "bytes": 71518,
+    "sha256": "948f28b2fb5c7ed90172c502e06ad184bff13c0dd9f7c32c379fda0300d39748"
+  },
+  {
+    "file": "AD06-refreshed-published-math.png",
+    "bytes": 107453,
+    "sha256": "a54a6955d13d073f0572669c14b8c2229b885443e6bc7230a6e8563fce36b0d7"
+  },
+  {
+    "file": "AD10-knowledge-cycle.png",
+    "bytes": 104074,
+    "sha256": "c54826053107b907beaf2457d359a316ce6f6bdbc0e8b4b081743c93fac0a2fa"
+  },
+  {
+    "file": "AD06-math-preview.png",
+    "bytes": 84064,
+    "sha256": "03d5c0f7e15c7a6b78cd00886daa5f9ba14bf9e92d4d8abafbfacb4841db2200"
+  },
+  {
+    "file": "AD06-reverify-valid.png",
+    "bytes": 100546,
+    "sha256": "2640b8c17c92aa57e9c06bb4c9c74a916413ed04f110d239071a9b7a7acf6074"
+  },
+  {
+    "file": "AD18-stop-during-prepare.png",
+    "bytes": 45903,
+    "sha256": "36c06172f571dea3a91b0c2d2bab1e4afe77e78c32555e2176d5ae3ae2d8e4d7"
+  },
+  {
+    "file": "AD06-incorrect-math-flag.png",
+    "bytes": 96943,
+    "sha256": "246239984783b853f3b3e42372106d051d9d294b24555271c576a119a9c4ad1c"
+  },
+  {
+    "file": "AD17-job-list-500-unconfigured.png",
+    "bytes": 48890,
+    "sha256": "a411bd8482241bdf8633af9c1a1d5319154ae8bac42c9216d2843635a7ca4ec5"
+  },
+  {
+    "file": "AD02-empty-upload.png",
+    "bytes": 54899,
+    "sha256": "da3307e72ec40dcb57eb1ae5b61254e4d920d4ef2f6b98e6a9e0c50c3e819c38"
+  },
+  {
+    "file": "AD19-text-fallback.png",
+    "bytes": 50102,
+    "sha256": "cfe19eb872a01d87388f4a84d69d200d17521e8583d9415c2056c889fb0c5b18"
+  },
+  {
+    "file": "AD08-order-restored-success.png",
+    "bytes": 83333,
+    "sha256": "1b54c60e64162cd235b8d1855ce07d9b72929ea239b951facec01517235d158c"
+  },
+  {
+    "file": "AD08-order-restored.png",
+    "bytes": 95018,
+    "sha256": "9aeb8078a7a7c51016706f618934524d0ae247366ea65a9356dd2747bdd15456"
+  },
+  {
+    "file": "AD07-case-revision-v2.png",
+    "bytes": 108874,
+    "sha256": "6ed04abe906cea9c8c48170bdb0efbe1df05d759de492d2c0b4556de6d45a92f"
+  },
+  {
+    "file": "AD19-voice-no-device.png",
+    "bytes": 55572,
+    "sha256": "893b2d5abb6583428ff296c09908dd5bcbec9dd3e66abfe5c131714418c72d39"
+  },
+  {
+    "file": "actions-concurrent.jsonl",
+    "bytes": 3923,
+    "sha256": "18e8c6a71a12ad1b2a23acbc1fbe08b12c72c2b7c2b478a52bbd014aa535929c"
+  },
+  {
+    "file": "AD11-lesson-v1.png",
+    "bytes": 78882,
+    "sha256": "78b95c6ef80511b1a8f40f43c2b036b656894ea706bd3a53e38c554c2516e352"
+  },
+  {
+    "file": "baseline.md",
+    "bytes": 43132,
+    "sha256": "9284d8e2cddf2af4a812ed545e1ce27d9e6ef36f5da476ccd8bf2bb2a082dd9b"
+  },
+  {
+    "file": "baseline.json",
+    "bytes": 71969,
+    "sha256": "f3fd0bd9bc30d37ebd8ec4e19534f8ba6995f5ba5db1b76f653767f4dab74143"
+  },
+  {
+    "file": "AD04-unconfirmed-publish.png",
+    "bytes": 87856,
+    "sha256": "619d47a48c65920407c834856119dcb730e1d5a5c7a64828bf000f427c261023"
+  },
+  {
+    "file": "AD20-concurrent-reread-retry-refresh.png",
+    "bytes": 101632,
+    "sha256": "aba928754283bd7087ae9ecddc2d055abe115ff6d019a9188f3c13477d223685"
+  },
+  {
+    "file": "AD08-course-empty.png",
+    "bytes": 62122,
+    "sha256": "eb278bd1da2a2253353aaf5c0de449b2e9619f01a4765ea9122f839d8c2fb39e"
+  },
+  {
+    "file": "AD12-closed-filter.png",
+    "bytes": 102339,
+    "sha256": "c60f93b51721887a581bf4fafedc069746156eecbbf09a7dad5ec86311b417aa"
+  },
+  {
+    "file": "AD01-account-invalid.png",
+    "bytes": 74388,
+    "sha256": "6c0ae916667ca30cd0668d6d827b30d4da2c7ced68f287331b8e371d317d23aa"
+  },
+  {
+    "file": "AD10-knowledge-cycle-rejected.png",
+    "bytes": 103965,
+    "sha256": "d5452af106d215415c07db519ef6618a7c85c63456ed55d2d94679a4a060e61d"
+  },
+  {
+    "file": "AD09-draft-preview.png",
+    "bytes": 79089,
+    "sha256": "7d1836e62c61afbab389724ae61056abd9252728b4c4d6c8a25a504ab9cac5a5"
+  },
+  {
+    "file": "AD10-knowledge-refresh.png",
+    "bytes": 102171,
+    "sha256": "e771df44c6929e370855bde02df453ae6abf20bedae23544f4f8345b066457d2"
+  },
+  {
+    "file": "AD09-published-refresh.png",
+    "bytes": 76536,
+    "sha256": "7cba1aa3b33c19b7b6c7c7f494b6de99bb40bc4dc06da6c4063a9d3ba85cf59e"
+  },
+  {
+    "file": "AD20-concurrent-B-saved.png",
+    "bytes": 95789,
+    "sha256": "26f78ccb1857495956e8bfe7fd6e8826cf99ac3b82f76525db41e5ff3ebbd9ad"
+  },
+  {
+    "file": "AD06-preview-valid-corrected.png",
+    "bytes": 91286,
+    "sha256": "0b0acadfa92c3d70548b4ab300e344ba208a2472c5776a8e16d69e3d24158629"
+  },
+  {
+    "file": "AD20-concurrent-A-conflict.png",
+    "bytes": 109640,
+    "sha256": "73a87f6c64111b4388071a9076674899f1699ed5cae32281a4afc5823df63b5e"
+  },
+  {
+    "file": "AD08-directory-invalid-order.png",
+    "bytes": 74625,
+    "sha256": "50a545077e8448509e78f572fd530c46b25b133b21df06d8e6b1c3a41a217ddf"
+  },
+  {
+    "file": "AD09-preview-practice.png",
+    "bytes": 77942,
+    "sha256": "fe0eda34e5014ec3b1db4fd139dd99fbfe704e608d3ca216cd6a24a50bc56305"
+  },
+  {
+    "file": "AD01-accounts-after-refresh.png",
+    "bytes": 72238,
+    "sha256": "0d58808c9fc12b28052c9b590fa162f22f0bdaa27bd4c70cce661eb3b39db9df"
+  },
+  {
+    "file": "AD01-account-relogin.png",
+    "bytes": 73316,
+    "sha256": "c48970832b6a12a6e1d7b6bc81d54351bffde75f1f25d2f5d4a9c8aed4f22829"
+  },
+  {
+    "file": "actions.jsonl",
+    "bytes": 381207,
+    "sha256": "e6992643b5a3d6a6c833a867455b8b6c5207677a76dc7dd88ece60b082ec27d7"
+  },
+  {
+    "file": "AD15-guidance-start.png",
+    "bytes": 53226,
+    "sha256": "00cbd8e31e4f2bc6ec422bdd6bb66693b452b7a8f6e62b32d97829bce6d5bf6d"
+  },
+  {
+    "file": "AD16-ocr-restored-result.png",
+    "bytes": 86102,
+    "sha256": "8418dcc58fbffcec47b576db6aa23dd5560b5a963f281ab5ed32ff13298bb103"
+  },
+  {
+    "file": "AD18-read-aloud-device.png",
+    "bytes": 47350,
+    "sha256": "fd2d3be7e8c17c88e4f002e43c490130c98eb957615e1c14248ff0ddb171106d"
+  },
+  {
+    "file": "合成工程验收_一元一次方程.docx",
+    "bytes": 37420,
+    "sha256": "9383d1c489af232696d6fdcffcc96eb78542d024c8c6b7fbda39978e452bfc74"
+  },
+  {
+    "file": "AD08-reorder-refresh.png",
+    "bytes": 95018,
+    "sha256": "9aeb8078a7a7c51016706f618934524d0ae247366ea65a9356dd2747bdd15456"
+  }
+]

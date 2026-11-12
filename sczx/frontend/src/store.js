@@ -5,6 +5,7 @@ import {
   createId,
 } from "./services/platform.js";
 import { api } from "./services/api.js";
+import {platformDraft,platformDraftSignature} from './lib/platform-persistence.js';
 
 export const useLearning = defineStore("platform", {
   state: () => ({
@@ -23,8 +24,11 @@ export const useLearning = defineStore("platform", {
     publishing: false,
     savedAt: null,
     revision: 0,
+    savedDraftSignature: null,
   }),
   getters: {
+    draftSignature:state=>platformDraftSignature(state.data,state.user?.role),
+    hasUnsavedChanges(){return this.savedDraftSignature!==this.draftSignature},
     unreadCount:state=>state.notifications.filter(m=>!m.readAt).length,
     task: (state) =>
       state.data.tasks.find((task) => task.id === state.data.activeTaskId) ||
@@ -67,6 +71,13 @@ export const useLearning = defineStore("platform", {
     },
   },
   actions: {
+    async setCaseFavorite(id,selected){
+      const actor=this.user?.id;
+      const result=await api.setCaseFavorite(id,selected);
+      if(actor!==this.user?.id)return false;
+      this.data.favoriteCaseIds=result.favoriteCaseIds;
+      return true;
+    },
     async initialize() {
       const generation=++this.authGeneration, initialUser=this.user;
       try {
@@ -101,6 +112,7 @@ export const useLearning = defineStore("platform", {
       this.user = null;
       this.notifications=[];
       this.data = createPlatform();
+      this.savedDraftSignature=null;
       this.status = "unauthenticated";
     },
     async load(lessonId=this.data.lesson?.id, background=false) {
@@ -110,7 +122,9 @@ export const useLearning = defineStore("platform", {
       try {
         const loaded=await api.platform(lessonId);
         if(generation!==this.loadGeneration || auth!==this.authGeneration || userId!==this.user?.id) return;
+        this.savedDraftSignature=platformDraftSignature(loaded,this.user?.role);
         this.data = loaded;
+        this.saveError='';
         this.notifications=this.data.messages||[];
         this.status = "ready";
       } catch (error) {
@@ -128,22 +142,25 @@ export const useLearning = defineStore("platform", {
       if (this.saving) {
         while (this.saving)
           await new Promise((resolve) => setTimeout(resolve, 20));
-        return !this.saveError;
+        return this.saveError?false:this.save();
       }
-      const savingData=this.data;
+      if(!this.hasUnsavedChanges){this.saveError='';return true}
+      const savingData=this.data,actor=this.user?.id;
       this.saving = true;
       this.saveError = "";
       try {
-        let revision;
+        let signature;
         do {
-          revision = this.revision;
-          const response=await api.savePlatform(savingData);
+          signature=platformDraftSignature(savingData,this.user?.role);
+          const payload=JSON.parse(JSON.stringify(platformDraft(savingData,this.user?.role)));
+          const response=await api.savePlatform(payload);
           if (response.draftRevision!==undefined) savingData.lessonDraft.revision=response.draftRevision;
-        } while (savingData===this.data && revision !== this.revision);
-        this.savedAt = new Date().toISOString();
+          if(savingData===this.data&&actor===this.user?.id)this.savedDraftSignature=signature;
+        } while (savingData===this.data&&actor===this.user?.id&&signature!==platformDraftSignature(savingData,this.user?.role));
+        if(savingData===this.data&&actor===this.user?.id)this.savedAt = new Date().toISOString();
         return true;
       } catch (error) {
-        this.saveError = error.message;
+        if(savingData===this.data&&actor===this.user?.id)this.saveError = error.message;
         return false;
       } finally {
         this.saving = false;
@@ -278,6 +295,7 @@ export const useLearning = defineStore("platform", {
       const result = await api.submitTask(this.task.id);
       this.record.completed = true;
       this.record.submittedAt = result.submittedAt;
+      this.savedDraftSignature=this.draftSignature;
       this.touch();
       return result;
     },

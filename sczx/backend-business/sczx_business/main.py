@@ -195,6 +195,9 @@ def platform_data(db: Session, user: Account, lesson_id=None) -> dict:
                 task = next((item for item in task_json if item["id"] == task_id), None)
                 messages.append({"id": rec["id"], "taskId": task_id, "title": f"{task['title'] if task else '课程'} · 教师反馈", "createdAt": rec.get("feedbackAt")})
     result = {"version": 2, "currentUser": account_json(user), "classroom": {"id": classroom.id, "name": classroom.name, "grade": classroom.grade, "teacherId": classroom.teacher_id,"subject":classroom.subject} if classroom else None, "classrooms": [{"id": c.id, "name": c.name, "grade": c.grade, "teacherId": c.teacher_id,"subject":c.subject} for c in classrooms], "members": [{"id": m.id, "displayName": m.display_name, "username": m.username} for m in db.scalars(select(Account).join(ClassMember, ClassMember.student_id == Account.id).where(ClassMember.classroom_id == classroom.id)).all()] if classroom and user.role == "teacher" else [], "lesson": {"id": lesson.id, "title": lesson.title, "courseId": lesson.course_id} if lesson else None, "caseDraft": {"id": first_case.id, "title": first_case.title, "source": first_case.source, "content": first_case.content, "reviewed": first_case.status == "published", "fileName": "", "updatedAt": first_case.updated_at.isoformat()} if first_case else {"id": "case-balance", "title": "天平与等式性质", "source": "", "content": CASE_TEXT, "reviewed": False, "fileName": ""}, "publishedCase": published_case_json(db,case.id) if case else None, "lessonDraft": {"id": draft.id, "caseId": draft.case_id, "caseSnapshot": draft.case_snapshot, "lessonSnapshot": draft.lesson_snapshot, "lessonId":draft.lesson_id, "goal": draft.goal, "studentBase": draft.student_base, "dueDate": draft.due_date, "blocks": draft.blocks, "questions": draft.questions, "revision":draft.revision, "planningDetails":draft.planning_details or {}, "updatedAt": draft.updated_at.isoformat()} if draft else {"id": "draft-equation", "caseId": case.id if case else None, "goal": "理解并应用等式两边的共同变化", "studentBase": "", "dueDate": "", "blocks": BLOCKS, "questions": QUESTIONS}, "tasks": task_json, "records": records, "studentRecords": student_records, "activeTaskId": task_json[0]["id"] if task_json else None, "activeStudentId": next(iter(student_records.values()))[0]["studentId"] if student_records and next(iter(student_records.values())) else user.id, "favorite": False, "issue": {"id": issue.id, "text": issue.text, "reply": issue.reply, "resolved": issue.resolved, "updatedAt": issue.updated_at.isoformat()} if issue else {"id": "issue-empty", "text": "", "reply": "", "resolved": False}, "supplements": supplements, "messages": messages}
+    from .ai_routes import case_bookmarks
+    result.pop("favorite",None)
+    result.update(case_bookmarks(db,user) if user.role=="teacher" else {"favoriteCaseIds":[]})
     from .teaching import task_json,materialize_messages,message_json
     from .models import BusinessMessage
     for entry,task in zip(result['tasks'],tasks):entry.update(task_json(db,user,task))
@@ -596,6 +599,7 @@ def add_attempt(task_id: str, body: dict, request: Request, db: DB) -> dict:
     task = db.get(LearningTask, task_id)
     if not rec or not task:
         raise HTTPException(404, "没有找到本人的学习任务。")
+    if task.source in ('exam','live-class'):raise HTTPException(409,'考试与课堂原始作答仅可回看，请从错题订正继续练习。')
     index = int(body.get("question", -1))
     questions = task.questions or []
     if index < 0 or index >= len(questions):

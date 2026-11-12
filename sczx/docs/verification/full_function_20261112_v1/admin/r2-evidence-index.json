@@ -1,0 +1,87 @@
+[
+  {
+    "file": "r2-A28-second-before-submit.png",
+    "bytes": 63056,
+    "sha256": "8419238592adf25a61d555d87f2c2a9f17fb6dcb2dcc7fd2f6903162f9af2ffd"
+  },
+  {
+    "file": "r2-AD10-specific-empty-name-retained.png",
+    "bytes": 111805,
+    "sha256": "f02a8849e650a8d3a807f306cbaa4b9d886c53caffb6632fd4e19e5000ecec2b"
+  },
+  {
+    "file": "r2-A28-before-submit.png",
+    "bytes": 60501,
+    "sha256": "f872914b686a7753b690a5d91a7a0fa86ae33c37e483cb9f4a9a22f454a76ed5"
+  },
+  {
+    "file": "r2-A28-submission-marker.json",
+    "bytes": 410,
+    "sha256": "321f187782da3ec1320c930a7899d29ed89cb8c5345b5ac42b64e83c71e5ce54"
+  },
+  {
+    "file": "r2-AD10-no-write-refresh.png",
+    "bytes": 110228,
+    "sha256": "4edeb22bf9425c5005685b5284a15bd049b30ef4f25a985181614dd4f447236a"
+  },
+  {
+    "file": "r2-A28-failed-retry-entry.png",
+    "bytes": 55739,
+    "sha256": "30eed0ec1744e084a9547e573593fe81e225dc6149b7ffc04e22a49923e946a1"
+  },
+  {
+    "file": "r2-network.jsonl",
+    "bytes": 545388,
+    "sha256": "46a8167af77bb430770cc2edc335f6309597f5359ad52863fc7317b38e80c5d6"
+  },
+  {
+    "file": "retest-r2.json",
+    "bytes": 10010,
+    "sha256": "384682afc60b7003b302e208a58811e4b3fcd30cc0ef37bb18b6a50a6344f96a"
+  },
+  {
+    "file": "r2-A28-retry-task-result.png",
+    "bytes": 90615,
+    "sha256": "9e097169ea6bf93ef60c49954767201254cdd74ce2cfe3cd1dba54f477715999"
+  },
+  {
+    "file": "r2-A28-submission-2.json",
+    "bytes": 538,
+    "sha256": "0276897ed3e228eed5c7014149a98b4c3227f72a5ea1774effb26d7a42b83b27"
+  },
+  {
+    "file": "r2-A28-after-interruption-before-refresh.png",
+    "bytes": 73475,
+    "sha256": "513ae6c8182837d7fffdf5081c3abe1a3c1034d061091120f8e0f709c61674ae"
+  },
+  {
+    "file": "r2-A28-two-real-executions.png",
+    "bytes": 94498,
+    "sha256": "5770ab7d520186f3f77f87d70d1dbf442dc015236e534d53a00f7748b114da5f"
+  },
+  {
+    "file": "r2-A28-success-refresh-restored.png",
+    "bytes": 94460,
+    "sha256": "235fd9d6cf64d32a14029e4ee7e8c23f1e40cd0f9451c9eec1885d7992abca1f"
+  },
+  {
+    "file": "r2-A28-first-job-success-fact.png",
+    "bytes": 74450,
+    "sha256": "d5e8c9b5f908704a7e272d2561dd464ef08b17c817df5ec21409f4e197693fca"
+  },
+  {
+    "file": "retest-r2.md",
+    "bytes": 3491,
+    "sha256": "ed2c58a5f369a78e4429b550da43c00f657b3e5d33ea8c4d33d1a3327266bddb"
+  },
+  {
+    "file": "r2-A28-retry-running.png",
+    "bytes": 49931,
+    "sha256": "b8e33f0ae9db122af0672222ce50bc9f6e8ffd35738cc722a26ee55b2ee4e0e7"
+  },
+  {
+    "file": "r2-actions.jsonl",
+    "bytes": 23085,
+    "sha256": "6a4c62742ccc6f2cbb9068d7371c9d9e5d586d3bc1fdf89f3df865665c4b25a1"
+  }
+]

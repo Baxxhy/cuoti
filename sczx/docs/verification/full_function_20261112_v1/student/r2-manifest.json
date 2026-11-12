@@ -1,0 +1,126 @@
+{
+  "files": [
+    {
+      "file": "retest-r2.json",
+      "bytes": 8378,
+      "sha256": "7ce3fa60036f888fd5341c34c24a50221ba23ac1f4a16d9e078fc7493a62e702"
+    },
+    {
+      "file": "retest-r2.md",
+      "bytes": 5171,
+      "sha256": "64278ec9210785b576e1b4e794967fc744b83f664e2a83e5f92573f3ad6d83ae"
+    },
+    {
+      "file": "build-r2-report.py",
+      "bytes": 9618,
+      "sha256": "3f59411e632caa2e8ab4e8814ca352b4898c86b4cb85f133d21a0dc29207d503"
+    },
+    {
+      "file": "r2-main/r2-snapshots.jsonl",
+      "bytes": 44600,
+      "sha256": "76cef31f0b1cfc43fe55d8d86e5b0b6ef14071cea33adfc747105e97238b0022"
+    },
+    {
+      "file": "r2-main/r2-network.jsonl",
+      "bytes": 246224,
+      "sha256": "24cf9e25797620b4df3aa401926b164002b200cc916547d9d46e86e4be6c837d"
+    },
+    {
+      "file": "r2-main/r2-actions.jsonl",
+      "bytes": 2240,
+      "sha256": "362eeab75c5e586913c5783f424ca0c71c571177ff2dbda0c27eef5458eaa41d"
+    },
+    {
+      "file": "r2-unit/r2-snapshots.jsonl",
+      "bytes": 29549,
+      "sha256": "40c1bd0c76ec031a4251def3614dd39257b5ac8080f6d79f164684577ab765fe"
+    },
+    {
+      "file": "r2-unit/r2-network.jsonl",
+      "bytes": 274763,
+      "sha256": "db8d723529b3a2672bd93194cec4b86d4607b5d1b2be97cf31b8f0b19df244b0"
+    },
+    {
+      "file": "r2-unit/r2-actions.jsonl",
+      "bytes": 1760,
+      "sha256": "981cf82f93003679f655dac7dc48db81b30cb175aa3d3791eae0bab80cade133"
+    },
+    {
+      "file": "r2-student2/r2-snapshots.jsonl",
+      "bytes": 28167,
+      "sha256": "3e92a38a1b2ebe4573d52b2d6c78755ea824a0574741077d3373fd06e1d7dcdf"
+    },
+    {
+      "file": "r2-student2/r2-network.jsonl",
+      "bytes": 212549,
+      "sha256": "fab8eeccf8f21a28fce017d1d99322d408f202fa68fa84936a378c190e886826"
+    },
+    {
+      "file": "r2-student2/r2-actions.jsonl",
+      "bytes": 2324,
+      "sha256": "f7d894bfd3806357edc8cdef38128fb11c47441e4d05d6dfa84b5cbb1dc44611"
+    },
+    {
+      "file": "r2-student2/shots/r2-original-answer-readonly-unchanged.png",
+      "bytes": 78886,
+      "sha256": "200c7f27b415ea4280373141e1a2467b919bd08633ff6dc3055551268e548847"
+    },
+    {
+      "file": "r2-student2/shots/r2-original-exam-format-fixed.png",
+      "bytes": 78135,
+      "sha256": "f5829e66cc294bb5a668358411230ae450cd6726ad41f9331e093d3372cb760a"
+    },
+    {
+      "file": "r2-unit/shots/r2-unit-completed-assigned-scope.png",
+      "bytes": 94824,
+      "sha256": "0ec232f8779d3becba0462a2ea48e198b52e6fed6a5aa38426e7424b70c61a16"
+    },
+    {
+      "file": "r2-unit/shots/r2-unit-next-lesson-correct-target.png",
+      "bytes": 52495,
+      "sha256": "31ec333beb638c9049f05568d5a3566dfb0a577810640ccb820163c64eee9d8e"
+    },
+    {
+      "file": "r2-unit/shots/r2-unit-progress-assigned-status.png",
+      "bytes": 84816,
+      "sha256": "f442debdd8f2a0f55e9428aa8395d1ecc85896b2e365d0d0d21b6ca357d11ea3"
+    },
+    {
+      "file": "r2-unit/shots/r2-unit-return-retains-status.png",
+      "bytes": 84816,
+      "sha256": "f442debdd8f2a0f55e9428aa8395d1ecc85896b2e365d0d0d21b6ca357d11ea3"
+    },
+    {
+      "file": "r2-main/shots/r2-teacher-review-audit-entry.png",
+      "bytes": 63464,
+      "sha256": "d73de8fb5550618f074b8cb8d85aa85d0b7c985400f14447549a185bd7fdcdb0"
+    },
+    {
+      "file": "r2-main/shots/r2-memory-to-original-class-record.png",
+      "bytes": 60061,
+      "sha256": "027eb8722ed8d56472cc489614aca4bab30a1b370a7cb49851c2f124cd55c875"
+    },
+    {
+      "file": "r2-main/shots/r2-class-original-answer-and-review.png",
+      "bytes": 85131,
+      "sha256": "f519129596bfef6b5264802e98780368ff40892959ba3cb16aad88a42f9eb4a5"
+    },
+    {
+      "file": "r2-main/shots/r2-return-to-memory-teacher-review.png",
+      "bytes": 57283,
+      "sha256": "72e86fee8772460d8df6751671c4e9993ea7800e32835a3bcfbccb744e24cfd1"
+    },
+    {
+      "file": "r2-main/shots/r2-memory-review-entry.png",
+      "bytes": 86137,
+      "sha256": "c44e7f9a74d2396b16ede4994e3262f22ce6d49cd3374b18783778f27a51ee54"
+    }
+  ],
+  "frozen_previous_rounds_unchanged": {
+    "baseline.md": true,
+    "baseline.json": true,
+    "retest-r1.md": true,
+    "retest-r1.json": true
+  },
+  "missing_case_evidence": []
+}

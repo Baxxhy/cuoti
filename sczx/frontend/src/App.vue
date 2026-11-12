@@ -2,6 +2,7 @@
 import {navigation as routeNavigation} from "@/lib/navigation-items.js";
 import {workspaceFor} from "@/lib/workspace-navigation.js";
 import WorkspaceNavigation from "@/components/WorkspaceNavigation.vue";
+import {platformDraft} from '@/lib/platform-persistence.js';
 import { computed, onMounted, onBeforeUnmount, provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { AnimatePresence, motion, MotionConfig } from "motion-v";
@@ -94,6 +95,11 @@ watch(
   },
 );
 function focusContent(){ document.getElementById('main-content')?.focus(); }
+function downloadDraft(){
+ const backup={schema:1,kind:'sczx-unsaved-draft',ownerId:store.user.id,at:new Date().toISOString(),data:platformDraft(store.data,store.user.role)};
+ const url=URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'})),link=document.createElement('a');
+ link.href=url;link.download='未保存草稿.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
 function keyboard(event) {
   if ((event.metaKey || event.ctrlKey) && event.key === "k") {
     event.preventDefault();
@@ -158,7 +164,7 @@ const results = computed(() => {
                 :disabled="store.saving"
                 @click="store.save"
                 >重新保存</Button
-              ><RouteButton route="issues" secondary>导出记录</RouteButton>
+              ><Button variant="outline" @click="downloadDraft">下载未保存草稿</Button>
             </div>
             <PlatformStatus
               v-if="store.status !== 'ready' && route.name !== 'issues'"

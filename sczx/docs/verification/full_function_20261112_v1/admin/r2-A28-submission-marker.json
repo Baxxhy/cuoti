@@ -1,0 +1,11 @@
+{
+  "purpose": "A28真实QA中断/恢复/手动重试协调标识，非业务状态夹具",
+  "jobId": "job-8c88019351bc4f83af67e8589a9f847a",
+  "observedRequestAt": "2026-11-12T06:03:41.386Z",
+  "requestStatus": 201,
+  "observedInitialStatus": "queued",
+  "capability": "text",
+  "networkN": 25,
+  "writtenAt": "2026-11-12T06:03:42.563888+00:00",
+  "phase": "提交后等待根确认R2健康，不再操作"
+}

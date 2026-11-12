@@ -1,0 +1,254 @@
+{
+  "files": [
+    {
+      "file": "retest-r1.md",
+      "bytes": 10623,
+      "sha256": "58316f2e7532d3db768d232af230b9a5b6b8a8827c4f4ec92921d3bb32079f8b"
+    },
+    {
+      "file": "build-r1-report.py",
+      "bytes": 11801,
+      "sha256": "ed5f4b8f230d6999f18dc709a5443ce436f6924a20beb22a24ca4bf79a5e27f0"
+    },
+    {
+      "file": "r1-handle-beforeunload.mjs",
+      "bytes": 1296,
+      "sha256": "9a8670ecf1d55c59bad6defcdbfc8af5fcdc4e0d65a58cc5b4ee9da1b09d6f3b"
+    },
+    {
+      "file": "retest-r1.json",
+      "bytes": 20659,
+      "sha256": "c784712d2d8aad2f0cca610205009c63f107365ce537a5d506eea0ad3a2622e5"
+    },
+    {
+      "file": "r1-ai-observed-results.json",
+      "bytes": 28959,
+      "sha256": "29b562dbb5ad73376e5b212acae67848edcf7ff0bed3886ae631f2be76234207"
+    },
+    {
+      "file": "r1-main/r1-snapshots.jsonl",
+      "bytes": 146917,
+      "sha256": "e56c80ae09148c3fce5d864ce7392aec01984e323983c059771b9db49d98b831"
+    },
+    {
+      "file": "r1-main/r1-actions.jsonl",
+      "bytes": 8076,
+      "sha256": "ecb0a881b914b6c1dc7fff44e22ac53e19a382417725942865963fd71b727960"
+    },
+    {
+      "file": "r1-main/r1-dialogs.jsonl",
+      "bytes": 524,
+      "sha256": "ff629dc74076afcfa4150a4ab9686ecad2b403772a6afd8f267edd6550f1452b"
+    },
+    {
+      "file": "r1-main/r1-network.jsonl",
+      "bytes": 1355931,
+      "sha256": "0e71390d70b1357d38b443ad017601fc23457e7fe1b310516a55c13a1084f905"
+    },
+    {
+      "file": "r1-offline/r1-snapshots.jsonl",
+      "bytes": 66169,
+      "sha256": "4431f5312ec738b1e032b36a851d0341b63586a2f7d22260e539c1ac61869da8"
+    },
+    {
+      "file": "r1-offline/r1-actions.jsonl",
+      "bytes": 4646,
+      "sha256": "fddfc888b579a870bc4524594af9afbb4205e64558b6356d245250f1ec9bccee"
+    },
+    {
+      "file": "r1-offline/r1-dialogs.jsonl",
+      "bytes": 472,
+      "sha256": "99d9b0268c1920907d6a27784d32e4bca90a9a78b0bb961f8ee1616862a038b3"
+    },
+    {
+      "file": "r1-offline/r1-network.jsonl",
+      "bytes": 80974,
+      "sha256": "a2be0c02768ef01834debf09597871866a0be335f8e5836626dff5b2a9158e78"
+    },
+    {
+      "file": "r1-student3/r1-snapshots.jsonl",
+      "bytes": 27695,
+      "sha256": "b2caf89dbfa1637723125e8fc7746102831444065386a641b41cb160fc07a914"
+    },
+    {
+      "file": "r1-student3/r1-actions.jsonl",
+      "bytes": 2446,
+      "sha256": "29c0922b4a53df53d4b62c8132b4b21e18b984f8e5b51a603e769945523f9a7c"
+    },
+    {
+      "file": "r1-student3/r1-dialogs.jsonl",
+      "bytes": 207,
+      "sha256": "b48816b43c59627f09f9bbe641da77847fb7a4472e08ba0c6f831c5661f97274"
+    },
+    {
+      "file": "r1-student3/r1-network.jsonl",
+      "bytes": 65798,
+      "sha256": "3a553d40a92dbb0648f50adc45e91b66a44bc64160d27b13ea70f2c7c61fc220"
+    },
+    {
+      "file": "r1-online/r1-snapshots.jsonl",
+      "bytes": 41895,
+      "sha256": "1e273e33f2cd271ffb0e7f3f5966b2706219d9329c1b1d2f19489dfa7b9354c6"
+    },
+    {
+      "file": "r1-online/r1-actions.jsonl",
+      "bytes": 2610,
+      "sha256": "9ae483df2c296c2ad2cef52e635b6d91b7e87a2fb3dae9402fe8faaaafa77efe"
+    },
+    {
+      "file": "r1-online/r1-network.jsonl",
+      "bytes": 390777,
+      "sha256": "7cb4c924bcc1ee61c43ec2f35ca6ea3261ed7ff1b4a9a96f94beab38d43a861e"
+    },
+    {
+      "file": "r1-online/shots/r1-E06-online-after-explicit-answer-confirm.png",
+      "bytes": 67001,
+      "sha256": "0775fea5eb039cb511a27699c70c3c6bc0bfa4da89fac06bdc069c092bfd2a3b"
+    },
+    {
+      "file": "r1-online/shots/r1-catalog-disabled-lesson-hidden.png",
+      "bytes": 81482,
+      "sha256": "fcec109c1b51f5845f7d08384a78776d42bee5eeea87656baa0848166b684133"
+    },
+    {
+      "file": "r1-online/shots/r1-E06-online-newer-five.png",
+      "bytes": 69464,
+      "sha256": "72a266d701642ce42c5fb6fed0ad381002cf65b171992c03cb2479bdd6c73aa2"
+    },
+    {
+      "file": "r1-online/shots/r1-E06-online-five-after-local-edit.png",
+      "bytes": 68160,
+      "sha256": "b5f5e319157b668f74defcb826c2ebd5ac52211c454ccf0b787c45d5268de50a"
+    },
+    {
+      "file": "r1-online/shots/r1-original-exam-comment-format.png",
+      "bytes": 80731,
+      "sha256": "cbde3e80e1230b2a6b23e7e4c95fe3d95ff4e3348f012380e57f66be13d7a8cb"
+    },
+    {
+      "file": "r1-online/shots/r1-E06-online-five-after-position-only.png",
+      "bytes": 65556,
+      "sha256": "d9ffe9b3fd0179efa0cd9db5c02e032e20e7fe1291dfb69b5f212a3e9d4e640d"
+    },
+    {
+      "file": "r1-student3/shots/r1-student3-removed-task-readonly.png",
+      "bytes": 67965,
+      "sha256": "2592831168e30fbd5d771c8380a3a908afc737c97697f796cb0ecbbbf2d9342f"
+    },
+    {
+      "file": "r1-student3/shots/r1-student3-removed-task-home-history.png",
+      "bytes": 76054,
+      "sha256": "d8e59ef7aee259908dd6b028f9f210b0d4712ba41b0e49844dfb215d97ad0899"
+    },
+    {
+      "file": "r1-student3/shots/r1-student3-new-draft-before-removal.png",
+      "bytes": 65391,
+      "sha256": "12c8ebdd9c35eaf6ce21e0da3afc22395fc88c5795d96522a22a18a500e7aa92"
+    },
+    {
+      "file": "r1-student3/shots/r1-student3-isolation-class-preserved.png",
+      "bytes": 43881,
+      "sha256": "d78e104b55df8b72d8220972ad174b98daf6756cc7a79355e51d144b2da82303"
+    },
+    {
+      "file": "r1-offline/shots/r1-E06-offline-two-drafts.png",
+      "bytes": 70643,
+      "sha256": "3e51630e3801629205285dad2aa8eb40a50a7f4e79881b57a3e514b437ea4f70"
+    },
+    {
+      "file": "r1-offline/shots/r1-E06-answer-explicitly-confirmed.png",
+      "bytes": 73199,
+      "sha256": "42d5c83fd0055decd9c565448d7465f39b62b249fd4af2a1ac7d77387dd86717"
+    },
+    {
+      "file": "r1-offline/shots/r1-E06-reedited-still-conflict.png",
+      "bytes": 75587,
+      "sha256": "482809fdc878d8e2663bcbdf08ff584916723dea43e2828293bd4a6955725807"
+    },
+    {
+      "file": "r1-offline/shots/r1-E06-offline-reopen-retains-edited-conflict.png",
+      "bytes": 74456,
+      "sha256": "9d5b1c0ecb49d97d00ac9146c890eace870b9560040684fc51fc11361b3a29cf"
+    },
+    {
+      "file": "r1-offline/shots/r1-E06-initial-conflict-two-records.png",
+      "bytes": 77430,
+      "sha256": "f78e0639b43150fd87292370399ddab379915710f48e8120a8a0cf5c800adce9"
+    },
+    {
+      "file": "r1-offline/shots/r1-E06-position-confirmed-answer-still-conflict.png",
+      "bytes": 82767,
+      "sha256": "033312bab393608b868e076af733bb1c4a9682da642e519b3f5dcfbc445dd200"
+    },
+    {
+      "file": "r1-main/shots/r1-AI-verification-scope.png",
+      "bytes": 82533,
+      "sha256": "c5c6850e3d293448470c74adf088e285d3d1df6e14d0ce998e2e2fe00d354332"
+    },
+    {
+      "file": "r1-main/shots/r1-new-exam-submitted-readonly.png",
+      "bytes": 80732,
+      "sha256": "cf9421a80d8f01fc98baa96c7336f8c94f26d15a1b9d6f3471941249ce5692aa"
+    },
+    {
+      "file": "r1-main/shots/r1-class-archive-opens-raw-record.png",
+      "bytes": 84876,
+      "sha256": "3db3866f9be71bd870c8d7d3dbc80a23124b09efb9124050186c8df6ad4b4ef9"
+    },
+    {
+      "file": "r1-main/shots/r1-supplement-feedback-readable.png",
+      "bytes": 129171,
+      "sha256": "948ea27676114128c3306fce4eacbfa1aa302a19dbdbf5c993ad67242ec357e0"
+    },
+    {
+      "file": "r1-main/shots/r1-new-exam-draft-two.png",
+      "bytes": 79093,
+      "sha256": "805b55f7aec6a1e80cf8c87dc2f4f234db88c31c19330aaf88433dc0c079ae87"
+    },
+    {
+      "file": "r1-main/shots/r1-AI-scope-visible.png",
+      "bytes": 87615,
+      "sha256": "99f91b2c6cd64bac8fe866ead2e6c924921bdd9964e36d0019d61a3e00f5956e"
+    },
+    {
+      "file": "r1-main/shots/r1-AI-negative-step-three.png",
+      "bytes": 82533,
+      "sha256": "c5c6850e3d293448470c74adf088e285d3d1df6e14d0ce998e2e2fe00d354332"
+    },
+    {
+      "file": "r1-main/shots/r1-AI-negative-result-and-scope.png",
+      "bytes": 82785,
+      "sha256": "5fad3a070a0a9de21114008f3d2928e86c14a6b413f3a4f28b95234c59a725b2"
+    },
+    {
+      "file": "r1-main/shots/r1-AI-negative-step-two.png",
+      "bytes": 85263,
+      "sha256": "0c469ecd7184396416359f9d3b574b4b4aca6779af23a5c82745da9056a3fbe0"
+    },
+    {
+      "file": "r1-main/shots/r1-exam-archive-opens-raw-record.png",
+      "bytes": 85343,
+      "sha256": "bdab0fd800a8c810028da83dbee3b2cf0ea8d2c32ac4766fb5f270612a1a18b4"
+    },
+    {
+      "file": "r1-main/shots/r1-OCR-guidance-steps.png",
+      "bytes": 76532,
+      "sha256": "17190f361aaef451c5e0a08e3c5d92f2409cc18bbce1a67b6088565c8786c12a"
+    },
+    {
+      "file": "r1-main/shots/r1-OCR-confirm-empty-main-before.png",
+      "bytes": 68179,
+      "sha256": "ebacbfb8301d622a62263acc4c862e11d39e13bdbf98f21cb80fb393c5eac1cd"
+    },
+    {
+      "file": "r1-main/shots/r1-OCR-empty-main-real-guidance.png",
+      "bytes": 72656,
+      "sha256": "695f0cf49d3d26fbb59eea21650a22397bd806e0d2d7adbeec51b616d41037f9"
+    }
+  ],
+  "baseline_unchanged": {
+    "baseline.md": true,
+    "baseline.json": true
+  },
+  "missing_case_evidence": []
+}

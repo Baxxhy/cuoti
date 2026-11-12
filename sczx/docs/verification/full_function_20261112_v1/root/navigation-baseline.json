@@ -1,0 +1,54 @@
+{
+  "kind": "基准技术复现，非三角色独立寻路",
+  "origin": "http://127.0.0.1:8103",
+  "routes": [
+    "#/cases?prerequisites=true",
+    "#/class",
+    "#/exam-papers",
+    "#/prepare",
+    "#/teacher"
+  ],
+  "cleanNavigationPuts": 6,
+  "requests": [
+    {
+      "url": "/api/platform",
+      "method": "PUT",
+      "bytes": 9244
+    },
+    {
+      "url": "/api/platform",
+      "method": "PUT",
+      "bytes": 9244
+    },
+    {
+      "url": "/api/platform",
+      "method": "PUT",
+      "bytes": 9244
+    },
+    {
+      "url": "/api/platform",
+      "method": "PUT",
+      "bytes": 9244
+    },
+    {
+      "url": "/api/platform",
+      "method": "PUT",
+      "bytes": 9244
+    },
+    {
+      "url": "/api/platform",
+      "method": "PUT",
+      "bytes": 9244
+    }
+  ],
+  "before": "#/teacher",
+  "failed": {
+    "hash": "#/teacher",
+    "alerts": [
+      "无法连接到学习服务，请检查网络后重试。\n重新保存\n导出记录"
+    ],
+    "draftExists": true
+  },
+  "blocked": true,
+  "errors": []
+}

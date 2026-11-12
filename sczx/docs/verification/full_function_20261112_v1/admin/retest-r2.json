@@ -1,0 +1,224 @@
+{
+  "audit": "管理员第二轮R2定点UI复测",
+  "date": "2026-11-12",
+  "initialProfile": "全新profile-r2，初始URL仅http://127.0.0.1:8103/",
+  "assets": {
+    "beforeFirstAttempt": "index-CConNtCE.js（按窗口先在R1正常提交）",
+    "recoveryAndVerification": "index-8bNtgQgl.js",
+    "css": "index-CO-yA6Fi.css"
+  },
+  "baselineAndR1Unchanged": {
+    "baseline.json": "f3fd0bd9bc30d37ebd8ec4e19534f8ba6995f5ba5db1b76f653767f4dab74143",
+    "baseline.md": "9284d8e2cddf2af4a812ed545e1ce27d9e6ef36f5da476ccd8bf2bb2a082dd9b",
+    "retest-r1.json": "15cb8254ec3c8c6a01210bf1a5abe26dabf128b962c1ca38817237e9e8d03cab",
+    "retest-r1.md": "ef8c9d4f16d14296b390e461f1a8b6dd6e5ee72ff0ceb4deac915b93c4c9e2e0"
+  },
+  "checks": [
+    {
+      "id": "R2-A28",
+      "baselineFeatures": [
+        "AD15"
+      ],
+      "title": "管理员本人真实任务中断、手动重试与恢复",
+      "outcome": "passed",
+      "firstClickIntent": "管理与运行→能力验证，从正常问题发起真实文字任务。",
+      "visiblePath": [
+        "新profile，初始8103首页→管理员登录",
+        "管理与运行→能力验证→文字指导→获取指导",
+        "根按窗口中断/恢复QA服务，本代理不做业务状态写入",
+        "恢复后失败与重试→重试",
+        "最近任务→本次文字任务→执行记录",
+        "刷新→最近任务→本次任务→执行记录"
+      ],
+      "successfulInterruptionJob": {
+        "id": "job-7a6f1a75d79e4780982bd41727fdf552",
+        "submittedAt": "2026-11-12T06:08:41.000Z",
+        "initialApi": {
+          "method": "POST",
+          "url": "http://127.0.0.1:8103/api/ai/jobs",
+          "status": 201,
+          "error": null,
+          "at": "2026-11-12T06:08:41.000Z",
+          "ref": "r2-network.jsonl:74 (n=83)"
+        },
+        "failedApi": {
+          "method": "GET",
+          "url": "http://127.0.0.1:8103/api/ai/jobs/job-7a6f1a75d79e4780982bd41727fdf552",
+          "status": 200,
+          "error": null,
+          "at": "2026-11-12T06:10:11.781Z",
+          "ref": "r2-network.jsonl:136 (n=145)"
+        },
+        "failedReason": "服务中断，输入与已有结果已保留，可手动重试。",
+        "retryApi": {
+          "method": "POST",
+          "url": "http://127.0.0.1:8103/api/ai/jobs/job-7a6f1a75d79e4780982bd41727fdf552/retry",
+          "status": 200,
+          "error": null,
+          "at": "2026-11-12T06:11:26.257Z",
+          "ref": "r2-network.jsonl:146 (n=159)"
+        },
+        "finalApi": {
+          "method": "GET",
+          "url": "http://127.0.0.1:8103/api/ai/jobs/job-7a6f1a75d79e4780982bd41727fdf552",
+          "status": 200,
+          "error": null,
+          "at": "2026-11-12T06:12:11.093Z",
+          "ref": "r2-network.jsonl:158 (n=175)"
+        },
+        "finalStatus": "succeeded",
+        "inputPreserved": true,
+        "runs": [
+          {
+            "id": "run-142990a6e85340329747132232b7fd2f",
+            "number": 1,
+            "status": "failed",
+            "model": "",
+            "provider": "",
+            "error": "服务中断，输入与已有结果已保留，可手动重试。",
+            "startedAt": "2026-11-12T06:08:41Z",
+            "endedAt": "2026-11-12T06:10:11Z"
+          },
+          {
+            "id": "run-4557664f5ff042de945e030d884366ad",
+            "number": 2,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "startedAt": "2026-11-12T06:11:27Z",
+            "endedAt": "2026-11-12T06:11:36Z"
+          }
+        ],
+        "resultSummary": {
+          "title": "检查分配律并验算",
+          "question": "你能指出原展开式中，括号里的 −2 是否也乘了 3 吗？"
+        }
+      },
+      "uiObserved": [
+        "恢复后UI明确显示“服务中断，输入与已有结果已保留，可手动重试。”。",
+        "失败与重试入口中本账号任务重试按钮可用；实际POST原job/retry成功，不是新写成功状态。",
+        "手动选择近期任务后恢复原分配律问题，并显示“检查分配律并验算”及具体引导。",
+        "执行记录显示第1次失败/服务中断、第2次成功/gpt-6-luna。",
+        "刷新后原问题、真实结果及两次执行记录完整恢复，失败任务列表清空。"
+      ],
+      "firstExperimentNotCounted": {
+        "id": "job-8c88019351bc4f83af67e8589a9f847a",
+        "submittedAt": "2026-11-12T06:03:41.386Z",
+        "outcome": "graceful_shutdown_did_not_interrupt",
+        "observedFinalStatus": "succeeded",
+        "api": {
+          "method": "GET",
+          "url": "http://127.0.0.1:8103/api/ai/jobs/job-8c88019351bc4f83af67e8589a9f847a",
+          "status": 200,
+          "error": null,
+          "at": "2026-11-12T06:13:23.998Z",
+          "ref": "r2-network.jsonl:161 (n=178)"
+        },
+        "note": "根说明优雅退出等待SSE期间模型先成功；本代理UI已回看第1次成功/gpt-6-luna，保留成功事实，不作为失败/恢复证据。"
+      },
+      "coordinationMarkers": [
+        "r2-A28-submission-marker.json",
+        "r2-A28-submission-2.json"
+      ],
+      "faultBoundary": "QA8103中断/恢复由根执行；本代理只经UI提交和手动重试，未读业务源码、未写数据库/任务状态、未手工调用业务API。根另行记录本地启动预检死锁修复及进程身份边界，本代理不把未亲自检验的进程操作算UI证据。",
+      "evidence": [
+        "/tmp/sczx-full/admin/r2-A28-before-submit.png",
+        "/tmp/sczx-full/admin/r2-A28-second-before-submit.png",
+        "/tmp/sczx-full/admin/r2-A28-after-interruption-before-refresh.png",
+        "/tmp/sczx-full/admin/r2-A28-failed-retry-entry.png",
+        "/tmp/sczx-full/admin/r2-A28-retry-running.png",
+        "/tmp/sczx-full/admin/r2-A28-retry-task-result.png",
+        "/tmp/sczx-full/admin/r2-A28-two-real-executions.png",
+        "/tmp/sczx-full/admin/r2-A28-success-refresh-restored.png",
+        "/tmp/sczx-full/admin/r2-A28-first-job-success-fact.png"
+      ],
+      "nonblockingObservation": "失败列表点击重试后，任务已queued且失败项消失，但父区暂仍显示默认问题/最近调用失败，最近任务缓存行暂仍服务中断；选择该行后立即更新为实际成功。属于重试后状态联动提示可改进，P3，未影响实际重试及持久结果。"
+    },
+    {
+      "id": "R2-AD10",
+      "baselineFeatures": [
+        "AD10"
+      ],
+      "title": "空知识点名称具体提示、输入保留且不发写请求",
+      "outcome": "passed",
+      "firstClickIntent": "课程内容→知识前置关系，复查空名称校验。",
+      "visiblePath": [
+        "课程内容→知识前置关系→知识点",
+        "保持第11个新知识点名称为空",
+        "临时编辑自有知识A别名，作为保留输入标记",
+        "保存知识关系",
+        "显式刷新→重开知识前置关系"
+      ],
+      "uiObserved": [
+        "明确显示“请填写第 11 个知识点的名称。”，原来泛化提示已消除。",
+        "错误后仍有11个编辑行，空名称保留，其他字段“合成别名A1112\n合成工程验收R2保留输入1112”未丢失。",
+        "整个R2网络观察中知识图POST/PUT/PATCH/DELETE为0，校验在发写请求前阻止。",
+        "显式刷新重开后仍10个持久节点，知识A别名仅原“合成别名A1112”，未写入空节点或临时标记。"
+      ],
+      "knowledgeWriteRequests": 0,
+      "evidence": [
+        "/tmp/sczx-full/admin/r2-AD10-specific-empty-name-retained.png",
+        "/tmp/sczx-full/admin/r2-AD10-no-write-refresh.png"
+      ],
+      "resolution": "N-ADMIN-02 / P3在R2复测解决。"
+    }
+  ],
+  "allRequiredR2Checks": "passed",
+  "newBlockingFindings": [],
+  "nonblockingFindings": [
+    {
+      "id": "N-ADMIN-R2-RETRY-LINK",
+      "severity": "P3",
+      "title": "失败列表手动重试后父区/近期缓存状态未立即联动",
+      "scope": "只影响立即反馈；选择近期任务或刷新后正确，真实结果和两次运行保留。",
+      "evidence": [
+        "r2-A28-retry-running.png",
+        "r2-actions.jsonl（重试后最近任务仍服务中断）",
+        "r2-A28-two-real-executions.png"
+      ],
+      "reportedToRoot": true
+    }
+  ],
+  "network": {
+    "records": 173,
+    "statusCounts": {
+      "401": 1,
+      "200": 70,
+      "201": 2,
+      "None": 100
+    },
+    "transportErrorCounts": {
+      "net::ERR_CONNECTION_REFUSED": 100,
+      "net::ERR_INCOMPLETE_CHUNKED_ENCODING": 1
+    },
+    "interpretation": "ERR_CONNECTION_REFUSED及中断SSE来自本轮明确安排的QA服务中断，原始记录保留；恢复后正常读到failed并可重试，不把计划中断当随机网络故障。"
+  },
+  "modelActivity": {
+    "newNormalTextJobs": 2,
+    "manualRetryOperations": 1,
+    "realSuccessfulRunsAfterRetry": 1,
+    "firstGracefulExperimentNotCountedAsFailure": true
+  },
+  "scopeLimits": [
+    "普通管理员能力验证任务无主动停止动作，仍为当前能力边界；本次验证的是受控真实服务中断后的本人重试。",
+    "旧记录导入、真实语音设备效果及其他baseline未测边界不因本次两项通过而改写。",
+    "根发现/修复的本地启动预检死锁由根自己的技术证据支持，本代理仅验证恢复后的UI与真实任务链。"
+  ],
+  "evidenceFiles": [
+    "r2-actions.jsonl",
+    "r2-network.jsonl"
+  ],
+  "privateDoNotPackage": [
+    "浏览器登录档案不属于公开证据；本代理生成的临时profile目录已在封存前清理。"
+  ],
+  "temporaryBrowserProfilesRemoved": [
+    "profile",
+    "profile-concurrent",
+    "profile-r1",
+    "profile-r1-target",
+    "profile-r2"
+  ],
+  "finishedAt": "2026-11-12T06:19:16.999854+00:00",
+  "state": "R2要求的UI验证完成，浏览器已关闭；baseline/R1不变。"
+}

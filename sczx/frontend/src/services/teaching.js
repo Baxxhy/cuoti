@@ -31,7 +31,7 @@ export const teachingApi = {
   feedback: (id, student, feedback) =>
     send("/supplements/" + id + "/students/" + student + "/feedback", {
       feedback,
-    }),
+    }, "PUT"),
 };
 export const deadlineText = (value) =>
   value

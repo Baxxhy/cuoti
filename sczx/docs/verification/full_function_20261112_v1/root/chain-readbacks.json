@@ -1,0 +1,1152 @@
+{
+  "kind": "六链数据库/原文件技术核对；业务完成证据另见角色点击与网络，不以SQL代替操作",
+  "database": "隔离MySQL23325",
+  "checks": [
+    {
+      "id": "E01",
+      "title": "原材料→固定案例v1→发布任务引用",
+      "status": "通过",
+      "data": {
+        "caseVersion": {
+          "id": "version-96c75b97037c4cc8b0bae23c9412505c",
+          "case_id": "case-39e79087817f47218264ed6506c303f9",
+          "number": 1
+        },
+        "material": {
+          "id": "material-a0181fa6e8e34617965d08b69267b69",
+          "file_id": "file-d066a3bad1d348c8a51a4ba89b330eab",
+          "title": "合成工程验收 E01 方程材料"
+        },
+        "originalFile": {
+          "id": "file-d066a3bad1d348c8a51a4ba89b330eab",
+          "exists": true,
+          "size": 37420,
+          "sha256": "9383d1c489af232696d6fdcffcc96eb78542d024c8c6b7fbda39978e452bfc74"
+        },
+        "references": [
+          {
+            "field": "content",
+            "label": "段落 8",
+            "quote": "移项是等式两边同加减同一数的简写；每一步保持等式平衡。",
+            "author": "合成工程验收",
+            "source": "人工合成材料，仅验证软件功能，不代表教学效果。",
+            "unitId": "unit-78f53218ed3c39753cf803486353d03a",
+            "sourceUrl": "https://example.invalid/sczx-audit",
+            "materialId": "material-a0181fa6e8e34617965d08b69267b69",
+            "materialTitle": "合成工程验收 E01 方程材料"
+          },
+          {
+            "field": "knowledgePoints.0",
+            "label": "段落 8",
+            "quote": "等式基本性质",
+            "author": "合成工程验收",
+            "source": "人工合成材料，仅验证软件功能，不代表教学效果。",
+            "unitId": "unit-78f53218ed3c39753cf803486353d03a",
+            "sourceUrl": "https://example.invalid/sczx-audit",
+            "materialId": "material-a0181fa6e8e34617965d08b69267b69",
+            "materialTitle": "合成工程验收 E01 方程材料"
+          },
+          {
+            "field": "knowledgePoints.1",
+            "label": "段落 8",
+            "quote": "一元一次方程",
+            "author": "合成工程验收",
+            "source": "人工合成材料，仅验证软件功能，不代表教学效果。",
+            "unitId": "unit-78f53218ed3c39753cf803486353d03a",
+            "sourceUrl": "https://example.invalid/sczx-audit",
+            "materialId": "material-a0181fa6e8e34617965d08b69267b69",
+            "materialTitle": "合成工程验收 E01 方程材料"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E02",
+      "title": "新发布任务、原始多次作答、帮助、完成与反馈",
+      "status": "通过",
+      "data": {
+        "taskId": "task-122289cddb442a5f08fdbec2188b4420",
+        "source": "published",
+        "lessonId": "lesson-23043753a56245f28d0962f35b85c40f",
+        "caseVersionId": null,
+        "lessonVersionId": "lessonversion-bd09c2239c894f36aaba1da016",
+        "questions": [
+          {
+            "id": "question-769c6964837a47ce8b8009fa7978e56d",
+            "hint": "先让等式两边同时减去3，再同时除以2。",
+            "kind": "practice",
+            "type": "expression",
+            "answer": "4",
+            "prompt": "【合成工程验收】解方程 2*x+3=11，说明每一步两边进行了什么运算。",
+            "equation": "2*x+3=11",
+            "feedback": [],
+            "explanation": "两边同时减3得到2*x=8；两边同时除以2得到x=4。验算2*4+3=11。",
+            "knowledgeIds": []
+          },
+          {
+            "id": "question-03e471cb73ff4a7e8b5b807aa3125c35",
+            "hint": "两边同时加2。",
+            "kind": "check",
+            "type": "expression",
+            "answer": "7",
+            "prompt": "【合成工程验收】解方程 x-2=5，并代入检查。",
+            "equation": "x-2=5",
+            "feedback": [],
+            "explanation": "两边同时加2得到x=7，代入7-2=5。",
+            "knowledgeIds": []
+          }
+        ],
+        "records": [
+          {
+            "id": "record-53e581a7e6b740f7b2014aec3566ef1e",
+            "student_id": "account-8d14eaefe853444e940b2a425eae1361",
+            "completed": 0,
+            "feedback": "",
+            "drafts": {
+              "blocks": {
+                "block-f5ca5accfe8b4f9d938f559ec815fa4e": {
+                  "completed": true
+                }
+              },
+              "questions": {
+                "question-769c6964837a47ce8b8009fa7978e56d": {
+                  "hint": "",
+                  "answer": "x=4.0",
+                  "helped": false,
+                  "reason": "R1本机重编辑：两边减3、同除2，答案仍为4；此编辑尚未确认覆盖在线稿。"
+                }
+              },
+              "lessonPosition": {
+                "blockId": "block-f05b70a1d11443b7802b8d2b05487f79"
+              }
+            },
+            "submitted_at": null
+          },
+          {
+            "id": "record-436c7d98e14c4c8da14e76191d752fef",
+            "student_id": "account-aa2ed42c1f6e4f8babc1a380a1055d89",
+            "completed": 0,
+            "feedback": "",
+            "drafts": {
+              "blocks": {
+                "block-f5ca5accfe8b4f9d938f559ec815fa4e": {
+                  "completed": true
+                }
+              },
+              "questions": {
+                "question-769c6964837a47ce8b8009fa7978e56d": {
+                  "hint": "",
+                  "answer": "x=4",
+                  "helped": false,
+                  "reason": "R1学生3移班边界新草稿：两边同时减3、再除2，暂未提交。"
+                }
+              },
+              "lessonPosition": {
+                "blockId": "block-f05b70a1d11443b7802b8d2b05487f79",
+                "question": 0
+              }
+            },
+            "submitted_at": null
+          },
+          {
+            "id": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "student_id": "account-student-demo",
+            "completed": 1,
+            "feedback": "全量合成验收E02反馈：已核对原答x=7、提示记录和订正x=4。你能说明两边同减3并代入检验；请继续保持每一步两边做相同运算，独立题x-2=5答对。",
+            "drafts": {
+              "blocks": {
+                "block-f5ca5accfe8b4f9d938f559ec815fa4e": {
+                  "completed": true
+                }
+              },
+              "questions": {
+                "question-03e471cb73ff4a7e8b5b807aa3125c35": {
+                  "hint": "",
+                  "answer": "x=7",
+                  "helped": false,
+                  "reason": "两边同时加2得到x=7，代回7-2=5成立。"
+                },
+                "question-769c6964837a47ce8b8009fa7978e56d": {
+                  "hint": "先让等式两边同时减去3，再同时除以2。",
+                  "answer": "x=4",
+                  "helped": true,
+                  "reason": "订正：两边同时减3，2x=8，再两边同时除以2，x=4。代入2*4+3=11成立。"
+                }
+              },
+              "lessonPosition": {
+                "blockId": "block-f05b70a1d11443b7802b8d2b05487f79",
+                "question": 1
+              }
+            },
+            "submitted_at": "2026-11-12 02:48:56"
+          }
+        ],
+        "attempts": [
+          {
+            "id": "attempt-4caa206a83a24376b4d4735e1b3ff0ca",
+            "record_id": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "question": 0,
+            "answer": "x=7",
+            "reason": "我把3移到右边仍加3，2x=14，因此x=7。",
+            "helped": 0,
+            "correct": 0,
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "inconsistent",
+              "correct": false,
+              "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+            }
+          },
+          {
+            "id": "attempt-d213e83196584c63b908d61dd1fe7b40",
+            "record_id": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "question": 0,
+            "answer": "x=4",
+            "reason": "订正：两边同时减3，2x=8，再两边同时除以2，x=4。代入2*4+3=11成立。",
+            "helped": 1,
+            "correct": 1,
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            }
+          },
+          {
+            "id": "attempt-c37116b99e0a45bb920767ff83de702b",
+            "record_id": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "question": 1,
+            "answer": "x=7",
+            "reason": "两边同时加2得到x=7，代回7-2=5成立。",
+            "helped": 0,
+            "correct": 1,
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            }
+          },
+          {
+            "id": "attempt-7e95402468364f90a30c83e9fe66adf1",
+            "record_id": "record-53e581a7e6b740f7b2014aec3566ef1e",
+            "question": 0,
+            "answer": "x=5",
+            "reason": "在线并发稿1112：此处故意新错答5，作为较新在线版本，与离线草稿4冲突。",
+            "helped": 0,
+            "correct": 0,
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "inconsistent",
+              "correct": false,
+              "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+            }
+          }
+        ],
+        "helps": [
+          {
+            "id": "help-546ce99046d14aa196e4663807b9b5a8",
+            "record_id": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "question": 0,
+            "kind": "提示",
+            "message": "先让等式两边同时减去3，再同时除以2。",
+            "attempt_number": 2
+          },
+          {
+            "id": "help-5874ff81edeb4fdab9814f918be0621b",
+            "record_id": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "question": 0,
+            "kind": "模型指导",
+            "message": "想想怎样对等式左右两边同时做同一个运算，才能消去左边的 +3。\n\n相等关系表示左右两边的值相同；两边同时做相同的运算，仍保持相等。\n对 2x+3=11 的两边同时减 3，得到 2x=8。\n接下来想想怎样对两边做相同运算，能让左边只剩 x？",
+            "attempt_number": 4
+          },
+          {
+            "id": "help-b1f4bc7378614138b9b04387601a12a7",
+            "record_id": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "question": 0,
+            "kind": "模型指导",
+            "message": "想想：对两个相等的数同时乘上同一个非零数，结果会怎样？\n\n依据前置知识“相等关系”：若两个量相等，对它们做相同运算，等式仍成立。\n除以非零数等同于乘以它的倒数，因此两边同除以2，就是两边同乘1/2。\n除数不能为0，因为0没有乘法逆元；同除规则要求除数非零。",
+            "attempt_number": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "E03",
+      "title": "错题保留原答并产生变式及独立复测记录",
+      "status": "通过",
+      "data": {
+        "wrongs": [
+          {
+            "id": "wrong-555eaa58fd903b66e6dbf058cae0b22d",
+            "owner_id": "account-aa2ed42c1f6e4f8babc1a380a1055d89",
+            "prompt": "合成题图错题1112：解3x+5=20；原始作答x=6。",
+            "answer": "x = 6",
+            "reason": "我把20减5误算成18，因此写x=6。",
+            "file_id": "file-9398564bebcd4f509f312233a04c2436",
+            "details": {
+              "cause": "计算错误",
+              "draft": {
+                "answer": "",
+                "reason": "",
+                "response": "",
+                "variantJobId": null
+              },
+              "source": "image",
+              "subject": "数学",
+              "version": "dynamic_v1",
+              "equation": "3x + 5 = 20",
+              "ocrJobId": "job-cc4c09b2bd0a46bda23db44deeccc915",
+              "cropFileId": "file-c2ec89236f344908985d4c96f7856e9f",
+              "explanation": "",
+              "knowledgeIds": [
+                "kp-linear-simple"
+              ],
+              "confirmedText": "合成题图错题1112：解3x+5=20；原始作答x=6。",
+              "causeConfirmed": true
+            }
+          },
+          {
+            "id": "wrong-81618437f1ab36774a5cf102af8d61cf",
+            "owner_id": "account-aa2ed42c1f6e4f8babc1a380a1055d89",
+            "prompt": "合成文字错题1112：解方程2x+7=19。",
+            "answer": "x=13",
+            "reason": "我把7移到右边写成加7，得到2x=26，所以x=13。",
+            "file_id": null,
+            "details": {
+              "cause": "符号处理错误",
+              "draft": {
+                "answer": "",
+                "reason": "",
+                "response": "",
+                "variantJobId": null
+              },
+              "source": "manual",
+              "subject": "数学",
+              "version": "dynamic_v1",
+              "equation": "2x+7=19",
+              "ocrJobId": null,
+              "planJobId": "job-fd71dd147df24c76b070dbe23eae4508",
+              "cropFileId": null,
+              "explanation": "",
+              "knowledgeIds": [],
+              "confirmedText": "",
+              "causeConfirmed": true
+            }
+          }
+        ],
+        "repairs": [
+          {
+            "id": "repair-4dda51d67a60465cbcce96ae207ab2bf",
+            "wrong_id": "wrong-81618437f1ab36774a5cf102af8d61cf",
+            "answer": "x=5",
+            "reason": "两边同时减5，3x=15，再同时除以3，x=5。代入3*5+5=20。",
+            "correct": 1,
+            "details": {
+              "phase": "practice",
+              "helped": false,
+              "version": "dynamic_v1",
+              "equation": "3x+5=20",
+              "expected": "5",
+              "planJobId": "job-fd71dd147df24c76b070dbe23eae4508",
+              "variantId": "job-19ecdaa76036426fb0d4b4fccc1d42fd",
+              "requestKey": "858a3e9f-e6f4-4196-8ea1-0ab15f64b4bf",
+              "variantJobId": "job-19ecdaa76036426fb0d4b4fccc1d42fd",
+              "verification": {
+                "scope": "实际变式题的单变量单解实数方程与答案等价性",
+                "status": "verified_correct",
+                "correct": true
+              }
+            },
+            "verification": {
+              "scope": "实际变式题的单变量单解实数方程与答案等价性",
+              "status": "verified_correct",
+              "correct": true
+            }
+          },
+          {
+            "id": "repair-96bc0b6f5f174cfeaf31f770ac5777f9",
+            "wrong_id": "wrong-81618437f1ab36774a5cf102af8d61cf",
+            "answer": "x=4",
+            "reason": "两边同时减6得4x=16，再同时除以4得x=4；4*4+6=22。",
+            "correct": 1,
+            "details": {
+              "phase": "retest",
+              "helped": false,
+              "version": "dynamic_v1",
+              "equation": "4x+6=22",
+              "expected": "4",
+              "planJobId": "job-fd71dd147df24c76b070dbe23eae4508",
+              "variantId": "job-4db1acc82ae344878f0d2b2dd950e32f",
+              "requestKey": "3aafec7f-ff4d-4516-9677-13921e7f2b7d",
+              "variantJobId": "job-4db1acc82ae344878f0d2b2dd950e32f",
+              "verification": {
+                "scope": "实际变式题的单变量单解实数方程与答案等价性",
+                "status": "verified_correct",
+                "correct": true
+              }
+            },
+            "verification": {
+              "scope": "实际变式题的单变量单解实数方程与答案等价性",
+              "status": "verified_correct",
+              "correct": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "E04",
+      "title": "固定2题30分试卷、双学生答卷和18/30成绩",
+      "status": "通过",
+      "data": {
+        "exam": {
+          "id": "exam-6457f5719c7448d3a3e489d3f6864ae7",
+          "version_id": "pv-6521cd4b690e41fabf8819bd04a4c9e3",
+          "review_task_id": "task-2cbedcd2b9464a2cb83aacde500af1ed",
+          "results_at": "2026-11-12 02:59:27"
+        },
+        "paperVersion": {
+          "id": "pv-6521cd4b690e41fabf8819bd04a4c9e3",
+          "number": 1,
+          "total": 30,
+          "entries": [
+            {
+              "versionId": "qv-0c91d0bc77dc48739b6862aa488b90ec",
+              "points": 20
+            },
+            {
+              "versionId": "qv-442af36b709f4b3288118cc34776c34e",
+              "points": 10
+            }
+          ]
+        },
+        "submissions": [
+          {
+            "id": "sub-76cc291e10d14329bd3d963d993fe1e0",
+            "student_id": "account-8d14eaefe853444e940b2a425eae1361",
+            "answers": {
+              "qv-0c91d0bc77dc48739b6862aa488b90ec": {
+                "answer": "x=5",
+                "reason": "两边减4，x=5。"
+              },
+              "qv-442af36b709f4b3288118cc34776c34e": {
+                "answer": "x=8",
+                "reason": "合成错答：12-5误算成8，故答x=8。"
+              }
+            },
+            "automatic": {
+              "qv-0c91d0bc77dc48739b6862aa488b90ec": {
+                "scope": "参考答案的数值或表达式等价性",
+                "status": "unverified",
+                "correct": false,
+                "message": "暂时无法核对该输入，请用可读数学表达式填写；解释仍保留供教师查看。"
+              },
+              "qv-442af36b709f4b3288118cc34776c34e": {
+                "scope": "参考答案的数值或表达式等价性",
+                "status": "unverified",
+                "correct": false,
+                "message": "暂时无法核对该输入，请用可读数学表达式填写；解释仍保留供教师查看。"
+              }
+            },
+            "grades": {
+              "qv-0c91d0bc77dc48739b6862aa488b90ec": {
+                "score": 18,
+                "source": "teacher",
+                "actorId": "account-teacher-demo",
+                "comment": "全量合成验收人工批阅：数值x=5正确，写明两边减4；仍应说明相同运算保持相等，扣2分。"
+              },
+              "qv-442af36b709f4b3288118cc34776c34e": {
+                "score": 0,
+                "source": "teacher",
+                "actorId": "account-teacher-demo",
+                "comment": "全量合成验收人工批阅：12-5应为7，原答x=8代入13不等于12，数值不成立，本题0分。"
+              }
+            },
+            "revision": 6,
+            "submitted_at": "2026-11-12 02:54:19"
+          },
+          {
+            "id": "sub-8fbb45d5732b479aa1d224fc7baf393f",
+            "student_id": "account-student-demo",
+            "answers": {
+              "qv-0c91d0bc77dc48739b6862aa488b90ec": {
+                "answer": "x=5",
+                "reason": "等式两边同时减4才能保持相等，左边x+4-4=x，右边9-4=5，因此x=5。代回5+4=9成立。"
+              },
+              "qv-442af36b709f4b3288118cc34776c34e": {
+                "answer": "x=7",
+                "reason": "等式两边同时减5，x=12-5=7；代入7+5=12，成立。"
+              }
+            },
+            "automatic": {
+              "qv-0c91d0bc77dc48739b6862aa488b90ec": {
+                "scope": "参考答案的数值或表达式等价性",
+                "status": "unverified",
+                "correct": false,
+                "message": "暂时无法核对该输入，请用可读数学表达式填写；解释仍保留供教师查看。"
+              },
+              "qv-442af36b709f4b3288118cc34776c34e": {
+                "scope": "参考答案的数值或表达式等价性",
+                "status": "unverified",
+                "correct": false,
+                "message": "暂时无法核对该输入，请用可读数学表达式填写；解释仍保留供教师查看。"
+              }
+            },
+            "grades": {
+              "qv-0c91d0bc77dc48739b6862aa488b90ec": {
+                "score": 20,
+                "source": "teacher",
+                "actorId": "account-teacher-demo",
+                "comment": "全量合成验收人工批阅：等式保持相等的理由、共同运算和代入检查完整，本题20分。"
+              },
+              "qv-442af36b709f4b3288118cc34776c34e": {
+                "score": 10,
+                "source": "teacher",
+                "actorId": "account-teacher-demo",
+                "comment": "全量合成验收人工批阅：两边同减5得x=7，代入成立，本题10分。"
+              }
+            },
+            "revision": 6,
+            "submitted_at": "2026-11-12 02:54:43"
+          }
+        ],
+        "scores": [
+          18,
+          30
+        ]
+      }
+    },
+    {
+      "id": "E05",
+      "title": "课堂双答、结束归档、两组练习完成与证据学情",
+      "status": "通过",
+      "data": {
+        "live": {
+          "id": "live-bbb98ba909f241fa9df02bbebc0852b6",
+          "status": "ended",
+          "task_id": "task-775c048ebf6b444ea958823308713629"
+        },
+        "answers": [
+          {
+            "id": "liveans-dd269334aa104e39b5973140d13f87f4",
+            "student_id": "account-student-demo",
+            "answer": "x=4",
+            "reason": "课堂主学生1112：两边同时减3得2x=8，再同时除以2得x=4，代回成立。",
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "verified",
+              "correct": true,
+              "message": "数值或表达式正确。解释是否充分由教师结合过程核对。"
+            },
+            "submitted_at": "2026-11-12 02:55:44"
+          },
+          {
+            "id": "liveans-e893c5fdf1044abcb8c05ea3f99260c4",
+            "student_id": "account-8d14eaefe853444e940b2a425eae1361",
+            "answer": "x=7",
+            "reason": "课堂学生2合成错答1112：将3移到右侧仍加3，2x=14，所以x=7。",
+            "verification": {
+              "scope": "参考答案的数值或表达式等价性",
+              "status": "inconsistent",
+              "correct": false,
+              "message": "请检查左右两边是否进行了相同运算，再核对计算。"
+            },
+            "submitted_at": "2026-11-12 02:55:42"
+          }
+        ],
+        "groups": [
+          {
+            "id": "group-08f0b2ff54444acb9d0fef239508a662",
+            "published": 1,
+            "groups": [
+              {
+                "label": "巩固",
+                "versionId": "pv-6521cd4b690e41fabf8819bd04a4c9e3",
+                "studentIds": [
+                  "account-student-demo"
+                ]
+              },
+              {
+                "label": "证据不足",
+                "versionId": "pv-6521cd4b690e41fabf8819bd04a4c9e3",
+                "studentIds": [
+                  "account-8d14eaefe853444e940b2a425eae1361"
+                ]
+              }
+            ],
+            "evidence": {
+              "account-student-demo": {
+                "name": "演示学生",
+                "state": {
+                  "reason": "目前还缺少足够的独立练习证据。",
+                  "status": "insufficient",
+                  "basisIds": [
+                    "attempt:attempt-4562b52aca04441581bac51f25506044:kp-equality"
+                  ],
+                  "dayCount": 0,
+                  "legacyCount": 0,
+                  "statusLabel": "证据不足",
+                  "evidenceCount": 7,
+                  "helpedCorrect": 1,
+                  "verifiedCount": 1,
+                  "lastPracticedAt": "2026-11-12T02:44:43Z",
+                  "unverifiedCount": 0,
+                  "lastIndependentAt": null,
+                  "independentCorrect": 0,
+                  "recentVerifiedCount": 1,
+                  "independentIncorrect": 0
+                },
+                "studentId": "account-student-demo",
+                "suggestion": "证据不足",
+                "evidenceIds": [
+                  "help:help-bd09956f5eea4828b16b8bfae285a352",
+                  "help:help-63dd35ae4e684fdcbc5cc1939d1b8849",
+                  "help:help-3f7caba9dd444fdb87bc23493d5d9ade",
+                  "help:help-06e4f3cf30734954bc07dc731de54b08",
+                  "attempt:attempt-4562b52aca04441581bac51f25506044",
+                  "help:help-4e754d6d08da42b991a0332ceaa5e728",
+                  "feedback:record-b7b977e2ac9a4a058bb5904d7dd1432f:2026-11-12T02:52:36Z"
+                ]
+              },
+              "account-8d14eaefe853444e940b2a425eae1361": {
+                "name": "合成验收学生2",
+                "state": {
+                  "reason": "暂无作答记录。",
+                  "status": "none",
+                  "basisIds": [],
+                  "dayCount": 0,
+                  "legacyCount": 0,
+                  "statusLabel": "暂无证据",
+                  "evidenceCount": 0,
+                  "helpedCorrect": 0,
+                  "verifiedCount": 0,
+                  "lastPracticedAt": null,
+                  "unverifiedCount": 0,
+                  "lastIndependentAt": null,
+                  "independentCorrect": 0,
+                  "recentVerifiedCount": 0,
+                  "independentIncorrect": 0
+                },
+                "studentId": "account-8d14eaefe853444e940b2a425eae1361",
+                "suggestion": "证据不足",
+                "evidenceIds": []
+              }
+            }
+          }
+        ],
+        "groupTasks": [
+          {
+            "id": "task-501c9e08191946058a349bb33f255d9e",
+            "title": "巩固练习 · 全量合成验收E04方程解释试卷1112"
+          },
+          {
+            "id": "task-8ee5cc8c20b64558993bf23a15e76139",
+            "title": "证据不足练习 · 全量合成验收E04方程解释试卷1112"
+          }
+        ],
+        "groupRecords": [
+          {
+            "id": "record-5d961090d9324ae9be046cc8b4060cc8",
+            "task_id": "task-501c9e08191946058a349bb33f255d9e",
+            "student_id": "account-student-demo",
+            "completed": 1
+          },
+          {
+            "id": "record-e5033d42cc7e4ce8a9447eefe2c684a7",
+            "task_id": "task-8ee5cc8c20b64558993bf23a15e76139",
+            "student_id": "account-8d14eaefe853444e940b2a425eae1361",
+            "completed": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "E06",
+      "title": "服务端离线操作回执与草稿，逐项确认过程见学生R1",
+      "status": "通过",
+      "data": {
+        "operationCount": 4,
+        "uniqueOperationIds": 4,
+        "formalSubmissionFlags": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "records": [
+          {
+            "id": "record-53e581a7e6b740f7b2014aec3566ef1e",
+            "task_id": "task-122289cddb442a5f08fdbec2188b4420",
+            "drafts": {
+              "blocks": {
+                "block-f5ca5accfe8b4f9d938f559ec815fa4e": {
+                  "completed": true
+                }
+              },
+              "questions": {
+                "question-769c6964837a47ce8b8009fa7978e56d": {
+                  "hint": "",
+                  "answer": "x=4.0",
+                  "helped": false,
+                  "reason": "R1本机重编辑：两边减3、同除2，答案仍为4；此编辑尚未确认覆盖在线稿。"
+                }
+              },
+              "lessonPosition": {
+                "blockId": "block-f05b70a1d11443b7802b8d2b05487f79"
+              }
+            },
+            "completed": 0
+          }
+        ],
+        "receiptHashes": [
+          "b7858eaa07b6ba7f6e306a138c58b2d6d6f23d6f3c5774fd8b4242297a15033b",
+          "4e05650977cded60a1f33b804e7634a800414796cc51edcd5b02fe4dd2f092f8",
+          "f60b86ae5a90b24978c01298d04740f912f2444951331e7126441d321cd18552",
+          "e74c58f817c547a32172f243f4de81c8a8d0fc5e104a071d933bfea8ec6ab5a7"
+        ]
+      }
+    },
+    {
+      "id": "LEGACY",
+      "title": "导入仅历史演示身份，重复无新增原始行",
+      "status": "通过",
+      "data": {
+        "tasks": [
+          {
+            "id": "legacy-5b5d246665f33a62dc66cf008a178a71",
+            "source": "legacy-demo",
+            "student_id": "account-legacy-demo-student",
+            "record_source": "legacy-demo",
+            "completed": 1
+          },
+          {
+            "id": "legacy-ad111693bb1165ecfd04e72f768c8e8a",
+            "source": "legacy-demo",
+            "student_id": "account-legacy-demo-student",
+            "record_source": "legacy-demo",
+            "completed": 1
+          }
+        ],
+        "counts": {
+          "attempts": 2,
+          "help_records": 2,
+          "wrong_questions": 2
+        }
+      }
+    }
+  ],
+  "actualAI": [
+    {
+      "id": "job-0417749a7443496c9c2f1f5af45d68e0",
+      "capability": "lesson_agent",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+      "capability": "lesson_agent",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-06e4f3cf30734954bc07dc731de54b08",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-0ecf0924f8874cd0b958625ce7848f52",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-19ecdaa76036426fb0d4b4fccc1d42fd",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-1b9f09da6d6f45c9a1eeda4af26ca36a",
+      "capability": "lesson_agent",
+      "status": "cancelled",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-268b17393b51482ea694a6699594c6cc",
+      "capability": "lesson_agent",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-31bb5b71d97c4cb08e8e08062c4715ea",
+      "capability": "document_parse",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-3808741ae57b4b49bef1d99bda458cd0",
+      "capability": "case_extract",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-3f7caba9dd444fdb87bc23493d5d9ade",
+      "capability": "text",
+      "status": "cancelled",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-4b6cf6a89f6d473d980c8c5f82c15e74",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-4db1acc82ae344878f0d2b2dd950e32f",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-4e4d366021c34e35a41029e4fd5d99da",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-5874ff81edeb4fdab9814f918be0621b",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-5a86ebf7dbf14dc081b214476aeaac85",
+      "capability": "ocr",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-63dd35ae4e684fdcbc5cc1939d1b8849",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-7c6b7c27418a42aab62ddd10f2a355b6",
+      "capability": "lesson_agent",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-b1f4bc7378614138b9b04387601a12a7",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-bbc83f964c224fafa4dbc63716b46455",
+      "capability": "retrieval",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-bd09956f5eea4828b16b8bfae285a352",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-bd18256daa1d41588a5945d6b2ef2f14",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-c31f856a8ef343d9873d57b103b598a8",
+      "capability": "case_extract",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-cc4c09b2bd0a46bda23db44deeccc915",
+      "capability": "ocr",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-d2ec9d675b2c4db48da758863e77794c",
+      "capability": "ocr",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-e62b2f88eca64027a116fe512e56e83d",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-eb731339299348a38d61ac2b156b466e",
+      "capability": "ocr",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    },
+    {
+      "id": "job-fd71dd147df24c76b070dbe23eae4508",
+      "capability": "text",
+      "status": "succeeded",
+      "attempt_number": 1,
+      "retry_count": 0
+    }
+  ],
+  "runs": [
+    {
+      "id": "run-2d1f7a298b06417398a6e0500a298d57",
+      "job_id": "job-19ecdaa76036426fb0d4b4fccc1d42fd",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-2ec0a42f7c5b4985afbb5c1ae2464680",
+      "job_id": "job-06e4f3cf30734954bc07dc731de54b08",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-3615960ae4f54aa5adc367327acefa77",
+      "job_id": "job-eb731339299348a38d61ac2b156b466e",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-3fdcf60b7b44422d98ce08ab58f13829",
+      "job_id": "job-c31f856a8ef343d9873d57b103b598a8",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-423f9040048f40a887739a7201758d6c",
+      "job_id": "job-0417749a7443496c9c2f1f5af45d68e0",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI / LangGraph",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-43ed7687a8cc4b21888c707bda2b34eb",
+      "job_id": "job-63dd35ae4e684fdcbc5cc1939d1b8849",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-47b567b9f47f42f09772457eedc77f48",
+      "job_id": "job-d2ec9d675b2c4db48da758863e77794c",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-4ae6f8e93329416cb232f1eaeecb49cc",
+      "job_id": "job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+      "number": 1,
+      "model": "",
+      "provider": "",
+      "status": "failed"
+    },
+    {
+      "id": "run-4f6406815137443ba715164643e64447",
+      "job_id": "job-7c6b7c27418a42aab62ddd10f2a355b6",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI / LangGraph",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-6f0a3a7f2cfd4b7fa8e953b2fd288ded",
+      "job_id": "job-4db1acc82ae344878f0d2b2dd950e32f",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-73511c1984804e90b8e11677597cfa1b",
+      "job_id": "job-3808741ae57b4b49bef1d99bda458cd0",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-7a08056fcda84890bec58e98ef1a0c3f",
+      "job_id": "job-bbc83f964c224fafa4dbc63716b46455",
+      "number": 1,
+      "model": "BM25",
+      "provider": "BM25 中文检索",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-8012b973de09435e92fcb318e4f1ce9e",
+      "job_id": "job-3f7caba9dd444fdb87bc23493d5d9ade",
+      "number": 1,
+      "model": "",
+      "provider": "",
+      "status": "cancelled"
+    },
+    {
+      "id": "run-825ba52f08294304bfdb2bcdfe933fd6",
+      "job_id": "job-fd71dd147df24c76b070dbe23eae4508",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-8bebf98fa8db4de58029129ff0f93a6c",
+      "job_id": "job-cc4c09b2bd0a46bda23db44deeccc915",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-98c073add03344fa8bdd290c9c7a7761",
+      "job_id": "job-b1f4bc7378614138b9b04387601a12a7",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-a04fa9d98a5b4b1cac549a390254745d",
+      "job_id": "job-0ecf0924f8874cd0b958625ce7848f52",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-a3a8c99dc5fd43498510f6fefeba595c",
+      "job_id": "job-5874ff81edeb4fdab9814f918be0621b",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-b1270023151149368460fb01d164e74c",
+      "job_id": "job-bd18256daa1d41588a5945d6b2ef2f14",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-b90b38fe8f38451187c107379ab827a3",
+      "job_id": "job-bd09956f5eea4828b16b8bfae285a352",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-c7b9022ae0434ccea23774d36219c01a",
+      "job_id": "job-1b9f09da6d6f45c9a1eeda4af26ca36a",
+      "number": 1,
+      "model": "",
+      "provider": "",
+      "status": "cancelled"
+    },
+    {
+      "id": "run-c936bd3445f842eab02994c24d029ff7",
+      "job_id": "job-4e4d366021c34e35a41029e4fd5d99da",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-ecce6bf34968415987f1c96c325da499",
+      "job_id": "job-268b17393b51482ea694a6699594c6cc",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI / LangGraph",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-ef8fd987a0e74453a85a8a3c38667499",
+      "job_id": "job-4b6cf6a89f6d473d980c8c5f82c15e74",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-fb1855a2317f402081dc0f1affd03faa",
+      "job_id": "job-e62b2f88eca64027a116fe512e56e83d",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-fd4835e6f8294587a4e689f86ee67f8d",
+      "job_id": "job-31bb5b71d97c4cb08e8e08062c4715ea",
+      "number": 1,
+      "model": "Document parser",
+      "provider": "文档解析",
+      "status": "succeeded"
+    },
+    {
+      "id": "run-fdffca49ebbc4b11907559a5ec032ab9",
+      "job_id": "job-5a86ebf7dbf14dc081b214476aeaac85",
+      "number": 1,
+      "model": "gpt-6-luna",
+      "provider": "Codex CLI · low",
+      "status": "succeeded"
+    }
+  ],
+  "statusCounts": {
+    "通过": 7,
+    "失败": 0
+  }
+}

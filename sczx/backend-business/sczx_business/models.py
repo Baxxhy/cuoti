@@ -26,6 +26,12 @@ class LoginSession(Base):
     expires_at: Mapped[datetime] = mapped_column(DateTime, index=True)
 
 
+class CaseBookmark(Base):
+    __tablename__ = "case_bookmarks"
+    owner_id: Mapped[str] = mapped_column(ForeignKey("accounts.id"), primary_key=True)
+    case_id: Mapped[str] = mapped_column(ForeignKey("teaching_cases.id"), primary_key=True)
+
+
 class Course(Base):
     __tablename__ = "courses"
 

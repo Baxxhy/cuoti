@@ -1,0 +1,2111 @@
+{
+  "metadata": {
+    "date": "2026-11-12",
+    "role": "independent teacher UI audit",
+    "status": "frozen first-round baseline before R1",
+    "initial_url": "http://127.0.0.1:8103/",
+    "static_build": "f6b4b5d / index-CxoPIcBj.js",
+    "constraints": "只读cdp基础工具；业务全由可见UI点击/DOM填写；未读取业务源码、未手输业务路由、未直调API完成业务、未改store/服务状态；数据为隔离MySQL23325本轮合成；未碰8099。",
+    "privacy": "凭据仅driver私读未写日志；角色显示名/合成内容可公开",
+    "tool_caveats": [
+      "早期浏览器驱动未监听confirm造成超时，新会话排除；不算产品卡死",
+      "多个控件因路由加载/自动保存短暂改名出现驱动找不到目标，已通过等待/重读恢复；不算产品故障",
+      "下载工具同名覆盖：旧教师2两个DOCX二进制未保留，提取文本和下载事件保留；最终E01另命名存档"
+    ],
+    "files": {
+      "actions": "actions.jsonl",
+      "network": "network.json",
+      "screenshots": "T*.png",
+      "downloads": "downloads/"
+    }
+  },
+  "scenarios": [
+    {
+      "id": "T01",
+      "goal": "教师登录、教学概览任务与消息入口",
+      "home_first_click_intent": "登录页→登录",
+      "actual_visible_path": [
+        "登录页→登录",
+        "教学概览→班级任务/下一节课",
+        "首页查找教学案例"
+      ],
+      "action_numbers": [
+        1,
+        7
+      ],
+      "result": "登录教师1，看见七年级一班、5个初始任务；首页任务与快捷入口可用。消息实质写入另见T34。",
+      "completion_return": "首页查找教学案例",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "未单独刷新验证",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T01-home.png"
+      ]
+    },
+    {
+      "id": "T02",
+      "goal": "案例真实检索、年级学科知识点筛选",
+      "home_first_click_intent": "首页查找教学案例",
+      "actual_visible_path": [
+        "首页查找教学案例",
+        "检索不存在合成词→0结果",
+        "检索等式→1结果",
+        "筛选→7年级→数学→等式性质",
+        "阅读案例"
+      ],
+      "action_numbers": [
+        8,
+        38
+      ],
+      "result": "真实按钮请求搜索，0结果/1结果区分。筛选改变后面板会收起，需重开。前置知识初始勾选；未完成开关对照，不能算通过。",
+      "completion_return": "阅读案例",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "未单独刷新验证",
+      "negative_tests": {
+        "empty": "初始空检索正常有案例",
+        "invalid": "无匹配长合成词明确0结果",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": "每次选筛选导致面板收起，连续筛选额外点击",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "保留筛选面板状态，减少重复展开",
+      "screenshots": []
+    },
+    {
+      "id": "T03",
+      "goal": "案例收藏与详情用于备课",
+      "home_first_click_intent": "教学案例→阅读案例",
+      "actual_visible_path": [
+        "教学案例→阅读案例",
+        "收藏案例",
+        "刷新→用于备课"
+      ],
+      "action_numbers": [
+        39,
+        44
+      ],
+      "result": "收藏动作有请求；刷新后预期“已收藏”文本未找到，按钮实际名称未核对，取消收藏未在该详情完成。用于备课进入当前教案。",
+      "completion_return": "刷新→用于备课",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "收藏持久状态未充分确认；不将错误按钮标签算产品失败",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T04",
+      "goal": "课程及课时预览与开始备课",
+      "home_first_click_intent": "备课→课程",
+      "actual_visible_path": [
+        "备课→课程",
+        "新合成短课→预览",
+        "关闭→开始备课"
+      ],
+      "action_numbers": [
+        47,
+        50,
+        283,
+        293
+      ],
+      "result": "课程列表发现管理员新课；预览2*x+3=11及两节内容，开始备课保留lesson参数。",
+      "completion_return": "关闭→开始备课",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "新课来自已发布版本；刷新选择入口可再次找回",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T05",
+      "goal": "班级添加已有学生、新建与编辑",
+      "home_first_click_intent": "班级教学→成员与邀请",
+      "actual_visible_path": [
+        "班级教学→成员与邀请",
+        "添加已有学生→合成验收学生2→添加",
+        "新建班级→保存",
+        "选择新班→班级设置→编辑→保存"
+      ],
+      "action_numbers": [
+        51,
+        88
+      ],
+      "result": "学生2加入七年级一班；教师1合成临时班1112创建并改名已编辑，未改演示班信息。",
+      "completion_return": "选择新班→班级设置→编辑→保存",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "成员刷新2人保留；新班刷新后可下拉找回；编辑截图保留",
+      "negative_tests": {
+        "empty": "新建空名称保存禁用",
+        "invalid": "未测",
+        "duplicate": "添加后该学生从候选列表移除；未重复POST",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T05-class-edited.png"
+      ]
+    },
+    {
+      "id": "T06",
+      "goal": "第二教师班级隔离及新班",
+      "home_first_click_intent": "退出登录→教师2登录",
+      "actual_visible_path": [
+        "退出登录→教师2登录",
+        "教学概览无可管理班级",
+        "班级教学→新建隔离班→邀请码"
+      ],
+      "action_numbers": [
+        89,
+        107
+      ],
+      "result": "教师2初始看不到教师1班，新建“全量验收教师2隔离班1112”。学生3已用可见UI加入且刷新只见该班（学生代理证据）。",
+      "completion_return": "班级教学→新建隔离班→邀请码",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "新登录教师2未暴露教师1班；学生3加入和刷新由学生代理核验",
+      "negative_tests": {
+        "empty": "无班级时有新建入口，首页提示无可管理班级",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T06-teacher2-isolation-before.png"
+      ]
+    },
+    {
+      "id": "T07",
+      "goal": "教研案例版本分享、收藏、讨论与撤回",
+      "home_first_click_intent": "教师2→教学资源→教研交流",
+      "actual_visible_path": [
+        "教师2→教学资源→教研交流",
+        "分享内容→指定已发布案例v1→确认",
+        "收藏→讨论发布→刷新重开",
+        "取消收藏→撤回内容"
+      ],
+      "action_numbers": [
+        108,
+        118,
+        203,
+        228
+      ],
+      "result": "确认系统原生confirm后真实分享成功。收藏/讨论刷新重开保留；取消收藏及撤回讨论后显示作者已撤回、历史保留。",
+      "completion_return": "取消收藏→撤回内容",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新再点分享可见已收藏及原讨论；撤回后历史占位保留",
+      "negative_tests": {
+        "empty": "讨论空内容发布禁用",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": "首轮驱动未监听原生confirm导致CDP超时，属于工具问题，已新会话排除，不是产品卡死",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T07-community-detail.png"
+      ]
+    },
+    {
+      "id": "T08",
+      "goal": "教研改编重复保护与新草稿",
+      "home_first_click_intent": "教研交流→改编为我的教案",
+      "actual_visible_path": [
+        "教研交流→改编为我的教案",
+        "默认等式性质→创建改编草稿被拒",
+        "改为第二课时→创建"
+      ],
+      "action_numbers": [
+        229,
+        237
+      ],
+      "result": "同课时已有本人稿明确拒绝并保留原稿；改选解简单方程成功创建本轮独立改编草稿。",
+      "completion_return": "改为第二课时→创建",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "未单独刷新验证",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "已有本人教案不覆盖",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T09",
+      "goal": "教案目标、活动编辑保存与拖动顺序",
+      "home_first_click_intent": "教师2本轮改编草稿→课时设置",
+      "actual_visible_path": [
+        "教师2本轮改编草稿→课时设置",
+        "编辑目标/基础/重难点→保存",
+        "教学活动→合成名称说明→保存",
+        "拖动第1活动到第2后"
+      ],
+      "action_numbers": [
+        238,
+        257
+      ],
+      "result": "目标、活动说明写合成内容；真实鼠标拖动改变顺序，刷新学生预览首活动为系数与非零条件。",
+      "completion_return": "拖动第1活动到第2后",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "目标保存已在历史DOCX读到；拖动后刷新预览顺序保留",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T10",
+      "goal": "教案历史查看、恢复与正式版本导出",
+      "home_first_click_intent": "更多操作→查看历史版本",
+      "actual_visible_path": [
+        "更多操作→查看历史版本",
+        "打开v2→导出此版本",
+        "恢复为当前草稿→确认"
+      ],
+      "action_numbers": [
+        258,
+        271
+      ],
+      "result": "历史v2可预览；恢复生成v9，旧v1～v8仍可回看。正式DOCX解包见版本2/合成目标/7活动/题目/来源。",
+      "completion_return": "恢复为当前草稿→确认",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "恢复后版本列表新增v9，历史不覆盖",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "DOCX真实落盘核对"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T11",
+      "goal": "完整溯源导出",
+      "home_first_click_intent": "更多操作→导出DOCX",
+      "actual_visible_path": [
+        "更多操作→导出DOCX",
+        "内容范围→完整溯源版→确认导出"
+      ],
+      "action_numbers": [
+        272,
+        278
+      ],
+      "result": "教师2版本9完整溯源DOCX下载并提取文本，保留附录。后续新课导出覆盖同名文件，因此该旧导出二进制未保留，旧提取文本及下载日志保留。",
+      "completion_return": "内容范围→完整溯源版→确认导出",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "旧导出文本 /downloads/完整溯源教案.txt；新E01输出另命名保留",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T12",
+      "goal": "发布本轮学生任务E02",
+      "home_first_click_intent": "新合成课程→开始备课→保存",
+      "actual_visible_path": [
+        "新合成课程→开始备课→保存",
+        "发布任务→七年级一班→11/14截止",
+        "确认发布→班级任务列表"
+      ],
+      "action_numbers": [
+        294,
+        304
+      ],
+      "result": "新任务“合成工程验收 E01 等式平衡短课”固定分配2人，0/2。学生代理真实作答/帮助/订正/提交。",
+      "completion_return": "确认发布→班级任务列表",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "班级列表及后续学情均显示同一任务；发布后后续改教案未改旧任务",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "后续学情真实恢复"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T12-new-task-published.png"
+      ]
+    },
+    {
+      "id": "T13",
+      "goal": "E01新案例来源版本及多引用",
+      "home_first_click_intent": "教学资源→搜索新合成案例→阅读",
+      "actual_visible_path": [
+        "教学资源→搜索新合成案例→阅读",
+        "展开原文依据/数学核对",
+        "用于备课→资料与版本",
+        "检索天平→辅助参考",
+        "重新课程选课→核对两引用"
+      ],
+      "action_numbers": [
+        305,
+        336
+      ],
+      "result": "管理员本轮新案例v1真实可见，原文“合成工程验收E01方程材料·段落8”；新短课主要参考该v1，辅助天平v1。重新带lesson入口见两个引用持久。",
+      "completion_return": "重新课程选课→核对两引用",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "引用持久；但案例用于备课进入/prepare丢lesson，刷新回默认课，非数据丢失",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过，需重新选课时"
+      },
+      "issue": "“用于备课”跳/prepare未带lesson，刷新丢当前课上下文",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T13-E01-case-source.png",
+        "T13-multiple-references-persisted.png"
+      ]
+    },
+    {
+      "id": "T14",
+      "goal": "整课AI真实生成任务启动",
+      "home_first_click_intent": "新短课→AI备课",
+      "actual_visible_path": [
+        "新短课→AI备课",
+        "填写合成教学任务和限制→开始备课",
+        "离开后备课记录→打开任务"
+      ],
+      "action_numbers": [
+        337,
+        347,
+        583,
+        601
+      ],
+      "result": "job-05cb4c3b0c0f47d5981a1b7d8f0a70e9真实生成2活动，数学关系核验失败；未直接把任务设成功。",
+      "completion_return": "离开后备课记录→打开任务",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "备课记录失败任务可重新打开，生成内容仍保留",
+      "negative_tests": {
+        "empty": "任务空输入开始备课禁用",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": "模型把整条方程塞入左右表达式导致核验失败；UI允许教师纠正",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T15",
+      "goal": "AI失败建议编辑、程序核验、确认使用",
+      "home_first_click_intent": "失败任务→列出的数学关系展开",
+      "actual_visible_path": [
+        "失败任务→列出的数学关系展开",
+        "修订为恒等变形/代入验算→保存建议",
+        "依据与核验→结构/引用/关系通过",
+        "确认用于备课→新旧diff→确认保存"
+      ],
+      "action_numbers": [
+        602,
+        630
+      ],
+      "result": "教师通过可见字段纠正数学关系后保存，程序显示结构完整、引用可定位、关系已核对；diff审阅后确认整课目标与全部活动替换，刷新已保存到备课。",
+      "completion_return": "确认用于备课→新旧diff→确认保存",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新后教师修订标题与数学对照保留；原固定任务保留",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": "保存后整体“已完成”，执行进度仍保留原核验失败/等待确认旧状态，状态呈现不一致",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T26-ai-malformed-math-relations.png",
+        "T26-ai-confirm-diff.png"
+      ]
+    },
+    {
+      "id": "T16",
+      "goal": "录题空非法边界与审核",
+      "home_first_click_intent": "题库与考试→题库→录入题目",
+      "actual_visible_path": [
+        "题库与考试→题库→录入题目",
+        "空提交→填合成解释题→负分提交",
+        "改10分/人工核对→保存待审→核对审核"
+      ],
+      "action_numbers": [
+        349,
+        371
+      ],
+      "result": "空必填和-1分由浏览器原生校验拦住；合成解释题真实保存待审，人工核对后固定v1。",
+      "completion_return": "改10分/人工核对→保存待审→核对审核",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "后续刷新仍有该题，组卷固定v1",
+      "negative_tests": {
+        "empty": "必填原生校验拦截",
+        "invalid": "-1分提示>=1",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T17",
+      "goal": "课程导入与真实AI候选采纳",
+      "home_first_click_intent": "题库→引用课程题目→新合成短课",
+      "actual_visible_path": [
+        "题库→引用课程题目→新合成短课",
+        "2题进入待审→逐个审核",
+        "AI出题→生成→读取进度→已生成",
+        "核对x+5=12/x7及解析→存待审→审核"
+      ],
+      "action_numbers": [
+        372,
+        394
+      ],
+      "result": "真实导入2题并审核；AI job-4e4d…生成x+5=12，读到x7及步骤后采纳并审核。",
+      "completion_return": "核对x+5=12/x7及解析→存待审→审核",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "采纳后刷新存在AI候选与ModelJob来源，固定v1",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": "AI解析正文包含字面量\\n，在页面及教师版DOCX均可见，排版可改进",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T18",
+      "goal": "组卷不足、顺序分值与预览审核",
+      "home_first_click_intent": "组卷→新建试卷→添加题目",
+      "actual_visible_path": [
+        "组卷→新建试卷→添加题目",
+        "按条件10题→符合2缺8",
+        "改2题生成→解释题下移/上移顺序",
+        "设置20+10→保存→学生预览→审核"
+      ],
+      "action_numbers": [
+        395,
+        425
+      ],
+      "result": "不足时不造题；2题30分，解释在前20分、AI计算后10分。预览与保存一致，审核后才可发布。",
+      "completion_return": "设置20+10→保存→学生预览→审核",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "后续考试固定版本与导出顺序分值一致",
+      "negative_tests": {
+        "empty": "0题保存/预览/审核/发布禁用",
+        "invalid": "10题不足明确缺8",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T18-auto-paper-shortage.png"
+      ]
+    },
+    {
+      "id": "T19",
+      "goal": "E04新考试发布及提前发布保护",
+      "home_first_click_intent": "试卷已审→发布考试",
+      "actual_visible_path": [
+        "试卷已审→发布考试",
+        "截止早于开始→拒绝",
+        "改14:00→确认→考试答卷",
+        "未交卷/待批阅→尝试发布成绩"
+      ],
+      "action_numbers": [
+        426,
+        434
+      ],
+      "result": "无效时间拒绝；有效新考试固定分配2人，未交卷不能编辑评分、导出答卷；提前发成绩被拒。",
+      "completion_return": "未交卷/待批阅→尝试发布成绩",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "两人随后真实答卷，与固定分配一致",
+      "negative_tests": {
+        "empty": "未交卷不能批阅",
+        "invalid": "无效时间被拒",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "后续答卷恢复"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T20",
+      "goal": "E02原答帮助修订与教师反馈",
+      "home_first_click_intent": "班级教学→新短课查看学情",
+      "actual_visible_path": [
+        "班级教学→新短课查看学情",
+        "演示学生→作答/求助/补救",
+        "教师反馈→空保存拒绝→写合成反馈→保存",
+        "刷新重开→学生回看"
+      ],
+      "action_numbers": [
+        435,
+        458
+      ],
+      "result": "教师看到x7错答、提示、订正x4、独立x7三记录；空反馈明确提示，保存后已反馈1。学生已真实回看。",
+      "completion_return": "刷新重开→学生回看",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新重开反馈值保留，学生侧原文可见",
+      "negative_tests": {
+        "empty": "请填写反馈内容",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T20-E02-original-and-revision.png"
+      ]
+    },
+    {
+      "id": "T21",
+      "goal": "定向补充教学安排",
+      "home_first_click_intent": "新短课学情→新增安排",
+      "actual_visible_path": [
+        "新短课学情→新增安排",
+        "指定学生→演示学生→写补充→确认",
+        "刷新→学生处理→教师回看"
+      ],
+      "action_numbers": [
+        459,
+        474,
+        649,
+        656
+      ],
+      "result": "仅主学生分配1人，学生2未见；学生文字说明真实提交，教师见1/1及完整说明。",
+      "completion_return": "刷新→学生处理→教师回看",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新进度和说明保留",
+      "negative_tests": {
+        "empty": "内容/指定学生为空确认禁用",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T22",
+      "goal": "两人实时课堂完整链",
+      "home_first_click_intent": "班级教学→实时课堂→开始课堂",
+      "actual_visible_path": [
+        "班级教学→实时课堂→开始课堂",
+        "新短课/七年级一班→开始→推第1题",
+        "两学生真实加入提交→统计",
+        "展开给全班讲评→发送→刷新→结束"
+      ],
+      "action_numbers": [
+        475,
+        485,
+        510,
+        525,
+        577,
+        582
+      ],
+      "result": "2人加入/2提交/正确1错误1；原答x4/x7解释对应，讲评发出后两学生已回看；结束后记录、原答、统计保留。",
+      "completion_return": "展开给全班讲评→发送→刷新→结束",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "讲评刷新保留，课堂结束仍显示2原答；学生刷新只读由学生代理记录",
+      "negative_tests": {
+        "empty": "空讲评按钮禁用",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "结束后正式回答入口消失，学生侧另验",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T22-live-pushed-zero.png",
+        "T22-live-two-students.png"
+      ]
+    },
+    {
+      "id": "T23",
+      "goal": "E05证据分组、手调、草稿及发布",
+      "home_first_click_intent": "分层教学→新建→等式性质→读取建议",
+      "actual_visible_path": [
+        "分层教学→新建→等式性质→读取建议",
+        "查看7条原始证据",
+        "主学生证据不足→手调巩固；学生2暂无证据",
+        "两组选审卷→保存→刷新重开→发布"
+      ],
+      "action_numbers": [
+        486,
+        509
+      ],
+      "result": "主学生7原始证据、学生2无证据；手调分组及试卷选择刷新保留。发布各分配1人，学生只见自己组。",
+      "completion_return": "两组选审卷→保存→刷新重开→发布",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "已发布后保存与再次发布禁用，学生真实提交后各1/1",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "已发布按钮禁用",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "草稿与发布状态通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T23-group-evidence.png"
+      ]
+    },
+    {
+      "id": "T24",
+      "goal": "考试人工批阅顺序保存缺陷及绕行",
+      "home_first_click_intent": "考试与批阅→新考试查看答卷",
+      "actual_visible_path": [
+        "考试与批阅→新考试查看答卷",
+        "第1题填18/20+完整依据→保存并下一题",
+        "422→题号2填依据→保存批阅",
+        "主学生同样先填两题后保存"
+      ],
+      "action_numbers": [
+        526,
+        561
+      ],
+      "result": "第1题保存连带第二题0分空comment，422拒绝；先填完两题再保存成功，学生218分，主学生30分。",
+      "completion_return": "主学生同样先填两题后保存",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新后18/30及2/2核对保留",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "21/20与空依据组合被拒；18/20有效但因另一题空依据被错误拒绝",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "绕行保存后通过"
+      },
+      "issue": "保存并下一题提交全卷未填题，顺序批阅被阻断；应仅保存当前题或保留未批阅状态",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T24-valid18of20-rejected.png"
+      ]
+    },
+    {
+      "id": "T25",
+      "goal": "成绩发布和五类真实导出",
+      "home_first_click_intent": "全部批阅→发布成绩→确认",
+      "actual_visible_path": [
+        "全部批阅→发布成绩→确认",
+        "导出学生卷/教师卷/班级成绩",
+        "导出答卷/学习记录→真实下载解包"
+      ],
+      "action_numbers": [
+        562,
+        576
+      ],
+      "result": "发布后两学生真实看到各自成绩讲评且只读。5份DOCX内容核对：学生版无参考答案；教师版有答案；成绩18/30；个人原答/人工分数/讲评/固定版本匹配。",
+      "completion_return": "导出答卷/学习记录→真实下载解包",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新分数保留；导出落盘内容核对",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "“导出答卷”和“学习记录”二进制SHA256相同，可合并成“导出作答与批阅记录”",
+      "screenshots": []
+    },
+    {
+      "id": "T26",
+      "goal": "单活动取消与重开范围丢失",
+      "home_first_click_intent": "新短课活动→AI改写此活动",
+      "actual_visible_path": [
+        "新短课活动→AI改写此活动",
+        "启动→取消",
+        "修改任务→开始备课重开",
+        "备课记录→打开→确认diff"
+      ],
+      "action_numbers": [
+        631,
+        644,
+        746,
+        757
+      ],
+      "result": "取消成功保留旧步骤；重开新job-041774…真实生成，但确认范围变整课，第二活动也变，未确认替换。",
+      "completion_return": "备课记录→打开→确认diff",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "任务记录保留已取消/已完成两条",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "取消状态保留，不冒充成功",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": "单活动任务取消后从修改任务重开丢block范围，确认变替换目标和全部活动",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T32-retry-single-became-whole-confirm.png"
+      ]
+    },
+    {
+      "id": "T27",
+      "goal": "正常单活动范围与保存",
+      "home_first_click_intent": "我的教案→AI改写此活动→开始备课",
+      "actual_visible_path": [
+        "我的教案→AI改写此活动→开始备课",
+        "留在当前任务等待真实生成",
+        "确认diff仅选中活动→确认保存",
+        "我的教案→刷新"
+      ],
+      "action_numbers": [
+        758,
+        771
+      ],
+      "result": "新job-268b…正常生成，diff明确只替换选定活动、保留目标和其他活动；确认后刷新第1标题变化、第2活动不变。",
+      "completion_return": "我的教案→刷新",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新活动顺序/第二活动标题保留，原已发任务不变",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T33-single-activity-confirm-scope.png"
+      ]
+    },
+    {
+      "id": "T28",
+      "goal": "移除辅助引用与E01正式/溯源导出",
+      "home_first_click_intent": "新教案资料与版本→移除辅助参考",
+      "actual_visible_path": [
+        "新教案资料与版本→移除辅助参考",
+        "更多操作→导出正式",
+        "更多操作→完整溯源导出"
+      ],
+      "action_numbers": [
+        772,
+        785
+      ],
+      "result": "辅助天平移除，只剩本轮新案例v1；正式/溯源DOCX已解包，均包含新材料段落8和案例v1，溯源版含3条原文依据附录。",
+      "completion_return": "更多操作→完整溯源导出",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "文件另存E01-*.docx，文本和哈希清单可核对",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "此前两引用持久及移除后当前导出只含新案例"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T29",
+      "goal": "补充后续反馈失败",
+      "home_first_click_intent": "定向补充学生进度展开",
+      "actual_visible_path": [
+        "定向补充学生进度展开",
+        "填写E03后续反馈→发送",
+        "刷新重开及学生回看"
+      ],
+      "action_numbers": [
+        655,
+        665
+      ],
+      "result": "发送POST返回405，后续反馈未保存；学生GET feedback为空，实际未见。前期仅称动作发送，后续已纠正失败结论。",
+      "completion_return": "刷新重开及学生回看",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新输入为空；学生侧无后续反馈",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "业务路由POST405真实失败，不是模拟",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未恢复"
+      },
+      "issue": "POST /api/teaching/supplements/{sup}/students/{student}/feedback 405，阻断教师后续反馈",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T29-intervention-completed-feedback.png"
+      ]
+    },
+    {
+      "id": "T30",
+      "goal": "补充撤销与分层效果回看",
+      "home_first_click_intent": "学情新增合成取消安排→发布",
+      "actual_visible_path": [
+        "学情新增合成取消安排→发布",
+        "展开学生进度→取消→确认→刷新",
+        "分层教学→已发布安排→查看实际作答"
+      ],
+      "action_numbers": [
+        666,
+        692
+      ],
+      "result": "取消安排刷新显示已取消且保留历史；两组均1/1已提交，独立正确0，下钻原答标需核对（解释题及AI题需人工核对），未夸称已正确。",
+      "completion_return": "分层教学→已发布安排→查看实际作答",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "已取消状态/分层提交状态刷新恢复",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "本轮新安排取消通过",
+        "concurrency": "未测",
+        "refresh": "通过"
+      },
+      "issue": "分层实际作答需核对，但当前学情弹窗未找到就地人工判定入口，记录为待核能力",
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T30-groups-submitted-effect.png"
+      ]
+    },
+    {
+      "id": "T31",
+      "goal": "学习记忆知识证据纠错、冲突及恢复",
+      "home_first_click_intent": "查看实际作答→学习记忆",
+      "actual_visible_path": [
+        "查看实际作答→学习记忆",
+        "本轮新错因→核对与修订→关联等式性质",
+        "两次409→关闭→重新读取→重填→201",
+        "刷新→等式性质证据→修订记录"
+      ],
+      "action_numbers": [
+        693,
+        745
+      ],
+      "result": "两次409明确输入未提交并保留表单；按UI重新读取后重开成功201，原答x7不动，新增教师关联修订，练习12→13、复习建议变继续订正。",
+      "completion_return": "刷新→等式性质证据→修订记录",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新后修订记录和等式性质关联持久",
+      "negative_tests": {
+        "empty": "无理由保存禁用",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "真实证据/规则指纹变化409保护，重新读取后201恢复",
+        "refresh": "通过"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T31-memory-correction-409.png",
+        "T31-memory-correction-saved.png"
+      ]
+    },
+    {
+      "id": "T32",
+      "goal": "E01来源导出内容实物核对",
+      "home_first_click_intent": "下载目录→对UI下载DOCX解包",
+      "actual_visible_path": [
+        "下载目录→对UI下载DOCX解包",
+        "核对新课标题/2活动/2练习/案例v1",
+        "核对材料段落8与溯源附录"
+      ],
+      "action_numbers": [
+        777,
+        785
+      ],
+      "result": "已下载E01-正式教案与E01-完整溯源教案，不依赖按钮存在或下载200判断。",
+      "completion_return": "核对材料段落8与溯源附录",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "本地文件和提取文本保留",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "正式与溯源内容范围有真实差异，保留两个范围选择",
+      "screenshots": []
+    },
+    {
+      "id": "T33",
+      "goal": "邀请码撤销",
+      "home_first_click_intent": "七年级一班→成员与邀请",
+      "actual_visible_path": [
+        "七年级一班→成员与邀请",
+        "展开已生成邀请码→撤销",
+        "回到成员"
+      ],
+      "action_numbers": [
+        786,
+        792
+      ],
+      "result": "撤销已供学生3加入的本轮邀请码；未移出成员。撤销后学生再次使用的负向验证未做。",
+      "completion_return": "回到成员",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "刷新持久尚未单独核对",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "已执行撤销；重用否决未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T34",
+      "goal": "消息标已读与任务入口",
+      "home_first_click_intent": "顶部查看消息",
+      "actual_visible_path": [
+        "顶部查看消息",
+        "读取4条本轮提交提醒",
+        "首条标为已读→关闭"
+      ],
+      "action_numbers": [
+        793,
+        797
+      ],
+      "result": "真实看到补充说明与分层/原任务提交提醒，标读后计数4→3。",
+      "completion_return": "首条标为已读→关闭",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "后续页面计数3；未重登单独验证",
+      "negative_tests": {
+        "empty": "未测",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": []
+    },
+    {
+      "id": "T35",
+      "goal": "教师权限内新学习问题回复",
+      "home_first_click_intent": "帮助与反馈→本轮新学习疑问",
+      "actual_visible_path": [
+        "帮助与反馈→本轮新学习疑问",
+        "填写教师处理意见→已回复→保存",
+        "刷新→重开已回复项"
+      ],
+      "action_numbers": [
+        798,
+        811
+      ],
+      "result": "仅处理学生新合成学习问题，未触碰历史问题。教师回复写两边差保持0及非零除法理由；学生刷新后已实际看到完整回复和已回复状态。",
+      "completion_return": "刷新→重开已回复项",
+      "misentry_or_backtrack": "动作日志中目标尚在加载或保存中时的未找到按钮均为驱动时序，不记产品失败；具体上下文跳转见问题记录",
+      "hidden_same_name": "折叠 details 内控件须先点击 summary；模态框同名按钮使用 role=dialog 限定。未点击隐藏同名控件完成业务",
+      "persistence": "教师刷新重开保留；学生代理S22学习问题回复截图已回看",
+      "negative_tests": {
+        "empty": "无处理意见保存禁用",
+        "invalid": "未测",
+        "duplicate": "未测",
+        "network": "未测",
+        "service": "未测",
+        "timeout": "未测",
+        "expired_or_revoked": "未测",
+        "concurrency": "未测",
+        "refresh": "未测"
+      },
+      "issue": null,
+      "entry_reasonableness": "合理，按教师任务可以从可见导航找到",
+      "redundancy_and_merge": "无强制合并建议",
+      "screenshots": [
+        "T35-teacher-new-issue-reply-persisted.png"
+      ]
+    }
+  ],
+  "open_coverage": [
+    "教师2教案版本分享；教师1从共享版本改编；分享撤回（讨论撤回已做）",
+    "班级同名重复创建、移出后历史只读、补发历史任务（仅限本轮任务尚待做）",
+    "题库手工选择列表、筛选修改后旧考试版本不变",
+    "复习建议指定内容/教学观察/标记复核的独立保存（知识点修订已做）",
+    "每个重要写操作的断网/服务停止/超时/并发并未逐项全部覆盖；已测真实409、405、非法表单及刷新，其他按每项未测明确保留",
+    "前置知识开关结果对照；已有案例收藏取消名称未核对",
+    "真实语音设备不具备，未宣称通过；学生文字说明路径实际完成"
+  ],
+  "observed_business_mutations": [
+    {
+      "time": "2026-11-12T02:32:56.832Z",
+      "type": "request",
+      "id": "3813107.28",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 136,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:32:57.160Z",
+      "type": "request",
+      "id": "3813107.31",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 136,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:33:09.966Z",
+      "type": "request",
+      "id": "3813107.32",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 151,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:33:10.311Z",
+      "type": "request",
+      "id": "3813107.35",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 151,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:33:11.044Z",
+      "type": "request",
+      "id": "3813107.36",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 138,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:33:11.407Z",
+      "type": "request",
+      "id": "3813107.39",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 138,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:33:45.511Z",
+      "type": "request",
+      "id": "3813107.40",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 139,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:33:45.875Z",
+      "type": "request",
+      "id": "3813107.43",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 139,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:34:04.696Z",
+      "type": "request",
+      "id": "3813107.44",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 141,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:34:05.024Z",
+      "type": "request",
+      "id": "3813107.47",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 141,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:35:27.294Z",
+      "type": "request",
+      "id": "3813107.84",
+      "url": "http://127.0.0.1:8103/api/classrooms/class-demo/members",
+      "method": "POST",
+      "postBytes": 56,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:35:29.107Z",
+      "type": "request",
+      "id": "3813107.115",
+      "url": "http://127.0.0.1:8103/api/teaching/classes/class-demo/invites",
+      "method": "POST",
+      "postBytes": 10,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:36:02.080Z",
+      "type": "request",
+      "id": "3813107.119",
+      "url": "http://127.0.0.1:8103/api/classrooms",
+      "method": "POST",
+      "postBytes": 54,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:36:38.698Z",
+      "type": "request",
+      "id": "3813107.160",
+      "url": "http://127.0.0.1:8103/api/teaching/classes/class-068219ba26994998bc47a3329219e102",
+      "method": "PUT",
+      "postBytes": 57,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:37:04.408Z",
+      "type": "request",
+      "id": "3813107.206",
+      "url": "http://127.0.0.1:8103/api/classrooms",
+      "method": "POST",
+      "postBytes": 54,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:37:06.092Z",
+      "type": "request",
+      "id": "3813107.212",
+      "url": "http://127.0.0.1:8103/api/teaching/classes/class-7aff2d0833124276a2d99992e5daa55a/invites",
+      "method": "POST",
+      "postBytes": 10,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:37:29.383Z",
+      "type": "request",
+      "id": "3813107.218",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 136,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:39:52.446Z",
+      "type": "request",
+      "id": "3817178.28",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 136,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:39:52.743Z",
+      "type": "request",
+      "id": "3817178.31",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 136,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:40:05.645Z",
+      "type": "request",
+      "id": "3817178.36",
+      "url": "http://127.0.0.1:8103/api/community",
+      "method": "POST",
+      "postBytes": 113,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:40:28.024Z",
+      "type": "request",
+      "id": "3817178.38",
+      "url": "http://127.0.0.1:8103/api/community/share-b37827f2ab264fa1a528d098da32ae30/bookmark",
+      "method": "PUT",
+      "postBytes": 17,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:40:28.763Z",
+      "type": "request",
+      "id": "3817178.40",
+      "url": "http://127.0.0.1:8103/api/community/share-b37827f2ab264fa1a528d098da32ae30/events",
+      "method": "POST",
+      "postBytes": 72,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:40:52.691Z",
+      "type": "request",
+      "id": "3817178.64",
+      "url": "http://127.0.0.1:8103/api/community/share-b37827f2ab264fa1a528d098da32ae30/bookmark",
+      "method": "PUT",
+      "postBytes": 18,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:40:53.058Z",
+      "type": "request",
+      "id": "3817178.66",
+      "url": "http://127.0.0.1:8103/api/community/share-b37827f2ab264fa1a528d098da32ae30/events/ce-96bbc7a996c34d1fa8c983e0cf5283a9/withdraw",
+      "method": "POST",
+      "postBytes": 2,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:41:09.408Z",
+      "type": "request",
+      "id": "3817178.67",
+      "url": "http://127.0.0.1:8103/api/community/share-b37827f2ab264fa1a528d098da32ae30/adapt",
+      "method": "POST",
+      "postBytes": 30,
+      "status": 409
+    },
+    {
+      "time": "2026-11-12T02:41:23.105Z",
+      "type": "request",
+      "id": "3817178.68",
+      "url": "http://127.0.0.1:8103/api/community/share-b37827f2ab264fa1a528d098da32ae30/adapt",
+      "method": "POST",
+      "postBytes": 28,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:43:07.324Z",
+      "type": "request",
+      "id": "3817178.121",
+      "url": "http://127.0.0.1:8103/api/preparation/lesson-simple/restore",
+      "method": "POST",
+      "postBytes": 81,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:44:27.036Z",
+      "type": "request",
+      "id": "3817178.153",
+      "url": "http://127.0.0.1:8103/api/tasks/publish",
+      "method": "POST",
+      "postBytes": 3086,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:44:48.665Z",
+      "type": "request",
+      "id": "3817178.167",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 136,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:44:48.979Z",
+      "type": "request",
+      "id": "3817178.170",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 136,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:44:49.572Z",
+      "type": "request",
+      "id": "3817178.171",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 154,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:44:49.880Z",
+      "type": "request",
+      "id": "3817178.174",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 154,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:45:28.553Z",
+      "type": "request",
+      "id": "3817178.181",
+      "url": "http://127.0.0.1:8103/api/ai/search",
+      "method": "POST",
+      "postBytes": 109,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:46:41.467Z",
+      "type": "request",
+      "id": "3817178.217",
+      "url": "http://127.0.0.1:8103/api/ai/jobs",
+      "method": "POST",
+      "postBytes": 304,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:47:39.762Z",
+      "type": "request",
+      "id": "3817178.249",
+      "url": "http://127.0.0.1:8103/api/exams/bank",
+      "method": "POST",
+      "postBytes": 332,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:47:55.743Z",
+      "type": "request",
+      "id": "3817178.256",
+      "url": "http://127.0.0.1:8103/api/exams/bank/bq-b7baf245db0f4e39b8b0488b3822b92c/review",
+      "method": "POST",
+      "postBytes": 31,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:48:13.681Z",
+      "type": "request",
+      "id": "3817178.263",
+      "url": "http://127.0.0.1:8103/api/exams/bank/import",
+      "method": "POST",
+      "postBytes": 54,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:48:28.746Z",
+      "type": "request",
+      "id": "3817178.270",
+      "url": "http://127.0.0.1:8103/api/exams/bank/bq-600c4793d3bc47c5908877c95b887bd3/review",
+      "method": "POST",
+      "postBytes": 31,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:48:29.128Z",
+      "type": "request",
+      "id": "3817178.277",
+      "url": "http://127.0.0.1:8103/api/exams/bank/bq-7becf85f432f4f45a0266da857abce47/review",
+      "method": "POST",
+      "postBytes": 31,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:48:53.838Z",
+      "type": "request",
+      "id": "3817178.284",
+      "url": "http://127.0.0.1:8103/api/ai/jobs",
+      "method": "POST",
+      "postBytes": 200,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:49:23.088Z",
+      "type": "request",
+      "id": "3817178.286",
+      "url": "http://127.0.0.1:8103/api/exams/bank/candidate/job-4e4d366021c34e35a41029e4fd5d99da",
+      "method": "POST",
+      "postBytes": 2,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:49:37.960Z",
+      "type": "request",
+      "id": "3817178.319",
+      "url": "http://127.0.0.1:8103/api/exams/bank/bq-4e4d366021c34e35a41029e4fd5d99da/review",
+      "method": "POST",
+      "postBytes": 31,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:50:05.544Z",
+      "type": "request",
+      "id": "3817178.333",
+      "url": "http://127.0.0.1:8103/api/exams/assemble",
+      "method": "POST",
+      "postBytes": 105,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:50:14.156Z",
+      "type": "request",
+      "id": "3817178.334",
+      "url": "http://127.0.0.1:8103/api/exams/assemble",
+      "method": "POST",
+      "postBytes": 104,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:50:44.969Z",
+      "type": "request",
+      "id": "3817178.335",
+      "url": "http://127.0.0.1:8103/api/exams/papers",
+      "method": "POST",
+      "postBytes": 196,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:50:58.455Z",
+      "type": "request",
+      "id": "3817178.342",
+      "url": "http://127.0.0.1:8103/api/exams/papers/paper-fa63ee6cedfe4bdcaf951f1dd66c6ca3/review",
+      "method": "POST",
+      "postBytes": 31,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:51:15.826Z",
+      "type": "request",
+      "id": "3817178.350",
+      "url": "http://127.0.0.1:8103/api/exams",
+      "method": "POST",
+      "postBytes": 213,
+      "status": 422
+    },
+    {
+      "time": "2026-11-12T02:51:24.273Z",
+      "type": "request",
+      "id": "3817178.351",
+      "url": "http://127.0.0.1:8103/api/exams",
+      "method": "POST",
+      "postBytes": 213,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:51:43.743Z",
+      "type": "request",
+      "id": "3817178.360",
+      "url": "http://127.0.0.1:8103/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7/results",
+      "method": "POST",
+      "postBytes": 18,
+      "status": 409
+    },
+    {
+      "time": "2026-11-12T02:52:36.366Z",
+      "type": "request",
+      "id": "3817178.375",
+      "url": "http://127.0.0.1:8103/api/records/record-b7b977e2ac9a4a058bb5904d7dd1432f/feedback",
+      "method": "PUT",
+      "postBytes": 89,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:53:42.619Z",
+      "type": "request",
+      "id": "3817178.401",
+      "url": "http://127.0.0.1:8103/api/teaching/tasks/task-122289cddb442a5f08fdbec2188b4420/supplements",
+      "method": "POST",
+      "postBytes": 185,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:54:16.312Z",
+      "type": "request",
+      "id": "3817178.436",
+      "url": "http://127.0.0.1:8103/api/live",
+      "method": "POST",
+      "postBytes": 77,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:54:30.676Z",
+      "type": "request",
+      "id": "3817178.446",
+      "url": "http://127.0.0.1:8103/api/live/live-bbb98ba909f241fa9df02bbebc0852b6/push",
+      "method": "POST",
+      "postBytes": 27,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:55:14.088Z",
+      "type": "request",
+      "id": "3817178.457",
+      "url": "http://127.0.0.1:8103/api/groups",
+      "method": "POST",
+      "postBytes": 291,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T02:55:39.840Z",
+      "type": "request",
+      "id": "3817178.483",
+      "url": "http://127.0.0.1:8103/api/groups/group-08f0b2ff54444acb9d0fef239508a662/publish",
+      "method": "POST",
+      "postBytes": 31,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:56:46.754Z",
+      "type": "request",
+      "id": "3817178.512",
+      "url": "http://127.0.0.1:8103/api/live/live-bbb98ba909f241fa9df02bbebc0852b6/activities/act-2d73444a059e40a686c74b308595c169/feedback",
+      "method": "PUT",
+      "postBytes": 60,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:57:43.460Z",
+      "type": "request",
+      "id": "3817178.566",
+      "url": "http://127.0.0.1:8103/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7/submissions/sub-76cc291e10d14329bd3d963d993fe1e0/grades",
+      "method": "PUT",
+      "postBytes": 152,
+      "status": 422
+    },
+    {
+      "time": "2026-11-12T02:57:52.656Z",
+      "type": "request",
+      "id": "3817178.567",
+      "url": "http://127.0.0.1:8103/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7/submissions/sub-76cc291e10d14329bd3d963d993fe1e0/grades",
+      "method": "PUT",
+      "postBytes": 195,
+      "status": 422
+    },
+    {
+      "time": "2026-11-12T02:58:49.481Z",
+      "type": "request",
+      "id": "3817178.568",
+      "url": "http://127.0.0.1:8103/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7/submissions/sub-76cc291e10d14329bd3d963d993fe1e0/grades",
+      "method": "PUT",
+      "postBytes": 240,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:59:20.885Z",
+      "type": "request",
+      "id": "3817178.576",
+      "url": "http://127.0.0.1:8103/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7/submissions/sub-8fbb45d5732b479aa1d224fc7baf393f/grades",
+      "method": "PUT",
+      "postBytes": 224,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T02:59:27.378Z",
+      "type": "request",
+      "id": "3817178.611",
+      "url": "http://127.0.0.1:8103/api/exams/exam-6457f5719c7448d3a3e489d3f6864ae7/results",
+      "method": "POST",
+      "postBytes": 18,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:00:32.365Z",
+      "type": "request",
+      "id": "3817178.633",
+      "url": "http://127.0.0.1:8103/api/live/live-bbb98ba909f241fa9df02bbebc0852b6/end",
+      "method": "POST",
+      "postBytes": 14,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:02:17.800Z",
+      "type": "request",
+      "id": "3817178.649",
+      "url": "http://127.0.0.1:8103/api/ai/agent/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9/draft",
+      "method": "PUT",
+      "postBytes": 1443,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:02:41.840Z",
+      "type": "request",
+      "id": "3817178.651",
+      "url": "http://127.0.0.1:8103/api/ai/agent/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9/draft",
+      "method": "PUT",
+      "postBytes": 1443,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:02:58.552Z",
+      "type": "request",
+      "id": "3817178.654",
+      "url": "http://127.0.0.1:8103/api/ai/agent/job-05cb4c3b0c0f47d5981a1b7d8f0a70e9/confirm",
+      "method": "POST",
+      "postBytes": 105,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:03:42.728Z",
+      "type": "request",
+      "id": "3817178.694",
+      "url": "http://127.0.0.1:8103/api/ai/jobs",
+      "method": "POST",
+      "postBytes": 330,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T03:03:44.085Z",
+      "type": "request",
+      "id": "3817178.712",
+      "url": "http://127.0.0.1:8103/api/ai/agent/job-1b9f09da6d6f45c9a1eeda4af26ca36a/cancel",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:04:19.762Z",
+      "type": "request",
+      "id": "3817178.718",
+      "url": "http://127.0.0.1:8103/api/ai/jobs",
+      "method": "POST",
+      "postBytes": 281,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T03:05:27.114Z",
+      "type": "request",
+      "id": "3817178.760",
+      "url": "http://127.0.0.1:8103/api/teaching/supplements/sup-066bf124986d0b12768ccd27c614727f/students/account-student-demo/feedback",
+      "method": "POST",
+      "postBytes": 56,
+      "status": 405
+    },
+    {
+      "time": "2026-11-12T03:06:11.354Z",
+      "type": "request",
+      "id": "3817178.783",
+      "url": "http://127.0.0.1:8103/api/teaching/tasks/task-122289cddb442a5f08fdbec2188b4420/supplements",
+      "method": "POST",
+      "postBytes": 145,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T03:06:32.999Z",
+      "type": "request",
+      "id": "3817178.806",
+      "url": "http://127.0.0.1:8103/api/teaching/supplements/sup-1651aabb5877a2fffc04aa5bac4921f2/cancel",
+      "method": "POST",
+      "postBytes": 2,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:08:13.943Z",
+      "type": "request",
+      "id": "3817178.844",
+      "url": "http://127.0.0.1:8103/api/memory/changes",
+      "method": "POST",
+      "postBytes": 460,
+      "status": 409
+    },
+    {
+      "time": "2026-11-12T03:09:20.034Z",
+      "type": "request",
+      "id": "3817178.876",
+      "url": "http://127.0.0.1:8103/api/memory/changes",
+      "method": "POST",
+      "postBytes": 443,
+      "status": 409
+    },
+    {
+      "time": "2026-11-12T03:10:12.946Z",
+      "type": "request",
+      "id": "3817178.880",
+      "url": "http://127.0.0.1:8103/api/memory/changes",
+      "method": "POST",
+      "postBytes": 413,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T03:11:15.652Z",
+      "type": "request",
+      "id": "3817178.923",
+      "url": "http://127.0.0.1:8103/api/ai/agent/job-0417749a7443496c9c2f1f5af45d68e0/draft",
+      "method": "PUT",
+      "postBytes": 1206,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:11:53.906Z",
+      "type": "request",
+      "id": "3817178.936",
+      "url": "http://127.0.0.1:8103/api/ai/jobs",
+      "method": "POST",
+      "postBytes": 276,
+      "status": 201
+    },
+    {
+      "time": "2026-11-12T03:12:34.948Z",
+      "type": "request",
+      "id": "3817178.955",
+      "url": "http://127.0.0.1:8103/api/ai/agent/job-268b17393b51482ea694a6699594c6cc/draft",
+      "method": "PUT",
+      "postBytes": 1150,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:12:46.866Z",
+      "type": "request",
+      "id": "3817178.958",
+      "url": "http://127.0.0.1:8103/api/ai/agent/job-268b17393b51482ea694a6699594c6cc/confirm",
+      "method": "POST",
+      "postBytes": 105,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:14:51.328Z",
+      "type": "request",
+      "id": "3817178.1003",
+      "url": "http://127.0.0.1:8103/api/teaching/classes/class-demo/invites/invite-67568966d7844ab799b15e2b079bc0fe/revoke",
+      "method": "POST",
+      "postBytes": 2,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:15:08.016Z",
+      "type": "request",
+      "id": "3817178.1008",
+      "url": "http://127.0.0.1:8103/api/teaching/messages/msg-547873ddde4f1b832070cb29c3931b0f/read",
+      "method": "POST",
+      "postBytes": 2,
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T03:15:35.308Z",
+      "type": "request",
+      "id": "3817178.1012",
+      "url": "http://127.0.0.1:8103/api/support/issue-3c5865cbf8bb4cd7a0e9bab463792f22/events",
+      "method": "POST",
+      "postBytes": 192,
+      "status": 200
+    }
+  ],
+  "download_artifacts": [
+    {
+      "file": "downloads/E01-完整溯源教案.docx",
+      "bytes": 37245,
+      "sha256": "a588dc7f615abcc9d12d5f66354eb89deaebd505bebda31e6724942d0851507d"
+    },
+    {
+      "file": "downloads/E01-完整溯源教案.txt",
+      "bytes": 3180,
+      "sha256": "a8c08cd5fdd523d08c121729c62e021060e3d57fdeac37ae69fb3aa70c001d7d"
+    },
+    {
+      "file": "downloads/E01-正式教案.docx",
+      "bytes": 37148,
+      "sha256": "3e5d46c90e05095d22ba467d3050e49744a69e7ab8f47ec676cbc48149175571"
+    },
+    {
+      "file": "downloads/E01-正式教案.txt",
+      "bytes": 2791,
+      "sha256": "1d5338a8257fc334ab64be8f44ce451e5b78c9fb545f9512e81ed82b218a7706"
+    },
+    {
+      "file": "downloads/exam-grades.docx",
+      "bytes": 35003,
+      "sha256": "e1fa05a284efae809b637ba737baab95b2e116afe88521c6f08e586e7d38eb2e"
+    },
+    {
+      "file": "downloads/exam-grades.txt",
+      "bytes": 234,
+      "sha256": "105e4c9c5af6476fcfb866670341421a761176fcc893274fa37e78f63c3db157"
+    },
+    {
+      "file": "downloads/exam-learning.docx",
+      "bytes": 35111,
+      "sha256": "50f416f9106f885a6bccf89e28713fa9234a5e1889ef1998774ee3576f0ac97c"
+    },
+    {
+      "file": "downloads/exam-learning.txt",
+      "bytes": 663,
+      "sha256": "02a281343b1edcfd631aab7633a4bf46f0326243a9c1f88780bf971e7a4e890a"
+    },
+    {
+      "file": "downloads/exam-student.docx",
+      "bytes": 34891,
+      "sha256": "ba531c250bedc3b8a6c6adf0afa12e116f668df883abf10efbdfb2e0cd0ec42c"
+    },
+    {
+      "file": "downloads/exam-student.txt",
+      "bytes": 271,
+      "sha256": "d5bf2fa9b89ad7cf8aa5a928c499b4849a9cab654d14387f3602bd36b539edeb"
+    },
+    {
+      "file": "downloads/exam-submission.docx",
+      "bytes": 35111,
+      "sha256": "50f416f9106f885a6bccf89e28713fa9234a5e1889ef1998774ee3576f0ac97c"
+    },
+    {
+      "file": "downloads/exam-submission.txt",
+      "bytes": 663,
+      "sha256": "02a281343b1edcfd631aab7633a4bf46f0326243a9c1f88780bf971e7a4e890a"
+    },
+    {
+      "file": "downloads/exam-teacher.docx",
+      "bytes": 35204,
+      "sha256": "c0e71723cbb54e1dda96f4f98858b07628bfcc6410ab56b0857e46dd10597234"
+    },
+    {
+      "file": "downloads/exam-teacher.txt",
+      "bytes": 802,
+      "sha256": "1853f02c3123543c29c4a15022657e9fac535dcf2980bd7093eeb54885af15b1"
+    },
+    {
+      "file": "downloads/完整溯源教案.txt",
+      "bytes": 2572,
+      "sha256": "695528a2ffd8e10faf2ff5b8fed75d09c234e3863a9cb94f42fb7ace2ca2efb8"
+    },
+    {
+      "file": "downloads/正式教案-extracted.txt",
+      "bytes": 2550,
+      "sha256": "ff9a547c80422e06167ebd47a44184225884606d892322eb29f51ba904511346"
+    },
+    {
+      "file": "downloads/正式教案.txt",
+      "bytes": 2550,
+      "sha256": "ff9a547c80422e06167ebd47a44184225884606d892322eb29f51ba904511346"
+    }
+  ]
+}

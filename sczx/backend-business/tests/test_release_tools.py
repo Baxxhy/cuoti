@@ -19,7 +19,7 @@ class ReleaseToolsTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as t:
    cfg=self.config(Path(t));state={'heads':['0013_teaching_insights'],'otherSessions':[],'activeModelJobs':0,'tables':['alembic_version']}
    with patch.object(manage,'database_state',return_value=state),patch.object(manage,'process_writers',return_value=[]),patch.object(manage,'release_identity',return_value={'fixed':False}),patch.object(manage.subprocess,'run') as execute:
-    report=manage.preflight(cfg);self.assertEqual(report['plan'],['0014_examinations','0015_classroom_community','0016_offline_drafts']);self.assertFalse(report['sideEffects']);execute.assert_not_called();self.assertFalse(Path(cfg['SCZX_RELEASE_STATE']).exists())
+    report=manage.preflight(cfg);self.assertEqual(report['plan'],['0014_examinations','0015_classroom_community','0016_offline_drafts','0017_case_bookmarks']);self.assertFalse(report['sideEffects']);execute.assert_not_called();self.assertFalse(Path(cfg['SCZX_RELEASE_STATE']).exists())
  def test_start_mismatch_refuses_without_implicit_migration(self):
   with tempfile.TemporaryDirectory() as t:
    cfg=self.config(Path(t));Path(cfg['SCZX_FRONTEND_DIST']).mkdir();(Path(cfg['SCZX_FRONTEND_DIST'])/'index.html').write_text('fixed app')
@@ -41,6 +41,15 @@ class ReleaseToolsTests(unittest.TestCase):
    for state in [{'otherSessions':[{'id':7}],'activeModelJobs':0},{'otherSessions':[],'activeModelJobs':1}]:
     with patch.object(manage,'database_state',return_value=state),patch.object(manage,'process_writers',return_value=[]):
      with self.assertRaisesRegex(RuntimeError,'其他连接'):manage.quiescent(cfg)
+ def test_start_can_recover_orphan_job_but_never_bypass_other_writers(self):
+  with tempfile.TemporaryDirectory() as t:
+   cfg=self.config(Path(t));orphan={'otherSessions':[],'activeModelJobs':1}
+   with patch.object(manage,'database_state',return_value=orphan),patch.object(manage,'process_writers',return_value=[]):
+    manage.quiescent(cfg,allow_interrupted_jobs=True)
+    with self.assertRaisesRegex(RuntimeError,'其他连接'):manage.quiescent(cfg)
+   for sessions,writers in [([{'id':7}],[]),([],[{'pid':8}])]:
+    with patch.object(manage,'database_state',return_value={**orphan,'otherSessions':sessions}),patch.object(manage,'process_writers',return_value=writers):
+     with self.assertRaisesRegex(RuntimeError,'其他连接'):manage.quiescent(cfg,allow_interrupted_jobs=True)
  def test_release_tamper_detected_and_does_not_guess_parent_git_head(self):
   with tempfile.TemporaryDirectory() as t:
    base=Path(t);cfg=self.config(base);(base/'frontend/dist').mkdir(parents=True);page=base/'frontend/dist/index.html';page.write_text('known');cfg['SCZX_FRONTEND_DIST']=str(page.parent);(base/'release-manifest.json').write_text(json.dumps({'sczxCommit':'1'*40,'tree':'2'*40,'files':{'frontend/dist/index.html':manage.sha(page)}}))

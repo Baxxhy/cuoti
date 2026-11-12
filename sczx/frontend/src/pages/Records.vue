@@ -1,13 +1,14 @@
 <script setup>
+import {useRoute} from "vue-router";
 import { useLearning } from "@/store.js";
 import { questions } from "@/data.js";
-const store = useLearning();
+const store = useLearning(),route=useRoute();
 function exportRecords(){window.open("/api/exams/learning-records/export","_blank","noopener")}
 </script>
 <template>
   <PageHeading title="学习记录"><Button variant="outline" @click="exportRecords">导出记录</Button></PageHeading>
   <div v-if="store.data.tasks.length" class="student-record-list">
-    <details v-for="task in store.data.tasks" :key="task.id" class="student-record-group">
+    <details v-for="task in store.data.tasks" :key="task.id" class="student-record-group" :open="route.query.task===task.id">
       <summary><span><strong>{{task.title}}</strong><time>{{new Date(task.publishedAt).toLocaleDateString('zh-CN')}}</time></span><span>{{store.data.records[task.id]?.attempts.length||0}} 次作答</span></summary>
       <details v-for="attempt in store.data.records[task.id]?.attempts||[]" :key="attempt.id" class="student-record-attempt">
         <summary><span>{{(task.questions||questions)[attempt.question]?.equation}} → {{attempt.answer}}</span><Status :tone="attempt.correct?'green':'neutral'">{{attempt.verification?.status==='unverified'?'需核对':attempt.correct?'数值正确':'需订正'}}</Status></summary>

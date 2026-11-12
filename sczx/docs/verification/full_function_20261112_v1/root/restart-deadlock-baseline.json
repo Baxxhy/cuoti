@@ -1,0 +1,7 @@
+{
+  "reproduced": "独立QA已崩溃、无其他连接及写入进程，持久running任务被启动预检拒绝，startup恢复尚未执行",
+  "otherSessions": [],
+  "activeModelJobs": 1,
+  "writers": [],
+  "pid": null
+}

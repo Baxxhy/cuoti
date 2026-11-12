@@ -38,7 +38,7 @@ export function createPlatform() {
     studentRecords: {},
     activeTaskId: null,
     activeStudentId: null,
-    favorite: false,
+    favoriteCaseIds: [],
     issue: { id: "issue-empty", text: "", reply: "", resolved: false },
     supplements: [],
     messages: [],

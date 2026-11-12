@@ -15,7 +15,7 @@ async function scenario(mode){
  window.fetch=(url,options)=>{
   const path=String(url);if(!path.startsWith('/api/'))return original(url,options);
   const method=options?.method||'GET';if(method!=='GET')writes.push({path,method,body:JSON.parse(options.body||'{}')});
-  if(path.endsWith('/grades')){if(fail){fail=false;return Promise.resolve(new Response(JSON.stringify({detail:'请重新读取后重试'}),{status:409}))}submission.grades=JSON.parse(options.body).grades;submission.revision++;}
+  if(path.endsWith('/grades')){if(fail){fail=false;return Promise.resolve(new Response(JSON.stringify({detail:'请重新读取后重试'}),{status:409}))}const grades=JSON.parse(options.body).grades;if(Object.values(grades).some(g=>!g.comment?.trim()))return Promise.resolve(new Response(JSON.stringify({detail:'缺少批阅依据'}),{status:422}));submission.grades={...submission.grades,...grades};submission.revision++;return Promise.resolve(new Response(JSON.stringify(submission)));}
   let value=[];
   if(path==='/api/exams/focus-exam')value=exam;
   return Promise.resolve(new Response(JSON.stringify(value),{headers:{'Content-Type':'application/json'}}));
@@ -31,7 +31,7 @@ async function scenario(mode){
    el.querySelectorAll('.focus-activity-item>button:last-child')[0].click();await nextTick();return{count,second,restored:el.querySelector('#activity-content').value,writes};
   }
   await wait(()=>el.querySelector('.exam-grade-question input'));const originalAnswers=JSON.stringify(submission.answers);
-  const input=el.querySelector('.exam-grade-question input');input.value='8';input.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();
+  const input=el.querySelector('.exam-grade-question input');input.value='8';input.dispatchEvent(new Event('input',{bubbles:true}));const comment=el.querySelector('.exam-grade-question textarea');comment.value='本题过程基本正确，补充共同运算依据。';comment.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();
   const save=()=>[...el.querySelectorAll('button')].find(b=>b.textContent.trim()==='保存并下一题').click();save();
   await wait(()=>el.querySelector('[role=alert]'));const retained={question:el.querySelector('.exam-grade-question h3').textContent,score:el.querySelector('.exam-grade-question input').value};save();
   await wait(()=>el.querySelector('.exam-grade-question h3')?.textContent.startsWith('2.'));
@@ -40,6 +40,6 @@ async function scenario(mode){
 }
 for(const mode of ['prepare','grade'])test(mode==='prepare'?'switching a focused activity retains unsaved edits without writes':'failed focused grading stays on question; successful save moves next and preserves original answers',async()=>{
  const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");const r=await b.eval(scenario,mode);
- if(mode==='prepare'){assert.equal(r.count,1);assert.equal(r.second,'代回原式。');assert.equal(r.restored,'未保存的第一活动修改');assert.deepEqual(r.writes,[])}else{assert.equal(r.one,1);assert.ok(r.retained.question.startsWith('1.'));assert.equal(r.retained.score,'8');assert.ok(r.advanced.startsWith('2.'));assert.equal(r.grade.score,8);assert(r.answersUnchanged);assert.equal(r.writes.length,2)}assert.deepEqual(b.errors,[]);
+ if(mode==='prepare'){assert.equal(r.count,1);assert.equal(r.second,'代回原式。');assert.equal(r.restored,'未保存的第一活动修改');assert.deepEqual(r.writes,[])}else{assert.equal(r.one,1);assert.ok(r.retained.question.startsWith('1.'));assert.equal(r.retained.score,'8');assert.ok(r.advanced.startsWith('2.'));assert.equal(r.grade.score,8);assert(r.answersUnchanged);assert.equal(r.writes.length,2);assert.deepEqual(Object.keys(r.writes[1].body.grades),['q1'])}assert.deepEqual(b.errors,[]);
  }finally{await b.close()}
 });

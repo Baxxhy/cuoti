@@ -1,0 +1,585 @@
+{
+  "metadata": {
+    "role": "teacher",
+    "round": "R2",
+    "base_url": "http://127.0.0.1:8103/",
+    "js": "index-8bNtgQgl.js",
+    "observed_assets": [
+      "http://127.0.0.1:8103/assets/index-8bNtgQgl.js",
+      "http://127.0.0.1:8103/assets/index-CO-yA6Fi.css"
+    ],
+    "profile": "/tmp/sczx-full/teacher/r2/profile",
+    "start": "2026-11-12T06:10:57.281Z",
+    "end": "2026-11-12T06:18:13.016Z",
+    "browser_closed": true,
+    "browser_close_action": 2137,
+    "no_new_ai_jobs": true,
+    "prior_reports_preserved_sha256": {
+      "baseline.json": "4a72ea3af2f134a5c10fd2cc6848fe5aee2ed0b914524efe32c35734ff2987da",
+      "baseline.md": "257d71072afee6ce1a7d59c33e3a8f04ea0dfde53dda4013f3cd0d1c931afd98",
+      "retest-r1.json": "5cbfda1c99ee3f8aba1bcb942a847291c33e65114dba305e3758150bcf5aba6c",
+      "retest-r1.md": "8958c706f864a6a89536611c52b52ee402bbec158a4a9d046c0a8c32533b9e00"
+    },
+    "method": "新profile仅由唯一首页进入，真实鼠标键盘与DOM表单输入；网络被动观察，未读业务源码/手输业务路由/业务API操作/状态篡改。"
+  },
+  "scenarios": [
+    {
+      "id": "R2-T06",
+      "title": "案例收藏持久、取消与双教师隔离",
+      "status": "pass",
+      "action_numbers": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026,
+        2027,
+        2028,
+        2029,
+        2030,
+        2031,
+        2032,
+        2033,
+        2034,
+        2035,
+        2036,
+        2037,
+        2038,
+        2039,
+        2040,
+        2041,
+        2042,
+        2043,
+        2044,
+        2045,
+        2046,
+        2047,
+        2048,
+        2049,
+        2050,
+        2051,
+        2052,
+        2053,
+        2054,
+        2055,
+        2056,
+        2057,
+        2058,
+        2059,
+        2060,
+        2061,
+        2062
+      ],
+      "first_click_intent": "从教学资源查找案例并收藏",
+      "actual_path": [
+        "教学资源",
+        "阅读案例",
+        "收藏案例",
+        "刷新",
+        "退出登录并重登",
+        "已有收藏",
+        "已收藏取消",
+        "刷新",
+        "切换教师2验证",
+        "教师2另收藏",
+        "切回教师1验证"
+      ],
+      "findings": [
+        "教师1分别收藏合成工程验收 E01 等式平衡与移项和天平与等式性质，各观察bookmark PUT200，刷新同详情仍已收藏。",
+        "退出登录并重新登录，已有收藏列表包含两篇；取消新合成案例后PUT200，详情刷新回收藏案例，已有收藏列表只剩天平案例。",
+        "教师2登录后已有收藏为空，没有继承教师1的天平收藏；教师2另收藏新合成案例，刷新保留且列表仅该篇；切回教师1仍只有天平案例，未继承教师2收藏。",
+        "收藏仅改新增的本人收藏记录，发布案例正文与固定版本未改。教研share收藏不混用。"
+      ],
+      "observed_requests": [
+        {
+          "time": "2026-11-12T06:11:26.022Z",
+          "type": "request",
+          "id": "3918411.36",
+          "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+          "method": "PUT",
+          "postBytes": 17,
+          "postData": "{\"selected\":true}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:11:33.221Z",
+          "type": "request",
+          "id": "3918411.61",
+          "url": "http://127.0.0.1:8103/api/ai/cases/case-balance/bookmark",
+          "method": "PUT",
+          "postBytes": 17,
+          "postData": "{\"selected\":true}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:12:04.183Z",
+          "type": "request",
+          "id": "3918411.93",
+          "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+          "method": "PUT",
+          "postBytes": 18,
+          "postData": "{\"selected\":false}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:13:02.533Z",
+          "type": "request",
+          "id": "3918411.129",
+          "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+          "method": "PUT",
+          "postBytes": 17,
+          "postData": "{\"selected\":true}",
+          "status": 200
+        }
+      ],
+      "screenshots": [
+        "/tmp/sczx-full/teacher/r2/r2-T06-new-case-favorite-after-refresh.png",
+        "/tmp/sczx-full/teacher/r2/r2-T06-second-case-favorite-after-refresh.png",
+        "/tmp/sczx-full/teacher/r2/r2-T06-two-favorites-after-relogin.png",
+        "/tmp/sczx-full/teacher/r2/r2-T06-cancel-new-case-after-refresh.png",
+        "/tmp/sczx-full/teacher/r2/r2-T06-teacher1-only-other-case-remains.png",
+        "/tmp/sczx-full/teacher/r2/r2-T06-teacher2-no-inherited-favorites.png",
+        "/tmp/sczx-full/teacher/r2/r2-T06-teacher2-own-new-case-only.png",
+        "/tmp/sczx-full/teacher/r2/r2-T06-teacher1-unaffected-by-teacher2.png"
+      ],
+      "persistence": "两案例刷新、教师1重登及账号交叉登录全部验证。",
+      "final_state": "教师1仅收藏case-balance；教师2仅收藏case-39e79087817f47218264ed6506c303f9。",
+      "negative_coverage": "取消后刷新不复活；另一案例收藏不受取消影响；两教师互不串收藏。",
+      "not_tested": [
+        "本次未逐项重做断网/并发/服务停止，通用技术边界由root补测。"
+      ],
+      "entry_assessment": "详情收藏和列表已有收藏语义一致，刷新/账号切换有真实持久行为。"
+    },
+    {
+      "id": "R2-T02",
+      "title": "知识点筛选内层连续多选与前置开关保持展开",
+      "status": "pass",
+      "action_numbers": [
+        2063,
+        2064,
+        2065,
+        2066,
+        2067,
+        2068,
+        2069,
+        2070,
+        2071,
+        2072,
+        2073
+      ],
+      "first_click_intent": "连续选择两个知识点并切换前置知识",
+      "actual_path": [
+        "教学资源",
+        "检索结果",
+        "筛选",
+        "知识点summary",
+        "相等关系",
+        "等式性质",
+        "包含一层前置知识"
+      ],
+      "findings": [
+        "真实鼠标勾选kp-equal后立即再勾kp-equality，无需重开；DOM details.open=true、两项checked=true且所有复选框真实可见，URL knowledge=kp-equal,kp-equality。",
+        "随后将包含一层前置知识切false，details仍open=true且两项选择保留，URL与请求体includePrerequisites一致。",
+        "当前库这两个知识点的结果为0，未将其误记为前置知识扩展命中正例。"
+      ],
+      "observed_requests": [
+        {
+          "time": "2026-11-12T06:13:27.101Z",
+          "type": "request",
+          "id": "3918411.164",
+          "url": "http://127.0.0.1:8103/api/ai/search",
+          "method": "POST",
+          "postBytes": 146,
+          "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\"],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:13:27.413Z",
+          "type": "request",
+          "id": "3918411.166",
+          "url": "http://127.0.0.1:8103/api/ai/search",
+          "method": "POST",
+          "postBytes": 146,
+          "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\"],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:13:27.707Z",
+          "type": "request",
+          "id": "3918411.167",
+          "url": "http://127.0.0.1:8103/api/ai/search",
+          "method": "POST",
+          "postBytes": 160,
+          "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\",\"kp-equality\"],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:13:28.007Z",
+          "type": "request",
+          "id": "3918411.169",
+          "url": "http://127.0.0.1:8103/api/ai/search",
+          "method": "POST",
+          "postBytes": 160,
+          "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\",\"kp-equality\"],\"scenario\":\"other\"},\"includePrerequisites\":true,\"context\":{},\"limit\":8}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:13:29.666Z",
+          "type": "request",
+          "id": "3918411.170",
+          "url": "http://127.0.0.1:8103/api/ai/search",
+          "method": "POST",
+          "postBytes": 161,
+          "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\",\"kp-equality\"],\"scenario\":\"other\"},\"includePrerequisites\":false,\"context\":{},\"limit\":8}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:13:29.972Z",
+          "type": "request",
+          "id": "3918411.172",
+          "url": "http://127.0.0.1:8103/api/ai/search",
+          "method": "POST",
+          "postBytes": 161,
+          "postData": "{\"query\":\"\",\"filters\":{\"grade\":\"\",\"subject\":\"\",\"knowledgeIds\":[\"kp-equal\",\"kp-equality\"],\"scenario\":\"other\"},\"includePrerequisites\":false,\"context\":{},\"limit\":8}",
+          "status": 200
+        }
+      ],
+      "screenshots": [
+        "/tmp/sczx-full/teacher/r2/r2-T02-inner-filter-stays-open-multiselect.png",
+        "/tmp/sczx-full/teacher/r2/r2-T02-prerequisite-toggle-stays-open.png"
+      ],
+      "persistence": "连续多选和后续切换保持同一展开UI；不声称跨reload保存展开状态。",
+      "negative_coverage": "连续两次选择及后续前置开关均真实可见点击，不采用隐藏字段误点。",
+      "not_tested": [
+        "前置扩展增加命中的正例仍未具备。"
+      ],
+      "entry_assessment": "R1每次选择会关闭内层的障碍已修复，可连续选择。"
+    },
+    {
+      "id": "R2-T15",
+      "title": "旧已人工纠正并采用任务的当前进度与原失败记录",
+      "status": "pass",
+      "action_numbers": [
+        2074,
+        2075,
+        2076,
+        2077,
+        2078,
+        2079,
+        2080,
+        2081,
+        2082,
+        2083,
+        2084,
+        2085,
+        2086,
+        2087,
+        2088,
+        2089,
+        2090,
+        2091,
+        2092,
+        2093,
+        2094,
+        2095,
+        2096,
+        2097
+      ],
+      "first_click_intent": "从备课记录回看旧已纠正整课任务",
+      "actual_path": [
+        "备课",
+        "AI备课",
+        "备课记录",
+        "原本轮整课任务",
+        "执行进度",
+        "核验结构与依据",
+        "查看原生成失败",
+        "等待教师确认",
+        "刷新再看执行进度"
+      ],
+      "job_id": "job-05cb4c3b0c0f47d5981a1b7d8f0a70e9",
+      "findings": [
+        "同一原任务顶部已保存到备课，执行过程六步全部已完成，第5核验和第6等待确认不再与采用状态矛盾。",
+        "展开第5步可见教师修订后已重新核验结构、引用和列出的数学关系，时间11:02:41；再展开查看原生成失败仍显示原数学表达式不一致消息及10:47:04，历史未抹掉。",
+        "展开第6步明确已由教师确认保存到草稿及11:02:58；reload后六步完成仍在。",
+        "错误尝试把执行进度按summary查找一次返回工具目标未找到，随后按可见按钮打开成功；该工具定位误差不作为产品失败。"
+      ],
+      "observed_requests": [],
+      "screenshots": [
+        "/tmp/sczx-full/teacher/r2/r2-T15-current-six-steps-completed.png",
+        "/tmp/sczx-full/teacher/r2/r2-T15-verification-current-and-old-record.png",
+        "/tmp/sczx-full/teacher/r2/r2-T15-original-failure-retained-and-accepted.png",
+        "/tmp/sczx-full/teacher/r2/r2-T15-progress-after-refresh.png"
+      ],
+      "persistence": "旧job由可见记录进入并reload复核，不创建新AI、不重设成功、不改E01稿。",
+      "negative_coverage": "原失败可展开、当前已纠正采用可回看，两个事实并存。",
+      "not_tested": [
+        "不重复生成/采用整课，基准真实采用已有完整证据。"
+      ],
+      "entry_assessment": "当前状态清楚，原失败保留在嵌套折叠中。"
+    },
+    {
+      "id": "R2-T17",
+      "title": "教师2本轮未发布私稿练习编辑与恢复",
+      "status": "pass",
+      "action_numbers": [
+        2098,
+        2099,
+        2100,
+        2101,
+        2102,
+        2103,
+        2104,
+        2105,
+        2106,
+        2107,
+        2108,
+        2109,
+        2110,
+        2111,
+        2112,
+        2113,
+        2114,
+        2115,
+        2116,
+        2117,
+        2118,
+        2119,
+        2120,
+        2121,
+        2122,
+        2123,
+        2124,
+        2125,
+        2126,
+        2127,
+        2128,
+        2129,
+        2130,
+        2131,
+        2132,
+        2133,
+        2134,
+        2135,
+        2136
+      ],
+      "first_click_intent": "编辑新目标课时私有教案的练习题",
+      "actual_path": [
+        "教师2登录",
+        "备课",
+        "课程",
+        "本轮新教研目标开始备课",
+        "练习题",
+        "编辑题干/方程/答案/提示",
+        "保存",
+        "刷新",
+        "练习题读回",
+        "课程发布预览对照",
+        "教师1原E02任务查看原答"
+      ],
+      "target_lesson": "lesson-cb28f7b0cc864cf4995551caf40845b5",
+      "findings": [
+        "仅教师2本轮新目标私稿：把首练习改成R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。；方程x+2=6、参考答案4、提示含同减2及4+2=6。",
+        "保存及自动保存共4次/platform PUT200；reload再开练习题，题干、方程、参考答案、提示全部恢复。",
+        "同课时课程发布预览的随堂题仍为原x+1=4，未被私稿编辑替换。",
+        "随后教师1从原E02任务回看，原2*x+3=11→x7错答、帮助后x4订正、x-2=5→x7独立正确及解释仍保持；没有改发布任务、原答或旧试卷。"
+      ],
+      "observed_requests": [
+        {
+          "time": "2026-11-12T06:17:21.203Z",
+          "type": "request",
+          "id": "3918411.219",
+          "url": "http://127.0.0.1:8103/api/platform",
+          "method": "PUT",
+          "postBytes": 4359,
+          "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":2,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:17:21.806Z",
+          "type": "request",
+          "id": "3918411.220",
+          "url": "http://127.0.0.1:8103/api/platform",
+          "method": "PUT",
+          "postBytes": 4359,
+          "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":3,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:17:22.415Z",
+          "type": "request",
+          "id": "3918411.221",
+          "url": "http://127.0.0.1:8103/api/platform",
+          "method": "PUT",
+          "postBytes": 4359,
+          "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":4,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"4\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}",
+          "status": 200
+        },
+        {
+          "time": "2026-11-12T06:17:23.028Z",
+          "type": "request",
+          "id": "3918411.222",
+          "url": "http://127.0.0.1:8103/api/platform",
+          "method": "PUT",
+          "postBytes": 4387,
+          "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":5,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"R2私稿提示1112：等式两边同时减2，得x=4；代入4+2=6成立。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"4\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}",
+          "status": 200
+        }
+      ],
+      "screenshots": [
+        "/tmp/sczx-full/teacher/r2/r2-T17-private-question-original.png",
+        "/tmp/sczx-full/teacher/r2/r2-T17-private-question-edit-restored.png",
+        "/tmp/sczx-full/teacher/r2/r2-T17-published-target-question-unchanged.png",
+        "/tmp/sczx-full/teacher/r2/r2-T17-existing-E02-original-answers-unchanged.png"
+      ],
+      "persistence": "私稿编辑reload读回；发布版本和旧任务通过UI只读对照。",
+      "negative_coverage": "只改本轮未发布自有稿；未新发任务或触碰旧答案。",
+      "not_tested": [
+        "本目标此前未发任务，所以同课时已有任务快照变化无样本；已对照同课时发布版及既有E02历史。",
+        "本次未逐项穷举非法数学/网络故障。"
+      ],
+      "entry_assessment": "练习题独立tab可定位四字段，保存与刷新行为一致。"
+    }
+  ],
+  "open_coverage": [
+    "此前未测项继续如实保留：同名班级重复创建、撤销码复用及自然过期、前置扩展命中正例、各写操作完整故障组合、真实语音设备。",
+    "R2只复测上述4项；基准和R1报告不覆盖重写，不把R2通过倒填为基准通过。"
+  ],
+  "cross_role_evidence": [
+    {
+      "source": "root技术代理在R2恢复窗口后的消息",
+      "claim": "教师R1真实UI产生的retrieval job-131132785854414a8a830b930f171451最终succeeded，rerankApplied=true，rerankModel=gpt-6-luna。",
+      "method": "根数据库读回交叉证据，非本代理UI自行读取，不改变R1被动观察表述。"
+    },
+    {
+      "source": "full_student R2回执",
+      "claim": "主学生实际读到R1教师指定复习完整说明，经同页11:00课堂x4证据查看原任务，读原讲评与x4，再回复习建议重读说明；指定条本身无直达按钮。",
+      "method": "学生新profile独立UI验收，本代理未代操作。"
+    }
+  ],
+  "action_count": 136,
+  "observed_business_mutations": [
+    {
+      "time": "2026-11-12T06:11:26.022Z",
+      "type": "request",
+      "id": "3918411.36",
+      "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+      "method": "PUT",
+      "postBytes": 17,
+      "postData": "{\"selected\":true}",
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T06:11:33.221Z",
+      "type": "request",
+      "id": "3918411.61",
+      "url": "http://127.0.0.1:8103/api/ai/cases/case-balance/bookmark",
+      "method": "PUT",
+      "postBytes": 17,
+      "postData": "{\"selected\":true}",
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T06:12:04.183Z",
+      "type": "request",
+      "id": "3918411.93",
+      "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+      "method": "PUT",
+      "postBytes": 18,
+      "postData": "{\"selected\":false}",
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T06:13:02.533Z",
+      "type": "request",
+      "id": "3918411.129",
+      "url": "http://127.0.0.1:8103/api/ai/cases/case-39e79087817f47218264ed6506c303f9/bookmark",
+      "method": "PUT",
+      "postBytes": 17,
+      "postData": "{\"selected\":true}",
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T06:17:21.203Z",
+      "type": "request",
+      "id": "3918411.219",
+      "url": "http://127.0.0.1:8103/api/platform",
+      "method": "PUT",
+      "postBytes": 4359,
+      "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":2,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}",
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T06:17:21.806Z",
+      "type": "request",
+      "id": "3918411.220",
+      "url": "http://127.0.0.1:8103/api/platform",
+      "method": "PUT",
+      "postBytes": 4359,
+      "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":3,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}",
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T06:17:22.415Z",
+      "type": "request",
+      "id": "3918411.221",
+      "url": "http://127.0.0.1:8103/api/platform",
+      "method": "PUT",
+      "postBytes": 4359,
+      "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":4,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"4\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}",
+      "status": 200
+    },
+    {
+      "time": "2026-11-12T06:17:23.028Z",
+      "type": "request",
+      "id": "3918411.222",
+      "url": "http://127.0.0.1:8103/api/platform",
+      "method": "PUT",
+      "postBytes": 4387,
+      "postData": "{\"data\":{\"lesson\":{\"id\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\"},\"lessonDraft\":{\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"revision\":5,\"caseId\":\"case-balance\",\"caseSnapshot\":{\"id\":\"case-balance\",\"grade\":\"七年级\",\"title\":\"天平与等式性质\",\"author\":\"\",\"legacy\":true,\"source\":\"待补充核对的教学示例\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"subject\":\"数学\",\"version\":1,\"versionId\":\"version-7fa8928d127c48a09375037fd2e814b4\",\"experience\":{},\"references\":[],\"publishedAt\":\"2026-11-12T02:28:02Z\"},\"lessonSnapshot\":{\"goal\":\"【合成工程验收】会解释等式两边同时同加减，并独立解简单方程。本课仅承接分享改编功能验证，不代表教学效果。\",\"grade\":\"七年级\",\"title\":\"合成工程验收 R1 教研改编目标\",\"blocks\":[{\"id\":\"block-4f7df84dfe6a468e8f39412e70aee0bf\",\"type\":\"explanation\",\"title\":\"合成工程验收：等式两边同时变化\",\"content\":\"人工合成工程验收。解x+1=4时，两边同时减1得x=3；验算3+1=4。每一步对等式两边进行相同的运算，才能保持相等。\",\"required\":true,\"questionIds\":[]},{\"id\":\"block-ca2d2a9ff9d44ddca6afe005bce97d45\",\"type\":\"practice\",\"title\":\"合成工程验收：随堂练习\",\"content\":\"完成随堂题，并说明等式两边的相同运算。\",\"required\":true,\"questionIds\":[\"question-edd055c6f36847b484aa0d148e2cd4f1\"]},{\"id\":\"block-362644a8d39545499dd3f7a89b2d6a65\",\"type\":\"check\",\"title\":\"合成工程验收：独立检查\",\"content\":\"独立完成并用代入检查答案。本课仅用于软件工程验收。\",\"required\":true,\"questionIds\":[\"question-81e71a9d9b46487bbb12e4d5becb56d5\"]}],\"source\":\"人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。\",\"unitId\":\"unit-8c1745431e5c43b8abad81db5f43f75d\",\"subject\":\"数学\",\"version\":1,\"duration\":5,\"lessonId\":\"lesson-cb28f7b0cc864cf4995551caf40845b5\",\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"两边同时减1。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"3\",\"prompt\":\"【合成验收随堂】解x+1=4，说明两边进行了什么运算。\",\"equation\":\"x+1=4\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"versionId\":\"lessonversion-351d5d4e09274ae3a70a635a43\",\"publishedAt\":\"2026-11-12T03:49:44Z\",\"knowledgeIds\":[\"kp-equality\"],\"reviewRecord\":{\"at\":\"2026-11-12T03:49:14.492677Z\",\"scope\":\"内容、条件与数量关系人工核对\",\"actorId\":\"account-admin-demo\",\"conditions\":{\"scope\":\"仅检测已知条件错误；未检出不代表全文数学正确\",\"issues\":[],\"status\":\"no_known_issue\",\"humanReviewRequired\":true}},\"verification\":{\"scope\":\"所列单解方程与参考答案；正文和教学方法仍经人工核对\",\"status\":\"verified\"},\"prerequisiteIds\":[]},\"goal\":\"R1教师1独立改编目标1112：说明等式两边同时做相同运算，再代入验算；该目标只在本人的新草稿中。\",\"studentBase\":\"\",\"dueDate\":\"\",\"blocks\":[{\"id\":\"simple-explain-0\",\"type\":\"explanation\",\"title\":\"R1教师2独立改编：先说明相同运算\",\"content\":\"先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-1\",\"type\":\"explanation\",\"title\":\"系数与非零条件\",\"content\":\"解4x=20时，两边同除以4，4不为0。解x/(-3)=4时，两边同乘-3。除数不能为0；为保持方程等价，解题时同乘的数也取非零数。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-explain-2\",\"type\":\"explanation\",\"title\":\"代回原式\",\"content\":\"把候选值代入原方程，分别计算左右两边。两边相等才与原式相符；计算相符不替代对推理过程的解释。\",\"required\":true,\"teacherNote\":\"先让学生说明依据，再补充规范步骤。\"},{\"id\":\"simple-example-0\",\"type\":\"example\",\"title\":\"例题：先加减后乘除\",\"content\":\"解2x+3=11：两边减3得2x=8；两边除以非零数2得x=4。验算2×4+3=11。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-example-1\",\"type\":\"example\",\"title\":\"例题：负数系数\",\"content\":\"解-2x+5=13：两边减5得-2x=8；两边除以-2得x=-4。验算-2×(-4)+5=13。\",\"required\":true,\"adjustment\":\"若只改变一边，回到原等式比较。\",\"studentResponse\":\"写出两边相同的运算并说明条件。\",\"teacherQuestion\":\"这一步对等式两边做了什么？\"},{\"id\":\"simple-practice\",\"type\":\"practice\",\"title\":\"活动：比较、求解并验算\",\"content\":\"先独立写出每一步，再与原式比较；把答案代回左右两边。\",\"required\":true,\"questionIds\":[\"simple-p1\",\"simple-p2\"],\"studentTask\":\"提交答案和运算解释，保留首次尝试。\"},{\"id\":\"simple-check\",\"type\":\"check\",\"title\":\"独立检查\",\"content\":\"不看例题独立作答。若请求帮助，之后换一道未作答新题检查。\",\"required\":true,\"questionIds\":[\"simple-c1\",\"simple-c2\"]}],\"questions\":[{\"id\":\"question-edd055c6f36847b484aa0d148e2cd4f1\",\"hint\":\"R2私稿提示1112：等式两边同时减2，得x=4；代入4+2=6成立。\",\"kind\":\"practice\",\"type\":\"expression\",\"answer\":\"4\",\"prompt\":\"R2教师2私有草稿练习1112：解x+2=6，说明等式两边同时减2，并代入检验。\",\"equation\":\"x+2=6\",\"feedback\":[],\"explanation\":\"两边同时减1得x=3，代入3+1=4。\",\"knowledgeIds\":[]},{\"id\":\"question-81e71a9d9b46487bbb12e4d5becb56d5\",\"hint\":\"两边同时加2。\",\"kind\":\"check\",\"type\":\"expression\",\"answer\":\"7\",\"prompt\":\"【合成验收独立】解x-2=5，并代入检查。\",\"equation\":\"x-2=5\",\"feedback\":[],\"explanation\":\"两边同时加2得x=7，代入7-2=5。\",\"knowledgeIds\":[]}],\"planningDetails\":{}},\"records\":{}}}",
+      "status": 200
+    }
+  ],
+  "screenshots": [
+    "/tmp/sczx-full/teacher/r2/r2-T15-corrected-current-six-steps.png",
+    "/tmp/sczx-full/teacher/r2/r2-T06-second-case-favorite-after-refresh.png",
+    "/tmp/sczx-full/teacher/r2/r2-T02-inner-filter-stays-open-multiselect.png",
+    "/tmp/sczx-full/teacher/r2/r2-T06-teacher2-own-new-case-only.png",
+    "/tmp/sczx-full/teacher/r2/r2-T06-teacher2-no-inherited-favorites.png",
+    "/tmp/sczx-full/teacher/r2/r2-T06-two-favorites-after-relogin.png",
+    "/tmp/sczx-full/teacher/r2/r2-T17-existing-E02-original-answers-unchanged.png",
+    "/tmp/sczx-full/teacher/r2/r2-T17-private-question-edit-restored.png",
+    "/tmp/sczx-full/teacher/r2/r2-T15-verification-current-and-old-record.png",
+    "/tmp/sczx-full/teacher/r2/r2-T15-progress-after-refresh.png",
+    "/tmp/sczx-full/teacher/r2/r2-T06-teacher1-unaffected-by-teacher2.png",
+    "/tmp/sczx-full/teacher/r2/r2-T15-current-six-steps-completed.png",
+    "/tmp/sczx-full/teacher/r2/r2-T06-new-case-favorite-after-refresh.png",
+    "/tmp/sczx-full/teacher/r2/r2-T02-prerequisite-toggle-stays-open.png",
+    "/tmp/sczx-full/teacher/r2/r2-T17-published-target-question-unchanged.png",
+    "/tmp/sczx-full/teacher/r2/r2-T06-cancel-new-case-after-refresh.png",
+    "/tmp/sczx-full/teacher/r2/r2-T06-teacher1-only-other-case-remains.png",
+    "/tmp/sczx-full/teacher/r2/r2-T17-private-question-original.png",
+    "/tmp/sczx-full/teacher/r2/r2-T15-original-failure-retained-and-accepted.png"
+  ]
+}

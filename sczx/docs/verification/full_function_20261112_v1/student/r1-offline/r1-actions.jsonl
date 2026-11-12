@@ -1,0 +1,48 @@
+{"at":"2026-11-12T03:23:53.218Z","action":"wait","ms":500}
+{"at":"2026-11-12T03:23:53.725Z","action":"login","file":"/root/Baxxhy/zhiwei/sczx/backend-business/var/full_audit_20261112/extra-accounts.json","username":"audit_student_xnq3r","password":"[redacted]"}
+{"at":"2026-11-12T03:23:53.748Z","action":"click","text":"登录","wait":800}
+{"at":"2026-11-12T03:23:59.948Z","action":"click","text":"离线学习","wait":500}
+{"at":"2026-11-12T03:24:10.650Z","action":"click","text":"首次使用，设置离线口令","wait":300}
+{"at":"2026-11-12T03:24:17.899Z","action":"secretfill","selector":"#offline-phrase"}
+{"at":"2026-11-12T03:24:17.908Z","action":"secretfill","selector":"#offline-confirm"}
+{"at":"2026-11-12T03:24:17.914Z","action":"click","text":"启用并加密保存","wait":500}
+{"at":"2026-11-12T03:24:26.274Z","action":"click","text":"下载课时","wait":700}
+{"at":"2026-11-12T03:24:38.061Z","action":"offline","value":true}
+{"at":"2026-11-12T03:24:38.065Z","action":"click","text":"合成工程验收 E01 等式平衡短课\n2026/11/12 下载","wait":300}
+{"at":"2026-11-12T03:24:48.773Z","action":"click","text":"已读到这里","wait":250}
+{"at":"2026-11-12T03:24:49.054Z","action":"click","text":"做练习","wait":300}
+{"at":"2026-11-12T03:25:06.293Z","action":"fill","selector":"#offline-answer","value":"x=4"}
+{"at":"2026-11-12T03:25:06.299Z","action":"fill","selector":"#offline-reason","value":"R1本机草稿：两边减3得2x=8，再除以2得x=4。"}
+{"at":"2026-11-12T03:25:06.307Z","action":"click","text":"保存本机草稿","wait":300}
+{"at":"2026-11-12T03:25:06.664Z","action":"shot","name":"r1-E06-offline-two-drafts"}
+{"at":"2026-11-12T03:25:42.534Z","action":"offline","value":false}
+{"at":"2026-11-12T03:25:42.537Z","action":"click","text":"同步进度","wait":700}
+{"at":"2026-11-12T03:25:43.269Z","action":"click","text":"本机草稿 · 2 条待处理","selector":"summary","wait":200}
+{"at":"2026-11-12T03:25:43.496Z","action":"shot","name":"r1-E06-initial-conflict-two-records"}
+{"at":"2026-11-12T03:26:02.556Z","action":"dom","code":"setTimeout(()=>[...document.querySelectorAll('button')].find(e=>e.innerText==='确认本机位置').click(),150);({scheduled:'确认本机位置'})"}
+{"at":"2026-11-12T03:26:10.662Z","action":"dialog","accept":true}
+{"at":"2026-11-12T03:26:11.167Z","action":"wait","ms":700}
+{"at":"2026-11-12T03:26:11.875Z","action":"shot","name":"r1-E06-position-confirmed-answer-still-conflict"}
+{"at":"2026-11-12T03:26:37.151Z","action":"fill","selector":"#offline-answer","value":"x=4.0"}
+{"at":"2026-11-12T03:26:37.158Z","action":"fill","selector":"#offline-reason","value":"R1本机重编辑：两边减3、同除2，答案仍为4；此编辑尚未确认覆盖在线稿。"}
+{"at":"2026-11-12T03:26:37.163Z","action":"click","text":"保存本机草稿","wait":300}
+{"at":"2026-11-12T03:26:37.501Z","action":"click","text":"同步进度","wait":600}
+{"at":"2026-11-12T03:26:38.134Z","action":"shot","name":"r1-E06-reedited-still-conflict"}
+{"at":"2026-11-12T03:26:46.287Z","action":"offline","value":true}
+{"at":"2026-11-12T03:26:46.290Z","action":"close"}
+{"at":"2026-11-12T03:27:04.395Z","action":"click","text":"打开本机离线学习","wait":300}
+{"at":"2026-11-12T03:27:04.760Z","action":"fill","selector":"#offline-user","value":"audit_student_xnq3r"}
+{"at":"2026-11-12T03:27:04.770Z","action":"secretfill","selector":"#offline-phrase"}
+{"at":"2026-11-12T03:27:04.778Z","action":"click","text":"解锁","wait":500}
+{"at":"2026-11-12T03:27:36.524Z","action":"click","text":"合成工程验收 E01 等式平衡短课\n2026/11/12 下载","wait":200}
+{"at":"2026-11-12T03:27:36.787Z","action":"click","text":"做练习","wait":200}
+{"at":"2026-11-12T03:27:37.025Z","action":"click","selector":"summary","text":"本机草稿 · 1 条待处理","wait":200}
+{"at":"2026-11-12T03:27:37.252Z","action":"shot","name":"r1-E06-offline-reopen-retains-edited-conflict"}
+{"at":"2026-11-12T03:27:37.369Z","action":"offline","value":false}
+{"at":"2026-11-12T03:27:37.371Z","action":"click","text":"同步进度","wait":500}
+{"at":"2026-11-12T03:27:49.334Z","action":"dom","code":"setTimeout(()=>[...document.querySelectorAll('button')].find(e=>e.innerText==='确认本机答案').click(),150);({scheduled:'确认本机答案'})"}
+{"at":"2026-11-12T03:27:57.921Z","action":"dialog","accept":true}
+{"at":"2026-11-12T03:27:58.426Z","action":"wait","ms":600}
+{"at":"2026-11-12T03:27:59.034Z","action":"shot","name":"r1-E06-answer-explicitly-confirmed"}
+{"at":"2026-11-12T03:27:59.137Z","action":"click","text":"同步进度","wait":300}
+{"at":"2026-11-12T03:28:29.826Z","action":"close"}

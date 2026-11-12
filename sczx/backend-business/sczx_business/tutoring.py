@@ -81,6 +81,9 @@ def prepare(db,user,record,data):
     context={'lesson':{'id':task.lesson_id,'versionId':lesson.get('versionId'),'title':task.title,'grade':lesson.get('grade',''),'goal':str(task.snapshot.get('goal',''))[:1200]},'block':public_fields(block,PUBLIC_BLOCK) if block else None,'question':public_fields(q,PUBLIC_QUESTION) if q else None,'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':prerequisites,'teachingCases':sources,'observation':str(record.observation or '')[:1200]}
     from .learning_memory import related_memory
     context['learningMemory']=related_memory(db,user,record,ids)
+    from .equality_guidance import numeric_equality_example
+    example=numeric_equality_example(prompt)
+    if example:context['equalityExample']=example
     if ocr_id:
         if not confirmed_equation:
             match=re.search(r'(?<![A-Za-z])([A-Za-z0-9(][A-Za-z0-9()+*/ .−-]{0,80}=[A-Za-z0-9()+*/ .−-]{1,80})',recognized)
@@ -132,6 +135,8 @@ def validate_result(result,data):
     from .math_conditions import require_conditions
     value['conditionCheck']=require_conditions(text)
     validate_arithmetic_text(text)
+    from .equality_guidance import validate_equality_explanation
+    validate_equality_explanation(value,data['context'].get('equalityExample'))
     coverage=need_coverage(data.get('prompt',''),text)
     if coverage['missing']:raise ModelError('当前明确需求未覆盖：'+'、'.join(coverage['missing'])+'；请先回答该问题再回到原题。')
     value['needCoverage']=coverage

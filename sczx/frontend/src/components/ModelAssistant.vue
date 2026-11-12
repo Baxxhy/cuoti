@@ -180,7 +180,7 @@ async function send(choice = strategy.value, confirmImage = false) {
     selected = file.value;
   interaction++;
   uploadError.value = "";
-  const text = prompt.value.trim() || (choice === "try" ? "我想自己试试" : "");
+  const text = prompt.value.trim() || (choice === "try" ? "我想自己试试" : confirmImage&&ocrId.value&&recognized.value.trim()?"请帮我理解确认后的题目，先给提示。":"");
   if (!selected && !pendingAsset.value && !text) {
     uploadError.value = "请写下问题或对追问的回应。";
     return;

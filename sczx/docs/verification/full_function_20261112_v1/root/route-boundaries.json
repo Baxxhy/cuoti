@@ -1,0 +1,37 @@
+{
+  "kind": "主代理技术边界，直接URL/合成损坏storage；非独立寻路",
+  "checks": [
+    {
+      "id": "URL01",
+      "status": "通过",
+      "url": "#/learn?task=missing-audit-task",
+      "text": "找不到这个页面\n返回首页"
+    },
+    {
+      "id": "URL02",
+      "status": "通过",
+      "text": "找不到这个页面\n返回首页"
+    },
+    {
+      "id": "URL03",
+      "status": "通过",
+      "studentAdminRoute": "#/home"
+    },
+    {
+      "id": "URL04",
+      "status": "通过",
+      "anonymousDetail": "#/login?next=/learn?task=missing-audit-task"
+    },
+    {
+      "id": "LEG03",
+      "status": "通过",
+      "error": "找到的旧记录无法解析。",
+      "originalPreserved": true
+    },
+    {
+      "id": "RUNTIME",
+      "status": "通过",
+      "errors": []
+    }
+  ]
+}

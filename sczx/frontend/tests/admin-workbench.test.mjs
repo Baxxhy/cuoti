@@ -59,7 +59,7 @@ test('admin operation sections follow their URL and failed tasks use a business 
   const wait=async(fn)=>{for(let i=0;i<200;i++){if(fn())return;await new Promise(r=>setTimeout(r,20))}throw Error('Admin section wait: '+el.textContent)};
   try{
    await wait(()=>el.textContent.includes('账号管理'));const directAccounts=!!el.querySelector('.account-manager');
-   const queue=[...el.querySelectorAll('[role="tab"]')].find(b=>b.textContent.trim()==='问题反馈');queue.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));queue.click();await wait(()=>!router.currentRoute.value.query.section);const changedUrl=el.textContent.includes('暂无问题反馈');
+   const queue=[...el.querySelectorAll('[role="tab"]')].find(b=>b.textContent.trim()==='问题反馈');queue.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));queue.click();await wait(()=>router.currentRoute.value.query.section==='queue');const changedUrl=el.textContent.includes('暂无问题反馈');
    await router.push('/issues?section=models');await wait(()=>el.textContent.includes('AI备课'));const failedName=el.querySelector('.analytics-queue strong')?.textContent;
    await router.push('/issues?section=accounts');await wait(()=>!!el.querySelector('.account-manager'));return {directAccounts,changedUrl,failedName,restoredAccounts:true,title:el.querySelector('h1')?.textContent};
   }finally{app.unmount();el.remove();api.request=oldRequest;api.accounts=oldAccounts;supportApi.list=oldSupport;modelApi.capabilities=oldCapabilities;modelApi.list=oldJobs;setActivePinia(prior)}

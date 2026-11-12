@@ -1,0 +1,3 @@
+{"url":"http://127.0.0.1:8103/#/offline","frameId":"12EB5EB3E9FE6AA1DD5C0B3277E07406","message":"确认保留本机内容，并以刚读取的服务器版本重新同步？","type":"confirm","hasBrowserHandler":true,"defaultPrompt":""}
+{"url":"http://127.0.0.1:8103/#/offline","frameId":"12EB5EB3E9FE6AA1DD5C0B3277E07406","message":"删除此下载和对应本机草稿？未同步内容将无法恢复。","type":"confirm","hasBrowserHandler":true,"defaultPrompt":""}
+{"url":"http://127.0.0.1:8103/#/offline","frameId":"12EB5EB3E9FE6AA1DD5C0B3277E07406","message":"退出将清除此账号的本机下载及草稿；未同步内容将无法恢复。继续？","type":"confirm","hasBrowserHandler":true,"defaultPrompt":""}

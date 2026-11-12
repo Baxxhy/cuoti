@@ -1,0 +1,157 @@
+{
+  "schema": "sczx-student-visible-ui-retest/v1",
+  "round": "R2",
+  "date": "2026-11-12",
+  "initial_url": "http://127.0.0.1:8103/",
+  "asset_observed": "index-8bNtgQgl.js",
+  "start_condition": "收到主代理受控中断恢复结束且8103健康通知后，才启动全新profile；后按主代理补充要求再开一份新profile检查单元进度。",
+  "mode": "正常登录、可见UI寻路/点击/键盘、被动网络观察；未读业务源码、未手输路由、未脚本业务API或修改Vue/服务器状态。",
+  "cases": [
+    {
+      "id": "R2-S16",
+      "business_goal": "同一原E04第2题旧解析实际分行、隐藏流程尾注且保留原答和成绩",
+      "first_reaction": "班级→考试",
+      "visible_path": "学生2全新profile正常登录→班级→考试→原E04已发布卷→下一题→第2题；刷新再点击第2题",
+      "actual_result": "旧解析已显示真实换行，提示、分步解释1/2/3分行，计算样式white-space:pre-wrap；页面无字面反斜杠n、无“待教师审核的候选题”尾注。总分18/30、第2题0/10、原答x8及原始解释完整保留。input/textarea readOnly=true；真实点击答案并按Backspace后仍x8，无写请求；刷新后相同。",
+      "status": "修复通过",
+      "profiles": [
+        "r2-student2"
+      ],
+      "examId": "exam-6457f5719c7448d3a3e489d3f6864ae7",
+      "evidence": [
+        "r2-student2/shots/r2-original-exam-format-fixed.png",
+        "r2-student2/shots/r2-original-answer-readonly-unchanged.png",
+        "r2-student2/r2-snapshots.jsonl"
+      ],
+      "write_readback": "只做原考试GET读取、键盘只读检查和刷新；没有提交、保存或修改任何旧答案。",
+      "abnormal_recovery": "本轮以同一旧数据验证展示层修复，未重跑考试创建/批阅/故障注入。",
+      "observed_apis": [
+        {
+          "profile": "r2-student2",
+          "method": "GET",
+          "endpoint": "/api/exams",
+          "status": 200,
+          "count": 3,
+          "evidence": "r2-student2/r2-network.jsonl:10"
+        },
+        {
+          "profile": "r2-student2",
+          "method": "GET",
+          "endpoint": "/api/exams/:id",
+          "status": 200,
+          "count": 2,
+          "evidence": "r2-student2/r2-network.jsonl:16"
+        }
+      ]
+    },
+    {
+      "id": "R2-S13",
+      "business_goal": "找到已有教师指定复习说明，回看绑定课堂证据并返回学习记忆",
+      "first_reaction": "错题与复习→复习建议",
+      "visible_path": "主学生全新profile正常登录→错题与复习→复习建议→尚未关联知识点下11:00独立答对2*x+3=11→展开原答→修订记录→教师指定复习说明→同页查看原任务→课堂学习结果/讲评→1作答记录→展开课堂记录→错题与复习→复习建议→重开修订记录",
+      "actual_result": "找到完整“R1复习内容1112：请回看课堂记录，比较x4与移项符号误答，说明两边同时做相同运算。”。同页11:00原课堂证据展开显示x4及两边同减3/同除2说明；查看原任务进入正确“课堂记录 · 合成工程验收 E01 等式平衡短课”，讲评说明同减3不能仍加3、同除2、代入检验；学习记录展开为1次作答2*x+3=11→x4。经可见导航返回复习建议并重读指定说明。",
+      "status": "内容和原证据往返完成；指定条直达入口未验证",
+      "profiles": [
+        "r2-main"
+      ],
+      "taskId": "task-775c048ebf6b444ea958823308713629",
+      "evidence": [
+        "r2-main/shots/r2-memory-review-entry.png",
+        "r2-main/shots/r2-teacher-review-audit-entry.png",
+        "r2-main/shots/r2-memory-to-original-class-record.png",
+        "r2-main/shots/r2-class-original-answer-and-review.png",
+        "r2-main/shots/r2-return-to-memory-teacher-review.png"
+      ],
+      "write_readback": "GET memory/platform重读教师现有安排与原答，没有添加、纠正或替换学习证据。",
+      "abnormal_recovery": "顶部当前复习卡仍为较早的等式性质继续订正；没有推进既有复习队列。教师指定复习在底部修订记录内仅显示文字，没有独立直达按钮。本次通过其绑定证据进入，不把未走到的指定条开始复习记通过。",
+      "entry_assessment": "可以在同页找到指定说明及原证据，指定说明位于折叠的修订记录，入口较深；回到复习建议需使用全局错题与复习导航。",
+      "observed_apis": [
+        {
+          "profile": "r2-main",
+          "method": "GET",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 1,
+          "evidence": "r2-main/r2-network.jsonl:3"
+        },
+        {
+          "profile": "r2-main",
+          "method": "GET",
+          "endpoint": "/api/memory",
+          "status": 200,
+          "count": 3,
+          "evidence": "r2-main/r2-network.jsonl:5"
+        }
+      ]
+    },
+    {
+      "id": "R2-S05",
+      "business_goal": "单元进度统计、后续课时定位与返回",
+      "first_reaction": "学习→课程→单元进度",
+      "visible_path": "新profile正常登录→课程→展开一元一次方程的单元进度→第02行进入学习→对应课时1/7→我的学习→课程→重开单元进度；再展开E01单元统计",
+      "actual_result": "一元一次方程显示0/5课已提交，01等式性质学习中，02–05待开始。没有单独名为下一课的按钮，本次按可见顺序选择02行的进入学习，真实进入“解简单的一元一次方程”第1/7步“确定未知量与运算顺序”，课内例题2x+3=11；未点击下一步、未作答。返回课程后重开单元进度，0/5与原状态一致。E01单元显示1/2课已提交：E01已反馈，R1教研改编目标尚未分配且无进入按钮。",
+      "status": "统计查看及02课定位往返通过",
+      "profiles": [
+        "r2-unit"
+      ],
+      "taskId": "task-13259736a319e53f8d15e9c937388ea4",
+      "evidence": [
+        "r2-unit/shots/r2-unit-progress-assigned-status.png",
+        "r2-unit/shots/r2-unit-next-lesson-correct-target.png",
+        "r2-unit/shots/r2-unit-return-retains-status.png",
+        "r2-unit/shots/r2-unit-completed-assigned-scope.png"
+      ],
+      "write_readback": "通过课程/单元进度GET与已分配课时跳转读取，没有提交答案、推进步骤或发AI。",
+      "abnormal_recovery": "只验证现有数据统计及跳转，不扩张为完成五课后的下一课自动推荐/统计增量已通过；未分配课无学习按钮。",
+      "entry_assessment": "单元进度是课程卡片末尾的折叠summary；展开后重复出现进入学习文案，本次明确使用已展开单元的第02行。",
+      "observed_apis": [
+        {
+          "profile": "r2-unit",
+          "method": "GET",
+          "endpoint": "/api/platform",
+          "status": 200,
+          "count": 1,
+          "evidence": "r2-unit/r2-network.jsonl:3"
+        },
+        {
+          "profile": "r2-unit",
+          "method": "GET",
+          "endpoint": "/api/curriculum/courses",
+          "status": 200,
+          "count": 2,
+          "evidence": "r2-unit/r2-network.jsonl:7"
+        },
+        {
+          "profile": "r2-unit",
+          "method": "GET",
+          "endpoint": "/api/units/unit-8c1745431e5c43b8abad81db5f43f75d/progress",
+          "status": 200,
+          "count": 2,
+          "evidence": "r2-unit/r2-network.jsonl:8"
+        },
+        {
+          "profile": "r2-unit",
+          "method": "GET",
+          "endpoint": "/api/units/unit-equation/progress",
+          "status": 200,
+          "count": 2,
+          "evidence": "r2-unit/r2-network.jsonl:9"
+        }
+      ]
+    }
+  ],
+  "resolved": [
+    {
+      "id": "STU-F04",
+      "result": "同一旧考试R2实测解析分行且尾注隐藏，原答/成绩/只读保留。"
+    }
+  ],
+  "observations": [
+    "教师指定复习说明存在并可读，绑定原证据可进课堂并返回；指定说明本身只有文本，没有单独直达按钮，未推进旧复习队列。"
+  ],
+  "limits": [
+    "本轮仅这三项定点复测；无新AI、E06重做、语音验证或全平台视觉重跑。",
+    "ASR/TTS设备限制与未覆盖故障边界沿用基准及主代理技术补测，不扩大本轮结论。"
+  ],
+  "pending": []
+}

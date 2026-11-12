@@ -1,0 +1,756 @@
+[
+  {
+    "id": "job-bd18256daa1d41588a5945d6b2ef2f14",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": "record-c4b3e16458c044ffb85591caaabf3498",
+    "fileId": null,
+    "helpRecordId": "help-bd18256daa1d41588a5945d6b2ef2f14",
+    "question": null,
+    "blockId": "eq-add-sub",
+    "strategy": "hint",
+    "prompt": "为什么等式两边都减去同一个负数仍然相等？请用5=5、c=-2说明。",
+    "parentJobId": null,
+    "recognizedText": "",
+    "status": "succeeded",
+    "step": "已完成",
+    "error": "",
+    "result": {
+      "hint": "把“减去同一个负数”改写成加上它的相反数，看看两边各自变成什么。",
+      "steps": [
+        "原等式是 5=5，两边同时减去 -2，即两边都减去同一个负数。",
+        "左边和右边分别变成 (5)-(-2) 与 (5)-(-2)；两边做了相同运算，所以仍相等。",
+        "减去 -2 等于加上 2，因此两边都变成 7。"
+      ],
+      "title": "两边同减负数",
+      "sources": [],
+      "question": "你能写出两边同减 -2 后的两个表达式，并说明为什么它们仍相等吗？",
+      "strategy": "hint",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 16951,
+        "modelCalls": 1,
+        "contextChars": 5217,
+        "historyTurns": 0
+      },
+      "mathClaims": [
+        {
+          "left": "5",
+          "right": "5"
+        },
+        {
+          "left": "(5)-(-2)",
+          "right": "(5)-(-2)"
+        },
+        {
+          "left": "(5)-(-2)",
+          "right": "5+2"
+        },
+        {
+          "left": "(5)-(-2)",
+          "right": "7"
+        }
+      ],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "try",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [
+          {
+            "left": "5",
+            "right": "5",
+            "method": "表达式等价",
+            "status": "verified"
+          },
+          {
+            "left": "(5)-(-2)",
+            "right": "(5)-(-2)",
+            "method": "表达式等价",
+            "status": "verified"
+          },
+          {
+            "left": "(5)-(-2)",
+            "right": "5+2",
+            "method": "表达式等价",
+            "status": "verified"
+          },
+          {
+            "left": "(5)-(-2)",
+            "right": "7",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "prerequisites": [],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "kp-equal",
+      "representation": "symbolic",
+      "usedCaseVersionIds": []
+    },
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-12T03:24:28Z",
+    "updatedAt": "2026-11-12T03:24:45Z",
+    "input": {
+      "scope": {
+        "taskId": "task-ad711ff024993eb7dde251057273e819",
+        "classId": "class-demo",
+        "lessonId": "lesson-equation",
+        "studentId": "account-student-demo",
+        "questionId": null,
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "lessonVersionId": "lessonversion-264838c6d0484b7396d0824592"
+      },
+      "prompt": "为什么等式两边都减去同一个负数仍然相等？请用5=5、c=-2说明。",
+      "blockId": "eq-add-sub",
+      "context": {
+        "block": {
+          "id": "eq-add-sub",
+          "type": "explanation",
+          "title": "同加、同减",
+          "content": "若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。"
+        },
+        "lesson": {
+          "id": "lesson-equation",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "grade": "七年级",
+          "title": "等式性质",
+          "versionId": "lessonversion-264838c6d0484b7396d0824592"
+        },
+        "question": null,
+        "knowledge": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "observation": "两边都从5增加到6，所以仍然相等；只增加左边会不平衡。",
+        "prerequisites": [
+          {
+            "id": "kp-equal",
+            "name": "相等关系"
+          },
+          {
+            "id": "kp-expression",
+            "name": "算式含义"
+          }
+        ],
+        "teachingCases": [
+          {
+            "id": "case-39e79087817f47218264ed6506c303f9",
+            "title": "合成工程验收 E01 等式平衡与移项",
+            "source": "人工合成材料，仅验证软件功能，不代表教学效果。",
+            "content": "【人工合成工程验收案例，不代表教学效果】移项是等式两边同加减同一数的简写；每一步保持等式平衡。例：2*x+3=11，两边同时减3得2*x=8，再同时除以2得x=4。验算2*4+3=11。引导学生解释：为什么等式两边要同时减去3？错误示例2*x=11+3来自移项时未保持等式平衡。",
+            "version": 1,
+            "versionId": "version-96c75b97037c4cc8b0bae23c9412505c",
+            "references": [
+              {
+                "field": "content",
+                "label": "段落 8",
+                "quote": "移项是等式两边同加减同一数的简写；每一步保持等式平衡。",
+                "author": "合成工程验收",
+                "source": "人工合成材料，仅验证软件功能，不代表教学效果。",
+                "unitId": "unit-78f53218ed3c39753cf803486353d03a",
+                "sourceUrl": "https://example.invalid/sczx-audit",
+                "materialId": "material-a0181fa6e8e34617965d08b69267b69",
+                "materialTitle": "合成工程验收 E01 方程材料"
+              },
+              {
+                "field": "knowledgePoints.0",
+                "label": "段落 8",
+                "quote": "等式基本性质",
+                "author": "合成工程验收",
+                "source": "人工合成材料，仅验证软件功能，不代表教学效果。",
+                "unitId": "unit-78f53218ed3c39753cf803486353d03a",
+                "sourceUrl": "https://example.invalid/sczx-audit",
+                "materialId": "material-a0181fa6e8e34617965d08b69267b69",
+                "materialTitle": "合成工程验收 E01 方程材料"
+              },
+              {
+                "field": "knowledgePoints.1",
+                "label": "段落 8",
+                "quote": "一元一次方程",
+                "author": "合成工程验收",
+                "source": "人工合成材料，仅验证软件功能，不代表教学效果。",
+                "unitId": "unit-78f53218ed3c39753cf803486353d03a",
+                "sourceUrl": "https://example.invalid/sczx-audit",
+                "materialId": "material-a0181fa6e8e34617965d08b69267b69",
+                "materialTitle": "合成工程验收 E01 方程材料"
+              }
+            ]
+          },
+          {
+            "id": "case-balance",
+            "title": "天平与等式性质",
+            "source": "待补充核对的教学示例",
+            "content": "先预测，再操作，最后解释。根据学生回应调整讲法，将“同时”和“相同”落实到每一步。",
+            "version": 1,
+            "versionId": "version-7fa8928d127c48a09375037fd2e814b4",
+            "references": []
+          }
+        ],
+        "learningMemory": [
+          {
+            "helped": false,
+            "outcome": "teacher_feedback",
+            "summary": "全量合成验收人工批阅：等式保持相等的理由、共同运算和代入检查完整，本题20分。；全量合成验收人工批阅：两边同减5得x=7，代入成立，本题10分。",
+            "relation": "当前知识点",
+            "sourceId": "record-c59a6524c8b648a4a3a650d8c48b6a0f",
+            "evidenceId": "feedback:record-c59a6524c8b648a4a3a650d8c48b6a0f:2026-11-12T02:59:27Z:kp-equality",
+            "occurredAt": "2026-11-12T02:59:27Z",
+            "sourceType": "teacher_feedback",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": true,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "teacher_feedback",
+            "summary": "全量合成验收E02反馈：已核对原答x=7、提示记录和订正x=4。你能说明两边同减3并代入检验；请继续保持每一步两边做相同运算，独立题x-2=5答对。",
+            "relation": "当前知识点",
+            "sourceId": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "evidenceId": "feedback:record-b7b977e2ac9a4a058bb5904d7dd1432f:2026-11-12T02:52:36Z:kp-equality",
+            "occurredAt": "2026-11-12T02:52:36Z",
+            "sourceType": "teacher_feedback",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": true,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "unverified",
+            "summary": "分层巩固1112：两边同减5得x=7，代回7+5=12。",
+            "relation": "当前知识点",
+            "sourceId": "attempt-6c3ef9242a484fa59013eaf6bc40731b",
+            "evidenceId": "attempt:attempt-6c3ef9242a484fa59013eaf6bc40731b:kp-equality",
+            "occurredAt": "2026-11-12T02:59:57Z",
+            "sourceType": "attempt",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": false,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "unverified",
+            "summary": "等式两边同时减5，x=12-5=7；代入7+5=12，成立。",
+            "relation": "当前知识点",
+            "sourceId": "attempt-1299a3d024b64e9e986c3c79a71469a7",
+            "evidenceId": "attempt:attempt-1299a3d024b64e9e986c3c79a71469a7:kp-equality",
+            "occurredAt": "2026-11-12T02:59:27Z",
+            "sourceType": "attempt",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": false,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "unverified",
+            "summary": "等式两边同时减4才能保持相等，左边x+4-4=x，右边9-4=5，因此x=5。代回5+4=9成立。",
+            "relation": "当前知识点",
+            "sourceId": "attempt-e9e1fd4e6e304cca9a6b2f9040e1b12d",
+            "evidenceId": "attempt:attempt-e9e1fd4e6e304cca9a6b2f9040e1b12d:kp-equality",
+            "occurredAt": "2026-11-12T02:59:27Z",
+            "sourceType": "attempt",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": false,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "unverified",
+            "summary": "分层巩固1112：两边同时减4保持相等，x=9-4=5，代回成立。",
+            "relation": "当前知识点",
+            "sourceId": "attempt-0006b1cdf4a245e99aca4b8b4b15793a",
+            "evidenceId": "attempt:attempt-0006b1cdf4a245e99aca4b8b4b15793a:kp-equality",
+            "occurredAt": "2026-11-12T02:59:18Z",
+            "sourceType": "attempt",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": false,
+            "knowledgeCorrectionId": null
+          }
+        ],
+        "equalityExample": {
+          "operand": "-2",
+          "operation": "-",
+          "originalLeft": "5",
+          "originalRight": "5",
+          "leftExpression": "(5)-(-2)",
+          "rightExpression": "(5)-(-2)"
+        }
+      },
+      "history": [],
+      "guidance": true,
+      "ocrJobId": null,
+      "question": null,
+      "strategy": "hint",
+      "confirmed": false,
+      "parentJobId": null,
+      "recognizedText": "",
+      "selectedStrategy": "hint",
+      "confirmedEquation": ""
+    },
+    "runs": [
+      {
+        "id": "run-b1270023151149368460fb01d164e74c",
+        "number": 1,
+        "status": "succeeded",
+        "model": "gpt-6-luna",
+        "provider": "Codex CLI · low",
+        "error": "",
+        "result": {
+          "hint": "把“减去同一个负数”改写成加上它的相反数，看看两边各自变成什么。",
+          "steps": [
+            "原等式是 5=5，两边同时减去 -2，即两边都减去同一个负数。",
+            "左边和右边分别变成 (5)-(-2) 与 (5)-(-2)；两边做了相同运算，所以仍相等。",
+            "减去 -2 等于加上 2，因此两边都变成 7。"
+          ],
+          "title": "两边同减负数",
+          "sources": [],
+          "question": "你能写出两边同减 -2 后的两个表达式，并说明为什么它们仍相等吗？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 16951,
+            "modelCalls": 1,
+            "contextChars": 5217,
+            "historyTurns": 0
+          },
+          "mathClaims": [
+            {
+              "left": "5",
+              "right": "5"
+            },
+            {
+              "left": "(5)-(-2)",
+              "right": "(5)-(-2)"
+            },
+            {
+              "left": "(5)-(-2)",
+              "right": "5+2"
+            },
+            {
+              "left": "(5)-(-2)",
+              "right": "7"
+            }
+          ],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [
+              {
+                "left": "5",
+                "right": "5",
+                "method": "表达式等价",
+                "status": "verified"
+              },
+              {
+                "left": "(5)-(-2)",
+                "right": "(5)-(-2)",
+                "method": "表达式等价",
+                "status": "verified"
+              },
+              {
+                "left": "(5)-(-2)",
+                "right": "5+2",
+                "method": "表达式等价",
+                "status": "verified"
+              },
+              {
+                "left": "(5)-(-2)",
+                "right": "7",
+                "method": "表达式等价",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equal",
+          "representation": "symbolic",
+          "usedCaseVersionIds": []
+        },
+        "startedAt": "2026-11-12T03:24:28Z",
+        "endedAt": "2026-11-12T03:24:45Z"
+      }
+    ]
+  },
+  {
+    "id": "job-eb731339299348a38d61ac2b156b466e",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "ocr",
+    "lessonId": null,
+    "summary": "",
+    "recordId": "record-c4b3e16458c044ffb85591caaabf3498",
+    "fileId": "file-fad557e1ec2e48c1bd2f944a84385280",
+    "helpRecordId": null,
+    "question": null,
+    "blockId": "eq-add-sub",
+    "strategy": null,
+    "prompt": "",
+    "parentJobId": null,
+    "recognizedText": null,
+    "status": "succeeded",
+    "step": "已完成",
+    "error": "",
+    "result": {
+      "text": "Audit 2026-11-12\nSolve: 3x + 5 = 20\nMy answer: x = 6",
+      "equation": "3x + 5 = 20",
+      "studentAnswer": "x = 6",
+      "uncertainties": []
+    },
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-12T03:26:37Z",
+    "updatedAt": "2026-11-12T03:26:44Z",
+    "input": {
+      "prompt": "",
+      "blockId": "eq-add-sub",
+      "question": null
+    },
+    "runs": [
+      {
+        "id": "run-3615960ae4f54aa5adc367327acefa77",
+        "number": 1,
+        "status": "succeeded",
+        "model": "gpt-6-luna",
+        "provider": "Codex CLI · low",
+        "error": "",
+        "result": {
+          "text": "Audit 2026-11-12\nSolve: 3x + 5 = 20\nMy answer: x = 6",
+          "equation": "3x + 5 = 20",
+          "studentAnswer": "x = 6",
+          "uncertainties": []
+        },
+        "startedAt": "2026-11-12T03:26:38Z",
+        "endedAt": "2026-11-12T03:26:44Z"
+      }
+    ]
+  },
+  {
+    "id": "job-4b6cf6a89f6d473d980c8c5f82c15e74",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": "record-c4b3e16458c044ffb85591caaabf3498",
+    "fileId": "file-fad557e1ec2e48c1bd2f944a84385280",
+    "helpRecordId": "help-4b6cf6a89f6d473d980c8c5f82c15e74",
+    "question": null,
+    "blockId": "eq-add-sub",
+    "strategy": "hint",
+    "prompt": "请帮我理解确认后的题目，先给提示。",
+    "parentJobId": null,
+    "recognizedText": "R1合成题：解3x+5=20，我的原作答x=6。请指导我先检查等式两边的相同运算。\n3x + 5 = 20",
+    "status": "succeeded",
+    "step": "已完成",
+    "error": "",
+    "result": {
+      "hint": "左边有“+5”，想一想两边同时减去多少，才能消去这个加数并保持相等？",
+      "steps": [
+        "前置的相等关系告诉我们：等号两边同时做相同运算，等式仍成立。",
+        "观察左边的“+5”，考虑两边同时减去5；再分别写出两边变化后的表达式。"
+      ],
+      "title": "先检查两边相同的运算",
+      "sources": [],
+      "question": "两边同时减5后，等式左边和右边各是什么？",
+      "strategy": "hint",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 9346,
+        "modelCalls": 1,
+        "contextChars": 3754,
+        "historyTurns": 0
+      },
+      "mathClaims": [],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "try",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [],
+        "status": "unverified"
+      },
+      "prerequisites": [],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "kp-equal",
+      "representation": "symbolic",
+      "usedCaseVersionIds": []
+    },
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-12T03:27:05Z",
+    "updatedAt": "2026-11-12T03:27:14Z",
+    "input": {
+      "scope": {
+        "taskId": "task-ad711ff024993eb7dde251057273e819",
+        "classId": "class-demo",
+        "lessonId": "lesson-equation",
+        "studentId": "account-student-demo",
+        "questionId": null,
+        "knowledgeIds": [
+          "kp-equality"
+        ],
+        "lessonVersionId": "lessonversion-264838c6d0484b7396d0824592"
+      },
+      "prompt": "请帮我理解确认后的题目，先给提示。",
+      "blockId": "eq-add-sub",
+      "context": {
+        "block": {
+          "id": "eq-add-sub",
+          "type": "explanation",
+          "title": "同加、同减",
+          "content": "若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。"
+        },
+        "focus": "confirmed_image",
+        "lesson": {
+          "id": "lesson-equation",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "grade": "七年级",
+          "title": "等式性质",
+          "versionId": "lessonversion-264838c6d0484b7396d0824592"
+        },
+        "question": {
+          "id": null,
+          "kind": "confirmed_image",
+          "prompt": "R1合成题：解3x+5=20，我的原作答x=6。请指导我先检查等式两边的相同运算。\n3x + 5 = 20",
+          "equation": "3x + 5 = 20",
+          "knowledgeIds": [
+            "kp-equality"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "kp-equality",
+            "name": "等式性质"
+          }
+        ],
+        "observation": "两边都从5增加到6，所以仍然相等；只增加左边会不平衡。",
+        "prerequisites": [
+          {
+            "id": "kp-equal",
+            "name": "相等关系"
+          },
+          {
+            "id": "kp-expression",
+            "name": "算式含义"
+          }
+        ],
+        "teachingCases": [],
+        "learningMemory": [
+          {
+            "helped": false,
+            "outcome": "teacher_feedback",
+            "summary": "全量合成验收人工批阅：等式保持相等的理由、共同运算和代入检查完整，本题20分。；全量合成验收人工批阅：两边同减5得x=7，代入成立，本题10分。",
+            "relation": "当前知识点",
+            "sourceId": "record-c59a6524c8b648a4a3a650d8c48b6a0f",
+            "evidenceId": "feedback:record-c59a6524c8b648a4a3a650d8c48b6a0f:2026-11-12T02:59:27Z:kp-equality",
+            "occurredAt": "2026-11-12T02:59:27Z",
+            "sourceType": "teacher_feedback",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": true,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "teacher_feedback",
+            "summary": "全量合成验收E02反馈：已核对原答x=7、提示记录和订正x=4。你能说明两边同减3并代入检验；请继续保持每一步两边做相同运算，独立题x-2=5答对。",
+            "relation": "当前知识点",
+            "sourceId": "record-b7b977e2ac9a4a058bb5904d7dd1432f",
+            "evidenceId": "feedback:record-b7b977e2ac9a4a058bb5904d7dd1432f:2026-11-12T02:52:36Z:kp-equality",
+            "occurredAt": "2026-11-12T02:52:36Z",
+            "sourceType": "teacher_feedback",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": true,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "unverified",
+            "summary": "分层巩固1112：两边同减5得x=7，代回7+5=12。",
+            "relation": "当前知识点",
+            "sourceId": "attempt-6c3ef9242a484fa59013eaf6bc40731b",
+            "evidenceId": "attempt:attempt-6c3ef9242a484fa59013eaf6bc40731b:kp-equality",
+            "occurredAt": "2026-11-12T02:59:57Z",
+            "sourceType": "attempt",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": false,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "unverified",
+            "summary": "等式两边同时减5，x=12-5=7；代入7+5=12，成立。",
+            "relation": "当前知识点",
+            "sourceId": "attempt-1299a3d024b64e9e986c3c79a71469a7",
+            "evidenceId": "attempt:attempt-1299a3d024b64e9e986c3c79a71469a7:kp-equality",
+            "occurredAt": "2026-11-12T02:59:27Z",
+            "sourceType": "attempt",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": false,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "unverified",
+            "summary": "等式两边同时减4才能保持相等，左边x+4-4=x，右边9-4=5，因此x=5。代回5+4=9成立。",
+            "relation": "当前知识点",
+            "sourceId": "attempt-e9e1fd4e6e304cca9a6b2f9040e1b12d",
+            "evidenceId": "attempt:attempt-e9e1fd4e6e304cca9a6b2f9040e1b12d:kp-equality",
+            "occurredAt": "2026-11-12T02:59:27Z",
+            "sourceType": "attempt",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": false,
+            "knowledgeCorrectionId": null
+          },
+          {
+            "helped": false,
+            "outcome": "unverified",
+            "summary": "分层巩固1112：两边同时减4保持相等，x=9-4=5，代回成立。",
+            "relation": "当前知识点",
+            "sourceId": "attempt-0006b1cdf4a245e99aca4b8b4b15793a",
+            "evidenceId": "attempt:attempt-0006b1cdf4a245e99aca4b8b4b15793a:kp-equality",
+            "occurredAt": "2026-11-12T02:59:18Z",
+            "sourceType": "attempt",
+            "knowledgeId": "kp-equality",
+            "verification": "unverified",
+            "teacherConfirmed": false,
+            "knowledgeCorrectionId": null
+          }
+        ]
+      },
+      "history": [],
+      "guidance": true,
+      "ocrJobId": "job-eb731339299348a38d61ac2b156b466e",
+      "question": null,
+      "strategy": "hint",
+      "confirmed": true,
+      "parentJobId": null,
+      "recognizedText": "R1合成题：解3x+5=20，我的原作答x=6。请指导我先检查等式两边的相同运算。\n3x + 5 = 20",
+      "selectedStrategy": "hint",
+      "confirmedEquation": "3x + 5 = 20"
+    },
+    "runs": [
+      {
+        "id": "run-ef8fd987a0e74453a85a8a3c38667499",
+        "number": 1,
+        "status": "succeeded",
+        "model": "gpt-6-luna",
+        "provider": "Codex CLI · low",
+        "error": "",
+        "result": {
+          "hint": "左边有“+5”，想一想两边同时减去多少，才能消去这个加数并保持相等？",
+          "steps": [
+            "前置的相等关系告诉我们：等号两边同时做相同运算，等式仍成立。",
+            "观察左边的“+5”，考虑两边同时减去5；再分别写出两边变化后的表达式。"
+          ],
+          "title": "先检查两边相同的运算",
+          "sources": [],
+          "question": "两边同时减5后，等式左边和右边各是什么？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 9346,
+            "modelCalls": 1,
+            "contextChars": 3754,
+            "historyTurns": 0
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "try",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "kp-equal",
+          "representation": "symbolic",
+          "usedCaseVersionIds": []
+        },
+        "startedAt": "2026-11-12T03:27:05Z",
+        "endedAt": "2026-11-12T03:27:14Z"
+      }
+    ]
+  }
+]

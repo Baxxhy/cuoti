@@ -1,5 +1,5 @@
 """Teacher-owned bank and immutable papers; server-controlled exam and grading lifecycle."""
-import copy,hashlib,io,json,uuid
+import copy,hashlib,io,json,uuid,re
 from datetime import datetime,timedelta,timezone
 from fastapi import APIRouter,Depends,Request,HTTPException
 from fastapi.responses import Response
@@ -262,11 +262,14 @@ def export_exam(ident:str,mode:str,request:Request,submissionId:str|None=None,db
    if not s.submitted_at:fail('请先提交答卷。',409)
   for i,row in enumerate(paper['entries']):
    q=row['question'];key=row['versionId'];doc.add_heading(str(i+1)+'. '+q['prompt']+'（'+str(row['points'])+'分）',1);doc.add_paragraph(q.get('equation',''))
-   if mode=='teacher':doc.add_paragraph('参考答案：'+q['answer']);doc.add_paragraph('解析：'+q['explanation'])
+   if mode=='teacher':doc.add_paragraph('参考答案：'+q['answer']);doc.add_paragraph('解析：'+(candidate_explanation(q['explanation']) if q.get('candidateJobId') or re.match(r'^AI候选[，,；;]',q.get('source','')) else q['explanation']))
    elif mode in ['submission','learning']:
     a=s.answers.get(key,{});doc.add_paragraph('原答案：'+a.get('answer',''));doc.add_paragraph('原解释：'+a.get('reason',''))
     if u.role=='teacher' or e.results_at:doc.add_paragraph('得分：'+str(s.grades.get(key,{}).get('score','待批阅')));doc.add_paragraph('讲评：'+s.grades.get(key,{}).get('comment',''))
  doc.add_paragraph('试卷固定版本：'+e.version_id);b=io.BytesIO();doc.save(b);return Response(b.getvalue(),media_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document',headers={'Content-Disposition':'attachment; filename="exam-'+mode+'.docx"'})
+
+def candidate_explanation(value):
+ return re.sub(r'\s*本题为待教师审核的候选题[。.]?\s*$','',re.sub(r'\\+n(?![A-Za-z])','\n',value)).strip()
 
 # Candidate stays in the existing ModelJob; adoption is an explicit bank draft creation.
 @router.post('/bank/candidate/{job_id}',status_code=201)
@@ -275,7 +278,7 @@ def adopt_candidate(job_id:str,request:Request,db=Depends(get_db)):
  if not j or j.owner_id!=u.id or not j.input.get('examCandidate') or j.status!='succeeded':fail('候选任务不可采用。',404)
  old=db.scalar(select(BankQuestion).where(BankQuestion.id=='bq-'+j.id[4:36]))
  if old:return bank_json(db,old)
- d=checked_question(db,{**{k:j.result[k] for k in ['prompt','equation','answer','explanation']},**{k:j.input[k] for k in ['unitId','knowledgeIds','kind','difficulty']},'source':'AI候选，待教师审核；ModelJob '+j.id});d['candidateJobId']=j.id;r=BankQuestion(id='bq-'+j.id[4:36],owner_id=u.id,draft=d,reviewed=False,revision=1);db.add(r);db.commit();return bank_json(db,r)
+ d=checked_question(db,{**{k:j.result[k] for k in ['prompt','equation','answer','explanation']},'explanation':candidate_explanation(j.result['explanation']),**{k:j.input[k] for k in ['unitId','knowledgeIds','kind','difficulty']},'source':'AI生成；ModelJob '+j.id});d['candidateJobId']=j.id;r=BankQuestion(id='bq-'+j.id[4:36],owner_id=u.id,draft=d,reviewed=False,revision=1);db.add(r);db.commit();return bank_json(db,r)
 
 @router.get('/learning-records/export')
 def export_learning_records(request:Request,studentId:str|None=None,classId:str|None=None,db=Depends(get_db)):

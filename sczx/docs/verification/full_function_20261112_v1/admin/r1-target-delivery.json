@@ -1,0 +1,47 @@
+{
+  "purpose": "新增自有合成教研改编空目标，承接双教师改编，非AI状态夹具",
+  "title": "合成工程验收 R1 教研改编目标",
+  "lessonId": "lesson-cb28f7b0cc864cf4995551caf40845b5",
+  "versionId": "lessonversion-351d5d4e09274ae3a70a635a43",
+  "version": 1,
+  "publishedAt": "2026-11-12T03:49:44Z",
+  "apiObserved": {
+    "method": "POST",
+    "url": "http://127.0.0.1:8103/api/curriculum/lessons/lesson-cb28f7b0cc864cf4995551caf40845b5/publish",
+    "status": 200,
+    "n": 33
+  },
+  "blocks": [
+    {
+      "id": "block-4f7df84dfe6a468e8f39412e70aee0bf",
+      "title": "合成工程验收：等式两边同时变化",
+      "type": "explanation",
+      "questionIds": []
+    },
+    {
+      "id": "block-ca2d2a9ff9d44ddca6afe005bce97d45",
+      "title": "合成工程验收：随堂练习",
+      "type": "practice",
+      "questionIds": [
+        "question-edd055c6f36847b484aa0d148e2cd4f1"
+      ]
+    },
+    {
+      "id": "block-362644a8d39545499dd3f7a89b2d6a65",
+      "title": "合成工程验收：独立检查",
+      "type": "check",
+      "questionIds": [
+        "question-81e71a9d9b46487bbb12e4d5becb56d5"
+      ]
+    }
+  ],
+  "questionCount": 2,
+  "source": "人工合成工程验收R1教研改编目标材料。仅验证教师分享→另一教师改编流程，不代表教学效果。",
+  "evidence": "r1-target-published-refresh.png",
+  "logs": [
+    "r1-target-actions.jsonl",
+    "r1-target-network.jsonl"
+  ],
+  "newAiJobs": 0,
+  "privateDoNotPackage": "profile-r1-target/"
+}

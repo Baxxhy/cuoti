@@ -1,0 +1,18 @@
+{
+  "kind": "实际崩溃后的专用QA恢复；首次启动死锁已定位并在第二轮修复，未伪造任务状态",
+  "interruptedJob": {
+    "id": "job-7a6f1a75d79e4780982bd41727fdf552",
+    "status": "failed",
+    "error": "服务中断，输入与已有结果已保留，可手动重试。",
+    "attempt_number": 1
+  },
+  "restart": {
+    "running": true,
+    "created": true,
+    "pid": 3918138
+  },
+  "frontend": "index-8bNtgQgl.js",
+  "schema": "0017_case_bookmarks",
+  "next": "由管理员UI手动重试并回看真实结果",
+  "noResultInjection": true
+}
