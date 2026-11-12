@@ -2622,6 +2622,12 @@
       "bytes": 4825,
       "sha256": "d80a6985450cfcfb0dfd689eb0276c985a56a686b5b7f74d31c5fb3181c0a34e",
       "sourceSha256": "d80a6985450cfcfb0dfd689eb0276c985a56a686b5b7f74d31c5fb3181c0a34e"
+    },
+    {
+      "path": "root/main-browser-v35.json",
+      "bytes": 312,
+      "sha256": "e9cbc550edebe7e0ee45b1720db83cf8c42cd1dfa96fdb7d2440214d2db69974",
+      "sourceSha256": "e9cbc550edebe7e0ee45b1720db83cf8c42cd1dfa96fdb7d2440214d2db69974"
     }
   ],
   "redactedFiles": []

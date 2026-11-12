@@ -1,0 +1,14 @@
+{
+  "url": "http://127.0.0.1:8099",
+  "login": "实际表单点击qmx登录，凭据不写证据",
+  "routes": [
+    "#/wrong",
+    "#/class",
+    "#/home"
+  ],
+  "asset": "http://127.0.0.1:8099/assets/index-8bNtgQgl.js",
+  "runtimeErrors": [],
+  "server5xx": [],
+  "cleanPlatformPuts": 0,
+  "status": "通过"
+}

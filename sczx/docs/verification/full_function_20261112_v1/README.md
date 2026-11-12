@@ -31,12 +31,12 @@
 - [30项权限/固定答卷检查](root/permission-matrix.json)：30通过；其他教师/真正非成员分别验证。早期把已加入班级的学生误当非成员，以及给公开课程附加无效admin参数的预期均撤回，不列产品缺陷。
 - [六链数据与原文件](root/chain-readbacks.json)、[真实教师语义重排](root/teacher-rerank-readback.json)。
 - [实际启动恢复死锁](root/restart-deadlock-baseline.json)、[崩溃恢复](root/crash-recovery-r2.json)、[重试最终两次执行](root/recovery-result-final.json)。首次优雅退出恰好等模型成功，未算中断；第二次仅终止核对过身份的专用QA进程，确实留下running，修复后启动自动标中断，管理员UI手动重试成功。没有手写成功任务状态。
-- [本机8099更新](root/main-runtime-v35.json)：私有备份已完成，仅增加收藏表；所有旧业务表行摘要与上传清单不变；qmx登录及平台读取200。
+- [本机8099更新](root/main-runtime-v35.json)：私有备份已完成，仅增加收藏表；所有旧业务表行摘要与上传清单不变；qmx登录及平台读取200；[实际浏览器登录/三组导航](root/main-browser-v35.json)无脚本错误、无5xx、无无意义PUT。
 
 ## 检查结果
 
-[41/41浏览器](root/browser-final-clean.log)、[12/12JS](root/unit-final.log)、[181项独立新MySQL全量](root/mysql-final.log)通过。随后新增启动恢复检查，相关[12/12本地运行工具回归](root/release-recovery-final.log)通过；合计182个不同后端检查的有效证据，最终同源码全量由GitHub MySQL CI复核。[构建](root/build-r2.log)完成。
+[41/41浏览器](root/browser-final-clean.log)、[12/12JS](root/unit-final.log)、[181项独立新MySQL全量](root/mysql-final.log)通过。随后新增启动恢复检查，相关[12/12本地运行工具回归](root/release-recovery-final.log)通过；合计182个不同后端检查的有效证据，[GitHub双CI](https://github.com/Baxxhy/sczx/actions/runs/43169417456)通过，同源码MySQL完整182项。[构建](root/build-r2.log)完成。
 
 前一轮证据保留。中途修改源码后的Vite热更新导致测试覆写了不同模块实例，已重启本轮自己的Vite并全量复跑41通过；迁移计划的旧0016测试期望已随0017更新。CDP原生确认等待、初始路由尚未稳定及诊断连接池阻止预检等工具问题单独记录，不算产品缺陷或悄悄跳过。
 
-[异常及权限矩阵](异常与权限矩阵.md) · [六链记录](六条业务链.md) · [重复入口分析](重复入口分析.md) · [测试覆盖说明](覆盖与冻结.md)。CI运行链接在最终报告及`remote-ci.json`中补齐。
+[异常及权限矩阵](异常与权限矩阵.md) · [六链记录](六条业务链.md) · [重复入口分析](重复入口分析.md) · [测试覆盖说明](覆盖与冻结.md)。[远端验收记录](remote-ci.json)保存实际CI运行和两个job状态。
