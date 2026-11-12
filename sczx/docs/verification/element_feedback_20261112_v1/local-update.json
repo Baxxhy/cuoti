@@ -1,0 +1,10 @@
+{
+  "url": "http://127.0.0.1:8099",
+  "health": 200,
+  "builtSourcesMatch": true,
+  "sourceFileCount": 141,
+  "qmxBrowserLogin": true,
+  "scriptErrors": [],
+  "backendCodeChanged": false,
+  "schemaMigration": false
+}

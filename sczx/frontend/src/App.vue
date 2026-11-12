@@ -161,7 +161,7 @@ const results = computed(() => {
             </div>
           </header>
           <main id="main-content" tabindex="-1">
-            <div v-if="store.saveError && route.name!=='prepare'" class="save-error" role="alert">
+            <AppAlert type="error" v-if="store.saveError && route.name!=='prepare'" class="save-error" role="alert">
               <span>{{ store.saveError }}</span
               ><AppButton
                 variant="outline"
@@ -170,7 +170,7 @@ const results = computed(() => {
                 @click="store.save"
                 >重新保存</AppButton
               ><AppButton variant="outline" @click="downloadDraft">下载未保存草稿</AppButton>
-            </div>
+            </AppAlert>
             <PlatformStatus
               v-if="store.status !== 'ready' && route.name !== 'issues'"
             />

@@ -23,6 +23,7 @@ import "./workspace-navigation.css";
 import "./desktop-density.css";
 import "./element-theme.css";
 import "./multisubject.css";
+import { ElSkeleton, ElSteps, ElStep, ElTimeline, ElTimelineItem, ElIcon } from "element-plus";
 import App from "./App.vue";
 import Dashboard from "./pages/Dashboard.vue";
 import Courses from "./pages/Courses.vue";
@@ -47,6 +48,7 @@ import AppTable from "./components/app/Table.js";
 import AppEmpty from "./components/app/Empty.js";
 import NativeSelect from "./components/app/NativeSelect.js";
 import AppCheckbox from "./components/app/Checkbox.vue";
+import AppDisclosure from "./components/app/Disclosure.vue";
 import AppAlert from "./components/app/Alert.vue";
 import AppFilePicker from "./components/app/FilePicker.vue";
 import AppImage from "./components/app/Image.vue";
@@ -108,6 +110,7 @@ const pinia = createPinia();
 app.use(pinia);
 for (const [name, component] of Object.entries({
   AppButton:Button,
+  ElSkeleton, ElSteps, ElStep, ElTimeline, ElTimelineItem, ElIcon,
   Surface,
   PageHeading,
   SectionHeading,
@@ -166,6 +169,7 @@ app.component("AppEmpty",AppEmpty);
 app.component("AppCheckbox",AppCheckbox);
 app.component("AppImage",AppImage);
 app.component("AppAlert",AppAlert);
+app.component("AppDisclosure",AppDisclosure);
 app.component("AppFilePicker",AppFilePicker);
 app.use(router);
 app.mount("#root");

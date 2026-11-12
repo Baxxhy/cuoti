@@ -221,7 +221,7 @@ onBeforeUnmount(() => {
           }"
         />
       </div>
-      <details v-if="form.fileId" class="study-disclosure"><summary>精确调整裁剪</summary><div class="capture-coordinates">
+      <AppDisclosure v-if="form.fileId" class="study-disclosure"><template #title>精确调整裁剪</template><div class="capture-coordinates">
         <label
           v-for="(label, k) in { x: '左', y: '上', w: '宽', h: '高' }"
           :key="k"
@@ -232,7 +232,7 @@ onBeforeUnmount(() => {
             min="0"
             :max="k === 'w' ? 100 - rect.x : k === 'h' ? 100 - rect.y : 100"
         /></label>
-      </div></details>
+      </div></AppDisclosure>
       <div v-if="form.fileId" class="paper-actions">
         <AppButton
           variant="outline"
@@ -249,11 +249,11 @@ onBeforeUnmount(() => {
       <p v-if="working || job.busy.value" role="status">
         {{ working ? "正在保存…" : job.job.value?.step || "正在提交…" }}
       </p>
-      <p v-if="job.job.value?.status === 'failed'" role="alert">
+      <AppAlert type="error" v-if="job.job.value?.status === 'failed'" role="alert">
         {{ job.job.value.error
         }}<AppButton variant="outline" @click="job.retry">重试识别</AppButton>
-      </p>
-      <p v-if="job.error.value" role="alert">{{ job.error.value }}</p>
+      </AppAlert>
+      <AppAlert type="error" v-if="job.error.value" role="alert">{{ job.error.value }}</AppAlert>
       <ul v-if="job.job.value?.result?.uncertainties?.length">
         <li v-for="t in job.job.value.result.uncertainties" :key="t">
           {{ t }}
@@ -275,7 +275,7 @@ onBeforeUnmount(() => {
         @update:model-value="form.confirmed = false"
       />
       <AppCheckbox v-if="form.fileId" class="capture-confirm" v-model="form.confirmed" :disabled="!form.ocrJobId || job.job.value?.status !== 'succeeded'">已核对文字、符号，并选定一道题</AppCheckbox>
-      <details class="study-disclosure"><summary>学科与知识点</summary><div class="capture-fields">
+      <AppDisclosure class="study-disclosure"><template #title>学科与知识点</template><div class="capture-fields">
         <div>
           <label class="field-label" for="wrong-subject">学科</label
           ><Input id="wrong-subject" v-model="form.subject" />
@@ -288,7 +288,7 @@ onBeforeUnmount(() => {
             </option>
           </NativeSelect>
         </div>
-      </div></details>
+      </div></AppDisclosure>
       <label class="field-label" for="wrong-answer">原来的答案</label
       ><Input id="wrong-answer" v-model="form.answer" />
       <label class="field-label" for="wrong-reason">原来的解题过程</label

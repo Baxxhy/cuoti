@@ -1,4 +1,5 @@
 <script setup>
+import { confirmAction } from '@/lib/confirm-action.js';
 import { ref, watch, computed } from "vue";
 import { useLearning } from "@/store.js";
 import { teachingApi, deadlineText } from "@/services/teaching.js";
@@ -81,7 +82,7 @@ async function act(item, action) {
   }
 }
 async function cancel(item) {
-  if (!confirm("取消后学生不能开始这项安排，历史记录保留。继续？")) return;
+  if (!await confirmAction("取消后学生不能开始这项安排，历史记录保留。继续？")) return;
   try {
     await teachingApi.cancel(item.id);
     await load();
@@ -120,7 +121,7 @@ async function feedback(item, rec) {
       </div>
       <p class="preserve-lines">{{ item.content }}</p><p v-if="item.case">参考：{{item.case.title}} 　 v{{item.case.version}} 　 {{item.case.source}}<RouteButton :route="'case-detail?caseId='+item.case.id+'&versionId='+item.case.versionId" secondary>案例原文</RouteButton></p>
       <template v-if="!teacher&&item.recipients[0]?.outcome"><p>{{item.recipients[0].outcome.label}}</p><RouteButton v-if="item.recipients[0].outcome.target.wrongId" :route="'repair?wrong='+item.recipients[0].outcome.target.wrongId" secondary>进入原错题</RouteButton><RouteButton v-else :route="item.recipients[0].outcome.target.kind+'?task='+item.recipients[0].outcome.target.taskId" secondary>进入安排内容</RouteButton></template>
-      <details v-if="teacher" class="teacher-supplement-recipients"><summary>学生进度 　 {{ item.recipients.filter(r=>r.completedAt).length }} / {{ item.recipients.length }}</summary><div
+      <AppDisclosure v-if="teacher" class="teacher-supplement-recipients"><template #title>学生进度 　 {{ item.recipients.filter(r=>r.completedAt).length }} / {{ item.recipients.length }}</template><div
           v-for="rec in item.recipients"
           :key="rec.studentId"
           class="supplement-recipient"
@@ -146,8 +147,7 @@ async function feedback(item, rec) {
           variant="ghost"
           @click="cancel(item)"
           >取消安排</AppButton
-        ></details
-      ><template v-else-if="item.kind !== 'note' && item.status !== 'cancelled'"
+        ></AppDisclosure><template v-else-if="item.kind !== 'note' && item.status !== 'cancelled'"
         ><template v-if="item.recipients[0]?.completedAt"
           ><Status tone="green">学习说明已提交</Status>
           <p>{{ item.recipients[0].response }}</p></template

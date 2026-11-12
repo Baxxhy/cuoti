@@ -11,11 +11,8 @@
 .student-lesson-name{flex:1;min-width:0;display:grid;gap:5px}
 .student-lesson-name h3{font-size:16px;line-height:1.5;font-weight:550;overflow-wrap:anywhere}
 .student-lesson-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.student-course-unit>.study-disclosure{margin:0 28px;padding:16px 0;border-top:1px solid var(--border)}
-.study-disclosure{border-top:1px solid var(--border);padding:16px 0;margin:16px 0;color:var(--foreground);min-width:0}
-.study-disclosure>summary,.question-help>summary{cursor:pointer;font-size:13px;font-weight:500;list-style-position:inside;min-height:24px;line-height:24px}
-.study-disclosure[open]>summary{margin-bottom:16px}
-.study-disclosure>summary:focus-visible,.question-help>summary:focus-visible,.student-filter-disclosure>summary:focus-visible,.student-record-group>summary:focus-visible{outline:2px solid var(--ring);outline-offset:4px;border-radius:3px}
+.student-course-unit>.study-disclosure{margin:0 28px}
+.study-disclosure{margin:16px 0;min-width:0}
 .study-complete{padding:24px 32px;border-top:1px solid var(--border)}
 .workspace-frame .secondary-pane>[data-slot=tabs-root]{padding:20px 24px 0}
 .curriculum-outline{padding:18px 24px}
@@ -34,13 +31,12 @@
 .check-navigation h2{font-size:14px;font-weight:600;margin-bottom:14px}
 .check-question-links{display:flex;flex-wrap:wrap;gap:8px}
 .check-question-links button{width:36px;padding:0;min-width:36px;font-variant-numeric:tabular-nums}
-.check-aside>.study-disclosure{margin:0;padding:0 0 18px;border-top:0}
+.check-aside>.study-disclosure{margin:0}
 .check-aside .tutoring-assistant{border:0;background:transparent;padding:0;margin:0}
 .check-grid>.question-card{padding:32px}
 .check-grid .question-equation{font-size:32px;font-weight:500;margin:26px 0}
 .check-aside{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px}
 .student-filter-disclosure{position:relative;flex-shrink:0}
-.student-filter-disclosure>summary{padding:8px 14px;border:1px solid var(--border);border-radius:6px;cursor:pointer;white-space:nowrap;font-size:13px}
 .student-filter-fields{position:absolute;right:0;top:48px;z-index:20;display:grid;gap:10px;width:260px;padding:18px;background:var(--popover);border:1px solid var(--border);border-radius:8px;box-shadow:0 8px 28px #0000000b}
 .student-filter-fields select{width:100%;min-width:0!important}
 .wrong-filters{display:flex;align-items:center;gap:12px}
@@ -61,14 +57,7 @@
 .student-teacher-feedback{padding:26px 28px!important}
 .student-teacher-feedback>p{font-size:15px;line-height:1.85}
 .student-record-list{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--card)}
-.student-record-group{border-bottom:1px solid var(--border)}
-.student-record-group:last-child{border-bottom:0}
-.student-record-group>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 28px;cursor:pointer}
-.student-record-group>summary:after{content:'+';font-size:21px;font-weight:300;color:var(--muted-foreground)}
-.student-record-group[open]>summary:after{content:'−'}
-.student-record-group>summary>span:first-child{display:grid;gap:5px;flex:1}
-.student-record-group>summary strong{font-size:16px;font-weight:550}
-.student-record-group>summary time,.student-record-group>summary>span:last-child,.record-row time{font-size:12px;color:var(--muted-foreground)}
+.record-row time{font-size:12px;color:var(--muted-foreground)}
 .student-record-group>.record-row{margin:0 28px;padding:24px 0}
 .student-record-group .record-row h3{font-size:17px;margin-bottom:10px}
 .student-record-group .record-row p{font-size:14px}
@@ -102,7 +91,6 @@
 .memory-knowledge-row.selected,.memory-knowledge-row:hover{background:var(--muted)}
 .memory-workspace.has-detail{grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr)}
 .memory-detail{background:var(--card)}
-.memory-audit>summary{font-size:13px;font-weight:500;cursor:pointer;padding:12px 0}
 .tutoring-strategies{background:var(--muted);border-radius:6px;padding:4px;gap:4px}
 .tutoring-strategies button[aria-pressed=true]{background:var(--card);color:var(--foreground);box-shadow:none}
 .tutoring-strategy-picker{margin:10px 0;padding:8px 0;border:0}
@@ -111,7 +99,6 @@
 .tutoring-assistant .ai-compose{margin-top:16px;padding-top:16px}
 .model-result h3{font-size:17px;font-weight:550}
 .model-result .model-prose{font-size:15px;line-height:1.85;color:var(--foreground)}
-.model-technical-details{font-size:12px;color:var(--muted-foreground)}
 @media(max-width:1050px){
  .student-lesson-row{gap:16px;padding:20px}
  .student-course-header{padding:24px 20px}
@@ -130,7 +117,6 @@
  .student-result-summary{align-items:flex-start;flex-direction:column}
  .student-result-metrics>button{padding:0 14px}
  .student-result-metrics span{font-size:12px;flex-wrap:wrap}
- .student-record-group>summary{padding:20px;gap:14px}
  .student-record-group>.record-row{margin:0 20px}
  .remediation-workspace,.remediation-workspace.without-guidance{display:flex;flex-direction:column}
  .remediation-workspace .remediation-original{border-right:0;border-bottom:1px solid var(--border)}

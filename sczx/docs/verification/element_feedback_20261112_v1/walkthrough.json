@@ -1,0 +1,20 @@
+{
+  "roles": [
+    "student",
+    "teacher",
+    "admin"
+  ],
+  "widths": [
+    1440,
+    1920
+  ],
+  "results": [
+    "正确作答使用官方成功Alert",
+    "待教师评阅使用官方警告Alert",
+    "教案使用官方Collapse；取消恢复保留当前讲稿",
+    "AI备课流程使用官方Steps与折叠详情",
+    "管理员已发布课时配置使用官方Collapse"
+  ],
+  "scriptErrors": [],
+  "passed": true
+}

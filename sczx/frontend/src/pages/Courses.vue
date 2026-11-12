@@ -23,7 +23,7 @@ onMounted(load);
   <div class="course-filters"><ElSelect v-model="selectedGrade" clearable placeholder="全部年级" aria-label="筛选年级"><ElOption v-for="grade in education.stages.flatMap(s=>s.grades)" :key="grade" :value="grade" :label="grade"/></ElSelect><ElSelect v-model="selectedSubject" clearable filterable placeholder="全部学科" aria-label="筛选学科"><ElOption v-for="subject in [...new Set([...education.subjects.map(s=>s.value),...courses.map(c=>c.metadata?.subject).filter(Boolean)])]" :key="subject" :value="subject" :label="subject"/></ElSelect></div>
   <AppEmpty v-if="!loading&&!visibleCourses.length&&!error"><h3>当前学科暂无已发布课程</h3></AppEmpty>
   <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}<AppButton variant="ghost" @click="load">重试</AppButton></AppAlert>
-  <p v-if="loading" role="status">读取中…</p>
+  <ElSkeleton v-if="loading" animated :rows="3" aria-label="读取中…"/>
   <AppEmpty v-else-if="!courses.length" class="empty-state"><BookOpen :size="30"/><h3>暂无已发布课程</h3></AppEmpty>
   <div v-else class="student-catalog">
     <section v-for="course in visibleCourses" :key="course.id" class="student-course">
@@ -45,7 +45,7 @@ onMounted(load);
             </div>
           </article>
         </div>
-        <details v-if="!teacher&&store.user?.role==='student'" class="study-disclosure"><summary>单元进度</summary><UnitJourney :unit-id="unit.id"/></details>
+        <AppDisclosure v-if="!teacher&&store.user?.role==='student'" class="study-disclosure"><template #title>单元进度</template><UnitJourney :unit-id="unit.id"/></AppDisclosure>
       </section>
     </section>
   </div>

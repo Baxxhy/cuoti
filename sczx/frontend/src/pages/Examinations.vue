@@ -1,4 +1,5 @@
 <script setup>
+import { confirmAction } from '@/lib/confirm-action.js';
 import QuestionEditor from "@/components/QuestionEditor.vue";
 import SubjectFields from "@/components/SubjectFields.vue";
 import AnswerInput from "@/components/AnswerInput.vue";
@@ -31,14 +32,14 @@ async function load(){const g=++generation;loading.value=true;error.value='';try
 watch(()=>[route.path,route.query.exam],()=>{selectedSubmission.value='';activeQuestion.value=0;load()},{immediate:true});watch(sub,s=>{marks.value=Object.fromEntries((exam.value?.paper?.entries||[]).map(x=>[x.versionId,{score:s?.grades[x.versionId]?.score??0,comment:s?.grades[x.versionId]?.comment||''}]))});
 function editQuestion(row){questionEdit.value=row;question.value=row?Object.fromEntries(Object.entries(row.draft).filter(([k])=>['prompt','equation','answer','explanation','subject','grade','knowledgeIds','unitId','kind','difficulty','points','source','requiresTeacherReview','responseType','gradingMode','options','rubric','acceptedAnswers','caseSensitive'].includes(k))):{prompt:'',equation:'',answer:'',explanation:'',subject:units.value.find(u=>u.id===unitId.value)?.subject||'',grade:units.value.find(u=>u.id===unitId.value)?.grade||'',knowledgeIds:[],responseType:'short_answer',gradingMode:'manual',unitId:unitId.value,kind:'calculation',difficulty:'easy',points:10,source:'教师自编',requiresTeacherReview:false};questionOpen.value=true}
 async function saveQuestion(){await run(async()=>{const d={...question.value,points:Number(question.value.points)};await call('/bank'+(questionEdit.value?'/'+questionEdit.value.id:''),questionEdit.value?'PUT':'POST',{data:d,...(questionEdit.value?{revision:questionEdit.value.revision}:{})});questionOpen.value=false;await load();notice.value='题目已保存，等待审核'})}
-async function reviewQuestion(row){if(!confirm('确认已核对题干、适用条件、参考答案和解析？将保存固定版本。'))return;await run(async()=>{await call('/bank/'+row.id+'/review','POST',{revision:row.revision,confirmed:true});await load();notice.value='审核版本已保存'})}
-function leavePaper(){if(entries.value.length&&!paperSaved.value&&!confirm('当前试卷修改尚未保存。返回列表将保留当前编辑内容，重新打开其他试卷会替换这些内容。继续？'))return;paperEditing.value=false}
+async function reviewQuestion(row){if(!await confirmAction('确认已核对题干、适用条件、参考答案和解析？将保存固定版本。'))return;await run(async()=>{await call('/bank/'+row.id+'/review','POST',{revision:row.revision,confirmed:true});await load();notice.value='审核版本已保存'})}
+async function leavePaper(){if(entries.value.length&&!paperSaved.value&&!await confirmAction('当前试卷修改尚未保存。返回列表将保留当前编辑内容，重新打开其他试卷会替换这些内容。继续？'))return;paperEditing.value=false}
 function editPaper(p){paperEditing.value=true;activePaper.value=p;paperTitle.value=p?.draft.title||'单元检查';unitId.value=p?.draft.unitId||units.value[0]?.id||'';entries.value=clone(p?.draft.entries||[])}
 function toggle(q,event){const v=q.versions[0];if(event.target.checked)entries.value.push({versionId:v.id,points:v.data.points,question:v.data});else entries.value=entries.value.filter(x=>x.versionId!==v.id)}
 function move(i,delta){const target=i+delta;if(target<0||target>=entries.value.length)return;const [x]=entries.value.splice(i,1);entries.value.splice(target,0,x)}
 async function assemble(){await run(async()=>{const r=await call('/assemble','POST',{...filters.value,count:Number(filters.value.count),total:Number(filters.value.total),unitId:unitId.value});if(!r.sufficient){missing.value=r.missingKnowledge?'缺少知识点：'+r.missingKnowledge.join('、'):'符合条件 '+r.available+' 题，还缺 '+r.missing+' 题';return}missing.value='';entries.value=r.entries;pickerOpen.value=false;notice.value='试卷题目已添加，请核对顺序与分值'})}
 async function savePaper(){await run(async()=>{const p=await call('/papers'+(activePaper.value?'/'+activePaper.value.id:''),activePaper.value?'PUT':'POST',{title:paperTitle.value,unitId:unitId.value,entries:entries.value.map(e=>({versionId:e.versionId,points:Number(e.points)})),...(activePaper.value?{revision:activePaper.value.revision}:{})});await load();editPaper(p);notice.value='试卷草稿已保存'})}
-async function reviewPaper(){if(!activePaper.value)return;if(!confirm('确认已核对学生试卷、题目顺序、分值及教师参考解答？'))return;await run(async()=>{const p=await call('/papers/'+activePaper.value.id+'/review','POST',{revision:activePaper.value.revision,confirmed:true});await load();editPaper(p);notice.value='试卷审核完成'})}
+async function reviewPaper(){if(!activePaper.value)return;if(!await confirmAction('确认已核对学生试卷、题目顺序、分值及教师参考解答？'))return;await run(async()=>{const p=await call('/papers/'+activePaper.value.id+'/review','POST',{revision:activePaper.value.revision,confirmed:true});await load();editPaper(p);notice.value='试卷审核完成'})}
 async function generateCandidate(){await run(async()=>{candidate.value=await api.request('/ai/jobs',{method:'POST',body:JSON.stringify({capability:'text',requestKey:crypto.randomUUID(),data:{examCandidate:true,unitId:unitId.value,...candidateInput.value}})})})}
 async function refreshCandidate(){await run(async()=>{candidate.value=await api.request('/ai/jobs/'+candidate.value.id)})}
 async function adopt(){await run(async()=>{await call('/bank/candidate/'+candidate.value.id,'POST',{});candidate.value=null;await load();candidateOpen.value=false;notice.value='已存为待审核题目'})}
@@ -48,12 +49,12 @@ const beijingInput=value=>new Date(value+8*3600000).toISOString().slice(0,16);
 function publishDialog(){starts.value=beijingInput(Date.now()-60000);ends.value=beijingInput(Date.now()+3600000);publishOpen.value=true}
 async function publish(){await run(async()=>{const r=await call('','POST',{versionId:activePaper.value.versions[0].id,classId:room.value,startsAt:new Date(starts.value+':00+08:00').toISOString(),endsAt:new Date(ends.value+':00+08:00').toISOString(),minutes:Number(minutes.value),requestKey:crypto.randomUUID()});publishOpen.value=false;router.push('/exams?exam='+r.id)})}
 async function start(){await run(async()=>{exam.value=await call('/'+exam.value.id+'/start','POST',{});answers.value=clone(exam.value.submission.answers||{})})}
-async function saveAnswers(submit=false){if(submit&&!confirm('提交后答卷只读，无法继续修改。确认交卷？'))return;await run(async()=>{exam.value=await call('/'+exam.value.id+(submit?'/submit':'/answers'),submit?'POST':'PUT',{revision:exam.value.submission.revision,answers:answers.value});notice.value=submit?'答卷已提交':'草稿已保存'})}
+async function saveAnswers(submit=false){if(submit&&!await confirmAction('提交后答卷只读，无法继续修改。确认交卷？'))return;await run(async()=>{exam.value=await call('/'+exam.value.id+(submit?'/submit':'/answers'),submit?'POST':'PUT',{revision:exam.value.submission.revision,answers:answers.value});notice.value=submit?'答卷已提交':'草稿已保存'})}
 async function nextAnswerQuestion(){if(pending.value)await saveAnswers(false);if(!error.value&&activeQuestion.value<exam.value.paper.entries.length-1)activeQuestion.value++}
 function answerModel(){const key=current.value?.versionId;if(key&&!answers.value[key])answers.value[key]={answer:'',reason:''};return key?answers.value[key]:{answer:'',reason:''}}
 watch(current,()=>answerModel());
 async function mark(){await run(async()=>{const entry=gradingEntry.value,record=sub.value;if(!entry||!record)return;const value=marks.value[entry.versionId];const score=Number(value.score);if(!Number.isInteger(score)||score<0||score>entry.points||!value.comment.trim())throw Error('请填写本题范围内的分数和批阅依据。');const saved=await call('/'+exam.value.id+'/submissions/'+record.id+'/grades','PUT',{revision:record.revision,grades:{[entry.versionId]:{score,comment:value.comment}}});if(sub.value===record)Object.assign(record,saved);notice.value='本题批阅已保存，原答案及程序核验保留'})}
-async function release(){if(!confirm('成绩发布后学生将看到答案和讲评，当前版本不能再修改。确认发布？'))return;await run(async()=>{await call('/'+exam.value.id+'/results','POST',{confirmed:true});await load();notice.value='成绩与讲评已发布'})}
+async function release(){if(!await confirmAction('成绩发布后学生将看到答案和讲评，当前版本不能再修改。确认发布？'))return;await run(async()=>{await call('/'+exam.value.id+'/results','POST',{confirmed:true});await load();notice.value='成绩与讲评已发布'})}
 function exportFile(mode){const q=selectedSubmission.value?'?submissionId='+encodeURIComponent(selectedSubmission.value):'';window.open('/api/exams/'+exam.value.id+'/export/'+mode+q,'_blank','noopener')}
 timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submittedAt){countdown.value='';return}const n=Math.max(0,Math.floor((new Date(s.deadline)-Date.now())/1000));countdown.value=Math.floor(n/60)+':'+String(n%60).padStart(2,'0')},1000);onBeforeUnmount(()=>{clearInterval(timer);generation++});
 </script>
@@ -65,8 +66,8 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </PageHeading>
 
 <AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}<AppButton variant="ghost" @click="load">重新读取</AppButton></AppAlert>
-<p v-if="notice" role="status" class="exam-notice">{{notice}}</p>
-<p v-if="loading" role="status">正在读取…</p>
+<AppAlert type="success" v-if="notice" role="status" class="exam-notice">{{notice}}</AppAlert>
+<ElSkeleton v-if="loading" animated :rows="3" aria-label="正在读取…"/>
 <template v-else-if="tab==='bank'&&teacher">
 <div class="teacher-bank-toolbar"><Input v-model="bankSearch" aria-label="搜索题目" placeholder="搜索题目或方程"/><AppSelect v-model="bankFilter" label="题目状态" :options="[{value:'all',label:'全部题目'},{value:'reviewed',label:'已审核'},{value:'pending',label:'待审核'}]"/><AppButton variant="outline" @click="importOpen=true">引用课程题目</AppButton><AppButton variant="outline" @click="candidateOpen=true">AI 出题</AppButton></div>
 <div class="exam-bank-grid teacher-bank-single">
@@ -83,12 +84,12 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppButton variant="ghost" @click="editQuestion(q)">编辑</AppButton>
 <AppButton variant="outline" :disabled="busy||q.reviewed" @click="reviewQuestion(q)">核对并审核</AppButton>
 </div>
-<details>
-<summary>参考解答与版本</summary>
+<AppDisclosure>
+<template #title>参考解答与版本</template>
 <p>{{q.draft.answer}} 　 {{examExplanation(q.draft)}}</p>
 <p>方程核验：{{statusLabel(q.draft.referenceVerification?.status)}}</p>
 <p v-for="v in q.versions" :key="v.id">v{{v.number}} 　 {{v.data.prompt}} 　 {{v.data.answer}} 　 {{v.id}}</p>
-</details>
+</AppDisclosure>
 </article><AppEmpty v-if="bank.length&&!visibleBank.length" class="empty-state"><h3>没有匹配的题目</h3><AppButton variant="outline" @click="bankSearch='';bankFilter='all'">清空筛选</AppButton></AppEmpty>
 </Surface>
 </div>
@@ -190,7 +191,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <p>解释：{{sub.answers[e.versionId]?.reason||'未填写'}}</p>
 </div>
 <Status>{{statusLabel(sub.automatic[e.versionId]?.status)}}</Status>
-<details class="teacher-grade-reference"><summary>参考解答</summary><p>{{e.question.answer}}</p><p>{{examExplanation(e.question)}}</p></details>
+<AppDisclosure class="teacher-grade-reference"><template #title>参考解答</template><p>{{e.question.answer}}</p><p>{{examExplanation(e.question)}}</p></AppDisclosure>
 <div class="exam-form-grid">
 <label>得分<Input v-if="marks[e.versionId]" v-model="marks[e.versionId].score" type="number" min="0" :max="e.points" :readonly="!!exam.resultsAt"/>
 </label>
@@ -199,10 +200,10 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </div>
 </article>
 <div class="focus-grading-actions"><AppButton variant="outline" :disabled="!gradingQuestion" @click="gradingQuestion--">上一题</AppButton><AppButton :disabled="busy||!sub.submittedAt||!!exam.resultsAt" @click="markNext">{{gradingQuestion<exam.paper.entries.length-1?'保存并下一题':'保存批阅'}}</AppButton><AppButton v-if="exam.resultsAt&&gradingQuestion<exam.paper.entries.length-1" variant="outline" @click="gradingQuestion++">下一题</AppButton></div>
-<details class="teacher-grade-audit">
-<summary>批阅记录 　 {{sub.audits?.length||0}}</summary>
+<AppDisclosure class="teacher-grade-audit">
+<template #title>批阅记录 　 {{sub.audits?.length||0}}</template>
 <p v-for="a in sub.audits" :key="a.id">{{new Date(a.at).toLocaleString('zh-CN')}} 　 {{a.actorId}} 　 {{a.id}}</p>
-</details>
+</AppDisclosure>
 </Surface>
 </div>
 </template>
@@ -230,7 +231,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <div v-if="current.question.equation" class="exam-math"><MathExpression :text="current.question.equation"/></div>
 <label>答案<AnswerInput :question="current.question" :model-value="answerModel().answer" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().answer=$event"/>
 </label>
-<details v-if="pending" class="focus-exam-voice"><summary>语音输入</summary><SpeechConfirm :context-key="current.versionId" :disabled="busy" @confirmed="answerModel().answer=$event"/></details>
+<AppDisclosure v-if="pending" class="focus-exam-voice"><template #title>语音输入</template><SpeechConfirm :context-key="current.versionId" :disabled="busy" @confirmed="answerModel().answer=$event"/></AppDisclosure>
 <label>思路与依据<Textarea :model-value="answerModel().reason" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().reason=$event"/>
 </label>
 <div class="exam-toolbar">
@@ -276,7 +277,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppButton :disabled="busy" @click="generateCandidate">生成待审核候选</AppButton>
 <template v-if="candidate">
 <Status>{{statusLabel(candidate.status)}}</Status>
-<p v-if="candidate.error" role="alert">{{candidate.error}}</p>
+<AppAlert type="error" v-if="candidate.error" role="alert">{{candidate.error}}</AppAlert>
 <p>{{candidate.result?.prompt}}</p>
 <p>{{candidate.result?.equation}}</p>
 <AppButton v-if="candidate.status==='succeeded'" :disabled="busy" @click="adopt">存入待审核题库</AppButton>

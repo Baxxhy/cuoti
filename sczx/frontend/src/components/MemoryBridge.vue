@@ -48,9 +48,9 @@ onBeforeUnmount(() => generation++);
         >查看复习<ArrowRight
       /></AppButton>
     </div>
-    <p v-if="error" role="alert">
+    <AppAlert type="error" v-if="error" role="alert">
       {{ error }}<AppButton variant="ghost" @click="load">重试</AppButton>
-    </p>
+    </AppAlert>
     <article v-for="r in suggestions" :key="r.id">
       <div>
         <strong>{{

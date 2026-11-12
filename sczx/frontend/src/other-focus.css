@@ -13,8 +13,7 @@
 .focus-activity-editor .field-label{margin:16px 0 8px;font-size:13px}
 .focus-activity-editor [data-slot=textarea]{min-height:175px;font-size:15px;line-height:1.9}
 .focus-activity-editor .preparation-block-notes [data-slot=textarea]{min-height:100px;font-size:14px}
-.focus-activity-editor .preparation-block-notes{border:0;border-top:1px solid var(--border);border-radius:0;background:transparent;padding:16px 0 0;margin-top:20px;font-size:13px}
-.focus-activity-editor .preparation-block-notes summary{cursor:pointer;color:#555;font-size:13px}
+.focus-activity-editor .preparation-block-notes{margin-top:20px}
 .focus-activity-editor .preparation-block-notes label{display:grid;gap:8px;margin:16px 0}
 .focus-editor-footer{display:flex;justify-content:space-between;gap:14px;margin-top:28px;flex-wrap:wrap}
 .focus-preparation-settings{border:1px solid var(--border);border-radius:10px;padding:26px 32px;background:var(--card);max-width:1100px}
@@ -39,16 +38,12 @@
 .focus-plan-activities>nav span{color:var(--muted-foreground);font-size:11px;line-height:22px}
 .focus-plan-activities>nav strong{font-weight:450;line-height:22px}
 .focus-plan-activities>nav .active strong{font-weight:600}
-.focus-plan-activities .planning-block{margin:0;min-width:0;padding:20px}
+.focus-plan-activities .planning-block{min-width:0}
 .focus-plan-activities .planning-block>[data-slot=textarea]{min-height:210px;line-height:1.9;font-size:15px}
-.focus-agent-goal{border-bottom:1px solid var(--border);padding:14px 0 20px}
-.focus-agent-goal>summary{font-size:13px;color:var(--muted-foreground);cursor:pointer}
-.focus-agent-goal[open]>summary{margin-bottom:16px}
 .focus-question-stats{display:flex;gap:23px;flex-wrap:wrap;margin:18px 0 20px;font-variant-numeric:tabular-nums}
 .focus-question-stats dt{font-size:11px;color:var(--muted-foreground)}
 .focus-question-stats dd{margin:5px 0 0;font-size:22px;font-weight:450;color:var(--foreground)}
-.focus-exam-voice{margin-top:9px;font-size:12px;color:var(--muted-foreground)}
-.focus-exam-voice>summary{cursor:pointer}.focus-exam-voice[open]>summary{margin-bottom:14px}
+.focus-exam-voice{margin-top:9px}
 @media(max-width:1150px){.focus-plan-activities{grid-template-columns:170px minmax(0,1fr);gap:14px}}
 @media(max-width:850px){.focus-plan-activities{grid-template-columns:1fr}.focus-plan-activities>nav{display:flex;overflow:auto}.focus-plan-activities>nav button{min-width:160px}}
 .planning-plan [readonly]{opacity:1;color:var(--foreground);cursor:text}

@@ -34,14 +34,11 @@ const verification = computed(
 </script>
 <template>
   <section v-if="job" class="model-result" :aria-busy="busy">
-    <div v-if="busy || job.status==='failed'" class="model-status" role="status" aria-live="polite">
-      <LoaderCircle v-if="busy" :size="17" class="model-spinner" />
-      <CircleAlert v-else-if="job.status === 'failed'" :size="17" />
-      <Check v-else :size="17" />
+    <AppAlert v-if="busy || job.status==='failed'" :type="job.status==='failed'?'error':'info'" class="model-status" role="status" aria-live="polite">
       <strong>{{ capabilityNames[job.capability] }}</strong
       ><span>{{ job.step }}</span>
-    </div>
-    <div v-if="job.error" class="model-error" role="alert">{{ job.error }}</div>
+    </AppAlert>
+    <AppAlert type="error" v-if="job.error" class="model-error" role="alert">{{ job.error }}</AppAlert>
     <AppButton
       v-if="canRetry && job.status === 'failed'"
       variant="outline"
@@ -65,11 +62,11 @@ const verification = computed(
       aria-label="转写原始音频"
     />
     <template v-if="result && job.status === 'succeeded'">
-      <details v-if="job.recognizedText" class="model-run-history">
-        <summary>学生确认的题目</summary>
+      <AppDisclosure v-if="job.recognizedText" class="model-run-history">
+        <template #title>学生确认的题目</template>
         <p class="model-prose">{{ job.recognizedText }}</p>
-      </details>
-      <template v-if="job.mode==='analysis'"><h3>{{result.goal}}</h3><p class="model-prose">建议检查：{{result.cause}}</p><blockquote v-if="result.evidence">{{result.evidence}}</blockquote><p class="model-prose">{{result.uncertainty}}</p><ol class="model-steps"><li v-for="step in result.steps" :key="step">{{step}}</li></ol><p class="model-followup">{{result.checkQuestion}}</p></template>
+      </AppDisclosure>
+      <template v-if="job.mode==='analysis'"><h3>{{result.goal}}</h3><p class="model-prose">建议检查：{{result.cause}}</p><blockquote v-if="result.evidence">{{result.evidence}}</blockquote><p class="model-prose">{{result.uncertainty}}</p><ElTimeline><ElTimelineItem v-for="(step,index) in result.steps" :key="index" type="primary">{{step}}</ElTimelineItem></ElTimeline><AppAlert type="info" class="model-followup">{{result.checkQuestion}}</AppAlert></template>
       <template v-else-if="job.mode==='variant'"><h3>{{job.phase==='retest'?'独立新题':'补救练习'}}</h3><p class="model-prose">{{result.variant?.prompt}}</p><p class="math-equation">{{result.variant?.equation}}</p><Status>{{result.variantVerification?.status==='verified'?'本题方程与参考答案已核对':'需要核对'}}</Status></template>
       <template v-else-if="job.capability === 'text'">
         <SpeechReader
@@ -89,7 +86,7 @@ const verification = computed(
           }[job.strategy]
         }}</Status>
         <h3>{{ result.title }}</h3>
-        <p class="model-prose">{{ result.hint }}</p>
+        <AppAlert type="info" class="model-prose">{{ result.hint }}</AppAlert>
         <AppButton
           v-if="result.steps?.length"
           variant="ghost"
@@ -97,10 +94,10 @@ const verification = computed(
           :aria-expanded="expanded"
           >{{ expanded ? "收起步骤" : "一步步看" }}</AppButton
         >
-        <div v-if="expanded&&result.steps?.length" class="student-model-step"><span>{{stepIndex+1}} / {{result.steps.length}}</span><p>{{result.steps[stepIndex]}}</p><div class="action-row"><AppButton variant="ghost" size="sm" :disabled="stepIndex===0" @click="stepIndex--">上一步</AppButton><AppButton variant="outline" size="sm" :disabled="stepIndex===result.steps.length-1" @click="stepIndex++">下一步</AppButton></div></div>
-        <p v-if="result.question" class="model-followup">
+        <Surface v-if="expanded&&result.steps?.length" class="student-model-step"><span>{{stepIndex+1}} / {{result.steps.length}}</span><p>{{result.steps[stepIndex]}}</p><div class="action-row"><AppButton variant="ghost" size="sm" :disabled="stepIndex===0" @click="stepIndex--">上一步</AppButton><AppButton variant="outline" size="sm" :disabled="stepIndex===result.steps.length-1" @click="stepIndex++">下一步</AppButton></div></Surface>
+        <AppAlert v-if="result.question" type="info" class="model-followup">
           {{ result.question }}
-        </p>
+        </AppAlert>
         <div v-if="job.strategy !== 'try'" class="model-verification">
           <Status
             :tone="
@@ -117,9 +114,9 @@ const verification = computed(
       <p v-if="result.studentAnswer" class="model-prose">
         原作答：{{ result.studentAnswer }}
       </p>
-      <div v-if="result.uncertainties?.length" class="model-error">
+      <AppAlert type="warning" v-if="result.uncertainties?.length" class="model-error">
         待核对：{{ result.uncertainties.join("；") }}
-      </div>
+      </AppAlert>
       <div v-if="job.capability === 'embedding'" class="model-metrics">
         <div>
           <strong>{{ result.count }}</strong
@@ -134,28 +131,28 @@ const verification = computed(
         <p v-if="!result.items?.length" class="ai-empty">
           没有匹配的案例，换个知识点或学生困难试试。
         </p>
-        <p v-if="result.warning" role="status" class="model-model-name">
+        <AppAlert v-if="result.warning" type="warning" role="status" class="model-model-name">
           {{ result.warning }}
-        </p>
-        <details
+        </AppAlert>
+        <AppDisclosure
           v-for="item in result.items"
           :key="item.id"
           class="retrieval-item"
         >
-          <summary>{{ item.title }}</summary>
+          <template #title>{{ item.title }}</template>
           <p class="model-prose">{{ item.content }}</p>
           <MatchEvidence :item="item" /><span class="model-model-name">{{
             item.source || "团队编写案例示例"
           }}</span>
-        </details>
+        </AppDisclosure>
         <InfoTip v-if="result.items?.length" label="检索方式"
           >BM25 中文检索{{
             result.rerankApplied ? "，已完成 Codex 语义重排" : ""
           }}；相关分值不代表内容正确性。</InfoTip
         >
       </div>
-      <details v-if="result.sources?.length" class="model-run-history">
-        <summary>参考教学案例 　 {{ result.sources.length }}</summary>
+      <AppDisclosure v-if="result.sources?.length" class="model-run-history">
+        <template #title>参考教学案例 　 {{ result.sources.length }}</template>
         <section
           v-for="source in result.sources"
           :key="`${source.id}:${source.versionId || ''}`"
@@ -179,7 +176,7 @@ const verification = computed(
             >{{ ref.materialTitle }} 　 {{ ref.label }}</a
           >
         </section>
-      </details>
+      </AppDisclosure>
       <ol v-if="result.ranking" class="model-ranking">
         <li v-for="item in result.ranking" :key="item.id">
           <strong>{{ item.id }}</strong
@@ -208,8 +205,8 @@ const verification = computed(
         }}</InfoTip
       >
     </div>
-    <details v-if="showSource&&job.runs?.length" class="model-run-history model-technical-details">
-      <summary>执行记录 　 {{ job.runs.length }}</summary>
+    <AppDisclosure v-if="showSource&&job.runs?.length" class="model-run-history model-technical-details">
+      <template #title>执行记录 　 {{ job.runs.length }}</template>
       <div v-for="run in job.runs" :key="run.id">
         <span
           >第 {{ run.number }} 次 　
@@ -217,8 +214,8 @@ const verification = computed(
             { running: "执行中", succeeded: "成功", failed: "失败" }[run.status]
           }}</span
         ><span>{{ run.model }}</span>
-        <p v-if="run.error">{{ run.error }}</p>
+        <AppAlert v-if="run.error" type="error">{{ run.error }}</AppAlert>
       </div>
-    </details>
+    </AppDisclosure>
   </section>
 </template>

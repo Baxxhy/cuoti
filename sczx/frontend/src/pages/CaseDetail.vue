@@ -32,8 +32,8 @@ watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
 </script>
 <template>
   <RouteButton v-if="route.query.interventionClass&&currentCase" :route="'insights?class='+route.query.interventionClass+'&task='+(route.query.interventionTask||'')+'&interventionCase='+currentCase.id" secondary>用于补充教学</RouteButton>
-  <p v-if="loading" role="status">读取案例中…</p>
-  <Surface v-else-if="error || !currentCase"><AppEmpty class="empty-state"><p role="alert">{{ error || '暂无已发布的案例' }}</p><AppButton @click="navigate('cases')">返回教学案例</AppButton></AppEmpty></Surface>
+  <ElSkeleton v-if="loading" animated :rows="3" aria-label="读取案例中…"/>
+  <Surface v-else-if="error || !currentCase"><AppEmpty class="empty-state"><AppAlert type="error" role="alert">{{ error || '暂无已发布的案例' }}</AppAlert><AppButton @click="navigate('cases')">返回教学案例</AppButton></AppEmpty></Surface>
   <template v-else>
   <div class="back-line">
     <AppButton variant="ghost" @click="navigate('cases')"
@@ -68,7 +68,7 @@ watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
   <div class="case-detail-grid teacher-case-reading">
     <article class="case-article"><CaseArticle :value="currentCase" /></article>
     <aside>
-      <details class="case-use-card teacher-context-card"><summary>适用情境</summary><div v-for="(label,key) in {studentBase:'学生基础',difficulty:'学生困难',goal:'教学目标',boundary:'适用边界'}" v-show="currentCase.experience?.[key]" :key="key"><span>{{ label }}</span><p>{{ currentCase.experience?.[key] }}</p></div>
+      <AppDisclosure class="case-use-card teacher-context-card"><template #title>适用情境</template><div v-for="(label,key) in {studentBase:'学生基础',difficulty:'学生困难',goal:'教学目标',boundary:'适用边界'}" v-show="currentCase.experience?.[key]" :key="key"><span>{{ label }}</span><p>{{ currentCase.experience?.[key] }}</p></div>
         <div class="source-box">
           <BookOpen :size="16" />
           <p>
@@ -77,8 +77,7 @@ watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
             >
           </p>
         </div>
-</details
-      >
+</AppDisclosure>
     </aside>
   </div>
   </template>

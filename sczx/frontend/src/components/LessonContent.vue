@@ -15,7 +15,7 @@ function update(block,patch){emit('progress',block.id,{...props.progress[block.i
 </script>
 <template>
  <article :class="['curriculum-reading',{'focused-reading':focused}]">
-  <div v-if="!focused" class="curriculum-reading-intro"><h2 v-if="preview">{{lesson.title}}</h2><details><summary>学习目标</summary><p>{{lesson.goal}}</p></details></div>
+  <div v-if="!focused" class="curriculum-reading-intro"><h2 v-if="preview">{{lesson.title}}</h2><AppDisclosure><template #title>学习目标</template><p>{{lesson.goal}}</p></AppDisclosure></div>
   <section v-for="block in blocks" :key="block.id" class="curriculum-block" :data-block="block.id" @click="emit('focus',block.id)">
    <div class="curriculum-block-heading"><h2 tabindex="-1">{{readingValue(lesson,block,'title')}}</h2><Status v-if="!focused">{{kinds[block.type]||'历史内容'}}</Status></div>
    <LessonReading :lesson="lesson" :block="block"/>

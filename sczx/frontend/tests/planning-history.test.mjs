@@ -10,10 +10,9 @@ test('agent history follows route, rejects stale replies, guards edits and resto
   const {createRouter,createMemoryHistory,RouterView}=await import((await (await fetch('/src/pages/PlanningAgent.vue')).text()).match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
   const {TooltipProvider}=await import('/src/components/app/provider.js');
   const {default:Page}=await import('/src/pages/PlanningAgent.vue');const {useLearning}=await import('/src/store.js');
-  const original=fetch,oldConfirm=confirm,prior=getActivePinia(),pinia=createPinia();const s=useLearning(pinia);s.data.lesson={id:'one'};s.save=async()=>true;
+  const original=fetch,prior=getActivePinia(),pinia=createPinia();const s=useLearning(pinia);s.data.lesson={id:'one'};s.save=async()=>true;
   const jobs=Object.fromEntries(['a','b','c'].map(id=>[id,{id,capability:'lesson_agent',status:id==='c'?'cancelled':'succeeded',attemptNumber:1,input:{lesson:{versionId:'v1'},lessonId:id==='c'?'two':'one',task:'任务'+id,taskType:'activity',constraints:''},result:{steps:[],cases:[],materials:[],editable:{title:'结果'+id,goal:'目标'+id,rationale:[],blocks:[{id:'block',title:'活动'+id,content:'内容'+id,evidenceIds:[]}],mathClaims:[]}}}]));
-  let releaseB,asked=0,allow=false;
-  window.confirm=()=>{asked++;return allow};
+  let releaseB,asked=0;
   window.fetch=(url,opts)=>{
    const path=new URL(String(url),location.origin).pathname;
    let data;
@@ -30,12 +29,12 @@ test('agent history follows route, rejects stale replies, guards edits and resto
   try{
    await wait(()=>el.querySelector('#agent-goal')?.value==='目标a');
    const goal=el.querySelector('#agent-goal');goal.value='教师未保存';goal.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();
-   await router.push('/agent?lesson=one&job=b');if(router.currentRoute.value.query.job!=='a')throw Error('dirty guard failed');const retained=el.querySelector('#agent-goal').value==='教师未保存';
-   allow=true;await router.push('/agent?lesson=one&job=b');await wait(()=>!!releaseB);
+   let navigation=router.push('/agent?lesson=one&job=b');await wait(()=>!!document.querySelector('.el-message-box'));asked++;[...document.querySelectorAll('.el-message-box button')].find(e=>e.textContent.trim()==='取消').click();await navigation;await new Promise(r=>setTimeout(r,350));if(router.currentRoute.value.query.job!=='a')throw Error('dirty guard failed');const retained=el.querySelector('#agent-goal').value==='教师未保存';
+   navigation=router.push('/agent?lesson=one&job=b');await wait(()=>!!document.querySelector('.el-message-box'));asked++;[...document.querySelectorAll('.el-message-box button')].find(e=>e.textContent.trim()==='确认').click();await navigation;await wait(()=>!!releaseB);
    await router.push('/agent?lesson=two&job=c');await wait(()=>el.querySelector('#agent-goal')?.value==='目标c');releaseB();await new Promise(r=>setTimeout(r,100));const noStale=el.querySelector('#agent-goal').value==='目标c';
    await router.push('/agent?lesson=one&job=a');await wait(()=>el.querySelector('#agent-goal')?.value==='目标a');router.back();await wait(()=>el.querySelector('#agent-goal')?.value==='目标c');
    return {retained,noStale,asked,back:true,cancelledVisible:el.textContent.includes('已取消')};
-  }finally{window.fetch=original;window.confirm=oldConfirm;app.unmount();el.remove();setActivePinia(prior)}
+  }finally{window.fetch=original;app.unmount();el.remove();setActivePinia(prior)}
  });assert(result.retained);assert(result.noStale);assert(result.asked>=2);assert(result.back);assert(result.cancelledVisible);
  }finally{await browser.close()}
 });

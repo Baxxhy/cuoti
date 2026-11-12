@@ -14,7 +14,7 @@
   .student-catalog { gap:20px; }
   .student-course-header { padding:18px 22px; }
   .student-lesson-row { padding:16px 22px; gap:18px; }
-  .student-course-unit>.study-disclosure { margin-inline:22px; padding-block:12px; }
+  .student-course-unit>.study-disclosure { margin-inline:22px; }
   .student-course-unit>h3 { padding:14px 22px 4px; }
   .focus-preparation { min-height:0; }
   .focus-activity-editor,.focus-preparation-settings { max-width:none; padding:22px 26px; }

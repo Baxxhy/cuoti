@@ -1,4 +1,5 @@
 <script setup>
+import { confirmAction } from '@/lib/confirm-action.js';
 import { ref, computed, onMounted, watch, inject, onBeforeUnmount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useLearning } from "@/store.js";
@@ -147,7 +148,7 @@ async function add() {
 }
 async function remove(item) {
   if (
-    !confirm("移出后停止新任务分配，保留该学生历史作答；本人历史只读。继续？")
+    !await confirmAction("移出后停止新任务分配，保留该学生历史作答；本人历史只读。继续？")
   )
     return;
   try {
@@ -181,7 +182,7 @@ async function revoke(item) {
 async function backfill(task) {
   if (!members.value.length) return;
   if (
-    !confirm(
+    !await confirmAction(
       "将此历史任务的原始快照补发给当前班级尚未分配的学生？已分配记录保持不变。",
     )
   )
@@ -231,20 +232,20 @@ async function join() {
     <template v-if="room">
       <AppTabs v-model="view" :items="[{value:'tasks',label:'学习任务'},{value:'members',label:'成员与邀请'}]"/>
       <section v-if="view==='tasks'" class="ops-section">
-        <p v-if="loading" role="status">读取任务…</p>
+        <ElSkeleton v-if="loading" animated :rows="3" aria-label="读取任务…"/>
         <Surface v-else class="teaching-tasks"><TaskList teacher :tasks="tasks"/></Surface>
-        <details v-if="tasks.length" class="ops-disclosure"><summary>补发历史任务</summary>
+        <AppDisclosure v-if="tasks.length" class="ops-disclosure"><template #title>补发历史任务</template>
           <div v-for="task in tasks" :key="task.id" class="task-allocation"><span><strong>{{task.title}}</strong><small>{{task.summary.assigned}} 人已分配 　 {{task.summary.inactive}} 人历史保留</small></span><AppButton variant="outline" @click="backfill(task)">补发给当前成员</AppButton></div>
-        </details>
+        </AppDisclosure>
       </section>
       <div v-else class="ops-member-layout">
         <Surface class="teaching-members"><header><h2>班级成员</h2><span>{{members.length}} 人</span></header>
           <div class="ops-add-member"><AppSelect v-model="student" label="添加已有学生" :options="accounts.filter(a=>!members.some(m=>m.id===a.id)).map(a=>({value:a.id,label:a.displayName+' 　 '+a.username}))"/><AppButton :disabled="busy||!student||loading" @click="add"><UserPlus :size="15"/>添加</AppButton></div>
-          <p v-if="loading" role="status">读取成员…</p><AppEmpty v-else-if="!members.length" class="empty-state">暂无班级成员</AppEmpty>
+          <ElSkeleton v-if="loading" animated :rows="3" aria-label="读取成员…"/><AppEmpty v-else-if="!members.length" class="empty-state">暂无班级成员</AppEmpty>
           <div v-for="item in members" :key="item.id" class="teaching-member"><span class="avatar">{{item.displayName.slice(0,1)}}</span><div><strong>{{item.displayName}}</strong><p>{{item.username}}</p></div><AppButton variant="ghost" size="icon-sm" :aria-label="'移出'+item.displayName" @click="remove(item)"><X :size="14"/></AppButton></div>
         </Surface>
         <Surface class="teaching-invites"><header><h2>邀请学生</h2><Ticket :size="17"/></header><label class="field-label">邀请码有效期<AppSelect v-model="inviteDays" label="邀请码有效期" :options="[{value:'1',label:'1天'},{value:'7',label:'7天'},{value:'30',label:'30天'}]"/></label><AppButton variant="outline" @click="createInvite">生成邀请码</AppButton><p v-if="code" class="invitation-code" aria-label="新邀请码">{{code}}</p>
-          <details v-if="invites.length" class="ops-disclosure"><summary>已生成的邀请码</summary><div v-for="item in invites" :key="item.id"><Status>{{item.revoked?'已撤销':item.expired?'已过期':'有效'}}</Status><time>{{deadlineText(item.expiresAt)}}</time><AppButton v-if="!item.revoked&&!item.expired" variant="ghost" @click="revoke(item)">撤销</AppButton></div></details>
+          <AppDisclosure v-if="invites.length" class="ops-disclosure"><template #title>已生成的邀请码</template><div v-for="item in invites" :key="item.id"><Status>{{item.revoked?'已撤销':item.expired?'已过期':'有效'}}</Status><time>{{deadlineText(item.expiresAt)}}</time><AppButton v-if="!item.revoked&&!item.expired" variant="ghost" @click="revoke(item)">撤销</AppButton></div></AppDisclosure>
         </Surface>
       </div>
     </template>

@@ -259,7 +259,7 @@ const targets = computed(() => {
       </NativeSelect></label
     >
   </div>
-  <p v-if="loading" role="status">正在读取学习记录…</p>
+  <ElSkeleton v-if="loading" animated :rows="3" aria-label="正在读取学习记录…"/>
   <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}<AppButton variant="ghost" @click="load">重新读取</AppButton></AppAlert>
   <AppAlert  v-if="data && route.query.knowledge && !selected" class="inline-notice" data-status="pending" role="status">
     没有找到当前学习范围内的知识点。<AppButton
@@ -443,29 +443,29 @@ const targets = computed(() => {
               teacher ? "核对与修订" : "提出纠正"
             }}</AppButton>
           </div>
-          <details>
-            <summary>来源</summary>
+          <AppDisclosure>
+            <template #title>来源</template>
             <p>{{ e.evidenceId }}</p><p v-if="e.timeReliable===false">原始时间 {{e.rawOccurredAt}} 　 {{e.timeBasis}}</p>
             <p>{{ e.lessonVersionId || "个人独立记录，无课程版本" }}</p>
             <p>{{ e.verification }}{{ e.helped ? " 　 使用帮助" : "" }}</p>
-          </details>
+          </AppDisclosure>
           </template>
         </article>
-        <details v-if="selected?.stateHistory.length" class="memory-audit">
-          <summary>
+        <AppDisclosure v-if="selected?.stateHistory.length" class="memory-audit">
+          <template #title>
             状态变化<InfoTip label="历史状态范围"
               >按当前规则与当时已有事实回算，不覆盖原始记录。</InfoTip
             >
-          </summary>
+          </template>
           <p v-for="s in selected.stateHistory" :key="s.evidenceId">
             {{ time(s.at) }} 　 {{ s.label }}
           </p>
-        </details>
+        </AppDisclosure>
         <p v-if="!evidence.length" class="memory-empty-evidence">
           再完成一些独立练习后，这里会更新。
         </p>
-        <details v-if="data.audit.length" class="memory-audit">
-          <summary>修订记录</summary>
+        <AppDisclosure v-if="data.audit.length" class="memory-audit">
+          <template #title>修订记录</template>
           <article v-for="a in auditEntries" :key="a.id">
             <time>{{ time(a.createdAt) }}</time
             ><strong>{{
@@ -485,7 +485,7 @@ const targets = computed(() => {
             </p>
             <p v-if="a.details.note">{{ a.details.note }}</p>
           </article>
-        </details>
+        </AppDisclosure>
       </div></section>
     </div></template
   >

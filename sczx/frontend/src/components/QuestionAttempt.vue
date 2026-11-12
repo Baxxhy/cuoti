@@ -133,14 +133,15 @@ async function ask() {
       :disabled="(!preview && store.task?.readOnly) || busy"
     />
     <AppAlert  v-if="hint" class="inline-notice">{{ hint }}</AppAlert>
-    <p
+    <AppAlert
       v-if="latest"
+      :type="latest.correct?'success':latest.verification?.status==='unverified'?'warning':'error'"
       role="status"
       :class="['curriculum-answer-result', latest.correct ? 'correct' : '']"
     >
       <span v-if="latest.answer!==answer||latest.reason!==reason" class="student-previous-answer">上次作答</span>{{ latest.verification?.status==='unverified'?'需要核对':latest.correct?'答案已核对':'再检查一下' }}
-      <span>{{latest.helped?'用过帮助':'独立作答'}}</span><InfoTip v-if="latest.verification?.message" label="查看核对结果">{{latest.verification.message}}</InfoTip>
-    </p>
+      <Status :tone="latest.helped?'amber':'neutral'">{{latest.helped?'用过帮助':'独立作答'}}</Status><InfoTip v-if="latest.verification?.message" label="查看核对结果">{{latest.verification.message}}</InfoTip>
+    </AppAlert>
     <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
     <div class="library-actions">
       <AppButton

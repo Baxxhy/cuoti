@@ -72,7 +72,7 @@ onMounted(load);
         v-model="search"
         aria-label="搜索错题"
         placeholder="搜索题目"
-      /><details class="student-filter-disclosure"><summary>筛选<span v-if="subject||knowledge||cause"> 　 已筛选</span></summary><div class="student-filter-fields"><NativeSelect v-model="subject" aria-label="筛选学科">
+      /><AppDisclosure class="student-filter-disclosure"><template #title>筛选<span v-if="subject||knowledge||cause"> 　 已筛选</span></template><div class="student-filter-fields"><NativeSelect v-model="subject" aria-label="筛选学科">
         <option value="">全部学科</option>
         <option
           v-for="s in [
@@ -90,12 +90,12 @@ onMounted(load);
       ><NativeSelect v-model="cause" aria-label="筛选错因">
         <option value="">全部错因</option>
         <option v-for="r in options.reasons" :key="r">{{ r }}</option>
-      </NativeSelect></div></details>
+      </NativeSelect></div></AppDisclosure>
     </div>
   </div>
-  <p v-if="loading" role="status">正在读取错题…</p>
+  <ElSkeleton v-if="loading" animated :rows="3" aria-label="正在读取错题…"/>
   <Surface v-else-if="error"
-    ><p role="alert">{{ error }}</p>
+    ><AppAlert type="error" role="alert">{{ error }}</AppAlert>
     <AppButton @click="load">重新读取</AppButton></Surface
   >
   <div v-else-if="filtered.length" class="wrong-library">

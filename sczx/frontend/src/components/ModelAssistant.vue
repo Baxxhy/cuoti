@@ -318,13 +318,13 @@ onBeforeUnmount(() => interaction++);
     <p v-else-if="blockId" class="tutoring-context">
       {{ store.task?.snapshot?.blocks?.find((b) => b.id === blockId)?.title }}
     </p>
-    <details v-if="earlier.length" class="tutoring-history">
-      <summary>前面的指导 　 {{ earlier.length }}</summary>
+    <AppDisclosure v-if="earlier.length" class="tutoring-history">
+      <template #title>前面的指导 　 {{ earlier.length }}</template>
       <article v-for="item in earlier" :key="item.id">
         <p class="tutoring-response">{{ item.prompt }}</p>
         <ModelResult :job="item" :can-retry="false" />
       </article>
-    </details>
+    </AppDisclosure>
     <p v-if="job?.prompt" class="tutoring-response">{{ job.prompt }}</p>
     <ModelResult
       :job="job"

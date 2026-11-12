@@ -9,15 +9,11 @@
 .ops-row-title{display:flex;gap:12px;align-items:center;justify-content:space-between}
 .ops-row-title h2{font-size:19px;font-weight:600;margin:0}
 .ops-row-title>svg{flex-shrink:0}
-.ops-disclosure{padding:18px 0;border-top:1px solid var(--border);margin-top:24px;min-width:0}
-.ops-disclosure>summary,.ops-filter-dates>summary{font-weight:550;font-size:13px;color:var(--foreground);cursor:pointer;line-height:24px}
-.ops-disclosure[open]>summary{margin-bottom:18px}
+.ops-disclosure{margin-top:24px;min-width:0}
 .ops-disclosure dl,.ops-table-details dl{display:grid;gap:10px;font-size:13px}
 .ops-disclosure dl>div,.ops-table-details dl>div{display:flex;justify-content:space-between;gap:20px}
 .ops-disclosure dt,.ops-table-details dt{color:var(--muted-foreground)}
 .ops-disclosure dd,.ops-table-details dd{margin:0;font-variant-numeric:tabular-nums}
-.ops-table-details summary{cursor:pointer;white-space:nowrap}
-.ops-table-details[open] dl{min-width:190px;padding-top:15px}
 .ops-student-classes{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
 .ops-student-classes .student-class h2{margin:0;font-size:20px}
 .ops-student-classes .student-class p{margin:14px 0 24px}
@@ -30,10 +26,9 @@
 .analytics-metrics>div{border:0;background:transparent;padding:0 22px;border-right:1px solid var(--border)}
 .analytics-metrics>div:first-child{padding-left:0}.analytics-metrics>div:last-child{border-right:0}
 .analytics-metrics strong{font-size:27px;font-weight:550;color:var(--foreground)}
-.ops-metric-details{margin-top:0;margin-bottom:20px;border-top:0;padding-top:12px}
+.ops-metric-details{margin-top:0;margin-bottom:20px}
 .ops-metric-details dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 36px;max-width:800px}
 .ops-filter-dates{position:relative;flex-shrink:0}
-.ops-filter-dates[open]>div{display:flex;gap:14px;padding:14px;background:var(--background);border:1px solid var(--border);border-radius:8px;margin-top:8px}
 .ops-group-editor{display:grid;gap:20px;margin-top:24px}
 .ops-group-editor .teaching-group-layout{margin-top:0}
 .ops-caption{font-size:13px;color:var(--muted-foreground)}
@@ -62,11 +57,10 @@
 .ops-course-page .curriculum-editor-heading{align-items:start;border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:0}
 .ops-course-editor{border:0;background:var(--background);min-width:0}
 .ops-course-editor .curriculum-edit-pane{padding:22px 0;max-width:1100px}
-.ops-course-editor .curriculum-block-editor{display:block;padding:0;margin-top:14px;border:1px solid var(--border);border-radius:8px;background:#fff}
-.ops-course-editor .curriculum-block-editor>summary{padding:16px 18px;font-size:14px;font-weight:550;cursor:pointer;overflow-wrap:anywhere}
+.ops-course-editor .curriculum-block-editor{display:block;margin-top:14px}
 .ops-content-section{display:grid;gap:16px;padding:0 18px 20px}
 .ops-content-section .curriculum-block-toolbar{padding-top:12px;border-top:1px solid var(--border)}
-.ops-content-section .ops-disclosure{margin:0;padding:12px 0}
+.ops-content-section .ops-disclosure{margin:0}
 .ops-course-editor .curriculum-meta{margin-top:18px}
 .ops-course-page .curriculum-knowledge-row{grid-template-columns:minmax(140px,1fr) minmax(160px,1fr);gap:20px}
 .ops-course-page .curriculum-knowledge-row fieldset{grid-column:1/-1}
@@ -86,7 +80,6 @@
 .ops-material-page .material-metadata{font-size:13px;padding:14px 0;border-top:1px solid var(--border)}
 .ops-material-page .material-metadata label{margin-top:14px}
 .ops-material-page .library-selection input,.ops-material-page .library-fields input[type=checkbox]{accent-color:#222}
-.ops-material-page .library-selection>summary{font-size:14px;font-weight:550;cursor:pointer}
 .ops-material-page .library-fields{gap:14px}
 .ops-material-page .library-job-history{max-height:280px}
 .ops-reading-sheet{padding:26px 32px;border:1px solid var(--border);border-radius:10px;max-width:1200px;margin-inline:auto;background:var(--background)}
@@ -94,7 +87,7 @@
 .ops-not-found{max-width:620px;margin:8vh auto}.ops-not-found h1{font-size:25px;font-weight:600}
 .model-console-grid{grid-template-columns:minmax(0,1fr);gap:0}
 .model-console-form{max-width:980px}
-.model-task-list.ops-disclosure{border-left:0;padding-left:0;max-height:none}
+.model-task-list.ops-disclosure{max-height:none}
 .model-task-list.ops-disclosure>button{max-width:980px}
 .account-manager .account-form{display:grid;grid-template-columns:1fr;gap:12px;margin:0;padding:0;border:0}
 .account-manager .account-list{margin-top:20px;border-top:1px solid var(--border)}
@@ -108,5 +101,4 @@
 @media(max-width:900px){.ops-member-layout,.community-layout,.issue-workspace,.ops-course-page .curriculum-workbench,.ops-material-page .library-layout{grid-template-columns:minmax(0,1fr)}.community-layout>aside{max-height:240px;border-right:0;border-bottom:1px solid var(--border);padding:0 0 14px}.ops-course-page .curriculum-tree,.ops-material-page .library-rail{position:static;border-right:0;border-bottom:1px solid var(--border);padding:0 0 20px;max-height:330px}.ops-material-page .library-list{max-height:200px}.analytics-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.analytics-metrics>div{padding:0;border:0}.ops-metric-details dl{grid-template-columns:1fr}.ops-group-editor .teaching-group-layout{grid-template-columns:1fr}.ops-reading-sheet{padding:22px}.ops-context-row{gap:12px}.ops-context-row>[data-slot=select-trigger]{flex:1;max-width:100%}.ops-student-classes{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.ops-material-page *,.ops-course-page *,.ops-member-layout *{scroll-behavior:auto;transition:none;animation:none}}
 .ops-published-lesson.curriculum-reading{padding:24px 0;max-width:980px}
-.ops-course-editor>summary{cursor:pointer;font-size:13px;font-weight:550;padding:18px 0;border-top:1px solid var(--border)}
 .ops-course-page .curriculum-edit-pane input:focus-visible{outline-color:#272727}
