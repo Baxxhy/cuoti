@@ -265,7 +265,7 @@ const targets = computed(() => {
   </div>
   <div
     v-if="data && route.query.knowledge && !selected"
-    class="inline-notice"
+    class="inline-notice" data-status="pending"
     role="status"
   >
     没有找到当前学习范围内的知识点。<Button
@@ -380,7 +380,7 @@ const targets = computed(() => {
         <template v-if="selected"
           ><Status>{{ studentState(selected) }}</Status>
           <InfoTip label="当前状态说明">{{selected.state.reason}}</InfoTip>
-          <p v-if="selected.state.reviewRequested" class="inline-notice">
+          <p v-if="selected.state.reviewRequested" class="inline-notice" data-status="pending">
             教师已标记需要复核，原核验结果保留。
           </p>
           <div

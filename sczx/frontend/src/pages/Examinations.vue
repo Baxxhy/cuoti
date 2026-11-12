@@ -10,6 +10,13 @@ const gradingQuestion=ref(0);
 const gradingEntry=computed(()=>exam.value?.paper?.entries?.[gradingQuestion.value]);
 watch(selectedSubmission,()=>gradingQuestion.value=0);
 async function markNext(){await mark();if(!error.value&&gradingQuestion.value<(exam.value?.paper.entries.length||0)-1)gradingQuestion.value++}
+function examPhase(exam) {
+ if(exam.resultsAt)return '成绩已发布';
+ const now=Date.now(),start=Date.parse(exam.startsAt),end=Date.parse(exam.endsAt);
+ if(Number.isFinite(start)&&now<start)return '待开始';
+ if(Number.isFinite(end)&&now>=end)return '已结束';
+ return Number.isFinite(start)?'进行中':'待开始';
+}
 const statusLabel=value=>({verified:'已核验正确',inconsistent:'核验不一致',unverified:'需人工核对',succeeded:'已生成',queued:'等待生成',running:'正在生成',failed:'生成失败',cancelled:'已取消'})[value]||'待核对';
 const clone=value=>JSON.parse(JSON.stringify(value));
 const call=(path,method='GET',body)=>api.request('/exams'+path,{method,...(body?{body:JSON.stringify(body)}:{})});
@@ -140,7 +147,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <Surface v-for="e in exams" :key="e.id">
 <div class="exam-list-row">
 <div>
-<Status>{{e.resultsAt?'成绩已发布':'进行中 / 待开始'}}</Status>
+<Status>{{examPhase(e)}}</Status>
 <h2>{{e.title}}</h2>
 <p>{{deadlineText(e.startsAt)}} — {{deadlineText(e.endsAt)}} 　 {{e.minutes}}分钟</p>
 </div>
@@ -157,7 +164,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <template v-else>
 <div class="exam-heading">
 <div>
-<Status>{{exam.resultsAt?'成绩已发布':teacher?'成绩待发布':exam.submission?.submittedAt?'已交卷':exam.submission?.startedAt?'考试中':'未开始'}}</Status>
+<Status>{{exam.resultsAt?'成绩已发布':!teacher&&exam.submission?.submittedAt?'已交卷':examPhase(exam)==='已结束'?(teacher?'成绩待发布':'已结束'):examPhase(exam)==='待开始'?'待开始':exam.submission?.startedAt?'考试中':'进行中'}}</Status>
 <p>{{deadlineText(exam.startsAt)}} — {{deadlineText(exam.endsAt)}} 　 {{exam.minutes}}分钟</p>
 </div>
 <RouteButton route="exams" secondary :aria-current="tab==='exams'?'page':undefined">考试列表</RouteButton>

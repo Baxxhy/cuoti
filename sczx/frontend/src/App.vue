@@ -1,4 +1,5 @@
 <script setup>
+import {statusTone} from "@/lib/status-tone.js";
 import {navigation as routeNavigation} from "@/lib/navigation-items.js";
 import {workspaceFor} from "@/lib/workspace-navigation.js";
 import WorkspaceNavigation from "@/components/WorkspaceNavigation.vue";
@@ -228,6 +229,8 @@ const results = computed(() => {
         ><motion.div
           v-if="notice"
           class="toast-message"
+          :data-status="statusTone(notice,'info')"
+          :aria-live="statusTone(notice)==='danger'?'assertive':'polite'"
           role="status"
           :initial="{ opacity: 0, y: 20 }"
           :animate="{ opacity: 1, y: 0 }"

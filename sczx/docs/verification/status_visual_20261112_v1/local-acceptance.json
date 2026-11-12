@@ -1,0 +1,16 @@
+{
+  "url": "http://127.0.0.1:8099",
+  "classSelection": {
+    "id": "class-cae37285faf441eca5e6293dfdb48f9c",
+    "title": "最终交付1班",
+    "tasks": 6
+  },
+  "refresh": true,
+  "taskButton": true,
+  "outline": {
+    "current": "01\n确定未知量与运算顺序",
+    "content": "确定未知量与运算顺序",
+    "overflow": false
+  },
+  "errors": []
+}

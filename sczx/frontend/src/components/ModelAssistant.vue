@@ -343,7 +343,7 @@ onBeforeUnmount(() => interaction++);
         class="ai-original"
         alt="本轮识别的原始题图"
       />
-      <p v-if="job.result.uncertainties?.length" class="inline-notice">
+      <p v-if="job.result.uncertainties?.length" class="inline-notice" data-status="pending">
         待核对：{{ job.result.uncertainties.join("；") }}
       </p>
       <label class="field-label" for="confirmed-question"

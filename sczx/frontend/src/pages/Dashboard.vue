@@ -1,4 +1,5 @@
 <script setup>
+import {statusTone} from "@/lib/status-tone.js";
 import MemoryBridge from "@/components/MemoryBridge.vue";
 import { ref, computed, onMounted, watch, onBeforeUnmount } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -90,7 +91,7 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
         <span class="overview-class" v-else-if="nextTask">{{nextTask.className||'我的班级'}}</span>
         <div class="overview-next-actions"><RouteButton :route="teacher?'prepare'+(selected?'?class='+selected:''):nextTask?(nextHasReading?'learn':'check')+'?task='+nextTask.id:'courses'">{{teacher?'继续备课':nextTask?(nextHasReading?(nextTask.status==='学习中'?'继续学习':'开始学习'):'开始练习'):'浏览课程'}}<ArrowRight :size="16"/></RouteButton><a v-if="teacher" :href="'#/insights?class='+selected" class="text-link">查看班级学情</a><a v-else href="#/courses" class="text-link">全部课程</a></div>
       </div>
-      <dl class="overview-counts"><div v-for="[label,value] in metrics" :key="label"><dt>{{label}}</dt><dd>{{value}}</dd></div></dl>
+      <dl class="overview-counts"><div v-for="[label,value] in metrics" :key="label" :data-status="statusTone(label)"><dt>{{label}}</dt><dd>{{value}}</dd></div></dl>
     </section>
     <div class="overview-grid">
       <section class="overview-task-panel">

@@ -1,0 +1,1656 @@
+[
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "home",
+    "route": "#/home",
+    "overflow": false,
+    "heading": "我的学习",
+    "contentWidth": 1209,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "class",
+    "route": "#/class",
+    "overflow": false,
+    "heading": "我的班级",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "courses",
+    "route": "#/courses",
+    "overflow": false,
+    "heading": "课程",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "records",
+    "route": "#/records",
+    "overflow": false,
+    "heading": "学习记录",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "数值正确",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "独立作答",
+        "tone": "info",
+        "color": "rgb(21, 97, 123)",
+        "background": "rgb(234, 246, 251)"
+      },
+      {
+        "text": "数值正确",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "独立作答",
+        "tone": "info",
+        "color": "rgb(21, 97, 123)",
+        "background": "rgb(234, 246, 251)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "wrong",
+    "route": "#/wrong",
+    "overflow": false,
+    "heading": "我的错题",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "memory",
+    "route": "#/memory",
+    "overflow": false,
+    "heading": "复习",
+    "contentWidth": 1209,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "exams",
+    "route": "#/exams",
+    "overflow": false,
+    "heading": "考试",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "live",
+    "route": "#/live",
+    "overflow": false,
+    "heading": "我的课堂",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已结束",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "learn?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/learn?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "解简单的一元一次方程",
+    "contentWidth": 1425,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "check?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/check?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "独立练习",
+    "contentWidth": 1425,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "requested": "result?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/result?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "学习结果",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "home",
+    "route": "#/home",
+    "overflow": false,
+    "heading": "我的学习",
+    "contentWidth": 1689,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "class",
+    "route": "#/class",
+    "overflow": false,
+    "heading": "我的班级",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "courses",
+    "route": "#/courses",
+    "overflow": false,
+    "heading": "课程",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "records",
+    "route": "#/records",
+    "overflow": false,
+    "heading": "学习记录",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "数值正确",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "独立作答",
+        "tone": "info",
+        "color": "rgb(21, 97, 123)",
+        "background": "rgb(234, 246, 251)"
+      },
+      {
+        "text": "数值正确",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "独立作答",
+        "tone": "info",
+        "color": "rgb(21, 97, 123)",
+        "background": "rgb(234, 246, 251)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "wrong",
+    "route": "#/wrong",
+    "overflow": false,
+    "heading": "我的错题",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "memory",
+    "route": "#/memory",
+    "overflow": false,
+    "heading": "复习",
+    "contentWidth": 1689,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "exams",
+    "route": "#/exams",
+    "overflow": false,
+    "heading": "考试",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "live",
+    "route": "#/live",
+    "overflow": false,
+    "heading": "我的课堂",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已结束",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "learn?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/learn?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "解简单的一元一次方程",
+    "contentWidth": 1905,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "check?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/check?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "独立练习",
+    "contentWidth": 1905,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 1920,
+    "requested": "result?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/result?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "学习结果",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "home",
+    "route": "#/home",
+    "overflow": false,
+    "heading": "我的学习",
+    "contentWidth": 2329,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "class",
+    "route": "#/class",
+    "overflow": false,
+    "heading": "我的班级",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "courses",
+    "route": "#/courses",
+    "overflow": false,
+    "heading": "课程",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "records",
+    "route": "#/records",
+    "overflow": false,
+    "heading": "学习记录",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "数值正确",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "独立作答",
+        "tone": "info",
+        "color": "rgb(21, 97, 123)",
+        "background": "rgb(234, 246, 251)"
+      },
+      {
+        "text": "数值正确",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "独立作答",
+        "tone": "info",
+        "color": "rgb(21, 97, 123)",
+        "background": "rgb(234, 246, 251)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "wrong",
+    "route": "#/wrong",
+    "overflow": false,
+    "heading": "我的错题",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "memory",
+    "route": "#/memory",
+    "overflow": false,
+    "heading": "复习",
+    "contentWidth": 2329,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "exams",
+    "route": "#/exams",
+    "overflow": false,
+    "heading": "考试",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "live",
+    "route": "#/live",
+    "overflow": false,
+    "heading": "我的课堂",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已结束",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "learn?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/learn?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "解简单的一元一次方程",
+    "contentWidth": 2545,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "check?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/check?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "独立练习",
+    "contentWidth": 2545,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "student",
+    "width": 2560,
+    "requested": "result?task=task-23f755e95c3856171c610b89803bd9d2",
+    "route": "#/result?task=task-23f755e95c3856171c610b89803bd9d2",
+    "overflow": false,
+    "heading": "学习结果",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "teacher",
+    "route": "#/teacher",
+    "overflow": false,
+    "heading": "教学概览",
+    "contentWidth": 1209,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "待开始",
+        "tone": "pending",
+        "color": "rgb(135, 80, 8)",
+        "background": "rgb(255, 244, 219)"
+      },
+      {
+        "text": "学习中",
+        "tone": "active",
+        "color": "rgb(36, 79, 165)",
+        "background": "rgb(234, 241, 255)"
+      },
+      {
+        "text": "已完成反馈",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "全员已提交",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "cases",
+    "route": "#/cases?prerequisites=true",
+    "overflow": false,
+    "heading": "教学案例",
+    "contentWidth": 1209,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "prepare",
+    "route": "#/prepare?lesson=lesson-equation",
+    "overflow": false,
+    "heading": "等式性质",
+    "contentWidth": 1209,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "草稿",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "主要参考",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "等式性质",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "agent",
+    "route": "#/agent",
+    "overflow": false,
+    "heading": "任务备课",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "class",
+    "route": "#/class",
+    "overflow": false,
+    "heading": "班级教学",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "insights",
+    "route": "#/insights?class=class-cae37285faf441eca5e6293dfdb48f9c",
+    "overflow": false,
+    "heading": "学情反馈",
+    "contentWidth": 1209,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "exam-bank",
+    "route": "#/exam-bank",
+    "overflow": false,
+    "heading": "题库",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已审核 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "已审核 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "exam-papers",
+    "route": "#/exam-papers",
+    "overflow": false,
+    "heading": "组卷",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已审核",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "exams",
+    "route": "#/exams",
+    "overflow": false,
+    "heading": "考试",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "成绩已发布",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "live",
+    "route": "#/live",
+    "overflow": false,
+    "heading": "实时课堂",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已结束",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "groups",
+    "route": "#/groups",
+    "overflow": false,
+    "heading": "分层教学",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "requested": "community",
+    "route": "#/community",
+    "overflow": false,
+    "heading": "教研交流",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "teacher",
+    "route": "#/teacher",
+    "overflow": false,
+    "heading": "教学概览",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "cases",
+    "route": "#/cases?prerequisites=true",
+    "overflow": false,
+    "heading": "教学案例",
+    "contentWidth": 1689,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "prepare",
+    "route": "#/prepare?lesson=lesson-equation",
+    "overflow": false,
+    "heading": "等式性质",
+    "contentWidth": 1689,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "草稿",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "主要参考",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "等式性质",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "agent",
+    "route": "#/agent",
+    "overflow": false,
+    "heading": "任务备课",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "class",
+    "route": "#/class",
+    "overflow": false,
+    "heading": "班级教学",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "insights",
+    "route": "#/insights?class=class-cae37285faf441eca5e6293dfdb48f9c",
+    "overflow": false,
+    "heading": "学情反馈",
+    "contentWidth": 1689,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "exam-bank",
+    "route": "#/exam-bank",
+    "overflow": false,
+    "heading": "题库",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已审核 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "已审核 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "exam-papers",
+    "route": "#/exam-papers",
+    "overflow": false,
+    "heading": "组卷",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已审核",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "exams",
+    "route": "#/exams",
+    "overflow": false,
+    "heading": "考试",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "成绩已发布",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "live",
+    "route": "#/live",
+    "overflow": false,
+    "heading": "实时课堂",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已结束",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "groups",
+    "route": "#/groups",
+    "overflow": false,
+    "heading": "分层教学",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 1920,
+    "requested": "community",
+    "route": "#/community",
+    "overflow": false,
+    "heading": "教研交流",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "teacher",
+    "route": "#/teacher",
+    "overflow": false,
+    "heading": "教学概览",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "cases",
+    "route": "#/cases?prerequisites=true",
+    "overflow": false,
+    "heading": "教学案例",
+    "contentWidth": 2329,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "七年级",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "prepare",
+    "route": "#/prepare?lesson=lesson-equation",
+    "overflow": false,
+    "heading": "等式性质",
+    "contentWidth": 2329,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "草稿",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "主要参考",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "等式性质",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "agent",
+    "route": "#/agent",
+    "overflow": false,
+    "heading": "任务备课",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "class",
+    "route": "#/class",
+    "overflow": false,
+    "heading": "班级教学",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "insights",
+    "route": "#/insights?class=class-cae37285faf441eca5e6293dfdb48f9c",
+    "overflow": false,
+    "heading": "学情反馈",
+    "contentWidth": 2329,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "exam-bank",
+    "route": "#/exam-bank",
+    "overflow": false,
+    "heading": "题库",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已审核 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      },
+      {
+        "text": "已审核 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "exam-papers",
+    "route": "#/exam-papers",
+    "overflow": false,
+    "heading": "组卷",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已审核",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "exams",
+    "route": "#/exams",
+    "overflow": false,
+    "heading": "考试",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "成绩已发布",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "live",
+    "route": "#/live",
+    "overflow": false,
+    "heading": "实时课堂",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已结束",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "groups",
+    "route": "#/groups",
+    "overflow": false,
+    "heading": "分层教学",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": []
+  },
+  {
+    "role": "teacher",
+    "width": 2560,
+    "requested": "community",
+    "route": "#/community",
+    "overflow": false,
+    "heading": "教研交流",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      },
+      {
+        "text": "案例",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 1440,
+    "requested": "manage",
+    "route": "#/manage",
+    "overflow": false,
+    "heading": "资料与案例",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已就绪",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 1440,
+    "requested": "content",
+    "route": "#/content?course=course-equation&lesson=lesson-equation",
+    "overflow": false,
+    "heading": "课程内容",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已发布 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 1440,
+    "requested": "issues",
+    "route": "#/issues",
+    "overflow": false,
+    "heading": "管理与运行",
+    "contentWidth": 1224,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已回复",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 1920,
+    "requested": "manage",
+    "route": "#/manage?material=material-99ba86c514004973961fea56ab8d76d&unit=unit-f2a1996cc19c0305dc3acc674efed9f3",
+    "overflow": false,
+    "heading": "资料与案例",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已就绪",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 1920,
+    "requested": "content",
+    "route": "#/content?course=course-equation&lesson=lesson-equation",
+    "overflow": false,
+    "heading": "课程内容",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已发布 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 1920,
+    "requested": "issues",
+    "route": "#/issues",
+    "overflow": false,
+    "heading": "管理与运行",
+    "contentWidth": 1704,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已回复",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 2560,
+    "requested": "manage",
+    "route": "#/manage?material=material-99ba86c514004973961fea56ab8d76d&unit=unit-f2a1996cc19c0305dc3acc674efed9f3",
+    "overflow": false,
+    "heading": "资料与案例",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已就绪",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 2560,
+    "requested": "content",
+    "route": "#/content?course=course-equation&lesson=lesson-equation",
+    "overflow": false,
+    "heading": "课程内容",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已发布 v1",
+        "tone": "success",
+        "color": "rgb(20, 100, 71)",
+        "background": "rgb(231, 245, 237)"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "width": 2560,
+    "requested": "issues",
+    "route": "#/issues",
+    "overflow": false,
+    "heading": "管理与运行",
+    "contentWidth": 2344,
+    "alerts": [],
+    "statuses": [
+      {
+        "text": "已回复",
+        "tone": "neutral",
+        "color": "rgb(84, 97, 116)",
+        "background": "rgb(240, 243, 247)"
+      }
+    ]
+  }
+]
