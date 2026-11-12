@@ -242,7 +242,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <p>参考：{{current.question.answer}}</p>
 <p class="preserve-lines">{{examExplanation(current.question)}}</p>
 </div>
-<RouteButton route="wrong" secondary>去错题帮订正</RouteButton>
+<RouteButton route="wrong" secondary>去订正错题</RouteButton>
 <Button variant="ghost" @click="exportFile('learning')">导出学习记录</Button>
 </template>
 <p v-else-if="!pending" role="status">答卷已保存，等待教师发布成绩与讲评。</p>

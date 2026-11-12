@@ -55,7 +55,7 @@ function saved(item) {
 onMounted(load);
 </script>
 <template>
-  <PageHeading title="错题帮"
+  <PageHeading title="我的错题"
     ><Button @click="open = true"><Plus />录入错题</Button></PageHeading
   >
   <div class="wrong-workspace-toolbar">
