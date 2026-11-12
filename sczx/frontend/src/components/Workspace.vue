@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { SplitterGroup, SplitterPanel, SplitterResizeHandle } from "reka-ui";
-import { GripVertical } from "lucide-vue-next";
+import {ElSplitter,ElSplitterPanel} from "element-plus";
+
 defineProps({primarySize:{type:Number,default:64},primaryMin:{type:Number,default:42}});
 const compact = ref(window.matchMedia("(max-width: 1000px)").matches);
 const query = window.matchMedia("(max-width: 1000px)");
@@ -17,18 +17,9 @@ onBeforeUnmount(() => query.removeEventListener("change", update));
     <div><slot name="secondary" /></div>
   </div>
   <div v-else class="workspace-frame">
-    <SplitterGroup direction="horizontal" class="workspace-panels">
-      <SplitterPanel :default-size="primarySize" :min-size="primaryMin" data-panel
-        ><div class="panel-scroll"><slot name="primary" /></div
-      ></SplitterPanel>
-      <SplitterResizeHandle
-        class="resize-handle"
-        aria-label="调整主内容与参考面板宽度"
-        ><GripVertical :size="13"
-      /></SplitterResizeHandle>
-      <SplitterPanel :default-size="100-primarySize" :min-size="28" data-panel
-        ><div class="panel-scroll secondary-pane"><slot name="secondary" /></div
-      ></SplitterPanel>
-    </SplitterGroup>
+    <ElSplitter class="workspace-panels">
+      <ElSplitterPanel :size="primarySize+'%'" :min="primaryMin+'%'" data-panel><div class="panel-scroll"><slot name="primary"/></div></ElSplitterPanel>
+      <ElSplitterPanel min="28%" data-panel><div class="panel-scroll secondary-pane"><slot name="secondary"/></div></ElSplitterPanel>
+    </ElSplitter>
   </div>
 </template>

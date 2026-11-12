@@ -227,18 +227,18 @@ const targets = computed(() => {
 </script>
 <template>
   <PageHeading :title="teacher ? '学生学习记忆' : '复习'"
-    ><Button
+    ><AppButton
       v-if="route.query.returnTask"
       variant="outline"
       @click="navigate('learn?task=' + route.query.returnTask)"
-      ><ArrowLeft />返回当前课时</Button
-    ><Button variant="ghost" :disabled="loading" @click="load"
-      ><RotateCcw />刷新</Button
+      ><ArrowLeft />返回当前课时</AppButton
+    ><AppButton variant="ghost" :disabled="loading" @click="load"
+      ><RotateCcw />刷新</AppButton
     ></PageHeading
   >
   <div v-if="teacher" class="memory-scope">
     <label
-      >班级<select
+      >班级<NativeSelect
         v-model="selectedClass"
         aria-label="记忆班级"
         @change="selectClass"
@@ -246,9 +246,9 @@ const targets = computed(() => {
         <option v-for="c in classes" :key="c.id" :value="c.id">
           {{ c.name }}
         </option>
-      </select></label
+      </NativeSelect></label
     ><label
-      >学生<select
+      >学生<NativeSelect
         v-model="selectedStudent"
         aria-label="记忆学生"
         @change="selectStudent"
@@ -256,26 +256,19 @@ const targets = computed(() => {
         <option v-for="s in students" :key="s.id" :value="s.id">
           {{ s.displayName }}
         </option>
-      </select></label
+      </NativeSelect></label
     >
   </div>
   <p v-if="loading" role="status">正在读取学习记录…</p>
-  <div v-if="error" class="form-error" role="alert">
-    {{ error }}<Button variant="ghost" @click="load">重新读取</Button>
-  </div>
-  <div
-    v-if="data && route.query.knowledge && !selected"
-    class="inline-notice" data-status="pending"
-    role="status"
-  >
-    没有找到当前学习范围内的知识点。<Button
+  <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}<AppButton variant="ghost" @click="load">重新读取</AppButton></AppAlert>
+  <AppAlert  v-if="data && route.query.knowledge && !selected" class="inline-notice" data-status="pending" role="status">
+    没有找到当前学习范围内的知识点。<AppButton
       variant="ghost"
       @click="
         router.replace({ query: { ...route.query, knowledge: undefined } })
       "
-      >返回知识列表</Button
-    >
-  </div>
+      >返回知识列表</AppButton
+    ></AppAlert>
   <template v-if="data"
     ><div v-if="!selected&&teacher" class="memory-summary">
       <div>
@@ -308,13 +301,13 @@ const targets = computed(() => {
         <h2>{{r.label==='继续补救'?'继续订正':r.label}}</h2>
         <InfoTip label="为什么建议复习">{{r.reason}}</InfoTip>
         <div>
-          <Button @click="openTarget(r.target,r.knowledgeId)">{{teacher?'查看对应任务':'开始复习'}}<ArrowRight /></Button
-          ><Button
+          <AppButton @click="openTarget(r.target,r.knowledgeId)">{{teacher?'查看对应任务':'开始复习'}}<ArrowRight /></AppButton
+          ><AppButton
             v-if="!teacher"
             variant="ghost"
             :disabled="saving"
             @click="snooze(r)"
-            >稍后</Button
+            >稍后</AppButton
           >
         </div>
       </article>
@@ -326,11 +319,11 @@ const targets = computed(() => {
             v-model="query"
             aria-label="搜索知识点"
             placeholder="搜索知识点"
-          /><select v-model="filter" aria-label="筛选学习状态">
+          /><NativeSelect v-model="filter" aria-label="筛选学习状态">
             <option value="all">全部状态</option>
             <option value="needs">待检查</option>
             <option value="independent">有独立答对次数</option>
-          </select>
+          </NativeSelect>
         </div>
         <div v-if="filtered.length" class="memory-table">
           <button
@@ -352,13 +345,9 @@ const targets = computed(() => {
             ><ChevronRight :size="17" />
           </button>
         </div>
-        <div v-else class="empty-state">
-          <BookOpen />
-          <h2>
+        <AppEmpty v-else class="empty-state"><BookOpen /><h2>
             {{ data.items.length ? "没有匹配的知识点" : "还没有学习记录" }}
-          </h2>
-          <RouteButton v-if="!teacher" route="courses">查看课程</RouteButton>
-        </div>
+          </h2><RouteButton v-if="!teacher" route="courses">查看课程</RouteButton></AppEmpty>
       </section>
       <section
         v-if="selected || data.unlinkedEvidence.length"
@@ -368,51 +357,51 @@ const targets = computed(() => {
           <div>
             <h2>{{ selected?.name || "尚未关联知识点" }}</h2>
           </div>
-          <Button
+          <AppButton
             v-if="selected"
             variant="ghost"
             @click="
               router.push({ query: { ...route.query, knowledge: undefined } })
             "
-            >收起</Button
+            >收起</AppButton
           >
         </div>
         <template v-if="selected"
           ><Status>{{ studentState(selected) }}</Status>
           <InfoTip label="当前状态说明">{{selected.state.reason}}</InfoTip>
-          <p v-if="selected.state.reviewRequested" class="inline-notice" data-status="pending">
+          <AppAlert  v-if="selected.state.reviewRequested" class="inline-notice" data-status="pending">
             教师已标记需要复核，原核验结果保留。
-          </p>
+          </AppAlert>
           <div
             v-if="selected.prerequisites.length"
             class="memory-prerequisites"
           >
             <span>先前学过</span
-            ><Button
+            ><AppButton
               v-for="p in selected.prerequisites"
               :key="p.id"
               variant="outline"
               size="sm"
               @click="choose(p.id)"
-              >{{ p.name }}</Button
+              >{{ p.name }}</AppButton
             >
           </div>
           <div v-if="selected.recommendation" class="memory-next">
             <InfoTip label="复习建议说明">{{selected.recommendation.reason}}</InfoTip>
-            <Button
+            <AppButton
               variant="outline"
               @click="openTarget(selected.recommendation.target,selected.id)"
               >{{teacher?'查看对应任务':selected.recommendation.label}}<ArrowRight
-            /></Button>
+            /></AppButton>
           </div>
           <div class="memory-linked-lessons">
-            <Button
+            <AppButton
               v-for="l in selected.lessons"
               :key="l.taskId"
               variant="ghost"
               size="sm"
               @click="openTarget(l.target,selected.id)"
-              ><BookOpen :size="16"/><span><strong>{{ l.title }}</strong><small v-if="lessonContext(l)">{{ lessonContext(l) }}</small></span></Button
+              ><BookOpen :size="16"/><span><strong>{{ l.title }}</strong><small v-if="lessonContext(l)">{{ lessonContext(l) }}</small></span></AppButton
             >
           </div></template
         ></div>
@@ -442,17 +431,17 @@ const targets = computed(() => {
             }}{{ e.cause ? " 　 " + e.cause : "" }}
           </p>
           <div class="memory-evidence-actions">
-            <Button
+            <AppButton
               v-if="e.target"
               variant="ghost"
               size="sm"
               @click="
                 openTarget(e.target,selected?.id)
               "
-              >{{teacher?'查看原任务':e.wrongId?'打开错题':'查看原任务'}}<ArrowRight /></Button
-            ><Button variant="ghost" size="sm" @click="edit(e)">{{
+              >{{teacher?'查看原任务':e.wrongId?'打开错题':'查看原任务'}}<ArrowRight /></AppButton
+            ><AppButton variant="ghost" size="sm" @click="edit(e)">{{
               teacher ? "核对与修订" : "提出纠正"
-            }}</Button>
+            }}</AppButton>
           </div>
           <details>
             <summary>来源</summary>
@@ -501,9 +490,7 @@ const targets = computed(() => {
     </div></template
   >
   <Surface v-else-if="!loading && !error"
-    ><div class="empty-state">
-      <h2>{{ teacher ? "选择班级与学生" : "暂无学习记忆" }}</h2>
-    </div></Surface
+    ><AppEmpty class="empty-state"><h2>{{ teacher ? "选择班级与学生" : "暂无学习记忆" }}</h2></AppEmpty></Surface
   >
   <AppDialog
     :open="!!editing"
@@ -513,17 +500,17 @@ const targets = computed(() => {
       ><p>{{ editing.equation || editing.prompt || editing.label }}</p>
       <label v-if="teacher" class="field-label" for="memory-kind"
         >处理方式</label
-      ><select v-if="teacher" id="memory-kind" v-model="kind">
+      ><NativeSelect v-if="teacher" id="memory-kind" v-model="kind">
         <option value="knowledge_correction">修订知识点关联</option>
         <option value="observation">补充教学观察</option>
         <option value="review_required">标记需要复核</option>
-        <option value="review_content">指定复习内容</option></select
+        <option value="review_content">指定复习内容</option></NativeSelect
       ><label
         v-if="['knowledge_correction', 'correction_request'].includes(kind)"
         class="field-label"
         for="memory-knowledge"
         >{{ teacher ? "修订后知识点" : "建议关联知识点" }}</label
-      ><select
+      ><NativeSelect
         v-if="['knowledge_correction', 'correction_request'].includes(kind)"
         id="memory-knowledge"
         v-model="knowledgeIds"
@@ -535,13 +522,13 @@ const targets = computed(() => {
           :value="p.id"
         >
           {{ p.name }}
-        </option></select
+        </option></NativeSelect
       ><label
         v-if="kind === 'review_content'"
         class="field-label"
         for="memory-target"
         >复习内容</label
-      ><select
+      ><NativeSelect
         v-if="kind === 'review_content'"
         id="memory-target"
         v-model="target"
@@ -549,7 +536,7 @@ const targets = computed(() => {
         <option value="">选择实际课时或错题</option>
         <option v-for="t in targets" :key="t.target" :value="t.target">
           {{ t.title }}
-        </option></select
+        </option></NativeSelect
       ><label class="field-label" for="memory-reason">理由</label
       ><Textarea id="memory-reason" v-model="reason" /><label
         v-if="teacher"
@@ -557,8 +544,8 @@ const targets = computed(() => {
         for="memory-note"
         >教学观察</label
       ><Textarea v-if="teacher" id="memory-note" v-model="note" />
-      <p v-if="error" role="alert" class="form-error">{{ error }}</p>
-      <Button
+      <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
+      <AppButton
         :disabled="
           saving ||
           loading ||
@@ -566,7 +553,7 @@ const targets = computed(() => {
           (kind === 'knowledge_correction' && !knowledgeIds.length)
         "
         @click="submit"
-        >{{ saving ? "正在保存…" : "确认保存修订" }}</Button
+        >{{ saving ? "正在保存…" : "确认保存修订" }}</AppButton
       ></template
     ></AppDialog
   >

@@ -9,6 +9,7 @@ import { createPinia } from "pinia";
 import { createRouter, createWebHashHistory } from "vue-router";
 import "@fontsource-variable/geist";
 import "./index.css";
+import "element-plus/dist/index.css";
 import "./app.css";
 import "./workspace.css";
 import "./student-ui.css";
@@ -20,7 +21,7 @@ import "./other-focus.css";
 import "./admin-focus.css";
 import "./workspace-navigation.css";
 import "./desktop-density.css";
-import "./visual-feedback.css";
+import "./element-theme.css";
 import App from "./App.vue";
 import Dashboard from "./pages/Dashboard.vue";
 import Courses from "./pages/Courses.vue";
@@ -41,6 +42,13 @@ import CourseContent from "./pages/CourseContent.vue";
 import Issues from "./pages/Issues.vue";
 import NotFound from "./pages/NotFound.vue";
 import Login from "./pages/Login.vue";
+import AppTable from "./components/app/Table.js";
+import AppEmpty from "./components/app/Empty.js";
+import NativeSelect from "./components/app/NativeSelect.js";
+import AppCheckbox from "./components/app/Checkbox.vue";
+import AppAlert from "./components/app/Alert.vue";
+import AppFilePicker from "./components/app/FilePicker.vue";
+import AppImage from "./components/app/Image.vue";
 import Button from "./components/app/Button.vue";
 import Surface from "./components/app/Surface.vue";
 import PageHeading from "./components/app/PageHeading.vue";
@@ -52,9 +60,9 @@ import AppDialog from "./components/app/Dialog.vue";
 import AppSelect from "./components/app/Select.vue";
 import AppTabs from "./components/app/Tabs.vue";
 import ExperienceLink from "./components/app/ExperienceLink.vue";
-import { Input } from "./components/ui/input/index.js";
-import { Textarea } from "./components/ui/textarea/index.js";
-import { Progress } from "./components/ui/progress/index.js";
+import Input from "./components/app/Input.vue";
+import Textarea from "./components/app/Textarea.vue";
+import Progress from "./components/app/Progress.vue";
 import { useLearning } from "./store.js";
 // Existing bookmarked prototype URLs used #home; retain their entry behavior.
 if (location.hash && !location.hash.startsWith("#/"))
@@ -98,7 +106,7 @@ const app = createApp(App);
 const pinia = createPinia();
 app.use(pinia);
 for (const [name, component] of Object.entries({
-  Button,
+  AppButton:Button,
   Surface,
   PageHeading,
   SectionHeading,
@@ -151,6 +159,13 @@ watch(
   { flush:'sync' },
 );
 window.addEventListener('beforeunload',event=>{if(store.user&&store.hasUnsavedChanges){event.preventDefault();event.returnValue=''}});
+app.component("NativeSelect",NativeSelect);
+app.component("AppTable",AppTable);
+app.component("AppEmpty",AppEmpty);
+app.component("AppCheckbox",AppCheckbox);
+app.component("AppImage",AppImage);
+app.component("AppAlert",AppAlert);
+app.component("AppFilePicker",AppFilePicker);
 app.use(router);
 app.mount("#root");
 

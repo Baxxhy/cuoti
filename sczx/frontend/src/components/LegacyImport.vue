@@ -39,13 +39,13 @@ async function importNow() {
     <p v-if="result" role="status">{{ result }}</p>
     <p v-else-if="legacy?.data">找到一份旧记录。</p>
     <p v-else-if="!legacy">没有可导入的旧记录。</p>
-    <p v-if="error" class="form-error" role="alert">{{ error }}</p>
-    <Button v-if="legacy?.data" variant="outline" @click="open = true">预览并导入</Button>
+    <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
+    <AppButton v-if="legacy?.data" variant="outline" @click="open = true">预览并导入</AppButton>
     <AppDialog v-model:open="open" title="导入历史演示记录">
       <div class="legacy-counts"><div v-for="(count, label) in { 学习任务: counts.tasks, 作答: counts.attempts, 求助: counts.helps, 错题: counts.wrong, 补救: counts.repairs }" :key="label"><strong>{{ count }}</strong><span>{{ label }}</span></div></div>
       <p>记录将归入独立的历史演示班级和学生，不计入真实学生学情。导入不会删除原浏览器数据。</p>
-      <p v-if="error" class="form-error" role="alert">{{ error }}</p>
-      <div class="paper-actions"><Button variant="outline" @click="open = false">取消</Button><Button :disabled="busy" @click="importNow">{{ busy ? "导入中…" : "确认导入" }}</Button></div>
+      <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
+      <div class="paper-actions"><AppButton variant="outline" @click="open = false">取消</AppButton><AppButton :disabled="busy" @click="importNow">{{ busy ? "导入中…" : "确认导入" }}</AppButton></div>
     </AppDialog>
   </section>
 </template>

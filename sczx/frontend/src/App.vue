@@ -7,7 +7,8 @@ import {platformDraft} from '@/lib/platform-persistence.js';
 import { computed, onMounted, onBeforeUnmount, provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { AnimatePresence, motion, MotionConfig } from "motion-v";
-import { TooltipProvider } from "@/components/ui/tooltip/index.js";
+import UiProvider from "@/components/app/Provider.vue";
+import {ElMessage} from "element-plus";
 import {BookOpen,BookOpenText,Search,Bell,Menu,ArrowUpRight,ArrowLeft} from "lucide-vue-next";
 import { navigate } from "@/lib/navigation.js";
 import SidebarContent from "@/components/SidebarContent.vue";
@@ -63,8 +64,11 @@ const notifications = ref(false);
 
 const search = ref("");
 
+let messageHandle;
 const notify = (message) => {
-  notice.value = message;
+  notice.value=message;
+  messageHandle?.close();
+  messageHandle=ElMessage({message:String(message),type:({success:'success',danger:'error',pending:'warning'})[statusTone(message)]||'info',showClose:true,duration:3500});
 };
 provide("notify", notify);
 provide("shell", {
@@ -108,7 +112,7 @@ function keyboard(event) {
   }
 }
 onMounted(() => window.addEventListener("keydown", keyboard));
-onBeforeUnmount(() => window.removeEventListener("keydown", keyboard));
+onBeforeUnmount(() => {window.removeEventListener("keydown", keyboard);messageHandle?.close()});
 const results = computed(() => {
   const items = navigation[role.value].map(item => ({route:item.route,title:item.label,subtitle:''}));
   if(role.value==='student') for(const task of store.data.tasks||[]) items.push({route:'learn?task='+task.id,title:task.title,subtitle:task.className||'学习任务'});
@@ -118,54 +122,54 @@ const results = computed(() => {
 </script>
 <template>
   <MotionConfig reduced-motion="user"
-    ><TooltipProvider :delay-duration="100">
+    ><UiProvider>
       <RouterView v-if="!store.user" />
       <div v-else :class="['app-shell',{'is-study':studyFocus}]">
         <a href="#main-content" class="skip-link" @click.prevent="focusContent()">跳至主要内容</a>
         <aside v-if="!studyFocus" class="desktop-sidebar"><SidebarContent /></aside>
         <div class="app-body">
-          <header v-if="studyFocus" class="study-topbar"><a href="#/home"><ArrowLeft :size="17"/>我的学习</a><a href="#/home" class="study-brand"><BookOpenText :size="22"/>师承智学</a><Button variant="ghost" @click="mobileOpen=true"><Menu :size="17"/>导航</Button></header>
+          <header v-if="studyFocus" class="study-topbar"><a href="#/home"><ArrowLeft :size="17"/>我的学习</a><a href="#/home" class="study-brand"><BookOpenText :size="22"/>师承智学</a><AppButton variant="ghost" @click="mobileOpen=true"><Menu :size="17"/>导航</AppButton></header>
           <header v-else class="topbar">
             <div class="topbar-start">
-              <Button
+              <AppButton
                 variant="ghost"
                 size="icon"
                 class="mobile-menu"
                 aria-label="打开导航菜单"
                 @click="mobileOpen = true"
-                ><Menu /></Button
+                ><Menu /></AppButton
               ><span class="topbar-breadcrumb"
                 ><strong>{{ currentWorkspace?.label || pageLabel }}</strong></span
               >
             </div>
             <div class="topbar-actions">
-              <Button
+              <AppButton
                 variant="ghost"
                 class="search-trigger"
                 aria-label="搜索页面与任务"
                 @click="searchOpen = true"
                 ><Search :size="16" /><span>搜索页面、任务</span
-                ><kbd>⌘ K</kbd></Button
-              ><Button
+                ><kbd>⌘ K</kbd></AppButton
+              ><AppButton
                 variant="ghost"
                 size="icon"
                 class="notification-trigger"
                 aria-label="查看消息"
                 @click="notifications = true"
-                ><Bell :size="18" /><span v-if="store.unreadCount" class="notification-badge">{{ store.unreadCount }}</span></Button
+                ><Bell :size="18" /><span v-if="store.unreadCount" class="notification-badge">{{ store.unreadCount }}</span></AppButton
               ><span class="connection-indicator" :class="{ready:store.status==='ready'}" :aria-label="store.status==='ready'?'服务已连接':'正在连接服务'" role="status"><span aria-hidden="true"/></span>
             </div>
           </header>
           <main id="main-content" tabindex="-1">
             <div v-if="store.saveError && route.name!=='prepare'" class="save-error" role="alert">
               <span>{{ store.saveError }}</span
-              ><Button
+              ><AppButton
                 variant="outline"
                 size="sm"
                 :disabled="store.saving"
                 @click="store.save"
-                >重新保存</Button
-              ><Button variant="outline" @click="downloadDraft">下载未保存草稿</Button>
+                >重新保存</AppButton
+              ><AppButton variant="outline" @click="downloadDraft">下载未保存草稿</AppButton>
             </div>
             <PlatformStatus
               v-if="store.status !== 'ready' && route.name !== 'issues'"
@@ -225,19 +229,6 @@ const results = computed(() => {
       >
       <AppDialog v-model:open="notifications" title="消息与提醒"><MessageCenter @navigate="notifications=false"/></AppDialog
       >
-      <AnimatePresence
-        ><motion.div
-          v-if="notice"
-          class="toast-message"
-          :data-status="statusTone(notice,'info')"
-          :aria-live="statusTone(notice)==='danger'?'assertive':'polite'"
-          role="status"
-          :initial="{ opacity: 0, y: 20 }"
-          :animate="{ opacity: 1, y: 0 }"
-          :exit="{ opacity: 0, y: 10 }"
-          >{{ notice }}</motion.div
-        ></AnimatePresence
-      >
-    </TooltipProvider></MotionConfig
+    </UiProvider></MotionConfig
   >
 </template>

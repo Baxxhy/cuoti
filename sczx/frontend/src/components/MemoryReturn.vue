@@ -17,13 +17,13 @@ function backToMemory() {
     v-if="route.query.returnTask || route.query.returnKnowledge"
     class="memory-return"
   >
-    <Button
+    <AppButton
       v-if="route.query.returnTask"
       variant="outline"
       @click="navigate('learn?task=' + route.query.returnTask)"
-      ><ArrowLeft />返回当前课时</Button
-    ><Button variant="ghost" @click="backToMemory"
-      ><History />查看复习记录</Button
+      ><ArrowLeft />返回当前课时</AppButton
+    ><AppButton variant="ghost" @click="backToMemory"
+      ><History />查看复习记录</AppButton
     >
   </div>
 </template>

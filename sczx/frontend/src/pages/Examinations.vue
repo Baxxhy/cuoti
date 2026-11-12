@@ -54,24 +54,19 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </script>
 <template>
 <PageHeading :title="tab==='bank'?'题库':tab==='papers'?'组卷':exam?.title||'考试'">
-<Button v-if="teacher&&tab==='bank'" @click="editQuestion(null)"><Plus :size="16"/>录入题目</Button>
-<Button v-if="teacher&&tab==='papers'&&!paperEditing" @click="editPaper(null)"><Plus :size="16"/>新建试卷</Button>
-<Button variant="ghost" size="icon" aria-label="刷新考试工作区" :disabled="loading" @click="load"><RefreshCw :size="16"/></Button>
+<AppButton v-if="teacher&&tab==='bank'" @click="editQuestion(null)"><Plus :size="16"/>录入题目</AppButton>
+<AppButton v-if="teacher&&tab==='papers'&&!paperEditing" @click="editPaper(null)"><Plus :size="16"/>新建试卷</AppButton>
+<AppButton variant="ghost" size="icon" aria-label="刷新考试工作区" :disabled="loading" @click="load"><RefreshCw :size="16"/></AppButton>
 </PageHeading>
 
-<p v-if="error" class="form-error" role="alert">{{error}}<Button variant="ghost" @click="load">重新读取</Button>
-</p>
+<AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}<AppButton variant="ghost" @click="load">重新读取</AppButton></AppAlert>
 <p v-if="notice" role="status" class="exam-notice">{{notice}}</p>
 <p v-if="loading" role="status">正在读取…</p>
 <template v-else-if="tab==='bank'&&teacher">
-<div class="teacher-bank-toolbar"><Input v-model="bankSearch" aria-label="搜索题目" placeholder="搜索题目或方程"/><AppSelect v-model="bankFilter" label="题目状态" :options="[{value:'all',label:'全部题目'},{value:'reviewed',label:'已审核'},{value:'pending',label:'待审核'}]"/><Button variant="outline" @click="importOpen=true">引用课程题目</Button><Button variant="outline" @click="candidateOpen=true">AI 出题</Button></div>
+<div class="teacher-bank-toolbar"><Input v-model="bankSearch" aria-label="搜索题目" placeholder="搜索题目或方程"/><AppSelect v-model="bankFilter" label="题目状态" :options="[{value:'all',label:'全部题目'},{value:'reviewed',label:'已审核'},{value:'pending',label:'待审核'}]"/><AppButton variant="outline" @click="importOpen=true">引用课程题目</AppButton><AppButton variant="outline" @click="candidateOpen=true">AI 出题</AppButton></div>
 <div class="exam-bank-grid teacher-bank-single">
 <Surface class="exam-bank-main">
-<div v-if="!bank.length" class="empty-state">
-<ClipboardList/>
-<h3>还没有题目</h3>
-<Button @click="editQuestion(null)">录入第一题</Button>
-</div>
+<AppEmpty v-if="!bank.length" class="empty-state"><ClipboardList/><h3>还没有题目</h3><AppButton @click="editQuestion(null)">录入第一题</AppButton></AppEmpty>
 <article v-for="q in visibleBank" :key="q.id" class="exam-bank-row">
 <div>
 <Status>{{q.reviewed?'已审核 v'+q.versions[0]?.number:'待审核'}}</Status>
@@ -80,8 +75,8 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <span>{{q.draft.kind==='application'?'应用':q.draft.kind==='explanation'?'解释':'计算'}} 　 {{q.draft.points}}分 　 {{q.draft.source}}</span>
 </div>
 <div class="exam-toolbar">
-<Button variant="ghost" @click="editQuestion(q)">编辑</Button>
-<Button variant="outline" :disabled="busy||q.reviewed" @click="reviewQuestion(q)">核对并审核</Button>
+<AppButton variant="ghost" @click="editQuestion(q)">编辑</AppButton>
+<AppButton variant="outline" :disabled="busy||q.reviewed" @click="reviewQuestion(q)">核对并审核</AppButton>
 </div>
 <details>
 <summary>参考解答与版本</summary>
@@ -89,23 +84,23 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <p>方程核验：{{statusLabel(q.draft.referenceVerification?.status)}}</p>
 <p v-for="v in q.versions" :key="v.id">v{{v.number}} 　 {{v.data.prompt}} 　 {{v.data.answer}} 　 {{v.id}}</p>
 </details>
-</article><div v-if="bank.length&&!visibleBank.length" class="empty-state"><h3>没有匹配的题目</h3><Button variant="outline" @click="bankSearch='';bankFilter='all'">清空筛选</Button></div>
+</article><AppEmpty v-if="bank.length&&!visibleBank.length" class="empty-state"><h3>没有匹配的题目</h3><AppButton variant="outline" @click="bankSearch='';bankFilter='all'">清空筛选</AppButton></AppEmpty>
 </Surface>
 </div>
 </template>
 <template v-else-if="tab==='papers'&&teacher">
-<div v-if="!paperEditing" class="teacher-paper-list"><button v-for="p in papers" :key="p.id" class="teacher-paper-row" @click="editPaper(p)"><FileDown :size="21"/><span><strong>{{ p.draft.title }}</strong><small>{{ p.draft.entries.length }} 题 　 {{ p.draft.total }} 分</small></span><Status>{{ p.reviewed?'已审核':'草稿' }}</Status><span>打开试卷</span></button><div v-if="!papers.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有试卷</h3><Button @click="editPaper(null)">新建第一份试卷</Button></div></div>
-<div v-else class="teacher-paper-editor"><div class="teacher-paper-editor-bar"><Button variant="ghost" @click="leavePaper">返回试卷列表</Button><span>{{ activePaper?.reviewed&&paperSaved?'已审核':paperSaved?'已保存':'编辑中' }}</span></div><ol class="teacher-paper-steps" aria-label="组卷流程"><li :class="{current:!entries.length}">1 选择题目</li><li :class="{current:entries.length&&!activePaper?.reviewed}">2 核对并保存</li><li :class="{current:activePaper?.reviewed&&paperSaved}">3 发布考试</li></ol>
+<div v-if="!paperEditing" class="teacher-paper-list"><button v-for="p in papers" :key="p.id" class="teacher-paper-row" @click="editPaper(p)"><FileDown :size="21"/><span><strong>{{ p.draft.title }}</strong><small>{{ p.draft.entries.length }} 题 　 {{ p.draft.total }} 分</small></span><Status>{{ p.reviewed?'已审核':'草稿' }}</Status><span>打开试卷</span></button><AppEmpty v-if="!papers.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有试卷</h3><AppButton @click="editPaper(null)">新建第一份试卷</AppButton></AppEmpty></div>
+<div v-else class="teacher-paper-editor"><div class="teacher-paper-editor-bar"><AppButton variant="ghost" @click="leavePaper">返回试卷列表</AppButton><span>{{ activePaper?.reviewed&&paperSaved?'已审核':paperSaved?'已保存':'编辑中' }}</span></div><ol class="teacher-paper-steps" aria-label="组卷流程"><li :class="{current:!entries.length}">1 选择题目</li><li :class="{current:entries.length&&!activePaper?.reviewed}">2 核对并保存</li><li :class="{current:activePaper?.reviewed&&paperSaved}">3 发布考试</li></ol>
 <Surface>
 <div class="exam-form-grid">
 <label>试卷名称<Input v-model="paperTitle"/>
 </label>
-<label>单元<select v-model="unitId" @change="entries=[]">
+<label>单元<NativeSelect v-model="unitId" @change="entries=[]">
 <option v-for="u in units" :key="u.id" :value="u.id">{{u.title}}</option>
-</select>
+</NativeSelect>
 </label>
 </div>
-<div class="teacher-paper-title"><h2>试卷题目</h2><Button variant="outline" @click="pickerOpen=true"><Plus :size="16"/>添加题目</Button></div>
+<div class="teacher-paper-title"><h2>试卷题目</h2><AppButton variant="outline" @click="pickerOpen=true"><Plus :size="16"/>添加题目</AppButton></div>
 <draggable v-model="entries" item-key="versionId" handle=".exam-drag" class="exam-paper-entries">
 <template #item="{element:e,index:i}">
 <article>
@@ -117,26 +112,26 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </label>
 </div>
 <div class="exam-entry-tools">
-<Button variant="ghost" size="icon" :disabled="!i" :aria-label="'上移第'+(i+1)+'题'" @click="move(i,-1)">
+<AppButton variant="ghost" size="icon" :disabled="!i" :aria-label="'上移第'+(i+1)+'题'" @click="move(i,-1)">
 <ArrowUp :size="16"/>
-</Button>
-<Button variant="ghost" size="icon" :disabled="i===entries.length-1" :aria-label="'下移第'+(i+1)+'题'" @click="move(i,1)">
+</AppButton>
+<AppButton variant="ghost" size="icon" :disabled="i===entries.length-1" :aria-label="'下移第'+(i+1)+'题'" @click="move(i,1)">
 <ArrowDown :size="16"/>
-</Button>
-<Button variant="ghost" size="icon" :aria-label="'删除第'+(i+1)+'题'" @click="entries.splice(i,1)">
+</AppButton>
+<AppButton variant="ghost" size="icon" :aria-label="'删除第'+(i+1)+'题'" @click="entries.splice(i,1)">
 <Trash2 :size="16"/>
-</Button>
+</AppButton>
 </div>
 </article>
 </template>
 </draggable>
-<div v-if="!entries.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有题目</h3><Button @click="pickerOpen=true">添加题目</Button></div>
+<AppEmpty v-if="!entries.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有题目</h3><AppButton @click="pickerOpen=true">添加题目</AppButton></AppEmpty>
 <footer class="exam-toolbar">
 <strong>{{entries.length}}题 　 {{entries.reduce((n,e)=>n+Number(e.points),0)}}分</strong>
-<Button :variant="activePaper?.reviewed&&paperSaved?'outline':'default'" :disabled="busy||!entries.length" @click="savePaper">保存试卷</Button>
-<Button variant="outline" :disabled="!entries.length" @click="studentPreview=true">学生预览</Button>
-<Button variant="outline" :disabled="busy||!paperSaved||activePaper.reviewed" @click="reviewPaper">核对并审核</Button>
-<Button :disabled="busy||!activePaper?.reviewed||!paperSaved" @click="publishDialog">发布考试</Button>
+<AppButton :variant="activePaper?.reviewed&&paperSaved?'outline':'default'" :disabled="busy||!entries.length" @click="savePaper">保存试卷</AppButton>
+<AppButton variant="outline" :disabled="!entries.length" @click="studentPreview=true">学生预览</AppButton>
+<AppButton variant="outline" :disabled="busy||!paperSaved||activePaper.reviewed" @click="reviewPaper">核对并审核</AppButton>
+<AppButton :disabled="busy||!activePaper?.reviewed||!paperSaved" @click="publishDialog">发布考试</AppButton>
 </footer>
 </Surface>
 </div>
@@ -154,11 +149,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <RouteButton :route="'exams?exam='+e.id">{{teacher?'查看答卷':'进入考试'}}</RouteButton>
 </div>
 </Surface>
-<div v-if="!exams.length" class="empty-state">
-<ClipboardList/>
-<h3>{{teacher?'尚未发布考试':'暂无已分配考试'}}</h3>
-<RouteButton v-if="teacher" route="exam-papers">创建试卷</RouteButton>
-</div>
+<AppEmpty v-if="!exams.length" class="empty-state"><ClipboardList/><h3>{{teacher?'尚未发布考试':'暂无已分配考试'}}</h3><RouteButton v-if="teacher" route="exam-papers">创建试卷</RouteButton></AppEmpty>
 </div>
 </template>
 <template v-else>
@@ -170,7 +161,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <RouteButton route="exams" secondary :aria-current="tab==='exams'?'page':undefined">考试列表</RouteButton>
 </div>
 <template v-if="teacher">
-<div class="teacher-grading-toolbar"><span>{{ exam.submissions.filter(s=>s.submittedAt).length }} / {{ exam.submissions.length }} 人已交卷</span><Button variant="outline" @click="paperToolsOpen=true"><FileDown :size="16"/>导出</Button><Button :disabled="busy||!!exam.resultsAt" @click="release">发布成绩</Button></div>
+<div class="teacher-grading-toolbar"><span>{{ exam.submissions.filter(s=>s.submittedAt).length }} / {{ exam.submissions.length }} 人已交卷</span><AppButton variant="outline" @click="paperToolsOpen=true"><FileDown :size="16"/>导出</AppButton><AppButton :disabled="busy||!!exam.resultsAt" @click="release">发布成绩</AppButton></div>
 <div class="exam-grading">
 <Surface>
 <h2>答卷</h2>
@@ -182,8 +173,8 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <Surface v-if="sub">
 <div class="exam-toolbar">
 <h2>{{sub.studentName}}</h2>
-<Button variant="ghost" :disabled="!sub.submittedAt" @click="exportFile('submission')">导出答卷</Button>
-<Button variant="ghost" :disabled="!sub.submittedAt" @click="exportFile('learning')">学习记录</Button>
+<AppButton variant="ghost" :disabled="!sub.submittedAt" @click="exportFile('submission')">导出答卷</AppButton>
+<AppButton variant="ghost" :disabled="!sub.submittedAt" @click="exportFile('learning')">学习记录</AppButton>
 </div>
 <nav class="focus-grading-nav" aria-label="批阅题目"><button v-for="(entry,i) in exam.paper.entries" :key="entry.versionId" :aria-label="'批阅第'+(i+1)+'题'" :aria-current="gradingQuestion===i?'step':undefined" :class="{active:gradingQuestion===i}" @click="gradingQuestion=i">{{i+1}}<Check v-if="sub.grades[entry.versionId]" :size="12"/></button></nav>
 <article v-for="e in gradingEntry?[gradingEntry]:[]" :key="e.versionId" class="exam-grade-question">
@@ -202,7 +193,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </label>
 </div>
 </article>
-<div class="focus-grading-actions"><Button variant="outline" :disabled="!gradingQuestion" @click="gradingQuestion--">上一题</Button><Button :disabled="busy||!sub.submittedAt||!!exam.resultsAt" @click="markNext">{{gradingQuestion<exam.paper.entries.length-1?'保存并下一题':'保存批阅'}}</Button><Button v-if="exam.resultsAt&&gradingQuestion<exam.paper.entries.length-1" variant="outline" @click="gradingQuestion++">下一题</Button></div>
+<div class="focus-grading-actions"><AppButton variant="outline" :disabled="!gradingQuestion" @click="gradingQuestion--">上一题</AppButton><AppButton :disabled="busy||!sub.submittedAt||!!exam.resultsAt" @click="markNext">{{gradingQuestion<exam.paper.entries.length-1?'保存并下一题':'保存批阅'}}</AppButton><AppButton v-if="exam.resultsAt&&gradingQuestion<exam.paper.entries.length-1" variant="outline" @click="gradingQuestion++">下一题</AppButton></div>
 <details class="teacher-grade-audit">
 <summary>批阅记录 　 {{sub.audits?.length||0}}</summary>
 <p v-for="a in sub.audits" :key="a.id">{{new Date(a.at).toLocaleString('zh-CN')}} 　 {{a.actorId}} 　 {{a.id}}</p>
@@ -214,7 +205,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <Surface v-if="!exam.submission.startedAt">
 <h2>准备开始</h2>
 <p>开始后按服务器记录计时，提交后答卷只读。</p>
-<Button :disabled="busy" @click="start">开始考试</Button>
+<AppButton :disabled="busy" @click="start">开始考试</AppButton>
 </Surface>
 <template v-else>
 <div class="exam-answer-layout">
@@ -238,9 +229,9 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <label>解题过程与解释<Textarea :model-value="answerModel().reason" :readonly="!pending" :disabled="busy" @update:model-value="answerModel().reason=$event"/>
 </label>
 <div class="exam-toolbar">
-<Button v-if="pending" variant="outline" :disabled="busy" @click="saveAnswers(false)">保存草稿</Button>
-<Button v-if="pending" :disabled="busy" :variant="activeQuestion===exam.paper.entries.length-1?'default':'outline'" @click="saveAnswers(true)">确认交卷</Button>
-<Button v-if="activeQuestion<exam.paper.entries.length-1" :disabled="busy" @click="nextAnswerQuestion">下一题</Button>
+<AppButton v-if="pending" variant="outline" :disabled="busy" @click="saveAnswers(false)">保存草稿</AppButton>
+<AppButton v-if="pending" :disabled="busy" :variant="activeQuestion===exam.paper.entries.length-1?'default':'outline'" @click="saveAnswers(true)">确认交卷</AppButton>
+<AppButton v-if="activeQuestion<exam.paper.entries.length-1" :disabled="busy" @click="nextAnswerQuestion">下一题</AppButton>
 </div>
 <template v-if="exam.resultsAt">
 <div class="exam-result-grade">
@@ -250,7 +241,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <p class="preserve-lines">{{examExplanation(current.question)}}</p>
 </div>
 <RouteButton route="wrong" secondary>去订正错题</RouteButton>
-<Button variant="ghost" @click="exportFile('learning')">导出学习记录</Button>
+<AppButton variant="ghost" @click="exportFile('learning')">导出学习记录</AppButton>
 </template>
 <p v-else-if="!pending" role="status">答卷已保存，等待教师发布成绩与讲评。</p>
 </Surface>
@@ -259,104 +250,103 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </template>
 </template>
 </template>
-<AppDialog v-model:open="candidateOpen" title="AI 出题" content-class="teacher-ai-question-dialog"><p v-if="error" class="form-error" role="alert">{{ error }}</p><Surface class="exam-candidate">
+<AppDialog v-model:open="candidateOpen" title="AI 出题" content-class="teacher-ai-question-dialog"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert><Surface class="exam-candidate">
 <h2>生成候选题</h2>
-<label>单元<select v-model="unitId">
+<label>单元<NativeSelect v-model="unitId">
 <option v-for="u in units" :key="u.id" :value="u.id">{{u.title}}</option>
-</select>
+</NativeSelect>
 </label>
-<label>知识点<select v-model="candidateInput.knowledgeIds" multiple>
+<label>知识点<NativeSelect v-model="candidateInput.knowledgeIds" multiple>
 <option v-for="k in knowledge" :value="k.id" :key="k.id">{{k.name}}</option>
-</select>
+</NativeSelect>
 </label>
-<label>题型<select v-model="candidateInput.kind">
+<label>题型<NativeSelect v-model="candidateInput.kind">
 <option value="calculation">计算题</option>
 <option value="application">应用题</option>
 <option value="explanation">解释题</option>
-</select>
+</NativeSelect>
 </label>
-<label>难度<select v-model="candidateInput.difficulty">
+<label>难度<NativeSelect v-model="candidateInput.difficulty">
 <option value="easy">基础</option>
 <option value="medium">进阶</option>
 <option value="hard">综合</option>
-</select>
+</NativeSelect>
 </label>
-<Button :disabled="busy" @click="generateCandidate">生成待审核候选</Button>
+<AppButton :disabled="busy" @click="generateCandidate">生成待审核候选</AppButton>
 <template v-if="candidate">
 <Status>{{statusLabel(candidate.status)}}</Status>
 <p v-if="candidate.error" role="alert">{{candidate.error}}</p>
 <p>{{candidate.result?.prompt}}</p>
 <p>{{candidate.result?.equation}}</p>
-<Button v-if="candidate.status==='succeeded'" :disabled="busy" @click="adopt">存入待审核题库</Button>
-<Button v-else :disabled="busy" variant="outline" @click="refreshCandidate">读取进度</Button>
+<AppButton v-if="candidate.status==='succeeded'" :disabled="busy" @click="adopt">存入待审核题库</AppButton>
+<AppButton v-else :disabled="busy" variant="outline" @click="refreshCandidate">读取进度</AppButton>
 </template>
 </Surface></AppDialog>
-<AppDialog v-model:open="importOpen" title="引用课程题目"><p v-if="error" class="form-error" role="alert">{{ error }}</p><div class="exam-publish"><label class="field-label">来源课时<select v-model="lessonId" aria-label="来源课时">
+<AppDialog v-model:open="importOpen" title="引用课程题目"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert><div class="exam-publish"><label class="field-label">来源课时<NativeSelect v-model="lessonId" aria-label="来源课时">
 <option v-for="l in lessons" :value="l.id" :key="l.id">{{l.title}}</option>
-</select></label>
-<Button variant="outline" :disabled="busy||!lessonId" @click="run(async()=>{await call('/bank/import','POST',{lessonId});await load();importOpen=false;notice='课程题目已存为待审核候选'})">引用课程题目</Button>
+</NativeSelect></label>
+<AppButton variant="outline" :disabled="busy||!lessonId" @click="run(async()=>{await call('/bank/import','POST',{lessonId});await load();importOpen=false;notice='课程题目已存为待审核候选'})">引用课程题目</AppButton>
 
 </div><p class="small-caption">引用后先进入待审核题库，审核后才能用于组卷。</p></AppDialog>
-<AppDialog v-model:open="pickerOpen" title="添加题目" content-class="teacher-question-picker-dialog"><p v-if="error" class="form-error" role="alert">{{ error }}</p><AppTabs v-model="pickerMode" :items="[{value:'auto',label:'按条件组卷'},{value:'bank',label:'从题库选择'}]"/><section v-if="pickerMode==='auto'" class="exam-constraints">
+<AppDialog v-model:open="pickerOpen" title="添加题目" content-class="teacher-question-picker-dialog"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert><AppTabs v-model="pickerMode" :items="[{value:'auto',label:'按条件组卷'},{value:'bank',label:'从题库选择'}]"/><section v-if="pickerMode==='auto'" class="exam-constraints">
 <div class="exam-form-grid">
-<label>知识点<select multiple v-model="filters.knowledgeIds">
+<label>知识点<NativeSelect multiple v-model="filters.knowledgeIds">
 <option v-for="k in knowledge" :key="k.id" :value="k.id">{{k.name}}</option>
-</select>
+</NativeSelect>
 </label>
 <label>题数<Input v-model="filters.count" type="number" min="1" max="100"/>
 </label>
 <label>总分<Input v-model="filters.total" type="number" min="1"/>
 </label>
-<label>题型<select v-model="filters.kind">
+<label>题型<NativeSelect v-model="filters.kind">
 <option value="">全部</option>
 <option value="calculation">计算</option>
 <option value="application">应用</option>
 <option value="explanation">解释</option>
-</select>
+</NativeSelect>
 </label>
-<label>难度<select v-model="filters.difficulty">
+<label>难度<NativeSelect v-model="filters.difficulty">
 <option value="">全部</option>
 <option value="easy">基础</option>
 <option value="medium">进阶</option>
 <option value="hard">综合</option>
-</select>
+</NativeSelect>
 </label>
 </div>
-<Button variant="outline" :disabled="busy" @click="assemble">生成候选试卷</Button>
+<AppButton variant="outline" :disabled="busy" @click="assemble">生成候选试卷</AppButton>
 <p v-if="missing" role="status">{{missing}}<RouteButton route="exam-bank" secondary>补充题库</RouteButton>
 </p>
 </section><section v-else class="exam-question-picker">
-<label v-for="q in bankChoices" :key="q.id">
-<input type="checkbox" :checked="entries.some(e=>e.versionId===q.versions[0].id)" @change="toggle(q,$event)"/>{{q.versions[0].data.prompt}} 　 {{q.versions[0].data.equation}}</label><p v-if="!bankChoices.length" class="muted">本单元暂无已审核题目。</p><Button @click="pickerOpen=false">完成选择 　 {{ entries.length }} 题</Button></section>
+<AppCheckbox v-for="q in bankChoices" :key="q.id" :checked="entries.some(e=>e.versionId===q.versions[0].id)" @change="toggle(q,$event)">{{q.versions[0].data.prompt}} 　 {{q.versions[0].data.equation}}</AppCheckbox><p v-if="!bankChoices.length" class="muted">本单元暂无已审核题目。</p><AppButton @click="pickerOpen=false">完成选择 　 {{ entries.length }} 题</AppButton></section>
 </AppDialog>
 <AppDialog v-model:open="paperToolsOpen" title="导出考试资料"><div class="exam-toolbar">
-<Button variant="outline" @click="exportFile('student')">
-<FileDown :size="16"/>学生版试卷</Button>
-<Button variant="outline" @click="exportFile('teacher')">教师版试卷</Button>
-<Button variant="outline" :disabled="!exam.resultsAt" @click="exportFile('grades')">班级成绩</Button>
+<AppButton variant="outline" @click="exportFile('student')">
+<FileDown :size="16"/>学生版试卷</AppButton>
+<AppButton variant="outline" @click="exportFile('teacher')">教师版试卷</AppButton>
+<AppButton variant="outline" :disabled="!exam.resultsAt" @click="exportFile('grades')">班级成绩</AppButton>
 </div></AppDialog>
 <AppDialog v-model:open="questionOpen" title="题目编辑" content-class="exam-question-dialog">
-<form @submit.prevent="saveQuestion"><p v-if="error" class="form-error" role="alert">{{ error }}</p>
+<form @submit.prevent="saveQuestion"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
 <div class="exam-form-grid">
-<label>单元<select v-model="question.unitId">
+<label>单元<NativeSelect v-model="question.unitId">
 <option v-for="u in units" :key="u.id" :value="u.id">{{u.title}}</option>
-</select>
+</NativeSelect>
 </label>
-<label>知识点<select multiple v-model="question.knowledgeIds">
+<label>知识点<NativeSelect multiple v-model="question.knowledgeIds">
 <option v-for="k in knowledge" :key="k.id" :value="k.id">{{k.name}}</option>
-</select>
+</NativeSelect>
 </label>
-<label>题型<select v-model="question.kind">
+<label>题型<NativeSelect v-model="question.kind">
 <option value="calculation">计算题</option>
 <option value="application">应用题</option>
 <option value="explanation">解释题</option>
-</select>
+</NativeSelect>
 </label>
-<label>难度<select v-model="question.difficulty">
+<label>难度<NativeSelect v-model="question.difficulty">
 <option value="easy">基础</option>
 <option value="medium">进阶</option>
 <option value="hard">综合</option>
-</select>
+</NativeSelect>
 </label>
 <label>学科<Input v-model="question.subject"/>
 </label>
@@ -378,9 +368,8 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <label>来源<Input v-model="question.source" required/>
 </label>
 </div>
-<label class="exam-check">
-<input type="checkbox" v-model="question.requiresTeacherReview"/>需要人工核对解题过程</label>
-<Button type="submit" :disabled="busy">保存待审核题目</Button>
+<AppCheckbox class="exam-check" v-model="question.requiresTeacherReview">需要人工核对解题过程</AppCheckbox>
+<AppButton type="submit" :disabled="busy">保存待审核题目</AppButton>
 </form>
 </AppDialog>
 <AppDialog v-model:open="studentPreview" title="学生试卷预览">
@@ -391,10 +380,10 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </section>
 </AppDialog>
 <AppDialog v-model:open="publishOpen" title="发布考试">
-<form class="exam-publish" @submit.prevent="publish"><p v-if="error" class="form-error" role="alert">{{ error }}</p>
-<label>班级<select v-model="room">
+<form class="exam-publish" @submit.prevent="publish"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
+<label>班级<NativeSelect v-model="room">
 <option v-for="c in classes" :key="c.id" :value="c.id">{{c.name}}</option>
-</select>
+</NativeSelect>
 </label>
 <label>开始时间（北京时间）<Input v-model="starts" type="datetime-local" required/>
 </label>
@@ -403,7 +392,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <label>作答限时（分钟）<Input v-model="minutes" type="number" min="1" max="240"/>
 </label>
 <p>本次发布固定试卷版本，班级当前学生将收到考试；后续编辑不影响本次试卷。</p>
-<Button type="submit" :disabled="busy">确认发布考试</Button>
+<AppButton type="submit" :disabled="busy">确认发布考试</AppButton>
 </form>
 </AppDialog>
 </template>

@@ -51,9 +51,9 @@ onBeforeUnmount(stop);
 </script>
 <template>
   <div class="speech-reader">
-    <Button v-if="state === 'idle'" type="button" variant="ghost" size="sm" :disabled="!available || !text.trim()" @click="read"><Volume2 :size="16" />朗读</Button>
-    <template v-else><Button type="button" variant="ghost" size="sm" :disabled="state === 'starting'" @click="togglePause"><Play v-if="state === 'paused'" :size="16" /><Pause v-else :size="16" />{{ state === 'starting' ? '准备朗读…' : state === 'paused' ? '继续' : '暂停' }}</Button><Button type="button" variant="ghost" size="sm" @click="stop"><Square :size="16" />停止朗读</Button></template>
+    <AppButton v-if="state === 'idle'" type="button" variant="ghost" size="sm" :disabled="!available || !text.trim()" @click="read"><Volume2 :size="16" />朗读</AppButton>
+    <template v-else><AppButton type="button" variant="ghost" size="sm" :disabled="state === 'starting'" @click="togglePause"><Play v-if="state === 'paused'" :size="16" /><Pause v-else :size="16" />{{ state === 'starting' ? '准备朗读…' : state === 'paused' ? '继续' : '暂停' }}</AppButton><AppButton type="button" variant="ghost" size="sm" @click="stop"><Square :size="16" />停止朗读</AppButton></template>
     <InfoTip v-if="!available" label="朗读不可用">当前浏览器不支持朗读，可以直接阅读文字。</InfoTip>
-    <p v-if="error" role="alert" class="form-error">{{ error }}</p>
+    <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
   </div>
 </template>

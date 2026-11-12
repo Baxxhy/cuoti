@@ -194,13 +194,7 @@ onBeforeUnmount(() => {
     <section v-if="captureMode==='image'">
       <label class="upload-dropzone"
         ><Upload /><strong>选择原始题图</strong
-        ><input
-          aria-label="选择原始题图"
-          type="file"
-          accept="image/*"
-          :disabled="working || job.busy.value"
-          @change="upload"
-      /></label>
+        ><AppFilePicker aria-label="选择原始题图" accept="image/*" :disabled="working || job.busy.value" @change="upload"/></label>
       <div
         v-if="preview"
         class="crop-preview"
@@ -238,16 +232,16 @@ onBeforeUnmount(() => {
         /></label>
       </div></details>
       <div v-if="form.fileId" class="paper-actions">
-        <Button
+        <AppButton
           variant="outline"
           :disabled="working || job.busy.value"
           @click="crop"
-          ><Crop />保存裁剪</Button
-        ><Button
+          ><Crop />保存裁剪</AppButton
+        ><AppButton
           variant="outline"
           :disabled="working || job.busy.value"
           @click="recognize"
-          ><ScanText />识别题目</Button
+          ><ScanText />识别题目</AppButton
         >
       </div>
       <p v-if="working || job.busy.value" role="status">
@@ -255,7 +249,7 @@ onBeforeUnmount(() => {
       </p>
       <p v-if="job.job.value?.status === 'failed'" role="alert">
         {{ job.job.value.error
-        }}<Button variant="outline" @click="job.retry">重试识别</Button>
+        }}<AppButton variant="outline" @click="job.retry">重试识别</AppButton>
       </p>
       <p v-if="job.error.value" role="alert">{{ job.error.value }}</p>
       <ul v-if="job.job.value?.result?.uncertainties?.length">
@@ -278,13 +272,7 @@ onBeforeUnmount(() => {
         v-model="form.equation"
         @update:model-value="form.confirmed = false"
       />
-      <label v-if="form.fileId" class="capture-confirm"
-        ><input
-          v-model="form.confirmed"
-          type="checkbox"
-          :disabled="!form.ocrJobId || job.job.value?.status !== 'succeeded'"
-        />已核对文字、符号，并选定一道题</label
-      >
+      <AppCheckbox v-if="form.fileId" class="capture-confirm" v-model="form.confirmed" :disabled="!form.ocrJobId || job.job.value?.status !== 'succeeded'">已核对文字、符号，并选定一道题</AppCheckbox>
       <details class="study-disclosure"><summary>学科与知识点</summary><div class="capture-fields">
         <div>
           <label class="field-label" for="wrong-subject">学科</label
@@ -292,19 +280,19 @@ onBeforeUnmount(() => {
         </div>
         <div>
           <label class="field-label" for="wrong-knowledge">知识点</label
-          ><select id="wrong-knowledge" v-model="form.knowledgeIds" multiple>
+          ><NativeSelect id="wrong-knowledge" v-model="form.knowledgeIds" multiple>
             <option v-for="p in options.knowledge" :key="p.id" :value="p.id">
               {{ p.name }}
             </option>
-          </select>
+          </NativeSelect>
         </div>
       </div></details>
       <label class="field-label" for="wrong-answer">原来的答案</label
       ><Input id="wrong-answer" v-model="form.answer" />
       <label class="field-label" for="wrong-reason">原来的解题过程</label
       ><Textarea id="wrong-reason" v-model="form.reason" />
-      <p v-if="error" role="alert" class="form-error">{{ error }}</p>
-      <Button
+      <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
+      <AppButton
         type="submit"
         :disabled="
           working ||
@@ -312,7 +300,7 @@ onBeforeUnmount(() => {
           !form.prompt.trim() ||
           (!!form.fileId && !form.confirmed)
         "
-        >保存错题</Button
+        >保存错题</AppButton
       >
     </form>
   </div>

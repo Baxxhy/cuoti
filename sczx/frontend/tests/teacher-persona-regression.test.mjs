@@ -7,7 +7,7 @@ async function scenario(mode){
  const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
  const source=await(await fetch('/src/main.js')).text();
  const {createRouter,createMemoryHistory}=await import(source.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
- const {useLearning}=await import('/src/store.js'),{TooltipProvider}=await import('/src/components/ui/tooltip/index.js');
+ const {useLearning}=await import('/src/store.js'),{TooltipProvider}=await import('/src/components/app/provider.js');
  const {default:Page}=await import(mode==='feedback'?'/src/pages/Insights.vue':'/src/pages/Examinations.vue');
  const prior=getActivePinia(),pinia=createPinia(),store=useLearning(pinia),originalFetch=window.fetch,writes=[];
  const record=(id,name)=>({id:'record-'+id,studentId:id,studentName:name,feedback:'',attempts:[],helps:[],repairs:[],metrics:{},drafts:{blocks:{},questions:{}}});
@@ -39,7 +39,7 @@ async function scenario(mode){
    await wait(()=>el.querySelectorAll('tbody tr button').length===2);el.querySelectorAll('tbody tr button')[1].click();await nextTick();await new Promise(r=>setTimeout(r,100));
    const dialog=document.querySelector('[role=dialog]');const opened=!!dialog&&dialog.textContent.includes('学生乙');
    if(!opened)return{opened,writes};
-   const tab=[...dialog.querySelectorAll('[role=tab]')].find(t=>t.textContent==='教师反馈');tab.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));tab.focus();await nextTick();
+   const tab=[...dialog.querySelectorAll('[role=tab]')].find(t=>t.textContent==='教师反馈');tab.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));tab.click();tab.focus();await nextTick();
    await wait(()=>document.querySelector('#student-feedback'));
    const input=document.querySelector('#student-feedback');input.value='两边共同运算的解释清楚。';input.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();[...dialog.querySelectorAll('button')].find(b=>b.textContent.trim()==='保存反馈').click();
    await wait(()=>records[1].feedback.length>0);const stayedOpen=!!document.querySelector('[role=dialog]');

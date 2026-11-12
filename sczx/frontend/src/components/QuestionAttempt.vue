@@ -131,7 +131,7 @@ async function ask() {
       v-model="reason"
       :disabled="(!preview && store.task?.readOnly) || busy"
     />
-    <p v-if="hint" class="inline-notice">{{ hint }}</p>
+    <AppAlert  v-if="hint" class="inline-notice">{{ hint }}</AppAlert>
     <p
       v-if="latest"
       role="status"
@@ -140,14 +140,14 @@ async function ask() {
       <span v-if="latest.answer!==answer||latest.reason!==reason" class="student-previous-answer">上次作答</span>{{ latest.verification?.status==='unverified'?'需要核对':latest.correct?'数值正确':'再检查一下' }}
       <span>{{latest.helped?'用过帮助':'独立作答'}}</span><InfoTip v-if="latest.verification?.message" label="查看核对结果">{{latest.verification.message}}</InfoTip>
     </p>
-    <p v-if="error" role="alert" class="form-error">{{ error }}</p>
+    <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
     <div class="library-actions">
-      <Button
+      <AppButton
         :disabled="(!preview && store.task?.readOnly) || busy || !answer.trim()"
         @click="submit"
-        >{{ busy ? "保存中…" : "提交作答" }}</Button
-      ><Button variant="ghost" :disabled="(!preview&&store.task?.readOnly)||busy" @click="helpOpen=true">需要提示</Button>
+        >{{ busy ? "保存中…" : "提交作答" }}</AppButton
+      ><AppButton variant="ghost" :disabled="(!preview&&store.task?.readOnly)||busy" @click="helpOpen=true">需要提示</AppButton>
     </div>
-    <AppDialog v-model:open="helpOpen" title="这道题需要帮助吗？"><p class="student-help-consequence">{{preview?'预览不会保存作答或帮助记录。':'获得提示后，本题会记为使用过帮助。'}}</p><div class="student-help-choices"><Button :disabled="busy" @click="helpOpen=false;ask()">给我一点提示</Button><Button v-if="!preview" variant="outline" :disabled="busy" @click="helpOpen=false;emit('guide',index)">向学习助手提问</Button></div></AppDialog>
+    <AppDialog v-model:open="helpOpen" title="这道题需要帮助吗？"><p class="student-help-consequence">{{preview?'预览不会保存作答或帮助记录。':'获得提示后，本题会记为使用过帮助。'}}</p><div class="student-help-choices"><AppButton :disabled="busy" @click="helpOpen=false;ask()">给我一点提示</AppButton><AppButton v-if="!preview" variant="outline" :disabled="busy" @click="helpOpen=false;emit('guide',index)">向学习助手提问</AppButton></div></AppDialog>
   </div>
 </template>

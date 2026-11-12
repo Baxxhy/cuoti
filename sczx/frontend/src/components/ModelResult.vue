@@ -42,14 +42,14 @@ const verification = computed(
       ><span>{{ job.step }}</span>
     </div>
     <div v-if="job.error" class="model-error" role="alert">{{ job.error }}</div>
-    <Button
+    <AppButton
       v-if="canRetry && job.status === 'failed'"
       variant="outline"
       :disabled="busy"
       @click="$emit('retry')"
-      ><RotateCcw :size="16" />重试</Button
+      ><RotateCcw :size="16" />重试</AppButton
     >
-    <img
+    <AppImage
       v-if="
         showSource && job.fileId && ['text', 'ocr'].includes(job.capability)
       "
@@ -90,14 +90,14 @@ const verification = computed(
         }}</Status>
         <h3>{{ result.title }}</h3>
         <p class="model-prose">{{ result.hint }}</p>
-        <Button
+        <AppButton
           v-if="result.steps?.length"
           variant="ghost"
           @click="expanded = !expanded"
           :aria-expanded="expanded"
-          >{{ expanded ? "收起步骤" : "一步步看" }}</Button
+          >{{ expanded ? "收起步骤" : "一步步看" }}</AppButton
         >
-        <div v-if="expanded&&result.steps?.length" class="student-model-step"><span>{{stepIndex+1}} / {{result.steps.length}}</span><p>{{result.steps[stepIndex]}}</p><div class="action-row"><Button variant="ghost" size="sm" :disabled="stepIndex===0" @click="stepIndex--">上一步</Button><Button variant="outline" size="sm" :disabled="stepIndex===result.steps.length-1" @click="stepIndex++">下一步</Button></div></div>
+        <div v-if="expanded&&result.steps?.length" class="student-model-step"><span>{{stepIndex+1}} / {{result.steps.length}}</span><p>{{result.steps[stepIndex]}}</p><div class="action-row"><AppButton variant="ghost" size="sm" :disabled="stepIndex===0" @click="stepIndex--">上一步</AppButton><AppButton variant="outline" size="sm" :disabled="stepIndex===result.steps.length-1" @click="stepIndex++">下一步</AppButton></div></div>
         <p v-if="result.question" class="model-followup">
           {{ result.question }}
         </p>

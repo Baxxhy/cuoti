@@ -1,8 +1,2 @@
-<script setup>
-import { Card, CardContent } from "@/components/ui/card/index.js";
-</script>
-<template>
-  <Card class="surface"
-    ><CardContent><slot /></CardContent
-  ></Card>
-</template>
+<script setup>import{ElCard}from'element-plus';</script>
+<template><ElCard class="surface" shadow="never" body-class="surface-body"><slot/></ElCard></template>

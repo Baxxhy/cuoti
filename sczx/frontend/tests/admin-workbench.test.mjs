@@ -10,7 +10,7 @@ test('material parsing reaches a terminal notice without overwriting a newer sav
   const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');
   const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
   const {createRouter,createMemoryHistory,RouterView}=await import((await (await fetch('/src/components/MaterialWorkbench.vue')).text()).match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
-  const {TooltipProvider}=await import('/src/components/ui/tooltip/index.js');
+  const {TooltipProvider}=await import('/src/components/app/provider.js');
   const {default:Page}=await import('/src/components/MaterialWorkbench.vue');
   const {useLearning}=await import('/src/store.js');const {libraryApi}=await import('/src/services/library.js');const {curriculumApi}=await import('/src/services/curriculum.js');
   const prior=getActivePinia(),pinia=createPinia(),store=useLearning(pinia),oldLibrary={...libraryApi},oldKnowledge=curriculumApi.knowledge;
@@ -24,7 +24,7 @@ test('material parsing reaches a terminal notice without overwriting a newer sav
   const router=createRouter({history:createMemoryHistory(),routes:[{path:'/manage',component:Page},{path:'/away',component:{render:()=>h('div','其他页面')}}]});await router.push('/manage');await router.isReady();
   const el=document.createElement('div');document.body.append(el);const app=createApp({render:()=>h(TooltipProvider,null,{default:()=>h(RouterView)})});app.use(pinia);app.use(router);Object.assign(app._context.components,document.querySelector('#root').__vue_app__._context.components);app.mount(el);
   const wait=async(fn,timeout=10000)=>{const end=Date.now()+timeout;while(Date.now()<end){if(fn())return;await new Promise(r=>setTimeout(r,30))}throw Error('Admin workbench wait: '+el.textContent)};
-  const click=async(label,scope=el)=>{const b=[...scope.querySelectorAll('button')].find(b=>b.textContent.trim()===label);if(!b)throw Error('Missing button '+label);b.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));b.click();await nextTick()};
+  const click=async(label,scope=el)=>{const b=[...scope.querySelectorAll('button,[role=tab]')].find(b=>b.textContent.trim()===label);if(!b)throw Error('Missing button '+label);b.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));b.click();await nextTick()};
   try{
    await wait(()=>el.textContent.includes('受控上传材料'));
    await click('上传材料');await wait(()=>document.querySelector('#material-file'));
@@ -48,7 +48,7 @@ test('admin operation sections follow their URL and failed tasks use a business 
   const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');
   const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
   const {createRouter,createMemoryHistory,RouterView}=await import((await (await fetch('/src/pages/Issues.vue')).text()).match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
-  const {TooltipProvider}=await import('/src/components/ui/tooltip/index.js');const {default:Page}=await import('/src/pages/Issues.vue');
+  const {TooltipProvider}=await import('/src/components/app/provider.js');const {default:Page}=await import('/src/pages/Issues.vue');
   const {useLearning}=await import('/src/store.js');const {api}=await import('/src/services/api.js');const {supportApi}=await import('/src/services/insights.js');const {modelApi}=await import('/src/services/models.js');
   const prior=getActivePinia(),pinia=createPinia(),store=useLearning(pinia),oldRequest=api.request,oldAccounts=api.accounts,oldSupport=supportApi.list,oldCapabilities=modelApi.capabilities,oldJobs=modelApi.list;
   store.user={id:'controlled-admin-sections',role:'admin'};

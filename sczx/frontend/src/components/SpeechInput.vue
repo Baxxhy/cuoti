@@ -46,9 +46,9 @@ onBeforeUnmount(stop);
 </script>
 <template>
   <div class="speech-input">
-    <Button type="button" variant="ghost" size="sm" :disabled="disabled || !Engine" :aria-pressed="listening || starting" :aria-label="listening || starting ? '停止语音输入' : '语音输入'" @click="toggle"><Square v-if="listening || starting" :size="16" /><Mic v-else :size="16" />{{ listening ? '停止' : starting ? '连接中…' : '语音输入' }}</Button>
+    <AppButton type="button" variant="ghost" size="sm" :disabled="disabled || !Engine" :aria-pressed="listening || starting" :aria-label="listening || starting ? '停止语音输入' : '语音输入'" @click="toggle"><Square v-if="listening || starting" :size="16" /><Mic v-else :size="16" />{{ listening ? '停止' : starting ? '连接中…' : '语音输入' }}</AppButton>
     <InfoTip v-if="!Engine" label="语音输入不可用">当前浏览器不支持语音输入，可以直接打字。</InfoTip>
     <span v-if="listening || interim" role="status" aria-live="polite" class="speech-interim">{{ interim || '正在聆听…' }}</span>
-    <p v-if="error" class="form-error" role="alert">{{ error }}</p>
+    <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
   </div>
 </template>

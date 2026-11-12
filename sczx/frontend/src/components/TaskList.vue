@@ -51,13 +51,10 @@ async function open(task, teacher) {
           >{{ status(task) }}</Status
         >
       </div>
-      <Button variant="ghost" @click="open(task, teacher)"
+      <AppButton variant="ghost" @click="open(task, teacher)"
         >{{ teacher ? "查看学情" : "进入任务" }}<ArrowRight
-      /></Button>
+      /></AppButton>
     </div>
   </div>
-  <div v-else class="empty-state">
-    <h3>{{ emptyLabel || (teacher ? "当前班级暂无任务" : "暂无已分配任务") }}</h3>
-    <RouteButton v-if="teacher" route="prepare">开始备课</RouteButton>
-  </div>
+  <AppEmpty v-else class="empty-state"><h3>{{ emptyLabel || (teacher ? "当前班级暂无任务" : "暂无已分配任务") }}</h3><RouteButton v-if="teacher" route="prepare">开始备课</RouteButton></AppEmpty>
 </template>

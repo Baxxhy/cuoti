@@ -300,14 +300,14 @@ onBeforeUnmount(() => interaction++);
     <header class="ai-assistant-heading">
 
       <h3 v-if="showHeading">学习助手</h3>
-      <Button
+      <AppButton
         v-if="job"
         variant="ghost"
         size="icon-sm"
         :aria-label="busy ? '停止本轮指导' : '开始新一轮指导'"
         @click="stop"
         ><Square v-if="busy" :size="14" /><RotateCcw v-else :size="14"
-      /></Button>
+      /></AppButton>
     </header>
     <p
       v-if="job?.input?.context?.focus === 'confirmed_image'"
@@ -338,14 +338,13 @@ onBeforeUnmount(() => interaction++);
         job.status === 'succeeded' &&
         ocrId === job.id
       "
-      ><img
+      ><AppImage
         :src="`/api/files/${job.fileId}`"
         class="ai-original"
         alt="本轮识别的原始题图"
       />
-      <p v-if="job.result.uncertainties?.length" class="inline-notice" data-status="pending">
-        待核对：{{ job.result.uncertainties.join("；") }}
-      </p>
+      <AppAlert  v-if="job.result.uncertainties?.length" class="inline-notice" data-status="pending">
+        待核对：{{ job.result.uncertainties.join("；") }}</AppAlert>
       <label class="field-label" for="confirmed-question"
         >识别文字<Textarea
           id="confirmed-question"
@@ -358,10 +357,10 @@ onBeforeUnmount(() => interaction++);
           :maxlength="500"
           v-model="equation"
           :disabled="store.task?.readOnly" /></label
-      ><Button
+      ><AppButton
         :disabled="busy || store.task?.readOnly || !recognized.trim()"
         @click="send(strategy, true)"
-        >确认题目并获取指导</Button
+        >确认题目并获取指导</AppButton
       ></template
     >
     <div class="ai-compose">
@@ -376,20 +375,16 @@ onBeforeUnmount(() => interaction++);
           parentId ? '写下你对追问的回答…' : '写下还没想明白的地方…'
         "
       />
-      <div class="ai-compose-actions"><label class="sr-only" for="guidance-style">指导方式</label><select id="guidance-style" v-model="strategy" :disabled="busy||uploading||store.task?.readOnly" class="student-guidance-style"><option v-for="[value,label] in strategies" :key="value" :value="value">{{label}}</option></select>
+      <div class="ai-compose-actions"><label class="sr-only" for="guidance-style">指导方式</label><NativeSelect id="guidance-style" v-model="strategy" :disabled="busy||uploading||store.task?.readOnly" class="student-guidance-style"><option v-for="[value,label] in strategies" :key="value" :value="value">{{label}}</option></NativeSelect>
         <SpeechInput
           :context-key="scope"
           :disabled="busy || uploading || store.task?.readOnly"
           @text="prompt = [prompt.trim(), $event].filter(Boolean).join(' ')"
         /><label class="image-input"
           ><ImagePlus :size="18" /><span class="sr-only">选择题图</span
-          ><input
-            type="file"
-            accept="image/*"
-            :disabled="busy || uploading || store.task?.readOnly"
-            @change="chooseFile" /></label
+          ><AppFilePicker accept="image/*" :disabled="busy || uploading || store.task?.readOnly" @change="chooseFile"/></label
         ><span class="ai-file-name">{{ file?.name || "" }}</span
-        ><Button
+        ><AppButton
           :disabled="busy || uploading || !recordId || store.task?.readOnly"
           @click="send()"
           ><Send :size="15" />{{
@@ -400,37 +395,35 @@ onBeforeUnmount(() => interaction++);
                 : file || pendingAsset
                   ? "识别题图"
                   : "发送"
-          }}</Button
+          }}</AppButton
         >
       </div>
-      <Button
+      <AppButton
         v-if="parentId"
         variant="outline"
         :disabled="busy || store.task?.readOnly || !prompt.trim()"
         @click="send('continue')"
-        >回答后继续指导</Button
+        >回答后继续指导</AppButton
       >
     </div>
     <footer class="tutoring-footer">
-      <Button
+      <AppButton
         v-if="
           (job?.capability === 'ocr' && job.status === 'failed') ||
           (pendingAsset && error)
         "
         variant="ghost"
         @click="useTextOnly"
-        >改用文字提问</Button
-      ><Button
+        >改用文字提问</AppButton
+      ><AppButton
         variant="ghost"
         :disabled="busy || store.task?.readOnly"
         @click="send('try')"
-        >自己试试<ArrowUpRight :size="14" /></Button
+        >自己试试<ArrowUpRight :size="14" /></AppButton
       ><RouteButton v-if="job?.strategy === 'try'" route="check" secondary
         >回到原题作答</RouteButton
       >
     </footer>
-    <p v-if="uploadError || error" class="form-error" role="alert">
-      {{ uploadError || error }}
-    </p>
+    <AppAlert type="error" v-if="uploadError || error" class="form-error" role="alert">{{ uploadError || error }}</AppAlert>
   </aside>
 </template>

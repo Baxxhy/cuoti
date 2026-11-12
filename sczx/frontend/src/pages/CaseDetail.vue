@@ -33,11 +33,11 @@ watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
 <template>
   <RouteButton v-if="route.query.interventionClass&&currentCase" :route="'insights?class='+route.query.interventionClass+'&task='+(route.query.interventionTask||'')+'&interventionCase='+currentCase.id" secondary>用于补充教学</RouteButton>
   <p v-if="loading" role="status">读取案例中…</p>
-  <Surface v-else-if="error || !currentCase"><div class="empty-state"><p role="alert">{{ error || '暂无已发布的案例' }}</p><Button @click="navigate('cases')">返回教学案例</Button></div></Surface>
+  <Surface v-else-if="error || !currentCase"><AppEmpty class="empty-state"><p role="alert">{{ error || '暂无已发布的案例' }}</p><AppButton @click="navigate('cases')">返回教学案例</AppButton></AppEmpty></Surface>
   <template v-else>
   <div class="back-line">
-    <Button variant="ghost" @click="navigate('cases')"
-      ><ArrowLeft />返回教学案例</Button
+    <AppButton variant="ghost" @click="navigate('cases')"
+      ><ArrowLeft />返回教学案例</AppButton
     >
   </div>
   <div class="case-detail-header">
@@ -46,25 +46,25 @@ watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
       <h1>{{ currentCase.title }}</h1>
     </div>
     <div class="heading-actions">
-      <Button
+      <AppButton
         v-if="store.user?.role==='teacher'"
         variant="outline"
         :disabled="bookmarkBusy"
         @click="toggleFavorite"
         ><Star :fill="favorite ? 'currentColor' : 'none'" />{{
           favorite ? "已收藏" : "收藏案例"
-        }}</Button
-      ><Button
+        }}</AppButton
+      ><AppButton
         v-if="store.user?.role === 'teacher'"
         @click="
           store.useCase(currentCase);
           navigate('prepare?lesson='+store.data.lesson.id);
         "
-        >用于备课</Button
+        >用于备课</AppButton
       >
     </div>
   </div>
-  <p v-if="bookmarkError" class="form-error" role="alert">{{bookmarkError}}</p>
+  <AppAlert type="error" v-if="bookmarkError" class="form-error" role="alert">{{bookmarkError}}</AppAlert>
   <div class="case-detail-grid teacher-case-reading">
     <article class="case-article"><CaseArticle :value="currentCase" /></article>
     <aside>

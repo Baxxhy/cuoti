@@ -8,7 +8,7 @@ test('class switch ignores delayed old responses and empty teacher task records 
   const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');
   const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
   const source=await (await fetch('/src/pages/Classroom.vue')).text();const {createRouter,createMemoryHistory,RouterView}=await import(source.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
-  const {TooltipProvider}=await import('/src/components/ui/tooltip/index.js');const {default:Page}=await import('/src/pages/Classroom.vue');const {useLearning}=await import('/src/store.js');
+  const {TooltipProvider}=await import('/src/components/app/provider.js');const {default:Page}=await import('/src/pages/Classroom.vue');const {useLearning}=await import('/src/store.js');
   const original=fetch,prior=getActivePinia(),pinia=createPinia(),s=useLearning(pinia);s.user={id:'teacher',role:'teacher'};s.data={classroom:{id:'a'},classrooms:[],records:{},lesson:{id:'l'}};s.save=async()=>true;
   let release,delayed=false;
   const task=id=>({id:'task-'+id,title:'任务'+id,classId:id,className:'班级'+id,summary:{submitted:0,assigned:0,inactive:0,status:'未分配'}});

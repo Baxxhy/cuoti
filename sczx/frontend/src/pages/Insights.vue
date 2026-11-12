@@ -94,7 +94,7 @@ function openStudent(id) {
     <Surface class="student-table"
       ><SectionHeading title="学生学习过程" />
       <div class="table-container">
-        <table>
+        <AppTable>
           <thead>
             <tr>
               <th>学生</th>
@@ -137,20 +137,20 @@ function openStudent(id) {
                 >
               </td>
               <td>
-                <Button variant="ghost" @click="openStudent(student.id)"
+                <AppButton variant="ghost" @click="openStudent(student.id)"
                   >查看与反馈<ArrowUpRight
-                /></Button>
+                /></AppButton>
               </td>
             </tr>
           </tbody>
-        </table></div
+        </AppTable></div
     ></Surface>
     <Surface v-if="!store.record" class="records-surface"><p>还没有学生作答记录。</p></Surface>
     <AppDialog
       v-model:open="studentOpen"
       :title="`${store.record?.studentName || '学生'}的学习过程`"
       content-class="student-detail-dialog"
-      ><AppTabs v-model="studentTab" :items="[{value:'answers',label:'作答'},{value:'help',label:'求助'},{value:'repairs',label:'补救'},{value:'feedback',label:'教师反馈'}]"/><div v-if="studentTab==='feedback'&&store.record" class="focus-student-feedback"><label class="field-label" for="student-feedback">给{{store.record.studentName||'学生'}}的反馈</label><Textarea id="student-feedback" v-model="draft" :disabled="feedbackSaving"/><p v-if="error" class="form-error" role="alert">{{error}}</p><Button :disabled="feedbackSaving" @click="feedback"><Check :size="16"/>{{feedbackSaving?'保存中…':'保存反馈'}}</Button></div><div v-else class="attempt-timeline">
+      ><AppTabs v-model="studentTab" :items="[{value:'answers',label:'作答'},{value:'help',label:'求助'},{value:'repairs',label:'补救'},{value:'feedback',label:'教师反馈'}]"/><div v-if="studentTab==='feedback'&&store.record" class="focus-student-feedback"><label class="field-label" for="student-feedback">给{{store.record.studentName||'学生'}}的反馈</label><Textarea id="student-feedback" v-model="draft" :disabled="feedbackSaving"/><AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}</AppAlert><AppButton :disabled="feedbackSaving" @click="feedback"><Check :size="16"/>{{feedbackSaving?'保存中…':'保存反馈'}}</AppButton></div><div v-else class="attempt-timeline">
         <section v-if="store.record&&studentTab==='answers'"><RouteButton :route="'memory?studentId='+store.record.studentId+'&classId='+store.task.classId" secondary>查看学习记忆</RouteButton>
           <h3 v-if="store.record.observation">自己的解释</h3>
           <p v-if="store.record.observation">{{ store.record.observation }}</p>
@@ -185,7 +185,7 @@ function openStudent(id) {
         <section v-for="help in studentTab==='help'?visibleHelps:[]" :key="help.id">
           <h3>{{ help.kind }}</h3>
           <p>{{ help.message }}</p>
-          <img
+          <AppImage
             v-if="help.image"
             :src="help.image"
             alt="求助原始题图"
@@ -195,7 +195,7 @@ function openStudent(id) {
         </section>
         <section v-for="repair in studentTab==='repairs'?store.record?.repairs || []:[]" :key="repair.id">
           <h3>{{ repair.details?.equation || '历史固定示例 z + 2 = 9' }} → {{ repair.answer }}</h3>
-          <p>{{ repair.reason }}</p><p v-if="repair.details?.version==='dynamic_v1'">{{repair.details.phase==='retest'?'独立新题':'补救练习'}}{{repair.details.helped?' 　 使用过帮助':''}}</p><p v-else>历史固定示例，不能证明原题已掌握。</p><div v-if="repair.verification?.status==='unverified'" class="paper-actions"><Button variant="outline" @click="reviewRepair(repair,true)">人工确认正确</Button><Button variant="outline" @click="reviewRepair(repair,false)">人工确认有误</Button></div><p v-if="repair.details?.teacherReview">教师核对：{{repair.details.teacherReview.correct?'正确':'有误'}}</p>
+          <p>{{ repair.reason }}</p><p v-if="repair.details?.version==='dynamic_v1'">{{repair.details.phase==='retest'?'独立新题':'补救练习'}}{{repair.details.helped?' 　 使用过帮助':''}}</p><p v-else>历史固定示例，不能证明原题已掌握。</p><div v-if="repair.verification?.status==='unverified'" class="paper-actions"><AppButton variant="outline" @click="reviewRepair(repair,true)">人工确认正确</AppButton><AppButton variant="outline" @click="reviewRepair(repair,false)">人工确认有误</AppButton></div><p v-if="repair.details?.teacherReview">教师核对：{{repair.details.teacherReview.correct?'正确':'有误'}}</p>
           <Status :tone="repair.correct ? 'green' : 'amber'">{{
             repair.verification?.status === "unverified"
               ? "需核对"

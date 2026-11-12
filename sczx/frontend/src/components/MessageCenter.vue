@@ -73,16 +73,16 @@ onMounted(load);
             : [{ value: 'inbox', label: '我的消息' }]
         "
         @update:model-value="load"
-      /><Button
+      /><AppButton
         variant="ghost"
         size="icon-sm"
         aria-label="刷新消息"
         :disabled="busy"
         @click="load"
         ><RefreshCw :size="16"
-      /></Button>
+      /></AppButton>
     </header>
-    <p v-if="error" role="alert" class="form-error">{{ error }}</p>
+    <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
     <p v-if="busy" role="status">读取中…</p>
     <template v-if="compact"><button v-for="item in visible" :key="item.id" class="compact-message" @click="open(item)"><span :class="{'compact-message-unread':!item.readAt}" aria-hidden="true"/><span><strong>{{item.title.replaceAll('\u00b7',' ')}}</strong><time>{{deadlineText(item.createdAt)}}</time></span><ArrowUpRight :size="14"/></button></template>
     <article v-else
@@ -100,14 +100,14 @@ onMounted(load);
       <h3>{{ item.title.replaceAll('\u00b7',' ') }}</h3>
       <p v-if="item.body" class="preserve-lines">{{ item.body }}</p>
       <footer>
-        <Button
+        <AppButton
           v-if="box === 'inbox' && !item.readAt"
           variant="ghost"
           @click="read(item)"
-          ><Check :size="14" />标为已读</Button
-        ><Button variant="outline" @click="open(item)"
+          ><Check :size="14" />标为已读</AppButton
+        ><AppButton variant="outline" @click="open(item)"
           >查看任务<ArrowUpRight :size="14"
-        /></Button>
+        /></AppButton>
       </footer>
     </article>
     <p v-if="!busy && !rows.length" class="muted">暂无消息</p>

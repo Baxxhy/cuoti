@@ -10,7 +10,7 @@ test('legacy AI draft offers editable student copy and preview preserves teacher
    const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
    const raw=await(await fetch('/src/main.js')).text();
    const {createRouter,createMemoryHistory}=await import(raw.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
-   const {useLearning}=await import('/src/store.js'),{default:Prepare}=await import('/src/pages/Prepare.vue'),{TooltipProvider}=await import('/src/components/ui/tooltip/index.js');
+   const {useLearning}=await import('/src/store.js'),{default:Prepare}=await import('/src/pages/Prepare.vue'),{TooltipProvider}=await import('/src/components/app/provider.js');
    const prior=getActivePinia(),pinia=createPinia(),s=useLearning(pinia),originalFetch=fetch,writes=[];
    const canonical={id:'legacy-b',type:'explanation',title:'等式性质',content:'等式两边同时加3仍相等。'};
    s.user={id:'teacher-fixture',role:'teacher'};s.status='ready';s.data.lesson={id:'lesson-fixture',title:'测试课时'};

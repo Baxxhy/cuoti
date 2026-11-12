@@ -41,7 +41,7 @@ async function submitResult() {
     <PageHeading title="学习结果"><RouteButton route="learn" secondary>返回本课</RouteButton></PageHeading>
     <section class="student-result-summary">
       <div><span class="student-result-task">{{store.task.title}}<InfoTip label="独立正确范围">未使用帮助且数值核验正确，不代表已经掌握。</InfoTip></span><h2>{{store.record.completed?'已交给老师':missing.length?'还有 '+missing.length+' 项待完成':'准备交给老师'}}</h2><p v-if="missing.length" class="result-next-block">下一项：{{missing[0].title}}</p></div>
-      <Button v-if="missing.length&&!store.record.completed" :disabled="store.task.readOnly" @click="continueLearning">继续完成<ArrowRight :size="16"/></Button><Button v-else-if="!store.record.completed" :disabled="submitting||store.task.readOnly" @click="confirmOpen=true">交给老师<ArrowRight :size="16"/></Button><RouteButton v-else route="home">返回学习首页</RouteButton>
+      <AppButton v-if="missing.length&&!store.record.completed" :disabled="store.task.readOnly" @click="continueLearning">继续完成<ArrowRight :size="16"/></AppButton><AppButton v-else-if="!store.record.completed" :disabled="submitting||store.task.readOnly" @click="confirmOpen=true">交给老师<ArrowRight :size="16"/></AppButton><RouteButton v-else route="home">返回学习首页</RouteButton>
     </section>
     <div class="student-result-metrics">
       <button @click="navigate('records')"><strong>{{checkAttempts.length}}</strong><span>作答记录<ChevronRight :size="14"/></span></button>
@@ -49,9 +49,9 @@ async function submitResult() {
       <button @click="navigate('wrong')"><strong>{{repairCount}}</strong><span>错题练习<ChevronRight :size="14"/></span></button>
     </div>
     <Surface v-if="store.record.feedback" class="student-teacher-feedback"><SectionHeading title="教师反馈"/><p class="preserve-lines">{{store.record.feedback||'暂无反馈'}}</p></Surface>
-    <div class="student-result-footer"><RouteButton v-if="!store.record.completed" route="home" secondary>返回学习首页</RouteButton><Button v-else variant="ghost" :disabled="submitting||store.task.readOnly" @click="confirmOpen=true">更新提交</Button><Button variant="ghost" @click="extraOpen=true">本课资料与进度</Button></div>
+    <div class="student-result-footer"><RouteButton v-if="!store.record.completed" route="home" secondary>返回学习首页</RouteButton><AppButton v-else variant="ghost" :disabled="submitting||store.task.readOnly" @click="confirmOpen=true">更新提交</AppButton><AppButton variant="ghost" @click="extraOpen=true">本课资料与进度</AppButton></div>
     <AppDialog v-model:open="extraOpen" title="本课资料与进度"><SupplementPanel :task-id="store.task.id"/><UnitJourney v-if="store.task?.unitId||store.task?.snapshot.lessonSnapshot?.unitId" :unit-id="store.task.unitId||store.task.snapshot.lessonSnapshot.unitId" :task="store.task" compact/></AppDialog>
-    <AppDialog v-model:open="confirmOpen" title="提交学习结果"><p>教师将看到本课作答、求助和补救记录。</p><p v-if="submitError" class="form-error" role="alert">{{submitError}}</p><div class="action-row"><Button :disabled="submitting" @click="submitResult">{{submitting?'提交中…':'确认提交'}}</Button><Button variant="outline" :disabled="submitting" @click="confirmOpen=false">取消</Button></div></AppDialog>
+    <AppDialog v-model:open="confirmOpen" title="提交学习结果"><p>教师将看到本课作答、求助和补救记录。</p><AppAlert type="error" v-if="submitError" class="form-error" role="alert">{{submitError}}</AppAlert><div class="action-row"><AppButton :disabled="submitting" @click="submitResult">{{submitting?'提交中…':'确认提交'}}</AppButton><AppButton variant="outline" :disabled="submitting" @click="confirmOpen=false">取消</AppButton></div></AppDialog>
   </template>
   <TaskEmpty v-else/>
 </template>

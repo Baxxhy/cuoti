@@ -41,8 +41,8 @@ async function submit() {
       <form @submit.prevent="submit">
         <div class="login-field"><label for="login-username">账号</label><Input id="login-username" v-model="username" autocomplete="username" placeholder="输入账号" :disabled="busy" required /></div>
         <div class="login-field"><label for="login-password">密码</label><div class="login-password"><Input id="login-password" v-model="password" :type="showPassword?'text':'password'" autocomplete="current-password" placeholder="输入密码" :disabled="busy" required /><button type="button" :aria-label="showPassword?'隐藏密码':'显示密码'" :aria-pressed="showPassword" @click="showPassword=!showPassword"><EyeOff v-if="showPassword" :size="18"/><Eye v-else :size="18"/></button></div></div>
-        <p v-if="error" class="form-error" role="alert">{{ error }}</p>
-        <Button class="login-submit" type="submit" :disabled="busy">{{ busy ? "正在登录…" : "登录" }}<ArrowRight :size="18" /></Button>
+        <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
+        <AppButton class="login-submit" type="submit" :disabled="busy">{{ busy ? "正在登录…" : "登录" }}<ArrowRight :size="18" /></AppButton>
       </form>
     </section>
   </main>

@@ -1,17 +1,4 @@
 <script setup>
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs/index.js";
-defineProps({ items: { default: () => [] } });
-const model = defineModel();
+import{ElTabs,ElTabPane}from'element-plus';defineProps({items:{default:()=>[]}});const model=defineModel();
 </script>
-<template>
-  <Tabs v-model="model"
-    ><TabsList
-      ><TabsTrigger
-        v-for="item in items"
-        :key="item.value"
-        :value="item.value"
-        >{{ item.label }}</TabsTrigger
-      ></TabsList
-    ></Tabs
-  >
-</template>
+<template><ElTabs v-model="model" class="app-element-tabs" data-slot="tabs"><ElTabPane v-for="item in items" :key="item.value" :name="item.value" :label="item.label" :disabled="item.disabled"/></ElTabs></template>

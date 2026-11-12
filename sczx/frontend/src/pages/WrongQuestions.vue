@@ -56,7 +56,7 @@ onMounted(load);
 </script>
 <template>
   <PageHeading title="我的错题"
-    ><Button @click="open = true"><Plus />录入错题</Button></PageHeading
+    ><AppButton @click="open = true"><Plus />录入错题</AppButton></PageHeading
   >
   <div class="wrong-workspace-toolbar">
     <AppTabs
@@ -72,7 +72,7 @@ onMounted(load);
         v-model="search"
         aria-label="搜索错题"
         placeholder="搜索题目"
-      /><details class="student-filter-disclosure"><summary>筛选<span v-if="subject||knowledge||cause"> 　 已筛选</span></summary><div class="student-filter-fields"><select v-model="subject" aria-label="筛选学科">
+      /><details class="student-filter-disclosure"><summary>筛选<span v-if="subject||knowledge||cause"> 　 已筛选</span></summary><div class="student-filter-fields"><NativeSelect v-model="subject" aria-label="筛选学科">
         <option value="">全部学科</option>
         <option
           v-for="s in [
@@ -81,22 +81,22 @@ onMounted(load);
           :key="s"
         >
           {{ s }}
-        </option></select
-      ><select v-model="knowledge" aria-label="筛选知识点">
+        </option></NativeSelect
+      ><NativeSelect v-model="knowledge" aria-label="筛选知识点">
         <option value="">全部知识点</option>
         <option v-for="p in options.knowledge" :key="p.id" :value="p.id">
           {{ p.name }}
-        </option></select
-      ><select v-model="cause" aria-label="筛选错因">
+        </option></NativeSelect
+      ><NativeSelect v-model="cause" aria-label="筛选错因">
         <option value="">全部错因</option>
         <option v-for="r in options.reasons" :key="r">{{ r }}</option>
-      </select></div></details>
+      </NativeSelect></div></details>
     </div>
   </div>
   <p v-if="loading" role="status">正在读取错题…</p>
   <Surface v-else-if="error"
     ><p role="alert">{{ error }}</p>
-    <Button @click="load">重新读取</Button></Surface
+    <AppButton @click="load">重新读取</AppButton></Surface
   >
   <div v-else-if="filtered.length" class="wrong-library">
     <button
@@ -106,7 +106,7 @@ onMounted(load);
       @click="navigate('repair?wrong=' + item.id)"
     >
       <div class="wrong-row-art">
-        <img v-if="item.image" :src="item.image" alt="原题" /><NotebookPen
+        <AppImage v-if="item.image" :src="item.image" alt="原题" /><NotebookPen
           v-else
         />
       </div>
@@ -137,11 +137,7 @@ onMounted(load);
     </button>
   </div>
   <Surface v-else
-    ><div class="empty-state">
-      <NotebookPen :size="32" />
-      <h2>{{ items.length ? "没有符合条件的错题" : "记录第一道错题" }}</h2>
-      <Button v-if="!items.length" @click="open = true">录入错题</Button>
-    </div></Surface
+    ><AppEmpty class="empty-state"><NotebookPen :size="32" /><h2>{{ items.length ? "没有符合条件的错题" : "记录第一道错题" }}</h2><AppButton v-if="!items.length" @click="open = true">录入错题</AppButton></AppEmpty></Surface
   >
   <AppDialog
     v-model:open="open"

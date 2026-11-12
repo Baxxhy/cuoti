@@ -2598,24 +2598,7 @@ td button {
   font-size: 13px;
   line-height: 1.9;
 }
-.toast-message {
-  position: fixed;
-  z-index: 100;
-  bottom: 25px;
-  left: calc(50% + 90px);
-  transform: translateX(-50%);
-  background: white;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 8px 30px #44334d15;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 12px 18px;
-  border-radius: 9px;
-  font-size: 13px;
-  color: #4b4b4b;
-  max-width: calc(100vw - 32px);
-}
+
 .mobile-sidebar {
   width: 270px;
   padding: 28px 16px 16px;
@@ -2729,9 +2712,7 @@ td button {
     max-width: none;
     font-size: 11px;
   }
-  .toast-message {
-    left: 50%;
-  }
+
   .lesson-editor,
   .lesson-paper {
     padding: 25px;
@@ -3241,10 +3222,7 @@ td button {
   .mobile-sidebar [data-slot="button"] {
     min-height: 32px;
   }
-  .toast-message {
-    width: max-content;
-    font-size: 12px;
-  }
+
 }
 
 /* Nova semantic colors keep all three workspaces on one readable palette. */
@@ -3365,10 +3343,7 @@ h4 {
     z-index: 2;
   }
 }
-.toast-message {
-  transform: none;
-  translate: -50% 0;
-}
+
 /* Keep intrinsic table widths inside the horizontal reading region. */
 .surface,
 .surface > [data-slot="card-content"],

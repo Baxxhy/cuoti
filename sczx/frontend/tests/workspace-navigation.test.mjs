@@ -13,7 +13,7 @@ async function workspaceScenario(mode){
   const {default:App}=await import('/src/App.vue');
   const {default:Dashboard}=await import('/src/pages/Dashboard.vue');
   const {default:Lesson}=await import('/src/pages/Lesson.vue');
-  const {TooltipProvider}=await import('/src/components/ui/tooltip/index.js');
+  const {TooltipProvider}=await import('/src/components/app/provider.js');
   const originalFetch=window.fetch,prior=getActivePinia(),url=location.href;
   const pinia=createPinia(),s=useLearning(pinia);
   const task={id:'test-ui-next',title:'补充练习：两边同时减3',className:'测试班',status:'待开始',snapshot:{goal:'说出两边进行的共同运算。',blocks:[]},questions:[{id:'check-one',kind:'check',prompt:'求解并验算',equation:'x+3=8'}]};
@@ -58,7 +58,7 @@ async function workspaceScenario(mode){
     if(mode==='dashboard'){
       const primary=el.querySelector('.overview-next-actions button');primary.click();const destination=location.hash;
       const completed=[...el.querySelectorAll('[role=tab]')].find(x=>x.textContent==='已提交');
-      completed.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));completed.focus();await nextTick();await new Promise(r=>setTimeout(r,30));
+      completed.dispatchEvent(new MouseEvent('mousedown',{button:0,bubbles:true}));completed.click();completed.focus();await nextTick();await new Promise(r=>setTimeout(r,30));
       return{destination,empty:el.querySelector('.overview-task-panel').textContent,writes};
     }
     if(mode==='lesson'){

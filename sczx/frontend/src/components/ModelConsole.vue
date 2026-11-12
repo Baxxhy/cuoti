@@ -62,7 +62,7 @@ async function saveCorrection() {
 }
 </script>
 <template>
-  <div class="model-console-heading"><AppSelect :model-value="selected" label="验证能力" :options="Object.entries(tabs).map(([value,label])=>({value,label}))" @update:model-value="selectCapability"/><Button variant="ghost" size="icon-sm" aria-label="刷新模型与任务" @click="load"><RefreshCw :size="17" /></Button></div>
+  <div class="model-console-heading"><AppSelect :model-value="selected" label="验证能力" :options="Object.entries(tabs).map(([value,label])=>({value,label}))" @update:model-value="selectCapability"/><AppButton variant="ghost" size="icon-sm" aria-label="刷新模型与任务" @click="load"><RefreshCw :size="17" /></AppButton></div>
 
   <div class="model-console-grid">
     <div class="model-console-form">
@@ -75,15 +75,15 @@ async function saveCorrection() {
       <div class="model-config-state"><Status :tone="activeConfig?.lastStatus==='failed'||!activeConfig?.configured ? 'amber' : 'green'">{{ activeConfig?.configured ? activeConfig.lastStatus === 'succeeded' ? '最近调用成功' : activeConfig.lastStatus === 'failed' ? '最近调用失败' : '已配置 　 待验证' : activeConfig?.unavailableReason ? '暂不可用' : '未配置' }}</Status><InfoTip v-if="activeConfig?.models?.length" label="模型配置">{{ activeConfig.models.map(x => `${x.model} 　 ${x.name}`).join(' / ') }}</InfoTip></div>
       <p v-if="activeConfig?.unavailableReason" role="status" class="model-model-name">{{ activeConfig.unavailableReason }}</p>
 
-      <template v-if="['ocr', 'asr'].includes(selected)"><label class="field-label" for="model-input-file">{{ selected === 'ocr' ? '题目原图' : '音频文件' }}</label><label class="model-file-picker"><FileAudio v-if="selected === 'asr'" :size="20" /><span>{{ file?.name || '选择文件' }}</span><input id="model-input-file" type="file" :accept="selected === 'ocr' ? 'image/*' : 'audio/*'" @change="file = $event.target.files?.[0] || null" /></label></template>
-      <template v-else-if="selected === 'retrieval'"><label class="field-label" for="retrieval-query">知识点或学生困难</label><Input id="retrieval-query" v-model="query" @keydown.enter="run" /><label class="retrieval-rerank"><input v-model="rerank" type="checkbox" />语义重排</label></template>
+      <template v-if="['ocr', 'asr'].includes(selected)"><label class="field-label" for="model-input-file">{{ selected === 'ocr' ? '题目原图' : '音频文件' }}</label><label class="model-file-picker"><FileAudio v-if="selected === 'asr'" :size="20" /><span>{{ file?.name || '选择文件' }}</span><AppFilePicker id="model-input-file" :accept="selected === 'ocr' ? 'image/*' : 'audio/*'" @change="file = $event.target.files?.[0] || null"/></label></template>
+      <template v-else-if="selected === 'retrieval'"><label class="field-label" for="retrieval-query">知识点或学生困难</label><Input id="retrieval-query" v-model="query" @keydown.enter="run" /><AppCheckbox class="retrieval-rerank" v-model="rerank">语义重排</AppCheckbox></template>
       <template v-else-if="selected === 'rerank'"><label class="field-label" for="rerank-query">教学问题</label><Input id="rerank-query" v-model="query" /><label class="field-label" for="rerank-materials">候选材料，每行一段</label><Textarea id="rerank-materials" v-model="materials" class="model-input-large" /></template>
       <template v-else><label class="field-label" for="model-input-text">{{ selected === 'embedding' ? '文本，每行一段' : selected === 'tts' ? '朗读文字' : '问题' }}</label><Textarea id="model-input-text" v-model="text" class="model-input-large" /></template>
-      <Button class="model-run-button" :disabled="busy || uploading || !!activeConfig?.unavailableReason || !activeConfig" @click="run"><Play :size="15" />{{ uploading ? '上传中…' : busy ? '执行中…' : ({retrieval:'检索案例',text:'获取指导',ocr:'识别题图',rerank:'重排材料'})[selected]||'开始验证' }}</Button>
+      <AppButton class="model-run-button" :disabled="busy || uploading || !!activeConfig?.unavailableReason || !activeConfig" @click="run"><Play :size="15" />{{ uploading ? '上传中…' : busy ? '执行中…' : ({retrieval:'检索案例',text:'获取指导',ocr:'识别题图',rerank:'重排材料'})[selected]||'开始验证' }}</AppButton>
       </template>
-      <p v-if="loadError || error" class="form-error" role="alert">{{ loadError || error }}</p>
+      <AppAlert type="error" v-if="loadError || error" class="form-error" role="alert">{{ loadError || error }}</AppAlert>
       <ModelResult :job="job" :busy="busy" :can-retry="['text', 'ocr', 'retrieval', 'rerank'].includes(job?.capability)" show-source @retry="retry" />
-      <template v-if="job?.capability === 'asr' && job.status === 'succeeded'"><label class="field-label" for="asr-correction">修订转写文字</label><Textarea id="asr-correction" v-model="transcript" /><div class="paper-actions"><Button variant="outline" :disabled="correcting" @click="saveCorrection">{{ correcting ? '保存中…' : '保存修订' }}</Button><Button variant="outline" @click="selected = 'read-aloud'; text = transcript">朗读修订文字</Button></div></template>
+      <template v-if="job?.capability === 'asr' && job.status === 'succeeded'"><label class="field-label" for="asr-correction">修订转写文字</label><Textarea id="asr-correction" v-model="transcript" /><div class="paper-actions"><AppButton variant="outline" :disabled="correcting" @click="saveCorrection">{{ correcting ? '保存中…' : '保存修订' }}</AppButton><AppButton variant="outline" @click="selected = 'read-aloud'; text = transcript">朗读修订文字</AppButton></div></template>
     </div>
     <details class="model-task-list ops-disclosure"><summary>最近任务 　 {{history.length}}</summary><p v-if="!history.length" class="ai-empty">暂无运行记录</p><button v-for="item in history" :key="item.id" :disabled="uploading || submitting" @click="selectJob(item)" :class="{ active: job?.id === item.id }"><div><strong>{{ capabilityNames[item.capability] }}</strong><span>{{ item.step }}</span></div><time>{{ new Date(item.createdAt).toLocaleString('zh-CN') }}</time></button></details>
   </div>

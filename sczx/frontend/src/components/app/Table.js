@@ -1,0 +1,4 @@
+import {defineComponent,h,normalizeClass} from 'vue';
+import {ElTable,ElTableColumn} from 'element-plus';
+function tags(nodes,name){return (Array.isArray(nodes)?nodes:[nodes]).flatMap(n=>n?.type===name?[n]:Array.isArray(n?.children)?tags(n.children,name):[])}
+export default defineComponent({inheritAttrs:false,setup(_, {slots,attrs}){return()=>{const nodes=slots.default?.()||[],headers=tags(tags(nodes,'thead'),'th'),body=tags(tags(nodes,'tbody'),'tr').map((row,index)=>({key:row.key??index,cells:tags(row.children,'td'),className:normalizeClass(row.props?.class)}));return h(ElTable,{...attrs,data:body,rowKey:'key',rowClassName:({row})=>row.className,class:['app-element-table',attrs.class]},()=>headers.map((header,index)=>h(ElTableColumn,{key:index,minWidth:index===headers.length-1?100:140},{header:()=>header.children,default:({row})=>row.cells[index]?.children})))}}});

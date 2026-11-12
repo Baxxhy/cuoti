@@ -1,8 +1,8 @@
 # 师承智学
 
-2026-11-12 / v38 / 本地软件作品
+2026-11-12 / v39 / 本地软件作品
 
-教师经验、备课、课程班级、学生学习、错题帮和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；沿用Nova、shadcn-vue、Lucide。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
+教师经验、备课、课程班级、学生学习、我的错题和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；基础组件使用Element Plus，图标沿用Lucide。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
 
 ## 启动使用
 
@@ -19,6 +19,8 @@
 专用MySQL23321和网页8099仅回环监听，数据持久保存在`backend-business/var/local`。`./start-local.sh doctor`诊断，`backup`备份，`restore --archive 备份目录`在新库/新目录恢复并保留旧数据。不会改原23317库，不安排公网、域名或正式服务切换。
 
 ## 当前界面调整
+
+基础组件已统一迁移到 Element Plus，包括消息、按钮、输入、选择、页签、弹窗、标签、卡片、表格、上传、图片、空状态与分栏；自定义粗边通知已删除。旧shadcn/Reka实现和直接依赖已移除。42项浏览器、17项JS与构建通过。[迁移说明与截图](docs/planning/ElementPlus组件迁移与验收_20261112_v1.md)。
 
 已统一待处理、进行中、完成、异常及普通提示的颜色和图标，增强三端卡片与选中状态层次；“我的错题”命名保持一致。41项浏览器、17项JS与构建通过。[本轮状态与视觉验收](docs/planning/状态提醒与视觉层次调整_20261112_v1.md)。
 

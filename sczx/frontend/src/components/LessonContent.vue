@@ -19,13 +19,13 @@ function update(block,patch){emit('progress',block.id,{...props.progress[block.i
   <section v-for="block in blocks" :key="block.id" class="curriculum-block" :data-block="block.id" @click="emit('focus',block.id)">
    <div class="curriculum-block-heading"><h2 tabindex="-1">{{readingValue(lesson,block,'title')}}</h2><Status v-if="!focused">{{kinds[block.type]||'历史内容'}}</Status></div>
    <LessonReading :lesson="lesson" :block="block"/>
-   <figure v-if="block.imageUrl" class="curriculum-figure"><p v-if="imageErrors[block.id]" role="alert" class="form-error">图片无法读取<Button variant="ghost" @click="imageErrors[block.id]=false">重试图片</Button></p><img v-else :src="block.imageUrl+'?inline=1'" :alt="block.imageAlt||block.title" @error="imageErrors[block.id]=true"/></figure>
+   <figure v-if="block.imageUrl" class="curriculum-figure"><AppAlert type="error" v-if="imageErrors[block.id]" role="alert" class="form-error">图片无法读取<AppButton variant="ghost" @click="imageErrors[block.id]=false">重试图片</AppButton></AppAlert><AppImage v-else :src="block.imageUrl+'?inline=1'" :alt="block.imageAlt||block.title" @error="imageErrors[block.id]=true"/></figure>
    <BalanceActivity v-if="block.type==='activity'&&['balance','equality_operations'].includes(block.activity?.type)" :config="block.activity" :state="progress[block.id]?.visualization||null" :model-value="progress[block.id]?.weight||0" @change="update(block,{visualization:$event,weight:$event.state.left===$event.state.right?$event.actions.length:0,completed:false})"/>
-   <p v-else-if="block.type==='activity'" class="form-error">该互动暂不支持，请联系教师。</p>
+   <AppAlert type="error" v-else-if="block.type==='activity'" class="form-error">该互动暂不支持，请联系教师。</AppAlert>
    <template v-if="block.type==='activity'"><label :for="'explain-'+block.id" class="field-label">你观察到了什么？</label><Textarea :id="'explain-'+block.id" :model-value="progress[block.id]?.explanation||''" @update:model-value="update(block,{explanation:$event,completed:false})"/></template>
    <template v-if="block.type==='practice'||(block.type==='check'&&!focused)"><div v-for="q in blockQuestions(block)" :key="q.id" class="curriculum-question-preview"><strong>{{q.prompt}}</strong><MathExpression v-if="q.equation" :text="q.equation"/><slot name="question" :question="q" :index="q.index" :block="block"><p v-if="preview" class="muted">{{block.type==='practice'?'随堂练习':'独立练习'}}</p></slot></div></template>
    <p v-if="focused&&block.type==='check'" class="step-check-count">{{questions.filter(q=>q.kind!=='practice').length}} 道题</p>
-   <Button v-if="!focused&&!['practice','check'].includes(block.type)" variant="outline" size="sm" :disabled="block.type==='activity'&&(!(progress[block.id]?.weight>0)||!progress[block.id]?.explanation?.trim())" @click="update(block,{completed:!progress[block.id]?.completed})">{{progress[block.id]?.completed?'已完成':'标记完成'}}</Button>
+   <AppButton v-if="!focused&&!['practice','check'].includes(block.type)" variant="outline" size="sm" :disabled="block.type==='activity'&&(!(progress[block.id]?.weight>0)||!progress[block.id]?.explanation?.trim())" @click="update(block,{completed:!progress[block.id]?.completed})">{{progress[block.id]?.completed?'已完成':'标记完成'}}</AppButton>
   </section>
  </article>
 </template>

@@ -41,15 +41,15 @@ onBeforeUnmount(() => generation++);
     <div class="memory-bridge-heading">
       <History :size="17" />
       <h2>{{ task ? "相关复习" : "接着练习" }}</h2>
-      <Button
+      <AppButton
         variant="ghost"
         size="sm"
         @click="navigate('memory' + (task ? '?returnTask=' + task.id : ''))"
         >查看复习<ArrowRight
-      /></Button>
+      /></AppButton>
     </div>
     <p v-if="error" role="alert">
-      {{ error }}<Button variant="ghost" @click="load">重试</Button>
+      {{ error }}<AppButton variant="ghost" @click="load">重试</AppButton>
     </p>
     <article v-for="r in suggestions" :key="r.id">
       <div>
@@ -58,14 +58,14 @@ onBeforeUnmount(() => generation++);
         }}</strong>
         <p>{{ r.reason }}</p>
       </div>
-      <Button
+      <AppButton
         variant="outline"
         size="sm"
         @click="
           navigate(memoryTarget(r.target, task?.id, r.knowledgeId).slice(1))
         "
         >{{ r.label }}<ArrowRight
-      /></Button>
+      /></AppButton>
     </article>
   </section>
 </template>

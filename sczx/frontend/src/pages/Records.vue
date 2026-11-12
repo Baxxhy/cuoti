@@ -6,7 +6,7 @@ const store = useLearning(),route=useRoute();
 function exportRecords(){window.open("/api/exams/learning-records/export","_blank","noopener")}
 </script>
 <template>
-  <PageHeading title="学习记录"><Button variant="outline" @click="exportRecords">导出记录</Button></PageHeading>
+  <PageHeading title="学习记录"><AppButton variant="outline" @click="exportRecords">导出记录</AppButton></PageHeading>
   <div v-if="store.data.tasks.length" class="student-record-list">
     <details v-for="task in store.data.tasks" :key="task.id" class="student-record-group" :open="route.query.task===task.id">
       <summary><span><strong>{{task.title}}</strong><time>{{new Date(task.publishedAt).toLocaleDateString('zh-CN')}}</time></span><span>{{store.data.records[task.id]?.attempts.length||0}} 次作答</span></summary>

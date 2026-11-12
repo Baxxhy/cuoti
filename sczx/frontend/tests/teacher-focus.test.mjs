@@ -3,7 +3,7 @@ async function scenario(mode){
  const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');
  const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
  const src=await(await fetch('/src/main.js')).text();const {createRouter,createMemoryHistory}=await import(src.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
- const {useLearning}=await import('/src/store.js'),{TooltipProvider}=await import('/src/components/ui/tooltip/index.js');
+ const {useLearning}=await import('/src/store.js'),{TooltipProvider}=await import('/src/components/app/provider.js');
  const {default:Page}=await import(mode==='prepare'?'/src/pages/Prepare.vue':'/src/pages/Examinations.vue');
  const prior=getActivePinia(),pinia=createPinia(),s=useLearning(pinia),original=fetch,writes=[];
  s.user={id:'teacher-focus',role:'teacher'};s.status='ready';s.data.lesson={id:'lesson-focus',title:'测试课时'};

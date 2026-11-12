@@ -1,0 +1,54 @@
+
+> shicheng-zhixue@0.3.0 test
+> node --test --test-concurrency=4 tests/*.test.mjs
+
+✔ material parsing reaches a terminal notice without overwriting a newer save; saved case selection survives leaving the workbench (8292.346977ms)
+✔ admin operation sections follow their URL and failed tasks use a business name (1478.084871ms)
+✔ Element controls preserve selected IDs, checkbox arrays, local file selection and native form submission (1703.468791ms)
+✔ exam page restores a saved reactive answer and preserves edits on failed save (1984.509355ms)
+✔ published legacy candidate explanation renders actual line breaks without changing the original answer (1613.77434ms)
+✔ speech recognition is editable and requires explicit confirmation; context change aborts old speech (1626.895926ms)
+✔ speech reading chunks long text, pauses/resumes and cancels on identical-text question switch (1309.899649ms)
+✔ microphone refusal falls back to text and retry remains available (1267.060642ms)
+✔ one learning step remains visible, activity completion gates next, and practice drafts survive moving between steps (2260.495218ms)
+✔ analytics ignores delayed class evidence and preserves the selected class in the URL (1726.976735ms)
+✔ a concurrent question update retains the teacher reply for reload and retry (1662.163366ms)
+✔ memory return controls preserve original learning task and knowledge route (1420.776237ms)
+✔ late memory response cannot overwrite a different task suggestion (1569.244973ms)
+✔ legacy AI draft offers editable student copy and preview preserves teacher instructions (1552.102378ms)
+✔ classroom polling preserves unsaved input, recovers errors and ignores old-room responses (1624.659527ms)
+✔ clearing a pending create prevents the old job from reopening (1285.443429ms)
+✔ SSE terminal status waits for detail; completion callback is idempotent (1376.303546ms)
+✔ assistant initialization cannot replace a newer user request (1575.452249ms)
+✔ a delayed platform save cannot attach its revision to another lesson (1240.94408ms)
+✔ agent history follows route, rejects stale replies, guards edits and restores back navigation (1962.957211ms)
+✔ read-only metadata never saves; draft edits serialize, failures retain edits and old account errors stay scoped (1234.750123ms)
+✔ independent wrong detail ignores an old response after switching questions (1539.851053ms)
+✔ late session initialization and older platform reads cannot replace a newer signed-in user or lesson (1266.934262ms)
+✔ status badges update their semantic style when a slot changes and retain text plus icon (2828.116714ms)
+✔ wrong correction reveals one step at a time and preserves original work (1531.627092ms)
+✔ guidance steps remain fully reachable without showing a wall of text (1381.003311ms)
+✔ switching a focused activity retains unsaved edits without writes (1548.607518ms)
+✔ failed focused grading stays on question; successful save moves next and preserves original answers (1584.768388ms)
+✔ student selection keeps feedback dialog open; feedback targets the selected record and task changes close it (1894.768436ms)
+✔ exam dates use Beijing input and convert to UTC requests independent of the host timezone (1548.816941ms)
+✔ class switch ignores delayed old responses and empty teacher task records render (1604.339617ms)
+✔ leaving the dashboard before its response cannot redirect the next page (1435.202885ms)
+✔ checking task switch restores that record question and answer without overwriting either draft (1574.20526ms)
+✔ late OCR upload after question switch cannot create or show guidance in the new context (1592.883049ms)
+✔ switching failed OCR to text removes its persisted pending upload before the next request (1431.677433ms)
+✔ confirmed OCR can request guidance without a second empty prompt field (1415.674916ms)
+✔ late unit progress cannot replace the next task classroom and history stays readonly (1553.370159ms)
+✔ course card keeps its content grid inside CardContent at desktop widths (1275.95736ms)
+✔ skip link keeps the route, three business groups expose learning children, and search retains all tasks (1679.539264ms)
+✔ the home next action opens its own task and the empty submitted tab names the right state (1636.29034ms)
+✔ a questions-only task exposes its exercise without an empty reading workspace; directory changes retain task context (1639.039344ms)
+✔ an unknown assigned task gives a recovery action back to the home screen (1842.589993ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23038.461813

@@ -81,15 +81,15 @@ function markHelp() {
   <template v-if="store.task">
     <PageHeading title="独立练习"><RouteButton :route="'learn?task='+store.task.id" secondary>返回本课</RouteButton></PageHeading>
     <section v-if="current" class="student-check-focus">
-      <div class="student-check-topline"><span>{{store.task.title}}</span><div><Button variant="ghost" @click="helpOpen=true">需要帮助</Button><InfoTip label="获得帮助后的记录">本题获得帮助后会保留帮助记录，换题重新记录独立尝试。</InfoTip></div></div>
+      <div class="student-check-topline"><span>{{store.task.title}}</span><div><AppButton variant="ghost" @click="helpOpen=true">需要帮助</AppButton><InfoTip label="获得帮助后的记录">本题获得帮助后会保留帮助记录，换题重新记录独立尝试。</InfoTip></div></div>
       <nav class="student-question-dots" aria-label="练习题目"><button v-for="(item,n) in indices" :key="item.index" :class="{active:index===item.index,answered:store.record?.attempts.some(a=>a.question===item.index)}" :aria-label="'第'+(n+1)+'题'" :aria-current="index===item.index?'step':undefined" @click="index=item.index">{{n+1}}</button></nav>
       <article class="question-card student-check-card">
         <div class="student-check-prompt"><h2>{{current.prompt}}</h2><div v-if="current.equation" class="question-equation"><MathExpression :text="current.equation"/></div></div>
         <fieldset class="history-fields" :disabled="store.task.readOnly"><QuestionAttempt :key="store.task.id+':'+index" :question="current" :index="index" @guide="helpOpen=true"/></fieldset>
-        <div class="student-question-next"><Button variant="ghost" @click="toolOpen=true">试着变形</Button><Button v-if="hasNext" variant="outline" @click="next">下一题<ArrowRight :size="16"/></Button><RouteButton v-else :route="'result?task='+store.task.id">完成练习</RouteButton></div>
+        <div class="student-question-next"><AppButton variant="ghost" @click="toolOpen=true">试着变形</AppButton><AppButton v-if="hasNext" variant="outline" @click="next">下一题<ArrowRight :size="16"/></AppButton><RouteButton v-else :route="'result?task='+store.task.id">完成练习</RouteButton></div>
       </article>
     </section>
-    <div v-else class="empty-state"><h3>本任务没有练习题</h3><RouteButton :route="'result?task='+store.task.id">查看学习结果</RouteButton></div>
+    <AppEmpty v-else class="empty-state"><h3>本任务没有练习题</h3><RouteButton :route="'result?task='+store.task.id">查看学习结果</RouteButton></AppEmpty>
     <AppDialog v-model:open="helpOpen" title="学习助手" content-class="student-help-dialog"><ModelAssistant v-if="current" :key="store.task.id+':'+index" :question="index" :block-id="blockId" compact :show-heading="false" @help="markHelp"/></AppDialog>
     <AppDialog v-model:open="toolOpen" title="方程变形" content-class="student-tool-dialog"><EquationTool v-if="store.record&&current" :record-id="store.record.id" :question="index"/></AppDialog>
   </template><TaskEmpty v-else/>

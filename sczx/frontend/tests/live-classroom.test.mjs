@@ -12,7 +12,7 @@ test('classroom polling preserves unsaved input, recovers errors and ignores old
       const source = await (await fetch('/src/pages/LiveClassroom.vue')).text();
       const routerUrl = source.match(/from\s*["']([^"']*vue-router[^"']*)["']/)[1];
       const {createRouter, createMemoryHistory, RouterView} = await import(routerUrl);
-      const {TooltipProvider} = await import('/src/components/ui/tooltip/index.js');
+      const {TooltipProvider} = await import('/src/components/app/provider.js');
       const {default: Page} = await import('/src/pages/LiveClassroom.vue');
       const {useLearning} = await import('/src/store.js');
       const previousPinia = getActivePinia(), pinia = createPinia();

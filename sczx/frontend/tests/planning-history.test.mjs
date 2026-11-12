@@ -8,7 +8,7 @@ test('agent history follows route, rejects stale replies, guards edits and resto
   const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');
   const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
   const {createRouter,createMemoryHistory,RouterView}=await import((await (await fetch('/src/pages/PlanningAgent.vue')).text()).match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
-  const {TooltipProvider}=await import('/src/components/ui/tooltip/index.js');
+  const {TooltipProvider}=await import('/src/components/app/provider.js');
   const {default:Page}=await import('/src/pages/PlanningAgent.vue');const {useLearning}=await import('/src/store.js');
   const original=fetch,oldConfirm=confirm,prior=getActivePinia(),pinia=createPinia();const s=useLearning(pinia);s.data.lesson={id:'one'};s.save=async()=>true;
   const jobs=Object.fromEntries(['a','b','c'].map(id=>[id,{id,capability:'lesson_agent',status:id==='c'?'cancelled':'succeeded',attemptNumber:1,input:{lesson:{versionId:'v1'},lessonId:id==='c'?'two':'one',task:'任务'+id,taskType:'activity',constraints:''},result:{steps:[],cases:[],materials:[],editable:{title:'结果'+id,goal:'目标'+id,rationale:[],blocks:[{id:'block',title:'活动'+id,content:'内容'+id,evidenceIds:[]}],mathClaims:[]}}}]));

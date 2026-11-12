@@ -6,8 +6,8 @@ defineProps({ title: String, action: String, route: String });
 <template>
   <div class="section-heading">
     <h2>{{ title }}</h2>
-    <Button v-if="action" variant="ghost" size="sm" @click="navigate(route)"
-      >{{ action }}<ChevronRight /></Button
+    <AppButton v-if="action" variant="ghost" size="sm" @click="navigate(route)"
+      >{{ action }}<ChevronRight /></AppButton
     ><slot />
   </div>
 </template>

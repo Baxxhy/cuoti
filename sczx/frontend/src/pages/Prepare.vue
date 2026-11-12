@@ -109,37 +109,37 @@ async function publish() {
 <template>
 <p v-if="lessonSwitchBusy" role="status">读取课时教案…</p><template v-else>
   <PageHeading :title="store.data.lesson?.title || '我的教案'">
-    <Button variant="outline" :disabled="store.saving" @click="saveDraft"><Save :size="16"/>{{ store.saving?'保存中…':'保存' }}</Button>
-    <Button @click="modal='publish'"><Send :size="16"/>发布任务</Button>
+    <AppButton variant="outline" :disabled="store.saving" @click="saveDraft"><Save :size="16"/>{{ store.saving?'保存中…':'保存' }}</AppButton>
+    <AppButton @click="modal='publish'"><Send :size="16"/>发布任务</AppButton>
   </PageHeading>
   <div class="teacher-workbar">
     <AppTabs v-model="workTab" :items="[{value:'edit',label:'教学活动'},{value:'settings',label:'课时设置'},{value:'questions',label:'练习题'},{value:'preview',label:'学生预览'},{value:'references',label:'资料与版本'}]"/>
     <div class="teacher-workbar-actions">
-      <Button variant="ghost" @click="moreOpen=true">更多操作</Button>
+      <AppButton variant="ghost" @click="moreOpen=true">更多操作</AppButton>
     </div>
   </div>
   <AppDialog v-model:open="moreOpen" title="教案操作"><div class="teacher-more-actions">
-    <Button variant="outline" @click="workTab='references';moreOpen=false;tools?.history()">查看历史版本</Button>
-    <Button variant="outline" @click="moreOpen=false;tools?.download()">导出 DOCX</Button>
-    <Button variant="outline" :disabled="templateBusy" @click="applyPublished">使用发布课时内容</Button>
+    <AppButton variant="outline" @click="workTab='references';moreOpen=false;tools?.history()">查看历史版本</AppButton>
+    <AppButton variant="outline" @click="moreOpen=false;tools?.download()">导出 DOCX</AppButton>
+    <AppButton variant="outline" :disabled="templateBusy" @click="applyPublished">使用发布课时内容</AppButton>
     <RouteButton route="courses" secondary>选择其他课时</RouteButton>
     <RouteButton route="teacher" secondary>返回教学概览</RouteButton>
   </div></AppDialog>
-  <div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><Button :disabled="store.saving" @click="saveDraft">重新保存</Button><Button variant="outline" @click="backupLocal">下载本地修改</Button><Button variant="ghost" @click="reloadDraft">重新读取</Button></div><section v-if="workTab==='edit'" class="focus-preparation">
+  <div v-if="store.saveError" class="preparation-conflict" role="alert"><p>{{ store.saveError }}</p><AppButton :disabled="store.saving" @click="saveDraft">重新保存</AppButton><AppButton variant="outline" @click="backupLocal">下载本地修改</AppButton><AppButton variant="ghost" @click="reloadDraft">重新读取</AppButton></div><section v-if="workTab==='edit'" class="focus-preparation">
     <aside class="focus-activity-list" aria-label="教学活动顺序">
       <draggable v-model="store.data.lessonDraft.blocks" item-key="id" handle=".drag-handle" :force-fallback="true" :fallback-on-body="true" :fallback-tolerance="3" :animation="0" @end="notify('活动顺序已更新')">
         <template #item="{element:block,index}"><div class="focus-activity-item" :class="{selected:activeBlock?.id===block.id}"><button class="drag-handle" :aria-label="'调整顺序：'+block.title" @keydown="reorderKeyboard($event,index)"><GripVertical :size="13"/></button><button :aria-current="activeBlock?.id===block.id?'step':undefined" @click="selectedActivity=block.id"><span>{{String(index+1).padStart(2,'0')}}</span><strong>{{block.title}}</strong></button></div></template>
       </draggable>
     </aside>
     <div v-if="activeBlock" class="focus-activity-editor lesson-editor" :key="activeBlock.id">
-      <div class="focus-editor-toolbar"><Status>{{store.saving?'保存中':store.saveError?'保存失败':store.savedAt?'已保存':'草稿'}}</Status><Button size="icon-sm" variant="ghost" :aria-label="'恢复原稿：'+activeBlock.title" :disabled="busyBlock===activeBlock.id" @click="regenerate(activeBlock.id)"><WandSparkles :size="16"/></Button></div>
+      <div class="focus-editor-toolbar"><Status>{{store.saving?'保存中':store.saveError?'保存失败':store.savedAt?'已保存':'草稿'}}</Status><AppButton size="icon-sm" variant="ghost" :aria-label="'恢复原稿：'+activeBlock.title" :disabled="busyBlock===activeBlock.id" @click="regenerate(activeBlock.id)"><WandSparkles :size="16"/></AppButton></div>
       <label class="field-label" for="activity-title">活动名称</label><Input id="activity-title" v-model="activeBlock.title"/>
       <label class="field-label" for="activity-content">课堂说明</label><Textarea id="activity-content" v-model="activeBlock.content" :disabled="busyBlock===activeBlock.id"/>
       <details v-if="activeBlock.studentContent!==undefined||activeBlock.agentJobId" class="preparation-block-notes" @toggle="$event.target.open&&ensureStudentCopy(activeBlock)"><summary>学生正文</summary><label>学生标题<Input v-model="activeBlock.studentTitle" aria-label="学生标题"/></label><label>学生正文<Textarea v-model="activeBlock.studentContent" aria-label="学生正文"/></label></details>
       <details class="preparation-block-notes"><summary>提问与调整</summary><label v-for="(label,key) in {teacherQuestion:'教师提问',studentResponse:'学生可能回应',adjustment:'调整建议'}" :key="key">{{label}}<Textarea v-model="activeBlock[key]"/></label></details>
-      <div class="focus-editor-footer"><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+activeBlock.id" secondary><WandSparkles :size="15"/>AI 改写此活动</RouteButton><Button variant="ghost" @click="workTab='preview'">学生预览<Eye :size="15"/></Button></div>
+      <div class="focus-editor-footer"><RouteButton :route="'agent?lesson='+store.data.lesson?.id+'&block='+activeBlock.id" secondary><WandSparkles :size="15"/>AI 改写此活动</RouteButton><AppButton variant="ghost" @click="workTab='preview'">学生预览<Eye :size="15"/></AppButton></div>
     </div>
-    <div v-else class="empty-state">当前教案没有活动</div>
+    <AppEmpty v-else class="empty-state">当前教案没有活动</AppEmpty>
   </section>
   <section v-else-if="workTab==='settings'" class="focus-preparation-settings">
     <label class="field-label" for="lesson-goal">本课目标</label><Textarea id="lesson-goal" v-model="store.data.lessonDraft.goal"/>
@@ -149,10 +149,10 @@ async function publish() {
   </section>
   <section v-else-if="workTab==='questions'" class="focus-preparation">
     <aside class="focus-activity-list" aria-label="练习题"><button v-for="(q,index) in store.data.lessonDraft.questions" :key="q.id||q.equation" :class="['focus-question-choice',{selected:activeQuestion===q}]" :aria-current="activeQuestion===q?'step':undefined" @click="selectedQuestion=q.id"><span>{{String(index+1).padStart(2,'0')}}</span><strong>{{q.equation||q.prompt}}</strong></button></aside>
-    <div v-if="activeQuestion" class="focus-activity-editor"><label v-for="(label,key) in {prompt:'题干',equation:'方程',answer:'参考答案',hint:'提示'}" :key="key" class="field-label">{{label}}<Textarea v-if="key==='hint'" v-model="activeQuestion[key]"/><Input v-else v-model="activeQuestion[key]"/></label></div><div v-else class="empty-state">当前教案没有练习题</div>
+    <div v-if="activeQuestion" class="focus-activity-editor"><label v-for="(label,key) in {prompt:'题干',equation:'方程',answer:'参考答案',hint:'提示'}" :key="key" class="field-label">{{label}}<Textarea v-if="key==='hint'" v-model="activeQuestion[key]"/><Input v-else v-model="activeQuestion[key]"/></label></div><AppEmpty v-else class="empty-state">当前教案没有练习题</AppEmpty>
   </section>
       <section v-else-if="workTab==='preview'" class="teacher-student-preview"><LessonPreview/></section>
-      <section v-show="workTab==='references'" class="teacher-reference-sheet"><PreparationTools ref="tools"/><details class="teacher-source-detail"><summary>当前主要参考 　 {{ caseReference?.title || '尚未选择' }}</summary><p v-if="referenceError" class="form-error">{{ referenceError }}</p><CaseArticle v-if="caseReference" :value="caseReference"/><RouteButton v-if="store.data.lessonDraft.caseId" :route="caseRoute" secondary>阅读完整案例</RouteButton></details></section>
+      <section v-show="workTab==='references'" class="teacher-reference-sheet"><PreparationTools ref="tools"/><details class="teacher-source-detail"><summary>当前主要参考 　 {{ caseReference?.title || '尚未选择' }}</summary><AppAlert type="error" v-if="referenceError" class="form-error">{{ referenceError }}</AppAlert><CaseArticle v-if="caseReference" :value="caseReference"/><RouteButton v-if="store.data.lessonDraft.caseId" :route="caseRoute" secondary>阅读完整案例</RouteButton></details></section>
   <AppDialog
     v-model:open="dialogOpen"
     :title="modal === 'preview' ? '学生预览' : '发布学习任务'"
@@ -160,12 +160,10 @@ async function publish() {
       modal === 'preview' ? 'lesson-preview-dialog' : 'publish-dialog'
     "
     ><template v-if="modal === 'preview'"
-      ><LessonPreview /><Button @click="modal = 'publish'"
-        >继续发布<ArrowRight /></Button></template
+      ><LessonPreview /><AppButton @click="modal = 'publish'"
+        >继续发布<ArrowRight /></AppButton></template
     ><template v-else
-      ><p v-if="publishError" class="form-error" role="alert">
-        {{ publishError }}
-      </p>
+      ><AppAlert type="error" v-if="publishError" class="form-error" role="alert">{{ publishError }}</AppAlert>
       <div class="publish-course">
         <FileText :size="22" />
         <div>
@@ -178,7 +176,7 @@ async function publish() {
         id="publish-class"
         v-model="publishClass"
         label="选择发布班级"
-        :options="store.data.classrooms.map((item) => ({ value: item.id, label: `${item.name} 　 ${item.grade}` }))" /><p v-if="!store.data.classrooms.length" class="form-error">先在班级教学中创建班级并添加学生。</p><label
+        :options="store.data.classrooms.map((item) => ({ value: item.id, label: `${item.name} 　 ${item.grade}` }))" /><AppAlert type="error" v-if="!store.data.classrooms.length" class="form-error">先在班级教学中创建班级并添加学生。</AppAlert><label
         class="field-label"
         for="due-date"
         >截止日期（北京时间）</label
@@ -187,9 +185,9 @@ async function publish() {
         v-model="store.data.lessonDraft.dueDate"
         type="date" />
       <p class="small-caption">发布后，所选班级的学生将收到本次教案的固定版本；后续编辑不改变本次任务。</p>
-      <Button @click="publish" :disabled="store.publishing || !store.data.classrooms.length"
+      <AppButton @click="publish" :disabled="store.publishing || !store.data.classrooms.length"
         >{{ store.publishing ? "发布中…" : "确认发布"
-        }}<ArrowRight /></Button></template
+        }}<ArrowRight /></AppButton></template
   ></AppDialog>
 </template>
 </template>

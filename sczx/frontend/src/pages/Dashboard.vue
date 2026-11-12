@@ -80,7 +80,7 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
     <AppSelect v-if="teacher && overview?.classes.length" v-model="selected" label="当前班级" :options="overview.classes.map(c=>({value:c.id,label:c.name}))" @update:model-value="select"/>
   </PageHeading>
   <div v-if="studentClass" class="dashboard-class-filter"><span>{{studentClass.name}}</span><a href="#/home" class="text-link">全部班级</a></div>
-  <div v-if="error" class="form-error" role="alert">{{error}}<Button variant="outline" @click="load">重试</Button></div>
+  <AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}<AppButton variant="outline" @click="load">重试</AppButton></AppAlert>
   <div v-if="loading" class="workspace-loading" role="status"><span/>正在读取任务…</div>
   <template v-if="overview">
     <section class="overview-next" aria-labelledby="next-task-heading">
@@ -89,7 +89,7 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
         <h2 id="next-task-heading">{{teacher?store.data.lessonDraft?.title||store.data.lesson?.title||'准备一节新课':nextTask?.title||'开始你的下一课'}}</h2>
         <span class="overview-class" v-if="teacher">{{overview.classes.find(c=>c.id===selected)?.name||'尚未选择班级'}}</span>
         <span class="overview-class" v-else-if="nextTask">{{nextTask.className||'我的班级'}}</span>
-        <div class="overview-next-actions"><RouteButton :route="teacher?'prepare'+(selected?'?class='+selected:''):nextTask?(nextHasReading?'learn':'check')+'?task='+nextTask.id:'courses'">{{teacher?'继续备课':nextTask?(nextHasReading?(nextTask.status==='学习中'?'继续学习':'开始学习'):'开始练习'):'浏览课程'}}<ArrowRight :size="16"/></RouteButton><a v-if="teacher" :href="'#/insights?class='+selected" class="text-link">查看班级学情</a><a v-else href="#/courses" class="text-link">全部课程</a></div>
+        <div class="overview-next-actions"><RouteButton :route="teacher?'prepare'+(selected?'?class='+selected:''):nextTask?(nextHasReading?'learn':'check')+'?task='+nextTask.id:'courses'">{{teacher?'继续备课':nextTask?(nextHasReading?(nextTask.status==='学习中'?'继续学习':'开始学习'):'开始练习'):'浏览课程'}}</RouteButton><a v-if="teacher" :href="'#/insights?class='+selected" class="text-link">查看班级学情</a><a v-else href="#/courses" class="text-link">全部课程</a></div>
       </div>
       <dl class="overview-counts"><div v-for="[label,value] in metrics" :key="label" :data-status="statusTone(label)"><dt>{{label}}</dt><dd>{{value}}</dd></div></dl>
     </section>
@@ -98,7 +98,7 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
         <div class="section-heading"><h2>{{teacher?'班级任务':'学习任务'}}</h2><a :href="teacher?'#/class?class='+selected:'#/records'" class="text-link">{{teacher?'管理班级':'学习记录'}}<ArrowRight :size="14"/></a></div>
         <AppTabs v-if="!teacher" v-model="taskTab" :items="[{value:'pending',label:'待完成'},{value:'completed',label:'已提交'}]"/>
         <TaskList :teacher="teacher" :tasks="visibleTasks" :empty-label="!teacher?(taskTab==='completed'?'还没有已提交的任务':'当前任务已完成'):undefined"/>
-        <Button v-if="teacher&&overview.tasks.length>5" variant="ghost" class="overview-task-toggle" :aria-expanded="allTasksOpen" @click="allTasksOpen=!allTasksOpen">{{allTasksOpen?'收起任务':'查看全部 '+overview.tasks.length+' 项任务'}}</Button>
+        <AppButton v-if="teacher&&overview.tasks.length>5" variant="ghost" class="overview-task-toggle" :aria-expanded="allTasksOpen" @click="allTasksOpen=!allTasksOpen">{{allTasksOpen?'收起任务':'查看全部 '+overview.tasks.length+' 项任务'}}</AppButton>
 
       </section>
       <aside class="overview-aside">

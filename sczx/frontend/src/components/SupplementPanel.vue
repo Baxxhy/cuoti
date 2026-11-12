@@ -106,11 +106,11 @@ async function feedback(item, rec) {
   <section class="supplement-panel">
     <header>
       <h2>补充与订正</h2>
-      <Button v-if="teacher" variant="outline" @click="dialog = true"
-        ><Plus :size="15" />新增安排</Button
+      <AppButton v-if="teacher" variant="outline" @click="dialog = true"
+        ><Plus :size="15" />新增安排</AppButton
       >
     </header>
-    <p v-if="error" class="form-error" role="alert">{{ error }}</p>
+    <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
     <article v-for="item in items" :key="item.id">
       <div>
         <Status>{{ labels[item.kind] }}</Status
@@ -133,19 +133,19 @@ async function feedback(item, rec) {
               v-model="feedbacks[item.id + rec.studentId]"
               :placeholder="rec.feedback || '填写后续反馈'"
               :aria-label="'补充反馈' + rec.studentName"
-            /><Button variant="outline" @click="feedback(item, rec)"
-              >发送反馈</Button
+            /><AppButton variant="outline" @click="feedback(item, rec)"
+              >发送反馈</AppButton
             ></template
           >
         </div>
-        <Button
+        <AppButton
           v-if="
             item.status !== 'cancelled' &&
             !item.recipients.some((r) => r.startedAt)
           "
           variant="ghost"
           @click="cancel(item)"
-          >取消安排</Button
+          >取消安排</AppButton
         ></details
       ><template v-else-if="item.kind !== 'note' && item.status !== 'cancelled'"
         ><template v-if="item.recipients[0]?.completedAt"
@@ -154,22 +154,22 @@ async function feedback(item, rec) {
         ><template v-else
           ><Status v-if="item.recipients[0]?.status === '已逾期'" tone="amber"
             >已逾期</Status
-          ><Button
+          ><AppButton
             v-if="!item.recipients[0]?.startedAt"
             variant="outline"
             :disabled="busy || store.task?.readOnly"
             @click="act(item, 'start')"
-            >开始处理</Button
+            >开始处理</AppButton
           ><label v-else class="field-label"
             >学习或订正说明<Textarea
               v-model="responses[item.id]"
               :disabled="store.task?.readOnly"
-            /><Button
+            /><AppButton
               :disabled="
                 busy || store.task?.readOnly || !responses[item.id]?.trim()
               "
               @click="act(item, 'submit')"
-              ><Send :size="15" />提交说明</Button
+              ><Send :size="15" />提交说明</AppButton
             ></label
           ></template
         >
@@ -208,11 +208,11 @@ async function feedback(item, rec) {
         /><label class="field-label"
           >截止日期<Input type="date" v-model="dueDate"
         /></label>
-        <p v-if="error" class="form-error">{{ error }}</p>
-        <Button
+        <AppAlert type="error" v-if="error" class="form-error">{{ error }}</AppAlert>
+        <AppButton
           type="submit"
           :disabled="busy || !content.trim() || (scope === 'one' && !studentId)"
-          >确认安排</Button
+          >确认安排</AppButton
         >
       </form></AppDialog
     >

@@ -1,18 +1,8 @@
 <script setup>
-import { Button } from "@/components/ui/button/index.js";
-import { motion } from "motion-v";
-defineOptions({ inheritAttrs: false });
-defineProps({ variant: { default: "default" }, size: { default: "default" } });
+import { computed, useAttrs } from 'vue';
+import { ElButton } from 'element-plus';
+defineOptions({inheritAttrs:false});
+const props=defineProps({variant:{default:'default'},size:{default:'default'}}),attrs=useAttrs();
+const kind=computed(()=>({default:'primary',destructive:'danger'}[props.variant]||''));
 </script>
-<template>
-  <Button
-    :as="motion.button"
-    :variant="variant"
-    :size="size"
-    :while-hover="{ y: -1 }"
-    :while-tap="{ scale: 0.98 }"
-    :transition="{ duration: 0.14 }"
-    v-bind="$attrs"
-    ><slot
-  /></Button>
-</template>
+<template><ElButton v-bind="attrs" :type="kind" :native-type="attrs.type||'submit'" :text="['ghost','link'].includes(variant)" :link="variant==='link'" :plain="variant==='outline'" :size="size==='sm'||size==='icon-sm'?'small':size==='lg'?'large':'default'" :circle="size==='icon'||size==='icon-sm'" data-slot="button" :data-variant="variant" :data-size="size"><slot/></ElButton></template>

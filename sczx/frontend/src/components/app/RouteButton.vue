@@ -4,7 +4,7 @@ import { navigate } from "@/lib/navigation.js";
 defineProps({ route: String, secondary: Boolean });
 </script>
 <template>
-  <Button :variant="secondary ? 'outline' : 'default'" @click="navigate(route)"
+  <AppButton :variant="secondary ? 'outline' : 'default'" @click="navigate(route)"
     ><slot /><ChevronRight data-icon="inline-end"
-  /></Button>
+  /></AppButton>
 </template>

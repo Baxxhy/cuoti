@@ -5,7 +5,7 @@ test('published legacy candidate explanation renders actual line breaks without 
   const result=await b.eval(async()=>{
    const{createApp,h}=await import('/node_modules/.vite/deps/vue.js'),{createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
    const src=await(await fetch('/src/main.js')).text(),{createRouter,createMemoryHistory}=await import(src.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
-   const{useLearning}=await import('/src/store.js'),{TooltipProvider}=await import('/src/components/ui/tooltip/index.js'),{default:Page}=await import('/src/pages/Examinations.vue');
+   const{useLearning}=await import('/src/store.js'),{TooltipProvider}=await import('/src/components/app/provider.js'),{default:Page}=await import('/src/pages/Examinations.vue');
    const oldPinia=getActivePinia(),pinia=createPinia(),store=useLearning(pinia),original=fetch;
    store.user={id:'student-feedback',role:'student'};store.status='ready';store.data.classrooms=[];store.data.tasks=[];
    const exam={id:'old-feedback',title:'已公布的原试卷',resultsAt:'2026-11-12T00:00:00Z',paper:{total:10,entries:[{versionId:'q1',points:10,question:{kind:'calculation',prompt:'解方程',equation:'x+5=12',answer:'7',source:'AI候选，待教师审核；ModelJob old-job',explanation:'两边减5。\\\\n\\\\n1. 得x=7。\\\\n本题为待教师审核的候选题。'}}]},submission:{id:'sub',startedAt:'2026-11-12T00:00:00Z',submittedAt:'2026-11-12T00:01:00Z',revision:2,answers:{q1:{answer:'8',reason:'原错误解释'}},grades:{q1:{score:0,comment:'两边应同减5'}},automatic:{},total:0}};
