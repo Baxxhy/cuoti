@@ -5,7 +5,7 @@ import SubjectFields from "@/components/SubjectFields.vue";
 import AnswerInput from "@/components/AnswerInput.vue";
 import {useEducation} from "@/services/education.js";
 import {examExplanation} from "@/lib/exam-explanation.js";
-import{computed,ref,watch,onBeforeUnmount}from'vue';import{useRoute,useRouter}from'vue-router';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Plus,ArrowUp,ArrowDown,Trash2,ClipboardList,Check,FileDown,RefreshCw}from'@/components/app/icons.js';import draggable from'vuedraggable';import{deadlineText}from'@/services/teaching.js';import MathExpression from'@/components/MathExpression.vue';import SpeechConfirm from'@/components/SpeechConfirm.vue';import SpeechReader from'@/components/SpeechReader.vue';
+import{computed,ref,watch,onBeforeUnmount}from'vue';import{useRoute,useRouter}from'vue-router';import{api}from'@/services/api.js';import{useLearning}from'@/store.js';import{Plus,ArrowUp,ArrowDown,Trash2,ClipboardList,Check,FileDown,RefreshCw}from'@/components/app/icons.js';import AppSortable from'@/components/app/Sortable.vue';import{deadlineText}from'@/services/teaching.js';import MathExpression from'@/components/MathExpression.vue';import SpeechConfirm from'@/components/SpeechConfirm.vue';import SpeechReader from'@/components/SpeechReader.vue';
 const route=useRoute(),router=useRouter(),store=useLearning(),teacher=computed(()=>store.user?.role==='teacher');const tab=computed(()=>route.path==='/exam-bank'?'bank':route.path==='/exam-papers'?'papers':'exams');
 const error=ref(''),busy=ref(false),loading=ref(true),notice=ref(''),bank=ref([]),papers=ref([]),exams=ref([]),units=ref([]),knowledge=ref([]),classes=ref([]),lessons=ref([]),lessonId=ref(''),activePaper=ref(null),exam=ref(null),questionOpen=ref(false),questionEdit=ref(null),question=ref({}),entries=ref([]),paperTitle=ref(''),unitId=ref(''),filters=ref({knowledgeIds:[],count:3,total:30,kind:'',difficulty:''}),missing=ref(''),candidate=ref(null),candidateInput=ref({knowledgeIds:[],kind:'calculation',difficulty:'easy'}),publishOpen=ref(false),room=ref(''),starts=ref(''),ends=ref(''),minutes=ref(30),studentPreview=ref(false),answers=ref({}),activeQuestion=ref(0),selectedSubmission=ref(''),marks=ref({}),countdown=ref('');let generation=0,timer;
 const candidateOpen=ref(false),importOpen=ref(false),pickerOpen=ref(false),pickerMode=ref('auto'),paperEditing=ref(false),paperToolsOpen=ref(false),bankSearch=ref(''),bankFilter=ref('all');
@@ -73,7 +73,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <div class="exam-bank-grid teacher-bank-single">
 <Surface class="exam-bank-main">
 <AppEmpty v-if="!bank.length" class="empty-state"><ClipboardList/><h3>还没有题目</h3><AppButton @click="editQuestion(null)">录入第一题</AppButton></AppEmpty>
-<article v-for="q in visibleBank" :key="q.id" class="exam-bank-row">
+<Surface data-ui="card" role="article" v-for="q in visibleBank" :key="q.id" class="exam-bank-row">
 <div>
 <Status>{{q.reviewed?'已审核 v'+q.versions[0]?.number:'待审核'}}</Status>
 <h3>{{q.draft.prompt}}</h3>
@@ -90,12 +90,12 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <p>方程核验：{{statusLabel(q.draft.referenceVerification?.status)}}</p>
 <p v-for="v in q.versions" :key="v.id">v{{v.number}} 　 {{v.data.prompt}} 　 {{v.data.answer}} 　 {{v.id}}</p>
 </AppDisclosure>
-</article><AppEmpty v-if="bank.length&&!visibleBank.length" class="empty-state"><h3>没有匹配的题目</h3><AppButton variant="outline" @click="bankSearch='';bankFilter='all'">清空筛选</AppButton></AppEmpty>
+</Surface><AppEmpty v-if="bank.length&&!visibleBank.length" class="empty-state"><h3>没有匹配的题目</h3><AppButton variant="outline" @click="bankSearch='';bankFilter='all'">清空筛选</AppButton></AppEmpty>
 </Surface>
 </div>
 </template>
 <template v-else-if="tab==='papers'&&teacher">
-<div v-if="!paperEditing" class="teacher-paper-list"><button v-for="p in papers" :key="p.id" class="teacher-paper-row" @click="editPaper(p)"><FileDown :size="21"/><span><strong>{{ p.draft.title }}</strong><small>{{ p.draft.entries.length }} 题 　 {{ p.draft.total }} 分</small></span><Status>{{ p.reviewed?'已审核':'草稿' }}</Status><span>打开试卷</span></button><AppEmpty v-if="!papers.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有试卷</h3><AppButton @click="editPaper(null)">新建第一份试卷</AppButton></AppEmpty></div>
+<Surface data-ui="card" v-if="!paperEditing" class="teacher-paper-list"><AppButton variant="ghost" data-layout="row" type="button" v-for="p in papers" :key="p.id" class="teacher-paper-row" @click="editPaper(p)"><FileDown :size="21"/><span><strong>{{ p.draft.title }}</strong><small>{{ p.draft.entries.length }} 题 　 {{ p.draft.total }} 分</small></span><Status>{{ p.reviewed?'已审核':'草稿' }}</Status><span>打开试卷</span></AppButton><AppEmpty v-if="!papers.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有试卷</h3><AppButton @click="editPaper(null)">新建第一份试卷</AppButton></AppEmpty></Surface>
 <div v-else class="teacher-paper-editor"><div class="teacher-paper-editor-bar"><AppButton variant="ghost" @click="leavePaper">返回试卷列表</AppButton><span>{{ activePaper?.reviewed&&paperSaved?'已审核':paperSaved?'已保存':'编辑中' }}</span></div><ol class="teacher-paper-steps" aria-label="组卷流程"><li :class="{current:!entries.length}">1 选择题目</li><li :class="{current:entries.length&&!activePaper?.reviewed}">2 核对并保存</li><li :class="{current:activePaper?.reviewed&&paperSaved}">3 发布考试</li></ol>
 <Surface>
 <div class="exam-form-grid">
@@ -106,11 +106,11 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </NativeSelect>
 </label>
 </div>
-<div class="teacher-paper-title"><h2>试卷题目</h2><AppButton variant="outline" @click="pickerOpen=true"><Plus :size="16"/>添加题目</AppButton></div>
-<draggable v-model="entries" item-key="versionId" handle=".exam-drag" class="exam-paper-entries">
+<Surface data-ui="card" class="teacher-paper-title"><h2>试卷题目</h2><AppButton variant="outline" @click="pickerOpen=true"><Plus :size="16"/>添加题目</AppButton></Surface>
+<AppSortable v-model="entries" item-key="versionId" handle=".exam-drag" class="exam-paper-entries">
 <template #item="{element:e,index:i}">
-<article>
-<button class="exam-drag" :aria-label="'拖动第'+(i+1)+'题'">{{String(i+1).padStart(2,'0')}}</button>
+<Surface data-ui="card" role="article">
+<AppButton variant="ghost" data-layout="row" type="button" class="exam-drag" :aria-label="'拖动第'+(i+1)+'题'">{{String(i+1).padStart(2,'0')}}</AppButton>
 <div>
 <h3>{{e.question.prompt}}</h3>
 <div class="exam-math"><MathExpression :text="e.question.equation"/></div>
@@ -128,9 +128,9 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <Trash2 :size="16"/>
 </AppButton>
 </div>
-</article>
+</Surface>
 </template>
-</draggable>
+</AppSortable>
 <AppEmpty v-if="!entries.length" class="empty-state"><ClipboardList :size="28"/><h3>还没有题目</h3><AppButton @click="pickerOpen=true">添加题目</AppButton></AppEmpty>
 <footer class="exam-toolbar">
 <strong>{{entries.length}}题 　 {{entries.reduce((n,e)=>n+Number(e.points),0)}}分</strong>
@@ -159,22 +159,22 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </div>
 </template>
 <template v-else>
-<div class="exam-heading">
+<ElSpace wrap :size="12" class="exam-heading">
 <div>
 <Status>{{exam.resultsAt?'成绩已发布':!teacher&&exam.submission?.submittedAt?'已交卷':examPhase(exam)==='已结束'?(teacher?'成绩待发布':'已结束'):examPhase(exam)==='待开始'?'待开始':exam.submission?.startedAt?'考试中':'进行中'}}</Status>
 <p>{{deadlineText(exam.startsAt)}} — {{deadlineText(exam.endsAt)}} 　 {{exam.minutes}}分钟</p>
 </div>
 <RouteButton route="exams" secondary :aria-current="tab==='exams'?'page':undefined">考试列表</RouteButton>
-</div>
+</ElSpace>
 <template v-if="teacher">
 <div class="teacher-grading-toolbar"><span>{{ exam.submissions.filter(s=>s.submittedAt).length }} / {{ exam.submissions.length }} 人已交卷</span><AppButton variant="outline" @click="paperToolsOpen=true"><FileDown :size="16"/>导出</AppButton><AppButton :disabled="busy||!!exam.resultsAt" @click="release">发布成绩</AppButton></div>
 <div class="exam-grading">
 <Surface>
 <h2>答卷</h2>
-<button v-for="s in exam.submissions" :key="s.id" class="exam-paper-link" :class="{'is-active':s.id===selectedSubmission}" @click="selectedSubmission=s.id">
+<AppButton variant="ghost" data-layout="row" type="button" v-for="s in exam.submissions" :key="s.id" class="exam-paper-link" :class="{'is-active':s.id===selectedSubmission}" @click="selectedSubmission=s.id">
 <strong>{{s.studentName}}</strong>
 <span>{{s.submittedAt?'已交卷':'未交卷'}} 　 {{s.total}}分 　 {{Object.keys(s.grades).length}} / {{exam.paper.entries.length}} 已核对</span>
-</button>
+</AppButton>
 </Surface>
 <Surface v-if="sub">
 <div class="exam-toolbar">
@@ -182,14 +182,14 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppButton variant="ghost" :disabled="!sub.submittedAt" @click="exportFile('submission')">导出答卷</AppButton>
 <AppButton variant="ghost" :disabled="!sub.submittedAt" @click="exportFile('learning')">学习记录</AppButton>
 </div>
-<nav class="focus-grading-nav" aria-label="批阅题目"><button v-for="(entry,i) in exam.paper.entries" :key="entry.versionId" :aria-label="'批阅第'+(i+1)+'题'" :aria-current="gradingQuestion===i?'step':undefined" :class="{active:gradingQuestion===i}" @click="gradingQuestion=i">{{i+1}}<Check v-if="sub.grades[entry.versionId]" :size="12"/></button></nav>
-<article v-for="e in gradingEntry?[gradingEntry]:[]" :key="e.versionId" class="exam-grade-question">
+<ElSpace wrap :size="12" class="focus-grading-nav" aria-label="批阅题目"><AppButton :variant="(gradingQuestion===i)?'selected':'ghost'" data-layout="row" type="button" v-for="(entry,i) in exam.paper.entries" :key="entry.versionId" :aria-label="'批阅第'+(i+1)+'题'" :aria-current="gradingQuestion===i?'step':undefined" :class="{active:gradingQuestion===i}" @click="gradingQuestion=i">{{i+1}}<Check v-if="sub.grades[entry.versionId]" :size="12"/></AppButton></ElSpace>
+<Surface data-ui="card" role="article" v-for="e in gradingEntry?[gradingEntry]:[]" :key="e.versionId" class="exam-grade-question">
 <h3>{{gradingQuestion+1}}. {{e.question.prompt}}（{{e.points}}分）</h3>
 <div class="exam-math"><MathExpression :text="e.question.equation"/></div>
-<div class="exam-original">
+<Surface data-ui="card" class="exam-original">
 <p>原答：{{sub.answers[e.versionId]?.answer||'未填写'}}</p>
 <p>解释：{{sub.answers[e.versionId]?.reason||'未填写'}}</p>
-</div>
+</Surface>
 <Status>{{statusLabel(sub.automatic[e.versionId]?.status)}}</Status>
 <AppDisclosure class="teacher-grade-reference"><template #title>参考解答</template><p>{{e.question.answer}}</p><p>{{examExplanation(e.question)}}</p></AppDisclosure>
 <div class="exam-form-grid">
@@ -198,7 +198,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <label>批阅与讲评<Textarea v-if="marks[e.versionId]" v-model="marks[e.versionId].comment" :readonly="!!exam.resultsAt"/>
 </label>
 </div>
-</article>
+</Surface>
 <div class="focus-grading-actions"><AppButton variant="outline" :disabled="!gradingQuestion" @click="gradingQuestion--">上一题</AppButton><AppButton :disabled="busy||!sub.submittedAt||!!exam.resultsAt" @click="markNext">{{gradingQuestion<exam.paper.entries.length-1?'保存并下一题':'保存批阅'}}</AppButton><AppButton v-if="exam.resultsAt&&gradingQuestion<exam.paper.entries.length-1" variant="outline" @click="gradingQuestion++">下一题</AppButton></div>
 <AppDisclosure class="teacher-grade-audit">
 <template #title>批阅记录 　 {{sub.audits?.length||0}}</template>
@@ -218,7 +218,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <aside class="exam-answer-nav">
 <strong>{{exam.submission.submittedAt?'已交卷':countdown}}</strong>
 <nav aria-label="试题导航">
-<button v-for="(e,i) in exam.paper.entries" :key="e.versionId" :class="{active:i===activeQuestion,answered:answers[e.versionId]?.answer}" :aria-label="'第'+(i+1)+'题'" :aria-current="activeQuestion===i?'step':undefined" @click="activeQuestion=i">{{String(i+1).padStart(2,'0')}}</button>
+<AppButton :variant="(i===activeQuestion)?'selected':'ghost'" data-layout="row" type="button" v-for="(e,i) in exam.paper.entries" :key="e.versionId" :class="{active:i===activeQuestion,answered:answers[e.versionId]?.answer}" :aria-label="'第'+(i+1)+'题'" :aria-current="activeQuestion===i?'step':undefined" @click="activeQuestion=i">{{String(i+1).padStart(2,'0')}}</AppButton>
 </nav>
 <p v-if="exam.resultsAt">总分 {{exam.submission.total}} / {{exam.paper.total}}</p>
 </aside>
@@ -240,12 +240,12 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppButton v-if="activeQuestion<exam.paper.entries.length-1" :disabled="busy" @click="nextAnswerQuestion">下一题</AppButton>
 </div>
 <template v-if="exam.resultsAt">
-<div class="exam-result-grade">
+<Surface data-ui="card" class="exam-result-grade">
 <h3>{{exam.submission.grades[current.versionId]?.score}} / {{current.points}} 分</h3>
 <p>{{exam.submission.grades[current.versionId]?.comment}}</p>
 <p>参考：{{current.question.answer}}</p>
 <p class="preserve-lines">{{examExplanation(current.question)}}</p>
-</div>
+</Surface>
 <RouteButton route="wrong" secondary>去订正错题</RouteButton>
 <AppButton variant="ghost" @click="exportFile('learning')">导出学习记录</AppButton>
 </template>
@@ -290,7 +290,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppButton variant="outline" :disabled="busy||!lessonId" @click="run(async()=>{await call('/bank/import','POST',{lessonId});await load();importOpen=false;notice='课程题目已存为待审核候选'})">引用课程题目</AppButton>
 
 </div><p class="small-caption">引用后先进入待审核题库，审核后才能用于组卷。</p></AppDialog>
-<AppDialog v-model:open="pickerOpen" title="添加题目" content-class="teacher-question-picker-dialog"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert><AppTabs v-model="pickerMode" :items="[{value:'auto',label:'按条件组卷'},{value:'bank',label:'从题库选择'}]"/><section v-if="pickerMode==='auto'" class="exam-constraints">
+<AppDialog v-model:open="pickerOpen" title="添加题目" content-class="teacher-question-picker-dialog"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert><AppTabs v-model="pickerMode" :items="[{value:'auto',label:'按条件组卷'},{value:'bank',label:'从题库选择'}]"/><Surface data-ui="card" v-if="pickerMode==='auto'" class="exam-constraints">
 <div class="exam-form-grid">
 <label>知识点<NativeSelect multiple v-model="filters.knowledgeIds">
 <option v-for="k in knowledge" :key="k.id" :value="k.id">{{k.name}}</option>
@@ -313,7 +313,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppButton variant="outline" :disabled="busy" @click="assemble">生成候选试卷</AppButton>
 <p v-if="missing" role="status">{{missing}}<RouteButton route="exam-bank" secondary>补充题库</RouteButton>
 </p>
-</section><section v-else class="exam-question-picker">
+</Surface><section v-else class="exam-question-picker">
 <AppCheckbox v-for="q in bankChoices" :key="q.id" :checked="entries.some(e=>e.versionId===q.versions[0].id)" @change="toggle(q,$event)">{{q.versions[0].data.prompt}} 　 {{q.versions[0].data.equation}}</AppCheckbox><p v-if="!bankChoices.length" class="muted">本单元暂无已审核题目。</p><AppButton @click="pickerOpen=false">完成选择 　 {{ entries.length }} 题</AppButton></section>
 </AppDialog>
 <AppDialog v-model:open="paperToolsOpen" title="导出考试资料"><div class="exam-toolbar">
@@ -323,7 +323,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 <AppButton variant="outline" :disabled="!exam.resultsAt" @click="exportFile('grades')">班级成绩</AppButton>
 </div></AppDialog>
 <AppDialog v-model:open="questionOpen" title="题目编辑" content-class="exam-question-dialog">
-<form @submit.prevent="saveQuestion"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
+<ElForm @submit.prevent="saveQuestion"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
 <div class="exam-form-grid">
 <label>单元<NativeSelect v-model="question.unitId">
 <option v-for="u in units" :key="u.id" :value="u.id">{{u.title}}</option>
@@ -358,7 +358,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </div>
 <AppCheckbox class="exam-check" v-model="question.requiresTeacherReview">需要人工核对解题过程</AppCheckbox>
 <AppButton type="submit" :disabled="busy">保存待审核题目</AppButton>
-</form>
+</ElForm>
 </AppDialog>
 <AppDialog v-model:open="studentPreview" title="学生试卷预览">
 <h2>{{paperTitle}}</h2>
@@ -368,7 +368,7 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </section>
 </AppDialog>
 <AppDialog v-model:open="publishOpen" title="发布考试">
-<form class="exam-publish" @submit.prevent="publish"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
+<ElForm class="exam-publish" @submit.prevent="publish"><AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
 <label>班级<NativeSelect v-model="room">
 <option v-for="c in classes" :key="c.id" :value="c.id">{{c.name}}</option>
 </NativeSelect>
@@ -381,6 +381,6 @@ timer=setInterval(()=>{const s=exam.value?.submission;if(!s?.startedAt||s.submit
 </label>
 <p>本次发布固定试卷版本，班级当前学生将收到考试；后续编辑不影响本次试卷。</p>
 <AppButton type="submit" :disabled="busy">确认发布考试</AppButton>
-</form>
+</ElForm>
 </AppDialog>
 </template>

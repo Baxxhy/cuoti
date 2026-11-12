@@ -1,0 +1,12 @@
+{
+  "url": "http://127.0.0.1:8099",
+  "builtSourcesMatch": true,
+  "sourceFileCount": 143,
+  "qmxBrowserLogin": true,
+  "subjectSelector": true,
+  "scriptErrors": [],
+  "healthStatus": 200,
+  "schemaMigration": false,
+  "backendChanged": false,
+  "physicalAudioHardwareRetested": false
+}

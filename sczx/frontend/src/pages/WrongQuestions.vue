@@ -72,7 +72,7 @@ onMounted(load);
         v-model="search"
         aria-label="搜索错题"
         placeholder="搜索题目"
-      /><AppDisclosure class="student-filter-disclosure"><template #title>筛选<span v-if="subject||knowledge||cause"> 　 已筛选</span></template><div class="student-filter-fields"><NativeSelect v-model="subject" aria-label="筛选学科">
+      /><AppDisclosure class="student-filter-disclosure"><template #title>筛选<span v-if="subject||knowledge||cause"> 　 已筛选</span></template><Surface data-ui="card" class="student-filter-fields"><NativeSelect v-model="subject" aria-label="筛选学科">
         <option value="">全部学科</option>
         <option
           v-for="s in [
@@ -90,7 +90,7 @@ onMounted(load);
       ><NativeSelect v-model="cause" aria-label="筛选错因">
         <option value="">全部错因</option>
         <option v-for="r in options.reasons" :key="r">{{ r }}</option>
-      </NativeSelect></div></AppDisclosure>
+      </NativeSelect></Surface></AppDisclosure>
     </div>
   </div>
   <ElSkeleton v-if="loading" animated :rows="3" aria-label="正在读取错题…"/>
@@ -98,18 +98,18 @@ onMounted(load);
     ><AppAlert type="error" role="alert">{{ error }}</AppAlert>
     <AppButton @click="load">重新读取</AppButton></Surface
   >
-  <div v-else-if="filtered.length" class="wrong-library">
-    <button
+  <Surface data-ui="card" v-else-if="filtered.length" class="wrong-library">
+    <AppButton variant="ghost" data-layout="row" type="button"
       v-for="item in filtered"
       :key="item.id"
       class="wrong-library-row"
       @click="navigate('repair?wrong=' + item.id)"
     >
-      <div class="wrong-row-art">
+      <Surface data-ui="card" class="wrong-row-art">
         <AppImage v-if="item.image" :src="item.image" alt="原题" /><NotebookPen
           v-else
         />
-      </div>
+      </Surface>
       <div class="wrong-row-main">
         <div class="question-meta">
           <span>{{ item.details.subject || "数学" }}</span
@@ -134,8 +134,8 @@ onMounted(load);
         }}</Status
         ><ArrowUpRight :size="19" />
       </div>
-    </button>
-  </div>
+    </AppButton>
+  </Surface>
   <Surface v-else
     ><AppEmpty class="empty-state"><NotebookPen :size="32" /><h2>{{ items.length ? "没有符合条件的错题" : "记录第一道错题" }}</h2><AppButton v-if="!items.length" @click="open = true">录入错题</AppButton></AppEmpty></Surface
   >

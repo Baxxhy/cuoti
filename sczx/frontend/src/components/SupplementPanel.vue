@@ -104,7 +104,7 @@ async function feedback(item, rec) {
 }
 </script>
 <template>
-  <section class="supplement-panel">
+  <Surface data-ui="card" class="supplement-panel">
     <header>
       <h2>补充与订正</h2>
       <AppButton v-if="teacher" variant="outline" @click="dialog = true"
@@ -112,7 +112,7 @@ async function feedback(item, rec) {
       >
     </header>
     <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
-    <article v-for="item in items" :key="item.id">
+    <Surface data-ui="card" role="article" v-for="item in items" :key="item.id">
       <div>
         <Status>{{ labels[item.kind] }}</Status
         ><Status v-if="item.status === 'cancelled'">已取消</Status
@@ -121,7 +121,7 @@ async function feedback(item, rec) {
       </div>
       <p class="preserve-lines">{{ item.content }}</p><p v-if="item.case">参考：{{item.case.title}} 　 v{{item.case.version}} 　 {{item.case.source}}<RouteButton :route="'case-detail?caseId='+item.case.id+'&versionId='+item.case.versionId" secondary>案例原文</RouteButton></p>
       <template v-if="!teacher&&item.recipients[0]?.outcome"><p>{{item.recipients[0].outcome.label}}</p><RouteButton v-if="item.recipients[0].outcome.target.wrongId" :route="'repair?wrong='+item.recipients[0].outcome.target.wrongId" secondary>进入原错题</RouteButton><RouteButton v-else :route="item.recipients[0].outcome.target.kind+'?task='+item.recipients[0].outcome.target.taskId" secondary>进入安排内容</RouteButton></template>
-      <AppDisclosure v-if="teacher" class="teacher-supplement-recipients"><template #title>学生进度 　 {{ item.recipients.filter(r=>r.completedAt).length }} / {{ item.recipients.length }}</template><div
+      <AppDisclosure v-if="teacher" class="teacher-supplement-recipients"><template #title>学生进度 　 {{ item.recipients.filter(r=>r.completedAt).length }} / {{ item.recipients.length }}</template><Surface data-ui="card"
           v-for="rec in item.recipients"
           :key="rec.studentId"
           class="supplement-recipient"
@@ -138,7 +138,7 @@ async function feedback(item, rec) {
               >发送反馈</AppButton
             ></template
           >
-        </div>
+        </Surface>
         <AppButton
           v-if="
             item.status !== 'cancelled' &&
@@ -177,10 +177,10 @@ async function feedback(item, rec) {
           教师反馈：{{ item.recipients[0].feedback }}
         </p></template
       >
-    </article>
+    </Surface>
     <p v-if="!items.length" class="muted">暂无补充安排</p>
     <AppDialog v-model:open="dialog" title="补充与订正"
-      ><form class="supplement-form" @submit.prevent="arrange">
+      ><ElForm class="supplement-form" @submit.prevent="arrange">
         <label class="field-label"
           >类型<AppSelect
             v-model="kind"
@@ -214,7 +214,7 @@ async function feedback(item, rec) {
           :disabled="busy || !content.trim() || (scope === 'one' && !studentId)"
           >确认安排</AppButton
         >
-      </form></AppDialog
+      </ElForm></AppDialog
     >
-  </section>
+  </Surface>
 </template>

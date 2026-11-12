@@ -31,17 +31,17 @@ onMounted(load);
   <section class="account-manager">
     <SectionHeading title="账号管理"><AppButton @click="createOpen=true">新建账号</AppButton></SectionHeading>
     <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
-    <AppDialog v-model:open="createOpen" title="新建账号"><form class="account-form" @submit.prevent="create">
+    <AppDialog v-model:open="createOpen" title="新建账号"><ElForm class="account-form" @submit.prevent="create">
       <label class="field-label" for="account-username">登录账号</label><Input id="account-username" v-model="form.username" autocomplete="off" required minlength="2" />
       <label class="field-label" for="account-name">显示名称</label><Input id="account-name" v-model="form.displayName" required />
       <label class="field-label" for="account-role">身份</label><NativeSelect id="account-role" v-model="form.role"><option value="teacher">教师</option><option value="student">学生</option></NativeSelect>
       <label class="field-label" for="account-password">初始密码</label><Input id="account-password" v-model="form.password" type="password" autocomplete="new-password" required minlength="8" />
       <AppButton type="submit" :disabled="busy">{{ busy ? "创建中…" : "创建账号" }}</AppButton>
       <AppAlert type="error" v-if="error" role="alert" class="form-error">{{error}}</AppAlert>
-    </form></AppDialog>
-    <div class="account-list admin-account-table" aria-label="已有账号"><div class="admin-account-header"><span>名称</span><span>账号</span><span>身份</span></div>
-      <div v-for="account in accounts" :key="account.id" class="account-row"><div><span class="avatar">{{ account.displayName.slice(0,1) }}</span><strong>{{ account.displayName }}</strong></div><span>{{ account.username }}</span><span>{{ account.role === "teacher" ? "教师" : account.role === "student" ? "学生" : "管理员" }}</span></div>
+    </ElForm></AppDialog>
+    <Surface data-ui="card" class="account-list admin-account-table" aria-label="已有账号"><ElSpace wrap :size="12" class="admin-account-header"><span>名称</span><span>账号</span><span>身份</span></ElSpace>
+      <Surface data-ui="card" v-for="account in accounts" :key="account.id" class="account-row"><div><ElAvatar :size="32" class="avatar">{{ account.displayName.slice(0,1) }}</ElAvatar><strong>{{ account.displayName }}</strong></div><span>{{ account.username }}</span><span>{{ account.role === "teacher" ? "教师" : account.role === "student" ? "学生" : "管理员" }}</span></Surface>
       <p v-if="!accounts.length" class="muted">暂无账号</p>
-    </div>
+    </Surface>
   </section>
 </template>

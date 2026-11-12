@@ -19,7 +19,7 @@ onBeforeUnmount(() => query.removeEventListener("change", update));
   <div v-else class="workspace-frame">
     <ElSplitter class="workspace-panels">
       <ElSplitterPanel :size="primarySize+'%'" :min="primaryMin+'%'" data-panel><div class="panel-scroll"><slot name="primary"/></div></ElSplitterPanel>
-      <ElSplitterPanel min="28%" data-panel><div class="panel-scroll secondary-pane"><slot name="secondary"/></div></ElSplitterPanel>
+      <ElSplitterPanel min="28%" data-panel><Surface data-ui="card" class="panel-scroll secondary-pane"><slot name="secondary"/></Surface></ElSplitterPanel>
     </ElSplitter>
   </div>
 </template>

@@ -1,6 +1,6 @@
 # 师承智学
 
-2026-11-12 / v42 / 本地软件作品
+2026-11-12 / v43 / 本地软件作品
 
 教师经验、备课、课程班级、学生学习、我的错题和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；基础组件使用Element Plus，图标统一Element Plus Icons。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
 
@@ -27,6 +27,8 @@
 [本轮交付与验收](docs/planning/初高中全学科通用化交付与验收_20261112_v1.md) / [实际三端截图与检查记录](docs/verification/all_subjects_20261112_v1/README.md)。
 
 ## 当前界面调整
+
+本轮完成剩余原生控件、内容框、拖拽和音频控制的Element Plus统一。页面采用浅灰底、白色卡片和清晰边框，修复首页消息重叠。48项浏览器回归、18项JS检查和三端64次桌面页面检查通过。[全站组件与区域边界验收](docs/planning/ElementPlus全站统一与区域边界验收_20261112_v1.md)。
 
 提示、警告和作答结果统一为Element Plus Alert，23处原生确认调用改为MessageBox；教案折叠、分步讲解卡片、备课进度与加载占位改用Collapse、Card、Steps及Skeleton，清理旧控件皮肤。45项浏览器回归、17项JS与构建通过。[本轮说明与截图](docs/planning/ElementPlus提示与讲稿统一_20261112_v1.md)。
 

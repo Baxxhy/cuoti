@@ -47,15 +47,15 @@ async function scenario(mode){
    return{opened,stayedOpen,closedOnTaskSwitch:!document.querySelector('[role=dialog]'),feedback:records.map(r=>r.feedback),writes};
   }
   await wait(()=>el.querySelector('.teacher-paper-row'));el.querySelector('.teacher-paper-row').click();await nextTick();[...el.querySelectorAll('button')].find(b=>b.textContent.trim()==='发布考试').click();await nextTick();
-  await wait(()=>document.querySelector('[role=dialog] input[type=datetime-local]'));
-  const dialog=document.querySelector('[role=dialog]'),inputs=dialog.querySelectorAll('input[type=datetime-local]');const initial=inputs[0].value,expected=new Date(Date.now()-60000+8*3600000).toISOString().slice(0,16),labels=dialog.textContent;
-  for(let i=0;i<2;i++){inputs[i].value=i?'2026-11-12T11:00':'2026-11-12T10:00';inputs[i].dispatchEvent(new Event('input',{bubbles:true}))}await nextTick();dialog.querySelector('form').requestSubmit();await wait(()=>writes.length>0);
+  await wait(()=>document.querySelector('.app-element-dialog .el-date-editor input'));
+  const dialog=document.querySelector('.app-element-dialog'),inputs=dialog.querySelectorAll('.el-date-editor input');const initial=inputs[0].value,expected=new Date(Date.now()-60000+8*3600000).toISOString().slice(0,16),labels=dialog.textContent;
+  for(let i=0;i<2;i++){inputs[i].value=i?'2026-11-12 11:00':'2026-11-12 10:00';inputs[i].dispatchEvent(new Event('input',{bubbles:true}));inputs[i].dispatchEvent(new Event('change',{bubbles:true}));inputs[i].dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',code:'Enter',bubbles:true}));inputs[i].dispatchEvent(new FocusEvent('blur',{bubbles:true}));await nextTick()}await nextTick();dialog.querySelector('form').requestSubmit();await wait(()=>writes.length>0);
   return{initial,expected,labels,writes,duplicateTabs:!!el.querySelector('.exam-tabs')};
  }finally{app.unmount();el.remove();window.fetch=originalFetch;setActivePinia(prior)}
 }
 for(const mode of ['feedback','publish'])test(mode==='feedback'?'student selection keeps feedback dialog open; feedback targets the selected record and task changes close it':'exam dates use Beijing input and convert to UTC requests independent of the host timezone',async()=>{
  const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");const r=await b.eval(scenario,mode);
  if(mode==='feedback'){assert(r.opened);assert(r.stayedOpen);assert(r.closedOnTaskSwitch);assert.deepEqual(r.feedback,['','两边共同运算的解释清楚。']);assert.equal(r.writes.length,1);assert.equal(r.writes[0].path,'/api/records/record-two/feedback')}
- else{assert.equal(r.initial,r.expected);assert(r.labels.includes('北京时间'));assert(!r.labels.includes('UTC'));assert.equal(r.writes[0].body.startsAt,'2026-11-12T02:00:00.000Z');assert.equal(r.writes[0].body.endsAt,'2026-11-12T03:00:00.000Z');assert(!r.duplicateTabs)}assert.deepEqual(b.errors,[]);
+ else{assert.equal(r.initial.replace(' ','T'),r.expected);assert(r.labels.includes('北京时间'));assert(!r.labels.includes('UTC'));assert.equal(r.writes[0].body.startsAt,'2026-11-12T02:00:00.000Z');assert.equal(r.writes[0].body.endsAt,'2026-11-12T03:00:00.000Z');assert(!r.duplicateTabs)}assert.deepEqual(b.errors,[]);
  }finally{await b.close()}
 });

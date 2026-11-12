@@ -27,8 +27,8 @@ async function scenario(mode){
   if(mode==='prepare'){
    await wait(()=>el.querySelector('#activity-content'));const count=el.querySelectorAll('#activity-content').length;
    const input=el.querySelector('#activity-content');input.value='未保存的第一活动修改';input.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();
-   el.querySelectorAll('.focus-activity-item>button:last-child')[1].click();await nextTick();const second=el.querySelector('#activity-content').value;
-   el.querySelectorAll('.focus-activity-item>button:last-child')[0].click();await nextTick();return{count,second,restored:el.querySelector('#activity-content').value,writes};
+   el.querySelectorAll('.focus-activity-item>.el-card__body>button:last-child')[1].click();await nextTick();const second=el.querySelector('#activity-content').value;
+   el.querySelectorAll('.focus-activity-item>.el-card__body>button:last-child')[0].click();await nextTick();return{count,second,restored:el.querySelector('#activity-content').value,writes};
   }
   await wait(()=>el.querySelector('.exam-grade-question input'));const originalAnswers=JSON.stringify(submission.answers);
   const input=el.querySelector('.exam-grade-question input');input.value='8';input.dispatchEvent(new Event('input',{bubbles:true}));const comment=el.querySelector('.exam-grade-question textarea');comment.value='本题过程基本正确，补充共同运算依据。';comment.dispatchEvent(new Event('input',{bubbles:true}));await nextTick();

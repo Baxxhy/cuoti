@@ -74,7 +74,7 @@ function openStudent(id) {
         {{ new Date(store.task.publishedAt).toLocaleString("zh-CN") }}</span
       >
     </div>
-    <div class="insight-summary teaching-insight-metrics">
+    <Surface data-ui="card" class="insight-summary teaching-insight-metrics">
       <div
         v-for="(label, key) in {
           assigned: '已分配',
@@ -90,7 +90,7 @@ function openStudent(id) {
       <div>
         <span>独立正确题目</span><strong>{{ independentCount }}</strong>
       </div>
-    </div>
+    </Surface>
     <Surface class="student-table"
       ><SectionHeading title="学生学习过程" />
       <div class="table-container">

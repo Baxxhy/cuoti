@@ -84,8 +84,8 @@ onMounted(load);
     </header>
     <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
     <p v-if="busy" role="status">读取中…</p>
-    <template v-if="compact"><button v-for="item in visible" :key="item.id" class="compact-message" @click="open(item)"><span :class="{'compact-message-unread':!item.readAt}" aria-hidden="true"/><span><strong>{{item.title.replaceAll('\u00b7',' ')}}</strong><time>{{deadlineText(item.createdAt)}}</time></span><ArrowUpRight :size="14"/></button></template>
-    <article v-else
+    <template v-if="compact"><AppButton variant="ghost" data-layout="row" type="button" v-for="item in visible" :key="item.id" class="compact-message" @click="open(item)"><span :class="{'compact-message-unread':!item.readAt}" aria-hidden="true"/><span><strong>{{item.title.replaceAll('\u00b7',' ')}}</strong><time>{{deadlineText(item.createdAt)}}</time></span><ArrowUpRight :size="14"/></AppButton></template>
+    <Surface data-ui="card" role="article" v-else
       v-for="item in visible"
       :key="item.id"
       :class="{ unread: !item.readAt }"
@@ -109,7 +109,7 @@ onMounted(load);
           >查看任务<ArrowUpRight :size="14"
         /></AppButton>
       </footer>
-    </article>
+    </Surface>
     <p v-if="!busy && !rows.length" class="muted">暂无消息</p>
   </div>
 </template>

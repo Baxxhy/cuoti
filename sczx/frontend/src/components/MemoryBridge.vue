@@ -37,7 +37,7 @@ watch(() => props.task?.id, load, { immediate: true });
 onBeforeUnmount(() => generation++);
 </script>
 <template>
-  <section v-if="suggestions.length || error" class="memory-bridge">
+  <Surface data-ui="card" v-if="suggestions.length || error" class="memory-bridge">
     <div class="memory-bridge-heading">
       <History :size="17" />
       <h2>{{ task ? "相关复习" : "接着练习" }}</h2>
@@ -51,7 +51,7 @@ onBeforeUnmount(() => generation++);
     <AppAlert type="error" v-if="error" role="alert">
       {{ error }}<AppButton variant="ghost" @click="load">重试</AppButton>
     </AppAlert>
-    <article v-for="r in suggestions" :key="r.id">
+    <Surface data-ui="card" role="article" v-for="r in suggestions" :key="r.id">
       <div>
         <strong>{{
           data.items.find((i) => i.id === r.knowledgeId)?.name
@@ -66,6 +66,6 @@ onBeforeUnmount(() => generation++);
         "
         >{{ r.label }}<ArrowRight
       /></AppButton>
-    </article>
-  </section>
+    </Surface>
+  </Surface>
 </template>

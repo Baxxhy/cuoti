@@ -6,7 +6,6 @@ import WorkspaceNavigation from "@/components/WorkspaceNavigation.vue";
 import {platformDraft} from '@/lib/platform-persistence.js';
 import { computed, onMounted, onBeforeUnmount, provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { AnimatePresence, motion, MotionConfig } from "motion-v";
 import UiProvider from "@/components/app/Provider.vue";
 import {ElMessage} from "element-plus";
 import {BookOpen,BookOpenText,Search,Bell,Menu,ArrowUpRight,ArrowLeft} from "@/components/app/icons.js";
@@ -121,15 +120,14 @@ const results = computed(() => {
 });
 </script>
 <template>
-  <MotionConfig reduced-motion="user"
-    ><UiProvider>
+  <UiProvider>
       <RouterView v-if="!store.user" />
       <div v-else :class="['app-shell',{'is-study':studyFocus}]">
-        <a href="#main-content" class="skip-link" @click.prevent="focusContent()">跳至主要内容</a>
-        <aside v-if="!studyFocus" class="desktop-sidebar"><SidebarContent /></aside>
-        <div class="app-body">
-          <header v-if="studyFocus" class="study-topbar"><a href="#/home"><ArrowLeft :size="17"/>我的学习</a><a href="#/home" class="study-brand"><BookOpenText :size="22"/>师承智学</a><AppButton variant="ghost" @click="mobileOpen=true"><Menu :size="17"/>导航</AppButton></header>
-          <header v-else class="topbar">
+        <ElLink :underline="false" href="#main-content" class="skip-link" @click.prevent="focusContent()">跳至主要内容</ElLink>
+        <ElAside width="216px" v-if="!studyFocus" class="desktop-sidebar"><SidebarContent /></ElAside>
+        <ElContainer direction="vertical" class="app-body">
+          <ElHeader v-if="studyFocus" class="study-topbar"><ElLink :underline="false" href="#/home"><ArrowLeft :size="17"/>我的学习</ElLink><ElLink :underline="false" href="#/home" class="study-brand"><BookOpenText :size="22"/>师承智学</ElLink><AppButton variant="ghost" @click="mobileOpen=true"><Menu :size="17"/>导航</AppButton></ElHeader>
+          <ElHeader v-else class="topbar">
             <div class="topbar-start">
               <AppButton
                 variant="ghost"
@@ -149,18 +147,18 @@ const results = computed(() => {
                 aria-label="搜索页面与任务"
                 @click="searchOpen = true"
                 ><Search :size="16" /><span>搜索页面、任务</span
-                ><kbd>⌘ K</kbd></AppButton
+                ><ElTag size="small" effect="plain" aria-label="搜索快捷键">⌘ K</ElTag></AppButton
               ><AppButton
                 variant="ghost"
                 size="icon"
                 class="notification-trigger"
                 aria-label="查看消息"
                 @click="notifications = true"
-                ><Bell :size="18" /><span v-if="store.unreadCount" class="notification-badge">{{ store.unreadCount }}</span></AppButton
-              ><span class="connection-indicator" :class="{ready:store.status==='ready'}" :aria-label="store.status==='ready'?'服务已连接':'正在连接服务'" role="status"><span aria-hidden="true"/></span>
+                ><ElBadge :value="store.unreadCount" :hidden="!store.unreadCount"><Bell :size="18"/></ElBadge></AppButton
+              ><ElBadge is-dot :type="store.status==='ready'?'success':'warning'" :aria-label="store.status==='ready'?'服务已连接':'正在连接服务'" role="status"><span class="connection-anchor" aria-hidden="true"/></ElBadge>
             </div>
-          </header>
-          <main id="main-content" tabindex="-1">
+          </ElHeader>
+          <ElMain id="main-content" tabindex="-1">
             <AppAlert type="error" v-if="store.saveError && route.name!=='prepare'" class="save-error" role="alert">
               <span>{{ store.saveError }}</span
               ><AppButton
@@ -174,26 +172,20 @@ const results = computed(() => {
             <PlatformStatus
               v-if="store.status !== 'ready' && route.name !== 'issues'"
             />
-            <div v-else-if="missingTask || missingWrong" class="page-content">
+            <ElContainer v-else-if="missingTask || missingWrong" direction="vertical" class="page-content">
               <NotFound />
-            </div>
+            </ElContainer>
             <RouterView v-else v-slot="{ Component, route: currentRoute }"
-              ><AnimatePresence mode="wait"
-                ><motion.div
+              ><ElContainer direction="vertical"
                   :key="pageKey(currentRoute)"
                   class="page-content"
-                  :initial="{ opacity: 0, y: 9 }"
-                  :animate="{ opacity: 1, y: 0 }"
-                  :exit="{ opacity: 0, y: -4 }"
-                  :transition="{ duration: 0.2 }"
                   ><WorkspaceNavigation v-if="!studyFocus"/><component
                     :is="Component"
                     :key="
                       pageKey(currentRoute)
-                    " /></motion.div></AnimatePresence
-            ></RouterView>
-          </main>
-        </div>
+                    " /></ElContainer></RouterView>
+          </ElMain>
+        </ElContainer>
       </div>
       <AppDialog
         v-model:open="mobileOpen"
@@ -211,7 +203,7 @@ const results = computed(() => {
           aria-label="搜索内容"
         />
         <div class="search-results">
-          <button
+          <AppButton variant="ghost" data-layout="row" type="button"
             v-for="item in results"
             :key="item.route"
             @click="
@@ -223,12 +215,11 @@ const results = computed(() => {
               ><strong>{{ item.title }}</strong
               ><small>{{ item.subtitle }}</small></span
             ><ArrowUpRight :size="17" />
-          </button>
+          </AppButton>
           <p v-if="!results.length" class="muted">没有匹配结果</p>
         </div></AppDialog
       >
       <AppDialog v-model:open="notifications" title="消息与提醒"><MessageCenter @navigate="notifications=false"/></AppDialog
       >
-    </UiProvider></MotionConfig
-  >
+    </UiProvider>
 </template>

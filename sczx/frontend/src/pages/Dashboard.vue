@@ -79,38 +79,38 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
   <PageHeading :title="teacher?'教学概览':'我的学习'">
     <AppSelect v-if="teacher && overview?.classes.length" v-model="selected" label="当前班级" :options="overview.classes.map(c=>({value:c.id,label:c.name}))" @update:model-value="select"/>
   </PageHeading>
-  <div v-if="studentClass" class="dashboard-class-filter"><span>{{studentClass.name}}</span><a href="#/home" class="text-link">全部班级</a></div>
+  <div v-if="studentClass" class="dashboard-class-filter"><span>{{studentClass.name}}</span><ElLink :underline="false" href="#/home" class="text-link">全部班级</ElLink></div>
   <AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}<AppButton variant="outline" @click="load">重试</AppButton></AppAlert>
   <div v-if="loading" class="workspace-loading" role="status"><span/>正在读取任务…</div>
   <template v-if="overview">
-    <section class="overview-next" aria-labelledby="next-task-heading">
+    <Surface data-ui="card" class="overview-next" aria-labelledby="next-task-heading">
       <div class="overview-next-copy">
         <span class="overview-context">{{teacher?'下一节课':nextTask?'待完成任务':'课程学习'}}</span>
         <h2 id="next-task-heading">{{teacher?store.data.lessonDraft?.title||store.data.lesson?.title||'准备一节新课':nextTask?.title||'开始你的下一课'}}</h2>
         <span class="overview-class" v-if="teacher">{{overview.classes.find(c=>c.id===selected)?.name||'尚未选择班级'}}</span>
         <span class="overview-class" v-else-if="nextTask">{{nextTask.className||'我的班级'}}</span>
-        <div class="overview-next-actions"><RouteButton :route="teacher?'prepare'+(selected?'?class='+selected:''):nextTask?(nextHasReading?'learn':'check')+'?task='+nextTask.id:'courses'">{{teacher?'继续备课':nextTask?(nextHasReading?(nextTask.status==='学习中'?'继续学习':'开始学习'):'开始练习'):'浏览课程'}}</RouteButton><a v-if="teacher" :href="'#/insights?class='+selected" class="text-link">查看班级学情</a><a v-else href="#/courses" class="text-link">全部课程</a></div>
+        <div class="overview-next-actions"><RouteButton :route="teacher?'prepare'+(selected?'?class='+selected:''):nextTask?(nextHasReading?'learn':'check')+'?task='+nextTask.id:'courses'">{{teacher?'继续备课':nextTask?(nextHasReading?(nextTask.status==='学习中'?'继续学习':'开始学习'):'开始练习'):'浏览课程'}}</RouteButton><ElLink :underline="false" v-if="teacher" :href="'#/insights?class='+selected" class="text-link">查看班级学情</ElLink><ElLink :underline="false" v-else href="#/courses" class="text-link">全部课程</ElLink></div>
       </div>
       <dl class="overview-counts"><div v-for="[label,value] in metrics" :key="label" :data-status="statusTone(label)"><dt>{{label}}</dt><dd>{{value}}</dd></div></dl>
-    </section>
+    </Surface>
     <div class="overview-grid">
       <section class="overview-task-panel">
-        <div class="section-heading"><h2>{{teacher?'班级任务':'学习任务'}}</h2><a :href="teacher?'#/class?class='+selected:'#/records'" class="text-link">{{teacher?'管理班级':'学习记录'}}<ArrowRight :size="14"/></a></div>
+        <div class="section-heading"><h2>{{teacher?'班级任务':'学习任务'}}</h2><ElLink :underline="false" :href="teacher?'#/class?class='+selected:'#/records'" class="text-link">{{teacher?'管理班级':'学习记录'}}<ArrowRight :size="14"/></ElLink></div>
         <AppTabs v-if="!teacher" v-model="taskTab" :items="[{value:'pending',label:'待完成'},{value:'completed',label:'已提交'}]"/>
         <TaskList :teacher="teacher" :tasks="visibleTasks" :empty-label="!teacher?(taskTab==='completed'?'还没有已提交的任务':'当前任务已完成'):undefined"/>
         <AppButton v-if="teacher&&overview.tasks.length>5" variant="ghost" class="overview-task-toggle" :aria-expanded="allTasksOpen" @click="allTasksOpen=!allTasksOpen">{{allTasksOpen?'收起任务':'查看全部 '+overview.tasks.length+' 项任务'}}</AppButton>
 
       </section>
-      <aside class="overview-aside">
-        <section v-if="teacher" class="overview-recent"><div class="section-heading"><h2>最近提交</h2></div><article v-for="item in overview.recentSubmissions.slice(0,5)" :key="item.recordId"><span><strong>{{item.studentName}}</strong><small>{{item.taskTitle}}</small></span><time>{{deadlineText(item.submittedAt)}}</time><RouteButton :route="'insights?task='+item.taskId" secondary>查看</RouteButton></article><p v-if="!overview.recentSubmissions.length" class="muted">还没有学生提交</p></section>
-        <section v-if="teacher" class="overview-shortcuts"><h2>{{teacher?'教学工作':'学习工具'}}</h2><a :href="teacher?'#/cases':'#/wrong'"><component :is="teacher?BookOpen:Inbox" :size="18"/><span>{{teacher?'查找教学案例':'整理错题'}}</span><ArrowRight :size="15"/></a><a :href="teacher?'#/exam-papers':'#/exams'"><BookOpen :size="18"/><span>{{teacher?'组卷与考试':'我的考试'}}</span><ArrowRight :size="15"/></a><a href="#/live"><Users :size="18"/><span>{{teacher?'开展实时课堂':'进入课堂'}}</span><ArrowRight :size="15"/></a></section>
-        <section class="overview-inbox"><h2>消息与反馈<span v-if="store.unreadCount">{{store.unreadCount}}</span></h2><MessageCenter compact/></section>
+      <ElAside width="100%" class="overview-aside">
+        <Surface data-ui="card" v-if="teacher" class="overview-recent"><div class="section-heading"><h2>最近提交</h2></div><Surface data-ui="card" role="article" v-for="item in overview.recentSubmissions.slice(0,5)" :key="item.recordId"><span><strong>{{item.studentName}}</strong><small>{{item.taskTitle}}</small></span><time>{{deadlineText(item.submittedAt)}}</time><RouteButton :route="'insights?task='+item.taskId" secondary>查看</RouteButton></Surface><p v-if="!overview.recentSubmissions.length" class="muted">还没有学生提交</p></Surface>
+        <section v-if="teacher" class="overview-shortcuts"><h2>{{teacher?'教学工作':'学习工具'}}</h2><ElLink :underline="false" :href="teacher?'#/cases':'#/wrong'"><component :is="teacher?BookOpen:Inbox" :size="18"/><span>{{teacher?'查找教学案例':'整理错题'}}</span><ArrowRight :size="15"/></ElLink><ElLink :underline="false" :href="teacher?'#/exam-papers':'#/exams'"><BookOpen :size="18"/><span>{{teacher?'组卷与考试':'我的考试'}}</span><ArrowRight :size="15"/></ElLink><ElLink :underline="false" href="#/live"><Users :size="18"/><span>{{teacher?'开展实时课堂':'进入课堂'}}</span><ArrowRight :size="15"/></ElLink></section>
+        <Surface data-ui="card" class="overview-inbox"><h2>消息与反馈<span v-if="store.unreadCount">{{store.unreadCount}}</span></h2><MessageCenter compact/></Surface>
         <MemoryBridge v-if="!teacher" compact/>
-      </aside>
+      </ElAside>
     </div>
   </template>
 </template>
 
 <style scoped>
-.overview-aside>.overview-recent{margin:0 0 28px;padding:0;border:0}.overview-recent article{flex-wrap:wrap;gap:8px}.overview-recent article>span{min-width:130px}.overview-recent time{font-size:11px}.overview-task-toggle{margin-top:12px}.dashboard-class-filter{display:flex;align-items:center;gap:18px;margin:-10px 0 20px;font-size:13px}
+.overview-aside>.overview-recent{margin:0 0 28px}.overview-aside>.overview-recent>.el-card__body{padding:0}.overview-recent article{flex-wrap:wrap;gap:8px}.overview-recent article>span{min-width:130px}.overview-recent time{font-size:11px}.overview-task-toggle{margin-top:12px}.dashboard-class-filter{display:flex;align-items:center;gap:18px;margin:-10px 0 20px;font-size:13px}
 </style>

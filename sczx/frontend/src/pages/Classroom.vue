@@ -223,28 +223,28 @@ async function join() {
   </PageHeading>
   <AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}</AppAlert>
   <template v-if="teacher">
-    <div class="teaching-class-toolbar ops-context-row">
+    <ElSpace wrap :size="12" class="teaching-class-toolbar ops-context-row">
       <AppSelect v-model="selected" label="当前班级" @update:model-value="select" :options="rooms.map(r=>({value:r.id,label:r.name}))"/>
       <span v-if="room">{{room.grade}} 　 {{room.subject}} 　 {{members.length}} 人</span>
       <AppButton variant="ghost" size="icon-sm" aria-label="刷新班级" @click="load"><RefreshCw :size="16"/></AppButton>
       <AppButton v-if="room" variant="ghost" @click="edit(false)"><Settings2 :size="16"/>班级设置</AppButton>
-    </div>
+    </ElSpace>
     <template v-if="room">
       <AppTabs v-model="view" :items="[{value:'tasks',label:'学习任务'},{value:'members',label:'成员与邀请'}]"/>
       <section v-if="view==='tasks'" class="ops-section">
         <ElSkeleton v-if="loading" animated :rows="3" aria-label="读取任务…"/>
         <Surface v-else class="teaching-tasks"><TaskList teacher :tasks="tasks"/></Surface>
         <AppDisclosure v-if="tasks.length" class="ops-disclosure"><template #title>补发历史任务</template>
-          <div v-for="task in tasks" :key="task.id" class="task-allocation"><span><strong>{{task.title}}</strong><small>{{task.summary.assigned}} 人已分配 　 {{task.summary.inactive}} 人历史保留</small></span><AppButton variant="outline" @click="backfill(task)">补发给当前成员</AppButton></div>
+          <Surface data-ui="card" v-for="task in tasks" :key="task.id" class="task-allocation"><span><strong>{{task.title}}</strong><small>{{task.summary.assigned}} 人已分配 　 {{task.summary.inactive}} 人历史保留</small></span><AppButton variant="outline" @click="backfill(task)">补发给当前成员</AppButton></Surface>
         </AppDisclosure>
       </section>
       <div v-else class="ops-member-layout">
         <Surface class="teaching-members"><header><h2>班级成员</h2><span>{{members.length}} 人</span></header>
           <div class="ops-add-member"><AppSelect v-model="student" label="添加已有学生" :options="accounts.filter(a=>!members.some(m=>m.id===a.id)).map(a=>({value:a.id,label:a.displayName+' 　 '+a.username}))"/><AppButton :disabled="busy||!student||loading" @click="add"><UserPlus :size="15"/>添加</AppButton></div>
           <ElSkeleton v-if="loading" animated :rows="3" aria-label="读取成员…"/><AppEmpty v-else-if="!members.length" class="empty-state">暂无班级成员</AppEmpty>
-          <div v-for="item in members" :key="item.id" class="teaching-member"><span class="avatar">{{item.displayName.slice(0,1)}}</span><div><strong>{{item.displayName}}</strong><p>{{item.username}}</p></div><AppButton variant="ghost" size="icon-sm" :aria-label="'移出'+item.displayName" @click="remove(item)"><X :size="14"/></AppButton></div>
+          <Surface data-ui="card" v-for="item in members" :key="item.id" class="teaching-member"><ElAvatar :size="32" class="avatar">{{item.displayName.slice(0,1)}}</ElAvatar><div><strong>{{item.displayName}}</strong><p>{{item.username}}</p></div><AppButton variant="ghost" size="icon-sm" :aria-label="'移出'+item.displayName" @click="remove(item)"><X :size="14"/></AppButton></Surface>
         </Surface>
-        <Surface class="teaching-invites"><header><h2>邀请学生</h2><Ticket :size="17"/></header><label class="field-label">邀请码有效期<AppSelect v-model="inviteDays" label="邀请码有效期" :options="[{value:'1',label:'1天'},{value:'7',label:'7天'},{value:'30',label:'30天'}]"/></label><AppButton variant="outline" @click="createInvite">生成邀请码</AppButton><p v-if="code" class="invitation-code" aria-label="新邀请码">{{code}}</p>
+        <Surface class="teaching-invites"><header><h2>邀请学生</h2><Ticket :size="17"/></header><label class="field-label">邀请码有效期<AppSelect v-model="inviteDays" label="邀请码有效期" :options="[{value:'1',label:'1天'},{value:'7',label:'7天'},{value:'30',label:'30天'}]"/></label><AppButton variant="outline" @click="createInvite">生成邀请码</AppButton><ElTag type="primary" size="large" v-if="code" class="invitation-code" aria-label="新邀请码">{{code}}</ElTag>
           <AppDisclosure v-if="invites.length" class="ops-disclosure"><template #title>已生成的邀请码</template><div v-for="item in invites" :key="item.id"><Status>{{item.revoked?'已撤销':item.expired?'已过期':'有效'}}</Status><time>{{deadlineText(item.expiresAt)}}</time><AppButton v-if="!item.revoked&&!item.expired" variant="ghost" @click="revoke(item)">撤销</AppButton></div></AppDisclosure>
         </Surface>
       </div>
@@ -254,10 +254,10 @@ async function join() {
   <template v-else>
     <div v-if="rooms.length" class="student-class-workbench">
       <nav class="student-class-picker" aria-label="我的班级">
-        <button v-for="item in rooms" :key="item.id" :aria-current="studentRoom?.id===item.id?'true':undefined" @click="selected=item.id;select()">
+        <AppButton :variant="(studentRoom?.id===item.id)?'selected':'ghost'" data-layout="row" type="button" v-for="item in rooms" :key="item.id" :aria-current="studentRoom?.id===item.id?'true':undefined" @click="selected=item.id;select()">
           <Users :size="20"/>
           <span><strong>{{item.name}}</strong><span class="class-meta"><span>{{item.grade}}</span><span>{{item.subject}}</span><span v-if="item.teacherName">{{item.teacherName.replaceAll('\u00b7',' ')}}</span></span></span>
-        </button>
+        </AppButton>
       </nav>
       <Surface class="student-class-tasks">
         <header class="section-heading"><h2>{{studentRoom.name}}</h2><span>{{studentTasks.length}} 项任务</span></header>
@@ -267,7 +267,7 @@ async function join() {
     </div>
     <Surface v-else><AppEmpty class="empty-state"><Users :size="28"/><h2>还没有加入班级</h2><AppButton @click="joinOpen=true">输入邀请码</AppButton></AppEmpty></Surface>
   </template>
-  <AppDialog v-model:open="joinOpen" title="加入班级"><form class="class-edit-form" @submit.prevent="join"><label class="field-label">班级邀请码<Input v-model="joinCode" autocomplete="off" required/></label><AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}</AppAlert><AppButton :disabled="busy||!joinCode.trim()">加入班级</AppButton></form></AppDialog>
+  <AppDialog v-model:open="joinOpen" title="加入班级"><ElForm class="class-edit-form" @submit.prevent="join"><label class="field-label">班级邀请码<Input v-model="joinCode" autocomplete="off" required/></label><AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}</AppAlert><AppButton :disabled="busy||!joinCode.trim()">加入班级</AppButton></ElForm></AppDialog>
   <AppDialog
     :open="!!dialog"
     :title="dialog === 'create' ? '新建班级' : '编辑班级'"
@@ -276,7 +276,7 @@ async function join() {
         if (!value) dialog = '';
       }
     "
-    ><form class="class-edit-form" @submit.prevent="saveClass">
+    ><ElForm class="class-edit-form" @submit.prevent="saveClass">
       <label class="field-label"
         >班级名称<Input v-model="name" required /></label
       ><label class="field-label"
@@ -290,6 +290,6 @@ async function join() {
         :disabled="busy || !name.trim() || !grade.trim() || !subject.trim()"
         >保存班级</AppButton
       >
-    </form></AppDialog
+    </ElForm></AppDialog
   >
 </template>

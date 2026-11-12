@@ -33,7 +33,7 @@ const verification = computed(
 );
 </script>
 <template>
-  <section v-if="job" class="model-result" :aria-busy="busy">
+  <Surface data-ui="card" v-if="job" class="model-result" :aria-busy="busy">
     <AppAlert v-if="busy || job.status==='failed'" :type="job.status==='failed'?'error':'info'" class="model-status" role="status" aria-live="polite">
       <strong>{{ capabilityNames[job.capability] }}</strong
       ><span>{{ job.step }}</span>
@@ -54,11 +54,10 @@ const verification = computed(
       class="ai-original"
       alt="原始题图"
     />
-    <audio
+    <AppAudio
       v-if="showSource && job.fileId && job.capability === 'asr'"
       :src="`/api/files/${job.fileId}`"
       class="model-audio"
-      controls
       aria-label="转写原始音频"
     />
     <template v-if="result && job.status === 'succeeded'">
@@ -167,14 +166,13 @@ const verification = computed(
             }}{{ source.title
             }}{{ source.version ? " 　 v" + source.version : "" }}
           </p>
-          <MatchEvidence :item="source" /><a
+          <MatchEvidence :item="source" /><ElLink :underline="false"
             v-for="(ref, index) in uniqueReferences(source.references)"
             :key="index"
             :href="`/#/source?unit=${ref.unitId}`"
             target="_blank"
             rel="noopener"
-            >{{ ref.materialTitle }} 　 {{ ref.label }}</a
-          >
+            >{{ ref.materialTitle }} 　 {{ ref.label }}</ElLink>
         </section>
       </AppDisclosure>
       <ol v-if="result.ranking" class="model-ranking">
@@ -187,11 +185,10 @@ const verification = computed(
         >{{ result.method === "llm" ? "LLM 语义重排。" : ""
         }}{{ result.scoreMeaning }}</InfoTip
       >
-      <audio
+      <AppAudio
         v-if="result.url"
         class="model-audio"
-        controls
-        :src="result.url"
+          :src="result.url"
         aria-label="生成的讲解音频"
         preload="metadata"
       />
@@ -217,5 +214,5 @@ const verification = computed(
         <AppAlert v-if="run.error" type="error">{{ run.error }}</AppAlert>
       </div>
     </AppDisclosure>
-  </section>
+  </Surface>
 </template>

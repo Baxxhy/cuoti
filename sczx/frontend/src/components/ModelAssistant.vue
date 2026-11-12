@@ -309,23 +309,23 @@ onBeforeUnmount(() => interaction++);
         ><Square v-if="busy" :size="14" /><RotateCcw v-else :size="14"
       /></AppButton>
     </header>
-    <p
+    <Surface data-ui="card"
       v-if="job?.input?.context?.focus === 'confirmed_image'"
       class="tutoring-context"
     >
       题图 　 {{ job.input.context.question.equation || "已确认题目" }}
-    </p>
-    <p v-else-if="blockId" class="tutoring-context">
+    </Surface>
+    <Surface data-ui="card" v-else-if="blockId" class="tutoring-context">
       {{ store.task?.snapshot?.blocks?.find((b) => b.id === blockId)?.title }}
-    </p>
+    </Surface>
     <AppDisclosure v-if="earlier.length" class="tutoring-history">
       <template #title>前面的指导 　 {{ earlier.length }}</template>
-      <article v-for="item in earlier" :key="item.id">
-        <p class="tutoring-response">{{ item.prompt }}</p>
+      <Surface data-ui="card" role="article" v-for="item in earlier" :key="item.id">
+        <Surface data-ui="card" class="tutoring-response">{{ item.prompt }}</Surface>
         <ModelResult :job="item" :can-retry="false" />
-      </article>
+      </Surface>
     </AppDisclosure>
-    <p v-if="job?.prompt" class="tutoring-response">{{ job.prompt }}</p>
+    <Surface data-ui="card" v-if="job?.prompt" class="tutoring-response">{{ job.prompt }}</Surface>
     <ModelResult
       :job="job"
       :busy="busy"
@@ -363,7 +363,7 @@ onBeforeUnmount(() => interaction++);
         >确认题目并获取指导</AppButton
       ></template
     >
-    <div class="ai-compose">
+    <Surface data-ui="card" class="ai-compose">
       <label class="sr-only" for="learning-question"
         >向学习助手提问或回答追问</label
       ><Textarea
@@ -405,7 +405,7 @@ onBeforeUnmount(() => interaction++);
         @click="send('continue')"
         >回答后继续指导</AppButton
       >
-    </div>
+    </Surface>
     <footer class="tutoring-footer">
       <AppButton
         v-if="

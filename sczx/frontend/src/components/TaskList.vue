@@ -25,8 +25,8 @@ async function open(task, teacher) {
 </script>
 <template>
   <div v-if="visibleTasks.length">
-    <div v-for="task in visibleTasks" :key="task.id" class="task-row">
-      <span class="task-icon blue"><FileText :size="20" /></span>
+    <Surface data-ui="card" v-for="task in visibleTasks" :key="task.id" class="task-row">
+      <ElAvatar shape="square" :size="36" class="task-icon blue"><FileText :size="20" /></ElAvatar>
       <div class="task-description">
         <h3>{{ task.title }}</h3>
         <p>
@@ -54,7 +54,7 @@ async function open(task, teacher) {
       <AppButton variant="ghost" @click="open(task, teacher)"
         >{{ teacher ? "查看学情" : "进入任务" }}<ArrowRight
       /></AppButton>
-    </div>
+    </Surface>
   </div>
   <AppEmpty v-else class="empty-state"><h3>{{ emptyLabel || (teacher ? "当前班级暂无任务" : "暂无已分配任务") }}</h3><RouteButton v-if="teacher" route="prepare">开始备课</RouteButton></AppEmpty>
 </template>

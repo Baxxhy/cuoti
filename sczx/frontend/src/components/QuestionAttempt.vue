@@ -143,13 +143,13 @@ async function ask() {
       <Status :tone="latest.helped?'amber':'neutral'">{{latest.helped?'用过帮助':'独立作答'}}</Status><InfoTip v-if="latest.verification?.message" label="查看核对结果">{{latest.verification.message}}</InfoTip>
     </AppAlert>
     <AppAlert type="error" v-if="error" role="alert" class="form-error">{{ error }}</AppAlert>
-    <div class="library-actions">
+    <ElSpace wrap :size="12" class="library-actions">
       <AppButton
         :disabled="(!preview && store.task?.readOnly) || busy || !answer.trim()"
         @click="submit"
         >{{ busy ? "保存中…" : "提交作答" }}</AppButton
       ><AppButton variant="ghost" :disabled="(!preview&&store.task?.readOnly)||busy" @click="helpOpen=true">需要提示</AppButton>
-    </div>
+    </ElSpace>
     <AppDialog v-model:open="helpOpen" title="这道题需要帮助吗？"><p class="student-help-consequence">{{preview?'预览不会保存作答或帮助记录。':'获得提示后，本题会记为使用过帮助。'}}</p><div class="student-help-choices"><AppButton :disabled="busy" @click="helpOpen=false;ask()">给我一点提示</AppButton><AppButton v-if="!preview" variant="outline" :disabled="busy" @click="helpOpen=false;emit('guide',index)">向学习助手提问</AppButton></div></AppDialog>
   </div>
 </template>

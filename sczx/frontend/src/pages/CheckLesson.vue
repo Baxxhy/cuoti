@@ -83,12 +83,12 @@ function markHelp() {
     <PageHeading title="独立练习"><RouteButton :route="'learn?task='+store.task.id" secondary>返回本课</RouteButton></PageHeading>
     <section v-if="current" class="student-check-focus">
       <div class="student-check-topline"><span>{{store.task.title}}</span><div><AppButton variant="ghost" @click="helpOpen=true">需要帮助</AppButton><InfoTip label="获得帮助后的记录">本题获得帮助后会保留帮助记录，换题重新记录独立尝试。</InfoTip></div></div>
-      <nav class="student-question-dots" aria-label="练习题目"><button v-for="(item,n) in indices" :key="item.index" :class="{active:index===item.index,answered:store.record?.attempts.some(a=>a.question===item.index)}" :aria-label="'第'+(n+1)+'题'" :aria-current="index===item.index?'step':undefined" @click="index=item.index">{{n+1}}</button></nav>
-      <article class="question-card student-check-card">
-        <div class="student-check-prompt"><h2>{{current.prompt}}</h2><div v-if="current.equation" class="question-equation"><MathExpression :text="current.equation"/></div></div>
+      <nav class="student-question-dots" aria-label="练习题目"><AppButton :variant="(index===item.index)?'selected':'ghost'" data-layout="row" type="button" v-for="(item,n) in indices" :key="item.index" :class="{active:index===item.index,answered:store.record?.attempts.some(a=>a.question===item.index)}" :aria-label="'第'+(n+1)+'题'" :aria-current="index===item.index?'step':undefined" @click="index=item.index"><ElBadge is-dot type="success" :hidden="!store.record?.attempts.some(a=>a.question===item.index)">{{n+1}}</ElBadge></AppButton></nav>
+      <Surface data-ui="card" role="article" class="question-card student-check-card">
+        <Surface data-ui="card" class="student-check-prompt"><h2>{{current.prompt}}</h2><Surface data-ui="card" v-if="current.equation" class="question-equation"><MathExpression :text="current.equation"/></Surface></Surface>
         <fieldset class="history-fields" :disabled="store.task.readOnly"><QuestionAttempt :key="store.task.id+':'+index" :question="current" :index="index" @guide="helpOpen=true"/></fieldset>
-        <div class="student-question-next"><AppButton v-if="current.equation&&gradingMode(current)==='math'" variant="ghost" @click="toolOpen=true">试着变形</AppButton><AppButton v-if="hasNext" variant="outline" @click="next">下一题<ArrowRight :size="16"/></AppButton><RouteButton v-else :route="'result?task='+store.task.id">完成练习</RouteButton></div>
-      </article>
+        <ElSpace wrap :size="12" class="student-question-next"><AppButton v-if="current.equation&&gradingMode(current)==='math'" variant="ghost" @click="toolOpen=true">试着变形</AppButton><AppButton v-if="hasNext" variant="outline" @click="next">下一题<ArrowRight :size="16"/></AppButton><RouteButton v-else :route="'result?task='+store.task.id">完成练习</RouteButton></ElSpace>
+      </Surface>
     </section>
     <AppEmpty v-else class="empty-state"><h3>本任务没有练习题</h3><RouteButton :route="'result?task='+store.task.id">查看学习结果</RouteButton></AppEmpty>
     <AppDialog v-model:open="helpOpen" title="学习助手" content-class="student-help-dialog"><ModelAssistant v-if="current" :key="store.task.id+':'+index" :question="index" :block-id="blockId" compact :show-heading="false" @help="markHelp"/></AppDialog>

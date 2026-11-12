@@ -66,17 +66,17 @@ watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
   </div>
   <AppAlert type="error" v-if="bookmarkError" class="form-error" role="alert">{{bookmarkError}}</AppAlert>
   <div class="case-detail-grid teacher-case-reading">
-    <article class="case-article"><CaseArticle :value="currentCase" /></article>
+    <Surface data-ui="card" role="article" class="case-article"><CaseArticle :value="currentCase" /></Surface>
     <aside>
       <AppDisclosure class="case-use-card teacher-context-card"><template #title>适用情境</template><div v-for="(label,key) in {studentBase:'学生基础',difficulty:'学生困难',goal:'教学目标',boundary:'适用边界'}" v-show="currentCase.experience?.[key]" :key="key"><span>{{ label }}</span><p>{{ currentCase.experience?.[key] }}</p></div>
-        <div class="source-box">
+        <Surface data-ui="card" class="source-box">
           <BookOpen :size="16" />
           <p>
             {{ currentCase.source || '团队编写示例' }}<InfoTip label="案例出处"
               >来源按已发布案例保存。</InfoTip
             >
           </p>
-        </div>
+        </Surface>
 </AppDisclosure>
     </aside>
   </div>

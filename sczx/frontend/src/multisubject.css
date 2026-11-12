@@ -5,7 +5,8 @@
 .general-question-editor>.field-label { margin:0; }
 .question-options-editor { display:grid; gap:8px; }
 .answer-options { display:flex; flex-direction:column; align-items:stretch; gap:10px; width:100%; }
-.answer-options .el-radio,.answer-options .el-checkbox { height:auto; min-height:32px; margin:0; white-space:normal; }
+.answer-options .el-radio,
+.answer-options .el-checkbox { height:auto; min-height:32px; margin:0; white-space:normal; }
 .answer-options .el-radio__label { white-space:normal; line-height:1.7; }
 .course-filters { display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
 .course-filters .el-select { width:180px; }

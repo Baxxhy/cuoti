@@ -95,7 +95,9 @@ async function upload(event) {
   }
 }
 function point(e) {
-  const b = image.value.getBoundingClientRect();
+  const img=image.value?.$el?.querySelector('img');
+  if(!img)return null;
+  const b = img.getBoundingClientRect();
   return {
     x: Math.max(0, Math.min(100, ((e.clientX - b.left) * 100) / b.width)),
     y: Math.max(0, Math.min(100, ((e.clientY - b.top) * 100) / b.height)),
@@ -104,11 +106,13 @@ function point(e) {
 function down(e) {
   if (working.value || job.busy.value) return;
   start = point(e);
+  if(!start)return;
   e.currentTarget.setPointerCapture(e.pointerId);
 }
 function move(e) {
   if (!start) return;
   const p = point(e);
+  if(!p)return;
   rect.value = {
     x: Math.min(start.x, p.x),
     y: Math.min(start.y, p.y),
@@ -194,42 +198,39 @@ onBeforeUnmount(() => {
   <AppTabs v-model="captureMode" :items="[{value:'text',label:'输入题目'},{value:'image',label:'上传题图'}]"/>
   <div class="capture-grid" :class="{'capture-text-mode':captureMode==='text'}">
     <section v-if="captureMode==='image'">
-      <label class="upload-dropzone"
-        ><Upload /><strong>选择原始题图</strong
-        ><AppFilePicker aria-label="选择原始题图" accept="image/*" :disabled="working || job.busy.value" @change="upload"/></label>
-      <div
+      <AppFilePicker drag label="选择原始题图" aria-label="选择原始题图" accept="image/*" :disabled="working || job.busy.value" @change="upload"/>
+      <Surface data-ui="card"
         v-if="preview"
-        class="crop-preview"
+        class="crop-preview" :body-style="{padding:0}"
         @pointerdown="down"
         @pointermove="move"
         @pointerup="start = null"
         @pointercancel="start = null"
       >
-        <img
+        <AppImage
           ref="image"
           :src="preview"
           alt="原始题图与选区"
-          draggable="false"
+          draggable="false" @dragstart.prevent
         />
-        <div
-          class="crop-selection"
+        <Surface data-ui="card"
+          class="crop-selection" :body-style="{padding:0}"
           :style="{
+            '--el-card-bg-color':'transparent',
             left: rect.x + '%',
             top: rect.y + '%',
             width: rect.w + '%',
             height: rect.h + '%',
           }"
         />
-      </div>
+      </Surface>
       <AppDisclosure v-if="form.fileId" class="study-disclosure"><template #title>精确调整裁剪</template><div class="capture-coordinates">
         <label
           v-for="(label, k) in { x: '左', y: '上', w: '宽', h: '高' }"
           :key="k"
-          >{{ label }}%<input
+          >{{ label }}%<ElInputNumber controls-position="right" :precision="2"
             v-model.number="rect[k]"
-            :aria-label="'裁剪' + label + '百分比'"
-            type="number"
-            min="0"
+            :aria-label="'裁剪' + label + '百分比'" :min="0"
             :max="k === 'w' ? 100 - rect.x : k === 'h' ? 100 - rect.y : 100"
         /></label>
       </div></AppDisclosure>
@@ -260,7 +261,7 @@ onBeforeUnmount(() => {
         </li>
       </ul>
     </section>
-    <form @submit.prevent="save"><SubjectFields v-model:grade="form.grade" v-model:subject="form.subject"/>
+    <ElForm @submit.prevent="save"><SubjectFields v-model:grade="form.grade" v-model:subject="form.subject"/>
       <label class="field-label" for="wrong-prompt">题目内容</label
       ><Textarea
         id="wrong-prompt"
@@ -304,6 +305,6 @@ onBeforeUnmount(() => {
         "
         >保存错题</AppButton
       >
-    </form>
+    </ElForm>
   </div>
 </template>

@@ -14,4 +14,4 @@ watch(active,value=>{selected.value=value});
 function href(target){return target===current.value?'#'+route.fullPath:workspaceHref(role.value,target,route.query,store.currentClassId)}
 async function changeTab(target){await router.push(href(target).slice(1));selected.value=active.value}
 </script>
-<template><nav v-if="group?.tabs.length>1" class="workspace-section-nav" :aria-label="group.label+'分类'"><ElTabs v-model="selected" @tab-change="changeTab"><ElTabPane v-for="[target,label] in group.tabs" :key="target" :name="target"><template #label><a :href="href(target)" @click.stop :aria-current="active===target?'page':undefined">{{label}}</a></template></ElTabPane></ElTabs></nav></template>
+<template><Surface data-ui="card" v-if="group?.tabs.length>1" class="workspace-section-nav" :aria-label="group.label+'分类'"><ElTabs v-model="selected" @tab-change="changeTab"><ElTabPane v-for="[target,label] in group.tabs" :key="target" :name="target"><template #label><ElLink :underline="false" :href="href(target)" @click.stop :aria-current="active===target?'page':undefined">{{label}}</ElLink></template></ElTabPane></ElTabs></Surface></template>

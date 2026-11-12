@@ -21,7 +21,7 @@
 
 ## 前端组件路线
 
-2026-11-12 用户要求将可替换的界面控件改用 Element UI 生态。当前 Vue 3 工程采用 Element Plus，业务仍使用 JavaScript；按钮、表单、标签、弹窗、消息、表格、图片及空状态优先复用 Element Plus。原 shadcn/Reka 组件与直接依赖已移除，不再并行维护两套基础控件。Motion 和教学专用交互保留。2026-11-12 用户进一步要求图标与导航也统一使用 Element Plus；当前采用 Element Plus Icons、Menu 和 Tabs，已移除 Lucide。选中项不添加文字左侧装饰线。全局按钮使用 AppButton 名称，避免与 Element Plus 动态解析原生 button 冲突。
+2026-11-12 用户要求将可替换的界面控件改用 Element UI 生态。当前 Vue 3 工程采用 Element Plus，业务仍使用 JavaScript；按钮、表单、标签、弹窗、消息、表格、图片及空状态优先复用 Element Plus。原 shadcn/Reka 组件与直接依赖已移除，不再并行维护两套基础控件。页面动画与旧拖拽库已移除，教学业务逻辑保留。2026-11-12 用户进一步要求图标与导航也统一使用 Element Plus；当前采用 Element Plus Icons、Menu 和 Tabs，已移除 Lucide。选中项不添加文字左侧装饰线。全局按钮使用 AppButton 名称，避免与 Element Plus 动态解析原生 button 冲突。
 
 ## 全学科产品范围
 
@@ -30,3 +30,7 @@
 ## 提示与讲稿控件
 
 2026-11-12 用户再次要求能使用Element Plus的控件全部使用官方实现。提示/警告使用ElAlert，短消息使用ElMessage，确认使用ElMessageBox，弹窗使用ElDialog，折叠使用ElCollapse，流程使用ElSteps/ElTimeline，讲解卡片使用ElCard，加载使用ElSkeleton。不得另写提示条、装饰竖线或控件视觉皮肤；适配层仅处理业务属性和事件。原生confirm已移除，异步确认必须等待决定后再执行操作，取消不得继续写入。
+
+## 全站组件与区域边界
+
+2026-11-12用户要求全部通用界面控件统一Element Plus。包括容器、内容框、表单、链接、数字与日期输入、上传、头像、进度、目录及拖拽；拖拽采用ElTree，音频界面采用官方按钮、滑块和提示，隐藏audio仅作播放引擎。不要重新引入其他UI、图标或拖拽库。页面浅灰底、白色卡片，边框统一使用Element Plus主题变量；不添加文字左侧装饰线。执行`npm --prefix frontend run audit:ui`检查原生控件及自绘通用框遗留。

@@ -270,7 +270,7 @@ const targets = computed(() => {
       >返回知识列表</AppButton
     ></AppAlert>
   <template v-if="data"
-    ><div v-if="!selected&&teacher" class="memory-summary">
+    ><Surface data-ui="card" v-if="!selected&&teacher" class="memory-summary">
       <div>
         <span>{{ teacher ? data.studentName : "我的知识点" }}</span
         ><strong>{{ data.items.length }}</strong>
@@ -287,7 +287,7 @@ const targets = computed(() => {
           data.rules.recentHours
         }}小时，复习间隔{{ data.rules.reviewDays }}天。</InfoTip
       >
-    </div>
+    </Surface>
     <div v-if="!selected&&!teacher" class="student-review-context"><span>{{data.recommendations.length?data.recommendations.length+'项待复习':'查看学过的知识点'}}</span><InfoTip label="学习记录统计">{{data.items.length}}个知识点，{{independentTotal}}次独立数值正确记录；不代表已经掌握。</InfoTip></div>
     <section
       v-if="!selected && data.recommendations.length"
@@ -296,7 +296,7 @@ const targets = computed(() => {
         gridTemplateColumns: '1fr',
       }"
     >
-      <article v-for="r in data.recommendations.slice(0, 1)" :key="r.id">
+      <Surface data-ui="card" role="article" v-for="r in data.recommendations.slice(0, 1)" :key="r.id">
         <span>{{ data.items.find((i) => i.id === r.knowledgeId)?.name }}</span>
         <h2>{{r.label==='继续补救'?'继续订正':r.label}}</h2>
         <InfoTip label="为什么建议复习">{{r.reason}}</InfoTip>
@@ -310,11 +310,11 @@ const targets = computed(() => {
             >稍后</AppButton
           >
         </div>
-      </article>
+      </Surface>
     </section>
-    <div class="memory-workspace" :class="{ 'has-detail': selected,'student-memory-focus':!teacher,'teacher-memory-focus':teacher }">
+    <Surface data-ui="card" class="memory-workspace" :class="{ 'has-detail': selected,'student-memory-focus':!teacher,'teacher-memory-focus':teacher }">
       <section v-if="!selected" class="memory-list-pane">
-        <div class="memory-list-tools">
+        <ElSpace wrap :size="12" class="memory-list-tools">
           <Input
             v-model="query"
             aria-label="搜索知识点"
@@ -324,9 +324,9 @@ const targets = computed(() => {
             <option value="needs">待检查</option>
             <option value="independent">有独立答对次数</option>
           </NativeSelect>
-        </div>
+        </ElSpace>
         <div v-if="filtered.length" class="memory-table">
-          <button
+          <AppButton :variant="(selected?.id === item.id)?'selected':'ghost'" data-layout="row" type="button"
             v-for="item in filtered"
             :key="item.id"
             class="memory-knowledge-row"
@@ -343,13 +343,13 @@ const targets = computed(() => {
             </div>
             <time>{{ time(item.state.lastPracticedAt) }}</time
             ><ChevronRight :size="17" />
-          </button>
+          </AppButton>
         </div>
         <AppEmpty v-else class="empty-state"><BookOpen /><h2>
             {{ data.items.length ? "没有匹配的知识点" : "还没有学习记录" }}
           </h2><RouteButton v-if="!teacher" route="courses">查看课程</RouteButton></AppEmpty>
       </section>
-      <section
+      <Surface data-ui="card"
         v-if="selected || data.unlinkedEvidence.length"
         class="memory-detail"
       >
@@ -386,14 +386,14 @@ const targets = computed(() => {
               >{{ p.name }}</AppButton
             >
           </div>
-          <div v-if="selected.recommendation" class="memory-next">
+          <Surface data-ui="card" v-if="selected.recommendation" class="memory-next">
             <InfoTip label="复习建议说明">{{selected.recommendation.reason}}</InfoTip>
             <AppButton
               variant="outline"
               @click="openTarget(selected.recommendation.target,selected.id)"
               >{{teacher?'查看对应任务':selected.recommendation.label}}<ArrowRight
             /></AppButton>
-          </div>
+          </Surface>
           <div class="memory-linked-lessons">
             <AppButton
               v-for="l in selected.lessons"
@@ -405,7 +405,7 @@ const targets = computed(() => {
             >
           </div></template
         ></div>
-        <div class="memory-evidence-list"><article
+        <div class="memory-evidence-list"><Surface data-ui="card" role="article"
           v-for="e in [...evidence].reverse()"
           :key="e.evidenceId"
           class="memory-evidence"
@@ -422,7 +422,7 @@ const targets = computed(() => {
               >{{ evidenceLabel(e) }}</Status
             ><time>{{ e.timeReliable===false?'时间待核对':time(e.occurredAt) }}</time>
           </div>
-          <button class="student-memory-evidence-toggle" :aria-expanded="evidenceOpen===e.evidenceId" @click="evidenceOpen=evidenceOpen===e.evidenceId?null:e.evidenceId"><h3>{{e.equation||e.prompt||e.label}}</h3><ChevronRight :size="16"/></button>
+          <AppButton variant="ghost" data-layout="row" type="button" class="student-memory-evidence-toggle" :aria-expanded="evidenceOpen===e.evidenceId" @click="evidenceOpen=evidenceOpen===e.evidenceId?null:e.evidenceId"><h3>{{e.equation||e.prompt||e.label}}</h3><ChevronRight :size="16"/></AppButton>
           <template v-if="evidenceOpen===e.evidenceId">
           <p v-if="e.answer" class="memory-answer">原作答 {{ e.answer }}</p>
           <p v-if="e.reason" class="preserve-lines">{{ e.reason }}</p>
@@ -450,7 +450,7 @@ const targets = computed(() => {
             <p>{{ e.verification }}{{ e.helped ? " 　 使用帮助" : "" }}</p>
           </AppDisclosure>
           </template>
-        </article>
+        </Surface>
         <AppDisclosure v-if="selected?.stateHistory.length" class="memory-audit">
           <template #title>
             状态变化<InfoTip label="历史状态范围"
@@ -466,7 +466,7 @@ const targets = computed(() => {
         </p>
         <AppDisclosure v-if="data.audit.length" class="memory-audit">
           <template #title>修订记录</template>
-          <article v-for="a in auditEntries" :key="a.id">
+          <Surface data-ui="card" role="article" v-for="a in auditEntries" :key="a.id">
             <time>{{ time(a.createdAt) }}</time
             ><strong>{{
               {
@@ -484,10 +484,10 @@ const targets = computed(() => {
               {{ a.details.knowledgeIds.join("、") }}
             </p>
             <p v-if="a.details.note">{{ a.details.note }}</p>
-          </article>
+          </Surface>
         </AppDisclosure>
-      </div></section>
-    </div></template
+      </div></Surface>
+    </Surface></template
   >
   <Surface v-else-if="!loading && !error"
     ><AppEmpty class="empty-state"><h2>{{ teacher ? "选择班级与学生" : "暂无学习记忆" }}</h2></AppEmpty></Surface
@@ -561,13 +561,14 @@ const targets = computed(() => {
 
 <style scoped>
 .teacher-memory-focus.has-detail{display:block}
-.teacher-memory-focus.has-detail .memory-detail{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:32px;border-left:0}
-.memory-detail-context,.memory-evidence-list{min-width:0}
+.teacher-memory-focus.has-detail .memory-detail>.el-card__body{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:32px}
+.memory-detail-context,
+.memory-evidence-list{min-width:0}
 .teacher-memory-focus .memory-evidence:first-child{padding-top:0;border-top:0}
 .memory-linked-lessons{flex-direction:column;align-items:stretch}
 .memory-linked-lessons>button{justify-content:flex-start;text-align:left;height:auto;min-height:42px;white-space:normal;padding:9px 10px;gap:10px}
 .memory-linked-lessons>button>svg{flex-shrink:0}
 .memory-linked-lessons strong{display:block;font-size:13px;font-weight:500}
 .memory-linked-lessons small{display:block;font-size:11px;line-height:1.7;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
-@media(max-width:1100px){.teacher-memory-focus.has-detail .memory-detail{grid-template-columns:1fr}.teacher-memory-focus .memory-evidence:first-child{padding-top:20px;border-top:1px solid var(--border)}}
+@media(max-width:1100px){.teacher-memory-focus.has-detail .memory-detail>.el-card__body{grid-template-columns:1fr}.teacher-memory-focus .memory-evidence:first-child{padding-top:20px;border-top:1px solid var(--border)}}
 </style>

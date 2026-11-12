@@ -26,15 +26,15 @@ onMounted(load);
   <ElSkeleton v-if="loading" animated :rows="3" aria-label="读取中…"/>
   <AppEmpty v-else-if="!courses.length" class="empty-state"><BookOpen :size="30"/><h3>暂无已发布课程</h3></AppEmpty>
   <div v-else class="student-catalog">
-    <section v-for="course in visibleCourses" :key="course.id" class="student-course">
-      <header class="student-course-header">
+    <Surface data-ui="card" v-for="course in visibleCourses" :key="course.id" class="student-course">
+      <ElSpace wrap :size="12" class="student-course-header">
         <BookOpen :size="25" :stroke-width="1.5"/>
         <div><h2>{{ course.title }}</h2><span>{{ course.grade }} 　 {{course.units.reduce((n,u)=>n+u.lessons.length,0)}} 课时</span></div>
-      </header>
+      </ElSpace>
       <section v-for="unit in course.units" :key="unit.id" class="student-course-unit">
         <h3 v-if="unit.title!==course.title">{{unit.title}}</h3>
         <div class="student-lesson-list">
-          <article v-for="(lesson,i) in unit.lessons" :key="lesson.id" class="student-lesson-row">
+          <Surface data-ui="card" role="article" v-for="(lesson,i) in unit.lessons" :key="lesson.id" class="student-lesson-row">
             <span class="student-lesson-number">{{unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)?'＋':String(i+1).padStart(2,'0')}}</span>
             <div class="student-lesson-name"><h3>{{lesson.published.title}}</h3><span>{{lesson.published.duration}} 分钟<span v-if="unit.hasPlan&&!unit.lessonOrder.includes(lesson.id)"> 　 补充课时</span></span></div>
             <div class="student-lesson-actions">
@@ -43,11 +43,11 @@ onMounted(load);
               <RouteButton v-else-if="taskFor(lesson.id)" :route="'learn?task='+taskFor(lesson.id).id">进入学习</RouteButton>
               <span v-else class="muted">未分配任务</span>
             </div>
-          </article>
+          </Surface>
         </div>
         <AppDisclosure v-if="!teacher&&store.user?.role==='student'" class="study-disclosure"><template #title>单元进度</template><UnitJourney :unit-id="unit.id"/></AppDisclosure>
       </section>
-    </section>
+    </Surface>
   </div>
   <AppDialog :open="!!preview" @update:open="!$event&&(preview=null)" title="课时预览" content-class="library-preview"><LessonPreview v-if="preview" :lesson="preview"/></AppDialog>
 </template>
