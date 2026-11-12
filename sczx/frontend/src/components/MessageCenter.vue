@@ -84,7 +84,7 @@ onMounted(load);
     </header>
     <p v-if="error" role="alert" class="form-error">{{ error }}</p>
     <p v-if="busy" role="status">读取中…</p>
-    <template v-if="compact"><button v-for="item in visible" :key="item.id" class="compact-message" @click="open(item)"><span :class="{'compact-message-unread':!item.readAt}" aria-hidden="true"/><span><strong>{{item.title}}</strong><time>{{deadlineText(item.createdAt)}}</time></span><ArrowUpRight :size="14"/></button></template>
+    <template v-if="compact"><button v-for="item in visible" :key="item.id" class="compact-message" @click="open(item)"><span :class="{'compact-message-unread':!item.readAt}" aria-hidden="true"/><span><strong>{{item.title.replaceAll('\u00b7',' ')}}</strong><time>{{deadlineText(item.createdAt)}}</time></span><ArrowUpRight :size="14"/></button></template>
     <article v-else
       v-for="item in visible"
       :key="item.id"
@@ -97,7 +97,7 @@ onMounted(load);
           {{ box === "sent" ? item.recipientName : item.senderName }}</span
         ><time>{{ deadlineText(item.createdAt) }}</time>
       </div>
-      <h3>{{ item.title }}</h3>
+      <h3>{{ item.title.replaceAll('\u00b7',' ') }}</h3>
       <p v-if="item.body" class="preserve-lines">{{ item.body }}</p>
       <footer>
         <Button

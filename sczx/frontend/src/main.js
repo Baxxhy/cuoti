@@ -19,6 +19,7 @@ import "./student-focus.css";
 import "./other-focus.css";
 import "./admin-focus.css";
 import "./workspace-navigation.css";
+import "./desktop-density.css";
 import App from "./App.vue";
 import Dashboard from "./pages/Dashboard.vue";
 import Courses from "./pages/Courses.vue";

@@ -84,7 +84,7 @@ function markHelp() {
       <div class="student-check-topline"><span>{{store.task.title}}</span><div><Button variant="ghost" @click="helpOpen=true">需要帮助</Button><InfoTip label="获得帮助后的记录">本题获得帮助后会保留帮助记录，换题重新记录独立尝试。</InfoTip></div></div>
       <nav class="student-question-dots" aria-label="练习题目"><button v-for="(item,n) in indices" :key="item.index" :class="{active:index===item.index,answered:store.record?.attempts.some(a=>a.question===item.index)}" :aria-label="'第'+(n+1)+'题'" :aria-current="index===item.index?'step':undefined" @click="index=item.index">{{n+1}}</button></nav>
       <article class="question-card student-check-card">
-        <h2>{{current.prompt}}</h2><div v-if="current.equation" class="question-equation"><MathExpression :text="current.equation"/></div>
+        <div class="student-check-prompt"><h2>{{current.prompt}}</h2><div v-if="current.equation" class="question-equation"><MathExpression :text="current.equation"/></div></div>
         <fieldset class="history-fields" :disabled="store.task.readOnly"><QuestionAttempt :key="store.task.id+':'+index" :question="current" :index="index" @guide="helpOpen=true"/></fieldset>
         <div class="student-question-next"><Button variant="ghost" @click="toolOpen=true">试着变形</Button><Button v-if="hasNext" variant="outline" @click="next">下一题<ArrowRight :size="16"/></Button><RouteButton v-else :route="'result?task='+store.task.id">完成练习</RouteButton></div>
       </article>

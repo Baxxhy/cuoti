@@ -1,9 +1,9 @@
 <script setup>
 import {computed,ref,inject,watch,nextTick} from 'vue';
-import {ChevronLeft,ChevronRight,List,MessageCircle,Check,MoreHorizontal} from 'lucide-vue-next';
+import {ChevronLeft,ChevronRight,List,MessageCircle,MoreHorizontal} from 'lucide-vue-next';
 import {useLearning} from '@/store.js';
 import {navigate} from '@/lib/navigation.js';
-import {readingValue} from '@/lib/lesson-reading.js';
+import LessonOutline from '@/components/LessonOutline.vue';
 import LessonContent from '@/components/LessonContent.vue';
 import QuestionAttempt from '@/components/QuestionAttempt.vue';
 import ModelAssistant from '@/components/ModelAssistant.vue';
@@ -80,11 +80,12 @@ async function save(){saving.value=true;notify(await store.save()?'学习进度�
   <template v-if="current">
    <div class="lesson-step-toolbar"><Button variant="ghost" @click="outlineOpen=true"><List :size="16"/>目录<span class="step-counter">{{blockIndex+1}} / {{blocks.length}}</span></Button><div class="lesson-step-track" aria-label="课时进度"><span v-for="(block,i) in blocks" :key="block.id" :class="{current:i===blockIndex,done:progress[block.id]?.completed}"/></div><InfoTip label="学习目标">{{lesson.goal}}</InfoTip></div>
    <p v-if="store.task.readOnly" class="inline-notice">已移出班级，此任务仅可回看。</p>
-   <section class="lesson-step-stage"><div class="lesson-step-content"><fieldset class="history-fields" :disabled="store.task.readOnly"><LessonContent :lesson="lesson" :progress="progress" focused :active-block-id="current.id" :question-index="selectedQuestion" @progress="update" @focus="selectBlock"><template #question="{question,index}"><QuestionAttempt :key="store.task.id+':'+question.id" :question="question" :index="index" @guide="guide"/></template></LessonContent></fieldset></div>
+   <div class="lesson-desktop-workbench"><aside class="lesson-desktop-outline"><h2>本课目录</h2><LessonOutline :lesson="lesson" :blocks="blocks" :progress="progress" :selected="selectedBlock" @select="locate"/></aside><div class="lesson-current-step"><section class="lesson-step-stage"><div class="lesson-step-content"><fieldset class="history-fields" :disabled="store.task.readOnly"><LessonContent :lesson="lesson" :progress="progress" focused :active-block-id="current.id" :question-index="selectedQuestion" @progress="update" @focus="selectBlock"><template #question="{question,index}"><QuestionAttempt :key="store.task.id+':'+question.id" :question="question" :index="index" @guide="guide"/></template></LessonContent></fieldset></div>
     <footer class="lesson-step-footer"><Button variant="ghost" :disabled="blockIndex===0&&questionPosition===0" @click="back"><ChevronLeft :size="16"/>上一步</Button><span v-if="store.saving" class="step-save-state" role="status">保存中…</span><span v-else-if="current.type==='practice'&&currentQuestions.length>1" class="step-question-count" role="status">{{questionPosition+1}} / {{currentQuestions.length}} 题</span><Button v-if="current.type==='check'" @click="navigate('check?task='+store.task.id)">开始练习<ChevronRight :size="16"/></Button><Button v-else :disabled="!canContinue" @click="forward">{{hasNextQuestion?'下一题':blockIndex===blocks.length-1?'开始练习':'下一步'}}<ChevronRight :size="16"/></Button></footer>
    </section>
    <div class="lesson-step-utility"><Button variant="ghost" @click="guide()"><MessageCircle :size="17"/>问一问</Button><span v-if="current.type==='activity'&&!canContinue" class="muted">完成互动并写下观察</span></div>
-   <AppDialog v-model:open="outlineOpen" title="本课目录" content-class="step-outline-dialog"><nav class="curriculum-outline" aria-label="本课内容"><button v-for="(block,i) in blocks" :key="block.id" @click="locate(block.id)" :aria-current="selectedBlock===block.id?'step':null"><span>{{String(i+1).padStart(2,'0')}}</span><strong>{{readingValue(lesson,block,'title')}}</strong><Check v-if="progress[block.id]?.completed" :size="16"/><ChevronRight v-else :size="16"/></button></nav></AppDialog>
+   </div></div>
+   <AppDialog v-model:open="outlineOpen" title="本课目录" content-class="step-outline-dialog"><LessonOutline :lesson="lesson" :blocks="blocks" :progress="progress" :selected="selectedBlock" @select="locate"/></AppDialog>
    <AppDialog v-model:open="helpOpen" title="学习助手" content-class="step-help-dialog"><ModelAssistant v-if="helpOpen" :key="store.task.id" :question="selectedQuestion" :block-id="selectedBlock" :show-heading="false"/></AppDialog>
   </template>
   <section v-else class="student-practice-task"><template v-if="lesson.questions.length"><div class="section-heading"><h2>本次练习</h2><span>{{lesson.questions.length}} 题</span></div><ol class="student-practice-preview"><li v-for="(question,i) in lesson.questions.slice(0,1)" :key="question.id||i"><span>{{String(i+1).padStart(2,'0')}}</span><div><strong>{{question.prompt}}</strong><p v-if="question.equation" class="math-equation">{{question.equation}}</p></div></li></ol><RouteButton :route="'check?task='+store.task.id">开始独立练习</RouteButton></template><template v-else><p>本任务没有练习题。</p><RouteButton :route="'result?task='+store.task.id">查看学习结果</RouteButton></template></section>
