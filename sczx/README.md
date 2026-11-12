@@ -1,6 +1,6 @@
 # 师承智学
 
-2026-11-12 · v35 · 本地软件作品
+2026-11-12 · v36 · 本地软件作品
 
 教师经验、备课、课程班级、学生学习、错题帮和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；沿用Nova、shadcn-vue、Lucide。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
 
@@ -17,6 +17,12 @@
 全新安装生成admin、teacher、student，随机密码保存在本机`backend-business/var/local/accounts.json`。当前验收实例导入完整隔离示例，使用handoff-admin、handoff-t1/t2、handoff-s1—s5，仍从该私有文件读取密码。账号和数据库、上传不提交Git。
 
 专用MySQL23321和网页8099仅回环监听，数据持久保存在`backend-business/var/local`。`./start-local.sh doctor`诊断，`backup`备份，`restore --archive 备份目录`在新库/新目录恢复并保留旧数据。不会改原23317库，不安排公网、域名或正式服务切换。
+
+## 当前更新 v36
+
+已删除离线学习页面、菜单、下载/加密存储/同步代码及后端接口。旧离线地址返回学习首页；旧Service Worker只保留一次性退役清理，不再缓存页面。历史数据库迁移保留，不删除既有学习数据。
+
+主按钮、选中导航、页签与焦点使用克制的蓝绿色，正文保持深色。[本轮说明与截图](docs/planning/移除离线学习与轻量配色_20261112_v1.md)。下方v35验收属于历史范围，离线功能已按用户要求移除。
 
 ## 本轮全功能验收
 

@@ -45,7 +45,7 @@ async function submit() {
         <Input id="login-password" v-model="password" type="password" autocomplete="current-password" required />
         <p v-if="error" class="form-error" role="alert">{{ error }}</p>
         <Button class="login-submit" type="submit" :disabled="busy">{{ busy ? "正在登录…" : "登录" }}<ArrowRight :size="17" /></Button>
-      </form><a href="#/offline" class="offline-login-link">打开本机离线学习</a>
+      </form>
     </section>
   </main>
 </template>

@@ -118,7 +118,7 @@ const results = computed(() => {
 <template>
   <MotionConfig reduced-motion="user"
     ><TooltipProvider :delay-duration="100">
-      <RouterView v-if="!store.user || route.name==='offline'" />
+      <RouterView v-if="!store.user" />
       <div v-else :class="['app-shell',{'is-study':studyFocus}]">
         <a href="#main-content" class="skip-link" @click.prevent="focusContent()">跳至主要内容</a>
         <aside v-if="!studyFocus" class="desktop-sidebar"><SidebarContent /></aside>

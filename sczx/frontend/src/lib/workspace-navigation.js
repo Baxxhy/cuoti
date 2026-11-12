@@ -1,7 +1,7 @@
 // Business groups replace the old frequent/more split. Routes remain bookmarkable.
 export const workspaceGroups={
  student:[
-  {id:'learning',label:'学习',route:'home',routes:['home','courses','records','offline','learn','check','result'],tabs:[['home','学习任务'],['courses','课程'],['records','学习记录'],['offline','离线学习']]},
+  {id:'learning',label:'学习',route:'home',routes:['home','courses','records','learn','check','result'],tabs:[['home','学习任务'],['courses','课程'],['records','学习记录']]},
   {id:'review',label:'错题与复习',route:'wrong',routes:['wrong','repair','memory'],tabs:[['wrong','错题本'],['memory','复习建议']]},
   {id:'classroom',label:'班级',route:'class',routes:['class','exams','live'],tabs:[['class','我的班级'],['exams','考试'],['live','课堂']]},
  ],

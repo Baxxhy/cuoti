@@ -1,4 +1,3 @@
-import {closeVault,pendingLogout,lockVault,vaultData} from "./services/offline/vault.js";
 import { defineStore } from "pinia";
 import {
   createPlatform,
@@ -83,7 +82,6 @@ export const useLearning = defineStore("platform", {
       try {
         const result = await api.me();
         if(generation!==this.authGeneration || (this.user!==initialUser && this.user)) return;
-        if(vaultData()&&vaultData().owner.id!==result.user.id)lockVault();
         this.user = result.user;
         await this.load();
       } catch (error) {
@@ -99,16 +97,13 @@ export const useLearning = defineStore("platform", {
       const generation=++this.authGeneration;
       const result = await api.login(username, password);
       if(generation!==this.authGeneration) return;
-      if(vaultData()&&vaultData().owner.id!==result.user.id)lockVault();
         this.user = result.user;
       await this.load();
     },
     async logout() {
       this.authGeneration++;this.loadGeneration++;
-      if(navigator.onLine && !(await this.save()) && !this.saveError.includes("无法连接")) throw new Error(this.saveError || "当前修改尚未保存，请重试后退出。");
-      await closeVault({username:this.user?.username});
-      await pendingLogout(true);
-      try { await api.logout(); await pendingLogout(false); } catch {}
+      if(!(await this.save())) throw new Error(this.saveError || "当前修改尚未保存，请重试后退出。");
+      await api.logout();
       this.user = null;
       this.notifications=[];
       this.data = createPlatform();

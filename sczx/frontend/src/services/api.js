@@ -1,10 +1,8 @@
-import {flushLogout} from "./offline/vault.js";
 const apiBase = import.meta.env.VITE_API_BASE || "";
 const uploadedImages = new Map();
 
 async function request(path, options = {}) {
   let response;
-  await flushLogout(apiBase);
   try {
     response = await fetch(`${apiBase}/api${path}`, {
       credentials: "include",

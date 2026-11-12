@@ -872,8 +872,6 @@ app.include_router(live_router)
 app.include_router(groups_router)
 app.include_router(community_router)
 
-from .offline import router as offline_router
-app.include_router(offline_router)
 
 # Optional production frontend: hash routes share the same origin as the API.
 if os.getenv('SCZX_FRONTEND_DIST'):

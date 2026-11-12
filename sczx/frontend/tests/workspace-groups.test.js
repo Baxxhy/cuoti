@@ -4,7 +4,7 @@ import {workspaceGroups,workspaceFor,workspaceHref} from '../src/lib/workspace-n
 import {incompleteBlocks} from '../src/lib/task-completion.js';
 
 test('each existing destination has one business home and detail routes stay with their parent',()=>{
- const expected={student:['home','courses','exams','live','wrong','memory','records','offline','class'],teacher:['teacher','cases','courses','prepare','agent','exam-bank','exam-papers','exams','live','groups','community','class','memory','insights'],admin:['manage','content','issues']};
+ const expected={student:['home','courses','exams','live','wrong','memory','records','class'],teacher:['teacher','cases','courses','prepare','agent','exam-bank','exam-papers','exams','live','groups','community','class','memory','insights'],admin:['manage','content','issues']};
  for(const [role,routes] of Object.entries(expected))for(const route of routes)assert.equal(workspaceGroups[role].filter(g=>g.routes.includes(route)).length,1,role+':'+route);
  assert.equal(workspaceGroups.student.length,3);assert.equal(workspaceGroups.teacher.length,5);
  for(const route of ['learn','check','result'])assert.equal(workspaceFor('student',route).id,'learning');

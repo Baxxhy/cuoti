@@ -1,0 +1,12 @@
+✔ skip link keeps the route, three business groups expose learning children, and search retains all tasks (1508.209546ms)
+✔ the home next action opens its own task and the empty submitted tab names the right state (1456.445258ms)
+✔ a questions-only task exposes its exercise without an empty reading workspace; directory changes retain task context (1586.715188ms)
+✔ an unknown assigned task gives a recovery action back to the home screen (1731.644115ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6420.743484

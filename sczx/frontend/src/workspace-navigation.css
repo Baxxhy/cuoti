@@ -5,7 +5,7 @@ body,button,input,textarea,select,table,[data-slot="button"],[data-slot="input"]
 .reading-variable,.step-unknown em{font-style:normal;font-weight:500}.reading-equation{font-weight:500}.reading-equals{font-family:inherit}
 .workspace-main-nav{margin-top:30px}.workspace-section-nav{display:flex;gap:26px;align-items:center;flex-wrap:wrap;min-height:40px;border-bottom:1px solid #e5e5e5;margin-bottom:26px}
 .workspace-section-nav>a{font-size:13px;color:#626262;padding:9px 0 12px;border-bottom:2px solid transparent;white-space:nowrap}.workspace-section-nav>a:hover{color:#171717}.workspace-section-nav>a[aria-current="page"]{color:#171717;border-bottom-color:#262626;font-weight:550}
-.utility-button.is-current{background:#e8e8e8;color:#171717}.offline-content>.workspace-section-nav{margin-bottom:24px}.dashboard-record-link{display:inline-flex;margin-top:16px;font-size:13px;color:#555;gap:8px;align-items:center}.dashboard-record-link:hover{text-decoration:underline;text-underline-offset:4px}
+.utility-button.is-current{background:#e8e8e8;color:#171717}.dashboard-record-link{display:inline-flex;margin-top:16px;font-size:13px;color:#555;gap:8px;align-items:center}.dashboard-record-link:hover{text-decoration:underline;text-underline-offset:4px}
 @media(max-width:1100px){.workspace-section-nav{gap:20px}.workspace-section-nav>a{font-size:12px}}
 @media(max-width:760px){.workspace-section-nav{gap:17px;margin-bottom:22px}.workspace-main-nav{margin-top:25px}}
 /* Formula tokens inherit the equation size; generic card span rules must not shrink them. */
@@ -14,3 +14,12 @@ body,button,input,textarea,select,table,[data-slot="button"],[data-slot="input"]
 .result-next-block{margin:12px 0 0;color:#595959;font-size:14px}
 /* Inline mathematics follows the sentence rhythm; worked examples keep their display size. */
 .step-reading:not(.worked-example) .reading-equation.is-inline{font-size:1.05em}
+/* Restrained teal accents; reading surfaces and body text remain neutral. */
+:root{--primary:#167568;--primary-foreground:#fff;--accent:#edf7f4;--accent-foreground:#125c53;--ring:#228775;--sidebar-accent:#e7f3ef;--sidebar-accent-foreground:#125c53}
+.workspace-main-nav>a[aria-current=page],.workspace-main-nav>a.active{background:#e7f3ef;color:#125c53;box-shadow:inset 3px 0 #228775}
+.workspace-main-nav>a[aria-current=page] svg,.workspace-main-nav>a.active svg{color:#167568}
+.workspace-section-nav>a[aria-current=page]{color:#14695e;border-bottom-color:#228775}
+[data-slot=button][data-variant=default],.login-submit{background:#167568;color:#fff}
+[data-slot=button][data-variant=default]:hover,.login-submit:hover{background:#125e54}
+.page-content :where(button,a,input,textarea,select):focus-visible{outline:2px solid #228775;outline-offset:3px}
+.login-identity{background:#eef5f2}.login-identity-brand svg,.brand-symbol svg{color:#167568}
