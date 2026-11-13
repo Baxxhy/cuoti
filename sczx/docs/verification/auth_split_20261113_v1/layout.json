@@ -1,0 +1,341 @@
+{
+  "rows": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "mode": "登录",
+      "art": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 1000,
+        "top": 0,
+        "right": 720,
+        "bottom": 1000,
+        "left": 0
+      },
+      "form": {
+        "x": 720,
+        "y": 0,
+        "width": 720,
+        "height": 1000,
+        "top": 0,
+        "right": 1440,
+        "bottom": 1000,
+        "left": 720
+      },
+      "card": {
+        "x": 860,
+        "y": 100,
+        "width": 440,
+        "height": 454.59375,
+        "top": 100,
+        "right": 1300,
+        "bottom": 554.59375,
+        "left": 860
+      },
+      "overflow": false,
+      "heights": [
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "mode": "注册",
+      "art": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 1000,
+        "top": 0,
+        "right": 720,
+        "bottom": 1000,
+        "left": 0
+      },
+      "form": {
+        "x": 720,
+        "y": 0,
+        "width": 720,
+        "height": 1000,
+        "top": 0,
+        "right": 1440,
+        "bottom": 1000,
+        "left": 720
+      },
+      "card": {
+        "x": 860,
+        "y": 100,
+        "width": 440,
+        "height": 634.59375,
+        "top": 100,
+        "right": 1300,
+        "bottom": 734.59375,
+        "left": 860
+      },
+      "overflow": false,
+      "heights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "mode": "登录",
+      "art": {
+        "x": 0,
+        "y": 0,
+        "width": 960,
+        "height": 1080,
+        "top": 0,
+        "right": 960,
+        "bottom": 1080,
+        "left": 0
+      },
+      "form": {
+        "x": 960,
+        "y": 0,
+        "width": 960,
+        "height": 1080,
+        "top": 0,
+        "right": 1920,
+        "bottom": 1080,
+        "left": 960
+      },
+      "card": {
+        "x": 1220,
+        "y": 100,
+        "width": 440,
+        "height": 454.59375,
+        "top": 100,
+        "right": 1660,
+        "bottom": 554.59375,
+        "left": 1220
+      },
+      "overflow": false,
+      "heights": [
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "mode": "注册",
+      "art": {
+        "x": 0,
+        "y": 0,
+        "width": 960,
+        "height": 1080,
+        "top": 0,
+        "right": 960,
+        "bottom": 1080,
+        "left": 0
+      },
+      "form": {
+        "x": 960,
+        "y": 0,
+        "width": 960,
+        "height": 1080,
+        "top": 0,
+        "right": 1920,
+        "bottom": 1080,
+        "left": 960
+      },
+      "card": {
+        "x": 1220,
+        "y": 100,
+        "width": 440,
+        "height": 634.59375,
+        "top": 100,
+        "right": 1660,
+        "bottom": 734.59375,
+        "left": 1220
+      },
+      "overflow": false,
+      "heights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "mode": "登录",
+      "art": {
+        "x": 0,
+        "y": 0,
+        "width": 512,
+        "height": 768,
+        "top": 0,
+        "right": 512,
+        "bottom": 768,
+        "left": 0
+      },
+      "form": {
+        "x": 512,
+        "y": 0,
+        "width": 512,
+        "height": 768,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "left": 512
+      },
+      "card": {
+        "x": 567,
+        "y": 76.796875,
+        "width": 402,
+        "height": 454.59375,
+        "top": 76.796875,
+        "right": 969,
+        "bottom": 531.390625,
+        "left": 567
+      },
+      "overflow": false,
+      "heights": [
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "mode": "注册",
+      "art": {
+        "x": 0,
+        "y": 0,
+        "width": 512,
+        "height": 768,
+        "top": 0,
+        "right": 512,
+        "bottom": 768,
+        "left": 0
+      },
+      "form": {
+        "x": 512,
+        "y": 0,
+        "width": 512,
+        "height": 768,
+        "top": 0,
+        "right": 1024,
+        "bottom": 768,
+        "left": 512
+      },
+      "card": {
+        "x": 567,
+        "y": 76.796875,
+        "width": 402,
+        "height": 634.59375,
+        "top": 76.796875,
+        "right": 969,
+        "bottom": 711.390625,
+        "left": 567
+      },
+      "overflow": false,
+      "heights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "width": 768,
+      "height": 600,
+      "mode": "登录",
+      "art": {
+        "x": 0,
+        "y": 0,
+        "width": 337.90625,
+        "height": 600,
+        "top": 0,
+        "right": 337.90625,
+        "bottom": 600,
+        "left": 0
+      },
+      "form": {
+        "x": 337.90625,
+        "y": 0,
+        "width": 430.09375,
+        "height": 600,
+        "top": 0,
+        "right": 768,
+        "bottom": 600,
+        "left": 337.90625
+      },
+      "card": {
+        "x": 372.90625,
+        "y": 40,
+        "width": 360.09375,
+        "height": 454.59375,
+        "top": 40,
+        "right": 733,
+        "bottom": 494.59375,
+        "left": 372.90625
+      },
+      "overflow": false,
+      "heights": [
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "width": 768,
+      "height": 600,
+      "mode": "注册",
+      "art": {
+        "x": 0,
+        "y": 0,
+        "width": 337.90625,
+        "height": 600,
+        "top": 0,
+        "right": 337.90625,
+        "bottom": 600,
+        "left": 0
+      },
+      "form": {
+        "x": 337.90625,
+        "y": 0,
+        "width": 430.09375,
+        "height": 600,
+        "top": 0,
+        "right": 768,
+        "bottom": 600,
+        "left": 337.90625
+      },
+      "card": {
+        "x": 372.90625,
+        "y": 40,
+        "width": 360.09375,
+        "height": 634.59375,
+        "top": 40,
+        "right": 733,
+        "bottom": 674.59375,
+        "left": 372.90625
+      },
+      "overflow": false,
+      "heights": [
+        44,
+        44,
+        44,
+        44,
+        44
+      ]
+    }
+  ],
+  "scriptErrors": []
+}

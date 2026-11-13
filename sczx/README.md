@@ -1,8 +1,10 @@
 # 师承智学
 
-2026-11-13 / v45 / 本地软件作品
+2026-11-13 / v46 / 本地软件作品
 
 教师经验、备课、课程班级、学生学习、我的错题和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；基础组件使用Element Plus，图标统一Element Plus Icons。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
+
+登录注册页已改为左侧大图、右侧表单，参考GitHub vue-pure-admin模板并保留插画MIT许可。[来源与截图](docs/verification/auth_split_20261113_v1/README.md)。
 
 ## 注册与班级
 
