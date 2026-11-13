@@ -1,0 +1,11 @@
+✔ auth tabs split the full form width into two large edge-clickable targets (1619.949346ms)
+✔ duplicate registration uses field error without a banner and clears after editing (1846.511511ms)
+✔ login and registration switches keep card and tabs anchored without sliding animations (3532.76861ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3672.823567

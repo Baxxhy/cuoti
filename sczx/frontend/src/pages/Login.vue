@@ -54,7 +54,7 @@ async function submit() {
     <Surface class="login-card" aria-labelledby="login-title">
       <div class="login-brand"><ElAvatar shape="square" :size="40" class="brand-symbol"><BookOpenText :size="25" /></ElAvatar><span>师承智学</span></div>
       <h1 id="login-title">{{ mode === 'login' ? '账号登录' : '创建账号' }}</h1>
-      <AppTabs v-model="mode" :items="[{value:'login',label:'登录'},{value:'register',label:'注册'}]" @update:model-value="error=''"/>
+      <AppTabs v-model="mode" type="card" stretch class="auth-mode-tabs" :items="[{value:'login',label:'登录'},{value:'register',label:'注册'}]" @update:model-value="error=''"/>
       <ElForm label-position="top" size="large" :inline-message="true" @submit.prevent="submit">
         <template v-if="mode==='register'">
           <ElFormItem label="身份" for="register-role"><ElSelect id="register-role" v-model="role" aria-label="注册身份" :disabled="busy"><ElOption label="学生" value="student"/><ElOption label="教师" value="teacher"/></ElSelect></ElFormItem>
@@ -80,7 +80,9 @@ async function submit() {
 .login-refined .login-brand { gap:12px; margin:0 0 24px; font-size:19px; }
 .login-refined .brand-symbol.el-avatar { width:40px; height:40px; background:var(--el-color-primary); color:var(--el-color-white); border-radius:var(--el-border-radius-base); }
 .login-refined h1 { margin:0 0 18px; font-size:24px; line-height:1.4; }
+.login-refined .auth-mode-tabs { --el-tabs-header-height:48px; width:100%; }
 .login-refined :deep(.el-tabs__header) { margin-bottom:20px; }
+.login-refined .auth-mode-tabs :deep(.el-tabs__item) { height:48px; font-size:16px; transition:none; }
 .login-refined :deep(.el-tabs__active-bar),.login-refined :deep(.el-form-item__error) { transition:none; animation:none; }
 .login-refined .el-form { --el-component-size-large:44px; gap:0; }
 .login-refined .el-form-item { margin:0 0 18px; }
