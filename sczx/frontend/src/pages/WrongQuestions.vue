@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref, onMounted } from "vue";
+import { ElPopover } from "element-plus";
 import { Plus, ArrowUpRight, Search, NotebookPen } from "@/components/app/icons.js";
 import { wrongApi, wrongStatuses } from "@/services/wrongs.js";
 import WrongCapture from "@/components/WrongCapture.vue";
@@ -72,7 +73,7 @@ onMounted(load);
         v-model="search"
         aria-label="搜索错题"
         placeholder="搜索题目"
-      /><AppDisclosure class="student-filter-disclosure"><template #title>筛选<span v-if="subject||knowledge||cause"> 　 已筛选</span></template><Surface data-ui="card" class="student-filter-fields"><NativeSelect v-model="subject" aria-label="筛选学科">
+      /><ElPopover placement="bottom-end" trigger="click" :width="320"><template #reference><AppButton variant="outline">{{subject||knowledge||cause?'已筛选':'筛选'}}</AppButton></template><Surface data-ui="card" class="student-filter-fields"><NativeSelect v-model="subject" aria-label="筛选学科">
         <option value="">全部学科</option>
         <option
           v-for="s in [
@@ -90,7 +91,7 @@ onMounted(load);
       ><NativeSelect v-model="cause" aria-label="筛选错因">
         <option value="">全部错因</option>
         <option v-for="r in options.reasons" :key="r">{{ r }}</option>
-      </NativeSelect></Surface></AppDisclosure>
+      </NativeSelect></Surface></ElPopover>
     </div>
   </div>
   <ElSkeleton v-if="loading" animated :rows="3" aria-label="正在读取错题…"/>

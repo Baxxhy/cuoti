@@ -100,7 +100,7 @@ function openStudent(id) {
               <th>学生</th>
               <th>学习进度</th>
               <th>获得的帮助</th>
-              <th>独立检查</th>
+              <th>独立练习</th>
               <th><span class="sr-only">操作</span></th>
             </tr>
           </thead>
@@ -150,7 +150,7 @@ function openStudent(id) {
       v-model:open="studentOpen"
       :title="`${store.record?.studentName || '学生'}的学习过程`"
       content-class="student-detail-dialog"
-      ><AppTabs v-model="studentTab" :items="[{value:'answers',label:'作答'},{value:'help',label:'求助'},{value:'repairs',label:'补救'},{value:'feedback',label:'教师反馈'}]"/><div v-if="studentTab==='feedback'&&store.record" class="focus-student-feedback"><label class="field-label" for="student-feedback">给{{store.record.studentName||'学生'}}的反馈</label><Textarea id="student-feedback" v-model="draft" :disabled="feedbackSaving"/><AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}</AppAlert><AppButton :disabled="feedbackSaving" @click="feedback"><Check :size="16"/>{{feedbackSaving?'保存中…':'保存反馈'}}</AppButton></div><div v-else class="attempt-timeline">
+      ><AppTabs v-model="studentTab" :items="[{value:'answers',label:'作答'},{value:'help',label:'求助'},{value:'repairs',label:'订正'},{value:'feedback',label:'教师反馈'}]"/><div v-if="studentTab==='feedback'&&store.record" class="focus-student-feedback"><label class="field-label" for="student-feedback">给{{store.record.studentName||'学生'}}的反馈</label><Textarea id="student-feedback" v-model="draft" :disabled="feedbackSaving"/><AppAlert type="error" v-if="error" class="form-error" role="alert">{{error}}</AppAlert><AppButton :disabled="feedbackSaving" @click="feedback"><Check :size="16"/>{{feedbackSaving?'保存中…':'保存反馈'}}</AppButton></div><div v-else class="attempt-timeline">
         <section v-if="store.record&&studentTab==='answers'"><RouteButton :route="'memory?studentId='+store.record.studentId+'&classId='+store.task.classId" secondary>查看学习记忆</RouteButton>
           <h3 v-if="store.record.observation">自己的解释</h3>
           <p v-if="store.record.observation">{{ store.record.observation }}</p>

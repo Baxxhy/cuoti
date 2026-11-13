@@ -51,7 +51,7 @@ async function submitResult() {
     <Surface v-if="store.record.feedback" class="student-teacher-feedback"><SectionHeading title="教师反馈"/><p class="preserve-lines">{{store.record.feedback||'暂无反馈'}}</p></Surface>
     <div class="student-result-footer"><RouteButton v-if="!store.record.completed" route="home" secondary>返回学习首页</RouteButton><AppButton v-else variant="ghost" :disabled="submitting||store.task.readOnly" @click="confirmOpen=true">更新提交</AppButton><AppButton variant="ghost" @click="extraOpen=true">本课资料与进度</AppButton></div>
     <AppDialog v-model:open="extraOpen" title="本课资料与进度"><SupplementPanel :task-id="store.task.id"/><UnitJourney v-if="store.task?.unitId||store.task?.snapshot.lessonSnapshot?.unitId" :unit-id="store.task.unitId||store.task.snapshot.lessonSnapshot.unitId" :task="store.task" compact/></AppDialog>
-    <AppDialog v-model:open="confirmOpen" title="提交学习结果"><p>教师将看到本课作答、求助和补救记录。</p><AppAlert type="error" v-if="submitError" class="form-error" role="alert">{{submitError}}</AppAlert><div class="action-row"><AppButton :disabled="submitting" @click="submitResult">{{submitting?'提交中…':'确认提交'}}</AppButton><AppButton variant="outline" :disabled="submitting" @click="confirmOpen=false">取消</AppButton></div></AppDialog>
+    <AppDialog v-model:open="confirmOpen" title="提交学习结果"><p>提交后，老师将看到本课的作答、求助和订正记录。</p><AppAlert type="error" v-if="submitError" class="form-error" role="alert">{{submitError}}</AppAlert><div class="action-row"><AppButton :disabled="submitting" @click="submitResult">{{submitting?'提交中…':'确认提交'}}</AppButton><AppButton variant="outline" :disabled="submitting" @click="confirmOpen=false">取消</AppButton></div></AppDialog>
   </template>
   <TaskEmpty v-else/>
 </template>

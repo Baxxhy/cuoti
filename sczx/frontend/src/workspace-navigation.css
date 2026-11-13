@@ -1,5 +1,5 @@
 /* A small stable global map; each workspace exposes only its own children. */
-:root{--font-sans:"Geist Variable","Noto Sans CJK SC","Microsoft YaHei",sans-serif;--font-heading:var(--font-sans)}
+:root{--font-sans:"Noto Sans SC Variable","Microsoft YaHei",sans-serif;--font-heading:var(--font-sans)}
 body,
 table,
 [data-slot="select-trigger"]{font-family:var(--font-sans)}

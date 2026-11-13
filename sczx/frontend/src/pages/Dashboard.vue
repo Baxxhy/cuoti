@@ -93,7 +93,7 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
       </div>
       <dl class="overview-counts"><div v-for="[label,value] in metrics" :key="label" :data-status="statusTone(label)"><dt>{{label}}</dt><dd>{{value}}</dd></div></dl>
     </Surface>
-    <div class="overview-grid">
+    <div :class="['overview-grid',{'teacher-overview':teacher}]">
       <section class="overview-task-panel">
         <div class="section-heading"><h2>{{teacher?'班级任务':'学习任务'}}</h2><ElLink :underline="false" :href="teacher?'#/class?class='+selected:'#/records'" class="text-link">{{teacher?'管理班级':'学习记录'}}<ArrowRight :size="14"/></ElLink></div>
         <AppTabs v-if="!teacher" v-model="taskTab" :items="[{value:'pending',label:'待完成'},{value:'completed',label:'已提交'}]"/>

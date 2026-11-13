@@ -122,7 +122,7 @@ const results = computed(() => {
 <template>
   <UiProvider>
       <RouterView v-if="!store.user" />
-      <div v-else :class="['app-shell',{'is-study':studyFocus}]">
+      <div v-else :class="['app-shell',{'is-study':studyFocus}]" :data-role="role" :data-page="route.name">
         <ElLink :underline="false" href="#main-content" class="skip-link" @click.prevent="focusContent()">跳至主要内容</ElLink>
         <ElAside width="216px" v-if="!studyFocus" class="desktop-sidebar"><SidebarContent /></ElAside>
         <ElContainer direction="vertical" class="app-body">

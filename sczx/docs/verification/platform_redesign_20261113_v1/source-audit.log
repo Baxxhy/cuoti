@@ -1,0 +1,5 @@
+
+> shicheng-zhixue@0.3.0 audit:ui
+> node scripts/audit-element-ui.cjs /root/Baxxhy/zhiwei/sczx/docs/verification/platform_redesign_20261113_v1/source-audit.json
+
+{"nativeUiNodes":0,"cssDrawnNativeFrames":0,"hiddenMediaEngines":1,"cardSites":180,"buttonSites":386}

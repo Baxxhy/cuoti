@@ -26,7 +26,7 @@ async function open(task, teacher) {
 <template>
   <div v-if="visibleTasks.length">
     <Surface data-ui="card" v-for="task in visibleTasks" :key="task.id" class="task-row">
-      <ElAvatar shape="square" :size="36" class="task-icon blue"><FileText :size="20" /></ElAvatar>
+      <ElAvatar shape="square" :size="36" class="task-icon blue" :style="{'--el-avatar-bg-color':'var(--el-color-primary-light-9)',color:'var(--el-color-primary)'}"><FileText :size="20" /></ElAvatar>
       <div class="task-description">
         <h3>{{ task.title }}</h3>
         <p>

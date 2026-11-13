@@ -1,6 +1,6 @@
 /* Nova workspace: neutral chrome, one primary action, generous but bounded canvas. */
 :root{--app-blue:#292929;--app-blue-soft:#f2f2f2;--app-subtle:#5e5e5e;--app-line:#e7e7e7;--ring:#525252;--input:#ccc;--muted-foreground:#5e5e5e;--radius:.5rem;color-scheme:light}
-body{font-family:"Geist Variable","Noto Sans CJK SC","Microsoft YaHei",sans-serif;color:#202020;background:#fff;font-size:14px;line-height:1.6}
+body{font-family:var(--font-sans);color:#202020;background:#fff;font-size:14px;line-height:1.6}
 a{touch-action:manipulation}
 button{touch-action:manipulation}
 input,

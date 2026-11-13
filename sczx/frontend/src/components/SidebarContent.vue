@@ -9,7 +9,7 @@ const route=useRoute(),router=useRouter(),shell=inject('shell'),store=useLearnin
 const role=computed(()=>store.user?.role||'student');
 const roleName=computed(()=>({student:'学生',teacher:'教师',admin:'管理员'})[role.value]);
 const home=computed(()=>role.value==='teacher'?'teacher':role.value==='admin'?'manage':'home');
-const userName=computed(()=>store.user?.displayName||'当前账号');
+const userName=computed(()=>(store.user?.displayName||'当前账号').replaceAll('·',' '));
 const active=computed(()=>workspaceFor(role.value,route.name)?.id);
 const menu=ref();
 const icons={learning:LayoutDashboard,review:NotebookPen,classroom:Users,overview:LayoutDashboard,resources:LibraryBig,planning:FileText,assessment:ClipboardList,materials:Layers,curriculum:BookOpenText,operations:ClipboardList};
@@ -17,7 +17,7 @@ async function openGroup(id){const group=workspaceGroups[role.value].find(item=>
 function activateOnKey(event,id){if(!['Enter',' '].includes(event.key)||event.ctrlKey||event.metaKey||event.altKey)return;event.preventDefault();event.stopPropagation();openGroup(id)}
 </script>
 <template>
- <ElLink :underline="false" :href="'#/'+home" class="wordmark" aria-label="师承智学首页"><BookOpenText :size="25" :stroke-width="1.65"/><span>师承智学</span></ElLink>
+ <ElLink :underline="false" :href="'#/'+home" class="wordmark" aria-label="师承智学首页"><ElAvatar shape="square" :size="34" class="workspace-brand-icon"><BookOpenText :size="23"/></ElAvatar><span>师承智学</span></ElLink>
  <nav class="workspace-main-nav" aria-label="主要导航"><ElMenu ref="menu" :default-active="active" @select="openGroup"><ElMenuItem v-for="group in workspaceGroups[role]" :key="group.id" :index="group.id" @keydown="activateOnKey($event,group.id)"><ElLink :underline="false" :href="'#/'+group.route" @click.stop :aria-current="active===group.id?'page':undefined"><component :is="icons[group.id]" :size="18"/><span>{{group.label}}</span></ElLink></ElMenuItem></ElMenu></nav>
  <div class="sidebar-bottom"><AppButton variant="ghost" :class="['utility-button',{'is-current':route.name==='issues'&&role!=='admin'}]" @click="shell.openHelp()"><CircleHelp :size="17"/>帮助与反馈</AppButton><ElSpace wrap :size="12" class="profile"><ElAvatar :size="32">{{userName.slice(0,1)}}</ElAvatar><span><strong>{{userName}}</strong><small>{{roleName}}</small></span><AppButton variant="ghost" size="icon-sm" aria-label="退出登录" @click="shell.logout()"><LogOut :size="16"/></AppButton></ElSpace></div>
 </template>

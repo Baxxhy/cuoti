@@ -1,6 +1,6 @@
 :root {
   --font-sans:
-    "Geist Variable", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+    "Noto Sans SC Variable", "Microsoft YaHei", sans-serif;
   --app-blue: #5c5c5c;
   --app-blue-soft: #f0f0f0;
   --app-green: #33765f;
@@ -766,7 +766,7 @@ h1 {
   margin-top: 22px;
 }
 .math-equation {
-  font-family: "Geist Variable", "Noto Sans CJK SC", sans-serif;
+  font-family: var(--font-sans);
   font-size: 26px;
   letter-spacing: -0.8px;
   line-height: 1.8;
