@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElButton } from "element-plus";
 import { useRouter, useRoute } from "vue-router";
 import { BookOpenText, ArrowRight } from "@/components/app/icons.js";
@@ -13,12 +13,20 @@ const route = useRoute();
 const username = ref("");
 const password = ref("");
 const error = ref("");
+const errorField = ref("password");
+watch([username, password, displayName, role, mode], () => { error.value = ""; });
 const busy = ref(false);
 
 async function submit() {
   if (busy.value) return;
   if (!username.value.trim() || !password.value) {
-    error.value = "请填写账号和密码。";
+    errorField.value = !username.value.trim() ? "username" : "password";
+    error.value = !username.value.trim() ? "请填写账号或学号。" : "请填写密码。";
+    return;
+  }
+  if (mode.value === "register" && password.value.length < 6) {
+    errorField.value = "password";
+    error.value = "密码至少6位。";
     return;
   }
   busy.value = true;
@@ -31,6 +39,7 @@ async function submit() {
     const fallback = store.user.role === "teacher" ? "/teacher" : store.user.role === "admin" ? "/manage" : "/home";
     await router.replace(typeof route.query.next === "string" ? route.query.next : fallback);
   } catch (problem) {
+    errorField.value = problem.status === 409 ? "username" : "password";
     error.value = problem.message;
   } finally {
     busy.value = false;
@@ -44,14 +53,13 @@ async function submit() {
       <div class="login-brand"><ElAvatar shape="square" :size="40" class="brand-symbol"><BookOpenText :size="25" /></ElAvatar><span>师承智学</span></div>
       <h1 id="login-title">{{ mode === 'login' ? '账号登录' : '创建账号' }}</h1>
       <AppTabs v-model="mode" :items="[{value:'login',label:'登录'},{value:'register',label:'注册'}]" @update:model-value="error=''"/>
-      <ElForm label-position="top" size="large" @submit.prevent="submit">
+      <ElForm label-position="top" size="large" :inline-message="true" @submit.prevent="submit">
         <template v-if="mode==='register'">
           <ElFormItem label="身份" for="register-role"><ElSelect id="register-role" v-model="role" aria-label="注册身份" :disabled="busy"><ElOption label="学生" value="student"/><ElOption label="教师" value="teacher"/></ElSelect></ElFormItem>
           <ElFormItem label="姓名" for="register-name"><ElInput id="register-name" v-model="displayName" required maxlength="120" autocomplete="name" placeholder="输入姓名" :disabled="busy"/></ElFormItem>
         </template>
-        <ElFormItem :label="mode==='register' && role==='student'?'学号':'账号 / 学号'" for="login-username"><ElInput id="login-username" v-model="username" autocomplete="username" :placeholder="mode==='register' && role==='student'?'输入学号':'输入账号或学号'" :disabled="busy" required/></ElFormItem>
-        <ElFormItem label="密码" for="login-password"><ElInput id="login-password" v-model="password" type="password" show-password :autocomplete="mode==='register'?'new-password':'current-password'" :minlength="mode==='register'?6:undefined" :placeholder="mode==='register'?'设置密码（至少6位）':'输入密码'" :disabled="busy" required/></ElFormItem>
-        <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
+        <ElFormItem :label="mode==='register' && role==='student'?'学号':'账号 / 学号'" for="login-username" :error="errorField==='username'?error:''"><ElInput id="login-username" v-model="username" autocomplete="username" :placeholder="mode==='register' && role==='student'?'输入学号':'输入账号或学号'" :disabled="busy" required/></ElFormItem>
+        <ElFormItem label="密码" for="login-password" :error="errorField==='password'?error:''"><ElInput id="login-password" v-model="password" type="password" show-password :autocomplete="mode==='register'?'new-password':'current-password'" :minlength="mode==='register'?6:undefined" :placeholder="mode==='register'?'设置密码（至少6位）':'输入密码'" :disabled="busy" required/></ElFormItem>
         <ElButton class="login-submit" type="primary" size="large" native-type="submit" :loading="busy" :disabled="busy">{{ mode==='register'?"注册并进入":"登录" }}<ArrowRight :size="17" /></ElButton>
       </ElForm>
     </Surface>
@@ -73,6 +81,6 @@ async function submit() {
 .login-refined :deep(.el-input__inner) { height:42px; font-size:14px; }
 .login-refined .login-submit.el-button { height:44px; min-height:44px; margin:6px 0 0; width:100%; justify-content:center; border-radius:var(--el-border-radius-base); background:var(--el-color-primary); }
 .login-refined .login-submit :deep(>span) { display:flex; align-items:center; justify-content:center; gap:10px; }
-.login-refined .form-error { margin-bottom:12px; }
+.login-refined :deep(.el-form-item__error--inline) { margin:6px 0 0; width:100%; line-height:1.5; }
 @media(max-width:480px) { .login-screen.login-refined { padding:20px 16px; }.login-refined .login-card.el-card :deep(>.el-card__body) { padding:26px; } }
 </style>
