@@ -135,7 +135,14 @@ async def run_agent(job_id,run_id,provider):
                 lesson=data['lesson'];query=(data['task']+' '+lesson['title'])[:2000]
                 context={'grade':lesson['grade'],'subject':lesson['subject'],'goal':lesson['goal'][:2000],'knowledgeIds':lesson.get('knowledgeIds',[]),'prerequisiteIds':lesson.get('prerequisiteIds',[])}
                 result=retrieve({'query':query,'context':context,'limit':4},data['documents'],data['knowledge'])
-                selected=data.get('selectedReferences',[]); seen={c['versionId'] for c in selected}; value['cases']=[*selected,*[c for c in result['items'] if c['versionId'] not in seen]][:8];value['retrieval']={k:v for k,v in result.items() if k not in ('items','candidateItems')}
+                from .experience_policy import diagnose,match_experiences
+                candidates={c['versionId']:c for c in [*data.get('selectedReferences',[]),*result['items']]}
+                decision=match_experiences(list(candidates.values()),diagnose(lesson['subject'],data['task']),lesson['subject'],lesson['grade'],lesson.get('knowledgeIds',[]))
+                value['experienceDecision']=decision
+                approved={c['versionId'] for c in decision['selected']}
+                result['items']=[c for c in candidates.values() if c.get('versionId') in approved]
+                selected=[]; # Current policy selects only source-reviewed experience, preserving old references in stored drafts.
+                seen={c['versionId'] for c in selected}; value['cases']=[*selected,*[c for c in result['items'] if c['versionId'] not in seen]][:8];value['retrieval']={k:v for k,v in result.items() if k not in ('items','candidateItems')}
                 if not value['cases']:value['warnings'].append('未找到案例，仅依据当前课时生成；不编造案例出处。')
                 step['output']={'caseCount':len(value['cases']),'rerank':False,'versions':[{'id':c['id'],'versionId':c['versionId']} for c in value['cases']]}
             elif key=='materials':
@@ -147,7 +154,7 @@ async def run_agent(job_id,run_id,provider):
             elif key=='generate':
                 target=data.get('regenerateBlockId');blocks=[b for b in data['lesson']['blocks'] if not target or b['id']==target]
                 request={'task':data['task'],'taskType':TASK_TYPES[data['taskType']],'constraints':data['constraints'],'goal':data['lesson']['goal'],'grade':data['lesson']['grade'],'subject':data['lesson']['subject'],'knowledge':[p for p in data['knowledge'] if p['id'] in set(data['lesson'].get('knowledgeIds',[]))],
-                         'rewriteBlockId':target,'qualityRevision':data.get('qualityRevision'),'studentBase':data['lesson'].get('studentBase',''),'planningDetails':data['lesson'].get('planningDetails',{}),'blocks':blocks,'questions':data['lesson']['questions'],'cases':[{'id':c['id'],'title':c['title'],'experience':c.get('experience',{})} for c in value['cases']],'evidence':value['evidence'],'currentPlan':data.get('basePlan')}
+                         'experienceDecision':value.get('experienceDecision'), 'rewriteBlockId':target,'qualityRevision':data.get('qualityRevision'),'studentBase':data['lesson'].get('studentBase',''),'planningDetails':data['lesson'].get('planningDetails',{}),'blocks':blocks,'questions':data['lesson']['questions'],'cases':[{'id':c['id'],'title':c['title'],'experience':c.get('experience',{})} for c in value['cases']],'evidence':value['evidence'],'currentPlan':data.get('basePlan')}
                 value['modelCalls']+=1;persist(value)
                 generated,model,source=await asyncio.wait_for(provider.call('lesson_plan',request,request_id=run_id),timeout=min(120,max(.01,remaining())))
                 value['generated']=generated

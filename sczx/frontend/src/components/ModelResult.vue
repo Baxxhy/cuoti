@@ -150,6 +150,7 @@ const verification = computed(
           }}；相关分值不代表内容正确性。</InfoTip
         >
       </div>
+      <AppDisclosure v-if="result.experienceDecision" class="model-run-history"><template #title>本轮指导依据</template><p>{{result.experienceDecision.notice}}</p><p v-if="result.difficultyAssessment">{{result.difficultyAssessment.reason}}</p><section v-for="item in result.experienceDecision.selected" :key="item.versionId"><p>{{item.reason}}</p><p>采用教法：{{item.method}}</p></section></AppDisclosure>
       <AppDisclosure v-if="result.sources?.length" class="model-run-history">
         <template #title>参考教学案例 　 {{ result.sources.length }}</template>
         <section

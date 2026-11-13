@@ -18,7 +18,7 @@ test('material parsing reaches a terminal notice without overwriting a newer sav
   const key='sczx:library-context:'+store.user.id;sessionStorage.removeItem(key);
   let state='processing';
   const material=()=>({id:'material-controlled',title:'受控上传材料',status:state,ready:state==='ready'?1:0,total:1,metadata:{author:'',grade:'七年级',subject:'数学'},units:[{id:'unit-controlled',label:'第1段',text:'共同减去3',status:'ready'}]});
-  const savedCase={id:'case-controlled',status:'draft',versions:[],draft:{title:'已保存的案例标题',content:'方程两边同时减去3。',reviewed:false,experience:{},references:[]}};
+  const savedCase={id:'case-controlled',status:'draft',versions:[],draft:{title:'已保存的案例标题',content:'方程两边同时减去3。',reviewed:false,experience:{steps:'旧格式的步骤文字'},references:[]}};
   Object.assign(libraryApi,{materials:async()=>[material()],material:async()=>material(),unit:async()=>({metadata:{},materialTitle:'受控材料',label:'第1段',text:'共同减去3',originalText:'共同减去3',originalUrl:'#'}),cases:async()=>[savedCase],case:async()=>structuredClone(savedCase),jobs:async()=>[],upload:async()=>material(),newCase:async()=>savedCase,saveMaterial:async()=>material()});
   curriculumApi.knowledge=async()=>[];
   const router=createRouter({history:createMemoryHistory(),routes:[{path:'/manage',component:Page},{path:'/away',component:{render:()=>h('div','其他页面')}}]});await router.push('/manage');await router.isReady();
@@ -33,10 +33,10 @@ test('material parsing reaches a terminal notice without overwriting a newer sav
    const terminalNotice=el.textContent.includes('解析完成')&&!el.textContent.includes('正在解析');
    await click('编辑信息');await click('保存信息',document.querySelector('[role="dialog"]'));await wait(()=>el.textContent.includes('材料信息已保存'));await new Promise(r=>setTimeout(r,3200));const newerNotice=el.textContent.includes('材料信息已保存')&&!el.textContent.includes('原文件已保存，解析完成');
    await click('整理成案例');await click('手动整理');await wait(()=>el.querySelector('#case-title')?.value===savedCase.draft.title);await router.push('/away');await nextTick();await router.push('/manage');await wait(()=>el.querySelector('#case-title')?.value===savedCase.draft.title);
-   const restored=el.querySelector('#case-title').value;await click('预览');await wait(()=>document.querySelector('.case-preview-title'));const style=getComputedStyle(document.querySelector('.case-preview-title'));const titleSize=parseFloat(style.fontSize),titleWeight=parseFloat(style.fontWeight);document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
-   return {terminalNotice,newerNotice,restored,titleSize,titleWeight};
+   const restored=el.querySelector('#case-title').value;await click('出处');await wait(()=>el.textContent.includes('来源类型'));const provenanceVisible=el.textContent.includes('授权依据');await click('正文');await click('预览');await wait(()=>document.querySelector('.case-preview-title'));const style=getComputedStyle(document.querySelector('.case-preview-title'));const titleSize=parseFloat(style.fontSize),titleWeight=parseFloat(style.fontWeight);document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
+   return {terminalNotice,newerNotice,restored,titleSize,titleWeight,provenanceVisible};
   }finally{app.unmount();el.remove();Object.assign(libraryApi,oldLibrary);curriculumApi.knowledge=oldKnowledge;sessionStorage.removeItem(key);setActivePinia(prior)}
- });assert(result.terminalNotice);assert(result.newerNotice);assert.equal(result.restored,'已保存的案例标题');assert(result.titleSize>=22);assert(result.titleWeight>=600);
+ });assert(result.terminalNotice);assert(result.newerNotice);assert.equal(result.restored,'已保存的案例标题');assert(result.titleSize>=22);assert(result.titleWeight>=600);assert(result.provenanceVisible);assert.deepEqual(browser.errors,[]);
  }finally{await browser.close()}
 });
 

@@ -123,7 +123,7 @@ async def execute(job_id, run_id):
         result['retrieval']=context['retrieval']
     if capability == "case_extract":
         original = {x['id']: x['text'] for x in data['units']}
-        required = {'content'} | {key for key in ('goal','studentBase','difficulty','introduction','adjustment','boundary') if result.get(key)}
+        required = {'content'} | {key for key in ('goal','studentBase','difficulty','diagnosis','strategy','effectCheck','introduction','adjustment','boundary') if result.get(key)}
         for key in ('knowledgePoints','steps','questions','responses'):
             required.update(f'{key}.{index}' for index in range(len(result.get(key, []))))
         if not required.issubset({r['field'] for r in result['references']}):

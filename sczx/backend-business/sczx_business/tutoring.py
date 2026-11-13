@@ -94,6 +94,25 @@ def prepare(db,user,record,data):
             confirmed_equation=match.group(1).strip() if match else ''
         context['question']={'id':(q or {}).get('id'),'kind':'confirmed_image','prompt':recognized,'equation':confirmed_equation,'knowledgeIds':ids}
         context['focus']='confirmed_image'
+    from .experience_policy import diagnose,match_experiences
+    from .education import profile
+    from .models import Attempt
+    attempt=db.scalar(select(Attempt).where(Attempt.record_id==record.id,Attempt.question==question).order_by(Attempt.created_at.desc(),Attempt.id.desc()).limit(1)) if question is not None else None
+    if ocr_id:attempt=None;context['learningMemory']=[]
+    diagnosis=diagnose(context['lesson']['subject'],recognized or prompt,attempt.answer if attempt else '',attempt.reason if attempt else '',context['learningMemory'],attempt.id if attempt else record.id,(profile(context['lesson']['subject']) or {}).get('diagnosticDimensions'))
+    if data.get('strategy')=='continue' and strategy not in ('try','rephrase','example'):
+        strategy='foundation' if strategy=='foundation' else diagnosis['recommendedStrategy']
+    diagnosis['recommendedStrategy']=strategy
+    if ocr_id:
+        diagnosis['historyEvidence']=[]
+        diagnosis['observations']=[{'id':ocr_id+':confirmed','kind':'学生核对题图','text':recognized},{'id':record.id+':request','kind':'学生自述','text':prompt}]
+        diagnosis['reason']='题图知识点尚未核对，不沿用原题困难或历史判断。'
+        retrieved={'items':[]}
+    decision=match_experiences(retrieved['items'],diagnosis,context['lesson']['subject'],context['lesson']['grade'],ids)
+    if strategy=='try':decision={'schema':1,'selected':[],'rejected':[],'fallback':False,'notice':'本轮等待独立作答，不调用模型或提供新提示。'}
+    allowed={m['versionId'] for m in decision['selected']}
+    context['teachingCases']=[copy.deepcopy(c) for c in retrieved['items'] if c.get('versionId') in allowed]
+    context['difficultyAssessment']=diagnosis;context['experienceDecision']=decision
     return {'guidance':True,'strategy':strategy,'selectedStrategy':data.get('strategy','hint'),'prompt':prompt[:3000] or '我想自己试试','question':question,'blockId':(block or {}).get('id'),'parentJobId':parent.id if parent else None,'context':context,'history':history,'ocrJobId':ocr_id,'recognizedText':recognized,'confirmedEquation':confirmed_equation,'confirmed':bool(ocr_id),'fileId':file_id,'_validation':{'answer':str((q or {}).get('answer','')),'equation':str((q or {}).get('equation',''))},'scope':{'studentId':user.id,'taskId':task.id,'classId':task.classroom_id,'lessonId':task.lesson_id,'lessonVersionId':lesson.get('versionId'),'questionId':(q or {}).get('id'),'knowledgeIds':[p.id for p in points]}}
 
 def model_input(data):
@@ -121,7 +140,8 @@ def validate_result(result,data):
     if value['strategy']!=data['strategy']:raise ModelError('指导没有执行所选策略，未展示。')
     if len(value['steps'])>4:raise ModelError('本轮指导过长，未展示。')
     if data['strategy']=='rephrase' and data.get('history') and value['representation']==data['history'][-1]['representation']:raise ModelError('换讲法没有改变解释方式，未展示。')
-    versions={c.get('versionId') for c in model_input(data)['context']['teachingCases']}
+    supplied=model_input(data)['context']
+    versions={c.get('versionId') for c in supplied['teachingCases']} | {c.get('versionId') for c in supplied.get('experienceDecision',{}).get('selected',[])}
     if not set(value['usedCaseVersionIds'])<=versions:raise ModelError('指导来源不在本次公开材料中。')
     if value['prerequisiteId'] and value['prerequisiteId'] not in {p['id'] for p in data['context']['prerequisites']}:raise ModelError('基础知识不属于当前一层前置关系。')
     text='\n'.join([value['title'],value['hint'],*value['steps'],value['question']])
@@ -145,6 +165,9 @@ def validate_result(result,data):
     if coverage['missing']:raise ModelError('当前明确需求未覆盖：'+'、'.join(coverage['missing'])+'；请先回答该问题再回到原题。')
     value['needCoverage']=coverage
     value['verification']=verification;value['verification']['scope']='仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。'
+    value['experienceDecision']=copy.deepcopy(data['context'].get('experienceDecision',{}))
+    value['difficultyAssessment']=copy.deepcopy(data['context'].get('difficultyAssessment',{}))
+    if value.get('experienceDecision',{}).get('selected') and not set(value['usedCaseVersionIds']).intersection(m['versionId'] for m in value['experienceDecision']['selected']):raise ModelError('指导未引用选用的教学经验，需重试。')
     value['sources']=[c for c in data['context']['teachingCases'] if c.get('versionId') in value['usedCaseVersionIds']]
     value['prerequisites']=data['context']['prerequisites'] if data['strategy']=='foundation' else []
     return value

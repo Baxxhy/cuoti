@@ -1,4 +1,5 @@
 """材料与案例共享的持久化操作。"""
+import copy
 import hashlib
 import json
 import uuid
@@ -25,7 +26,8 @@ def latest_version(db, case_id):
 
 
 def version_json(version):
-    return {**version.data, 'id': version.case_id, 'versionId': version.id, 'version': version.number, 'publishedAt': version.published_at.isoformat(timespec='seconds') + 'Z'}
+    from .experience_policy import provenance
+    return {**version.data, 'provenance':provenance(version.data), 'id': version.case_id, 'versionId': version.id, 'version': version.number, 'publishedAt': version.published_at.isoformat(timespec='seconds') + 'Z'}
 
 
 def current_case(db, case_id, version_id=None):
@@ -42,6 +44,8 @@ def reference(db, unit, quote=None):
 
 
 def create_draft(db, data):
+    data=copy.deepcopy(data)
+    data.setdefault('provenance',{'kind':'ai_candidate' if data.get('extractionJobId') else 'unknown'})
     case = TeachingCase(id=uid('case'), title=data.get('title') or '未命名案例', content='', source=data.get('source', ''), status='draft')
     db.add(case); db.flush()
     draft = CaseDraftContent(case_id=case.id, data=data, reviewed=False)

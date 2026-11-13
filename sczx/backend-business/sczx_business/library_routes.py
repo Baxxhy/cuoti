@@ -152,8 +152,14 @@ def save_draft(case_id: str, body: dict, request: Request, db=Depends(get_db)):
     try:validate_knowledge(db,data)
     except ValueError as e:raise HTTPException(422,str(e)) from None
     # 状态与审核由服务端控制；编辑任何正文/来源字段都会撤销原审核。
-    changed=data!=draft.data
+    server_fields={'experienceReview','reviewed','updatedAt'}
+    changed={k:v for k,v in data.items() if k not in server_fields}!={k:v for k,v in draft.data.items() if k not in server_fields}
     data=copy.deepcopy(data)
+    from .experience_policy import validate_experience
+    try:validate_experience(data)
+    except ValueError as e:raise HTTPException(422,str(e)) from None
+    for field in server_fields:data.pop(field,None)
+    if not changed and draft.data.get('experienceReview'):data['experienceReview']=copy.deepcopy(draft.data['experienceReview'])
     if changed and data.get('verification'):
         data['verification']={**data['verification'],'status':'unverified','claims':[{**c,'status':'unverified'} for c in data['verification'].get('claims',[])]}
     draft.data=data
@@ -178,8 +184,14 @@ def verify_math(case_id: str, request: Request, db=Depends(get_db)):
 
 @router.post('/cases/{case_id}/review')
 def review(case_id: str, request: Request, db=Depends(get_db)):
-    account(request,db,True);draft=db.get(CaseDraftContent,case_id)
+    actor=account(request,db,True);draft=db.get(CaseDraftContent,case_id)
     if not draft:raise HTTPException(404,'草稿不存在。')
+    from .experience_policy import validate_experience
+    try:
+        p=validate_experience(draft.data)
+        validate_references(db,draft.data.get('references',[]))
+    except ValueError as e:raise HTTPException(422,str(e)) from None
+    draft.data={**draft.data,'experienceReview':{'reviewerId':actor.id,'reviewedAt':datetime.utcnow().isoformat()+'Z','provenance':p}}
     draft.reviewed=True;db.commit();return {'reviewed':True}
 
 

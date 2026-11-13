@@ -1,0 +1,6245 @@
+{
+  "mode": "real MySQL/API; controlled model outputs",
+  "publishedCase": {
+    "grade": "七年级",
+    "title": "等式两边共同变化",
+    "author": "",
+    "source": "",
+    "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+    "subject": "数学",
+    "experience": {
+      "steps": "列数量；同时拿走；比较剩余",
+      "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+      "diagnosis": "让学生描述等式两边的变化",
+      "difficulty": "不明白等式两边为什么要共同变化",
+      "effectCheck": "使用另一组数量独立解释"
+    },
+    "provenance": {
+      "kind": "team",
+      "author": "项目自编夹具",
+      "evidence": "本轮团队自编材料",
+      "authorization": "internal",
+      "authorizationEvidence": "仅供本地工程验收"
+    },
+    "references": [
+      {
+        "label": "第1段",
+        "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+        "author": "项目工程夹具",
+        "source": "自编工程验收，不代表真实名师经验",
+        "unitId": "ix1fbf2b-unit",
+        "sourceUrl": "",
+        "materialId": "ix1fbf2b-material",
+        "materialTitle": "团队自编共同运算案例"
+      }
+    ],
+    "knowledgeIds": [
+      "ix1fbf2b-kp"
+    ],
+    "experienceReview": {
+      "provenance": {
+        "kind": "team",
+        "author": "项目自编夹具",
+        "evidence": "本轮团队自编材料",
+        "authorization": "internal",
+        "authorizationEvidence": "仅供本地工程验收"
+      },
+      "reviewedAt": "2026-11-13T18:05:39.500404Z",
+      "reviewerId": "ix1fbf2b-a"
+    },
+    "knowledgeLinks": [
+      {
+        "id": "ix1fbf2b-kp",
+        "name": "等式性质"
+      }
+    ],
+    "id": "case-89ba8dbf75264729a6b7705f195c6415",
+    "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+    "version": 1,
+    "publishedAt": "2026-11-13T18:05:39Z"
+  },
+  "studentJob": {
+    "id": "job-cee06e6f245e4466b074a40380d20871",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "text",
+    "lessonId": null,
+    "summary": "",
+    "recordId": "record-102fcc48084b44ea9843776edc20ca89",
+    "fileId": null,
+    "helpRecordId": "help-cee06e6f245e4466b074a40380d20871",
+    "question": 0,
+    "blockId": "eq-practice",
+    "strategy": "hint",
+    "prompt": "不明白等式两边为什么要共同变化",
+    "parentJobId": null,
+    "recognizedText": "",
+    "status": "succeeded",
+    "step": "已完成",
+    "error": "",
+    "result": {
+      "hint": "把等式两边看作数量相同的两组，先指出要消去哪一部分。",
+      "steps": [
+        "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量"
+      ],
+      "title": "比较两边的共同变化",
+      "sources": [
+        {
+          "id": "case-89ba8dbf75264729a6b7705f195c6415",
+          "grade": "七年级",
+          "score": 5.923714,
+          "title": "等式两边共同变化",
+          "author": "",
+          "source": "",
+          "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+          "subject": "数学",
+          "version": 1,
+          "bm25Score": 14.841734,
+          "textScore": 5.353714,
+          "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+          "experience": {
+            "steps": "列数量；同时拿走；比较剩余",
+            "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+            "diagnosis": "让学生描述等式两边的变化",
+            "difficulty": "不明白等式两边为什么要共同变化",
+            "effectCheck": "使用另一组数量独立解释"
+          },
+          "provenance": {
+            "kind": "team",
+            "author": "项目自编夹具",
+            "evidence": "本轮团队自编材料",
+            "authorization": "internal",
+            "authorizationEvidence": "仅供本地工程验收"
+          },
+          "references": [
+            {
+              "label": "第1段",
+              "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "author": "项目工程夹具",
+              "source": "自编工程验收，不代表真实名师经验",
+              "unitId": "ix1fbf2b-unit",
+              "sourceUrl": "",
+              "materialId": "ix1fbf2b-material",
+              "materialTitle": "团队自编共同运算案例"
+            }
+          ],
+          "publishedAt": "2026-11-13T18:05:39Z",
+          "contextScore": 0.12,
+          "knowledgeIds": [
+            "ix1fbf2b-kp"
+          ],
+          "matchReasons": [
+            "直接关联目标知识点",
+            "匹配学生困难、标题、知识点",
+            "与课时适用信息一致"
+          ],
+          "matchedFields": [
+            {
+              "bm25": 3.75542,
+              "field": "title",
+              "label": "标题",
+              "score": 1.628165,
+              "matchedTerms": [
+                "两边",
+                "共同",
+                "变化",
+                "同变",
+                "式两",
+                "等式"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 0.387777,
+              "field": "knowledgePoints",
+              "label": "知识点",
+              "score": 0.949445,
+              "matchedTerms": [
+                "等式"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 6.692456,
+              "field": "difficulty",
+              "label": "学生困难",
+              "score": 1.784954,
+              "matchedTerms": [
+                "不明",
+                "两边",
+                "为什",
+                "么要",
+                "什么",
+                "共同",
+                "变化",
+                "同变",
+                "式两",
+                "明白",
+                "白等",
+                "等式",
+                "要共",
+                "边为"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 2.093951,
+              "field": "content",
+              "label": "正文",
+              "score": 0.706587,
+              "matchedTerms": [
+                "两边",
+                "变化",
+                "式两",
+                "等式"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 0,
+              "field": "steps",
+              "label": "讲解步骤",
+              "score": 0.01,
+              "matchedTerms": [],
+              "contextMatched": true
+            },
+            {
+              "bm25": 1.91213,
+              "field": "references",
+              "label": "原文摘录",
+              "score": 0.274563,
+              "matchedTerms": [
+                "两边",
+                "变化",
+                "式两",
+                "等式"
+              ],
+              "contextMatched": true
+            }
+          ],
+          "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+          "knowledgeLinks": [
+            {
+              "id": "ix1fbf2b-kp",
+              "name": "等式性质"
+            }
+          ],
+          "knowledgeScore": 0.45,
+          "experienceReview": {
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "reviewedAt": "2026-11-13T18:05:39.500404Z",
+            "reviewerId": "ix1fbf2b-a"
+          },
+          "knowledgeMatches": [
+            {
+              "id": "ix1fbf2b-kp",
+              "name": "等式性质",
+              "relation": "direct"
+            }
+          ]
+        }
+      ],
+      "question": "你准备在两边同时做什么？",
+      "strategy": "hint",
+      "workflow": {
+        "nodes": [
+          "固定学习上下文",
+          "读取公开案例与一层前置知识",
+          "生成本轮指导",
+          "核验并等待学生回应"
+        ],
+        "elapsedMs": 246,
+        "modelCalls": 1,
+        "contextChars": 4693,
+        "historyTurns": 0
+      },
+      "mathClaims": [
+        {
+          "left": "9-2",
+          "right": "7"
+        }
+      ],
+      "needCoverage": {
+        "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+        "missing": [],
+        "required": []
+      },
+      "nextStrategy": "foundation",
+      "verification": {
+        "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+        "claims": [
+          {
+            "left": "9-2",
+            "right": "7",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "status": "verified"
+      },
+      "prerequisites": [],
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "prerequisiteId": "",
+      "representation": "numeric",
+      "experienceDecision": {
+        "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+        "schema": 1,
+        "fallback": false,
+        "rejected": [
+          {
+            "reasons": [
+              "知识点未明确关联"
+            ],
+            "versionId": "version-f597ef9a96f848f8bec2e35a1d76a6be"
+          },
+          {
+            "reasons": [
+              "知识点未明确关联"
+            ],
+            "versionId": "version-8fdb0f700c5f4831921f702d68df4bd7"
+          }
+        ],
+        "selected": [
+          {
+            "id": "case-89ba8dbf75264729a6b7705f195c6415",
+            "method": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+            "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+            "version": 1,
+            "strategy": "hint",
+            "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+            "conditions": [],
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "effectCheck": "使用另一组数量独立解释",
+            "evidenceIds": [
+              "record-102fcc48084b44ea9843776edc20ca89:request"
+            ],
+            "diagnosticBasis": "让学生描述等式两边的变化",
+            "matchedDifficultyTerms": [
+              "不明",
+              "两边",
+              "为什",
+              "么要",
+              "什么",
+              "共同",
+              "变化",
+              "同变",
+              "式两",
+              "明白",
+              "白等",
+              "等式",
+              "要共",
+              "边为"
+            ]
+          }
+        ]
+      },
+      "usedCaseVersionIds": [
+        "version-7be0850abbe245c9b25b6ef771367809"
+      ],
+      "difficultyAssessment": {
+        "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+        "schema": 1,
+        "subject": "数学",
+        "difficulty": "学生报告当前学习遇到困难",
+        "dimensions": [
+          "概念",
+          "运算",
+          "推理",
+          "建模"
+        ],
+        "observations": [
+          {
+            "id": "record-102fcc48084b44ea9843776edc20ca89:request",
+            "kind": "学生自述",
+            "text": "不明白等式两边为什么要共同变化"
+          }
+        ],
+        "possibleCauses": [],
+        "historyEvidence": [],
+        "evidenceSufficiency": "需进一步确认",
+        "recommendedStrategy": "hint",
+        "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+      }
+    },
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-13T18:05:40Z",
+    "updatedAt": "2026-11-13T18:05:40Z",
+    "input": {
+      "scope": {
+        "taskId": "ix1fbf2b-t00",
+        "classId": "ix1fbf2b-c0",
+        "lessonId": "ix1fbf2b-lesson",
+        "studentId": "ix1fbf2b-s0",
+        "questionId": "eq-practice-add",
+        "knowledgeIds": [
+          "ix1fbf2b-kp"
+        ],
+        "lessonVersionId": "ix1fbf2b-version"
+      },
+      "prompt": "不明白等式两边为什么要共同变化",
+      "blockId": "eq-practice",
+      "context": {
+        "block": {
+          "id": "eq-practice",
+          "type": "practice",
+          "title": "随堂练习",
+          "content": "每一步都说明两边进行了什么运算。",
+          "questionIds": [
+            "eq-practice-add",
+            "eq-practice-sub"
+          ]
+        },
+        "lesson": {
+          "id": "ix1fbf2b-lesson",
+          "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+          "grade": "七年级",
+          "title": "天平与等式",
+          "subject": "数学",
+          "versionId": "ix1fbf2b-version"
+        },
+        "question": {
+          "id": "eq-practice-add",
+          "kind": "practice",
+          "prompt": "两边同时加3，x等于多少？",
+          "equation": "x - 3 = 5",
+          "knowledgeIds": [
+            "ix1fbf2b-kp"
+          ]
+        },
+        "knowledge": [
+          {
+            "id": "ix1fbf2b-kp",
+            "name": "等式性质"
+          }
+        ],
+        "observation": "",
+        "prerequisites": [],
+        "teachingCases": [
+          {
+            "id": "case-89ba8dbf75264729a6b7705f195c6415",
+            "grade": "七年级",
+            "score": 5.923714,
+            "title": "等式两边共同变化",
+            "author": "",
+            "source": "",
+            "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+            "subject": "数学",
+            "version": 1,
+            "bm25Score": 14.841734,
+            "textScore": 5.353714,
+            "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+            "experience": {
+              "steps": "列数量；同时拿走；比较剩余",
+              "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+              "diagnosis": "让学生描述等式两边的变化",
+              "difficulty": "不明白等式两边为什么要共同变化",
+              "effectCheck": "使用另一组数量独立解释"
+            },
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "references": [
+              {
+                "label": "第1段",
+                "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+                "author": "项目工程夹具",
+                "source": "自编工程验收，不代表真实名师经验",
+                "unitId": "ix1fbf2b-unit",
+                "sourceUrl": "",
+                "materialId": "ix1fbf2b-material",
+                "materialTitle": "团队自编共同运算案例"
+              }
+            ],
+            "publishedAt": "2026-11-13T18:05:39Z",
+            "contextScore": 0.12,
+            "knowledgeIds": [
+              "ix1fbf2b-kp"
+            ],
+            "matchReasons": [
+              "直接关联目标知识点",
+              "匹配学生困难、标题、知识点",
+              "与课时适用信息一致"
+            ],
+            "matchedFields": [
+              {
+                "bm25": 3.75542,
+                "field": "title",
+                "label": "标题",
+                "score": 1.628165,
+                "matchedTerms": [
+                  "两边",
+                  "共同",
+                  "变化",
+                  "同变",
+                  "式两",
+                  "等式"
+                ],
+                "contextMatched": true
+              },
+              {
+                "bm25": 0.387777,
+                "field": "knowledgePoints",
+                "label": "知识点",
+                "score": 0.949445,
+                "matchedTerms": [
+                  "等式"
+                ],
+                "contextMatched": true
+              },
+              {
+                "bm25": 6.692456,
+                "field": "difficulty",
+                "label": "学生困难",
+                "score": 1.784954,
+                "matchedTerms": [
+                  "不明",
+                  "两边",
+                  "为什",
+                  "么要",
+                  "什么",
+                  "共同",
+                  "变化",
+                  "同变",
+                  "式两",
+                  "明白",
+                  "白等",
+                  "等式",
+                  "要共",
+                  "边为"
+                ],
+                "contextMatched": true
+              },
+              {
+                "bm25": 2.093951,
+                "field": "content",
+                "label": "正文",
+                "score": 0.706587,
+                "matchedTerms": [
+                  "两边",
+                  "变化",
+                  "式两",
+                  "等式"
+                ],
+                "contextMatched": true
+              },
+              {
+                "bm25": 0,
+                "field": "steps",
+                "label": "讲解步骤",
+                "score": 0.01,
+                "matchedTerms": [],
+                "contextMatched": true
+              },
+              {
+                "bm25": 1.91213,
+                "field": "references",
+                "label": "原文摘录",
+                "score": 0.274563,
+                "matchedTerms": [
+                  "两边",
+                  "变化",
+                  "式两",
+                  "等式"
+                ],
+                "contextMatched": true
+              }
+            ],
+            "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+            "knowledgeLinks": [
+              {
+                "id": "ix1fbf2b-kp",
+                "name": "等式性质"
+              }
+            ],
+            "knowledgeScore": 0.45,
+            "experienceReview": {
+              "provenance": {
+                "kind": "team",
+                "author": "项目自编夹具",
+                "evidence": "本轮团队自编材料",
+                "authorization": "internal",
+                "authorizationEvidence": "仅供本地工程验收"
+              },
+              "reviewedAt": "2026-11-13T18:05:39.500404Z",
+              "reviewerId": "ix1fbf2b-a"
+            },
+            "knowledgeMatches": [
+              {
+                "id": "ix1fbf2b-kp",
+                "name": "等式性质",
+                "relation": "direct"
+              }
+            ]
+          }
+        ],
+        "learningMemory": [],
+        "experienceDecision": {
+          "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+          "schema": 1,
+          "fallback": false,
+          "rejected": [
+            {
+              "reasons": [
+                "知识点未明确关联"
+              ],
+              "versionId": "version-f597ef9a96f848f8bec2e35a1d76a6be"
+            },
+            {
+              "reasons": [
+                "知识点未明确关联"
+              ],
+              "versionId": "version-8fdb0f700c5f4831921f702d68df4bd7"
+            }
+          ],
+          "selected": [
+            {
+              "id": "case-89ba8dbf75264729a6b7705f195c6415",
+              "method": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+              "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+              "version": 1,
+              "strategy": "hint",
+              "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+              "conditions": [],
+              "provenance": {
+                "kind": "team",
+                "author": "项目自编夹具",
+                "evidence": "本轮团队自编材料",
+                "authorization": "internal",
+                "authorizationEvidence": "仅供本地工程验收"
+              },
+              "effectCheck": "使用另一组数量独立解释",
+              "evidenceIds": [
+                "record-102fcc48084b44ea9843776edc20ca89:request"
+              ],
+              "diagnosticBasis": "让学生描述等式两边的变化",
+              "matchedDifficultyTerms": [
+                "不明",
+                "两边",
+                "为什",
+                "么要",
+                "什么",
+                "共同",
+                "变化",
+                "同变",
+                "式两",
+                "明白",
+                "白等",
+                "等式",
+                "要共",
+                "边为"
+              ]
+            }
+          ]
+        },
+        "difficultyAssessment": {
+          "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+          "schema": 1,
+          "subject": "数学",
+          "difficulty": "学生报告当前学习遇到困难",
+          "dimensions": [
+            "概念",
+            "运算",
+            "推理",
+            "建模"
+          ],
+          "observations": [
+            {
+              "id": "record-102fcc48084b44ea9843776edc20ca89:request",
+              "kind": "学生自述",
+              "text": "不明白等式两边为什么要共同变化"
+            }
+          ],
+          "possibleCauses": [],
+          "historyEvidence": [],
+          "evidenceSufficiency": "需进一步确认",
+          "recommendedStrategy": "hint",
+          "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+        }
+      },
+      "history": [],
+      "guidance": true,
+      "ocrJobId": null,
+      "question": 0,
+      "strategy": "hint",
+      "confirmed": false,
+      "parentJobId": null,
+      "recognizedText": "",
+      "selectedStrategy": "hint",
+      "confirmedEquation": ""
+    },
+    "runs": [
+      {
+        "id": "run-53b0742cb1564eb19d81f7131947f1c3",
+        "number": 1,
+        "status": "succeeded",
+        "model": "controlled",
+        "provider": "controlled",
+        "error": "",
+        "result": {
+          "hint": "把等式两边看作数量相同的两组，先指出要消去哪一部分。",
+          "steps": [
+            "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量"
+          ],
+          "title": "比较两边的共同变化",
+          "sources": [
+            {
+              "id": "case-89ba8dbf75264729a6b7705f195c6415",
+              "grade": "七年级",
+              "score": 5.923714,
+              "title": "等式两边共同变化",
+              "author": "",
+              "source": "",
+              "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "subject": "数学",
+              "version": 1,
+              "bm25Score": 14.841734,
+              "textScore": 5.353714,
+              "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+              "experience": {
+                "steps": "列数量；同时拿走；比较剩余",
+                "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+                "diagnosis": "让学生描述等式两边的变化",
+                "difficulty": "不明白等式两边为什么要共同变化",
+                "effectCheck": "使用另一组数量独立解释"
+              },
+              "provenance": {
+                "kind": "team",
+                "author": "项目自编夹具",
+                "evidence": "本轮团队自编材料",
+                "authorization": "internal",
+                "authorizationEvidence": "仅供本地工程验收"
+              },
+              "references": [
+                {
+                  "label": "第1段",
+                  "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+                  "author": "项目工程夹具",
+                  "source": "自编工程验收，不代表真实名师经验",
+                  "unitId": "ix1fbf2b-unit",
+                  "sourceUrl": "",
+                  "materialId": "ix1fbf2b-material",
+                  "materialTitle": "团队自编共同运算案例"
+                }
+              ],
+              "publishedAt": "2026-11-13T18:05:39Z",
+              "contextScore": 0.12,
+              "knowledgeIds": [
+                "ix1fbf2b-kp"
+              ],
+              "matchReasons": [
+                "直接关联目标知识点",
+                "匹配学生困难、标题、知识点",
+                "与课时适用信息一致"
+              ],
+              "matchedFields": [
+                {
+                  "bm25": 3.75542,
+                  "field": "title",
+                  "label": "标题",
+                  "score": 1.628165,
+                  "matchedTerms": [
+                    "两边",
+                    "共同",
+                    "变化",
+                    "同变",
+                    "式两",
+                    "等式"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 0.387777,
+                  "field": "knowledgePoints",
+                  "label": "知识点",
+                  "score": 0.949445,
+                  "matchedTerms": [
+                    "等式"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 6.692456,
+                  "field": "difficulty",
+                  "label": "学生困难",
+                  "score": 1.784954,
+                  "matchedTerms": [
+                    "不明",
+                    "两边",
+                    "为什",
+                    "么要",
+                    "什么",
+                    "共同",
+                    "变化",
+                    "同变",
+                    "式两",
+                    "明白",
+                    "白等",
+                    "等式",
+                    "要共",
+                    "边为"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 2.093951,
+                  "field": "content",
+                  "label": "正文",
+                  "score": 0.706587,
+                  "matchedTerms": [
+                    "两边",
+                    "变化",
+                    "式两",
+                    "等式"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 0,
+                  "field": "steps",
+                  "label": "讲解步骤",
+                  "score": 0.01,
+                  "matchedTerms": [],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 1.91213,
+                  "field": "references",
+                  "label": "原文摘录",
+                  "score": 0.274563,
+                  "matchedTerms": [
+                    "两边",
+                    "变化",
+                    "式两",
+                    "等式"
+                  ],
+                  "contextMatched": true
+                }
+              ],
+              "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+              "knowledgeLinks": [
+                {
+                  "id": "ix1fbf2b-kp",
+                  "name": "等式性质"
+                }
+              ],
+              "knowledgeScore": 0.45,
+              "experienceReview": {
+                "provenance": {
+                  "kind": "team",
+                  "author": "项目自编夹具",
+                  "evidence": "本轮团队自编材料",
+                  "authorization": "internal",
+                  "authorizationEvidence": "仅供本地工程验收"
+                },
+                "reviewedAt": "2026-11-13T18:05:39.500404Z",
+                "reviewerId": "ix1fbf2b-a"
+              },
+              "knowledgeMatches": [
+                {
+                  "id": "ix1fbf2b-kp",
+                  "name": "等式性质",
+                  "relation": "direct"
+                }
+              ]
+            }
+          ],
+          "question": "你准备在两边同时做什么？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 246,
+            "modelCalls": 1,
+            "contextChars": 4693,
+            "historyTurns": 0
+          },
+          "mathClaims": [
+            {
+              "left": "9-2",
+              "right": "7"
+            }
+          ],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "foundation",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [
+              {
+                "left": "9-2",
+                "right": "7",
+                "method": "表达式等价",
+                "status": "verified"
+              }
+            ],
+            "status": "verified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "",
+          "representation": "numeric",
+          "experienceDecision": {
+            "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+            "schema": 1,
+            "fallback": false,
+            "rejected": [
+              {
+                "reasons": [
+                  "知识点未明确关联"
+                ],
+                "versionId": "version-f597ef9a96f848f8bec2e35a1d76a6be"
+              },
+              {
+                "reasons": [
+                  "知识点未明确关联"
+                ],
+                "versionId": "version-8fdb0f700c5f4831921f702d68df4bd7"
+              }
+            ],
+            "selected": [
+              {
+                "id": "case-89ba8dbf75264729a6b7705f195c6415",
+                "method": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+                "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                "version": 1,
+                "strategy": "hint",
+                "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+                "conditions": [],
+                "provenance": {
+                  "kind": "team",
+                  "author": "项目自编夹具",
+                  "evidence": "本轮团队自编材料",
+                  "authorization": "internal",
+                  "authorizationEvidence": "仅供本地工程验收"
+                },
+                "effectCheck": "使用另一组数量独立解释",
+                "evidenceIds": [
+                  "record-102fcc48084b44ea9843776edc20ca89:request"
+                ],
+                "diagnosticBasis": "让学生描述等式两边的变化",
+                "matchedDifficultyTerms": [
+                  "不明",
+                  "两边",
+                  "为什",
+                  "么要",
+                  "什么",
+                  "共同",
+                  "变化",
+                  "同变",
+                  "式两",
+                  "明白",
+                  "白等",
+                  "等式",
+                  "要共",
+                  "边为"
+                ]
+              }
+            ]
+          },
+          "usedCaseVersionIds": [
+            "version-7be0850abbe245c9b25b6ef771367809"
+          ],
+          "difficultyAssessment": {
+            "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+            "schema": 1,
+            "subject": "数学",
+            "difficulty": "学生报告当前学习遇到困难",
+            "dimensions": [
+              "概念",
+              "运算",
+              "推理",
+              "建模"
+            ],
+            "observations": [
+              {
+                "id": "record-102fcc48084b44ea9843776edc20ca89:request",
+                "kind": "学生自述",
+                "text": "不明白等式两边为什么要共同变化"
+              }
+            ],
+            "possibleCauses": [],
+            "historyEvidence": [],
+            "evidenceSufficiency": "需进一步确认",
+            "recommendedStrategy": "hint",
+            "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+          }
+        },
+        "startedAt": "2026-11-13T18:05:40Z",
+        "endedAt": "2026-11-13T18:05:40Z"
+      }
+    ]
+  },
+  "teacherJob": {
+    "id": "job-7293bd32fe5d483d92eef015fa8297c0",
+    "mode": null,
+    "wrongId": null,
+    "phase": null,
+    "capability": "lesson_agent",
+    "lessonId": "ix1fbf2b-lesson",
+    "summary": "不明白等式两边为什么要共同变化，设计引导活动",
+    "recordId": null,
+    "fileId": null,
+    "helpRecordId": null,
+    "question": null,
+    "blockId": null,
+    "strategy": null,
+    "prompt": null,
+    "parentJobId": null,
+    "recognizedText": null,
+    "status": "succeeded",
+    "step": "等待教师确认",
+    "error": "",
+    "result": {
+      "plan": {
+        "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+        "title": "受控教学备课",
+        "blocks": [
+          {
+            "id": "eq-intro",
+            "title": "相等的两边",
+            "content": "受控生成：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-balance",
+            "title": "让天平两边一起变化",
+            "content": "受控生成：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-add-sub",
+            "title": "同加、同减",
+            "content": "受控生成：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-example-add",
+            "title": "例题：消去减去的数",
+            "content": "受控生成：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-practice",
+            "title": "随堂练习",
+            "content": "受控生成：每一步都说明两边进行了什么运算。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-mul-div",
+            "title": "同乘、同除的条件",
+            "content": "受控生成：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-example-div",
+            "title": "例题：共同除以非零数",
+            "content": "受控生成：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-check",
+            "title": "独立检查",
+            "content": "受控生成：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          }
+        ],
+        "rationale": [
+          "通过共同运算比较理解等式性质"
+        ],
+        "mathClaims": [
+          {
+            "left": "x+1-1",
+            "right": "x"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "id": "case-89ba8dbf75264729a6b7705f195c6415",
+          "grade": "七年级",
+          "score": 6.237821,
+          "title": "等式两边共同变化",
+          "author": "",
+          "source": "",
+          "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+          "subject": "数学",
+          "version": 1,
+          "bm25Score": 15.617287,
+          "textScore": 5.667821,
+          "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+          "experience": {
+            "steps": "列数量；同时拿走；比较剩余",
+            "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+            "diagnosis": "让学生描述等式两边的变化",
+            "difficulty": "不明白等式两边为什么要共同变化",
+            "effectCheck": "使用另一组数量独立解释"
+          },
+          "provenance": {
+            "kind": "team",
+            "author": "项目自编夹具",
+            "evidence": "本轮团队自编材料",
+            "authorization": "internal",
+            "authorizationEvidence": "仅供本地工程验收"
+          },
+          "references": [
+            {
+              "label": "第1段",
+              "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "author": "项目工程夹具",
+              "source": "自编工程验收，不代表真实名师经验",
+              "unitId": "ix1fbf2b-unit",
+              "sourceUrl": "",
+              "materialId": "ix1fbf2b-material",
+              "materialTitle": "团队自编共同运算案例"
+            }
+          ],
+          "publishedAt": "2026-11-13T18:05:39Z",
+          "contextScore": 0.12,
+          "knowledgeIds": [
+            "ix1fbf2b-kp"
+          ],
+          "matchReasons": [
+            "直接关联目标知识点",
+            "匹配学生困难、标题、知识点",
+            "与课时适用信息一致"
+          ],
+          "matchedFields": [
+            {
+              "bm25": 3.75542,
+              "field": "title",
+              "label": "标题",
+              "score": 1.605942,
+              "matchedTerms": [
+                "两边",
+                "共同",
+                "变化",
+                "同变",
+                "式两",
+                "等式"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 1.16333,
+              "field": "knowledgePoints",
+              "label": "知识点",
+              "score": 1.349109,
+              "matchedTerms": [
+                "式性",
+                "性质",
+                "等式"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 6.692456,
+              "field": "difficulty",
+              "label": "学生困难",
+              "score": 1.762732,
+              "matchedTerms": [
+                "不明",
+                "两边",
+                "为什",
+                "么要",
+                "什么",
+                "共同",
+                "变化",
+                "同变",
+                "式两",
+                "明白",
+                "白等",
+                "等式",
+                "要共",
+                "边为"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 2.093951,
+              "field": "content",
+              "label": "正文",
+              "score": 0.684364,
+              "matchedTerms": [
+                "两边",
+                "变化",
+                "式两",
+                "等式"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 1.91213,
+              "field": "references",
+              "label": "原文摘录",
+              "score": 0.265674,
+              "matchedTerms": [
+                "两边",
+                "变化",
+                "式两",
+                "等式"
+              ],
+              "contextMatched": true
+            }
+          ],
+          "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+          "knowledgeLinks": [
+            {
+              "id": "ix1fbf2b-kp",
+              "name": "等式性质"
+            }
+          ],
+          "knowledgeScore": 0.45,
+          "experienceReview": {
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "reviewedAt": "2026-11-13T18:05:39.500404Z",
+            "reviewerId": "ix1fbf2b-a"
+          },
+          "knowledgeMatches": [
+            {
+              "id": "ix1fbf2b-kp",
+              "name": "等式性质",
+              "relation": "direct"
+            }
+          ]
+        }
+      ],
+      "model": "controlled",
+      "steps": [
+        {
+          "key": "context",
+          "tool": "curriculum.read",
+          "title": "理解任务与课时",
+          "output": {
+            "method": "显式选择或有限关键词规则；课时由服务端读取",
+            "recognizedType": "活动设计",
+            "lessonVersionId": "ix1fbf2b-version"
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-13T18:05:41.291958+00:00",
+          "finishedAt": "2026-11-13T18:05:41.340302+00:00"
+        },
+        {
+          "key": "cases",
+          "tool": "retrieval.bm25",
+          "title": "检索教学案例",
+          "output": {
+            "rerank": false,
+            "versions": [
+              {
+                "id": "case-89ba8dbf75264729a6b7705f195c6415",
+                "versionId": "version-7be0850abbe245c9b25b6ef771367809"
+              }
+            ],
+            "caseCount": 1
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-13T18:05:41.375966+00:00",
+          "finishedAt": "2026-11-13T18:05:41.419718+00:00"
+        },
+        {
+          "key": "materials",
+          "tool": "materials.read",
+          "title": "定位原文材料",
+          "output": {
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version",
+              "ix1fbf2b-unit:b2e21988ce"
+            ],
+            "materialCount": 1
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-13T18:05:41.455792+00:00",
+          "finishedAt": "2026-11-13T18:05:41.605827+00:00"
+        },
+        {
+          "key": "generate",
+          "tool": "codex.lesson_plan",
+          "title": "生成备课建议",
+          "output": {
+            "model": "controlled",
+            "origin": "模型生成，待教师核对",
+            "provider": "controlled",
+            "onlyBlock": null,
+            "blockCount": 8
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-13T18:05:41.661830+00:00",
+          "finishedAt": "2026-11-13T18:05:41.754227+00:00"
+        },
+        {
+          "key": "validate",
+          "tool": "plan.validate",
+          "title": "核验结构与依据",
+          "output": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x+1-1",
+                "right": "x",
+                "method": "表达式等价",
+                "status": "verified"
+              }
+            ],
+            "status": "verified",
+            "structure": "passed",
+            "references": "passed",
+            "goalTermsOverlap": true,
+            "humanReviewRequired": true
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-13T18:05:41.809697+00:00",
+          "finishedAt": "2026-11-13T18:05:41.895433+00:00"
+        },
+        {
+          "key": "ready",
+          "tool": "teacher.review",
+          "title": "等待教师确认",
+          "output": {
+            "next": "教师编辑、确认后保存备课草稿；不自动发布"
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-13T18:05:41.932774+00:00",
+          "finishedAt": "2026-11-13T18:05:41.999242+00:00"
+        }
+      ],
+      "context": {
+        "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+        "task": "不明白等式两边为什么要共同变化，设计引导活动",
+        "grade": "七年级",
+        "subject": "数学",
+        "lessonId": "ix1fbf2b-lesson",
+        "taskType": "activity",
+        "taskLabel": "活动设计",
+        "constraints": "",
+        "lessonTitle": "等式性质",
+        "knowledgeIds": [
+          "ix1fbf2b-kp"
+        ],
+        "lessonVersionId": "ix1fbf2b-version",
+        "prerequisiteIds": []
+      },
+      "decision": "pending",
+      "editable": {
+        "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+        "title": "受控教学备课",
+        "blocks": [
+          {
+            "id": "eq-intro",
+            "title": "相等的两边",
+            "content": "受控生成：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-balance",
+            "title": "让天平两边一起变化",
+            "content": "受控生成：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-add-sub",
+            "title": "同加、同减",
+            "content": "受控生成：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-example-add",
+            "title": "例题：消去减去的数",
+            "content": "受控生成：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-practice",
+            "title": "随堂练习",
+            "content": "受控生成：每一步都说明两边进行了什么运算。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-mul-div",
+            "title": "同乘、同除的条件",
+            "content": "受控生成：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-example-div",
+            "title": "例题：共同除以非零数",
+            "content": "受控生成：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-check",
+            "title": "独立检查",
+            "content": "受控生成：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          }
+        ],
+        "rationale": [
+          "通过共同运算比较理解等式性质"
+        ],
+        "mathClaims": [
+          {
+            "left": "x+1-1",
+            "right": "x"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "id": "lesson:ix1fbf2b-version",
+          "url": "/#/courses",
+          "kind": "lesson",
+          "title": "等式性质",
+          "content": "相等的两边：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。\n让天平两边一起变化：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。\n同加、同减：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。\n例题：消去减去的数：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。\n随堂练习：每一步都说明两边进行了什么运算。\n同乘、同除的条件：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。\n例题：共同除以非零数：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。\n独立检查：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+          "versionId": "ix1fbf2b-version"
+        },
+        {
+          "id": "ix1fbf2b-unit:b2e21988ce",
+          "url": "/#/source?unit=ix1fbf2b-unit",
+          "kind": "material",
+          "label": "第1段",
+          "score": 1.561703,
+          "title": "团队自编共同运算案例",
+          "caseId": "case-89ba8dbf75264729a6b7705f195c6415",
+          "unitId": "ix1fbf2b-unit",
+          "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+          "bm25Score": 1.561703,
+          "materialId": "ix1fbf2b-material",
+          "caseVersionId": "version-7be0850abbe245c9b25b6ef771367809"
+        }
+      ],
+      "warnings": [],
+      "generated": {
+        "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+        "title": "受控教学备课",
+        "blocks": [
+          {
+            "id": "eq-intro",
+            "title": "相等的两边",
+            "content": "受控生成：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-balance",
+            "title": "让天平两边一起变化",
+            "content": "受控生成：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-add-sub",
+            "title": "同加、同减",
+            "content": "受控生成：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-example-add",
+            "title": "例题：消去减去的数",
+            "content": "受控生成：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-practice",
+            "title": "随堂练习",
+            "content": "受控生成：每一步都说明两边进行了什么运算。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-mul-div",
+            "title": "同乘、同除的条件",
+            "content": "受控生成：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-example-div",
+            "title": "例题：共同除以非零数",
+            "content": "受控生成：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          },
+          {
+            "id": "eq-check",
+            "title": "独立检查",
+            "content": "受控生成：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "evidenceIds": [
+              "lesson:ix1fbf2b-version"
+            ]
+          }
+        ],
+        "rationale": [
+          "通过共同运算比较理解等式性质"
+        ],
+        "mathClaims": [
+          {
+            "left": "x+1-1",
+            "right": "x"
+          }
+        ]
+      },
+      "materials": [
+        {
+          "id": "ix1fbf2b-unit:b2e21988ce",
+          "url": "/#/source?unit=ix1fbf2b-unit",
+          "kind": "material",
+          "label": "第1段",
+          "score": 1.561703,
+          "title": "团队自编共同运算案例",
+          "caseId": "case-89ba8dbf75264729a6b7705f195c6415",
+          "unitId": "ix1fbf2b-unit",
+          "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+          "bm25Score": 1.561703,
+          "materialId": "ix1fbf2b-material",
+          "caseVersionId": "version-7be0850abbe245c9b25b6ef771367809"
+        }
+      ],
+      "retrieval": {
+        "mode": "search",
+        "query": "不明白等式两边为什么要共同变化，设计引导活动 等式性质",
+        "method": "field-bm25+knowledge+context",
+        "variant": "B3",
+        "warnings": [
+          "知识点名称或别名存在歧义，请选择明确知识点。"
+        ],
+        "elapsedMs": 6.561,
+        "matchedCount": 5,
+        "rerankApplied": false,
+        "totalDocuments": 8,
+        "algorithmVersion": "teaching-context-v1",
+        "eligibleDocuments": 8,
+        "queryUnderstanding": {
+          "scenario": "activity_design",
+          "knowledge": [
+            {
+              "id": "b",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "cl-02363a-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "cl-2b94a8-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "cl-3f2657-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "cl-60a756-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "cl-843f70-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "cl-8a3da5-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "cl-94bfdc-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "cl-bd1f8f-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-028179-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-09f353-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-1f3c22-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-36dca6-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-4a631b-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-6d831e-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-8c34f0-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-9d4f78-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-ac1ec8-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-dbe65c-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-e77026-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-f099fb-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "e-f4e977-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-06d5ea72-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-08c338bb-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-120e687b-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-3d1b792b-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-43754ccf-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-44ad5122-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-507067a3-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-6b59cd5a-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-7bdc9d2e-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-7f421fc6-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-8cc27400-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-9241a347-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-98115663-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-aa7b6c08-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-aedd6a16-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-d00bfd9f-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-f7501b1d-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "i-fad24059-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ix1fbf2b-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ix46d75d-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ix4929d6-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ix7de8a1-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ix8afbf9-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ix996724-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ixc0838f-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ixe3cb59-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "ixe65949-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-014883a2-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-2391d2bd-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-730c7467-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-7b21529a-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-8f0ae8be-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-95f21ec9-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-b462f7f0-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-c9c72307-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-d39351c9-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-f1a3bf42-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "m-fca01b50-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-273b25a5-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-3f23a41f-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-5774e4a0-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-70abbb64-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-7b37df2b-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-90d93104-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-97787642-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-9d61bf67-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-c8ade9cb-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-ddd83fcc-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-ec45cd1f-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "r-f06d3f2d-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-068f5f17-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-08019146-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-1035038f-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-1c8469ff-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-4de874e4-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-989c5897-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-9ccea5e8-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-b333abea-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-b52b5b3e-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "teach-caddd153-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-04d6f605-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-12d7d01a-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-19c9fd8d-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-24f94f55-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-7809a2cc-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-84583678-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-bd16a7a7-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-c5134651-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-cbd3e8a7-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "tutor-f49a99ca-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "u-39bffa-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "u-52fad4-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "u-5f1aed-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "u-b12fc1-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "u-cdc7fa-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            },
+            {
+              "id": "u-e80f3b-kp",
+              "name": "等式性质",
+              "source": "name",
+              "matchedNames": [
+                "等式性质"
+              ]
+            }
+          ],
+          "expansions": [
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "b"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "cl-02363a-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "cl-2b94a8-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "cl-3f2657-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "cl-60a756-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "cl-843f70-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "cl-8a3da5-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "cl-94bfdc-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "cl-bd1f8f-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-028179-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-09f353-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-1f3c22-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-36dca6-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-4a631b-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-6d831e-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-8c34f0-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-9d4f78-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-ac1ec8-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-dbe65c-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-e77026-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-f099fb-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "e-f4e977-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-06d5ea72-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-08c338bb-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-120e687b-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-3d1b792b-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-43754ccf-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-44ad5122-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-507067a3-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-6b59cd5a-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-7bdc9d2e-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-7f421fc6-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-8cc27400-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-9241a347-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-98115663-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-aa7b6c08-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-aedd6a16-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-d00bfd9f-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-f7501b1d-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "i-fad24059-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ix1fbf2b-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ix46d75d-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ix4929d6-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ix7de8a1-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ix8afbf9-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ix996724-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ixc0838f-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ixe3cb59-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "ixe65949-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-014883a2-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-2391d2bd-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-730c7467-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-7b21529a-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-8f0ae8be-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-95f21ec9-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-b462f7f0-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-c9c72307-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-d39351c9-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-f1a3bf42-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "m-fca01b50-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-273b25a5-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-3f23a41f-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-5774e4a0-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-70abbb64-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-7b37df2b-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-90d93104-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-97787642-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-9d61bf67-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-c8ade9cb-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-ddd83fcc-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-ec45cd1f-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "r-f06d3f2d-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-068f5f17-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-08019146-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-1035038f-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-1c8469ff-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-4de874e4-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-989c5897-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-9ccea5e8-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-b333abea-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-b52b5b3e-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "teach-caddd153-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-04d6f605-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-12d7d01a-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-19c9fd8d-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-24f94f55-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-7809a2cc-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-84583678-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-bd16a7a7-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-c5134651-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-cbd3e8a7-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "tutor-f49a99ca-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "u-39bffa-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "u-52fad4-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "u-5f1aed-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "u-b12fc1-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "u-cdc7fa-kp"
+            },
+            {
+              "text": "等式性质",
+              "source": "name",
+              "knowledgeId": "u-e80f3b-kp"
+            }
+          ],
+          "normalizedQuery": "不明白等式两边为什么要共同变化,设计引导活动 等式性质"
+        }
+      },
+      "startedAt": "2026-11-13T18:05:41.269206+00:00",
+      "modelCalls": 1,
+      "textQuality": {
+        "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查",
+        "status": "passed",
+        "warnings": []
+      },
+      "verification": {
+        "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+        "claims": [
+          {
+            "left": "x+1-1",
+            "right": "x",
+            "method": "表达式等价",
+            "status": "verified"
+          }
+        ],
+        "status": "verified",
+        "structure": "passed",
+        "references": "passed",
+        "goalTermsOverlap": true,
+        "humanReviewRequired": true
+      },
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "budgetStartedAt": "2026-11-13T18:05:41.269231+00:00",
+      "workflowVersion": "teaching-plan-v1",
+      "experienceDecision": {
+        "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+        "schema": 1,
+        "fallback": false,
+        "rejected": [
+          {
+            "reasons": [
+              "知识点未明确关联"
+            ],
+            "versionId": "version-f597ef9a96f848f8bec2e35a1d76a6be"
+          },
+          {
+            "reasons": [
+              "知识点未明确关联"
+            ],
+            "versionId": "version-8fdb0f700c5f4831921f702d68df4bd7"
+          },
+          {
+            "reasons": [
+              "知识点未明确关联"
+            ],
+            "versionId": "version-96260590d7a24a26bfaeab174b0d042e"
+          }
+        ],
+        "selected": [
+          {
+            "id": "case-89ba8dbf75264729a6b7705f195c6415",
+            "method": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+            "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+            "version": 1,
+            "strategy": "hint",
+            "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+            "conditions": [],
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "effectCheck": "使用另一组数量独立解释",
+            "evidenceIds": [
+              "current:request"
+            ],
+            "diagnosticBasis": "让学生描述等式两边的变化",
+            "matchedDifficultyTerms": [
+              "不明",
+              "两边",
+              "为什",
+              "么要",
+              "什么",
+              "共同",
+              "变化",
+              "同变",
+              "式两",
+              "明白",
+              "白等",
+              "等式",
+              "要共",
+              "边为"
+            ]
+          }
+        ]
+      }
+    },
+    "attemptNumber": 1,
+    "retryCount": 0,
+    "createdAt": "2026-11-13T18:05:41Z",
+    "updatedAt": "2026-11-13T18:05:42Z",
+    "input": {
+      "task": "不明白等式两边为什么要共同变化，设计引导活动",
+      "label": "不明白等式两边为什么要共同变化，设计引导活动",
+      "lesson": {
+        "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+        "grade": "七年级",
+        "title": "等式性质",
+        "blocks": [
+          {
+            "id": "eq-intro",
+            "type": "explanation",
+            "title": "相等的两边",
+            "content": "等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。",
+            "required": true
+          },
+          {
+            "id": "eq-balance",
+            "type": "activity",
+            "title": "让天平两边一起变化",
+            "content": "天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+            "activity": {
+              "max": 10,
+              "base": 5,
+              "step": 1,
+              "type": "balance"
+            },
+            "required": true
+          },
+          {
+            "id": "eq-add-sub",
+            "type": "explanation",
+            "title": "同加、同减",
+            "content": "若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。",
+            "required": true
+          },
+          {
+            "id": "eq-example-add",
+            "type": "example",
+            "title": "例题：消去减去的数",
+            "content": "x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+            "required": true
+          },
+          {
+            "id": "eq-practice",
+            "type": "practice",
+            "title": "随堂练习",
+            "content": "每一步都说明两边进行了什么运算。",
+            "required": true,
+            "questionIds": [
+              "eq-practice-add",
+              "eq-practice-sub"
+            ]
+          },
+          {
+            "id": "eq-mul-div",
+            "type": "explanation",
+            "title": "同乘、同除的条件",
+            "content": "若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。",
+            "required": true
+          },
+          {
+            "id": "eq-example-div",
+            "type": "example",
+            "title": "例题：共同除以非零数",
+            "content": "3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。",
+            "required": true
+          },
+          {
+            "id": "eq-check",
+            "type": "check",
+            "title": "独立检查",
+            "content": "独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+            "required": true,
+            "questionIds": [
+              "eq-check-divide",
+              "eq-check-multiply"
+            ]
+          }
+        ],
+        "caseId": null,
+        "source": "项目自编首课；教学示例，未经真实教师试用",
+        "unitId": null,
+        "subject": "数学",
+        "version": 1,
+        "duration": 35,
+        "lessonId": "ix1fbf2b-lesson",
+        "questions": [
+          {
+            "id": "eq-practice-add",
+            "hint": "把两边都写成加3后的算式。",
+            "kind": "practice",
+            "type": "expression",
+            "answer": "8",
+            "prompt": "两边同时加3，x等于多少？",
+            "equation": "x - 3 = 5",
+            "feedback": [
+              {
+                "answer": "5",
+                "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+              }
+            ],
+            "explanation": "x - 3 + 3 = 5 + 3，所以x = 8。",
+            "knowledgeIds": [
+              "ix1fbf2b-kp"
+            ]
+          },
+          {
+            "id": "eq-practice-sub",
+            "hint": "只减左边会破坏相等关系。",
+            "kind": "practice",
+            "type": "expression",
+            "answer": "7",
+            "prompt": "两边同时减4，y等于多少？",
+            "equation": "y + 4 = 11",
+            "feedback": [
+              {
+                "answer": "5",
+                "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+              }
+            ],
+            "explanation": "y + 4 - 4 = 11 - 4，所以y = 7。",
+            "knowledgeIds": [
+              "ix1fbf2b-kp"
+            ]
+          },
+          {
+            "id": "eq-check-divide",
+            "hint": "3不等于0，两边同除以3。",
+            "kind": "check",
+            "type": "expression",
+            "answer": "6",
+            "prompt": "求z，并解释两边为什么可以同时除以3。",
+            "equation": "3z = 18",
+            "feedback": [
+              {
+                "answer": "5",
+                "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+              }
+            ],
+            "explanation": "3z ÷ 3 = 18 ÷ 3，所以z = 6。",
+            "knowledgeIds": [
+              "ix1fbf2b-kp"
+            ]
+          },
+          {
+            "id": "eq-check-multiply",
+            "hint": "两边同时乘4。",
+            "kind": "check",
+            "type": "expression",
+            "answer": "12",
+            "prompt": "求w，并写出两边共同进行的运算。",
+            "equation": "w / 4 = 3",
+            "feedback": [
+              {
+                "answer": "5",
+                "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+              }
+            ],
+            "explanation": "(w / 4) × 4 = 3 × 4，所以w = 12。",
+            "knowledgeIds": [
+              "ix1fbf2b-kp"
+            ]
+          },
+          {
+            "id": "eq-new-combine",
+            "hint": "先两边除以2，再两边加1。",
+            "kind": "replacement",
+            "type": "expression",
+            "answer": "6",
+            "prompt": "先使a - 1单独在一边，再求a。",
+            "equation": "2(a - 1) = 10",
+            "feedback": [
+              {
+                "answer": "5",
+                "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+              }
+            ],
+            "explanation": "a - 1 = 5，所以a = 6。",
+            "knowledgeIds": [
+              "ix1fbf2b-kp"
+            ]
+          },
+          {
+            "id": "eq-new-negative",
+            "hint": "两边同时乘-3，负数关系用公式表示。",
+            "kind": "replacement",
+            "type": "expression",
+            "answer": "-6",
+            "prompt": "求b，说明两边共同进行的运算。",
+            "equation": "b / (-3) = 2",
+            "feedback": [
+              {
+                "answer": "5",
+                "message": "检查是否只改变了等式一边；左右两边应进行同一种运算。"
+              }
+            ],
+            "explanation": "b = 2 × (-3) = -6。",
+            "knowledgeIds": [
+              "ix1fbf2b-kp"
+            ]
+          }
+        ],
+        "versionId": "ix1fbf2b-version",
+        "publishedAt": "2026-11-13T18:05:38Z",
+        "knowledgeIds": [
+          "ix1fbf2b-kp"
+        ],
+        "caseVersionId": null,
+        "prerequisiteIds": []
+      },
+      "draftId": null,
+      "ownerId": "ix1fbf2b-t1",
+      "lessonId": "ix1fbf2b-lesson",
+      "taskType": "activity",
+      "documents": [
+        {
+          "id": "case-3858d14a7f3a4d8ebbb900adaf8e179d",
+          "grade": "七年级",
+          "title": "等式两边共同变化",
+          "author": "",
+          "source": "",
+          "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。修订说明",
+          "subject": "数学",
+          "version": 2,
+          "versionId": "version-f597ef9a96f848f8bec2e35a1d76a6be",
+          "experience": {
+            "steps": "列数量；同时拿走；比较剩余",
+            "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+            "diagnosis": "让学生描述等式两边的变化",
+            "difficulty": "不明白等式两边为什么要共同变化",
+            "effectCheck": "使用另一组数量独立解释"
+          },
+          "provenance": {
+            "kind": "team",
+            "author": "项目自编夹具",
+            "evidence": "本轮团队自编材料",
+            "authorization": "internal",
+            "authorizationEvidence": "仅供本地工程验收"
+          },
+          "references": [
+            {
+              "label": "第1段",
+              "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "author": "项目工程夹具",
+              "source": "自编工程验收，不代表真实名师经验",
+              "unitId": "ix4929d6-unit",
+              "sourceUrl": "",
+              "materialId": "ix4929d6-material",
+              "materialTitle": "团队自编共同运算案例"
+            }
+          ],
+          "publishedAt": "2026-11-13T18:03:12Z",
+          "knowledgeIds": [
+            "ix4929d6-kp"
+          ],
+          "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+          "knowledgeLinks": [
+            {
+              "id": "ix4929d6-kp",
+              "name": "等式性质"
+            }
+          ],
+          "experienceReview": {
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "reviewedAt": "2026-11-13T18:03:12.556175Z",
+            "reviewerId": "ix4929d6-a"
+          }
+        },
+        {
+          "id": "case-3e919787d067400388a861862dd4",
+          "title": "收藏合成案例",
+          "source": "合成",
+          "content": "固定版本原文",
+          "version": 1,
+          "versionId": "v-case-3e919787d067400388a861862dd4",
+          "provenance": {
+            "kind": "unknown",
+            "author": "",
+            "evidence": "",
+            "authorization": "unknown",
+            "authorizationEvidence": ""
+          },
+          "publishedAt": "2026-11-13T17:52:01Z",
+          "retrievalText": "{}"
+        },
+        {
+          "id": "case-46658c17d9694abdb1084e553ce2",
+          "title": "收藏合成案例",
+          "source": "合成",
+          "content": "固定版本原文",
+          "version": 1,
+          "versionId": "v-case-46658c17d9694abdb1084e553ce2",
+          "provenance": {
+            "kind": "unknown",
+            "author": "",
+            "evidence": "",
+            "authorization": "unknown",
+            "authorizationEvidence": ""
+          },
+          "publishedAt": "2026-11-13T17:52:01Z",
+          "retrievalText": "{}"
+        },
+        {
+          "id": "case-89ba8dbf75264729a6b7705f195c6415",
+          "grade": "七年级",
+          "title": "等式两边共同变化",
+          "author": "",
+          "source": "",
+          "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+          "subject": "数学",
+          "version": 1,
+          "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+          "experience": {
+            "steps": "列数量；同时拿走；比较剩余",
+            "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+            "diagnosis": "让学生描述等式两边的变化",
+            "difficulty": "不明白等式两边为什么要共同变化",
+            "effectCheck": "使用另一组数量独立解释"
+          },
+          "provenance": {
+            "kind": "team",
+            "author": "项目自编夹具",
+            "evidence": "本轮团队自编材料",
+            "authorization": "internal",
+            "authorizationEvidence": "仅供本地工程验收"
+          },
+          "references": [
+            {
+              "label": "第1段",
+              "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "author": "项目工程夹具",
+              "source": "自编工程验收，不代表真实名师经验",
+              "unitId": "ix1fbf2b-unit",
+              "sourceUrl": "",
+              "materialId": "ix1fbf2b-material",
+              "materialTitle": "团队自编共同运算案例"
+            }
+          ],
+          "publishedAt": "2026-11-13T18:05:39Z",
+          "knowledgeIds": [
+            "ix1fbf2b-kp"
+          ],
+          "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+          "knowledgeLinks": [
+            {
+              "id": "ix1fbf2b-kp",
+              "name": "等式性质"
+            }
+          ],
+          "experienceReview": {
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "reviewedAt": "2026-11-13T18:05:39.500404Z",
+            "reviewerId": "ix1fbf2b-a"
+          }
+        },
+        {
+          "id": "case-92df151670d245b9807913e389ff",
+          "title": "收藏合成案例",
+          "source": "合成",
+          "content": "固定版本原文",
+          "version": 1,
+          "versionId": "v-case-92df151670d245b9807913e389ff",
+          "provenance": {
+            "kind": "unknown",
+            "author": "",
+            "evidence": "",
+            "authorization": "unknown",
+            "authorizationEvidence": ""
+          },
+          "publishedAt": "2026-11-13T17:52:01Z",
+          "retrievalText": "{}"
+        },
+        {
+          "id": "case-9c422fdc3fa447feb8878a8cd38274b6",
+          "grade": "七年级",
+          "title": "等式两边共同变化",
+          "author": "",
+          "source": "",
+          "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。修订说明",
+          "subject": "数学",
+          "version": 2,
+          "versionId": "version-8fdb0f700c5f4831921f702d68df4bd7",
+          "experience": {
+            "steps": "列数量；同时拿走；比较剩余",
+            "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+            "diagnosis": "让学生描述等式两边的变化",
+            "difficulty": "不明白等式两边为什么要共同变化",
+            "effectCheck": "使用另一组数量独立解释"
+          },
+          "provenance": {
+            "kind": "team",
+            "author": "项目自编夹具",
+            "evidence": "本轮团队自编材料",
+            "authorization": "internal",
+            "authorizationEvidence": "仅供本地工程验收"
+          },
+          "references": [
+            {
+              "label": "第1段",
+              "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "author": "项目工程夹具",
+              "source": "自编工程验收，不代表真实名师经验",
+              "unitId": "ixe3cb59-unit",
+              "sourceUrl": "",
+              "materialId": "ixe3cb59-material",
+              "materialTitle": "团队自编共同运算案例"
+            }
+          ],
+          "publishedAt": "2026-11-13T17:56:00Z",
+          "knowledgeIds": [
+            "ixe3cb59-kp"
+          ],
+          "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+          "knowledgeLinks": [
+            {
+              "id": "ixe3cb59-kp",
+              "name": "等式性质"
+            }
+          ],
+          "experienceReview": {
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "reviewedAt": "2026-11-13T17:56:00.204837Z",
+            "reviewerId": "ixe3cb59-a"
+          }
+        },
+        {
+          "id": "case-a3f528c8d6f34234be72ef35c56df604",
+          "grade": "七年级",
+          "title": "等式两边共同变化",
+          "author": "",
+          "source": "",
+          "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。修订说明",
+          "subject": "数学",
+          "version": 2,
+          "versionId": "version-96260590d7a24a26bfaeab174b0d042e",
+          "experience": {
+            "steps": "列数量；同时拿走；比较剩余",
+            "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+            "diagnosis": "让学生描述等式两边的变化",
+            "difficulty": "不明白等式两边为什么要共同变化",
+            "effectCheck": "使用另一组数量独立解释"
+          },
+          "provenance": {
+            "kind": "team",
+            "author": "项目自编夹具",
+            "evidence": "本轮团队自编材料",
+            "authorization": "internal",
+            "authorizationEvidence": "仅供本地工程验收"
+          },
+          "references": [
+            {
+              "label": "第1段",
+              "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "author": "项目工程夹具",
+              "source": "自编工程验收，不代表真实名师经验",
+              "unitId": "ix996724-unit",
+              "sourceUrl": "",
+              "materialId": "ix996724-material",
+              "materialTitle": "团队自编共同运算案例"
+            }
+          ],
+          "publishedAt": "2026-11-13T17:57:07Z",
+          "knowledgeIds": [
+            "ix996724-kp"
+          ],
+          "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+          "knowledgeLinks": [
+            {
+              "id": "ix996724-kp",
+              "name": "等式性质"
+            }
+          ],
+          "experienceReview": {
+            "provenance": {
+              "kind": "team",
+              "author": "项目自编夹具",
+              "evidence": "本轮团队自编材料",
+              "authorization": "internal",
+              "authorizationEvidence": "仅供本地工程验收"
+            },
+            "reviewedAt": "2026-11-13T17:57:07.847033Z",
+            "reviewerId": "ix996724-a"
+          }
+        },
+        {
+          "id": "case-bcffd9f062944e85a387",
+          "title": "自编共同运算案例",
+          "author": "原作者",
+          "source": "项目自编",
+          "content": "出示x−3=5，两边同时加3。",
+          "version": 1,
+          "versionId": "cv-8d2b43ed713c45f68a0b",
+          "provenance": {
+            "kind": "unknown",
+            "author": "",
+            "evidence": "",
+            "authorization": "unknown",
+            "authorizationEvidence": ""
+          },
+          "publishedAt": "2026-11-13T17:52:17Z",
+          "knowledgeIds": [
+            "cl-60a756-kp"
+          ],
+          "retrievalText": "{}"
+        }
+      ],
+      "draftHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "knowledge": [
+        {
+          "id": "a",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "agent-kp",
+          "name": "等式性质（Agent验收）",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "b",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "a"
+          ]
+        },
+        {
+          "id": "cl-02363a-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cl-2b94a8-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cl-3f2657-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cl-60a756-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cl-843f70-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cl-8a3da5-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cl-94bfdc-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "cl-bd1f8f-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-028179-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-09f353-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-1f3c22-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-36dca6-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-4a631b-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-6d831e-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-8c34f0-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-9d4f78-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-ac1ec8-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-dbe65c-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-e77026-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-f099fb-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "e-f4e977-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-06d5ea72-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-08c338bb-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-120e687b-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-3d1b792b-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-43754ccf-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-44ad5122-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-507067a3-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-6b59cd5a-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-7bdc9d2e-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-7f421fc6-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-8cc27400-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-9241a347-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-98115663-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-aa7b6c08-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-aedd6a16-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-d00bfd9f-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-f7501b1d-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "i-fad24059-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ix1fbf2b-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ix46d75d-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ix4929d6-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ix7de8a1-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ix8afbf9-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ix996724-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ixc0838f-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ixe3cb59-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "ixe65949-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-014883a2-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-2391d2bd-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "m-2391d2bd-kp-base"
+          ]
+        },
+        {
+          "id": "m-2391d2bd-kp-base",
+          "name": "前置",
+          "aliases": [],
+          "prerequisites": [
+            "m-2391d2bd-kp-grand"
+          ]
+        },
+        {
+          "id": "m-2391d2bd-kp-grand",
+          "name": "再前置",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-730c7467-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-730c7467-kp-new",
+          "name": "新知识点",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-7b21529a-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-8f0ae8be-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-95f21ec9-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-b462f7f0-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-b462f7f0-kp-next",
+          "name": "后续知识",
+          "aliases": [],
+          "prerequisites": [
+            "m-b462f7f0-kp"
+          ]
+        },
+        {
+          "id": "m-c9c72307-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-d39351c9-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-f1a3bf42-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "m-fca01b50-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-273b25a5-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-3f23a41f-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-5774e4a0-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-70abbb64-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-7b37df2b-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-90d93104-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-97787642-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-9d61bf67-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-c8ade9cb-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-ddd83fcc-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-ec45cd1f-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "r-f06d3f2d-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-068f5f17-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-08019146-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-1035038f-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-1c8469ff-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-4de874e4-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-989c5897-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-9ccea5e8-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-b333abea-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-b52b5b3e-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "teach-caddd153-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-04d6f605-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-04d6f605-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-04d6f605-base"
+          ]
+        },
+        {
+          "id": "tutor-12d7d01a-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-12d7d01a-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-12d7d01a-base"
+          ]
+        },
+        {
+          "id": "tutor-19c9fd8d-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-19c9fd8d-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-19c9fd8d-base"
+          ]
+        },
+        {
+          "id": "tutor-24f94f55-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-24f94f55-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-24f94f55-base"
+          ]
+        },
+        {
+          "id": "tutor-7809a2cc-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-7809a2cc-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-7809a2cc-base"
+          ]
+        },
+        {
+          "id": "tutor-84583678-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-84583678-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-84583678-base"
+          ]
+        },
+        {
+          "id": "tutor-bd16a7a7-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-bd16a7a7-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-bd16a7a7-base"
+          ]
+        },
+        {
+          "id": "tutor-c5134651-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-c5134651-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-c5134651-base"
+          ]
+        },
+        {
+          "id": "tutor-cbd3e8a7-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-cbd3e8a7-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-cbd3e8a7-base"
+          ]
+        },
+        {
+          "id": "tutor-f49a99ca-base",
+          "name": "相等关系",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "tutor-f49a99ca-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": [
+            "tutor-f49a99ca-base"
+          ]
+        },
+        {
+          "id": "u-39bffa-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "u-52fad4-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "u-5f1aed-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "u-b12fc1-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "u-cdc7fa-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        },
+        {
+          "id": "u-e80f3b-kp",
+          "name": "等式性质",
+          "aliases": [],
+          "prerequisites": []
+        }
+      ],
+      "constraints": "",
+      "parentJobId": null,
+      "rewriteBlockId": null,
+      "workflowVersion": "teaching-plan-v1",
+      "qualityRevisionOf": null,
+      "regenerateBlockId": null,
+      "selectedReferences": []
+    },
+    "runs": [
+      {
+        "id": "run-8b5c39d7c35249a8851032dfb97c25f3",
+        "number": 1,
+        "status": "succeeded",
+        "model": "controlled",
+        "provider": "Codex CLI / LangGraph",
+        "error": "",
+        "result": {
+          "plan": {
+            "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+            "title": "受控教学备课",
+            "blocks": [
+              {
+                "id": "eq-intro",
+                "title": "相等的两边",
+                "content": "受控生成：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-balance",
+                "title": "让天平两边一起变化",
+                "content": "受控生成：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-add-sub",
+                "title": "同加、同减",
+                "content": "受控生成：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-example-add",
+                "title": "例题：消去减去的数",
+                "content": "受控生成：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-practice",
+                "title": "随堂练习",
+                "content": "受控生成：每一步都说明两边进行了什么运算。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-mul-div",
+                "title": "同乘、同除的条件",
+                "content": "受控生成：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-example-div",
+                "title": "例题：共同除以非零数",
+                "content": "受控生成：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-check",
+                "title": "独立检查",
+                "content": "受控生成：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              }
+            ],
+            "rationale": [
+              "通过共同运算比较理解等式性质"
+            ],
+            "mathClaims": [
+              {
+                "left": "x+1-1",
+                "right": "x"
+              }
+            ]
+          },
+          "cases": [
+            {
+              "id": "case-89ba8dbf75264729a6b7705f195c6415",
+              "grade": "七年级",
+              "score": 6.237821,
+              "title": "等式两边共同变化",
+              "author": "",
+              "source": "",
+              "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "subject": "数学",
+              "version": 1,
+              "bm25Score": 15.617287,
+              "textScore": 5.667821,
+              "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+              "experience": {
+                "steps": "列数量；同时拿走；比较剩余",
+                "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+                "diagnosis": "让学生描述等式两边的变化",
+                "difficulty": "不明白等式两边为什么要共同变化",
+                "effectCheck": "使用另一组数量独立解释"
+              },
+              "provenance": {
+                "kind": "team",
+                "author": "项目自编夹具",
+                "evidence": "本轮团队自编材料",
+                "authorization": "internal",
+                "authorizationEvidence": "仅供本地工程验收"
+              },
+              "references": [
+                {
+                  "label": "第1段",
+                  "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+                  "author": "项目工程夹具",
+                  "source": "自编工程验收，不代表真实名师经验",
+                  "unitId": "ix1fbf2b-unit",
+                  "sourceUrl": "",
+                  "materialId": "ix1fbf2b-material",
+                  "materialTitle": "团队自编共同运算案例"
+                }
+              ],
+              "publishedAt": "2026-11-13T18:05:39Z",
+              "contextScore": 0.12,
+              "knowledgeIds": [
+                "ix1fbf2b-kp"
+              ],
+              "matchReasons": [
+                "直接关联目标知识点",
+                "匹配学生困难、标题、知识点",
+                "与课时适用信息一致"
+              ],
+              "matchedFields": [
+                {
+                  "bm25": 3.75542,
+                  "field": "title",
+                  "label": "标题",
+                  "score": 1.605942,
+                  "matchedTerms": [
+                    "两边",
+                    "共同",
+                    "变化",
+                    "同变",
+                    "式两",
+                    "等式"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 1.16333,
+                  "field": "knowledgePoints",
+                  "label": "知识点",
+                  "score": 1.349109,
+                  "matchedTerms": [
+                    "式性",
+                    "性质",
+                    "等式"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 6.692456,
+                  "field": "difficulty",
+                  "label": "学生困难",
+                  "score": 1.762732,
+                  "matchedTerms": [
+                    "不明",
+                    "两边",
+                    "为什",
+                    "么要",
+                    "什么",
+                    "共同",
+                    "变化",
+                    "同变",
+                    "式两",
+                    "明白",
+                    "白等",
+                    "等式",
+                    "要共",
+                    "边为"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 2.093951,
+                  "field": "content",
+                  "label": "正文",
+                  "score": 0.684364,
+                  "matchedTerms": [
+                    "两边",
+                    "变化",
+                    "式两",
+                    "等式"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 1.91213,
+                  "field": "references",
+                  "label": "原文摘录",
+                  "score": 0.265674,
+                  "matchedTerms": [
+                    "两边",
+                    "变化",
+                    "式两",
+                    "等式"
+                  ],
+                  "contextMatched": true
+                }
+              ],
+              "retrievalText": "{\"steps\": \"列数量；同时拿走；比较剩余\", \"strategy\": \"先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量\", \"diagnosis\": \"让学生描述等式两边的变化\", \"difficulty\": \"不明白等式两边为什么要共同变化\", \"effectCheck\": \"使用另一组数量独立解释\"}",
+              "knowledgeLinks": [
+                {
+                  "id": "ix1fbf2b-kp",
+                  "name": "等式性质"
+                }
+              ],
+              "knowledgeScore": 0.45,
+              "experienceReview": {
+                "provenance": {
+                  "kind": "team",
+                  "author": "项目自编夹具",
+                  "evidence": "本轮团队自编材料",
+                  "authorization": "internal",
+                  "authorizationEvidence": "仅供本地工程验收"
+                },
+                "reviewedAt": "2026-11-13T18:05:39.500404Z",
+                "reviewerId": "ix1fbf2b-a"
+              },
+              "knowledgeMatches": [
+                {
+                  "id": "ix1fbf2b-kp",
+                  "name": "等式性质",
+                  "relation": "direct"
+                }
+              ]
+            }
+          ],
+          "model": "controlled",
+          "steps": [
+            {
+              "key": "context",
+              "tool": "curriculum.read",
+              "title": "理解任务与课时",
+              "output": {
+                "method": "显式选择或有限关键词规则；课时由服务端读取",
+                "recognizedType": "活动设计",
+                "lessonVersionId": "ix1fbf2b-version"
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-13T18:05:41.291958+00:00",
+              "finishedAt": "2026-11-13T18:05:41.340302+00:00"
+            },
+            {
+              "key": "cases",
+              "tool": "retrieval.bm25",
+              "title": "检索教学案例",
+              "output": {
+                "rerank": false,
+                "versions": [
+                  {
+                    "id": "case-89ba8dbf75264729a6b7705f195c6415",
+                    "versionId": "version-7be0850abbe245c9b25b6ef771367809"
+                  }
+                ],
+                "caseCount": 1
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-13T18:05:41.375966+00:00",
+              "finishedAt": "2026-11-13T18:05:41.419718+00:00"
+            },
+            {
+              "key": "materials",
+              "tool": "materials.read",
+              "title": "定位原文材料",
+              "output": {
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version",
+                  "ix1fbf2b-unit:b2e21988ce"
+                ],
+                "materialCount": 1
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-13T18:05:41.455792+00:00",
+              "finishedAt": "2026-11-13T18:05:41.605827+00:00"
+            },
+            {
+              "key": "generate",
+              "tool": "codex.lesson_plan",
+              "title": "生成备课建议",
+              "output": {
+                "model": "controlled",
+                "origin": "模型生成，待教师核对",
+                "provider": "controlled",
+                "onlyBlock": null,
+                "blockCount": 8
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-13T18:05:41.661830+00:00",
+              "finishedAt": "2026-11-13T18:05:41.754227+00:00"
+            },
+            {
+              "key": "validate",
+              "tool": "plan.validate",
+              "title": "核验结构与依据",
+              "output": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [
+                  {
+                    "left": "x+1-1",
+                    "right": "x",
+                    "method": "表达式等价",
+                    "status": "verified"
+                  }
+                ],
+                "status": "verified",
+                "structure": "passed",
+                "references": "passed",
+                "goalTermsOverlap": true,
+                "humanReviewRequired": true
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-13T18:05:41.809697+00:00",
+              "finishedAt": "2026-11-13T18:05:41.895433+00:00"
+            },
+            {
+              "key": "ready",
+              "tool": "teacher.review",
+              "title": "等待教师确认",
+              "output": {
+                "next": "教师编辑、确认后保存备课草稿；不自动发布"
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-13T18:05:41.932774+00:00",
+              "finishedAt": "2026-11-13T18:05:41.999242+00:00"
+            }
+          ],
+          "context": {
+            "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+            "task": "不明白等式两边为什么要共同变化，设计引导活动",
+            "grade": "七年级",
+            "subject": "数学",
+            "lessonId": "ix1fbf2b-lesson",
+            "taskType": "activity",
+            "taskLabel": "活动设计",
+            "constraints": "",
+            "lessonTitle": "等式性质",
+            "knowledgeIds": [
+              "ix1fbf2b-kp"
+            ],
+            "lessonVersionId": "ix1fbf2b-version",
+            "prerequisiteIds": []
+          },
+          "decision": "pending",
+          "editable": {
+            "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+            "title": "受控教学备课",
+            "blocks": [
+              {
+                "id": "eq-intro",
+                "title": "相等的两边",
+                "content": "受控生成：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-balance",
+                "title": "让天平两边一起变化",
+                "content": "受控生成：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-add-sub",
+                "title": "同加、同减",
+                "content": "受控生成：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-example-add",
+                "title": "例题：消去减去的数",
+                "content": "受控生成：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-practice",
+                "title": "随堂练习",
+                "content": "受控生成：每一步都说明两边进行了什么运算。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-mul-div",
+                "title": "同乘、同除的条件",
+                "content": "受控生成：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-example-div",
+                "title": "例题：共同除以非零数",
+                "content": "受控生成：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-check",
+                "title": "独立检查",
+                "content": "受控生成：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              }
+            ],
+            "rationale": [
+              "通过共同运算比较理解等式性质"
+            ],
+            "mathClaims": [
+              {
+                "left": "x+1-1",
+                "right": "x"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "id": "lesson:ix1fbf2b-version",
+              "url": "/#/courses",
+              "kind": "lesson",
+              "title": "等式性质",
+              "content": "相等的两边：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。\n让天平两边一起变化：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。\n同加、同减：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。\n例题：消去减去的数：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。\n随堂练习：每一步都说明两边进行了什么运算。\n同乘、同除的条件：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。\n例题：共同除以非零数：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。\n独立检查：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+              "versionId": "ix1fbf2b-version"
+            },
+            {
+              "id": "ix1fbf2b-unit:b2e21988ce",
+              "url": "/#/source?unit=ix1fbf2b-unit",
+              "kind": "material",
+              "label": "第1段",
+              "score": 1.561703,
+              "title": "团队自编共同运算案例",
+              "caseId": "case-89ba8dbf75264729a6b7705f195c6415",
+              "unitId": "ix1fbf2b-unit",
+              "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "bm25Score": 1.561703,
+              "materialId": "ix1fbf2b-material",
+              "caseVersionId": "version-7be0850abbe245c9b25b6ef771367809"
+            }
+          ],
+          "warnings": [],
+          "generated": {
+            "goal": "理解等式两边共同变化的条件，能用同加、同减、同乘和同除以非零数求未知数，并解释每一步。",
+            "title": "受控教学备课",
+            "blocks": [
+              {
+                "id": "eq-intro",
+                "title": "相等的两边",
+                "content": "受控生成：等式表示两边的值相等，例如5 = 5。只改变一边通常不能保持相等。先预测两边同时增加相同数量后会怎样。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-balance",
+                "title": "让天平两边一起变化",
+                "content": "受控生成：天平两边各有5单位。两边同时增加相同的正量，观察结果，再用自己的话解释。此实物类比只展示非负数量。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-add-sub",
+                "title": "同加、同减",
+                "content": "受控生成：若a = b，那么a + c = b + c，a - c = b - c。c可以为正数、负数或零。关键是两边同时进行相同运算。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-example-add",
+                "title": "例题：消去减去的数",
+                "content": "受控生成：x - 3 = 5\n两边同时加3：x - 3 + 3 = 5 + 3\n得到x = 8。把8代回，8 - 3 = 5，成立。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-practice",
+                "title": "随堂练习",
+                "content": "受控生成：每一步都说明两边进行了什么运算。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-mul-div",
+                "title": "同乘、同除的条件",
+                "content": "受控生成：若a = b，则ac = bc。若c ≠ 0，则a / c = b / c。除数不能为零。\n等式两边同乘0虽仍相等，却可能丢失原方程的信息：x = 2乘0得到0 = 0，不能从0 = 0恢复x = 2。解方程时可逆变形必须保留条件。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-example-div",
+                "title": "例题：共同除以非零数",
+                "content": "受控生成：3z = 18，两边同时除以3：z = 6。\nw / 4 = 3，两边同时乘4：w = 12。\n负数也可参与运算：若b / (-3) = 2，则b = -6；用公式表达，不把负重量放到天平上。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              },
+              {
+                "id": "eq-check",
+                "title": "独立检查",
+                "content": "受控生成：独立作答并解释。需要帮助可以先学习当前题，再换新题重新检查。",
+                "evidenceIds": [
+                  "lesson:ix1fbf2b-version"
+                ]
+              }
+            ],
+            "rationale": [
+              "通过共同运算比较理解等式性质"
+            ],
+            "mathClaims": [
+              {
+                "left": "x+1-1",
+                "right": "x"
+              }
+            ]
+          },
+          "materials": [
+            {
+              "id": "ix1fbf2b-unit:b2e21988ce",
+              "url": "/#/source?unit=ix1fbf2b-unit",
+              "kind": "material",
+              "label": "第1段",
+              "score": 1.561703,
+              "title": "团队自编共同运算案例",
+              "caseId": "case-89ba8dbf75264729a6b7705f195c6415",
+              "unitId": "ix1fbf2b-unit",
+              "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+              "bm25Score": 1.561703,
+              "materialId": "ix1fbf2b-material",
+              "caseVersionId": "version-7be0850abbe245c9b25b6ef771367809"
+            }
+          ],
+          "retrieval": {
+            "mode": "search",
+            "query": "不明白等式两边为什么要共同变化，设计引导活动 等式性质",
+            "method": "field-bm25+knowledge+context",
+            "variant": "B3",
+            "warnings": [
+              "知识点名称或别名存在歧义，请选择明确知识点。"
+            ],
+            "elapsedMs": 6.561,
+            "matchedCount": 5,
+            "rerankApplied": false,
+            "totalDocuments": 8,
+            "algorithmVersion": "teaching-context-v1",
+            "eligibleDocuments": 8,
+            "queryUnderstanding": {
+              "scenario": "activity_design",
+              "knowledge": [
+                {
+                  "id": "b",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "cl-02363a-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "cl-2b94a8-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "cl-3f2657-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "cl-60a756-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "cl-843f70-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "cl-8a3da5-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "cl-94bfdc-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "cl-bd1f8f-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-028179-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-09f353-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-1f3c22-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-36dca6-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-4a631b-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-6d831e-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-8c34f0-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-9d4f78-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-ac1ec8-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-dbe65c-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-e77026-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-f099fb-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "e-f4e977-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-06d5ea72-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-08c338bb-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-120e687b-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-3d1b792b-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-43754ccf-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-44ad5122-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-507067a3-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-6b59cd5a-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-7bdc9d2e-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-7f421fc6-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-8cc27400-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-9241a347-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-98115663-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-aa7b6c08-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-aedd6a16-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-d00bfd9f-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-f7501b1d-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "i-fad24059-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ix1fbf2b-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ix46d75d-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ix4929d6-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ix7de8a1-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ix8afbf9-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ix996724-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ixc0838f-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ixe3cb59-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "ixe65949-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-014883a2-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-2391d2bd-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-730c7467-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-7b21529a-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-8f0ae8be-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-95f21ec9-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-b462f7f0-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-c9c72307-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-d39351c9-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-f1a3bf42-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "m-fca01b50-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-273b25a5-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-3f23a41f-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-5774e4a0-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-70abbb64-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-7b37df2b-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-90d93104-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-97787642-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-9d61bf67-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-c8ade9cb-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-ddd83fcc-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-ec45cd1f-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "r-f06d3f2d-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-068f5f17-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-08019146-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-1035038f-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-1c8469ff-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-4de874e4-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-989c5897-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-9ccea5e8-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-b333abea-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-b52b5b3e-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "teach-caddd153-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-04d6f605-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-12d7d01a-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-19c9fd8d-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-24f94f55-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-7809a2cc-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-84583678-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-bd16a7a7-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-c5134651-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-cbd3e8a7-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "tutor-f49a99ca-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "u-39bffa-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "u-52fad4-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "u-5f1aed-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "u-b12fc1-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "u-cdc7fa-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                },
+                {
+                  "id": "u-e80f3b-kp",
+                  "name": "等式性质",
+                  "source": "name",
+                  "matchedNames": [
+                    "等式性质"
+                  ]
+                }
+              ],
+              "expansions": [
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "b"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "cl-02363a-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "cl-2b94a8-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "cl-3f2657-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "cl-60a756-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "cl-843f70-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "cl-8a3da5-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "cl-94bfdc-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "cl-bd1f8f-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-028179-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-09f353-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-1f3c22-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-36dca6-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-4a631b-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-6d831e-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-8c34f0-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-9d4f78-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-ac1ec8-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-dbe65c-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-e77026-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-f099fb-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "e-f4e977-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-06d5ea72-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-08c338bb-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-120e687b-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-3d1b792b-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-43754ccf-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-44ad5122-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-507067a3-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-6b59cd5a-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-7bdc9d2e-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-7f421fc6-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-8cc27400-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-9241a347-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-98115663-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-aa7b6c08-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-aedd6a16-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-d00bfd9f-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-f7501b1d-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "i-fad24059-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ix1fbf2b-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ix46d75d-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ix4929d6-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ix7de8a1-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ix8afbf9-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ix996724-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ixc0838f-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ixe3cb59-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "ixe65949-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-014883a2-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-2391d2bd-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-730c7467-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-7b21529a-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-8f0ae8be-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-95f21ec9-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-b462f7f0-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-c9c72307-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-d39351c9-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-f1a3bf42-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "m-fca01b50-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-273b25a5-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-3f23a41f-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-5774e4a0-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-70abbb64-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-7b37df2b-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-90d93104-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-97787642-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-9d61bf67-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-c8ade9cb-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-ddd83fcc-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-ec45cd1f-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "r-f06d3f2d-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-068f5f17-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-08019146-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-1035038f-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-1c8469ff-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-4de874e4-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-989c5897-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-9ccea5e8-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-b333abea-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-b52b5b3e-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "teach-caddd153-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-04d6f605-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-12d7d01a-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-19c9fd8d-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-24f94f55-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-7809a2cc-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-84583678-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-bd16a7a7-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-c5134651-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-cbd3e8a7-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "tutor-f49a99ca-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "u-39bffa-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "u-52fad4-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "u-5f1aed-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "u-b12fc1-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "u-cdc7fa-kp"
+                },
+                {
+                  "text": "等式性质",
+                  "source": "name",
+                  "knowledgeId": "u-e80f3b-kp"
+                }
+              ],
+              "normalizedQuery": "不明白等式两边为什么要共同变化,设计引导活动 等式性质"
+            }
+          },
+          "startedAt": "2026-11-13T18:05:41.269206+00:00",
+          "modelCalls": 1,
+          "textQuality": {
+            "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查",
+            "status": "passed",
+            "warnings": []
+          },
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [
+              {
+                "left": "x+1-1",
+                "right": "x",
+                "method": "表达式等价",
+                "status": "verified"
+              }
+            ],
+            "status": "verified",
+            "structure": "passed",
+            "references": "passed",
+            "goalTermsOverlap": true,
+            "humanReviewRequired": true
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "budgetStartedAt": "2026-11-13T18:05:41.269231+00:00",
+          "workflowVersion": "teaching-plan-v1",
+          "experienceDecision": {
+            "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+            "schema": 1,
+            "fallback": false,
+            "rejected": [
+              {
+                "reasons": [
+                  "知识点未明确关联"
+                ],
+                "versionId": "version-f597ef9a96f848f8bec2e35a1d76a6be"
+              },
+              {
+                "reasons": [
+                  "知识点未明确关联"
+                ],
+                "versionId": "version-8fdb0f700c5f4831921f702d68df4bd7"
+              },
+              {
+                "reasons": [
+                  "知识点未明确关联"
+                ],
+                "versionId": "version-96260590d7a24a26bfaeab174b0d042e"
+              }
+            ],
+            "selected": [
+              {
+                "id": "case-89ba8dbf75264729a6b7705f195c6415",
+                "method": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+                "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                "version": 1,
+                "strategy": "hint",
+                "versionId": "version-7be0850abbe245c9b25b6ef771367809",
+                "conditions": [],
+                "provenance": {
+                  "kind": "team",
+                  "author": "项目自编夹具",
+                  "evidence": "本轮团队自编材料",
+                  "authorization": "internal",
+                  "authorizationEvidence": "仅供本地工程验收"
+                },
+                "effectCheck": "使用另一组数量独立解释",
+                "evidenceIds": [
+                  "current:request"
+                ],
+                "diagnosticBasis": "让学生描述等式两边的变化",
+                "matchedDifficultyTerms": [
+                  "不明",
+                  "两边",
+                  "为什",
+                  "么要",
+                  "什么",
+                  "共同",
+                  "变化",
+                  "同变",
+                  "式两",
+                  "明白",
+                  "白等",
+                  "等式",
+                  "要共",
+                  "边为"
+                ]
+              }
+            ]
+          }
+        },
+        "startedAt": "2026-11-13T18:05:41Z",
+        "endedAt": "2026-11-13T18:05:42Z"
+      }
+    ]
+  },
+  "newVersion": {
+    "grade": "七年级",
+    "title": "等式两边共同变化",
+    "author": "",
+    "source": "",
+    "content": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。修订说明",
+    "subject": "数学",
+    "experience": {
+      "steps": "列数量；同时拿走；比较剩余",
+      "strategy": "先列两组相等数量，再让学生分别拿走同样数量，比较剩余数量",
+      "diagnosis": "让学生描述等式两边的变化",
+      "difficulty": "不明白等式两边为什么要共同变化",
+      "effectCheck": "使用另一组数量独立解释"
+    },
+    "provenance": {
+      "kind": "team",
+      "author": "项目自编夹具",
+      "evidence": "本轮团队自编材料",
+      "authorization": "internal",
+      "authorizationEvidence": "仅供本地工程验收"
+    },
+    "references": [
+      {
+        "label": "第1段",
+        "quote": "先让学生列出等式两边的数量，再比较同时减去相同数量后的变化。",
+        "author": "项目工程夹具",
+        "source": "自编工程验收，不代表真实名师经验",
+        "unitId": "ix1fbf2b-unit",
+        "sourceUrl": "",
+        "materialId": "ix1fbf2b-material",
+        "materialTitle": "团队自编共同运算案例"
+      }
+    ],
+    "knowledgeIds": [
+      "ix1fbf2b-kp"
+    ],
+    "experienceReview": {
+      "provenance": {
+        "kind": "team",
+        "author": "项目自编夹具",
+        "evidence": "本轮团队自编材料",
+        "authorization": "internal",
+        "authorizationEvidence": "仅供本地工程验收"
+      },
+      "reviewedAt": "2026-11-13T18:05:42.766268Z",
+      "reviewerId": "ix1fbf2b-a"
+    },
+    "knowledgeLinks": [
+      {
+        "id": "ix1fbf2b-kp",
+        "name": "等式性质"
+      }
+    ],
+    "id": "case-89ba8dbf75264729a6b7705f195c6415",
+    "versionId": "version-294b41cf7282487abe163035ed500811",
+    "version": 2,
+    "publishedAt": "2026-11-13T18:05:42Z"
+  },
+  "assertions": [
+    "admin review required",
+    "unchanged save preserves server stamp",
+    "student cannot review",
+    "selected experience reaches model and output",
+    "teacher plan explicit confirmation",
+    "old case/task/job unchanged"
+  ]
+}

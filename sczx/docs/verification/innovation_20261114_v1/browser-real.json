@@ -1,0 +1,23 @@
+[
+  {
+    "role": "admin",
+    "sourceTypeVisible": true,
+    "authorizationFields": true,
+    "url": "#/manage?case=case-a3f528c8d6f34234be72ef35c56df604&material=ix996724-material&unit=ix996724-unit",
+    "errors": []
+  },
+  {
+    "role": "teacher",
+    "methodVisible": true,
+    "sourceLinks": 2,
+    "url": "#/agent?lesson=ix996724-lesson&job=job-605b88b6b08940c9a34e2476cef9a1d0",
+    "errors": []
+  },
+  {
+    "role": "student",
+    "realHintVisible": true,
+    "decisionVisible": true,
+    "url": "#/learn?task=ix996724-t00",
+    "errors": []
+  }
+]

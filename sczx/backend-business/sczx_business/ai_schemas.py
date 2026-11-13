@@ -61,7 +61,7 @@ class DocumentOCRResult(StrictResult):
 
 
 class Evidence(StrictResult):
-    field: str = Field(default='content', pattern=r'^(content|goal|studentBase|difficulty|introduction|adjustment|boundary|knowledgePoints\.\d+|steps\.\d+|questions\.\d+|responses\.\d+)$')
+    field: str = Field(default='content', pattern=r'^(content|goal|studentBase|difficulty|diagnosis|strategy|effectCheck|introduction|adjustment|boundary|knowledgePoints\.\d+|steps\.\d+|questions\.\d+|responses\.\d+)$')
     unitId: str
     quote: str = Field(min_length=1)
 
@@ -75,6 +75,9 @@ class ExperienceResult(StrictResult):
     goal: str = ''
     studentBase: str = ''
     difficulty: str = ''
+    diagnosis: str = ''
+    strategy: str = ''
+    effectCheck: str = ''
     introduction: str = ''
     steps: list[str] = Field(default_factory=list)
     questions: list[str] = Field(default_factory=list)
