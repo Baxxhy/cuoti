@@ -67,13 +67,14 @@ async function submit() {
 </template>
 
 <style scoped>
-.login-screen.login-refined { padding:32px 24px; }
-.login-refined .login-card.el-card { width:min(420px,100%); border-radius:var(--el-border-radius-round); box-shadow:var(--el-box-shadow-light); }
+.login-screen.login-refined { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; height:100dvh; min-height:0; box-sizing:border-box; padding:clamp(24px,6vh,64px) 24px; overflow-y:auto; scrollbar-gutter:stable both-edges; --el-transition-duration:0s; --el-transition-duration-fast:0s; }
+.login-refined .login-card.el-card { width:min(420px,100%); flex-shrink:0; align-self:center; margin:0; border-radius:var(--el-border-radius-round); box-shadow:var(--el-box-shadow-light); }
 .login-refined .login-card.el-card :deep(>.el-card__body) { padding:32px; }
 .login-refined .login-brand { gap:12px; margin:0 0 24px; font-size:19px; }
 .login-refined .brand-symbol.el-avatar { width:40px; height:40px; background:var(--el-color-primary); color:var(--el-color-white); border-radius:var(--el-border-radius-base); }
 .login-refined h1 { margin:0 0 18px; font-size:24px; line-height:1.4; }
 .login-refined :deep(.el-tabs__header) { margin-bottom:20px; }
+.login-refined :deep(.el-tabs__active-bar),.login-refined :deep(.el-form-item__error) { transition:none; animation:none; }
 .login-refined .el-form { --el-component-size-large:44px; gap:0; }
 .login-refined .el-form-item { margin:0 0 18px; }
 .login-refined :deep(.el-form-item__label) { padding:0; margin-bottom:8px; line-height:20px; font-size:14px; }
