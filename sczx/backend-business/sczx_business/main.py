@@ -46,14 +46,14 @@ class AccountInput(BaseModel):
     username: str = Field(min_length=2, max_length=80)
     displayName: str = Field(min_length=1, max_length=120)
     role: str
-    password: str = Field(min_length=8, max_length=200)
+    password: str = Field(min_length=6, max_length=200)
 
 
 class RegistrationInput(BaseModel):
     username: str = Field(min_length=2, max_length=80)
     displayName: str = Field(min_length=1, max_length=120)
     role: str
-    password: str = Field(min_length=3, max_length=200)
+    password: str = Field(min_length=6, max_length=200)
 
 
 class ClassInput(BaseModel):

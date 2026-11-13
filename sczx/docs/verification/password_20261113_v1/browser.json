@@ -1,0 +1,8 @@
+{
+  "minLength": 6,
+  "fiveRejected": true,
+  "sixValid": true,
+  "label": "学号",
+  "placeholder": "设置密码（至少6位）",
+  "scriptErrors": []
+}

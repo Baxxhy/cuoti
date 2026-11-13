@@ -49,8 +49,8 @@ async function submit() {
           <ElFormItem label="身份" for="register-role"><ElSelect id="register-role" v-model="role" aria-label="注册身份" :disabled="busy"><ElOption label="学生" value="student"/><ElOption label="教师" value="teacher"/></ElSelect></ElFormItem>
           <ElFormItem label="姓名" for="register-name"><ElInput id="register-name" v-model="displayName" required maxlength="120" autocomplete="name" placeholder="输入姓名" :disabled="busy"/></ElFormItem>
         </template>
-        <ElFormItem :label="mode==='register' && role==='student'?'学号（用于登录）':'账号 / 学号'" for="login-username"><ElInput id="login-username" v-model="username" autocomplete="username" :placeholder="mode==='register' && role==='student'?'输入学号':'输入账号或学号'" :disabled="busy" required/></ElFormItem>
-        <ElFormItem label="密码" for="login-password"><ElInput id="login-password" v-model="password" type="password" show-password :autocomplete="mode==='register'?'new-password':'current-password'" :minlength="mode==='register'?3:undefined" :placeholder="mode==='register'?'设置密码（至少3位）':'输入密码'" :disabled="busy" required/></ElFormItem>
+        <ElFormItem :label="mode==='register' && role==='student'?'学号':'账号 / 学号'" for="login-username"><ElInput id="login-username" v-model="username" autocomplete="username" :placeholder="mode==='register' && role==='student'?'输入学号':'输入账号或学号'" :disabled="busy" required/></ElFormItem>
+        <ElFormItem label="密码" for="login-password"><ElInput id="login-password" v-model="password" type="password" show-password :autocomplete="mode==='register'?'new-password':'current-password'" :minlength="mode==='register'?6:undefined" :placeholder="mode==='register'?'设置密码（至少6位）':'输入密码'" :disabled="busy" required/></ElFormItem>
         <AppAlert type="error" v-if="error" class="form-error" role="alert">{{ error }}</AppAlert>
         <ElButton class="login-submit" type="primary" size="large" native-type="submit" :loading="busy" :disabled="busy">{{ mode==='register'?"注册并进入":"登录" }}<ArrowRight :size="17" /></ElButton>
       </ElForm>

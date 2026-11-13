@@ -1,0 +1,13 @@
+test_register_login_teacher_add_by_number_and_persistence (test_registration_mysql.RegistrationTests.test_register_login_teacher_add_by_number_and_persistence) ... Executing <Task pending name='Task-2' coro=<RegistrationTests.test_register_login_teacher_add_by_number_and_persistence() running at /root/Baxxhy/zhiwei/sczx/backend-business/tests/test_registration_mysql.py:15> wait_for=<Future pending cb=[Task.task_wakeup()] created at /root/Baxxhy/zhiwei/sczx/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py:2745> cb=[_run_until_complete_cb() at /root/miniconda3/lib/python3.13/asyncio/base_events.py:181, <1 more>, WorkerThread.stop()] created at /root/miniconda3/lib/python3.13/asyncio/runners.py:100> took 0.256 seconds
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:260: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  session = LoginSession(id=hashlib.sha256(token.encode()).hexdigest(), account_id=user.id, expires_at=datetime.utcnow() + timedelta(days=7))
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:94: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/main.py:94: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  if not session or session.expires_at < datetime.utcnow():
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.814s
+
+OK
