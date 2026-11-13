@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {Browser} from './cdp.mjs';
 test('class switch ignores delayed old responses and empty teacher task records render',async()=>{
  const b=await Browser.launch();try{
- await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');
+ await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');
  const result=await b.eval(async()=>{
   const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');
   const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
@@ -33,7 +33,7 @@ test('class switch ignores delayed old responses and empty teacher task records 
 });
 test('leaving the dashboard before its response cannot redirect the next page',async()=>{
  const b=await Browser.launch();try{
- await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');
+ await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');
  const result=await b.eval(async()=>{
   const {createApp,h}=await import('/node_modules/.vite/deps/vue.js');const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
   const source=await(await fetch('/src/pages/Dashboard.vue')).text();const {createRouter,createMemoryHistory,RouterView}=await import(source.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);const {default:Page}=await import('/src/pages/Dashboard.vue');const {useLearning}=await import('/src/store.js');

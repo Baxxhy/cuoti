@@ -6,5 +6,6 @@ import path from "node:path";
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
   resolve: { alias: { "@": path.resolve(import.meta.dirname, "./src") } },
-  server: { proxy: { "/api": { target: process.env.SCZX_API_PROXY || "http://127.0.0.1:8000", changeOrigin: true } } },
+  preview: { port: 5175, strictPort: true },
+  server: { port: 5175, strictPort: true, proxy: { "/api": { target: process.env.SCZX_API_PROXY || "http://127.0.0.1:8099", changeOrigin: true } } },
 });

@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {Browser} from './cdp.mjs';
-const origin=process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177';
+const origin=process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175';
 async function run(code){const b=await Browser.launch();try{await b.goto(origin+'/#/login');return await b.eval(code)}finally{await b.close()}}
 
 test('clearing a pending create prevents the old job from reopening',async()=>{

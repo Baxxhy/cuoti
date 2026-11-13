@@ -4,7 +4,7 @@ import {Browser} from './cdp.mjs';
 test('late session initialization and older platform reads cannot replace a newer signed-in user or lesson', async()=>{
  const b=await Browser.launch();
  try{
-  await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');
+  await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');
   const result=await b.eval(async()=>{
    const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
    const {useLearning}=await import('/src/store.js'),{createPlatform}=await import('/src/services/platform.js'),{api}=await import('/src/services/api.js');

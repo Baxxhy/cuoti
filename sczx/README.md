@@ -1,12 +1,14 @@
 # 师承智学
 
-2026-11-13 / v44 / 本地软件作品
+2026-11-13 / v45 / 本地软件作品
 
 教师经验、备课、课程班级、学生学习、我的错题和学情反馈共用一套网页系统。前端Vue3＋JavaScript，FastAPI业务服务，MySQL数据；基础组件使用Element Plus，图标统一Element Plus Icons。AI通过当前已登录Codex CLI调用gpt-6-luna/low，不安装本地模型。
 
 ## 注册与班级
 
 登录页可自主注册学生、教师账号。学生以学号作为登录账号；教师建班后，在“成员与邀请”输入学生学号添加，也可邀请学生输入班级邀请码加入。所有账号和成员关系保存到MySQL。[使用说明与验收](docs/planning/真实账号注册与学号入班交付_20261113_v1.md)。
+
+前端开发、预览与本地启动入口统一5175；端口被占用直接报错，不自动换端口。后端8099仅作接口代理目标。
 
 ## 启动使用
 
@@ -16,11 +18,11 @@
 ./stop-local.sh      # 停止网页与专用数据库，数据保留
 ```
 
-在运行主机浏览器打开 **http://127.0.0.1:8099**。Linux安装脚本已验证；需要Python3.11以上、Node22以上及MySQL8的mysqld/mysql/mysqladmin命令。当前未验证Windows原生一键安装。
+在运行主机浏览器打开 **http://127.0.0.1:5175**。Linux安装脚本已验证；需要Python3.11以上、Node22以上及MySQL8的mysqld/mysql/mysqladmin命令。当前未验证Windows原生一键安装。
 
 全新安装生成admin、teacher、student，随机密码保存在本机`backend-business/var/local/accounts.json`。当前验收实例导入完整隔离示例，使用handoff-admin、handoff-t1/t2、handoff-s1—s5，仍从该私有文件读取密码。账号和数据库、上传不提交Git。
 
-专用MySQL23321和网页8099仅回环监听，数据持久保存在`backend-business/var/local`。`./start-local.sh doctor`诊断，`backup`备份，`restore --archive 备份目录`在新库/新目录恢复并保留旧数据。不会改原23317库，不安排公网、域名或正式服务切换。
+前端固定5175，后端8099与专用MySQL23321仅回环监听，数据持久保存在`backend-business/var/local`。`./start-local.sh doctor`诊断，`backup`备份，`restore --archive 备份目录`在新库/新目录恢复并保留旧数据。不会改原23317库，不安排公网、域名或正式服务切换。
 
 ## 初高中全学科支持
 

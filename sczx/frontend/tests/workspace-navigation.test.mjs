@@ -79,7 +79,7 @@ async function workspaceScenario(mode){
   }finally{window.fetch=originalFetch;app.unmount();el.remove();history.replaceState(null,'',url);setActivePinia(prior)}
 }
 
-async function run(mode){const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.viewport(1440,1000);const result=await b.eval(workspaceScenario,mode);assert.deepEqual(b.errors,[]);assert.deepEqual(result.writes,[]);return result}finally{await b.close()}}
+async function run(mode){const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');await b.viewport(1440,1000);const result=await b.eval(workspaceScenario,mode);assert.deepEqual(b.errors,[]);assert.deepEqual(result.writes,[]);return result}finally{await b.close()}}
 
 test('skip link keeps the route, three business groups expose learning children, and search retains all tasks',async()=>{const r=await run('shell');assert.deepEqual(r.skipResult,{unchanged:true,main:true});assert.equal(r.more,false);assert.deepEqual(r.groups,['学习','错题与复习','班级']);assert.deepEqual(r.children.map(x=>x.label),['学习任务','课程','学习记录']);assert.equal(r.children.find(x=>x.label==='学习记录').href,'#/records');assert(r.names.some(s=>s.includes('补充练习：两边同时减3')));assert.equal(r.destination,'#/learn?task=test-ui-next')});
 test('the home next action opens its own task and the empty submitted tab names the right state',async()=>{const r=await run('dashboard');assert.equal(r.destination,'#/check?task=test-ui-next');assert(r.empty.includes('还没有已提交的任务'));assert(!r.empty.includes('当前任务已完成'))});

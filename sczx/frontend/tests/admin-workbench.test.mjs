@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {Browser} from './cdp.mjs';
-const origin=process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177';
+const origin=process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175';
 
 test('material parsing reaches a terminal notice without overwriting a newer save; saved case selection survives leaving the workbench',async()=>{
  const browser=await Browser.launch();try{

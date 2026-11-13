@@ -1,7 +1,7 @@
 import{test}from'node:test';import assert from'node:assert/strict';import{Browser}from'./cdp.mjs';
 test('published legacy candidate explanation renders actual line breaks without changing the original answer',async()=>{
  const b=await Browser.launch();try{
-  await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");
+  await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");
   const result=await b.eval(async()=>{
    const{createApp,h}=await import('/node_modules/.vite/deps/vue.js'),{createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
    const src=await(await fetch('/src/main.js')).text(),{createRouter,createMemoryHistory}=await import(src.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);

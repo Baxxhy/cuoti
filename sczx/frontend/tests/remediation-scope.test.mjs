@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {Browser} from './cdp.mjs';
 test('independent wrong detail ignores an old response after switching questions',async()=>{
- const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');const result=await b.eval(async()=>{
+ const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');const result=await b.eval(async()=>{
  const {createApp,h}=await import('/node_modules/.vite/deps/vue.js');const {createPinia}=await import('/node_modules/.vite/deps/pinia.js');const source=await(await fetch('/src/pages/Classroom.vue')).text();const {createRouter,createMemoryHistory}=await import(source.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);const {default:Page}=await import('/src/pages/Repair.vue');const {TooltipProvider}=await import('/src/components/app/provider.js');const original=fetch;let release;
  const failed={id:'failed-repair',status:'failed',capability:'text',mode:'analysis',error:'受控模型失败',input:{wrongId:'new',mode:'analysis'}};
  const row=id=>({id,prompt:id==='old'?'旧方程':'新方程',answer:id,details:{cause:'其他或待确认',draft:{}},status:'pending',source:'manual',repairs:[],jobs:id==='new'?[failed]:[]});

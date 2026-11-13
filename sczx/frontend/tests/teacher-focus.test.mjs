@@ -39,7 +39,7 @@ async function scenario(mode){
  }finally{app.unmount();el.remove();window.fetch=original;setActivePinia(prior)}
 }
 for(const mode of ['prepare','grade'])test(mode==='prepare'?'switching a focused activity retains unsaved edits without writes':'failed focused grading stays on question; successful save moves next and preserves original answers',async()=>{
- const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");const r=await b.eval(scenario,mode);
+ const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");const r=await b.eval(scenario,mode);
  if(mode==='prepare'){assert.equal(r.count,1);assert.equal(r.second,'代回原式。');assert.equal(r.restored,'未保存的第一活动修改');assert.deepEqual(r.writes,[])}else{assert.equal(r.one,1);assert.ok(r.retained.question.startsWith('1.'));assert.equal(r.retained.score,'8');assert.ok(r.advanced.startsWith('2.'));assert.equal(r.grade.score,8);assert(r.answersUnchanged);assert.equal(r.writes.length,2);assert.deepEqual(Object.keys(r.writes[1].body.grades),['q1'])}assert.deepEqual(b.errors,[]);
  }finally{await b.close()}
 });

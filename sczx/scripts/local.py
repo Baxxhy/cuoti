@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Local Linux workspace runner. Own MySQL, explicit initialization, no production access."""
+import signal
 import argparse,contextlib,fcntl,getpass,hashlib,importlib.util,json,os,secrets,shutil,socket,subprocess,sys,tarfile,time,uuid
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -104,6 +105,33 @@ def first_task(v,cfg):
    lesson=call('GET','/curriculum/lessons/'+lid);draft=call('GET','/platform?lessonId='+lid)['lessonDraft'];draft.update(lessonId=lid,goal=lesson['goal'],blocks=copy.deepcopy(lesson['blocks']),questions=copy.deepcopy(lesson['questions']),lessonSnapshot=lesson,caseId=lesson.get('caseId'),caseSnapshot=lesson.get('caseSnapshot'));saved=call('PUT','/platform',{'data':{'lessonDraft':draft}});draft['revision']=saved['draftRevision'];call('POST','/tasks/publish',{'lessonId':lid,'classroomId':'class-demo','lessonDraft':draft,'idempotencyKey':'local-first-lesson-v1:'+lid})
   call('POST','/auth/logout')
  v['demoReady']=True;write(Path(v['home'])/'local.json',v)
+def frontend_pid(v):
+ path=Path(v['home'])/'frontend.pid'
+ try:
+  pid=int(path.read_text());cmd=Path(f'/proc/{pid}/cmdline').read_bytes()
+  return pid if str(ROOT/'frontend/node_modules/vite/bin/vite.js').encode() in cmd else None
+ except (OSError,ValueError):return None
+def frontend_stop(v):
+ pid=frontend_pid(v)
+ if pid:
+  os.kill(pid,signal.SIGTERM)
+  for _ in range(50):
+   if free(5175):break
+   time.sleep(.1)
+ (Path(v['home'])/'frontend.pid').unlink(missing_ok=True)
+def frontend_start(v,cfg):
+ if frontend_pid(v) and not free(5175):return
+ if not free(5175):raise RuntimeError('前端5175端口被其他服务占用，请先停止占用服务；不会自动换端口。')
+ env={**os.environ,'SCZX_API_PROXY':cfg['SCZX_RELEASE_URL']}
+ with (Path(v['home'])/'logs/frontend.log').open('ab') as log:
+  proc=subprocess.Popen(['node',str(ROOT/'frontend/node_modules/vite/bin/vite.js'),'--host','0.0.0.0','--port','5175','--strictPort'],cwd=ROOT/'frontend',env=env,stdout=log,stderr=log,start_new_session=True)
+ (Path(v['home'])/'frontend.pid').write_text(str(proc.pid))
+ for _ in range(100):
+  if proc.poll() is not None:raise RuntimeError('前端启动失败，请查看logs/frontend.log。')
+  if not free(5175):return
+  time.sleep(.1)
+ raise RuntimeError('前端5175启动超时，请查看logs/frontend.log。')
+
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('action',choices=['init','start','stop','status','doctor','backup','restore']);parser.add_argument('--home',default=str(ROOT/'backend-business/var/local'));parser.add_argument('--port',type=int,default=8099);parser.add_argument('--mysql-port',type=int,default=23321);parser.add_argument('--archive');parser.add_argument('--accounts');args=parser.parse_args();home=Path(args.home).resolve();home.mkdir(parents=True,exist_ok=True);home.chmod(0o700)
  try:
@@ -113,14 +141,15 @@ def main():
    if args.action=='init':v=finish_init(args,load(home)) if (home/'local.json').exists() else initialize(args,home);print('本地初始化完成；演示账号保存在 '+str(home/'accounts.json'));return
    if not (home/'local.json').exists():raise RuntimeError('请先执行 ./start-local.sh init；只会初始化独立本地数据库。')
    v=load(home);cfg=config(v)
-   if args.action=='doctor':print(json.dumps({'python':sys.version.split()[0],'mysqlBinary':bool(shutil.which('mysqld')),'mysqlOwnedAndReady':mysql_ready(v),'frontend':(ROOT/'frontend/dist/index.html').exists(),'codexBinary':bool(shutil.which('codex')),'url':cfg['SCZX_PUBLIC_URL'],'accountsFile':str(home/'accounts.json')},ensure_ascii=False));return
-   if args.action=='status':print(json.dumps({'web':release.run(cfg,'status'),'mysqlOwnedAndReady':mysql_ready(v)},ensure_ascii=False));return
+   if args.action=='doctor':print(json.dumps({'python':sys.version.split()[0],'mysqlBinary':bool(shutil.which('mysqld')),'mysqlOwnedAndReady':mysql_ready(v),'frontend':(ROOT/'frontend/dist/index.html').exists(),'codexBinary':bool(shutil.which('codex')),'url':'http://127.0.0.1:5175','accountsFile':str(home/'accounts.json')},ensure_ascii=False));return
+   if args.action=='status':print(json.dumps({'web':release.run(cfg,'status'),'frontend':{'running':bool(frontend_pid(v)),'url':'http://127.0.0.1:5175'},'mysqlOwnedAndReady':mysql_ready(v)},ensure_ascii=False));return
    if args.action=='stop':
+    frontend_stop(v)
     release.run(cfg,'stop')
     if mysql_ready(v):subprocess.run(['mysqladmin','--defaults-extra-file='+str(home/'mysql/client.cnf'),'shutdown'],check=True,capture_output=True)
     print('本地网页与专用MySQL已停止；所有数据保留。');return
    mysql_start(v)
-   if args.action=='start':release.run(cfg,'start');first_task(v,cfg);print('打开 '+cfg['SCZX_PUBLIC_URL']+'；账号见 '+str(home/'accounts.json'));return
+   if args.action=='start':release.run(cfg,'start');first_task(v,cfg);frontend_start(v,cfg);print('打开 http://127.0.0.1:5175'+'；账号见 '+str(home/'accounts.json'));return
    was_running=release.run(cfg,'status')['running'];release.run(cfg,'stop')
    try:
     if args.action=='backup':

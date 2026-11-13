@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {Browser} from './cdp.mjs';
 test('legacy AI draft offers editable student copy and preview preserves teacher instructions',async()=>{
  const b=await Browser.launch();try{
-  await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');
+  await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');
   await b.wait("!!document.querySelector('#root')?.__vue_app__");
   const result=await b.eval(async()=>{
    const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');

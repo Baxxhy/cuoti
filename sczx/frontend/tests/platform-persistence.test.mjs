@@ -1,6 +1,6 @@
 import{test}from'node:test';import assert from'node:assert/strict';import{Browser}from'./cdp.mjs';
 test('read-only metadata never saves; draft edits serialize, failures retain edits and old account errors stay scoped',async()=>{
- const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");
+ const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");
  const result=await b.eval(async()=>{
   const{createPinia}=await import('/node_modules/.vite/deps/pinia.js'),{useLearning}=await import('/src/store.js'),{createPlatform}=await import('/src/services/platform.js'),{api}=await import('/src/services/api.js');const s=useLearning(createPinia()),old={platform:api.platform,savePlatform:api.savePlatform},writes=[];
   const data={...createPlatform(),lesson:{id:'lesson'},lessonDraft:{id:'draft',lessonId:'lesson',goal:'原目标',blocks:[],questions:[],revision:1},records:{r:{feedback:'服务端反馈'}}};s.user={id:'teacher-one',role:'teacher'};api.platform=async()=>data;api.savePlatform=async payload=>{writes.push(payload);return{draftRevision:2}};

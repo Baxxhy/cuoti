@@ -1,6 +1,6 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import {Browser} from './cdp.mjs';
 test('checking task switch restores that record question and answer without overwriting either draft',async()=>{
- const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');const value=await b.eval(async()=>{
+ const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');const value=await b.eval(async()=>{
  const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');const {useLearning}=await import('/src/store.js');
  const source=await(await fetch('/src/pages/Classroom.vue')).text();const {createRouter,createMemoryHistory}=await import(source.match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);const {default:Page}=await import('/src/pages/CheckLesson.vue');const {TooltipProvider}=await import('/src/components/app/provider.js');
  const original=fetch,prior=getActivePinia(),pinia=createPinia(),s=useLearning(pinia);s.user={role:'student'};s.save=async()=>true;
@@ -11,7 +11,7 @@ test('checking task switch restores that record question and answer without over
  });assert.equal(value.answer,'新任务答案');assert.equal(value.title,'第二题');assert.equal(value.old,'未提交旧答案');assert.equal(value.index,1);assert.deepEqual(b.errors,[])}finally{await b.close()}
 });
 test('late OCR upload after question switch cannot create or show guidance in the new context',async()=>{
- const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');const result=await b.eval(async()=>{
+ const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');const result=await b.eval(async()=>{
  const {createApp,h,ref,nextTick}=await import('/node_modules/.vite/deps/vue.js');const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');const {useLearning}=await import('/src/store.js');const {default:Assistant}=await import('/src/components/ModelAssistant.vue');const {TooltipProvider}=await import('/src/components/app/provider.js');
  const original=fetch,prior=getActivePinia(),pinia=createPinia(),s=useLearning(pinia);s.save=async()=>true;s.user={role:'student'};s.data.tasks=[{id:'a',questions:[]}];s.data.activeTaskId='a';s.data.records={a:{id:'ra',drafts:{'assistantQuestion-1':'新题草稿'},attempts:[],helps:[]}};s.data.studentRecords={};const question=ref(0);let release,calls=0;
  window.fetch=(url,opts)=>String(url).includes('/api/ai/jobs?')?Promise.resolve(new Response('[]')):String(url)==='/api/files'?new Promise(r=>release=()=>r(new Response(JSON.stringify({id:'old-file'})))):String(url)==='/api/ai/jobs'&&opts?.method==='POST'?(calls++,Promise.resolve(new Response('{}'))):original(url,opts);
@@ -20,7 +20,7 @@ test('late OCR upload after question switch cannot create or show guidance in th
  });assert.equal(result.calls,0);assert.equal(result.prompt,'新题草稿');assert(!result.ocrVisible);assert.equal(result.draft,'新题草稿');assert.deepEqual(b.errors,[])}finally{await b.close()}
 });
 test('switching failed OCR to text removes its persisted pending upload before the next request',async()=>{
- const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');const value=await b.eval(async()=>{
+ const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');const value=await b.eval(async()=>{
  const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');const {useLearning}=await import('/src/store.js');const {default:Assistant}=await import('/src/components/ModelAssistant.vue');const {TooltipProvider}=await import('/src/components/app/provider.js');
  const original=fetch,prior=getActivePinia(),pinia=createPinia(),s=useLearning(pinia);s.save=async()=>true;s.refreshRecord=async()=>{};s.user={role:'student'};s.data.tasks=[{id:'a',snapshot:{blocks:[{id:'practice',title:'练习'}]},questions:[]}];s.data.activeTaskId='a';s.data.studentRecords={};s.data.records={a:{id:'ra',drafts:{'assistantQuestion-0-upload':{id:'old-image'}},helps:[],attempts:[]}};
  const failed={id:'failed-ocr',recordId:'ra',question:0,blockId:'practice',capability:'ocr',status:'failed',error:'受控识别失败'},fresh={id:'new-text',recordId:'ra',question:0,blockId:'practice',capability:'text',strategy:'hint',input:{guidance:true},status:'succeeded',attemptNumber:1,result:{title:'新的文字指导',hint:'先比较两边',steps:['说出相等关系'],question:'你发现什么？'}};let payload;
@@ -31,7 +31,7 @@ test('switching failed OCR to text removes its persisted pending upload before t
 });
 
 test('confirmed OCR can request guidance without a second empty prompt field',async()=>{
- const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");
+ const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");
  const r=await b.eval(async()=>{
   const{createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js'),{createPinia}=await import('/node_modules/.vite/deps/pinia.js'),{useLearning}=await import('/src/store.js'),{default:Page}=await import('/src/components/ModelAssistant.vue'),{TooltipProvider}=await import('/src/components/app/provider.js');const pinia=createPinia(),s=useLearning(pinia);s.user={id:'ocr-owner',role:'student'};s.data.tasks=[{id:'ocr-task',questions:[{id:'q',equation:'x+3=8'}]}];s.data.activeTaskId='ocr-task';s.data.records={'ocr-task':{id:'ocr-record',drafts:{},attempts:[],helps:[]}};s.save=async()=>true;const original=fetch,writes=[];
   const ocr={id:'ocr-done',recordId:'ocr-record',question:0,blockId:null,capability:'ocr',status:'succeeded',attemptNumber:1,result:{text:'3x+5=20',equation:'3x+5=20',uncertainties:[]}};let current=ocr;

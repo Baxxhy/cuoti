@@ -4,9 +4,9 @@
   "version": "0.3.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 5177",
+    "dev": "vite --host 0.0.0.0 --port 5175 --strictPort",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 5177",
+    "preview": "vite preview --host 0.0.0.0 --port 5175 --strictPort",
     "test": "node --test --test-concurrency=4 tests/*.test.mjs",
     "test:unit": "node --test tests/*.test.js",
     "audit:ui": "node scripts/audit-element-ui.cjs"

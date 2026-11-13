@@ -54,7 +54,7 @@ async function scenario(mode){
  }finally{app.unmount();el.remove();window.fetch=originalFetch;setActivePinia(prior)}
 }
 for(const mode of ['feedback','publish'])test(mode==='feedback'?'student selection keeps feedback dialog open; feedback targets the selected record and task changes close it':'exam dates use Beijing input and convert to UTC requests independent of the host timezone',async()=>{
- const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");const r=await b.eval(scenario,mode);
+ const b=await Browser.launch();try{await b.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');await b.wait("!!document.querySelector('#root')?.__vue_app__");const r=await b.eval(scenario,mode);
  if(mode==='feedback'){assert(r.opened);assert(r.stayedOpen);assert(r.closedOnTaskSwitch);assert.deepEqual(r.feedback,['','两边共同运算的解释清楚。']);assert.equal(r.writes.length,1);assert.equal(r.writes[0].path,'/api/records/record-two/feedback')}
  else{assert.equal(r.initial.replace(' ','T'),r.expected);assert(r.labels.includes('北京时间'));assert(!r.labels.includes('UTC'));assert.equal(r.writes[0].body.startsAt,'2026-11-12T02:00:00.000Z');assert.equal(r.writes[0].body.endsAt,'2026-11-12T03:00:00.000Z');assert(!r.duplicateTabs)}assert.deepEqual(b.errors,[]);
  }finally{await b.close()}

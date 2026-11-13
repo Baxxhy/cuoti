@@ -1,0 +1,30 @@
+
+> shicheng-zhixue@0.3.0 test:unit
+> node --test tests/*.test.js
+
+✔ application source has no parallel native controls, CSS-drawn frames or non-Element icon dependencies (492.004974ms)
+✔ candidate presentation fixes escaped newlines and workflow suffix without editing frozen data or TeX (1.553711ms)
+✔ knowledge correction remains auditable from old and new knowledge (2.001354ms)
+✔ review targets retain return scope without accepting arbitrary destinations (0.808012ms)
+✔ all five lessons retain every original clause and mathematical condition in presentation fragments (15.579742ms)
+✔ the example visual comes from the same lesson, never from a check answer (1.316676ms)
+✔ legacy AI text and explicit student revisions retain their own frozen source without mutation (0.309325ms)
+✔ manual revision shows its current verification while retaining the original failed generation (1.328694ms)
+✔ agent identity includes both lesson and job (1.283113ms)
+✔ pending, in-progress and completed learning states remain distinct (1.941503ms)
+✔ uncertain mathematical evidence never inherits a success color (0.258986ms)
+✔ failures and overdue work are errors; drafts and unavailable actions stay neutral (0.250529ms)
+✔ unknown labels retain explicit caller tone and help has its own informational state (0.342934ms)
+✔ slot fragments and numbers retain a readable status label (0.329973ms)
+✔ balance single and common actions preserve actual relation and bounds (2.108872ms)
+✔ each existing destination has one business home and detail routes stay with their parent (1.506072ms)
+✔ class and lesson context survives navigation with the route-specific parameter names (0.490704ms)
+✔ a result offers the first required uncompleted step and respects question evidence (1.436329ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 732.630443

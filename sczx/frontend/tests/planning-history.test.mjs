@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {Browser} from './cdp.mjs';
 test('agent history follows route, rejects stale replies, guards edits and restores back navigation',async()=>{
  const browser=await Browser.launch();try{
- await browser.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5177')+'/#/login');
+ await browser.goto((process.env.SCZX_TEST_ORIGIN||'http://127.0.0.1:5175')+'/#/login');
  const result=await browser.eval(async()=>{
   const {createApp,h,nextTick}=await import('/node_modules/.vite/deps/vue.js');
   const {createPinia,getActivePinia,setActivePinia}=await import('/node_modules/.vite/deps/pinia.js');
