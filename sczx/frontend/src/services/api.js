@@ -60,6 +60,7 @@ export const api = {
   request,
   me: () => request("/auth/me"),
   login: (username, password) => request("/auth/login", { method: "POST", body: JSON.stringify({ username, password }) }),
+  register: (payload) => request("/auth/register", { method: "POST", body: JSON.stringify(payload) }),
   logout: () => request("/auth/logout", { method: "POST" }),
   async platform(lessonId) { return linkStudentRecords(await request("/platform"+(lessonId?"?lessonId="+encodeURIComponent(lessonId):""))); },
   setCaseFavorite: (id,selected) => request('/ai/cases/'+encodeURIComponent(id)+'/bookmark',{method:'PUT',body:JSON.stringify({selected})}),

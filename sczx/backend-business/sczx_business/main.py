@@ -49,6 +49,13 @@ class AccountInput(BaseModel):
     password: str = Field(min_length=8, max_length=200)
 
 
+class RegistrationInput(BaseModel):
+    username: str = Field(min_length=2, max_length=80)
+    displayName: str = Field(min_length=1, max_length=120)
+    role: str
+    password: str = Field(min_length=3, max_length=200)
+
+
 class ClassInput(BaseModel):
     name: str = Field(min_length=1, max_length=160)
     grade: str = Field(default="",max_length=80)
@@ -257,6 +264,28 @@ def login(payload: LoginInput, response: Response, db: DB) -> dict:
     return {"user": account_json(user)}
 
 
+@app.post("/api/auth/register", status_code=201)
+def register(payload: RegistrationInput, response: Response, db: DB) -> dict:
+    from sqlalchemy.exc import IntegrityError
+    username = payload.username.strip()
+    name = payload.displayName.strip()
+    if payload.role not in {"teacher", "student"}:
+        raise HTTPException(422, "请选择学生或教师身份。")
+    if len(username) < 2 or not name or any(c.isspace() for c in username):
+        raise HTTPException(422, "请填写姓名与至少两位、不含空格的账号或学号。")
+    if db.scalar(select(Account.id).where(Account.username == username)):
+        raise HTTPException(409, "该账号或学号已注册，请直接登录。")
+    account = Account(id=f"account-{uuid.uuid4().hex}", username=username, display_name=name,
+                      role=payload.role, password_hash=hash_password(payload.password))
+    db.add(account)
+    try:
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(409, "该账号或学号已注册，请直接登录。")
+    return login(LoginInput(username=username, password=payload.password), response, db)
+
+
 @app.post("/api/auth/logout")
 def logout(request: Request, response: Response, db: DB) -> dict:
     token = request.cookies.get(COOKIE)
@@ -313,9 +342,9 @@ def add_member(classroom_id: str, payload: MemberInput, request: Request, db: DB
     room = owned_class(db,user,classroom_id,True)
     if not room or room.teacher_id != user.id:
         raise HTTPException(404, "没有找到此班级。")
-    student = db.get(Account, payload.studentId)
+    student = db.get(Account, payload.studentId) or db.scalar(select(Account).where(Account.username == payload.studentId.strip()))
     if not student or student.role != "student" or not student.active:
-        raise HTTPException(404, "没有找到可加入的学生账号。")
+        raise HTTPException(404, "没有找到该学号对应的学生，请先让学生注册。")
     if db.scalar(select(ClassMember).where(ClassMember.classroom_id==room.id,ClassMember.student_id==student.id).with_for_update()):
         return account_json(student)
     db.add(ClassMember(classroom_id=room.id, student_id=student.id))

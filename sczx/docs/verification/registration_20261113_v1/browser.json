@@ -1,0 +1,8 @@
+{
+  "studentRegistrationUI": true,
+  "teacherRegistered": true,
+  "classCreated": true,
+  "teacherAddByNumberUI": true,
+  "studentReloginClassVisible": true,
+  "scriptErrors": []
+}

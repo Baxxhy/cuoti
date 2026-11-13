@@ -135,11 +135,13 @@ async function saveClass() {
 }
 async function add() {
   busy.value = true;
+  error.value = "";
   try {
     await store.addMember(selected.value, student.value);
     student.value = "";
     await load();
     await refreshRooms();
+    notify("学生已加入班级");
   } catch (e) {
     error.value = e.message;
   } finally {
@@ -240,9 +242,9 @@ async function join() {
       </section>
       <div v-else class="ops-member-layout">
         <Surface class="teaching-members"><header><h2>班级成员</h2><span>{{members.length}} 人</span></header>
-          <div class="ops-add-member"><AppSelect v-model="student" label="添加已有学生" :options="accounts.filter(a=>!members.some(m=>m.id===a.id)).map(a=>({value:a.id,label:a.displayName+' 　 '+a.username}))"/><AppButton :disabled="busy||!student||loading" @click="add"><UserPlus :size="15"/>添加</AppButton></div>
+          <div class="ops-add-member"><Input v-model="student" aria-label="学生学号" placeholder="输入已注册学生的学号" @keyup.enter="!busy && student.trim() && add()"/><AppButton :disabled="busy||!student||loading" @click="add"><UserPlus :size="15"/>添加</AppButton></div>
           <ElSkeleton v-if="loading" animated :rows="3" aria-label="读取成员…"/><AppEmpty v-else-if="!members.length" class="empty-state">暂无班级成员</AppEmpty>
-          <Surface data-ui="card" v-for="item in members" :key="item.id" class="teaching-member"><ElAvatar :size="32" class="avatar">{{item.displayName.slice(0,1)}}</ElAvatar><div><strong>{{item.displayName}}</strong><p>{{item.username}}</p></div><AppButton variant="ghost" size="icon-sm" :aria-label="'移出'+item.displayName" @click="remove(item)"><X :size="14"/></AppButton></Surface>
+          <Surface data-ui="card" v-for="item in members" :key="item.id" class="teaching-member"><ElAvatar :size="32" class="avatar">{{item.displayName.slice(0,1)}}</ElAvatar><div><strong>{{item.displayName}}</strong><p>学号 {{item.username}}</p></div><AppButton variant="ghost" size="icon-sm" :aria-label="'移出'+item.displayName" @click="remove(item)"><X :size="14"/></AppButton></Surface>
         </Surface>
         <Surface class="teaching-invites"><header><h2>邀请学生</h2><Ticket :size="17"/></header><label class="field-label">邀请码有效期<AppSelect v-model="inviteDays" label="邀请码有效期" :options="[{value:'1',label:'1天'},{value:'7',label:'7天'},{value:'30',label:'30天'}]"/></label><AppButton variant="outline" @click="createInvite">生成邀请码</AppButton><ElTag type="primary" size="large" v-if="code" class="invitation-code" aria-label="新邀请码">{{code}}</ElTag>
           <AppDisclosure v-if="invites.length" class="ops-disclosure"><template #title>已生成的邀请码</template><div v-for="item in invites" :key="item.id"><Status>{{item.revoked?'已撤销':item.expired?'已过期':'有效'}}</Status><time>{{deadlineText(item.expiresAt)}}</time><AppButton v-if="!item.revoked&&!item.expired" variant="ghost" @click="revoke(item)">撤销</AppButton></div></AppDisclosure>
