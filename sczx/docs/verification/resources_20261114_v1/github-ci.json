@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "4fb3e2c02132878ba36408da21c000f134dbbfbe",
+  "sourceTree": "11a754465213cd8d338f6f4340992b7ded2d79a6",
+  "runId": 43580926761,
+  "url": "https://github.com/Baxxhy/sczx/actions/runs/43580926761",
+  "jobs": [
+    {
+      "id": 132405282694,
+      "name": "mysql-integration",
+      "status": "completed",
+      "conclusion": "success",
+      "tests": 206,
+      "skipped": 0,
+      "seconds": 41.382
+    },
+    {
+      "id": 132405282964,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "verifiedVia": "GitHub connector workflow jobs and actual MySQL job logs"
+}

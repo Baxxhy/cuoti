@@ -83,4 +83,8 @@
 ![管理员覆盖](admin-coverage.png)
 ![学生整理稿](student-source.png)
 
-GitHub CI在推送后补记实际提交和运行结果；不把本地通过称作远程CI通过。
+## GitHub CI
+
+源码提交`4fb3e2c02132878ba36408da21c000f134dbbfbe`已通过[Basic checks #54](https://github.com/Baxxhy/sczx/actions/runs/43580926761)：check成功、mysql-integration成功。远程MySQL完整206项通过、无跳过，耗时41.382秒；前端18项单元检查和正式构建通过。源码树`11a754465213cd8d338f6f4340992b7ded2d79a6`已核对与本地sczx子目录一致。
+
+该结果对应上述明确源码提交。后续仅补记本CI证据的文档提交沿用同一业务源码；不能把两个SHA混写为同一个提交。
