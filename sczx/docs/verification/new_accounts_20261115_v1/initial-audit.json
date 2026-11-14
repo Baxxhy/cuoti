@@ -1,0 +1,331 @@
+[
+  {
+    "role": "student",
+    "registration": 201,
+    "platform": {
+      "status": 200,
+      "data": {
+        "version": 2,
+        "currentUser": {
+          "id": "account-fe91abd3e28c42e3aed95132ddec6f3a",
+          "username": "newstudent1794674377536",
+          "displayName": "全新账号验收",
+          "role": "student"
+        },
+        "classroom": null,
+        "classrooms": [],
+        "members": [],
+        "lesson": null,
+        "caseDraft": null,
+        "publishedCase": {
+          "grade": "八年级",
+          "title": "访谈与需求证据：先问实际经历，再归纳需求并保留原始记录",
+          "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+          "source": "British Columbia curriculum / University of British Columbia",
+          "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n综合实践活动 八年级 访谈与需求证据\n先问实际经历，再归纳需求并保留原始记录\n围绕校园问题写开放问题\n记录被访者实际回答\n区分原话与自己的推断\n关键追问：这个需求来自哪条实际回答？\n调整：明确未知就记未知，不虚构访谈样本\n独立检查：对新访谈记录独立提一项有依据的需求\n适用边界：只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Maker Design Challenge: Design a Watering System for a School Garden\n来源作者/机构：Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）\nhttps://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf\n原作许可：CC-BY-NC-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+          "subject": "综合实践活动",
+          "experience": {
+            "goal": "能够就“访谈与需求证据”给出有依据的说明，并完成对应独立检查。",
+            "steps": [
+              "围绕校园问题写开放问题",
+              "记录被访者实际回答",
+              "区分原话与自己的推断"
+            ],
+            "boundary": "只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。",
+            "strategy": "先问实际经历，再归纳需求并保留原始记录",
+            "diagnosis": "请学生先说明“访谈与需求证据”的当前做法，核对是否出现“实践访谈只问赞不赞成得不到具体信息”。证据不足先追问。",
+            "questions": [
+              "这个需求来自哪条实际回答？"
+            ],
+            "responses": [
+              "学生可能把自己的想法写成他人回答（预设可能回应，非课堂实录）"
+            ],
+            "adjustment": "明确未知就记未知，不虚构访谈样本",
+            "difficulty": "实践访谈只问赞不赞成得不到具体信息",
+            "effectCheck": "对新访谈记录独立提一项有依据的需求",
+            "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+            "suggestions": [],
+            "knowledgePoints": [
+              "访谈与需求证据"
+            ]
+          },
+          "provenance": {
+            "kind": "public",
+            "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+            "evidence": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "references": [
+            {
+              "field": "content",
+              "label": "中文方法摘要（非来源原文）",
+              "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n综合实践活动 八年级 访谈与需求证据\n先问实际经历，再归纳需求并保留原始记录\n围绕校园问题写开放问题\n记录被访者实际回答\n区分原话与自己的推断\n关键追问：这个需求来自哪条实际回答？\n调整：明确未知就记未知，不虚构访谈样本\n独立检查：对新访谈记录独立提一项有依据的需求\n适用边界：只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Maker Design Challenge: Design a Watering System for a School Garden\n来源作者/机构：Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）\nhttps://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf\n原作许可：CC-BY-NC-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+              "unitId": "resunit-8d9460bed341acd592cb3401",
+              "quoteKind": "adapted_summary",
+              "sourceUrl": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf",
+              "materialId": "resmat-8d9460bed341acd592cb3401",
+              "materialTitle": "访谈与需求证据（中文整理摘要）"
+            }
+          ],
+          "knowledgeIds": [
+            "kp-8d9460bed341acd592cb3401"
+          ],
+          "applicability": {
+            "kind": "knowledge_scope",
+            "grade": "八年级",
+            "schema": 1,
+            "subject": "综合实践活动",
+            "knowledgeIds": [
+              "kp-8d9460bed341acd592cb3401"
+            ]
+          },
+          "curatedImport": {
+            "batch": "resources-20261114-v1",
+            "sourceId": "maker",
+            "sourceSha256": "1d40e209a69005c8f805e8e3adcf2ad2149cd6d37ae94992d15182bf058090f0",
+            "resourceSha256": "405615ac414d3169de1a66215bbdbf44fa6b492bae6dcfd552b98888cd94b92f"
+          },
+          "knowledgeLinks": [
+            {
+              "id": "kp-8d9460bed341acd592cb3401",
+              "name": "访谈与需求证据"
+            }
+          ],
+          "resourceRights": {
+            "reuseMode": "adapted_text",
+            "sourceUrl": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf",
+            "localUsage": "仅本地教学方法摘要；用户单人复核",
+            "sourceTitle": "Maker Design Challenge: Design a Watering System for a School Garden",
+            "sourceAuthor": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+            "sourceLicense": "CC-BY-NC-SA-4.0",
+            "thirdPartyMediaIncluded": false,
+            "originalRedistributionApproved": false
+          },
+          "experienceReview": {
+            "provenance": {
+              "kind": "public",
+              "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+              "evidence": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+              "authorization": "internal",
+              "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+            },
+            "reviewedAt": "2026-11-14",
+            "reviewerId": "resource-admin",
+            "humanReview": {
+              "method": "AI辅助整理、用户单人复核",
+              "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+              "reviewer": "用户（项目负责人，单人复核）",
+              "allowedUsage": "local_summary_only"
+            },
+            "applicability": {
+              "kind": "knowledge_scope",
+              "grade": "八年级",
+              "schema": 1,
+              "subject": "综合实践活动",
+              "knowledgeIds": [
+                "kp-8d9460bed341acd592cb3401"
+              ]
+            }
+          },
+          "id": "exp-8d9460bed341acd592cb3401",
+          "versionId": "resver-8d9460bed341acd592cb3401",
+          "version": 1,
+          "publishedAt": "2026-11-14T16:39:03Z"
+        },
+        "lessonDraft": {
+          "blocks": [],
+          "questions": [],
+          "goal": ""
+        },
+        "tasks": [],
+        "records": {},
+        "studentRecords": {},
+        "activeTaskId": null,
+        "activeStudentId": "account-fe91abd3e28c42e3aed95132ddec6f3a",
+        "issue": {
+          "id": "issue-empty",
+          "text": "",
+          "reply": "",
+          "resolved": false
+        },
+        "supplements": [],
+        "messages": [],
+        "favoriteCaseIds": []
+      }
+    },
+    "home": "跳至主要内容\n师承智学\n学习\n错题与复习\n班级\n帮助与反馈\n全\n全新账号验收\n学生\n学习\n搜索页面、任务\n⌘ K\n学习任务\n课程\n学习记录\n我的学习\n自主学习\n有不会的题，先来问一问\n开始提问\n全部课程\n待完成\n0\n学习中\n0\n已提交\n0\n学习任务\n学习记录\n待完成\n已提交\n还没有班级作业\n消息与反馈\n\n暂无消息"
+  },
+  {
+    "role": "teacher",
+    "registration": 201,
+    "platform": {
+      "status": 200,
+      "data": {
+        "version": 2,
+        "currentUser": {
+          "id": "account-d89b72aabdf3446a92a71616b1d1ed11",
+          "username": "newteacher1794674380604",
+          "displayName": "全新账号验收",
+          "role": "teacher"
+        },
+        "classroom": null,
+        "classrooms": [],
+        "members": [],
+        "lesson": null,
+        "caseDraft": {
+          "id": "exp-8d9460bed341acd592cb3401",
+          "title": "访谈与需求证据：先问实际经历，再归纳需求并保留原始记录",
+          "source": "British Columbia curriculum / University of British Columbia",
+          "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n综合实践活动 八年级 访谈与需求证据\n先问实际经历，再归纳需求并保留原始记录\n围绕校园问题写开放问题\n记录被访者实际回答\n区分原话与自己的推断\n关键追问：这个需求来自哪条实际回答？\n调整：明确未知就记未知，不虚构访谈样本\n独立检查：对新访谈记录独立提一项有依据的需求\n适用边界：只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Maker Design Challenge: Design a Watering System for a School Garden\n来源作者/机构：Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）\nhttps://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf\n原作许可：CC-BY-NC-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+          "reviewed": true,
+          "fileName": "",
+          "updatedAt": "2026-11-15T00:39:03"
+        },
+        "publishedCase": {
+          "grade": "八年级",
+          "title": "访谈与需求证据：先问实际经历，再归纳需求并保留原始记录",
+          "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+          "source": "British Columbia curriculum / University of British Columbia",
+          "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n综合实践活动 八年级 访谈与需求证据\n先问实际经历，再归纳需求并保留原始记录\n围绕校园问题写开放问题\n记录被访者实际回答\n区分原话与自己的推断\n关键追问：这个需求来自哪条实际回答？\n调整：明确未知就记未知，不虚构访谈样本\n独立检查：对新访谈记录独立提一项有依据的需求\n适用边界：只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Maker Design Challenge: Design a Watering System for a School Garden\n来源作者/机构：Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）\nhttps://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf\n原作许可：CC-BY-NC-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+          "subject": "综合实践活动",
+          "experience": {
+            "goal": "能够就“访谈与需求证据”给出有依据的说明，并完成对应独立检查。",
+            "steps": [
+              "围绕校园问题写开放问题",
+              "记录被访者实际回答",
+              "区分原话与自己的推断"
+            ],
+            "boundary": "只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。",
+            "strategy": "先问实际经历，再归纳需求并保留原始记录",
+            "diagnosis": "请学生先说明“访谈与需求证据”的当前做法，核对是否出现“实践访谈只问赞不赞成得不到具体信息”。证据不足先追问。",
+            "questions": [
+              "这个需求来自哪条实际回答？"
+            ],
+            "responses": [
+              "学生可能把自己的想法写成他人回答（预设可能回应，非课堂实录）"
+            ],
+            "adjustment": "明确未知就记未知，不虚构访谈样本",
+            "difficulty": "实践访谈只问赞不赞成得不到具体信息",
+            "effectCheck": "对新访谈记录独立提一项有依据的需求",
+            "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+            "suggestions": [],
+            "knowledgePoints": [
+              "访谈与需求证据"
+            ]
+          },
+          "provenance": {
+            "kind": "public",
+            "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+            "evidence": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "references": [
+            {
+              "field": "content",
+              "label": "中文方法摘要（非来源原文）",
+              "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n综合实践活动 八年级 访谈与需求证据\n先问实际经历，再归纳需求并保留原始记录\n围绕校园问题写开放问题\n记录被访者实际回答\n区分原话与自己的推断\n关键追问：这个需求来自哪条实际回答？\n调整：明确未知就记未知，不虚构访谈样本\n独立检查：对新访谈记录独立提一项有依据的需求\n适用边界：只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Maker Design Challenge: Design a Watering System for a School Garden\n来源作者/机构：Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）\nhttps://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf\n原作许可：CC-BY-NC-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+              "unitId": "resunit-8d9460bed341acd592cb3401",
+              "quoteKind": "adapted_summary",
+              "sourceUrl": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf",
+              "materialId": "resmat-8d9460bed341acd592cb3401",
+              "materialTitle": "访谈与需求证据（中文整理摘要）"
+            }
+          ],
+          "knowledgeIds": [
+            "kp-8d9460bed341acd592cb3401"
+          ],
+          "applicability": {
+            "kind": "knowledge_scope",
+            "grade": "八年级",
+            "schema": 1,
+            "subject": "综合实践活动",
+            "knowledgeIds": [
+              "kp-8d9460bed341acd592cb3401"
+            ]
+          },
+          "curatedImport": {
+            "batch": "resources-20261114-v1",
+            "sourceId": "maker",
+            "sourceSha256": "1d40e209a69005c8f805e8e3adcf2ad2149cd6d37ae94992d15182bf058090f0",
+            "resourceSha256": "405615ac414d3169de1a66215bbdbf44fa6b492bae6dcfd552b98888cd94b92f"
+          },
+          "knowledgeLinks": [
+            {
+              "id": "kp-8d9460bed341acd592cb3401",
+              "name": "访谈与需求证据"
+            }
+          ],
+          "resourceRights": {
+            "reuseMode": "adapted_text",
+            "sourceUrl": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf",
+            "localUsage": "仅本地教学方法摘要；用户单人复核",
+            "sourceTitle": "Maker Design Challenge: Design a Watering System for a School Garden",
+            "sourceAuthor": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+            "sourceLicense": "CC-BY-NC-SA-4.0",
+            "thirdPartyMediaIncluded": false,
+            "originalRedistributionApproved": false
+          },
+          "experienceReview": {
+            "provenance": {
+              "kind": "public",
+              "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+              "evidence": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+              "authorization": "internal",
+              "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+            },
+            "reviewedAt": "2026-11-14",
+            "reviewerId": "resource-admin",
+            "humanReview": {
+              "method": "AI辅助整理、用户单人复核",
+              "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+              "reviewer": "用户（项目负责人，单人复核）",
+              "allowedUsage": "local_summary_only"
+            },
+            "applicability": {
+              "kind": "knowledge_scope",
+              "grade": "八年级",
+              "schema": 1,
+              "subject": "综合实践活动",
+              "knowledgeIds": [
+                "kp-8d9460bed341acd592cb3401"
+              ]
+            }
+          },
+          "id": "exp-8d9460bed341acd592cb3401",
+          "versionId": "resver-8d9460bed341acd592cb3401",
+          "version": 1,
+          "publishedAt": "2026-11-14T16:39:03Z"
+        },
+        "lessonDraft": {
+          "id": "",
+          "caseId": "exp-8d9460bed341acd592cb3401",
+          "goal": "",
+          "studentBase": "",
+          "dueDate": "",
+          "blocks": [],
+          "questions": []
+        },
+        "tasks": [],
+        "records": {},
+        "studentRecords": {},
+        "activeTaskId": null,
+        "activeStudentId": "account-d89b72aabdf3446a92a71616b1d1ed11",
+        "issue": {
+          "id": "issue-empty",
+          "text": "",
+          "reply": "",
+          "resolved": false
+        },
+        "supplements": [],
+        "messages": [],
+        "favoriteCaseIds": []
+      }
+    },
+    "home": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n全\n全新账号验收\n教师\n教学概览\n搜索页面、任务\n⌘ K\n教学概览\n下一节课\n准备一节新课\n尚未选择班级\n继续备课\n查看班级学情\n班级任务\n0\n未提交\n0\n待反馈\n0\n班级任务\n管理班级\n当前班级暂无任务\n开始备课\n最近提交\n\n还没有学生提交\n\n教学工作\n查找教学案例\n组卷与考试\n开展实时课堂\n消息与反馈\n\n暂无消息",
+    "prepare": "跳至主要内容\n师承智学\n教学概览\n教学资源\n备课\n班级教学\n题库与考试\n帮助与反馈\n全\n全新账号验收\n教师\n备课\n搜索页面、任务\n⌘ K\n课程\n教案\nAI备课\n我的教案\n保存\n发布任务\n教学活动\n课时设置\n练习题\n学生预览\n资料与版本\n更多操作\n暂无数据\n当前教案没有活动"
+  }
+]

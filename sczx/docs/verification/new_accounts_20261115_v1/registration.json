@@ -1,0 +1,24 @@
+[
+  {
+    "role": "student",
+    "status": "passed",
+    "initial": {
+      "classes": 0,
+      "tasks": 0,
+      "records": 0,
+      "lesson": null
+    },
+    "scriptErrors": []
+  },
+  {
+    "role": "teacher",
+    "status": "passed",
+    "initial": {
+      "classes": 0,
+      "tasks": 0,
+      "records": 0,
+      "lesson": null
+    },
+    "scriptErrors": []
+  }
+]

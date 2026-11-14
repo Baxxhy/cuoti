@@ -51,8 +51,8 @@ async def call(capability, data, file=None):
         schema=ExamCandidate
     from .subject_prompts import instruction as subject_instruction
     from .education import linear_context
-    instruction = subject_instruction(data)
-    if linear_context(data):
+    instruction = ("你是图像文字转录器，只返回图中实际可见内容。text不得出现讲解、思考提示、追问、图外背景、学科或年级推断；空白答案保留为空；uncertainties只记录看不清的字符。" if capability in ("ocr","document_ocr") else subject_instruction(data))
+    if capability not in ("ocr","document_ocr") and linear_context(data):
         instruction += "等式两边同除的数必须非零；提到同除规则时必须明写此条件。同乘0会丢失方程信息，不能作为可逆求解。移项说明共同运算；去分母的每一项都应同乘非零公倍数。条件不足先追问，不编造条件。"
     if data.get("examCandidate"):
         instruction += "本次生成一道待教师审核的考试候选题，严格使用给定知识点、单元、难度和题型；提供题干、参考答案及解析；只在适用时提供数学表达式；不得假称已审核。explanation只写给学生看的解题过程，使用真正换行，不写待审核、候选题等编辑流程标记。"

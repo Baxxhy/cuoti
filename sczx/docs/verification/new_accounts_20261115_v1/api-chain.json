@@ -1,0 +1,1596 @@
+{
+  "student": [
+    {
+      "id": "wrong-c6c7330ed159c97e563f6570db028479",
+      "prompt": "3x = 18",
+      "image": "/api/files/file-0b315b6fabfc49648da5223875112dd4",
+      "answer": "5",
+      "jobs": [
+        {
+          "id": "job-2b59f87d9fc64ba49ba43b90d0fc207c",
+          "status": "succeeded",
+          "result": {
+            "hint": "想一想：要让左边的“3×x”只剩下x，两边应同时做什么运算？",
+            "steps": [
+              "先把“3x”看作3与x相乘。",
+              "想一个能抵消乘以3的共同运算，并检查它是否能同时用于等式两边。"
+            ],
+            "title": "先看等式两边",
+            "sources": [],
+            "question": "你会选择什么运算？请说说它怎样作用在等式两边。",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 10435,
+              "modelCalls": 1,
+              "contextChars": 2142,
+              "historyTurns": 0
+            },
+            "mathClaims": [],
+            "needCoverage": {
+              "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+              "missing": [],
+              "required": []
+            },
+            "nextStrategy": "try",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "prerequisiteId": "",
+            "representation": "question",
+            "experienceDecision": {
+              "notice": "当前没有匹配到来源与适用条件均已核对的教学经验，使用通用AI指导。",
+              "schema": 1,
+              "fallback": true,
+              "rejected": [
+                {
+                  "reasons": [
+                    "当前学科、年级或知识关联尚未明确",
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-bad2849613d5effb60838c5e"
+                },
+                {
+                  "reasons": [
+                    "当前学科、年级或知识关联尚未明确",
+                    "学科不匹配或未标注",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-59ea89da606547fc1ad170c0"
+                },
+                {
+                  "reasons": [
+                    "当前学科、年级或知识关联尚未明确",
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-a6878cdb6a68dc2fc7bd492a"
+                },
+                {
+                  "reasons": [
+                    "当前学科、年级或知识关联尚未明确",
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-0d3719e4ed12519430caa7f4"
+                },
+                {
+                  "reasons": [
+                    "当前学科、年级或知识关联尚未明确",
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-58824409cd86aa9f44e3f2d9"
+                },
+                {
+                  "reasons": [
+                    "当前学科、年级或知识关联尚未明确",
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-35b616541d627eec855ef6ec"
+                },
+                {
+                  "reasons": [
+                    "当前学科、年级或知识关联尚未明确",
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-d40b242893c9924ddb7592d9"
+                },
+                {
+                  "reasons": [
+                    "当前学科、年级或知识关联尚未明确",
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-2aa553efc382bccc5f05bb61"
+                }
+              ],
+              "selected": []
+            },
+            "usedCaseVersionIds": [],
+            "difficultyAssessment": {
+              "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+              "schema": 1,
+              "subject": "数学",
+              "difficulty": "学生报告当前学习遇到困难",
+              "dimensions": [
+                "概念",
+                "运算",
+                "推理",
+                "建模"
+              ],
+              "observations": [
+                {
+                  "id": "wrong-c6c7330ed159c97e563f6570db028479",
+                  "kind": "原始作答",
+                  "text": "5"
+                },
+                {
+                  "id": "wrong-c6c7330ed159c97e563f6570db028479:reason",
+                  "kind": "作答说明",
+                  "text": "不知道怎么算"
+                },
+                {
+                  "id": "wrong-c6c7330ed159c97e563f6570db028479:request",
+                  "kind": "学生自述",
+                  "text": "先给我提示"
+                }
+              ],
+              "possibleCauses": [],
+              "historyEvidence": [],
+              "evidenceSufficiency": "需进一步确认",
+              "recommendedStrategy": "hint",
+              "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+            }
+          }
+        },
+        {
+          "id": "job-7b42861395f14ef796ddfaeca192a22a",
+          "status": "succeeded",
+          "result": {
+            "goal": "找出使 3x=18 成立的 x。",
+            "cause": "概念理解错误",
+            "steps": [
+              "可执行提示：想一想，3乘什么数等于18？",
+              "把等式两边同时除以3（3非零），得到 x=18÷3。",
+              "计算并将结果代回原式核对。"
+            ],
+            "evidence": "5",
+            "strategy": "hint",
+            "workflow": {
+              "scope": "wrong:wrong-c6c7330ed159c97e563f6570db028479",
+              "modelCalls": 1
+            },
+            "confirmed": false,
+            "mathClaims": [
+              {
+                "left": "3x=18",
+                "right": "x=6"
+              }
+            ],
+            "uncertainty": "原作答和理由不足以确认具体错因；这里只能判断答案与方程不符，无法确定计算过程。",
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "3x=18",
+                  "right": "x=6",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "checkQuestion": "你认为 x 应是多少？代入 3x=18 后，左边算出来是多少？",
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            }
+          }
+        },
+        {
+          "id": "job-fb77e2faef3446e6afd3932332d84c01",
+          "status": "succeeded",
+          "result": {
+            "variant": {
+              "prompt": "请依据本题和我的原作答提供针对性补救。先想一想：要让左边只剩下 x，需要对等式两边做什么相同的运算？",
+              "options": [],
+              "equation": "4x=28",
+              "rationale": "新题保留原题“系数乘未知数等于常数”的结构，数值和答案均不同。原作答“5”与正确结果不符；可从等式两边同时除以系数入手，并注意除数不能为零。",
+              "gradingMode": "math",
+              "responseType": "calculation"
+            },
+            "workflow": {
+              "scope": "wrong:wrong-c6c7330ed159c97e563f6570db028479",
+              "modelCalls": 1
+            },
+            "mathClaims": [
+              {
+                "left": "3x=18",
+                "right": "x=6"
+              }
+            ],
+            "verification": {
+              "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+              "claims": [
+                {
+                  "left": "3x=18",
+                  "right": "x=6",
+                  "method": "单变量实数方程解集比较",
+                  "status": "verified"
+                }
+              ],
+              "status": "verified"
+            },
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "variantVerification": {
+              "scope": "同类结构、不同题目与答案；单变量单解实数方程",
+              "status": "verified",
+              "equation": "4x=28"
+            }
+          }
+        }
+      ],
+      "repairs": [
+        {
+          "id": "repair-657c834a8f9445e8ba00a42a64528500",
+          "wrongId": "wrong-c6c7330ed159c97e563f6570db028479",
+          "answer": "x=7",
+          "reason": "独立计算，两边同做相同运算",
+          "correct": true,
+          "verification": {
+            "scope": "实际变式题的单变量单解实数方程与答案等价性",
+            "status": "verified_correct",
+            "correct": true
+          },
+          "details": {
+            "phase": "practice",
+            "helped": false,
+            "prompt": "请依据本题和我的原作答提供针对性补救。先想一想：要让左边只剩下 x，需要对等式两边做什么相同的运算？",
+            "subject": "数学",
+            "version": "dynamic_v1",
+            "equation": "4x=28",
+            "expected": "7",
+            "planJobId": "job-7b42861395f14ef796ddfaeca192a22a",
+            "variantId": "job-fb77e2faef3446e6afd3932332d84c01",
+            "requestKey": "a2528373be744046bed1dcee5bd2d265",
+            "variantJobId": "job-fb77e2faef3446e6afd3932332d84c01",
+            "verification": {
+              "scope": "实际变式题的单变量单解实数方程与答案等价性",
+              "status": "verified_correct",
+              "correct": true
+            }
+          },
+          "createdAt": "2026-11-15T00:43:01"
+        }
+      ]
+    },
+    {
+      "id": "wrong-2326aa32337cca33a643d000d6b574c0",
+      "prompt": "I goed to school yesterday. 请引导我检查时态。",
+      "image": "",
+      "answer": "I goed to school yesterday.",
+      "jobs": [
+        {
+          "id": "job-254c2f96c9034786a38c33108c29a0d2",
+          "status": "succeeded",
+          "result": {
+            "hint": "可操作提示：先圈出句中的时间词，再想想这个动作发生在什么时候、是否已经结束。",
+            "steps": [
+              "保留你的原句“I goed to school yesterday.”和原想法“我以为都加ed”，先看时间词 yesterday 表示什么时间。",
+              "再检查动词 go：它属于规则变化还是有特殊的过去式？可以查课本词表或回想 go 的过去式。",
+              "把你查到的形式放回句子，并说说时间词和动词形式怎样对应。"
+            ],
+            "title": "先看时间，再看动作",
+            "sources": [
+              {
+                "id": "exp-bad2849613d5effb60838c5e",
+                "grade": "八年级",
+                "score": 11.866802,
+                "title": "一般过去时：从短文时间线找动作，再归纳过去时并迁移",
+                "author": "The Open University / TESS-India",
+                "source": "The Open University / TESS-India",
+                "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n英语 八年级 一般过去时\n从短文时间线找动作，再归纳过去时并迁移\n圈时间提示\n标动作发生位置\n比较现在与过去句式\n关键追问：这个动作已结束还是仍在发生？\n调整：先用中文说明时间，再检查动词形式\n独立检查：用新的昨天事件写两句，解释时态选择\n适用边界：只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：English grammar in action\n来源作者/机构：The Open University / TESS-India\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1\n原作许可：CC-BY-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                "subject": "英语",
+                "version": 1,
+                "bm25Score": 181.177938,
+                "textScore": 11.296802,
+                "versionId": "resver-bad2849613d5effb60838c5e",
+                "experience": {
+                  "goal": "能够就“一般过去时”给出有依据的说明，并完成对应独立检查。",
+                  "steps": [
+                    "圈时间提示",
+                    "标动作发生位置",
+                    "比较现在与过去句式"
+                  ],
+                  "boundary": "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。",
+                  "strategy": "从短文时间线找动作，再归纳过去时并迁移",
+                  "diagnosis": "请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。",
+                  "questions": [
+                    "这个动作已结束还是仍在发生？"
+                  ],
+                  "responses": [
+                    "学生可能只因看到动词就加ed（预设可能回应，非课堂实录）"
+                  ],
+                  "adjustment": "先用中文说明时间，再检查动词形式",
+                  "difficulty": "一般过去时只背规则不会联系语境",
+                  "effectCheck": "用新的昨天事件写两句，解释时态选择",
+                  "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+                  "suggestions": [],
+                  "knowledgePoints": [
+                    "一般过去时"
+                  ]
+                },
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESS-India",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "references": [
+                  {
+                    "field": "content",
+                    "label": "中文方法摘要（非来源原文）",
+                    "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n英语 八年级 一般过去时\n从短文时间线找动作，再归纳过去时并迁移\n圈时间提示\n标动作发生位置\n比较现在与过去句式\n关键追问：这个动作已结束还是仍在发生？\n调整：先用中文说明时间，再检查动词形式\n独立检查：用新的昨天事件写两句，解释时态选择\n适用边界：只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：English grammar in action\n来源作者/机构：The Open University / TESS-India\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1\n原作许可：CC-BY-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                    "author": "The Open University / TESS-India",
+                    "unitId": "resunit-bad2849613d5effb60838c5e",
+                    "quoteKind": "adapted_summary",
+                    "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1",
+                    "materialId": "resmat-bad2849613d5effb60838c5e",
+                    "materialTitle": "一般过去时（中文整理摘要）"
+                  }
+                ],
+                "publishedAt": "2026-11-14T16:39:00Z",
+                "contextScore": 0.12,
+                "knowledgeIds": [
+                  "kp-bad2849613d5effb60838c5e"
+                ],
+                "matchReasons": [
+                  "直接关联目标知识点",
+                  "匹配知识点、学生困难、标题",
+                  "与课时适用信息一致"
+                ],
+                "applicability": {
+                  "kind": "knowledge_scope",
+                  "grade": "八年级",
+                  "schema": 1,
+                  "subject": "英语",
+                  "knowledgeIds": [
+                    "kp-bad2849613d5effb60838c5e"
+                  ]
+                },
+                "curatedImport": {
+                  "batch": "resources-20261114-v1",
+                  "sourceId": "grammar",
+                  "sourceSha256": "7c8a62efa5585ef9e36ca827b4db9b24f79a3818a591ea8d67cf0f1ae77f7bae",
+                  "resourceSha256": "37034995b1c4b8fce8f7cd5e9651eacf73cefc31e0a86e69fea6e0b825686c04"
+                },
+                "matchedFields": [
+                  {
+                    "bm25": 18.031061,
+                    "field": "title",
+                    "label": "标题",
+                    "score": 1.894909,
+                    "matchedTerms": [
+                      "一般",
+                      "去时",
+                      "般过",
+                      "过去"
+                    ],
+                    "contextMatched": false
+                  },
+                  {
+                    "bm25": 26.989493,
+                    "field": "knowledgePoints",
+                    "label": "知识点",
+                    "score": 2.410681,
+                    "matchedTerms": [
+                      "一般",
+                      "去时",
+                      "般过",
+                      "过去"
+                    ],
+                    "contextMatched": false
+                  },
+                  {
+                    "bm25": 44.115568,
+                    "field": "difficulty",
+                    "label": "学生困难",
+                    "score": 1.955669,
+                    "matchedTerms": [
+                      "一般",
+                      "不会",
+                      "会联",
+                      "则不",
+                      "去时",
+                      "只背",
+                      "时只",
+                      "系语",
+                      "联系",
+                      "背规",
+                      "般过",
+                      "规则",
+                      "语境",
+                      "过去"
+                    ],
+                    "contextMatched": false
+                  },
+                  {
+                    "bm25": 15.376182,
+                    "field": "goal",
+                    "label": "教学目标",
+                    "score": 1.502297,
+                    "matchedTerms": [
+                      "一般",
+                      "去时",
+                      "检查",
+                      "般过",
+                      "过去"
+                    ],
+                    "contextMatched": false
+                  },
+                  {
+                    "bm25": 27.43626,
+                    "field": "content",
+                    "label": "正文",
+                    "score": 0.964834,
+                    "matchedTerms": [
+                      "一般",
+                      "去时",
+                      "时态",
+                      "检查",
+                      "般过",
+                      "过去"
+                    ],
+                    "contextMatched": false
+                  },
+                  {
+                    "bm25": 3.966593,
+                    "field": "steps",
+                    "label": "讲解步骤",
+                    "score": 0.718789,
+                    "matchedTerms": [
+                      "过去"
+                    ],
+                    "contextMatched": false
+                  },
+                  {
+                    "bm25": 2.585452,
+                    "field": "adjustment",
+                    "label": "回应调整",
+                    "score": 0.576876,
+                    "matchedTerms": [
+                      "检查"
+                    ],
+                    "contextMatched": false
+                  },
+                  {
+                    "bm25": 15.241069,
+                    "field": "boundary",
+                    "label": "适用边界",
+                    "score": 0.886814,
+                    "matchedTerms": [
+                      "一般",
+                      "去时",
+                      "般过",
+                      "过去"
+                    ],
+                    "contextMatched": false
+                  },
+                  {
+                    "bm25": 27.43626,
+                    "field": "references",
+                    "label": "原文摘录",
+                    "score": 0.385933,
+                    "matchedTerms": [
+                      "一般",
+                      "去时",
+                      "时态",
+                      "检查",
+                      "般过",
+                      "过去"
+                    ],
+                    "contextMatched": false
+                  }
+                ],
+                "retrievalText": "{\"goal\": \"能够就“一般过去时”给出有依据的说明，并完成对应独立检查。\", \"steps\": [\"圈时间提示\", \"标动作发生位置\", \"比较现在与过去句式\"], \"boundary\": \"只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"strategy\": \"从短文时间线找动作，再归纳过去时并迁移\", \"diagnosis\": \"请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。\", \"questions\": [\"这个动作已结束还是仍在发生？\"], \"responses\": [\"学生可能只因看到动词就加ed（预设可能回应，非课堂实录）\"], \"adjustment\": \"先用中文说明时间，再检查动词形式\", \"difficulty\": \"一般过去时只背规则不会联系语境\", \"effectCheck\": \"用新的昨天事件写两句，解释时态选择\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"suggestions\": [], \"knowledgePoints\": [\"一般过去时\"]}",
+                "knowledgeLinks": [
+                  {
+                    "id": "kp-bad2849613d5effb60838c5e",
+                    "name": "一般过去时"
+                  }
+                ],
+                "knowledgeScore": 0.45,
+                "resourceRights": {
+                  "reuseMode": "adapted_text",
+                  "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1",
+                  "localUsage": "仅本地教学方法摘要；用户单人复核",
+                  "sourceTitle": "English grammar in action",
+                  "sourceAuthor": "The Open University / TESS-India",
+                  "sourceLicense": "CC-BY-SA-4.0",
+                  "thirdPartyMediaIncluded": false,
+                  "originalRedistributionApproved": false
+                },
+                "experienceReview": {
+                  "provenance": {
+                    "kind": "public",
+                    "author": "The Open University / TESS-India",
+                    "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                    "authorization": "internal",
+                    "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                  },
+                  "reviewedAt": "2026-11-14",
+                  "reviewerId": "resource-admin",
+                  "humanReview": {
+                    "method": "AI辅助整理、用户单人复核",
+                    "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+                    "reviewer": "用户（项目负责人，单人复核）",
+                    "allowedUsage": "local_summary_only"
+                  },
+                  "applicability": {
+                    "kind": "knowledge_scope",
+                    "grade": "八年级",
+                    "schema": 1,
+                    "subject": "英语",
+                    "knowledgeIds": [
+                      "kp-bad2849613d5effb60838c5e"
+                    ]
+                  }
+                },
+                "knowledgeMatches": [
+                  {
+                    "id": "kp-bad2849613d5effb60838c5e",
+                    "name": "一般过去时",
+                    "relation": "direct"
+                  }
+                ]
+              }
+            ],
+            "question": "请指出你从哪一步开始不确定，并说明刚才是怎么想的？",
+            "strategy": "hint",
+            "workflow": {
+              "nodes": [
+                "固定学习上下文",
+                "读取公开案例与一层前置知识",
+                "生成本轮指导",
+                "核验并等待学生回应"
+              ],
+              "elapsedMs": 13084,
+              "modelCalls": 1,
+              "contextChars": 9352,
+              "historyTurns": 0
+            },
+            "mathClaims": [],
+            "needCoverage": {
+              "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+              "missing": [],
+              "required": []
+            },
+            "nextStrategy": "hint",
+            "verification": {
+              "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+              "claims": [],
+              "status": "unverified"
+            },
+            "prerequisites": [],
+            "conditionCheck": {
+              "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+              "issues": [],
+              "status": "no_known_issue",
+              "humanReviewRequired": true
+            },
+            "prerequisiteId": "",
+            "representation": "text",
+            "experienceDecision": {
+              "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+              "schema": 1,
+              "fallback": false,
+              "rejected": [
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-9764d15c41decca66cf03505"
+                },
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-87ad8fa64cf4b2f8c405ccb4"
+                },
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-66c028ecef97832ff1b3aff9"
+                },
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-d0accd2de4fda2767464857e"
+                },
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "知识点未明确关联",
+                    "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+                  ],
+                  "versionId": "resver-14feb019bb278542df22a11b"
+                },
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-35b616541d627eec855ef6ec"
+                },
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-3409d0fb48797990ff32ae36"
+                }
+              ],
+              "selected": [
+                {
+                  "id": "exp-bad2849613d5effb60838c5e",
+                  "method": "从短文时间线找动作，再归纳过去时并迁移",
+                  "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                  "version": 1,
+                  "strategy": "hint",
+                  "versionId": "resver-bad2849613d5effb60838c5e",
+                  "conditions": [
+                    "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。"
+                  ],
+                  "provenance": {
+                    "kind": "public",
+                    "author": "The Open University / TESS-India",
+                    "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                    "authorization": "internal",
+                    "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                  },
+                  "effectCheck": "用新的昨天事件写两句，解释时态选择",
+                  "evidenceIds": [
+                    "wrong-2326aa32337cca33a643d000d6b574c0",
+                    "wrong-2326aa32337cca33a643d000d6b574c0:reason",
+                    "wrong-2326aa32337cca33a643d000d6b574c0:request"
+                  ],
+                  "diagnosticOnly": false,
+                  "teachingMethod": "从短文时间线找动作，再归纳过去时并迁移",
+                  "diagnosticBasis": "请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。",
+                  "matchedDifficultyTerms": [
+                    "一般",
+                    "不会",
+                    "会联",
+                    "则不",
+                    "去时",
+                    "只背",
+                    "时只",
+                    "系语",
+                    "联系",
+                    "背规",
+                    "般过",
+                    "规则",
+                    "语境",
+                    "过去"
+                  ]
+                }
+              ]
+            },
+            "usedCaseVersionIds": [
+              "resver-bad2849613d5effb60838c5e"
+            ],
+            "difficultyAssessment": {
+              "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+              "schema": 1,
+              "subject": "英语",
+              "difficulty": "学生报告当前学习遇到困难",
+              "dimensions": [
+                "词汇",
+                "语法",
+                "语境",
+                "表达"
+              ],
+              "observations": [
+                {
+                  "id": "wrong-2326aa32337cca33a643d000d6b574c0",
+                  "kind": "原始作答",
+                  "text": "I goed to school yesterday."
+                },
+                {
+                  "id": "wrong-2326aa32337cca33a643d000d6b574c0:reason",
+                  "kind": "作答说明",
+                  "text": "我以为都加ed"
+                },
+                {
+                  "id": "wrong-2326aa32337cca33a643d000d6b574c0:request",
+                  "kind": "学生自述",
+                  "text": "一般过去时只背规则不会联系语境"
+                }
+              ],
+              "possibleCauses": [],
+              "historyEvidence": [],
+              "evidenceSufficiency": "需进一步确认",
+              "recommendedStrategy": "hint",
+              "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+            }
+          }
+        }
+      ],
+      "repairs": []
+    }
+  ],
+  "teacher": {
+    "jobId": "job-082cec7fbe624bdeacb0f788f90e8fc3",
+    "inputContext": {
+      "id": "case:exp-bad2849613d5effb60838c5e",
+      "goal": "能够就“一般过去时”给出有依据的说明，并完成对应独立检查。",
+      "grade": "八年级",
+      "title": "一般过去时：从短文时间线找动作，再归纳过去时并迁移",
+      "blocks": [
+        {
+          "id": "independent-activity",
+          "title": "教学活动",
+          "content": "从短文时间线找动作，再归纳过去时并迁移"
+        }
+      ],
+      "caseId": "exp-bad2849613d5effb60838c5e",
+      "subject": "英语",
+      "version": 1,
+      "questions": [],
+      "versionId": "resver-bad2849613d5effb60838c5e",
+      "caseSnapshot": {
+        "id": "exp-bad2849613d5effb60838c5e",
+        "grade": "八年级",
+        "title": "一般过去时：从短文时间线找动作，再归纳过去时并迁移",
+        "author": "The Open University / TESS-India",
+        "source": "The Open University / TESS-India",
+        "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n英语 八年级 一般过去时\n从短文时间线找动作，再归纳过去时并迁移\n圈时间提示\n标动作发生位置\n比较现在与过去句式\n关键追问：这个动作已结束还是仍在发生？\n调整：先用中文说明时间，再检查动词形式\n独立检查：用新的昨天事件写两句，解释时态选择\n适用边界：只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：English grammar in action\n来源作者/机构：The Open University / TESS-India\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1\n原作许可：CC-BY-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+        "subject": "英语",
+        "version": 1,
+        "versionId": "resver-bad2849613d5effb60838c5e",
+        "experience": {
+          "goal": "能够就“一般过去时”给出有依据的说明，并完成对应独立检查。",
+          "steps": [
+            "圈时间提示",
+            "标动作发生位置",
+            "比较现在与过去句式"
+          ],
+          "boundary": "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。",
+          "strategy": "从短文时间线找动作，再归纳过去时并迁移",
+          "diagnosis": "请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。",
+          "questions": [
+            "这个动作已结束还是仍在发生？"
+          ],
+          "responses": [
+            "学生可能只因看到动词就加ed（预设可能回应，非课堂实录）"
+          ],
+          "adjustment": "先用中文说明时间，再检查动词形式",
+          "difficulty": "一般过去时只背规则不会联系语境",
+          "effectCheck": "用新的昨天事件写两句，解释时态选择",
+          "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+          "suggestions": [],
+          "knowledgePoints": [
+            "一般过去时"
+          ]
+        },
+        "provenance": {
+          "kind": "public",
+          "author": "The Open University / TESS-India",
+          "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+          "authorization": "internal",
+          "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+        },
+        "references": [
+          {
+            "field": "content",
+            "label": "中文方法摘要（非来源原文）",
+            "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n英语 八年级 一般过去时\n从短文时间线找动作，再归纳过去时并迁移\n圈时间提示\n标动作发生位置\n比较现在与过去句式\n关键追问：这个动作已结束还是仍在发生？\n调整：先用中文说明时间，再检查动词形式\n独立检查：用新的昨天事件写两句，解释时态选择\n适用边界：只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：English grammar in action\n来源作者/机构：The Open University / TESS-India\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1\n原作许可：CC-BY-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+            "author": "The Open University / TESS-India",
+            "unitId": "resunit-bad2849613d5effb60838c5e",
+            "quoteKind": "adapted_summary",
+            "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1",
+            "materialId": "resmat-bad2849613d5effb60838c5e",
+            "materialTitle": "一般过去时（中文整理摘要）"
+          }
+        ],
+        "publishedAt": "2026-11-14T16:39:00Z",
+        "knowledgeIds": [
+          "kp-bad2849613d5effb60838c5e"
+        ],
+        "applicability": {
+          "kind": "knowledge_scope",
+          "grade": "八年级",
+          "schema": 1,
+          "subject": "英语",
+          "knowledgeIds": [
+            "kp-bad2849613d5effb60838c5e"
+          ]
+        },
+        "curatedImport": {
+          "batch": "resources-20261114-v1",
+          "sourceId": "grammar",
+          "sourceSha256": "7c8a62efa5585ef9e36ca827b4db9b24f79a3818a591ea8d67cf0f1ae77f7bae",
+          "resourceSha256": "37034995b1c4b8fce8f7cd5e9651eacf73cefc31e0a86e69fea6e0b825686c04"
+        },
+        "knowledgeLinks": [
+          {
+            "id": "kp-bad2849613d5effb60838c5e",
+            "name": "一般过去时"
+          }
+        ],
+        "resourceRights": {
+          "reuseMode": "adapted_text",
+          "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1",
+          "localUsage": "仅本地教学方法摘要；用户单人复核",
+          "sourceTitle": "English grammar in action",
+          "sourceAuthor": "The Open University / TESS-India",
+          "sourceLicense": "CC-BY-SA-4.0",
+          "thirdPartyMediaIncluded": false,
+          "originalRedistributionApproved": false
+        },
+        "experienceReview": {
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "reviewedAt": "2026-11-14",
+          "reviewerId": "resource-admin",
+          "humanReview": {
+            "method": "AI辅助整理、用户单人复核",
+            "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+            "reviewer": "用户（项目负责人，单人复核）",
+            "allowedUsage": "local_summary_only"
+          },
+          "applicability": {
+            "kind": "knowledge_scope",
+            "grade": "八年级",
+            "schema": 1,
+            "subject": "英语",
+            "knowledgeIds": [
+              "kp-bad2849613d5effb60838c5e"
+            ]
+          }
+        }
+      },
+      "knowledgeIds": [
+        "kp-bad2849613d5effb60838c5e"
+      ],
+      "prerequisiteIds": []
+    },
+    "result": {
+      "plan": {
+        "goal": "学生能依据动作发生的时间和状态说明一般过去时的选择，并独立写两句关于昨天事件的句子，解释时态选择。",
+        "title": "一般过去时：从时间线到语境表达",
+        "blocks": [
+          {
+            "id": "independent-activity",
+            "title": "短文时间线与昨天事件表达",
+            "content": "1. 出示一段含时间提示和动作的短文，学生圈出时间提示，并标出动作发生的位置。\n2. 学生比较短文中的过去表达与相应的现在表达，归纳选择一般过去时的语境依据及动词形式。\n3. 学生独立写两句关于新的昨天事件的句子，并说明时态选择理由。",
+            "adjustment": "若学生只依据动词形式判断，先请其用中文说明动作发生的时间，再检查动词形式。",
+            "evidenceIds": [
+              "lesson:resver-bad2849613d5effb60838c5e",
+              "resunit-bad2849613d5effb60838c5e:0cd1fb4496"
+            ],
+            "studentTask": "圈出短文时间提示、标出动作；比较过去与现在的表达；写两句关于昨天事件的句子并解释时态选择。",
+            "studentResponse": "预设可能回应：看到动词就加-ed。此为预设，不是课堂实录。",
+            "teacherQuestion": "这个动作已结束还是仍在发生？你依据短文中的什么信息判断？"
+          }
+        ],
+        "rationale": [
+          "先从短文中的时间提示和动作定位建立语境，再比较过去与现在的表达，最后用新事件独立迁移，回应只背规则、难联系语境的任务目标。",
+          "追问动作是否已结束，检查时态选择依据；如学生只看见动词就加-ed，先用中文确认时间，再核对动词形式。教法候选依据为请求中提供的中文方法摘要，注明其参考来源类型，不据此推断课堂效果。"
+        ],
+        "mathClaims": []
+      },
+      "cases": [
+        {
+          "id": "exp-bad2849613d5effb60838c5e",
+          "grade": "八年级",
+          "score": 13.33674,
+          "title": "一般过去时：从短文时间线找动作，再归纳过去时并迁移",
+          "author": "The Open University / TESS-India",
+          "source": "The Open University / TESS-India",
+          "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n英语 八年级 一般过去时\n从短文时间线找动作，再归纳过去时并迁移\n圈时间提示\n标动作发生位置\n比较现在与过去句式\n关键追问：这个动作已结束还是仍在发生？\n调整：先用中文说明时间，再检查动词形式\n独立检查：用新的昨天事件写两句，解释时态选择\n适用边界：只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：English grammar in action\n来源作者/机构：The Open University / TESS-India\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1\n原作许可：CC-BY-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+          "subject": "英语",
+          "version": 1,
+          "bm25Score": 332.925776,
+          "textScore": 12.76674,
+          "versionId": "resver-bad2849613d5effb60838c5e",
+          "experience": {
+            "goal": "能够就“一般过去时”给出有依据的说明，并完成对应独立检查。",
+            "steps": [
+              "圈时间提示",
+              "标动作发生位置",
+              "比较现在与过去句式"
+            ],
+            "boundary": "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。",
+            "strategy": "从短文时间线找动作，再归纳过去时并迁移",
+            "diagnosis": "请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。",
+            "questions": [
+              "这个动作已结束还是仍在发生？"
+            ],
+            "responses": [
+              "学生可能只因看到动词就加ed（预设可能回应，非课堂实录）"
+            ],
+            "adjustment": "先用中文说明时间，再检查动词形式",
+            "difficulty": "一般过去时只背规则不会联系语境",
+            "effectCheck": "用新的昨天事件写两句，解释时态选择",
+            "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+            "suggestions": [],
+            "knowledgePoints": [
+              "一般过去时"
+            ]
+          },
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "references": [
+            {
+              "field": "content",
+              "label": "中文方法摘要（非来源原文）",
+              "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n英语 八年级 一般过去时\n从短文时间线找动作，再归纳过去时并迁移\n圈时间提示\n标动作发生位置\n比较现在与过去句式\n关键追问：这个动作已结束还是仍在发生？\n调整：先用中文说明时间，再检查动词形式\n独立检查：用新的昨天事件写两句，解释时态选择\n适用边界：只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：English grammar in action\n来源作者/机构：The Open University / TESS-India\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1\n原作许可：CC-BY-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "author": "The Open University / TESS-India",
+              "unitId": "resunit-bad2849613d5effb60838c5e",
+              "quoteKind": "adapted_summary",
+              "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1",
+              "materialId": "resmat-bad2849613d5effb60838c5e",
+              "materialTitle": "一般过去时（中文整理摘要）"
+            }
+          ],
+          "publishedAt": "2026-11-14T16:39:00Z",
+          "contextScore": 0.12,
+          "knowledgeIds": [
+            "kp-bad2849613d5effb60838c5e"
+          ],
+          "matchReasons": [
+            "直接关联目标知识点",
+            "匹配知识点、标题、学生困难",
+            "与课时适用信息一致"
+          ],
+          "applicability": {
+            "kind": "knowledge_scope",
+            "grade": "八年级",
+            "schema": 1,
+            "subject": "英语",
+            "knowledgeIds": [
+              "kp-bad2849613d5effb60838c5e"
+            ]
+          },
+          "curatedImport": {
+            "batch": "resources-20261114-v1",
+            "sourceId": "grammar",
+            "sourceSha256": "7c8a62efa5585ef9e36ca827b4db9b24f79a3818a591ea8d67cf0f1ae77f7bae",
+            "resourceSha256": "37034995b1c4b8fce8f7cd5e9651eacf73cefc31e0a86e69fea6e0b825686c04"
+          },
+          "matchedFields": [
+            {
+              "bm25": 66.966342,
+              "field": "title",
+              "label": "标题",
+              "score": 1.994383,
+              "matchedTerms": [
+                "一般",
+                "从短",
+                "再归",
+                "动作",
+                "去时",
+                "并迁",
+                "归纳",
+                "找动",
+                "文时",
+                "时并",
+                "时间",
+                "短文",
+                "纳过",
+                "线找",
+                "般过",
+                "迁移"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 26.989493,
+              "field": "knowledgePoints",
+              "label": "知识点",
+              "score": 2.440443,
+              "matchedTerms": [
+                "一般",
+                "去时",
+                "般过",
+                "过去"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 44.115568,
+              "field": "difficulty",
+              "label": "学生困难",
+              "score": 1.979479,
+              "matchedTerms": [
+                "一般",
+                "不会",
+                "会联",
+                "则不",
+                "去时",
+                "只背",
+                "时只",
+                "系语",
+                "联系",
+                "背规",
+                "般过",
+                "规则",
+                "语境",
+                "过去"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 15.367082,
+              "field": "goal",
+              "label": "教学目标",
+              "score": 1.602243,
+              "matchedTerms": [
+                "一般",
+                "去时",
+                "般过",
+                "过去"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 0,
+              "field": "studentBase",
+              "label": "学生基础",
+              "score": 0.004167,
+              "matchedTerms": [],
+              "contextMatched": true
+            },
+            {
+              "bm25": 72.995215,
+              "field": "content",
+              "label": "正文",
+              "score": 1.010295,
+              "matchedTerms": [
+                "一般",
+                "从短",
+                "再归",
+                "动作",
+                "去时",
+                "并迁",
+                "归纳",
+                "找动",
+                "文时",
+                "时并",
+                "时间",
+                "短文",
+                "纳过",
+                "线找",
+                "般过",
+                "迁移"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 11.89978,
+              "field": "steps",
+              "label": "讲解步骤",
+              "score": 1.124428,
+              "matchedTerms": [
+                "动作",
+                "时间",
+                "过去"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 3.77056,
+              "field": "questions",
+              "label": "教师提问",
+              "score": 0.960313,
+              "matchedTerms": [
+                "动作"
+              ],
+              "contextMatched": false
+            },
+            {
+              "bm25": 2.585452,
+              "field": "adjustment",
+              "label": "回应调整",
+              "score": 0.581638,
+              "matchedTerms": [
+                "时间"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 15.241069,
+              "field": "boundary",
+              "label": "适用边界",
+              "score": 0.665233,
+              "matchedTerms": [
+                "一般",
+                "去时",
+                "般过",
+                "过去"
+              ],
+              "contextMatched": true
+            },
+            {
+              "bm25": 72.995215,
+              "field": "references",
+              "label": "原文摘录",
+              "score": 0.404118,
+              "matchedTerms": [
+                "一般",
+                "从短",
+                "再归",
+                "动作",
+                "去时",
+                "并迁",
+                "归纳",
+                "找动",
+                "文时",
+                "时并",
+                "时间",
+                "短文",
+                "纳过",
+                "线找",
+                "般过",
+                "迁移"
+              ],
+              "contextMatched": true
+            }
+          ],
+          "retrievalText": "{\"goal\": \"能够就“一般过去时”给出有依据的说明，并完成对应独立检查。\", \"steps\": [\"圈时间提示\", \"标动作发生位置\", \"比较现在与过去句式\"], \"boundary\": \"只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"strategy\": \"从短文时间线找动作，再归纳过去时并迁移\", \"diagnosis\": \"请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。\", \"questions\": [\"这个动作已结束还是仍在发生？\"], \"responses\": [\"学生可能只因看到动词就加ed（预设可能回应，非课堂实录）\"], \"adjustment\": \"先用中文说明时间，再检查动词形式\", \"difficulty\": \"一般过去时只背规则不会联系语境\", \"effectCheck\": \"用新的昨天事件写两句，解释时态选择\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"suggestions\": [], \"knowledgePoints\": [\"一般过去时\"]}",
+          "knowledgeLinks": [
+            {
+              "id": "kp-bad2849613d5effb60838c5e",
+              "name": "一般过去时"
+            }
+          ],
+          "knowledgeScore": 0.45,
+          "resourceRights": {
+            "reuseMode": "adapted_text",
+            "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1",
+            "localUsage": "仅本地教学方法摘要；用户单人复核",
+            "sourceTitle": "English grammar in action",
+            "sourceAuthor": "The Open University / TESS-India",
+            "sourceLicense": "CC-BY-SA-4.0",
+            "thirdPartyMediaIncluded": false,
+            "originalRedistributionApproved": false
+          },
+          "experienceReview": {
+            "provenance": {
+              "kind": "public",
+              "author": "The Open University / TESS-India",
+              "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+              "authorization": "internal",
+              "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+            },
+            "reviewedAt": "2026-11-14",
+            "reviewerId": "resource-admin",
+            "humanReview": {
+              "method": "AI辅助整理、用户单人复核",
+              "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+              "reviewer": "用户（项目负责人，单人复核）",
+              "allowedUsage": "local_summary_only"
+            },
+            "applicability": {
+              "kind": "knowledge_scope",
+              "grade": "八年级",
+              "schema": 1,
+              "subject": "英语",
+              "knowledgeIds": [
+                "kp-bad2849613d5effb60838c5e"
+              ]
+            }
+          },
+          "knowledgeMatches": [
+            {
+              "id": "kp-bad2849613d5effb60838c5e",
+              "name": "一般过去时",
+              "relation": "direct"
+            }
+          ]
+        }
+      ],
+      "model": "gpt-6-luna",
+      "steps": [
+        {
+          "key": "context",
+          "tool": "curriculum.read",
+          "title": "理解任务与课时",
+          "output": {
+            "method": "显式选择或有限关键词规则；课时由服务端读取",
+            "recognizedType": "活动设计",
+            "lessonVersionId": "resver-bad2849613d5effb60838c5e"
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-14T16:46:55.873830+00:00",
+          "finishedAt": "2026-11-14T16:46:55.951370+00:00"
+        },
+        {
+          "key": "cases",
+          "tool": "retrieval.bm25",
+          "title": "检索教学案例",
+          "output": {
+            "rerank": false,
+            "versions": [
+              {
+                "id": "exp-bad2849613d5effb60838c5e",
+                "versionId": "resver-bad2849613d5effb60838c5e"
+              }
+            ],
+            "caseCount": 1
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-14T16:46:56.020799+00:00",
+          "finishedAt": "2026-11-14T16:46:56.147652+00:00"
+        },
+        {
+          "key": "materials",
+          "tool": "materials.read",
+          "title": "定位原文材料",
+          "output": {
+            "evidenceIds": [
+              "lesson:resver-bad2849613d5effb60838c5e",
+              "resunit-bad2849613d5effb60838c5e:0cd1fb4496"
+            ],
+            "materialCount": 1
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-14T16:46:56.196992+00:00",
+          "finishedAt": "2026-11-14T16:46:56.259894+00:00"
+        },
+        {
+          "key": "generate",
+          "tool": "codex.lesson_plan",
+          "title": "生成备课建议",
+          "output": {
+            "model": "gpt-6-luna",
+            "origin": "模型生成，待教师核对",
+            "provider": "Codex CLI · low",
+            "onlyBlock": null,
+            "blockCount": 1
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-14T16:46:56.287355+00:00",
+          "finishedAt": "2026-11-14T16:47:10.250755+00:00"
+        },
+        {
+          "key": "validate",
+          "tool": "plan.validate",
+          "title": "核验结构与依据",
+          "output": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified",
+            "structure": "passed",
+            "references": "passed",
+            "goalTermsOverlap": true,
+            "humanReviewRequired": true
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-14T16:47:10.381961+00:00",
+          "finishedAt": "2026-11-14T16:47:10.472977+00:00"
+        },
+        {
+          "key": "ready",
+          "tool": "teacher.review",
+          "title": "等待教师确认",
+          "output": {
+            "next": "教师编辑、确认后保存备课草稿；不自动发布"
+          },
+          "status": "succeeded",
+          "startedAt": "2026-11-14T16:47:10.512938+00:00",
+          "finishedAt": "2026-11-14T16:47:10.601074+00:00"
+        }
+      ],
+      "context": {
+        "goal": "能够就“一般过去时”给出有依据的说明，并完成对应独立检查。",
+        "task": "一般过去时只背规则不会联系语境，请设计教学活动。",
+        "grade": "八年级",
+        "subject": "英语",
+        "lessonId": "case:exp-bad2849613d5effb60838c5e",
+        "taskType": "activity",
+        "taskLabel": "活动设计",
+        "constraints": "",
+        "lessonTitle": "一般过去时：从短文时间线找动作，再归纳过去时并迁移",
+        "knowledgeIds": [
+          "kp-bad2849613d5effb60838c5e"
+        ],
+        "lessonVersionId": "resver-bad2849613d5effb60838c5e",
+        "prerequisiteIds": []
+      },
+      "decision": "pending",
+      "editable": {
+        "goal": "新教师独立修改：根据时间依据选择过去时，在新句子中说明理由。",
+        "title": "一般过去时：从时间线到语境表达",
+        "blocks": [
+          {
+            "id": "independent-activity",
+            "title": "短文时间线与昨天事件表达",
+            "content": "1. 出示一段含时间提示和动作的短文，学生圈出时间提示，并标出动作发生的位置。\n2. 学生比较短文中的过去表达与相应的现在表达，归纳选择一般过去时的语境依据及动词形式。\n3. 学生独立写两句关于新的昨天事件的句子，并说明时态选择理由。",
+            "adjustment": "若学生只依据动词形式判断，先请其用中文说明动作发生的时间，再检查动词形式。",
+            "evidenceIds": [
+              "lesson:resver-bad2849613d5effb60838c5e",
+              "resunit-bad2849613d5effb60838c5e:0cd1fb4496"
+            ],
+            "studentTask": "圈出短文时间提示、标出动作；比较过去与现在的表达；写两句关于昨天事件的句子并解释时态选择。",
+            "studentResponse": "预设可能回应：看到动词就加-ed。此为预设，不是课堂实录。",
+            "teacherQuestion": "这个动作已结束还是仍在发生？你依据短文中的什么信息判断？"
+          }
+        ],
+        "rationale": [
+          "先从短文中的时间提示和动作定位建立语境，再比较过去与现在的表达，最后用新事件独立迁移，回应只背规则、难联系语境的任务目标。",
+          "追问动作是否已结束，检查时态选择依据；如学生只看见动词就加-ed，先用中文确认时间，再核对动词形式。教法候选依据为请求中提供的中文方法摘要，注明其参考来源类型，不据此推断课堂效果。"
+        ],
+        "mathClaims": []
+      },
+      "editedAt": "2026-11-14T16:47:59.953439+00:00",
+      "evidence": [
+        {
+          "id": "lesson:resver-bad2849613d5effb60838c5e",
+          "url": "/#/courses",
+          "kind": "lesson",
+          "title": "一般过去时：从短文时间线找动作，再归纳过去时并迁移",
+          "content": "教学活动：从短文时间线找动作，再归纳过去时并迁移",
+          "versionId": "resver-bad2849613d5effb60838c5e"
+        },
+        {
+          "id": "resunit-bad2849613d5effb60838c5e:0cd1fb4496",
+          "url": "/#/source?unit=resunit-bad2849613d5effb60838c5e",
+          "kind": "material",
+          "label": "中文方法摘要（非来源原文）",
+          "score": 6.585841,
+          "title": "一般过去时（中文整理摘要）",
+          "caseId": "exp-bad2849613d5effb60838c5e",
+          "unitId": "resunit-bad2849613d5effb60838c5e",
+          "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n英语 八年级 一般过去时\n从短文时间线找动作，再归纳过去时并迁移\n圈时间提示\n标动作发生位置\n比较现在与过去句式\n关键追问：这个动作已结束还是仍在发生？\n调整：先用中文说明时间，再检查动词形式\n独立检查：用新的昨天事件写两句，解释时态选择\n适用边界：只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：English grammar in action\n来源作者/机构：The Open University / TESS-India\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1\n原作许可：CC-BY-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+          "bm25Score": 6.585841,
+          "materialId": "resmat-bad2849613d5effb60838c5e",
+          "caseVersionId": "resver-bad2849613d5effb60838c5e"
+        }
+      ],
+      "warnings": [],
+      "generated": {
+        "goal": "学生能依据动作发生的时间和状态说明一般过去时的选择，并独立写两句关于昨天事件的句子，解释时态选择。",
+        "title": "一般过去时：从时间线到语境表达",
+        "blocks": [
+          {
+            "id": "independent-activity",
+            "title": "短文时间线与昨天事件表达",
+            "content": "1. 出示一段含时间提示和动作的短文，学生圈出时间提示，并标出动作发生的位置。\n2. 学生比较短文中的过去表达与相应的现在表达，归纳选择一般过去时的语境依据及动词形式。\n3. 学生独立写两句关于新的昨天事件的句子，并说明时态选择理由。",
+            "adjustment": "若学生只依据动词形式判断，先请其用中文说明动作发生的时间，再检查动词形式。",
+            "evidenceIds": [
+              "lesson:resver-bad2849613d5effb60838c5e",
+              "resunit-bad2849613d5effb60838c5e:0cd1fb4496"
+            ],
+            "studentTask": "圈出短文时间提示、标出动作；比较过去与现在的表达；写两句关于昨天事件的句子并解释时态选择。",
+            "studentResponse": "预设可能回应：看到动词就加-ed。此为预设，不是课堂实录。",
+            "teacherQuestion": "这个动作已结束还是仍在发生？你依据短文中的什么信息判断？"
+          }
+        ],
+        "rationale": [
+          "先从短文中的时间提示和动作定位建立语境，再比较过去与现在的表达，最后用新事件独立迁移，回应只背规则、难联系语境的任务目标。",
+          "追问动作是否已结束，检查时态选择依据；如学生只看见动词就加-ed，先用中文确认时间，再核对动词形式。教法候选依据为请求中提供的中文方法摘要，注明其参考来源类型，不据此推断课堂效果。"
+        ],
+        "mathClaims": []
+      },
+      "materials": [
+        {
+          "id": "resunit-bad2849613d5effb60838c5e:0cd1fb4496",
+          "url": "/#/source?unit=resunit-bad2849613d5effb60838c5e",
+          "kind": "material",
+          "label": "中文方法摘要（非来源原文）",
+          "score": 6.585841,
+          "title": "一般过去时（中文整理摘要）",
+          "caseId": "exp-bad2849613d5effb60838c5e",
+          "unitId": "resunit-bad2849613d5effb60838c5e",
+          "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n英语 八年级 一般过去时\n从短文时间线找动作，再归纳过去时并迁移\n圈时间提示\n标动作发生位置\n比较现在与过去句式\n关键追问：这个动作已结束还是仍在发生？\n调整：先用中文说明时间，再检查动词形式\n独立检查：用新的昨天事件写两句，解释时态选择\n适用边界：只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：English grammar in action\n来源作者/机构：The Open University / TESS-India\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1\n原作许可：CC-BY-SA-4.0\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+          "bm25Score": 6.585841,
+          "materialId": "resmat-bad2849613d5effb60838c5e",
+          "caseVersionId": "resver-bad2849613d5effb60838c5e"
+        }
+      ],
+      "retrieval": {
+        "mode": "search",
+        "query": "一般过去时只背规则不会联系语境，请设计教学活动。 一般过去时：从短文时间线找动作，再归纳过去时并迁移",
+        "method": "field-bm25+knowledge+context",
+        "variant": "B3",
+        "warnings": [
+          "知识点名称或别名存在歧义，请选择明确知识点。"
+        ],
+        "elapsedMs": 63.829,
+        "matchedCount": 32,
+        "rerankApplied": false,
+        "totalDocuments": 57,
+        "algorithmVersion": "teaching-context-v1",
+        "eligibleDocuments": 57,
+        "queryUnderstanding": {
+          "scenario": "activity_design",
+          "knowledge": [
+            {
+              "id": "kp-bad2849613d5effb60838c5e",
+              "name": "一般过去时",
+              "source": "name",
+              "matchedNames": [
+                "一般过去时",
+                "一般过去时"
+              ]
+            }
+          ],
+          "expansions": [
+            {
+              "text": "一般过去时",
+              "source": "name",
+              "knowledgeId": "kp-bad2849613d5effb60838c5e"
+            }
+          ],
+          "normalizedQuery": "一般过去时只背规则不会联系语境,请设计教学活动。 一般过去时:从短文时间线找动作,再归纳过去时并迁移"
+        }
+      },
+      "startedAt": "2026-11-14T16:46:55.868270+00:00",
+      "modelCalls": 1,
+      "textQuality": {
+        "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查",
+        "status": "passed",
+        "warnings": []
+      },
+      "verification": {
+        "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+        "claims": [],
+        "status": "unverified",
+        "structure": "passed",
+        "references": "passed",
+        "humanReviewRequired": true
+      },
+      "conditionCheck": {
+        "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+        "issues": [],
+        "status": "no_known_issue",
+        "humanReviewRequired": true
+      },
+      "budgetStartedAt": "2026-11-14T16:46:55.868289+00:00",
+      "workflowVersion": "teaching-plan-v1",
+      "experienceDecision": {
+        "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+        "schema": 1,
+        "fallback": false,
+        "rejected": [
+          {
+            "reasons": [
+              "学科不匹配或未标注",
+              "年级不匹配或未标注",
+              "知识点未明确关联"
+            ],
+            "versionId": "resver-9764d15c41decca66cf03505"
+          },
+          {
+            "reasons": [
+              "学科不匹配或未标注",
+              "年级不匹配或未标注",
+              "知识点未明确关联"
+            ],
+            "versionId": "resver-87ad8fa64cf4b2f8c405ccb4"
+          },
+          {
+            "reasons": [
+              "学科不匹配或未标注",
+              "年级不匹配或未标注",
+              "知识点未明确关联",
+              "当前自述与困难及诊断字段没有明确词项匹配，需补充信息"
+            ],
+            "versionId": "resver-9f334279d403ef496f794eda"
+          }
+        ],
+        "selected": [
+          {
+            "id": "exp-bad2849613d5effb60838c5e",
+            "method": "从短文时间线找动作，再归纳过去时并迁移",
+            "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+            "version": 1,
+            "strategy": "hint",
+            "versionId": "resver-bad2849613d5effb60838c5e",
+            "conditions": [
+              "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。"
+            ],
+            "provenance": {
+              "kind": "public",
+              "author": "The Open University / TESS-India",
+              "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+              "authorization": "internal",
+              "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+            },
+            "effectCheck": "用新的昨天事件写两句，解释时态选择",
+            "evidenceIds": [
+              "current:request"
+            ],
+            "diagnosticOnly": false,
+            "teachingMethod": "从短文时间线找动作，再归纳过去时并迁移",
+            "diagnosticBasis": "请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。",
+            "matchedDifficultyTerms": [
+              "一般",
+              "不会",
+              "会联",
+              "则不",
+              "去时",
+              "只背",
+              "时只",
+              "系语",
+              "联系",
+              "背规",
+              "般过",
+              "规则",
+              "语境",
+              "过去"
+            ]
+          }
+        ]
+      }
+    },
+    "reloginRestored": true
+  },
+  "roleIsolation": {
+    "studentCannotReadTeacherPlan": true
+  },
+  "database": {
+    "student_records": 0,
+    "learning_tasks": 0,
+    "lesson_drafts": 0,
+    "courses": 0,
+    "resourceVersionFingerprintsValid": 57
+  }
+}

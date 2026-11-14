@@ -144,14 +144,14 @@ def save_case_bookmark(case_id:str,body:dict,request:Request,db=Depends(get_db))
 @router.get("/jobs")
 def jobs(request: Request, recordId: str | None = None, capability: str | None = None, db=Depends(get_db)):
     user = user_for(request, db)
-    query = select(ModelJob)
+    query = select(ModelJob.id)
     if recordId: query=query.where(ModelJob.record_id==recordId)
     if capability: query=query.where(ModelJob.capability==capability)
     if user.role == "student": query=query.where(ModelJob.owner_id==user.id)
     elif user.role == "admin":query=query.where((ModelJob.owner_id==user.id) | ModelJob.capability.in_(["document_parse","document_ocr","case_extract"]))
     elif user.role == "teacher":
         query=query.outerjoin(StudentRecord,ModelJob.record_id==StudentRecord.id).outerjoin(LearningTask,StudentRecord.task_id==LearningTask.id).where((LearningTask.teacher_id==user.id) | (ModelJob.owner_id==user.id))
-    return [serialize(item,False) for item in db.scalars(query.order_by(ModelJob.created_at.desc()).limit(60)).all()]
+    return [serialize(db.get(ModelJob,ident),False) for ident in db.scalars(query.order_by(ModelJob.created_at.desc()).limit(60)).all()]
 
 
 @router.post("/jobs",status_code=201)
@@ -427,6 +427,7 @@ def agent_confirm(job_id:str,body:dict,request:Request,db=Depends(get_db)):
     if math_check(plan['mathClaims'])['status']=='inconsistent':raise HTTPException(422,'请先修订数学核对问题。')
     row=db.scalar(select(LessonDraft).where(LessonDraft.teacher_id==user.id,LessonDraft.lesson_id==job.input['lessonId']).with_for_update())
     if fingerprint(row)!=confirmation.expectedDraftHash:raise HTTPException(409,'备课草稿已变更，请重新查看当前草稿后再确认；本次建议已保留。')
+    if job.input.get('independent'):raise HTTPException(422,'独立教案通过保存教案保留，不写入课程草稿。')
     lesson=job.input['lesson']
     from .curriculum import published_lesson
     latest=published_lesson(db,job.input['lessonId'])

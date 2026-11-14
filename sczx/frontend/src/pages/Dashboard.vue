@@ -85,11 +85,11 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
   <template v-if="overview">
     <Surface data-ui="card" class="overview-next" aria-labelledby="next-task-heading">
       <div class="overview-next-copy">
-        <span class="overview-context">{{teacher?'下一节课':nextTask?'待完成任务':'课程学习'}}</span>
-        <h2 id="next-task-heading">{{teacher?store.data.lessonDraft?.title||store.data.lesson?.title||'准备一节新课':nextTask?.title||'开始你的下一课'}}</h2>
-        <span class="overview-class" v-if="teacher">{{overview.classes.find(c=>c.id===selected)?.name||'尚未选择班级'}}</span>
+        <span class="overview-context">{{teacher?'下一节课':nextTask?'待完成任务':'自主学习'}}</span>
+        <h2 id="next-task-heading">{{teacher?store.data.lessonDraft?.title||store.data.lesson?.title||'准备一节新课':nextTask?.title||'有不会的题，先来问一问'}}</h2>
+        <span class="overview-class" v-if="teacher&&overview.classes.length">{{overview.classes.find(c=>c.id===selected)?.name||'尚未选择班级'}}</span>
         <span class="overview-class" v-else-if="nextTask">{{nextTask.className||'我的班级'}}</span>
-        <div class="overview-next-actions"><RouteButton :route="teacher?'prepare'+(selected?'?class='+selected:''):nextTask?(nextHasReading?'learn':'check')+'?task='+nextTask.id:'courses'">{{teacher?'继续备课':nextTask?(nextHasReading?(nextTask.status==='学习中'?'继续学习':'开始学习'):'开始练习'):'浏览课程'}}</RouteButton><ElLink :underline="false" v-if="teacher" :href="'#/insights?class='+selected" class="text-link">查看班级学情</ElLink><ElLink :underline="false" v-else href="#/courses" class="text-link">全部课程</ElLink></div>
+        <div class="overview-next-actions"><RouteButton :route="teacher?(store.data.lesson?'prepare'+(selected?'?class='+selected:''):'cases'):nextTask?(nextHasReading?'learn':'check')+'?task='+nextTask.id:'wrong?capture=1'">{{teacher?(store.data.lesson?'继续备课':'查找教法并备课'):nextTask?(nextHasReading?(nextTask.status==='学习中'?'继续学习':'开始学习'):'开始练习'):'开始提问'}}</RouteButton><ElLink :underline="false" v-if="teacher&&selected" :href="'#/insights?class='+selected" class="text-link">查看班级学情</ElLink><ElLink :underline="false" v-else href="#/courses" class="text-link">全部课程</ElLink></div>
       </div>
       <dl class="overview-counts"><div v-for="[label,value] in metrics" :key="label" :data-status="statusTone(label)"><dt>{{label}}</dt><dd>{{value}}</dd></div></dl>
     </Surface>
@@ -97,7 +97,7 @@ const metrics=computed(()=>teacher.value?[['班级任务',overview.value?.stats.
       <section class="overview-task-panel">
         <div class="section-heading"><h2>{{teacher?'班级任务':'学习任务'}}</h2><ElLink :underline="false" :href="teacher?'#/class?class='+selected:'#/records'" class="text-link">{{teacher?'管理班级':'学习记录'}}<ArrowRight :size="14"/></ElLink></div>
         <AppTabs v-if="!teacher" v-model="taskTab" :items="[{value:'pending',label:'待完成'},{value:'completed',label:'已提交'}]"/>
-        <TaskList :teacher="teacher" :tasks="visibleTasks" :empty-label="!teacher?(taskTab==='completed'?'还没有已提交的任务':'当前任务已完成'):undefined"/>
+        <TaskList :teacher="teacher" :tasks="visibleTasks" :empty-label="!teacher?(taskTab==='completed'?'还没有已提交的任务':studentTasks.length?'当前任务已完成':'还没有班级作业'):undefined"/>
         <AppButton v-if="teacher&&overview.tasks.length>5" variant="ghost" class="overview-task-toggle" :aria-expanded="allTasksOpen" @click="allTasksOpen=!allTasksOpen">{{allTasksOpen?'收起任务':'查看全部 '+overview.tasks.length+' 项任务'}}</AppButton>
 
       </section>

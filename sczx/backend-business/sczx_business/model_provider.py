@@ -132,7 +132,7 @@ class ModelProvider:
                 from .exam_schemas import ExamCandidate
                 schema=ExamCandidate
             from .subject_prompts import instruction as subject_instruction
-            instruction = subject_instruction(data)
+            instruction = ("你是图像文字转录器，只返回图中实际可见内容。text不得出现讲解、思考提示、追问、图外背景、学科或年级推断；空白答案保留为空；uncertainties只记录看不清的字符。" if capability in ("ocr","document_ocr") else subject_instruction(data))
             if chat_rerank:
                 instruction = "你是教学经验检索的语义重排器。根据query评价candidates与教学困难的相关程度，排序后返回JSON。每个候选ID必须恰好出现一次，score在0到1之间，按score降序。分值是本组候选的相对相关程度，不是正确概率。只使用给定候选，不增加新ID。"
             instruction += "\nSchema:" + json.dumps(schema.model_json_schema(), ensure_ascii=False)

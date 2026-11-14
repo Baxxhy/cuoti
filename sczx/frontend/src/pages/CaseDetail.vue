@@ -57,8 +57,7 @@ watch(() => [route.query.caseId,route.query.versionId], async ([id]) => {
       ><AppButton
         v-if="store.user?.role === 'teacher'"
         @click="
-          store.useCase(currentCase);
-          navigate('prepare?lesson='+store.data.lesson.id);
+          navigate('agent?caseId='+encodeURIComponent(currentCase.id)+'&caseVersionId='+encodeURIComponent(currentCase.versionId));
         "
         >用于备课</AppButton
       >

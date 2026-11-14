@@ -1,0 +1,10 @@
+{
+  "environment": "local development only",
+  "schemaChanged": false,
+  "allExistingTablesUnchanged": true,
+  "tableCount": 53,
+  "allExistingUploadsUnchanged": true,
+  "fileCount": 63,
+  "privateBackup": "backend-business/var/local/backups/new-accounts-20261115-v1",
+  "backendStarted": true
+}

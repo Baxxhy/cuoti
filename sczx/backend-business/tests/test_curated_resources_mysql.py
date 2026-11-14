@@ -72,3 +72,24 @@ class CuratedMySQLTests(unittest.IsolatedAsyncioTestCase):
   job=await self.c.post('/api/ai/jobs',json={'capability':'text','requestKey':uuid.uuid4().hex,'data':{'wrongId':wrong.json()['id'],'mode':'guidance','strategy':'hint','prompt':'请引导修辞分析'}})
   self.assertEqual(job.status_code,201,job.text);self.assertTrue(job.json()['input']['context']['experienceDecision']['fallback'])
   with SessionLocal() as db:self.assertIn(job.json()['id'],[g['jobId'] for g in coverage(db)['recentGaps']])
+
+ async def test_independent_case_plan_without_course_uses_existing_job_and_private_editable_result(self):
+  from sczx_business.models import LessonDraft,ModelJob,ModelRun
+  from sczx_business.model_jobs import execute
+  from unittest.mock import patch
+  from accept_resource_chain import ControlledResourceProvider
+  row=next(r for r in load_bundle()[0]['entries'] if r['topic']=='一般过去时')
+  await self.login('t')
+  with SessionLocal() as db:before=db.scalar(select(func.count()).select_from(LessonDraft))
+  r=await self.c.post('/api/ai/jobs',json={'capability':'lesson_agent','requestKey':uuid.uuid4().hex,'data':{'caseId':row['id'],'caseVersionId':'resver-'+row['id'][4:],'task':row['experience']['difficulty']}})
+  self.assertEqual(r.status_code,201,r.text);job=r.json();self.assertTrue(job['input']['independent']);self.assertEqual(job['input']['lesson']['subject'],'英语')
+  rid=uuid.uuid4().hex
+  with SessionLocal.begin() as db:
+   stored=db.get(ModelJob,job['id']);stored.status='running';stored.attempt_number=1;db.add(ModelRun(id=rid,job_id=job['id'],number=1))
+  with patch('sczx_business.model_jobs.provider',ControlledResourceProvider()):await execute(job['id'],rid)
+  detail=(await self.c.get('/api/ai/jobs/'+job['id'])).json();self.assertEqual(detail['status'],'succeeded',detail.get('error'))
+  plan=detail['result']['editable'];plan['goal']='教师独立修改后的目标'
+  saved=await self.c.put('/api/ai/agent/'+job['id']+'/draft',json=plan);self.assertEqual(saved.status_code,200,saved.text)
+  self.assertEqual((await self.c.get('/api/ai/jobs/'+job['id'])).json()['result']['editable']['goal'],plan['goal'])
+  with SessionLocal() as db:self.assertEqual(db.scalar(select(func.count()).select_from(LessonDraft)),before)
+  await self.login('s');self.assertEqual((await self.c.get('/api/ai/jobs/'+job['id'])).status_code,404)

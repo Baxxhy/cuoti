@@ -34,6 +34,14 @@ def infer_task(text,selected='auto'):
 def build_input(db,user,raw):
     try:request=PlanningInput.model_validate(raw).model_dump()
     except ValueError:raise HTTPException(422,'请选择课时并填写有效教学任务。') from None
+    if request.get('caseId'):
+        from .library import current_case
+        case=current_case(db,request['caseId'],request.get('caseVersionId'))
+        if not case or not case.get('versionId'):raise HTTPException(422,'请选择已发布教学案例。')
+        exp=case.get('experience') or {}
+        lesson={'id':'case:'+case['id'],'versionId':case['versionId'],'version':case.get('version',1),'title':case['title'],'subject':case.get('subject',''),'grade':case.get('grade',''),'goal':exp.get('goal') or case['title'],'knowledgeIds':case.get('knowledgeIds',[]),'prerequisiteIds':[],'questions':[],'blocks':[{'id':'independent-activity','title':'教学活动','content':exp.get('strategy') or case['content']}],'caseId':case['id'],'caseSnapshot':case}
+        if request.get('parentJobId') or request.get('qualityRevisionOf') or request.get('rewriteBlockId') or request.get('regenerateBlockId'):raise HTTPException(422,'独立教案请直接编辑保存，重新生成请新建任务。')
+        return {**request,'lessonId':lesson['id'],'taskType':infer_task(request['task'],request['taskType']),'lesson':lesson,'documents':published_documents(db),'knowledge':knowledge_documents(db),'draftHash':fingerprint(None),'draftId':None,'ownerId':user.id,'workflowVersion':'teaching-plan-v1','label':request['task'][:64],'selectedReferences':[case],'independent':True}
     lesson=db.get(Lesson,request['lessonId'])
     version=published_lesson(db,request['lessonId']) if lesson else None
     if not version:raise HTTPException(422,'该课时尚未发布，请先选择可用课时。')

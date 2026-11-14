@@ -1,0 +1,64 @@
+{
+  "backend207": {
+    "sha256": "27661dfa8d48b902faccb0307107292fb718fdbef5203bb052bf85c416a2b51a",
+    "tail": [
+      "/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/curriculum.py:210: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+      "  actor=account(request,db,True);data=copy.deepcopy(content.draft);data['reviewRecord']={'actorId':actor.id,'at':datetime.utcnow().isoformat()+'Z','scope':'内容、条件与数量关系人工核对','conditions':inspect_conditions(data)};content.draft=data;content.reviewed=True",
+      "ok",
+      "",
+      "----------------------------------------------------------------------",
+      "Ran 207 tests in 238.916s",
+      "",
+      "OK"
+    ]
+  },
+  "browser53": {
+    "sha256": "8d2f2441f21c7e0c2603e052a5c55920bfaf419ac5021f75982833f9fee22475",
+    "tail": [
+      "ℹ tests 53",
+      "ℹ suites 0",
+      "ℹ pass 53",
+      "ℹ fail 0",
+      "ℹ cancelled 0",
+      "ℹ skipped 0",
+      "ℹ todo 0",
+      "ℹ duration_ms 26945.038468"
+    ]
+  },
+  "js18": {
+    "sha256": "5028695a6e401b3b5db30a6e5ff7ed53c301da4651ee205a4f846e3afcbcc2dc",
+    "tail": [
+      "ℹ tests 18",
+      "ℹ suites 0",
+      "ℹ pass 18",
+      "ℹ fail 0",
+      "ℹ cancelled 0",
+      "ℹ skipped 0",
+      "ℹ todo 0",
+      "ℹ duration_ms 828.340631"
+    ]
+  },
+  "elementAudit": {
+    "sha256": "30829de9be06fdebd125b7c836436697ce781190dc63133c72bd5c49c3772ff8",
+    "tail": [
+      "",
+      "> shicheng-zhixue@0.3.0 audit:ui",
+      "> node scripts/audit-element-ui.cjs",
+      "",
+      "{\"nativeUiNodes\":0,\"cssDrawnNativeFrames\":0,\"hiddenMediaEngines\":1,\"cardSites\":181,\"buttonSites\":386}"
+    ]
+  },
+  "build": {
+    "sha256": "23ea1629fa6a3a06eabe3c9e5d0cd815b0793bdac72a108c2c90a54718bdd29c",
+    "tail": [
+      "dist/assets/index-DJKV2OC_.js                                   1,209.05 kB │ gzip: 380.24 kB",
+      "",
+      "(!) Some chunks are larger than 500 kB after minification. Consider:",
+      "- Using dynamic import() to code-split the application",
+      "- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks",
+      "- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.",
+      "✓ built in 10.69s",
+      "frontend build inputs recorded; no private runtime configuration included"
+    ]
+  }
+}

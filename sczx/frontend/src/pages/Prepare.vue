@@ -107,7 +107,7 @@ async function publish() {
   }
 }
 </script>
-<template>
+<template><template v-if="!store.data.lesson"><PageHeading title="我的备课"/><RouteButton route="cases">查找教法并备课</RouteButton><RouteButton route="agent" secondary>备课记录</RouteButton></template><template v-else>
 <ElSkeleton v-if="lessonSwitchBusy" animated :rows="3" aria-label="读取课时教案…"/><template v-else>
   <PageHeading :title="store.data.lesson?.title || '我的教案'">
     <AppButton variant="outline" :disabled="store.saving" @click="saveDraft"><Save :size="16"/>{{ store.saving?'保存中…':'保存' }}</AppButton>
@@ -191,4 +191,4 @@ async function publish() {
         }}<ArrowRight /></AppButton></template
   ></AppDialog>
 </template>
-</template>
+</template></template>

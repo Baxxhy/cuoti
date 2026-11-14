@@ -6,7 +6,9 @@ Text=Annotated[str,StringConstraints(strict=True,strip_whitespace=True,min_lengt
 class StrictModel(BaseModel):
     model_config=ConfigDict(extra='forbid',strict=True)
 class PlanningInput(StrictModel):
-    lessonId: Text=Field(max_length=80)
+    lessonId: str=Field(default="",max_length=80)
+    caseId: str|None=Field(default=None,max_length=80)
+    caseVersionId: str|None=Field(default=None,max_length=80)
     task: Text=Field(max_length=3000)
     taskType: Literal['auto','activity','misconception','foundation']='auto'
     constraints: str=Field(default='',max_length=1500)

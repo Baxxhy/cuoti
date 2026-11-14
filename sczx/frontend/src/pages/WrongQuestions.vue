@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { ElPopover } from "element-plus";
 import { Plus, ArrowUpRight, Search, NotebookPen } from "@/components/app/icons.js";
 import { wrongApi, wrongStatuses } from "@/services/wrongs.js";
@@ -14,7 +15,7 @@ const items = ref([]),
   search = ref(""),
   loading = ref(true),
   error = ref(""),
-  open = ref(false);
+  open = ref(useRoute().query.capture === "1");
 async function load() {
   loading.value = true;
   error.value = "";
@@ -36,7 +37,7 @@ const filtered = computed(() =>
         (status.value === "done"
           ? i.status === "retest_passed"
           : i.status !== "retest_passed")) &&
-      (!subject.value || (i.details.subject || "数学") === subject.value) &&
+      (!subject.value || (i.details.subject || "学科未填写") === subject.value) &&
       (!knowledge.value || i.details.knowledgeIds?.includes(knowledge.value)) &&
       (!cause.value || i.details.cause === cause.value) &&
       (!search.value || (i.prompt + i.answer).includes(search.value)),
@@ -77,7 +78,7 @@ onMounted(load);
         <option value="">全部学科</option>
         <option
           v-for="s in [
-            ...new Set(items.map((i) => i.details.subject || '数学')),
+            ...new Set(items.map((i) => i.details.subject || '学科未填写')),
           ]"
           :key="s"
         >
@@ -113,7 +114,7 @@ onMounted(load);
       </Surface>
       <div class="wrong-row-main">
         <div class="question-meta">
-          <span>{{ item.details.subject || "数学" }}</span
+          <span>{{ item.details.subject || "学科未填写" }}</span
           ><span>{{
             knowledgeName(item) ||
             { course: "课程作答", manual: "个人录入", image: "题图识别" }[

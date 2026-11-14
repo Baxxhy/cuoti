@@ -197,7 +197,8 @@ async def worker():
                 recover_interrupted()
                 needs_recovery = False
             with SessionLocal.begin() as db:
-                job = db.scalar(select(ModelJob).where(ModelJob.status == "queued").order_by(ModelJob.created_at).with_for_update(skip_locked=True).limit(1))
+                job_id = db.scalar(select(ModelJob.id).where(ModelJob.status == "queued").order_by(ModelJob.created_at).with_for_update(skip_locked=True).limit(1))
+                job = db.get(ModelJob,job_id) if job_id else None
                 if job:
                     job.status, job.attempt_number = "running", job.attempt_number + 1
                     run_id, job_id = "run-" + uuid.uuid4().hex, job.id

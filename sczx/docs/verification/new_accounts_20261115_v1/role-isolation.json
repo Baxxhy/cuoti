@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "role": "other-student",
+      "resource": "/wrongs/wrong-c6c7330ed159c97e563f6570db028479",
+      "status": 404
+    },
+    {
+      "role": "other-student",
+      "resource": "/ai/jobs/job-2b59f87d9fc64ba49ba43b90d0fc207c",
+      "status": 404
+    },
+    {
+      "role": "other-student",
+      "resource": "/files/file-0b315b6fabfc49648da5223875112dd4",
+      "status": 403
+    },
+    {
+      "role": "unrelated-teacher",
+      "resource": "/wrongs/wrong-c6c7330ed159c97e563f6570db028479",
+      "status": 404
+    },
+    {
+      "role": "unrelated-teacher",
+      "resource": "/ai/jobs/job-2b59f87d9fc64ba49ba43b90d0fc207c",
+      "status": 404
+    }
+  ]
+}
