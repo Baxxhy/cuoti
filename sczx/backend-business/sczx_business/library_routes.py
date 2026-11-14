@@ -28,7 +28,7 @@ def material_json(db, material, detail=False):
     job = db.get(ModelJob, material.parse_job_id) if material.parse_job_id else None
     ready = sum(u['status']=='ready' for u in units)
     expected = material.metadata_json.get('expectedUnits',len(units))
-    state = 'ready' if units and ready==expected and job and job.status=='succeeded' else 'processing' if (job and job.status in ('queued','running')) or any(u['status'] in ('queued','running') for u in units) else 'partial' if ready else 'failed' if job and job.status=='failed' else 'empty'
+    state = 'ready' if units and ready==expected and ((job and job.status=='succeeded') or material.metadata_json.get('curatedSummary')) else 'processing' if (job and job.status in ('queued','running')) or any(u['status'] in ('queued','running') for u in units) else 'partial' if ready else 'failed' if job and job.status=='failed' else 'empty'
     asset = db.get(FileAsset, material.file_id)
     return {'id': material.id, 'title': material.title, 'metadata': material.metadata_json, 'fileId': material.file_id, 'fileName': asset.original_name, 'status': state, 'ready': ready, 'total': expected, 'parseJobId': material.parse_job_id, 'parseStatus': job.status if job else '', 'error': job.error if job else '', **({'units': units} if detail else {})}
 
@@ -191,7 +191,7 @@ def review(case_id: str, request: Request, db=Depends(get_db)):
         p=validate_experience(draft.data)
         validate_references(db,draft.data.get('references',[]))
     except ValueError as e:raise HTTPException(422,str(e)) from None
-    draft.data={**draft.data,'experienceReview':{'reviewerId':actor.id,'reviewedAt':datetime.utcnow().isoformat()+'Z','provenance':p}}
+    draft.data={**draft.data,'experienceReview':{'reviewerId':actor.id,'reviewedAt':datetime.utcnow().isoformat()+'Z','provenance':p,'applicability':copy.deepcopy(draft.data.get('applicability'))}}
     draft.reviewed=True;db.commit();return {'reviewed':True}
 
 
@@ -233,3 +233,10 @@ def knowledge_suggestions(case_id:str,request:Request,db=Depends(get_db)):
     experience=data.get('experience') or {}
     text=' '.join([data.get('title',''),experience.get('goal',''),experience.get('difficulty',''),*experience.get('knowledgePoints',[])])
     return {'suggestions':identify_knowledge(text,knowledge_documents(db)),'confirmedIds':data.get('knowledgeIds',[])}
+
+
+@router.get('/experience-coverage')
+def experience_coverage(request:Request,db=Depends(get_db)):
+    account(request,db,True)
+    from .curated_resources import coverage
+    return coverage(db)

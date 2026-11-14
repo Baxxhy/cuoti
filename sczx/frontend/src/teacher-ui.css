@@ -32,8 +32,7 @@
 .context-search>.el-card__body { padding:20px; }
 .context-search .context-source { color:var(--muted-foreground); }
 .teacher-case-list.context-results-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
-.teacher-case-list .context-case-card { flex-direction:column; }
-.teacher-case-list .context-case-card>.el-card__body { display:flex; padding:24px; }
+.teacher-case-list .context-case-card>.el-card__body { display:flex; flex-direction:column; align-items:stretch; padding:24px; min-width:0; }
 .teacher-case-list .context-case-card h2 { font-size:20px; line-height:1.5; margin:16px 0 12px; letter-spacing:0; }
 .teacher-case-list .context-case-goal { color:var(--foreground); font-size:14px; line-height:1.8; }
 .teacher-case-context { margin-top:18px; }

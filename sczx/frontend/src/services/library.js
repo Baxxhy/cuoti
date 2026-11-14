@@ -1,6 +1,7 @@
 import { api } from './api.js';
 const json = (body, method='POST') => ({method,body:JSON.stringify(body)});
 export const libraryApi = {
+  coverage:()=>api.request("/library/experience-coverage"),
   jobs: () => api.request('/ai/jobs?capability=case_extract'),
   materials: () => api.request('/library/materials'),
   upload: (form) => api.request('/library/materials',{method:'POST',body:form}),

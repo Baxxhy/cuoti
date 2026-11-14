@@ -1,0 +1,110 @@
+{
+  "logs": {
+    "fullBackend": {
+      "logSha256": "52bc807f3caaa59990eb2d8899a3d6d6276b278928ce90d7352666ef2730df53",
+      "tail": [
+        "/root/Baxxhy/zhiwei/sczx/backend-business/sczx_business/curriculum.py:210: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+        "  actor=account(request,db,True);data=copy.deepcopy(content.draft);data['reviewRecord']={'actorId':actor.id,'at':datetime.utcnow().isoformat()+'Z','scope':'内容、条件与数量关系人工核对','conditions':inspect_conditions(data)};content.draft=data;content.reviewed=True",
+        "ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 204 tests in 287.364s",
+        "",
+        "OK"
+      ]
+    },
+    "resourcesFinal": {
+      "logSha256": "fcb3ec9c1008d055de6bc790303bd486ed5500c382538c60cd343b7c84fb374e",
+      "tail": [
+        "  if not session or session.expires_at < datetime.utcnow():",
+        "ok",
+        "test_summary_is_downloadable_and_never_pretends_to_be_original_pdf (test_curated_resources_mysql.CuratedMySQLTests.test_summary_is_downloadable_and_never_pretends_to_be_original_pdf) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 11 tests in 8.005s",
+        "",
+        "OK"
+      ]
+    },
+    "frontendBrowser": {
+      "logSha256": "bd85dbb3377f4b495b5fe7ec26498c60b023ade5673864bf7734c7610de09b58",
+      "tail": [
+        "ℹ tests 53",
+        "ℹ suites 0",
+        "ℹ pass 53",
+        "ℹ fail 0",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0",
+        "ℹ duration_ms 37633.051968"
+      ]
+    },
+    "frontendJs": {
+      "logSha256": "db8beeeeeba4c5fa7549cede3c49ce77dfa28f4583090d84144dad27dc793356",
+      "tail": [
+        "ℹ tests 18",
+        "ℹ suites 0",
+        "ℹ pass 18",
+        "ℹ fail 0",
+        "ℹ cancelled 0",
+        "ℹ skipped 0",
+        "ℹ todo 0",
+        "ℹ duration_ms 1228.089927"
+      ]
+    },
+    "uiAudit": {
+      "logSha256": "30829de9be06fdebd125b7c836436697ce781190dc63133c72bd5c49c3772ff8",
+      "tail": [
+        "",
+        "> shicheng-zhixue@0.3.0 audit:ui",
+        "> node scripts/audit-element-ui.cjs",
+        "",
+        "{\"nativeUiNodes\":0,\"cssDrawnNativeFrames\":0,\"hiddenMediaEngines\":1,\"cardSites\":181,\"buttonSites\":386}"
+      ]
+    },
+    "build": {
+      "logSha256": "58bc3f4c8d9b15fc330b2dcfda50b4b4c631f7f2e59eddbfd94b31d918e6aab2",
+      "tail": [
+        "dist/assets/index-B-6izTVF.js                                   1,207.70 kB │ gzip: 379.87 kB",
+        "",
+        "(!) Some chunks are larger than 500 kB after minification. Consider:",
+        "- Using dynamic import() to code-split the application",
+        "- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks",
+        "- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.",
+        "✓ built in 16.92s",
+        "frontend build inputs recorded; no private runtime configuration included"
+      ]
+    },
+    "wheel": {
+      "logSha256": "f71085434f9d1a864ed1ac3fac5ec35cf2436fe668541025d26e378805317808",
+      "tail": [
+        "  Preparing metadata (pyproject.toml): started",
+        "  Preparing metadata (pyproject.toml): finished with status 'done'",
+        "Building wheels for collected packages: sczx-business",
+        "  Building wheel for sczx-business (pyproject.toml): started",
+        "  Building wheel for sczx-business (pyproject.toml): finished with status 'done'",
+        "  Created wheel for sczx-business: filename=sczx_business-0.1.0-py3-none-any.whl size=216659 sha256=0132990c548c8eaf109854c5e4b2c8ca741c65f3060e0d53aa7295903d653334",
+        "  Stored in directory: /root/.cache/pip/wheels/b6/a7/d1/4915d09e55073b69a510dfed68c097f550eb637ca8910f678e",
+        "Successfully built sczx-business"
+      ]
+    },
+    "multisubjectFinal": {
+      "logSha256": "c7a87000cc00416b998083c846675cb8392c21bb7887d9a2f12b50370a9fcfb8",
+      "tail": [
+        "test_tutoring_options_do_not_carry_reference_flags (test_multisubject.MultiSubjectTests.test_tutoring_options_do_not_carry_reference_flags) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 14 tests in 1.654s",
+        "",
+        "OK"
+      ]
+    }
+  },
+  "wheelResourceFiles": [
+    "sczx_business/resources/NOTICE.md",
+    "sczx_business/resources/teaching_experiences_v1.json",
+    "sczx_business/resources/teaching_review_v1.json",
+    "sczx_business/resources/teaching_sources_v1.json"
+  ],
+  "sources": "Current code; full204 then final11 focused checks for later changes; no claim that every historic check was rerun after documentation edits."
+}

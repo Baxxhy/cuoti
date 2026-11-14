@@ -12,12 +12,14 @@ import SourceReader from './SourceReader.vue';
 import CaseArticle from './CaseArticle.vue';
 import MathVerification from './MathVerification.vue';
 import ModelResult from './ModelResult.vue';
+import {ElTable,ElTableColumn} from 'element-plus';
 import {Upload,Plus,RefreshCw,Download,FileText,BookOpen,ArrowLeft,Check,LoaderCircle,X} from '@/components/app/icons.js';
 const route=useRoute(),router=useRouter(),store=useLearning();
 const contextKey=`sczx:library-context:${store.user?.id||'anonymous'}`;
 function savedContext(){try{return JSON.parse(sessionStorage.getItem(contextKey)||'null')}catch{return null}}
 function rememberContext(){if(initializing||disposed)return;try{sessionStorage.setItem(contextKey,JSON.stringify({tab:tab.value,case:selectedCase.value?.id,material:material.value?.id,unit:unitId.value}))}catch{}}
 const knowledge=ref([]);
+const coverage=ref(null);
 const materials=ref([]),cases=ref([]),extractionJobs=ref([]),material=ref(null),selectedCase=ref(null),unitId=ref(''),selectedUnits=ref([]),tab=ref('materials'),editorTab=ref('body'),sourceTab=ref('original');
 const listError=ref(''),initialLoad=ref(true),showSource=ref(false),materialMode=ref('read'),metadataOpen=ref(false),experienceSection=ref('goal'),metadataSaving=ref(false);
 const experienceGroups=[{value:'goal',label:'目标与学情'},{value:'lesson',label:'课堂过程'},{value:'scope',label:'知识与适用范围'}];
@@ -62,6 +64,7 @@ async function originalVersion(id){const item=await libraryApi.case(selectedCase
 const versionPreview=ref(null);
 async function addReferences(){try{edited.value.references||=[];for(const id of selectedUnits.value){const unit=await libraryApi.unit(id);edited.value.references.push({unitId:id,materialId:unit.materialId,materialTitle:unit.materialTitle,label:unit.label,quote:unit.text.slice(0,1000),author:unit.metadata.author,source:unit.metadata.sourceNote,sourceUrl:unit.metadata.sourceUrl})}changed()}catch(e){error.value=e.message}}
 onMounted(async()=>{
+ libraryApi.coverage().then(value=>{if(!disposed)coverage.value=value}).catch(()=>{});
  try{knowledge.value=await curriculumApi.knowledge()}catch(e){error.value=e.message}
  const requested={case:route.query.case,material:route.query.material,unit:route.query.unit,job:route.query.job};
  const remembered=Object.values(requested).some(Boolean)?null:savedContext();
@@ -81,6 +84,7 @@ async function inspectJob(item){tab.value='materials';try{await router.replace({
 onBeforeUnmount(()=>{disposed=true;selection++;clearInterval(timer)});
 </script>
 <template>
+<AppDisclosure v-if="coverage" class="study-disclosure"><template #title>资源覆盖与缺口</template><ElTable :data="coverage.subjects" size="small"><ElTableColumn prop="subject" label="学科"/><ElTableColumn prop="publishedSummaries" label="已发布摘要"/><ElTableColumn prop="humanReviewed" label="已复核"/><ElTableColumn prop="explicitSourceLicense" label="原作明确许可"/></ElTable><p v-if="!coverage.recentGaps.length">近期没有记录到经验缺口</p><ElTable v-else :data="coverage.recentGaps.slice(0,10)" size="small"><ElTableColumn prop="subject" label="学科"/><ElTableColumn prop="grade" label="年级"/><ElTableColumn prop="query" label="未匹配问题"/></ElTable></AppDisclosure>
   <PageHeading title="资料与案例"><AppButton variant="outline" @click="loadLists"><RefreshCw :size="16" />刷新</AppButton><AppButton @click="uploadOpen=true"><Upload :size="16" />上传材料</AppButton></PageHeading>
   <AppAlert type="error" v-if="error||listError||jobError" role="alert" class="form-error">{{ error||listError||jobError }}</AppAlert><AppAlert type="success" v-if="initialLoad||loading" role="status" class="library-notice">读取中…</AppAlert><AppAlert type="success" v-if="notice||uploadNotice" role="status" class="library-notice">{{ notice||uploadNotice }}</AppAlert>
   <div class="library-layout">

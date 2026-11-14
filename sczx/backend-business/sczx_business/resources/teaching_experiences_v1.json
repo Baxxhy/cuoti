@@ -1,0 +1,2971 @@
+{
+  "schema": 1,
+  "batch": "resources-20261114-v1",
+  "reviewStatus": "pending",
+  "entries": [
+    {
+      "id": "exp-27512d25df0b40691bc7a605",
+      "subject": "语文",
+      "grade": "七年级",
+      "title": "文本证据定位：把判断与支持它的原句逐项配对",
+      "topic": "文本证据定位",
+      "knowledgeId": "kp-27512d25df0b40691bc7a605",
+      "sourceId": "reading",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "文本证据定位"
+        ],
+        "goal": "能够就“文本证据定位”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "阅读只给结论找不到文本证据",
+        "diagnosis": "请学生先说明“文本证据定位”的当前做法，核对是否出现“阅读只给结论找不到文本证据”。证据不足先追问。",
+        "strategy": "把判断与支持它的原句逐项配对",
+        "steps": [
+          "圈出判断中的关键词",
+          "回原段划一句依据",
+          "解释原句如何支持判断"
+        ],
+        "questions": [
+          "哪一句能直接支持你的判断？"
+        ],
+        "responses": [
+          "学生可能只抄一段而不解释（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "把范围缩到两句，逐句比较与判断的关系",
+        "boundary": "只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "换一段短文独立写出判断、原句与解释",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "语文",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-27512d25df0b40691bc7a605"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "换一段短文独立写出判断、原句与解释。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-291eb110fec4bbe93aeac610",
+      "subject": "语文",
+      "grade": "八年级",
+      "title": "信息文本概括：用段落信息表区分中心和例子",
+      "topic": "信息文本概括",
+      "knowledgeId": "kp-291eb110fec4bbe93aeac610",
+      "sourceId": "reading",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "信息文本概括"
+        ],
+        "goal": "能够就“信息文本概括”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "概括把细节全抄下来分不清主次",
+        "diagnosis": "请学生先说明“信息文本概括”的当前做法，核对是否出现“概括把细节全抄下来分不清主次”。证据不足先追问。",
+        "strategy": "用段落信息表区分中心和例子",
+        "steps": [
+          "给各段拟小标题",
+          "把例子归到中心下",
+          "删去重复信息连成摘要"
+        ],
+        "questions": [
+          "删掉这个例子后中心意思变了吗？"
+        ],
+        "responses": [
+          "学生可能把最熟悉的细节当中心（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先口述每段在回答什么，再压缩文字",
+        "boundary": "只适用于八年级语文的信息文本概括；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "换说明短文，用两句概括并保留必要条件",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "语文",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-291eb110fec4bbe93aeac610"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "换说明短文，用两句概括并保留必要条件。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-e81e23e88d8fccacfdd22d82",
+      "subject": "语文",
+      "grade": "九年级",
+      "title": "观点与理由表达：先口头说明观点，再补依据并回应不同意见",
+      "topic": "观点与理由表达",
+      "knowledgeId": "kp-e81e23e88d8fccacfdd22d82",
+      "sourceId": "reading",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "观点与理由表达"
+        ],
+        "goal": "能够就“观点与理由表达”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "讨论只有观点没有理由",
+        "diagnosis": "请学生先说明“观点与理由表达”的当前做法，核对是否出现“讨论只有观点没有理由”。证据不足先追问。",
+        "strategy": "先口头说明观点，再补依据并回应不同意见",
+        "steps": [
+          "提出一个可讨论问题",
+          "写观点与依据两栏",
+          "交换意见修订表达"
+        ],
+        "questions": [
+          "你的理由来自材料还是个人猜测？"
+        ],
+        "responses": [
+          "学生可能把态度词当理由（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "把态度词换成可核对的事实或原句",
+        "boundary": "只适用于九年级语文的观点与理由表达；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对一段新材料独立写观点和两项理由",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "语文",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-e81e23e88d8fccacfdd22d82"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对一段新材料独立写观点和两项理由。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-7041cb6634a404a8ceb7fac2",
+      "subject": "数学",
+      "grade": "八年级",
+      "title": "三角形性质与解释：借助可移动纸条形成图形并用条件解释",
+      "topic": "三角形性质与解释",
+      "knowledgeId": "kp-7041cb6634a404a8ceb7fac2",
+      "sourceId": "triangles",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "三角形性质与解释"
+        ],
+        "goal": "能够就“三角形性质与解释”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "会记三角形结论却说不出条件",
+        "diagnosis": "请学生先说明“三角形性质与解释”的当前做法，核对是否出现“会记三角形结论却说不出条件”。证据不足先追问。",
+        "strategy": "借助可移动纸条形成图形并用条件解释",
+        "steps": [
+          "尝试用三根纸条围三角形",
+          "记录能否围成及长度",
+          "同伴比较并解释发现"
+        ],
+        "questions": [
+          "哪一个长度关系阻止纸条围成三角形？"
+        ],
+        "responses": [
+          "学生可能只根据图形外观判断（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "选一组接近临界的长度再检查",
+        "boundary": "只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "不用操作材料，判断新长度组并说明依据",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "数学",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-7041cb6634a404a8ceb7fac2"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "不用操作材料，判断新长度组并说明依据。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-9212d374aeaf0386e44812c2",
+      "subject": "数学",
+      "grade": "七年级",
+      "title": "应用题数量关系：改述题意并让学生反向编一个同结构问题",
+      "topic": "应用题数量关系",
+      "knowledgeId": "kp-9212d374aeaf0386e44812c2",
+      "sourceId": "wordproblems",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "应用题数量关系"
+        ],
+        "goal": "能够就“应用题数量关系”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "应用题只盯数字不知道数量关系",
+        "diagnosis": "请学生先说明“应用题数量关系”的当前做法，核对是否出现“应用题只盯数字不知道数量关系”。证据不足先追问。",
+        "strategy": "改述题意并让学生反向编一个同结构问题",
+        "steps": [
+          "给数量标单位和对象",
+          "用自己的话重述关系",
+          "画关系图再选运算"
+        ],
+        "questions": [
+          "这个数表示谁的什么量？"
+        ],
+        "responses": [
+          "学生可能按看到的数字直接运算（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "暂时遮住数字，只说量与量的关系",
+        "boundary": "只适用于七年级数学的应用题数量关系；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "换生活情境，独立列关系并注明单位",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "数学",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-9212d374aeaf0386e44812c2"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "换生活情境，独立列关系并注明单位。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-dd8a3743b08d26f5b7d0a890",
+      "subject": "数学",
+      "grade": "九年级",
+      "title": "直角三角形中的变量：先预测改变一项的影响，再作图比较",
+      "topic": "直角三角形中的变量",
+      "knowledgeId": "kp-dd8a3743b08d26f5b7d0a890",
+      "sourceId": "trigonometry",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "直角三角形中的变量"
+        ],
+        "goal": "能够就“直角三角形中的变量”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "直角三角形变化时分不清不变量",
+        "diagnosis": "请学生先说明“直角三角形中的变量”的当前做法，核对是否出现“直角三角形变化时分不清不变量”。证据不足先追问。",
+        "strategy": "先预测改变一项的影响，再作图比较",
+        "steps": [
+          "固定一个角画图",
+          "改变一条边并预测",
+          "比较对应边比值"
+        ],
+        "questions": [
+          "哪些量是你固定的，哪些随之改变？"
+        ],
+        "responses": [
+          "学生可能把边长不变与比值不变混同（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "用两张不同大小但同角的图对照",
+        "boundary": "只适用于九年级数学的直角三角形中的变量；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "给新直角三角形说明一个保持不变的关系",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "数学",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-dd8a3743b08d26f5b7d0a890"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "给新直角三角形说明一个保持不变的关系。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-bad2849613d5effb60838c5e",
+      "subject": "英语",
+      "grade": "八年级",
+      "title": "一般过去时：从短文时间线找动作，再归纳过去时并迁移",
+      "topic": "一般过去时",
+      "knowledgeId": "kp-bad2849613d5effb60838c5e",
+      "sourceId": "grammar",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "一般过去时"
+        ],
+        "goal": "能够就“一般过去时”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "一般过去时只背规则不会联系语境",
+        "diagnosis": "请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。",
+        "strategy": "从短文时间线找动作，再归纳过去时并迁移",
+        "steps": [
+          "圈时间提示",
+          "标动作发生位置",
+          "比较现在与过去句式"
+        ],
+        "questions": [
+          "这个动作已结束还是仍在发生？"
+        ],
+        "responses": [
+          "学生可能只因看到动词就加ed（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先用中文说明时间，再检查动词形式",
+        "boundary": "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "用新的昨天事件写两句，解释时态选择",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "英语",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-bad2849613d5effb60838c5e"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "用新的昨天事件写两句，解释时态选择。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-edf2b2f2ee976719ea2594af",
+      "subject": "英语",
+      "grade": "九年级",
+      "title": "直接引语与间接引语：先分清原说话人和转述人，再比较引语变化",
+      "topic": "直接引语与间接引语",
+      "knowledgeId": "kp-edf2b2f2ee976719ea2594af",
+      "sourceId": "grammar",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "直接引语与间接引语"
+        ],
+        "goal": "能够就“直接引语与间接引语”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "转述原话时照搬人称和时间词",
+        "diagnosis": "请学生先说明“直接引语与间接引语”的当前做法，核对是否出现“转述原话时照搬人称和时间词”。证据不足先追问。",
+        "strategy": "先分清原说话人和转述人，再比较引语变化",
+        "steps": [
+          "用人物卡说原话",
+          "换叙述者转述",
+          "圈变化词并解释"
+        ],
+        "questions": [
+          "现在是谁在向谁转述？"
+        ],
+        "responses": [
+          "学生可能机械把所有动词都变过去式（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "回到具体时间和叙述关系核对，不把规则绝对化",
+        "boundary": "只适用于九年级英语的直接引语与间接引语；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "换人物和转述时间独立改写一句",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "英语",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-edf2b2f2ee976719ea2594af"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "换人物和转述时间独立改写一句。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-7930ed995956838e93318984",
+      "subject": "英语",
+      "grade": "九年级",
+      "title": "英语独立写作：围绕目的与读者先组织要点，再分轮修改",
+      "topic": "英语独立写作",
+      "knowledgeId": "kp-7930ed995956838e93318984",
+      "sourceId": "writing",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "英语独立写作"
+        ],
+        "goal": "能够就“英语独立写作”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "英语写作没有读者意识句子堆叠",
+        "diagnosis": "请学生先说明“英语独立写作”的当前做法，核对是否出现“英语写作没有读者意识句子堆叠”。证据不足先追问。",
+        "strategy": "围绕目的与读者先组织要点，再分轮修改",
+        "steps": [
+          "确定写给谁及目的",
+          "列三项必要信息",
+          "分别检查内容和语言"
+        ],
+        "questions": [
+          "读者看完后应知道或做什么？"
+        ],
+        "responses": [
+          "学生可能先追求长难句遗漏信息（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先用简单句补全信息再连接",
+        "boundary": "只适用于九年级英语的英语独立写作；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "为新读者独立写一段并自查信息完整性",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "英语",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-7930ed995956838e93318984"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "为新读者独立写一段并自查信息完整性。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-a6878cdb6a68dc2fc7bd492a",
+      "subject": "物理",
+      "grade": "八年级",
+      "title": "力的示意图：给简图补力箭头并用情境解释",
+      "topic": "力的示意图",
+      "knowledgeId": "kp-a6878cdb6a68dc2fc7bd492a",
+      "sourceId": "physics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "力的示意图"
+        ],
+        "goal": "能够就“力的示意图”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "力的示意图只画物体不清楚力的方向",
+        "diagnosis": "请学生先说明“力的示意图”的当前做法，核对是否出现“力的示意图只画物体不清楚力的方向”。证据不足先追问。",
+        "strategy": "给简图补力箭头并用情境解释",
+        "steps": [
+          "确定研究对象",
+          "标出施力者和箭头方向",
+          "比较平衡与变化情境"
+        ],
+        "questions": [
+          "这支箭头表示谁对谁的作用？"
+        ],
+        "responses": [
+          "学生可能把运动方向当成所有力的方向（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先逐个说出相互作用再画箭头",
+        "boundary": "只适用于八年级物理的力的示意图；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新受力情境独立画图并说明一支箭头",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "物理",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-a6878cdb6a68dc2fc7bd492a"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新受力情境独立画图并说明一支箭头。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-d40b242893c9924ddb7592d9",
+      "subject": "物理",
+      "grade": "八年级",
+      "title": "物态性质与预测解释：用预测、观察、解释三栏核对物态性质",
+      "topic": "物态性质与预测解释",
+      "knowledgeId": "kp-d40b242893c9924ddb7592d9",
+      "sourceId": "physics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "物态性质与预测解释"
+        ],
+        "goal": "能够就“物态性质与预测解释”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "观察现象后只记结论不会区分预测与证据",
+        "diagnosis": "请学生先说明“物态性质与预测解释”的当前做法，核对是否出现“观察现象后只记结论不会区分预测与证据”。证据不足先追问。",
+        "strategy": "用预测、观察、解释三栏核对物态性质",
+        "steps": [
+          "先写预测与理由",
+          "阅读实际观察记录",
+          "找出预测与记录的差别"
+        ],
+        "questions": [
+          "哪条观察支持你现在的解释？"
+        ],
+        "responses": [
+          "学生可能把猜测写成观察结果（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "将能看到的现象与推断用两种标记分开",
+        "boundary": "只适用于八年级物理的物态性质与预测解释；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "给新观察记录独立区分现象与解释",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "物理",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-d40b242893c9924ddb7592d9"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "给新观察记录独立区分现象与解释。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-35b616541d627eec855ef6ec",
+      "subject": "物理",
+      "grade": "九年级",
+      "title": "电路与模型边界：用简图连接电路符号与现象并检查模型",
+      "topic": "电路与模型边界",
+      "knowledgeId": "kp-35b616541d627eec855ef6ec",
+      "sourceId": "physics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "电路与模型边界"
+        ],
+        "goal": "能够就“电路与模型边界”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "电路只背名词不会说明连接与作用",
+        "diagnosis": "请学生先说明“电路与模型边界”的当前做法，核对是否出现“电路只背名词不会说明连接与作用”。证据不足先追问。",
+        "strategy": "用简图连接电路符号与现象并检查模型",
+        "steps": [
+          "指出元件及连接路径",
+          "预测断开一处的变化",
+          "用记录或电路图核对"
+        ],
+        "questions": [
+          "电流路径在哪一处被切断？"
+        ],
+        "responses": [
+          "学生可能认为电流只沿一根线到灯泡（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "用手指追踪完整回路，再画闭合路径",
+        "boundary": "只适用于九年级物理的电路与模型边界；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新电路图独立说明能否形成回路",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "物理",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-35b616541d627eec855ef6ec"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新电路图独立说明能否形成回路。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-8b53740e63f142b6ae17ab8f",
+      "subject": "化学",
+      "grade": "九年级",
+      "title": "元素化合物与混合物：用不同颜色纸点表示粒子并进行分类解释",
+      "topic": "元素化合物与混合物",
+      "knowledgeId": "kp-8b53740e63f142b6ae17ab8f",
+      "sourceId": "chemistry",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "元素化合物与混合物"
+        ],
+        "goal": "能够就“元素化合物与混合物”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "化合物和混合物只背定义不会看粒子图",
+        "diagnosis": "请学生先说明“元素化合物与混合物”的当前做法，核对是否出现“化合物和混合物只背定义不会看粒子图”。证据不足先追问。",
+        "strategy": "用不同颜色纸点表示粒子并进行分类解释",
+        "steps": [
+          "约定纸点表示元素",
+          "比较三组粒子图",
+          "用种类与组合方式说明分类"
+        ],
+        "questions": [
+          "你按元素种类还是物质种类在分类？"
+        ],
+        "responses": [
+          "学生可能把多种元素直接判成混合物（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "并排比较同一种化合物与两种物质的粒子图",
+        "boundary": "只适用于九年级化学的元素化合物与混合物；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新粒子图分类并给出一条结构依据",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "化学",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-8b53740e63f142b6ae17ab8f"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新粒子图分类并给出一条结构依据。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-dd1b89a0b79e90766eff407c",
+      "subject": "化学",
+      "grade": "九年级",
+      "title": "宏观现象与微观解释：把已见现象与看不见的模型分栏对照",
+      "topic": "宏观现象与微观解释",
+      "knowledgeId": "kp-dd1b89a0b79e90766eff407c",
+      "sourceId": "chemistry",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "宏观现象与微观解释"
+        ],
+        "goal": "能够就“宏观现象与微观解释”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "化学实验现象和粒子解释混在一起",
+        "diagnosis": "请学生先说明“宏观现象与微观解释”的当前做法，核对是否出现“化学实验现象和粒子解释混在一起”。证据不足先追问。",
+        "strategy": "把已见现象与看不见的模型分栏对照",
+        "steps": [
+          "读取现象记录",
+          "画反应前后粒子示意",
+          "核对原子种类与数目"
+        ],
+        "questions": [
+          "你直接观察到了粒子，还是用模型解释？"
+        ],
+        "responses": [
+          "学生可能把颜色变化当成原子消失（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "保留现象原话，再在模型中标出守恒对象",
+        "boundary": "只适用于九年级化学的宏观现象与微观解释；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "用新反应记录分别写现象与模型解释",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "化学",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-dd1b89a0b79e90766eff407c"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "用新反应记录分别写现象与模型解释。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-160dd8418174f3fdd6b78b2e",
+      "subject": "化学",
+      "grade": "九年级",
+      "title": "酸碱指示与证据：利用已有实验记录比较指示剂与对照",
+      "topic": "酸碱指示与证据",
+      "knowledgeId": "kp-160dd8418174f3fdd6b78b2e",
+      "sourceId": "chem-acids",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "酸碱指示与证据"
+        ],
+        "goal": "能够就“酸碱指示与证据”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "酸碱判断只记颜色忽略条件和对照",
+        "diagnosis": "请学生先说明“酸碱指示与证据”的当前做法，核对是否出现“酸碱判断只记颜色忽略条件和对照”。证据不足先追问。",
+        "strategy": "利用已有实验记录比较指示剂与对照",
+        "steps": [
+          "标明记录中的样品与指示剂",
+          "比较对照变化",
+          "写出结论适用范围"
+        ],
+        "questions": [
+          "换了指示剂还能照搬同一个颜色结论吗？"
+        ],
+        "responses": [
+          "学生可能把所有红色现象都当成酸性证据（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先核对指示剂名称和初始条件",
+        "boundary": "只适用于九年级化学的酸碱指示与证据；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "阅读一组新记录独立判断哪些证据足够",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "化学",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-160dd8418174f3fdd6b78b2e"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "阅读一组新记录独立判断哪些证据足够。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-9238445c7db4f4048f6c10a2",
+      "subject": "生物学",
+      "grade": "七年级",
+      "title": "生物分类与特征：先列可观察特征，再建立二歧检索思路",
+      "topic": "生物分类与特征",
+      "knowledgeId": "kp-9238445c7db4f4048f6c10a2",
+      "sourceId": "biology",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "生物分类与特征"
+        ],
+        "goal": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "生物分类只按大小喜好不看稳定特征",
+        "diagnosis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+        "strategy": "先列可观察特征，再建立二歧检索思路",
+        "steps": [
+          "比较图片的共同与不同",
+          "每次选择一个稳定特征分组",
+          "交换检验分组规则"
+        ],
+        "questions": [
+          "另一位同学按你的规则能分出同样结果吗？"
+        ],
+        "responses": [
+          "学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "加入外形相似但结构不同的反例",
+        "boundary": "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "用新的四种生物建立有依据的分组",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "生物学",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-9238445c7db4f4048f6c10a2"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "用新的四种生物建立有依据的分组。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-3409d0fb48797990ff32ae36",
+      "subject": "生物学",
+      "grade": "七年级",
+      "title": "细胞结构与功能：制作纸面或立体模型后说明结构和模型局限",
+      "topic": "细胞结构与功能",
+      "knowledgeId": "kp-3409d0fb48797990ff32ae36",
+      "sourceId": "biology",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "细胞结构与功能"
+        ],
+        "goal": "能够就“细胞结构与功能”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "细胞模型只记名称不会联系功能",
+        "diagnosis": "请学生先说明“细胞结构与功能”的当前做法，核对是否出现“细胞模型只记名称不会联系功能”。证据不足先追问。",
+        "strategy": "制作纸面或立体模型后说明结构和模型局限",
+        "steps": [
+          "选择一种有特定功能的细胞",
+          "标出关键结构",
+          "解释结构如何支持功能"
+        ],
+        "questions": [
+          "模型中哪个部分帮助你说明功能，哪里不准确？"
+        ],
+        "responses": [
+          "学生可能把模型比例当成真实比例（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "把模型表达和真实结构资料并排核对",
+        "boundary": "只适用于七年级生物学的细胞结构与功能；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "换一种细胞独立写出结构与功能联系",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "生物学",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-3409d0fb48797990ff32ae36"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "换一种细胞独立写出结构与功能联系。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-8c6737069f517ade479535f4",
+      "subject": "生物学",
+      "grade": "八年级",
+      "title": "生命过程的观察与假设：从已有实验现象提出可检验问题并说明证据",
+      "topic": "生命过程的观察与假设",
+      "knowledgeId": "kp-8c6737069f517ade479535f4",
+      "sourceId": "biology",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "生命过程的观察与假设"
+        ],
+        "goal": "能够就“生命过程的观察与假设”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "植物运输等生命过程只会抄结论不会提出问题",
+        "diagnosis": "请学生先说明“生命过程的观察与假设”的当前做法，核对是否出现“植物运输等生命过程只会抄结论不会提出问题”。证据不足先追问。",
+        "strategy": "从已有实验现象提出可检验问题并说明证据",
+        "steps": [
+          "读取植物染色现象记录",
+          "列两种可能解释",
+          "提出能区分解释的观察"
+        ],
+        "questions": [
+          "什么新观察能帮助排除另一种解释？"
+        ],
+        "responses": [
+          "学生可能把一次现象直接当所有植物都如此（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "说明记录条件，讨论还缺哪些比较",
+        "boundary": "只适用于八年级生物学的生命过程的观察与假设；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新生命现象写一个可检验问题和所需证据",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "生物学",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-8c6737069f517ade479535f4"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新生命现象写一个可检验问题和所需证据。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-1f884513468f4e78dab0cdea",
+      "subject": "历史",
+      "grade": "七年级",
+      "title": "史料出处与可信度：先检查作者、时间、受众与目的，再作判断",
+      "topic": "史料出处与可信度",
+      "knowledgeId": "kp-1f884513468f4e78dab0cdea",
+      "sourceId": "history",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "史料出处与可信度"
+        ],
+        "goal": "能够就“史料出处与可信度”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "史料分析见到材料就当成事实",
+        "diagnosis": "请学生先说明“史料出处与可信度”的当前做法，核对是否出现“史料分析见到材料就当成事实”。证据不足先追问。",
+        "strategy": "先检查作者、时间、受众与目的，再作判断",
+        "steps": [
+          "记录材料出处",
+          "比较作者处境与写作目的",
+          "限定材料能够支持的判断"
+        ],
+        "questions": [
+          "作者当时可能知道什么，又可能忽略什么？"
+        ],
+        "responses": [
+          "学生可能因为年代久远就全信或全不信（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "把可靠性判断对应到具体内容和问题",
+        "boundary": "只适用于七年级历史的史料出处与可信度；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新史料独立写出处判断和一项局限",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "历史",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-1f884513468f4e78dab0cdea"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新史料独立写出处判断和一项局限。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-83b4aa9cace6f026a72c15a4",
+      "subject": "历史",
+      "grade": "八年级",
+      "title": "多则史料互证：把共同点、冲突点和待补证据分开",
+      "topic": "多则史料互证",
+      "knowledgeId": "kp-83b4aa9cace6f026a72c15a4",
+      "sourceId": "history-home",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "多则史料互证"
+        ],
+        "goal": "能够就“多则史料互证”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "史料有冲突时只选自己赞同的一则",
+        "diagnosis": "请学生先说明“多则史料互证”的当前做法，核对是否出现“史料有冲突时只选自己赞同的一则”。证据不足先追问。",
+        "strategy": "把共同点、冲突点和待补证据分开",
+        "steps": [
+          "逐则提取同一事件的说法",
+          "制作比较表",
+          "提出还需什么材料"
+        ],
+        "questions": [
+          "两则材料在哪一件具体事实上一致？"
+        ],
+        "responses": [
+          "学生可能按作者名气替代证据比较（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先只比较可核对的时间、行为和位置",
+        "boundary": "只适用于八年级历史的多则史料互证；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对一组新短史料独立写共同结论及保留意见",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "历史",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-83b4aa9cace6f026a72c15a4"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对一组新短史料独立写共同结论及保留意见。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-b9ffc18a39d9f88b4bc91679",
+      "subject": "历史",
+      "grade": "九年级",
+      "title": "历史解释与论证：先提出有限论点，再用史实并说明关系",
+      "topic": "历史解释与论证",
+      "knowledgeId": "kp-b9ffc18a39d9f88b4bc91679",
+      "sourceId": "history-writing",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "历史解释与论证"
+        ],
+        "goal": "能够就“历史解释与论证”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "历史论述堆史实没有因果解释",
+        "diagnosis": "请学生先说明“历史解释与论证”的当前做法，核对是否出现“历史论述堆史实没有因果解释”。证据不足先追问。",
+        "strategy": "先提出有限论点，再用史实并说明关系",
+        "steps": [
+          "写一个明确论点",
+          "挑两项相关史实",
+          "分别解释如何支持论点"
+        ],
+        "questions": [
+          "这项史实为什么能支持你的解释？"
+        ],
+        "responses": [
+          "学生可能把先后发生直接写成因果（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "加入条件和其他因素，区分同时相关与因果",
+        "boundary": "只适用于九年级历史的历史解释与论证；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新问题写论点、史实和关系解释",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "历史",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-b9ffc18a39d9f88b4bc91679"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新问题写论点、史实和关系解释。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-238a47d02714a8da8e039bfa",
+      "subject": "地理",
+      "grade": "七年级",
+      "title": "地图图例与方向：从熟悉路线转成自编图例和平面图",
+      "topic": "地图图例与方向",
+      "knowledgeId": "kp-238a47d02714a8da8e039bfa",
+      "sourceId": "geo-local",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "地图图例与方向"
+        ],
+        "goal": "能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "地图看不懂图例方向只凭熟悉印象",
+        "diagnosis": "请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。",
+        "strategy": "从熟悉路线转成自编图例和平面图",
+        "steps": [
+          "口述校园路线",
+          "用符号画简图",
+          "让同伴按图描述路线"
+        ],
+        "questions": [
+          "没有去过这里的人怎样识别你的符号？"
+        ],
+        "responses": [
+          "学生可能把图上位置与现实方向混同（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先固定参照方向，再逐段检查路线",
+        "boundary": "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对一张新简图依据图例说明方位",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "地理",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-238a47d02714a8da8e039bfa"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对一张新简图依据图例说明方位。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-c592aef6aa66aa9310beecd9",
+      "subject": "地理",
+      "grade": "七年级",
+      "title": "地图比例尺与详略：用同一区域两种比例尺比较距离与详略",
+      "topic": "地图比例尺与详略",
+      "knowledgeId": "kp-c592aef6aa66aa9310beecd9",
+      "sourceId": "geo-scale",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "地图比例尺与详略"
+        ],
+        "goal": "能够就“地图比例尺与详略”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "比例尺分不清图上距离和实际距离",
+        "diagnosis": "请学生先说明“地图比例尺与详略”的当前做法，核对是否出现“比例尺分不清图上距离和实际距离”。证据不足先追问。",
+        "strategy": "用同一区域两种比例尺比较距离与详略",
+        "steps": [
+          "写清比例尺单位",
+          "算一段实际距离",
+          "比较两图可见细节"
+        ],
+        "questions": [
+          "图变大后实际区域也变大了吗？"
+        ],
+        "responses": [
+          "学生可能把大比例尺当成大范围（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "用同一段路线作对照并统一单位",
+        "boundary": "只适用于七年级地理的地图比例尺与详略；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新比例尺独立换算并判断适合的地图",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "地理",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-c592aef6aa66aa9310beecd9"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新比例尺独立换算并判断适合的地图。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-4841a22977afa386a7eef671",
+      "subject": "地理",
+      "grade": "八年级",
+      "title": "聚落与资源条件：用资源和约束表比较候选地点",
+      "topic": "聚落与资源条件",
+      "knowledgeId": "kp-4841a22977afa386a7eef671",
+      "sourceId": "geo-settle",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "聚落与资源条件"
+        ],
+        "goal": "能够就“聚落与资源条件”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "聚落选址只说风景好忽略资源条件",
+        "diagnosis": "请学生先说明“聚落与资源条件”的当前做法，核对是否出现“聚落选址只说风景好忽略资源条件”。证据不足先追问。",
+        "strategy": "用资源和约束表比较候选地点",
+        "steps": [
+          "列水源交通地形等条件",
+          "比较两个候选点",
+          "说明取舍与缺失资料"
+        ],
+        "questions": [
+          "如果水源条件改变，你的选择会变吗？"
+        ],
+        "responses": [
+          "学生可能只选一个有利因素（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "加入一项限制条件再权衡",
+        "boundary": "只适用于八年级地理的聚落与资源条件；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新地点资料独立提出有条件的选址理由",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "地理",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-4841a22977afa386a7eef671"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新地点资料独立提出有条件的选址理由。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-9764d15c41decca66cf03505",
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "title": "生活规则与理由：用身边同类情境比较规则保护的共同需要",
+      "topic": "生活规则与理由",
+      "knowledgeId": "kp-9764d15c41decca66cf03505",
+      "sourceId": "ethics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "生活规则与理由"
+        ],
+        "goal": "能够就“生活规则与理由”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "规则学习只背应当怎样说不出理由",
+        "diagnosis": "请学生先说明“生活规则与理由”的当前做法，核对是否出现“规则学习只背应当怎样说不出理由”。证据不足先追问。",
+        "strategy": "用身边同类情境比较规则保护的共同需要",
+        "steps": [
+          "描述排队等熟悉情境",
+          "比较有无规则的影响",
+          "为规则写可说明的理由"
+        ],
+        "questions": [
+          "这条规则保护了谁的什么需要？"
+        ],
+        "responses": [
+          "学生可能把个人方便等同共同规则（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "补充他人视角，区分事实与态度",
+        "boundary": "只适用于七年级道德与法治的生活规则与理由；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新生活情境提出规则和理由",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "道德与法治",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-9764d15c41decca66cf03505"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新生活情境提出规则和理由。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-14feb019bb278542df22a11b",
+      "subject": "道德与法治",
+      "grade": "八年级",
+      "title": "案例中的事实与判断：按事实、相关规则、行动理由三层整理",
+      "topic": "案例中的事实与判断",
+      "knowledgeId": "kp-14feb019bb278542df22a11b",
+      "sourceId": "ethics-case",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "案例中的事实与判断"
+        ],
+        "goal": "能够就“案例中的事实与判断”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "案例分析只喊口号不区分事实与价值判断",
+        "diagnosis": "请学生先说明“案例中的事实与判断”的当前做法，核对是否出现“案例分析只喊口号不区分事实与价值判断”。证据不足先追问。",
+        "strategy": "按事实、相关规则、行动理由三层整理",
+        "steps": [
+          "提取已知事实",
+          "依据教材核对规则",
+          "提出行动及其理由"
+        ],
+        "questions": [
+          "哪些是材料写明的，哪些是你的推测？"
+        ],
+        "responses": [
+          "学生可能添加材料没有的人物动机（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "删掉无依据推测，再比较可行行动",
+        "boundary": "只适用于八年级道德与法治的案例中的事实与判断；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新案例独立写事实和有依据的判断",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "道德与法治",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-14feb019bb278542df22a11b"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新案例独立写事实和有依据的判断。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-5a7c3926121f701fd3e68376",
+      "subject": "道德与法治",
+      "grade": "九年级",
+      "title": "公共议题的讨论与行动：围绕可知生活问题比较责任与行动",
+      "topic": "公共议题的讨论与行动",
+      "knowledgeId": "kp-5a7c3926121f701fd3e68376",
+      "sourceId": "ethics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "公共议题的讨论与行动"
+        ],
+        "goal": "能够就“公共议题的讨论与行动”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "公共问题讨论只有立场没有可行行动",
+        "diagnosis": "请学生先说明“公共议题的讨论与行动”的当前做法，核对是否出现“公共问题讨论只有立场没有可行行动”。证据不足先追问。",
+        "strategy": "围绕可知生活问题比较责任与行动",
+        "steps": [
+          "选定公共问题",
+          "列相关角色与责任",
+          "形成一项可执行建议"
+        ],
+        "questions": [
+          "谁能执行这项建议，怎样知道是否做到？"
+        ],
+        "responses": [
+          "学生可能给出无法执行的宽泛口号（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "把建议缩成具体对象、动作和检查方式",
+        "boundary": "只适用于九年级道德与法治的公共议题的讨论与行动；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新公共问题独立写行动方案与依据",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "道德与法治",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-5a7c3926121f701fd3e68376"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新公共问题独立写行动方案与依据。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-fe721c4df5c0f8a0db20d48e",
+      "subject": "思想政治",
+      "grade": "高一",
+      "title": "议题式观点辨析：围绕经济与社会小议题分清事实观点和依据",
+      "topic": "议题式观点辨析",
+      "knowledgeId": "kp-fe721c4df5c0f8a0db20d48e",
+      "sourceId": "politics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "议题式观点辨析"
+        ],
+        "goal": "能够就“议题式观点辨析”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "议题讨论只有结论没有材料依据",
+        "diagnosis": "请学生先说明“议题式观点辨析”的当前做法，核对是否出现“议题讨论只有结论没有材料依据”。证据不足先追问。",
+        "strategy": "围绕经济与社会小议题分清事实观点和依据",
+        "steps": [
+          "提出与教材相关的问题",
+          "比较两种观点的依据",
+          "写有条件的判断"
+        ],
+        "questions": [
+          "这项材料支持观点的哪一部分？"
+        ],
+        "responses": [
+          "学生可能用关键词代替论证（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先解释概念，再把材料与概念逐项对应",
+        "boundary": "只适用于高一思想政治的议题式观点辨析；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新材料独立完成观点、依据与结论",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "思想政治",
+        "grade": "高一",
+        "knowledgeIds": [
+          "kp-fe721c4df5c0f8a0db20d48e"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新材料独立完成观点、依据与结论。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-af20c3d25c58d6aa1ca98f73",
+      "subject": "思想政治",
+      "grade": "高二",
+      "title": "真实情境与概念迁移：用可核对情境解释概念并找适用边界",
+      "topic": "真实情境与概念迁移",
+      "knowledgeId": "kp-af20c3d25c58d6aa1ca98f73",
+      "sourceId": "politics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "真实情境与概念迁移"
+        ],
+        "goal": "能够就“真实情境与概念迁移”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "概念会背却不会联系真实情境",
+        "diagnosis": "请学生先说明“真实情境与概念迁移”的当前做法，核对是否出现“概念会背却不会联系真实情境”。证据不足先追问。",
+        "strategy": "用可核对情境解释概念并找适用边界",
+        "steps": [
+          "提取情境事实",
+          "选择相关教材概念",
+          "比较一个不适用情境"
+        ],
+        "questions": [
+          "换了哪个条件，这个概念就不能直接套用？"
+        ],
+        "responses": [
+          "学生可能所有材料都套同一句结论（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "给出对比情境并要求逐项说明",
+        "boundary": "只适用于高二思想政治的真实情境与概念迁移；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新情境独立选概念并解释适用条件",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "思想政治",
+        "grade": "高二",
+        "knowledgeIds": [
+          "kp-af20c3d25c58d6aa1ca98f73"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新情境独立选概念并解释适用条件。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-8a62e663a254029e09f4278a",
+      "subject": "思想政治",
+      "grade": "高三",
+      "title": "项目探究与证据表达：围绕小问题组织资料并说明证据限度",
+      "topic": "项目探究与证据表达",
+      "knowledgeId": "kp-8a62e663a254029e09f4278a",
+      "sourceId": "politics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "项目探究与证据表达"
+        ],
+        "goal": "能够就“项目探究与证据表达”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "探究报告只有态度没有证据链",
+        "diagnosis": "请学生先说明“项目探究与证据表达”的当前做法，核对是否出现“探究报告只有态度没有证据链”。证据不足先追问。",
+        "strategy": "围绕小问题组织资料并说明证据限度",
+        "steps": [
+          "限定探究问题",
+          "整理可追溯资料",
+          "形成带依据和局限的建议"
+        ],
+        "questions": [
+          "哪条资料可以被其他人复查？"
+        ],
+        "responses": [
+          "学生可能把个别访谈当成普遍结论（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "区分个例与总体，不补造调查结果",
+        "boundary": "只适用于高三思想政治的项目探究与证据表达；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新材料独立写建议、证据和一项局限",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "思想政治",
+        "grade": "高三",
+        "knowledgeIds": [
+          "kp-8a62e663a254029e09f4278a"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新材料独立写建议、证据和一项局限。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-e0a4f375147b42526209163d",
+      "subject": "信息科技",
+      "grade": "七年级",
+      "title": "二进制表示：用翻面纸卡表示位权并说明组合",
+      "topic": "二进制表示",
+      "knowledgeId": "kp-e0a4f375147b42526209163d",
+      "sourceId": "binary",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "二进制表示"
+        ],
+        "goal": "能够就“二进制表示”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "二进制只会背转换不懂位权",
+        "diagnosis": "请学生先说明“二进制表示”的当前做法，核对是否出现“二进制只会背转换不懂位权”。证据不足先追问。",
+        "strategy": "用翻面纸卡表示位权并说明组合",
+        "steps": [
+          "写出1、2、4、8纸卡",
+          "用翻面组合表示数",
+          "说明每张卡的贡献"
+        ],
+        "questions": [
+          "两张同样的卡为什么不能代表不同位权？"
+        ],
+        "responses": [
+          "学生可能把二进制写成十进制数字拼接（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先用小数值逐张计数再写符号",
+        "boundary": "只适用于七年级信息科技的二进制表示；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "不用卡片独立表示一个新数并解释位权",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "信息科技",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-e0a4f375147b42526209163d"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "不用卡片独立表示一个新数并解释位权。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-286bf6ff48258008a51131d0",
+      "subject": "信息科技",
+      "grade": "八年级",
+      "title": "有序查找与条件：用有序与无序纸卡对照查找过程",
+      "topic": "有序查找与条件",
+      "knowledgeId": "kp-286bf6ff48258008a51131d0",
+      "sourceId": "search",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "有序查找与条件"
+        ],
+        "goal": "能够就“有序查找与条件”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "二分查找只记折半忘记有序条件",
+        "diagnosis": "请学生先说明“有序查找与条件”的当前做法，核对是否出现“二分查找只记折半忘记有序条件”。证据不足先追问。",
+        "strategy": "用有序与无序纸卡对照查找过程",
+        "steps": [
+          "在有序卡中猜目标",
+          "记录每次排除范围",
+          "换无序卡检查方法"
+        ],
+        "questions": [
+          "排除这一半的依据是什么？"
+        ],
+        "responses": [
+          "学生可能在无序序列也直接折半（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "让被排除区域保留目标作反例",
+        "boundary": "只适用于八年级信息科技的有序查找与条件；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新序列说明能否二分并列查找步骤",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "信息科技",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-286bf6ff48258008a51131d0"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新序列说明能否二分并列查找步骤。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-66c028ecef97832ff1b3aff9",
+      "subject": "信息科技",
+      "grade": "九年级",
+      "title": "排序与比较步骤：用纸卡记录比较、移动及中间状态",
+      "topic": "排序与比较步骤",
+      "knowledgeId": "kp-66c028ecef97832ff1b3aff9",
+      "sourceId": "sort",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "排序与比较步骤"
+        ],
+        "goal": "能够就“排序与比较步骤”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "排序算法只背名称不会跟踪比较",
+        "diagnosis": "请学生先说明“排序与比较步骤”的当前做法，核对是否出现“排序算法只背名称不会跟踪比较”。证据不足先追问。",
+        "strategy": "用纸卡记录比较、移动及中间状态",
+        "steps": [
+          "给待排卡编号",
+          "按规则执行一轮",
+          "与同伴核对中间状态"
+        ],
+        "questions": [
+          "这一轮后哪一部分已确定位置？"
+        ],
+        "responses": [
+          "学生可能只看最终有序结果（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "回到一次比较，明确规则再继续",
+        "boundary": "只适用于九年级信息科技的排序与比较步骤；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对一组新数据独立写两轮状态",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "信息科技",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-66c028ecef97832ff1b3aff9"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对一组新数据独立写两轮状态。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-e234ea288a763b14bc75060e",
+      "subject": "信息技术",
+      "grade": "高一",
+      "title": "数据表示与编码解释：从纸卡位权追踪到编码与还原的约定",
+      "topic": "数据表示与编码解释",
+      "knowledgeId": "kp-e234ea288a763b14bc75060e",
+      "sourceId": "binary",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "数据表示与编码解释"
+        ],
+        "goal": "能够就“数据表示与编码解释”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "数据编码只记符号不理解编码约定",
+        "diagnosis": "请学生先说明“数据表示与编码解释”的当前做法，核对是否出现“数据编码只记符号不理解编码约定”。证据不足先追问。",
+        "strategy": "从纸卡位权追踪到编码与还原的约定",
+        "steps": [
+          "选定表示规则",
+          "编码一组数据",
+          "让同伴按规则还原"
+        ],
+        "questions": [
+          "没有规则说明，别人一定能正确还原吗？"
+        ],
+        "responses": [
+          "学生可能认为编码字符本身有固定意义（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "比较同一数据的两种合法约定",
+        "boundary": "只适用于高一信息技术的数据表示与编码解释；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "为一组新数据设计并说明可还原的编码",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "信息技术",
+        "grade": "高一",
+        "knowledgeIds": [
+          "kp-e234ea288a763b14bc75060e"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "为一组新数据设计并说明可还原的编码。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-9b182270156096619e85fcc3",
+      "subject": "信息技术",
+      "grade": "高二",
+      "title": "查找效率与边界：用小样本跟踪查找并设计边界测试",
+      "topic": "查找效率与边界",
+      "knowledgeId": "kp-9b182270156096619e85fcc3",
+      "sourceId": "search",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "查找效率与边界"
+        ],
+        "goal": "能够就“查找效率与边界”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "程序查找忽略空数据和目标不存在",
+        "diagnosis": "请学生先说明“查找效率与边界”的当前做法，核对是否出现“程序查找忽略空数据和目标不存在”。证据不足先追问。",
+        "strategy": "用小样本跟踪查找并设计边界测试",
+        "steps": [
+          "写输入与目标",
+          "逐步记录候选范围",
+          "列未找到及边界情况"
+        ],
+        "questions": [
+          "目标不存在时循环怎样停止？"
+        ],
+        "responses": [
+          "学生可能只给找到目标的成功例子（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "补空表、首尾目标及不存在目标",
+        "boundary": "只适用于高二信息技术的查找效率与边界；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新查找伪代码独立列三个边界测试",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "信息技术",
+        "grade": "高二",
+        "knowledgeIds": [
+          "kp-9b182270156096619e85fcc3"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新查找伪代码独立列三个边界测试。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-d0accd2de4fda2767464857e",
+      "subject": "信息技术",
+      "grade": "高三",
+      "title": "算法过程与不变量：从手工排序中找每轮保持的条件",
+      "topic": "算法过程与不变量",
+      "knowledgeId": "kp-d0accd2de4fda2767464857e",
+      "sourceId": "sort",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "算法过程与不变量"
+        ],
+        "goal": "能够就“算法过程与不变量”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "算法分析只比较速度不会解释正确性",
+        "diagnosis": "请学生先说明“算法过程与不变量”的当前做法，核对是否出现“算法分析只比较速度不会解释正确性”。证据不足先追问。",
+        "strategy": "从手工排序中找每轮保持的条件",
+        "steps": [
+          "按规则跟踪数据",
+          "标记每轮已确定部分",
+          "解释下一轮为何保持"
+        ],
+        "questions": [
+          "哪些结论在每一轮后都成立？"
+        ],
+        "responses": [
+          "学生可能把一次样例成功当普遍正确（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "用不同排列验证同一规则并说明适用前提",
+        "boundary": "只适用于高三信息技术的算法过程与不变量；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新排序片段独立说明一个不变量",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "信息技术",
+        "grade": "高三",
+        "knowledgeIds": [
+          "kp-d0accd2de4fda2767464857e"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新排序片段独立说明一个不变量。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-870c90168cb975b32f270144",
+      "subject": "通用技术",
+      "grade": "高一",
+      "title": "技术需求与利益相关者：通过角色访谈区分需求、偏好和约束",
+      "topic": "技术需求与利益相关者",
+      "knowledgeId": "kp-870c90168cb975b32f270144",
+      "sourceId": "maker",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "技术需求与利益相关者"
+        ],
+        "goal": "能够就“技术需求与利益相关者”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "设计只想着做产品没有明确需求",
+        "diagnosis": "请学生先说明“技术需求与利益相关者”的当前做法，核对是否出现“设计只想着做产品没有明确需求”。证据不足先追问。",
+        "strategy": "通过角色访谈区分需求、偏好和约束",
+        "steps": [
+          "为校园浇水问题列相关人",
+          "准备具体访谈问题",
+          "把回答转成设计条件"
+        ],
+        "questions": [
+          "这是谁的需求，有什么证据？"
+        ],
+        "responses": [
+          "学生可能直接选最熟悉的成品方案（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "暂不讨论方案，先对齐需求和限制",
+        "boundary": "只适用于高一通用技术的技术需求与利益相关者；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新校园问题独立列需求与约束",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "通用技术",
+        "grade": "高一",
+        "knowledgeIds": [
+          "kp-870c90168cb975b32f270144"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新校园问题独立列需求与约束。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-761451211a90c9487821a598",
+      "subject": "通用技术",
+      "grade": "高二",
+      "title": "方案比较与权衡：用同一评价表比较不同纸面方案",
+      "topic": "方案比较与权衡",
+      "knowledgeId": "kp-761451211a90c9487821a598",
+      "sourceId": "maker",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "方案比较与权衡"
+        ],
+        "goal": "能够就“方案比较与权衡”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "技术方案只评好看不比较约束",
+        "diagnosis": "请学生先说明“方案比较与权衡”的当前做法，核对是否出现“技术方案只评好看不比较约束”。证据不足先追问。",
+        "strategy": "用同一评价表比较不同纸面方案",
+        "steps": [
+          "提出两种方案",
+          "按材料维护和用水等同一条件比较",
+          "说明取舍"
+        ],
+        "questions": [
+          "哪项约束会让看似最优的方案失效？"
+        ],
+        "responses": [
+          "学生可能给每个方案使用不同标准（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "统一评价标准再逐项比较",
+        "boundary": "只适用于高二通用技术的方案比较与权衡；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新方案独立写有条件的选择理由",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "通用技术",
+        "grade": "高二",
+        "knowledgeIds": [
+          "kp-761451211a90c9487821a598"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新方案独立写有条件的选择理由。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-d2ca4c5d7ad4e777949931a3",
+      "subject": "通用技术",
+      "grade": "高三",
+      "title": "原型测试与优化：先确定可检查指标再设计纸面或受监督测试",
+      "topic": "原型测试与优化",
+      "knowledgeId": "kp-d2ca4c5d7ad4e777949931a3",
+      "sourceId": "maker",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "原型测试与优化"
+        ],
+        "goal": "能够就“原型测试与优化”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "模型做好就当成功没有测试依据",
+        "diagnosis": "请学生先说明“原型测试与优化”的当前做法，核对是否出现“模型做好就当成功没有测试依据”。证据不足先追问。",
+        "strategy": "先确定可检查指标再设计纸面或受监督测试",
+        "steps": [
+          "写出预期功能与指标",
+          "记录实际结果",
+          "按证据提出一次修改"
+        ],
+        "questions": [
+          "你怎样判断修改确实解决了原问题？"
+        ],
+        "responses": [
+          "学生可能只写成功或失败（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "把结果改为可观察记录并保留条件",
+        "boundary": "只适用于高三通用技术的原型测试与优化；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新设计独立提出指标和测试办法",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "通用技术",
+        "grade": "高三",
+        "knowledgeIds": [
+          "kp-d2ca4c5d7ad4e777949931a3"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新设计独立提出指标和测试办法。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-f6786c1660f509fdbec5883e",
+      "subject": "科学",
+      "grade": "七年级",
+      "title": "观察与科学问题：从可观察变化形成可检验的问题",
+      "topic": "观察与科学问题",
+      "knowledgeId": "kp-f6786c1660f509fdbec5883e",
+      "sourceId": "biology",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "观察与科学问题"
+        ],
+        "goal": "能够就“观察与科学问题”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "科学观察只看热闹提不出问题",
+        "diagnosis": "请学生先说明“观察与科学问题”的当前做法，核对是否出现“科学观察只看热闹提不出问题”。证据不足先追问。",
+        "strategy": "从可观察变化形成可检验的问题",
+        "steps": [
+          "阅读现象记录",
+          "区分已知与未知",
+          "提出能用比较观察回答的问题"
+        ],
+        "questions": [
+          "你的问题需要观察什么才能回答？"
+        ],
+        "responses": [
+          "学生可能提出不能由现有条件检验的问题（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "缩小对象、时间和可观测变化",
+        "boundary": "只适用于七年级科学的观察与科学问题；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新现象独立写问题和所需证据",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "科学",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-f6786c1660f509fdbec5883e"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新现象独立写问题和所需证据。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-e9f778a90ebcf48278e5a037",
+      "subject": "科学",
+      "grade": "八年级",
+      "title": "模型与物质分类：用自编粒子图说明分类并指出模型限制",
+      "topic": "模型与物质分类",
+      "knowledgeId": "kp-e9f778a90ebcf48278e5a037",
+      "sourceId": "chemistry",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "模型与物质分类"
+        ],
+        "goal": "能够就“模型与物质分类”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "科学模型被当成实物照片",
+        "diagnosis": "请学生先说明“模型与物质分类”的当前做法，核对是否出现“科学模型被当成实物照片”。证据不足先追问。",
+        "strategy": "用自编粒子图说明分类并指出模型限制",
+        "steps": [
+          "约定图中符号",
+          "按组成分类",
+          "说明图中看不到的真实信息"
+        ],
+        "questions": [
+          "图中的颜色是实物的真实颜色吗？"
+        ],
+        "responses": [
+          "学生可能把模型符号直接当成物质性质（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "把符号约定与事实资料分两栏",
+        "boundary": "只适用于八年级科学的模型与物质分类；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新模型独立说明一个用途与局限",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "科学",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-e9f778a90ebcf48278e5a037"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新模型独立说明一个用途与局限。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-0d3719e4ed12519430caa7f4",
+      "subject": "科学",
+      "grade": "九年级",
+      "title": "证据与解释的修订：用预测、记录、修订顺序核对解释",
+      "topic": "证据与解释的修订",
+      "knowledgeId": "kp-0d3719e4ed12519430caa7f4",
+      "sourceId": "physics",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "证据与解释的修订"
+        ],
+        "goal": "能够就“证据与解释的修订”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "科学解释遇到反例仍重复原结论",
+        "diagnosis": "请学生先说明“证据与解释的修订”的当前做法，核对是否出现“科学解释遇到反例仍重复原结论”。证据不足先追问。",
+        "strategy": "用预测、记录、修订顺序核对解释",
+        "steps": [
+          "先提出可检验预测",
+          "比较记录",
+          "根据反例修改解释范围"
+        ],
+        "questions": [
+          "哪条记录让你需要修改原来的想法？"
+        ],
+        "responses": [
+          "学生可能忽略不符合预测的数据（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "保留反例，讨论条件而不删除数据",
+        "boundary": "只适用于九年级科学的证据与解释的修订；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新记录独立说明解释是否需要调整",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "科学",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-0d3719e4ed12519430caa7f4"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新记录独立说明解释是否需要调整。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-a12a7d75981bb5c23ed9660b",
+      "subject": "音乐",
+      "grade": "七年级",
+      "title": "节奏与稳定拍：用自编拍手材料分开稳定拍与变化节奏",
+      "topic": "节奏与稳定拍",
+      "knowledgeId": "kp-a12a7d75981bb5c23ed9660b",
+      "sourceId": "music-listen",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "节奏与稳定拍"
+        ],
+        "goal": "能够就“节奏与稳定拍”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "音乐听辨把节拍和节奏混为一谈",
+        "diagnosis": "请学生先说明“节奏与稳定拍”的当前做法，核对是否出现“音乐听辨把节拍和节奏混为一谈”。证据不足先追问。",
+        "strategy": "用自编拍手材料分开稳定拍与变化节奏",
+        "steps": [
+          "保持均匀拍",
+          "在拍上加入自编长短节奏",
+          "交换角色保持拍感"
+        ],
+        "questions": [
+          "节奏改变时稳定拍有没有改变？"
+        ],
+        "responses": [
+          "学生可能把每个音都当一拍（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "只留简单节奏并用无声动作维持拍",
+        "boundary": "只适用于七年级音乐的节奏与稳定拍；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新的纸面节奏独立标出拍点，不声称已检验演奏",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "音乐",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-a12a7d75981bb5c23ed9660b"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新的纸面节奏独立标出拍点，不声称已检验演奏。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-dc6391911e8c83bdd0c5fb82",
+      "subject": "音乐",
+      "grade": "八年级",
+      "title": "重复与对比听辨：借助重复与对比线索画简短结构图",
+      "topic": "重复与对比听辨",
+      "knowledgeId": "kp-dc6391911e8c83bdd0c5fb82",
+      "sourceId": "music-listen",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "重复与对比听辨"
+        ],
+        "goal": "能够就“重复与对比听辨”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "音乐欣赏只写好听说不出结构",
+        "diagnosis": "请学生先说明“重复与对比听辨”的当前做法，核对是否出现“音乐欣赏只写好听说不出结构”。证据不足先追问。",
+        "strategy": "借助重复与对比线索画简短结构图",
+        "steps": [
+          "比较自编节奏A和B",
+          "按出现顺序排列卡片",
+          "说明重复或变化"
+        ],
+        "questions": [
+          "你用什么可指出的线索判断这一段不同？"
+        ],
+        "responses": [
+          "学生可能只凭情绪词区分段落（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先只比较节奏型，再补其他可听因素",
+        "boundary": "只适用于八年级音乐的重复与对比听辨；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新自编A-B-A序列独立描述结构",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "音乐",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-dc6391911e8c83bdd0c5fb82"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新自编A-B-A序列独立描述结构。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-caad2260c4b5198e74dd7591",
+      "subject": "音乐",
+      "grade": "九年级",
+      "title": "音乐表达与文化情境：围绕实际可听线索与场景说明表达",
+      "topic": "音乐表达与文化情境",
+      "knowledgeId": "kp-caad2260c4b5198e74dd7591",
+      "sourceId": "arts",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "音乐表达与文化情境"
+        ],
+        "goal": "能够就“音乐表达与文化情境”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "音乐讨论把个人喜好当唯一解释",
+        "diagnosis": "请学生先说明“音乐表达与文化情境”的当前做法，核对是否出现“音乐讨论把个人喜好当唯一解释”。证据不足先追问。",
+        "strategy": "围绕实际可听线索与场景说明表达",
+        "steps": [
+          "选有许可且实际可听的片段或自编节奏",
+          "列听到的特征",
+          "区分特征与个人联想"
+        ],
+        "questions": [
+          "你的解释对应哪一个实际可听线索？"
+        ],
+        "responses": [
+          "学生可能在没有音频时编造乐器与旋律（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "没有可听材料时只做文字分析，不判断演奏",
+        "boundary": "只适用于九年级音乐的音乐表达与文化情境；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新实际材料写一条线索与有依据的解释",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "音乐",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-caad2260c4b5198e74dd7591"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新实际材料写一条线索与有依据的解释。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-59ea89da606547fc1ad170c0",
+      "subject": "美术",
+      "grade": "七年级",
+      "title": "视觉观察与描述：先作客观观察，再讨论表达感受",
+      "topic": "视觉观察与描述",
+      "knowledgeId": "kp-59ea89da606547fc1ad170c0",
+      "sourceId": "arts",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "视觉观察与描述"
+        ],
+        "goal": "能够就“视觉观察与描述”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "美术欣赏只写漂亮不描述具体特征",
+        "diagnosis": "请学生先说明“视觉观察与描述”的当前做法，核对是否出现“美术欣赏只写漂亮不描述具体特征”。证据不足先追问。",
+        "strategy": "先作客观观察，再讨论表达感受",
+        "steps": [
+          "观察自备或有许可的作品",
+          "记录线条色块位置",
+          "将解释对应到细节"
+        ],
+        "questions": [
+          "如果不写漂亮，你能具体指出哪里吗？"
+        ],
+        "responses": [
+          "学生可能直接套用他人评价（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "暂不看评价文字，回到能指出的细节",
+        "boundary": "只适用于七年级美术的视觉观察与描述；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新作品独立写两项观察与一项解释",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "美术",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-59ea89da606547fc1ad170c0"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新作品独立写两项观察与一项解释。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-58824409cd86aa9f44e3f2d9",
+      "subject": "美术",
+      "grade": "八年级",
+      "title": "构图与视觉重点：比较同一元素的不同安排并说明视线变化",
+      "topic": "构图与视觉重点",
+      "knowledgeId": "kp-58824409cd86aa9f44e3f2d9",
+      "sourceId": "arts",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "构图与视觉重点"
+        ],
+        "goal": "能够就“构图与视觉重点”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "构图时主体不清楚只堆元素",
+        "diagnosis": "请学生先说明“构图与视觉重点”的当前做法，核对是否出现“构图时主体不清楚只堆元素”。证据不足先追问。",
+        "strategy": "比较同一元素的不同安排并说明视线变化",
+        "steps": [
+          "画两种小构图",
+          "比较大小位置与疏密",
+          "根据表达目的选择"
+        ],
+        "questions": [
+          "你希望观看者先看到哪一处？"
+        ],
+        "responses": [
+          "学生可能增加装饰掩盖主体（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "先保留主次两组元素再调整",
+        "boundary": "只适用于八年级美术的构图与视觉重点；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新表达目标独立画简图并解释主次",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "美术",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-58824409cd86aa9f44e3f2d9"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新表达目标独立画简图并解释主次。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-2aa553efc382bccc5f05bb61",
+      "subject": "美术",
+      "grade": "九年级",
+      "title": "作品说明与修改：把意图、观察到的效果与修改动作对应",
+      "topic": "作品说明与修改",
+      "knowledgeId": "kp-2aa553efc382bccc5f05bb61",
+      "sourceId": "arts",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "作品说明与修改"
+        ],
+        "goal": "能够就“作品说明与修改”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "作品评议只有喜好没有可执行修改",
+        "diagnosis": "请学生先说明“作品说明与修改”的当前做法，核对是否出现“作品评议只有喜好没有可执行修改”。证据不足先追问。",
+        "strategy": "把意图、观察到的效果与修改动作对应",
+        "steps": [
+          "作者说明表达意图",
+          "同伴指出实际视觉线索",
+          "提出一项能尝试的修改"
+        ],
+        "questions": [
+          "这项修改怎样服务原来的表达意图？"
+        ],
+        "responses": [
+          "学生可能要求作品都符合自己的喜好（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "区分作者意图与个人审美，给可选建议",
+        "boundary": "只适用于九年级美术的作品说明与修改；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新作品独立写一项具体且有依据的建议",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "美术",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-2aa553efc382bccc5f05bb61"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新作品独立写一项具体且有依据的建议。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-9f334279d403ef496f794eda",
+      "subject": "体育与健康",
+      "grade": "七年级",
+      "title": "动作要领与分解理解：用教师提供的动作图分阶段理解要点",
+      "topic": "动作要领与分解理解",
+      "knowledgeId": "kp-9f334279d403ef496f794eda",
+      "sourceId": "pe",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "动作要领与分解理解"
+        ],
+        "goal": "能够就“动作要领与分解理解”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "动作学习只模仿外形说不出关键要领",
+        "diagnosis": "请学生先说明“动作要领与分解理解”的当前做法，核对是否出现“动作学习只模仿外形说不出关键要领”。证据不足先追问。",
+        "strategy": "用教师提供的动作图分阶段理解要点",
+        "steps": [
+          "指出准备与完成阶段",
+          "核对教师要领",
+          "说出自查观察点"
+        ],
+        "questions": [
+          "哪一个阶段最需要关注这个要领？"
+        ],
+        "responses": [
+          "学生可能把文字正确当动作已正确（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "明确文字只验证理解，动作交由现场教师观察",
+        "boundary": "只适用于七年级体育与健康的动作要领与分解理解；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新动作图独立指出一个观察要点",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "体育与健康",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-9f334279d403ef496f794eda"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新动作图独立指出一个观察要点。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-cdea6396c18dcfd6276398bc",
+      "subject": "体育与健康",
+      "grade": "八年级",
+      "title": "分层练习计划：在教师给定条件内选择适合的练习层次",
+      "topic": "分层练习计划",
+      "knowledgeId": "kp-cdea6396c18dcfd6276398bc",
+      "sourceId": "pe",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "分层练习计划"
+        ],
+        "goal": "能够就“分层练习计划”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "练习安排只比次数忽略水平与条件",
+        "diagnosis": "请学生先说明“分层练习计划”的当前做法，核对是否出现“练习安排只比次数忽略水平与条件”。证据不足先追问。",
+        "strategy": "在教师给定条件内选择适合的练习层次",
+        "steps": [
+          "阅读场地器材与目标条件",
+          "比较两种练习安排",
+          "说明选择与调整依据"
+        ],
+        "questions": [
+          "如果空间或个人状态变化，先调整哪一项？"
+        ],
+        "responses": [
+          "学生可能照搬别人的强度与次数（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "只在现场教师确认范围内安排，不给个人健康诊断",
+        "boundary": "只适用于八年级体育与健康的分层练习计划；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新课堂条件独立写计划调整理由",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "体育与健康",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-cdea6396c18dcfd6276398bc"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新课堂条件独立写计划调整理由。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-87ad8fa64cf4b2f8c405ccb4",
+      "subject": "体育与健康",
+      "grade": "九年级",
+      "title": "规则情境与比赛反思：用简化比赛图示连接规则与具体行为",
+      "topic": "规则情境与比赛反思",
+      "knowledgeId": "kp-87ad8fa64cf4b2f8c405ccb4",
+      "sourceId": "pe",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "规则情境与比赛反思"
+        ],
+        "goal": "能够就“规则情境与比赛反思”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "体育规则只背条文不会用于情境判断",
+        "diagnosis": "请学生先说明“规则情境与比赛反思”的当前做法，核对是否出现“体育规则只背条文不会用于情境判断”。证据不足先追问。",
+        "strategy": "用简化比赛图示连接规则与具体行为",
+        "steps": [
+          "阅读规则与情境",
+          "指出相关行为",
+          "说明判断及下一次行动"
+        ],
+        "questions": [
+          "你依据哪一条给定规则作出判断？"
+        ],
+        "responses": [
+          "学生可能按输赢喜好判断违规（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "只使用题目给定规则，不编造裁判事实",
+        "boundary": "只适用于九年级体育与健康的规则情境与比赛反思；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新比赛片段文字独立说明规则依据",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "体育与健康",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-87ad8fa64cf4b2f8c405ccb4"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新比赛片段文字独立说明规则依据。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-5f4c98f57c41bb8ae902672c",
+      "subject": "劳动",
+      "grade": "七年级",
+      "title": "劳动任务与操作计划：把日常劳动分成准备、操作、检查",
+      "topic": "劳动任务与操作计划",
+      "knowledgeId": "kp-5f4c98f57c41bb8ae902672c",
+      "sourceId": "labour",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "劳动任务与操作计划"
+        ],
+        "goal": "能够就“劳动任务与操作计划”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "劳动计划只写完成目标没有准备与步骤",
+        "diagnosis": "请学生先说明“劳动任务与操作计划”的当前做法，核对是否出现“劳动计划只写完成目标没有准备与步骤”。证据不足先追问。",
+        "strategy": "把日常劳动分成准备、操作、检查",
+        "steps": [
+          "选课堂确认可做的整理任务",
+          "列工具与顺序",
+          "写完成检查条件"
+        ],
+        "questions": [
+          "少了哪个准备步骤会影响后面的操作？"
+        ],
+        "responses": [
+          "学生可能把劳动结果描述当作步骤（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "将结果改写为具体可执行动作",
+        "boundary": "只适用于七年级劳动的劳动任务与操作计划；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "为新日常任务独立列准备和检查办法",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "劳动",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-5f4c98f57c41bb8ae902672c"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "为新日常任务独立列准备和检查办法。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-f21bf139bd6d873498bb8329",
+      "subject": "劳动",
+      "grade": "八年级",
+      "title": "劳动过程记录：用任务单保留过程、问题和修改",
+      "topic": "劳动过程记录",
+      "knowledgeId": "kp-f21bf139bd6d873498bb8329",
+      "sourceId": "labour-assess",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "劳动过程记录"
+        ],
+        "goal": "能够就“劳动过程记录”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "劳动记录只交成品照片没有过程依据",
+        "diagnosis": "请学生先说明“劳动过程记录”的当前做法，核对是否出现“劳动记录只交成品照片没有过程依据”。证据不足先追问。",
+        "strategy": "用任务单保留过程、问题和修改",
+        "steps": [
+          "记录任务和条件",
+          "写实际操作及遇到的问题",
+          "对照目标反思"
+        ],
+        "questions": [
+          "这条记录能说明你做过哪一步？"
+        ],
+        "responses": [
+          "学生可能用预期步骤冒充实际过程（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "区分计划与实做，不补造照片或劳动事实",
+        "boundary": "只适用于八年级劳动的劳动过程记录；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "阅读新任务记录指出还缺哪项过程证据",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "劳动",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-f21bf139bd6d873498bb8329"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "阅读新任务记录指出还缺哪项过程证据。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-7f5c0b42a579ce153930990d",
+      "subject": "劳动",
+      "grade": "九年级",
+      "title": "劳动成果评价与改进：将成果评价对应实际标准与改进动作",
+      "topic": "劳动成果评价与改进",
+      "knowledgeId": "kp-7f5c0b42a579ce153930990d",
+      "sourceId": "labour-assess",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "劳动成果评价与改进"
+        ],
+        "goal": "能够就“劳动成果评价与改进”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "劳动评价只写很好没有质量依据",
+        "diagnosis": "请学生先说明“劳动成果评价与改进”的当前做法，核对是否出现“劳动评价只写很好没有质量依据”。证据不足先追问。",
+        "strategy": "将成果评价对应实际标准与改进动作",
+        "steps": [
+          "事先写质量标准",
+          "依据记录逐项核对",
+          "提出下一次改进"
+        ],
+        "questions": [
+          "这项改进依据哪条实际记录？"
+        ],
+        "responses": [
+          "学生可能用投入时间替代成果质量（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "分别看态度、过程与成果，避免一个分数混同",
+        "boundary": "只适用于九年级劳动的劳动成果评价与改进；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新成果记录独立写有依据的改进建议",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "劳动",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-7f5c0b42a579ce153930990d"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新成果记录独立写有依据的改进建议。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-9b064fbfb8b608f2a1f91a4e",
+      "subject": "综合实践活动",
+      "grade": "七年级",
+      "title": "探究问题的限定：从身边现象缩小为可观察的小问题",
+      "topic": "探究问题的限定",
+      "knowledgeId": "kp-9b064fbfb8b608f2a1f91a4e",
+      "sourceId": "practice",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "探究问题的限定"
+        ],
+        "goal": "能够就“探究问题的限定”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "综合实践选题太大无法实际调查",
+        "diagnosis": "请学生先说明“探究问题的限定”的当前做法，核对是否出现“综合实践选题太大无法实际调查”。证据不足先追问。",
+        "strategy": "从身边现象缩小为可观察的小问题",
+        "steps": [
+          "列关心的真实现象",
+          "限定对象与范围",
+          "写可收集的资料"
+        ],
+        "questions": [
+          "在现有时间里，你能实际收集什么？"
+        ],
+        "responses": [
+          "学生可能提出无法获得资料的宏大问题（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "把对象缩到一处场景或一个可核查过程",
+        "boundary": "只适用于七年级综合实践活动的探究问题的限定；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "将一个新宽泛题目改成可调查问题",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "综合实践活动",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-9b064fbfb8b608f2a1f91a4e"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "将一个新宽泛题目改成可调查问题。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-8d9460bed341acd592cb3401",
+      "subject": "综合实践活动",
+      "grade": "八年级",
+      "title": "访谈与需求证据：先问实际经历，再归纳需求并保留原始记录",
+      "topic": "访谈与需求证据",
+      "knowledgeId": "kp-8d9460bed341acd592cb3401",
+      "sourceId": "maker",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "访谈与需求证据"
+        ],
+        "goal": "能够就“访谈与需求证据”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "实践访谈只问赞不赞成得不到具体信息",
+        "diagnosis": "请学生先说明“访谈与需求证据”的当前做法，核对是否出现“实践访谈只问赞不赞成得不到具体信息”。证据不足先追问。",
+        "strategy": "先问实际经历，再归纳需求并保留原始记录",
+        "steps": [
+          "围绕校园问题写开放问题",
+          "记录被访者实际回答",
+          "区分原话与自己的推断"
+        ],
+        "questions": [
+          "这个需求来自哪条实际回答？"
+        ],
+        "responses": [
+          "学生可能把自己的想法写成他人回答（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "明确未知就记未知，不虚构访谈样本",
+        "boundary": "只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对新访谈记录独立提一项有依据的需求",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "综合实践活动",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-8d9460bed341acd592cb3401"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对新访谈记录独立提一项有依据的需求。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    },
+    {
+      "id": "exp-27263601af2a7396289e3ad0",
+      "subject": "综合实践活动",
+      "grade": "九年级",
+      "title": "实践成果与证据汇报：按问题、过程证据、结论和局限组织成果",
+      "topic": "实践成果与证据汇报",
+      "knowledgeId": "kp-27263601af2a7396289e3ad0",
+      "sourceId": "practice",
+      "sourceSection": "参考来源见链接；具体中文主题为项目适配，并非原文小节逐字标题。",
+      "experience": {
+        "knowledgePoints": [
+          "实践成果与证据汇报"
+        ],
+        "goal": "能够就“实践成果与证据汇报”给出有依据的说明，并完成对应独立检查。",
+        "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+        "difficulty": "实践汇报只讲做了什么不说明证据与局限",
+        "diagnosis": "请学生先说明“实践成果与证据汇报”的当前做法，核对是否出现“实践汇报只讲做了什么不说明证据与局限”。证据不足先追问。",
+        "strategy": "按问题、过程证据、结论和局限组织成果",
+        "steps": [
+          "重述研究问题",
+          "选择可追查过程记录",
+          "说明结论能支持到哪里"
+        ],
+        "questions": [
+          "别人用你的记录能复查哪一项结论？"
+        ],
+        "responses": [
+          "学生可能把个别观察推广到所有情况（预设可能回应，非课堂实录）"
+        ],
+        "adjustment": "限制结论范围，列还需收集的资料",
+        "boundary": "只适用于九年级综合实践活动的实践成果与证据汇报；仅按已提供的材料与条件指导，不推断真实操作表现。",
+        "effectCheck": "对一份新简报独立指出结论和证据是否对应",
+        "suggestions": []
+      },
+      "editorialStatus": "ai_assisted_adaptation_pending_human_review",
+      "sourceClaims": "来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+      "applicability": {
+        "schema": 1,
+        "kind": "knowledge_scope",
+        "subject": "综合实践活动",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-27263601af2a7396289e3ad0"
+        ]
+      },
+      "independentQuestion": {
+        "prompt": "对一份新简报独立指出结论和证据是否对应。请写出依据。",
+        "responseType": "short_answer",
+        "gradingMode": "manual",
+        "answer": "按本条效果检查、学科依据与实际材料由教师评阅。"
+      }
+    }
+  ]
+}

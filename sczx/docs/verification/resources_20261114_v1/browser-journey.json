@@ -1,0 +1,38 @@
+{
+  "environment": "actual local frontend 5175 and backend 8099",
+  "roles": [
+    {
+      "role": "teacher",
+      "searchShowsReviewedResource": true,
+      "sourceDisclosureCorrect": true,
+      "offlineFailureAndRetry": true
+    },
+    {
+      "role": "admin",
+      "coverageRows": 19
+    },
+    {
+      "role": "student",
+      "summarySourceReadable": true,
+      "downloadLabelCorrect": true
+    }
+  ],
+  "kind": "automated browser tasks, not human usability or classroom study",
+  "tagStyles": [
+    {
+      "text": "八年级",
+      "color": "rgb(101, 116, 138)",
+      "background": "rgb(244, 244, 245)",
+      "width": 51,
+      "opacity": "1"
+    },
+    {
+      "text": "三角形性质与解释",
+      "color": "rgb(47, 100, 214)",
+      "background": "rgb(237, 243, 254)",
+      "width": 124,
+      "opacity": "1"
+    }
+  ],
+  "scriptErrors": []
+}

@@ -1,0 +1,4671 @@
+{
+  "mode": "real Codex student guidance and teacher plan",
+  "results": [
+    {
+      "subject": "地理",
+      "status": "passed",
+      "sourceId": "geo-local",
+      "resourceId": "exp-238a47d02714a8da8e039bfa",
+      "originalAttempt": {
+        "id": "attempt-aeffe9be980b48c0bb59b367977243a1",
+        "correct": false,
+        "verification": {
+          "status": "unverified",
+          "correct": false,
+          "scope": "主观答案与过程由教师依据评价要点评阅",
+          "message": "作答已保存，等待教师评阅。",
+          "requiresTeacherReview": true
+        }
+      },
+      "guidance": {
+        "id": "job-1f5c9ae7c7194673ad0807622ee8c6e2",
+        "mode": null,
+        "wrongId": null,
+        "phase": null,
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-18646d8e8f3a4e3cb85e90f27fad8cc1",
+        "fileId": null,
+        "helpRecordId": "help-1f5c9ae7c7194673ad0807622ee8c6e2",
+        "question": 0,
+        "blockId": "rc88aac04-6practice",
+        "strategy": "hint",
+        "prompt": "地图看不懂图例方向只凭熟悉印象。请先帮我检查。",
+        "parentJobId": null,
+        "recognizedText": "",
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "先别改动原答案。请看清题目给定的“图上方表示北”，再说明你判断左右时依据的是简图方位，还是自己站在校门观察的方向。",
+          "steps": [
+            "把“站在校门看”暂时放一边，先以简图上方为北固定方向。",
+            "回看题目中教学楼相对操场的位置描述，指出你从哪一步开始不确定。",
+            "说明刚才为什么选“左边”，以及这个判断是否依据题目给出的简图方向。"
+          ],
+          "title": "先核对参照依据",
+          "sources": [
+            {
+              "id": "exp-238a47d02714a8da8e039bfa",
+              "grade": "七年级",
+              "score": 12.396521,
+              "title": "地图图例与方向：从熟悉路线转成自编图例和平面图",
+              "author": "The Open University / TESSA collaborative teacher-education authors",
+              "source": "The Open University / TESSA collaborative teacher-education authors",
+              "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n地理 七年级 地图图例与方向\n从熟悉路线转成自编图例和平面图\n口述校园路线\n用符号画简图\n让同伴按图描述路线\n关键追问：没有去过这里的人怎样识别你的符号？\n调整：先固定参照方向，再逐段检查路线\n独立检查：对一张新简图依据图例说明方位\n适用边界：只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Mapping the local environment\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "subject": "地理",
+              "version": 1,
+              "bm25Score": 153.060584,
+              "textScore": 11.826521,
+              "versionId": "resver-238a47d02714a8da8e039bfa",
+              "experience": {
+                "goal": "能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。",
+                "steps": [
+                  "口述校园路线",
+                  "用符号画简图",
+                  "让同伴按图描述路线"
+                ],
+                "boundary": "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。",
+                "strategy": "从熟悉路线转成自编图例和平面图",
+                "diagnosis": "请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。",
+                "questions": [
+                  "没有去过这里的人怎样识别你的符号？"
+                ],
+                "responses": [
+                  "学生可能把图上位置与现实方向混同（预设可能回应，非课堂实录）"
+                ],
+                "adjustment": "先固定参照方向，再逐段检查路线",
+                "difficulty": "地图看不懂图例方向只凭熟悉印象",
+                "effectCheck": "对一张新简图依据图例说明方位",
+                "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+                "suggestions": [],
+                "knowledgePoints": [
+                  "地图图例与方向"
+                ]
+              },
+              "provenance": {
+                "kind": "public",
+                "author": "The Open University / TESSA collaborative teacher-education authors",
+                "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                "authorization": "internal",
+                "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+              },
+              "references": [
+                {
+                  "field": "content",
+                  "label": "中文方法摘要（非来源原文）",
+                  "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n地理 七年级 地图图例与方向\n从熟悉路线转成自编图例和平面图\n口述校园路线\n用符号画简图\n让同伴按图描述路线\n关键追问：没有去过这里的人怎样识别你的符号？\n调整：先固定参照方向，再逐段检查路线\n独立检查：对一张新简图依据图例说明方位\n适用边界：只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Mapping the local environment\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "unitId": "resunit-238a47d02714a8da8e039bfa",
+                  "quoteKind": "adapted_summary",
+                  "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1",
+                  "materialId": "resmat-238a47d02714a8da8e039bfa",
+                  "materialTitle": "地图图例与方向（中文整理摘要）"
+                }
+              ],
+              "publishedAt": "2026-11-14T08:57:29Z",
+              "contextScore": 0.12,
+              "knowledgeIds": [
+                "kp-238a47d02714a8da8e039bfa"
+              ],
+              "matchReasons": [
+                "直接关联目标知识点",
+                "匹配知识点、学生困难、标题",
+                "与课时适用信息一致"
+              ],
+              "applicability": {
+                "kind": "knowledge_scope",
+                "grade": "七年级",
+                "schema": 1,
+                "subject": "地理",
+                "knowledgeIds": [
+                  "kp-238a47d02714a8da8e039bfa"
+                ]
+              },
+              "curatedImport": {
+                "batch": "resources-20261114-v1",
+                "sourceId": "geo-local",
+                "sourceSha256": "8fe1b5db624378ab81883acb6a26bb4e7ee8aec1e0fa26b1c632ee27af92a55b",
+                "resourceSha256": "a82b7914a9ff510687c8ed1dbaca5dae7e2de52bd4424df1db01d96eb0a5246f"
+              },
+              "matchedFields": [
+                {
+                  "bm25": 15.943133,
+                  "field": "title",
+                  "label": "标题",
+                  "score": 1.926688,
+                  "matchedTerms": [
+                    "图例",
+                    "地图",
+                    "方向",
+                    "熟悉"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 17.793212,
+                  "field": "knowledgePoints",
+                  "label": "知识点",
+                  "score": 2.41531,
+                  "matchedTerms": [
+                    "图例",
+                    "地图",
+                    "方向"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 48.983053,
+                  "field": "difficulty",
+                  "label": "学生困难",
+                  "score": 1.982351,
+                  "matchedTerms": [
+                    "不懂",
+                    "例方",
+                    "凭熟",
+                    "印象",
+                    "只凭",
+                    "向只",
+                    "图例",
+                    "图看",
+                    "地图",
+                    "悉印",
+                    "懂图",
+                    "方向",
+                    "熟悉",
+                    "看不"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 10.572668,
+                  "field": "goal",
+                  "label": "教学目标",
+                  "score": 1.576289,
+                  "matchedTerms": [
+                    "图例",
+                    "地图",
+                    "方向",
+                    "检查"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 0,
+                  "field": "studentBase",
+                  "label": "学生基础",
+                  "score": 0.008047,
+                  "matchedTerms": [],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 19.780591,
+                  "field": "content",
+                  "label": "正文",
+                  "score": 1.002982,
+                  "matchedTerms": [
+                    "图例",
+                    "地图",
+                    "方向",
+                    "检查",
+                    "熟悉"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 0,
+                  "field": "steps",
+                  "label": "讲解步骤",
+                  "score": 0.005455,
+                  "matchedTerms": [],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 3.071846,
+                  "field": "responses",
+                  "label": "学生回应",
+                  "score": 0.923593,
+                  "matchedTerms": [
+                    "方向"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 6.504025,
+                  "field": "adjustment",
+                  "label": "回应调整",
+                  "score": 0.702587,
+                  "matchedTerms": [
+                    "方向",
+                    "检查"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 10.631465,
+                  "field": "boundary",
+                  "label": "适用边界",
+                  "score": 0.882026,
+                  "matchedTerms": [
+                    "图例",
+                    "地图",
+                    "方向"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 19.780591,
+                  "field": "references",
+                  "label": "原文摘录",
+                  "score": 0.401193,
+                  "matchedTerms": [
+                    "图例",
+                    "地图",
+                    "方向",
+                    "检查",
+                    "熟悉"
+                  ],
+                  "contextMatched": true
+                }
+              ],
+              "retrievalText": "{\"goal\": \"能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。\", \"steps\": [\"口述校园路线\", \"用符号画简图\", \"让同伴按图描述路线\"], \"boundary\": \"只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"strategy\": \"从熟悉路线转成自编图例和平面图\", \"diagnosis\": \"请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。\", \"questions\": [\"没有去过这里的人怎样识别你的符号？\"], \"responses\": [\"学生可能把图上位置与现实方向混同（预设可能回应，非课堂实录）\"], \"adjustment\": \"先固定参照方向，再逐段检查路线\", \"difficulty\": \"地图看不懂图例方向只凭熟悉印象\", \"effectCheck\": \"对一张新简图依据图例说明方位\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"suggestions\": [], \"knowledgePoints\": [\"地图图例与方向\"]}",
+              "knowledgeLinks": [
+                {
+                  "id": "kp-238a47d02714a8da8e039bfa",
+                  "name": "地图图例与方向"
+                }
+              ],
+              "knowledgeScore": 0.45,
+              "resourceRights": {
+                "reuseMode": "adapted_text",
+                "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1",
+                "localUsage": "仅本地教学方法摘要；用户单人复核",
+                "sourceTitle": "Mapping the local environment",
+                "sourceAuthor": "The Open University / TESSA collaborative teacher-education authors",
+                "sourceLicense": "CC-BY-SA (version not confirmed)",
+                "thirdPartyMediaIncluded": false,
+                "originalRedistributionApproved": false
+              },
+              "experienceReview": {
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "reviewedAt": "2026-11-14",
+                "reviewerId": "curcd3f00a",
+                "humanReview": {
+                  "method": "AI辅助整理、用户单人复核",
+                  "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+                  "reviewer": "用户（项目负责人，单人复核）",
+                  "allowedUsage": "local_summary_only"
+                },
+                "applicability": {
+                  "kind": "knowledge_scope",
+                  "grade": "七年级",
+                  "schema": 1,
+                  "subject": "地理",
+                  "knowledgeIds": [
+                    "kp-238a47d02714a8da8e039bfa"
+                  ]
+                }
+              },
+              "knowledgeMatches": [
+                {
+                  "id": "kp-238a47d02714a8da8e039bfa",
+                  "name": "地图图例与方向",
+                  "relation": "direct"
+                }
+              ]
+            }
+          ],
+          "question": "你从哪一步开始不确定？刚才判断“左边”时，具体是怎样想的？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 9234,
+            "modelCalls": 1,
+            "contextChars": 9884,
+            "historyTurns": 0
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "hint",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "",
+          "representation": "question",
+          "experienceDecision": {
+            "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+            "schema": 1,
+            "fallback": false,
+            "rejected": [
+              {
+                "reasons": [
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-c592aef6aa66aa9310beecd9"
+              },
+              {
+                "reasons": [
+                  "学科不匹配或未标注",
+                  "年级不匹配或未标注",
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-a6878cdb6a68dc2fc7bd492a"
+              }
+            ],
+            "selected": [
+              {
+                "id": "exp-238a47d02714a8da8e039bfa",
+                "method": "从熟悉路线转成自编图例和平面图",
+                "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                "version": 1,
+                "strategy": "hint",
+                "versionId": "resver-238a47d02714a8da8e039bfa",
+                "conditions": [
+                  "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。"
+                ],
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "effectCheck": "对一张新简图依据图例说明方位",
+                "evidenceIds": [
+                  "attempt-aeffe9be980b48c0bb59b367977243a1",
+                  "attempt-aeffe9be980b48c0bb59b367977243a1:reason",
+                  "attempt-aeffe9be980b48c0bb59b367977243a1:request"
+                ],
+                "diagnosticOnly": false,
+                "teachingMethod": "从熟悉路线转成自编图例和平面图",
+                "diagnosticBasis": "请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。",
+                "matchedDifficultyTerms": [
+                  "不懂",
+                  "例方",
+                  "凭熟",
+                  "印象",
+                  "只凭",
+                  "向只",
+                  "图例",
+                  "图看",
+                  "地图",
+                  "悉印",
+                  "懂图",
+                  "方向",
+                  "熟悉",
+                  "看不"
+                ]
+              }
+            ]
+          },
+          "usedCaseVersionIds": [
+            "resver-238a47d02714a8da8e039bfa"
+          ],
+          "difficultyAssessment": {
+            "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+            "schema": 1,
+            "subject": "地理",
+            "difficulty": "学生报告当前学习遇到困难",
+            "dimensions": [
+              "空间理解",
+              "图表分析",
+              "综合推理"
+            ],
+            "observations": [
+              {
+                "id": "attempt-aeffe9be980b48c0bb59b367977243a1",
+                "kind": "原始作答",
+                "text": "在左边，因为我站在校门看"
+              },
+              {
+                "id": "attempt-aeffe9be980b48c0bb59b367977243a1:reason",
+                "kind": "作答说明",
+                "text": "这是首次独立尝试，请根据实际依据引导"
+              },
+              {
+                "id": "attempt-aeffe9be980b48c0bb59b367977243a1:request",
+                "kind": "学生自述",
+                "text": "地图看不懂图例方向只凭熟悉印象。请先帮我检查。"
+              }
+            ],
+            "possibleCauses": [],
+            "historyEvidence": [],
+            "evidenceSufficiency": "需进一步确认",
+            "recommendedStrategy": "hint",
+            "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-14T09:10:53Z",
+        "updatedAt": "2026-11-14T09:11:03Z",
+        "input": {
+          "scope": {
+            "taskId": "rc88aac04-6t",
+            "classId": "rc88aac04-6r",
+            "lessonId": "rc88aac04-6l",
+            "studentId": "rc88aac04s",
+            "questionId": "rc88aac04-6q0",
+            "knowledgeIds": [
+              "kp-238a47d02714a8da8e039bfa"
+            ],
+            "lessonVersionId": "rc88aac04-6v"
+          },
+          "prompt": "地图看不懂图例方向只凭熟悉印象。请先帮我检查。",
+          "blockId": "rc88aac04-6practice",
+          "context": {
+            "block": {
+              "id": "rc88aac04-6practice",
+              "type": "practice",
+              "title": "先试一试",
+              "content": "保留你的原始答案与理由。",
+              "questionIds": [
+                "rc88aac04-6q0"
+              ]
+            },
+            "lesson": {
+              "id": "rc88aac04-6l",
+              "goal": "能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。",
+              "grade": "七年级",
+              "title": "地图图例与方向",
+              "subject": "地理",
+              "versionId": "rc88aac04-6v"
+            },
+            "question": {
+              "id": "rc88aac04-6q0",
+              "kind": "practice",
+              "prompt": "自编校园简图的上方表示北，教学楼在操场的右侧。请说明教学楼相对操场的方向，并解释参照依据。",
+              "options": [],
+              "equation": "",
+              "gradingMode": "manual",
+              "knowledgeIds": [
+                "kp-238a47d02714a8da8e039bfa"
+              ],
+              "responseType": "short_answer"
+            },
+            "knowledge": [
+              {
+                "id": "kp-238a47d02714a8da8e039bfa",
+                "name": "地图图例与方向"
+              }
+            ],
+            "observation": "",
+            "prerequisites": [],
+            "teachingCases": [
+              {
+                "id": "exp-238a47d02714a8da8e039bfa",
+                "grade": "七年级",
+                "score": 12.396521,
+                "title": "地图图例与方向：从熟悉路线转成自编图例和平面图",
+                "author": "The Open University / TESSA collaborative teacher-education authors",
+                "source": "The Open University / TESSA collaborative teacher-education authors",
+                "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n地理 七年级 地图图例与方向\n从熟悉路线转成自编图例和平面图\n口述校园路线\n用符号画简图\n让同伴按图描述路线\n关键追问：没有去过这里的人怎样识别你的符号？\n调整：先固定参照方向，再逐段检查路线\n独立检查：对一张新简图依据图例说明方位\n适用边界：只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Mapping the local environment\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                "subject": "地理",
+                "version": 1,
+                "bm25Score": 153.060584,
+                "textScore": 11.826521,
+                "versionId": "resver-238a47d02714a8da8e039bfa",
+                "experience": {
+                  "goal": "能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。",
+                  "steps": [
+                    "口述校园路线",
+                    "用符号画简图",
+                    "让同伴按图描述路线"
+                  ],
+                  "boundary": "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。",
+                  "strategy": "从熟悉路线转成自编图例和平面图",
+                  "diagnosis": "请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。",
+                  "questions": [
+                    "没有去过这里的人怎样识别你的符号？"
+                  ],
+                  "responses": [
+                    "学生可能把图上位置与现实方向混同（预设可能回应，非课堂实录）"
+                  ],
+                  "adjustment": "先固定参照方向，再逐段检查路线",
+                  "difficulty": "地图看不懂图例方向只凭熟悉印象",
+                  "effectCheck": "对一张新简图依据图例说明方位",
+                  "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+                  "suggestions": [],
+                  "knowledgePoints": [
+                    "地图图例与方向"
+                  ]
+                },
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "references": [
+                  {
+                    "field": "content",
+                    "label": "中文方法摘要（非来源原文）",
+                    "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n地理 七年级 地图图例与方向\n从熟悉路线转成自编图例和平面图\n口述校园路线\n用符号画简图\n让同伴按图描述路线\n关键追问：没有去过这里的人怎样识别你的符号？\n调整：先固定参照方向，再逐段检查路线\n独立检查：对一张新简图依据图例说明方位\n适用边界：只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Mapping the local environment\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                    "author": "The Open University / TESSA collaborative teacher-education authors",
+                    "unitId": "resunit-238a47d02714a8da8e039bfa",
+                    "quoteKind": "adapted_summary",
+                    "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1",
+                    "materialId": "resmat-238a47d02714a8da8e039bfa",
+                    "materialTitle": "地图图例与方向（中文整理摘要）"
+                  }
+                ],
+                "publishedAt": "2026-11-14T08:57:29Z",
+                "contextScore": 0.12,
+                "knowledgeIds": [
+                  "kp-238a47d02714a8da8e039bfa"
+                ],
+                "matchReasons": [
+                  "直接关联目标知识点",
+                  "匹配知识点、学生困难、标题",
+                  "与课时适用信息一致"
+                ],
+                "applicability": {
+                  "kind": "knowledge_scope",
+                  "grade": "七年级",
+                  "schema": 1,
+                  "subject": "地理",
+                  "knowledgeIds": [
+                    "kp-238a47d02714a8da8e039bfa"
+                  ]
+                },
+                "curatedImport": {
+                  "batch": "resources-20261114-v1",
+                  "sourceId": "geo-local",
+                  "sourceSha256": "8fe1b5db624378ab81883acb6a26bb4e7ee8aec1e0fa26b1c632ee27af92a55b",
+                  "resourceSha256": "a82b7914a9ff510687c8ed1dbaca5dae7e2de52bd4424df1db01d96eb0a5246f"
+                },
+                "matchedFields": [
+                  {
+                    "bm25": 15.943133,
+                    "field": "title",
+                    "label": "标题",
+                    "score": 1.926688,
+                    "matchedTerms": [
+                      "图例",
+                      "地图",
+                      "方向",
+                      "熟悉"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 17.793212,
+                    "field": "knowledgePoints",
+                    "label": "知识点",
+                    "score": 2.41531,
+                    "matchedTerms": [
+                      "图例",
+                      "地图",
+                      "方向"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 48.983053,
+                    "field": "difficulty",
+                    "label": "学生困难",
+                    "score": 1.982351,
+                    "matchedTerms": [
+                      "不懂",
+                      "例方",
+                      "凭熟",
+                      "印象",
+                      "只凭",
+                      "向只",
+                      "图例",
+                      "图看",
+                      "地图",
+                      "悉印",
+                      "懂图",
+                      "方向",
+                      "熟悉",
+                      "看不"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 10.572668,
+                    "field": "goal",
+                    "label": "教学目标",
+                    "score": 1.576289,
+                    "matchedTerms": [
+                      "图例",
+                      "地图",
+                      "方向",
+                      "检查"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 0,
+                    "field": "studentBase",
+                    "label": "学生基础",
+                    "score": 0.008047,
+                    "matchedTerms": [],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 19.780591,
+                    "field": "content",
+                    "label": "正文",
+                    "score": 1.002982,
+                    "matchedTerms": [
+                      "图例",
+                      "地图",
+                      "方向",
+                      "检查",
+                      "熟悉"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 0,
+                    "field": "steps",
+                    "label": "讲解步骤",
+                    "score": 0.005455,
+                    "matchedTerms": [],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 3.071846,
+                    "field": "responses",
+                    "label": "学生回应",
+                    "score": 0.923593,
+                    "matchedTerms": [
+                      "方向"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 6.504025,
+                    "field": "adjustment",
+                    "label": "回应调整",
+                    "score": 0.702587,
+                    "matchedTerms": [
+                      "方向",
+                      "检查"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 10.631465,
+                    "field": "boundary",
+                    "label": "适用边界",
+                    "score": 0.882026,
+                    "matchedTerms": [
+                      "图例",
+                      "地图",
+                      "方向"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 19.780591,
+                    "field": "references",
+                    "label": "原文摘录",
+                    "score": 0.401193,
+                    "matchedTerms": [
+                      "图例",
+                      "地图",
+                      "方向",
+                      "检查",
+                      "熟悉"
+                    ],
+                    "contextMatched": true
+                  }
+                ],
+                "retrievalText": "{\"goal\": \"能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。\", \"steps\": [\"口述校园路线\", \"用符号画简图\", \"让同伴按图描述路线\"], \"boundary\": \"只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"strategy\": \"从熟悉路线转成自编图例和平面图\", \"diagnosis\": \"请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。\", \"questions\": [\"没有去过这里的人怎样识别你的符号？\"], \"responses\": [\"学生可能把图上位置与现实方向混同（预设可能回应，非课堂实录）\"], \"adjustment\": \"先固定参照方向，再逐段检查路线\", \"difficulty\": \"地图看不懂图例方向只凭熟悉印象\", \"effectCheck\": \"对一张新简图依据图例说明方位\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"suggestions\": [], \"knowledgePoints\": [\"地图图例与方向\"]}",
+                "knowledgeLinks": [
+                  {
+                    "id": "kp-238a47d02714a8da8e039bfa",
+                    "name": "地图图例与方向"
+                  }
+                ],
+                "knowledgeScore": 0.45,
+                "resourceRights": {
+                  "reuseMode": "adapted_text",
+                  "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1",
+                  "localUsage": "仅本地教学方法摘要；用户单人复核",
+                  "sourceTitle": "Mapping the local environment",
+                  "sourceAuthor": "The Open University / TESSA collaborative teacher-education authors",
+                  "sourceLicense": "CC-BY-SA (version not confirmed)",
+                  "thirdPartyMediaIncluded": false,
+                  "originalRedistributionApproved": false
+                },
+                "experienceReview": {
+                  "provenance": {
+                    "kind": "public",
+                    "author": "The Open University / TESSA collaborative teacher-education authors",
+                    "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                    "authorization": "internal",
+                    "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                  },
+                  "reviewedAt": "2026-11-14",
+                  "reviewerId": "curcd3f00a",
+                  "humanReview": {
+                    "method": "AI辅助整理、用户单人复核",
+                    "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+                    "reviewer": "用户（项目负责人，单人复核）",
+                    "allowedUsage": "local_summary_only"
+                  },
+                  "applicability": {
+                    "kind": "knowledge_scope",
+                    "grade": "七年级",
+                    "schema": 1,
+                    "subject": "地理",
+                    "knowledgeIds": [
+                      "kp-238a47d02714a8da8e039bfa"
+                    ]
+                  }
+                },
+                "knowledgeMatches": [
+                  {
+                    "id": "kp-238a47d02714a8da8e039bfa",
+                    "name": "地图图例与方向",
+                    "relation": "direct"
+                  }
+                ]
+              }
+            ],
+            "learningMemory": [],
+            "experienceDecision": {
+              "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+              "schema": 1,
+              "fallback": false,
+              "rejected": [
+                {
+                  "reasons": [
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-c592aef6aa66aa9310beecd9"
+                },
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-a6878cdb6a68dc2fc7bd492a"
+                }
+              ],
+              "selected": [
+                {
+                  "id": "exp-238a47d02714a8da8e039bfa",
+                  "method": "从熟悉路线转成自编图例和平面图",
+                  "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                  "version": 1,
+                  "strategy": "hint",
+                  "versionId": "resver-238a47d02714a8da8e039bfa",
+                  "conditions": [
+                    "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。"
+                  ],
+                  "provenance": {
+                    "kind": "public",
+                    "author": "The Open University / TESSA collaborative teacher-education authors",
+                    "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                    "authorization": "internal",
+                    "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                  },
+                  "effectCheck": "对一张新简图依据图例说明方位",
+                  "evidenceIds": [
+                    "attempt-aeffe9be980b48c0bb59b367977243a1",
+                    "attempt-aeffe9be980b48c0bb59b367977243a1:reason",
+                    "attempt-aeffe9be980b48c0bb59b367977243a1:request"
+                  ],
+                  "diagnosticOnly": false,
+                  "teachingMethod": "从熟悉路线转成自编图例和平面图",
+                  "diagnosticBasis": "请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。",
+                  "matchedDifficultyTerms": [
+                    "不懂",
+                    "例方",
+                    "凭熟",
+                    "印象",
+                    "只凭",
+                    "向只",
+                    "图例",
+                    "图看",
+                    "地图",
+                    "悉印",
+                    "懂图",
+                    "方向",
+                    "熟悉",
+                    "看不"
+                  ]
+                }
+              ]
+            },
+            "difficultyAssessment": {
+              "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+              "schema": 1,
+              "subject": "地理",
+              "difficulty": "学生报告当前学习遇到困难",
+              "dimensions": [
+                "空间理解",
+                "图表分析",
+                "综合推理"
+              ],
+              "observations": [
+                {
+                  "id": "attempt-aeffe9be980b48c0bb59b367977243a1",
+                  "kind": "原始作答",
+                  "text": "在左边，因为我站在校门看"
+                },
+                {
+                  "id": "attempt-aeffe9be980b48c0bb59b367977243a1:reason",
+                  "kind": "作答说明",
+                  "text": "这是首次独立尝试，请根据实际依据引导"
+                },
+                {
+                  "id": "attempt-aeffe9be980b48c0bb59b367977243a1:request",
+                  "kind": "学生自述",
+                  "text": "地图看不懂图例方向只凭熟悉印象。请先帮我检查。"
+                }
+              ],
+              "possibleCauses": [],
+              "historyEvidence": [],
+              "evidenceSufficiency": "需进一步确认",
+              "recommendedStrategy": "hint",
+              "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+            }
+          },
+          "history": [],
+          "guidance": true,
+          "ocrJobId": null,
+          "question": 0,
+          "strategy": "hint",
+          "confirmed": false,
+          "parentJobId": null,
+          "recognizedText": "",
+          "selectedStrategy": "hint",
+          "confirmedEquation": ""
+        },
+        "runs": [
+          {
+            "id": "run-f6bba1121a5d46f5a440aab2e9fa6474",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "startedAt": "2026-11-14T09:10:53Z",
+            "endedAt": "2026-11-14T09:11:03Z",
+            "inputSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "resultSha256": "3a36abbd48821a078014a1c16ed154969158b3f4229b7877bc25aeaff9ef1a28"
+          }
+        ]
+      },
+      "independentRetest": {
+        "id": "attempt-bde9e4cf6a314b99820e6c21db179b2a",
+        "correct": false,
+        "verification": {
+          "status": "unverified",
+          "correct": false,
+          "scope": "主观答案与过程由教师依据评价要点评阅",
+          "message": "作答已保存，等待教师评阅。",
+          "requiresTeacherReview": true
+        },
+        "helped": false,
+        "actualLearningOutcome": "未测量；这是模拟账号提交，开放题待教师评阅"
+      },
+      "teacherPlan": {
+        "id": "job-722bd8f0332f4071bc53edacaba2c5bf",
+        "mode": null,
+        "wrongId": null,
+        "phase": null,
+        "capability": "lesson_agent",
+        "lessonId": "rc88aac04-6l",
+        "summary": "地图看不懂图例方向只凭熟悉印象，请用已有教法帮助学生并保留独立检查。",
+        "recordId": null,
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": null,
+        "prompt": null,
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "等待教师确认",
+        "error": "",
+        "result": {
+          "plan": {
+            "goal": "能够依据图例和图上方向说明地点的相对方位，并完成独立检查。",
+            "title": "地图图例与方向",
+            "blocks": [
+              {
+                "id": "rc88aac04-6intro",
+                "title": "从熟悉路线到简图",
+                "content": "1. 请学生口述一段熟悉的校园路线，并用自选符号画成简图，标出图例。\n2. 同伴尝试按图识别符号、描述路线；学生据此检查图例是否清楚。\n3. 在图上标明方向，先固定参照方向，再逐段核对路线。活动采用“从熟悉路线转成自编图例和平面图”的方法，依据为师承智学中文方法摘要，参考来源为 The Open University / TESSA collaborative teacher-education authors；步骤为项目适配。",
+                "adjustment": "先固定参照方向，再逐段检查路线。",
+                "evidenceIds": [
+                  "resunit-238a47d02714a8da8e039bfa:4dbca5098a"
+                ],
+                "studentTask": "口述一段熟悉的校园路线，用符号画简图并标出图例；请同伴按图描述路线。",
+                "studentResponse": "可能把图上位置与现实方向混同。此为预设回应，并非课堂实录。",
+                "teacherQuestion": "没有去过这里的人怎样识别你的符号？"
+              },
+              {
+                "id": "rc88aac04-6practice",
+                "title": "说明相对方位",
+                "content": "1. 出示校园简图：上方表示北，教学楼在操场右侧。\n2. 学生说明教学楼相对操场的方向，并指出判断所依据的图上方向。",
+                "adjustment": "若只凭熟悉印象作答，请引导学生先核对图示方向，再描述相对方位。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-6v",
+                  "resunit-238a47d02714a8da8e039bfa:4dbca5098a"
+                ],
+                "studentTask": "保留原始答案与理由，说明教学楼相对操场的方向及参照依据。",
+                "studentResponse": "",
+                "teacherQuestion": "你依据图上的哪一项信息判断？"
+              },
+              {
+                "id": "rc88aac04-6check",
+                "title": "独立新题",
+                "content": "1. 学生独立作答，不提供提示。\n2. 提交后由教师核对方位说明及其依据。",
+                "adjustment": "",
+                "evidenceIds": [
+                  "lesson:rc88aac04-6v"
+                ],
+                "studentTask": "说明图书馆相对广场的方位，并写出参照依据。",
+                "studentResponse": "",
+                "teacherQuestion": ""
+              }
+            ],
+            "rationale": [
+              "先从熟悉路线转为符号简图，让学生说明图例如何表达地物；再用固定方向判断方位，最后独立完成新题，检查是否能依据图面说明。"
+            ],
+            "mathClaims": []
+          },
+          "cases": [
+            {
+              "id": "exp-238a47d02714a8da8e039bfa",
+              "grade": "七年级",
+              "score": 12.567123,
+              "title": "地图图例与方向：从熟悉路线转成自编图例和平面图",
+              "author": "The Open University / TESSA collaborative teacher-education authors",
+              "source": "The Open University / TESSA collaborative teacher-education authors",
+              "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n地理 七年级 地图图例与方向\n从熟悉路线转成自编图例和平面图\n口述校园路线\n用符号画简图\n让同伴按图描述路线\n关键追问：没有去过这里的人怎样识别你的符号？\n调整：先固定参照方向，再逐段检查路线\n独立检查：对一张新简图依据图例说明方位\n适用边界：只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Mapping the local environment\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "subject": "地理",
+              "version": 1,
+              "bm25Score": 235.493737,
+              "textScore": 11.997123,
+              "versionId": "resver-238a47d02714a8da8e039bfa",
+              "experience": {
+                "goal": "能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。",
+                "steps": [
+                  "口述校园路线",
+                  "用符号画简图",
+                  "让同伴按图描述路线"
+                ],
+                "boundary": "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。",
+                "strategy": "从熟悉路线转成自编图例和平面图",
+                "diagnosis": "请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。",
+                "questions": [
+                  "没有去过这里的人怎样识别你的符号？"
+                ],
+                "responses": [
+                  "学生可能把图上位置与现实方向混同（预设可能回应，非课堂实录）"
+                ],
+                "adjustment": "先固定参照方向，再逐段检查路线",
+                "difficulty": "地图看不懂图例方向只凭熟悉印象",
+                "effectCheck": "对一张新简图依据图例说明方位",
+                "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+                "suggestions": [],
+                "knowledgePoints": [
+                  "地图图例与方向"
+                ]
+              },
+              "provenance": {
+                "kind": "public",
+                "author": "The Open University / TESSA collaborative teacher-education authors",
+                "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                "authorization": "internal",
+                "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+              },
+              "references": [
+                {
+                  "field": "content",
+                  "label": "中文方法摘要（非来源原文）",
+                  "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n地理 七年级 地图图例与方向\n从熟悉路线转成自编图例和平面图\n口述校园路线\n用符号画简图\n让同伴按图描述路线\n关键追问：没有去过这里的人怎样识别你的符号？\n调整：先固定参照方向，再逐段检查路线\n独立检查：对一张新简图依据图例说明方位\n适用边界：只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Mapping the local environment\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "unitId": "resunit-238a47d02714a8da8e039bfa",
+                  "quoteKind": "adapted_summary",
+                  "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1",
+                  "materialId": "resmat-238a47d02714a8da8e039bfa",
+                  "materialTitle": "地图图例与方向（中文整理摘要）"
+                }
+              ],
+              "publishedAt": "2026-11-14T08:57:29Z",
+              "contextScore": 0.12,
+              "knowledgeIds": [
+                "kp-238a47d02714a8da8e039bfa"
+              ],
+              "matchReasons": [
+                "直接关联目标知识点",
+                "匹配知识点、学生困难、标题",
+                "与课时适用信息一致"
+              ],
+              "applicability": {
+                "kind": "knowledge_scope",
+                "grade": "七年级",
+                "schema": 1,
+                "subject": "地理",
+                "knowledgeIds": [
+                  "kp-238a47d02714a8da8e039bfa"
+                ]
+              },
+              "curatedImport": {
+                "batch": "resources-20261114-v1",
+                "sourceId": "geo-local",
+                "sourceSha256": "8fe1b5db624378ab81883acb6a26bb4e7ee8aec1e0fa26b1c632ee27af92a55b",
+                "resourceSha256": "a82b7914a9ff510687c8ed1dbaca5dae7e2de52bd4424df1db01d96eb0a5246f"
+              },
+              "matchedFields": [
+                {
+                  "bm25": 27.115254,
+                  "field": "title",
+                  "label": "标题",
+                  "score": 1.961473,
+                  "matchedTerms": [
+                    "与方",
+                    "例与",
+                    "图例",
+                    "图图",
+                    "地图",
+                    "方向",
+                    "熟悉"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 36.455864,
+                  "field": "knowledgePoints",
+                  "label": "知识点",
+                  "score": 2.474016,
+                  "matchedTerms": [
+                    "与方",
+                    "例与",
+                    "图例",
+                    "图图",
+                    "地图",
+                    "方向"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 48.983053,
+                  "field": "difficulty",
+                  "label": "学生困难",
+                  "score": 1.976291,
+                  "matchedTerms": [
+                    "不懂",
+                    "例方",
+                    "凭熟",
+                    "印象",
+                    "只凭",
+                    "向只",
+                    "图例",
+                    "图看",
+                    "地图",
+                    "悉印",
+                    "懂图",
+                    "方向",
+                    "熟悉",
+                    "看不"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 21.670277,
+                  "field": "goal",
+                  "label": "教学目标",
+                  "score": 1.629423,
+                  "matchedTerms": [
+                    "与方",
+                    "例与",
+                    "图例",
+                    "图图",
+                    "地图",
+                    "方向",
+                    "检查",
+                    "独立",
+                    "立检"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 0.008658,
+                  "field": "studentBase",
+                  "label": "学生基础",
+                  "score": 0.015822,
+                  "matchedTerms": [
+                    "保留"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 34.946939,
+                  "field": "content",
+                  "label": "正文",
+                  "score": 1.002073,
+                  "matchedTerms": [
+                    "与方",
+                    "例与",
+                    "图例",
+                    "图图",
+                    "地图",
+                    "方向",
+                    "检查",
+                    "熟悉",
+                    "独立",
+                    "立检"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 3.080305,
+                  "field": "responses",
+                  "label": "学生回应",
+                  "score": 0.92053,
+                  "matchedTerms": [
+                    "学生",
+                    "方向"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 6.504025,
+                  "field": "adjustment",
+                  "label": "回应调整",
+                  "score": 0.697738,
+                  "matchedTerms": [
+                    "方向",
+                    "检查"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 21.782423,
+                  "field": "boundary",
+                  "label": "适用边界",
+                  "score": 0.918928,
+                  "matchedTerms": [
+                    "与方",
+                    "例与",
+                    "图例",
+                    "图图",
+                    "地图",
+                    "方向"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 34.946939,
+                  "field": "references",
+                  "label": "原文摘录",
+                  "score": 0.400829,
+                  "matchedTerms": [
+                    "与方",
+                    "例与",
+                    "图例",
+                    "图图",
+                    "地图",
+                    "方向",
+                    "检查",
+                    "熟悉",
+                    "独立",
+                    "立检"
+                  ],
+                  "contextMatched": true
+                }
+              ],
+              "retrievalText": "{\"goal\": \"能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。\", \"steps\": [\"口述校园路线\", \"用符号画简图\", \"让同伴按图描述路线\"], \"boundary\": \"只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"strategy\": \"从熟悉路线转成自编图例和平面图\", \"diagnosis\": \"请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。\", \"questions\": [\"没有去过这里的人怎样识别你的符号？\"], \"responses\": [\"学生可能把图上位置与现实方向混同（预设可能回应，非课堂实录）\"], \"adjustment\": \"先固定参照方向，再逐段检查路线\", \"difficulty\": \"地图看不懂图例方向只凭熟悉印象\", \"effectCheck\": \"对一张新简图依据图例说明方位\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"suggestions\": [], \"knowledgePoints\": [\"地图图例与方向\"]}",
+              "knowledgeLinks": [
+                {
+                  "id": "kp-238a47d02714a8da8e039bfa",
+                  "name": "地图图例与方向"
+                }
+              ],
+              "knowledgeScore": 0.45,
+              "resourceRights": {
+                "reuseMode": "adapted_text",
+                "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1",
+                "localUsage": "仅本地教学方法摘要；用户单人复核",
+                "sourceTitle": "Mapping the local environment",
+                "sourceAuthor": "The Open University / TESSA collaborative teacher-education authors",
+                "sourceLicense": "CC-BY-SA (version not confirmed)",
+                "thirdPartyMediaIncluded": false,
+                "originalRedistributionApproved": false
+              },
+              "experienceReview": {
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "reviewedAt": "2026-11-14",
+                "reviewerId": "curcd3f00a",
+                "humanReview": {
+                  "method": "AI辅助整理、用户单人复核",
+                  "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+                  "reviewer": "用户（项目负责人，单人复核）",
+                  "allowedUsage": "local_summary_only"
+                },
+                "applicability": {
+                  "kind": "knowledge_scope",
+                  "grade": "七年级",
+                  "schema": 1,
+                  "subject": "地理",
+                  "knowledgeIds": [
+                    "kp-238a47d02714a8da8e039bfa"
+                  ]
+                }
+              },
+              "knowledgeMatches": [
+                {
+                  "id": "kp-238a47d02714a8da8e039bfa",
+                  "name": "地图图例与方向",
+                  "relation": "direct"
+                }
+              ]
+            }
+          ],
+          "model": "gpt-6-luna",
+          "steps": [
+            {
+              "key": "context",
+              "tool": "curriculum.read",
+              "title": "理解任务与课时",
+              "output": {
+                "method": "显式选择或有限关键词规则；课时由服务端读取",
+                "recognizedType": "活动设计",
+                "lessonVersionId": "rc88aac04-6v"
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:04.205980+00:00",
+              "finishedAt": "2026-11-14T09:11:04.298708+00:00"
+            },
+            {
+              "key": "cases",
+              "tool": "retrieval.bm25",
+              "title": "检索教学案例",
+              "output": {
+                "rerank": false,
+                "versions": [
+                  {
+                    "id": "exp-238a47d02714a8da8e039bfa",
+                    "versionId": "resver-238a47d02714a8da8e039bfa"
+                  }
+                ],
+                "caseCount": 1
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:04.465217+00:00",
+              "finishedAt": "2026-11-14T09:11:04.626009+00:00"
+            },
+            {
+              "key": "materials",
+              "tool": "materials.read",
+              "title": "定位原文材料",
+              "output": {
+                "evidenceIds": [
+                  "lesson:rc88aac04-6v",
+                  "resunit-238a47d02714a8da8e039bfa:4dbca5098a"
+                ],
+                "materialCount": 1
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:04.848056+00:00",
+              "finishedAt": "2026-11-14T09:11:04.946419+00:00"
+            },
+            {
+              "key": "generate",
+              "tool": "codex.lesson_plan",
+              "title": "生成备课建议",
+              "output": {
+                "model": "gpt-6-luna",
+                "origin": "模型生成，待教师核对",
+                "provider": "Codex CLI · low",
+                "onlyBlock": null,
+                "blockCount": 3
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:04.993523+00:00",
+              "finishedAt": "2026-11-14T09:11:25.992759+00:00"
+            },
+            {
+              "key": "validate",
+              "tool": "plan.validate",
+              "title": "核验结构与依据",
+              "output": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified",
+                "structure": "passed",
+                "references": "passed",
+                "goalTermsOverlap": true,
+                "humanReviewRequired": true
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:26.041060+00:00",
+              "finishedAt": "2026-11-14T09:11:26.153277+00:00"
+            },
+            {
+              "key": "ready",
+              "tool": "teacher.review",
+              "title": "等待教师确认",
+              "output": {
+                "next": "教师编辑、确认后保存备课草稿；不自动发布"
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:26.195721+00:00",
+              "finishedAt": "2026-11-14T09:11:26.277809+00:00"
+            }
+          ],
+          "context": {
+            "goal": "能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。",
+            "task": "地图看不懂图例方向只凭熟悉印象，请用已有教法帮助学生并保留独立检查。",
+            "grade": "七年级",
+            "subject": "地理",
+            "lessonId": "rc88aac04-6l",
+            "taskType": "activity",
+            "taskLabel": "活动设计",
+            "constraints": "",
+            "lessonTitle": "地图图例与方向",
+            "knowledgeIds": [
+              "kp-238a47d02714a8da8e039bfa"
+            ],
+            "lessonVersionId": "rc88aac04-6v",
+            "prerequisiteIds": []
+          },
+          "decision": "pending",
+          "editable": {
+            "goal": "能够依据图例和图上方向说明地点的相对方位，并完成独立检查。",
+            "title": "地图图例与方向",
+            "blocks": [
+              {
+                "id": "rc88aac04-6intro",
+                "title": "从熟悉路线到简图",
+                "content": "1. 请学生口述一段熟悉的校园路线，并用自选符号画成简图，标出图例。\n2. 同伴尝试按图识别符号、描述路线；学生据此检查图例是否清楚。\n3. 在图上标明方向，先固定参照方向，再逐段核对路线。活动采用“从熟悉路线转成自编图例和平面图”的方法，依据为师承智学中文方法摘要，参考来源为 The Open University / TESSA collaborative teacher-education authors；步骤为项目适配。",
+                "adjustment": "先固定参照方向，再逐段检查路线。",
+                "evidenceIds": [
+                  "resunit-238a47d02714a8da8e039bfa:4dbca5098a"
+                ],
+                "studentTask": "口述一段熟悉的校园路线，用符号画简图并标出图例；请同伴按图描述路线。",
+                "studentResponse": "可能把图上位置与现实方向混同。此为预设回应，并非课堂实录。",
+                "teacherQuestion": "没有去过这里的人怎样识别你的符号？"
+              },
+              {
+                "id": "rc88aac04-6practice",
+                "title": "说明相对方位",
+                "content": "1. 出示校园简图：上方表示北，教学楼在操场右侧。\n2. 学生说明教学楼相对操场的方向，并指出判断所依据的图上方向。",
+                "adjustment": "若只凭熟悉印象作答，请引导学生先核对图示方向，再描述相对方位。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-6v",
+                  "resunit-238a47d02714a8da8e039bfa:4dbca5098a"
+                ],
+                "studentTask": "保留原始答案与理由，说明教学楼相对操场的方向及参照依据。",
+                "studentResponse": "",
+                "teacherQuestion": "你依据图上的哪一项信息判断？"
+              },
+              {
+                "id": "rc88aac04-6check",
+                "title": "独立新题",
+                "content": "1. 学生独立作答，不提供提示。\n2. 提交后由教师核对方位说明及其依据。",
+                "adjustment": "",
+                "evidenceIds": [
+                  "lesson:rc88aac04-6v"
+                ],
+                "studentTask": "说明图书馆相对广场的方位，并写出参照依据。",
+                "studentResponse": "",
+                "teacherQuestion": ""
+              }
+            ],
+            "rationale": [
+              "先从熟悉路线转为符号简图，让学生说明图例如何表达地物；再用固定方向判断方位，最后独立完成新题，检查是否能依据图面说明。"
+            ],
+            "mathClaims": []
+          },
+          "evidence": [
+            {
+              "id": "lesson:rc88aac04-6v",
+              "url": "/#/courses",
+              "kind": "lesson",
+              "title": "地图图例与方向",
+              "content": "地图图例与方向：能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。\n先试一试：保留你的原始答案与理由。\n独立新题：这道新题不提供提示，提交后由教师核对。",
+              "versionId": "rc88aac04-6v"
+            },
+            {
+              "id": "resunit-238a47d02714a8da8e039bfa:4dbca5098a",
+              "url": "/#/source?unit=resunit-238a47d02714a8da8e039bfa",
+              "kind": "material",
+              "label": "中文方法摘要（非来源原文）",
+              "score": 4.494853,
+              "title": "地图图例与方向（中文整理摘要）",
+              "caseId": "exp-238a47d02714a8da8e039bfa",
+              "unitId": "resunit-238a47d02714a8da8e039bfa",
+              "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n地理 七年级 地图图例与方向\n从熟悉路线转成自编图例和平面图\n口述校园路线\n用符号画简图\n让同伴按图描述路线\n关键追问：没有去过这里的人怎样识别你的符号？\n调整：先固定参照方向，再逐段检查路线\n独立检查：对一张新简图依据图例说明方位\n适用边界：只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Mapping the local environment\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "bm25Score": 4.494853,
+              "materialId": "resmat-238a47d02714a8da8e039bfa",
+              "caseVersionId": "resver-238a47d02714a8da8e039bfa"
+            }
+          ],
+          "warnings": [],
+          "generated": {
+            "goal": "能够依据图例和图上方向说明地点的相对方位，并完成独立检查。",
+            "title": "地图图例与方向",
+            "blocks": [
+              {
+                "id": "rc88aac04-6intro",
+                "title": "从熟悉路线到简图",
+                "content": "1. 请学生口述一段熟悉的校园路线，并用自选符号画成简图，标出图例。\n2. 同伴尝试按图识别符号、描述路线；学生据此检查图例是否清楚。\n3. 在图上标明方向，先固定参照方向，再逐段核对路线。活动采用“从熟悉路线转成自编图例和平面图”的方法，依据为师承智学中文方法摘要，参考来源为 The Open University / TESSA collaborative teacher-education authors；步骤为项目适配。",
+                "adjustment": "先固定参照方向，再逐段检查路线。",
+                "evidenceIds": [
+                  "resunit-238a47d02714a8da8e039bfa:4dbca5098a"
+                ],
+                "studentTask": "口述一段熟悉的校园路线，用符号画简图并标出图例；请同伴按图描述路线。",
+                "studentResponse": "可能把图上位置与现实方向混同。此为预设回应，并非课堂实录。",
+                "teacherQuestion": "没有去过这里的人怎样识别你的符号？"
+              },
+              {
+                "id": "rc88aac04-6practice",
+                "title": "说明相对方位",
+                "content": "1. 出示校园简图：上方表示北，教学楼在操场右侧。\n2. 学生说明教学楼相对操场的方向，并指出判断所依据的图上方向。",
+                "adjustment": "若只凭熟悉印象作答，请引导学生先核对图示方向，再描述相对方位。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-6v",
+                  "resunit-238a47d02714a8da8e039bfa:4dbca5098a"
+                ],
+                "studentTask": "保留原始答案与理由，说明教学楼相对操场的方向及参照依据。",
+                "studentResponse": "",
+                "teacherQuestion": "你依据图上的哪一项信息判断？"
+              },
+              {
+                "id": "rc88aac04-6check",
+                "title": "独立新题",
+                "content": "1. 学生独立作答，不提供提示。\n2. 提交后由教师核对方位说明及其依据。",
+                "adjustment": "",
+                "evidenceIds": [
+                  "lesson:rc88aac04-6v"
+                ],
+                "studentTask": "说明图书馆相对广场的方位，并写出参照依据。",
+                "studentResponse": "",
+                "teacherQuestion": ""
+              }
+            ],
+            "rationale": [
+              "先从熟悉路线转为符号简图，让学生说明图例如何表达地物；再用固定方向判断方位，最后独立完成新题，检查是否能依据图面说明。"
+            ],
+            "mathClaims": []
+          },
+          "materials": [
+            {
+              "id": "resunit-238a47d02714a8da8e039bfa:4dbca5098a",
+              "url": "/#/source?unit=resunit-238a47d02714a8da8e039bfa",
+              "kind": "material",
+              "label": "中文方法摘要（非来源原文）",
+              "score": 4.494853,
+              "title": "地图图例与方向（中文整理摘要）",
+              "caseId": "exp-238a47d02714a8da8e039bfa",
+              "unitId": "resunit-238a47d02714a8da8e039bfa",
+              "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n地理 七年级 地图图例与方向\n从熟悉路线转成自编图例和平面图\n口述校园路线\n用符号画简图\n让同伴按图描述路线\n关键追问：没有去过这里的人怎样识别你的符号？\n调整：先固定参照方向，再逐段检查路线\n独立检查：对一张新简图依据图例说明方位\n适用边界：只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Mapping the local environment\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "bm25Score": 4.494853,
+              "materialId": "resmat-238a47d02714a8da8e039bfa",
+              "caseVersionId": "resver-238a47d02714a8da8e039bfa"
+            }
+          ],
+          "retrieval": {
+            "mode": "search",
+            "query": "地图看不懂图例方向只凭熟悉印象，请用已有教法帮助学生并保留独立检查。 地图图例与方向",
+            "method": "field-bm25+knowledge+context",
+            "variant": "B3",
+            "warnings": [
+              "知识点名称或别名存在歧义，请选择明确知识点。"
+            ],
+            "elapsedMs": 60.239,
+            "matchedCount": 57,
+            "rerankApplied": false,
+            "totalDocuments": 57,
+            "algorithmVersion": "teaching-context-v1",
+            "eligibleDocuments": 57,
+            "queryUnderstanding": {
+              "scenario": "assessment",
+              "knowledge": [
+                {
+                  "id": "kp-238a47d02714a8da8e039bfa",
+                  "name": "地图图例与方向",
+                  "source": "name",
+                  "matchedNames": [
+                    "地图图例与方向",
+                    "地图图例与方向"
+                  ]
+                }
+              ],
+              "expansions": [
+                {
+                  "text": "地图图例与方向",
+                  "source": "name",
+                  "knowledgeId": "kp-238a47d02714a8da8e039bfa"
+                }
+              ],
+              "normalizedQuery": "地图看不懂图例方向只凭熟悉印象,请用已有教法帮助学生并保留独立检查。 地图图例与方向"
+            }
+          },
+          "startedAt": "2026-11-14T09:11:04.201127+00:00",
+          "modelCalls": 1,
+          "textQuality": {
+            "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查",
+            "status": "passed",
+            "warnings": []
+          },
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified",
+            "structure": "passed",
+            "references": "passed",
+            "goalTermsOverlap": true,
+            "humanReviewRequired": true
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "budgetStartedAt": "2026-11-14T09:11:04.201149+00:00",
+          "workflowVersion": "teaching-plan-v1",
+          "experienceDecision": {
+            "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+            "schema": 1,
+            "fallback": false,
+            "rejected": [
+              {
+                "reasons": [
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-c592aef6aa66aa9310beecd9"
+              },
+              {
+                "reasons": [
+                  "学科不匹配或未标注",
+                  "年级不匹配或未标注",
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-7930ed995956838e93318984"
+              },
+              {
+                "reasons": [
+                  "学科不匹配或未标注",
+                  "年级不匹配或未标注",
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-a6878cdb6a68dc2fc7bd492a"
+              }
+            ],
+            "selected": [
+              {
+                "id": "exp-238a47d02714a8da8e039bfa",
+                "method": "从熟悉路线转成自编图例和平面图",
+                "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                "version": 1,
+                "strategy": "hint",
+                "versionId": "resver-238a47d02714a8da8e039bfa",
+                "conditions": [
+                  "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。"
+                ],
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "effectCheck": "对一张新简图依据图例说明方位",
+                "evidenceIds": [
+                  "current:request"
+                ],
+                "diagnosticOnly": false,
+                "teachingMethod": "从熟悉路线转成自编图例和平面图",
+                "diagnosticBasis": "请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。",
+                "matchedDifficultyTerms": [
+                  "不懂",
+                  "例方",
+                  "凭熟",
+                  "印象",
+                  "只凭",
+                  "向只",
+                  "图例",
+                  "图看",
+                  "地图",
+                  "学生",
+                  "悉印",
+                  "懂图",
+                  "方向",
+                  "熟悉",
+                  "看不"
+                ]
+              }
+            ]
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-14T09:11:04Z",
+        "updatedAt": "2026-11-14T09:11:26Z",
+        "input": {
+          "task": "地图看不懂图例方向只凭熟悉印象，请用已有教法帮助学生并保留独立检查。",
+          "label": "地图看不懂图例方向只凭熟悉印象，请用已有教法帮助学生并保留独立检查。",
+          "lesson": {
+            "goal": "能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。",
+            "grade": "七年级",
+            "title": "地图图例与方向",
+            "blocks": [
+              {
+                "id": "rc88aac04-6intro",
+                "type": "explanation",
+                "title": "地图图例与方向",
+                "content": "能够就“地图图例与方向”给出有依据的说明，并完成对应独立检查。",
+                "required": true
+              },
+              {
+                "id": "rc88aac04-6practice",
+                "type": "practice",
+                "title": "先试一试",
+                "content": "保留你的原始答案与理由。",
+                "required": false,
+                "questionIds": [
+                  "rc88aac04-6q0"
+                ]
+              },
+              {
+                "id": "rc88aac04-6check",
+                "type": "check",
+                "title": "独立新题",
+                "content": "这道新题不提供提示，提交后由教师核对。",
+                "required": false,
+                "questionIds": [
+                  "rc88aac04-6q1"
+                ]
+              }
+            ],
+            "caseId": null,
+            "source": "八科隔离工程验收，原题为项目自编",
+            "unitId": null,
+            "subject": "地理",
+            "version": 1,
+            "duration": 30,
+            "lessonId": "rc88aac04-6l",
+            "questions": [
+              {
+                "id": "rc88aac04-6q0",
+                "kind": "practice",
+                "answer": "由教师核对原题解释",
+                "prompt": "自编校园简图的上方表示北，教学楼在操场的右侧。请说明教学楼相对操场的方向，并解释参照依据。",
+                "options": [],
+                "equation": "",
+                "gradingMode": "manual",
+                "knowledgeIds": [
+                  "kp-238a47d02714a8da8e039bfa"
+                ],
+                "responseType": "short_answer"
+              },
+              {
+                "id": "rc88aac04-6q1",
+                "kind": "replacement",
+                "answer": "图书馆在广场南方；依据图上上北下南的方向约定",
+                "prompt": "另一张自编简图上方表示北，图书馆在广场的下方。说明相对方位和参照依据。",
+                "options": [],
+                "equation": "",
+                "gradingMode": "manual",
+                "knowledgeIds": [
+                  "kp-238a47d02714a8da8e039bfa"
+                ],
+                "responseType": "short_answer"
+              }
+            ],
+            "versionId": "rc88aac04-6v",
+            "publishedAt": "2026-11-14T09:10:51Z",
+            "knowledgeIds": [
+              "kp-238a47d02714a8da8e039bfa"
+            ],
+            "caseVersionId": null,
+            "prerequisiteIds": []
+          },
+          "draftId": null,
+          "ownerId": "rc88aac04t",
+          "lessonId": "rc88aac04-6l",
+          "taskType": "activity",
+          "documentsManifest": {
+            "count": 57,
+            "sha256": "8103302dbd72abe1afb71e0dbfaf48dbde23e65a9269f586f90491fb1b21091c",
+            "ids": [
+              "exp-0d3719e4ed12519430caa7f4",
+              "exp-14feb019bb278542df22a11b",
+              "exp-160dd8418174f3fdd6b78b2e",
+              "exp-1f884513468f4e78dab0cdea",
+              "exp-238a47d02714a8da8e039bfa",
+              "exp-27263601af2a7396289e3ad0",
+              "exp-27512d25df0b40691bc7a605",
+              "exp-286bf6ff48258008a51131d0",
+              "exp-291eb110fec4bbe93aeac610",
+              "exp-2aa553efc382bccc5f05bb61",
+              "exp-3409d0fb48797990ff32ae36",
+              "exp-35b616541d627eec855ef6ec",
+              "exp-4841a22977afa386a7eef671",
+              "exp-58824409cd86aa9f44e3f2d9",
+              "exp-59ea89da606547fc1ad170c0",
+              "exp-5a7c3926121f701fd3e68376",
+              "exp-5f4c98f57c41bb8ae902672c",
+              "exp-66c028ecef97832ff1b3aff9",
+              "exp-7041cb6634a404a8ceb7fac2",
+              "exp-761451211a90c9487821a598",
+              "exp-7930ed995956838e93318984",
+              "exp-7f5c0b42a579ce153930990d",
+              "exp-83b4aa9cace6f026a72c15a4",
+              "exp-870c90168cb975b32f270144",
+              "exp-87ad8fa64cf4b2f8c405ccb4",
+              "exp-8a62e663a254029e09f4278a",
+              "exp-8b53740e63f142b6ae17ab8f",
+              "exp-8c6737069f517ade479535f4",
+              "exp-8d9460bed341acd592cb3401",
+              "exp-9212d374aeaf0386e44812c2",
+              "exp-9238445c7db4f4048f6c10a2",
+              "exp-9764d15c41decca66cf03505",
+              "exp-9b064fbfb8b608f2a1f91a4e",
+              "exp-9b182270156096619e85fcc3",
+              "exp-9f334279d403ef496f794eda",
+              "exp-a12a7d75981bb5c23ed9660b",
+              "exp-a6878cdb6a68dc2fc7bd492a",
+              "exp-af20c3d25c58d6aa1ca98f73",
+              "exp-b9ffc18a39d9f88b4bc91679",
+              "exp-bad2849613d5effb60838c5e",
+              "exp-c592aef6aa66aa9310beecd9",
+              "exp-caad2260c4b5198e74dd7591",
+              "exp-cdea6396c18dcfd6276398bc",
+              "exp-d0accd2de4fda2767464857e",
+              "exp-d2ca4c5d7ad4e777949931a3",
+              "exp-d40b242893c9924ddb7592d9",
+              "exp-dc6391911e8c83bdd0c5fb82",
+              "exp-dd1b89a0b79e90766eff407c",
+              "exp-dd8a3743b08d26f5b7d0a890",
+              "exp-e0a4f375147b42526209163d",
+              "exp-e234ea288a763b14bc75060e",
+              "exp-e81e23e88d8fccacfdd22d82",
+              "exp-e9f778a90ebcf48278e5a037",
+              "exp-edf2b2f2ee976719ea2594af",
+              "exp-f21bf139bd6d873498bb8329",
+              "exp-f6786c1660f509fdbec5883e",
+              "exp-fe721c4df5c0f8a0db20d48e"
+            ]
+          },
+          "draftHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "knowledge": [
+            {
+              "id": "kp-0d3719e4ed12519430caa7f4",
+              "name": "证据与解释的修订",
+              "aliases": [
+                "证据与解释的修订"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-14feb019bb278542df22a11b",
+              "name": "案例中的事实与判断",
+              "aliases": [
+                "案例中的事实与判断"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-160dd8418174f3fdd6b78b2e",
+              "name": "酸碱指示与证据",
+              "aliases": [
+                "酸碱指示与证据"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-1f884513468f4e78dab0cdea",
+              "name": "史料出处与可信度",
+              "aliases": [
+                "史料出处与可信度"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-238a47d02714a8da8e039bfa",
+              "name": "地图图例与方向",
+              "aliases": [
+                "地图图例与方向"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-27263601af2a7396289e3ad0",
+              "name": "实践成果与证据汇报",
+              "aliases": [
+                "实践成果与证据汇报"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-27512d25df0b40691bc7a605",
+              "name": "文本证据定位",
+              "aliases": [
+                "文本证据定位"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-286bf6ff48258008a51131d0",
+              "name": "有序查找与条件",
+              "aliases": [
+                "有序查找与条件"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-291eb110fec4bbe93aeac610",
+              "name": "信息文本概括",
+              "aliases": [
+                "信息文本概括"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-2aa553efc382bccc5f05bb61",
+              "name": "作品说明与修改",
+              "aliases": [
+                "作品说明与修改"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-3409d0fb48797990ff32ae36",
+              "name": "细胞结构与功能",
+              "aliases": [
+                "细胞结构与功能"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-35b616541d627eec855ef6ec",
+              "name": "电路与模型边界",
+              "aliases": [
+                "电路与模型边界"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-4841a22977afa386a7eef671",
+              "name": "聚落与资源条件",
+              "aliases": [
+                "聚落与资源条件"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-58824409cd86aa9f44e3f2d9",
+              "name": "构图与视觉重点",
+              "aliases": [
+                "构图与视觉重点"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-59ea89da606547fc1ad170c0",
+              "name": "视觉观察与描述",
+              "aliases": [
+                "视觉观察与描述"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-5a7c3926121f701fd3e68376",
+              "name": "公共议题的讨论与行动",
+              "aliases": [
+                "公共议题的讨论与行动"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-5f4c98f57c41bb8ae902672c",
+              "name": "劳动任务与操作计划",
+              "aliases": [
+                "劳动任务与操作计划"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-66c028ecef97832ff1b3aff9",
+              "name": "排序与比较步骤",
+              "aliases": [
+                "排序与比较步骤"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-7041cb6634a404a8ceb7fac2",
+              "name": "三角形性质与解释",
+              "aliases": [
+                "三角形性质与解释"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-761451211a90c9487821a598",
+              "name": "方案比较与权衡",
+              "aliases": [
+                "方案比较与权衡"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-7930ed995956838e93318984",
+              "name": "英语独立写作",
+              "aliases": [
+                "英语独立写作"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-7f5c0b42a579ce153930990d",
+              "name": "劳动成果评价与改进",
+              "aliases": [
+                "劳动成果评价与改进"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-83b4aa9cace6f026a72c15a4",
+              "name": "多则史料互证",
+              "aliases": [
+                "多则史料互证"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-870c90168cb975b32f270144",
+              "name": "技术需求与利益相关者",
+              "aliases": [
+                "技术需求与利益相关者"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-87ad8fa64cf4b2f8c405ccb4",
+              "name": "规则情境与比赛反思",
+              "aliases": [
+                "规则情境与比赛反思"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-8a62e663a254029e09f4278a",
+              "name": "项目探究与证据表达",
+              "aliases": [
+                "项目探究与证据表达"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-8b53740e63f142b6ae17ab8f",
+              "name": "元素化合物与混合物",
+              "aliases": [
+                "元素化合物与混合物"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-8c6737069f517ade479535f4",
+              "name": "生命过程的观察与假设",
+              "aliases": [
+                "生命过程的观察与假设"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-8d9460bed341acd592cb3401",
+              "name": "访谈与需求证据",
+              "aliases": [
+                "访谈与需求证据"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9212d374aeaf0386e44812c2",
+              "name": "应用题数量关系",
+              "aliases": [
+                "应用题数量关系"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9238445c7db4f4048f6c10a2",
+              "name": "生物分类与特征",
+              "aliases": [
+                "生物分类与特征"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9764d15c41decca66cf03505",
+              "name": "生活规则与理由",
+              "aliases": [
+                "生活规则与理由"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9b064fbfb8b608f2a1f91a4e",
+              "name": "探究问题的限定",
+              "aliases": [
+                "探究问题的限定"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9b182270156096619e85fcc3",
+              "name": "查找效率与边界",
+              "aliases": [
+                "查找效率与边界"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9f334279d403ef496f794eda",
+              "name": "动作要领与分解理解",
+              "aliases": [
+                "动作要领与分解理解"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-a12a7d75981bb5c23ed9660b",
+              "name": "节奏与稳定拍",
+              "aliases": [
+                "节奏与稳定拍"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-a6878cdb6a68dc2fc7bd492a",
+              "name": "力的示意图",
+              "aliases": [
+                "力的示意图"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-af20c3d25c58d6aa1ca98f73",
+              "name": "真实情境与概念迁移",
+              "aliases": [
+                "真实情境与概念迁移"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-b9ffc18a39d9f88b4bc91679",
+              "name": "历史解释与论证",
+              "aliases": [
+                "历史解释与论证"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-bad2849613d5effb60838c5e",
+              "name": "一般过去时",
+              "aliases": [
+                "一般过去时"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-c592aef6aa66aa9310beecd9",
+              "name": "地图比例尺与详略",
+              "aliases": [
+                "地图比例尺与详略"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-caad2260c4b5198e74dd7591",
+              "name": "音乐表达与文化情境",
+              "aliases": [
+                "音乐表达与文化情境"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-cdea6396c18dcfd6276398bc",
+              "name": "分层练习计划",
+              "aliases": [
+                "分层练习计划"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-d0accd2de4fda2767464857e",
+              "name": "算法过程与不变量",
+              "aliases": [
+                "算法过程与不变量"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-d2ca4c5d7ad4e777949931a3",
+              "name": "原型测试与优化",
+              "aliases": [
+                "原型测试与优化"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-d40b242893c9924ddb7592d9",
+              "name": "物态性质与预测解释",
+              "aliases": [
+                "物态性质与预测解释"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-dc6391911e8c83bdd0c5fb82",
+              "name": "重复与对比听辨",
+              "aliases": [
+                "重复与对比听辨"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-dd1b89a0b79e90766eff407c",
+              "name": "宏观现象与微观解释",
+              "aliases": [
+                "宏观现象与微观解释"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-dd8a3743b08d26f5b7d0a890",
+              "name": "直角三角形中的变量",
+              "aliases": [
+                "直角三角形中的变量"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-e0a4f375147b42526209163d",
+              "name": "二进制表示",
+              "aliases": [
+                "二进制表示"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-e234ea288a763b14bc75060e",
+              "name": "数据表示与编码解释",
+              "aliases": [
+                "数据表示与编码解释"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-e81e23e88d8fccacfdd22d82",
+              "name": "观点与理由表达",
+              "aliases": [
+                "观点与理由表达"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-e9f778a90ebcf48278e5a037",
+              "name": "模型与物质分类",
+              "aliases": [
+                "模型与物质分类"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-edf2b2f2ee976719ea2594af",
+              "name": "直接引语与间接引语",
+              "aliases": [
+                "直接引语与间接引语"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-f21bf139bd6d873498bb8329",
+              "name": "劳动过程记录",
+              "aliases": [
+                "劳动过程记录"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-f6786c1660f509fdbec5883e",
+              "name": "观察与科学问题",
+              "aliases": [
+                "观察与科学问题"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-fe721c4df5c0f8a0db20d48e",
+              "name": "议题式观点辨析",
+              "aliases": [
+                "议题式观点辨析"
+              ],
+              "prerequisites": []
+            }
+          ],
+          "constraints": "",
+          "parentJobId": null,
+          "rewriteBlockId": null,
+          "workflowVersion": "teaching-plan-v1",
+          "qualityRevisionOf": null,
+          "regenerateBlockId": null,
+          "selectedReferences": []
+        },
+        "runs": [
+          {
+            "id": "run-8bbce17700e0497cafa1cb0dfe79f8af",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI / LangGraph",
+            "error": "",
+            "startedAt": "2026-11-14T09:11:04Z",
+            "endedAt": "2026-11-14T09:11:26Z",
+            "inputSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "resultSha256": "3258ee41c3b1387d4e6bf6ebd66c6dcb50429eb7029965b1657298847d74729d"
+          }
+        ]
+      },
+      "confirmed": {
+        "accepted": {
+          "draftId": "draft-ff95c5a69fea47eabb09abc91d0f01e3",
+          "lessonId": "rc88aac04-6l",
+          "confirmedAt": "2026-11-14T09:11:26.500282+00:00",
+          "jobId": "job-722bd8f0332f4071bc53edacaba2c5bf"
+        },
+        "created": true
+      },
+      "teacherReadActualJob": true,
+      "teacherSawRecord": true,
+      "studentSawFeedback": true
+    },
+    {
+      "subject": "生物学",
+      "status": "passed",
+      "sourceId": "biology",
+      "resourceId": "exp-9238445c7db4f4048f6c10a2",
+      "originalAttempt": {
+        "id": "attempt-418a715f638f46c8b12b89f11a7f7f59",
+        "correct": false,
+        "verification": {
+          "status": "unverified",
+          "correct": false,
+          "scope": "主观答案与过程由教师依据评价要点评阅",
+          "message": "作答已保存，等待教师评阅。",
+          "requiresTeacherReview": true
+        }
+      },
+      "guidance": {
+        "id": "job-38cbea256228452697064fea305cad38",
+        "mode": null,
+        "wrongId": null,
+        "phase": null,
+        "capability": "text",
+        "lessonId": null,
+        "summary": "",
+        "recordId": "record-d4dec639b2804df5b08a2500a4502bd2",
+        "fileId": null,
+        "helpRecordId": "help-38cbea256228452697064fea305cad38",
+        "question": 0,
+        "blockId": "rc88aac04-7practice",
+        "strategy": "hint",
+        "prompt": "生物分类只按大小喜好不看稳定特征。请先帮我检查。",
+        "parentJobId": null,
+        "recognizedText": "",
+        "status": "succeeded",
+        "step": "已完成",
+        "error": "",
+        "result": {
+          "hint": "先看两株植物的叶脉：哪一种叶脉特征能被观察和复核？试着用它们描述两组。",
+          "steps": [
+            "保留你的原始想法：“我喜欢的放一组，不喜欢的放一组”。",
+            "依据现有观察，先比较甲、乙的叶脉形态；把分类规则写成别人也能照着判断的特征。",
+            "检查这条规则是否只用了材料中给出的观察信息。"
+          ],
+          "title": "先检查分类依据",
+          "sources": [
+            {
+              "id": "exp-9238445c7db4f4048f6c10a2",
+              "grade": "七年级",
+              "score": 12.721515,
+              "title": "生物分类与特征：先列可观察特征，再建立二歧检索思路",
+              "author": "The Open University / TESSA collaborative teacher-education authors",
+              "source": "The Open University / TESSA collaborative teacher-education authors",
+              "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n生物学 七年级 生物分类与特征\n先列可观察特征，再建立二歧检索思路\n比较图片的共同与不同\n每次选择一个稳定特征分组\n交换检验分组规则\n关键追问：另一位同学按你的规则能分出同样结果吗？\n调整：加入外形相似但结构不同的反例\n独立检查：用新的四种生物建立有依据的分组\n适用边界：只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Module 1: Secondary Science - Biology\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "subject": "生物学",
+              "version": 1,
+              "bm25Score": 186.333831,
+              "textScore": 12.151515,
+              "versionId": "resver-9238445c7db4f4048f6c10a2",
+              "experience": {
+                "goal": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+                "steps": [
+                  "比较图片的共同与不同",
+                  "每次选择一个稳定特征分组",
+                  "交换检验分组规则"
+                ],
+                "boundary": "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。",
+                "strategy": "先列可观察特征，再建立二歧检索思路",
+                "diagnosis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+                "questions": [
+                  "另一位同学按你的规则能分出同样结果吗？"
+                ],
+                "responses": [
+                  "学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）"
+                ],
+                "adjustment": "加入外形相似但结构不同的反例",
+                "difficulty": "生物分类只按大小喜好不看稳定特征",
+                "effectCheck": "用新的四种生物建立有依据的分组",
+                "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+                "suggestions": [],
+                "knowledgePoints": [
+                  "生物分类与特征"
+                ]
+              },
+              "provenance": {
+                "kind": "public",
+                "author": "The Open University / TESSA collaborative teacher-education authors",
+                "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                "authorization": "internal",
+                "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+              },
+              "references": [
+                {
+                  "field": "content",
+                  "label": "中文方法摘要（非来源原文）",
+                  "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n生物学 七年级 生物分类与特征\n先列可观察特征，再建立二歧检索思路\n比较图片的共同与不同\n每次选择一个稳定特征分组\n交换检验分组规则\n关键追问：另一位同学按你的规则能分出同样结果吗？\n调整：加入外形相似但结构不同的反例\n独立检查：用新的四种生物建立有依据的分组\n适用边界：只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Module 1: Secondary Science - Biology\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "unitId": "resunit-9238445c7db4f4048f6c10a2",
+                  "quoteKind": "adapted_summary",
+                  "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+                  "materialId": "resmat-9238445c7db4f4048f6c10a2",
+                  "materialTitle": "生物分类与特征（中文整理摘要）"
+                }
+              ],
+              "publishedAt": "2026-11-14T08:57:28Z",
+              "contextScore": 0.12,
+              "knowledgeIds": [
+                "kp-9238445c7db4f4048f6c10a2"
+              ],
+              "matchReasons": [
+                "直接关联目标知识点",
+                "匹配知识点、学生困难、标题",
+                "与课时适用信息一致"
+              ],
+              "applicability": {
+                "kind": "knowledge_scope",
+                "grade": "七年级",
+                "schema": 1,
+                "subject": "生物学",
+                "knowledgeIds": [
+                  "kp-9238445c7db4f4048f6c10a2"
+                ]
+              },
+              "curatedImport": {
+                "batch": "resources-20261114-v1",
+                "sourceId": "biology",
+                "sourceSha256": "4340d30272d38b467b7dd928f3a2c1cdd6db6b40b5f75b58fad7913ca6a00f39",
+                "resourceSha256": "4b159ea60e7e1aa138eadfd150cf5575c36fa4467f2623f8cf18346f88ac0561"
+              },
+              "matchedFields": [
+                {
+                  "bm25": 15.600303,
+                  "field": "title",
+                  "label": "标题",
+                  "score": 1.943708,
+                  "matchedTerms": [
+                    "分类",
+                    "物分",
+                    "特征",
+                    "生物"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 24.014096,
+                  "field": "knowledgePoints",
+                  "label": "知识点",
+                  "score": 2.460554,
+                  "matchedTerms": [
+                    "分类",
+                    "物分",
+                    "特征",
+                    "生物"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 51.093184,
+                  "field": "difficulty",
+                  "label": "学生困难",
+                  "score": 2.020188,
+                  "matchedTerms": [
+                    "不看",
+                    "分类",
+                    "只按",
+                    "喜好",
+                    "大小",
+                    "好不",
+                    "定特",
+                    "小喜",
+                    "按大",
+                    "物分",
+                    "特征",
+                    "生物",
+                    "看稳",
+                    "稳定",
+                    "类只"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 14.266039,
+                  "field": "goal",
+                  "label": "教学目标",
+                  "score": 1.612034,
+                  "matchedTerms": [
+                    "分类",
+                    "检查",
+                    "物分",
+                    "特征",
+                    "生物"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 0,
+                  "field": "studentBase",
+                  "label": "学生基础",
+                  "score": 0.003804,
+                  "matchedTerms": [],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 26.94366,
+                  "field": "content",
+                  "label": "正文",
+                  "score": 1.017875,
+                  "matchedTerms": [
+                    "分类",
+                    "定特",
+                    "检查",
+                    "物分",
+                    "特征",
+                    "生物",
+                    "稳定"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 9.442273,
+                  "field": "steps",
+                  "label": "讲解步骤",
+                  "score": 0.820994,
+                  "matchedTerms": [
+                    "定特",
+                    "特征",
+                    "稳定"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 3.503389,
+                  "field": "responses",
+                  "label": "学生回应",
+                  "score": 0.958201,
+                  "matchedTerms": [
+                    "分类"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 14.527227,
+                  "field": "boundary",
+                  "label": "适用边界",
+                  "score": 0.907007,
+                  "matchedTerms": [
+                    "分类",
+                    "物分",
+                    "特征",
+                    "生物"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 26.94366,
+                  "field": "references",
+                  "label": "原文摘录",
+                  "score": 0.40715,
+                  "matchedTerms": [
+                    "分类",
+                    "定特",
+                    "检查",
+                    "物分",
+                    "特征",
+                    "生物",
+                    "稳定"
+                  ],
+                  "contextMatched": true
+                }
+              ],
+              "retrievalText": "{\"goal\": \"能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。\", \"steps\": [\"比较图片的共同与不同\", \"每次选择一个稳定特征分组\", \"交换检验分组规则\"], \"boundary\": \"只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"strategy\": \"先列可观察特征，再建立二歧检索思路\", \"diagnosis\": \"请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。\", \"questions\": [\"另一位同学按你的规则能分出同样结果吗？\"], \"responses\": [\"学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）\"], \"adjustment\": \"加入外形相似但结构不同的反例\", \"difficulty\": \"生物分类只按大小喜好不看稳定特征\", \"effectCheck\": \"用新的四种生物建立有依据的分组\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"suggestions\": [], \"knowledgePoints\": [\"生物分类与特征\"]}",
+              "knowledgeLinks": [
+                {
+                  "id": "kp-9238445c7db4f4048f6c10a2",
+                  "name": "生物分类与特征"
+                }
+              ],
+              "knowledgeScore": 0.45,
+              "resourceRights": {
+                "reuseMode": "adapted_text",
+                "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+                "localUsage": "仅本地教学方法摘要；用户单人复核",
+                "sourceTitle": "Module 1: Secondary Science - Biology",
+                "sourceAuthor": "The Open University / TESSA collaborative teacher-education authors",
+                "sourceLicense": "CC-BY-SA (version not confirmed)",
+                "thirdPartyMediaIncluded": false,
+                "originalRedistributionApproved": false
+              },
+              "experienceReview": {
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "reviewedAt": "2026-11-14",
+                "reviewerId": "curcd3f00a",
+                "humanReview": {
+                  "method": "AI辅助整理、用户单人复核",
+                  "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+                  "reviewer": "用户（项目负责人，单人复核）",
+                  "allowedUsage": "local_summary_only"
+                },
+                "applicability": {
+                  "kind": "knowledge_scope",
+                  "grade": "七年级",
+                  "schema": 1,
+                  "subject": "生物学",
+                  "knowledgeIds": [
+                    "kp-9238445c7db4f4048f6c10a2"
+                  ]
+                }
+              },
+              "knowledgeMatches": [
+                {
+                  "id": "kp-9238445c7db4f4048f6c10a2",
+                  "name": "生物分类与特征",
+                  "relation": "direct"
+                }
+              ]
+            }
+          ],
+          "question": "请指出你从哪一步开始不确定，并说说刚才是怎么想的？",
+          "strategy": "hint",
+          "workflow": {
+            "nodes": [
+              "固定学习上下文",
+              "读取公开案例与一层前置知识",
+              "生成本轮指导",
+              "核验并等待学生回应"
+            ],
+            "elapsedMs": 9366,
+            "modelCalls": 1,
+            "contextChars": 9965,
+            "historyTurns": 0
+          },
+          "mathClaims": [],
+          "needCoverage": {
+            "scope": "仅检查明确教学主题的必要表征，适切性仍需人工评阅",
+            "missing": [],
+            "required": []
+          },
+          "nextStrategy": "hint",
+          "verification": {
+            "scope": "仅核对声明关系和可解析数值等式；未验证自然语言及完整教学适切性。",
+            "claims": [],
+            "status": "unverified"
+          },
+          "prerequisites": [],
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "prerequisiteId": "",
+          "representation": "evidence",
+          "experienceDecision": {
+            "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+            "schema": 1,
+            "fallback": false,
+            "rejected": [
+              {
+                "reasons": [
+                  "学科不匹配或未标注",
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-a12a7d75981bb5c23ed9660b"
+              },
+              {
+                "reasons": [
+                  "学科不匹配或未标注",
+                  "年级不匹配或未标注",
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-e9f778a90ebcf48278e5a037"
+              }
+            ],
+            "selected": [
+              {
+                "id": "exp-9238445c7db4f4048f6c10a2",
+                "method": "先列可观察特征，再建立二歧检索思路",
+                "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                "version": 1,
+                "strategy": "hint",
+                "versionId": "resver-9238445c7db4f4048f6c10a2",
+                "conditions": [
+                  "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。"
+                ],
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "effectCheck": "用新的四种生物建立有依据的分组",
+                "evidenceIds": [
+                  "attempt-418a715f638f46c8b12b89f11a7f7f59",
+                  "attempt-418a715f638f46c8b12b89f11a7f7f59:reason",
+                  "attempt-418a715f638f46c8b12b89f11a7f7f59:request"
+                ],
+                "diagnosticOnly": false,
+                "teachingMethod": "先列可观察特征，再建立二歧检索思路",
+                "diagnosticBasis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+                "matchedDifficultyTerms": [
+                  "不看",
+                  "分类",
+                  "只按",
+                  "喜好",
+                  "大小",
+                  "好不",
+                  "定特",
+                  "小喜",
+                  "按大",
+                  "物分",
+                  "特征",
+                  "生物",
+                  "看稳",
+                  "稳定",
+                  "类只"
+                ]
+              }
+            ]
+          },
+          "usedCaseVersionIds": [
+            "resver-9238445c7db4f4048f6c10a2"
+          ],
+          "difficultyAssessment": {
+            "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+            "schema": 1,
+            "subject": "生物学",
+            "difficulty": "学生报告当前学习遇到困难",
+            "dimensions": [
+              "概念",
+              "生命过程",
+              "结构与功能"
+            ],
+            "observations": [
+              {
+                "id": "attempt-418a715f638f46c8b12b89f11a7f7f59",
+                "kind": "原始作答",
+                "text": "我喜欢的放一组，不喜欢的放一组"
+              },
+              {
+                "id": "attempt-418a715f638f46c8b12b89f11a7f7f59:reason",
+                "kind": "作答说明",
+                "text": "这是首次独立尝试，请根据实际依据引导"
+              },
+              {
+                "id": "attempt-418a715f638f46c8b12b89f11a7f7f59:request",
+                "kind": "学生自述",
+                "text": "生物分类只按大小喜好不看稳定特征。请先帮我检查。"
+              }
+            ],
+            "possibleCauses": [],
+            "historyEvidence": [],
+            "evidenceSufficiency": "需进一步确认",
+            "recommendedStrategy": "hint",
+            "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-14T09:10:53Z",
+        "updatedAt": "2026-11-14T09:11:03Z",
+        "input": {
+          "scope": {
+            "taskId": "rc88aac04-7t",
+            "classId": "rc88aac04-7r",
+            "lessonId": "rc88aac04-7l",
+            "studentId": "rc88aac04s",
+            "questionId": "rc88aac04-7q0",
+            "knowledgeIds": [
+              "kp-9238445c7db4f4048f6c10a2"
+            ],
+            "lessonVersionId": "rc88aac04-7v"
+          },
+          "prompt": "生物分类只按大小喜好不看稳定特征。请先帮我检查。",
+          "blockId": "rc88aac04-7practice",
+          "context": {
+            "block": {
+              "id": "rc88aac04-7practice",
+              "type": "practice",
+              "title": "先试一试",
+              "content": "保留你的原始答案与理由。",
+              "questionIds": [
+                "rc88aac04-7q0"
+              ]
+            },
+            "lesson": {
+              "id": "rc88aac04-7l",
+              "goal": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+              "grade": "七年级",
+              "title": "生物分类与特征",
+              "subject": "生物学",
+              "versionId": "rc88aac04-7v"
+            },
+            "question": {
+              "id": "rc88aac04-7q0",
+              "kind": "practice",
+              "prompt": "文字观察资料：甲植物叶脉平行，乙植物叶脉呈网状。请依据可观察特征给两株植物分组，不只按大小或个人喜好分类。",
+              "options": [],
+              "equation": "",
+              "gradingMode": "manual",
+              "knowledgeIds": [
+                "kp-9238445c7db4f4048f6c10a2"
+              ],
+              "responseType": "short_answer"
+            },
+            "knowledge": [
+              {
+                "id": "kp-9238445c7db4f4048f6c10a2",
+                "name": "生物分类与特征"
+              }
+            ],
+            "observation": "",
+            "prerequisites": [],
+            "teachingCases": [
+              {
+                "id": "exp-9238445c7db4f4048f6c10a2",
+                "grade": "七年级",
+                "score": 12.721515,
+                "title": "生物分类与特征：先列可观察特征，再建立二歧检索思路",
+                "author": "The Open University / TESSA collaborative teacher-education authors",
+                "source": "The Open University / TESSA collaborative teacher-education authors",
+                "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n生物学 七年级 生物分类与特征\n先列可观察特征，再建立二歧检索思路\n比较图片的共同与不同\n每次选择一个稳定特征分组\n交换检验分组规则\n关键追问：另一位同学按你的规则能分出同样结果吗？\n调整：加入外形相似但结构不同的反例\n独立检查：用新的四种生物建立有依据的分组\n适用边界：只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Module 1: Secondary Science - Biology\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                "subject": "生物学",
+                "version": 1,
+                "bm25Score": 186.333831,
+                "textScore": 12.151515,
+                "versionId": "resver-9238445c7db4f4048f6c10a2",
+                "experience": {
+                  "goal": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+                  "steps": [
+                    "比较图片的共同与不同",
+                    "每次选择一个稳定特征分组",
+                    "交换检验分组规则"
+                  ],
+                  "boundary": "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。",
+                  "strategy": "先列可观察特征，再建立二歧检索思路",
+                  "diagnosis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+                  "questions": [
+                    "另一位同学按你的规则能分出同样结果吗？"
+                  ],
+                  "responses": [
+                    "学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）"
+                  ],
+                  "adjustment": "加入外形相似但结构不同的反例",
+                  "difficulty": "生物分类只按大小喜好不看稳定特征",
+                  "effectCheck": "用新的四种生物建立有依据的分组",
+                  "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+                  "suggestions": [],
+                  "knowledgePoints": [
+                    "生物分类与特征"
+                  ]
+                },
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "references": [
+                  {
+                    "field": "content",
+                    "label": "中文方法摘要（非来源原文）",
+                    "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n生物学 七年级 生物分类与特征\n先列可观察特征，再建立二歧检索思路\n比较图片的共同与不同\n每次选择一个稳定特征分组\n交换检验分组规则\n关键追问：另一位同学按你的规则能分出同样结果吗？\n调整：加入外形相似但结构不同的反例\n独立检查：用新的四种生物建立有依据的分组\n适用边界：只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Module 1: Secondary Science - Biology\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                    "author": "The Open University / TESSA collaborative teacher-education authors",
+                    "unitId": "resunit-9238445c7db4f4048f6c10a2",
+                    "quoteKind": "adapted_summary",
+                    "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+                    "materialId": "resmat-9238445c7db4f4048f6c10a2",
+                    "materialTitle": "生物分类与特征（中文整理摘要）"
+                  }
+                ],
+                "publishedAt": "2026-11-14T08:57:28Z",
+                "contextScore": 0.12,
+                "knowledgeIds": [
+                  "kp-9238445c7db4f4048f6c10a2"
+                ],
+                "matchReasons": [
+                  "直接关联目标知识点",
+                  "匹配知识点、学生困难、标题",
+                  "与课时适用信息一致"
+                ],
+                "applicability": {
+                  "kind": "knowledge_scope",
+                  "grade": "七年级",
+                  "schema": 1,
+                  "subject": "生物学",
+                  "knowledgeIds": [
+                    "kp-9238445c7db4f4048f6c10a2"
+                  ]
+                },
+                "curatedImport": {
+                  "batch": "resources-20261114-v1",
+                  "sourceId": "biology",
+                  "sourceSha256": "4340d30272d38b467b7dd928f3a2c1cdd6db6b40b5f75b58fad7913ca6a00f39",
+                  "resourceSha256": "4b159ea60e7e1aa138eadfd150cf5575c36fa4467f2623f8cf18346f88ac0561"
+                },
+                "matchedFields": [
+                  {
+                    "bm25": 15.600303,
+                    "field": "title",
+                    "label": "标题",
+                    "score": 1.943708,
+                    "matchedTerms": [
+                      "分类",
+                      "物分",
+                      "特征",
+                      "生物"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 24.014096,
+                    "field": "knowledgePoints",
+                    "label": "知识点",
+                    "score": 2.460554,
+                    "matchedTerms": [
+                      "分类",
+                      "物分",
+                      "特征",
+                      "生物"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 51.093184,
+                    "field": "difficulty",
+                    "label": "学生困难",
+                    "score": 2.020188,
+                    "matchedTerms": [
+                      "不看",
+                      "分类",
+                      "只按",
+                      "喜好",
+                      "大小",
+                      "好不",
+                      "定特",
+                      "小喜",
+                      "按大",
+                      "物分",
+                      "特征",
+                      "生物",
+                      "看稳",
+                      "稳定",
+                      "类只"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 14.266039,
+                    "field": "goal",
+                    "label": "教学目标",
+                    "score": 1.612034,
+                    "matchedTerms": [
+                      "分类",
+                      "检查",
+                      "物分",
+                      "特征",
+                      "生物"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 0,
+                    "field": "studentBase",
+                    "label": "学生基础",
+                    "score": 0.003804,
+                    "matchedTerms": [],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 26.94366,
+                    "field": "content",
+                    "label": "正文",
+                    "score": 1.017875,
+                    "matchedTerms": [
+                      "分类",
+                      "定特",
+                      "检查",
+                      "物分",
+                      "特征",
+                      "生物",
+                      "稳定"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 9.442273,
+                    "field": "steps",
+                    "label": "讲解步骤",
+                    "score": 0.820994,
+                    "matchedTerms": [
+                      "定特",
+                      "特征",
+                      "稳定"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 3.503389,
+                    "field": "responses",
+                    "label": "学生回应",
+                    "score": 0.958201,
+                    "matchedTerms": [
+                      "分类"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 14.527227,
+                    "field": "boundary",
+                    "label": "适用边界",
+                    "score": 0.907007,
+                    "matchedTerms": [
+                      "分类",
+                      "物分",
+                      "特征",
+                      "生物"
+                    ],
+                    "contextMatched": true
+                  },
+                  {
+                    "bm25": 26.94366,
+                    "field": "references",
+                    "label": "原文摘录",
+                    "score": 0.40715,
+                    "matchedTerms": [
+                      "分类",
+                      "定特",
+                      "检查",
+                      "物分",
+                      "特征",
+                      "生物",
+                      "稳定"
+                    ],
+                    "contextMatched": true
+                  }
+                ],
+                "retrievalText": "{\"goal\": \"能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。\", \"steps\": [\"比较图片的共同与不同\", \"每次选择一个稳定特征分组\", \"交换检验分组规则\"], \"boundary\": \"只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"strategy\": \"先列可观察特征，再建立二歧检索思路\", \"diagnosis\": \"请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。\", \"questions\": [\"另一位同学按你的规则能分出同样结果吗？\"], \"responses\": [\"学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）\"], \"adjustment\": \"加入外形相似但结构不同的反例\", \"difficulty\": \"生物分类只按大小喜好不看稳定特征\", \"effectCheck\": \"用新的四种生物建立有依据的分组\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"suggestions\": [], \"knowledgePoints\": [\"生物分类与特征\"]}",
+                "knowledgeLinks": [
+                  {
+                    "id": "kp-9238445c7db4f4048f6c10a2",
+                    "name": "生物分类与特征"
+                  }
+                ],
+                "knowledgeScore": 0.45,
+                "resourceRights": {
+                  "reuseMode": "adapted_text",
+                  "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+                  "localUsage": "仅本地教学方法摘要；用户单人复核",
+                  "sourceTitle": "Module 1: Secondary Science - Biology",
+                  "sourceAuthor": "The Open University / TESSA collaborative teacher-education authors",
+                  "sourceLicense": "CC-BY-SA (version not confirmed)",
+                  "thirdPartyMediaIncluded": false,
+                  "originalRedistributionApproved": false
+                },
+                "experienceReview": {
+                  "provenance": {
+                    "kind": "public",
+                    "author": "The Open University / TESSA collaborative teacher-education authors",
+                    "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                    "authorization": "internal",
+                    "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                  },
+                  "reviewedAt": "2026-11-14",
+                  "reviewerId": "curcd3f00a",
+                  "humanReview": {
+                    "method": "AI辅助整理、用户单人复核",
+                    "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+                    "reviewer": "用户（项目负责人，单人复核）",
+                    "allowedUsage": "local_summary_only"
+                  },
+                  "applicability": {
+                    "kind": "knowledge_scope",
+                    "grade": "七年级",
+                    "schema": 1,
+                    "subject": "生物学",
+                    "knowledgeIds": [
+                      "kp-9238445c7db4f4048f6c10a2"
+                    ]
+                  }
+                },
+                "knowledgeMatches": [
+                  {
+                    "id": "kp-9238445c7db4f4048f6c10a2",
+                    "name": "生物分类与特征",
+                    "relation": "direct"
+                  }
+                ]
+              }
+            ],
+            "learningMemory": [],
+            "experienceDecision": {
+              "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+              "schema": 1,
+              "fallback": false,
+              "rejected": [
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-a12a7d75981bb5c23ed9660b"
+                },
+                {
+                  "reasons": [
+                    "学科不匹配或未标注",
+                    "年级不匹配或未标注",
+                    "知识点未明确关联"
+                  ],
+                  "versionId": "resver-e9f778a90ebcf48278e5a037"
+                }
+              ],
+              "selected": [
+                {
+                  "id": "exp-9238445c7db4f4048f6c10a2",
+                  "method": "先列可观察特征，再建立二歧检索思路",
+                  "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                  "version": 1,
+                  "strategy": "hint",
+                  "versionId": "resver-9238445c7db4f4048f6c10a2",
+                  "conditions": [
+                    "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。"
+                  ],
+                  "provenance": {
+                    "kind": "public",
+                    "author": "The Open University / TESSA collaborative teacher-education authors",
+                    "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                    "authorization": "internal",
+                    "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                  },
+                  "effectCheck": "用新的四种生物建立有依据的分组",
+                  "evidenceIds": [
+                    "attempt-418a715f638f46c8b12b89f11a7f7f59",
+                    "attempt-418a715f638f46c8b12b89f11a7f7f59:reason",
+                    "attempt-418a715f638f46c8b12b89f11a7f7f59:request"
+                  ],
+                  "diagnosticOnly": false,
+                  "teachingMethod": "先列可观察特征，再建立二歧检索思路",
+                  "diagnosticBasis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+                  "matchedDifficultyTerms": [
+                    "不看",
+                    "分类",
+                    "只按",
+                    "喜好",
+                    "大小",
+                    "好不",
+                    "定特",
+                    "小喜",
+                    "按大",
+                    "物分",
+                    "特征",
+                    "生物",
+                    "看稳",
+                    "稳定",
+                    "类只"
+                  ]
+                }
+              ]
+            },
+            "difficultyAssessment": {
+              "reason": "尚不能根据一次作答判断原因，先给提示并追问。",
+              "schema": 1,
+              "subject": "生物学",
+              "difficulty": "学生报告当前学习遇到困难",
+              "dimensions": [
+                "概念",
+                "生命过程",
+                "结构与功能"
+              ],
+              "observations": [
+                {
+                  "id": "attempt-418a715f638f46c8b12b89f11a7f7f59",
+                  "kind": "原始作答",
+                  "text": "我喜欢的放一组，不喜欢的放一组"
+                },
+                {
+                  "id": "attempt-418a715f638f46c8b12b89f11a7f7f59:reason",
+                  "kind": "作答说明",
+                  "text": "这是首次独立尝试，请根据实际依据引导"
+                },
+                {
+                  "id": "attempt-418a715f638f46c8b12b89f11a7f7f59:request",
+                  "kind": "学生自述",
+                  "text": "生物分类只按大小喜好不看稳定特征。请先帮我检查。"
+                }
+              ],
+              "possibleCauses": [],
+              "historyEvidence": [],
+              "evidenceSufficiency": "需进一步确认",
+              "recommendedStrategy": "hint",
+              "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。"
+            }
+          },
+          "history": [],
+          "guidance": true,
+          "ocrJobId": null,
+          "question": 0,
+          "strategy": "hint",
+          "confirmed": false,
+          "parentJobId": null,
+          "recognizedText": "",
+          "selectedStrategy": "hint",
+          "confirmedEquation": ""
+        },
+        "runs": [
+          {
+            "id": "run-6c84a250aea142c09b784198efb199fd",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI · low",
+            "error": "",
+            "startedAt": "2026-11-14T09:10:53Z",
+            "endedAt": "2026-11-14T09:11:03Z",
+            "inputSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "resultSha256": "e4a4a300dc1509f71d36f97a766626faa8c6109b637a5864a4ec07b2264cd6c4"
+          }
+        ]
+      },
+      "independentRetest": {
+        "id": "attempt-2feba88684e94690a67f922fbf19fb28",
+        "correct": false,
+        "verification": {
+          "status": "unverified",
+          "correct": false,
+          "scope": "主观答案与过程由教师依据评价要点评阅",
+          "message": "作答已保存，等待教师评阅。",
+          "requiresTeacherReview": true
+        },
+        "helped": false,
+        "actualLearningOutcome": "未测量；这是模拟账号提交，开放题待教师评阅"
+      },
+      "teacherPlan": {
+        "id": "job-fd1a3fadb4474781845068d5d902bedd",
+        "mode": null,
+        "wrongId": null,
+        "phase": null,
+        "capability": "lesson_agent",
+        "lessonId": "rc88aac04-7l",
+        "summary": "生物分类只按大小喜好不看稳定特征，请用已有教法帮助学生并保留独立检查。",
+        "recordId": null,
+        "fileId": null,
+        "helpRecordId": null,
+        "question": null,
+        "blockId": null,
+        "strategy": null,
+        "prompt": null,
+        "parentJobId": null,
+        "recognizedText": null,
+        "status": "succeeded",
+        "step": "等待教师确认",
+        "error": "",
+        "result": {
+          "plan": {
+            "goal": "依据可观察、可复查的稳定特征说明生物分组，并独立完成新观察资料的分类。",
+            "title": "生物分类与特征",
+            "blocks": [
+              {
+                "id": "rc88aac04-7intro",
+                "title": "从特征建立分类规则",
+                "content": "1. 出示甲、乙植物的文字观察资料：甲叶脉平行，乙叶脉呈网状。学生先说当前会依据什么分类。\n2. 提示先找可观察的叶脉特征，再尝试用这一特征分组。\n3. 请学生说明另一位同学能否按同一规则复查分组；教师据其说明追问依据是否稳定、可观察。",
+                "adjustment": "若学生只提大小或喜好，追问能否根据叶脉观察和复查；若提出叶脉特征，请其说明规则如何用于两株植物。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "说明甲、乙植物的分组依据；保留原有想法，并说明怎样让他人复查。",
+                "studentResponse": "预设：学生可能提出大小、喜好或叶脉特征；此处为可能回应，不是已发生的课堂回答。",
+                "teacherQuestion": "你依据哪项能观察到的特征分组？另一位同学按这条规则能得到相同结果吗？"
+              },
+              {
+                "id": "rc88aac04-7practice",
+                "title": "先试一试",
+                "content": "1. 出示甲植物叶脉平行、乙植物叶脉呈网状的观察资料。\n2. 学生独立写下分组及依据，保留原始答案与理由。\n3. 请学生检查依据是否来自可观察特征，并能否由他人复查；原题解释由教师核对。",
+                "adjustment": "若依据仍是大小或喜好，请提示回到叶脉观察，不直接给出分组答案。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "给甲、乙植物分组，写出可观察、可复查的依据，并保留原始答案与理由。",
+                "studentResponse": "",
+                "teacherQuestion": "你的规则依据哪项观察？同学能否照此复查？"
+              },
+              {
+                "id": "rc88aac04-7check",
+                "title": "独立新题",
+                "content": "1. 出示A植物叶脉平行、B植物叶脉呈网状、C植物叶脉平行的新观察资料。\n2. 学生独立分组并说明可复查的依据，不提供提示。\n3. 提交后由教师核对作答。",
+                "adjustment": "",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "独立给A、B、C分组，并说明可复查的依据。",
+                "studentResponse": "",
+                "teacherQuestion": ""
+              }
+            ],
+            "rationale": [
+              "先请学生说明原有分类依据，再用可观察特征建立分组规则，针对“只按大小或喜好”的困难提供下一步线索。",
+              "通过同伴复查规则后，安排无提示的新题，检查学生能否独立说明依据；新题结果由教师核对。"
+            ],
+            "mathClaims": []
+          },
+          "cases": [
+            {
+              "id": "exp-9238445c7db4f4048f6c10a2",
+              "grade": "七年级",
+              "score": 12.717632,
+              "title": "生物分类与特征：先列可观察特征，再建立二歧检索思路",
+              "author": "The Open University / TESSA collaborative teacher-education authors",
+              "source": "The Open University / TESSA collaborative teacher-education authors",
+              "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n生物学 七年级 生物分类与特征\n先列可观察特征，再建立二歧检索思路\n比较图片的共同与不同\n每次选择一个稳定特征分组\n交换检验分组规则\n关键追问：另一位同学按你的规则能分出同样结果吗？\n调整：加入外形相似但结构不同的反例\n独立检查：用新的四种生物建立有依据的分组\n适用边界：只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Module 1: Secondary Science - Biology\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "subject": "生物学",
+              "version": 1,
+              "bm25Score": 239.332802,
+              "textScore": 12.147632,
+              "versionId": "resver-9238445c7db4f4048f6c10a2",
+              "experience": {
+                "goal": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+                "steps": [
+                  "比较图片的共同与不同",
+                  "每次选择一个稳定特征分组",
+                  "交换检验分组规则"
+                ],
+                "boundary": "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。",
+                "strategy": "先列可观察特征，再建立二歧检索思路",
+                "diagnosis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+                "questions": [
+                  "另一位同学按你的规则能分出同样结果吗？"
+                ],
+                "responses": [
+                  "学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）"
+                ],
+                "adjustment": "加入外形相似但结构不同的反例",
+                "difficulty": "生物分类只按大小喜好不看稳定特征",
+                "effectCheck": "用新的四种生物建立有依据的分组",
+                "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+                "suggestions": [],
+                "knowledgePoints": [
+                  "生物分类与特征"
+                ]
+              },
+              "provenance": {
+                "kind": "public",
+                "author": "The Open University / TESSA collaborative teacher-education authors",
+                "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                "authorization": "internal",
+                "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+              },
+              "references": [
+                {
+                  "field": "content",
+                  "label": "中文方法摘要（非来源原文）",
+                  "quote": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n生物学 七年级 生物分类与特征\n先列可观察特征，再建立二歧检索思路\n比较图片的共同与不同\n每次选择一个稳定特征分组\n交换检验分组规则\n关键追问：另一位同学按你的规则能分出同样结果吗？\n调整：加入外形相似但结构不同的反例\n独立检查：用新的四种生物建立有依据的分组\n适用边界：只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Module 1: Secondary Science - Biology\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "unitId": "resunit-9238445c7db4f4048f6c10a2",
+                  "quoteKind": "adapted_summary",
+                  "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+                  "materialId": "resmat-9238445c7db4f4048f6c10a2",
+                  "materialTitle": "生物分类与特征（中文整理摘要）"
+                }
+              ],
+              "publishedAt": "2026-11-14T08:57:28Z",
+              "contextScore": 0.12,
+              "knowledgeIds": [
+                "kp-9238445c7db4f4048f6c10a2"
+              ],
+              "matchReasons": [
+                "直接关联目标知识点",
+                "匹配知识点、学生困难、标题",
+                "与课时适用信息一致"
+              ],
+              "applicability": {
+                "kind": "knowledge_scope",
+                "grade": "七年级",
+                "schema": 1,
+                "subject": "生物学",
+                "knowledgeIds": [
+                  "kp-9238445c7db4f4048f6c10a2"
+                ]
+              },
+              "curatedImport": {
+                "batch": "resources-20261114-v1",
+                "sourceId": "biology",
+                "sourceSha256": "4340d30272d38b467b7dd928f3a2c1cdd6db6b40b5f75b58fad7913ca6a00f39",
+                "resourceSha256": "4b159ea60e7e1aa138eadfd150cf5575c36fa4467f2623f8cf18346f88ac0561"
+              },
+              "matchedFields": [
+                {
+                  "bm25": 23.048383,
+                  "field": "title",
+                  "label": "标题",
+                  "score": 1.949443,
+                  "matchedTerms": [
+                    "与特",
+                    "分类",
+                    "物分",
+                    "特征",
+                    "生物",
+                    "类与"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 36.455864,
+                  "field": "knowledgePoints",
+                  "label": "知识点",
+                  "score": 2.474016,
+                  "matchedTerms": [
+                    "与特",
+                    "分类",
+                    "物分",
+                    "特征",
+                    "生物",
+                    "类与"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 51.093184,
+                  "field": "difficulty",
+                  "label": "学生困难",
+                  "score": 1.983346,
+                  "matchedTerms": [
+                    "不看",
+                    "分类",
+                    "只按",
+                    "喜好",
+                    "大小",
+                    "好不",
+                    "定特",
+                    "小喜",
+                    "按大",
+                    "物分",
+                    "特征",
+                    "生物",
+                    "看稳",
+                    "稳定",
+                    "类只"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 21.670277,
+                  "field": "goal",
+                  "label": "教学目标",
+                  "score": 1.629423,
+                  "matchedTerms": [
+                    "与特",
+                    "分类",
+                    "检查",
+                    "物分",
+                    "特征",
+                    "独立",
+                    "生物",
+                    "立检",
+                    "类与"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 0.008658,
+                  "field": "studentBase",
+                  "label": "学生基础",
+                  "score": 0.015822,
+                  "matchedTerms": [
+                    "保留"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 36.115587,
+                  "field": "content",
+                  "label": "正文",
+                  "score": 1.005666,
+                  "matchedTerms": [
+                    "与特",
+                    "分类",
+                    "定特",
+                    "检查",
+                    "物分",
+                    "特征",
+                    "独立",
+                    "生物",
+                    "稳定",
+                    "立检",
+                    "类与"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 9.442273,
+                  "field": "steps",
+                  "label": "讲解步骤",
+                  "score": 0.816258,
+                  "matchedTerms": [
+                    "定特",
+                    "特征",
+                    "稳定"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 3.511688,
+                  "field": "responses",
+                  "label": "学生回应",
+                  "score": 0.952303,
+                  "matchedTerms": [
+                    "分类",
+                    "学生"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 21.871301,
+                  "field": "boundary",
+                  "label": "适用边界",
+                  "score": 0.919089,
+                  "matchedTerms": [
+                    "与特",
+                    "分类",
+                    "物分",
+                    "特征",
+                    "生物",
+                    "类与"
+                  ],
+                  "contextMatched": true
+                },
+                {
+                  "bm25": 36.115587,
+                  "field": "references",
+                  "label": "原文摘录",
+                  "score": 0.402266,
+                  "matchedTerms": [
+                    "与特",
+                    "分类",
+                    "定特",
+                    "检查",
+                    "物分",
+                    "特征",
+                    "独立",
+                    "生物",
+                    "稳定",
+                    "立检",
+                    "类与"
+                  ],
+                  "contextMatched": true
+                }
+              ],
+              "retrievalText": "{\"goal\": \"能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。\", \"steps\": [\"比较图片的共同与不同\", \"每次选择一个稳定特征分组\", \"交换检验分组规则\"], \"boundary\": \"只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"strategy\": \"先列可观察特征，再建立二歧检索思路\", \"diagnosis\": \"请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。\", \"questions\": [\"另一位同学按你的规则能分出同样结果吗？\"], \"responses\": [\"学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）\"], \"adjustment\": \"加入外形相似但结构不同的反例\", \"difficulty\": \"生物分类只按大小喜好不看稳定特征\", \"effectCheck\": \"用新的四种生物建立有依据的分组\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"suggestions\": [], \"knowledgePoints\": [\"生物分类与特征\"]}",
+              "knowledgeLinks": [
+                {
+                  "id": "kp-9238445c7db4f4048f6c10a2",
+                  "name": "生物分类与特征"
+                }
+              ],
+              "knowledgeScore": 0.45,
+              "resourceRights": {
+                "reuseMode": "adapted_text",
+                "sourceUrl": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+                "localUsage": "仅本地教学方法摘要；用户单人复核",
+                "sourceTitle": "Module 1: Secondary Science - Biology",
+                "sourceAuthor": "The Open University / TESSA collaborative teacher-education authors",
+                "sourceLicense": "CC-BY-SA (version not confirmed)",
+                "thirdPartyMediaIncluded": false,
+                "originalRedistributionApproved": false
+              },
+              "experienceReview": {
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "reviewedAt": "2026-11-14",
+                "reviewerId": "curcd3f00a",
+                "humanReview": {
+                  "method": "AI辅助整理、用户单人复核",
+                  "evidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。",
+                  "reviewer": "用户（项目负责人，单人复核）",
+                  "allowedUsage": "local_summary_only"
+                },
+                "applicability": {
+                  "kind": "knowledge_scope",
+                  "grade": "七年级",
+                  "schema": 1,
+                  "subject": "生物学",
+                  "knowledgeIds": [
+                    "kp-9238445c7db4f4048f6c10a2"
+                  ]
+                }
+              },
+              "knowledgeMatches": [
+                {
+                  "id": "kp-9238445c7db4f4048f6c10a2",
+                  "name": "生物分类与特征",
+                  "relation": "direct"
+                }
+              ]
+            }
+          ],
+          "model": "gpt-6-luna",
+          "steps": [
+            {
+              "key": "context",
+              "tool": "curriculum.read",
+              "title": "理解任务与课时",
+              "output": {
+                "method": "显式选择或有限关键词规则；课时由服务端读取",
+                "recognizedType": "活动设计",
+                "lessonVersionId": "rc88aac04-7v"
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:03.760958+00:00",
+              "finishedAt": "2026-11-14T09:11:03.829676+00:00"
+            },
+            {
+              "key": "cases",
+              "tool": "retrieval.bm25",
+              "title": "检索教学案例",
+              "output": {
+                "rerank": false,
+                "versions": [
+                  {
+                    "id": "exp-9238445c7db4f4048f6c10a2",
+                    "versionId": "resver-9238445c7db4f4048f6c10a2"
+                  }
+                ],
+                "caseCount": 1
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:03.915497+00:00",
+              "finishedAt": "2026-11-14T09:11:04.072829+00:00"
+            },
+            {
+              "key": "materials",
+              "tool": "materials.read",
+              "title": "定位原文材料",
+              "output": {
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "materialCount": 1
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:04.330709+00:00",
+              "finishedAt": "2026-11-14T09:11:04.419632+00:00"
+            },
+            {
+              "key": "generate",
+              "tool": "codex.lesson_plan",
+              "title": "生成备课建议",
+              "output": {
+                "model": "gpt-6-luna",
+                "origin": "模型生成，待教师核对",
+                "provider": "Codex CLI · low",
+                "onlyBlock": null,
+                "blockCount": 3
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:04.674872+00:00",
+              "finishedAt": "2026-11-14T09:11:29.535823+00:00"
+            },
+            {
+              "key": "validate",
+              "tool": "plan.validate",
+              "title": "核验结构与依据",
+              "output": {
+                "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+                "claims": [],
+                "status": "unverified",
+                "structure": "passed",
+                "references": "passed",
+                "goalTermsOverlap": true,
+                "humanReviewRequired": true
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:29.591962+00:00",
+              "finishedAt": "2026-11-14T09:11:29.668215+00:00"
+            },
+            {
+              "key": "ready",
+              "tool": "teacher.review",
+              "title": "等待教师确认",
+              "output": {
+                "next": "教师编辑、确认后保存备课草稿；不自动发布"
+              },
+              "status": "succeeded",
+              "startedAt": "2026-11-14T09:11:29.715529+00:00",
+              "finishedAt": "2026-11-14T09:11:29.789249+00:00"
+            }
+          ],
+          "context": {
+            "goal": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+            "task": "生物分类只按大小喜好不看稳定特征，请用已有教法帮助学生并保留独立检查。",
+            "grade": "七年级",
+            "subject": "生物学",
+            "lessonId": "rc88aac04-7l",
+            "taskType": "activity",
+            "taskLabel": "活动设计",
+            "constraints": "",
+            "lessonTitle": "生物分类与特征",
+            "knowledgeIds": [
+              "kp-9238445c7db4f4048f6c10a2"
+            ],
+            "lessonVersionId": "rc88aac04-7v",
+            "prerequisiteIds": []
+          },
+          "decision": "pending",
+          "editable": {
+            "goal": "依据可观察、可复查的稳定特征说明生物分组，并独立完成新观察资料的分类。",
+            "title": "生物分类与特征",
+            "blocks": [
+              {
+                "id": "rc88aac04-7intro",
+                "title": "从特征建立分类规则",
+                "content": "1. 出示甲、乙植物的文字观察资料：甲叶脉平行，乙叶脉呈网状。学生先说当前会依据什么分类。\n2. 提示先找可观察的叶脉特征，再尝试用这一特征分组。\n3. 请学生说明另一位同学能否按同一规则复查分组；教师据其说明追问依据是否稳定、可观察。",
+                "adjustment": "若学生只提大小或喜好，追问能否根据叶脉观察和复查；若提出叶脉特征，请其说明规则如何用于两株植物。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "说明甲、乙植物的分组依据；保留原有想法，并说明怎样让他人复查。",
+                "studentResponse": "预设：学生可能提出大小、喜好或叶脉特征；此处为可能回应，不是已发生的课堂回答。",
+                "teacherQuestion": "你依据哪项能观察到的特征分组？另一位同学按这条规则能得到相同结果吗？"
+              },
+              {
+                "id": "rc88aac04-7practice",
+                "title": "先试一试",
+                "content": "1. 出示甲植物叶脉平行、乙植物叶脉呈网状的观察资料。\n2. 学生独立写下分组及依据，保留原始答案与理由。\n3. 请学生检查依据是否来自可观察特征，并能否由他人复查；原题解释由教师核对。",
+                "adjustment": "若依据仍是大小或喜好，请提示回到叶脉观察，不直接给出分组答案。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "给甲、乙植物分组，写出可观察、可复查的依据，并保留原始答案与理由。",
+                "studentResponse": "",
+                "teacherQuestion": "你的规则依据哪项观察？同学能否照此复查？"
+              },
+              {
+                "id": "rc88aac04-7check",
+                "title": "独立新题",
+                "content": "1. 出示A植物叶脉平行、B植物叶脉呈网状、C植物叶脉平行的新观察资料。\n2. 学生独立分组并说明可复查的依据，不提供提示。\n3. 提交后由教师核对作答。",
+                "adjustment": "",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "独立给A、B、C分组，并说明可复查的依据。",
+                "studentResponse": "",
+                "teacherQuestion": ""
+              }
+            ],
+            "rationale": [
+              "先请学生说明原有分类依据，再用可观察特征建立分组规则，针对“只按大小或喜好”的困难提供下一步线索。",
+              "通过同伴复查规则后，安排无提示的新题，检查学生能否独立说明依据；新题结果由教师核对。"
+            ],
+            "mathClaims": []
+          },
+          "evidence": [
+            {
+              "id": "lesson:rc88aac04-7v",
+              "url": "/#/courses",
+              "kind": "lesson",
+              "title": "生物分类与特征",
+              "content": "生物分类与特征：能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。\n先试一试：保留你的原始答案与理由。\n独立新题：这道新题不提供提示，提交后由教师核对。",
+              "versionId": "rc88aac04-7v"
+            },
+            {
+              "id": "resunit-9238445c7db4f4048f6c10a2:a465a3f28b",
+              "url": "/#/source?unit=resunit-9238445c7db4f4048f6c10a2",
+              "kind": "material",
+              "label": "中文方法摘要（非来源原文）",
+              "score": 4.698294,
+              "title": "生物分类与特征（中文整理摘要）",
+              "caseId": "exp-9238445c7db4f4048f6c10a2",
+              "unitId": "resunit-9238445c7db4f4048f6c10a2",
+              "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n生物学 七年级 生物分类与特征\n先列可观察特征，再建立二歧检索思路\n比较图片的共同与不同\n每次选择一个稳定特征分组\n交换检验分组规则\n关键追问：另一位同学按你的规则能分出同样结果吗？\n调整：加入外形相似但结构不同的反例\n独立检查：用新的四种生物建立有依据的分组\n适用边界：只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Module 1: Secondary Science - Biology\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "bm25Score": 4.698294,
+              "materialId": "resmat-9238445c7db4f4048f6c10a2",
+              "caseVersionId": "resver-9238445c7db4f4048f6c10a2"
+            }
+          ],
+          "warnings": [],
+          "generated": {
+            "goal": "依据可观察、可复查的稳定特征说明生物分组，并独立完成新观察资料的分类。",
+            "title": "生物分类与特征",
+            "blocks": [
+              {
+                "id": "rc88aac04-7intro",
+                "title": "从特征建立分类规则",
+                "content": "1. 出示甲、乙植物的文字观察资料：甲叶脉平行，乙叶脉呈网状。学生先说当前会依据什么分类。\n2. 提示先找可观察的叶脉特征，再尝试用这一特征分组。\n3. 请学生说明另一位同学能否按同一规则复查分组；教师据其说明追问依据是否稳定、可观察。",
+                "adjustment": "若学生只提大小或喜好，追问能否根据叶脉观察和复查；若提出叶脉特征，请其说明规则如何用于两株植物。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "说明甲、乙植物的分组依据；保留原有想法，并说明怎样让他人复查。",
+                "studentResponse": "预设：学生可能提出大小、喜好或叶脉特征；此处为可能回应，不是已发生的课堂回答。",
+                "teacherQuestion": "你依据哪项能观察到的特征分组？另一位同学按这条规则能得到相同结果吗？"
+              },
+              {
+                "id": "rc88aac04-7practice",
+                "title": "先试一试",
+                "content": "1. 出示甲植物叶脉平行、乙植物叶脉呈网状的观察资料。\n2. 学生独立写下分组及依据，保留原始答案与理由。\n3. 请学生检查依据是否来自可观察特征，并能否由他人复查；原题解释由教师核对。",
+                "adjustment": "若依据仍是大小或喜好，请提示回到叶脉观察，不直接给出分组答案。",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "给甲、乙植物分组，写出可观察、可复查的依据，并保留原始答案与理由。",
+                "studentResponse": "",
+                "teacherQuestion": "你的规则依据哪项观察？同学能否照此复查？"
+              },
+              {
+                "id": "rc88aac04-7check",
+                "title": "独立新题",
+                "content": "1. 出示A植物叶脉平行、B植物叶脉呈网状、C植物叶脉平行的新观察资料。\n2. 学生独立分组并说明可复查的依据，不提供提示。\n3. 提交后由教师核对作答。",
+                "adjustment": "",
+                "evidenceIds": [
+                  "lesson:rc88aac04-7v",
+                  "resunit-9238445c7db4f4048f6c10a2:a465a3f28b"
+                ],
+                "studentTask": "独立给A、B、C分组，并说明可复查的依据。",
+                "studentResponse": "",
+                "teacherQuestion": ""
+              }
+            ],
+            "rationale": [
+              "先请学生说明原有分类依据，再用可观察特征建立分组规则，针对“只按大小或喜好”的困难提供下一步线索。",
+              "通过同伴复查规则后，安排无提示的新题，检查学生能否独立说明依据；新题结果由教师核对。"
+            ],
+            "mathClaims": []
+          },
+          "materials": [
+            {
+              "id": "resunit-9238445c7db4f4048f6c10a2:a465a3f28b",
+              "url": "/#/source?unit=resunit-9238445c7db4f4048f6c10a2",
+              "kind": "material",
+              "label": "中文方法摘要（非来源原文）",
+              "score": 4.698294,
+              "title": "生物分类与特征（中文整理摘要）",
+              "caseId": "exp-9238445c7db4f4048f6c10a2",
+              "unitId": "resunit-9238445c7db4f4048f6c10a2",
+              "content": "师承智学中文方法摘要（AI辅助整理、用户单人复核；非来源原文或课堂实录）\n生物学 七年级 生物分类与特征\n先列可观察特征，再建立二歧检索思路\n比较图片的共同与不同\n每次选择一个稳定特征分组\n交换检验分组规则\n关键追问：另一位同学按你的规则能分出同样结果吗？\n调整：加入外形相似但结构不同的反例\n独立检查：用新的四种生物建立有依据的分组\n适用边界：只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\n参考来源：Module 1: Secondary Science - Biology\n来源作者/机构：The Open University / TESSA collaborative teacher-education authors\nhttps://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\n原作许可：CC-BY-SA (version not confirmed)\n本地仅含方法摘要与链接；不含第三方图片、音视频或完整教案。",
+              "bm25Score": 4.698294,
+              "materialId": "resmat-9238445c7db4f4048f6c10a2",
+              "caseVersionId": "resver-9238445c7db4f4048f6c10a2"
+            }
+          ],
+          "retrieval": {
+            "mode": "search",
+            "query": "生物分类只按大小喜好不看稳定特征，请用已有教法帮助学生并保留独立检查。 生物分类与特征",
+            "method": "field-bm25+knowledge+context",
+            "variant": "B3",
+            "warnings": [
+              "知识点名称或别名存在歧义，请选择明确知识点。"
+            ],
+            "elapsedMs": 60.855,
+            "matchedCount": 57,
+            "rerankApplied": false,
+            "totalDocuments": 57,
+            "algorithmVersion": "teaching-context-v1",
+            "eligibleDocuments": 57,
+            "queryUnderstanding": {
+              "scenario": "assessment",
+              "knowledge": [
+                {
+                  "id": "kp-9238445c7db4f4048f6c10a2",
+                  "name": "生物分类与特征",
+                  "source": "name",
+                  "matchedNames": [
+                    "生物分类与特征",
+                    "生物分类与特征"
+                  ]
+                }
+              ],
+              "expansions": [
+                {
+                  "text": "生物分类与特征",
+                  "source": "name",
+                  "knowledgeId": "kp-9238445c7db4f4048f6c10a2"
+                }
+              ],
+              "normalizedQuery": "生物分类只按大小喜好不看稳定特征,请用已有教法帮助学生并保留独立检查。 生物分类与特征"
+            }
+          },
+          "startedAt": "2026-11-14T09:11:03.755296+00:00",
+          "modelCalls": 1,
+          "textQuality": {
+            "scope": "文本规则仅提示元话语、重复与条件风险，不代替数学及课堂适用性审查",
+            "status": "passed",
+            "warnings": []
+          },
+          "verification": {
+            "scope": "仅核对列出的表达式或单变量方程，条件关系需人工核对，不代表整份讲解已核对",
+            "claims": [],
+            "status": "unverified",
+            "structure": "passed",
+            "references": "passed",
+            "goalTermsOverlap": true,
+            "humanReviewRequired": true
+          },
+          "conditionCheck": {
+            "scope": "仅检测已知条件错误；未检出不代表全文数学正确",
+            "issues": [],
+            "status": "no_known_issue",
+            "humanReviewRequired": true
+          },
+          "budgetStartedAt": "2026-11-14T09:11:03.755315+00:00",
+          "workflowVersion": "teaching-plan-v1",
+          "experienceDecision": {
+            "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。",
+            "schema": 1,
+            "fallback": false,
+            "rejected": [
+              {
+                "reasons": [
+                  "学科不匹配或未标注",
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-a12a7d75981bb5c23ed9660b"
+              },
+              {
+                "reasons": [
+                  "学科不匹配或未标注",
+                  "年级不匹配或未标注",
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-e9f778a90ebcf48278e5a037"
+              },
+              {
+                "reasons": [
+                  "学科不匹配或未标注",
+                  "年级不匹配或未标注",
+                  "知识点未明确关联"
+                ],
+                "versionId": "resver-7930ed995956838e93318984"
+              }
+            ],
+            "selected": [
+              {
+                "id": "exp-9238445c7db4f4048f6c10a2",
+                "method": "先列可观察特征，再建立二歧检索思路",
+                "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+                "version": 1,
+                "strategy": "hint",
+                "versionId": "resver-9238445c7db4f4048f6c10a2",
+                "conditions": [
+                  "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。"
+                ],
+                "provenance": {
+                  "kind": "public",
+                  "author": "The Open University / TESSA collaborative teacher-education authors",
+                  "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+                  "authorization": "internal",
+                  "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+                },
+                "effectCheck": "用新的四种生物建立有依据的分组",
+                "evidenceIds": [
+                  "current:request"
+                ],
+                "diagnosticOnly": false,
+                "teachingMethod": "先列可观察特征，再建立二歧检索思路",
+                "diagnosticBasis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+                "matchedDifficultyTerms": [
+                  "不看",
+                  "分类",
+                  "只按",
+                  "喜好",
+                  "大小",
+                  "好不",
+                  "学生",
+                  "定特",
+                  "小喜",
+                  "按大",
+                  "物分",
+                  "特征",
+                  "生物",
+                  "看稳",
+                  "稳定",
+                  "类只"
+                ]
+              }
+            ]
+          }
+        },
+        "attemptNumber": 1,
+        "retryCount": 0,
+        "createdAt": "2026-11-14T09:11:03Z",
+        "updatedAt": "2026-11-14T09:11:30Z",
+        "input": {
+          "task": "生物分类只按大小喜好不看稳定特征，请用已有教法帮助学生并保留独立检查。",
+          "label": "生物分类只按大小喜好不看稳定特征，请用已有教法帮助学生并保留独立检查。",
+          "lesson": {
+            "goal": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+            "grade": "七年级",
+            "title": "生物分类与特征",
+            "blocks": [
+              {
+                "id": "rc88aac04-7intro",
+                "type": "explanation",
+                "title": "生物分类与特征",
+                "content": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+                "required": true
+              },
+              {
+                "id": "rc88aac04-7practice",
+                "type": "practice",
+                "title": "先试一试",
+                "content": "保留你的原始答案与理由。",
+                "required": false,
+                "questionIds": [
+                  "rc88aac04-7q0"
+                ]
+              },
+              {
+                "id": "rc88aac04-7check",
+                "type": "check",
+                "title": "独立新题",
+                "content": "这道新题不提供提示，提交后由教师核对。",
+                "required": false,
+                "questionIds": [
+                  "rc88aac04-7q1"
+                ]
+              }
+            ],
+            "caseId": null,
+            "source": "八科隔离工程验收，原题为项目自编",
+            "unitId": null,
+            "subject": "生物学",
+            "version": 1,
+            "duration": 30,
+            "lessonId": "rc88aac04-7l",
+            "questions": [
+              {
+                "id": "rc88aac04-7q0",
+                "kind": "practice",
+                "answer": "由教师核对原题解释",
+                "prompt": "文字观察资料：甲植物叶脉平行，乙植物叶脉呈网状。请依据可观察特征给两株植物分组，不只按大小或个人喜好分类。",
+                "options": [],
+                "equation": "",
+                "gradingMode": "manual",
+                "knowledgeIds": [
+                  "kp-9238445c7db4f4048f6c10a2"
+                ],
+                "responseType": "short_answer"
+              },
+              {
+                "id": "rc88aac04-7q1",
+                "kind": "replacement",
+                "answer": "A和C归一组，B单列一组；依据实际记录中的叶脉特征，不能按喜好分组",
+                "prompt": "新观察资料：A植物叶脉平行，B植物叶脉呈网状，C植物叶脉平行。请给三株植物分组，并说明可复查的依据。",
+                "options": [],
+                "equation": "",
+                "gradingMode": "manual",
+                "knowledgeIds": [
+                  "kp-9238445c7db4f4048f6c10a2"
+                ],
+                "responseType": "short_answer"
+              }
+            ],
+            "versionId": "rc88aac04-7v",
+            "publishedAt": "2026-11-14T09:10:51Z",
+            "knowledgeIds": [
+              "kp-9238445c7db4f4048f6c10a2"
+            ],
+            "caseVersionId": null,
+            "prerequisiteIds": []
+          },
+          "draftId": null,
+          "ownerId": "rc88aac04t",
+          "lessonId": "rc88aac04-7l",
+          "taskType": "activity",
+          "documentsManifest": {
+            "count": 57,
+            "sha256": "8103302dbd72abe1afb71e0dbfaf48dbde23e65a9269f586f90491fb1b21091c",
+            "ids": [
+              "exp-0d3719e4ed12519430caa7f4",
+              "exp-14feb019bb278542df22a11b",
+              "exp-160dd8418174f3fdd6b78b2e",
+              "exp-1f884513468f4e78dab0cdea",
+              "exp-238a47d02714a8da8e039bfa",
+              "exp-27263601af2a7396289e3ad0",
+              "exp-27512d25df0b40691bc7a605",
+              "exp-286bf6ff48258008a51131d0",
+              "exp-291eb110fec4bbe93aeac610",
+              "exp-2aa553efc382bccc5f05bb61",
+              "exp-3409d0fb48797990ff32ae36",
+              "exp-35b616541d627eec855ef6ec",
+              "exp-4841a22977afa386a7eef671",
+              "exp-58824409cd86aa9f44e3f2d9",
+              "exp-59ea89da606547fc1ad170c0",
+              "exp-5a7c3926121f701fd3e68376",
+              "exp-5f4c98f57c41bb8ae902672c",
+              "exp-66c028ecef97832ff1b3aff9",
+              "exp-7041cb6634a404a8ceb7fac2",
+              "exp-761451211a90c9487821a598",
+              "exp-7930ed995956838e93318984",
+              "exp-7f5c0b42a579ce153930990d",
+              "exp-83b4aa9cace6f026a72c15a4",
+              "exp-870c90168cb975b32f270144",
+              "exp-87ad8fa64cf4b2f8c405ccb4",
+              "exp-8a62e663a254029e09f4278a",
+              "exp-8b53740e63f142b6ae17ab8f",
+              "exp-8c6737069f517ade479535f4",
+              "exp-8d9460bed341acd592cb3401",
+              "exp-9212d374aeaf0386e44812c2",
+              "exp-9238445c7db4f4048f6c10a2",
+              "exp-9764d15c41decca66cf03505",
+              "exp-9b064fbfb8b608f2a1f91a4e",
+              "exp-9b182270156096619e85fcc3",
+              "exp-9f334279d403ef496f794eda",
+              "exp-a12a7d75981bb5c23ed9660b",
+              "exp-a6878cdb6a68dc2fc7bd492a",
+              "exp-af20c3d25c58d6aa1ca98f73",
+              "exp-b9ffc18a39d9f88b4bc91679",
+              "exp-bad2849613d5effb60838c5e",
+              "exp-c592aef6aa66aa9310beecd9",
+              "exp-caad2260c4b5198e74dd7591",
+              "exp-cdea6396c18dcfd6276398bc",
+              "exp-d0accd2de4fda2767464857e",
+              "exp-d2ca4c5d7ad4e777949931a3",
+              "exp-d40b242893c9924ddb7592d9",
+              "exp-dc6391911e8c83bdd0c5fb82",
+              "exp-dd1b89a0b79e90766eff407c",
+              "exp-dd8a3743b08d26f5b7d0a890",
+              "exp-e0a4f375147b42526209163d",
+              "exp-e234ea288a763b14bc75060e",
+              "exp-e81e23e88d8fccacfdd22d82",
+              "exp-e9f778a90ebcf48278e5a037",
+              "exp-edf2b2f2ee976719ea2594af",
+              "exp-f21bf139bd6d873498bb8329",
+              "exp-f6786c1660f509fdbec5883e",
+              "exp-fe721c4df5c0f8a0db20d48e"
+            ]
+          },
+          "draftHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "knowledge": [
+            {
+              "id": "kp-0d3719e4ed12519430caa7f4",
+              "name": "证据与解释的修订",
+              "aliases": [
+                "证据与解释的修订"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-14feb019bb278542df22a11b",
+              "name": "案例中的事实与判断",
+              "aliases": [
+                "案例中的事实与判断"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-160dd8418174f3fdd6b78b2e",
+              "name": "酸碱指示与证据",
+              "aliases": [
+                "酸碱指示与证据"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-1f884513468f4e78dab0cdea",
+              "name": "史料出处与可信度",
+              "aliases": [
+                "史料出处与可信度"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-238a47d02714a8da8e039bfa",
+              "name": "地图图例与方向",
+              "aliases": [
+                "地图图例与方向"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-27263601af2a7396289e3ad0",
+              "name": "实践成果与证据汇报",
+              "aliases": [
+                "实践成果与证据汇报"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-27512d25df0b40691bc7a605",
+              "name": "文本证据定位",
+              "aliases": [
+                "文本证据定位"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-286bf6ff48258008a51131d0",
+              "name": "有序查找与条件",
+              "aliases": [
+                "有序查找与条件"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-291eb110fec4bbe93aeac610",
+              "name": "信息文本概括",
+              "aliases": [
+                "信息文本概括"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-2aa553efc382bccc5f05bb61",
+              "name": "作品说明与修改",
+              "aliases": [
+                "作品说明与修改"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-3409d0fb48797990ff32ae36",
+              "name": "细胞结构与功能",
+              "aliases": [
+                "细胞结构与功能"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-35b616541d627eec855ef6ec",
+              "name": "电路与模型边界",
+              "aliases": [
+                "电路与模型边界"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-4841a22977afa386a7eef671",
+              "name": "聚落与资源条件",
+              "aliases": [
+                "聚落与资源条件"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-58824409cd86aa9f44e3f2d9",
+              "name": "构图与视觉重点",
+              "aliases": [
+                "构图与视觉重点"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-59ea89da606547fc1ad170c0",
+              "name": "视觉观察与描述",
+              "aliases": [
+                "视觉观察与描述"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-5a7c3926121f701fd3e68376",
+              "name": "公共议题的讨论与行动",
+              "aliases": [
+                "公共议题的讨论与行动"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-5f4c98f57c41bb8ae902672c",
+              "name": "劳动任务与操作计划",
+              "aliases": [
+                "劳动任务与操作计划"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-66c028ecef97832ff1b3aff9",
+              "name": "排序与比较步骤",
+              "aliases": [
+                "排序与比较步骤"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-7041cb6634a404a8ceb7fac2",
+              "name": "三角形性质与解释",
+              "aliases": [
+                "三角形性质与解释"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-761451211a90c9487821a598",
+              "name": "方案比较与权衡",
+              "aliases": [
+                "方案比较与权衡"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-7930ed995956838e93318984",
+              "name": "英语独立写作",
+              "aliases": [
+                "英语独立写作"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-7f5c0b42a579ce153930990d",
+              "name": "劳动成果评价与改进",
+              "aliases": [
+                "劳动成果评价与改进"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-83b4aa9cace6f026a72c15a4",
+              "name": "多则史料互证",
+              "aliases": [
+                "多则史料互证"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-870c90168cb975b32f270144",
+              "name": "技术需求与利益相关者",
+              "aliases": [
+                "技术需求与利益相关者"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-87ad8fa64cf4b2f8c405ccb4",
+              "name": "规则情境与比赛反思",
+              "aliases": [
+                "规则情境与比赛反思"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-8a62e663a254029e09f4278a",
+              "name": "项目探究与证据表达",
+              "aliases": [
+                "项目探究与证据表达"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-8b53740e63f142b6ae17ab8f",
+              "name": "元素化合物与混合物",
+              "aliases": [
+                "元素化合物与混合物"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-8c6737069f517ade479535f4",
+              "name": "生命过程的观察与假设",
+              "aliases": [
+                "生命过程的观察与假设"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-8d9460bed341acd592cb3401",
+              "name": "访谈与需求证据",
+              "aliases": [
+                "访谈与需求证据"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9212d374aeaf0386e44812c2",
+              "name": "应用题数量关系",
+              "aliases": [
+                "应用题数量关系"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9238445c7db4f4048f6c10a2",
+              "name": "生物分类与特征",
+              "aliases": [
+                "生物分类与特征"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9764d15c41decca66cf03505",
+              "name": "生活规则与理由",
+              "aliases": [
+                "生活规则与理由"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9b064fbfb8b608f2a1f91a4e",
+              "name": "探究问题的限定",
+              "aliases": [
+                "探究问题的限定"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9b182270156096619e85fcc3",
+              "name": "查找效率与边界",
+              "aliases": [
+                "查找效率与边界"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-9f334279d403ef496f794eda",
+              "name": "动作要领与分解理解",
+              "aliases": [
+                "动作要领与分解理解"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-a12a7d75981bb5c23ed9660b",
+              "name": "节奏与稳定拍",
+              "aliases": [
+                "节奏与稳定拍"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-a6878cdb6a68dc2fc7bd492a",
+              "name": "力的示意图",
+              "aliases": [
+                "力的示意图"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-af20c3d25c58d6aa1ca98f73",
+              "name": "真实情境与概念迁移",
+              "aliases": [
+                "真实情境与概念迁移"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-b9ffc18a39d9f88b4bc91679",
+              "name": "历史解释与论证",
+              "aliases": [
+                "历史解释与论证"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-bad2849613d5effb60838c5e",
+              "name": "一般过去时",
+              "aliases": [
+                "一般过去时"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-c592aef6aa66aa9310beecd9",
+              "name": "地图比例尺与详略",
+              "aliases": [
+                "地图比例尺与详略"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-caad2260c4b5198e74dd7591",
+              "name": "音乐表达与文化情境",
+              "aliases": [
+                "音乐表达与文化情境"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-cdea6396c18dcfd6276398bc",
+              "name": "分层练习计划",
+              "aliases": [
+                "分层练习计划"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-d0accd2de4fda2767464857e",
+              "name": "算法过程与不变量",
+              "aliases": [
+                "算法过程与不变量"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-d2ca4c5d7ad4e777949931a3",
+              "name": "原型测试与优化",
+              "aliases": [
+                "原型测试与优化"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-d40b242893c9924ddb7592d9",
+              "name": "物态性质与预测解释",
+              "aliases": [
+                "物态性质与预测解释"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-dc6391911e8c83bdd0c5fb82",
+              "name": "重复与对比听辨",
+              "aliases": [
+                "重复与对比听辨"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-dd1b89a0b79e90766eff407c",
+              "name": "宏观现象与微观解释",
+              "aliases": [
+                "宏观现象与微观解释"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-dd8a3743b08d26f5b7d0a890",
+              "name": "直角三角形中的变量",
+              "aliases": [
+                "直角三角形中的变量"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-e0a4f375147b42526209163d",
+              "name": "二进制表示",
+              "aliases": [
+                "二进制表示"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-e234ea288a763b14bc75060e",
+              "name": "数据表示与编码解释",
+              "aliases": [
+                "数据表示与编码解释"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-e81e23e88d8fccacfdd22d82",
+              "name": "观点与理由表达",
+              "aliases": [
+                "观点与理由表达"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-e9f778a90ebcf48278e5a037",
+              "name": "模型与物质分类",
+              "aliases": [
+                "模型与物质分类"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-edf2b2f2ee976719ea2594af",
+              "name": "直接引语与间接引语",
+              "aliases": [
+                "直接引语与间接引语"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-f21bf139bd6d873498bb8329",
+              "name": "劳动过程记录",
+              "aliases": [
+                "劳动过程记录"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-f6786c1660f509fdbec5883e",
+              "name": "观察与科学问题",
+              "aliases": [
+                "观察与科学问题"
+              ],
+              "prerequisites": []
+            },
+            {
+              "id": "kp-fe721c4df5c0f8a0db20d48e",
+              "name": "议题式观点辨析",
+              "aliases": [
+                "议题式观点辨析"
+              ],
+              "prerequisites": []
+            }
+          ],
+          "constraints": "",
+          "parentJobId": null,
+          "rewriteBlockId": null,
+          "workflowVersion": "teaching-plan-v1",
+          "qualityRevisionOf": null,
+          "regenerateBlockId": null,
+          "selectedReferences": []
+        },
+        "runs": [
+          {
+            "id": "run-706d6681617343f4bdcdd90490a73780",
+            "number": 1,
+            "status": "succeeded",
+            "model": "gpt-6-luna",
+            "provider": "Codex CLI / LangGraph",
+            "error": "",
+            "startedAt": "2026-11-14T09:11:04Z",
+            "endedAt": "2026-11-14T09:11:30Z",
+            "inputSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "resultSha256": "bdc73ffa5b2bfe86d91836e2f62a22f9c2e372cbaf39dbe4ae5c21d375bbe87f"
+          }
+        ]
+      },
+      "confirmed": {
+        "accepted": {
+          "draftId": "draft-ff502898b4b942cdabe2aa60d6919b3c",
+          "lessonId": "rc88aac04-7l",
+          "confirmedAt": "2026-11-14T09:11:30.005833+00:00",
+          "jobId": "job-fd1a3fadb4474781845068d5d902bedd"
+        },
+        "created": true
+      },
+      "teacherReadActualJob": true,
+      "teacherSawRecord": true,
+      "studentSawFeedback": true
+    }
+  ],
+  "evidenceFormat": {
+    "kind": "compacted repeated documents and model-run copies",
+    "originalCanonicalSha256": "1123b325e24cfb00484a4ff2fd6fe3a1b32064debf26c4e1f1d386bfbed847cb",
+    "fullJobs": "Retained in isolated MySQL; raw export privately retained on development host.",
+    "preserved": "Student/teacher final output, selected experience, actual attempts, confirmation and feedback checks."
+  }
+}

@@ -12,14 +12,14 @@ test('material parsing reaches a terminal notice without overwriting a newer sav
   const {createRouter,createMemoryHistory,RouterView}=await import((await (await fetch('/src/components/MaterialWorkbench.vue')).text()).match(/from ["']([^"']*vue-router\.js[^"']*)/)[1]);
   const {TooltipProvider}=await import('/src/components/app/provider.js');
   const {default:Page}=await import('/src/components/MaterialWorkbench.vue');
-  const {useLearning}=await import('/src/store.js');const {libraryApi}=await import('/src/services/library.js');const {curriculumApi}=await import('/src/services/curriculum.js');
+  const {useLearning}=await import('/src/store.js');const {libraryApi}=await import((await (await fetch('/src/components/MaterialWorkbench.vue')).text()).match(/from ["']([^"']*services\/library\.js[^"']*)/)[1]);const {curriculumApi}=await import('/src/services/curriculum.js');
   const prior=getActivePinia(),pinia=createPinia(),store=useLearning(pinia),oldLibrary={...libraryApi},oldKnowledge=curriculumApi.knowledge;
   store.user={id:'controlled-admin-workbench',role:'admin'};
   const key='sczx:library-context:'+store.user.id;sessionStorage.removeItem(key);
   let state='processing';
   const material=()=>({id:'material-controlled',title:'受控上传材料',status:state,ready:state==='ready'?1:0,total:1,metadata:{author:'',grade:'七年级',subject:'数学'},units:[{id:'unit-controlled',label:'第1段',text:'共同减去3',status:'ready'}]});
   const savedCase={id:'case-controlled',status:'draft',versions:[],draft:{title:'已保存的案例标题',content:'方程两边同时减去3。',reviewed:false,experience:{steps:'旧格式的步骤文字'},references:[]}};
-  Object.assign(libraryApi,{materials:async()=>[material()],material:async()=>material(),unit:async()=>({metadata:{},materialTitle:'受控材料',label:'第1段',text:'共同减去3',originalText:'共同减去3',originalUrl:'#'}),cases:async()=>[savedCase],case:async()=>structuredClone(savedCase),jobs:async()=>[],upload:async()=>material(),newCase:async()=>savedCase,saveMaterial:async()=>material()});
+  Object.assign(libraryApi,{coverage:async()=>null,materials:async()=>[material()],material:async()=>material(),unit:async()=>({metadata:{},materialTitle:'受控材料',label:'第1段',text:'共同减去3',originalText:'共同减去3',originalUrl:'#'}),cases:async()=>[savedCase],case:async()=>structuredClone(savedCase),jobs:async()=>[],upload:async()=>material(),newCase:async()=>savedCase,saveMaterial:async()=>material()});
   curriculumApi.knowledge=async()=>[];
   const router=createRouter({history:createMemoryHistory(),routes:[{path:'/manage',component:Page},{path:'/away',component:{render:()=>h('div','其他页面')}}]});await router.push('/manage');await router.isReady();
   const el=document.createElement('div');document.body.append(el);const app=createApp({render:()=>h(TooltipProvider,null,{default:()=>h(RouterView)})});app.use(pinia);app.use(router);Object.assign(app._context.components,document.querySelector('#root').__vue_app__._context.components);app.mount(el);

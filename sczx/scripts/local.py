@@ -87,6 +87,7 @@ def finish_init(args,v):
   for a in accounts:
    env['SCZX_BOOTSTRAP_'+a['role'].upper()+'_PASSWORD']=a['password'];env['SCZX_BOOTSTRAP_'+a['role'].upper()+'_USERNAME']=a['username']
   subprocess.run([sys.executable,'-m','sczx_business.commands','seed'],cwd=ROOT/'backend-business',env=env,check=True)
+  subprocess.run([sys.executable,'-m','sczx_business.commands','resources'],cwd=ROOT/'backend-business',env=env,check=True)
  write(home/'accounts.json',accounts);v['initialized']=True;write(home/'local.json',v);return v
 def first_task(v,cfg):
  if not v.get('freshDemo') or v.get('demoReady'):return

@@ -26,4 +26,4 @@ where = ["."]
 include = ["sczx_business*"]
 
 [tool.setuptools.package-data]
-sczx_business = ["prompts/*.json", "prompts/*.md"]
+sczx_business = ["prompts/*.json", "prompts/*.md", "resources/*.json", "resources/*.md"]

@@ -1,0 +1,201 @@
+{
+  "environment": "local development only",
+  "created": 57,
+  "pending": 0,
+  "oldRowsPreserved": 866,
+  "oldTablesPreserved": 54,
+  "oldRowsUnchanged": true,
+  "originalFilesUntouched": true,
+  "coverage": {
+    "batch": "resources-20261114-v1",
+    "subjects": [
+      {
+        "subject": "语文",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "数学",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "英语",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "物理",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "化学",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "生物学",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "历史",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "地理",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 1,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "道德与法治",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "思想政治",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "信息科技",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "信息技术",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "通用技术",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "科学",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "音乐",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 2,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "美术",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "体育与健康",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "劳动",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "综合实践活动",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 1,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      }
+    ],
+    "summary": {
+      "catalogSubjects": 19,
+      "coveredSubjects": 19,
+      "publishedSummaries": 57,
+      "uniqueSources": 29,
+      "teamAuthored": 0,
+      "aiCandidates": 0,
+      "unverified": 0,
+      "scope": "仅统计本批导入资源；可用表示通过来源/适用条件规则，不代表教学效果已验证。"
+    },
+    "recentGaps": [],
+    "gapScope": "最近200条指导与备课任务内的无匹配记录；不是全部历史统计。"
+  },
+  "privateBackup": "backend-business/var/local/backups/resources-20261114-v1 (ignored, not published)",
+  "originalFilesVerified": 6,
+  "originalFilesUnchanged": true,
+  "newSummaryFiles": 57
+}

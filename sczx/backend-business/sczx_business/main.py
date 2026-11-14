@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import OperationalError
 
 from .database import get_db
 from .models import Account, Attempt, ClassMember, Classroom, FileAsset, HelpRecord, LearningTask, Lesson, LessonDraft, LoginSession, RepairAttempt, StudentRecord, SupplementRecipient, SupplementalInstruction, SupportIssue, TeachingCase, WrongQuestion
@@ -28,6 +29,14 @@ app = FastAPI(title="师承智学业务服务", version="0.1.0")
 @app.exception_handler(ModelError)
 async def model_configuration_error(request: Request, error: ModelError):
     return JSONResponse(status_code=422, content={"detail": str(error)})
+
+@app.exception_handler(OperationalError)
+async def retryable_database_conflict(request:Request,error):
+    # InnoDB may choose one transaction as a victim; the dependency closes/rolls it back.
+    if getattr(error.orig,'args',())[0:1] in ((1213,),(1205,)):
+        return JSONResponse(status_code=409,content={'detail':'保存遇到并发，请重试；已保存记录保留。'})
+    raise error
+
 
 allowed_origins=[x.strip() for x in os.getenv("SCZX_ALLOWED_ORIGINS", "" if os.getenv("SCZX_ENV")=="production" else "http://localhost:5177,http://127.0.0.1:5177,http://localhost:5178,http://127.0.0.1:5178").split(",") if x.strip()]
 app.add_middleware(CORSMiddleware, allow_origins=allowed_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])

@@ -213,6 +213,19 @@ def prepare(db,actor,item,data):
     from .tutoring import STRATEGIES
     if strategy not in STRATEGIES:raise HTTPException(422,'指导方式无效。')
     context={'subject':domain.get('subject',''),'grade':domain.get('grade',''),'question':question,'knowledge':[{'id':p.id,'name':p.name} for p in points],'prerequisites':[{'id':p.id,'name':p.name} for p in db.scalars(select(KnowledgePoint).where(KnowledgePoint.id.in_(list({i for p in points for i in p.prerequisites}) or ['']))).all()],'teachingCases':[],'originalAnswer':'' if variant_id else item.answer,'originalReason':'' if variant_id else item.reason,'confirmedCause':details.get('cause') if details.get('causeConfirmed') else None}
+    if mode=='guidance':
+        from .experience_policy import diagnose,match_experiences
+        from .retrieval import retrieve,published_documents,knowledge_documents
+        from .education import profile
+        ids=[p.id for p in points]
+        diagnostic=diagnose(context['subject'],prompt or question['prompt'],context['originalAnswer'],context['originalReason'],evidence_id=item.id,dimensions=(profile(context['subject']) or {}).get('diagnosticDimensions'))
+        diagnostic['recommendedStrategy']=strategy
+        spec={'query':(prompt+' '+question['prompt'])[:2000],'context':{'subject':context['subject'],'grade':context['grade'],'knowledgeIds':ids},'limit':8}
+        found=retrieve(spec,published_documents(db),knowledge_documents(db))
+        decision=match_experiences(found['items'],diagnostic,context['subject'],context['grade'],ids)
+        if strategy=='try':decision={'schema':1,'selected':[],'rejected':[],'fallback':False,'notice':'本轮等待独立作答，不调用模型或提供新提示。'}
+        selected={c['versionId'] for c in decision['selected']}
+        context.update(difficultyAssessment=diagnostic,experienceDecision=decision,teachingCases=[c for c in found['items'] if c.get('versionId') in selected])
     if variant_id:context['originalQuestion']=original_question
     past=db.scalars(select(ModelJob).where(ModelJob.owner_id==actor.id,ModelJob.input['wrongId'].as_string()==item.id,ModelJob.input['mode'].as_string()=='variant',ModelJob.status=='succeeded')).all()
     default_prompt='请依据当前变式题给我提示，不直接给出答案。' if variant_id else '请依据本题和我的原作答提供针对性补救。'

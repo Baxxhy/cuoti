@@ -1,0 +1,3427 @@
+{
+  "import": {
+    "batch": "resources-20261114-v1",
+    "apply": true,
+    "created": [],
+    "pending": [],
+    "skipped": [
+      {
+        "id": "exp-27512d25df0b40691bc7a605",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-27512d25df0b40691bc7a605"
+      },
+      {
+        "id": "exp-291eb110fec4bbe93aeac610",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-291eb110fec4bbe93aeac610"
+      },
+      {
+        "id": "exp-e81e23e88d8fccacfdd22d82",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-e81e23e88d8fccacfdd22d82"
+      },
+      {
+        "id": "exp-7041cb6634a404a8ceb7fac2",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-7041cb6634a404a8ceb7fac2"
+      },
+      {
+        "id": "exp-9212d374aeaf0386e44812c2",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-9212d374aeaf0386e44812c2"
+      },
+      {
+        "id": "exp-dd8a3743b08d26f5b7d0a890",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-dd8a3743b08d26f5b7d0a890"
+      },
+      {
+        "id": "exp-bad2849613d5effb60838c5e",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-bad2849613d5effb60838c5e"
+      },
+      {
+        "id": "exp-edf2b2f2ee976719ea2594af",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-edf2b2f2ee976719ea2594af"
+      },
+      {
+        "id": "exp-7930ed995956838e93318984",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-7930ed995956838e93318984"
+      },
+      {
+        "id": "exp-a6878cdb6a68dc2fc7bd492a",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-a6878cdb6a68dc2fc7bd492a"
+      },
+      {
+        "id": "exp-d40b242893c9924ddb7592d9",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-d40b242893c9924ddb7592d9"
+      },
+      {
+        "id": "exp-35b616541d627eec855ef6ec",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-35b616541d627eec855ef6ec"
+      },
+      {
+        "id": "exp-8b53740e63f142b6ae17ab8f",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-8b53740e63f142b6ae17ab8f"
+      },
+      {
+        "id": "exp-dd1b89a0b79e90766eff407c",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-dd1b89a0b79e90766eff407c"
+      },
+      {
+        "id": "exp-160dd8418174f3fdd6b78b2e",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-160dd8418174f3fdd6b78b2e"
+      },
+      {
+        "id": "exp-9238445c7db4f4048f6c10a2",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-9238445c7db4f4048f6c10a2"
+      },
+      {
+        "id": "exp-3409d0fb48797990ff32ae36",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-3409d0fb48797990ff32ae36"
+      },
+      {
+        "id": "exp-8c6737069f517ade479535f4",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-8c6737069f517ade479535f4"
+      },
+      {
+        "id": "exp-1f884513468f4e78dab0cdea",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-1f884513468f4e78dab0cdea"
+      },
+      {
+        "id": "exp-83b4aa9cace6f026a72c15a4",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-83b4aa9cace6f026a72c15a4"
+      },
+      {
+        "id": "exp-b9ffc18a39d9f88b4bc91679",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-b9ffc18a39d9f88b4bc91679"
+      },
+      {
+        "id": "exp-238a47d02714a8da8e039bfa",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-238a47d02714a8da8e039bfa"
+      },
+      {
+        "id": "exp-c592aef6aa66aa9310beecd9",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-c592aef6aa66aa9310beecd9"
+      },
+      {
+        "id": "exp-4841a22977afa386a7eef671",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-4841a22977afa386a7eef671"
+      },
+      {
+        "id": "exp-9764d15c41decca66cf03505",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-9764d15c41decca66cf03505"
+      },
+      {
+        "id": "exp-14feb019bb278542df22a11b",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-14feb019bb278542df22a11b"
+      },
+      {
+        "id": "exp-5a7c3926121f701fd3e68376",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-5a7c3926121f701fd3e68376"
+      },
+      {
+        "id": "exp-fe721c4df5c0f8a0db20d48e",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-fe721c4df5c0f8a0db20d48e"
+      },
+      {
+        "id": "exp-af20c3d25c58d6aa1ca98f73",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-af20c3d25c58d6aa1ca98f73"
+      },
+      {
+        "id": "exp-8a62e663a254029e09f4278a",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-8a62e663a254029e09f4278a"
+      },
+      {
+        "id": "exp-e0a4f375147b42526209163d",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-e0a4f375147b42526209163d"
+      },
+      {
+        "id": "exp-286bf6ff48258008a51131d0",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-286bf6ff48258008a51131d0"
+      },
+      {
+        "id": "exp-66c028ecef97832ff1b3aff9",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-66c028ecef97832ff1b3aff9"
+      },
+      {
+        "id": "exp-e234ea288a763b14bc75060e",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-e234ea288a763b14bc75060e"
+      },
+      {
+        "id": "exp-9b182270156096619e85fcc3",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-9b182270156096619e85fcc3"
+      },
+      {
+        "id": "exp-d0accd2de4fda2767464857e",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-d0accd2de4fda2767464857e"
+      },
+      {
+        "id": "exp-870c90168cb975b32f270144",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-870c90168cb975b32f270144"
+      },
+      {
+        "id": "exp-761451211a90c9487821a598",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-761451211a90c9487821a598"
+      },
+      {
+        "id": "exp-d2ca4c5d7ad4e777949931a3",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-d2ca4c5d7ad4e777949931a3"
+      },
+      {
+        "id": "exp-f6786c1660f509fdbec5883e",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-f6786c1660f509fdbec5883e"
+      },
+      {
+        "id": "exp-e9f778a90ebcf48278e5a037",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-e9f778a90ebcf48278e5a037"
+      },
+      {
+        "id": "exp-0d3719e4ed12519430caa7f4",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-0d3719e4ed12519430caa7f4"
+      },
+      {
+        "id": "exp-a12a7d75981bb5c23ed9660b",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-a12a7d75981bb5c23ed9660b"
+      },
+      {
+        "id": "exp-dc6391911e8c83bdd0c5fb82",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-dc6391911e8c83bdd0c5fb82"
+      },
+      {
+        "id": "exp-caad2260c4b5198e74dd7591",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-caad2260c4b5198e74dd7591"
+      },
+      {
+        "id": "exp-59ea89da606547fc1ad170c0",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-59ea89da606547fc1ad170c0"
+      },
+      {
+        "id": "exp-58824409cd86aa9f44e3f2d9",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-58824409cd86aa9f44e3f2d9"
+      },
+      {
+        "id": "exp-2aa553efc382bccc5f05bb61",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-2aa553efc382bccc5f05bb61"
+      },
+      {
+        "id": "exp-9f334279d403ef496f794eda",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-9f334279d403ef496f794eda"
+      },
+      {
+        "id": "exp-cdea6396c18dcfd6276398bc",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-cdea6396c18dcfd6276398bc"
+      },
+      {
+        "id": "exp-87ad8fa64cf4b2f8c405ccb4",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-87ad8fa64cf4b2f8c405ccb4"
+      },
+      {
+        "id": "exp-5f4c98f57c41bb8ae902672c",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-5f4c98f57c41bb8ae902672c"
+      },
+      {
+        "id": "exp-f21bf139bd6d873498bb8329",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-f21bf139bd6d873498bb8329"
+      },
+      {
+        "id": "exp-7f5c0b42a579ce153930990d",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-7f5c0b42a579ce153930990d"
+      },
+      {
+        "id": "exp-9b064fbfb8b608f2a1f91a4e",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-9b064fbfb8b608f2a1f91a4e"
+      },
+      {
+        "id": "exp-8d9460bed341acd592cb3401",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-8d9460bed341acd592cb3401"
+      },
+      {
+        "id": "exp-27263601af2a7396289e3ad0",
+        "reason": "已有资源/教师修改/历史版本均不覆盖",
+        "currentVersion": "resver-27263601af2a7396289e3ad0"
+      }
+    ],
+    "conflicts": []
+  },
+  "coverage": {
+    "batch": "resources-20261114-v1",
+    "subjects": [
+      {
+        "subject": "语文",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "数学",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "英语",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "物理",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "化学",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "生物学",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "历史",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "地理",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 1,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "道德与法治",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "思想政治",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "信息科技",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "信息技术",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "通用技术",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 3,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "科学",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "音乐",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 2,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "美术",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "体育与健康",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "劳动",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 0,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      },
+      {
+        "subject": "综合实践活动",
+        "publishedSummaries": 3,
+        "sourceVerified": 3,
+        "explicitSourceLicense": 1,
+        "humanReviewed": 3,
+        "studentEligible": 3,
+        "teacherEligible": 3
+      }
+    ],
+    "summary": {
+      "catalogSubjects": 19,
+      "coveredSubjects": 19,
+      "publishedSummaries": 57,
+      "uniqueSources": 29,
+      "teamAuthored": 0,
+      "aiCandidates": 0,
+      "unverified": 0,
+      "scope": "仅统计本批导入资源；可用表示通过来源/适用条件规则，不代表教学效果已验证。"
+    },
+    "recentGaps": [],
+    "gapScope": "最近200条指导与备课任务内的无匹配记录；不是全部历史统计。"
+  },
+  "retrievalProbes": [
+    {
+      "id": "exp-27512d25df0b40691bc7a605",
+      "subject": "语文",
+      "selected": [
+        {
+          "id": "exp-27512d25df0b40691bc7a605",
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "把判断与支持它的原句逐项配对",
+          "method": "把判断与支持它的原句逐项配对",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不到",
+            "到文",
+            "只给",
+            "找不",
+            "文本",
+            "本证",
+            "结论",
+            "给结",
+            "论找",
+            "证据",
+            "读只",
+            "阅读"
+          ],
+          "diagnosticBasis": "请学生先说明“文本证据定位”的当前做法，核对是否出现“阅读只给结论找不到文本证据”。证据不足先追问。",
+          "effectCheck": "换一段短文独立写出判断、原句与解释"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-291eb110fec4bbe93aeac610",
+      "subject": "语文",
+      "selected": [
+        {
+          "id": "exp-291eb110fec4bbe93aeac610",
+          "versionId": "resver-291eb110fec4bbe93aeac610",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用段落信息表区分中心和例子",
+          "method": "用段落信息表区分中心和例子",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级语文的信息文本概括；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "下来",
+            "不清",
+            "主次",
+            "全抄",
+            "分不",
+            "抄下",
+            "把细",
+            "括把",
+            "来分",
+            "概括",
+            "清主",
+            "细节",
+            "节全"
+          ],
+          "diagnosticBasis": "请学生先说明“信息文本概括”的当前做法，核对是否出现“概括把细节全抄下来分不清主次”。证据不足先追问。",
+          "effectCheck": "换说明短文，用两句概括并保留必要条件"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-e81e23e88d8fccacfdd22d82",
+      "subject": "语文",
+      "selected": [
+        {
+          "id": "exp-e81e23e88d8fccacfdd22d82",
+          "versionId": "resver-e81e23e88d8fccacfdd22d82",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先口头说明观点，再补依据并回应不同意见",
+          "method": "先口头说明观点，再补依据并回应不同意见",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级语文的观点与理由表达；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "只有",
+            "有理",
+            "有观",
+            "没有",
+            "点没",
+            "理由",
+            "观点",
+            "讨论",
+            "论只"
+          ],
+          "diagnosticBasis": "请学生先说明“观点与理由表达”的当前做法，核对是否出现“讨论只有观点没有理由”。证据不足先追问。",
+          "effectCheck": "对一段新材料独立写观点和两项理由"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-7041cb6634a404a8ceb7fac2",
+      "subject": "数学",
+      "selected": [
+        {
+          "id": "exp-7041cb6634a404a8ceb7fac2",
+          "versionId": "resver-7041cb6634a404a8ceb7fac2",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "借助可移动纸条形成图形并用条件解释",
+          "method": "借助可移动纸条形成图形并用条件解释",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "三角",
+            "不出",
+            "会记",
+            "出条",
+            "却说",
+            "形结",
+            "条件",
+            "结论",
+            "角形",
+            "记三",
+            "论却",
+            "说不"
+          ],
+          "diagnosticBasis": "请学生先说明“三角形性质与解释”的当前做法，核对是否出现“会记三角形结论却说不出条件”。证据不足先追问。",
+          "effectCheck": "不用操作材料，判断新长度组并说明依据"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-9212d374aeaf0386e44812c2",
+      "subject": "数学",
+      "selected": [
+        {
+          "id": "exp-9212d374aeaf0386e44812c2",
+          "versionId": "resver-9212d374aeaf0386e44812c2",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "改述题意并让学生反向编一个同结构问题",
+          "method": "改述题意并让学生反向编一个同结构问题",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57303；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级数学的应用题数量关系；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不知",
+            "关系",
+            "只盯",
+            "字不",
+            "应用",
+            "数字",
+            "数量",
+            "用题",
+            "盯数",
+            "知道",
+            "道数",
+            "量关",
+            "题只"
+          ],
+          "diagnosticBasis": "请学生先说明“应用题数量关系”的当前做法，核对是否出现“应用题只盯数字不知道数量关系”。证据不足先追问。",
+          "effectCheck": "换生活情境，独立列关系并注明单位"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-dd8a3743b08d26f5b7d0a890",
+      "subject": "数学",
+      "selected": [
+        {
+          "id": "exp-dd8a3743b08d26f5b7d0a890",
+          "versionId": "resver-dd8a3743b08d26f5b7d0a890",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先预测改变一项的影响，再作图比较",
+          "method": "先预测改变一项的影响，再作图比较",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57357&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级数学的直角三角形中的变量；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "三角",
+            "不变",
+            "不清",
+            "分不",
+            "化时",
+            "变化",
+            "变量",
+            "形变",
+            "时分",
+            "清不",
+            "直角",
+            "角三",
+            "角形"
+          ],
+          "diagnosticBasis": "请学生先说明“直角三角形中的变量”的当前做法，核对是否出现“直角三角形变化时分不清不变量”。证据不足先追问。",
+          "effectCheck": "给新直角三角形说明一个保持不变的关系"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-bad2849613d5effb60838c5e",
+      "subject": "英语",
+      "selected": [
+        {
+          "id": "exp-bad2849613d5effb60838c5e",
+          "versionId": "resver-bad2849613d5effb60838c5e",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "从短文时间线找动作，再归纳过去时并迁移",
+          "method": "从短文时间线找动作，再归纳过去时并迁移",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "一般",
+            "不会",
+            "会联",
+            "则不",
+            "去时",
+            "只背",
+            "时只",
+            "系语",
+            "联系",
+            "背规",
+            "般过",
+            "规则",
+            "语境",
+            "过去"
+          ],
+          "diagnosticBasis": "请学生先说明“一般过去时”的当前做法，核对是否出现“一般过去时只背规则不会联系语境”。证据不足先追问。",
+          "effectCheck": "用新的昨天事件写两句，解释时态选择"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-edf2b2f2ee976719ea2594af",
+      "subject": "英语",
+      "selected": [
+        {
+          "id": "exp-edf2b2f2ee976719ea2594af",
+          "versionId": "resver-edf2b2f2ee976719ea2594af",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先分清原说话人和转述人，再比较引语变化",
+          "method": "先分清原说话人和转述人，再比较引语变化",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级英语的直接引语与间接引语；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "人称",
+            "原话",
+            "和时",
+            "搬人",
+            "时照",
+            "时间",
+            "照搬",
+            "称和",
+            "话时",
+            "转述",
+            "述原",
+            "间词"
+          ],
+          "diagnosticBasis": "请学生先说明“直接引语与间接引语”的当前做法，核对是否出现“转述原话时照搬人称和时间词”。证据不足先追问。",
+          "effectCheck": "换人物和转述时间独立改写一句"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-7930ed995956838e93318984",
+      "subject": "英语",
+      "selected": [
+        {
+          "id": "exp-7930ed995956838e93318984",
+          "versionId": "resver-7930ed995956838e93318984",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "围绕目的与读者先组织要点，再分轮修改",
+          "method": "围绕目的与读者先组织要点，再分轮修改",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57366&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级英语的英语独立写作；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "作没",
+            "写作",
+            "句子",
+            "堆叠",
+            "子堆",
+            "意识",
+            "有读",
+            "没有",
+            "者意",
+            "英语",
+            "识句",
+            "语写",
+            "读者"
+          ],
+          "diagnosticBasis": "请学生先说明“英语独立写作”的当前做法，核对是否出现“英语写作没有读者意识句子堆叠”。证据不足先追问。",
+          "effectCheck": "为新读者独立写一段并自查信息完整性"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-a6878cdb6a68dc2fc7bd492a",
+      "subject": "物理",
+      "selected": [
+        {
+          "id": "exp-a6878cdb6a68dc2fc7bd492a",
+          "versionId": "resver-a6878cdb6a68dc2fc7bd492a",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "给简图补力箭头并用情境解释",
+          "method": "给简图补力箭头并用情境解释",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级物理的力的示意图；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不清",
+            "体不",
+            "力的",
+            "只画",
+            "图只",
+            "意图",
+            "方向",
+            "楚力",
+            "清楚",
+            "物体",
+            "画物",
+            "的方",
+            "的示",
+            "示意"
+          ],
+          "diagnosticBasis": "请学生先说明“力的示意图”的当前做法，核对是否出现“力的示意图只画物体不清楚力的方向”。证据不足先追问。",
+          "effectCheck": "对新受力情境独立画图并说明一支箭头"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-d40b242893c9924ddb7592d9",
+      "subject": "物理",
+      "selected": [
+        {
+          "id": "exp-d40b242893c9924ddb7592d9",
+          "versionId": "resver-d40b242893c9924ddb7592d9",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用预测、观察、解释三栏核对物态性质",
+          "method": "用预测、观察、解释三栏核对物态性质",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级物理的物态性质与预测解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "与证",
+            "会区",
+            "分预",
+            "区分",
+            "只记",
+            "后只",
+            "察现",
+            "测与",
+            "现象",
+            "结论",
+            "观察",
+            "记结",
+            "论不",
+            "证据",
+            "象后",
+            "预测"
+          ],
+          "diagnosticBasis": "请学生先说明“物态性质与预测解释”的当前做法，核对是否出现“观察现象后只记结论不会区分预测与证据”。证据不足先追问。",
+          "effectCheck": "给新观察记录独立区分现象与解释"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-35b616541d627eec855ef6ec",
+      "subject": "物理",
+      "selected": [
+        {
+          "id": "exp-35b616541d627eec855ef6ec",
+          "versionId": "resver-35b616541d627eec855ef6ec",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用简图连接电路符号与现象并检查模型",
+          "method": "用简图连接电路符号与现象并检查模型",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级物理的电路与模型边界；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "与作",
+            "会说",
+            "作用",
+            "只背",
+            "名词",
+            "接与",
+            "明连",
+            "电路",
+            "背名",
+            "词不",
+            "说明",
+            "路只",
+            "连接"
+          ],
+          "diagnosticBasis": "请学生先说明“电路与模型边界”的当前做法，核对是否出现“电路只背名词不会说明连接与作用”。证据不足先追问。",
+          "effectCheck": "对新电路图独立说明能否形成回路"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-8b53740e63f142b6ae17ab8f",
+      "subject": "化学",
+      "selected": [
+        {
+          "id": "exp-8b53740e63f142b6ae17ab8f",
+          "versionId": "resver-8b53740e63f142b6ae17ab8f",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用不同颜色纸点表示粒子并进行分类解释",
+          "method": "用不同颜色纸点表示粒子并进行分类解释",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级化学的元素化合物与混合物；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "义不",
+            "会看",
+            "化合",
+            "只背",
+            "合物",
+            "和混",
+            "子图",
+            "定义",
+            "混合",
+            "物只",
+            "物和",
+            "看粒",
+            "粒子",
+            "背定"
+          ],
+          "diagnosticBasis": "请学生先说明“元素化合物与混合物”的当前做法，核对是否出现“化合物和混合物只背定义不会看粒子图”。证据不足先追问。",
+          "effectCheck": "对新粒子图分类并给出一条结构依据"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-dd1b89a0b79e90766eff407c",
+      "subject": "化学",
+      "selected": [
+        {
+          "id": "exp-dd1b89a0b79e90766eff407c",
+          "versionId": "resver-dd1b89a0b79e90766eff407c",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "把已见现象与看不见的模型分栏对照",
+          "method": "把已见现象与看不见的模型分栏对照",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级化学的宏观现象与微观解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "一起",
+            "化学",
+            "和粒",
+            "在一",
+            "子解",
+            "学实",
+            "实验",
+            "混在",
+            "现象",
+            "粒子",
+            "解释",
+            "象和",
+            "释混",
+            "验现"
+          ],
+          "diagnosticBasis": "请学生先说明“宏观现象与微观解释”的当前做法，核对是否出现“化学实验现象和粒子解释混在一起”。证据不足先追问。",
+          "effectCheck": "用新反应记录分别写现象与模型解释"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-160dd8418174f3fdd6b78b2e",
+      "subject": "化学",
+      "selected": [
+        {
+          "id": "exp-160dd8418174f3fdd6b78b2e",
+          "versionId": "resver-160dd8418174f3fdd6b78b2e",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "利用已有实验记录比较指示剂与对照",
+          "method": "利用已有实验记录比较指示剂与对照",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=160897&section=2；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级化学的酸碱指示与证据；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "件和",
+            "判断",
+            "只记",
+            "和对",
+            "对照",
+            "忽略",
+            "断只",
+            "条件",
+            "略条",
+            "碱判",
+            "色忽",
+            "记颜",
+            "酸碱",
+            "颜色"
+          ],
+          "diagnosticBasis": "请学生先说明“酸碱指示与证据”的当前做法，核对是否出现“酸碱判断只记颜色忽略条件和对照”。证据不足先追问。",
+          "effectCheck": "阅读一组新记录独立判断哪些证据足够"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-9238445c7db4f4048f6c10a2",
+      "subject": "生物学",
+      "selected": [
+        {
+          "id": "exp-9238445c7db4f4048f6c10a2",
+          "versionId": "resver-9238445c7db4f4048f6c10a2",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先列可观察特征，再建立二歧检索思路",
+          "method": "先列可观察特征，再建立二歧检索思路",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不看",
+            "分类",
+            "只按",
+            "喜好",
+            "大小",
+            "好不",
+            "定特",
+            "小喜",
+            "按大",
+            "物分",
+            "特征",
+            "生物",
+            "看稳",
+            "稳定",
+            "类只"
+          ],
+          "diagnosticBasis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+          "effectCheck": "用新的四种生物建立有依据的分组"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-3409d0fb48797990ff32ae36",
+      "subject": "生物学",
+      "selected": [
+        {
+          "id": "exp-3409d0fb48797990ff32ae36",
+          "versionId": "resver-3409d0fb48797990ff32ae36",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "制作纸面或立体模型后说明结构和模型局限",
+          "method": "制作纸面或立体模型后说明结构和模型局限",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级生物学的细胞结构与功能；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "会联",
+            "功能",
+            "只记",
+            "名称",
+            "型只",
+            "模型",
+            "称不",
+            "系功",
+            "细胞",
+            "联系",
+            "胞模",
+            "记名"
+          ],
+          "diagnosticBasis": "请学生先说明“细胞结构与功能”的当前做法，核对是否出现“细胞模型只记名称不会联系功能”。证据不足先追问。",
+          "effectCheck": "换一种细胞独立写出结构与功能联系"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-8c6737069f517ade479535f4",
+      "subject": "生物学",
+      "selected": [
+        {
+          "id": "exp-8c6737069f517ade479535f4",
+          "versionId": "resver-8c6737069f517ade479535f4",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "从已有实验现象提出可检验问题并说明证据",
+          "method": "从已有实验现象提出可检验问题并说明证据",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级生物学的生命过程的观察与假设；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "会抄",
+            "会提",
+            "出问",
+            "只会",
+            "命过",
+            "抄结",
+            "提出",
+            "植物",
+            "物运",
+            "生命",
+            "程只",
+            "等生",
+            "结论",
+            "论不",
+            "输等",
+            "过程",
+            "运输",
+            "问题"
+          ],
+          "diagnosticBasis": "请学生先说明“生命过程的观察与假设”的当前做法，核对是否出现“植物运输等生命过程只会抄结论不会提出问题”。证据不足先追问。",
+          "effectCheck": "对新生命现象写一个可检验问题和所需证据"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-1f884513468f4e78dab0cdea",
+      "subject": "历史",
+      "selected": [
+        {
+          "id": "exp-1f884513468f4e78dab0cdea",
+          "versionId": "resver-1f884513468f4e78dab0cdea",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先检查作者、时间、受众与目的，再作判断",
+          "method": "先检查作者、时间、受众与目的，再作判断",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "Digital Inquiry Group",
+            "evidence": "https://www.inquirygroup.org/history-lessons/historical-thinking-chart；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级历史的史料出处与可信度；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "事实",
+            "分析",
+            "到材",
+            "史料",
+            "就当",
+            "当成",
+            "成事",
+            "料分",
+            "料就",
+            "材料",
+            "析见",
+            "见到"
+          ],
+          "diagnosticBasis": "请学生先说明“史料出处与可信度”的当前做法，核对是否出现“史料分析见到材料就当成事实”。证据不足先追问。",
+          "effectCheck": "对新史料独立写出处判断和一项局限"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-83b4aa9cace6f026a72c15a4",
+      "subject": "历史",
+      "selected": [
+        {
+          "id": "exp-83b4aa9cace6f026a72c15a4",
+          "versionId": "resver-83b4aa9cace6f026a72c15a4",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "把共同点、冲突点和待补证据分开",
+          "method": "把共同点、冲突点和待补证据分开",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "Digital Inquiry Group",
+            "evidence": "https://www.inquirygroup.org/about/updates/2020/intro-materials-learning-home；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级历史的多则史料互证；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "一则",
+            "冲突",
+            "只选",
+            "史料",
+            "同的",
+            "己赞",
+            "料有",
+            "时只",
+            "有冲",
+            "的一",
+            "突时",
+            "自己",
+            "赞同",
+            "选自"
+          ],
+          "diagnosticBasis": "请学生先说明“多则史料互证”的当前做法，核对是否出现“史料有冲突时只选自己赞同的一则”。证据不足先追问。",
+          "effectCheck": "对一组新短史料独立写共同结论及保留意见"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-b9ffc18a39d9f88b4bc91679",
+      "subject": "历史",
+      "selected": [
+        {
+          "id": "exp-b9ffc18a39d9f88b4bc91679",
+          "versionId": "resver-b9ffc18a39d9f88b4bc91679",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先提出有限论点，再用史实并说明关系",
+          "method": "先提出有限论点，再用史实并说明关系",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "UC Berkeley History-Social Science Project",
+            "evidence": "https://ucbhssp.berkeley.edu/teacher-resources/writing；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级历史的历史解释与论证；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "历史",
+            "史实",
+            "史论",
+            "因果",
+            "堆史",
+            "实没",
+            "有因",
+            "果解",
+            "没有",
+            "解释",
+            "论述",
+            "述堆"
+          ],
+          "diagnosticBasis": "请学生先说明“历史解释与论证”的当前做法，核对是否出现“历史论述堆史实没有因果解释”。证据不足先追问。",
+          "effectCheck": "对新问题写论点、史实和关系解释"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-238a47d02714a8da8e039bfa",
+      "subject": "地理",
+      "selected": [
+        {
+          "id": "exp-238a47d02714a8da8e039bfa",
+          "versionId": "resver-238a47d02714a8da8e039bfa",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "从熟悉路线转成自编图例和平面图",
+          "method": "从熟悉路线转成自编图例和平面图",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不懂",
+            "例方",
+            "凭熟",
+            "印象",
+            "只凭",
+            "向只",
+            "图例",
+            "图看",
+            "地图",
+            "悉印",
+            "懂图",
+            "方向",
+            "熟悉",
+            "看不"
+          ],
+          "diagnosticBasis": "请学生先说明“地图图例与方向”的当前做法，核对是否出现“地图看不懂图例方向只凭熟悉印象”。证据不足先追问。",
+          "effectCheck": "对一张新简图依据图例说明方位"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-c592aef6aa66aa9310beecd9",
+      "subject": "地理",
+      "selected": [
+        {
+          "id": "exp-c592aef6aa66aa9310beecd9",
+          "versionId": "resver-c592aef6aa66aa9310beecd9",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用同一区域两种比例尺比较距离与详略",
+          "method": "用同一区域两种比例尺比较距离与详略",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University",
+            "evidence": "https://www.open.edu/openlearn/society-politics-law/geography/why-maps-are-made/content-section-4.1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级地理的地图比例尺与详略；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "上距",
+            "不清",
+            "例尺",
+            "分不",
+            "和实",
+            "图上",
+            "实际",
+            "尺分",
+            "比例",
+            "清图",
+            "离和",
+            "距离",
+            "际距"
+          ],
+          "diagnosticBasis": "请学生先说明“地图比例尺与详略”的当前做法，核对是否出现“比例尺分不清图上距离和实际距离”。证据不足先追问。",
+          "effectCheck": "对新比例尺独立换算并判断适合的地图"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-4841a22977afa386a7eef671",
+      "subject": "地理",
+      "selected": [
+        {
+          "id": "exp-4841a22977afa386a7eef671",
+          "versionId": "resver-4841a22977afa386a7eef671",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用资源和约束表比较候选地点",
+          "method": "用资源和约束表比较候选地点",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=160890&section=2；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级地理的聚落与资源条件；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "只说",
+            "址只",
+            "好忽",
+            "忽略",
+            "景好",
+            "条件",
+            "源条",
+            "略资",
+            "聚落",
+            "落选",
+            "说风",
+            "资源",
+            "选址",
+            "风景"
+          ],
+          "diagnosticBasis": "请学生先说明“聚落与资源条件”的当前做法，核对是否出现“聚落选址只说风景好忽略资源条件”。证据不足先追问。",
+          "effectCheck": "对新地点资料独立提出有条件的选址理由"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-9764d15c41decca66cf03505",
+      "subject": "道德与法治",
+      "selected": [
+        {
+          "id": "exp-9764d15c41decca66cf03505",
+          "versionId": "resver-9764d15c41decca66cf03505",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用身边同类情境比较规则保护的共同需要",
+          "method": "用身边同类情境比较规则保护的共同需要",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/jyb_xwfb/xw_fbh/moe_2069/xwfbh_2017n/xwfb_20170828/sfcl_20170828/201708/t20170828_312492.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级道德与法治的生活规则与理由；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不出",
+            "习只",
+            "出理",
+            "则学",
+            "只背",
+            "学习",
+            "应当",
+            "当怎",
+            "怎样",
+            "样说",
+            "理由",
+            "背应",
+            "规则",
+            "说不"
+          ],
+          "diagnosticBasis": "请学生先说明“生活规则与理由”的当前做法，核对是否出现“规则学习只背应当怎样说不出理由”。证据不足先追问。",
+          "effectCheck": "对新生活情境提出规则和理由"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-14feb019bb278542df22a11b",
+      "subject": "道德与法治",
+      "selected": [
+        {
+          "id": "exp-14feb019bb278542df22a11b",
+          "versionId": "resver-14feb019bb278542df22a11b",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "按事实、相关规则、行动理由三层整理",
+          "method": "按事实、相关规则、行动理由三层整理",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/jyb_xxgk/xxgk_jyta/jyta_jiaocaiju/202008/t20200817_478437.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级道德与法治的案例中的事实与判断；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不区",
+            "与价",
+            "事实",
+            "价值",
+            "例分",
+            "值判",
+            "分事",
+            "分析",
+            "判断",
+            "区分",
+            "口号",
+            "只喊",
+            "号不",
+            "喊口",
+            "实与",
+            "析只",
+            "案例"
+          ],
+          "diagnosticBasis": "请学生先说明“案例中的事实与判断”的当前做法，核对是否出现“案例分析只喊口号不区分事实与价值判断”。证据不足先追问。",
+          "effectCheck": "对新案例独立写事实和有依据的判断"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-5a7c3926121f701fd3e68376",
+      "subject": "道德与法治",
+      "selected": [
+        {
+          "id": "exp-5a7c3926121f701fd3e68376",
+          "versionId": "resver-5a7c3926121f701fd3e68376",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "围绕可知生活问题比较责任与行动",
+          "method": "围绕可知生活问题比较责任与行动",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/jyb_xwfb/xw_fbh/moe_2069/xwfbh_2017n/xwfb_20170828/sfcl_20170828/201708/t20170828_312492.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级道德与法治的公共议题的讨论与行动；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "公共",
+            "共问",
+            "只有",
+            "可行",
+            "场没",
+            "有可",
+            "有立",
+            "没有",
+            "立场",
+            "行动",
+            "行行",
+            "讨论",
+            "论只",
+            "问题",
+            "题讨"
+          ],
+          "diagnosticBasis": "请学生先说明“公共议题的讨论与行动”的当前做法，核对是否出现“公共问题讨论只有立场没有可行行动”。证据不足先追问。",
+          "effectCheck": "对新公共问题独立写行动方案与依据"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-fe721c4df5c0f8a0db20d48e",
+      "subject": "思想政治",
+      "selected": [
+        {
+          "id": "exp-fe721c4df5c0f8a0db20d48e",
+          "versionId": "resver-fe721c4df5c0f8a0db20d48e",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "围绕经济与社会小议题分清事实观点和依据",
+          "method": "围绕经济与社会小议题分清事实观点和依据",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A06/s3325/202211/t20221110_983146.html?eqid=920191d30002357000000004645c3；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高一思想政治的议题式观点辨析；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "依据",
+            "只有",
+            "料依",
+            "有材",
+            "有结",
+            "材料",
+            "没有",
+            "结论",
+            "讨论",
+            "议题",
+            "论只",
+            "论没",
+            "题讨"
+          ],
+          "diagnosticBasis": "请学生先说明“议题式观点辨析”的当前做法，核对是否出现“议题讨论只有结论没有材料依据”。证据不足先追问。",
+          "effectCheck": "对新材料独立完成观点、依据与结论"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-af20c3d25c58d6aa1ca98f73",
+      "subject": "思想政治",
+      "selected": [
+        {
+          "id": "exp-af20c3d25c58d6aa1ca98f73",
+          "versionId": "resver-af20c3d25c58d6aa1ca98f73",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用可核对情境解释概念并找适用边界",
+          "method": "用可核对情境解释概念并找适用边界",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A06/s3325/202211/t20221110_983146.html?eqid=920191d30002357000000004645c3；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高二思想政治的真实情境与概念迁移；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "会联",
+            "会背",
+            "却不",
+            "实情",
+            "念会",
+            "情境",
+            "概念",
+            "真实",
+            "系真",
+            "联系",
+            "背却"
+          ],
+          "diagnosticBasis": "请学生先说明“真实情境与概念迁移”的当前做法，核对是否出现“概念会背却不会联系真实情境”。证据不足先追问。",
+          "effectCheck": "对新情境独立选概念并解释适用条件"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-8a62e663a254029e09f4278a",
+      "subject": "思想政治",
+      "selected": [
+        {
+          "id": "exp-8a62e663a254029e09f4278a",
+          "versionId": "resver-8a62e663a254029e09f4278a",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "围绕小问题组织资料并说明证据限度",
+          "method": "围绕小问题组织资料并说明证据限度",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A06/s3325/202211/t20221110_983146.html?eqid=920191d30002357000000004645c3；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高三思想政治的项目探究与证据表达；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "只有",
+            "告只",
+            "度没",
+            "态度",
+            "报告",
+            "据链",
+            "探究",
+            "有态",
+            "有证",
+            "没有",
+            "究报",
+            "证据"
+          ],
+          "diagnosticBasis": "请学生先说明“项目探究与证据表达”的当前做法，核对是否出现“探究报告只有态度没有证据链”。证据不足先追问。",
+          "effectCheck": "对新材料独立写建议、证据和一项局限"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-e0a4f375147b42526209163d",
+      "subject": "信息科技",
+      "selected": [
+        {
+          "id": "exp-e0a4f375147b42526209163d",
+          "versionId": "resver-e0a4f375147b42526209163d",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用翻面纸卡表示位权并说明组合",
+          "method": "用翻面纸卡表示位权并说明组合",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "University of Canterbury / CS Unplugged",
+            "evidence": "https://classic.csunplugged.org/activities/binary-numbers/；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级信息科技的二进制表示；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不懂",
+            "二进",
+            "会背",
+            "位权",
+            "制只",
+            "只会",
+            "懂位",
+            "换不",
+            "背转",
+            "转换",
+            "进制"
+          ],
+          "diagnosticBasis": "请学生先说明“二进制表示”的当前做法，核对是否出现“二进制只会背转换不懂位权”。证据不足先追问。",
+          "effectCheck": "不用卡片独立表示一个新数并解释位权"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-286bf6ff48258008a51131d0",
+      "subject": "信息科技",
+      "selected": [
+        {
+          "id": "exp-286bf6ff48258008a51131d0",
+          "versionId": "resver-286bf6ff48258008a51131d0",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用有序与无序纸卡对照查找过程",
+          "method": "用有序与无序纸卡对照查找过程",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "University of Canterbury / CS Unplugged",
+            "evidence": "https://classic.csunplugged.org/activities/searching-algorithms/；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级信息科技的有序查找与条件；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "二分",
+            "分查",
+            "半忘",
+            "只记",
+            "序条",
+            "忘记",
+            "找只",
+            "折半",
+            "有序",
+            "条件",
+            "查找",
+            "记折",
+            "记有"
+          ],
+          "diagnosticBasis": "请学生先说明“有序查找与条件”的当前做法，核对是否出现“二分查找只记折半忘记有序条件”。证据不足先追问。",
+          "effectCheck": "对新序列说明能否二分并列查找步骤"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-66c028ecef97832ff1b3aff9",
+      "subject": "信息科技",
+      "selected": [
+        {
+          "id": "exp-66c028ecef97832ff1b3aff9",
+          "versionId": "resver-66c028ecef97832ff1b3aff9",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用纸卡记录比较、移动及中间状态",
+          "method": "用纸卡记录比较、移动及中间状态",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "University of Canterbury / CS Unplugged",
+            "evidence": "https://classic.csunplugged.org/activities/sorting-algorithms/；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级信息科技的排序与比较步骤；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "会跟",
+            "只背",
+            "名称",
+            "序算",
+            "排序",
+            "比较",
+            "法只",
+            "称不",
+            "算法",
+            "背名",
+            "跟踪",
+            "踪比"
+          ],
+          "diagnosticBasis": "请学生先说明“排序与比较步骤”的当前做法，核对是否出现“排序算法只背名称不会跟踪比较”。证据不足先追问。",
+          "effectCheck": "对一组新数据独立写两轮状态"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-e234ea288a763b14bc75060e",
+      "subject": "信息技术",
+      "selected": [
+        {
+          "id": "exp-e234ea288a763b14bc75060e",
+          "versionId": "resver-e234ea288a763b14bc75060e",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "从纸卡位权追踪到编码与还原的约定",
+          "method": "从纸卡位权追踪到编码与还原的约定",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "University of Canterbury / CS Unplugged",
+            "evidence": "https://classic.csunplugged.org/activities/binary-numbers/；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高一信息技术的数据表示与编码解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不理",
+            "只记",
+            "号不",
+            "据编",
+            "数据",
+            "理解",
+            "码只",
+            "码约",
+            "符号",
+            "约定",
+            "编码",
+            "解编",
+            "记符"
+          ],
+          "diagnosticBasis": "请学生先说明“数据表示与编码解释”的当前做法，核对是否出现“数据编码只记符号不理解编码约定”。证据不足先追问。",
+          "effectCheck": "为一组新数据设计并说明可还原的编码"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-9b182270156096619e85fcc3",
+      "subject": "信息技术",
+      "selected": [
+        {
+          "id": "exp-9b182270156096619e85fcc3",
+          "versionId": "resver-9b182270156096619e85fcc3",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用小样本跟踪查找并设计边界测试",
+          "method": "用小样本跟踪查找并设计边界测试",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "University of Canterbury / CS Unplugged",
+            "evidence": "https://classic.csunplugged.org/activities/searching-algorithms/；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高二信息技术的查找效率与边界；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不存",
+            "和目",
+            "存在",
+            "序查",
+            "忽略",
+            "找忽",
+            "据和",
+            "数据",
+            "查找",
+            "标不",
+            "略空",
+            "目标",
+            "程序",
+            "空数"
+          ],
+          "diagnosticBasis": "请学生先说明“查找效率与边界”的当前做法，核对是否出现“程序查找忽略空数据和目标不存在”。证据不足先追问。",
+          "effectCheck": "对新查找伪代码独立列三个边界测试"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-d0accd2de4fda2767464857e",
+      "subject": "信息技术",
+      "selected": [
+        {
+          "id": "exp-d0accd2de4fda2767464857e",
+          "versionId": "resver-d0accd2de4fda2767464857e",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "从手工排序中找每轮保持的条件",
+          "method": "从手工排序中找每轮保持的条件",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "University of Canterbury / CS Unplugged",
+            "evidence": "https://classic.csunplugged.org/activities/sorting-algorithms/；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高三信息技术的算法过程与不变量；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "会解",
+            "分析",
+            "只比",
+            "度不",
+            "析只",
+            "正确",
+            "比较",
+            "法分",
+            "确性",
+            "算法",
+            "解释",
+            "较速",
+            "速度",
+            "释正"
+          ],
+          "diagnosticBasis": "请学生先说明“算法过程与不变量”的当前做法，核对是否出现“算法分析只比较速度不会解释正确性”。证据不足先追问。",
+          "effectCheck": "对新排序片段独立说明一个不变量"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-870c90168cb975b32f270144",
+      "subject": "通用技术",
+      "selected": [
+        {
+          "id": "exp-870c90168cb975b32f270144",
+          "versionId": "resver-870c90168cb975b32f270144",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "通过角色访谈区分需求、偏好和约束",
+          "method": "通过角色访谈区分需求、偏好和约束",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+            "evidence": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高一通用技术的技术需求与利益相关者；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "产品",
+            "做产",
+            "只想",
+            "品没",
+            "想着",
+            "明确",
+            "有明",
+            "没有",
+            "着做",
+            "确需",
+            "计只",
+            "设计",
+            "需求"
+          ],
+          "diagnosticBasis": "请学生先说明“技术需求与利益相关者”的当前做法，核对是否出现“设计只想着做产品没有明确需求”。证据不足先追问。",
+          "effectCheck": "对新校园问题独立列需求与约束"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-761451211a90c9487821a598",
+      "subject": "通用技术",
+      "selected": [
+        {
+          "id": "exp-761451211a90c9487821a598",
+          "versionId": "resver-761451211a90c9487821a598",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用同一评价表比较不同纸面方案",
+          "method": "用同一评价表比较不同纸面方案",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+            "evidence": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高二通用技术的方案比较与权衡；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不比",
+            "只评",
+            "好看",
+            "技术",
+            "方案",
+            "术方",
+            "案只",
+            "比较",
+            "看不",
+            "约束",
+            "评好",
+            "较约"
+          ],
+          "diagnosticBasis": "请学生先说明“方案比较与权衡”的当前做法，核对是否出现“技术方案只评好看不比较约束”。证据不足先追问。",
+          "effectCheck": "对新方案独立写有条件的选择理由"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-d2ca4c5d7ad4e777949931a3",
+      "subject": "通用技术",
+      "selected": [
+        {
+          "id": "exp-d2ca4c5d7ad4e777949931a3",
+          "versionId": "resver-d2ca4c5d7ad4e777949931a3",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先确定可检查指标再设计纸面或受监督测试",
+          "method": "先确定可检查指标再设计纸面或受监督测试",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+            "evidence": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于高三通用技术的原型测试与优化；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "依据",
+            "做好",
+            "功没",
+            "型做",
+            "好就",
+            "就当",
+            "当成",
+            "成功",
+            "有测",
+            "模型",
+            "没有",
+            "测试",
+            "试依"
+          ],
+          "diagnosticBasis": "请学生先说明“原型测试与优化”的当前做法，核对是否出现“模型做好就当成功没有测试依据”。证据不足先追问。",
+          "effectCheck": "对新设计独立提出指标和测试办法"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-f6786c1660f509fdbec5883e",
+      "subject": "科学",
+      "selected": [
+        {
+          "id": "exp-f6786c1660f509fdbec5883e",
+          "versionId": "resver-f6786c1660f509fdbec5883e",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "从可观察变化形成可检验的问题",
+          "method": "从可观察变化形成可检验的问题",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级科学的观察与科学问题；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不出",
+            "出问",
+            "只看",
+            "学观",
+            "察只",
+            "提不",
+            "热闹",
+            "看热",
+            "科学",
+            "观察",
+            "问题",
+            "闹提"
+          ],
+          "diagnosticBasis": "请学生先说明“观察与科学问题”的当前做法，核对是否出现“科学观察只看热闹提不出问题”。证据不足先追问。",
+          "effectCheck": "对新现象独立写问题和所需证据"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-e9f778a90ebcf48278e5a037",
+      "subject": "科学",
+      "selected": [
+        {
+          "id": "exp-e9f778a90ebcf48278e5a037",
+          "versionId": "resver-e9f778a90ebcf48278e5a037",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用自编粒子图说明分类并指出模型限制",
+          "method": "用自编粒子图说明分类并指出模型限制",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级科学的模型与物质分类；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "型被",
+            "学模",
+            "实物",
+            "当成",
+            "成实",
+            "模型",
+            "照片",
+            "物照",
+            "科学",
+            "被当"
+          ],
+          "diagnosticBasis": "请学生先说明“模型与物质分类”的当前做法，核对是否出现“科学模型被当成实物照片”。证据不足先追问。",
+          "effectCheck": "对新模型独立说明一个用途与局限"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-0d3719e4ed12519430caa7f4",
+      "subject": "科学",
+      "selected": [
+        {
+          "id": "exp-0d3719e4ed12519430caa7f4",
+          "versionId": "resver-0d3719e4ed12519430caa7f4",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用预测、记录、修订顺序核对解释",
+          "method": "用预测、记录、修订顺序核对解释",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级科学的证据与解释的修订；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "仍重",
+            "例仍",
+            "到反",
+            "原结",
+            "反例",
+            "复原",
+            "学解",
+            "科学",
+            "结论",
+            "解释",
+            "遇到",
+            "释遇",
+            "重复"
+          ],
+          "diagnosticBasis": "请学生先说明“证据与解释的修订”的当前做法，核对是否出现“科学解释遇到反例仍重复原结论”。证据不足先追问。",
+          "effectCheck": "对新记录独立说明解释是否需要调整"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-a12a7d75981bb5c23ed9660b",
+      "subject": "音乐",
+      "selected": [
+        {
+          "id": "exp-a12a7d75981bb5c23ed9660b",
+          "versionId": "resver-a12a7d75981bb5c23ed9660b",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用自编拍手材料分开稳定拍与变化节奏",
+          "method": "用自编拍手材料分开稳定拍与变化节奏",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University",
+            "evidence": "https://www.open.edu/openlearn/history-the-arts/discovering-music-through-listening/；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级音乐的节奏与稳定拍；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "一谈",
+            "为一",
+            "乐听",
+            "听辨",
+            "和节",
+            "奏混",
+            "把节",
+            "拍和",
+            "混为",
+            "节奏",
+            "节拍",
+            "辨把",
+            "音乐"
+          ],
+          "diagnosticBasis": "请学生先说明“节奏与稳定拍”的当前做法，核对是否出现“音乐听辨把节拍和节奏混为一谈”。证据不足先追问。",
+          "effectCheck": "对新的纸面节奏独立标出拍点，不声称已检验演奏"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-dc6391911e8c83bdd0c5fb82",
+      "subject": "音乐",
+      "selected": [
+        {
+          "id": "exp-dc6391911e8c83bdd0c5fb82",
+          "versionId": "resver-dc6391911e8c83bdd0c5fb82",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "借助重复与对比线索画简短结构图",
+          "method": "借助重复与对比线索画简短结构图",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University",
+            "evidence": "https://www.open.edu/openlearn/history-the-arts/discovering-music-through-listening/；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级音乐的重复与对比听辨；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不出",
+            "乐欣",
+            "写好",
+            "出结",
+            "只写",
+            "听说",
+            "好听",
+            "欣赏",
+            "结构",
+            "说不",
+            "赏只",
+            "音乐"
+          ],
+          "diagnosticBasis": "请学生先说明“重复与对比听辨”的当前做法，核对是否出现“音乐欣赏只写好听说不出结构”。证据不足先追问。",
+          "effectCheck": "对新自编A-B-A序列独立描述结构"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-caad2260c4b5198e74dd7591",
+      "subject": "音乐",
+      "selected": [
+        {
+          "id": "exp-caad2260c4b5198e74dd7591",
+          "versionId": "resver-caad2260c4b5198e74dd7591",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "围绕实际可听线索与场景说明表达",
+          "method": "围绕实际可听线索与场景说明表达",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=156857&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级音乐的音乐表达与文化情境；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "一解",
+            "个人",
+            "乐讨",
+            "人喜",
+            "唯一",
+            "喜好",
+            "好当",
+            "当唯",
+            "把个",
+            "解释",
+            "讨论",
+            "论把",
+            "音乐"
+          ],
+          "diagnosticBasis": "请学生先说明“音乐表达与文化情境”的当前做法，核对是否出现“音乐讨论把个人喜好当唯一解释”。证据不足先追问。",
+          "effectCheck": "对新实际材料写一条线索与有依据的解释"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-59ea89da606547fc1ad170c0",
+      "subject": "美术",
+      "selected": [
+        {
+          "id": "exp-59ea89da606547fc1ad170c0",
+          "versionId": "resver-59ea89da606547fc1ad170c0",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先作客观观察，再讨论表达感受",
+          "method": "先作客观观察，再讨论表达感受",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=156857&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级美术的视觉观察与描述；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不描",
+            "亮不",
+            "体特",
+            "具体",
+            "写漂",
+            "只写",
+            "描述",
+            "术欣",
+            "欣赏",
+            "漂亮",
+            "特征",
+            "美术",
+            "赏只",
+            "述具"
+          ],
+          "diagnosticBasis": "请学生先说明“视觉观察与描述”的当前做法，核对是否出现“美术欣赏只写漂亮不描述具体特征”。证据不足先追问。",
+          "effectCheck": "对新作品独立写两项观察与一项解释"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-58824409cd86aa9f44e3f2d9",
+      "subject": "美术",
+      "selected": [
+        {
+          "id": "exp-58824409cd86aa9f44e3f2d9",
+          "versionId": "resver-58824409cd86aa9f44e3f2d9",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "比较同一元素的不同安排并说明视线变化",
+          "method": "比较同一元素的不同安排并说明视线变化",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=156857&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级美术的构图与视觉重点；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不清",
+            "主体",
+            "体不",
+            "元素",
+            "只堆",
+            "图时",
+            "堆元",
+            "时主",
+            "构图",
+            "楚只",
+            "清楚"
+          ],
+          "diagnosticBasis": "请学生先说明“构图与视觉重点”的当前做法，核对是否出现“构图时主体不清楚只堆元素”。证据不足先追问。",
+          "effectCheck": "对新表达目标独立画简图并解释主次"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-2aa553efc382bccc5f05bb61",
+      "subject": "美术",
+      "selected": [
+        {
+          "id": "exp-2aa553efc382bccc5f05bb61",
+          "versionId": "resver-2aa553efc382bccc5f05bb61",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "把意图、观察到的效果与修改动作对应",
+          "method": "把意图、观察到的效果与修改动作对应",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=156857&printable=1；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级美术的作品说明与修改；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "作品",
+            "修改",
+            "只有",
+            "可执",
+            "品评",
+            "喜好",
+            "好没",
+            "执行",
+            "有可",
+            "有喜",
+            "没有",
+            "行修",
+            "议只",
+            "评议"
+          ],
+          "diagnosticBasis": "请学生先说明“作品说明与修改”的当前做法，核对是否出现“作品评议只有喜好没有可执行修改”。证据不足先追问。",
+          "effectCheck": "对新作品独立写一项具体且有依据的建议"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-9f334279d403ef496f794eda",
+      "subject": "体育与健康",
+      "selected": [
+        {
+          "id": "exp-9f334279d403ef496f794eda",
+          "versionId": "resver-9f334279d403ef496f794eda",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用教师提供的动作图分阶段理解要点",
+          "method": "用教师提供的动作图分阶段理解要点",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A17/moe_938/s3273/202107/t20210721_545885.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级体育与健康的动作要领与分解理解；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不出",
+            "习只",
+            "仿外",
+            "作学",
+            "关键",
+            "出关",
+            "动作",
+            "只模",
+            "外形",
+            "学习",
+            "形说",
+            "模仿",
+            "要领",
+            "说不",
+            "键要"
+          ],
+          "diagnosticBasis": "请学生先说明“动作要领与分解理解”的当前做法，核对是否出现“动作学习只模仿外形说不出关键要领”。证据不足先追问。",
+          "effectCheck": "对新动作图独立指出一个观察要点"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-cdea6396c18dcfd6276398bc",
+      "subject": "体育与健康",
+      "selected": [
+        {
+          "id": "exp-cdea6396c18dcfd6276398bc",
+          "versionId": "resver-cdea6396c18dcfd6276398bc",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "在教师给定条件内选择适合的练习层次",
+          "method": "在教师给定条件内选择适合的练习层次",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A17/moe_938/s3273/202107/t20210721_545885.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级体育与健康的分层练习计划；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "与条",
+            "习安",
+            "只比",
+            "安排",
+            "平与",
+            "忽略",
+            "排只",
+            "数忽",
+            "条件",
+            "次数",
+            "比次",
+            "水平",
+            "略水",
+            "练习"
+          ],
+          "diagnosticBasis": "请学生先说明“分层练习计划”的当前做法，核对是否出现“练习安排只比次数忽略水平与条件”。证据不足先追问。",
+          "effectCheck": "对新课堂条件独立写计划调整理由"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-87ad8fa64cf4b2f8c405ccb4",
+      "subject": "体育与健康",
+      "selected": [
+        {
+          "id": "exp-87ad8fa64cf4b2f8c405ccb4",
+          "versionId": "resver-87ad8fa64cf4b2f8c405ccb4",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用简化比赛图示连接规则与具体行为",
+          "method": "用简化比赛图示连接规则与具体行为",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A17/moe_938/s3273/202107/t20210721_545885.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级体育与健康的规则情境与比赛反思；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不会",
+            "于情",
+            "会用",
+            "体育",
+            "则只",
+            "判断",
+            "只背",
+            "境判",
+            "情境",
+            "文不",
+            "条文",
+            "用于",
+            "育规",
+            "背条",
+            "规则"
+          ],
+          "diagnosticBasis": "请学生先说明“规则情境与比赛反思”的当前做法，核对是否出现“体育规则只背条文不会用于情境判断”。证据不足先追问。",
+          "effectCheck": "对新比赛片段文字独立说明规则依据"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-5f4c98f57c41bb8ae902672c",
+      "subject": "劳动",
+      "selected": [
+        {
+          "id": "exp-5f4c98f57c41bb8ae902672c",
+          "versionId": "resver-5f4c98f57c41bb8ae902672c",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "把日常劳动分成准备、操作、检查",
+          "method": "把日常劳动分成准备、操作、检查",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A26/jcj_kcjcgh/202007/t20200715_472808.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级劳动的劳动任务与操作计划；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "与步",
+            "写完",
+            "准备",
+            "划只",
+            "动计",
+            "劳动",
+            "只写",
+            "备与",
+            "完成",
+            "成目",
+            "有准",
+            "标没",
+            "步骤",
+            "没有",
+            "目标",
+            "计划"
+          ],
+          "diagnosticBasis": "请学生先说明“劳动任务与操作计划”的当前做法，核对是否出现“劳动计划只写完成目标没有准备与步骤”。证据不足先追问。",
+          "effectCheck": "为新日常任务独立列准备和检查办法"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-f21bf139bd6d873498bb8329",
+      "subject": "劳动",
+      "selected": [
+        {
+          "id": "exp-f21bf139bd6d873498bb8329",
+          "versionId": "resver-f21bf139bd6d873498bb8329",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用任务单保留过程、问题和修改",
+          "method": "用任务单保留过程、问题和修改",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582367012450.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级劳动的劳动过程记录；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "交成",
+            "依据",
+            "动记",
+            "劳动",
+            "只交",
+            "品照",
+            "录只",
+            "成品",
+            "有过",
+            "没有",
+            "照片",
+            "片没",
+            "程依",
+            "记录",
+            "过程"
+          ],
+          "diagnosticBasis": "请学生先说明“劳动过程记录”的当前做法，核对是否出现“劳动记录只交成品照片没有过程依据”。证据不足先追问。",
+          "effectCheck": "阅读新任务记录指出还缺哪项过程证据"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-7f5c0b42a579ce153930990d",
+      "subject": "劳动",
+      "selected": [
+        {
+          "id": "exp-7f5c0b42a579ce153930990d",
+          "versionId": "resver-7f5c0b42a579ce153930990d",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "将成果评价对应实际标准与改进动作",
+          "method": "将成果评价对应实际标准与改进动作",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582367012450.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级劳动的劳动成果评价与改进；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "价只",
+            "依据",
+            "写很",
+            "动评",
+            "劳动",
+            "只写",
+            "好没",
+            "很好",
+            "有质",
+            "没有",
+            "评价",
+            "质量",
+            "量依"
+          ],
+          "diagnosticBasis": "请学生先说明“劳动成果评价与改进”的当前做法，核对是否出现“劳动评价只写很好没有质量依据”。证据不足先追问。",
+          "effectCheck": "对新成果记录独立写有依据的改进建议"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-9b064fbfb8b608f2a1f91a4e",
+      "subject": "综合实践活动",
+      "selected": [
+        {
+          "id": "exp-9b064fbfb8b608f2a1f91a4e",
+          "versionId": "resver-9b064fbfb8b608f2a1f91a4e",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "从身边现象缩小为可观察的小问题",
+          "method": "从身边现象缩小为可观察的小问题",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A26/s8001/201710/t20171017_316616.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级综合实践活动的探究问题的限定；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "合实",
+            "大无",
+            "太大",
+            "实践",
+            "实际",
+            "无法",
+            "法实",
+            "综合",
+            "调查",
+            "践选",
+            "选题",
+            "际调",
+            "题太"
+          ],
+          "diagnosticBasis": "请学生先说明“探究问题的限定”的当前做法，核对是否出现“综合实践选题太大无法实际调查”。证据不足先追问。",
+          "effectCheck": "将一个新宽泛题目改成可调查问题"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-8d9460bed341acd592cb3401",
+      "subject": "综合实践活动",
+      "selected": [
+        {
+          "id": "exp-8d9460bed341acd592cb3401",
+          "versionId": "resver-8d9460bed341acd592cb3401",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "先问实际经历，再归纳需求并保留原始记录",
+          "method": "先问实际经历，再归纳需求并保留原始记录",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "Maker Day Toolkit: Susan Crichton and Deb Carter（PDF署名；具体活动作者未单列）",
+            "evidence": "https://www.curriculum.gov.bc.ca/sites/curriculum.gov.bc.ca/files/contributed-resources/Designing%20a%20Watering%20System%20for%20a%20School%20Garden.pdf；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级综合实践活动的访谈与需求证据；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不到",
+            "不赞",
+            "体信",
+            "信息",
+            "具体",
+            "到具",
+            "只问",
+            "实践",
+            "得不",
+            "成得",
+            "访谈",
+            "谈只",
+            "赞不",
+            "赞成",
+            "践访",
+            "问赞"
+          ],
+          "diagnosticBasis": "请学生先说明“访谈与需求证据”的当前做法，核对是否出现“实践访谈只问赞不赞成得不到具体信息”。证据不足先追问。",
+          "effectCheck": "对新访谈记录独立提一项有依据的需求"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "exp-27263601af2a7396289e3ad0",
+      "subject": "综合实践活动",
+      "selected": [
+        {
+          "id": "exp-27263601af2a7396289e3ad0",
+          "versionId": "resver-27263601af2a7396289e3ad0",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "按问题、过程证据、结论和局限组织成果",
+          "method": "按问题、过程证据、结论和局限组织成果",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "current:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "中华人民共和国教育部",
+            "evidence": "https://www.moe.gov.cn/srcsite/A26/s8001/201710/t20171017_316616.html；来源提供教学方法方向；本条的中文问题、步骤组织与检查题安排由项目适配，非逐字翻译、非原教师课堂实录。",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。；只确认项目中文方法摘要的本地使用，不代表取得原材料再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级综合实践活动的实践成果与证据汇报；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "不说",
+            "与局",
+            "么不",
+            "了什",
+            "什么",
+            "做了",
+            "只讲",
+            "实践",
+            "局限",
+            "报只",
+            "据与",
+            "明证",
+            "汇报",
+            "讲做",
+            "证据",
+            "说明",
+            "践汇"
+          ],
+          "diagnosticBasis": "请学生先说明“实践成果与证据汇报”的当前做法，核对是否出现“实践汇报只讲做了什么不说明证据与局限”。证据不足先追问。",
+          "effectCheck": "对一份新简报独立指出结论和证据是否对应"
+        }
+      ],
+      "negativeProbesPassed": [
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "successes": 57,
+  "total": 57,
+  "wrongMatches": 0,
+  "negativeTotal": 171
+}
