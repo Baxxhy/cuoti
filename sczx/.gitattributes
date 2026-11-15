@@ -1,0 +1,2 @@
+# CSV score templates intentionally use the standard CRLF line ending.
+experiments/teaching_ablation/results/**/*.csv whitespace=cr-at-eol
