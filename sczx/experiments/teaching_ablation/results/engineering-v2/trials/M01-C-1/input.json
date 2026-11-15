@@ -1,0 +1,338 @@
+{
+  "prompt": "你为学生提供下一步教学指导。保留原答，不直接给出当前题完整答案，不断言掌握程度。引用只能使用输入中实际可见的版本ID，并说明哪条建议受该材料支持；无材料可留空。不得调用工具。只返回指定JSON。独立新题仅作为后续人工测量材料，本次不作答。\n结合给定困难证据、已匹配经验及记忆决策提供指导；证据不足先核对，避免将规则建议当作认知诊断。\n\n输入：{\"subject\": \"数学\", \"grade\": \"八年级\", \"question\": \"4、5、10厘米三条线段能围成三角形吗？\", \"original_answer\": \"能，因为有三根。\", \"difficulty\": \"不知道长度条件。\", \"public_knowledge\": \"两短边之和必须大于最长边，不用外观猜。\", \"experiences\": [{\"id\": \"exp-7041cb6634a404a8ceb7fac2\", \"versionId\": \"resver-7041cb6634a404a8ceb7fac2\", \"version\": 1, \"title\": \"三角形性质与解释：借助可移动纸条形成图形并用条件解释\", \"subject\": \"数学\", \"grade\": \"八年级\", \"knowledgeIds\": [\"kp-7041cb6634a404a8ceb7fac2\"], \"content\": \"借助可移动纸条形成图形并用条件解释；尝试用三根纸条围三角形；记录能否围成及长度；同伴比较并解释发现\", \"experience\": {\"knowledgePoints\": [\"三角形性质与解释\"], \"goal\": \"能够就“三角形性质与解释”给出有依据的说明，并完成对应独立检查。\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"difficulty\": \"会记三角形结论却说不出条件\", \"diagnosis\": \"请学生先说明“三角形性质与解释”的当前做法，核对是否出现“会记三角形结论却说不出条件”。证据不足先追问。\", \"strategy\": \"借助可移动纸条形成图形并用条件解释\", \"steps\": [\"尝试用三根纸条围三角形\", \"记录能否围成及长度\", \"同伴比较并解释发现\"], \"questions\": [\"哪一个长度关系阻止纸条围成三角形？\"], \"responses\": [\"学生可能只根据图形外观判断（预设可能回应，非课堂实录）\"], \"adjustment\": \"选一组接近临界的长度再检查\", \"boundary\": \"只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"effectCheck\": \"不用操作材料，判断新长度组并说明依据\", \"suggestions\": []}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"数学\", \"grade\": \"八年级\", \"knowledgeIds\": [\"kp-7041cb6634a404a8ceb7fac2\"]}, \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESS-India\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"experienceReview\": {\"reviewerId\": \"frozen-user-review\", \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESS-India\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"数学\", \"grade\": \"八年级\", \"knowledgeIds\": [\"kp-7041cb6634a404a8ceb7fac2\"]}}, \"source\": {\"id\": \"triangles\", \"title\": \"Cooperative learning and mathematical talk: triangles\", \"url\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1\", \"institution\": \"The Open University / TESS-India\", \"author\": \"The Open University / TESS-India\", \"publishedAt\": null, \"checkedAt\": \"2026-11-14\", \"verification\": \"web-readable\", \"license\": \"CC-BY-SA-4.0\", \"reuseMode\": \"adapted_text\", \"originalScope\": \"secondary\", \"notes\": \"\", \"verificationMethod\": \"在线浏览原发布机构页面；日期未知时不以检索日期代替。\"}, \"score\": 6.216481, \"bm25Score\": 8.438672, \"textScore\": 5.766481, \"knowledgeScore\": 0.45, \"contextScore\": 0.0, \"matchedFields\": [{\"field\": \"title\", \"label\": \"标题\", \"score\": 0.926489, \"bm25\": 0.863046, \"matchedTerms\": [\"三角\", \"条件\", \"角形\"], \"contextMatched\": false}, {\"field\": \"knowledgePoints\", \"label\": \"知识点\", \"score\": 1.2238, \"bm25\": 0.95894, \"matchedTerms\": [\"三角\", \"角形\"], \"contextMatched\": false}, {\"field\": \"difficulty\", \"label\": \"学生困难\", \"score\": 0.926489, \"bm25\": 0.863046, \"matchedTerms\": [\"三角\", \"条件\", \"角形\"], \"contextMatched\": false}, {\"field\": \"goal\", \"label\": \"教学目标\", \"score\": 0.584362, \"bm25\": 0.575364, \"matchedTerms\": [\"三角\", \"角形\"], \"contextMatched\": false}, {\"field\": \"content\", \"label\": \"正文\", \"score\": 0.589897, \"bm25\": 1.43841, \"matchedTerms\": [\"三角\", \"围成\", \"条件\", \"角形\", \"长度\"], \"contextMatched\": false}, {\"field\": \"steps\", \"label\": \"讲解步骤\", \"score\": 0.481537, \"bm25\": 1.150728, \"matchedTerms\": [\"三角\", \"围成\", \"角形\", \"长度\"], \"contextMatched\": false}, {\"field\": \"questions\", \"label\": \"教师提问\", \"score\": 0.530907, \"bm25\": 1.43841, \"matchedTerms\": [\"三角\", \"围成\", \"成三\", \"角形\", \"长度\"], \"contextMatched\": false}, {\"field\": \"adjustment\", \"label\": \"回应调整\", \"score\": 0.178729, \"bm25\": 0.287682, \"matchedTerms\": [\"长度\"], \"contextMatched\": false}, {\"field\": \"boundary\", \"label\": \"适用边界\", \"score\": 0.324271, \"bm25\": 0.863046, \"matchedTerms\": [\"三角\", \"条件\", \"角形\"], \"contextMatched\": false}], \"knowledgeMatches\": [{\"id\": \"kp-7041cb6634a404a8ceb7fac2\", \"name\": \"三角形性质与解释\", \"relation\": \"direct\"}], \"matchReasons\": [\"直接关联目标知识点\", \"匹配知识点、标题、学生困难\"]}], \"difficulty_evidence\": {\"schema\": 1, \"subject\": \"数学\", \"dimensions\": [\"理解任务\", \"说明依据\", \"独立应用\"], \"observations\": [{\"id\": \"M01\", \"kind\": \"原始作答\", \"text\": \"能，因为有三根。\"}, {\"id\": \"M01:request\", \"kind\": \"学生自述\", \"text\": \"不知道长度条件。\"}], \"historyEvidence\": [], \"evidenceSufficiency\": \"需进一步确认\", \"difficulty\": \"学生报告当前学习遇到困难\", \"possibleCauses\": [], \"confirmationQuestion\": \"请指出你从哪一步开始不确定，并说明刚才是怎么想的。\", \"recommendedStrategy\": \"hint\", \"reason\": \"尚不能根据一次作答判断原因，先给提示并追问。\"}, \"learning_memory\": [], \"decision\": {\"schema\": 1, \"selected\": [{\"id\": \"exp-7041cb6634a404a8ceb7fac2\", \"versionId\": \"resver-7041cb6634a404a8ceb7fac2\", \"version\": 1, \"strategy\": \"hint\", \"diagnosticOnly\": false, \"teachingMethod\": \"借助可移动纸条形成图形并用条件解释\", \"method\": \"借助可移动纸条形成图形并用条件解释\", \"reason\": \"学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。\", \"evidenceIds\": [\"M01\", \"M01:request\"], \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESS-India\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"conditions\": [\"只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。\"], \"matchedDifficultyTerms\": [\"条件\"], \"diagnosticBasis\": \"请学生先说明“三角形性质与解释”的当前做法，核对是否出现“会记三角形结论却说不出条件”。证据不足先追问。\", \"effectCheck\": \"不用操作材料，判断新长度组并说明依据\"}], \"rejected\": [], \"fallback\": false, \"notice\": \"参考已审核教学经验，效果仍需独立练习与教师反馈验证。\"}}",
+  "data": {
+    "subject": "数学",
+    "grade": "八年级",
+    "question": "4、5、10厘米三条线段能围成三角形吗？",
+    "original_answer": "能，因为有三根。",
+    "difficulty": "不知道长度条件。",
+    "public_knowledge": "两短边之和必须大于最长边，不用外观猜。",
+    "experiences": [
+      {
+        "id": "exp-7041cb6634a404a8ceb7fac2",
+        "versionId": "resver-7041cb6634a404a8ceb7fac2",
+        "version": 1,
+        "title": "三角形性质与解释：借助可移动纸条形成图形并用条件解释",
+        "subject": "数学",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-7041cb6634a404a8ceb7fac2"
+        ],
+        "content": "借助可移动纸条形成图形并用条件解释；尝试用三根纸条围三角形；记录能否围成及长度；同伴比较并解释发现",
+        "experience": {
+          "knowledgePoints": [
+            "三角形性质与解释"
+          ],
+          "goal": "能够就“三角形性质与解释”给出有依据的说明，并完成对应独立检查。",
+          "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+          "difficulty": "会记三角形结论却说不出条件",
+          "diagnosis": "请学生先说明“三角形性质与解释”的当前做法，核对是否出现“会记三角形结论却说不出条件”。证据不足先追问。",
+          "strategy": "借助可移动纸条形成图形并用条件解释",
+          "steps": [
+            "尝试用三根纸条围三角形",
+            "记录能否围成及长度",
+            "同伴比较并解释发现"
+          ],
+          "questions": [
+            "哪一个长度关系阻止纸条围成三角形？"
+          ],
+          "responses": [
+            "学生可能只根据图形外观判断（预设可能回应，非课堂实录）"
+          ],
+          "adjustment": "选一组接近临界的长度再检查",
+          "boundary": "只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。",
+          "effectCheck": "不用操作材料，判断新长度组并说明依据",
+          "suggestions": []
+        },
+        "applicability": {
+          "schema": 1,
+          "kind": "knowledge_scope",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ]
+        },
+        "provenance": {
+          "kind": "public",
+          "author": "The Open University / TESS-India",
+          "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1",
+          "authorization": "internal",
+          "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+        },
+        "experienceReview": {
+          "reviewerId": "frozen-user-review",
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "applicability": {
+            "schema": 1,
+            "kind": "knowledge_scope",
+            "subject": "数学",
+            "grade": "八年级",
+            "knowledgeIds": [
+              "kp-7041cb6634a404a8ceb7fac2"
+            ]
+          }
+        },
+        "source": {
+          "id": "triangles",
+          "title": "Cooperative learning and mathematical talk: triangles",
+          "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1",
+          "institution": "The Open University / TESS-India",
+          "author": "The Open University / TESS-India",
+          "publishedAt": null,
+          "checkedAt": "2026-11-14",
+          "verification": "web-readable",
+          "license": "CC-BY-SA-4.0",
+          "reuseMode": "adapted_text",
+          "originalScope": "secondary",
+          "notes": "",
+          "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+        },
+        "score": 6.216481,
+        "bm25Score": 8.438672,
+        "textScore": 5.766481,
+        "knowledgeScore": 0.45,
+        "contextScore": 0.0,
+        "matchedFields": [
+          {
+            "field": "title",
+            "label": "标题",
+            "score": 0.926489,
+            "bm25": 0.863046,
+            "matchedTerms": [
+              "三角",
+              "条件",
+              "角形"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "knowledgePoints",
+            "label": "知识点",
+            "score": 1.2238,
+            "bm25": 0.95894,
+            "matchedTerms": [
+              "三角",
+              "角形"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "difficulty",
+            "label": "学生困难",
+            "score": 0.926489,
+            "bm25": 0.863046,
+            "matchedTerms": [
+              "三角",
+              "条件",
+              "角形"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "goal",
+            "label": "教学目标",
+            "score": 0.584362,
+            "bm25": 0.575364,
+            "matchedTerms": [
+              "三角",
+              "角形"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "content",
+            "label": "正文",
+            "score": 0.589897,
+            "bm25": 1.43841,
+            "matchedTerms": [
+              "三角",
+              "围成",
+              "条件",
+              "角形",
+              "长度"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "steps",
+            "label": "讲解步骤",
+            "score": 0.481537,
+            "bm25": 1.150728,
+            "matchedTerms": [
+              "三角",
+              "围成",
+              "角形",
+              "长度"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "questions",
+            "label": "教师提问",
+            "score": 0.530907,
+            "bm25": 1.43841,
+            "matchedTerms": [
+              "三角",
+              "围成",
+              "成三",
+              "角形",
+              "长度"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "adjustment",
+            "label": "回应调整",
+            "score": 0.178729,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "长度"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "boundary",
+            "label": "适用边界",
+            "score": 0.324271,
+            "bm25": 0.863046,
+            "matchedTerms": [
+              "三角",
+              "条件",
+              "角形"
+            ],
+            "contextMatched": false
+          }
+        ],
+        "knowledgeMatches": [
+          {
+            "id": "kp-7041cb6634a404a8ceb7fac2",
+            "name": "三角形性质与解释",
+            "relation": "direct"
+          }
+        ],
+        "matchReasons": [
+          "直接关联目标知识点",
+          "匹配知识点、标题、学生困难"
+        ]
+      }
+    ],
+    "difficulty_evidence": {
+      "schema": 1,
+      "subject": "数学",
+      "dimensions": [
+        "理解任务",
+        "说明依据",
+        "独立应用"
+      ],
+      "observations": [
+        {
+          "id": "M01",
+          "kind": "原始作答",
+          "text": "能，因为有三根。"
+        },
+        {
+          "id": "M01:request",
+          "kind": "学生自述",
+          "text": "不知道长度条件。"
+        }
+      ],
+      "historyEvidence": [],
+      "evidenceSufficiency": "需进一步确认",
+      "difficulty": "学生报告当前学习遇到困难",
+      "possibleCauses": [],
+      "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。",
+      "recommendedStrategy": "hint",
+      "reason": "尚不能根据一次作答判断原因，先给提示并追问。"
+    },
+    "learning_memory": [],
+    "decision": {
+      "schema": 1,
+      "selected": [
+        {
+          "id": "exp-7041cb6634a404a8ceb7fac2",
+          "versionId": "resver-7041cb6634a404a8ceb7fac2",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "借助可移动纸条形成图形并用条件解释",
+          "method": "借助可移动纸条形成图形并用条件解释",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "M01",
+            "M01:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "条件"
+          ],
+          "diagnosticBasis": "请学生先说明“三角形性质与解释”的当前做法，核对是否出现“会记三角形结论却说不出条件”。证据不足先追问。",
+          "effectCheck": "不用操作材料，判断新长度组并说明依据"
+        }
+      ],
+      "rejected": [],
+      "fallback": false,
+      "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。"
+    }
+  },
+  "meta": {
+    "candidateVersionIds": [
+      "resver-7041cb6634a404a8ceb7fac2"
+    ],
+    "decision": {
+      "schema": 1,
+      "selected": [
+        {
+          "id": "exp-7041cb6634a404a8ceb7fac2",
+          "versionId": "resver-7041cb6634a404a8ceb7fac2",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "借助可移动纸条形成图形并用条件解释",
+          "method": "借助可移动纸条形成图形并用条件解释",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "M01",
+            "M01:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESS-India",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "conditions": [
+            "只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "条件"
+          ],
+          "diagnosticBasis": "请学生先说明“三角形性质与解释”的当前做法，核对是否出现“会记三角形结论却说不出条件”。证据不足先追问。",
+          "effectCheck": "不用操作材料，判断新长度组并说明依据"
+        }
+      ],
+      "rejected": [],
+      "fallback": false,
+      "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。"
+    }
+  },
+  "group": "C",
+  "scenario_id": "M01",
+  "replicate": 1
+}

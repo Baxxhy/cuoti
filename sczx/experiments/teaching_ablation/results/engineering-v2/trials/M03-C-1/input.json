@@ -1,0 +1,61 @@
+{
+  "prompt": "你为学生提供下一步教学指导。保留原答，不直接给出当前题完整答案，不断言掌握程度。引用只能使用输入中实际可见的版本ID，并说明哪条建议受该材料支持；无材料可留空。不得调用工具。只返回指定JSON。独立新题仅作为后续人工测量材料，本次不作答。\n结合给定困难证据、已匹配经验及记忆决策提供指导；证据不足先核对，避免将规则建议当作认知诊断。\n\n输入：{\"subject\": \"数学\", \"grade\": \"七年级\", \"question\": \"已知2x=10，求x。\", \"original_answer\": \"x=5，因为两边都减去2。\", \"difficulty\": \"答案对了，我的理由也对吗？\", \"public_knowledge\": \"答案正确但说明错误，应说明同除非零2；不编造匹配名师。\", \"experiences\": [], \"difficulty_evidence\": {\"schema\": 1, \"subject\": \"数学\", \"dimensions\": [\"理解任务\", \"说明依据\", \"独立应用\"], \"observations\": [{\"id\": \"M03\", \"kind\": \"原始作答\", \"text\": \"x=5，因为两边都减去2。\"}, {\"id\": \"M03:request\", \"kind\": \"学生自述\", \"text\": \"答案对了，我的理由也对吗？\"}], \"historyEvidence\": [], \"evidenceSufficiency\": \"需进一步确认\", \"difficulty\": \"学生报告当前学习遇到困难\", \"possibleCauses\": [], \"confirmationQuestion\": \"请指出你从哪一步开始不确定，并说明刚才是怎么想的。\", \"recommendedStrategy\": \"hint\", \"reason\": \"尚不能根据一次作答判断原因，先给提示并追问。\"}, \"learning_memory\": [], \"decision\": {\"schema\": 1, \"selected\": [], \"rejected\": [], \"fallback\": true, \"notice\": \"当前没有匹配到来源与适用条件均已核对的教学经验，使用通用AI指导。\"}}",
+  "data": {
+    "subject": "数学",
+    "grade": "七年级",
+    "question": "已知2x=10，求x。",
+    "original_answer": "x=5，因为两边都减去2。",
+    "difficulty": "答案对了，我的理由也对吗？",
+    "public_knowledge": "答案正确但说明错误，应说明同除非零2；不编造匹配名师。",
+    "experiences": [],
+    "difficulty_evidence": {
+      "schema": 1,
+      "subject": "数学",
+      "dimensions": [
+        "理解任务",
+        "说明依据",
+        "独立应用"
+      ],
+      "observations": [
+        {
+          "id": "M03",
+          "kind": "原始作答",
+          "text": "x=5，因为两边都减去2。"
+        },
+        {
+          "id": "M03:request",
+          "kind": "学生自述",
+          "text": "答案对了，我的理由也对吗？"
+        }
+      ],
+      "historyEvidence": [],
+      "evidenceSufficiency": "需进一步确认",
+      "difficulty": "学生报告当前学习遇到困难",
+      "possibleCauses": [],
+      "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。",
+      "recommendedStrategy": "hint",
+      "reason": "尚不能根据一次作答判断原因，先给提示并追问。"
+    },
+    "learning_memory": [],
+    "decision": {
+      "schema": 1,
+      "selected": [],
+      "rejected": [],
+      "fallback": true,
+      "notice": "当前没有匹配到来源与适用条件均已核对的教学经验，使用通用AI指导。"
+    }
+  },
+  "meta": {
+    "candidateVersionIds": [],
+    "decision": {
+      "schema": 1,
+      "selected": [],
+      "rejected": [],
+      "fallback": true,
+      "notice": "当前没有匹配到来源与适用条件均已核对的教学经验，使用通用AI指导。"
+    }
+  },
+  "group": "C",
+  "scenario_id": "M03",
+  "replicate": 1
+}

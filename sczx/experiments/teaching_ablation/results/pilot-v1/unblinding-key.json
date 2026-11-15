@@ -1,0 +1,32 @@
+{
+  "8d066ca413724136": {
+    "scenario_id": "L01",
+    "group": "A",
+    "replicate": "0"
+  },
+  "33d455da594b824e": {
+    "scenario_id": "L01",
+    "group": "B",
+    "replicate": "0"
+  },
+  "7ff4e075595ad086": {
+    "scenario_id": "L01",
+    "group": "C",
+    "replicate": "0"
+  },
+  "ea7795864fba43fa": {
+    "scenario_id": "L02",
+    "group": "A",
+    "replicate": "0"
+  },
+  "6170bcd376310682": {
+    "scenario_id": "L02",
+    "group": "B",
+    "replicate": "0"
+  },
+  "1c0f9f734116afa7": {
+    "scenario_id": "L02",
+    "group": "C",
+    "replicate": "0"
+  }
+}

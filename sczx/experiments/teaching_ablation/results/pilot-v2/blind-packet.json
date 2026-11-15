@@ -1,0 +1,398 @@
+[
+  {
+    "blind_id": "0591e8034e906ef1",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "指出擦干长椅、方便他人，不能编造人物心理。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "需要从笼统评价转向文本证据，并说明证据怎样支持判断。",
+      "strategy": "hint",
+      "hint": "保留“因为同学很好”这个判断，回到题目中找一个具体行动，想想它怎样体现关心他人。",
+      "steps": [
+        "圈出判断里的关键词“关心他人”。",
+        "找出题目中同学做的具体事情。",
+        "用“同学……，这方便了别人，所以能看出……”把行动和判断连起来。"
+      ],
+      "question": "哪一个具体行动能直接支持“关心他人”？",
+      "citations": [
+        {
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "supports": "支持先圈出判断关键词、找出文本依据，再解释原句如何支持判断。"
+        }
+      ]
+    }
+  },
+  {
+    "blind_id": "6e4e4a4fc0ce1fd2",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "指出擦干长椅、方便他人，不能编造人物心理。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "学生能给出结论，但尚未指出文本依据；当前应练习把判断和具体行为证据配对。",
+      "strategy": "hint",
+      "hint": "“同学很好”是判断。回想题目中同学做了什么，再想这个行为怎样方便了别人。",
+      "steps": [
+        "圈出判断“关心他人”中的关键词。",
+        "从题目描述中找出能支持这个判断的具体行为。",
+        "用“他……，让别人……”说明行为与判断的联系，避免补写没有依据的心理。"
+      ],
+      "question": "题目里哪一个具体行为，能直接支持“关心他人”？它怎样方便了别人？",
+      "citations": [
+        {
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "supports": "支持将判断与具体行为证据配对，并解释证据如何支持判断。"
+        }
+      ]
+    }
+  },
+  {
+    "blind_id": "7a4451a72e527e20",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "指出擦干长椅、方便他人，不能编造人物心理。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "学生能表达结论，但当前困难是还没有把结论连到题目中的具体行为。",
+      "strategy": "hint",
+      "hint": "回到题干，找出同学做了什么，以及这个行为怎样方便别人。",
+      "steps": [
+        "先圈出题目写明的具体行为。",
+        "再说明这个行为给别人带来了什么帮助。",
+        "用“他/她……，方便……，体现了……”把证据和结论连起来。"
+      ],
+      "question": "题干中哪一个具体行为能支持“关心他人”？它方便了谁？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "7f6140d7ae1d0eac",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "指出擦干长椅、方便他人，不能编造人物心理。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "目前证据不足以判断原因；保留原答“因为同学很好。”和自述“我只会说结论”，先核对你从哪一步开始不确定，以及刚才是怎么想的。",
+      "strategy": "hint",
+      "hint": "回到题目给出的情境，圈出“关心他人”这个判断的关键词，再找出哪项具体行动能支持它。",
+      "steps": [
+        "指出同学做了什么。",
+        "说明这项行动怎样方便别人。",
+        "用“同学……，方便别人……，这体现了关心他人”组织说明；只依据题目给出的信息，不补写人物心理。"
+      ],
+      "question": "你从哪一步开始不确定？刚才是怎么想的？",
+      "citations": [
+        {
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "supports": "支持将判断与原句或具体依据配对，并解释依据如何支持判断。"
+        }
+      ]
+    }
+  },
+  {
+    "blind_id": "b019dc7b1f59291b",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "指出擦干长椅、方便他人，不能编造人物心理。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "学生能给出评价性结论，但还需要练习从题干中的具体行为找证据。",
+      "strategy": "hint",
+      "hint": "把“很好”换成题目里看得见的动作和它带来的方便。",
+      "steps": [
+        "先圈出同学做了什么。",
+        "再说这个动作给别人带来什么方便。",
+        "用“他擦干长椅，方便别人坐下，说明他关心他人”这样的句式组织证据；不要补写题目没有提供的心理。"
+      ],
+      "question": "试着用“做了什么”和“给别人带来什么方便”两部分，重新表达你的理由。",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "f646d64a0b4938e5",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "指出擦干长椅、方便他人，不能编造人物心理。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "当前答案只有结论，尚未提供文本依据；自述和记录提示这一困难重复出现，但不足以判断具体原因或掌握程度。",
+      "strategy": "foundation",
+      "hint": "先核对你怎样理解“找出证据”：哪一步开始不确定？回到题目，圈出“关心他人”这个判断的关键词。",
+      "steps": [
+        "在题目给出的内容中找出同学做了什么。",
+        "指出“擦干长椅”或“方便别人坐下”这一具体信息。",
+        "用一句话说明这条信息怎样支持“关心他人”的判断，不补写未给出的人物心理。",
+        "保留原答案“因为同学很好”，在后面补上具体行为和说明。"
+      ],
+      "question": "你从哪一步开始不确定？题目中的哪项具体行为能支持你的判断？",
+      "citations": [
+        {
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "supports": "支持将判断与文本中的具体依据配对，并解释原句如何支持判断。"
+        }
+      ]
+    }
+  }
+]

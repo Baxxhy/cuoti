@@ -1,0 +1,166 @@
+{
+  "prompt": "你为学生提供下一步教学指导。保留原答，不直接给出当前题完整答案，不断言掌握程度。引用只能使用输入中实际可见的版本ID，并说明哪条建议受该材料支持；无材料可留空。不得调用工具。只返回指定JSON。独立新题仅作为后续人工测量材料，本次不作答。\n参考给定检索候选，自行判断是否适用并选择策略；不得假称候选已验证，不使用项目额外匹配或记忆机制。\n\n输入：{\"subject\": \"物理\", \"grade\": \"八年级\", \"question\": \"书静止在桌面上，说明书受到的力。\", \"original_answer\": \"书压桌子的力也画在书上。\", \"difficulty\": \"不知道哪个物体受力。\", \"public_knowledge\": \"分析受力应先明确研究对象，并区分施力物体与受力物体。\", \"experiences\": [{\"id\": \"exp-a6878cdb6a68dc2fc7bd492a\", \"versionId\": \"resver-a6878cdb6a68dc2fc7bd492a\", \"version\": 1, \"title\": \"力的示意图：给简图补力箭头并用情境解释\", \"subject\": \"物理\", \"grade\": \"八年级\", \"knowledgeIds\": [\"kp-a6878cdb6a68dc2fc7bd492a\"], \"content\": \"给简图补力箭头并用情境解释；确定研究对象；标出施力者和箭头方向；比较平衡与变化情境\", \"experience\": {\"knowledgePoints\": [\"力的示意图\"], \"goal\": \"能够就“力的示意图”给出有依据的说明，并完成对应独立检查。\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"difficulty\": \"力的示意图只画物体不清楚力的方向\", \"diagnosis\": \"请学生先说明“力的示意图”的当前做法，核对是否出现“力的示意图只画物体不清楚力的方向”。证据不足先追问。\", \"strategy\": \"给简图补力箭头并用情境解释\", \"steps\": [\"确定研究对象\", \"标出施力者和箭头方向\", \"比较平衡与变化情境\"], \"questions\": [\"这支箭头表示谁对谁的作用？\"], \"responses\": [\"学生可能把运动方向当成所有力的方向（预设可能回应，非课堂实录）\"], \"adjustment\": \"先逐个说出相互作用再画箭头\", \"boundary\": \"只适用于八年级物理的力的示意图；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"effectCheck\": \"对新受力情境独立画图并说明一支箭头\", \"suggestions\": []}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"物理\", \"grade\": \"八年级\", \"knowledgeIds\": [\"kp-a6878cdb6a68dc2fc7bd492a\"]}, \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"experienceReview\": {\"reviewerId\": \"frozen-user-review\", \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"物理\", \"grade\": \"八年级\", \"knowledgeIds\": [\"kp-a6878cdb6a68dc2fc7bd492a\"]}}, \"source\": {\"id\": \"physics\", \"title\": \"Module 3: Secondary Science - Physics\", \"url\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1\", \"institution\": \"The Open University / TESSA collaborative teacher-education authors\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"publishedAt\": null, \"checkedAt\": \"2026-11-14\", \"verification\": \"web-readable\", \"license\": \"CC-BY-SA (version not confirmed)\", \"reuseMode\": \"adapted_text\", \"originalScope\": \"secondary\", \"notes\": \"\", \"verificationMethod\": \"在线浏览原发布机构页面；日期未知时不以检索日期代替。\"}, \"score\": 1.723442, \"bm25Score\": 1.150728, \"textScore\": 1.273442, \"knowledgeScore\": 0.45, \"contextScore\": 0.0, \"matchedFields\": [{\"field\": \"difficulty\", \"label\": \"学生困难\", \"score\": 0.446822, \"bm25\": 0.287682, \"matchedTerms\": [\"物体\"], \"contextMatched\": false}, {\"field\": \"goal\", \"label\": \"教学目标\", \"score\": 0.357457, \"bm25\": 0.287682, \"matchedTerms\": [\"说明\"], \"contextMatched\": false}, {\"field\": \"studentBase\", \"label\": \"学生基础\", \"score\": 0.312775, \"bm25\": 0.287682, \"matchedTerms\": [\"说明\"], \"contextMatched\": false}, {\"field\": \"boundary\", \"label\": \"适用边界\", \"score\": 0.156388, \"bm25\": 0.287682, \"matchedTerms\": [\"的力\"], \"contextMatched\": false}], \"knowledgeMatches\": [{\"id\": \"kp-a6878cdb6a68dc2fc7bd492a\", \"name\": \"力的示意图\", \"relation\": \"direct\"}], \"matchReasons\": [\"直接关联目标知识点\", \"匹配学生困难、教学目标、学生基础\"]}]}",
+  "data": {
+    "subject": "物理",
+    "grade": "八年级",
+    "question": "书静止在桌面上，说明书受到的力。",
+    "original_answer": "书压桌子的力也画在书上。",
+    "difficulty": "不知道哪个物体受力。",
+    "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+    "experiences": [
+      {
+        "id": "exp-a6878cdb6a68dc2fc7bd492a",
+        "versionId": "resver-a6878cdb6a68dc2fc7bd492a",
+        "version": 1,
+        "title": "力的示意图：给简图补力箭头并用情境解释",
+        "subject": "物理",
+        "grade": "八年级",
+        "knowledgeIds": [
+          "kp-a6878cdb6a68dc2fc7bd492a"
+        ],
+        "content": "给简图补力箭头并用情境解释；确定研究对象；标出施力者和箭头方向；比较平衡与变化情境",
+        "experience": {
+          "knowledgePoints": [
+            "力的示意图"
+          ],
+          "goal": "能够就“力的示意图”给出有依据的说明，并完成对应独立检查。",
+          "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+          "difficulty": "力的示意图只画物体不清楚力的方向",
+          "diagnosis": "请学生先说明“力的示意图”的当前做法，核对是否出现“力的示意图只画物体不清楚力的方向”。证据不足先追问。",
+          "strategy": "给简图补力箭头并用情境解释",
+          "steps": [
+            "确定研究对象",
+            "标出施力者和箭头方向",
+            "比较平衡与变化情境"
+          ],
+          "questions": [
+            "这支箭头表示谁对谁的作用？"
+          ],
+          "responses": [
+            "学生可能把运动方向当成所有力的方向（预设可能回应，非课堂实录）"
+          ],
+          "adjustment": "先逐个说出相互作用再画箭头",
+          "boundary": "只适用于八年级物理的力的示意图；仅按已提供的材料与条件指导，不推断真实操作表现。",
+          "effectCheck": "对新受力情境独立画图并说明一支箭头",
+          "suggestions": []
+        },
+        "applicability": {
+          "schema": 1,
+          "kind": "knowledge_scope",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ]
+        },
+        "provenance": {
+          "kind": "public",
+          "author": "The Open University / TESSA collaborative teacher-education authors",
+          "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1",
+          "authorization": "internal",
+          "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+        },
+        "experienceReview": {
+          "reviewerId": "frozen-user-review",
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "applicability": {
+            "schema": 1,
+            "kind": "knowledge_scope",
+            "subject": "物理",
+            "grade": "八年级",
+            "knowledgeIds": [
+              "kp-a6878cdb6a68dc2fc7bd492a"
+            ]
+          }
+        },
+        "source": {
+          "id": "physics",
+          "title": "Module 3: Secondary Science - Physics",
+          "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1",
+          "institution": "The Open University / TESSA collaborative teacher-education authors",
+          "author": "The Open University / TESSA collaborative teacher-education authors",
+          "publishedAt": null,
+          "checkedAt": "2026-11-14",
+          "verification": "web-readable",
+          "license": "CC-BY-SA (version not confirmed)",
+          "reuseMode": "adapted_text",
+          "originalScope": "secondary",
+          "notes": "",
+          "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+        },
+        "score": 1.723442,
+        "bm25Score": 1.150728,
+        "textScore": 1.273442,
+        "knowledgeScore": 0.45,
+        "contextScore": 0.0,
+        "matchedFields": [
+          {
+            "field": "difficulty",
+            "label": "学生困难",
+            "score": 0.446822,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "物体"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "goal",
+            "label": "教学目标",
+            "score": 0.357457,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "说明"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "studentBase",
+            "label": "学生基础",
+            "score": 0.312775,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "说明"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "boundary",
+            "label": "适用边界",
+            "score": 0.156388,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "的力"
+            ],
+            "contextMatched": false
+          }
+        ],
+        "knowledgeMatches": [
+          {
+            "id": "kp-a6878cdb6a68dc2fc7bd492a",
+            "name": "力的示意图",
+            "relation": "direct"
+          }
+        ],
+        "matchReasons": [
+          "直接关联目标知识点",
+          "匹配学生困难、教学目标、学生基础"
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "candidateVersionIds": [
+      "resver-a6878cdb6a68dc2fc7bd492a"
+    ]
+  },
+  "group": "B",
+  "scenario_id": "N02",
+  "replicate": 1
+}

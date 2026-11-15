@@ -1,0 +1,365 @@
+{
+  "prompt": "你为学生提供下一步教学指导。保留原答，不直接给出当前题完整答案，不断言掌握程度。引用只能使用输入中实际可见的版本ID，并说明哪条建议受该材料支持；无材料可留空。不得调用工具。只返回指定JSON。独立新题仅作为后续人工测量材料，本次不作答。\n结合给定困难证据、已匹配经验及记忆决策提供指导；证据不足先核对，避免将规则建议当作认知诊断。\n\n输入：{\"subject\": \"语文\", \"grade\": \"七年级\", \"question\": \"同学擦干长椅方便别人坐下。找出支持关心他人的证据。\", \"original_answer\": \"因为同学很好。\", \"difficulty\": \"我只会说结论。\", \"public_knowledge\": \"指出擦干长椅、方便他人，不能编造人物心理。\", \"experiences\": [{\"id\": \"exp-27512d25df0b40691bc7a605\", \"versionId\": \"resver-27512d25df0b40691bc7a605\", \"version\": 1, \"title\": \"文本证据定位：把判断与支持它的原句逐项配对\", \"subject\": \"语文\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-27512d25df0b40691bc7a605\"], \"content\": \"把判断与支持它的原句逐项配对；圈出判断中的关键词；回原段划一句依据；解释原句如何支持判断\", \"experience\": {\"knowledgePoints\": [\"文本证据定位\"], \"goal\": \"能够就“文本证据定位”给出有依据的说明，并完成对应独立检查。\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"difficulty\": \"阅读只给结论找不到文本证据\", \"diagnosis\": \"请学生先说明“文本证据定位”的当前做法，核对是否出现“阅读只给结论找不到文本证据”。证据不足先追问。\", \"strategy\": \"把判断与支持它的原句逐项配对\", \"steps\": [\"圈出判断中的关键词\", \"回原段划一句依据\", \"解释原句如何支持判断\"], \"questions\": [\"哪一句能直接支持你的判断？\"], \"responses\": [\"学生可能只抄一段而不解释（预设可能回应，非课堂实录）\"], \"adjustment\": \"把范围缩到两句，逐句比较与判断的关系\", \"boundary\": \"只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"effectCheck\": \"换一段短文独立写出判断、原句与解释\", \"suggestions\": []}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"语文\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-27512d25df0b40691bc7a605\"]}, \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"experienceReview\": {\"reviewerId\": \"frozen-user-review\", \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"语文\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-27512d25df0b40691bc7a605\"]}}, \"source\": {\"id\": \"reading\", \"title\": \"Module 1: Reading and writing for a range of purposes\", \"url\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1\", \"institution\": \"The Open University / TESSA collaborative teacher-education authors\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"publishedAt\": null, \"checkedAt\": \"2026-11-14\", \"verification\": \"web-readable\", \"license\": \"CC-BY-SA (version not confirmed)\", \"reuseMode\": \"adapted_text\", \"originalScope\": \"primary\", \"notes\": \"仅将阅读理解与摘要方法适配初中补基础；并非来源原有中国初中课例。\", \"verificationMethod\": \"在线浏览原发布机构页面；日期未知时不以检索日期代替。\"}, \"score\": 3.928365, \"bm25Score\": 3.1919, \"textScore\": 3.478365, \"knowledgeScore\": 0.45, \"contextScore\": 0.0, \"matchedFields\": [{\"field\": \"title\", \"label\": \"标题\", \"score\": 0.730452, \"bm25\": 0.575364, \"matchedTerms\": [\"支持\", \"证据\"], \"contextMatched\": false}, {\"field\": \"knowledgePoints\", \"label\": \"知识点\", \"score\": 0.810206, \"bm25\": 0.47947, \"matchedTerms\": [\"证据\"], \"contextMatched\": false}, {\"field\": \"difficulty\", \"label\": \"学生困难\", \"score\": 0.730452, \"bm25\": 0.575364, \"matchedTerms\": [\"结论\", \"证据\"], \"contextMatched\": false}, {\"field\": \"goal\", \"label\": \"教学目标\", \"score\": 0.357457, \"bm25\": 0.287682, \"matchedTerms\": [\"证据\"], \"contextMatched\": false}, {\"field\": \"content\", \"label\": \"正文\", \"score\": 0.29127, \"bm25\": 0.410974, \"matchedTerms\": [\"支持\"], \"contextMatched\": false}, {\"field\": \"steps\", \"label\": \"讲解步骤\", \"score\": 0.20107, \"bm25\": 0.287682, \"matchedTerms\": [\"支持\"], \"contextMatched\": false}, {\"field\": \"questions\", \"label\": \"教师提问\", \"score\": 0.20107, \"bm25\": 0.287682, \"matchedTerms\": [\"支持\"], \"contextMatched\": false}, {\"field\": \"boundary\", \"label\": \"适用边界\", \"score\": 0.156388, \"bm25\": 0.287682, \"matchedTerms\": [\"证据\"], \"contextMatched\": false}], \"knowledgeMatches\": [{\"id\": \"kp-27512d25df0b40691bc7a605\", \"name\": \"文本证据定位\", \"relation\": \"direct\"}], \"matchReasons\": [\"直接关联目标知识点\", \"匹配知识点、标题、学生困难\"]}], \"difficulty_evidence\": {\"schema\": 1, \"subject\": \"语文\", \"dimensions\": [\"理解任务\", \"说明依据\", \"独立应用\"], \"observations\": [{\"id\": \"L02\", \"kind\": \"原始作答\", \"text\": \"因为同学很好。\"}, {\"id\": \"L02:request\", \"kind\": \"学生自述\", \"text\": \"我只会说结论。\"}], \"historyEvidence\": [{\"evidenceId\": \"L02-0\", \"helped\": false, \"verification\": \"verified_incorrect\", \"outcome\": \"independent_incorrect\", \"subject\": \"语文\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-27512d25df0b40691bc7a605\"], \"text\": \"模拟：不同练习中相同困难再次出现\"}, {\"evidenceId\": \"L02-1\", \"helped\": false, \"verification\": \"verified_incorrect\", \"outcome\": \"independent_incorrect\", \"subject\": \"语文\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-27512d25df0b40691bc7a605\"], \"text\": \"模拟：不同练习中相同困难再次出现\"}], \"evidenceSufficiency\": \"有重复独立困难记录\", \"difficulty\": \"学生报告当前学习遇到困难\", \"possibleCauses\": [], \"confirmationQuestion\": \"请指出你从哪一步开始不确定，并说明刚才是怎么想的。\", \"recommendedStrategy\": \"foundation\", \"reason\": \"近期至少两条未获帮助的困难记录，先检查前置知识。\"}, \"learning_memory\": [{\"evidenceId\": \"L02-0\", \"helped\": false, \"verification\": \"verified_incorrect\", \"outcome\": \"independent_incorrect\", \"subject\": \"语文\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-27512d25df0b40691bc7a605\"], \"text\": \"模拟：不同练习中相同困难再次出现\"}, {\"evidenceId\": \"L02-1\", \"helped\": false, \"verification\": \"verified_incorrect\", \"outcome\": \"independent_incorrect\", \"subject\": \"语文\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-27512d25df0b40691bc7a605\"], \"text\": \"模拟：不同练习中相同困难再次出现\"}], \"decision\": {\"schema\": 1, \"selected\": [{\"id\": \"exp-27512d25df0b40691bc7a605\", \"versionId\": \"resver-27512d25df0b40691bc7a605\", \"version\": 1, \"strategy\": \"foundation\", \"diagnosticOnly\": false, \"teachingMethod\": \"把判断与支持它的原句逐项配对\", \"method\": \"把判断与支持它的原句逐项配对\", \"reason\": \"学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。\", \"evidenceIds\": [\"L02\", \"L02:request\", \"L02-0\", \"L02-1\"], \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"conditions\": [\"只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。\"], \"matchedDifficultyTerms\": [\"结论\"], \"diagnosticBasis\": \"请学生先说明“文本证据定位”的当前做法，核对是否出现“阅读只给结论找不到文本证据”。证据不足先追问。\", \"effectCheck\": \"换一段短文独立写出判断、原句与解释\"}], \"rejected\": [], \"fallback\": false, \"notice\": \"参考已审核教学经验，效果仍需独立练习与教师反馈验证。\"}}",
+  "data": {
+    "subject": "语文",
+    "grade": "七年级",
+    "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+    "original_answer": "因为同学很好。",
+    "difficulty": "我只会说结论。",
+    "public_knowledge": "指出擦干长椅、方便他人，不能编造人物心理。",
+    "experiences": [
+      {
+        "id": "exp-27512d25df0b40691bc7a605",
+        "versionId": "resver-27512d25df0b40691bc7a605",
+        "version": 1,
+        "title": "文本证据定位：把判断与支持它的原句逐项配对",
+        "subject": "语文",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-27512d25df0b40691bc7a605"
+        ],
+        "content": "把判断与支持它的原句逐项配对；圈出判断中的关键词；回原段划一句依据；解释原句如何支持判断",
+        "experience": {
+          "knowledgePoints": [
+            "文本证据定位"
+          ],
+          "goal": "能够就“文本证据定位”给出有依据的说明，并完成对应独立检查。",
+          "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+          "difficulty": "阅读只给结论找不到文本证据",
+          "diagnosis": "请学生先说明“文本证据定位”的当前做法，核对是否出现“阅读只给结论找不到文本证据”。证据不足先追问。",
+          "strategy": "把判断与支持它的原句逐项配对",
+          "steps": [
+            "圈出判断中的关键词",
+            "回原段划一句依据",
+            "解释原句如何支持判断"
+          ],
+          "questions": [
+            "哪一句能直接支持你的判断？"
+          ],
+          "responses": [
+            "学生可能只抄一段而不解释（预设可能回应，非课堂实录）"
+          ],
+          "adjustment": "把范围缩到两句，逐句比较与判断的关系",
+          "boundary": "只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。",
+          "effectCheck": "换一段短文独立写出判断、原句与解释",
+          "suggestions": []
+        },
+        "applicability": {
+          "schema": 1,
+          "kind": "knowledge_scope",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ]
+        },
+        "provenance": {
+          "kind": "public",
+          "author": "The Open University / TESSA collaborative teacher-education authors",
+          "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1",
+          "authorization": "internal",
+          "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+        },
+        "experienceReview": {
+          "reviewerId": "frozen-user-review",
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "applicability": {
+            "schema": 1,
+            "kind": "knowledge_scope",
+            "subject": "语文",
+            "grade": "七年级",
+            "knowledgeIds": [
+              "kp-27512d25df0b40691bc7a605"
+            ]
+          }
+        },
+        "source": {
+          "id": "reading",
+          "title": "Module 1: Reading and writing for a range of purposes",
+          "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1",
+          "institution": "The Open University / TESSA collaborative teacher-education authors",
+          "author": "The Open University / TESSA collaborative teacher-education authors",
+          "publishedAt": null,
+          "checkedAt": "2026-11-14",
+          "verification": "web-readable",
+          "license": "CC-BY-SA (version not confirmed)",
+          "reuseMode": "adapted_text",
+          "originalScope": "primary",
+          "notes": "仅将阅读理解与摘要方法适配初中补基础；并非来源原有中国初中课例。",
+          "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+        },
+        "score": 3.928365,
+        "bm25Score": 3.1919,
+        "textScore": 3.478365,
+        "knowledgeScore": 0.45,
+        "contextScore": 0.0,
+        "matchedFields": [
+          {
+            "field": "title",
+            "label": "标题",
+            "score": 0.730452,
+            "bm25": 0.575364,
+            "matchedTerms": [
+              "支持",
+              "证据"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "knowledgePoints",
+            "label": "知识点",
+            "score": 0.810206,
+            "bm25": 0.47947,
+            "matchedTerms": [
+              "证据"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "difficulty",
+            "label": "学生困难",
+            "score": 0.730452,
+            "bm25": 0.575364,
+            "matchedTerms": [
+              "结论",
+              "证据"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "goal",
+            "label": "教学目标",
+            "score": 0.357457,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "证据"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "content",
+            "label": "正文",
+            "score": 0.29127,
+            "bm25": 0.410974,
+            "matchedTerms": [
+              "支持"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "steps",
+            "label": "讲解步骤",
+            "score": 0.20107,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "支持"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "questions",
+            "label": "教师提问",
+            "score": 0.20107,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "支持"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "boundary",
+            "label": "适用边界",
+            "score": 0.156388,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "证据"
+            ],
+            "contextMatched": false
+          }
+        ],
+        "knowledgeMatches": [
+          {
+            "id": "kp-27512d25df0b40691bc7a605",
+            "name": "文本证据定位",
+            "relation": "direct"
+          }
+        ],
+        "matchReasons": [
+          "直接关联目标知识点",
+          "匹配知识点、标题、学生困难"
+        ]
+      }
+    ],
+    "difficulty_evidence": {
+      "schema": 1,
+      "subject": "语文",
+      "dimensions": [
+        "理解任务",
+        "说明依据",
+        "独立应用"
+      ],
+      "observations": [
+        {
+          "id": "L02",
+          "kind": "原始作答",
+          "text": "因为同学很好。"
+        },
+        {
+          "id": "L02:request",
+          "kind": "学生自述",
+          "text": "我只会说结论。"
+        }
+      ],
+      "historyEvidence": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "evidenceSufficiency": "有重复独立困难记录",
+      "difficulty": "学生报告当前学习遇到困难",
+      "possibleCauses": [],
+      "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。",
+      "recommendedStrategy": "foundation",
+      "reason": "近期至少两条未获帮助的困难记录，先检查前置知识。"
+    },
+    "learning_memory": [
+      {
+        "evidenceId": "L02-0",
+        "helped": false,
+        "verification": "verified_incorrect",
+        "outcome": "independent_incorrect",
+        "subject": "语文",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-27512d25df0b40691bc7a605"
+        ],
+        "text": "模拟：不同练习中相同困难再次出现"
+      },
+      {
+        "evidenceId": "L02-1",
+        "helped": false,
+        "verification": "verified_incorrect",
+        "outcome": "independent_incorrect",
+        "subject": "语文",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-27512d25df0b40691bc7a605"
+        ],
+        "text": "模拟：不同练习中相同困难再次出现"
+      }
+    ],
+    "decision": {
+      "schema": 1,
+      "selected": [
+        {
+          "id": "exp-27512d25df0b40691bc7a605",
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "version": 1,
+          "strategy": "foundation",
+          "diagnosticOnly": false,
+          "teachingMethod": "把判断与支持它的原句逐项配对",
+          "method": "把判断与支持它的原句逐项配对",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "L02",
+            "L02:request",
+            "L02-0",
+            "L02-1"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "结论"
+          ],
+          "diagnosticBasis": "请学生先说明“文本证据定位”的当前做法，核对是否出现“阅读只给结论找不到文本证据”。证据不足先追问。",
+          "effectCheck": "换一段短文独立写出判断、原句与解释"
+        }
+      ],
+      "rejected": [],
+      "fallback": false,
+      "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。"
+    }
+  },
+  "meta": {
+    "candidateVersionIds": [
+      "resver-27512d25df0b40691bc7a605"
+    ],
+    "decision": {
+      "schema": 1,
+      "selected": [
+        {
+          "id": "exp-27512d25df0b40691bc7a605",
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "version": 1,
+          "strategy": "foundation",
+          "diagnosticOnly": false,
+          "teachingMethod": "把判断与支持它的原句逐项配对",
+          "method": "把判断与支持它的原句逐项配对",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "L02",
+            "L02:request",
+            "L02-0",
+            "L02-1"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "conditions": [
+            "只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "结论"
+          ],
+          "diagnosticBasis": "请学生先说明“文本证据定位”的当前做法，核对是否出现“阅读只给结论找不到文本证据”。证据不足先追问。",
+          "effectCheck": "换一段短文独立写出判断、原句与解释"
+        }
+      ],
+      "rejected": [],
+      "fallback": false,
+      "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。"
+    }
+  },
+  "group": "C",
+  "scenario_id": "L02",
+  "replicate": 0
+}

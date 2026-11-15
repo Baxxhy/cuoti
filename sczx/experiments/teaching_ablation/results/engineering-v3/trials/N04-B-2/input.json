@@ -1,0 +1,198 @@
+{
+  "prompt": "你为学生提供下一步教学指导。保留原答，不直接给出当前题完整答案，不断言掌握程度。引用只能使用输入中实际可见的版本ID，并说明哪条建议受该材料支持；无材料可留空。不得调用工具。只返回指定JSON。独立新题仅作为后续人工测量材料，本次不作答。\n参考给定检索候选，自行判断是否适用并选择策略；不得假称候选已验证，不使用项目额外匹配或记忆机制。\n\n输入：{\"subject\": \"生物学\", \"grade\": \"七年级\", \"question\": \"甲叶脉平行，乙呈网状，如何分组？\", \"original_answer\": \"按我喜欢不喜欢分。\", \"difficulty\": \"不知道选什么特征。\", \"public_knowledge\": \"生物分组应基于可观察、可复查的共同特征。\", \"experiences\": [{\"id\": \"exp-9238445c7db4f4048f6c10a2\", \"versionId\": \"resver-9238445c7db4f4048f6c10a2\", \"version\": 1, \"title\": \"生物分类与特征：先列可观察特征，再建立二歧检索思路\", \"subject\": \"生物学\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-9238445c7db4f4048f6c10a2\"], \"content\": \"先列可观察特征，再建立二歧检索思路；比较图片的共同与不同；每次选择一个稳定特征分组；交换检验分组规则\", \"experience\": {\"knowledgePoints\": [\"生物分类与特征\"], \"goal\": \"能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"difficulty\": \"生物分类只按大小喜好不看稳定特征\", \"diagnosis\": \"请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。\", \"strategy\": \"先列可观察特征，再建立二歧检索思路\", \"steps\": [\"比较图片的共同与不同\", \"每次选择一个稳定特征分组\", \"交换检验分组规则\"], \"questions\": [\"另一位同学按你的规则能分出同样结果吗？\"], \"responses\": [\"学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）\"], \"adjustment\": \"加入外形相似但结构不同的反例\", \"boundary\": \"只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"effectCheck\": \"用新的四种生物建立有依据的分组\", \"suggestions\": []}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"生物学\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-9238445c7db4f4048f6c10a2\"]}, \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"experienceReview\": {\"reviewerId\": \"frozen-user-review\", \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"生物学\", \"grade\": \"七年级\", \"knowledgeIds\": [\"kp-9238445c7db4f4048f6c10a2\"]}}, \"source\": {\"id\": \"biology\", \"title\": \"Module 1: Secondary Science - Biology\", \"url\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1\", \"institution\": \"The Open University / TESSA collaborative teacher-education authors\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"publishedAt\": null, \"checkedAt\": \"2026-11-14\", \"verification\": \"web-readable\", \"license\": \"CC-BY-SA (version not confirmed)\", \"reuseMode\": \"adapted_text\", \"originalScope\": \"secondary\", \"notes\": \"\", \"verificationMethod\": \"在线浏览原发布机构页面；日期未知时不以检索日期代替。\"}, \"score\": 3.62472, \"bm25Score\": 3.274095, \"textScore\": 3.17472, \"knowledgeScore\": 0.45, \"contextScore\": 0.0, \"matchedFields\": [{\"field\": \"title\", \"label\": \"标题\", \"score\": 0.58254, \"bm25\": 0.410974, \"matchedTerms\": [\"特征\"], \"contextMatched\": false}, {\"field\": \"knowledgePoints\", \"label\": \"知识点\", \"score\": 0.810206, \"bm25\": 0.47947, \"matchedTerms\": [\"特征\"], \"contextMatched\": false}, {\"field\": \"difficulty\", \"label\": \"学生困难\", \"score\": 0.446822, \"bm25\": 0.287682, \"matchedTerms\": [\"特征\"], \"contextMatched\": false}, {\"field\": \"goal\", \"label\": \"教学目标\", \"score\": 0.357457, \"bm25\": 0.287682, \"matchedTerms\": [\"特征\"], \"contextMatched\": false}, {\"field\": \"content\", \"label\": \"正文\", \"score\": 0.451137, \"bm25\": 0.821949, \"matchedTerms\": [\"分组\", \"特征\"], \"contextMatched\": false}, {\"field\": \"steps\", \"label\": \"讲解步骤\", \"score\": 0.37017, \"bm25\": 0.698656, \"matchedTerms\": [\"分组\", \"特征\"], \"contextMatched\": false}, {\"field\": \"boundary\", \"label\": \"适用边界\", \"score\": 0.156388, \"bm25\": 0.287682, \"matchedTerms\": [\"特征\"], \"contextMatched\": false}], \"knowledgeMatches\": [{\"id\": \"kp-9238445c7db4f4048f6c10a2\", \"name\": \"生物分类与特征\", \"relation\": \"direct\"}], \"matchReasons\": [\"直接关联目标知识点\", \"匹配知识点、标题、正文\"]}]}",
+  "data": {
+    "subject": "生物学",
+    "grade": "七年级",
+    "question": "甲叶脉平行，乙呈网状，如何分组？",
+    "original_answer": "按我喜欢不喜欢分。",
+    "difficulty": "不知道选什么特征。",
+    "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+    "experiences": [
+      {
+        "id": "exp-9238445c7db4f4048f6c10a2",
+        "versionId": "resver-9238445c7db4f4048f6c10a2",
+        "version": 1,
+        "title": "生物分类与特征：先列可观察特征，再建立二歧检索思路",
+        "subject": "生物学",
+        "grade": "七年级",
+        "knowledgeIds": [
+          "kp-9238445c7db4f4048f6c10a2"
+        ],
+        "content": "先列可观察特征，再建立二歧检索思路；比较图片的共同与不同；每次选择一个稳定特征分组；交换检验分组规则",
+        "experience": {
+          "knowledgePoints": [
+            "生物分类与特征"
+          ],
+          "goal": "能够就“生物分类与特征”给出有依据的说明，并完成对应独立检查。",
+          "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+          "difficulty": "生物分类只按大小喜好不看稳定特征",
+          "diagnosis": "请学生先说明“生物分类与特征”的当前做法，核对是否出现“生物分类只按大小喜好不看稳定特征”。证据不足先追问。",
+          "strategy": "先列可观察特征，再建立二歧检索思路",
+          "steps": [
+            "比较图片的共同与不同",
+            "每次选择一个稳定特征分组",
+            "交换检验分组规则"
+          ],
+          "questions": [
+            "另一位同学按你的规则能分出同样结果吗？"
+          ],
+          "responses": [
+            "学生可能把栖息地直接当唯一分类依据（预设可能回应，非课堂实录）"
+          ],
+          "adjustment": "加入外形相似但结构不同的反例",
+          "boundary": "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。",
+          "effectCheck": "用新的四种生物建立有依据的分组",
+          "suggestions": []
+        },
+        "applicability": {
+          "schema": 1,
+          "kind": "knowledge_scope",
+          "subject": "生物学",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-9238445c7db4f4048f6c10a2"
+          ]
+        },
+        "provenance": {
+          "kind": "public",
+          "author": "The Open University / TESSA collaborative teacher-education authors",
+          "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+          "authorization": "internal",
+          "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+        },
+        "experienceReview": {
+          "reviewerId": "frozen-user-review",
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "applicability": {
+            "schema": 1,
+            "kind": "knowledge_scope",
+            "subject": "生物学",
+            "grade": "七年级",
+            "knowledgeIds": [
+              "kp-9238445c7db4f4048f6c10a2"
+            ]
+          }
+        },
+        "source": {
+          "id": "biology",
+          "title": "Module 1: Secondary Science - Biology",
+          "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+          "institution": "The Open University / TESSA collaborative teacher-education authors",
+          "author": "The Open University / TESSA collaborative teacher-education authors",
+          "publishedAt": null,
+          "checkedAt": "2026-11-14",
+          "verification": "web-readable",
+          "license": "CC-BY-SA (version not confirmed)",
+          "reuseMode": "adapted_text",
+          "originalScope": "secondary",
+          "notes": "",
+          "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+        },
+        "score": 3.62472,
+        "bm25Score": 3.274095,
+        "textScore": 3.17472,
+        "knowledgeScore": 0.45,
+        "contextScore": 0.0,
+        "matchedFields": [
+          {
+            "field": "title",
+            "label": "标题",
+            "score": 0.58254,
+            "bm25": 0.410974,
+            "matchedTerms": [
+              "特征"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "knowledgePoints",
+            "label": "知识点",
+            "score": 0.810206,
+            "bm25": 0.47947,
+            "matchedTerms": [
+              "特征"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "difficulty",
+            "label": "学生困难",
+            "score": 0.446822,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "特征"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "goal",
+            "label": "教学目标",
+            "score": 0.357457,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "特征"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "content",
+            "label": "正文",
+            "score": 0.451137,
+            "bm25": 0.821949,
+            "matchedTerms": [
+              "分组",
+              "特征"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "steps",
+            "label": "讲解步骤",
+            "score": 0.37017,
+            "bm25": 0.698656,
+            "matchedTerms": [
+              "分组",
+              "特征"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "boundary",
+            "label": "适用边界",
+            "score": 0.156388,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "特征"
+            ],
+            "contextMatched": false
+          }
+        ],
+        "knowledgeMatches": [
+          {
+            "id": "kp-9238445c7db4f4048f6c10a2",
+            "name": "生物分类与特征",
+            "relation": "direct"
+          }
+        ],
+        "matchReasons": [
+          "直接关联目标知识点",
+          "匹配知识点、标题、正文"
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "candidateVersionIds": [
+      "resver-9238445c7db4f4048f6c10a2"
+    ]
+  },
+  "group": "B",
+  "scenario_id": "N04",
+  "replicate": 2
+}

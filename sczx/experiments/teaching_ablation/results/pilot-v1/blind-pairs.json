@@ -1,0 +1,23 @@
+[
+  {
+    "pair_id": "dc139e9af6b4",
+    "blind_ids": [
+      "8d066ca413724136",
+      "ea7795864fba43fa"
+    ]
+  },
+  {
+    "pair_id": "ebbcd68d2cfd",
+    "blind_ids": [
+      "33d455da594b824e",
+      "6170bcd376310682"
+    ]
+  },
+  {
+    "pair_id": "feaa0d31dbb4",
+    "blind_ids": [
+      "7ff4e075595ad086",
+      "1c0f9f734116afa7"
+    ]
+  }
+]

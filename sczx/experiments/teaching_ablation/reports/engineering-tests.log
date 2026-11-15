@@ -1,0 +1,9 @@
+test_append_only (test_runner.Tests.test_append_only) ... ok
+test_frozen_and_balanced (test_runner.Tests.test_frozen_and_balanced) ... ok
+test_history_changes_policy (test_runner.Tests.test_history_changes_policy) ... ok
+test_no_gold_and_identical_candidates (test_runner.Tests.test_no_gold_and_identical_candidates) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.155s
+
+OK

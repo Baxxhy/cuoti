@@ -1,0 +1,317 @@
+[
+  {
+    "pair_id": "bea7df4f39b7",
+    "blind_ids": [
+      "c777e0d2a193ef6a",
+      "84dd1c2c4c2ac0e2"
+    ]
+  },
+  {
+    "pair_id": "7ee62ff268e0",
+    "blind_ids": [
+      "71c35c0878133a8f",
+      "baebae9c895dc6e8"
+    ]
+  },
+  {
+    "pair_id": "42b09c9a4ec8",
+    "blind_ids": [
+      "b6c4d5ce101872a7",
+      "d3d02f64b2c1ae84"
+    ]
+  },
+  {
+    "pair_id": "9ed380a685f6",
+    "blind_ids": [
+      "45cbfd206a9f4f1e",
+      "09f8c34352f30ae6"
+    ]
+  },
+  {
+    "pair_id": "1bb35678f9a3",
+    "blind_ids": [
+      "9a974f356e6a618a",
+      "63f47a70cb72e82f"
+    ]
+  },
+  {
+    "pair_id": "98425761d6cc",
+    "blind_ids": [
+      "52f0817bbed193c6",
+      "3c59ed35aedd663f"
+    ]
+  },
+  {
+    "pair_id": "a111cd71a2ae",
+    "blind_ids": [
+      "f97dc4ea547f7d1c",
+      "87d4d21bbeb59aad"
+    ]
+  },
+  {
+    "pair_id": "d9f1966e543c",
+    "blind_ids": [
+      "08bfff9c37e5f426",
+      "98c43e62f7877bb1"
+    ]
+  },
+  {
+    "pair_id": "b4b71f899134",
+    "blind_ids": [
+      "3f8a2847b29ba77d",
+      "f9e270fccd0a956f"
+    ]
+  },
+  {
+    "pair_id": "81d5a009c2eb",
+    "blind_ids": [
+      "5ac4d10da3c7fd3c",
+      "0496e4925e7ee59a"
+    ]
+  },
+  {
+    "pair_id": "fa2e977a3f93",
+    "blind_ids": [
+      "44a6894d541ec033",
+      "4f7b5b2437dc8f94"
+    ]
+  },
+  {
+    "pair_id": "a899697f9dc7",
+    "blind_ids": [
+      "c1d2a7ed5e1788db",
+      "ee6aaa9ab9ac0396"
+    ]
+  },
+  {
+    "pair_id": "ca30d15c4d08",
+    "blind_ids": [
+      "c62c36c7dfe247e4",
+      "ada17b99e3286cb6"
+    ]
+  },
+  {
+    "pair_id": "e66333e769c5",
+    "blind_ids": [
+      "746412af3739b12a",
+      "1365ad17b3b79127"
+    ]
+  },
+  {
+    "pair_id": "b97000c356f4",
+    "blind_ids": [
+      "bd779efbc1df2b58",
+      "ec97aa19cc01d87d"
+    ]
+  },
+  {
+    "pair_id": "4febd44af2a2",
+    "blind_ids": [
+      "b000d7168ee2440e",
+      "db8eeec5a09c1757"
+    ]
+  },
+  {
+    "pair_id": "b2b257e17a46",
+    "blind_ids": [
+      "ace7c303058a7744",
+      "057069ffdc8e50a8"
+    ]
+  },
+  {
+    "pair_id": "3a5324233819",
+    "blind_ids": [
+      "f30814aaf971b1d6",
+      "55f251c10151d4b9"
+    ]
+  },
+  {
+    "pair_id": "4a27657fc574",
+    "blind_ids": [
+      "66265c742fef51cf",
+      "1ecc179f55054c8e"
+    ]
+  },
+  {
+    "pair_id": "1d1a4284d3be",
+    "blind_ids": [
+      "4b69454eaa7c30fb",
+      "28d0a71f725c5929"
+    ]
+  },
+  {
+    "pair_id": "1e59378bc682",
+    "blind_ids": [
+      "27a3d19f004fe53f",
+      "eda5831ef8239a79"
+    ]
+  },
+  {
+    "pair_id": "2de587da2614",
+    "blind_ids": [
+      "7837944a7a37487b",
+      "0387aa60348a120a"
+    ]
+  },
+  {
+    "pair_id": "54a48fbdd403",
+    "blind_ids": [
+      "aff9c0839c2624ab",
+      "685e1a709c90c0ba"
+    ]
+  },
+  {
+    "pair_id": "041a1695d177",
+    "blind_ids": [
+      "9c7839b612f230de",
+      "a9fa473f1b9ce91a"
+    ]
+  },
+  {
+    "pair_id": "6f0b147f05e1",
+    "blind_ids": [
+      "51daafb6fcfac227",
+      "5e63b1ed8ffa65e1"
+    ]
+  },
+  {
+    "pair_id": "329cb7cf0ada",
+    "blind_ids": [
+      "56a03efc2dcc99a3",
+      "08ed05a3b6c8ba6d"
+    ]
+  },
+  {
+    "pair_id": "8e2416429385",
+    "blind_ids": [
+      "63af2c4d9e5e282c",
+      "bd6c149ee2ab8ff0"
+    ]
+  },
+  {
+    "pair_id": "00818ed7a139",
+    "blind_ids": [
+      "6228b06cad5bb8ee",
+      "faa3b05e9b2c3c08"
+    ]
+  },
+  {
+    "pair_id": "97e20337f69b",
+    "blind_ids": [
+      "20916b236e6e697b",
+      "b988b2d7dfdd405b"
+    ]
+  },
+  {
+    "pair_id": "d861849a2e0b",
+    "blind_ids": [
+      "b77709150c35351d",
+      "fd72aa77c2cd858e"
+    ]
+  },
+  {
+    "pair_id": "dd03d7525331",
+    "blind_ids": [
+      "3f8213007dbc90e0",
+      "14358c9b643889ee"
+    ]
+  },
+  {
+    "pair_id": "a73389092dc2",
+    "blind_ids": [
+      "72896276abb81a4a",
+      "7017fc16e4b9d680"
+    ]
+  },
+  {
+    "pair_id": "51c928aadaa0",
+    "blind_ids": [
+      "0835bbcba64d6667",
+      "b591bef858d7e850"
+    ]
+  },
+  {
+    "pair_id": "984ce0e4fd33",
+    "blind_ids": [
+      "8514962e23b865ac",
+      "118cfcb0e3046092"
+    ]
+  },
+  {
+    "pair_id": "d558b569caf0",
+    "blind_ids": [
+      "c8d07656cc24abcc",
+      "7e6eaef3bf47ff5c"
+    ]
+  },
+  {
+    "pair_id": "3c70d8d9e6cb",
+    "blind_ids": [
+      "2f9affcb4ad1c45b",
+      "86e6a34a8a126a65"
+    ]
+  },
+  {
+    "pair_id": "a82a0a281061",
+    "blind_ids": [
+      "a2e4dd00530569b2",
+      "81b117428fc35937"
+    ]
+  },
+  {
+    "pair_id": "78b3388a2b8b",
+    "blind_ids": [
+      "68939e35aafbf42c",
+      "e73dbd8b593dcb2b"
+    ]
+  },
+  {
+    "pair_id": "533519f7a41b",
+    "blind_ids": [
+      "903d012b9461f632",
+      "01f3633162f7a839"
+    ]
+  },
+  {
+    "pair_id": "6f8789bfc7f5",
+    "blind_ids": [
+      "1e844182d8fc3b0d",
+      "be511d8bd3cda277"
+    ]
+  },
+  {
+    "pair_id": "d25c08b34738",
+    "blind_ids": [
+      "3caf9ea9f5ab8cfb",
+      "033a30481a9a6efb"
+    ]
+  },
+  {
+    "pair_id": "0cc010d11306",
+    "blind_ids": [
+      "1e8ea8c2478574fb",
+      "373f283d678e369e"
+    ]
+  },
+  {
+    "pair_id": "dda49da23aeb",
+    "blind_ids": [
+      "20d1409e2afd01b0",
+      "3ba2cdf71730da03"
+    ]
+  },
+  {
+    "pair_id": "e773ca67b8bb",
+    "blind_ids": [
+      "c704648744f7772f",
+      "e3692147bf9bd36f"
+    ]
+  },
+  {
+    "pair_id": "a15faaed01d3",
+    "blind_ids": [
+      "6c4fac006aa56f8d",
+      "a76aea35ff2bb018"
+    ]
+  }
+]

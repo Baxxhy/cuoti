@@ -1,0 +1,7 @@
+{
+  "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:16:10) [GCC 11.2.0]",
+  "git_parent_head": "49ac765f677d013912c671b763e310ad171f5be9",
+  "cli": "codex-cli 0.166.0",
+  "temperature": "unsupported",
+  "random_seed": "unsupported"
+}

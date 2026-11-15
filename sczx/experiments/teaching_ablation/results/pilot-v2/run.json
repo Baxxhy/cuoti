@@ -1,0 +1,31 @@
+{
+  "manifestSha256": "ca9adece47b28afd71132c15f57e14ef1ceca7bc63b26ef87ca609b649f43af5",
+  "mode": "real",
+  "pilot": true,
+  "config": {
+    "dataset": "scenarios/v1.json",
+    "corpus": "scenarios/corpus.json",
+    "model": "gpt-6-luna",
+    "effort": "low",
+    "timeout_seconds": 115,
+    "replicates": 3,
+    "candidate_budget": 4,
+    "max_repairs": 0,
+    "max_calls_per_trial": 1,
+    "pilot_scenarios": [
+      "L01",
+      "L02"
+    ],
+    "pilot_replicates": 1,
+    "full_requires_external_authorization": true
+  },
+  "expectedTrials": 6,
+  "schedule": [
+    "L01-A-0",
+    "L01-B-0",
+    "L01-C-0",
+    "L02-A-0",
+    "L02-B-0",
+    "L02-C-0"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "descriptive_groups": {
+    "subject": {
+      "语文": {
+        "A:scheduled": 2,
+        "A:succeeded": 2,
+        "B:scheduled": 2,
+        "B:succeeded": 2,
+        "C:scheduled": 2,
+        "C:succeeded": 2
+      }
+    },
+    "category": {
+      "L": {
+        "A:scheduled": 2,
+        "A:succeeded": 2,
+        "B:scheduled": 2,
+        "B:succeeded": 2,
+        "C:scheduled": 2,
+        "C:succeeded": 2
+      }
+    },
+    "history_type": {
+      "no_history": {
+        "A:scheduled": 1,
+        "A:succeeded": 1,
+        "B:scheduled": 1,
+        "B:succeeded": 1,
+        "C:scheduled": 1,
+        "C:succeeded": 1
+      },
+      "has_history": {
+        "A:scheduled": 1,
+        "A:succeeded": 1,
+        "B:scheduled": 1,
+        "B:succeeded": 1,
+        "C:scheduled": 1,
+        "C:succeeded": 1
+      }
+    }
+  },
+  "denominator": 6,
+  "human_metrics": "待至少两名合格评阅者独立评分；缺失不按0分处理",
+  "independent_question_performance": null,
+  "real_student_participants": 0,
+  "inference": "工程验证不能证明C优于A/B，不能估计课堂效果或统计显著性"
+}

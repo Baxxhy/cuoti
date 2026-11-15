@@ -1,0 +1,296 @@
+{
+  "prompt": "你为学生提供下一步教学指导。保留原答，不直接给出当前题完整答案，不断言掌握程度。引用只能使用输入中实际可见的版本ID，并说明哪条建议受该材料支持；无材料可留空。不得调用工具。只返回指定JSON。独立新题仅作为后续人工测量材料，本次不作答。\n结合给定困难证据、已匹配经验及记忆决策提供指导；证据不足先核对，避免将规则建议当作认知诊断。\n\n输入：{\"subject\": \"化学\", \"grade\": \"九年级\", \"question\": \"每个粒子都由A和B组成且所有粒子相同，判断物质类别。\", \"original_answer\": \"混合物，因为有两种原子。\", \"difficulty\": \"原子种类等于物质种类吗？\", \"public_knowledge\": \"原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。\", \"experiences\": [{\"id\": \"exp-8b53740e63f142b6ae17ab8f\", \"versionId\": \"resver-8b53740e63f142b6ae17ab8f\", \"version\": 1, \"title\": \"元素化合物与混合物：用不同颜色纸点表示粒子并进行分类解释\", \"subject\": \"化学\", \"grade\": \"九年级\", \"knowledgeIds\": [\"kp-8b53740e63f142b6ae17ab8f\"], \"content\": \"用不同颜色纸点表示粒子并进行分类解释；约定纸点表示元素；比较三组粒子图；用种类与组合方式说明分类\", \"experience\": {\"knowledgePoints\": [\"元素化合物与混合物\"], \"goal\": \"能够就“元素化合物与混合物”给出有依据的说明，并完成对应独立检查。\", \"studentBase\": \"保留原始答案与说明；不因一次错误推断长期能力。\", \"difficulty\": \"化合物和混合物只背定义不会看粒子图\", \"diagnosis\": \"请学生先说明“元素化合物与混合物”的当前做法，核对是否出现“化合物和混合物只背定义不会看粒子图”。证据不足先追问。\", \"strategy\": \"用不同颜色纸点表示粒子并进行分类解释\", \"steps\": [\"约定纸点表示元素\", \"比较三组粒子图\", \"用种类与组合方式说明分类\"], \"questions\": [\"你按元素种类还是物质种类在分类？\"], \"responses\": [\"学生可能把多种元素直接判成混合物（预设可能回应，非课堂实录）\"], \"adjustment\": \"并排比较同一种化合物与两种物质的粒子图\", \"boundary\": \"只适用于九年级化学的元素化合物与混合物；仅按已提供的材料与条件指导，不推断真实操作表现。\", \"effectCheck\": \"对新粒子图分类并给出一条结构依据\", \"suggestions\": []}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"化学\", \"grade\": \"九年级\", \"knowledgeIds\": [\"kp-8b53740e63f142b6ae17ab8f\"]}, \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"experienceReview\": {\"reviewerId\": \"frozen-user-review\", \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"applicability\": {\"schema\": 1, \"kind\": \"knowledge_scope\", \"subject\": \"化学\", \"grade\": \"九年级\", \"knowledgeIds\": [\"kp-8b53740e63f142b6ae17ab8f\"]}}, \"source\": {\"id\": \"chemistry\", \"title\": \"Module 2: Secondary Science - Chemistry\", \"url\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1\", \"institution\": \"The Open University / TESSA collaborative teacher-education authors\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"publishedAt\": null, \"checkedAt\": \"2026-11-14\", \"verification\": \"web-readable\", \"license\": \"CC-BY-SA (version not confirmed)\", \"reuseMode\": \"adapted_text\", \"originalScope\": \"secondary\", \"notes\": \"\", \"verificationMethod\": \"在线浏览原发布机构页面；日期未知时不以检索日期代替。\"}, \"score\": 2.822733, \"bm25Score\": 3.411087, \"textScore\": 2.372733, \"knowledgeScore\": 0.45, \"contextScore\": 0.0, \"matchedFields\": [{\"field\": \"title\", \"label\": \"标题\", \"score\": 0.446822, \"bm25\": 0.287682, \"matchedTerms\": [\"粒子\"], \"contextMatched\": false}, {\"field\": \"difficulty\", \"label\": \"学生困难\", \"score\": 0.446822, \"bm25\": 0.287682, \"matchedTerms\": [\"粒子\"], \"contextMatched\": false}, {\"field\": \"content\", \"label\": \"正文\", \"score\": 0.411299, \"bm25\": 0.698656, \"matchedTerms\": [\"种类\", \"粒子\"], \"contextMatched\": false}, {\"field\": \"steps\", \"label\": \"讲解步骤\", \"score\": 0.328704, \"bm25\": 0.575364, \"matchedTerms\": [\"种类\", \"粒子\"], \"contextMatched\": false}, {\"field\": \"questions\", \"label\": \"教师提问\", \"score\": 0.446905, \"bm25\": 0.986339, \"matchedTerms\": [\"物质\", \"种类\", \"质种\"], \"contextMatched\": false}, {\"field\": \"adjustment\", \"label\": \"回应调整\", \"score\": 0.292181, \"bm25\": 0.575364, \"matchedTerms\": [\"物质\", \"粒子\"], \"contextMatched\": false}], \"knowledgeMatches\": [{\"id\": \"kp-8b53740e63f142b6ae17ab8f\", \"name\": \"元素化合物与混合物\", \"relation\": \"direct\"}], \"matchReasons\": [\"直接关联目标知识点\", \"匹配教师提问、标题、学生困难\"]}], \"difficulty_evidence\": {\"schema\": 1, \"subject\": \"化学\", \"dimensions\": [\"理解任务\", \"说明依据\", \"独立应用\"], \"observations\": [{\"id\": \"N03\", \"kind\": \"原始作答\", \"text\": \"混合物，因为有两种原子。\"}, {\"id\": \"N03:request\", \"kind\": \"学生自述\", \"text\": \"原子种类等于物质种类吗？\"}], \"historyEvidence\": [], \"evidenceSufficiency\": \"需进一步确认\", \"difficulty\": \"学生报告当前学习遇到困难\", \"possibleCauses\": [], \"confirmationQuestion\": \"请指出你从哪一步开始不确定，并说明刚才是怎么想的。\", \"recommendedStrategy\": \"hint\", \"reason\": \"尚不能根据一次作答判断原因，先给提示并追问。\"}, \"learning_memory\": [], \"decision\": {\"schema\": 1, \"selected\": [{\"id\": \"exp-8b53740e63f142b6ae17ab8f\", \"versionId\": \"resver-8b53740e63f142b6ae17ab8f\", \"version\": 1, \"strategy\": \"hint\", \"diagnosticOnly\": false, \"teachingMethod\": \"用不同颜色纸点表示粒子并进行分类解释\", \"method\": \"用不同颜色纸点表示粒子并进行分类解释\", \"reason\": \"学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。\", \"evidenceIds\": [\"N03\", \"N03:request\"], \"provenance\": {\"kind\": \"public\", \"author\": \"The Open University / TESSA collaborative teacher-education authors\", \"evidence\": \"https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1\", \"authorization\": \"internal\", \"authorizationEvidence\": \"本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。\"}, \"conditions\": [\"只适用于九年级化学的元素化合物与混合物；仅按已提供的材料与条件指导，不推断真实操作表现。\"], \"matchedDifficultyTerms\": [\"合物\", \"混合\"], \"diagnosticBasis\": \"请学生先说明“元素化合物与混合物”的当前做法，核对是否出现“化合物和混合物只背定义不会看粒子图”。证据不足先追问。\", \"effectCheck\": \"对新粒子图分类并给出一条结构依据\"}], \"rejected\": [], \"fallback\": false, \"notice\": \"参考已审核教学经验，效果仍需独立练习与教师反馈验证。\"}}",
+  "data": {
+    "subject": "化学",
+    "grade": "九年级",
+    "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+    "original_answer": "混合物，因为有两种原子。",
+    "difficulty": "原子种类等于物质种类吗？",
+    "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+    "experiences": [
+      {
+        "id": "exp-8b53740e63f142b6ae17ab8f",
+        "versionId": "resver-8b53740e63f142b6ae17ab8f",
+        "version": 1,
+        "title": "元素化合物与混合物：用不同颜色纸点表示粒子并进行分类解释",
+        "subject": "化学",
+        "grade": "九年级",
+        "knowledgeIds": [
+          "kp-8b53740e63f142b6ae17ab8f"
+        ],
+        "content": "用不同颜色纸点表示粒子并进行分类解释；约定纸点表示元素；比较三组粒子图；用种类与组合方式说明分类",
+        "experience": {
+          "knowledgePoints": [
+            "元素化合物与混合物"
+          ],
+          "goal": "能够就“元素化合物与混合物”给出有依据的说明，并完成对应独立检查。",
+          "studentBase": "保留原始答案与说明；不因一次错误推断长期能力。",
+          "difficulty": "化合物和混合物只背定义不会看粒子图",
+          "diagnosis": "请学生先说明“元素化合物与混合物”的当前做法，核对是否出现“化合物和混合物只背定义不会看粒子图”。证据不足先追问。",
+          "strategy": "用不同颜色纸点表示粒子并进行分类解释",
+          "steps": [
+            "约定纸点表示元素",
+            "比较三组粒子图",
+            "用种类与组合方式说明分类"
+          ],
+          "questions": [
+            "你按元素种类还是物质种类在分类？"
+          ],
+          "responses": [
+            "学生可能把多种元素直接判成混合物（预设可能回应，非课堂实录）"
+          ],
+          "adjustment": "并排比较同一种化合物与两种物质的粒子图",
+          "boundary": "只适用于九年级化学的元素化合物与混合物；仅按已提供的材料与条件指导，不推断真实操作表现。",
+          "effectCheck": "对新粒子图分类并给出一条结构依据",
+          "suggestions": []
+        },
+        "applicability": {
+          "schema": 1,
+          "kind": "knowledge_scope",
+          "subject": "化学",
+          "grade": "九年级",
+          "knowledgeIds": [
+            "kp-8b53740e63f142b6ae17ab8f"
+          ]
+        },
+        "provenance": {
+          "kind": "public",
+          "author": "The Open University / TESSA collaborative teacher-education authors",
+          "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1",
+          "authorization": "internal",
+          "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+        },
+        "experienceReview": {
+          "reviewerId": "frozen-user-review",
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "applicability": {
+            "schema": 1,
+            "kind": "knowledge_scope",
+            "subject": "化学",
+            "grade": "九年级",
+            "knowledgeIds": [
+              "kp-8b53740e63f142b6ae17ab8f"
+            ]
+          }
+        },
+        "source": {
+          "id": "chemistry",
+          "title": "Module 2: Secondary Science - Chemistry",
+          "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1",
+          "institution": "The Open University / TESSA collaborative teacher-education authors",
+          "author": "The Open University / TESSA collaborative teacher-education authors",
+          "publishedAt": null,
+          "checkedAt": "2026-11-14",
+          "verification": "web-readable",
+          "license": "CC-BY-SA (version not confirmed)",
+          "reuseMode": "adapted_text",
+          "originalScope": "secondary",
+          "notes": "",
+          "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+        },
+        "score": 2.822733,
+        "bm25Score": 3.411087,
+        "textScore": 2.372733,
+        "knowledgeScore": 0.45,
+        "contextScore": 0.0,
+        "matchedFields": [
+          {
+            "field": "title",
+            "label": "标题",
+            "score": 0.446822,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "粒子"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "difficulty",
+            "label": "学生困难",
+            "score": 0.446822,
+            "bm25": 0.287682,
+            "matchedTerms": [
+              "粒子"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "content",
+            "label": "正文",
+            "score": 0.411299,
+            "bm25": 0.698656,
+            "matchedTerms": [
+              "种类",
+              "粒子"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "steps",
+            "label": "讲解步骤",
+            "score": 0.328704,
+            "bm25": 0.575364,
+            "matchedTerms": [
+              "种类",
+              "粒子"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "questions",
+            "label": "教师提问",
+            "score": 0.446905,
+            "bm25": 0.986339,
+            "matchedTerms": [
+              "物质",
+              "种类",
+              "质种"
+            ],
+            "contextMatched": false
+          },
+          {
+            "field": "adjustment",
+            "label": "回应调整",
+            "score": 0.292181,
+            "bm25": 0.575364,
+            "matchedTerms": [
+              "物质",
+              "粒子"
+            ],
+            "contextMatched": false
+          }
+        ],
+        "knowledgeMatches": [
+          {
+            "id": "kp-8b53740e63f142b6ae17ab8f",
+            "name": "元素化合物与混合物",
+            "relation": "direct"
+          }
+        ],
+        "matchReasons": [
+          "直接关联目标知识点",
+          "匹配教师提问、标题、学生困难"
+        ]
+      }
+    ],
+    "difficulty_evidence": {
+      "schema": 1,
+      "subject": "化学",
+      "dimensions": [
+        "理解任务",
+        "说明依据",
+        "独立应用"
+      ],
+      "observations": [
+        {
+          "id": "N03",
+          "kind": "原始作答",
+          "text": "混合物，因为有两种原子。"
+        },
+        {
+          "id": "N03:request",
+          "kind": "学生自述",
+          "text": "原子种类等于物质种类吗？"
+        }
+      ],
+      "historyEvidence": [],
+      "evidenceSufficiency": "需进一步确认",
+      "difficulty": "学生报告当前学习遇到困难",
+      "possibleCauses": [],
+      "confirmationQuestion": "请指出你从哪一步开始不确定，并说明刚才是怎么想的。",
+      "recommendedStrategy": "hint",
+      "reason": "尚不能根据一次作答判断原因，先给提示并追问。"
+    },
+    "learning_memory": [],
+    "decision": {
+      "schema": 1,
+      "selected": [
+        {
+          "id": "exp-8b53740e63f142b6ae17ab8f",
+          "versionId": "resver-8b53740e63f142b6ae17ab8f",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用不同颜色纸点表示粒子并进行分类解释",
+          "method": "用不同颜色纸点表示粒子并进行分类解释",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "N03",
+            "N03:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级化学的元素化合物与混合物；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "合物",
+            "混合"
+          ],
+          "diagnosticBasis": "请学生先说明“元素化合物与混合物”的当前做法，核对是否出现“化合物和混合物只背定义不会看粒子图”。证据不足先追问。",
+          "effectCheck": "对新粒子图分类并给出一条结构依据"
+        }
+      ],
+      "rejected": [],
+      "fallback": false,
+      "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。"
+    }
+  },
+  "meta": {
+    "candidateVersionIds": [
+      "resver-8b53740e63f142b6ae17ab8f"
+    ],
+    "decision": {
+      "schema": 1,
+      "selected": [
+        {
+          "id": "exp-8b53740e63f142b6ae17ab8f",
+          "versionId": "resver-8b53740e63f142b6ae17ab8f",
+          "version": 1,
+          "strategy": "hint",
+          "diagnosticOnly": false,
+          "teachingMethod": "用不同颜色纸点表示粒子并进行分类解释",
+          "method": "用不同颜色纸点表示粒子并进行分类解释",
+          "reason": "学科、年级、知识点与已审核来源符合；教法作为候选应用，不推断学生认知原因。",
+          "evidenceIds": [
+            "N03",
+            "N03:request"
+          ],
+          "provenance": {
+            "kind": "public",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "evidence": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1",
+            "authorization": "internal",
+            "authorizationEvidence": "本会话用户明确回复：已阅读，认可57条中文方法摘要用于本地教学。该确认不证明专家评审、课堂效果或原作再分发许可。"
+          },
+          "conditions": [
+            "只适用于九年级化学的元素化合物与混合物；仅按已提供的材料与条件指导，不推断真实操作表现。"
+          ],
+          "matchedDifficultyTerms": [
+            "合物",
+            "混合"
+          ],
+          "diagnosticBasis": "请学生先说明“元素化合物与混合物”的当前做法，核对是否出现“化合物和混合物只背定义不会看粒子图”。证据不足先追问。",
+          "effectCheck": "对新粒子图分类并给出一条结构依据"
+        }
+      ],
+      "rejected": [],
+      "fallback": false,
+      "notice": "参考已审核教学经验，效果仍需独立练习与教师反馈验证。"
+    }
+  },
+  "group": "C",
+  "scenario_id": "N03",
+  "replicate": 0
+}

@@ -1,0 +1,6635 @@
+[
+  {
+    "blind_id": "0287731bb9a99b1c",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "02f1f8d3e5752f68",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "06d8453d44c877b7",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "090fe6db9bf378e4",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "0eba8b3942b7c610",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "1251bca395e029f1",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "14fc155c6986e7ea",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "176604b40f3171a8",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "17a12f624e180937",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "17a76bd3ac9793ee",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "17cde55060c3dd5e",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "1822bddb3fa59de1",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "1b070a686a70cb16",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "1bb011c33feb47ae",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "1cb60f3901bed3d7",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "1dd3cc47948aea3d",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "1fe39067d4008793",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "200b15304b8f0894",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "2156a75628550116",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "21712d87a3384a40",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "227131d767f55c5f",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "23f606a6f40c3708",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "244bfe3b2d43ffa9",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "24cd5136051aac0f",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "27038b5f7c642364",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "27778dc8ad5d0838",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "27c51cdaf46766b9",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "28a5704795739d86",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "294973b197d4d715",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "2b1103ed808f06d4",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "2ba4e246740a6336",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "2d6b64d84e09cd1b",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "2e62decf76799d58",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "32625d2c7dfcbdb1",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "34d7660dd3194c19",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "36c1abb7b8549a0d",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "3835a94318cb2793",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "38c1d6be651904a3",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "397d1f5b9b42dd4c",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "3ab8ea8be86444d4",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "3ada4d694da38926",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "3ae25dd320f0ff10",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "3c52b47f3c34bb4b",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "40a56c87a2e1477b",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "4201d545da785900",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "46971b3014e296fd",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "4826c7f23ab11deb",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "489c52444cc444d0",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "4939b8656f77c6a5",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "49a3446e10a6c147",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "50c1c94b91ec5085",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "51b2da9ef13fca27",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "591bc448ed93bfdc",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "59b0a06048aeafe9",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "59b0c9d58ade4ac7",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "5bd9bdbdd290f315",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "5c0cd3c80033eec5",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "5c861b7ecdf112f3",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "5db428932d8ad7eb",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "624ca68db0dcd0ac",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "6730dc44d2198dce",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "673b114e792c3644",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "685d049e918612af",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "6ac9a12f0bfd9fe3",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "6c1da2ed403d60cb",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "6c5c9bd26463e51c",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "6f3cdfd7f992b34e",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "6fec9585d2118c7c",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "70724f23a12bfcda",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "73ca892abb584ffe",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "750d625c661dd925",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "75a857ac0a21c430",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "75f4a0997de5997c",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "7616643798069e64",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "79c17334ec52f7a6",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "7a44be0801290b55",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "7bab1e42fa4ab069",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "7bd14f578622e97b",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "7eaf8bc318156c2b",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "7f9e5fed6b4d76a3",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "837f5b0311f4badd",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "84d1fbe16d97d398",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "8514db7217ad5760",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "860a6d611817ae52",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "878b98eda9654ae0",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "87e8e6bbef069da7",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "88cf2f82119f2b1f",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "89b94ab952af4da0",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "89ea6229c5d106ab",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "8c00febb37a1e24a",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "9044cfc3a50144eb",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "9079eff8d625603c",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "93a942c87dd07288",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "94f97ded50eb094e",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "99ec2a1afafb4b29",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "9a22b7c49bef1cc8",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "9b9c649f987a032b",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "9d06bdd012d9cca8",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "9d308708b17da6d3",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "9da6d28ab12756f1",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "9dcba141e4ad21fa",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "9ddef2d6c59d9ca8",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "a05b05e5a9cf9379",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "a128a3ca887e9372",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "a2e5beae921c6513",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "aa1a0f1c71d6e6a4",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "b2d73d3c4fef3762",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "b33dbab87f672fde",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "b482105e288e8fc5",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "b49306d96b9a4bd5",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "b614d3a8f746fe7a",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "b9745d1601e1fa05",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "ba14ab5cf0e8377f",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "ba17e030c10ac0e6",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "bc4de995db631128",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "c12afee49143430f",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "c25217b82c2f0c4d",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "c553abedc1e6560d",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "c56d1ed7f0f164a1",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "c842e177cc8052d6",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "c8761115d922be05",
+    "context": {
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "c8febe4e8f83f15f",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "c903cfd49d4cad38",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "c977aef3dc853dc1",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "cb56fb632f5d68da",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "cbc7ac1f6c791f83",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "d2aac89ad2140039",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "d3a2968d986cc8c6",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "d587194543937828",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "d6307002e902d1e9",
+    "context": {
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "d651cd0ce7de3476",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "d9e71d32683245fd",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "dde971aadd86adf1",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "ddeff3a19ca3a0d4",
+    "context": {
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "dffbe64530bbe084",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "e1e54fd57ed6887d",
+    "context": {
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "e534d678b9314cab",
+    "context": {
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "e91d8d0aff3d7c3c",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "ebcd759e4cccbc75",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "succeeded",
+    "response": {
+      "difficulty_assessment": "受控工程响应，不用于效果比较",
+      "strategy": "hint",
+      "hint": "请说明依据。",
+      "steps": [],
+      "question": "哪步不确定？",
+      "citations": []
+    }
+  },
+  {
+    "blind_id": "eda0fa0b9c2d35d7",
+    "context": {
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "eef0f1efbf11d5f1",
+    "context": {
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "f2453a9f133e67a7",
+    "context": {
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "f5d78dd2992dc0da",
+    "context": {
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  },
+  {
+    "blind_id": "fa230f7674a81935",
+    "context": {
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ]
+    },
+    "status": "interrupted",
+    "response": null
+  }
+]

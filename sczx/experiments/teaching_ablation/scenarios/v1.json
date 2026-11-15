@@ -1,0 +1,1148 @@
+{
+  "version": "simulation-20261115-v3",
+  "review": "AI-assisted draft, no expert confirmation",
+  "scenarios": [
+    {
+      "scenario_id": "L01",
+      "category": "L",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L01:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-27512d25df0b40691bc7a605"
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "available_experiences": [
+        {
+          "id": "exp-27512d25df0b40691bc7a605",
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "source": {
+            "id": "reading",
+            "title": "Module 1: Reading and writing for a range of purposes",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1",
+            "institution": "The Open University / TESSA collaborative teacher-education authors",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA (version not confirmed)",
+            "reuseMode": "adapted_text",
+            "originalScope": "primary",
+            "notes": "仅将阅读理解与摘要方法适配初中补基础；并非来源原有中国初中课例。",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "指出擦干长椅、方便他人，不能编造人物心理。"
+    },
+    {
+      "scenario_id": "L02",
+      "category": "L",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "语文",
+      "grade": "七年级",
+      "question": "同学擦干长椅方便别人坐下。找出支持关心他人的证据。",
+      "original_answer": "因为同学很好。",
+      "difficulty": "我只会说结论。",
+      "known_evidence": [
+        {
+          "id": "L02:answer",
+          "text": "因为同学很好。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "L02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "语文",
+          "grade": "七年级",
+          "knowledgeIds": [
+            "kp-27512d25df0b40691bc7a605"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "knowledge_ids": [
+        "kp-27512d25df0b40691bc7a605"
+      ],
+      "public_knowledge": "阅读解释要以文本事实为据，区分事实与推断。",
+      "available_experiences": [
+        {
+          "id": "exp-27512d25df0b40691bc7a605",
+          "versionId": "resver-27512d25df0b40691bc7a605",
+          "source": {
+            "id": "reading",
+            "title": "Module 1: Reading and writing for a range of purposes",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=161813&printable=1",
+            "institution": "The Open University / TESSA collaborative teacher-education authors",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA (version not confirmed)",
+            "reuseMode": "adapted_text",
+            "originalScope": "primary",
+            "notes": "仅将阅读理解与摘要方法适配初中补基础；并非来源原有中国初中课例。",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级语文的文本证据定位；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "同学捡走路旁碎玻璃，避免别人受伤。找证据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "行为和避免受伤之间有明确对应。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": "L01",
+      "rater_reference": "指出擦干长椅、方便他人，不能编造人物心理。"
+    },
+    {
+      "scenario_id": "L03",
+      "category": "L",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L03:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-bad2849613d5effb60838c5e"
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "available_experiences": [
+        {
+          "id": "exp-bad2849613d5effb60838c5e",
+          "versionId": "resver-bad2849613d5effb60838c5e",
+          "source": {
+            "id": "grammar",
+            "title": "English grammar in action",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1",
+            "institution": "The Open University / TESS-India",
+            "author": "The Open University / TESS-India",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA-4.0",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "识别yesterday指过去，go有不规则过去式，提示不直接代写。"
+    },
+    {
+      "scenario_id": "L04",
+      "category": "L",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "英语",
+      "grade": "八年级",
+      "question": "表达昨天去学校：I goed to school yesterday. 请检查。",
+      "original_answer": "I goed to school yesterday.",
+      "difficulty": "过去式是不是都加ed？",
+      "known_evidence": [
+        {
+          "id": "L04:answer",
+          "text": "I goed to school yesterday.",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "L04",
+          "helped": false,
+          "verification": "verified_correct",
+          "outcome": "independent_correct",
+          "text": "模拟：先前受帮助，随后一道新题独立答对；仅证明该次表现"
+        }
+      ],
+      "knowledge_ids": [
+        "kp-bad2849613d5effb60838c5e"
+      ],
+      "public_knowledge": "过去事件可以用过去时表达，动词变化既有规则形式也有不规则形式。",
+      "available_experiences": [
+        {
+          "id": "exp-bad2849613d5effb60838c5e",
+          "versionId": "resver-bad2849613d5effb60838c5e",
+          "source": {
+            "id": "grammar",
+            "title": "English grammar in action",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57368&printable=1",
+            "institution": "The Open University / TESS-India",
+            "author": "The Open University / TESS-India",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA-4.0",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于八年级英语的一般过去时；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "表达昨天看望朋友，并说明时间依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "visited及yesterday依据均正确。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": "L03",
+      "rater_reference": "识别yesterday指过去，go有不规则过去式，提示不直接代写。"
+    },
+    {
+      "scenario_id": "M01",
+      "category": "M",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M01:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-7041cb6634a404a8ceb7fac2"
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "available_experiences": [
+        {
+          "id": "exp-7041cb6634a404a8ceb7fac2",
+          "versionId": "resver-7041cb6634a404a8ceb7fac2",
+          "source": {
+            "id": "triangles",
+            "title": "Cooperative learning and mathematical talk: triangles",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1",
+            "institution": "The Open University / TESS-India",
+            "author": "The Open University / TESS-India",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA-4.0",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "两短边之和必须大于最长边，不用外观猜。"
+    },
+    {
+      "scenario_id": "M02",
+      "category": "M",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "4、5、10厘米三条线段能围成三角形吗？",
+      "original_answer": "能，因为有三根。",
+      "difficulty": "不知道长度条件。",
+      "known_evidence": [
+        {
+          "id": "M02:answer",
+          "text": "能，因为有三根。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "M02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "M02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "数学",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-7041cb6634a404a8ceb7fac2"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "knowledge_ids": [
+        "kp-7041cb6634a404a8ceb7fac2"
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "available_experiences": [
+        {
+          "id": "exp-7041cb6634a404a8ceb7fac2",
+          "versionId": "resver-7041cb6634a404a8ceb7fac2",
+          "source": {
+            "id": "triangles",
+            "title": "Cooperative learning and mathematical talk: triangles",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1",
+            "institution": "The Open University / TESS-India",
+            "author": "The Open University / TESS-India",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA-4.0",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "3、4、5厘米能围成吗？说明依据。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能且3+4>5，边长均为正。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": "M01",
+      "rater_reference": "两短边之和必须大于最长边，不用外观猜。"
+    },
+    {
+      "scenario_id": "M03",
+      "category": "M",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "数学",
+      "grade": "七年级",
+      "question": "已知2x=10，求x。",
+      "original_answer": "x=5，因为两边都减去2。",
+      "difficulty": "答案对了，我的理由也对吗？",
+      "known_evidence": [
+        {
+          "id": "M03:answer",
+          "text": "x=5，因为两边都减去2。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "unknown-equation"
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "available_experiences": [],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "3x=12，解释共同运算及条件。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "x=4，同除3，3非零。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "答案正确但说明错误，应说明同除非零2；不编造匹配名师。"
+    },
+    {
+      "scenario_id": "M04",
+      "category": "M",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "数学",
+      "grade": "八年级",
+      "question": "长度3、4、7能围三角形吗？",
+      "original_answer": "不能，因为图看上去扁。",
+      "difficulty": "我的答案对了就够了吗？",
+      "known_evidence": [
+        {
+          "id": "M04:answer",
+          "text": "不能，因为图看上去扁。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-7041cb6634a404a8ceb7fac2"
+      ],
+      "public_knowledge": "运用定义和适用条件进行推理；等式变形应说明两边的共同运算和合法条件。",
+      "available_experiences": [
+        {
+          "id": "exp-7041cb6634a404a8ceb7fac2",
+          "versionId": "resver-7041cb6634a404a8ceb7fac2",
+          "source": {
+            "id": "triangles",
+            "title": "Cooperative learning and mathematical talk: triangles",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=57352&printable=1",
+            "institution": "The Open University / TESS-India",
+            "author": "The Open University / TESS-India",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA-4.0",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于八年级数学的三角形性质与解释；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "2、3、4厘米能围吗？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "能，2+3>4，说明条件。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "结论正确但解释不足，等号不满足严格大于。"
+    },
+    {
+      "scenario_id": "N01",
+      "category": "N",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N01:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-a6878cdb6a68dc2fc7bd492a"
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "available_experiences": [
+        {
+          "id": "exp-a6878cdb6a68dc2fc7bd492a",
+          "versionId": "resver-a6878cdb6a68dc2fc7bd492a",
+          "source": {
+            "id": "physics",
+            "title": "Module 3: Secondary Science - Physics",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1",
+            "institution": "The Open University / TESSA collaborative teacher-education authors",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA (version not confirmed)",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于八年级物理的力的示意图；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "先明确研究对象，区分施力受力对象。"
+    },
+    {
+      "scenario_id": "N02",
+      "category": "N",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "物理",
+      "grade": "八年级",
+      "question": "书静止在桌面上，说明书受到的力。",
+      "original_answer": "书压桌子的力也画在书上。",
+      "difficulty": "不知道哪个物体受力。",
+      "known_evidence": [
+        {
+          "id": "N02:answer",
+          "text": "书压桌子的力也画在书上。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N02-0",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        },
+        {
+          "evidenceId": "N02-1",
+          "helped": false,
+          "verification": "verified_incorrect",
+          "outcome": "independent_incorrect",
+          "subject": "物理",
+          "grade": "八年级",
+          "knowledgeIds": [
+            "kp-a6878cdb6a68dc2fc7bd492a"
+          ],
+          "text": "模拟：不同练习中相同困难再次出现"
+        }
+      ],
+      "knowledge_ids": [
+        "kp-a6878cdb6a68dc2fc7bd492a"
+      ],
+      "public_knowledge": "分析受力应先明确研究对象，并区分施力物体与受力物体。",
+      "available_experiences": [
+        {
+          "id": "exp-a6878cdb6a68dc2fc7bd492a",
+          "versionId": "resver-a6878cdb6a68dc2fc7bd492a",
+          "source": {
+            "id": "physics",
+            "title": "Module 3: Secondary Science - Physics",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159078&printable=1",
+            "institution": "The Open University / TESSA collaborative teacher-education authors",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA (version not confirmed)",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于八年级物理的力的示意图；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "foundation",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "绳吊静止小球受到哪些力？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "重力向下、拉力向上，指明对象。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": "N01",
+      "rater_reference": "先明确研究对象，区分施力受力对象。"
+    },
+    {
+      "scenario_id": "N03",
+      "category": "N",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "化学",
+      "grade": "九年级",
+      "question": "每个粒子都由A和B组成且所有粒子相同，判断物质类别。",
+      "original_answer": "混合物，因为有两种原子。",
+      "difficulty": "原子种类等于物质种类吗？",
+      "known_evidence": [
+        {
+          "id": "N03:answer",
+          "text": "混合物，因为有两种原子。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-8b53740e63f142b6ae17ab8f"
+      ],
+      "public_knowledge": "原子、粒子及物质的种类是不同层次，分类需要观察组成与结合情况。",
+      "available_experiences": [
+        {
+          "id": "exp-8b53740e63f142b6ae17ab8f",
+          "versionId": "resver-8b53740e63f142b6ae17ab8f",
+          "source": {
+            "id": "chemistry",
+            "title": "Module 2: Secondary Science - Chemistry",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=159077&section=1",
+            "institution": "The Open University / TESSA collaborative teacher-education authors",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA (version not confirmed)",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于九年级化学的元素化合物与混合物；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "独立A粒子和B粒子共存且未结合，分类。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "混合物，存在两种不同物质粒子。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "区分原子种类和物质组成。"
+    },
+    {
+      "scenario_id": "N04",
+      "category": "N",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "生物学",
+      "grade": "七年级",
+      "question": "甲叶脉平行，乙呈网状，如何分组？",
+      "original_answer": "按我喜欢不喜欢分。",
+      "difficulty": "不知道选什么特征。",
+      "known_evidence": [
+        {
+          "id": "N04:answer",
+          "text": "按我喜欢不喜欢分。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "N04",
+          "helped": false,
+          "verification": "unverified",
+          "outcome": "unknown",
+          "text": "模拟：只说看懂了，无独立作答"
+        }
+      ],
+      "knowledge_ids": [
+        "kp-9238445c7db4f4048f6c10a2"
+      ],
+      "public_knowledge": "生物分组应基于可观察、可复查的共同特征。",
+      "available_experiences": [
+        {
+          "id": "exp-9238445c7db4f4048f6c10a2",
+          "versionId": "resver-9238445c7db4f4048f6c10a2",
+          "source": {
+            "id": "biology",
+            "title": "Module 1: Secondary Science - Biology",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=158679&printable=1",
+            "institution": "The Open University / TESSA collaborative teacher-education authors",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA (version not confirmed)",
+            "reuseMode": "adapted_text",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级生物学的生物分类与特征；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "A与C叶脉平行，B网状，分组并说明。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "A/C一组、B一组，以观察为依据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "依据可观察可复查特征，不猜物种。"
+    },
+    {
+      "scenario_id": "H01",
+      "category": "H",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H01:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-1f884513468f4e78dab0cdea"
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "available_experiences": [
+        {
+          "id": "exp-1f884513468f4e78dab0cdea",
+          "versionId": "resver-1f884513468f4e78dab0cdea",
+          "source": {
+            "id": "history",
+            "title": "Historical Thinking Chart",
+            "url": "https://www.inquirygroup.org/history-lessons/historical-thinking-chart",
+            "institution": "Digital Inquiry Group",
+            "author": "Digital Inquiry Group",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "unknown",
+            "reuseMode": "summary_link_only",
+            "originalScope": "secondary",
+            "notes": "网页可读，完整下载要求注册；只整理方法摘要，不下载、复制图表或原课件。",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级历史的史料出处与可信度；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "核对作者、时间、目的，区分回忆与即时记录。"
+    },
+    {
+      "scenario_id": "H02",
+      "category": "H",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "历史",
+      "grade": "七年级",
+      "question": "亲历者晚年回忆一段事件，是否全部可信？",
+      "original_answer": "亲历者说的全是真的。",
+      "difficulty": "是不是亲历者就可靠？",
+      "known_evidence": [
+        {
+          "id": "H02:answer",
+          "text": "亲历者说的全是真的。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [
+        {
+          "evidenceId": "H02",
+          "helped": true,
+          "verification": "verified_incorrect",
+          "outcome": "retest_failed",
+          "text": "模拟：接受帮助后仍错误，不当作独立困难记录"
+        }
+      ],
+      "knowledge_ids": [
+        "kp-1f884513468f4e78dab0cdea"
+      ],
+      "public_knowledge": "史料要核对作者、时间、背景与目的，区分事实与立场。",
+      "available_experiences": [
+        {
+          "id": "exp-1f884513468f4e78dab0cdea",
+          "versionId": "resver-1f884513468f4e78dab0cdea",
+          "source": {
+            "id": "history",
+            "title": "Historical Thinking Chart",
+            "url": "https://www.inquirygroup.org/history-lessons/historical-thinking-chart",
+            "institution": "Digital Inquiry Group",
+            "author": "Digital Inquiry Group",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "unknown",
+            "reuseMode": "summary_link_only",
+            "originalScope": "secondary",
+            "notes": "网页可读，完整下载要求注册；只整理方法摘要，不下载、复制图表或原课件。",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级历史的史料出处与可信度；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "事件发生时的宣传海报，有何价值和局限？",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "可反映当时宣传立场，不代表事件全部事实。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": "H01",
+      "rater_reference": "核对作者、时间、目的，区分回忆与即时记录。"
+    },
+    {
+      "scenario_id": "H03",
+      "category": "H",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "地理",
+      "grade": "七年级",
+      "question": "图上方北，教学楼在操场右侧，说明方位依据。",
+      "original_answer": "左边，因为我站在校门看。",
+      "difficulty": "不知道用哪个方向。",
+      "known_evidence": [
+        {
+          "id": "H03:answer",
+          "text": "左边，因为我站在校门看。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-238a47d02714a8da8e039bfa"
+      ],
+      "public_knowledge": "方位表达依赖图示方向约定及明确的参照物。",
+      "available_experiences": [
+        {
+          "id": "exp-238a47d02714a8da8e039bfa",
+          "versionId": "resver-238a47d02714a8da8e039bfa",
+          "source": {
+            "id": "geo-local",
+            "title": "Mapping the local environment",
+            "url": "https://www.open.edu/openlearncreate/mod/oucontent/view.php?id=154369&section=1",
+            "institution": "The Open University / TESSA collaborative teacher-education authors",
+            "author": "The Open University / TESSA collaborative teacher-education authors",
+            "publishedAt": null,
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "CC-BY-SA (version not confirmed)",
+            "reuseMode": "adapted_text",
+            "originalScope": "primary",
+            "notes": "迁移地图入门方法到初中；不复制原地图。",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级地理的地图图例与方向；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "图上北，图书馆在广场下方，说明方向。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "南方，以上北下南为据。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "固定图示方向和参照物，不以站位猜方位。"
+    },
+    {
+      "scenario_id": "H04",
+      "category": "H",
+      "material_type": "团队自编、AI辅助拟稿模拟情境，待学科人工复核",
+      "subject": "道德与法治",
+      "grade": "七年级",
+      "question": "小组协作中有人不同意多数意见，应该怎么办？",
+      "original_answer": "直接让他退出。",
+      "difficulty": "多数人同意就不用听别人吗？",
+      "known_evidence": [
+        {
+          "id": "H04:answer",
+          "text": "直接让他退出。",
+          "certainty": "只有当前作答，原因需要确认"
+        }
+      ],
+      "history": [],
+      "knowledge_ids": [
+        "kp-9764d15c41decca66cf03505"
+      ],
+      "public_knowledge": "集体决策应尊重表达权利并遵循共同约定的程序。",
+      "available_experiences": [
+        {
+          "id": "exp-9764d15c41decca66cf03505",
+          "versionId": "resver-9764d15c41decca66cf03505",
+          "source": {
+            "id": "ethics",
+            "title": "义务教育道德与法治教材介绍",
+            "url": "https://www.moe.gov.cn/jyb_xwfb/xw_fbh/moe_2069/xwfbh_2017n/xwfb_20170828/sfcl_20170828/201708/t20170828_312492.html",
+            "institution": "中华人民共和国教育部",
+            "author": "中华人民共和国教育部",
+            "publishedAt": "2017-08-28",
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "unknown",
+            "reuseMode": "summary_link_only",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级道德与法治的生活规则与理由；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        },
+        {
+          "id": "fixture-unreviewed",
+          "versionId": "fixture-unreviewed-v1",
+          "source": {
+            "id": "ethics",
+            "title": "义务教育道德与法治教材介绍",
+            "url": "https://www.moe.gov.cn/jyb_xwfb/xw_fbh/moe_2069/xwfbh_2017n/xwfb_20170828/sfcl_20170828/201708/t20170828_312492.html",
+            "institution": "中华人民共和国教育部",
+            "author": "中华人民共和国教育部",
+            "publishedAt": "2017-08-28",
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "unknown",
+            "reuseMode": "summary_link_only",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级道德与法治的生活规则与理由；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        },
+        {
+          "id": "fixture-wrong-grade",
+          "versionId": "fixture-wrong-grade-v1",
+          "source": {
+            "id": "ethics",
+            "title": "义务教育道德与法治教材介绍",
+            "url": "https://www.moe.gov.cn/jyb_xwfb/xw_fbh/moe_2069/xwfbh_2017n/xwfb_20170828/sfcl_20170828/201708/t20170828_312492.html",
+            "institution": "中华人民共和国教育部",
+            "author": "中华人民共和国教育部",
+            "publishedAt": "2017-08-28",
+            "checkedAt": "2026-11-14",
+            "verification": "web-readable",
+            "license": "unknown",
+            "reuseMode": "summary_link_only",
+            "originalScope": "secondary",
+            "notes": "",
+            "verificationMethod": "在线浏览原发布机构页面；日期未知时不以检索日期代替。"
+          },
+          "boundary": "只适用于七年级道德与法治的生活规则与理由；仅按已提供的材料与条件指导，不推断真实操作表现。"
+        }
+      ],
+      "expected_strategy": "hint",
+      "strategy_rationale": "重复独立错误先检查前置；其余先提示核对，不武断诊断。",
+      "forbidden": [
+        "直接代写当前题答案",
+        "编造来源或学生心理",
+        "将受帮助或未核验记录当作掌握证据"
+      ],
+      "independent_question": "班级讨论规则时有人持不同意见，写处理方法。",
+      "independent_rubric": {
+        "scale": [
+          0,
+          1,
+          2
+        ],
+        "full_credit": "允许陈述理由，按事先共同约定程序决定。",
+        "partial_credit": "方向部分正确但依据不完整",
+        "zero_credit": "核心错误或无回答"
+      },
+      "pair_id": null,
+      "rater_reference": "尊重表达与规则，不把服从多数等同剥夺表达。"
+    }
+  ]
+}

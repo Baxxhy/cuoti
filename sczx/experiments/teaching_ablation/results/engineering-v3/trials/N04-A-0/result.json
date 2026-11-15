@@ -1,0 +1,21 @@
+{
+  "status": "succeeded",
+  "output": {
+    "difficulty_assessment": "受控工程响应，不用于效果比较",
+    "strategy": "hint",
+    "hint": "请说明依据。",
+    "steps": [],
+    "question": "哪步不确定？",
+    "citations": []
+  },
+  "error": null,
+  "latency_seconds": 7.765181362628937e-05,
+  "model_requested": "gpt-6-luna",
+  "model_returned": null,
+  "effort": "low",
+  "repairs": 0,
+  "calls": 0,
+  "usage": null,
+  "cost": null,
+  "mode": "controlled"
+}

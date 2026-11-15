@@ -1,0 +1,20 @@
+{
+  "version": "release-20261115-v3",
+  "core_freeze_sha256": "c39b2e508aa1e9213abda922d78214ad312c0f09ff81ce7cc1f71bd35cc7a387",
+  "files": {
+    "backend-business/sczx_business/experience_policy.py": "5851cae8663344e182b98771bbe0440ad048088ed4eb051cc00df8513fe6364d",
+    "backend-business/sczx_business/retrieval.py": "5959eaa284629f444e9a4aacc462b46502a795c49006e6a9270f9d1884ebb322",
+    "experiments/teaching_ablation/config.json": "eddcf75aea469600ed02cf4e55356cc6f30c04d6cf07be47787334559c949cd5",
+    "experiments/teaching_ablation/evaluation/RUBRIC.md": "972d4d161c4dc900dc5b2dddd1ecef19506b3e0bb22590b781f96120db7133dd",
+    "experiments/teaching_ablation/evaluation/analyze.py": "00bf12bbbce1025ad24e21c4a73767867324bba78b888ec558a3d6f0e455eed9",
+    "experiments/teaching_ablation/evaluation/report.py": "bfb5a5af8b559df0685afa31bb3d824c80592a62c89512900fc6d697023eb99b",
+    "experiments/teaching_ablation/prompts/A.txt": "378980e22c767e2eacb276b51d0f7026b2cd91ff32954828f470d0da4a9f08a9",
+    "experiments/teaching_ablation/prompts/B.txt": "79a7cf842204855c48fb998e83c3cf13183cf9b9d27da4297b23e8d54c9bcb85",
+    "experiments/teaching_ablation/prompts/C.txt": "af9962e92db789c32e9b1662ea290ff9f1033ab3b5f99d4839d20f95a87ea4ae",
+    "experiments/teaching_ablation/prompts/common.txt": "71f3c5bd83d52e6f320bf107fb7b11a23ebe193a2d7eb3898d9a74eeede3c8be",
+    "experiments/teaching_ablation/runner/run.py": "ea6bbda253493b2e103f4ba0bf0545567c3fafd6bfbe23dce607d95b47652cf5",
+    "experiments/teaching_ablation/runner/test_runner.py": "d42471c3efded9a8cd6ad4e6717cb2fadea0332672bb101cdde787622d850b8a",
+    "experiments/teaching_ablation/scenarios/corpus.json": "64e1af1ee69f585d799726fdc91a1542c8eb8fae31cacbc2b63c3c3f16e07c43",
+    "experiments/teaching_ablation/scenarios/v1.json": "ad095ffd6f0d6c6de0c7e29fedcbda9a597305d376675d12e09caacf1e56bb2d"
+  }
+}

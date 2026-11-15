@@ -1,0 +1,722 @@
+{
+  "685d049e918612af": {
+    "scenario_id": "L01",
+    "group": "A",
+    "replicate": "0"
+  },
+  "2156a75628550116": {
+    "scenario_id": "L01",
+    "group": "B",
+    "replicate": "0"
+  },
+  "02f1f8d3e5752f68": {
+    "scenario_id": "L01",
+    "group": "C",
+    "replicate": "0"
+  },
+  "227131d767f55c5f": {
+    "scenario_id": "L02",
+    "group": "A",
+    "replicate": "0"
+  },
+  "9a22b7c49bef1cc8": {
+    "scenario_id": "L02",
+    "group": "B",
+    "replicate": "0"
+  },
+  "2e62decf76799d58": {
+    "scenario_id": "L02",
+    "group": "C",
+    "replicate": "0"
+  },
+  "878b98eda9654ae0": {
+    "scenario_id": "L03",
+    "group": "A",
+    "replicate": "0"
+  },
+  "ebcd759e4cccbc75": {
+    "scenario_id": "L03",
+    "group": "B",
+    "replicate": "0"
+  },
+  "b33dbab87f672fde": {
+    "scenario_id": "L03",
+    "group": "C",
+    "replicate": "0"
+  },
+  "d3a2968d986cc8c6": {
+    "scenario_id": "L04",
+    "group": "A",
+    "replicate": "0"
+  },
+  "3ab8ea8be86444d4": {
+    "scenario_id": "L04",
+    "group": "B",
+    "replicate": "0"
+  },
+  "7f9e5fed6b4d76a3": {
+    "scenario_id": "L04",
+    "group": "C",
+    "replicate": "0"
+  },
+  "d587194543937828": {
+    "scenario_id": "M01",
+    "group": "A",
+    "replicate": "0"
+  },
+  "a2e5beae921c6513": {
+    "scenario_id": "M01",
+    "group": "B",
+    "replicate": "0"
+  },
+  "88cf2f82119f2b1f": {
+    "scenario_id": "M01",
+    "group": "C",
+    "replicate": "0"
+  },
+  "bc4de995db631128": {
+    "scenario_id": "M02",
+    "group": "A",
+    "replicate": "0"
+  },
+  "93a942c87dd07288": {
+    "scenario_id": "M02",
+    "group": "B",
+    "replicate": "0"
+  },
+  "59b0a06048aeafe9": {
+    "scenario_id": "M02",
+    "group": "C",
+    "replicate": "0"
+  },
+  "b614d3a8f746fe7a": {
+    "scenario_id": "M03",
+    "group": "A",
+    "replicate": "0"
+  },
+  "84d1fbe16d97d398": {
+    "scenario_id": "M03",
+    "group": "B",
+    "replicate": "0"
+  },
+  "73ca892abb584ffe": {
+    "scenario_id": "M03",
+    "group": "C",
+    "replicate": "0"
+  },
+  "8c00febb37a1e24a": {
+    "scenario_id": "M04",
+    "group": "A",
+    "replicate": "0"
+  },
+  "1fe39067d4008793": {
+    "scenario_id": "M04",
+    "group": "B",
+    "replicate": "0"
+  },
+  "837f5b0311f4badd": {
+    "scenario_id": "M04",
+    "group": "C",
+    "replicate": "0"
+  },
+  "17a76bd3ac9793ee": {
+    "scenario_id": "N01",
+    "group": "A",
+    "replicate": "0"
+  },
+  "21712d87a3384a40": {
+    "scenario_id": "N01",
+    "group": "B",
+    "replicate": "0"
+  },
+  "1b070a686a70cb16": {
+    "scenario_id": "N01",
+    "group": "C",
+    "replicate": "0"
+  },
+  "6ac9a12f0bfd9fe3": {
+    "scenario_id": "N02",
+    "group": "A",
+    "replicate": "0"
+  },
+  "b2d73d3c4fef3762": {
+    "scenario_id": "N02",
+    "group": "B",
+    "replicate": "0"
+  },
+  "6f3cdfd7f992b34e": {
+    "scenario_id": "N02",
+    "group": "C",
+    "replicate": "0"
+  },
+  "40a56c87a2e1477b": {
+    "scenario_id": "N03",
+    "group": "A",
+    "replicate": "0"
+  },
+  "94f97ded50eb094e": {
+    "scenario_id": "N03",
+    "group": "B",
+    "replicate": "0"
+  },
+  "36c1abb7b8549a0d": {
+    "scenario_id": "N03",
+    "group": "C",
+    "replicate": "0"
+  },
+  "9d06bdd012d9cca8": {
+    "scenario_id": "N04",
+    "group": "A",
+    "replicate": "0"
+  },
+  "5c0cd3c80033eec5": {
+    "scenario_id": "N04",
+    "group": "B",
+    "replicate": "0"
+  },
+  "7bd14f578622e97b": {
+    "scenario_id": "N04",
+    "group": "C",
+    "replicate": "0"
+  },
+  "2ba4e246740a6336": {
+    "scenario_id": "H01",
+    "group": "A",
+    "replicate": "0"
+  },
+  "46971b3014e296fd": {
+    "scenario_id": "H01",
+    "group": "B",
+    "replicate": "0"
+  },
+  "f2453a9f133e67a7": {
+    "scenario_id": "H01",
+    "group": "C",
+    "replicate": "0"
+  },
+  "17a12f624e180937": {
+    "scenario_id": "H02",
+    "group": "A",
+    "replicate": "0"
+  },
+  "d651cd0ce7de3476": {
+    "scenario_id": "H02",
+    "group": "B",
+    "replicate": "0"
+  },
+  "489c52444cc444d0": {
+    "scenario_id": "H02",
+    "group": "C",
+    "replicate": "0"
+  },
+  "dde971aadd86adf1": {
+    "scenario_id": "H03",
+    "group": "A",
+    "replicate": "0"
+  },
+  "5db428932d8ad7eb": {
+    "scenario_id": "H03",
+    "group": "B",
+    "replicate": "0"
+  },
+  "ba14ab5cf0e8377f": {
+    "scenario_id": "H03",
+    "group": "C",
+    "replicate": "0"
+  },
+  "860a6d611817ae52": {
+    "scenario_id": "H04",
+    "group": "A",
+    "replicate": "0"
+  },
+  "e534d678b9314cab": {
+    "scenario_id": "H04",
+    "group": "B",
+    "replicate": "0"
+  },
+  "aa1a0f1c71d6e6a4": {
+    "scenario_id": "H04",
+    "group": "C",
+    "replicate": "0"
+  },
+  "c56d1ed7f0f164a1": {
+    "scenario_id": "L01",
+    "group": "B",
+    "replicate": "1"
+  },
+  "34d7660dd3194c19": {
+    "scenario_id": "L01",
+    "group": "C",
+    "replicate": "1"
+  },
+  "87e8e6bbef069da7": {
+    "scenario_id": "L01",
+    "group": "A",
+    "replicate": "1"
+  },
+  "c8761115d922be05": {
+    "scenario_id": "L02",
+    "group": "B",
+    "replicate": "1"
+  },
+  "89b94ab952af4da0": {
+    "scenario_id": "L02",
+    "group": "C",
+    "replicate": "1"
+  },
+  "5c861b7ecdf112f3": {
+    "scenario_id": "L02",
+    "group": "A",
+    "replicate": "1"
+  },
+  "c553abedc1e6560d": {
+    "scenario_id": "L03",
+    "group": "B",
+    "replicate": "1"
+  },
+  "9da6d28ab12756f1": {
+    "scenario_id": "L03",
+    "group": "C",
+    "replicate": "1"
+  },
+  "c25217b82c2f0c4d": {
+    "scenario_id": "L03",
+    "group": "A",
+    "replicate": "1"
+  },
+  "32625d2c7dfcbdb1": {
+    "scenario_id": "L04",
+    "group": "B",
+    "replicate": "1"
+  },
+  "7bab1e42fa4ab069": {
+    "scenario_id": "L04",
+    "group": "C",
+    "replicate": "1"
+  },
+  "a128a3ca887e9372": {
+    "scenario_id": "L04",
+    "group": "A",
+    "replicate": "1"
+  },
+  "75a857ac0a21c430": {
+    "scenario_id": "M01",
+    "group": "B",
+    "replicate": "1"
+  },
+  "eda0fa0b9c2d35d7": {
+    "scenario_id": "M01",
+    "group": "C",
+    "replicate": "1"
+  },
+  "b482105e288e8fc5": {
+    "scenario_id": "M01",
+    "group": "A",
+    "replicate": "1"
+  },
+  "c12afee49143430f": {
+    "scenario_id": "M02",
+    "group": "B",
+    "replicate": "1"
+  },
+  "d2aac89ad2140039": {
+    "scenario_id": "M02",
+    "group": "C",
+    "replicate": "1"
+  },
+  "27038b5f7c642364": {
+    "scenario_id": "M02",
+    "group": "A",
+    "replicate": "1"
+  },
+  "7eaf8bc318156c2b": {
+    "scenario_id": "M03",
+    "group": "B",
+    "replicate": "1"
+  },
+  "624ca68db0dcd0ac": {
+    "scenario_id": "M03",
+    "group": "C",
+    "replicate": "1"
+  },
+  "99ec2a1afafb4b29": {
+    "scenario_id": "M03",
+    "group": "A",
+    "replicate": "1"
+  },
+  "9d308708b17da6d3": {
+    "scenario_id": "M04",
+    "group": "B",
+    "replicate": "1"
+  },
+  "9044cfc3a50144eb": {
+    "scenario_id": "M04",
+    "group": "C",
+    "replicate": "1"
+  },
+  "244bfe3b2d43ffa9": {
+    "scenario_id": "M04",
+    "group": "A",
+    "replicate": "1"
+  },
+  "cb56fb632f5d68da": {
+    "scenario_id": "N01",
+    "group": "B",
+    "replicate": "1"
+  },
+  "27778dc8ad5d0838": {
+    "scenario_id": "N01",
+    "group": "C",
+    "replicate": "1"
+  },
+  "b49306d96b9a4bd5": {
+    "scenario_id": "N01",
+    "group": "A",
+    "replicate": "1"
+  },
+  "6fec9585d2118c7c": {
+    "scenario_id": "N02",
+    "group": "B",
+    "replicate": "1"
+  },
+  "c903cfd49d4cad38": {
+    "scenario_id": "N02",
+    "group": "C",
+    "replicate": "1"
+  },
+  "38c1d6be651904a3": {
+    "scenario_id": "N02",
+    "group": "A",
+    "replicate": "1"
+  },
+  "6730dc44d2198dce": {
+    "scenario_id": "N03",
+    "group": "B",
+    "replicate": "1"
+  },
+  "dffbe64530bbe084": {
+    "scenario_id": "N03",
+    "group": "C",
+    "replicate": "1"
+  },
+  "89ea6229c5d106ab": {
+    "scenario_id": "N03",
+    "group": "A",
+    "replicate": "1"
+  },
+  "4939b8656f77c6a5": {
+    "scenario_id": "N04",
+    "group": "B",
+    "replicate": "1"
+  },
+  "5bd9bdbdd290f315": {
+    "scenario_id": "N04",
+    "group": "C",
+    "replicate": "1"
+  },
+  "fa230f7674a81935": {
+    "scenario_id": "N04",
+    "group": "A",
+    "replicate": "1"
+  },
+  "e91d8d0aff3d7c3c": {
+    "scenario_id": "H01",
+    "group": "B",
+    "replicate": "1"
+  },
+  "2d6b64d84e09cd1b": {
+    "scenario_id": "H01",
+    "group": "C",
+    "replicate": "1"
+  },
+  "4826c7f23ab11deb": {
+    "scenario_id": "H01",
+    "group": "A",
+    "replicate": "1"
+  },
+  "7616643798069e64": {
+    "scenario_id": "H02",
+    "group": "B",
+    "replicate": "1"
+  },
+  "0287731bb9a99b1c": {
+    "scenario_id": "H02",
+    "group": "C",
+    "replicate": "1"
+  },
+  "24cd5136051aac0f": {
+    "scenario_id": "H02",
+    "group": "A",
+    "replicate": "1"
+  },
+  "79c17334ec52f7a6": {
+    "scenario_id": "H03",
+    "group": "B",
+    "replicate": "1"
+  },
+  "23f606a6f40c3708": {
+    "scenario_id": "H03",
+    "group": "C",
+    "replicate": "1"
+  },
+  "ddeff3a19ca3a0d4": {
+    "scenario_id": "H03",
+    "group": "A",
+    "replicate": "1"
+  },
+  "9dcba141e4ad21fa": {
+    "scenario_id": "H04",
+    "group": "B",
+    "replicate": "1"
+  },
+  "c977aef3dc853dc1": {
+    "scenario_id": "H04",
+    "group": "C",
+    "replicate": "1"
+  },
+  "0eba8b3942b7c610": {
+    "scenario_id": "H04",
+    "group": "A",
+    "replicate": "1"
+  },
+  "3ada4d694da38926": {
+    "scenario_id": "L01",
+    "group": "C",
+    "replicate": "2"
+  },
+  "8514db7217ad5760": {
+    "scenario_id": "L01",
+    "group": "A",
+    "replicate": "2"
+  },
+  "2b1103ed808f06d4": {
+    "scenario_id": "L01",
+    "group": "B",
+    "replicate": "2"
+  },
+  "750d625c661dd925": {
+    "scenario_id": "L02",
+    "group": "C",
+    "replicate": "2"
+  },
+  "ba17e030c10ac0e6": {
+    "scenario_id": "L02",
+    "group": "A",
+    "replicate": "2"
+  },
+  "1bb011c33feb47ae": {
+    "scenario_id": "L02",
+    "group": "B",
+    "replicate": "2"
+  },
+  "4201d545da785900": {
+    "scenario_id": "L03",
+    "group": "C",
+    "replicate": "2"
+  },
+  "eef0f1efbf11d5f1": {
+    "scenario_id": "L03",
+    "group": "A",
+    "replicate": "2"
+  },
+  "1cb60f3901bed3d7": {
+    "scenario_id": "L03",
+    "group": "B",
+    "replicate": "2"
+  },
+  "9079eff8d625603c": {
+    "scenario_id": "L04",
+    "group": "C",
+    "replicate": "2"
+  },
+  "3835a94318cb2793": {
+    "scenario_id": "L04",
+    "group": "A",
+    "replicate": "2"
+  },
+  "28a5704795739d86": {
+    "scenario_id": "L04",
+    "group": "B",
+    "replicate": "2"
+  },
+  "673b114e792c3644": {
+    "scenario_id": "M01",
+    "group": "C",
+    "replicate": "2"
+  },
+  "50c1c94b91ec5085": {
+    "scenario_id": "M01",
+    "group": "A",
+    "replicate": "2"
+  },
+  "3c52b47f3c34bb4b": {
+    "scenario_id": "M01",
+    "group": "B",
+    "replicate": "2"
+  },
+  "6c1da2ed403d60cb": {
+    "scenario_id": "M02",
+    "group": "C",
+    "replicate": "2"
+  },
+  "1251bca395e029f1": {
+    "scenario_id": "M02",
+    "group": "A",
+    "replicate": "2"
+  },
+  "9b9c649f987a032b": {
+    "scenario_id": "M02",
+    "group": "B",
+    "replicate": "2"
+  },
+  "591bc448ed93bfdc": {
+    "scenario_id": "M03",
+    "group": "C",
+    "replicate": "2"
+  },
+  "e1e54fd57ed6887d": {
+    "scenario_id": "M03",
+    "group": "A",
+    "replicate": "2"
+  },
+  "294973b197d4d715": {
+    "scenario_id": "M03",
+    "group": "B",
+    "replicate": "2"
+  },
+  "51b2da9ef13fca27": {
+    "scenario_id": "M04",
+    "group": "C",
+    "replicate": "2"
+  },
+  "14fc155c6986e7ea": {
+    "scenario_id": "M04",
+    "group": "A",
+    "replicate": "2"
+  },
+  "9ddef2d6c59d9ca8": {
+    "scenario_id": "M04",
+    "group": "B",
+    "replicate": "2"
+  },
+  "49a3446e10a6c147": {
+    "scenario_id": "N01",
+    "group": "C",
+    "replicate": "2"
+  },
+  "59b0c9d58ade4ac7": {
+    "scenario_id": "N01",
+    "group": "A",
+    "replicate": "2"
+  },
+  "d6307002e902d1e9": {
+    "scenario_id": "N01",
+    "group": "B",
+    "replicate": "2"
+  },
+  "70724f23a12bfcda": {
+    "scenario_id": "N02",
+    "group": "C",
+    "replicate": "2"
+  },
+  "cbc7ac1f6c791f83": {
+    "scenario_id": "N02",
+    "group": "A",
+    "replicate": "2"
+  },
+  "b9745d1601e1fa05": {
+    "scenario_id": "N02",
+    "group": "B",
+    "replicate": "2"
+  },
+  "f5d78dd2992dc0da": {
+    "scenario_id": "N03",
+    "group": "C",
+    "replicate": "2"
+  },
+  "17cde55060c3dd5e": {
+    "scenario_id": "N03",
+    "group": "A",
+    "replicate": "2"
+  },
+  "c8febe4e8f83f15f": {
+    "scenario_id": "N03",
+    "group": "B",
+    "replicate": "2"
+  },
+  "c842e177cc8052d6": {
+    "scenario_id": "N04",
+    "group": "C",
+    "replicate": "2"
+  },
+  "6c5c9bd26463e51c": {
+    "scenario_id": "N04",
+    "group": "A",
+    "replicate": "2"
+  },
+  "27c51cdaf46766b9": {
+    "scenario_id": "N04",
+    "group": "B",
+    "replicate": "2"
+  },
+  "75f4a0997de5997c": {
+    "scenario_id": "H01",
+    "group": "C",
+    "replicate": "2"
+  },
+  "1dd3cc47948aea3d": {
+    "scenario_id": "H01",
+    "group": "A",
+    "replicate": "2"
+  },
+  "a05b05e5a9cf9379": {
+    "scenario_id": "H01",
+    "group": "B",
+    "replicate": "2"
+  },
+  "090fe6db9bf378e4": {
+    "scenario_id": "H02",
+    "group": "C",
+    "replicate": "2"
+  },
+  "397d1f5b9b42dd4c": {
+    "scenario_id": "H02",
+    "group": "A",
+    "replicate": "2"
+  },
+  "1822bddb3fa59de1": {
+    "scenario_id": "H02",
+    "group": "B",
+    "replicate": "2"
+  },
+  "200b15304b8f0894": {
+    "scenario_id": "H03",
+    "group": "C",
+    "replicate": "2"
+  },
+  "d9e71d32683245fd": {
+    "scenario_id": "H03",
+    "group": "A",
+    "replicate": "2"
+  },
+  "3ae25dd320f0ff10": {
+    "scenario_id": "H03",
+    "group": "B",
+    "replicate": "2"
+  },
+  "7a44be0801290b55": {
+    "scenario_id": "H04",
+    "group": "C",
+    "replicate": "2"
+  },
+  "06d8453d44c877b7": {
+    "scenario_id": "H04",
+    "group": "A",
+    "replicate": "2"
+  },
+  "176604b40f3171a8": {
+    "scenario_id": "H04",
+    "group": "B",
+    "replicate": "2"
+  }
+}

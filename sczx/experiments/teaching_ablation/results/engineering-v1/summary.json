@@ -1,0 +1,1388 @@
+{
+  "groups": {
+    "A": {
+      "scheduled": 48,
+      "succeeded": 6,
+      "failed_or_missing": 42,
+      "mean_latency_seconds": 9.976172198851903e-05,
+      "model_strategy_choices": {
+        "hint": 6,
+        "example": 0,
+        "foundation": 0,
+        "rephrase": 0,
+        "try": 0
+      },
+      "failure_rate": 0.875,
+      "strategy_appropriateness": null,
+      "difficulty_accuracy": null,
+      "content_error_rate": null,
+      "citation_correctness": null,
+      "differentiation_success": null,
+      "independent_performance": null,
+      "cost": null,
+      "review_status": "pending two qualified independent reviewers"
+    },
+    "B": {
+      "scheduled": 48,
+      "succeeded": 6,
+      "failed_or_missing": 42,
+      "mean_latency_seconds": 9.326900665958722e-05,
+      "model_strategy_choices": {
+        "hint": 6,
+        "example": 0,
+        "foundation": 0,
+        "rephrase": 0,
+        "try": 0
+      },
+      "failure_rate": 0.875,
+      "strategy_appropriateness": null,
+      "difficulty_accuracy": null,
+      "content_error_rate": null,
+      "citation_correctness": null,
+      "differentiation_success": null,
+      "independent_performance": null,
+      "cost": null,
+      "review_status": "pending two qualified independent reviewers"
+    },
+    "C": {
+      "scheduled": 48,
+      "succeeded": 6,
+      "failed_or_missing": 42,
+      "mean_latency_seconds": 0.000104802039762338,
+      "model_strategy_choices": {
+        "hint": 6,
+        "example": 0,
+        "foundation": 0,
+        "rephrase": 0,
+        "try": 0
+      },
+      "failure_rate": 0.875,
+      "strategy_appropriateness": null,
+      "difficulty_accuracy": null,
+      "content_error_rate": null,
+      "citation_correctness": null,
+      "differentiation_success": null,
+      "independent_performance": null,
+      "cost": null,
+      "review_status": "pending two qualified independent reviewers"
+    }
+  },
+  "denominator": 144,
+  "human_rated": 0,
+  "by_scenario": [
+    {
+      "trial": "L01-A-0",
+      "scenario_id": "L01",
+      "group": "A",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 0.00011731218546628952,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L01-B-0",
+      "scenario_id": "L01",
+      "group": "B",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 0.0001146756112575531,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L01-C-0",
+      "scenario_id": "L01",
+      "group": "C",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 0.00011086277663707733,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L02-A-0",
+      "scenario_id": "L02",
+      "group": "A",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 0.00015824567526578903,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L02-B-0",
+      "scenario_id": "L02",
+      "group": "B",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 0.00012323446571826935,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L02-C-0",
+      "scenario_id": "L02",
+      "group": "C",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 0.00012993626296520233,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L03-A-0",
+      "scenario_id": "L03",
+      "group": "A",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 7.704272866249084e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L03-B-0",
+      "scenario_id": "L03",
+      "group": "B",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 8.496828377246857e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L03-C-0",
+      "scenario_id": "L03",
+      "group": "C",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 0.00011413171887397766,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L04-A-0",
+      "scenario_id": "L04",
+      "group": "A",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 7.381383329629898e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L04-B-0",
+      "scenario_id": "L04",
+      "group": "B",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 7.966067641973495e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "L04-C-0",
+      "scenario_id": "L04",
+      "group": "C",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 8.891802281141281e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "M01-A-0",
+      "scenario_id": "M01",
+      "group": "A",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 8.85622575879097e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "M01-B-0",
+      "scenario_id": "M01",
+      "group": "B",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 7.974822074174881e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "M01-C-0",
+      "scenario_id": "M01",
+      "group": "C",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 8.744373917579651e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "M02-A-0",
+      "scenario_id": "M02",
+      "group": "A",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 8.359365165233612e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "M02-B-0",
+      "scenario_id": "M02",
+      "group": "B",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 7.732678204774857e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "M02-C-0",
+      "scenario_id": "M02",
+      "group": "C",
+      "status": "succeeded",
+      "output": {
+        "difficulty_assessment": "受控工程响应，不用于效果比较",
+        "strategy": "hint",
+        "hint": "请说明依据。",
+        "steps": [],
+        "question": "哪步不确定？",
+        "citations": []
+      },
+      "error": null,
+      "latency_seconds": 9.751971811056137e-05,
+      "model_requested": "gpt-6-luna",
+      "model_returned": null,
+      "effort": "low",
+      "repairs": 0,
+      "calls": 0,
+      "usage": null,
+      "cost": null,
+      "mode": "controlled"
+    },
+    {
+      "trial": "M03-A-0",
+      "scenario_id": "M03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M03-B-0",
+      "scenario_id": "M03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M03-C-0",
+      "scenario_id": "M03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-A-0",
+      "scenario_id": "M04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-B-0",
+      "scenario_id": "M04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-C-0",
+      "scenario_id": "M04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-A-0",
+      "scenario_id": "N01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-B-0",
+      "scenario_id": "N01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-C-0",
+      "scenario_id": "N01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-A-0",
+      "scenario_id": "N02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-B-0",
+      "scenario_id": "N02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-C-0",
+      "scenario_id": "N02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-A-0",
+      "scenario_id": "N03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-B-0",
+      "scenario_id": "N03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-C-0",
+      "scenario_id": "N03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-A-0",
+      "scenario_id": "N04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-B-0",
+      "scenario_id": "N04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-C-0",
+      "scenario_id": "N04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-A-0",
+      "scenario_id": "H01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-B-0",
+      "scenario_id": "H01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-C-0",
+      "scenario_id": "H01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-A-0",
+      "scenario_id": "H02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-B-0",
+      "scenario_id": "H02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-C-0",
+      "scenario_id": "H02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-A-0",
+      "scenario_id": "H03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-B-0",
+      "scenario_id": "H03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-C-0",
+      "scenario_id": "H03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-A-0",
+      "scenario_id": "H04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-B-0",
+      "scenario_id": "H04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-C-0",
+      "scenario_id": "H04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L01-B-1",
+      "scenario_id": "L01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L01-C-1",
+      "scenario_id": "L01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L01-A-1",
+      "scenario_id": "L01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L02-B-1",
+      "scenario_id": "L02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L02-C-1",
+      "scenario_id": "L02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L02-A-1",
+      "scenario_id": "L02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L03-B-1",
+      "scenario_id": "L03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L03-C-1",
+      "scenario_id": "L03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L03-A-1",
+      "scenario_id": "L03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L04-B-1",
+      "scenario_id": "L04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L04-C-1",
+      "scenario_id": "L04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L04-A-1",
+      "scenario_id": "L04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M01-B-1",
+      "scenario_id": "M01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M01-C-1",
+      "scenario_id": "M01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M01-A-1",
+      "scenario_id": "M01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M02-B-1",
+      "scenario_id": "M02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M02-C-1",
+      "scenario_id": "M02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M02-A-1",
+      "scenario_id": "M02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M03-B-1",
+      "scenario_id": "M03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M03-C-1",
+      "scenario_id": "M03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M03-A-1",
+      "scenario_id": "M03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-B-1",
+      "scenario_id": "M04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-C-1",
+      "scenario_id": "M04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-A-1",
+      "scenario_id": "M04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-B-1",
+      "scenario_id": "N01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-C-1",
+      "scenario_id": "N01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-A-1",
+      "scenario_id": "N01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-B-1",
+      "scenario_id": "N02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-C-1",
+      "scenario_id": "N02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-A-1",
+      "scenario_id": "N02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-B-1",
+      "scenario_id": "N03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-C-1",
+      "scenario_id": "N03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-A-1",
+      "scenario_id": "N03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-B-1",
+      "scenario_id": "N04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-C-1",
+      "scenario_id": "N04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-A-1",
+      "scenario_id": "N04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-B-1",
+      "scenario_id": "H01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-C-1",
+      "scenario_id": "H01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-A-1",
+      "scenario_id": "H01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-B-1",
+      "scenario_id": "H02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-C-1",
+      "scenario_id": "H02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-A-1",
+      "scenario_id": "H02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-B-1",
+      "scenario_id": "H03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-C-1",
+      "scenario_id": "H03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-A-1",
+      "scenario_id": "H03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-B-1",
+      "scenario_id": "H04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-C-1",
+      "scenario_id": "H04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-A-1",
+      "scenario_id": "H04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L01-C-2",
+      "scenario_id": "L01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L01-A-2",
+      "scenario_id": "L01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L01-B-2",
+      "scenario_id": "L01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L02-C-2",
+      "scenario_id": "L02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L02-A-2",
+      "scenario_id": "L02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L02-B-2",
+      "scenario_id": "L02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L03-C-2",
+      "scenario_id": "L03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L03-A-2",
+      "scenario_id": "L03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L03-B-2",
+      "scenario_id": "L03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L04-C-2",
+      "scenario_id": "L04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L04-A-2",
+      "scenario_id": "L04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "L04-B-2",
+      "scenario_id": "L04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M01-C-2",
+      "scenario_id": "M01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M01-A-2",
+      "scenario_id": "M01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M01-B-2",
+      "scenario_id": "M01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M02-C-2",
+      "scenario_id": "M02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M02-A-2",
+      "scenario_id": "M02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M02-B-2",
+      "scenario_id": "M02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M03-C-2",
+      "scenario_id": "M03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M03-A-2",
+      "scenario_id": "M03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M03-B-2",
+      "scenario_id": "M03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-C-2",
+      "scenario_id": "M04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-A-2",
+      "scenario_id": "M04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "M04-B-2",
+      "scenario_id": "M04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-C-2",
+      "scenario_id": "N01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-A-2",
+      "scenario_id": "N01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N01-B-2",
+      "scenario_id": "N01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-C-2",
+      "scenario_id": "N02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-A-2",
+      "scenario_id": "N02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N02-B-2",
+      "scenario_id": "N02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-C-2",
+      "scenario_id": "N03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-A-2",
+      "scenario_id": "N03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N03-B-2",
+      "scenario_id": "N03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-C-2",
+      "scenario_id": "N04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-A-2",
+      "scenario_id": "N04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "N04-B-2",
+      "scenario_id": "N04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-C-2",
+      "scenario_id": "H01",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-A-2",
+      "scenario_id": "H01",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H01-B-2",
+      "scenario_id": "H01",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-C-2",
+      "scenario_id": "H02",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-A-2",
+      "scenario_id": "H02",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H02-B-2",
+      "scenario_id": "H02",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-C-2",
+      "scenario_id": "H03",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-A-2",
+      "scenario_id": "H03",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H03-B-2",
+      "scenario_id": "H03",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-C-2",
+      "scenario_id": "H04",
+      "group": "C",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-A-2",
+      "scenario_id": "H04",
+      "group": "A",
+      "status": "interrupted",
+      "latency_seconds": null
+    },
+    {
+      "trial": "H04-B-2",
+      "scenario_id": "H04",
+      "group": "B",
+      "status": "interrupted",
+      "latency_seconds": null
+    }
+  ]
+}

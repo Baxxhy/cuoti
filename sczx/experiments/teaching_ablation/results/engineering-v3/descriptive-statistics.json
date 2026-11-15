@@ -1,0 +1,135 @@
+{
+  "descriptive_groups": {
+    "subject": {
+      "语文": {
+        "A:scheduled": 6,
+        "A:succeeded": 6,
+        "B:scheduled": 6,
+        "B:succeeded": 6,
+        "C:scheduled": 6,
+        "C:succeeded": 6
+      },
+      "英语": {
+        "A:scheduled": 6,
+        "A:succeeded": 6,
+        "B:scheduled": 6,
+        "B:succeeded": 6,
+        "C:scheduled": 6,
+        "C:succeeded": 6
+      },
+      "数学": {
+        "A:scheduled": 12,
+        "A:succeeded": 12,
+        "B:scheduled": 12,
+        "B:succeeded": 12,
+        "C:scheduled": 12,
+        "C:succeeded": 12
+      },
+      "物理": {
+        "A:scheduled": 6,
+        "A:succeeded": 6,
+        "B:scheduled": 6,
+        "B:succeeded": 6,
+        "C:scheduled": 6,
+        "C:succeeded": 6
+      },
+      "化学": {
+        "A:scheduled": 3,
+        "A:succeeded": 3,
+        "B:scheduled": 3,
+        "B:succeeded": 3,
+        "C:scheduled": 3,
+        "C:succeeded": 3
+      },
+      "生物学": {
+        "A:scheduled": 3,
+        "A:succeeded": 3,
+        "B:scheduled": 3,
+        "B:succeeded": 3,
+        "C:scheduled": 3,
+        "C:succeeded": 3
+      },
+      "历史": {
+        "A:scheduled": 6,
+        "A:succeeded": 6,
+        "B:scheduled": 6,
+        "B:succeeded": 6,
+        "C:scheduled": 6,
+        "C:succeeded": 6
+      },
+      "地理": {
+        "A:scheduled": 3,
+        "A:succeeded": 3,
+        "B:scheduled": 3,
+        "B:succeeded": 3,
+        "C:scheduled": 3,
+        "C:succeeded": 3
+      },
+      "道德与法治": {
+        "A:scheduled": 3,
+        "A:succeeded": 3,
+        "B:scheduled": 3,
+        "B:succeeded": 3,
+        "C:scheduled": 3,
+        "C:succeeded": 3
+      }
+    },
+    "category": {
+      "L": {
+        "A:scheduled": 12,
+        "A:succeeded": 12,
+        "B:scheduled": 12,
+        "B:succeeded": 12,
+        "C:scheduled": 12,
+        "C:succeeded": 12
+      },
+      "M": {
+        "A:scheduled": 12,
+        "A:succeeded": 12,
+        "B:scheduled": 12,
+        "B:succeeded": 12,
+        "C:scheduled": 12,
+        "C:succeeded": 12
+      },
+      "N": {
+        "A:scheduled": 12,
+        "A:succeeded": 12,
+        "B:scheduled": 12,
+        "B:succeeded": 12,
+        "C:scheduled": 12,
+        "C:succeeded": 12
+      },
+      "H": {
+        "A:scheduled": 12,
+        "A:succeeded": 12,
+        "B:scheduled": 12,
+        "B:succeeded": 12,
+        "C:scheduled": 12,
+        "C:succeeded": 12
+      }
+    },
+    "history_type": {
+      "no_history": {
+        "A:scheduled": 30,
+        "A:succeeded": 30,
+        "B:scheduled": 30,
+        "B:succeeded": 30,
+        "C:scheduled": 30,
+        "C:succeeded": 30
+      },
+      "has_history": {
+        "A:scheduled": 18,
+        "A:succeeded": 18,
+        "B:scheduled": 18,
+        "B:succeeded": 18,
+        "C:scheduled": 18,
+        "C:succeeded": 18
+      }
+    }
+  },
+  "denominator": 144,
+  "human_metrics": "待至少两名合格评阅者独立评分；缺失不按0分处理",
+  "independent_question_performance": null,
+  "real_student_participants": 0,
+  "inference": "工程验证不能证明C优于A/B，不能估计课堂效果或统计显著性"
+}
