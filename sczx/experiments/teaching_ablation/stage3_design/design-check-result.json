@@ -1,0 +1,20 @@
+{
+  "scope": "static design-contract checks only; not evaluator reliability or effect validation",
+  "date": "2026-11-16",
+  "checks": {
+    "four_groups": true,
+    "information_matched_C_D": true,
+    "blind_field_sets_disjoint": true,
+    "no_actual_experiment_budget": true,
+    "independent_evaluator_not_fabricated": true,
+    "future_schedule_count": true,
+    "reliability_categories": true,
+    "old_pilot_bytes_preserved": true,
+    "design_freeze": true
+  },
+  "protected_pilot_files": 117,
+  "passed": true,
+  "runtime_evaluator": "not_implemented",
+  "llm_evaluation_calls": 0,
+  "formal_experiment_calls": 0
+}

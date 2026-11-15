@@ -1,0 +1,98 @@
+{
+  "version": "stage3-design-20261116-v1",
+  "execution_enabled": false,
+  "groups": {
+    "A": {
+      "retrieval": false,
+      "history": false,
+      "policy": false
+    },
+    "B": {
+      "retrieval": true,
+      "history": false,
+      "policy": false
+    },
+    "C": {
+      "retrieval": true,
+      "history": true,
+      "policy": true
+    },
+    "D": {
+      "retrieval": true,
+      "history": true,
+      "policy": false
+    }
+  },
+  "evaluator_allowlist": [
+    "opaque_id",
+    "subject",
+    "grade",
+    "question",
+    "original_answer",
+    "difficulty",
+    "evidence",
+    "history",
+    "response",
+    "citations",
+    "public_knowledge",
+    "source_registry"
+  ],
+  "evaluator_forbidden": [
+    "group",
+    "group_prompt",
+    "expected_strategy",
+    "rater_reference",
+    "standard_answer",
+    "independent_rubric",
+    "gold_labels",
+    "run_id",
+    "model_generator",
+    "decision"
+  ],
+  "runtime": {
+    "generator_model": "gpt-6-luna",
+    "effort": "low",
+    "evaluator_model": null,
+    "evaluator_status": "unconfigured",
+    "generation_budget_this_phase": 0,
+    "evaluation_budget_this_phase": 0,
+    "future_generation_trials": 192
+  },
+  "tests": [
+    "known_correct",
+    "known_wrong",
+    "insufficient_evidence",
+    "wrong_citation",
+    "cross_grade",
+    "wrong_intervention",
+    "invalid_history",
+    "unsupported_source",
+    "paraphrase",
+    "order_reversal",
+    "group_injection",
+    "gold_canary_leakage",
+    "malformed_response",
+    "timeout_refusal",
+    "missing_statistics"
+  ],
+  "statuses": [
+    "pass",
+    "fail",
+    "unknown",
+    "not_applicable",
+    "not_measurable",
+    "configuration_blocked"
+  ],
+  "statistics": {
+    "primary_contrasts": [
+      "B-A",
+      "D-B",
+      "C-D"
+    ],
+    "cluster_unit": "question_history_family",
+    "bootstrap_replicates": 10000,
+    "seed": 20261116,
+    "confidence": 0.95,
+    "minimum_families": 10
+  }
+}

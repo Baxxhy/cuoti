@@ -20,6 +20,7 @@ jobs:
       - run: pip install -e backend-business
       - run: PYTHONPATH=backend-business python -m unittest discover -s backend-business/tests -v
       - run: python -m unittest discover -s experiments/teaching_ablation/runner -p 'test_*.py' -v
+      - run: python experiments/teaching_ablation/stage3_design/validate_design.py
       - run: python -m compileall -q backend-business/sczx_business
       - run: python -m py_compile scripts/local.py
       - run: bash -n start-local.sh stop-local.sh install-local.sh

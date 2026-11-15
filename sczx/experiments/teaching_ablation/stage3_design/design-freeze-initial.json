@@ -1,0 +1,13 @@
+{
+  "version": "stage3-design-20261116-v1",
+  "kind": "design-only, not executable experiment freeze",
+  "files": {
+    "docs/planning/第三轮第三阶段_四组全自动实验设计.md": "bd264ec8755ee830dcba30f2a3d5fc2fdf16524e16303395debca21623a44e18",
+    "docs/planning/第三轮第三阶段_独立Evaluator实现方案.md": "74670eecbe5f640b1165674494531251dd9c546a1dbd28f0c04dce2efda33930",
+    "docs/planning/第三轮第三阶段_评价可靠性测试与统计规范.md": "214aebfcaace7421ec3fbc616108d18e75deaf0e608d0b1e712b4bb89614eb7b",
+    "experiments/teaching_ablation/stage3_design/README.md": "73795ed02aa4e04c879eae82cd267816b69b42282544a0f6965fa441d8585060",
+    "experiments/teaching_ablation/stage3_design/contracts.json": "0cb2de3318e000581b6192ec07eadc836f413d6ee15e1410cd7dcccf9009f6d5",
+    "experiments/teaching_ablation/stage3_design/protected-pilots.json": "955f23509e650bd9dd2c77fd63f84bd3065b0fcb32ca4e0b495ce67d61cbd973",
+    "experiments/teaching_ablation/stage3_design/validate_design.py": "88ec0530c9fb250747e972f90f00a676b61ca343541e1dae1235be4e0e429424"
+  }
+}
