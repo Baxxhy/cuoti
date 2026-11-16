@@ -53,7 +53,8 @@ def select_rows(db, table, sql, params=()):
     return [serialize(table, row) for row in rows(db, sql, params)]
 
 
-def insert(db, table, **values):
+def insert(db, table, *, timestamp_microseconds=True, **values):
+    timestamp = "UTC_TIMESTAMP(6)" if timestamp_microseconds else "UTC_TIMESTAMP()"
     if table not in TYPES or set(values) - set(TYPES[table]):
         raise ValueError("Unknown persistence field")
     values.setdefault("id", str(uuid4()))
@@ -66,13 +67,14 @@ def insert(db, table, **values):
     ]
     execute(
         db,
-        f"INSERT INTO `{table}` ({columns},created_at,updated_at) VALUES ({','.join('?' for _ in encoded)},UTC_TIMESTAMP(6),UTC_TIMESTAMP(6))",
+        f"INSERT INTO `{table}` ({columns},created_at,updated_at) VALUES ({','.join('?' for _ in encoded)},{timestamp},{timestamp})",
         encoded,
     )
     return values["id"]
 
 
-def update(db, table, id, **values):
+def update(db, table, id, *, timestamp_microseconds=True, **values):
+    timestamp = "UTC_TIMESTAMP(6)" if timestamp_microseconds else "UTC_TIMESTAMP()"
     if table not in TYPES or set(values) - set(TYPES[table]):
         raise ValueError("Unknown persistence field")
     encoded = [
@@ -85,7 +87,7 @@ def update(db, table, id, **values):
         db,
         f"UPDATE `{table}` SET "
         + ",".join(f"`{key}`=?" for key in values)
-        + ",updated_at=UTC_TIMESTAMP(6) WHERE id=?",
+        + f",updated_at={timestamp} WHERE id=?",
         [*encoded, id],
     )
 

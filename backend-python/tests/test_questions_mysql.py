@@ -2258,3 +2258,245 @@ def test_learning_evidence_source_stamp_matches_legacy(question_app):
             )
         )
         assert actual == recorded
+
+
+def test_tutor_dialogue_persistence_and_stale_write_protection(
+    question_app, monkeypatch
+):
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "student_steps": ["3x=19"],
+            "correct_answer": "5",
+            "knowledge_points": ["一元一次方程"],
+        },
+    ).json()["data"]["id"]
+    sid = client.post(
+        "/api/v1/tutor/sessions", headers=headers, json={"question_id": q}
+    ).json()["data"]["id"]
+    path = "/api/v1/tutor/sessions/" + sid
+    observed = []
+    flags = {"stale": False}
+
+    def compute(operation, **values):
+        observed.append((operation, values))
+        if operation == "tutor_dialogue_prepare":
+            return {"plan": {"tool_name": "step_alignment", "memory_source_ids": []}}
+        assert operation == "tutor_dialogue_finish"
+        if flags["stale"]:
+            client.patch(
+                "/api/v1/questions/" + q,
+                headers=headers,
+                json={"question_text": "3x+2=20"},
+            )
+        return {
+            "reply": "先检查移项符号。",
+            "graph": {
+                "branch": "step_check",
+                "strategy": "socratic",
+                "next_goal": "检查移项",
+                "mastery_proven": False,
+                "stage": "understanding",
+                "hint_level": 1,
+            },
+            "agent": {
+                "tool": {
+                    "evidence": {"note": "核对当前步骤"},
+                    "executed": True,
+                    "consumed_input": {},
+                },
+                "verification": {"status": "verified"},
+                "planner_status": "rule",
+                "observation": {},
+                "plan": values["dialogue_preparation"]["plan"],
+            },
+        }
+
+    monkeypatch.setattr(app.state.compute, "compute", compute)
+    assert (
+        client.post(path + "/turns", headers=headers, json={"message": " "}).status_code
+        == 422
+    )
+    assert (
+        client.post(
+            path + "/turns", headers=other, json={"message": "怎么办"}
+        ).status_code
+        == 404
+    )
+    one = client.post(path + "/turns", headers=headers, json={"message": "移项怎么办"})
+    assert one.status_code == 200, one.text
+    assert (
+        one.json()["data"]["stage"] == "understanding"
+        and one.json()["data"]["mastery_proven"] is False
+    )
+    assert [v[0] for v in observed] == [
+        "tutor_dialogue_prepare",
+        "tutor_dialogue_finish",
+    ]
+    assert observed[0][1]["dialogue_context"]["memory_snapshot"]["entries"] == []
+    assert client.get(path, headers=headers).json()["data"]["turn_count"] == 1
+    assert (
+        client.post(
+            path + "/turns", headers=headers, json={"message": "移项怎么办"}
+        ).status_code
+        == 200
+    )
+    assert observed[-1][1]["dialogue_context"]["repeated_count"] == 1
+    flags["stale"] = True
+    assert (
+        client.post(
+            path + "/turns", headers=headers, json={"message": "再看看"}
+        ).status_code
+        == 409
+    )
+    with app.state.database.session() as db:
+        assert (
+            len(rows(db, "SELECT id FROM tutor_turns WHERE session_id=?", [sid])) == 5
+        )
+        assert not rows(db, "SELECT id FROM cognitive_updates WHERE question_id=?", [q])
+        runs = rows(
+            db,
+            "SELECT result FROM agent_runs WHERE session_id=? AND JSON_EXTRACT(result,'$.memory_manifest') IS NOT NULL",
+            [sid],
+        )
+        assert len(runs) == 2
+
+
+def test_learning_memory_current_stale_and_user_isolation(question_app):
+    from cuoti_backend.learning_evidence import complete
+    from cuoti_backend.learning_memory import memory
+    from cuoti_backend.question_data import select_rows
+    from cuoti_backend.tutoring import session_owned
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    other, _ = student()
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "student_steps": ["3x=15"],
+            "correct_answer": "5",
+            "knowledge_points": ["一元一次方程"],
+        },
+    ).json()["data"]["id"]
+    with app.state.database.session() as db, db.begin():
+        sid = insert(
+            db,
+            "tutor_sessions",
+            user_id=user["id"],
+            question_id=q,
+            stage="far_transfer",
+            hint_level=0,
+            turn_count=0,
+            mastery_score=0,
+            state={"teach_back": True, "near_transfer": True, "far_transfer": True},
+            status="active",
+        )
+        session = session_owned(db, sid, user["id"])
+        complete(
+            app.state.questions,
+            db,
+            session,
+            app.state.questions.detail(db, q, user["id"]),
+            False,
+        )
+        update_question = select_rows(
+            db, "questions", "SELECT * FROM questions WHERE id=?", [q]
+        )[0]
+        execute(
+            db,
+            "UPDATE misconception_states SET status='resolved' WHERE user_id=?",
+            [user["id"]],
+        )
+        result = memory(db, user["id"], update_question)
+        assert {entry["kind"] for entry in result["snapshot"]["entries"]} == {
+            "mastery",
+            "cognitive",
+            "review",
+        }
+        execute(
+            db,
+            "UPDATE misconception_states SET status='active' WHERE user_id=?",
+            [user["id"]],
+        )
+        result = memory(db, user["id"], update_question)
+        kinds = {entry["kind"] for entry in result["snapshot"]["entries"]}
+        assert kinds == {"mastery", "misconception", "cognitive", "review"}
+        assert (
+            next(e for e in result["snapshot"]["entries"] if e["kind"] == "cognitive")[
+                "outcome"
+            ]
+            == "correct"
+        )
+        assert memory(db, other["id"], update_question)["snapshot"]["entries"] == []
+        execute(db, "UPDATE questions SET question_text=? WHERE id=?", ["3x+2=20", q])
+        changed = select_rows(
+            db, "questions", "SELECT * FROM questions WHERE id=?", [q]
+        )[0]
+        stale = memory(db, user["id"], changed)
+        assert (
+            not stale["legacy_rows"]["updates"] and not stale["legacy_rows"]["mastery"]
+        )
+
+
+@pytest.mark.skipif(
+    os.environ.get("CUOTI_TEST_REAL_DIALOGUE") != "1",
+    reason="real teaching Agent not enabled",
+)
+def test_real_tutor_agent_dialogue_roundtrip(question_app):
+    import json
+    from pathlib import Path
+
+    started = time.perf_counter()
+    app, client, student, _ = question_app
+    app.state.algorithm_app.state.provider = None
+    _, headers = student()
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "student_steps": ["3x=19"],
+            "correct_answer": "5",
+            "explanation": "等式两边同时减2，再除以3",
+            "knowledge_points": ["一元一次方程"],
+        },
+    ).json()["data"]["id"]
+    start = client.post(
+        "/api/v1/tutor/sessions", headers=headers, json={"question_id": q}
+    )
+    assert start.status_code == 200, start.text
+    sid = start.json()["data"]["id"]
+    response = client.post(
+        "/api/v1/tutor/sessions/" + sid + "/turns",
+        headers=headers,
+        json={"message": "请帮我检查第一步移项为什么错了？"},
+    )
+    output = Path(app.state.settings.project_root) / ".runtime/真实教学对话验证.jsonl"
+    with output.open("a") as file:
+        file.write(
+            json.dumps(
+                {
+                    "elapsed_seconds": round(time.perf_counter() - started, 2),
+                    "status_code": response.status_code,
+                    "result": response.json(),
+                },
+                ensure_ascii=False,
+            )
+            + "\n"
+        )
+    assert response.status_code == 200, response.text
+    assert response.json()["data"]["message"] and response.json()["data"]["tool_name"]
+    assert response.json()["data"]["stage"] == "understanding"
+    with app.state.database.session() as db:
+        assert (
+            len(rows(db, "SELECT id FROM tutor_turns WHERE session_id=?", [sid])) == 3
+        )
+        assert not rows(db, "SELECT id FROM cognitive_updates WHERE question_id=?", [q])

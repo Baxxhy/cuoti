@@ -184,19 +184,21 @@ def apply_evidence(
         else insert(
             db,
             "mastery_states",
+            timestamp_microseconds=False,
             user_id=owner,
             subject=subject,
             knowledge_point=point,
             **mastery,
         )
     )
-    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    now = datetime.now(timezone.utc).replace(tzinfo=None, microsecond=0)
     mistake_id = (
         old_mistake[0]["id"]
         if old_mistake
         else insert(
             db,
             "misconception_states",
+            timestamp_microseconds=False,
             user_id=owner,
             subject=subject,
             code=code,
@@ -208,6 +210,7 @@ def apply_evidence(
         db,
         "mastery_states",
         mid,
+        timestamp_microseconds=False,
         **{key: next_mastery[key] for key in [*mastery_defaults, "update_reason"]},
         last_evidence_at=now,
     )
@@ -215,6 +218,7 @@ def apply_evidence(
         db,
         "misconception_states",
         mistake_id,
+        timestamp_microseconds=False,
         **{key: next_mistake[key] for key in mistake_defaults},
         last_seen_at=now,
     )
@@ -243,6 +247,7 @@ def apply_evidence(
         insert(
             db,
             "cognitive_updates",
+            timestamp_microseconds=False,
             user_id=owner,
             question_id=question["id"],
             entity_type=kind,
