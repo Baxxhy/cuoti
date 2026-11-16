@@ -148,6 +148,7 @@ def create_app(settings: Settings | None = None):
                     else None
                 )
                 app.state.compute = compute
+                app.state.questions.compute = compute
                 app.state.recognition = RecognitionJobs(app.state.questions, compute)
                 try:
                     await asyncio.to_thread(app.state.recognition.recover)

@@ -134,7 +134,7 @@ def plan(detail):
     )
 
 
-def current_activity(db, session, detail):
+def current_activity(service, db, session, detail):
     state, stage = session["state"], session["stage"]
     feedback = state.get("activity_feedback", "")
     if stage == "understanding" and not state.get("understanding_passed"):
@@ -210,17 +210,9 @@ def current_activity(db, session, detail):
             return activity_public(
                 state["near_confirmation"], attempt=1, feedback=feedback
             )
-        matches = select_rows(
-            db,
-            "variant_questions",
-            "SELECT * FROM variant_questions WHERE id=? AND session_id=?",
-            [state.get(transfer + "_variant_id"), session["id"]],
-        )
-        if not matches:
-            raise ApiError(503, "迁移练习尚未生成，请稍后重试")
-        variant = matches[0]
-        if state.get(transfer + "_validated_variant_id") != variant["id"]:
-            raise ApiError(503, "练习需要重新验证，请稍后重试")
+        from .variants import ensure_variant
+
+        variant = ensure_variant(service, db, session, detail, transfer)
         options = state.get(transfer + "_variant_options") or []
         kind = (
             state.get("teaching_policy", {}).get("question_type")
@@ -292,7 +284,7 @@ def payload(service, db, session, detail):
         else "passed"
         if session["stage"] == "understanding" and state.get("understanding_passed")
         else "active",
-        "activity": current_activity(db, session, detail),
+        "activity": current_activity(service, db, session, detail),
         "assisted": state.get("assisted", False),
         "teaching_policy": state.get("teaching_policy", {"mode": "full"}),
         "answer_reveal": state.get("answer_reveal"),
@@ -615,3 +607,141 @@ def navigate(request, id, value, rewind):
         if rewind:
             return payload(service, db, session_owned(db, id, owner), detail)
         return {"stage": target, "message": message, "next_goal": state["next_goal"]}
+
+
+@router.post("/{id}/variant")
+async def variant_route(request: Request, id: str):
+    value = await body(request, empty=True)
+    return envelope(
+        request, await run_in_threadpool(generate_variant, request, id, value)
+    )
+
+
+def generate_variant(request, id, value):
+    from .variants import ensure_variant
+
+    transfer = text_value(value.get("transfer_type", "near"), 10)
+    if transfer not in ["near", "far"]:
+        raise ApiError(422, "迁移类型必须是 near 或 far")
+    service = request.app.state.questions
+    with service.database.session() as db, db.begin():
+        owner = service.user(request, db).id
+        session = session_owned(db, id, owner)
+        if session["stage"] != transfer + "_transfer":
+            raise ApiError(409, "当前教学阶段不能生成这类练习")
+        detail = service.detail(db, session["question_id"], owner)
+        item = ensure_variant(service, db, session, detail, transfer)
+        return {
+            key: item[key]
+            for key in [
+                "id",
+                "question_id",
+                "session_id",
+                "transfer_type",
+                "question_text",
+                "verified",
+                "created_at",
+                "updated_at",
+            ]
+        }
+
+
+@router.post("/{id}/teach-back")
+async def teach_back_route(request: Request, id: str):
+    value = await body(request)
+    return envelope(request, await run_in_threadpool(teach_back, request, id, value))
+
+
+def teach_back(request, id, value):
+    from .variants import ensure_variant
+
+    explanation = text_value(value.get("explanation", ""), 12000)
+    service = request.app.state.questions
+    with service.database.session() as db, db.begin():
+        owner = service.user(request, db).id
+        session = session_owned(db, id, owner)
+        if session["stage"] != "teach_back":
+            raise ApiError(409, "请先完成理解检查并进入讲清阶段")
+        detail = service.detail(db, session["question_id"], owner)
+        state = session["state"]
+        if state.get("question_changed") or detail["status"] == "archived":
+            raise ApiError(409, "题目已变化或归档，请重新开始学习")
+        if service.compute is None:
+            raise ApiError(503, "内部算法服务未配置")
+        assessment = service.compute.compute(
+            "evaluate_teach_back",
+            text=explanation,
+            subject=detail["subject"],
+            question_type=detail["question_type"],
+            teach_back_points=(detail["analysis"] or {}).get(
+                "knowledge_points", detail["knowledge_points"]
+            ),
+            reference_solution=[r["text"] for r in detail["reference_steps"]],
+        )
+        passed = assessment.get("passed") is True
+        count = state.get("teach_back_attempts", 0) + 1
+        assisted = not passed and count >= 2
+        branch = "teach_back_pass" if passed else "teach_back_fail"
+        state.update(
+            teach_back=passed,
+            teach_back_passed=passed,
+            teach_back_attempts=count,
+            branch=branch,
+            next_goal="完成一道相似题" if passed or assisted else "补充一个关键理由",
+        )
+        if assisted:
+            state["assisted"] = True
+        feedback = assessment["feedback"]
+        if passed or assisted:
+            session["stage"] = "near_transfer"
+            ensure_variant(service, db, session, detail, "near")
+            if not passed:
+                feedback = "这次还少一个关键点，我先记录下来，我们继续练一道相似题。"
+        update(db, "tutor_sessions", id, stage=session["stage"], state=state)
+        for role, content, stage, meta in [
+            ("user", explanation, "teach_back", {"branch": branch}),
+            (
+                "assistant",
+                feedback,
+                session["stage"],
+                {"branch": branch, "passed": passed},
+            ),
+        ]:
+            insert(
+                db,
+                "tutor_turns",
+                session_id=id,
+                role=role,
+                content=content,
+                stage=stage,
+                metadata_json=meta,
+            )
+        output = {
+            "passed": passed,
+            "stage": session["stage"],
+            "matched_concepts": assessment["matched_concepts"],
+        }
+        run_id = insert(
+            db,
+            "agent_runs",
+            session_id=id,
+            agent_name="mindtrace_tutor",
+            status="completed",
+            result={**output, "branch": branch},
+        )
+        insert(
+            db,
+            "agent_tool_calls",
+            agent_run_id=run_id,
+            tool_name="evaluate_teach_back",
+            input_json={"explanation": explanation, "subject": detail["subject"]},
+            output_json=output,
+        )
+        return {
+            "passed": passed,
+            "assisted": assisted,
+            "branch": branch,
+            "stage": session["stage"],
+            "feedback": feedback,
+            "next_goal": state["next_goal"],
+        }

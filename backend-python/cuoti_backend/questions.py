@@ -37,6 +37,7 @@ class Questions:
         self.database = database
         self.media = media
         self.settings = settings
+        self.compute = None
 
     def user(self, request, db):
         return current_user(request, db)

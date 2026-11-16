@@ -145,6 +145,11 @@ def question_app(tmp_path):
                             "DELETE t FROM tutor_turns t JOIN tutor_sessions s ON t.session_id=s.id WHERE s.question_id=?",
                             [id],
                         )
+                        execute(
+                            db,
+                            "DELETE FROM variant_questions WHERE question_id=?",
+                            [id],
+                        )
                         for table in [
                             "diagnoses",
                             "problem_analyses",
@@ -1736,3 +1741,191 @@ def test_tutor_compressed_start_and_missing_analysis(question_app, monkeypatch):
         ]["activity"]["id"]
         == "answer-reveal"
     )
+
+
+def test_tutor_variant_generation_revalidation_and_teach_back(
+    question_app, monkeypatch
+):
+    from cuoti_backend.protocol import ApiError
+
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "student_steps": ["3x=19"],
+            "correct_answer": "5",
+            "knowledge_points": ["一元一次方程"],
+        },
+    ).json()["data"]["id"]
+    sid = client.post(
+        "/api/v1/tutor/sessions", headers=headers, json={"question_id": q}
+    ).json()["data"]["id"]
+    base = "/api/v1/tutor/sessions/" + sid
+    assert client.post(base + "/variant", headers=headers, json={}).status_code == 409
+    assert (
+        client.post(
+            base + "/variant", headers=headers, json={"transfer_type": "invalid"}
+        ).status_code
+        == 422
+    )
+    calls = []
+    flags = {"valid": True, "passed": False, "retrieval": True}
+
+    def compute(operation, **values):
+        calls.append(operation)
+        if operation == "evaluate_teach_back":
+            return {
+                "passed": flags["passed"],
+                "feedback": "补充依据",
+                "matched_concepts": [],
+            }
+        if operation == "retrieval_prepare":
+            return {"query": "一元一次方程"}
+        if operation == "retrieval_search":
+            if not flags["retrieval"]:
+                raise ApiError(503, "检索不可用")
+            return {"hits": []}
+        if operation == "retrieval_rank":
+            return {"references": []}
+        if operation == "validate_variant":
+            return {"valid": flags["valid"]}
+        assert operation == "generate_variant"
+        return {
+            "variant": {
+                "question_text": f"2x+1={5 + 2 * calls.count(operation)}",
+                "answer": str(2 + calls.count(operation)),
+                "explanation": "先减1，再除以2",
+                "reference_solution": ["先移项", "再求解"],
+                "options": [],
+            },
+            "verified": True,
+            "generation": {"retrieval_ids": []},
+        }
+
+    monkeypatch.setattr(app.state.compute, "compute", compute)
+    with app.state.database.session() as db, db.begin():
+        execute(db, "UPDATE tutor_sessions SET stage='teach_back' WHERE id=?", [sid])
+    first = client.post(
+        base + "/teach-back", headers=headers, json={"explanation": "不知道"}
+    )
+    assert first.status_code == 200 and first.json()["data"]["stage"] == "teach_back"
+    second = client.post(
+        base + "/teach-back", headers=headers, json={"explanation": "仍不确定"}
+    )
+    assert (
+        second.status_code == 200 and second.json()["data"]["stage"] == "near_transfer"
+    )
+    assert (
+        second.json()["data"]["assisted"] is True
+        and second.json()["data"]["passed"] is False
+    )
+    assert client.post(base + "/variant", headers=other, json={}).status_code == 404
+    record = client.post(base + "/variant", headers=headers, json={}).json()["data"]
+    assert "answer" not in record and calls.count("generate_variant") == 1
+    loaded = client.get(base, headers=headers)
+    assert loaded.status_code == 200, loaded.text
+    assert loaded.json()["data"]["activity"]["variant_id"] == record["id"]
+    flags.update(valid=False, retrieval=False)
+    replacement = client.post(base + "/variant", headers=headers, json={})
+    assert replacement.status_code == 200, replacement.text
+    assert replacement.json()["data"]["id"] != record["id"]
+    with app.state.database.session() as db:
+        saved = rows(
+            db,
+            "SELECT generation_metadata FROM variant_questions WHERE session_id=?",
+            [sid],
+        )
+        assert len(saved) == 2
+    flags["valid"] = True
+    with app.state.database.session() as db, db.begin():
+        execute(db, "UPDATE tutor_sessions SET stage='far_transfer' WHERE id=?", [sid])
+    far = client.post(base + "/variant", headers=headers, json={"transfer_type": "far"})
+    assert far.status_code == 200 and far.json()["data"]["transfer_type"] == "far"
+    assert (
+        client.get(base, headers=headers).json()["data"]["activity"]["variant_id"]
+        == far.json()["data"]["id"]
+    )
+    client.patch(
+        "/api/v1/questions/" + q, headers=headers, json={"question_text": "3x+2=20"}
+    )
+    assert (
+        client.post(
+            base + "/variant", headers=headers, json={"transfer_type": "far"}
+        ).status_code
+        == 409
+    )
+
+
+@pytest.mark.skipif(
+    os.environ.get("CUOTI_TEST_REAL_VARIANT") != "1",
+    reason="real transfer exercise not enabled",
+)
+def test_real_tutor_variant_generation_and_persistence(question_app):
+    import json
+    from pathlib import Path
+
+    started = time.perf_counter()
+    app, client, student, _ = question_app
+    app.state.algorithm_app.state.provider = None
+    _, headers = student()
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "解方程3x+2=17",
+            "question_type": "综合题",
+            "grade": "初一",
+            "student_steps": ["3x=19", "x=19/3"],
+            "correct_answer": "5",
+            "explanation": "3x=15，x=5",
+            "knowledge_points": ["一元一次方程"],
+        },
+    ).json()["data"]["id"]
+    assert (
+        client.patch(
+            "/api/v1/questions/" + q,
+            headers=headers,
+            json={"question_type": "calculation"},
+        ).status_code
+        == 200
+    )
+    assert (
+        client.patch(
+            "/api/v1/questions/" + q,
+            headers=headers,
+            json={"correct_answer": "5", "explanation": "3x=15，x=5"},
+        ).status_code
+        == 200
+    )
+    created = client.post(
+        "/api/v1/tutor/sessions", headers=headers, json={"question_id": q}
+    )
+    assert created.status_code == 200, created.text
+    sid = created.json()["data"]["id"]
+    with app.state.database.session() as db, db.begin():
+        execute(db, "UPDATE tutor_sessions SET stage='near_transfer' WHERE id=?", [sid])
+    response = client.post(
+        "/api/v1/tutor/sessions/" + sid + "/variant", headers=headers, json={}
+    )
+    record = {
+        "status_code": response.status_code,
+        "elapsed_seconds": round(time.perf_counter() - started, 2),
+        "response": response.json(),
+    }
+    output = Path(app.state.settings.project_root) / ".runtime/真实迁移练习验证.jsonl"
+    with output.open("a") as file:
+        file.write(json.dumps(record, ensure_ascii=False) + "\n")
+    assert response.status_code == 200, response.text
+    data = response.json()["data"]
+    assert data["question_text"] and type(data["verified"]) is bool
+    with app.state.database.session() as db:
+        saved = rows(
+            db,
+            "SELECT answer,generation_metadata FROM variant_questions WHERE id=? AND session_id=?",
+            [data["id"], sid],
+        )
+        assert len(saved) == 1 and saved[0]["answer"]
