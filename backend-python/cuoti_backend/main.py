@@ -23,6 +23,7 @@ from .protocol import ApiError
 from .question_routes import router as question_router
 from .questions import Questions
 from .recognition import ComputeBridge, RecognitionJobs
+from .tutoring import router as tutoring_router
 
 logger = logging.getLogger("cuoti.backend")
 
@@ -180,6 +181,7 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(tutoring_router)
     app.include_router(media_router)
     if algorithm_app is not None:
         # Reuse the existing authenticated compute handler and its provider lifecycle.
@@ -220,6 +222,7 @@ def create_app(settings: Settings | None = None):
                 *diagnostic_router.routes,
                 *insight_router.routes,
                 *lesson_router.routes,
+                *tutoring_router.routes,
                 *media_router.routes,
             ]:
                 pattern = getattr(route, "path_regex", None)

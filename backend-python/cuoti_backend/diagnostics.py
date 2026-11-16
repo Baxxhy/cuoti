@@ -5,7 +5,7 @@ import base64
 from fastapi import APIRouter, Request
 from learning_core.schemas import AnalysisOutput, DiagnosisOutput
 
-from .knowledge_mapping import sync_links
+from .knowledge_mapping import dialogue_cards, sync_links
 from .protocol import ApiError, envelope
 from .question_data import TYPES, insert, invalidate, owned, select_rows, update
 
@@ -23,6 +23,9 @@ def snapshot(service, db, id, owner):
     detail = service.detail(db, id, owner)
     for asset in detail["assets"]:
         asset.pop("url", None)
+    detail["diagnostic_cards"] = dialogue_cards(
+        db, detail["question_text"], detail["subject"], detail["grade"] or ""
+    )
     return detail
 
 
@@ -34,6 +37,7 @@ def input_for(service, value):
         "question_type": value["question_type"],
         "student_answer": value["student_answer"],
         "options": value["options"],
+        "diagnostic_cards": value.get("diagnostic_cards", []),
         "student_steps": [s["text"] for s in value["student_steps"]],
         "student_records": [
             {"id": s["id"], "text": s["text"]} for s in value["student_steps"]

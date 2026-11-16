@@ -130,6 +130,21 @@ def question_app(tmp_path):
                             "DELETE r FROM reference_steps r JOIN problem_analyses a ON r.analysis_id=a.id WHERE a.question_id=?",
                             [id],
                         )
+                        execute(
+                            db,
+                            "DELETE c FROM agent_tool_calls c JOIN agent_runs a ON c.agent_run_id=a.id JOIN tutor_sessions t ON a.session_id=t.id WHERE t.question_id=?",
+                            [id],
+                        )
+                        execute(
+                            db,
+                            "DELETE a FROM agent_runs a JOIN tutor_sessions t ON a.session_id=t.id WHERE t.question_id=?",
+                            [id],
+                        )
+                        execute(
+                            db,
+                            "DELETE t FROM tutor_turns t JOIN tutor_sessions s ON t.session_id=s.id WHERE s.question_id=?",
+                            [id],
+                        )
                         for table in [
                             "diagnoses",
                             "problem_analyses",
@@ -1577,4 +1592,147 @@ def test_real_knowledge_lesson_roundtrip(question_app):
     assert (
         client.get(path, headers=headers).json()["data"][0]["id"]
         == result.json()["data"]["id"]
+    )
+
+
+def test_tutor_start_read_navigation_and_legacy_contract(question_app):
+    import httpx
+
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "解方程3x+2=17",
+            "student_steps": ["3x=19"],
+            "student_answer": "19/3",
+            "knowledge_points": ["方程"],
+            "correct_answer": "5",
+            "explanation": "3x=15，然后x=5",
+        },
+    ).json()["data"]["id"]
+    start = client.post(
+        "/api/v1/tutor/sessions", headers=headers, json={"question_id": q}
+    )
+    assert start.status_code == 200, start.text
+    item = start.json()["data"]
+    sid = item["id"]
+    path = "/api/v1/tutor/sessions/" + sid
+    assert item["teaching_policy"]["mode"] == "full"
+    assert (
+        "correct_answers" not in item["activity"]
+        and "understanding_plan" not in item["state"]
+    )
+    assert item["turns"] and item["stage"] == "understanding"
+    assert client.get(path, headers=other).status_code == 404
+    assert (
+        client.post(
+            path + "/advance", headers=headers, json={"target_stage": "teach_back"}
+        ).status_code
+        == 409
+    )
+    current = client.get(path, headers=headers)
+    assert current.status_code == 200
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        with httpx.Client(
+            base_url=os.environ["CUOTI_LEGACY_URL"], trust_env=False, timeout=15
+        ) as old:
+            legacy = old.get(path, headers=headers)
+            assert legacy.status_code == 200, legacy.text
+            assert current.json()["data"] == legacy.json()["data"]
+    with app.state.database.session() as db, db.begin():
+        # Seed an already-earned gate to test navigation independently of grading.
+        execute(
+            db,
+            "UPDATE tutor_sessions SET state=JSON_SET(state,'$.understanding_passed',CAST('true' AS JSON)) WHERE id=?",
+            [sid],
+        )
+    advanced = client.post(
+        path + "/advance", headers=headers, json={"target_stage": "teach_back"}
+    )
+    assert (
+        advanced.status_code == 200 and advanced.json()["data"]["stage"] == "teach_back"
+    )
+    assert (
+        client.get(path, headers=headers).json()["data"]["activity"]["type"]
+        == "teach_back"
+    )
+    assert (
+        client.post(path + "/rewind", headers=headers, json={}).json()["data"]["stage"]
+        == "understanding"
+    )
+    client.patch(
+        "/api/v1/questions/" + q,
+        headers=headers,
+        json={"question_text": "解方程3x+2=20"},
+    )
+    assert (
+        client.post(
+            path + "/advance", headers=headers, json={"target_stage": "teach_back"}
+        ).status_code
+        == 409
+    )
+
+
+def test_tutor_compressed_start_and_missing_analysis(question_app, monkeypatch):
+    app, client, student, _ = question_app
+    _, headers = student()
+    data = {
+        "question_text": "选择3x=15的解",
+        "options": [{"label": "A", "text": "5"}, {"label": "B", "text": "6"}],
+        "question_type": "单选题",
+    }
+    no_analysis = client.post(
+        "/api/v1/questions/manual", headers=headers, json=data
+    ).json()["data"]["id"]
+    assert (
+        client.post(
+            "/api/v1/tutor/sessions", headers=headers, json={"question_id": no_analysis}
+        ).status_code
+        == 409
+    )
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={**data, "correct_answer": "A", "student_answer": "B"},
+    ).json()["data"]["id"]
+    calls = []
+
+    def brief(operation, **values):
+        calls.append(operation)
+        return {
+            "brief": {
+                "topic": "方程",
+                "correct_answer": "A",
+                "key_explanation": "3x=15两边除以3",
+                "option_explanations": [],
+                "check": {
+                    "id": "check-1",
+                    "type": "single_choice",
+                    "title": "检查",
+                    "question": "等式两边可以同时除以非零数吗？",
+                    "options": [],
+                    "correct_answers": ["yes"],
+                },
+            }
+        }
+
+    monkeypatch.setattr(app.state.compute, "compute", brief)
+    response = client.post(
+        "/api/v1/tutor/sessions", headers=headers, json={"question_id": q}
+    )
+    assert response.status_code == 200, response.text
+    value = response.json()["data"]
+    assert calls == ["teaching_brief"]
+    assert value["teaching_policy"]["mode"] == "compressed"
+    assert value["activity"]["id"] == "answer-reveal"
+    assert "teaching_brief" not in value["state"]
+    assert value["answer_reveal"]["student_answer"] == "B"
+    assert (
+        client.get("/api/v1/tutor/sessions/" + value["id"], headers=headers).json()[
+            "data"
+        ]["activity"]["id"]
+        == "answer-reveal"
     )

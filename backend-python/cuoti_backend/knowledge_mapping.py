@@ -77,3 +77,61 @@ def sync_links(db, question, analysis, diagnosis=None):
                 phrase[:255],
             ],
         )
+
+
+def dialogue_cards(db, query, subject, grade):
+    available = select_rows(
+        db,
+        "knowledge_points",
+        "SELECT * FROM knowledge_points WHERE subject=? ORDER BY code LIMIT 200",
+        [subject],
+    )
+
+    def score(card):
+        content = card["content"] if isinstance(card["content"], dict) else {}
+        level = content.get("grade", "")
+        if grade.startswith("初") and isinstance(level, str) and level.startswith("高"):
+            return 0
+        context = label(query)
+        value = 0
+        for name in [card["name"], card["code"]]:
+            key = label(name)
+            if len(key) >= 2 and key in context:
+                value = 100 + len(key)
+        for alias in (
+            content.get("related_knowledge", [])
+            if isinstance(content.get("related_knowledge", []), list)
+            else []
+        ):
+            if isinstance(alias, str):
+                key = label(alias)
+                if len(key) >= 2 and key in context and value == 0:
+                    value = len(key)
+        return value
+
+    ranked = sorted(
+        ((score(card), index, card) for index, card in enumerate(available)),
+        key=lambda item: (-item[0], item[1]),
+    )
+    anchors = [card for value, _, card in ranked if value > 0][:3]
+    result = [{**card, "retrieval_role": "anchor"} for card in anchors]
+    seen = {card["code"] for card in anchors}
+    for anchor in anchors:
+        dependencies = select_rows(
+            db,
+            "knowledge_points",
+            "SELECT k.* FROM knowledge_relations r JOIN knowledge_points k ON r.target_id=k.id WHERE r.source_id=? AND r.relation_type='prerequisite' AND k.subject=? ORDER BY k.code LIMIT 2",
+            [anchor["id"], subject],
+        )
+        for card in dependencies:
+            if len(result) >= 8 or card["code"] in seen:
+                continue
+            result.append(
+                {
+                    **card,
+                    "retrieval_role": "prerequisite",
+                    "anchor_code": anchor["code"],
+                }
+            )
+            seen.add(card["code"])
+    return result
