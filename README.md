@@ -58,8 +58,12 @@ CUOTI_ENV_FILE=/绝对路径/.env.cangjie .venv/bin/python -m cuoti_backend.mana
 
 ## Python 错题录入与识别迁移
 
-已接入原错题列表、详情、手动录题、编辑归档、上传、裁剪、OCR、人工核对和任务查询重试接口。默认列表保持原数组格式与去重规则，可选page/page_size进行分页。
+已接入原错题列表、详情、手动录题、编辑归档、上传、裁剪、OCR、人工核对和任务查询重试接口。列表保持原数组格式与去重规则，支持page/page_size、subject、grade、question_type、knowledge_point、search及sort（created_at、updated_at、oldest），分页后批量查询附属信息，避免逐题重复查库。
+
+手动录题、编辑及人工核对支持可选correct_answer、explanation、source_info，保存为未核验的人工参考资料。POST /api/v1/questions/{id}/images支持为已有题目补图，replace=true可替换识别主图，defer_processing=true可先裁剪再识别；原始字节与旧文件均保留。正文或参考资料修改时保留历史分析、诊断与步骤快照，不清除学习会话和复习记录。
 
 图片继续使用现有uploads/reports目录与签名规则。CUOTI_MEDIA_ROOT可指定存储目录，默认定位到配置文件所在项目的backend-cangjie/media。迁移验证复用了现有数据库，前端仍连接原服务。启动命令继续使用python -m cuoti_backend，当前采用单进程、两个识别线程。
 
-接口范围、备份、模拟与真实模型测试及后续安排见 [第三阶段迁移完成与验收报告](docs/迁移方案/第三阶段迁移完成与验收报告.md)。
+CUOTI_COMPUTE_TIMEOUT控制单次内部算法调用超时，默认200秒。媒体沿用有效签名链接访问；携带Bearer时额外校验所有权，匿名有效签名链接仍可访问，以兼容现有图片标签。
+
+完整功能对照见 [第三阶段全面迁移对照清单](docs/迁移方案/第三阶段全面迁移对照清单.md)，最新验证见 [第三阶段全面迁移验收报告](docs/迁移方案/第三阶段全面迁移验收报告.md)。真实手写根式存在识别错误，已验证人工纠正和确认保存；不能把流程跑通视为识别质量已达标。上一轮记录保留在 [第三阶段迁移完成与验收报告](docs/迁移方案/第三阶段迁移完成与验收报告.md)。

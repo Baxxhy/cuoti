@@ -2,6 +2,7 @@ import hashlib
 import json
 from pathlib import Path
 
+from . import reference_input
 from .account_schemas import text_field
 from .accounts import current_user
 from .protocol import ApiError
@@ -84,9 +85,12 @@ class Questions:
             [id],
         )
         result["ocr_runs"] = ocr
+        current_ocr = [
+            value for value in ocr if not value["stream"].startswith("previous_")
+        ]
         result["ocr"] = next(
-            (value for value in ocr if value["stream"] == "qwen_crop"),
-            ocr[0] if ocr else None,
+            (value for value in current_ocr if value["stream"] == "qwen_crop"),
+            current_ocr[0] if current_ocr else None,
         )
         analyses = select_rows(
             db,
@@ -186,6 +190,17 @@ class Questions:
             [id],
         )
         result["processing_job"] = jobs[0] if jobs else None
+        reference = reference_input.display(result["analysis"])
+        if reference is not None:
+            result["reference_information"] = reference
+        history = select_rows(
+            db,
+            "agent_runs",
+            "SELECT result FROM agent_runs WHERE agent_name='question_revision' AND JSON_UNQUOTE(JSON_EXTRACT(result,'$.question_id'))=? ORDER BY created_at DESC,id DESC",
+            [id],
+        )
+        if history:
+            result["reference_history"] = [item["result"] for item in history]
         return result
 
     def list(self, request):
@@ -196,7 +211,7 @@ class Questions:
                 "SELECT q.* FROM questions q WHERE q.user_id=? AND q.status<>'archived'"
             )
             params = [owner]
-            for key in ["subject", "grade"]:
+            for key in ["subject", "grade", "question_type"]:
                 if query.get(key):
                     sql += f" AND q.{key}=?"
                     params.append(query[key])
@@ -234,52 +249,6 @@ class Questions:
                 if key in seen:
                     continue
                 seen.add(key)
-                id = item["id"]
-                diagnoses = rows(
-                    db,
-                    "SELECT root_misconception FROM diagnoses WHERE question_id=? ORDER BY created_at DESC LIMIT 1",
-                    [id],
-                )
-                review = select_rows(
-                    db,
-                    "review_plans",
-                    "SELECT due_at FROM review_plans WHERE question_id=? AND user_id=? AND status='pending' ORDER BY due_at LIMIT 1",
-                    [id, owner],
-                )
-                knowledge = item["knowledge_points"] or ["__none__"]
-                scores = rows(
-                    db,
-                    "SELECT mastery_score FROM mastery_states WHERE user_id=? AND subject=? AND JSON_CONTAINS(?,JSON_QUOTE(knowledge_point)) ORDER BY updated_at DESC LIMIT 1",
-                    [owner, item["subject"], json.dumps(knowledge)],
-                )
-                score = float(scores[0]["mastery_score"]) if scores else 0.0
-                assets = rows(
-                    db,
-                    "SELECT path FROM question_assets WHERE question_id=? AND kind IN ('crop','original') ORDER BY created_at DESC LIMIT 1",
-                    [id],
-                )
-                jobs = rows(
-                    db,
-                    "SELECT id,status FROM processing_jobs WHERE question_id=? ORDER BY created_at DESC LIMIT 1",
-                    [id],
-                )
-                item.update(
-                    diagnosis_summary=diagnoses[0]["root_misconception"]
-                    if diagnoses
-                    else "等待完成错因诊断",
-                    review_due_at=review[0]["due_at"] if review else None,
-                    mastery_score=score,
-                    mastery_status="基本稳定"
-                    if score >= 0.75
-                    else "继续巩固"
-                    if score >= 0.5
-                    else "需要巩固",
-                    thumbnail_url=self.media.url("/" + assets[0]["path"])
-                    if assets
-                    else None,
-                    latest_job_id=jobs[0]["id"] if jobs else None,
-                    latest_job_status=jobs[0]["status"] if jobs else None,
-                )
                 result.append(item)
             # Legacy callers receive the full array. Optional paging preserves that shape.
             if "page" in query or "page_size" in query:
@@ -291,7 +260,77 @@ class Questions:
                 except ValueError:
                     raise ApiError(422, "分页参数不正确") from None
                 result = result[(page - 1) * size : page * size]
+            self.enrich_list(db, owner, result)
             return result
+
+    def enrich_list(self, db, owner, items):
+        if not items:
+            return
+        ids = [item["id"] for item in items]
+        placeholders = ",".join("?" for _ in ids)
+        diagnoses = {}
+        for row in rows(
+            db,
+            f"SELECT question_id,root_misconception FROM diagnoses WHERE question_id IN ({placeholders}) ORDER BY created_at DESC",
+            ids,
+        ):
+            diagnoses.setdefault(row["question_id"], row["root_misconception"])
+        reviews = {
+            row["question_id"]: row["due_at"]
+            for row in select_rows(
+                db,
+                "review_plans",
+                f"SELECT question_id,MIN(due_at) AS due_at FROM review_plans WHERE user_id=? AND status='pending' AND question_id IN ({placeholders}) GROUP BY question_id",
+                [owner, *ids],
+            )
+        }
+        scores = rows(
+            db,
+            "SELECT subject,knowledge_point,mastery_score FROM mastery_states WHERE user_id=? ORDER BY updated_at DESC",
+            [owner],
+        )
+        assets = {}
+        for row in rows(
+            db,
+            f"SELECT question_id,path FROM question_assets WHERE question_id IN ({placeholders}) AND kind IN ('crop','original') ORDER BY created_at DESC",
+            ids,
+        ):
+            assets.setdefault(row["question_id"], row["path"])
+        jobs = {}
+        for row in rows(
+            db,
+            f"SELECT question_id,id,status FROM processing_jobs WHERE question_id IN ({placeholders}) ORDER BY created_at DESC",
+            ids,
+        ):
+            jobs.setdefault(row["question_id"], row)
+        for item in items:
+            id = item["id"]
+            knowledge = item["knowledge_points"] or ["__none__"]
+            score = next(
+                (
+                    float(row["mastery_score"])
+                    for row in scores
+                    if row["subject"] == item["subject"]
+                    and row["knowledge_point"] in knowledge
+                ),
+                0.0,
+            )
+            job = jobs.get(id, {})
+            item.update(
+                diagnosis_summary=diagnoses.get(id, "等待完成错因诊断"),
+                review_due_at=reviews.get(id),
+                mastery_score=score,
+                mastery_status="基本稳定"
+                if score >= 0.75
+                else "继续巩固"
+                if score >= 0.5
+                else "需要巩固",
+                thumbnail_url=self.media.url("/" + assets[id])
+                if id in assets
+                else None,
+                latest_job_id=job.get("id"),
+                latest_job_status=job.get("status"),
+            )
 
     def work(
         self,
@@ -396,6 +435,26 @@ class Questions:
                     else [],
                 )
                 self.work(db, id, user.id, answer, steps)
+                optional = edits(body)
+                extras = {
+                    key: optional[key]
+                    for key in ["knowledge_points", "formulas", "tags"]
+                    if key in optional
+                }
+                if source:
+                    extras.pop("knowledge_points", None)
+                    if "tags" in extras:
+                        extras["tags"] = list(
+                            dict.fromkeys(
+                                ["study-item:" + body["study_item_id"], *extras["tags"]]
+                            )
+                        )
+                if extras:
+                    update(db, "questions", id, **extras)
+                reference = reference_input.changes(db, id, body)
+                if reference is not None:
+                    question = owned(db, id, user.id)
+                    reference_input.save(db, question, reference)
                 if source:
                     self.study_figures(db, id, source, copied)
             return {"id": id, "status": "confirmed"}
@@ -411,6 +470,7 @@ class Questions:
             question = owned(db, id, owner, lock=True)
             if question["status"] == "archived":
                 raise ApiError(409, "题目已归档，不能修改")
+            reference = reference_input.changes(db, id, body)
             if confirm is None:
                 kind = validated.get("question_type", question["question_type"])
                 if (
@@ -423,16 +483,57 @@ class Questions:
                     k in LEARNING_FIELDS and question[k] != v
                     for k, v in validated.items()
                 )
-                if content_changed:
+                if content_changed or reference is not None:
                     invalidate(db, id)
-                    validated["status"] = (
-                        "confirmed" if question["confirmed"] else "needs_confirmation"
+                    validated.setdefault(
+                        "status",
+                        "confirmed" if question["confirmed"] else "needs_confirmation",
                     )
-                if changed:
+                if reference is not None:
+                    execute(
+                        db,
+                        "UPDATE processing_jobs SET status='cancelled',error='参考资料已人工更新',updated_at=UTC_TIMESTAMP() WHERE question_id=? AND status IN ('pending','running')",
+                        [id],
+                    )
+                if "status" in body:
+                    status = body["status"]
+                    if status not in [
+                        "confirmed",
+                        "needs_confirmation",
+                        "ocr_draft",
+                        "archived",
+                    ]:
+                        raise ApiError(422, "题目状态不允许直接修改")
+                    if (
+                        status == "confirmed"
+                        and not validated.get(
+                            "question_text", question["question_text"]
+                        ).strip()
+                    ):
+                        raise ApiError(422, "请先补充题目文字再确认")
+                    validated["status"] = status
+                    if status != "archived":
+                        validated["confirmed"] = status == "confirmed"
+                    execute(
+                        db,
+                        "UPDATE processing_jobs SET status='cancelled',error='题目状态已人工更新',updated_at=UTC_TIMESTAMP() WHERE question_id=? AND status IN ('pending','running')",
+                        [id],
+                    )
+                    if status == "archived":
+                        execute(
+                            db,
+                            "UPDATE review_plans SET status='cancelled',updated_at=UTC_TIMESTAMP() WHERE question_id=? AND status='pending'",
+                            [id],
+                        )
+                    changed = True
+                if changed or reference is not None:
                     update(db, "questions", id, **validated)
-                return select_rows(
-                    db, "questions", "SELECT * FROM questions WHERE id=?", [id]
-                )[0]
+                result = owned(db, id, owner)
+                if reference is not None:
+                    result["reference_information"] = reference_input.save(
+                        db, result, reference
+                    )
+                return result
             selected = {k: v for k, v in validated.items() if k in LEARNING_FIELDS}
             steps = array(body, "student_steps", 100)
             answer = (selected.get("student_answer") or "").strip()
@@ -491,12 +592,14 @@ class Questions:
                 "UPDATE processing_jobs SET status='cancelled',error='题目已人工核对，旧识别结果未应用',updated_at=UTC_TIMESTAMP() WHERE question_id=? AND kind IN ('ingest','crop','ocr','reprocess') AND status IN ('pending','running')",
                 [id],
             )
-            if changed:
+            if changed or reference is not None:
                 invalidate(db, id)
             selected["status"] = "confirmed" if confirm else "ocr_draft"
             if confirm:
                 selected["confirmed"] = True
             update(db, "questions", id, **selected)
+            if reference is not None:
+                reference_input.save(db, owned(db, id, owner), reference)
             return self.detail(db, id, owner)
 
     def archive(self, request, id):

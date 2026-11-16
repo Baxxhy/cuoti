@@ -149,6 +149,27 @@ def serve_media(request: Request, path: str):
         request.query_params.get("signature", ""),
     ):
         raise ApiError(403, "资源链接已失效，请返回页面刷新")
+    if request.headers.get("authorization"):
+        from .accounts import current_user
+        from .question_data import rows
+
+        with request.app.state.database.session() as db, db.begin():
+            user = current_user(request, db)
+            matches = rows(
+                db,
+                "SELECT a.id FROM question_assets a JOIN questions q ON a.question_id=q.id WHERE a.path=? AND q.user_id=? LIMIT 1",
+                [full_path[1:], user.id],
+            )
+            if full_path.startswith("/reports/"):
+                matches = rows(
+                    db,
+                    "SELECT e.id FROM export_jobs e JOIN papers p ON e.paper_id=p.id WHERE e.path=? AND p.user_id=? LIMIT 1",
+                    [full_path[1:], user.id],
+                )
+            if not matches and not full_path.startswith(
+                "/uploads/answers/" + user.id + "/"
+            ):
+                raise ApiError(404, "资源不存在或无权访问")
     fd = store.open(full_path[1:])
     info = os.fstat(fd)
     length = info.st_size

@@ -136,7 +136,9 @@ def create_app(settings: Settings | None = None):
                     )
                 compute = (
                     ComputeBridge(
-                        algorithm_app, settings.algorithm_secret.get_secret_value()
+                        algorithm_app,
+                        settings.algorithm_secret.get_secret_value(),
+                        settings.compute_timeout,
                     )
                     if algorithm_app is not None
                     else None

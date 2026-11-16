@@ -24,6 +24,7 @@ class Settings(BaseModel):
     auth_secret: SecretStr = SecretStr("")
     algorithm_secret: SecretStr = SecretStr("")
     api_pool_path: str = ""
+    compute_timeout: float = Field(default=200, ge=0.01, le=600)
     max_request_bytes: int = Field(default=16 * 1024 * 1024, ge=1)
 
     @classmethod

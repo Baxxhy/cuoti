@@ -48,3 +48,30 @@ def test_compute_preserves_original_body_limit():
         )
         assert response.status_code == 200
         assert client.post("/livez", content=b"12345").status_code == 413
+
+
+def test_compute_bridge_enforces_timeout():
+    import asyncio
+
+    import pytest
+    from cuoti_backend.protocol import ApiError
+    from cuoti_backend.recognition import ComputeBridge
+    from fastapi import FastAPI
+
+    service = FastAPI()
+
+    @service.post("/v1/compute")
+    async def slow():
+        await asyncio.sleep(1)
+        return {}
+
+    async def check():
+        bridge = ComputeBridge(service, "test-secret", timeout=0.01)
+        try:
+            with pytest.raises(ApiError) as error:
+                await asyncio.to_thread(bridge.compute, "normalize")
+            assert error.value.status == 504
+        finally:
+            await bridge.close()
+
+    asyncio.run(check())

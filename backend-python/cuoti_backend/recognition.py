@@ -16,8 +16,9 @@ KINDS = ["ingest", "crop", "ocr", "reprocess"]
 
 
 class ComputeBridge:
-    def __init__(self, app, secret):
+    def __init__(self, app, secret, timeout=200):
         self.loop = asyncio.get_running_loop()
+        self.timeout = timeout
         self.client = httpx.AsyncClient(
             transport=httpx.ASGITransport(app=app),
             base_url="http://algorithm",
@@ -26,7 +27,7 @@ class ComputeBridge:
 
     async def request(self, payload):
         response = await asyncio.wait_for(
-            self.client.post("/v1/compute", json=payload), 200
+            self.client.post("/v1/compute", json=payload), self.timeout
         )
         if response.status_code != 200:
             status = response.status_code if response.status_code in [422, 502] else 503
@@ -44,10 +45,10 @@ class ComputeBridge:
             self.request({"operation": operation, **values}), self.loop
         )
         try:
-            return future.result(timeout=205)
+            return future.result(timeout=self.timeout + 5)
         except TimeoutError:
             future.cancel()
-            raise ApiError(503, "内部算法计算暂时不可用") from None
+            raise ApiError(504, "算法计算超时") from None
 
     async def close(self):
         await self.client.aclose()
@@ -151,7 +152,7 @@ class RecognitionJobs:
             except Exception:  # noqa: BLE001 -- Persist safe task failure without leaking provider details.
                 logger.warning("recognition_recovery=deferred")
 
-    def failure(self, job_id, question_id, expected, recovered=False):
+    def failure(self, job_id, question_id, expected, recovered=False, timed_out=False):
         try:
             with self.database.session() as db, db.begin():
                 questions = select_rows(
@@ -178,6 +179,8 @@ class RecognitionJobs:
                 message = (
                     "题目已修改或归档，识别结果未应用"
                     if cancelled
+                    else "识别计算超时，请重试"
+                    if timed_out
                     else "识别任务因服务重启中断，请重试"
                     if recovered
                     else "识别暂时未完成，请检查图片后重试"
@@ -382,8 +385,13 @@ class RecognitionJobs:
                     error=None,
                 )
             committed = True
-        except Exception:  # noqa: BLE001 -- Persist safe task failure without leaking provider details.
-            self.failure(job_id, question_id, expected)
+        except Exception as error:  # noqa: BLE001 -- Persist safe task failure without leaking provider details.
+            self.failure(
+                job_id,
+                question_id,
+                expected,
+                timed_out=isinstance(error, ApiError) and error.status == 504,
+            )
         finally:
             if not committed:
                 for file in files:

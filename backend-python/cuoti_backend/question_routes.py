@@ -374,3 +374,147 @@ async def edit(request: Request, id: str):
 @router.delete("/questions/{id}")
 def delete_question(request: Request, id: str):
     return envelope(request, request.app.state.questions.archive(request, id))
+
+
+def attach_image(request, id, data, filename, deferred, replace):
+    app = request.app
+    service = app.state.questions
+    stored = []
+    job_id = None
+    try:
+        with service.database.session() as db, db.begin():
+            owner = service.user(request, db).id
+            question = owned(db, id, owner, lock=True)
+            if question["status"] == "archived":
+                raise ApiError(409, "题目已归档，不能修改")
+            if app.state.compute is None:
+                raise ApiError(503, "内部算法服务未配置")
+            normalized = app.state.compute.compute(
+                "normalize", image_base64=base64.b64encode(data).decode()
+            )
+            with Image.open(io.BytesIO(data)) as image:
+                suffix = {"PNG": "png", "JPEG": "jpg", "WEBP": "webp"}[image.format]
+            expected_kind = "original" if replace else "question_figure"
+            existing = select_rows(
+                db,
+                "question_assets",
+                "SELECT * FROM question_assets WHERE question_id=? AND kind=? AND sha256=? ORDER BY created_at DESC LIMIT 1",
+                [id, expected_kind, normalized["sha256"]],
+            )
+            originals = select_rows(
+                db,
+                "question_assets",
+                "SELECT * FROM question_assets WHERE question_id=? AND kind='uploaded_original' AND sha256=? ORDER BY created_at DESC LIMIT 1",
+                [id, hashlib.sha256(data).hexdigest()],
+            )
+            if existing and originals:
+                asset, raw_asset = existing[0], originals[0]
+                asset["url"] = service.media.url("/" + asset["path"])
+                raw_asset["url"] = service.media.url("/" + raw_asset["path"])
+                active = app.state.recognition.active(db, id)
+                return {
+                    "asset": asset,
+                    "uploaded_asset": raw_asset,
+                    "job_id": active["id"] if active else None,
+                    "original_preserved": True,
+                    "resumed": True,
+                }
+            unique = str(uuid4())
+            path = f"uploads/{id}/supplements/{unique}.jpg"
+            raw_path = f"uploads/{id}/supplements/{unique}-uploaded.{suffix}"
+            service.media.write(path, image_bytes(normalized))
+            stored.append(path)
+            service.media.write(raw_path, data)
+            stored.append(raw_path)
+            from .question_data import execute, invalidate
+
+            invalidate(db, id)
+            execute(
+                db,
+                "UPDATE processing_jobs SET status='cancelled',error='题目图片已更新',updated_at=UTC_TIMESTAMP() WHERE question_id=? AND status IN ('pending','running')",
+                [id],
+            )
+            if replace:
+                execute(
+                    db,
+                    "UPDATE question_assets SET kind=CASE kind WHEN 'original' THEN 'previous_original' WHEN 'crop' THEN 'previous_crop' WHEN 'uploaded_original' THEN 'previous_uploaded_original' ELSE 'historical_figure' END,updated_at=UTC_TIMESTAMP() WHERE question_id=? AND kind IN ('original','crop','uploaded_original','question_figure','student_working_figure','teacher_annotation_region')",
+                    [id],
+                )
+                execute(
+                    db,
+                    "UPDATE ocr_runs SET stream='previous_qwen_crop' WHERE question_id=? AND stream='qwen_crop'",
+                    [id],
+                )
+            asset_id = insert(
+                db,
+                "question_assets",
+                question_id=id,
+                kind="original" if replace else "question_figure",
+                path=path,
+                sha256=normalized["sha256"],
+                bbox=[],
+                description=filename,
+            )
+            raw_id = insert(
+                db,
+                "question_assets",
+                question_id=id,
+                kind="uploaded_original",
+                path=raw_path,
+                sha256=hashlib.sha256(data).hexdigest(),
+                bbox=[],
+            )
+            update(
+                db,
+                "questions",
+                id,
+                confirmed=False,
+                status="awaiting_crop" if replace else "needs_confirmation",
+            )
+            if replace and not deferred:
+                job_id = insert(
+                    db,
+                    "processing_jobs",
+                    question_id=id,
+                    kind="ingest",
+                    status="pending",
+                    progress=0,
+                )
+                update(db, "questions", id, status="processing")
+                stored.append(app.state.recognition.track(job_id, id, path, False))
+            asset = select_rows(
+                db,
+                "question_assets",
+                "SELECT * FROM question_assets WHERE id=?",
+                [asset_id],
+            )[0]
+            uploaded = select_rows(
+                db,
+                "question_assets",
+                "SELECT * FROM question_assets WHERE id=?",
+                [raw_id],
+            )[0]
+            asset["url"] = service.media.url("/" + path)
+            uploaded["url"] = service.media.url("/" + raw_path)
+        stored.clear()
+        if job_id:
+            app.state.recognition.submit(job_id, id, path, False)
+        return {
+            "asset": asset,
+            "uploaded_asset": uploaded,
+            "job_id": job_id,
+            "original_preserved": True,
+        }
+    finally:
+        for path in stored:
+            service.media.remove(path)
+
+
+@router.post("/questions/{id}/images")
+async def attach_image_route(request: Request, id: str):
+    data, filename, deferred = await upload(request)
+    replace = boolean(request.query_params.get("replace", "false"))
+    result = await run_in_threadpool(
+        attach_image, request, id, data, filename, deferred, replace
+    )
+    return envelope(request, result)

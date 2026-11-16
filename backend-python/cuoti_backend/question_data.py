@@ -106,6 +106,7 @@ def owned(db, id, owner, *, lock=False):
 
 
 def invalidate(db, id):
+    preserve_references(db, id, "question_changed")
     statements = [
         "DELETE e FROM diagnosis_evidence e JOIN diagnoses d ON e.diagnosis_id=d.id WHERE d.question_id=?",
         "DELETE FROM diagnoses WHERE question_id=?",
@@ -120,3 +121,53 @@ def invalidate(db, id):
     ]
     for sql in statements:
         execute(db, sql, [id])
+
+
+def preserve_references(db, id, reason):
+    """Keep removed derived records in the existing JSON audit table."""
+    analysis = select_rows(
+        db,
+        "problem_analyses",
+        "SELECT * FROM problem_analyses WHERE question_id=?",
+        [id],
+    )
+    diagnoses = select_rows(
+        db, "diagnoses", "SELECT * FROM diagnoses WHERE question_id=?", [id]
+    )
+    if not analysis and not diagnoses:
+        return
+    reference_steps = select_rows(
+        db,
+        "reference_steps",
+        "SELECT r.* FROM reference_steps r JOIN problem_analyses a ON r.analysis_id=a.id WHERE a.question_id=? ORDER BY r.step_index",
+        [id],
+    )
+    evidence = select_rows(
+        db,
+        "diagnosis_evidence",
+        "SELECT e.* FROM diagnosis_evidence e JOIN diagnoses d ON e.diagnosis_id=d.id WHERE d.question_id=?",
+        [id],
+    )
+    question = select_rows(db, "questions", "SELECT * FROM questions WHERE id=?", [id])[
+        0
+    ]
+    assets = select_rows(
+        db, "question_assets", "SELECT * FROM question_assets WHERE question_id=?", [id]
+    )
+    insert(
+        db,
+        "agent_runs",
+        session_id=None,
+        agent_name="question_revision",
+        status="completed",
+        result={
+            "question_id": id,
+            "reason": reason,
+            "question": question,
+            "assets": assets,
+            "analysis": analysis,
+            "reference_steps": reference_steps,
+            "diagnoses": diagnoses,
+            "evidence": evidence,
+        },
+    )

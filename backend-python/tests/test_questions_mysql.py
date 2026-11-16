@@ -122,6 +122,30 @@ def question_app(tmp_path):
                         id = question["id"]
                         execute(
                             db,
+                            "DELETE e FROM diagnosis_evidence e JOIN diagnoses d ON e.diagnosis_id=d.id WHERE d.question_id=?",
+                            [id],
+                        )
+                        execute(
+                            db,
+                            "DELETE r FROM reference_steps r JOIN problem_analyses a ON r.analysis_id=a.id WHERE a.question_id=?",
+                            [id],
+                        )
+                        for table in [
+                            "diagnoses",
+                            "problem_analyses",
+                            "review_plans",
+                            "tutor_sessions",
+                        ]:
+                            execute(
+                                db, f"DELETE FROM {table} WHERE question_id=?", [id]
+                            )
+                        execute(
+                            db,
+                            "DELETE FROM agent_runs WHERE agent_name='question_revision' AND JSON_UNQUOTE(JSON_EXTRACT(result,'$.question_id'))=?",
+                            [id],
+                        )
+                        execute(
+                            db,
                             "DELETE s FROM student_steps s JOIN student_works w ON s.work_id=w.id WHERE w.question_id=?",
                             [id],
                         )
@@ -668,7 +692,11 @@ def test_study_snapshot_manual_import_is_owned_and_idempotent(question_app):
                 json.dumps({"correct": False}),
             ],
         )
-    body = {"study_session_id": session_id, "study_item_id": item_id}
+    body = {
+        "study_session_id": session_id,
+        "study_item_id": item_id,
+        "tags": ["自定义标签"],
+    }
     assert (
         client.post("/api/v1/questions/manual", headers=other, json=body).status_code
         == 404
@@ -685,7 +713,418 @@ def test_study_snapshot_manual_import_is_owned_and_idempotent(question_app):
         "/api/v1/questions/" + first.json()["data"]["id"], headers=headers
     ).json()["data"]
     assert detail["knowledge_points"] == ["方程"]
+    assert "study-item:" + item_id in detail["tags"]
+    assert "自定义标签" in detail["tags"]
     assert (
         detail["question_figures"]
         and client.get(detail["question_figures"][0]["url"]).content == picture()
     )
+
+
+def test_batch_list_queries_and_type_filters(question_app):
+    from sqlalchemy import event
+
+    app, client, student, _ = question_app
+    _, headers = student()
+    for i in range(8):
+        response = client.post(
+            "/api/v1/questions/manual",
+            headers=headers,
+            json={
+                "question_text": f"批量列表第{i}题",
+                "grade": "初一",
+                "knowledge_points": ["方程"],
+            },
+        )
+        assert response.status_code == 200
+    statements = []
+
+    def capture(connection, cursor, statement, parameters, context, executemany):
+        if statement.lstrip().upper().startswith("SELECT"):
+            statements.append(statement)
+
+    event.listen(app.state.database.engine, "before_cursor_execute", capture)
+    try:
+        first = client.get(
+            "/api/v1/questions?page=1&page_size=1&question_type=综合题&knowledge_point=方程&grade=初一",
+            headers=headers,
+        )
+        assert first.status_code == 200 and len(first.json()["data"]) == 1
+        small = len(statements)
+        statements.clear()
+        all_items = client.get(
+            "/api/v1/questions?page=1&page_size=8&question_type=综合题", headers=headers
+        )
+        assert len(all_items.json()["data"]) == 8
+        assert len(statements) == small and small <= 8
+    finally:
+        event.remove(app.state.database.engine, "before_cursor_execute", capture)
+    assert (
+        client.get("/api/v1/questions?question_type=单选题", headers=headers).json()[
+            "data"
+        ]
+        == []
+    )
+    assert (
+        client.get("/api/v1/questions?page=99&page_size=8", headers=headers).json()[
+            "data"
+        ]
+        == []
+    )
+
+
+def test_manual_reference_and_history_preservation(question_app):
+    app, client, student, _ = question_app
+    user, headers = student()
+    response = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "correct_answer": "x=5",
+            "explanation": "先移项，再除以3。",
+            "source_info": "练习册第一课",
+        },
+    )
+    assert response.status_code == 200, response.text
+    id = response.json()["data"]["id"]
+    detail = client.get("/api/v1/questions/" + id, headers=headers).json()["data"]
+    assert detail["reference_information"]["correct_answer"] == "x=5"
+    assert detail["analysis"]["verified"] is False
+    with app.state.database.session() as db, db.begin():
+        session = insert(
+            db,
+            "tutor_sessions",
+            user_id=user["id"],
+            question_id=id,
+            stage="repair",
+            hint_level=0,
+            turn_count=0,
+            mastery_score=0,
+            state={},
+            status="active",
+        )
+        plan = insert(
+            db,
+            "review_plans",
+            user_id=user["id"],
+            question_id=id,
+            due_at="2030-01-01 00:00:00",
+            interval_days=1,
+            reason="原学习记录",
+            status="pending",
+        )
+    response = client.patch(
+        "/api/v1/questions/" + id,
+        headers=headers,
+        json={
+            "correct_answer": "5",
+            "explanation": "x=(17-2)/3",
+            "source_info": "人工核对",
+        },
+    )
+    assert response.status_code == 200, response.text
+    assert response.json()["data"]["reference_information"]["correct_answer"] == "5"
+    detail = client.get("/api/v1/questions/" + id, headers=headers).json()["data"]
+    assert detail["reference_information"]["correct_answer"] == "5"
+    assert detail["reference_history"][0]["analysis"][0]["final_answer"] == "x=5"
+    with app.state.database.session() as db, db.begin():
+        assert (
+            rows(db, "SELECT status FROM review_plans WHERE id=?", [plan])[0]["status"]
+            == "cancelled"
+        )
+        assert rows(db, "SELECT id FROM tutor_sessions WHERE id=?", [session])
+    assert (
+        client.patch(
+            "/api/v1/questions/" + id, headers=headers, json={"explanation": 123}
+        ).status_code
+        == 422
+    )
+    assert (
+        client.patch(
+            "/api/v1/questions/" + id, headers=headers, json={"status": "running"}
+        ).status_code
+        == 422
+    )
+    assert (
+        client.patch(
+            "/api/v1/questions/" + id, headers=headers, json={"status": "ocr_draft"}
+        ).status_code
+        == 200
+    )
+    assert (
+        client.get("/api/v1/questions/" + id, headers=headers).json()["data"][
+            "confirmed"
+        ]
+        is False
+    )
+    assert (
+        client.patch(
+            "/api/v1/questions/" + id, headers=headers, json={"status": "confirmed"}
+        ).status_code
+        == 200
+    )
+
+
+def test_picture_attachment_replacement_and_bearer_ownership(question_app):
+    _app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    uploaded = ingest(client, headers)
+    id = uploaded["question_id"]
+    original = client.get("/api/v1/questions/" + id, headers=headers).json()["data"][
+        "assets"
+    ][0]
+    assert client.get(original["url"], headers=other).status_code == 404
+    assert client.get(original["url"], headers=headers).status_code == 200
+    assert (
+        client.post(
+            "/api/v1/questions/" + id + "/images",
+            headers=other,
+            files={"file": ("extra.png", picture(), "image/png")},
+        ).status_code
+        == 404
+    )
+    attached = client.post(
+        "/api/v1/questions/" + id + "/images",
+        headers=headers,
+        files={"file": ("extra.png", picture(), "image/png")},
+    )
+    assert attached.status_code == 200, attached.text
+    assert attached.json()["data"]["asset"]["kind"] == "question_figure"
+    repeated = client.post(
+        "/api/v1/questions/" + id + "/images",
+        headers=headers,
+        files={"file": ("extra.png", picture(), "image/png")},
+    )
+    assert repeated.json()["data"]["resumed"] is True
+    assert (
+        repeated.json()["data"]["asset"]["id"] == attached.json()["data"]["asset"]["id"]
+    )
+    changed = io.BytesIO()
+    Image.new("RGB", (500, 400), "#ffeeaa").save(changed, format="PNG")
+    replacement = client.post(
+        "/api/v1/questions/" + id + "/images?replace=true",
+        headers=headers,
+        files={"file": ("new.png", changed.getvalue(), "image/png")},
+        data={"defer_processing": "true"},
+    )
+    assert replacement.status_code == 200, replacement.text
+    detail = client.get("/api/v1/questions/" + id, headers=headers).json()["data"]
+    assert detail["status"] == "awaiting_crop"
+    assert len([a for a in detail["assets"] if a["kind"] == "original"]) == 1
+    assert client.get(original["url"]).status_code == 200
+    assert any(a["kind"] == "previous_original" for a in detail["assets"])
+    assert (
+        client.post(
+            "/api/v1/questions/" + id + "/crop",
+            headers=headers,
+            json={"box": [0, 0, 1, 1]},
+        ).status_code
+        == 200
+    )
+
+
+def test_duplicate_execution_and_timeout_retry(question_app, monkeypatch):
+    app, client, student, provider = question_app
+    _, headers = student()
+    from cuoti_backend.protocol import ApiError
+
+    original = app.state.compute.compute
+
+    def timeout(operation, **kwargs):
+        if operation == "recognize":
+            raise ApiError(504, "算法计算超时")
+        return original(operation, **kwargs)
+
+    monkeypatch.setattr(app.state.compute, "compute", timeout)
+    uploaded = ingest(client, headers, deferred=False)
+    id = uploaded["question_id"]
+    job = uploaded["job_id"]
+    assert wait_job(client, headers, job)["status"] == "failed"
+    monkeypatch.setattr(app.state.compute, "compute", original)
+    provider.hold.clear()
+    assert (
+        client.post("/api/v1/jobs/" + job + "/retry", headers=headers).status_code
+        == 200
+    )
+    for _ in range(100):
+        if provider.calls:
+            break
+        time.sleep(0.02)
+    app.state.recognition.submit(job, id, f"uploads/{id}/original.jpg")
+    provider.hold.set()
+    assert wait_job(client, headers, job)["status"] == "completed"
+    app.state.recognition.run(job, id, f"uploads/{id}/original.jpg")
+    with app.state.database.session() as db, db.begin():
+        assert len(rows(db, "SELECT id FROM ocr_runs WHERE question_id=?", [id])) == 1
+    assert provider.calls == 1
+
+
+@pytest.mark.parametrize("case_index", range(6))
+@pytest.mark.skipif(
+    not os.environ.get("CUOTI_REAL_CASES_DIR"),
+    reason="representative real model samples not configured",
+)
+def test_representative_real_images(question_app, case_index):
+    import json
+    from pathlib import Path
+
+    app, client, student, _ = question_app
+    folder = Path(os.environ["CUOTI_REAL_CASES_DIR"])
+    case = json.loads((folder / "清单.json").read_text())[case_index]
+    app.state.algorithm_app.state.provider = None
+    _, headers = student()
+    raw = (folder / case["file"]).read_bytes()
+    started = time.perf_counter()
+    uploaded = ingest(client, headers, raw=raw)
+    id = uploaded["question_id"]
+    response = client.post(
+        "/api/v1/questions/" + id + "/crop",
+        headers=headers,
+        json={"box": case.get("box", [0, 0, 1, 1])},
+    )
+    assert response.status_code == 200, response.text
+    job_id = response.json()["data"]["job_id"]
+    result = wait_job(client, headers, job_id, timeout=210)
+    attempts = [result["status"]]
+    if result["status"] == "failed":
+        retry = client.post("/api/v1/jobs/" + job_id + "/retry", headers=headers)
+        if retry.status_code == 200:
+            result = wait_job(client, headers, job_id, timeout=210)
+            attempts.append(result["status"])
+    detail = client.get("/api/v1/questions/" + id, headers=headers).json()["data"]
+    provider = app.state.algorithm_app.state.provider
+    checks = {}
+    text = detail["question_text"] + " " + (detail["student_answer"] or "")
+    checks["key_symbols"] = all(key.lower() in text.lower() for key in case["keywords"])
+    if case.get("no_answer"):
+        checks["no_fabricated_student_answer"] = (
+            not detail["student_answer"] and not detail["student_steps"]
+        )
+    if case.get("expected_options"):
+        checks["options_count"] = len(detail["options"]) == case["expected_options"]
+    if case.get("expected_figures"):
+        checks["figure_region"] = bool(detail["question_figures"])
+    report = {
+        "case": case["name"],
+        "sha256": case["sha256"],
+        "status": result["status"],
+        "attempts": attempts,
+        "elapsed_seconds": round(time.perf_counter() - started, 2),
+        "model": getattr(provider, "logical_model", "unconfigured"),
+        "checks": checks,
+        "quality_checks_passed": all(checks.values()),
+        "question_text": detail["question_text"],
+        "student_answer": detail["student_answer"],
+        "steps": [s["text"] for s in detail["student_steps"]],
+        "options": detail["options"],
+        "regions": [
+            {
+                "role": a.get("role"),
+                "bbox": a.get("bbox"),
+                "description": a.get("description"),
+            }
+            for a in detail["question_figures"]
+        ],
+    }
+    report["confidence"] = (detail.get("ocr") or {}).get("confidence")
+    report["uncertain_fields"] = (
+        (detail.get("ocr") or {}).get("raw_result") or {}
+    ).get("uncertain_fields", [])
+    try:
+        assert result["status"] == "completed", result.get("error")
+        correction = case.get("manual_correction")
+        payload = (
+            {"question_text": correction} if isinstance(correction, str) else correction
+        )
+        if payload:
+            response = client.post(
+                "/api/v1/questions/" + id + "/draft", headers=headers, json=payload
+            )
+            assert response.status_code == 200
+            report["manual_correction"] = payload
+        saved = client.post(
+            "/api/v1/questions/" + id + "/confirm", headers=headers, json={}
+        )
+        assert saved.status_code == 200
+        expected_text = (
+            payload.get("question_text", detail["question_text"])
+            if payload
+            else detail["question_text"]
+        )
+        assert saved.json()["data"]["question_text"] == expected_text
+        if payload and "student_answer" in payload:
+            assert saved.json()["data"]["student_answer"] == payload["student_answer"]
+        report["saved_answer"] = saved.json()["data"]["student_answer"]
+        report["saved_text"] = saved.json()["data"]["question_text"]
+        report["confirmed"] = saved.json()["data"]["confirmed"]
+    finally:
+        output = (
+            Path(app.state.settings.project_root)
+            / ".runtime/第三阶段代表图片真实验证.jsonl"
+        )
+        with output.open("a") as file:
+            file.write(json.dumps(report, ensure_ascii=False) + "\n")
+
+
+@pytest.mark.skipif(
+    not os.environ.get("CUOTI_LEGACY_URL"), reason="legacy comparison not enabled"
+)
+def test_question_contract_parity_including_business_results(question_app):
+    from datetime import datetime
+    from urllib.parse import urlsplit
+
+    import httpx
+
+    _, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    response = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "接口对照 3x+2=17",
+            "student_answer": "19/3",
+            "student_steps": ["3x=19"],
+            "grade": "初一",
+        },
+    )
+    id = response.json()["data"]["id"]
+
+    def normalize(value, key=""):
+        if isinstance(value, dict):
+            return {k: normalize(v, k) for k, v in value.items()}
+        if isinstance(value, list):
+            return [normalize(v, key) for v in value]
+        if isinstance(value, str) and key.endswith("_url"):
+            return urlsplit(value).path
+        if isinstance(value, str) and key in [
+            "created_at",
+            "updated_at",
+            "due_at",
+            "review_due_at",
+        ]:
+            return datetime.fromisoformat(value).isoformat()
+        return value
+
+    with httpx.Client(
+        base_url=os.environ["CUOTI_LEGACY_URL"], trust_env=False, timeout=15
+    ) as old:
+        for path in ["/api/v1/questions/" + id, "/api/v1/questions?search=接口对照"]:
+            before = old.get(path, headers=headers)
+            after = client.get(path, headers=headers)
+            assert before.status_code == after.status_code == 200
+            assert normalize(before.json()["data"]) == normalize(after.json()["data"])
+        for path in ["/api/v1/questions/" + id, "/api/v1/jobs/" + str(uuid4())]:
+            before = old.get(path, headers=other)
+            after = client.get(path, headers=other)
+            assert before.status_code == after.status_code == 404
+            assert before.json() == after.json()
+        payload = {"favorite": True, "tags": ["接口兼容"]}
+        updated = client.patch("/api/v1/questions/" + id, headers=headers, json=payload)
+        same = old.patch("/api/v1/questions/" + id, headers=headers, json=payload)
+        assert normalize(updated.json()["data"]) == normalize(same.json()["data"])
+        deleted = client.delete("/api/v1/questions/" + id, headers=headers)
+        again = old.delete("/api/v1/questions/" + id, headers=headers)
+        assert deleted.json()["data"] == again.json()["data"] == {"deleted": True}
