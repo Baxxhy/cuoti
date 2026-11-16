@@ -147,6 +147,16 @@ def question_app(tmp_path):
                         )
                         execute(
                             db,
+                            "DELETE a FROM variant_attempts a JOIN variant_questions v ON a.variant_id=v.id WHERE v.question_id=?",
+                            [id],
+                        )
+                        execute(
+                            db,
+                            "DELETE FROM cognitive_updates WHERE question_id=?",
+                            [id],
+                        )
+                        execute(
+                            db,
                             "DELETE FROM variant_questions WHERE question_id=?",
                             [id],
                         )
@@ -189,6 +199,10 @@ def question_app(tmp_path):
                     execute(db, "DELETE FROM student_profiles WHERE user_id=?", [owner])
                     execute(
                         db, "DELETE FROM knowledge_lessons WHERE user_id=?", [owner]
+                    )
+                    execute(db, "DELETE FROM mastery_states WHERE user_id=?", [owner])
+                    execute(
+                        db, "DELETE FROM misconception_states WHERE user_id=?", [owner]
                     )
                     execute(db, "DELETE FROM users WHERE id=?", [owner])
 
@@ -1929,3 +1943,318 @@ def test_real_tutor_variant_generation_and_persistence(question_app):
             [data["id"], sid],
         )
         assert len(saved) == 1 and saved[0]["answer"]
+
+
+def tutor_compute_adapter(app, monkeypatch):
+    original = app.state.compute.compute
+    flags = {"undecidable": False}
+
+    def compute(operation, **values):
+        if operation in ["retrieval_prepare", "retrieval_search", "retrieval_rank"]:
+            return {"query": "方程", "hits": [], "references": []}
+        if operation == "teaching_brief":
+            return {
+                "brief": {
+                    "topic": "方程",
+                    "correct_answer": "5",
+                    "key_explanation": "移项求解",
+                    "option_explanations": [],
+                    "check": {
+                        "id": "check-1",
+                        "type": "single_choice",
+                        "title": "检查",
+                        "question": "先检查条件吗？",
+                        "options": [],
+                        "correct_answers": ["yes"],
+                    },
+                }
+            }
+        if operation == "evaluate_teach_back":
+            return {
+                "passed": True,
+                "feedback": "讲清楚了",
+                "matched_concepts": ["等式性质"],
+            }
+        if operation == "generate_variant":
+            near = values["transfer_type"] == "near"
+            return {
+                "variant": {
+                    "question_text": "2x+1=7" if near else "4x-3=13",
+                    "answer": "3" if near else "4",
+                    "explanation": "依据等式性质求解",
+                    "reference_solution": ["2x=6", "x=3"] if near else ["4x=16", "x=4"],
+                    "options": [],
+                },
+                "verified": True,
+                "generation": {"retrieval_ids": []},
+            }
+        if operation == "grade_answer" and flags["undecidable"]:
+            return {
+                "correct": False,
+                "can_update_learning": False,
+                "feedback": "证据不足",
+                "verdict": "uncertain",
+            }
+        return original(operation, **values)
+
+    monkeypatch.setattr(app.state.compute, "compute", compute)
+    return flags
+
+
+def test_complete_tutor_activity_flow_and_finish_idempotency(question_app, monkeypatch):
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    tutor_compute_adapter(app, monkeypatch)
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "student_steps": ["3x=19"],
+            "correct_answer": "5",
+            "knowledge_points": ["一元一次方程"],
+        },
+    ).json()["data"]["id"]
+    created = client.post(
+        "/api/v1/tutor/sessions", headers=headers, json={"question_id": q}
+    ).json()["data"]
+    path = "/api/v1/tutor/sessions/" + created["id"]
+
+    def answer(activity, value):
+        response = client.post(
+            path + "/activity/answer",
+            headers=headers,
+            json={"activity_id": activity, "answer": value},
+        )
+        assert response.status_code == 200, response.text
+        return response.json()["data"]
+
+    assert client.post(path + "/finish", headers=headers, json={}).status_code == 409
+    assert (
+        client.post(
+            path + "/activity/answer",
+            headers=other,
+            json={"activity_id": created["activity"]["id"], "answer": "key"},
+        ).status_code
+        == 404
+    )
+    assert (
+        client.post(
+            path + "/activity/answer",
+            headers=headers,
+            json={"activity_id": "old", "answer": "key"},
+        ).status_code
+        == 409
+    )
+    result = answer(created["activity"]["id"], "key")
+    result = answer(result["activity"]["id"], "reference")
+    assert result["stage_status"] == "passed"
+    assert (
+        client.post(
+            path + "/advance", headers=headers, json={"target_stage": "teach_back"}
+        ).status_code
+        == 200
+    )
+    result = answer("teach-back", "依据等式性质移项再求解")
+    assert result["stage"] == "near_transfer"
+    result = answer(result["activity"]["id"], "3")
+    assert result["stage"] == "far_transfer"
+    result = answer(result["activity"]["id"], "4")
+    assert result["stage"] == "finished" and result["status"] == "completed"
+    assert result["state"]["mastery_proven"] is True
+    one = client.post(path + "/finish", headers=headers, json={})
+    two = client.post(path + "/finish", headers=headers, json={})
+    assert one.status_code == two.status_code == 200
+    assert one.json()["data"]["review"]["id"] == two.json()["data"]["review"]["id"]
+    assert one.json()["data"]["review"]["interval_days"] == 15
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        import httpx
+
+        with httpx.Client(
+            base_url=os.environ["CUOTI_LEGACY_URL"], trust_env=False, timeout=15
+        ) as old:
+            legacy = old.post(path + "/finish", headers=headers, json={})
+            assert legacy.status_code == 200
+            assert legacy.json()["data"] == one.json()["data"]
+            original_dashboard = old.get("/api/v1/dashboard", headers=headers)
+            assert (
+                original_dashboard.json()["data"]
+                == client.get("/api/v1/dashboard", headers=headers).json()["data"]
+            )
+    with app.state.database.session() as db:
+        assert (
+            len(rows(db, "SELECT id FROM cognitive_updates WHERE question_id=?", [q]))
+            == 2
+        )
+        assert (
+            len(rows(db, "SELECT id FROM review_plans WHERE question_id=?", [q])) == 1
+        )
+    assert (
+        client.post(
+            path + "/activity/answer",
+            headers=headers,
+            json={"activity_id": "old", "answer": "4"},
+        ).status_code
+        == 409
+    )
+
+
+def test_tutor_help_uncertain_and_insufficient_completion(question_app, monkeypatch):
+    app, client, student, _ = question_app
+    _, headers = student()
+    flags = tutor_compute_adapter(app, monkeypatch)
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "correct_answer": "5",
+            "knowledge_points": ["一元一次方程"],
+        },
+    ).json()["data"]["id"]
+    created = client.post(
+        "/api/v1/tutor/sessions", headers=headers, json={"question_id": q}
+    ).json()["data"]
+    path = "/api/v1/tutor/sessions/" + created["id"]
+
+    def answer(item, value, **extra):
+        response = client.post(
+            path + "/activity/answer",
+            headers=headers,
+            json={"activity_id": item, "answer": value, **extra},
+        )
+        assert response.status_code == 200, response.text
+        return response.json()["data"]
+
+    result = answer("answer-reveal", "understood")
+    assert result["stage"] == "near_transfer"
+    aid = result["activity"]["id"]
+    assert (
+        client.post(
+            path + "/activity/answer",
+            headers=headers,
+            json={"activity_id": aid, "answer": "3", "handwriting_recognition": {}},
+        ).status_code
+        == 422
+    )
+    assert (
+        client.post(
+            path + "/activity/answer",
+            headers=headers,
+            json={
+                "activity_id": aid,
+                "answer": "3",
+                "handwriting_image_url": "/uploads/another-user.jpg",
+            },
+        ).status_code
+        == 422
+    )
+    result = answer(aid, "不会做", unknown=True)
+    assert result["assisted"] is True and result["activity"]["teaching"]
+    flags["undecidable"] = True
+    answer(aid, "maybe")
+    with app.state.database.session() as db:
+        assert not rows(
+            db,
+            "SELECT a.id FROM variant_attempts a JOIN variant_questions v ON a.variant_id=v.id WHERE v.session_id=?",
+            [created["id"]],
+        )
+        assert not rows(db, "SELECT id FROM cognitive_updates WHERE question_id=?", [q])
+    flags["undecidable"] = False
+    answer(aid, "0")
+    result = answer(aid, "0")
+    assert result["stage"] == "finished" and result["state"]["mastery_proven"] is False
+    finished = client.post(path + "/finish", headers=headers, json={}).json()["data"]
+    assert finished["review"]["interval_days"] == 1
+    assert (
+        client.post(
+            path + "/activity/answer",
+            headers=headers,
+            json={"activity_id": aid, "answer": "0", "elapsed_seconds": -1},
+        ).status_code
+        == 422
+    )
+
+
+@pytest.mark.skipif(
+    not os.environ.get("CUOTI_LEGACY_URL"),
+    reason="legacy source stamp comparison not enabled",
+)
+def test_learning_evidence_source_stamp_matches_legacy(question_app):
+    import json
+
+    import httpx
+    from cuoti_backend.learning_evidence import question_version
+    from cuoti_backend.question_data import select_rows
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "student_steps": ["3x=15", "x=5"],
+            "correct_answer": "5",
+            "knowledge_points": ["一元一次方程"],
+        },
+    ).json()["data"]["id"]
+    with app.state.database.session() as db, db.begin():
+        sid = insert(
+            db,
+            "tutor_sessions",
+            user_id=user["id"],
+            question_id=q,
+            stage="finished",
+            hint_level=0,
+            turn_count=0,
+            mastery_score=0,
+            state={
+                "teach_back": True,
+                "near_transfer": True,
+                "far_transfer": True,
+                "assisted": False,
+            },
+            status="active",
+        )
+    with httpx.Client(
+        base_url=os.environ["CUOTI_LEGACY_URL"], trust_env=False, timeout=20
+    ) as old:
+        result = old.post(
+            "/api/v1/tutor/sessions/" + sid + "/finish", headers=headers, json={}
+        )
+        assert result.status_code == 200, result.text
+    with app.state.database.session() as db:
+        updates = rows(
+            db, "SELECT evidence FROM cognitive_updates WHERE question_id=?", [q]
+        )
+        assert len(updates) == 2
+        recorded = json.loads(updates[0]["evidence"])["memory_source"][
+            "question_version"
+        ]
+        question = select_rows(
+            db, "questions", "SELECT * FROM questions WHERE id=?", [q]
+        )[0]
+        from pathlib import Path
+        from unittest.mock import patch
+
+        from cuoti_backend.lessons import digest
+
+        captured = []
+
+        def capture(value):
+            captured.append(value)
+            return digest(value)
+
+        with patch("cuoti_backend.learning_evidence.digest", side_effect=capture):
+            actual = question_version(db, question)
+        (
+            Path(app.state.settings.project_root) / ".runtime/学习来源指纹核对.json"
+        ).write_text(
+            json.dumps(
+                {"expected": recorded, "actual": actual, "source_json": captured[-1]},
+                ensure_ascii=False,
+            )
+        )
+        assert actual == recorded
