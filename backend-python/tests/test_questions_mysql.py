@@ -1128,3 +1128,135 @@ def test_question_contract_parity_including_business_results(question_app):
         deleted = client.delete("/api/v1/questions/" + id, headers=headers)
         again = old.delete("/api/v1/questions/" + id, headers=headers)
         assert deleted.json()["data"] == again.json()["data"] == {"deleted": True}
+
+
+def test_diagnosis_persistence_ownership_and_stale_write(question_app, monkeypatch):
+    from cuoti_backend.protocol import ApiError
+
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    id = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "student_answer": "19/3",
+            "student_steps": ["3x=19", "x=19/3"],
+        },
+    ).json()["data"]["id"]
+    calls = []
+
+    def compute(operation, **payload):
+        calls.append(operation)
+        if operation == "analyze":
+            return {
+                "analysis": {"final_answer": "5", "reference_steps": ["3x=15", "x=5"]},
+                "reference_math_valid": [True, True],
+            }
+        step = payload["student_records"][0]
+        ref = payload["reference_steps"][0]
+        return {
+            "diagnosis": {
+                "first_error_step": 0,
+                "error_type": "calculation",
+                "first_error_text": step["text"],
+            },
+            "alignment": [
+                {
+                    "index": 0,
+                    "reference_step_id": ref["id"],
+                    "student_step_id": step["id"],
+                    "student_text": step["text"],
+                    "alignment": "calculation",
+                    "equivalent": False,
+                    "math_valid": False,
+                    "uses_condition": True,
+                    "is_first_error": True,
+                    "propagated": False,
+                }
+            ],
+            "counterfactual": {
+                "status": "partial",
+                "root_cause_confirmed": False,
+                "conclusion": "待核对",
+            },
+            "evidence_diagnosis": {},
+        }
+
+    monkeypatch.setattr(app.state.compute, "compute", compute)
+    assert (
+        client.post(f"/api/v1/questions/{id}/diagnose", headers=other).status_code
+        == 404
+    )
+    result = client.post(f"/api/v1/questions/{id}/diagnose", headers=headers)
+    assert result.status_code == 200, result.text
+    assert calls == ["analyze", "diagnose"]
+    data = result.json()["data"]
+    assert data["first_error_step"] == 0 and len(data["evidence"]) == 1
+    assert data["counterfactual"]["root_cause_confirmed"] is False
+    assert (
+        client.get(f"/api/v1/questions/{id}/diagnosis", headers=headers).json()["data"][
+            "id"
+        ]
+        == data["id"]
+    )
+    assert (
+        client.get(f"/api/v1/questions/{id}/diagnosis", headers=other).status_code
+        == 404
+    )
+    original_compute = compute
+
+    def stale(operation, **payload):
+        client.patch(
+            f"/api/v1/questions/{id}",
+            headers=headers,
+            json={"question_text": "3x+2=20"},
+        )
+        return original_compute(operation, **payload)
+
+    monkeypatch.setattr(app.state.compute, "compute", stale)
+    assert (
+        client.post(f"/api/v1/questions/{id}/diagnose", headers=headers).status_code
+        == 409
+    )
+    history = client.get(f"/api/v1/questions/{id}", headers=headers).json()["data"]
+    assert history["diagnosis"] is None and history["reference_history"]
+
+    def failed(*args, **kwargs):
+        raise ApiError(504, "算法计算超时")
+
+    monkeypatch.setattr(app.state.compute, "compute", failed)
+    assert (
+        client.post(f"/api/v1/questions/{id}/analyze", headers=headers).status_code
+        == 504
+    )
+
+
+@pytest.mark.skipif(
+    os.environ.get("CUOTI_TEST_REAL_DIAGNOSIS") != "1",
+    reason="real diagnosis not enabled",
+)
+def test_real_diagnosis_business_roundtrip(question_app):
+    app, client, student, _ = question_app
+    app.state.algorithm_app.state.provider = None
+    _, headers = student()
+    id = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "解方程3x+2=17",
+            "student_answer": "19/3",
+            "student_steps": ["3x=17+2", "x=19/3"],
+        },
+    ).json()["data"]["id"]
+    result = client.post(f"/api/v1/questions/{id}/diagnose", headers=headers)
+    assert result.status_code == 200, result.text
+    value = result.json()["data"]
+    assert value["id"] and value["evidence"] and value["counterfactual"]
+    assert (
+        client.get(f"/api/v1/questions/{id}/diagnosis", headers=headers).json()["data"][
+            "id"
+        ]
+        == value["id"]
+    )

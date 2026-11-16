@@ -14,6 +14,7 @@ from starlette.exceptions import HTTPException
 from .accounts import router as account_router
 from .config import Settings
 from .database import Database
+from .diagnostics import router as diagnostic_router
 from .media import MediaStore
 from .media import router as media_router
 from .protocol import ApiError
@@ -174,6 +175,7 @@ def create_app(settings: Settings | None = None):
     app.state.questions = Questions(database, app.state.media, settings)
     app.include_router(account_router)
     app.include_router(question_router)
+    app.include_router(diagnostic_router)
     app.include_router(media_router)
     if algorithm_app is not None:
         # Reuse the existing authenticated compute handler and its provider lifecycle.
