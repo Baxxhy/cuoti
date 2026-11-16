@@ -18,6 +18,9 @@ class Settings(BaseModel):
     db_user: str = ""
     db_password: SecretStr = SecretStr("")
     db_timeout: int = Field(default=3, ge=1, le=30)
+    auth_secret: SecretStr = SecretStr("")
+    algorithm_secret: SecretStr = SecretStr("")
+    api_pool_path: str = ""
     max_request_bytes: int = Field(default=16 * 1024 * 1024, ge=1)
 
     @classmethod
@@ -32,8 +35,18 @@ class Settings(BaseModel):
             legacy = "CANGJIE_" + field.upper()
             if key in values:
                 result[field] = values[key]
-            elif field.startswith("db_") and legacy in values:
+            elif legacy in values and (
+                field.startswith("db_")
+                or field in ["auth_secret", "algorithm_secret", "api_pool_path"]
+            ):
                 result[field] = values[legacy]
+        for field, filename in [
+            ("auth_secret", "cangjie-auth-secret"),
+            ("algorithm_secret", "cangjie-algorithm-secret"),
+        ]:
+            file = path.parent / ".runtime" / filename
+            if field not in result and file.is_file():
+                result[field] = file.read_text().strip()
         return cls.model_validate(result)
 
     def database_url(self):

@@ -4,7 +4,7 @@
 
 已确定目标路线为 **uni-app + Vue 3 + TypeScript → Python + FastAPI → SQLAlchemy 2.x + MySQL**，使用 Alembic 管理数据库迁移，复用 backend-algorithms，使用 LangGraph 编排教学 Agent，使用 BGE + Qdrant 检索。
 
-目前已完成迁移审计、校准与 Python 后端骨架，包含独立健康接口、配置、数据库连接和算法适配，完整业务尚未迁移。下文介绍的是仍在使用的仓颉运行实现及其启动方法。迁移期间旧代码作为兼容参照，后续停止新增仓颉业务功能，最终移除全部仓颉运行依赖。
+目前已完成迁移审计、校准、Python骨架与账号认证迁移。Python服务已支持注册登录、改密、个人资料、学习偏好和原算法计算入口，错题与学习任务等业务继续分阶段迁移。下文介绍的是仍在使用的仓颉运行实现及其启动方法。迁移期间旧代码作为兼容参照，后续停止新增仓颉业务功能，最终移除全部仓颉运行依赖。
 
 骨架范围见 [第二阶段实施指令](docs/迁移方案/第二阶段实施指令.md)，审计差异见 [迁移审计校准报告](docs/迁移方案/迁移审计校准报告.md)。
 
@@ -42,3 +42,16 @@ PYTHONPATH=backend-algorithms python -m pytest backend-algorithms/tests -q
 ## Python 后端骨架
 
 骨架默认监听127.0.0.1:8003，原业务服务继续使用原入口。安装、启动和测试命令见 [第二阶段完成与验证记录](docs/迁移方案/第二阶段完成与验证记录.md)。默认读取项目根目录 .env.cangjie，可通过 CUOTI_ENV_FILE 指定已有本地开发配置；CUOTI_DB_* 环境变量优先。暂无数据库时 /livez 可用，/readyz 返回503，仍可运行模拟测试。
+
+## Python 账号认证迁移
+
+新服务继续独立监听8003，支持原 `/api/v1/auth/*` 和 `/api/v1/student-preferences` 路径，沿用现有MySQL表、密码哈希与令牌格式。默认读取.env.cangjie以及同目录.runtime中的原认证/算法密钥文件，CUOTI_AUTH_SECRET和CUOTI_ALGORITHM_SECRET可以显式覆盖。切换环境时应使用原密钥以保持令牌兼容。
+
+```bash
+CUOTI_ENV_FILE=/绝对路径/.env.cangjie .venv/bin/python -m cuoti_backend
+CUOTI_ENV_FILE=/绝对路径/.env.cangjie .venv/bin/python -m cuoti_backend.manage_user --email admin@example.test --check
+```
+
+移除管理员命令中的--check后交互输入密码可创建专用管理员，命令不会改动已有账号。原算法处理器在同一Python进程提供 `/v1/compute`，继续要求独立算法Bearer密钥。
+
+测试和备份记录、接口范围与后续安排见 [账号认证迁移完成与验收记录](docs/迁移方案/账号认证迁移完成与验收记录.md)。

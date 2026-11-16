@@ -1,5 +1,5 @@
 import logging
-from contextlib import asynccontextmanager
+from contextlib import AsyncExitStack, asynccontextmanager
 from time import perf_counter
 from uuid import uuid4
 
@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.exc import SQLAlchemyError
 from starlette.exceptions import HTTPException
 
+from .accounts import router as account_router
 from .config import Settings
 from .database import Database
 from .protocol import ApiError
@@ -17,9 +18,10 @@ logger = logging.getLogger("cuoti.backend")
 
 
 class RequestMiddleware:
-    def __init__(self, app, max_bytes):
+    def __init__(self, app, max_bytes, compute_max_bytes):
         self.app = app
         self.max_bytes = max_bytes
+        self.compute_max_bytes = compute_max_bytes
 
     async def __call__(self, scope, receive, send):
         if scope["type"] != "http":
@@ -28,6 +30,9 @@ class RequestMiddleware:
         scope.setdefault("state", {})["request_id"] = request_id
         started = perf_counter()
         # Bound request memory before dispatch, including chunked uploads.
+        limit = (
+            self.compute_max_bytes if scope["path"] == "/v1/compute" else self.max_bytes
+        )
         chunks = []
         length = 0
         while True:
@@ -36,7 +41,7 @@ class RequestMiddleware:
                 return
             body = message.get("body", b"")
             length += len(body)
-            if length > self.max_bytes:
+            if length > limit:
                 response = JSONResponse(
                     {"detail": "请求内容过大"},
                     status_code=413,
@@ -86,18 +91,48 @@ def create_app(settings: Settings | None = None):
     )
     logger.setLevel(settings.log_level)
     database = Database(settings)
+    algorithm_app = None
+    compute_max_bytes = settings.max_request_bytes
+    if len(settings.algorithm_secret.get_secret_value()) >= 32:
+        from pathlib import Path
+
+        from service import MAX_REQUEST_BYTES
+        from service import create_app as create_algorithm_app
+
+        compute_max_bytes = MAX_REQUEST_BYTES
+
+        algorithm_app = create_algorithm_app(
+            secret=settings.algorithm_secret.get_secret_value(),
+            pool_path=Path(settings.api_pool_path) if settings.api_pool_path else None,
+        )
 
     @asynccontextmanager
     async def lifespan(app):
         try:
-            yield
+            async with AsyncExitStack() as stack:
+                if algorithm_app is not None:
+                    await stack.enter_async_context(
+                        algorithm_app.router.lifespan_context(algorithm_app)
+                    )
+                yield
         finally:
             database.close()
 
     app = FastAPI(title="错题帮 Python 后端", lifespan=lifespan, redirect_slashes=False)
     app.state.settings = settings
     app.state.database = database
-    app.add_middleware(RequestMiddleware, max_bytes=settings.max_request_bytes)
+    app.state.algorithm_app = algorithm_app
+    app.include_router(account_router)
+    if algorithm_app is not None:
+        # Reuse the existing authenticated compute handler and its provider lifecycle.
+        app.router.routes.extend(
+            route for route in algorithm_app.routes if route.path == "/v1/compute"
+        )
+    app.add_middleware(
+        RequestMiddleware,
+        max_bytes=settings.max_request_bytes,
+        compute_max_bytes=compute_max_bytes,
+    )
 
     def error_response(request, status, message, headers=None):
         return JSONResponse(
@@ -117,11 +152,17 @@ def create_app(settings: Settings | None = None):
     @app.exception_handler(HTTPException)
     async def http_error(request, error):
         messages = {404: "资源不存在", 405: "请求方法不支持"}
+        headers = dict(error.headers or {})
+        if error.status_code == 405:
+            allowed = set()
+            for route in [*request.app.routes, *account_router.routes]:
+                pattern = getattr(route, "path_regex", None)
+                if pattern is not None and pattern.fullmatch(request.url.path):
+                    allowed.update(route.methods or [])
+            headers["Allow"] = ", ".join(sorted(allowed))
+        detail = error.detail if isinstance(error.detail, str) else "请求未完成"
         return error_response(
-            request,
-            error.status_code,
-            messages.get(error.status_code, "请求未完成"),
-            error.headers,
+            request, error.status_code, messages.get(error.status_code, detail), headers
         )
 
     @app.exception_handler(SQLAlchemyError)
@@ -143,7 +184,7 @@ def create_app(settings: Settings | None = None):
     def ready():
         try:
             app.state.database.probe()
-        except (SQLAlchemyError, RuntimeError):
+        except (SQLAlchemyError, RuntimeError, ApiError):
             return JSONResponse({"status": "database_unavailable"}, status_code=503)
         return {"database": "mysql", "status": "database_ready", "ai": "not_connected"}
 

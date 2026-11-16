@@ -30,7 +30,9 @@ class Database:
     @contextmanager
     def session(self):
         if self.sessions is None:
-            raise RuntimeError("尚未配置 MySQL 数据库")
+            from .protocol import ApiError
+
+            raise ApiError(503, "尚未配置 MySQL 数据库")
         # No implicit commit. Future business services own write transactions.
         with self.sessions() as session:
             yield session
