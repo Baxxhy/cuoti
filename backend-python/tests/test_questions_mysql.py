@@ -1329,3 +1329,102 @@ def test_submit_new_work_preserves_previous_work(question_app):
     assert client.post(path, headers=headers, json={"steps": [123]}).status_code == 422
     client.delete(f"/api/v1/questions/{id}", headers=headers)
     assert client.post(path, headers=headers, json=payload).status_code == 409
+
+
+def test_knowledge_dashboard_and_legacy_content_parity(question_app):
+    import httpx
+
+    _, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    assert client.get("/api/v1/dashboard").status_code == 401
+    denied = client.post("/api/v1/dashboard", headers=headers)
+    assert denied.status_code == 405 and denied.headers["allow"] == "GET"
+    empty = client.get("/api/v1/dashboard", headers=headers).json()["data"]
+    assert empty["weekly_questions"] == 0 and empty["estimated_minutes"] == 0
+    for text in ["解方程：3x=15", "解方程: 3x=15"]:
+        assert (
+            client.post(
+                "/api/v1/questions/manual",
+                headers=headers,
+                json={"question_text": text},
+            ).status_code
+            == 200
+        )
+    assert (
+        client.get("/api/v1/dashboard", headers=headers).json()["data"][
+            "weekly_questions"
+        ]
+        == 1
+    )
+    assert (
+        client.get("/api/v1/dashboard", headers=other).json()["data"][
+            "weekly_questions"
+        ]
+        == 0
+    )
+    assert (
+        client.get("/api/v1/analytics/overview?days=0", headers=headers).status_code
+        == 422
+    )
+    paths = [
+        "/dashboard",
+        "/analytics/overview",
+        "/analytics/overview?days=1",
+        "/knowledge/framework",
+        "/knowledge/cards",
+        "/knowledge/cards?subject=数学&grade=初一",
+        "/knowledge/cards?q=方程，移项、等式&misconception=符号",
+    ]
+    listing = client.get("/api/v1/knowledge/cards").json()["data"]
+    if listing:
+        paths.append("/knowledge/cards/" + listing[0]["code"])
+    assert client.get("/api/v1/knowledge/cards/does-not-exist").status_code == 404
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        with httpx.Client(
+            base_url=os.environ["CUOTI_LEGACY_URL"], trust_env=False, timeout=20
+        ) as legacy:
+            for path in paths:
+                actual = client.get("/api/v1" + path, headers=headers)
+                original = legacy.get("/api/v1" + path, headers=headers)
+                assert actual.status_code == original.status_code == 200, (
+                    path,
+                    actual.text,
+                    original.text,
+                )
+                assert actual.json()["data"] == original.json()["data"], path
+
+
+@pytest.mark.skipif(
+    not os.environ.get("CUOTI_LEGACY_URL"), reason="legacy comparison not enabled"
+)
+def test_historical_dashboard_and_framework_parity(question_app):
+    import httpx
+
+    app, client, _, _ = question_app
+    with app.state.database.session() as db:
+        users = rows(
+            db,
+            "SELECT id,password_hash FROM users WHERE role='student' AND email NOT LIKE 'migration-%@example.test' ORDER BY created_at LIMIT 3",
+        )
+    if not users:
+        pytest.skip("no historical students")
+    with httpx.Client(
+        base_url=os.environ["CUOTI_LEGACY_URL"], trust_env=False, timeout=20
+    ) as legacy:
+        for user in users:
+            token = create_token(
+                user["id"],
+                app.state.settings.auth_secret.get_secret_value(),
+                user["password_hash"],
+            )
+            headers = {"Authorization": "Bearer " + token}
+            for path in [
+                "/dashboard",
+                "/knowledge/framework",
+                "/analytics/overview?days=365",
+            ]:
+                new = client.get("/api/v1" + path, headers=headers)
+                old = legacy.get("/api/v1" + path, headers=headers)
+                assert new.status_code == old.status_code == 200, path
+                assert new.json()["data"] == old.json()["data"], path
