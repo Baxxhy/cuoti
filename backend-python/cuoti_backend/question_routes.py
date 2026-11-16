@@ -518,3 +518,65 @@ async def attach_image_route(request: Request, id: str):
         attach_image, request, id, data, filename, deferred, replace
     )
     return envelope(request, result)
+
+
+@router.post("/questions/{id}/student-work")
+async def student_work(request: Request, id: str):
+    value = await body(request)
+    return envelope(
+        request, await run_in_threadpool(save_student_work, request, id, value)
+    )
+
+
+def save_student_work(request, id, value):
+    from .question_data import execute, invalidate
+    from .question_validation import array, text_value
+
+    answer = text_value(value.get("answer", ""), 12000)
+    explanation = text_value(value.get("explanation", ""), 12000)
+    steps = [text_value(s, 12000) for s in array(value, "steps", 100)]
+    service = request.app.state.questions
+    with service.database.session() as db, db.begin():
+        owner = service.user(request, db).id
+        question = owned(db, id, owner, lock=True)
+        if question["status"] == "archived":
+            raise ApiError(409, "题目已归档，不能提交作答")
+        invalidate(db, id)
+        execute(
+            db,
+            "UPDATE processing_jobs SET status='cancelled',error='已提交新作答，旧识别结果未应用',updated_at=UTC_TIMESTAMP() WHERE question_id=? AND kind IN ('ingest','crop','ocr','reprocess') AND status IN ('pending','running')",
+            [id],
+        )
+        update(
+            db,
+            "questions",
+            id,
+            student_answer=answer or None,
+            status="confirmed" if question["confirmed"] else "needs_confirmation",
+        )
+        work_id = insert(
+            db,
+            "student_works",
+            question_id=id,
+            user_id=owner,
+            answer=answer,
+            explanation=explanation,
+        )
+        for index, content in enumerate(steps):
+            insert(
+                db,
+                "student_steps",
+                work_id=work_id,
+                step_index=index,
+                text=content,
+                bbox=[],
+                raw_text=content,
+                normalized_text=" ".join(content.split()),
+                formula=content if "=" in content else "",
+                confidence=1,
+                source="user",
+                user_confirmed=True,
+            )
+        return select_rows(
+            db, "student_works", "SELECT * FROM student_works WHERE id=?", [work_id]
+        )[0]

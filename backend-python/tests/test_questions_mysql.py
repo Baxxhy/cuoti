@@ -1205,6 +1205,45 @@ def test_diagnosis_persistence_ownership_and_stale_write(question_app, monkeypat
         client.get(f"/api/v1/questions/{id}/diagnosis", headers=other).status_code
         == 404
     )
+    corrected = client.patch(
+        f"/api/v1/questions/{id}/diagnosis",
+        headers=headers,
+        json={"first_error_step": 1, "error_type": "sign_error"},
+    )
+    assert corrected.status_code == 200, corrected.text
+    assert corrected.json()["data"]["first_error_text"] == "x=19/3"
+    assert (
+        client.patch(
+            f"/api/v1/questions/{id}/diagnosis",
+            headers=other,
+            json={"error_type": "exact"},
+        ).status_code
+        == 404
+    )
+    assert (
+        client.patch(
+            f"/api/v1/questions/{id}/diagnosis",
+            headers=headers,
+            json={"first_error_step": True},
+        ).status_code
+        == 422
+    )
+    assert (
+        client.patch(
+            f"/api/v1/questions/{id}/diagnosis",
+            headers=headers,
+            json={"first_error_step": 100},
+        ).status_code
+        == 422
+    )
+    cached = client.post(
+        f"/api/v1/questions/{id}/diagnosis/counterfactual", headers=headers
+    )
+    assert (
+        cached.status_code == 200
+        and cached.json()["data"]["root_cause_confirmed"] is False
+    )
+    assert calls == ["analyze", "diagnose"]
     original_compute = compute
 
     def stale(operation, **payload):
@@ -1260,3 +1299,33 @@ def test_real_diagnosis_business_roundtrip(question_app):
         ]
         == value["id"]
     )
+
+
+def test_submit_new_work_preserves_previous_work(question_app):
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    id = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "student_answer": "6",
+            "student_steps": ["x=6"],
+        },
+    ).json()["data"]["id"]
+    path = f"/api/v1/questions/{id}/student-work"
+    payload = {"answer": "5", "explanation": "重新核对", "steps": ["3x=15", "x=5"]}
+    assert client.post(path, headers=other, json=payload).status_code == 404
+    response = client.post(path, headers=headers, json=payload)
+    assert response.status_code == 200, response.text
+    detail = client.get(f"/api/v1/questions/{id}", headers=headers).json()["data"]
+    assert detail["student_answer"] == "5"
+    assert [s["text"] for s in detail["student_steps"]] == payload["steps"]
+    with app.state.database.session() as db:
+        assert (
+            len(rows(db, "SELECT id FROM student_works WHERE question_id=?", [id])) == 2
+        )
+    assert client.post(path, headers=headers, json={"steps": [123]}).status_code == 422
+    client.delete(f"/api/v1/questions/{id}", headers=headers)
+    assert client.post(path, headers=headers, json=payload).status_code == 409
