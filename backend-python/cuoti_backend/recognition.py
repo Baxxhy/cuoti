@@ -25,9 +25,10 @@ class ComputeBridge:
             headers={"Authorization": "Bearer " + secret},
         )
 
-    async def request(self, payload):
+    async def request(self, payload, timeout=None):
         response = await asyncio.wait_for(
-            self.client.post("/v1/compute", json=payload), self.timeout
+            self.client.post("/v1/compute", json=payload),
+            self.timeout if timeout is None else timeout,
         )
         if response.status_code != 200:
             status = response.status_code if response.status_code in [422, 502] else 503
@@ -40,12 +41,14 @@ class ComputeBridge:
             raise ApiError(503, "算法结果不匹配")
         return body["result"]
 
-    def compute(self, operation, **values):
+    def compute(self, operation, *, timeout=None, **values):
         future = asyncio.run_coroutine_threadsafe(
-            self.request({"operation": operation, **values}), self.loop
+            self.request({"operation": operation, **values}, timeout), self.loop
         )
         try:
-            return future.result(timeout=self.timeout + 5)
+            return future.result(
+                timeout=(self.timeout if timeout is None else timeout) + 5
+            )
         except TimeoutError:
             future.cancel()
             raise ApiError(504, "算法计算超时") from None

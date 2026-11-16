@@ -167,6 +167,9 @@ def question_app(tmp_path):
                     )
                     execute(db, "DELETE FROM study_sessions WHERE user_id=?", [owner])
                     execute(db, "DELETE FROM student_profiles WHERE user_id=?", [owner])
+                    execute(
+                        db, "DELETE FROM knowledge_lessons WHERE user_id=?", [owner]
+                    )
                     execute(db, "DELETE FROM users WHERE id=?", [owner])
 
 
@@ -1428,3 +1431,150 @@ def test_historical_dashboard_and_framework_parity(question_app):
                 old = legacy.get("/api/v1" + path, headers=headers)
                 assert new.status_code == old.status_code == 200, path
                 assert new.json()["data"] == old.json()["data"], path
+
+
+def test_knowledge_lessons_idempotency_history_and_legacy(question_app, monkeypatch):
+    import httpx
+
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    cards = client.get("/api/v1/knowledge/cards").json()["data"]
+    if not cards:
+        pytest.skip("no knowledge cards")
+    code = cards[0]["code"]
+    path = f"/api/v1/knowledge/cards/{code}/lessons"
+    calls = []
+
+    def compute(operation, **values):
+        calls.append(values)
+        assert operation == "knowledge_lesson"
+        return {
+            "explanation": "根据公开知识内容作出的讲解。",
+            "check_question": "你能举一个例子吗？",
+            "sources": [],
+            "can_update_learning": False,
+        }
+
+    monkeypatch.setattr(app.state.compute, "compute", compute)
+    assert client.post(path, headers=headers, json={}).status_code == 422
+    body = {"request_id": str(uuid4()), "prompt": "给个例子"}
+    first = client.post(path, headers=headers, json=body)
+    assert first.status_code == 200, first.text
+    assert (
+        client.post(path, headers=headers, json=body).json()["data"]
+        == first.json()["data"]
+    )
+    assert len(calls) == 1
+    assert (
+        client.post(
+            path, headers=headers, json={**body, "prompt": "不同问题"}
+        ).status_code
+        == 409
+    )
+    assert client.get(path, headers=other).json()["data"] == []
+    history = client.get(path, headers=headers)
+    assert history.json()["data"][0]["source_current"] is True
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        with httpx.Client(
+            base_url=os.environ["CUOTI_LEGACY_URL"], trust_env=False, timeout=10
+        ) as old:
+            original = old.get(path, headers=headers)
+            assert original.status_code == 200
+            assert original.json()["data"] == history.json()["data"]
+            replay = old.post(path, headers=headers, json=body)
+            assert replay.status_code == 200, replay.text
+            assert replay.json()["data"] == first.json()["data"]
+    follow = client.post(
+        path, headers=headers, json={"request_id": str(uuid4()), "prompt": "再解释一下"}
+    )
+    assert follow.status_code == 200
+    assert calls[-1]["knowledge_history"][0]["question"] == body["prompt"]
+
+
+def test_lesson_invalid_results_source_conflicts_and_concurrency(
+    question_app, monkeypatch
+):
+    from concurrent.futures import ThreadPoolExecutor
+
+    from cuoti_backend import lessons
+
+    app, client, student, _ = question_app
+    _, headers = student()
+    cards = client.get("/api/v1/knowledge/cards").json()["data"]
+    if not cards:
+        pytest.skip("no knowledge cards")
+    path = f"/api/v1/knowledge/cards/{cards[0]['code']}/lessons"
+    payload = {"request_id": str(uuid4()), "prompt": "讲解"}
+    monkeypatch.setattr(
+        app.state.compute, "compute", lambda *a, **k: {"can_update_learning": True}
+    )
+    assert client.post(path, headers=headers, json=payload).status_code == 503
+    assert client.get(path, headers=headers).json()["data"] == []
+
+    def compute(*args, **kwargs):
+        return {
+            "explanation": "有效讲解",
+            "check_question": "举例",
+            "can_update_learning": False,
+        }
+
+    monkeypatch.setattr(app.state.compute, "compute", compute)
+    original = lessons.lesson_cards
+    counter = []
+
+    def changed(db, code):
+        values = original(db, code)
+        counter.append(1)
+        if len(counter) > 1:
+            values[0]["name"] += "新版"
+        return values
+
+    monkeypatch.setattr(lessons, "lesson_cards", changed)
+    assert client.post(path, headers=headers, json=payload).status_code == 409
+    monkeypatch.setattr(lessons, "lesson_cards", original)
+    assert client.get(path, headers=headers).json()["data"] == []
+    barrier = threading.Barrier(2)
+
+    def simultaneous(*args, **kwargs):
+        barrier.wait(timeout=10)
+        return compute()
+
+    monkeypatch.setattr(app.state.compute, "compute", simultaneous)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        results = list(
+            pool.map(
+                lambda _: client.post(path, headers=headers, json=payload), range(2)
+            )
+        )
+    assert [r.status_code for r in results] == [200, 200], [r.text for r in results]
+    assert results[0].json()["data"]["id"] == results[1].json()["data"]["id"]
+    assert len(client.get(path, headers=headers).json()["data"]) == 1
+
+
+@pytest.mark.skipif(
+    os.environ.get("CUOTI_TEST_REAL_LESSON") != "1", reason="real lesson not enabled"
+)
+def test_real_knowledge_lesson_roundtrip(question_app):
+    app, client, student, _ = question_app
+    app.state.algorithm_app.state.provider = None
+    _, headers = student()
+    cards = client.get("/api/v1/knowledge/cards?subject=数学").json()["data"]
+    assert cards
+    path = f"/api/v1/knowledge/cards/{cards[0]['code']}/lessons"
+    result = client.post(
+        path,
+        headers=headers,
+        json={"request_id": str(uuid4()), "prompt": "请解释这个知识点并举一个例子。"},
+    )
+    assert result.status_code == 200, result.text
+    content = result.json()["data"]["result"]
+    assert (
+        content["can_update_learning"] is False
+        and content["sources"]
+        and content["explanation"]
+    )
+    assert (
+        client.get(path, headers=headers).json()["data"][0]["id"]
+        == result.json()["data"]["id"]
+    )
