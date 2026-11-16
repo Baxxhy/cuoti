@@ -1,5 +1,13 @@
 # 错题帮
 
+## 迁移状态（2026-11-16）
+
+已确定目标路线为 **uni-app + Vue 3 + TypeScript → Python + FastAPI → SQLAlchemy 2.x + MySQL**，使用 Alembic 管理数据库迁移，复用 backend-algorithms，使用 LangGraph 编排教学 Agent，使用 BGE + Qdrant 检索。
+
+目前已完成迁移审计与校准，Python 统一业务后端尚未建立。下文介绍的是仍在使用的仓颉运行实现及其启动方法。迁移期间旧代码作为兼容参照，后续停止新增仓颉业务功能，最终移除全部仓颉运行依赖。
+
+下一步仅建立 Python 后端骨架，实施范围见 [第二阶段实施指令](docs/迁移方案/第二阶段实施指令.md)，审计差异见 [迁移审计校准报告](docs/迁移方案/迁移审计校准报告.md)。
+
 面向中学生的个人错题学习系统：uni-app 学生界面，仓颉业务服务与 MySQL，Python 内部算法服务。Python 算法不读写业务数据库。
 
 ## 本次提交

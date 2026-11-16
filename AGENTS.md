@@ -1,15 +1,15 @@
 # 错题帮开发约定
 
-- 项目是本地学生个人错题应用，功能正确优先。
-- 唯一主线：uni-app/Vue 3/TypeScript 前端，仓颉业务服务与MySQL，Python/FastAPI内部算法计算。旧Python业务后端已删除，不重新引入。
-- 当前说明见 README.md、docs/final/README.md 与 docs/final/IMPLEMENTATION_STATUS.md。
-- 数据库只允许MySQL；Python算法服务不读写业务数据库。
-- API池配置位于 config/api_pool.json；当前模型为xiaojing的gpt-6-luna（兼容旧Qwen配置），请求通过ApiPoolProvider轮询，不输出凭据。
-- 保留原始上传图片；结构化模型输出通过Pydantic校验，数学尽量通过SymPy验证。
-- 前端只消费VisualizationSpec JSON，不执行模型生成的JavaScript。
-- 页面数据来自仓颉后端和MySQL，演示种子除外。
-- 算法测试：PYTHONPATH=backend-algorithms .venv/bin/pytest backend-algorithms/tests。
-- 前端测试：npm --prefix frontend test。
-- 完整检查：make verify；make verify-final为同一检查入口。
-- 功能完成后提交Git，保持工作区干净。禁止为了清理空间丢弃其他工作树的改动、学生资料或数据库。
-- 用户偏好（2026-11-16，cuoti 项目）：每次完成改动及相应验证后，提交本次改动并推送到 GitHub 的 origin/main 主分支，后续直接在 main 上工作，不再新建任务分支。推送失败时说明具体原因，保留本地提交。
+- 项目为学生个人错题学习应用，前端继续使用 uni-app、Vue 3 和 TypeScript。
+- 已确定迁移至统一 Python 后端。Python 是唯一目标业务后端，FastAPI 负责所有业务 API，SQLAlchemy 2.x 负责所有业务数据库访问，MySQL 是唯一业务数据库，Alembic 管理后续结构迁移。
+- 当前运行实现仍包含仓颉业务服务。迁移期间保留旧仓颉代码作兼容参照，禁止新增仓颉业务功能，最终彻底移除仓颉 SDK、编译产物与运行时依赖。
+- 尽可能复用 backend-algorithms 现有 Python 算法。计算模块不直接操作业务数据库，由应用服务提供上下文并保存结果。
+- LangGraph 负责教学 Agent 编排，BGE 与 Qdrant 负责向量检索及重排，MySQL 管理业务事实、任务租约和检查点。
+- API 池通过 ApiPoolProvider 调用，凭据仅在服务端配置，禁止输出或提交真实密钥。
+- 保留原始上传图片，结构化模型输出通过 Pydantic v2 校验，数学尽量通过 SymPy 验证。
+- 前端只消费 VisualizationSpec JSON，不执行模型生成的 JavaScript。
+- 保持现有 API 路径、认证、JSON、媒体签名和业务权限兼容。历史数据及额外历史表必须核对保留。
+- 每次改动执行对应测试和检查，记录实际结果。当前 main 没有 make verify 或前端 npm test，不将已删除入口当成有效验证命令。
+- 数据库写入测试仅在隔离副本运行，保护业务数据库、学生资料、密钥、媒体和其他工作树的未提交改动。
+- 每次完成阶段性改动与验证后，直接提交并推送 origin/main，不创建新分支。推送失败报告具体原因并保留本地提交。
+- 本轮仅校准审计和技术路线，完成后停止。后续骨架开发须等待用户指令，范围见 docs/迁移方案/第二阶段实施指令.md。

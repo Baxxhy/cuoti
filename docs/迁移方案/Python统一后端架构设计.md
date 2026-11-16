@@ -1,6 +1,10 @@
 # Python统一后端架构设计
 
-审计日期 2026-11-16，版本 v1。源码基线 `8dd7630fe88a566345baa67c91879d8edefb73e6`。对象为本地 origin 指向 Baxxhy/cuoti 的工作副本。依据实际源码与只读 MySQL 元数据。方案中的新 Python 业务实现均待开发，未执行迁移或修改数据库。
+## 本轮校准依据
+
+审计日期 2026-11-16，版本 v2。最终源码基线为远程 origin/main 的 `1e116f574a88bb009b618218df23f679adc7a5fe`，父提交为 `b7c684fa48a0c3df84eaacb9243e7138b05fcafa`。旧审计基线 `8dd7630fe88a566345baa67c91879d8edefb73e6` 与该主线分叉。本轮逐文件对比生产源码并复查改变的启动、部署、依赖和测试入口，校准证据见迁移审计校准报告。下文保留的源码摘录经字节对比后沿用。数据库实存 61 表属于上一轮本地环境的只读快照，远程初始化和升级代码定义 51 表，不能将本地快照视为每个部署的必备结构。
+
+当前 main 仅保留两个 Python 测试文件，仓颉单元测试、前端测试目录和旧 smoke/verify 脚本已删除。下文涉及旧测试路径均为历史证据，应在隔离环境恢复或重建相应用例后再验收。迁移成功项仍为零。
 
 目标为模块化单体，同一 Python 代码库承担业务 API、应用服务、SQLAlchemy 数据访问和已有计算/Agent 调用。后台 worker 可用相同镜像独立进程运行。BGE 推理和 Qdrant 仍作为外部能力服务，业务事务由 MySQL 管理。
 
@@ -33,6 +37,12 @@ retrieval_compute.py 通过 BGERuntime 调用 /embed、/rerank，scripts/retriev
 
 ## 部署依赖
 
-当前 Makefile 的 backend 指向仓颉，scripts/cangjie.sh 构建 SDK 与 libzhiwei_mysql.so，scripts/final.sh 管理本地进程，frontend/vite.config.js 管理代理。deployment/competition/Dockerfile 使用预打包 payload，镜像启动引用 /opt/app/deployment/entry.py，本地该路径不存在，需核对打包阶段是否生成，不能宣称 Docker 已可复现。Compose 有 app 和 qdrant 两个服务，app 挂载 /data，容器公开端口 8080。替换镜像时同时迁移反向代理、健康检查、MySQL 数据卷、媒体和 API 池挂载。
+当前 Makefile 的 backend 仍指向 scripts/cangjie.sh，dev 指向 scripts/final.sh，默认前端端口为 5175。make check 通过 scripts/health.py 检查存活与数据库就绪。main 已移除 make test、make verify、verify-final 等目标，第二阶段需要建立自己的有效测试入口。
+
+部署链已核对为 deployment/competition/prepare_payload.py 把 competition 整个目录复制到 payload/app/deployment，Dockerfile 再 COPY payload/ 到 /opt，因此容器 ENTRYPOINT 的 /opt/app/deployment/entry.py 对应仓库 deployment/competition/entry.py。旧报告“本地入口不存在”的判断有误，本轮纠正。entry.py 初始化专用 MySQL、保留 /data/secrets.json、按 initialized 标记导入 demo.sql，再启动内部算法、仓颉、可选 BGE 与 gateway。gateway.py 转发 api/uploads/reports/livez/readyz 到 8002，静态 H5 来自 /opt/app/web。初始化失败与标记写入之间的重启恢复需单独验收，迁移不能沿用半初始化状态误判逻辑。
+
+prepare_payload.py 同时收集仓颉二进制、SDK/stdx 动态库和 libzhiwei_mysql.so，第二阶段保留旧部署入口，最终阶段逐一去除这些打包依赖。Dockerfile.models 添加检索环境和模型，prepare_exports.py 处理演示导出资料，assemble_delivery.py 生成源码包与说明，迁移后须同步目录选择规则。compose.yaml 与 start.sh 是两套启动入口，start.sh 使用 cuoti-delivery-data/cuoti-delivery-index 卷，Compose 使用项目 data/index 卷，切换时须识别实际卷，禁止把新空卷误当原数据。check.sh 检查服务可达，smoke_delivery.py 会注册、录题和交卷，--ai 还会调用真实模型，只能在独立交付环境使用。
+
+render_math_pdf.cjs 已使用 playwright 而非 @playwright/test，前端 package.json 确实声明 playwright。预览 scripts/serve_build_preview.mjs 使用 ZHIWEI_PREVIEW_PORT/CERT/KEY，并硬校验 service=zhiwei-cangjie，这个检查必须在最终切换阶段适配 Python 身份。
 
 旧 CANGJIE_* 环境变量首轮提供兼容读取，新变量具有明确优先级，避免端口、媒体根路径、数据库或 Qdrant 集合误切。/livez 仅判断进程，/readyz 保留数据库就绪检查，并补充单独的 AI/检索状态。现 /readyz 只检查 010_study_sessions，不能视为所有 013 结构均已核对。
