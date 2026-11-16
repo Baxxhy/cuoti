@@ -203,3 +203,12 @@ def test_engine_is_lazy_and_disposed(monkeypatch):
         raise AssertionError("should not connect on creation")
 
     database.close()
+
+
+def test_literal_question_routes_preserve_method_precedence(app):
+    with TestClient(app) as client:
+        for path in ["/api/v1/questions/manual", "/api/v1/questions/ingest"]:
+            for method in ["GET", "PATCH", "DELETE"]:
+                response = client.request(method, path)
+                assert response.status_code == 405
+                assert response.headers["allow"] == "POST"

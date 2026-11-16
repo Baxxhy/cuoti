@@ -9,11 +9,12 @@ requires-python = ">=3.11"
 dependencies = [
   "fastapi>=0.115,<1", "pydantic>=2.10,<3", "uvicorn>=0.34,<1",
   "SQLAlchemy>=2.0,<2.1", "alembic>=1.14,<2", "PyMySQL>=1.1,<2",
-  "python-dotenv>=1,<2", "cuotibang-algorithms==0.1.0"
+  "python-dotenv>=1,<2", "cuotibang-algorithms==0.1.0",
+  "httpx>=0.28,<1", "python-multipart>=0.0.20", "Pillow>=11.0"
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.3", "httpx>=0.28", "ruff>=0.9"]
+dev = ["pytest>=8.3", "ruff>=0.9"]
 
 [tool.setuptools.packages.find]
 include = ["cuoti_backend*"]
@@ -21,3 +22,6 @@ include = ["cuoti_backend*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = ["mysql: explicitly enabled local MySQL read-only connection check"]
+
+[tool.setuptools.package-data]
+cuoti_backend = ["resources/*.json"]

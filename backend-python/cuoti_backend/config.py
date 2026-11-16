@@ -18,6 +18,9 @@ class Settings(BaseModel):
     db_user: str = ""
     db_password: SecretStr = SecretStr("")
     db_timeout: int = Field(default=3, ge=1, le=30)
+    project_root: str = str(Path(__file__).resolve().parents[2])
+    media_root: str = ""
+    question_bank_root: str = ""
     auth_secret: SecretStr = SecretStr("")
     algorithm_secret: SecretStr = SecretStr("")
     api_pool_path: str = ""
@@ -37,7 +40,14 @@ class Settings(BaseModel):
                 result[field] = values[key]
             elif legacy in values and (
                 field.startswith("db_")
-                or field in ["auth_secret", "algorithm_secret", "api_pool_path"]
+                or field
+                in [
+                    "auth_secret",
+                    "algorithm_secret",
+                    "api_pool_path",
+                    "media_root",
+                    "question_bank_root",
+                ]
             ):
                 result[field] = values[legacy]
         for field, filename in [
@@ -47,6 +57,7 @@ class Settings(BaseModel):
             file = path.parent / ".runtime" / filename
             if field not in result and file.is_file():
                 result[field] = file.read_text().strip()
+        result.setdefault("project_root", str(path.parent.resolve()))
         return cls.model_validate(result)
 
     def database_url(self):

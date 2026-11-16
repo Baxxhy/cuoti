@@ -1,5 +1,7 @@
+import asyncio
 import logging
 from contextlib import AsyncExitStack, asynccontextmanager
+from pathlib import Path
 from time import perf_counter
 from uuid import uuid4
 
@@ -12,7 +14,12 @@ from starlette.exceptions import HTTPException
 from .accounts import router as account_router
 from .config import Settings
 from .database import Database
+from .media import MediaStore
+from .media import router as media_router
 from .protocol import ApiError
+from .question_routes import router as question_router
+from .questions import Questions
+from .recognition import ComputeBridge, RecognitionJobs
 
 logger = logging.getLogger("cuoti.backend")
 
@@ -29,6 +36,21 @@ class RequestMiddleware:
         request_id = str(uuid4())
         scope.setdefault("state", {})["request_id"] = request_id
         started = perf_counter()
+        # Native routing resolves reserved literal paths before parameter paths.
+        if (
+            scope["path"] in ["/api/v1/questions/manual", "/api/v1/questions/ingest"]
+            and scope["method"] != "POST"
+        ):
+            response = JSONResponse(
+                {"detail": "请求方法不支持"},
+                status_code=405,
+                headers={
+                    "Allow": "POST",
+                    "X-Request-ID": request_id,
+                    "Cache-Control": "no-store",
+                },
+            )
+            return await response(scope, receive, send)
         # Bound request memory before dispatch, including chunked uploads.
         limit = (
             self.compute_max_bytes if scope["path"] == "/v1/compute" else self.max_bytes
@@ -94,8 +116,6 @@ def create_app(settings: Settings | None = None):
     algorithm_app = None
     compute_max_bytes = settings.max_request_bytes
     if len(settings.algorithm_secret.get_secret_value()) >= 32:
-        from pathlib import Path
-
         from service import MAX_REQUEST_BYTES
         from service import create_app as create_algorithm_app
 
@@ -114,7 +134,22 @@ def create_app(settings: Settings | None = None):
                     await stack.enter_async_context(
                         algorithm_app.router.lifespan_context(algorithm_app)
                     )
-                yield
+                compute = (
+                    ComputeBridge(
+                        algorithm_app, settings.algorithm_secret.get_secret_value()
+                    )
+                    if algorithm_app is not None
+                    else None
+                )
+                app.state.compute = compute
+                app.state.recognition = RecognitionJobs(app.state.questions, compute)
+                try:
+                    await asyncio.to_thread(app.state.recognition.recover)
+                    yield
+                finally:
+                    await asyncio.to_thread(app.state.recognition.close)
+                    if compute is not None:
+                        await compute.close()
         finally:
             database.close()
 
@@ -122,7 +157,22 @@ def create_app(settings: Settings | None = None):
     app.state.settings = settings
     app.state.database = database
     app.state.algorithm_app = algorithm_app
+    root = Path(settings.media_root) if settings.media_root else Path("media")
+    if not root.is_absolute():
+        root = Path(settings.project_root) / "backend-cangjie" / root
+    bank = (
+        Path(settings.question_bank_root)
+        if settings.question_bank_root
+        else Path("data/question_bank_assets")
+    )
+    if not bank.is_absolute():
+        bank = Path(settings.project_root) / bank
+    settings.question_bank_root = str(bank)
+    app.state.media = MediaStore(root, settings.auth_secret.get_secret_value())
+    app.state.questions = Questions(database, app.state.media, settings)
     app.include_router(account_router)
+    app.include_router(question_router)
+    app.include_router(media_router)
     if algorithm_app is not None:
         # Reuse the existing authenticated compute handler and its provider lifecycle.
         app.router.routes.extend(
@@ -155,7 +205,12 @@ def create_app(settings: Settings | None = None):
         headers = dict(error.headers or {})
         if error.status_code == 405:
             allowed = set()
-            for route in [*request.app.routes, *account_router.routes]:
+            for route in [
+                *request.app.routes,
+                *account_router.routes,
+                *question_router.routes,
+                *media_router.routes,
+            ]:
                 pattern = getattr(route, "path_regex", None)
                 if pattern is not None and pattern.fullmatch(request.url.path):
                     allowed.update(route.methods or [])
