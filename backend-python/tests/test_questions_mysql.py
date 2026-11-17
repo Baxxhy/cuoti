@@ -2544,6 +2544,26 @@ def test_task_source_capture_real_database(question_app):
                 "status": "waiting_student",
                 "version": 1,
             }
+            from cuoti_backend.task_budget import TaskBudget
+            from cuoti_backend.task_leases import claim_lease
+
+            execute(db, "UPDATE learning_tasks SET status='queued' WHERE id=?", [tid])
+            reserved = claim_lease(db, tid, TaskBudget())
+            assert reserved and reserved["lease"]
+            assert claim_lease(db, tid, TaskBudget()) is None
+            execute(
+                db,
+                "UPDATE learning_tasks SET lease_until=UTC_TIMESTAMP(6)-INTERVAL 1 SECOND WHERE id=?",
+                [tid],
+            )
+            recovered = claim_lease(db, tid, TaskBudget())
+            assert recovered["lease"] != reserved["lease"]
+            assert (
+                rows(db, "SELECT run_count FROM learning_tasks WHERE id=?", [tid])[0][
+                    "run_count"
+                ]
+                == 2
+            )
             assert validate_version(db, task, current)
             assert capture_source(db, task, current) == current
             assert capture_source(db, task, current) == current

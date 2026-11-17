@@ -13,7 +13,7 @@ def lease_valid(task, lease):
     )
 
 
-def fail_preparation(db, task, reason, *, limit=False):
+def fail_preparation(db, task, reason, *, limit=False, source_error=False):
     recoverable = not limit or reason == "prepare_budget"
     view = (
         stopped_view(
@@ -24,6 +24,9 @@ def fail_preparation(db, task, reason, *, limit=False):
         if recoverable
         else limit_view()
     )
+    if source_error:
+        view = stopped_view("任务来源无法核对，请结束本次学习后回原题重开；旧记录仍保留")
+        recoverable = False
     if recoverable:
         view["secondary_actions"] = ["resume"]
         photo = (task.get("student_view") or {}).get("handwriting")
@@ -51,3 +54,66 @@ def recoverable_ids(db):
             "SELECT id FROM learning_tasks WHERE cancel_requested=0 AND (status='queued' OR (status='running' AND lease_until<UTC_TIMESTAMP(6))) ORDER BY created_at,id LIMIT 1",
         )
     ]
+
+
+def claim_lease(db, id, budget):
+    """Reserve one task inside the caller's transaction; never start computation."""
+    from uuid import uuid4
+
+    from .question_data import rows, select_rows
+    from .task_budget import TaskBudgetExceeded, at_limit
+    from .task_sources import (
+        TaskSourceError,
+        capture_source,
+        load_snapshot,
+        validate_version,
+    )
+
+    identity = rows(
+        db, "SELECT user_id,question_id FROM learning_tasks WHERE id=?", [id]
+    )
+    if not identity:
+        return None
+    owner, qid = identity[0]["user_id"], identity[0]["question_id"]
+    snapshot = load_snapshot(db, qid, owner)
+    tasks = select_rows(
+        db,
+        "learning_tasks",
+        "SELECT * FROM learning_tasks WHERE id=? AND user_id=? FOR UPDATE",
+        [id, owner],
+    )
+    if not tasks:
+        return None
+    task = tasks[0]
+    eligible = rows(
+        db,
+        "SELECT id FROM learning_tasks WHERE id=? AND cancel_requested=0 AND (status='queued' OR (status='running' AND lease_until<UTC_TIMESTAMP(6)))",
+        [id],
+    )
+    if not eligible or not validate_version(db, task, snapshot):
+        return None
+    if at_limit(task):
+        fail_preparation(
+            db,
+            task,
+            "retry_budget" if task["run_count"] >= 72 else "round_budget",
+            limit=True,
+        )
+        return None
+    execute(db, "UPDATE learning_tasks SET run_count=run_count+1 WHERE id=?", [id])
+    try:
+        source = capture_source(db, task, snapshot)
+        budget.check("prepare")
+    except TaskSourceError as error:
+        fail_preparation(db, task, error.reason, source_error=True)
+        return None
+    except TaskBudgetExceeded:
+        fail_preparation(db, task, "prepare_budget", limit=True)
+        return None
+    lease = str(uuid4())
+    execute(
+        db,
+        "UPDATE learning_tasks SET status='running',lease_token=?,lease_until=UTC_TIMESTAMP(6)+INTERVAL 90 SECOND,updated_at=UTC_TIMESTAMP(6) WHERE id=?",
+        [lease, id],
+    )
+    return {"task": task, "source": source, "lease": lease}
