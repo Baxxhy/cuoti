@@ -16,6 +16,13 @@ PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT / "backend-algorithms"))
 sys.path.insert(0, str(PROJECT / "backend-python"))
 
+from cuoti_backend.config import configuration
+
+_, local_values = configuration()
+for local_key, local_value in local_values.items():
+    if local_value is not None:
+        os.environ.setdefault(local_key, str(local_value))
+
 from learning_core.services.public_question_sources import (
     iter_gaokao,
     iter_race,

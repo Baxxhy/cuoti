@@ -270,13 +270,13 @@ def decode_image(value: str) -> bytes:
 
 def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> FastAPI:
     token = (
-        secret if secret is not None else os.environ.get("CANGJIE_ALGORITHM_SECRET", "")
+        secret if secret is not None else os.environ.get("CUOTI_ALGORITHM_SECRET", os.environ.get("CANGJIE_ALGORITHM_SECRET", ""))
     )
     if len(token) < 32:
-        raise ValueError("CANGJIE_ALGORITHM_SECRET 至少需要 32 字符")
+        raise ValueError("CUOTI_ALGORITHM_SECRET 至少需要 32 字符")
     pool = pool_path or Path(
         os.environ.get(
-            "CANGJIE_API_POOL_PATH", str(PROJECT / "config/api_pool.json")
+            "CUOTI_API_POOL_PATH", os.environ.get("CANGJIE_API_POOL_PATH", str(PROJECT / "config/api_pool.json"))
         )
     )
 
@@ -300,7 +300,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
         except (OSError, ValueError):
             return "unconfigured"
 
-    trust_env_proxy = os.environ.get("CANGJIE_AI_USE_ENV_PROXY", "true").lower() != "false"
+    trust_env_proxy = os.environ.get("CUOTI_AI_USE_ENV_PROXY", os.environ.get("CANGJIE_AI_USE_ENV_PROXY", "true")).lower() != "false"
 
     @asynccontextmanager
     async def lifespan(app):
@@ -309,7 +309,7 @@ def create_app(*, secret: str | None = None, pool_path: Path | None = None) -> F
             await app.state.provider.close()
 
     app = FastAPI(
-        title="仓颉内部算法服务",
+        title="错题帮内部算法计算",
         lifespan=lifespan,
         docs_url=None,
         redoc_url=None,

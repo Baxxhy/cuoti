@@ -6,9 +6,19 @@ from pydantic import BaseModel, Field, SecretStr
 from sqlalchemy.engine import URL
 
 
+def configuration():
+    root = Path(__file__).resolve().parents[2]
+    preferred = root / ".env.python"
+    legacy = root / ".env.cangjie"
+    default = preferred if preferred.exists() or not legacy.exists() else legacy
+    path = Path(os.environ.get("CUOTI_ENV_FILE", str(default))).resolve()
+    values = dotenv_values(path) if path.is_file() else {}
+    return path, {**values, **os.environ}
+
+
 class Settings(BaseModel):
     host: str = "127.0.0.1"
-    port: int = Field(default=8003, ge=1, le=65535)
+    port: int = Field(default=8002, ge=1, le=65535)
     log_level: str = Field(
         default="INFO", pattern="^(DEBUG|INFO|WARNING|ERROR|CRITICAL)$"
     )
@@ -30,10 +40,8 @@ class Settings(BaseModel):
 
     @classmethod
     def load(cls):
-        # Local legacy configuration is reused without running shell code.
-        default = Path(__file__).resolve().parents[2] / ".env.cangjie"
-        path = Path(os.environ.get("CUOTI_ENV_FILE", str(default)))
-        values = {**dotenv_values(path), **os.environ}
+        # Parse trusted local configuration without executing shell code.
+        path, values = configuration()
         result = {}
         for field in cls.model_fields:
             key = "CUOTI_" + field.upper()
@@ -52,14 +60,30 @@ class Settings(BaseModel):
                 ]
             ):
                 result[field] = values[legacy]
-        for field, filename in [
-            ("auth_secret", "cangjie-auth-secret"),
-            ("algorithm_secret", "cangjie-algorithm-secret"),
+        if "CUOTI_PORT" not in values and "CANGJIE_BACKEND_PORT" in values:
+            result["port"] = values["CANGJIE_BACKEND_PORT"]
+        result.setdefault("project_root", str(path.parent))
+        root = Path(result["project_root"])
+        for field, stem in [
+            ("auth_secret", "auth-secret"),
+            ("algorithm_secret", "algorithm-secret"),
         ]:
-            file = path.parent / ".runtime" / filename
-            if field not in result and file.is_file():
-                result[field] = file.read_text().strip()
-        result.setdefault("project_root", str(path.parent.resolve()))
+            for prefix in ["cuoti-", "cangjie-"]:
+                file = root / ".runtime" / (prefix + stem)
+                if field not in result and file.is_file():
+                    result[field] = file.read_text().strip()
+        if "CUOTI_MEDIA_ROOT" not in values and values.get("CANGJIE_MEDIA_ROOT"):
+            legacy_media = Path(values["CANGJIE_MEDIA_ROOT"])
+            result["media_root"] = str(
+                legacy_media
+                if legacy_media.is_absolute()
+                else root / "backend-cangjie" / legacy_media
+            )
+        if not result.get("media_root"):
+            legacy_media = root / "backend-cangjie/media"
+            result["media_root"] = str(
+                legacy_media if legacy_media.is_dir() else root / "media"
+            )
         return cls.model_validate(result)
 
     def database_url(self):

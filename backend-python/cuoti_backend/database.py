@@ -39,7 +39,29 @@ class Database:
 
     def probe(self):
         with self.session() as session:
-            session.execute(text("SELECT 1")).scalar_one()
+            from .protocol import ApiError
+            from .question_data import TYPES
+            from .schema import VERSIONS
+
+            versions = set(
+                session.execute(
+                    text("SELECT version FROM cangjie_schema_versions")
+                ).scalars()
+            )
+            if not VERSIONS <= versions:
+                raise ApiError(503, "数据库版本尚未就绪")
+            columns = {}
+            for table, column in session.execute(
+                text(
+                    "SELECT TABLE_NAME,COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE()"
+                )
+            ):
+                columns.setdefault(table, set()).add(column)
+            if any(
+                not set(fields) <= columns.get(table, set())
+                for table, fields in TYPES.items()
+            ):
+                raise ApiError(503, "数据库表结构尚未就绪")
 
     def close(self):
         if self.engine is not None:

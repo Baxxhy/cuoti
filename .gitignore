@@ -1,5 +1,7 @@
 .env
 .env.cangjie
+.env.python
+media/
 config/api_pool.json
 dist-final/
 frontend/.env.*.local

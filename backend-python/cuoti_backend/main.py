@@ -193,7 +193,7 @@ def create_app(settings: Settings | None = None):
     app.state.algorithm_app = algorithm_app
     root = Path(settings.media_root) if settings.media_root else Path("media")
     if not root.is_absolute():
-        root = Path(settings.project_root) / "backend-cangjie" / root
+        root = Path(settings.project_root) / root
     bank = (
         Path(settings.question_bank_root)
         if settings.question_bank_root

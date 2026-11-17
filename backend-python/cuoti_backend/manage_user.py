@@ -3,6 +3,7 @@
 import argparse
 import getpass
 import json
+import sys
 from uuid import uuid4
 
 from sqlalchemy import select, text
@@ -70,17 +71,40 @@ def main():
     )
     parser.add_argument("--email", required=True)
     parser.add_argument("--name", default="管理员")
+    parser.add_argument("--role", choices=["admin"], default="admin")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument(
+        "--password-stdin",
+        action="store_true",
+        help="从标准输入读取密码；不要将密码放入命令参数",
+    )
     args = parser.parse_args()
+    if args.check and args.password_stdin:
+        parser.error("--check 不需要密码，不能与 --password-stdin 同用")
     settings = Settings.load()
     database = Database(settings)
     try:
-        body = {"email": args.email, "name": args.name, "check_only": args.check}
-        if not args.check:
+        body = {"email": args.email, "name": args.name, "check_only": True}
+        with database.session() as db:
+            checked = create_admin(db, settings, body)
+        if args.check:
+            print(json.dumps(checked, ensure_ascii=False))
+            return
+        if not checked["available"]:
+            raise ApiError(
+                409, "邮箱已存在；未修改身份、密码或学习记录，请使用专用的新邮箱"
+            )
+        if args.password_stdin:
+            password = sys.stdin.readline(1025).removesuffix("\n").removesuffix("\r")
+        else:
+            if not sys.stdin.isatty():
+                raise ApiError(
+                    422, "非交互执行请使用 --password-stdin；密码不要放入命令参数"
+                )
             password = getpass.getpass("管理员密码（至少12个字符）：")
             if getpass.getpass("再次输入密码：") != password:
                 raise ApiError(422, "两次密码不一致")
-            body["password"] = password
+        body.update(check_only=False, password=password)
         with database.session() as db:
             print(json.dumps(create_admin(db, settings, body), ensure_ascii=False))
     except (ApiError, SQLAlchemyError) as error:

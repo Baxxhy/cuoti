@@ -1,10 +1,17 @@
+import os
+
 import uvicorn
 
-from .config import Settings
-from .main import create_app
+from .config import Settings, configuration
 
 
 def main():
+    _, values = configuration()
+    for key, value in values.items():
+        if value is not None:
+            os.environ.setdefault(key, str(value))
+    from .main import create_app
+
     settings = Settings.load()
     uvicorn.run(
         create_app(settings),

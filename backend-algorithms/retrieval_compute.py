@@ -1,4 +1,4 @@
-"""Original BGE/Qdrant/reranker algorithms, supplied native MySQL snapshots only."""
+"""Original BGE/Qdrant/reranker algorithms, supplied business snapshots only."""
 
 from __future__ import annotations
 
@@ -19,11 +19,11 @@ from learning_core.services.question_mapping import normalized_grade
 
 settings = SimpleNamespace(
     retrieval_inference_url=os.environ.get(
-        "CANGJIE_RETRIEVAL_INFERENCE_URL", "http://127.0.0.1:8011"
+        "CUOTI_RETRIEVAL_INFERENCE_URL", os.environ.get("CANGJIE_RETRIEVAL_INFERENCE_URL", "http://127.0.0.1:8011")
     ),
-    qdrant_url=os.environ.get("CANGJIE_QDRANT_URL", "http://127.0.0.1:6333"),
+    qdrant_url=os.environ.get("CUOTI_QDRANT_URL", os.environ.get("CANGJIE_QDRANT_URL", "http://127.0.0.1:6333")),
     qdrant_collection=os.environ.get(
-        "CANGJIE_QDRANT_COLLECTION", "minddimension_questions_v1"
+        "CUOTI_QDRANT_COLLECTION", os.environ.get("CANGJIE_QDRANT_COLLECTION", "minddimension_questions_v1")
     ),
     retrieval_candidate_limit=50,
     retrieval_result_limit=10,
