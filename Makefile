@@ -32,9 +32,9 @@ algorithms:
 frontend:
 	npm --prefix frontend run dev:h5 -- --port $${ZHIWEI_FRONTEND_PORT:-5175} --strictPort
 seed-knowledge:
-	bash scripts/cangjie.sh seed-knowledge
+	PYTHONPATH=backend-python:backend-algorithms .venv/bin/python -m cuoti_backend.manage_db seed-knowledge
 import-questions:
-	bash scripts/question_bank_cangjie.sh
+	bash scripts/question_bank.sh
 download-questions:
 	.venv/bin/python scripts/fetch_public_question_sources.py
 install-retrieval:

@@ -21,7 +21,7 @@ include = ["cuoti_backend*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["mysql: explicitly enabled local MySQL read-only connection check"]
+markers = ["mysql: explicitly enabled local MySQL integration check"]
 
 [tool.setuptools.package-data]
-cuoti_backend = ["resources/*.json"]
+cuoti_backend = ["resources/*.json", "resources/schema/*.sql"]

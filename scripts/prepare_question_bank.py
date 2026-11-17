@@ -1,4 +1,4 @@
-"""Prepare local public files via Cangjie snapshots; never connect Python to MySQL."""
+"""Prepare public files through the unified Python business backend snapshots."""
 
 import argparse
 import hashlib
@@ -14,7 +14,7 @@ from types import SimpleNamespace
 
 PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT / "backend-algorithms"))
-sys.path.insert(0, str(PROJECT / "backend-algorithms"))
+sys.path.insert(0, str(PROJECT / "backend-python"))
 
 from learning_core.services.public_question_sources import (
     iter_gaokao,
@@ -74,14 +74,20 @@ for key, name, homepage, license_name in [
     }
 
 
-def native(payload):
+def snapshot(payload):
     # Idempotent import snapshots can retry transient MySQL deadlocks without
     # changing IDs or resurrecting quarantined content. Validation errors cannot.
     for attempt in range(3):
         done = subprocess.run(
-            ["bash", "scripts/cangjie.sh", "question-bank-built"],
+            [sys.executable, "-m", "cuoti_backend.question_bank"],
             input=json.dumps(payload, ensure_ascii=False) + "\n",
             cwd=PROJECT,
+            env={
+                **os.environ,
+                "PYTHONPATH": str(PROJECT / "backend-python")
+                + os.pathsep
+                + os.environ.get("PYTHONPATH", ""),
+            },
             text=True,
             capture_output=True,
             check=False,
@@ -95,7 +101,9 @@ def native(payload):
         if result.get("code") != 503:
             break
         time.sleep(0.5 * (attempt + 1))
-    raise RuntimeError("仓颉题库命令未完成，当前批次未提交；请检查独立库、版本或输入")
+    raise RuntimeError(
+        "Python 题库命令未完成，当前批次未提交；请检查数据库、版本或输入"
+    )
 
 
 def normalized_records(source, include_primary=False):
@@ -118,13 +126,13 @@ def normalized_records(source, include_primary=False):
 
 
 def import_records(source, contains="", include_primary=False, selected_ids=None):
-    cards = [SimpleNamespace(**item) for item in native({"operation": "cards"})]
+    cards = [SimpleNamespace(**item) for item in snapshot({"operation": "cards"})]
     by_id = {card.id: card for card in cards}
     counts = Counter()
     batch = []
 
     def flush():
-        result = native(
+        result = snapshot(
             {"operation": "import", "source": SOURCES[source], "questions": batch}
         )
         print(json.dumps({"stage": "import", **result}, ensure_ascii=False), flush=True)
@@ -212,14 +220,17 @@ def import_records(source, contains="", include_primary=False, selected_ids=None
 
 
 def index_records(source):
+    from cuoti_backend.config import Settings
     from qdrant_client import QdrantClient, models
     from retrieval_compute import bge_runtime, retrieval_text, settings
 
-    database = os.environ.get("CANGJIE_DB_NAME", "")
-    collection = os.environ.get("CANGJIE_QDRANT_COLLECTION", "")
+    database = Settings.load().db_name
+    collection = os.environ.get(
+        "CUOTI_QDRANT_COLLECTION", os.environ.get("CANGJIE_QDRANT_COLLECTION", "")
+    )
     if not database or not collection.startswith(database + "_"):
         raise RuntimeError(
-            "请显式配置以独立仓颉库名加下划线开头的CANGJIE_QDRANT_COLLECTION，防止混用旧库索引"
+            "请配置以当前数据库名加下划线开头的 CUOTI_QDRANT_COLLECTION，防止混用索引"
         )
     settings.qdrant_collection = collection
     after = ""
@@ -227,7 +238,7 @@ def index_records(source):
     client = QdrantClient(url=settings.qdrant_url, timeout=120)
     try:
         while True:
-            rows = native({"operation": "export", "source": source, "after": after})
+            rows = snapshot({"operation": "export", "source": source, "after": after})
             if not rows:
                 break
             after = rows[-1]["id"]
@@ -332,7 +343,7 @@ def index_records(source):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="仓颉入库、Python清洗/BGE索引；仅使用本地公开题源"
+        description="Python 入库、清洗及 BGE 索引；仅使用本地公开题源"
     )
     parser.add_argument("--source", choices=[*SOURCES, "all"], default="cmmu")
     parser.add_argument(
@@ -348,6 +359,16 @@ def main():
         help="仅导入题干或解答包含该文字的本地题目；不代表相关性已验证",
     )
     args = parser.parse_args()
+    if not args.index_only:
+        from cuoti_backend.config import Settings
+        from cuoti_backend.manage_db import backup
+
+        print(
+            json.dumps(
+                {"stage": "backup", "path": backup(Settings.load())}, ensure_ascii=False
+            ),
+            flush=True,
+        )
     for source in SOURCES if args.source == "all" else [args.source]:
         if not args.index_only:
             import_records(source, args.contains, args.include_primary)
