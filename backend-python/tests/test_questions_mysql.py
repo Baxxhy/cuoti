@@ -3361,3 +3361,101 @@ def test_task_handwriting_upload_confirm_and_rollback(question_app, monkeypatch)
             ]:
                 execute(db, "DELETE FROM " + table + " WHERE task_id=?", [tid])
             execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])
+
+
+def test_question_journey_contract_tasks_and_legacy_parity(question_app):
+    from cuoti_backend.learning_memory import task_fingerprint
+    from cuoti_backend.question_data import select_rows
+    from cuoti_backend.task_sources import capture_source, load_snapshot
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    path = "/api/v1/questions/" + qid + "/journey"
+    assert client.get(path, headers=other).status_code == 404
+    base = client.get(path, headers=headers)
+    assert base.status_code == 200, base.text
+    assert base.json()["data"]["question_id"] == qid
+    tid = str(uuid4())
+    try:
+        with app.state.database.session() as db, db.begin():
+            fingerprint = task_fingerprint(db, qid, user["id"])
+            insert(
+                db,
+                "learning_tasks",
+                id=tid,
+                user_id=user["id"],
+                question_id=qid,
+                input_fingerprint=fingerprint,
+                status="completed",
+                step_id=str(uuid4()),
+                checkpoint={"repair_passed": True, "independent_passed": True},
+                student_view={},
+                pending_action={},
+                learning_applied=True,
+            )
+            task = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            capture_source(db, task, load_snapshot(db, qid, user["id"]))
+            insert(
+                db,
+                "learning_self_checks",
+                user_id=user["id"],
+                question_id=qid,
+                task_id=tid,
+                input_fingerprint=fingerprint,
+                text="两边做同样的运算",
+                version=1,
+                deleted=False,
+            )
+        result = client.get(path, headers=headers).json()["data"]
+        assert result["learning_tasks"]["repair_verified"] is True
+        assert result["learning_tasks"]["original_independent"] is True
+        assert result["learning_tasks"]["near_transfer"] is True
+        assert result["self_checks"][0]["kind"] == "student_self_report"
+        assert result["self_checks"][0]["source_current"] is True
+        assert result["next_action"]["url"].startswith("/pages/practice/")
+        if os.environ.get("CUOTI_LEGACY_URL"):
+            import httpx
+
+            old = httpx.get(
+                os.environ["CUOTI_LEGACY_URL"] + path,
+                headers=headers,
+                trust_env=False,
+                timeout=15,
+            )
+            assert old.status_code == 200, old.text
+            legacy = old.json()["data"]
+            legacy.pop("generated_at")
+            result.pop("generated_at")
+            assert legacy == result
+        with app.state.database.session() as db, db.begin():
+            execute(
+                db,
+                "UPDATE learning_tasks SET status='waiting_student' WHERE id=?",
+                [tid],
+            )
+        assert (
+            client.get(path, headers=headers).json()["data"]["next_action"]["url"]
+            == "/pages/task/task?id=" + tid
+        )
+        client.patch(
+            "/api/v1/questions/" + qid, headers=headers, json={"question_text": "3x=18"}
+        )
+        changed = client.get(path, headers=headers).json()["data"]
+        assert changed["learning_tasks"]["near_transfer"] is False
+        assert changed["self_checks"][0]["source_current"] is False
+        assert changed["learning_tasks"]["items"][0]["status"] == "stale"
+        client.delete("/api/v1/questions/" + qid, headers=headers)
+        assert client.get(path, headers=headers).status_code == 404
+    finally:
+        with app.state.database.session() as db, db.begin():
+            execute(db, "DELETE FROM learning_self_checks WHERE task_id=?", [tid])
+            execute(db, "DELETE FROM learning_task_sources WHERE task_id=?", [tid])
+            execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])

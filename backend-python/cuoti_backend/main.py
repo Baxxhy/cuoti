@@ -16,6 +16,7 @@ from .config import Settings
 from .database import Database
 from .diagnostics import router as diagnostic_router
 from .insights import router as insight_router
+from .journey import router as journey_router
 from .learning_tasks import router as task_router
 from .lessons import router as lesson_router
 from .media import MediaStore
@@ -193,6 +194,7 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(journey_router)
     app.include_router(task_router)
     app.include_router(task_records_router)
     app.include_router(task_images_router)
