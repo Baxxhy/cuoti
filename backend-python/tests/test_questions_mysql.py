@@ -2550,6 +2550,13 @@ def test_task_source_capture_real_database(question_app):
             execute(db, "UPDATE learning_tasks SET status='queued' WHERE id=?", [tid])
             reserved = claim_lease(db, tid, TaskBudget())
             assert reserved and reserved["lease"]
+            assert reserved["context"]["question_id"] == q
+            assert reserved["context"]["source_snapshot_id"] == tid
+            assert reserved["context"]["action_id"] == tid + ":"
+            from learning_task_compute import TaskContext
+
+            assert TaskContext.model_validate(reserved["context"]).question_id == q
+
             assert claim_lease(db, tid, TaskBudget()) is None
             execute(
                 db,

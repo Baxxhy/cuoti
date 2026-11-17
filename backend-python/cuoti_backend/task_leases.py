@@ -25,7 +25,9 @@ def fail_preparation(db, task, reason, *, limit=False, source_error=False):
         else limit_view()
     )
     if source_error:
-        view = stopped_view("任务来源无法核对，请结束本次学习后回原题重开；旧记录仍保留")
+        view = stopped_view(
+            "任务来源无法核对，请结束本次学习后回原题重开；旧记录仍保留"
+        )
         recoverable = False
     if recoverable:
         view["secondary_actions"] = ["resume"]
@@ -60,8 +62,11 @@ def claim_lease(db, id, budget):
     """Reserve one task inside the caller's transaction; never start computation."""
     from uuid import uuid4
 
+    from sqlalchemy.exc import SQLAlchemyError
+
     from .question_data import rows, select_rows
     from .task_budget import TaskBudgetExceeded, at_limit
+    from .task_context import prepare_context
     from .task_sources import (
         TaskSourceError,
         capture_source,
@@ -103,6 +108,9 @@ def claim_lease(db, id, budget):
     execute(db, "UPDATE learning_tasks SET run_count=run_count+1 WHERE id=?", [id])
     try:
         source = capture_source(db, task, snapshot)
+        domain = prepare_context(db, source, owner)
+        domain["source_snapshot_id"] = task["id"]
+        domain["action_id"] = id + ":" + (task.get("active_request") or "")
         budget.check("prepare")
     except TaskSourceError as error:
         fail_preparation(db, task, error.reason, source_error=True)
@@ -110,10 +118,20 @@ def claim_lease(db, id, budget):
     except TaskBudgetExceeded:
         fail_preparation(db, task, "prepare_budget", limit=True)
         return None
+    except SQLAlchemyError as error:
+        arguments = getattr(getattr(error, "orig", None), "args", ())
+        code = (
+            str(arguments[0]) if arguments and type(arguments[0]) is int else "unknown"
+        )
+        fail_preparation(db, task, "prepare_database_" + code)
+        return None
+    except (ValueError, KeyError, TypeError):
+        fail_preparation(db, task, "prepare_context_invalid")
+        return None
     lease = str(uuid4())
     execute(
         db,
         "UPDATE learning_tasks SET status='running',lease_token=?,lease_until=UTC_TIMESTAMP(6)+INTERVAL 90 SECOND,updated_at=UTC_TIMESTAMP(6) WHERE id=?",
         [lease, id],
     )
-    return {"task": task, "source": source, "lease": lease}
+    return {"task": task, "source": source, "context": domain, "lease": lease}
