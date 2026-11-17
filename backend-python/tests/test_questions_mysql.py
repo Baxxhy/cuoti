@@ -2910,3 +2910,139 @@ def test_task_plan_candidates_real_database_scope(question_app):
         assert all(
             c["subject"] == question["subject"] and c["id"] != q for c in candidates
         )
+
+
+def test_learning_task_api_contract_and_isolation(question_app, monkeypatch):
+    from cuoti_backend import learning_tasks
+
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other_headers = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    path = "/api/v1/learning-tasks"
+    request = {"question_id": qid, "request_id": str(uuid4())}
+    with app.state.database.session() as db, db.begin():
+        execute(db, "UPDATE questions SET confirmed=0 WHERE id=?", [qid])
+    assert client.post(path, headers=headers, json=request).status_code == 409
+    with app.state.database.session() as db, db.begin():
+        execute(db, "UPDATE questions SET confirmed=1 WHERE id=?", [qid])
+    original_insert, original_execute = learning_tasks.insert, learning_tasks.execute
+
+    # Simulate the worker completing preparation within the transaction; never expose
+    # a queued test row to the concurrently running legacy worker/model provider.
+    def prepared_insert(db, table, **values):
+        if table == "learning_tasks":
+            values.update(status="waiting_student", student_view={"input_kind": "text"})
+        return original_insert(db, table, **values)
+
+    def prepared_execute(db, sql, params):
+        return original_execute(
+            db,
+            sql.replace("SET status='queued'", "SET status='waiting_student'"),
+            params,
+        )
+
+    monkeypatch.setattr(learning_tasks, "insert", prepared_insert)
+    monkeypatch.setattr(learning_tasks, "execute", prepared_execute)
+    tid = None
+    try:
+        created = client.post(path, headers=headers, json=request)
+        assert created.status_code == 202, created.text
+        task = created.json()["data"]
+        tid = task["id"]
+        assert (
+            client.post(path, headers=headers, json=request).json()["data"]["id"] == tid
+        )
+        assert (
+            client.post(
+                path, headers=headers, json={**request, "session_id": "different"}
+            ).status_code
+            == 409
+        )
+        assert client.get(path + "/" + tid, headers=other_headers).status_code == 404
+        assert client.get(path, headers=other_headers).json()["data"] == []
+        assert (
+            client.get(path + "?question_id=" + qid, headers=headers).json()["data"][0][
+                "id"
+            ]
+            == tid
+        )
+        assert (
+            client.get(path + "/" + tid, headers=headers).json()["data"][
+                "input_fingerprint"
+            ]
+            == task["input_fingerprint"]
+        )
+        action = {
+            "kind": "answer",
+            "text": "5",
+            "request_id": str(uuid4()),
+            "version": task["version"],
+            "step_id": task["step_id"],
+            "input_fingerprint": task["input_fingerprint"],
+        }
+        assert (
+            client.post(
+                path + "/" + tid + "/actions", headers=other_headers, json=action
+            ).status_code
+            == 404
+        )
+        assert (
+            client.post(
+                path + "/" + tid + "/actions",
+                headers=headers,
+                json={**action, "version": True},
+            ).status_code
+            == 409
+        )
+        result = client.post(
+            path + "/" + tid + "/actions", headers=headers, json=action
+        )
+        assert result.status_code == 202, result.text
+        assert result.json()["data"]["version"] == task["version"] + 1
+        assert (
+            client.post(
+                path + "/" + tid + "/actions", headers=headers, json=action
+            ).status_code
+            == 202
+        )
+        assert (
+            client.post(
+                path + "/" + tid + "/actions",
+                headers=headers,
+                json={**action, "text": "6"},
+            ).status_code
+            == 409
+        )
+        assert (
+            client.post(
+                path + "/" + tid + "/actions",
+                headers=headers,
+                json={**action, "request_id": str(uuid4())},
+            ).status_code
+            == 409
+        )
+        cancelled = client.post(path + "/" + tid + "/cancel", headers=headers).json()[
+            "data"
+        ]
+        assert cancelled["status"] == "cancelled"
+        assert (
+            client.post(path + "/" + tid + "/cancel", headers=headers).json()["data"][
+                "version"
+            ]
+            == cancelled["version"]
+        )
+    finally:
+        if tid:
+            with app.state.database.session() as db, db.begin():
+                for table in [
+                    "learning_task_actions",
+                    "learning_task_requests",
+                    "learning_task_sources",
+                ]:
+                    execute(db, "DELETE FROM " + table + " WHERE task_id=?", [tid])
+                execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])

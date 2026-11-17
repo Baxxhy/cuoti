@@ -16,6 +16,7 @@ from .config import Settings
 from .database import Database
 from .diagnostics import router as diagnostic_router
 from .insights import router as insight_router
+from .learning_tasks import router as task_router
 from .lessons import router as lesson_router
 from .media import MediaStore
 from .media import router as media_router
@@ -23,6 +24,7 @@ from .protocol import ApiError
 from .question_routes import router as question_router
 from .questions import Questions
 from .recognition import ComputeBridge, RecognitionJobs
+from .task_worker import LearningTaskWorker
 from .tutor_answers import router as answer_router
 from .tutor_dialogue import router as dialogue_router
 from .tutoring import router as tutoring_router
@@ -152,10 +154,15 @@ def create_app(settings: Settings | None = None):
                 app.state.compute = compute
                 app.state.questions.compute = compute
                 app.state.recognition = RecognitionJobs(app.state.questions, compute)
+                worker = LearningTaskWorker(app.state.questions)
+                app.state.learning_task_worker = worker
+                if settings.learning_task_worker_enabled:
+                    worker.start()
                 try:
                     await asyncio.to_thread(app.state.recognition.recover)
                     yield
                 finally:
+                    await asyncio.to_thread(worker.close)
                     await asyncio.to_thread(app.state.recognition.close)
                     if compute is not None:
                         await compute.close()
@@ -184,6 +191,7 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(task_router)
     app.include_router(tutoring_router)
     app.include_router(answer_router)
     app.include_router(dialogue_router)

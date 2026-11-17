@@ -153,3 +153,37 @@ def run_task(service, id, *, budget=None):
     if lease:
         fail_task(service, id, owner, question_id, lease, reason)
     return False
+
+
+class LearningTaskWorker:
+    """Single local poller; MySQL leases coordinate it with other processes."""
+
+    def __init__(self, service):
+        from threading import Event, Thread
+
+        self.service = service
+        self.stopping = Event()
+        self.thread = Thread(target=self.loop, name="cuoti-learning-tasks", daemon=True)
+
+    def start(self):
+        self.thread.start()
+
+    def loop(self):
+        from .task_leases import recoverable_ids
+
+        while not self.stopping.is_set():
+            try:
+                with self.service.database.session() as db:
+                    ids = recoverable_ids(db)
+                if ids and not self.stopping.is_set():
+                    run_task(self.service, ids[0])
+                else:
+                    self.stopping.wait(1)
+            except Exception:  # noqa: BLE001 -- Retry transient database errors without logging private details.
+                logger.warning("learning_task_poll=deferred")
+                self.stopping.wait(2)
+
+    def close(self):
+        self.stopping.set()
+        if self.thread.ident is not None:
+            self.thread.join()
