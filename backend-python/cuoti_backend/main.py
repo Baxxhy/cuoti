@@ -25,6 +25,8 @@ from .learning_tasks import router as task_router
 from .lessons import router as lesson_router
 from .media import MediaStore
 from .media import router as media_router
+from .paper_exports import router as paper_export_router
+from .papers import router as paper_router
 from .practice import router as practice_router
 from .protocol import ApiError
 from .question_routes import router as question_router
@@ -207,6 +209,8 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(paper_router)
+    app.include_router(paper_export_router)
     app.include_router(admin_router)
     app.include_router(system_router)
     app.include_router(voice_router)
@@ -280,6 +284,8 @@ def create_app(settings: Settings | None = None):
                 *variant_attempt_router.routes,
                 *review_filter_router.routes,
                 *review_router.routes,
+                *paper_router.routes,
+                *paper_export_router.routes,
                 *admin_router.routes,
                 *system_router.routes,
                 *voice_router.routes,

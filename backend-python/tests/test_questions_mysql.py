@@ -117,6 +117,17 @@ def question_app(tmp_path):
                         continue
                     owner = users[0]["id"]
                     execute(db, "DELETE FROM voice_records WHERE user_id=?", [owner])
+                    execute(
+                        db,
+                        "DELETE e FROM export_jobs e JOIN papers p ON e.paper_id=p.id WHERE p.user_id=?",
+                        [owner],
+                    )
+                    execute(
+                        db,
+                        "DELETE i FROM paper_items i JOIN papers p ON i.paper_id=p.id WHERE p.user_id=?",
+                        [owner],
+                    )
+                    execute(db, "DELETE FROM papers WHERE user_id=?", [owner])
                     for question in rows(
                         db, "SELECT id FROM questions WHERE user_id=?", [owner]
                     ):
