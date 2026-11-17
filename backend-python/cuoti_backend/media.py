@@ -138,8 +138,10 @@ def range_values(header, length):
         raise ApiError(416, "范围无效") from None
 
 
-@router.api_route("/uploads/{path:path}", methods=["GET", "HEAD"])
-@router.api_route("/reports/{path:path}", methods=["GET", "HEAD"])
+@router.get("/uploads/{path:path}")
+@router.head("/uploads/{path:path}")
+@router.get("/reports/{path:path}")
+@router.head("/reports/{path:path}")
 def serve_media(request: Request, path: str):
     store = request.app.state.media
     full_path = request.url.path

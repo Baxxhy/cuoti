@@ -212,3 +212,18 @@ def test_literal_question_routes_preserve_method_precedence(app):
                 response = client.request(method, path)
                 assert response.status_code == 405
                 assert response.headers["allow"] == "POST"
+
+
+def test_openapi_operation_ids_are_unique():
+    import warnings
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", UserWarning)
+        schema = create_app(Settings()).openapi()
+    operations = [
+        operation["operationId"]
+        for path in schema["paths"].values()
+        for method, operation in path.items()
+        if method in {"get", "post", "put", "patch", "delete", "head", "options"}
+    ]
+    assert len(operations) == len(set(operations))

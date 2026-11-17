@@ -3459,3 +3459,182 @@ def test_question_journey_contract_tasks_and_legacy_parity(question_app):
             execute(db, "DELETE FROM learning_self_checks WHERE task_id=?", [tid])
             execute(db, "DELETE FROM learning_task_sources WHERE task_id=?", [tid])
             execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])
+
+
+@pytest.mark.skipif(
+    os.environ.get("CUOTI_TEST_REAL_TASK") != "1",
+    reason="real learning task not enabled",
+)
+def test_real_learning_task_workflow_roundtrip(question_app, monkeypatch):
+    from cuoti_backend import learning_tasks, task_leases, task_worker
+    from cuoti_backend.question_data import select_rows
+
+    app, client, student, _ = question_app
+    app.state.algorithm_app.state.provider = None
+    user, headers = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "解方程3x+2=17", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    original_insert, original_execute = learning_tasks.insert, learning_tasks.execute
+    original_claim = task_worker.claim_lease
+
+    def prepared_insert(db, table, **values):
+        if table == "learning_tasks":
+            values["status"] = "waiting_student"
+        return original_insert(db, table, **values)
+
+    def prepared_execute(db, sql, params):
+        return original_execute(
+            db,
+            sql.replace("SET status='queued'", "SET status='waiting_student'"),
+            params,
+        )
+
+    def claim_in_transaction(db, id, budget):
+        execute(db, "UPDATE learning_tasks SET status='queued' WHERE id=?", [id])
+        return original_claim(db, id, budget)
+
+    monkeypatch.setattr(learning_tasks, "insert", prepared_insert)
+    monkeypatch.setattr(learning_tasks, "execute", prepared_execute)
+    monkeypatch.setattr(task_worker, "claim_lease", claim_in_transaction)
+    created = client.post(
+        "/api/v1/learning-tasks",
+        headers=headers,
+        json={"question_id": qid, "request_id": str(uuid4())},
+    )
+    assert created.status_code == 202, created.text
+    tid = created.json()["data"]["id"]
+    path = "/api/v1/learning-tasks/" + tid
+    successful_model_calls = []
+
+    def own_pending(db):
+        return [
+            item["id"]
+            for item in rows(
+                db,
+                "SELECT id FROM learning_tasks t WHERE id=? AND status='waiting_student' AND (version=1 OR EXISTS (SELECT 1 FROM learning_task_actions a WHERE a.task_id=t.id AND a.status='pending'))",
+                [tid],
+            )
+        ]
+
+    monkeypatch.setattr(task_leases, "recoverable_ids", own_pending)
+    worker = task_worker.LearningTaskWorker(app.state.questions)
+
+    def wait_saved(version):
+        deadline = time.monotonic() + 50
+        while time.monotonic() < deadline:
+            current = client.get(path, headers=headers).json()["data"]
+            assert current["status"] not in ["failed", "stale", "cancelled"], current
+            if current["version"] > version and current["status"] in [
+                "waiting_student",
+                "needs_review",
+                "completed",
+            ]:
+                return current
+            time.sleep(0.1)
+        pytest.fail("Python 后台执行器未在时限内保存任务结果")
+
+    try:
+        worker.start()
+        wait_saved(1)
+        provider = app.state.algorithm_app.state.provider
+        original_generate = provider.generate_structured
+
+        async def observed_generate(*a, **kw):
+            result = await original_generate(*a, **kw)
+            successful_model_calls.append(type(result).__name__)
+            return result
+
+        monkeypatch.setattr(provider, "generate_structured", observed_generate)
+
+        def send(kind, text=""):
+            current = client.get(path, headers=headers).json()["data"]
+            response = client.post(
+                path + "/actions",
+                headers=headers,
+                json={
+                    "kind": kind,
+                    "text": text,
+                    "version": current["version"],
+                    "step_id": current["step_id"],
+                    "input_fingerprint": current["input_fingerprint"],
+                    "request_id": str(uuid4()),
+                },
+            )
+            assert response.status_code == 202, response.text
+            wait_saved(response.json()["data"]["version"])
+
+        send("hint")
+        send("answer", "x=5，因为两边同时减2，再同时除以3")
+        with app.state.database.session() as db:
+            current = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            assert current["checkpoint"]["phase"] == "contrast", current["student_view"]
+            expected = current["checkpoint"]["contrast"]["expected"]
+        # Test oracle reads the authoritative symbolic answer; no student API exposes it.
+        send("answer", expected)
+        final = client.get(path, headers=headers).json()["data"]
+        assert final["status"] == "completed" and final["learning_applied"] is True
+        with app.state.database.session() as db:
+            evidence = select_rows(
+                db,
+                "cognitive_updates",
+                "SELECT * FROM cognitive_updates WHERE user_id=? AND question_id=? AND entity_type='mastery'",
+                [user["id"], qid],
+            )
+            assert len(evidence) == 2
+            assert all(
+                item["evidence"]["aemt_event"]["grading_reliable"] for item in evidence
+            )
+            assert rows(
+                db,
+                "SELECT id FROM review_plans WHERE user_id=? AND question_id=? AND status='pending'",
+                [user["id"], qid],
+            )
+        by_scope = {
+            item["evidence"]["aemt_event"]["scope"]: item["evidence"]["aemt_event"]
+            for item in evidence
+        }
+        assert by_scope["original_question"]["hint_used"] is True
+        assert by_scope["contrast_question"]["hint_used"] is False
+        history = client.get(path + "/history", headers=headers).json()["data"]
+        assert len(history["items"]) == 3
+        assert history["source_question"]["question_text"] == "解方程3x+2=17"
+        journey = client.get(
+            "/api/v1/questions/" + qid + "/journey", headers=headers
+        ).json()["data"]
+        assert journey["learning_tasks"]["near_transfer"] is True
+        assert successful_model_calls, (
+            "任务规则闭环通过，但真实模型规划未返回成功，不能标为真实模型验收通过"
+        )
+        print(
+            "real-task completed; successful structured model calls:",
+            len(successful_model_calls),
+        )
+    finally:
+        worker.close()
+        with app.state.database.session() as db, db.begin():
+            audit_runs = rows(
+                db,
+                "SELECT agent_run_id FROM learning_task_steps WHERE task_id=?",
+                [tid],
+            )
+            execute(db, "DELETE FROM learning_task_steps WHERE task_id=?", [tid])
+            for run in audit_runs:
+                execute(
+                    db,
+                    "DELETE FROM agent_tool_calls WHERE agent_run_id=?",
+                    [run["agent_run_id"]],
+                )
+                execute(db, "DELETE FROM agent_runs WHERE id=?", [run["agent_run_id"]])
+            for table in [
+                "learning_task_exposures",
+                "learning_task_actions",
+                "learning_task_requests",
+                "learning_task_sources",
+            ]:
+                execute(db, "DELETE FROM " + table + " WHERE task_id=?", [tid])
+            execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])

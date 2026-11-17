@@ -68,7 +68,9 @@ def audit_note(db, task, note, operation):
     )
 
 
-@router.api_route("/{id}/self-check", methods=["GET", "PATCH", "DELETE"])
+@router.get("/{id}/self-check")
+@router.patch("/{id}/self-check")
+@router.delete("/{id}/self-check")
 async def self_check_route(request: Request, id: str):
     value = {} if request.method == "GET" else await body(request)
     return envelope(request, await run_in_threadpool(self_check, request, id, value))
