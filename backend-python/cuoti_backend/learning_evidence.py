@@ -100,12 +100,7 @@ def question_version(db, question):
     return digest(stamp_compact(source))
 
 
-def apply_evidence(
-    service, db, owner, question, evidence, preferred="", include_analysis=True
-):
-    if service.compute is None:
-        raise ApiError(503, "内部算法服务未配置")
-    execute(db, "SELECT id FROM users WHERE id=? FOR UPDATE", [owner])
+def knowledge_point(db, question, preferred="", include_analysis=True):
     point = preferred.strip() or first_label(question["knowledge_points"])
     if not point and include_analysis:
         analyses = select_rows(
@@ -120,6 +115,23 @@ def apply_evidence(
         or (question.get("title") or "").strip()
         or question["subject"].strip() + "·" + question["question_type"]
     )
+    return point
+
+
+def apply_evidence(
+    service,
+    db,
+    owner,
+    question,
+    evidence,
+    preferred="",
+    include_analysis=True,
+    compute_timeout=None,
+):
+    if service.compute is None:
+        raise ApiError(503, "内部算法服务未配置")
+    execute(db, "SELECT id FROM users WHERE id=? FOR UPDATE", [owner])
+    point = knowledge_point(db, question, preferred, include_analysis)
     subject = question["subject"].strip()
     diagnoses = select_rows(
         db,
@@ -172,6 +184,7 @@ def apply_evidence(
     }
     computed = service.compute.compute(
         "cognition_update",
+        **({"timeout": compute_timeout} if compute_timeout is not None else {}),
         mastery_values=mastery,
         misconception_values=mistake,
         learning_evidence=evidence,
