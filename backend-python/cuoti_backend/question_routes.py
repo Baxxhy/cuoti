@@ -47,7 +47,7 @@ async def manual(request: Request):
     return envelope(request, result)
 
 
-async def upload(request):
+async def upload(request, *, include_fields=False):
     if (
         not request.headers.get("content-type", "")
         .lower()
@@ -82,6 +82,8 @@ async def upload(request):
         }
         if any(len(v.encode()) > 4096 for v in fields.values()):
             raise ApiError(422, "上传字段过长")
+        if include_fields:
+            return data, filename, fields
         deferred = boolean(fields.get("defer_processing", ""))
         return data, filename, deferred
     finally:

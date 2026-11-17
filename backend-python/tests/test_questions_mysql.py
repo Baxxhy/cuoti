@@ -3193,3 +3193,171 @@ def test_learning_task_api_contract_and_isolation(question_app, monkeypatch):
                 ]:
                     execute(db, "DELETE FROM " + table + " WHERE task_id=?", [tid])
                 execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])
+
+
+def test_task_handwriting_upload_confirm_and_rollback(question_app, monkeypatch):
+    from pathlib import Path
+
+    from cuoti_backend import learning_tasks, task_images
+    from cuoti_backend.learning_memory import task_fingerprint
+    from cuoti_backend.protocol import ApiError
+    from cuoti_backend.question_data import select_rows
+    from cuoti_backend.task_budget import TaskBudget
+    from cuoti_backend.task_results import save_result
+    from cuoti_backend.task_sources import capture_source, load_snapshot
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other_headers = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    tid = str(uuid4())
+    with app.state.database.session() as db, db.begin():
+        fingerprint = task_fingerprint(db, qid, user["id"])
+        insert(
+            db,
+            "learning_tasks",
+            id=tid,
+            user_id=user["id"],
+            question_id=qid,
+            input_fingerprint=fingerprint,
+            status="waiting_student",
+            step_id=str(uuid4()),
+            checkpoint={"phase": "independent"},
+            student_view={"input_kind": "text"},
+            pending_action={},
+        )
+        task = select_rows(
+            db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+        )[0]
+        capture_source(db, task, load_snapshot(db, qid, user["id"]))
+    original_execute = task_images.execute
+
+    def prepared_execute(db, sql, params):
+        return original_execute(
+            db,
+            sql.replace("SET status='queued'", "SET status='waiting_student'"),
+            params,
+        )
+
+    monkeypatch.setattr(task_images, "execute", prepared_execute)
+    monkeypatch.setattr(learning_tasks, "execute", prepared_execute)
+    path = "/api/v1/learning-tasks/" + tid
+    data = {
+        "request_id": str(uuid4()),
+        "version": str(task["version"]),
+        "step_id": task["step_id"],
+        "input_fingerprint": fingerprint,
+    }
+    raw = picture()
+    upload = lambda value, content=raw, auth=headers: client.post(
+        path + "/handwriting",
+        headers=auth,
+        data=value,
+        files={"file": ("作答.png", content, "image/png")},
+    )
+    try:
+        assert upload(data, auth=other_headers).status_code == 404
+        assert upload({**data, "unknown": "1"}).status_code == 422
+        assert upload(data, content=b"not-an-image").status_code == 422
+        assert upload({**data, "version": "1.5"}).status_code == 422
+        assert upload({**data, "version": "99"}).status_code == 409
+        accepted = upload(data)
+        assert accepted.status_code == 202, accepted.text
+        assert (
+            upload(data).json()["data"]["version"] == accepted.json()["data"]["version"]
+        )
+        assert upload(data, content=raw + b"changed").status_code == 409
+        with app.state.database.session() as db, db.begin():
+            images = select_rows(
+                db,
+                "learning_task_images",
+                "SELECT * FROM learning_task_images WHERE task_id=?",
+                [tid],
+            )
+            assert len(images) == 1
+            image = images[0]
+            assert app.state.questions.media.read(image["original_path"]) == raw
+            current = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            result = {
+                "status": "waiting_student",
+                "checkpoint": {"phase": "independent"},
+                "student_view": {
+                    "input_kind": "text",
+                    "handwriting": {"id": image["id"], "recognition": {"text": "x=5"}},
+                },
+                "traces": [],
+                "elapsed_ms": 1,
+                "usage": {},
+            }
+            save_result(None, db, current, result, TaskBudget(), {"entries": []}, {})
+        viewed = client.get(path, headers=headers).json()["data"]
+        photo = viewed["student_view"]["handwriting"]["image_url"]
+        assert client.get(photo).content == raw
+        assert client.get(photo, headers=other_headers).status_code == 404
+        assert client.get(photo, headers=headers).status_code == 200
+        action = {
+            "kind": "answer",
+            "text": "x=5",
+            "version": viewed["version"],
+            "step_id": viewed["step_id"],
+            "input_fingerprint": fingerprint,
+            "request_id": str(uuid4()),
+            "handwriting_id": image["id"],
+            "handwriting_confirmed": False,
+        }
+        assert (
+            client.post(path + "/actions", headers=headers, json=action).status_code
+            == 422
+        )
+        assert (
+            client.post(
+                path + "/actions",
+                headers=headers,
+                json={**action, "handwriting_confirmed": True},
+            ).status_code
+            == 202
+        )
+        history = client.get(path + "/history", headers=headers).json()["data"]
+        assert any(item["handwriting_image_url"] for item in history["items"])
+        assert len(list(Path(app.state.settings.media_root).rglob("*.png"))) == 1
+        current = client.get(path, headers=headers).json()["data"]
+        failed_data = {
+            "request_id": str(uuid4()),
+            "version": str(current["version"]),
+            "step_id": current["step_id"],
+            "input_fingerprint": fingerprint,
+        }
+        original_insert = task_images.insert
+
+        def failed_insert(db, table, **values):
+            if table == "learning_task_images":
+                raise ApiError(503, "模拟保存失败")
+            return original_insert(db, table, **values)
+
+        monkeypatch.setattr(task_images, "insert", failed_insert)
+        assert upload(failed_data).status_code == 503
+        assert len(list(Path(app.state.settings.media_root).rglob("*.png"))) == 1
+        with app.state.database.session() as db:
+            assert (
+                len(
+                    rows(
+                        db, "SELECT id FROM learning_task_images WHERE task_id=?", [tid]
+                    )
+                )
+                == 1
+            )
+    finally:
+        with app.state.database.session() as db, db.begin():
+            for table in [
+                "learning_task_actions",
+                "learning_task_images",
+                "learning_task_sources",
+            ]:
+                execute(db, "DELETE FROM " + table + " WHERE task_id=?", [tid])
+            execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])
