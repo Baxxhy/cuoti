@@ -29,6 +29,8 @@ from .questions import Questions
 from .recognition import ComputeBridge, RecognitionJobs
 from .review_filters import router as review_filter_router
 from .reviews import router as review_router
+from .study_bank import router as study_bank_router
+from .study_sessions import router as study_session_router
 from .task_images import router as task_images_router
 from .task_records import router as task_records_router
 from .task_worker import LearningTaskWorker
@@ -199,6 +201,8 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(study_bank_router)
+    app.include_router(study_session_router)
     app.include_router(review_filter_router)
     app.include_router(review_router)
     app.include_router(practice_router)
@@ -264,6 +268,8 @@ def create_app(settings: Settings | None = None):
                 *variant_attempt_router.routes,
                 *review_filter_router.routes,
                 *review_router.routes,
+                *study_bank_router.routes,
+                *study_session_router.routes,
             ]:
                 pattern = getattr(route, "path_regex", None)
                 if pattern is not None and pattern.fullmatch(request.url.path):
