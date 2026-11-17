@@ -27,6 +27,8 @@ from .protocol import ApiError
 from .question_routes import router as question_router
 from .questions import Questions
 from .recognition import ComputeBridge, RecognitionJobs
+from .review_filters import router as review_filter_router
+from .reviews import router as review_router
 from .task_images import router as task_images_router
 from .task_records import router as task_records_router
 from .task_worker import LearningTaskWorker
@@ -197,6 +199,8 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(review_filter_router)
+    app.include_router(review_router)
     app.include_router(practice_router)
     app.include_router(dataset_images_router)
     app.include_router(variant_attempt_router)
@@ -251,6 +255,15 @@ def create_app(settings: Settings | None = None):
                 *answer_router.routes,
                 *dialogue_router.routes,
                 *media_router.routes,
+                *journey_router.routes,
+                *task_router.routes,
+                *task_records_router.routes,
+                *task_images_router.routes,
+                *dataset_images_router.routes,
+                *practice_router.routes,
+                *variant_attempt_router.routes,
+                *review_filter_router.routes,
+                *review_router.routes,
             ]:
                 pattern = getattr(route, "path_regex", None)
                 if pattern is not None and pattern.fullmatch(request.url.path):

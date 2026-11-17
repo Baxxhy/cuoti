@@ -160,6 +160,11 @@ def question_app(tmp_path):
                             "DELETE FROM variant_questions WHERE question_id=?",
                             [id],
                         )
+                        execute(
+                            db,
+                            "DELETE r FROM review_records r JOIN review_plans p ON p.id=r.plan_id WHERE p.question_id=?",
+                            [id],
+                        )
                         for table in [
                             "diagnoses",
                             "problem_analyses",
@@ -203,6 +208,9 @@ def question_app(tmp_path):
                     execute(db, "DELETE FROM mastery_states WHERE user_id=?", [owner])
                     execute(
                         db, "DELETE FROM misconception_states WHERE user_id=?", [owner]
+                    )
+                    execute(
+                        db, "DELETE FROM saved_review_filters WHERE user_id=?", [owner]
                     )
                     execute(db, "DELETE FROM users WHERE id=?", [owner])
 
@@ -4286,3 +4294,241 @@ def test_live_generated_practice_recommendation(question_app, monkeypatch):
         ).json()["data"]["question_id"]
         == result["question_id"]
     )
+
+
+def test_reviews_attempt_feedback_history_and_isolation(question_app, monkeypatch):
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5", "student_answer": "6"},
+    ).json()["data"]["id"]
+    with app.state.database.session() as db, db.begin():
+        pid = str(uuid4())
+        execute(
+            db,
+            "INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL 1 DAY,1,'again','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",
+            [pid, user["id"], qid],
+        )
+    today = client.get("/api/v1/reviews/today", headers=headers)
+    assert today.status_code == 200, today.text
+    plan = today.json()["data"][0]
+    assert "student_answer" not in plan["question"] and plan["pending_attempt"] is None
+    assert "1 天" in plan["reason"]
+    assert client.get("/api/v1/reviews/today", headers=other).json()["data"] == []
+    path = "/api/v1/reviews/" + pid
+    request = {
+        "answer": "5",
+        "request_id": str(uuid4()),
+        "source_version": plan["source_version"],
+    }
+    assert (
+        client.post(path + "/attempt", headers=other, json=request).status_code == 404
+    )
+    accepted = client.post(path + "/attempt", headers=headers, json=request)
+    assert accepted.status_code == 200, accepted.text
+    receipt = accepted.json()["data"]
+    assert receipt["correct"] is True and receipt["expected_answer"] == "5"
+    assert (
+        client.post(path + "/attempt", headers=headers, json=request).json()["data"][
+            "attempt_id"
+        ]
+        == receipt["attempt_id"]
+    )
+    assert (
+        client.post(
+            path + "/attempt", headers=headers, json={**request, "answer": "9"}
+        ).status_code
+        == 409
+    )
+    assert (
+        client.get("/api/v1/reviews/today", headers=headers).json()["data"][0][
+            "pending_attempt"
+        ]["attempt_id"]
+        == receipt["attempt_id"]
+    )
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        import httpx
+
+        old = httpx.get(
+            os.environ["CUOTI_LEGACY_URL"] + "/api/v1/reviews/today",
+            headers=headers,
+            trust_env=False,
+            timeout=15,
+        )
+        assert old.status_code == 200
+        assert (
+            old.json()["data"]
+            == client.get("/api/v1/reviews/today", headers=headers).json()["data"]
+        )
+    original = app.state.questions.compute.compute
+
+    def uncertain(operation, **values):
+        result = original(operation, **values)
+        if operation == "grade_answer":
+            result.update(can_update_learning=False, verdict="review_required")
+        return result
+
+    monkeypatch.setattr(app.state.questions.compute, "compute", uncertain)
+    uncertain_result = client.post(
+        path + "/attempt",
+        headers=headers,
+        json={"answer": "5", "request_id": str(uuid4())},
+    ).json()["data"]
+    assert uncertain_result["correct"] is None
+    assert (
+        client.post(
+            path + "/grade",
+            headers=headers,
+            json={"attempt_id": uncertain_result["attempt_id"]},
+        ).status_code
+        == 409
+    )
+    assert (
+        client.post(
+            path + "/grade", headers=headers, json={"attempt_id": receipt["attempt_id"]}
+        ).status_code
+        == 409
+    )
+    monkeypatch.setattr(app.state.questions.compute, "compute", original)
+    wrong = client.post(
+        path + "/attempt",
+        headers=headers,
+        json={"answer": "9", "request_id": str(uuid4())},
+    ).json()["data"]
+    assert wrong["correct"] is False
+    assert (
+        client.post(
+            path + "/grade",
+            headers=headers,
+            json={"attempt_id": wrong["attempt_id"], "grade": "bad"},
+        ).status_code
+        == 422
+    )
+    graded = client.post(
+        path + "/grade",
+        headers=headers,
+        json={"attempt_id": wrong["attempt_id"], "grade": "good"},
+    )
+    assert graded.status_code == 200, graded.text
+    assert graded.json()["data"]["next_plan"]["interval_days"] == 2
+    assert (
+        client.post(
+            path + "/grade", headers=headers, json={"attempt_id": wrong["attempt_id"]}
+        ).status_code
+        == 409
+    )
+    history = client.get("/api/v1/reviews/history", headers=headers).json()["data"]
+    assert len(history) == 1 and history[0]["grade"] == "good"
+    assert client.get("/api/v1/reviews/history", headers=other).json()["data"] == []
+    next_id = graded.json()["data"]["next_plan"]["id"]
+    next_path = "/api/v1/reviews/" + next_id
+    pending = client.post(
+        next_path + "/attempt", headers=headers, json={"answer": "5"}
+    ).json()["data"]
+    client.patch(
+        "/api/v1/questions/" + qid, headers=headers, json={"question_text": "3x=18"}
+    )
+    assert (
+        client.post(
+            next_path + "/grade",
+            headers=headers,
+            json={"attempt_id": pending["attempt_id"]},
+        ).status_code
+        == 409
+    )
+    with app.state.database.session() as db:
+        assert not rows(
+            db, "SELECT id FROM cognitive_updates WHERE question_id=?", [qid]
+        )
+
+
+def test_review_search_saved_ranges_and_limits(question_app):
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "复习检索3x=15",
+            "correct_answer": "5",
+            "student_answer": "6",
+        },
+    ).json()["data"]["id"]
+    with app.state.database.session() as db, db.begin():
+        for index in range(21):
+            execute(
+                db,
+                "INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()-INTERVAL 1 DAY,1,?,'pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",
+                [str(uuid4()), user["id"], qid, "检索" + str(index)],
+            )
+    path = "/api/v1/reviews/search?q=复习检索&scope=today"
+    searched = client.get(path, headers=headers)
+    assert searched.status_code == 200, searched.text
+    result = searched.json()["data"]
+    assert result["total"] == 21 and len(result["items"]) == 20
+    assert all(item["is_due"] for item in result["items"])
+    assert (
+        "student_answer" not in result["items"][0]
+        and "expected_answer" not in result["items"][0]
+    )
+    assert (
+        len(client.get(path + "&page=2", headers=headers).json()["data"]["items"]) == 1
+    )
+    assert client.get(path, headers=other).json()["data"]["total"] == 0
+    assert (
+        client.get("/api/v1/reviews/search?page=0", headers=headers).status_code == 422
+    )
+    assert (
+        client.get("/api/v1/reviews/search?scope=bad", headers=headers).status_code
+        == 422
+    )
+    # Today's visible cards deduplicate identical question text; search remains a plan projection.
+    assert len(client.get("/api/v1/reviews/today", headers=headers).json()["data"]) == 1
+    filters = "/api/v1/reviews/filters"
+    value = {"name": "本周复习", "q": "复习检索", "scope": "today", "subject": "数学"}
+    saved = client.post(filters, headers=headers, json=value)
+    assert saved.status_code == 200, saved.text
+    assert len(saved.json()["data"]) == 1
+    assert len(client.post(filters, headers=headers, json=value).json()["data"]) == 1
+    fid = saved.json()["data"][0]["id"]
+    assert client.delete(filters + "/" + fid, headers=other).status_code == 404
+    assert client.get(filters, headers=other).json()["data"] == []
+    for index in range(19):
+        assert (
+            client.post(
+                filters, headers=headers, json={**value, "name": "范围" + str(index)}
+            ).status_code
+            == 200
+        )
+    assert (
+        client.post(
+            filters, headers=headers, json={**value, "name": "超限"}
+        ).status_code
+        == 409
+    )
+    assert (
+        client.delete(filters + "/" + fid, headers=headers).json()["data"]["deleted"]
+        is True
+    )
+    assert len(client.get(filters, headers=headers).json()["data"]) == 19
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        import httpx
+
+        # The unchanged legacy search endpoint returns HTTP 500 for this fixture;
+        # its source-defined projection is tested above, not claimed as live parity.
+        for endpoint in [filters]:
+            old = httpx.get(
+                os.environ["CUOTI_LEGACY_URL"] + endpoint,
+                headers=headers,
+                trust_env=False,
+                timeout=15,
+            )
+            assert old.status_code == 200, (endpoint, old.text)
+            assert (
+                old.json()["data"]
+                == client.get(endpoint, headers=headers).json()["data"]
+            )

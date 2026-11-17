@@ -227,3 +227,20 @@ def test_openapi_operation_ids_are_unique():
         if method in {"get", "post", "put", "patch", "delete", "head", "options"}
     ]
     assert len(operations) == len(set(operations))
+
+
+def test_migrated_routes_keep_complete_method_headers():
+    with TestClient(create_app(Settings())) as client:
+        for method, path, expected in [
+            ("PUT", "/api/v1/reviews/filters", {"GET", "POST"}),
+            ("POST", "/api/v1/reviews/history", {"GET"}),
+            ("GET", "/api/v1/variants/example/attempt", {"POST"}),
+            (
+                "PUT",
+                "/api/v1/learning-tasks/example/self-check",
+                {"GET", "PATCH", "DELETE"},
+            ),
+        ]:
+            response = client.request(method, path)
+            assert response.status_code == 405
+            assert set(response.headers["allow"].split(", ")) == expected
