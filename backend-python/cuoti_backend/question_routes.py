@@ -47,7 +47,7 @@ async def manual(request: Request):
     return envelope(request, result)
 
 
-async def upload(request, *, include_fields=False):
+async def upload(request, *, include_fields=False, audio=False):
     if (
         not request.headers.get("content-type", "")
         .lower()
@@ -76,7 +76,10 @@ async def upload(request, *, include_fields=False):
         if len(data) > 15 * 1024 * 1024:
             raise ApiError(413, "图片不能超过 15 MB")
         if not data:
-            raise ApiError(422, "图片为空，请重新选择图片")
+            raise ApiError(
+                400 if audio else 422,
+                "音频文件为空" if audio else "图片为空，请重新选择图片",
+            )
         fields = {
             key: value for key, value in entries if not hasattr(value, "filename")
         }

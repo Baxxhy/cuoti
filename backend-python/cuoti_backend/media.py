@@ -168,6 +168,12 @@ def serve_media(request: Request, path: str):
                     "SELECT e.id FROM export_jobs e JOIN papers p ON e.paper_id=p.id WHERE e.path=? AND p.user_id=? LIMIT 1",
                     [full_path[1:], user.id],
                 )
+            if full_path.startswith("/uploads/voice/"):
+                matches = rows(
+                    db,
+                    "SELECT id FROM voice_records WHERE audio_path=? AND user_id=? LIMIT 1",
+                    [full_path[1:], user.id],
+                )
             if not matches and not full_path.startswith(
                 "/uploads/answers/" + user.id + "/"
             ):

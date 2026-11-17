@@ -12,6 +12,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from starlette.exceptions import HTTPException
 
 from .accounts import router as account_router
+from .admin_views import router as admin_router
 from .cognition_graph import router as cognition_router
 from .config import Settings
 from .database import Database
@@ -33,6 +34,7 @@ from .review_filters import router as review_filter_router
 from .reviews import router as review_router
 from .study_bank import router as study_bank_router
 from .study_sessions import router as study_session_router
+from .system import router as system_router
 from .task_images import router as task_images_router
 from .task_records import router as task_records_router
 from .task_worker import LearningTaskWorker
@@ -41,6 +43,7 @@ from .tutor_dialogue import router as dialogue_router
 from .tutoring import router as tutoring_router
 from .variant_attempts import router as variant_attempt_router
 from .visualizations import router as visualization_router
+from .voice import router as voice_router
 
 logger = logging.getLogger("cuoti.backend")
 
@@ -204,6 +207,9 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(admin_router)
+    app.include_router(system_router)
+    app.include_router(voice_router)
     app.include_router(cognition_router)
     app.include_router(visualization_router)
     app.include_router(handwriting_router)
@@ -274,6 +280,9 @@ def create_app(settings: Settings | None = None):
                 *variant_attempt_router.routes,
                 *review_filter_router.routes,
                 *review_router.routes,
+                *admin_router.routes,
+                *system_router.routes,
+                *voice_router.routes,
                 *cognition_router.routes,
                 *visualization_router.routes,
                 *handwriting_router.routes,

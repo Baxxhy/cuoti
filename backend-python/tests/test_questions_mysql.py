@@ -116,6 +116,7 @@ def question_app(tmp_path):
                     if not users:
                         continue
                     owner = users[0]["id"]
+                    execute(db, "DELETE FROM voice_records WHERE user_id=?", [owner])
                     for question in rows(
                         db, "SELECT id FROM questions WHERE user_id=?", [owner]
                     ):
@@ -5006,3 +5007,280 @@ def test_cognition_graph_error_sources_and_legacy_parity(question_app):
                 [point],
             )
             execute(db, "DELETE FROM knowledge_points WHERE id=?", [point])
+
+
+def test_voice_transcription_synthesis_failures_and_context(question_app, monkeypatch):
+    from pathlib import Path
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x=15",
+            "correct_answer": "5",
+            "student_steps": ["x=6"],
+        },
+    ).json()["data"]["id"]
+    with app.state.database.session() as db:
+        wid = rows(db, "SELECT id FROM student_works WHERE question_id=?", [qid])[0][
+            "id"
+        ]
+
+    class Speech:
+        fail = False
+
+        async def transcribe(self, source):
+            if self.fail:
+                raise RuntimeError("synthetic upstream secret-like detail")
+            assert Path(source).read_bytes() == b"test-audio"
+            return "两边同时除以三", {"model": "synthetic-stt", "duration_ms": 1200}
+
+        async def synthesize(self, text, target, voice):
+            Path(target).write_bytes(b"ID3synthetic-audio")
+            return {"model": "synthetic-tts", "duration_ms": 900}
+
+        def health_check(self):
+            return {"stt": "synthetic", "tts": "synthetic"}
+
+    speech = Speech()
+    app.state.algorithm_app.state.voice_provider = speech
+    base = "/api/v1/voice"
+    path = base + "/transcribe?question_id=" + qid + "&work_id=" + wid
+    assert (
+        client.post(
+            path, headers=other, files={"file": ("clip.wav", b"test-audio")}
+        ).status_code
+        == 404
+    )
+    assert (
+        client.post(
+            path, headers=headers, files={"file": ("clip.wav", b"")}
+        ).status_code
+        == 400
+    )
+    response = client.post(
+        path, headers=headers, files={"file": ("clip.WAV", b"test-audio")}
+    )
+    assert response.status_code == 200, response.text
+    record = response.json()["data"]
+    assert record["editable"] is True and record["text"] == "两边同时除以三"
+    assert record["bytes"] == 10 and record["audio_path"].endswith(".wav")
+    assert client.get(record["audio_url"], headers=headers).content == b"test-audio"
+    assert client.get(record["audio_url"], headers=other).status_code == 404
+    with app.state.database.session() as db:
+        assert (
+            rows(db, "SELECT explanation FROM student_works WHERE id=?", [wid])[0][
+                "explanation"
+            ]
+            == record["text"]
+        )
+    synthesized = client.post(
+        base + "/synthesize",
+        headers=headers,
+        json={"text": "检查方程两边", "question_id": qid},
+    )
+    assert synthesized.status_code == 200, synthesized.text
+    tts = synthesized.json()["data"]
+    assert tts["browser_fallback"] is False
+    assert (
+        client.get(tts["audio_url"], headers=headers).content == b"ID3synthetic-audio"
+    )
+    assert (
+        client.post(
+            base + "/synthesize", headers=headers, json={"text": " "}
+        ).status_code
+        == 400
+    )
+    assert (
+        client.post(
+            base + "/synthesize",
+            headers=other,
+            json={"text": "测试", "question_id": qid},
+        ).status_code
+        == 404
+    )
+    from cuoti_backend import voice
+    from cuoti_backend.protocol import ApiError
+
+    audio_count = len(list(Path(app.state.settings.media_root).rglob("*.mp3")))
+    original_compute = app.state.questions.compute.compute
+
+    def corrupt(operation, **values):
+        result = original_compute(operation, **values)
+        if operation == "voice_synthesize":
+            result["sha256"] = "0" * 64
+        return result
+
+    with monkeypatch.context() as patch:
+        patch.setattr(app.state.questions.compute, "compute", corrupt)
+        assert (
+            client.post(
+                base + "/synthesize", headers=headers, json={"text": "校验音频"}
+            ).status_code
+            == 502
+        )
+    assert len(list(Path(app.state.settings.media_root).rglob("*.mp3"))) == audio_count
+
+    def failed_save(*a, **kw):
+        raise ApiError(503, "模拟数据库失败")
+
+    with monkeypatch.context() as patch:
+        patch.setattr(voice, "saved", failed_save)
+        assert (
+            client.post(
+                base + "/synthesize", headers=headers, json={"text": "保存失败"}
+            ).status_code
+            == 503
+        )
+    assert len(list(Path(app.state.settings.media_root).rglob("*.mp3"))) == audio_count
+    speech.fail = True
+    failed = client.post(
+        path, headers=headers, files={"file": ("clip.mp4", b"test-audio")}
+    )
+    assert failed.status_code == 502 and "synthetic" not in failed.text
+    with app.state.database.session() as db:
+        failures = rows(
+            db,
+            "SELECT audio_path FROM voice_records WHERE user_id=? AND status='failed'",
+            [user["id"]],
+        )
+        assert len(failures) == 1
+        assert (
+            app.state.questions.media.read(failures[0]["audio_path"]) == b"test-audio"
+        )
+
+
+def test_system_state_and_probe_contract(question_app, monkeypatch):
+    app, client, _, _ = question_app
+    app.state.algorithm_app.state.provider = None
+    health = client.get("/api/v1/system/health")
+    assert health.status_code == 200, health.text
+    assert health.json()["data"]["database"] == "mysql"
+    state = client.get("/api/v1/system/providers")
+    assert state.status_code == 200 and "vision_entries" in state.json()["data"]
+    assert client.get("/api/v1/system/voice").status_code == 200
+    provider = app.state.algorithm_app.state.provider
+
+    async def probe():
+        return {**provider.health_check(), "last_status": "test_probe"}
+
+    monkeypatch.setattr(provider, "probe", probe)
+    result = client.post("/api/v1/system/providers/probe")
+    assert (
+        result.status_code == 200
+        and result.json()["data"]["last_status"] == "test_probe"
+    )
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        import httpx
+
+        old = httpx.get(
+            os.environ["CUOTI_LEGACY_URL"] + "/api/v1/system/health",
+            trust_env=False,
+            timeout=15,
+        )
+        assert old.status_code == 200
+        assert set(old.json()["data"]) == set(health.json()["data"])
+
+
+def test_admin_views_permissions_redaction_and_legacy(question_app):
+    app, client, student, _ = question_app
+    user, headers = student()
+    admin, admin_headers = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    with app.state.database.session() as db, db.begin():
+        execute(db, "UPDATE users SET role='admin' WHERE id=?", [admin["id"]])
+        sid = insert(
+            db,
+            "tutor_sessions",
+            user_id=user["id"],
+            question_id=qid,
+            stage="understanding",
+            hint_level=0,
+            turn_count=1,
+            mastery_score=0.2,
+            state={},
+            status="active",
+        )
+        insert(
+            db,
+            "tutor_turns",
+            session_id=sid,
+            role="assistant",
+            content="看看等式两边",
+            stage="understanding",
+            metadata_json={
+                "branch": "guided_question",
+                "api_key": "private-sentinel",
+                "nested": [{"authorization": "private-sentinel", "safe": "保留"}],
+            },
+        )
+        rid = insert(
+            db,
+            "agent_runs",
+            session_id=sid,
+            agent_name="mindtrace_tutor",
+            status="completed",
+            result={
+                "branch": "guided_question",
+                "goal": "检查等式",
+                "plan": {"system_prompt": "private-sentinel", "next": "检查条件"},
+            },
+        )
+        insert(
+            db,
+            "agent_tool_calls",
+            agent_run_id=rid,
+            tool_name="answer_check",
+            input_json={"password": "private-sentinel", "expression": "3x=15"},
+            output_json={"verified": True, "reasoning_content": "private-sentinel"},
+        )
+    app.state.algorithm_app.state.provider = None
+    base = "/api/v1/admin"
+    assert client.get(base + "/workbench", headers=headers).status_code == 403
+    assert (
+        client.get(base + "/students/" + user["id"], headers=headers).status_code == 403
+    )
+    assert client.get(base + "/sessions/" + sid, headers=headers).status_code == 403
+    student_view = client.get(base + "/students/" + user["id"], headers=admin_headers)
+    assert student_view.status_code == 200, student_view.text
+    assert student_view.json()["data"]["metrics"]["questions"] == 1
+    assert "email" not in student_view.json()["data"]["student"]
+    session_view = client.get(base + "/sessions/" + sid, headers=admin_headers)
+    assert session_view.status_code == 200, session_view.text
+    assert "private-sentinel" not in session_view.text
+    assert session_view.json()["data"]["trace"][0]["agent"] == "教学决策智能体"
+    assert session_view.json()["data"]["turns"][0]["decision"]["nested"][0] == {
+        "safe": "保留"
+    }
+    bench = client.get(base + "/workbench", headers=admin_headers)
+    assert bench.status_code == 200, bench.text
+    assert bench.json()["data"]["system"]["database"] == "mysql"
+    assert "password_hash" not in bench.text
+    assert (
+        client.get(
+            base + "/students/" + str(uuid4()), headers=admin_headers
+        ).status_code
+        == 404
+    )
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        import httpx
+
+        for endpoint in ["/students/" + user["id"], "/sessions/" + sid]:
+            old = httpx.get(
+                os.environ["CUOTI_LEGACY_URL"] + base + endpoint,
+                headers=admin_headers,
+                trust_env=False,
+                timeout=15,
+            )
+            assert old.status_code == 200, old.text
+            assert (
+                old.json()["data"]
+                == client.get(base + endpoint, headers=admin_headers).json()["data"]
+            )
