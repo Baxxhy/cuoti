@@ -3638,3 +3638,177 @@ def test_real_learning_task_workflow_roundtrip(question_app, monkeypatch):
             ]:
                 execute(db, "DELETE FROM " + table + " WHERE task_id=?", [tid])
             execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])
+
+
+def test_standalone_variant_attempt_contract_and_completion(question_app, monkeypatch):
+    from cuoti_backend import variant_attempts
+    from cuoti_backend.question_data import select_rows, update
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x=15",
+            "correct_answer": "5",
+            "knowledge_points": ["方程"],
+        },
+    ).json()["data"]["id"]
+    sid, near, far = (str(uuid4()) for _ in range(3))
+    with app.state.database.session() as db, db.begin():
+        insert(
+            db,
+            "tutor_sessions",
+            id=sid,
+            user_id=user["id"],
+            question_id=qid,
+            stage="near_transfer",
+            hint_level=0,
+            turn_count=0,
+            mastery_score=0,
+            state={"near_variant_id": near, "far_variant_id": far},
+            status="active",
+        )
+        for id, transfer, text, answer in [
+            (near, "near", "2x=4", "2"),
+            (far, "far", "4x=12", "3"),
+        ]:
+            insert(
+                db,
+                "variant_questions",
+                id=id,
+                question_id=qid,
+                session_id=sid,
+                transfer_type=transfer,
+                question_text=text,
+                answer=answer,
+                explanation="两边同除系数",
+                reference_solution=[],
+                verified=True,
+                generation_metadata={},
+            )
+    path = "/api/v1/variants/" + near + "/attempt"
+    assert client.post(path, headers=other, json={"answer": "2"}).status_code == 404
+    assert (
+        client.post(path, headers=headers, json={"elapsed_seconds": -1}).status_code
+        == 422
+    )
+    assert (
+        client.post(path, headers=headers, json={"hint_level": 2147483648}).status_code
+        == 422
+    )
+    original_compute = app.state.questions.compute.compute
+    mode = {"review": True}
+
+    def compute(operation, **values):
+        if operation == "grade_answer" and mode["review"]:
+            return {
+                "can_update_learning": False,
+                "correct": False,
+                "feedback": "需要核对",
+                "verdict": "review_required",
+            }
+        return original_compute(operation, **values)
+
+    monkeypatch.setattr(app.state.questions.compute, "compute", compute)
+    reviewed = client.post(path, headers=headers, json={"answer": "2"})
+    assert reviewed.status_code == 200, reviewed.text
+    assert reviewed.json()["data"]["attempt"] is None
+    assert reviewed.json()["data"]["correct"] is None
+    assert reviewed.json()["data"]["mastery"] is None
+    with app.state.database.session() as db:
+        assert not rows(
+            db, "SELECT id FROM variant_attempts WHERE variant_id=?", [near]
+        )
+    mode["review"] = False
+    requested = []
+
+    def use_seeded_far(service, db, session, detail, transfer):
+        requested.append(transfer)
+        assert session["state"]["far_variant_id"] == far
+
+    monkeypatch.setattr(variant_attempts, "ensure_variant", use_seeded_far)
+    passed = client.post(
+        path,
+        headers=headers,
+        json={"answer": "2", "elapsed_seconds": "4.9", "hint_level": "1.5"},
+    )
+    assert passed.status_code == 200, passed.text
+    value = passed.json()["data"]
+    assert value["stage"] == "far_transfer" and value["branch"] == "near_transfer_pass"
+    assert (
+        value["attempt"]["elapsed_seconds"] == 4 and value["attempt"]["hint_level"] == 1
+    )
+    assert requested == ["far"]
+    assert client.post(path, headers=headers, json={"answer": "2"}).status_code == 409
+    done = client.post(
+        "/api/v1/variants/" + far + "/attempt", headers=headers, json={"answer": "3"}
+    )
+    assert done.status_code == 200, done.text
+    assert done.json()["data"]["stage"] == "finished"
+    assert done.json()["data"]["mastery"] and done.json()["data"]["misconception"]
+    with app.state.database.session() as db, db.begin():
+        assert (
+            len(rows(db, "SELECT id FROM review_plans WHERE question_id=?", [qid])) == 1
+        )
+        assert (
+            len(rows(db, "SELECT id FROM cognitive_updates WHERE question_id=?", [qid]))
+            == 2
+        )
+        assert (
+            len(rows(db, "SELECT id FROM tutor_turns WHERE session_id=?", [sid])) == 6
+        )
+        # Replay the near-remediation branch in a fresh synthetic learning state.
+        update(
+            db,
+            "tutor_sessions",
+            sid,
+            stage="near_transfer",
+            status="active",
+            state={"near_variant_id": near, "far_variant_id": far},
+        )
+    for _ in range(2):
+        failed = client.post(path, headers=headers, json={"answer": "9"})
+        assert failed.status_code == 200, failed.text
+    with app.state.database.session() as db:
+        state = select_rows(
+            db, "tutor_sessions", "SELECT * FROM tutor_sessions WHERE id=?", [sid]
+        )[0]["state"]
+        assert state["assisted"] is True and state["near_attempts"] == 2
+        assert state["near_confirmation"]["correct_answers"] == ["expected"]
+    with app.state.database.session() as db, db.begin():
+        update(
+            db,
+            "tutor_sessions",
+            sid,
+            stage="far_transfer",
+            state={"far_variant_id": far, "near_transfer": True},
+        )
+    far_path = "/api/v1/variants/" + far + "/attempt"
+    for _ in range(2):
+        insufficient = client.post(far_path, headers=headers, json={"answer": "99"})
+        assert insufficient.status_code == 200, insufficient.text
+    assert insufficient.json()["data"]["stage"] == "finished"
+    with app.state.database.session() as db, db.begin():
+        state = select_rows(
+            db, "tutor_sessions", "SELECT * FROM tutor_sessions WHERE id=?", [sid]
+        )[0]["state"]
+        assert state["transfer_insufficient"] is True and state["assisted"] is True
+        assert rows(
+            db,
+            "SELECT id FROM review_plans WHERE question_id=? AND interval_days=1",
+            [qid],
+        )
+        update(
+            db,
+            "tutor_sessions",
+            sid,
+            stage="near_transfer",
+            state={"near_variant_id": near},
+        )
+    client.patch(
+        "/api/v1/questions/" + qid, headers=headers, json={"question_text": "3x=18"}
+    )
+    assert client.post(path, headers=headers, json={"answer": "2"}).status_code == 409

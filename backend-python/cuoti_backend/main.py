@@ -31,6 +31,7 @@ from .task_worker import LearningTaskWorker
 from .tutor_answers import router as answer_router
 from .tutor_dialogue import router as dialogue_router
 from .tutoring import router as tutoring_router
+from .variant_attempts import router as variant_attempt_router
 
 logger = logging.getLogger("cuoti.backend")
 
@@ -194,6 +195,7 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(variant_attempt_router)
     app.include_router(journey_router)
     app.include_router(task_router)
     app.include_router(task_records_router)
