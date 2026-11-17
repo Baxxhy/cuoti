@@ -162,6 +162,16 @@ def question_app(tmp_path):
                         )
                         execute(
                             db,
+                            "DELETE i FROM visualization_interactions i JOIN visualization_specs v ON i.visualization_id=v.id JOIN tutor_sessions s ON v.session_id=s.id WHERE s.question_id=?",
+                            [id],
+                        )
+                        execute(
+                            db,
+                            "DELETE v FROM visualization_specs v JOIN tutor_sessions s ON v.session_id=s.id WHERE s.question_id=?",
+                            [id],
+                        )
+                        execute(
+                            db,
                             "DELETE r FROM review_records r JOIN review_plans p ON p.id=r.plan_id WHERE p.question_id=?",
                             [id],
                         )
@@ -4764,3 +4774,235 @@ def test_real_shared_handwriting_review_roundtrip(question_app):
         "real-handwriting upload and confirmed review passed; confidence:",
         recognition["confidence"],
     )
+
+
+def test_visualization_catalog_save_read_and_user_isolation(question_app):
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "观察一次函数y=2x+1",
+            "correct_answer": "y=2x+1",
+            "knowledge_points": ["一次函数"],
+        },
+    ).json()["data"]["id"]
+    with app.state.database.session() as db, db.begin():
+        sid = insert(
+            db,
+            "tutor_sessions",
+            user_id=user["id"],
+            question_id=qid,
+            stage="understanding",
+            hint_level=0,
+            turn_count=0,
+            mastery_score=0,
+            state={},
+            status="active",
+        )
+    base = "/api/v1/tutor/sessions/" + sid + "/visualization"
+    catalog = client.get("/api/v1/visualizations/types")
+    assert catalog.status_code == 200 and catalog.json()["data"]
+    view = client.get(base, headers=headers)
+    assert view.status_code == 200, view.text
+    assert view.json()["data"]["spec"]["type"] == "linear_function"
+    assert client.get(base, headers=other).status_code == 404
+    assert client.post(base, headers=headers, json={"values": []}).status_code == 422
+    saved = client.post(
+        base,
+        headers=headers,
+        json={"values": {"k": 3}, "observation": "斜率变大，直线更陡"},
+    )
+    assert saved.status_code == 200, saved.text
+    spec = saved.json()["data"]
+    assert spec["spec"]["parameters"]["k"] == 3
+    path = "/api/v1/visualizations/" + spec["id"]
+    read = client.get(path, headers=headers)
+    assert read.status_code == 200
+    assert len(read.json()["data"]["interactions"]) == 1
+    assert read.json()["data"]["interactions"][0]["observation"] == "斜率变大，直线更陡"
+    assert client.get(path, headers=other).status_code == 404
+    if os.environ.get("CUOTI_LEGACY_URL"):
+        import httpx
+
+        for endpoint in ["/api/v1/visualizations/types", base, path]:
+            old = httpx.get(
+                os.environ["CUOTI_LEGACY_URL"] + endpoint,
+                headers=headers,
+                trust_env=False,
+                timeout=15,
+            )
+            assert old.status_code == 200, old.text
+            assert (
+                old.json()["data"]
+                == client.get(endpoint, headers=headers).json()["data"]
+            )
+    with app.state.database.session() as db:
+        assert not rows(
+            db, "SELECT id FROM cognitive_updates WHERE question_id=?", [qid]
+        )
+        assert rows(
+            db,
+            "SELECT id FROM agent_runs WHERE session_id=? AND JSON_UNQUOTE(JSON_EXTRACT(result,'$.branch'))='visualization_evidence'",
+            [sid],
+        )
+    client.patch(
+        "/api/v1/questions/" + qid,
+        headers=headers,
+        json={"question_text": "观察一次函数y=3x+1"},
+    )
+    assert client.post(base, headers=headers, json={}).status_code == 409
+    assert client.get(path, headers=headers).status_code == 200
+
+
+def test_cognition_graph_error_sources_and_legacy_parity(question_app):
+    from cuoti_backend.learning_evidence import apply_evidence
+    from cuoti_backend.question_data import select_rows
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other = student()
+    point = str(uuid4())
+    name = "测试方程" + point[:8]
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "3x+2=17",
+            "correct_answer": "5",
+            "knowledge_points": [name],
+        },
+    ).json()["data"]["id"]
+    try:
+        with app.state.database.session() as db, db.begin():
+            insert(
+                db,
+                "knowledge_points",
+                id=point,
+                code="migration-" + point,
+                subject="数学",
+                name=name,
+                content={},
+            )
+            insert(
+                db,
+                "user_question_knowledge_links",
+                user_id=user["id"],
+                question_id=qid,
+                knowledge_point_id=point,
+                role="primary",
+                confidence=0.9,
+                mapping_method="test",
+                evidence_text="题目中的方程",
+            )
+            insert(
+                db,
+                "diagnoses",
+                question_id=qid,
+                first_error_step=0,
+                first_error_text="移项",
+                error_type="sign",
+                root_misconception="移项符号错误",
+                propagated_errors=[],
+                strategy_candidates=[],
+                confidence=0.8,
+                error_location="第一步",
+                missing_prerequisites=[],
+                recommended_strategy="micro_activity",
+                user_confirmed=True,
+                correction={},
+            )
+            q = select_rows(
+                db, "questions", "SELECT * FROM questions WHERE id=?", [qid]
+            )[0]
+            apply_evidence(
+                app.state.questions,
+                db,
+                user["id"],
+                q,
+                {"near_transfer": True, "hint_level": 0, "strategy": "micro_activity"},
+            )
+            pid = str(uuid4())
+            execute(
+                db,
+                "INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP(),1,'测试','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",
+                [pid, user["id"], qid],
+            )
+        base = "/api/v1/analytics/"
+        graph = client.get(base + "cognition-graph", headers=headers)
+        assert graph.status_code == 200, graph.text
+        data = graph.json()["data"]
+        assert data["evidence_count"] == 2 and data["personal_mapping_count"] == 1
+        assert {node["category"] for node in data["nodes"]} == {
+            "knowledge",
+            "question",
+            "misconception",
+            "strategy",
+        }
+        assert data["links"]
+        assert (
+            client.get(base + "cognition-graph", headers=other).json()["data"]["nodes"]
+            == []
+        )
+        assert (
+            client.get(base + "cognition-graph?subject=物理", headers=headers).json()[
+                "data"
+            ]["nodes"]
+            == []
+        )
+        assert (
+            client.get(base + "cognition-graph?days=0", headers=headers).status_code
+            == 422
+        )
+        assert (
+            client.get(base + "error-sources?days=366", headers=headers).status_code
+            == 422
+        )
+        sources = client.get(base + "error-sources", headers=headers).json()["data"]
+        assert (
+            sources["sources"][0]["id"] == qid
+            and sources["sources"][0]["due_review_id"] == pid
+        )
+        assert (
+            client.get(base + "error-sources", headers=other).json()["data"]["sources"]
+            == []
+        )
+        if os.environ.get("CUOTI_LEGACY_URL"):
+            import httpx
+
+            for endpoint in ["cognition-graph", "error-sources"]:
+                old = httpx.get(
+                    os.environ["CUOTI_LEGACY_URL"] + base + endpoint,
+                    headers=headers,
+                    trust_env=False,
+                    timeout=20,
+                )
+                assert old.status_code == 200, old.text
+                before, after = (
+                    old.json()["data"],
+                    client.get(base + endpoint, headers=headers).json()["data"],
+                )
+                if endpoint == "cognition-graph":
+                    for value in [before, after]:
+                        value["nodes"] = sorted(
+                            value["nodes"], key=lambda node: node["id"]
+                        )
+                        value["links"] = sorted(
+                            value["links"],
+                            key=lambda edge: (
+                                edge["source"],
+                                edge["target"],
+                                edge["relation"],
+                            ),
+                        )
+                assert before == after
+    finally:
+        with app.state.database.session() as db, db.begin():
+            execute(
+                db,
+                "DELETE FROM user_question_knowledge_links WHERE knowledge_point_id=?",
+                [point],
+            )
+            execute(db, "DELETE FROM knowledge_points WHERE id=?", [point])

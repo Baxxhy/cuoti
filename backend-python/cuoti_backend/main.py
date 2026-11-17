@@ -12,6 +12,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from starlette.exceptions import HTTPException
 
 from .accounts import router as account_router
+from .cognition_graph import router as cognition_router
 from .config import Settings
 from .database import Database
 from .dataset_images import router as dataset_images_router
@@ -39,6 +40,7 @@ from .tutor_answers import router as answer_router
 from .tutor_dialogue import router as dialogue_router
 from .tutoring import router as tutoring_router
 from .variant_attempts import router as variant_attempt_router
+from .visualizations import router as visualization_router
 
 logger = logging.getLogger("cuoti.backend")
 
@@ -202,6 +204,8 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(cognition_router)
+    app.include_router(visualization_router)
     app.include_router(handwriting_router)
     app.include_router(study_bank_router)
     app.include_router(study_session_router)
@@ -270,6 +274,8 @@ def create_app(settings: Settings | None = None):
                 *variant_attempt_router.routes,
                 *review_filter_router.routes,
                 *review_router.routes,
+                *cognition_router.routes,
+                *visualization_router.routes,
                 *handwriting_router.routes,
                 *study_bank_router.routes,
                 *study_session_router.routes,
