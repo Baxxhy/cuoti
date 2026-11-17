@@ -1,3 +1,4 @@
-FROM cuoti-submission:runtime-20261023
+ARG CORE_IMAGE=cuoti-python:core-20261117
+FROM ${CORE_IMAGE}
 COPY payload/ /opt/
 HEALTHCHECK --interval=20s --timeout=5s --start-period=600s CMD /opt/python/bin/python3.13 -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/readyz',timeout=3)" || exit 1

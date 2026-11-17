@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import subprocess
@@ -12,15 +13,30 @@ from cuoti_backend.protocol import ApiError
 from sqlalchemy import create_engine, text
 
 
-def test_packaged_historical_schema_matches_reference():
-    original = Path(__file__).resolve().parents[2] / "backend-cangjie/schema"
-    for source in original.glob("*.sql"):
+def test_packaged_historical_schema_integrity():
+    # Hashes were recorded from the audited, unchanged historical resources.
+    # The Python source distribution must also test without a Cangjie tree.
+    expected = {
+        "schema/001_initial.sql": "f2ef80eec6c1f51f5aa0c4ff24a3fd21921be4ba7624b6799d6ce2cb22a0c5d1",
+        "schema/006_learning_tasks.sql": "540698030e6049a82fa8f4fa7790d480a949a4cdc669b699be2a05245328dac7",
+        "schema/007_self_checks.sql": "f790c1c377b78c3d692887ef9d3509aacfd9e1915c03410339ef228dfa13941b",
+        "schema/008_task_handwriting.sql": "e22c69d12b5d52618ead03064a24b6c35a3b43f046b8fb63c685198b9477c89f",
+        "schema/009_task_sources.sql": "f274617b6eb7713fdd2fcba4eedb3b6043b04cd4149f3ecf18200b040d7ac0c0",
+        "schema/010_study_sessions.sql": "ecd457ba041c2b23b635266200159eb5b42f73aede3733fe714471ae2a27a304",
+        "schema/012_personal_learning.sql": "4af0040d8d04c71cf647987cba512f77a12c2ffe25869a9ce915b6b4c939c557",
+        "knowledge_seed.json": "54f7a19f05cf8a63c20db22a379ff5560a08c58547313edaee14b59d8c71db91",
+    }
+    for relative, digest in expected.items():
         assert (
-            schema.RESOURCES / "schema" / source.name
-        ).read_bytes() == source.read_bytes()
-    assert (schema.RESOURCES / "knowledge_seed.json").read_bytes() == (
-        original / "knowledge_seed.json"
-    ).read_bytes()
+            hashlib.sha256((schema.RESOURCES / relative).read_bytes()).hexdigest()
+            == digest
+        )
+    original = Path(__file__).resolve().parents[2] / "backend-cangjie/schema"
+    if original.is_dir():
+        for relative in expected:
+            assert (schema.RESOURCES / relative).read_bytes() == (
+                original / Path(relative).name
+            ).read_bytes()
 
 
 @pytest.mark.mysql

@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
+umask 077
 cd "$(dirname "$0")"
 command -v docker >/dev/null || { echo '请先安装并启动 Docker Engine。'; exit 1; }
 docker info >/dev/null
+image=${CUOTI_IMAGE:-cuoti-python:20261117}
+qdrant_image=${CUOTI_QDRANT_IMAGE:-cuoti-qdrant:20261023}
 if [[ ! -f .env ]]; then
   cp configuration.env.example .env
   chmod 600 .env
@@ -10,11 +13,11 @@ if [[ ! -f .env ]]; then
   echo '也可以保持空值启动基础页面；AI 功能需要有效密钥和网络。'
   exit 0
 fi
-if ! docker image inspect cuoti-submission:20261023 >/dev/null 2>&1; then
+if ! docker image inspect "$image" >/dev/null 2>&1; then
   echo '正在导入交付镜像，请耐心等待。'
   docker load -i images.tar.gz
 fi
-if ! docker image inspect cuoti-qdrant:20261023 >/dev/null 2>&1; then docker load -i images.tar.gz; fi
+if ! docker image inspect "$qdrant_image" >/dev/null 2>&1; then docker load -i images.tar.gz; fi
 docker network inspect cuoti-delivery >/dev/null 2>&1 || docker network create --label app=cuoti-delivery cuoti-delivery >/dev/null
 for volume in cuoti-delivery-data cuoti-delivery-index; do docker volume inspect "$volume" >/dev/null 2>&1 || docker volume create --label app=cuoti-delivery "$volume" >/dev/null; done
 for name in cuoti-delivery-qdrant cuoti-delivery-app; do
@@ -24,12 +27,22 @@ for name in cuoti-delivery-qdrant cuoti-delivery-app; do
  fi
 done
 if docker container inspect cuoti-delivery-qdrant >/dev/null 2>&1; then docker start cuoti-delivery-qdrant >/dev/null
-else docker run -d --name cuoti-delivery-qdrant --label app=cuoti-delivery --network cuoti-delivery --network-alias qdrant --restart unless-stopped -v cuoti-delivery-index:/qdrant/storage cuoti-qdrant:20261023 >/dev/null; fi
+else docker run -d --name cuoti-delivery-qdrant --label app=cuoti-delivery --network cuoti-delivery --network-alias qdrant --restart unless-stopped -v cuoti-delivery-index:/qdrant/storage "$qdrant_image" >/dev/null; fi
 if docker container inspect cuoti-delivery-app >/dev/null 2>&1; then
  echo '正在重建交付容器以读取最新配置，学习数据保留在独立卷中。'
- docker stop -t 60 cuoti-delivery-app >/dev/null
+ # Snapshot the stopped volume, including the original secrets and images.
+ # A failed backup keeps the old container and resumes it without replacement.
+ mkdir -p backups
+ chmod 700 backups
+ archive="data-$(date -u +%Y%m%dT%H%M%SZ).tar.gz"
+ docker stop -t 120 cuoti-delivery-app >/dev/null
+ if ! { docker run --rm --entrypoint /bin/tar -e LD_LIBRARY_PATH= -v cuoti-delivery-data:/data:ro "$image" -czf - -C /data . >"backups/$archive.partial" && gzip -t "backups/$archive.partial" && mv "backups/$archive.partial" "backups/$archive" && chmod 600 "backups/$archive"; }; then
+  docker start cuoti-delivery-app >/dev/null
+  echo '数据卷备份失败，已恢复旧容器；未进行替换。' >&2
+  exit 1
+ fi
  docker rm cuoti-delivery-app >/dev/null
 fi
-docker run -d --name cuoti-delivery-app --label app=cuoti-delivery --network cuoti-delivery --restart unless-stopped --env-file .env -e CANGJIE_QDRANT_URL=http://qdrant:6333 -v cuoti-delivery-data:/data -p "${CUOTI_BIND:-127.0.0.1}:${CUOTI_PORT:-5175}:8080" cuoti-submission:20261023 >/dev/null
-echo "正在初始化。访问：http://127.0.0.1:${CUOTI_PORT:-5175}；首次启动需等待数据库初始化。"
+docker run -d --name cuoti-delivery-app --label app=cuoti-delivery --network cuoti-delivery --restart unless-stopped --env-file .env -e CUOTI_QDRANT_URL=http://qdrant:6333 -v cuoti-delivery-data:/data -p "${CUOTI_BIND:-127.0.0.1}:${CUOTI_PORT:-5175}:8080" "$image" >/dev/null
+echo "Python 后端正在启动。访问：http://127.0.0.1:${CUOTI_PORT:-5175}；首次启动需等待数据库初始化。"
 echo '运行 bash check.sh 查看就绪状态；停止使用 bash stop.sh。'

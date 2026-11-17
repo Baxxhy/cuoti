@@ -5,14 +5,15 @@ services:
     volumes: [index:/qdrant/storage]
     restart: unless-stopped
   app:
-    image: cuoti-submission:20261023
+    image: ${CUOTI_IMAGE:-cuoti-python:20261117}
     env_file: .env
     environment:
-      CANGJIE_QDRANT_URL: http://qdrant:6333
+      CUOTI_QDRANT_URL: http://qdrant:6333
     ports: ["127.0.0.1:5175:8080"]
     volumes: [data:/data]
     depends_on: [qdrant]
     restart: unless-stopped
+    stop_grace_period: 120s
 volumes:
   data: {}
   index: {}

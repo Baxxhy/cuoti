@@ -1,8 +1,11 @@
 FROM ubuntu:22.04
 COPY payload/ /opt/
+COPY payload/fonts/noto/ /usr/share/fonts/opentype/noto/
+COPY payload/fontconfig/ /etc/fonts/
 ENV PATH=/opt/python/bin:/opt/mysql/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     PYTHONHOME=/opt/python LD_LIBRARY_PATH=/opt/native \
-    SSL_CERT_FILE=/opt/certs/ca-certificates.crt LANG=C.UTF-8
+    SSL_CERT_FILE=/opt/certs/ca-certificates.crt LANG=C.UTF-8 \
+    ZHIWEI_PDF_CHROMIUM=/opt/chromium/chrome
 WORKDIR /opt/app
 EXPOSE 8080
 VOLUME ["/data"]

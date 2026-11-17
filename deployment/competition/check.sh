@@ -1,4 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
-docker inspect --format '应用状态：{{.State.Status}}；健康检查：{{if .State.Health}}{{.State.Health.Status}}{{end}}' cuoti-delivery-app
-docker exec cuoti-delivery-app /opt/python/bin/python3.13 -c 'import urllib.request,json; urls=[("业务", "http://127.0.0.1:8002/readyz"),("算法","http://127.0.0.1:8012/livez"),("检索计算","http://127.0.0.1:8011/health"),("检索存储","http://qdrant:6333/"),("页面","http://127.0.0.1:8080/")]; [(urllib.request.urlopen(u,timeout=10).read(),print(n+"：可访问")) for n,u in urls]; print("AI 请求还需有效密钥；服务可访问不代表模型调用已成功。")'
+container=${CUOTI_CONTAINER_NAME:-cuoti-delivery-app}
+docker inspect --format '应用状态：{{.State.Status}}；健康检查：{{if .State.Health}}{{.State.Health.Status}}{{end}}' "$container"
+docker exec -i "$container" /opt/python/bin/python3.13 - <<'PY'
+import json
+import urllib.request
+opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+for name, url in [
+    ('Python 业务后端', 'http://127.0.0.1:8002/livez'),
+    ('MySQL 结构', 'http://127.0.0.1:8002/readyz'),
+    ('检索存储', 'http://qdrant:6333/'),
+    ('页面', 'http://127.0.0.1:8080/'),
+]:
+    with opener.open(url, timeout=10) as response:
+        if name == 'Python 业务后端':
+            assert json.load(response)['service'] == 'cuoti-python'
+    print(name + '：可访问')
+from pathlib import Path
+if Path('/opt/retrieval/bin/python').exists():
+    opener.open('http://127.0.0.1:8011/health', timeout=10).close()
+    print('BGE 检索计算：可访问')
+else:
+    print('未随镜像附带本地 BGE；请配置外部检索计算服务。')
+print('健康检查不代表模型输出质量；真实调用需有效配置。')
+PY

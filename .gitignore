@@ -47,3 +47,6 @@ reports/*.xlsx
 # Local competition delivery archives and private review credentials
 /docs/competition/deliverables/程序包/*.zip
 /docs/competition/deliverables/程序包/*评审专用*
+
+# Private cold backups from competition-container updates
+deployment/competition/backups/
