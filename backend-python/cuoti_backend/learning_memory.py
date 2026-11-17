@@ -15,64 +15,16 @@ def first(db, table, sql, params):
 
 
 def task_fingerprint(db, id, owner):
-    q = first(
-        db, "questions", "SELECT * FROM questions WHERE id=? AND user_id=?", [id, owner]
-    )
-    if not q:
-        return ""
-    work = first(
-        db,
-        "student_works",
-        "SELECT * FROM student_works WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1",
-        [id],
-    )
-    steps = select_rows(
-        db,
-        "student_steps",
-        "SELECT * FROM student_steps WHERE work_id=(SELECT id FROM student_works WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1) ORDER BY step_index,id",
-        [id],
-    )
-    assets = select_rows(
-        db,
-        "question_assets",
-        "SELECT * FROM question_assets WHERE question_id=? AND kind IN ('crop','question_figure') ORDER BY created_at,id",
-        [id],
-    )
-    analysis = first(
-        db,
-        "problem_analyses",
-        "SELECT * FROM problem_analyses WHERE question_id=?",
-        [id],
-    )
-    refs = select_rows(
-        db,
-        "reference_steps",
-        "SELECT r.* FROM reference_steps r JOIN problem_analyses a ON a.id=r.analysis_id WHERE a.question_id=? ORDER BY r.step_index,r.id",
-        [id],
-    )
-    diagnosis = first(
-        db,
-        "diagnoses",
-        "SELECT * FROM diagnoses WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1",
-        [id],
-    )
-    source = [
-        q[key]
-        for key in [
-            "question_text",
-            "subject",
-            "grade",
-            "question_type",
-            "student_answer",
-            "options",
-            "knowledge_points",
-            "confirmed",
-            "status",
-        ]
-    ]
-    return digest(
-        stamp_compact([*source, work, steps, assets, analysis, refs, diagnosis])
-    )
+    from .protocol import ApiError
+    from .task_sources import fingerprint_fields, load_snapshot
+
+    try:
+        snapshot = load_snapshot(db, id, owner, lock=False)
+    except ApiError as error:
+        if error.status == 404:
+            return ""
+        raise
+    return digest(stamp_compact(fingerprint_fields(snapshot)))
 
 
 def sorted_json(value):

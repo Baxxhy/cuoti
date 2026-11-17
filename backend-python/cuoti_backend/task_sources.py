@@ -4,7 +4,7 @@ import json
 
 from .learning_evidence import stamp_compact
 from .lessons import compact, digest
-from .question_data import execute, rows
+from .question_data import execute, rows, select_rows
 
 
 class TaskSourceError(Exception):
@@ -86,3 +86,67 @@ def capture_source(db, task, current, origin="legacy_revalidated"):
         [task["id"], task["input_fingerprint"], origin, compact(current)],
     )
     return current
+
+
+def _first(db, table, sql, params):
+    values = select_rows(db, table, sql, params)
+    return values[0] if values else None
+
+
+def load_snapshot(db, id, owner, *, lock=True):
+    q = _first(
+        db,
+        "questions",
+        "SELECT * FROM questions WHERE id=? AND user_id=?"
+        + (" FOR UPDATE" if lock else ""),
+        [id, owner],
+    )
+    if not q:
+        from .protocol import ApiError
+
+        raise ApiError(404, "题目不存在或无权访问")
+    work = _first(
+        db,
+        "student_works",
+        "SELECT * FROM student_works WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1",
+        [id],
+    )
+    steps = select_rows(
+        db,
+        "student_steps",
+        "SELECT * FROM student_steps WHERE work_id=(SELECT id FROM student_works WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1) ORDER BY step_index,id",
+        [id],
+    )
+    assets = select_rows(
+        db,
+        "question_assets",
+        "SELECT * FROM question_assets WHERE question_id=? AND kind IN ('crop','question_figure') ORDER BY created_at,id",
+        [id],
+    )
+    analysis = _first(
+        db,
+        "problem_analyses",
+        "SELECT * FROM problem_analyses WHERE question_id=?",
+        [id],
+    )
+    refs = select_rows(
+        db,
+        "reference_steps",
+        "SELECT r.* FROM reference_steps r JOIN problem_analyses a ON a.id=r.analysis_id WHERE a.question_id=? ORDER BY r.step_index,r.id",
+        [id],
+    )
+    diagnosis = _first(
+        db,
+        "diagnoses",
+        "SELECT * FROM diagnoses WHERE question_id=? ORDER BY created_at DESC,id DESC LIMIT 1",
+        [id],
+    )
+    return {
+        "question": q,
+        "work": work,
+        "steps": steps,
+        "assets": assets,
+        "analysis": analysis,
+        "references": refs,
+        "diagnosis": diagnosis,
+    }

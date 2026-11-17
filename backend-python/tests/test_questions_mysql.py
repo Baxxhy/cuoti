@@ -2500,3 +2500,64 @@ def test_real_tutor_agent_dialogue_roundtrip(question_app):
             len(rows(db, "SELECT id FROM tutor_turns WHERE session_id=?", [sid])) == 3
         )
         assert not rows(db, "SELECT id FROM cognitive_updates WHERE question_id=?", [q])
+
+
+def test_task_source_capture_real_database(question_app):
+    from cuoti_backend.learning_memory import task_fingerprint
+    from cuoti_backend.protocol import ApiError
+    from cuoti_backend.task_sources import (
+        TaskSourceError,
+        capture_source,
+        load_snapshot,
+    )
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    other, _ = student()
+    q = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    tid = str(uuid4())
+    try:
+        with app.state.database.session() as db, db.begin():
+            current = load_snapshot(db, q, user["id"])
+            fingerprint = task_fingerprint(db, q, user["id"])
+            insert(
+                db,
+                "learning_tasks",
+                id=tid,
+                user_id=user["id"],
+                question_id=q,
+                input_fingerprint=fingerprint,
+                status="waiting_student",
+                step_id=str(uuid4()),
+                checkpoint={},
+                student_view={},
+                pending_action={},
+            )
+            task = {"id": tid, "input_fingerprint": fingerprint}
+            assert capture_source(db, task, current) == current
+            assert capture_source(db, task, current) == current
+            assert (
+                len(
+                    rows(
+                        db,
+                        "SELECT task_id FROM learning_task_sources WHERE task_id=?",
+                        [tid],
+                    )
+                )
+                == 1
+            )
+            with pytest.raises(ApiError):
+                load_snapshot(db, q, other["id"])
+        client.patch(
+            "/api/v1/questions/" + q, headers=headers, json={"question_text": "3x=18"}
+        )
+        with app.state.database.session() as db, pytest.raises(TaskSourceError):
+            capture_source(db, task, load_snapshot(db, q, user["id"]))
+    finally:
+        with app.state.database.session() as db, db.begin():
+            execute(db, "DELETE FROM learning_task_sources WHERE task_id=?", [tid])
+            execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])
