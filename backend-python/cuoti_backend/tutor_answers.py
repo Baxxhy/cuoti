@@ -18,7 +18,7 @@ from .variants import ensure_variant
 router = APIRouter(prefix="/api/v1/tutor/sessions")
 
 
-def handwriting(service, value, owner, sid):
+def handwriting(service, value, owner, sid, *, kind="tutor"):
     raw = text_value(value.get("handwriting_image_url", ""), 2048, trim=True)
     recognition = value.get("handwriting_recognition")
     if not raw:
@@ -26,7 +26,7 @@ def handwriting(service, value, owner, sid):
             raise ApiError(422, "手写识别结果缺少对应原图")
         return {"image_url": "", "recognition": None}
     path = raw.split("?", 1)[0]
-    prefix = f"/uploads/answers/{owner}/tutor/{sid}/handwriting-"
+    prefix = f"/uploads/answers/{owner}/{kind}/{sid}/handwriting-"
     if not re.fullmatch(re.escape(prefix) + r"[0-9a-f]{32}\.jpg", path):
         raise ApiError(422, "手写作答图片无效")
     try:

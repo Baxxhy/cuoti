@@ -22,6 +22,7 @@ from .learning_tasks import router as task_router
 from .lessons import router as lesson_router
 from .media import MediaStore
 from .media import router as media_router
+from .practice import router as practice_router
 from .protocol import ApiError
 from .question_routes import router as question_router
 from .questions import Questions
@@ -196,6 +197,7 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(practice_router)
     app.include_router(dataset_images_router)
     app.include_router(variant_attempt_router)
     app.include_router(journey_router)

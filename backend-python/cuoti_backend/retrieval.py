@@ -1,5 +1,6 @@
 """Database snapshots around existing BGE/Qdrant preparation and ranking."""
 
+from .protocol import ApiError
 from .question_data import rows, select_rows
 
 
@@ -70,6 +71,8 @@ def usable(source, candidate, kind):
 
 def prepare(service, db, question, analysis, kind, mode):
     compute = service.compute
+    if compute is None:
+        raise ApiError(503, "内部算法服务未配置")
     diagnoses = select_rows(
         db,
         "diagnoses",

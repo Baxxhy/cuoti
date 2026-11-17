@@ -3814,7 +3814,7 @@ def test_standalone_variant_attempt_contract_and_completion(question_app, monkey
     assert client.post(path, headers=headers, json={"answer": "2"}).status_code == 409
 
 
-def test_practice_images_and_alignment_provenance(question_app):
+def test_practice_images_and_alignment_provenance(question_app, monkeypatch):
     from pathlib import Path
 
     from cuoti_backend import practice_context
@@ -3827,7 +3827,7 @@ def test_practice_images_and_alignment_provenance(question_app):
     qid = client.post(
         "/api/v1/questions/manual",
         headers=headers,
-        json={"question_text": "3x=15", "correct_answer": "5"},
+        json={"question_text": "3x=15", "correct_answer": "5", "grade": "初一"},
     ).json()["data"]["id"]
     root = Path(app.state.settings.media_root) / "bank"
     app.state.settings.question_bank_root = str(root)
@@ -3896,12 +3896,20 @@ def test_practice_images_and_alignment_provenance(question_app):
                 "SELECT * FROM dataset_questions WHERE id=?",
                 [did],
             )[0]
-            prepared = {"target_knowledge_id": point}
+            prepared = {
+                "target_knowledge_id": point,
+                "target_knowledge_name": "一元一次方程",
+                "knowledge_match": ["一元一次方程"],
+                "target_skill": "解方程",
+                "error_match": [],
+            }
+            monkeypatch.setattr(practice_context, "preparation", lambda *a: prepared)
             trace = {
                 "source_question_fingerprint": practice_context.source_fingerprint(
                     db, source
                 )
             }
+            trace.update(prepared)
             practice_context.save_proof(
                 db, source, prepared, candidate, trace, "symbolic_linear"
             )
@@ -3924,6 +3932,97 @@ def test_practice_images_and_alignment_provenance(question_app):
                     "dataset_question_id"
                 ]
                 == did
+            )
+        from cuoti_backend import practice
+
+        with app.state.database.session() as db, db.begin():
+            execute(
+                db,
+                "DELETE FROM practice_recommendations WHERE dataset_question_id=?",
+                [did],
+            )
+        ranked = {
+            "question": candidate,
+            "knowledge_points": [{"name": "一元一次方程"}],
+            "dense_rank": 1,
+            "sparse_rank": 1,
+            "fusion_rank": 1,
+            "score_trace": {
+                "structure_similarity": 0.9,
+                "reranker_score": 0.8,
+                "mode_score": 0.7,
+            },
+        }
+        monkeypatch.setattr(practice, "candidates", lambda *a: {"ranked": [ranked]})
+        monkeypatch.setattr(
+            practice_context,
+            "aligned",
+            lambda *a: [{"id": did, "aligned": True, "method": "symbolic_linear"}],
+        )
+        recommend = client.post(
+            "/api/v1/practice/recommend",
+            headers=headers,
+            json={"mistake_id": qid, "mode": "reinforce", "debug": True},
+        )
+        assert recommend.status_code == 200, recommend.text
+        assert recommend.json()["data"]["question_id"] == did
+        attempt = {
+            "mistake_id": qid,
+            "question_id": did,
+            "mode": "reinforce",
+            "student_answer": "2",
+            "duration_seconds": 5,
+        }
+        graded = client.post("/api/v1/practice/attempt", headers=headers, json=attempt)
+        assert graded.status_code == 200, graded.text
+        assert (
+            graded.json()["data"]["correct"] is True
+            and graded.json()["data"]["mastery"] is not None
+        )
+        repeated = client.post(
+            "/api/v1/practice/attempt", headers=headers, json=attempt
+        )
+        assert (
+            repeated.status_code == 200
+            and repeated.json()["data"] == graded.json()["data"]
+        )
+        assert (
+            client.post(
+                "/api/v1/practice/attempt",
+                headers=headers,
+                json={**attempt, "student_answer": "9"},
+            ).status_code
+            == 409
+        )
+        cached = client.post(
+            "/api/v1/practice/recommend",
+            headers=headers,
+            json={"mistake_id": qid, "mode": "reinforce"},
+        )
+        assert (
+            cached.status_code == 200
+            and cached.json()["data"]["previous_answer"] == "2"
+        )
+        with app.state.database.session() as db:
+            assert (
+                len(
+                    rows(
+                        db,
+                        "SELECT id FROM dataset_practice_attempts WHERE mistake_id=?",
+                        [qid],
+                    )
+                )
+                == 1
+            )
+            assert (
+                len(
+                    rows(
+                        db,
+                        "SELECT id FROM cognitive_updates WHERE question_id=?",
+                        [qid],
+                    )
+                )
+                == 2
             )
         url = question_images(app.state.media, candidate)["image_urls"][0]
         unsupported = client.post(url)
@@ -3975,9 +4074,215 @@ def test_practice_images_and_alignment_provenance(question_app):
         with app.state.database.session() as db, db.begin():
             execute(
                 db,
+                "DELETE FROM dataset_practice_attempts WHERE dataset_question_id=?",
+                [did],
+            )
+            execute(
+                db,
                 "DELETE FROM practice_recommendations WHERE dataset_question_id=?",
                 [did],
             )
             execute(db, "DELETE FROM dataset_questions WHERE id=?", [did])
             execute(db, "DELETE FROM dataset_sources WHERE id=?", [sid])
             execute(db, "DELETE FROM knowledge_points WHERE id=?", [point])
+
+
+def test_generated_practice_recommend_attempt_and_receipt(question_app, monkeypatch):
+    app, client, student, _ = question_app
+    _, headers = student()
+    _, other = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    original = app.state.questions.compute.compute
+    calls = []
+    mode = {"fail": False, "stale": False}
+
+    def compute(operation, **values):
+        if operation == "retrieval_prepare":
+            return {"target_knowledge_id": "", "query": "方程"}
+        if operation == "generate_practice":
+            calls.append(operation)
+            if mode["fail"]:
+                return {"verified": False}
+            if mode["stale"]:
+                client.patch(
+                    "/api/v1/questions/" + qid,
+                    headers=headers,
+                    json={"question_text": "3x=18"},
+                )
+            return {
+                "verified": True,
+                "variant": {
+                    "question_text": "2x=4",
+                    "answer": "2",
+                    "explanation": "两边同除2",
+                    "reference_solution": ["x=2"],
+                    "options": [],
+                },
+                "generation": {},
+            }
+        return original(operation, **values)
+
+    monkeypatch.setattr(app.state.questions.compute, "compute", compute)
+    request = {"mistake_id": qid, "mode": "reinforce"}
+    assert (
+        client.post(
+            "/api/v1/practice/recommend", headers=other, json=request
+        ).status_code
+        == 404
+    )
+    assert (
+        client.post(
+            "/api/v1/practice/recommend",
+            headers=headers,
+            json={**request, "mode": "bad"},
+        ).status_code
+        == 422
+    )
+    generated = client.post("/api/v1/practice/recommend", headers=headers, json=request)
+    assert generated.status_code == 200, generated.text
+    item = generated.json()["data"]
+    assert item["generated"] is True and "answer" not in item
+    assert (
+        client.post("/api/v1/practice/recommend", headers=headers, json=request).json()[
+            "data"
+        ]["question_id"]
+        == item["question_id"]
+    )
+    assert len(calls) == 1
+    answer = {
+        **request,
+        "question_id": item["question_id"],
+        "student_answer": "2",
+        "duration_seconds": 3,
+    }
+    assert (
+        client.post("/api/v1/practice/attempt", headers=other, json=answer).status_code
+        == 404
+    )
+    assert (
+        client.post(
+            "/api/v1/practice/attempt",
+            headers=headers,
+            json={**answer, "duration_seconds": 1.5},
+        ).status_code
+        == 422
+    )
+    graded = client.post("/api/v1/practice/attempt", headers=headers, json=answer)
+    assert graded.status_code == 200, graded.text
+    assert (
+        graded.json()["data"]["correct"] is True
+        and graded.json()["data"]["mastery"] is not None
+    )
+    assert (
+        client.post("/api/v1/practice/attempt", headers=headers, json=answer).json()[
+            "data"
+        ]
+        == graded.json()["data"]
+    )
+    cached = client.post(
+        "/api/v1/practice/recommend", headers=headers, json=request
+    ).json()["data"]
+    assert (
+        cached["previous_result"] == graded.json()["data"]
+        and cached["previous_answer"] == "2"
+    )
+    retry = client.post(
+        "/api/v1/practice/attempt",
+        headers=headers,
+        json={**answer, "student_answer": "9"},
+    )
+    assert retry.status_code == 200 and retry.json()["data"]["mastery"] is None
+    assert "learning_note" in retry.json()["data"]
+    with app.state.database.session() as db:
+        assert (
+            len(rows(db, "SELECT id FROM cognitive_updates WHERE question_id=?", [qid]))
+            == 2
+        )
+        assert (
+            len(
+                rows(
+                    db,
+                    "SELECT id FROM variant_attempts WHERE variant_id=?",
+                    [item["question_id"]],
+                )
+            )
+            == 2
+        )
+    mode["fail"] = True
+    assert (
+        client.post(
+            "/api/v1/practice/recommend",
+            headers=headers,
+            json={**request, "force_new": True},
+        ).json()["data"]["question_id"]
+        == item["question_id"]
+    )
+    mode.update(fail=False, stale=True)
+    assert (
+        client.post(
+            "/api/v1/practice/recommend",
+            headers=headers,
+            json={**request, "force_new": True},
+        ).status_code
+        == 409
+    )
+    assert (
+        client.post(
+            "/api/v1/practice/attempt", headers=headers, json=answer
+        ).status_code
+        == 409
+    )
+
+
+@pytest.mark.skipif(
+    os.environ.get("CUOTI_TEST_LIVE_PRACTICE") != "1",
+    reason="live practice algorithm not enabled",
+)
+def test_live_generated_practice_recommendation(question_app, monkeypatch):
+    from cuoti_backend import practice_context
+
+    app, client, student, _ = question_app
+    app.state.algorithm_app.state.provider = None
+    _, headers = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={
+            "question_text": "解方程3x+2=17",
+            "correct_answer": "5",
+            "knowledge_points": ["一元一次方程"],
+            "grade": "初一",
+        },
+    ).json()["data"]["id"]
+    # Exercise the genuine generated fallback without relying on external retrieval availability.
+    monkeypatch.setattr(practice_context, "preparation", lambda *a: {})
+    response = client.post(
+        "/api/v1/practice/recommend",
+        headers=headers,
+        json={"mistake_id": qid, "mode": "reinforce"},
+    )
+    assert response.status_code == 200, response.text
+    result = response.json()["data"]
+    assert result["generated"] is True and result["stem"]
+    with app.state.database.session() as db:
+        from cuoti_backend.question_data import select_rows
+
+        variant = select_rows(
+            db,
+            "variant_questions",
+            "SELECT * FROM variant_questions WHERE id=?",
+            [result["question_id"]],
+        )[0]
+        assert variant["verified"] is True
+    assert (
+        client.post(
+            "/api/v1/practice/recommend",
+            headers=headers,
+            json={"mistake_id": qid, "mode": "reinforce"},
+        ).json()["data"]["question_id"]
+        == result["question_id"]
+    )
