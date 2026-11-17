@@ -99,3 +99,142 @@ def save_traces(db, task, result, budget, memory, domain):
                 compact(trace),
             ],
         )
+
+
+def save_images(db, task, result, view, next_step):
+    from copy import deepcopy
+
+    from .question_data import select_rows
+
+    def image(id):
+        found = select_rows(
+            db,
+            "learning_task_images",
+            "SELECT * FROM learning_task_images WHERE id=? AND task_id=? AND input_fingerprint=?",
+            [id, task["id"], task["input_fingerprint"]],
+        )
+        if not found:
+            raise ApiError(422, "这张作答照片不属于当前任务版本")
+        return found[0]
+
+    kind = (task.get("pending_action") or {}).get("kind")
+    if kind == "recognize_handwriting":
+        draft = view.get("handwriting") or {}
+        original = image(task["pending_action"].get("handwriting_id", ""))
+        if draft.get("id") != original["id"] or not isinstance(
+            draft.get("recognition"), dict
+        ):
+            raise ApiError(503, "手写转写结果格式不正确")
+        execute(
+            db,
+            "UPDATE learning_task_images SET recognition=?,confirmation_step_id=?,updated_at=UTC_TIMESTAMP(6) WHERE id=?",
+            [compact(draft["recognition"]), next_step, original["id"]],
+        )
+        draft["image_url"] = "/" + original["original_path"]
+        view["handwriting"] = draft
+    if (
+        kind
+        not in {
+            "visualize",
+            "observe_visualization",
+            "close_visualization",
+            "hint",
+            "reveal",
+            "resume",
+        }
+        or (task.get("checkpoint") or {}).get("phase", "")
+        != (result.get("checkpoint") or {}).get("phase", "")
+        or view.get("input_kind") != "text"
+    ):
+        return
+    draft = (task.get("student_view") or {}).get("handwriting") or {}
+    if not draft or view.get("handwriting"):
+        return
+    original = image(draft.get("id", ""))
+    if original.get("confirmation_step_id") != task["step_id"]:
+        return
+    execute(
+        db,
+        "UPDATE learning_task_images SET confirmation_step_id=?,updated_at=UTC_TIMESTAMP(6) WHERE id=?",
+        [next_step, original["id"]],
+    )
+    view["handwriting"] = deepcopy(draft)
+
+
+def save_result(service, db, task, result, budget, memory, domain):
+    """Caller locks the task/source and owns commit/rollback and lease validation."""
+    from .learning_evidence import apply_evidence
+    from .question_data import rows, select_rows
+    from .task_evidence import apply_mastery, learning_admission
+
+    save_traces(db, task, result, budget, memory, domain)
+    eligible = learning_admission(db, task, result)
+    state = result.get("checkpoint") or {}
+    owner, question_id = task["user_id"], task["question_id"]
+    if eligible:
+        question = select_rows(
+            db,
+            "questions",
+            "SELECT * FROM questions WHERE id=? AND user_id=?",
+            [question_id, owner],
+        )
+        if not question:
+            raise ApiError(409, "题目来源已变化")
+        if state.get("workflow_version") != "langgraph-learning-v1":
+            budget.check("before_learning")
+            apply_evidence(
+                service,
+                db,
+                owner,
+                question[0],
+                {
+                    "near_transfer": True,
+                    "hint_level": 0,
+                    "strategy": "verified_condition_contrast",
+                    "learning_task_id": task["id"],
+                    "action_request_id": task["active_request"],
+                },
+                compute_timeout=budget.timeout_seconds(5, reserve_seconds=1),
+            )
+            budget.check("after_learning")
+        if not rows(
+            db,
+            "SELECT id FROM review_plans WHERE user_id=? AND question_id=? AND status='pending' LIMIT 1",
+            [owner, question_id],
+        ):
+            execute(
+                db,
+                "INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP()+INTERVAL 3 DAY,3,'单条件对照已独立完成，稍后再确认稳定性','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",
+                [str(uuid4()), owner, question_id],
+            )
+    apply_mastery(service, db, task, result, budget, eligible)
+    if task["active_request"] != "__initial__":
+        execute(
+            db,
+            "UPDATE learning_task_actions SET result=?,status='applied',updated_at=UTC_TIMESTAMP(6) WHERE task_id=? AND request_id=? AND status='pending'",
+            [compact(result), task["id"], task["active_request"]],
+        )
+    budget.check("before_checkpoint")
+    next_step = str(uuid4())
+    view = result.get("student_view") or {}
+    save_images(db, task, result, view, next_step)
+    execute(
+        db,
+        "UPDATE learning_tasks SET status=?,version=version+1,step_id=?,checkpoint=?,student_view=?,learning_applied=?,lease_token=NULL,lease_until=NULL,exit_reason=?,updated_at=UTC_TIMESTAMP(6) WHERE id=?",
+        [
+            result["status"],
+            next_step,
+            compact(state),
+            compact(view),
+            eligible or task.get("learning_applied") is True,
+            result.get("exit_reason") or "",
+            task["id"],
+        ],
+    )
+    budget.check("after_checkpoint")
+    execute(
+        db,
+        "UPDATE agent_runs r JOIN learning_task_steps s ON s.agent_run_id=r.id SET r.result=JSON_SET(r.result,'$.native_elapsed_ms',CAST(? AS UNSIGNED)) WHERE s.task_id=? AND s.request_id=?",
+        [budget.elapsed_ms(), task["id"], task["active_request"]],
+    )
+    budget.check("after_audit")

@@ -2619,6 +2619,157 @@ def test_task_source_capture_real_database(question_app):
                 )
                 == 1
             )
+        from cuoti_backend.task_budget import TaskBudgetExceeded
+        from cuoti_backend.task_results import save_result
+
+        # All result/image/action writes are deliberately rolled back on session close.
+        with app.state.database.session() as db:
+            current_task = select_rows(
+                db,
+                "learning_tasks",
+                "SELECT * FROM learning_tasks WHERE id=? FOR UPDATE",
+                [tid],
+            )[0]
+            request, image_id = str(uuid4()), str(uuid4())
+            insert(
+                db,
+                "learning_task_images",
+                id=image_id,
+                task_id=tid,
+                request_id=request,
+                input_fingerprint=fingerprint,
+                upload_step_id=current_task["step_id"],
+                original_path="uploads/test-task.png",
+                sha256="0" * 64,
+            )
+            insert(
+                db,
+                "learning_task_actions",
+                task_id=tid,
+                request_id=request,
+                body_hash="0" * 64,
+                kind="recognize_handwriting",
+                input_version=1,
+                input_step_id=current_task["step_id"],
+                body={},
+                status="pending",
+            )
+            current_task.update(
+                active_request=request,
+                pending_action={
+                    "kind": "recognize_handwriting",
+                    "handwriting_id": image_id,
+                },
+            )
+            image_result = {
+                "status": "waiting_student",
+                "checkpoint": {"phase": "repair"},
+                "student_view": {
+                    "input_kind": "text",
+                    "handwriting": {"id": image_id, "recognition": {"text": "x=5"}},
+                },
+                "traces": [],
+                "elapsed_ms": 1,
+                "usage": {},
+                "exit_reason": "",
+            }
+
+            class ExpiredAtCheckpoint(TaskBudget):
+                def check(self, stage):
+                    if stage == "after_checkpoint":
+                        raise TaskBudgetExceeded(stage)
+                    super().check(stage)
+
+            with pytest.raises(TaskBudgetExceeded), db.begin_nested():
+                save_result(
+                    None,
+                    db,
+                    current_task,
+                    image_result,
+                    ExpiredAtCheckpoint(),
+                    {"entries": []},
+                    {},
+                )
+            assert (
+                rows(db, "SELECT version FROM learning_tasks WHERE id=?", [tid])[0][
+                    "version"
+                ]
+                == 1
+            )
+            assert (
+                rows(
+                    db,
+                    "SELECT status FROM learning_task_actions WHERE task_id=? AND request_id=?",
+                    [tid, request],
+                )[0]["status"]
+                == "pending"
+            )
+            assert (
+                rows(
+                    db,
+                    "SELECT confirmation_step_id FROM learning_task_images WHERE id=?",
+                    [image_id],
+                )[0]["confirmation_step_id"]
+                is None
+            )
+            save_result(
+                None, db, current_task, image_result, TaskBudget(), {"entries": []}, {}
+            )
+            saved = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            assert saved["version"] == 2 and saved["lease_token"] is None
+            assert (
+                saved["student_view"]["handwriting"]["image_url"]
+                == "/uploads/test-task.png"
+            )
+            assert (
+                rows(
+                    db,
+                    "SELECT status FROM learning_task_actions WHERE task_id=? AND request_id=?",
+                    [tid, request],
+                )[0]["status"]
+                == "applied"
+            )
+            assert (
+                rows(
+                    db,
+                    "SELECT confirmation_step_id FROM learning_task_images WHERE id=?",
+                    [image_id],
+                )[0]["confirmation_step_id"]
+                == saved["step_id"]
+            )
+            saved.update(active_request="__initial__", pending_action={"kind": "hint"})
+            support_result = {
+                "status": "waiting_student",
+                "checkpoint": {"phase": "repair"},
+                "student_view": {"input_kind": "text"},
+                "traces": [],
+                "elapsed_ms": 1,
+                "usage": {},
+            }
+            save_result(
+                None, db, saved, support_result, TaskBudget(), {"entries": []}, {}
+            )
+            supported = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            assert supported["student_view"]["handwriting"]["id"] == image_id
+            assert (
+                rows(
+                    db,
+                    "SELECT confirmation_step_id FROM learning_task_images WHERE id=?",
+                    [image_id],
+                )[0]["confirmation_step_id"]
+                == supported["step_id"]
+            )
+        with app.state.database.session() as db:
+            assert (
+                rows(db, "SELECT version FROM learning_tasks WHERE id=?", [tid])[0][
+                    "version"
+                ]
+                == 1
+            )
         client.patch(
             "/api/v1/questions/" + q, headers=headers, json={"question_text": "3x=18"}
         )
