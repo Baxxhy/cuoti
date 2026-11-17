@@ -2593,3 +2593,23 @@ def test_task_source_capture_real_database(question_app):
         with app.state.database.session() as db, db.begin():
             execute(db, "DELETE FROM learning_task_sources WHERE task_id=?", [tid])
             execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])
+
+
+def test_task_plan_candidates_real_database_scope(question_app):
+    from cuoti_backend.question_data import select_rows
+    from cuoti_backend.task_planning import plan_candidates
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    q = client.post(
+        "/api/v1/questions/manual", headers=headers, json={"question_text": "3x=15"}
+    ).json()["data"]["id"]
+    with app.state.database.session() as db:
+        question = select_rows(
+            db, "questions", "SELECT * FROM questions WHERE id=?", [q]
+        )[0]
+        candidates = plan_candidates(db, user["id"], question, [])
+        assert len(candidates) <= 200
+        assert all(
+            c["subject"] == question["subject"] and c["id"] != q for c in candidates
+        )
