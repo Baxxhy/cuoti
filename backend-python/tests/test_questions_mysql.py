@@ -2502,7 +2502,7 @@ def test_real_tutor_agent_dialogue_roundtrip(question_app):
         assert not rows(db, "SELECT id FROM cognitive_updates WHERE question_id=?", [q])
 
 
-def test_task_source_capture_real_database(question_app):
+def test_task_source_capture_real_database(question_app, monkeypatch):
     from cuoti_backend.learning_memory import task_fingerprint
     from cuoti_backend.protocol import ApiError
     from cuoti_backend.task_sources import (
@@ -2770,6 +2770,89 @@ def test_task_source_capture_real_database(question_app):
                 ]
                 == 1
             )
+        from types import SimpleNamespace
+
+        from cuoti_backend import task_worker
+
+        original_claim = task_worker.claim_lease
+
+        def claim_in_transaction(db, task_id, budget):
+            # Queue while holding the row lock, so the legacy worker cannot race this test.
+            execute(
+                db,
+                "UPDATE learning_tasks SET status='queued',active_request='__initial__' WHERE id=?",
+                [task_id],
+            )
+            return original_claim(db, task_id, budget)
+
+        monkeypatch.setattr(task_worker, "claim_lease", claim_in_transaction)
+        computed = []
+
+        def compute_task(operation, **payload):
+            computed.append(payload)
+            assert operation == "learning_task"
+            return {
+                "status": "waiting_student",
+                "checkpoint": {"phase": "repair"},
+                "student_view": {"input_kind": "text"},
+                "traces": [],
+                "elapsed_ms": 1,
+                "usage": {},
+            }
+
+        service = SimpleNamespace(
+            database=app.state.database,
+            media=app.state.questions.media,
+            compute=SimpleNamespace(compute=compute_task),
+        )
+        assert task_worker.run_task(service, tid)
+        assert computed[0]["timeout"] <= 40 and computed[0]["task_budget_ms"] <= 38000
+        with app.state.database.session() as db:
+            completed = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            assert (
+                completed["version"] == 2 and completed["status"] == "waiting_student"
+            )
+
+        def unavailable(*a, **kw):
+            raise ApiError(503, "模拟上游不可用")
+
+        service.compute = SimpleNamespace(compute=unavailable)
+        assert not task_worker.run_task(service, tid)
+        with app.state.database.session() as db:
+            failed = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            assert (
+                failed["status"] == "failed"
+                and failed["exit_reason"] == "compute_api_503"
+            )
+            assert failed["student_view"]["secondary_actions"] == ["resume"]
+            assert failed["lease_token"] is None
+            task["version"] = failed["version"]
+        replacement_lease = str(uuid4())
+
+        def lose_lease(operation, **payload):
+            with app.state.database.session() as db, db.begin():
+                execute(
+                    db,
+                    "UPDATE learning_tasks SET lease_token=? WHERE id=?",
+                    [replacement_lease, tid],
+                )
+            return compute_task(operation, **payload)
+
+        service.compute = SimpleNamespace(compute=lose_lease)
+        assert not task_worker.run_task(service, tid)
+        with app.state.database.session() as db:
+            retained = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            assert retained["lease_token"] == replacement_lease
+            assert (
+                retained["status"] == "running"
+                and retained["version"] == task["version"]
+            )
         client.patch(
             "/api/v1/questions/" + q, headers=headers, json={"question_text": "3x=18"}
         )
@@ -2779,7 +2862,7 @@ def test_task_source_capture_real_database(question_app):
             assert not validate_version(db, task, load_snapshot(db, q, user["id"]))
             assert rows(
                 db, "SELECT status,version FROM learning_tasks WHERE id=?", [tid]
-            )[0] == {"status": "stale", "version": 2}
+            )[0] == {"status": "stale", "version": task["version"]}
     finally:
         with app.state.database.session() as db, db.begin():
             runs = rows(
