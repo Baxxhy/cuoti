@@ -16,6 +16,7 @@ from .config import Settings
 from .database import Database
 from .dataset_images import router as dataset_images_router
 from .diagnostics import router as diagnostic_router
+from .handwriting import router as handwriting_router
 from .insights import router as insight_router
 from .journey import router as journey_router
 from .learning_tasks import router as task_router
@@ -201,6 +202,7 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(handwriting_router)
     app.include_router(study_bank_router)
     app.include_router(study_session_router)
     app.include_router(review_filter_router)
@@ -268,6 +270,7 @@ def create_app(settings: Settings | None = None):
                 *variant_attempt_router.routes,
                 *review_filter_router.routes,
                 *review_router.routes,
+                *handwriting_router.routes,
                 *study_bank_router.routes,
                 *study_session_router.routes,
             ]:

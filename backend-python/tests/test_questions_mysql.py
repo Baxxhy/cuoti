@@ -4532,3 +4532,235 @@ def test_review_search_saved_ranges_and_limits(question_app):
                 old.json()["data"]
                 == client.get(endpoint, headers=headers).json()["data"]
             )
+
+
+def test_shared_handwriting_review_tutor_practice_and_failure(
+    question_app, monkeypatch
+):
+    from pathlib import Path
+
+    from cuoti_backend.lessons import compact
+    from cuoti_backend.practice_context import source_version
+    from cuoti_backend.question_data import select_rows
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    _, other = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    pid, sid, vid = (str(uuid4()) for _ in range(3))
+    activity = {
+        "id": "write",
+        "type": "short_answer",
+        "title": "写出结果",
+        "question": "3x=15",
+        "options": [],
+    }
+    with app.state.database.session() as db, db.begin():
+        execute(
+            db,
+            "INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP(),1,'测试','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",
+            [pid, user["id"], qid],
+        )
+        insert(
+            db,
+            "tutor_sessions",
+            id=sid,
+            user_id=user["id"],
+            question_id=qid,
+            stage="understanding",
+            hint_level=0,
+            turn_count=0,
+            mastery_score=0,
+            state={"understanding_plan": [activity]},
+            status="active",
+        )
+        question = select_rows(
+            db, "questions", "SELECT * FROM questions WHERE id=?", [qid]
+        )[0]
+        psid = insert(
+            db,
+            "tutor_sessions",
+            user_id=user["id"],
+            question_id=qid,
+            stage="standalone_practice",
+            hint_level=0,
+            turn_count=0,
+            mastery_score=0,
+            state={},
+            status="standalone",
+        )
+        insert(
+            db,
+            "variant_questions",
+            id=vid,
+            question_id=qid,
+            session_id=psid,
+            transfer_type="near",
+            question_text="2x=4",
+            answer="2",
+            explanation="同除2",
+            reference_solution=[],
+            verified=True,
+            generation_metadata={
+                "mode": "reinforce",
+                "source_version": source_version(db, question),
+                "options": [],
+            },
+        )
+    original = app.state.questions.compute.compute
+    mode = {"fail": False}
+    calls = []
+    recognition = {
+        "final_answer": "5",
+        "steps": ["x=5"],
+        "transcription": "x=5",
+        "confidence": 0.9,
+        "uncertain": False,
+    }
+
+    def compute(operation, **values):
+        if operation == "recognize_handwriting":
+            calls.append(values["text"])
+            if mode["fail"]:
+                raise RuntimeError("synthetic provider failure")
+            return {"recognition": recognition}
+        return original(operation, **values)
+
+    monkeypatch.setattr(app.state.questions.compute, "compute", compute)
+    raw = picture()
+    path = "/api/v1/answers/handwriting"
+
+    def upload(fields, auth=headers):
+        return client.post(
+            path,
+            headers=auth,
+            data=fields,
+            files={"file": ("过程.png", raw, "image/png")},
+        )
+
+    review = {"context_type": "review", "context_id": pid}
+    assert upload(review, other).status_code == 404
+    accepted = upload(review)
+    assert accepted.status_code == 200, accepted.text
+    data = accepted.json()["data"]
+    assert data["recognition"] == recognition
+    assert client.get(data["image_url"]).status_code == 200
+    originals = list(Path(app.state.settings.media_root).rglob("*.original.png"))
+    assert len(originals) == 1 and originals[0].read_bytes() == raw
+    result = client.post(
+        "/api/v1/reviews/" + pid + "/attempt",
+        headers=headers,
+        json={
+            "answer": "5",
+            "handwriting_image_url": data["image_url"],
+            "handwriting_recognition": recognition,
+        },
+    )
+    assert (
+        result.status_code == 200
+        and result.json()["data"]["handwriting_recognition"] == recognition
+    )
+    tutor = {"context_type": "tutor", "context_id": sid, "activity_id": "write"}
+    assert upload({**tutor, "activity_id": "outdated"}).status_code == 409
+    assert upload(tutor).status_code == 200
+    practice = {
+        "context_type": "practice",
+        "context_id": vid,
+        "mistake_id": qid,
+        "mode": "reinforce",
+    }
+    assert upload(practice).status_code == 200
+    with app.state.database.session() as db, db.begin():
+        execute(
+            db, "UPDATE questions SET options=? WHERE id=?", [compact(["A", "B"]), qid]
+        )
+    assert upload(review).status_code == 422
+    with app.state.database.session() as db, db.begin():
+        execute(db, "UPDATE questions SET options=JSON_ARRAY() WHERE id=?", [qid])
+    mode["fail"] = True
+    failed = upload(review)
+    assert failed.status_code == 503 and "照片已保留" in failed.text
+    assert len(list(Path(app.state.settings.media_root).rglob("*.original.png"))) == 4
+    assert (
+        len(list(Path(app.state.settings.media_root).rglob("handwriting-*.jpg"))) == 4
+    )
+    assert calls == ["3x=15", "3x=15", "2x=4", "3x=15"]
+    client.patch(
+        "/api/v1/questions/" + qid, headers=headers, json={"question_text": "3x=18"}
+    )
+    assert upload(tutor).status_code == 409
+
+
+@pytest.mark.skipif(
+    os.environ.get("CUOTI_TEST_REAL_HANDWRITING_UPLOAD") != "1",
+    reason="real handwriting upload not enabled",
+)
+def test_real_shared_handwriting_review_roundtrip(question_app):
+    from PIL import ImageDraw
+
+    app, client, student, _ = question_app
+    app.state.algorithm_app.state.provider = None
+    user, headers = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    pid = str(uuid4())
+    with app.state.database.session() as db, db.begin():
+        execute(
+            db,
+            "INSERT INTO review_plans (id,user_id,question_id,due_at,interval_days,reason,status,created_at,updated_at) VALUES (?,?,?,UTC_TIMESTAMP(),1,'真实识别验收','pending',UTC_TIMESTAMP(),UTC_TIMESTAMP())",
+            [pid, user["id"], qid],
+        )
+    canvas = Image.new("RGB", (900, 330), "white")
+    pen = ImageDraw.Draw(canvas)
+    for points in [
+        [(105, 95), (210, 225)],
+        [(215, 90), (110, 230)],
+        [(290, 130), (410, 128)],
+        [(290, 185), (410, 188)],
+        [
+            (660, 70),
+            (540, 70),
+            (525, 155),
+            (610, 150),
+            (655, 180),
+            (650, 225),
+            (610, 255),
+            (535, 250),
+        ],
+    ]:
+        pen.line(points, fill=(20, 50, 150), width=11, joint="curve")
+    buffer = io.BytesIO()
+    canvas.save(buffer, format="PNG")
+    response = client.post(
+        "/api/v1/answers/handwriting",
+        headers=headers,
+        data={"context_type": "review", "context_id": pid},
+        files={"file": ("合成手写作答.png", buffer.getvalue(), "image/png")},
+    )
+    assert response.status_code == 200, response.text
+    result = response.json()["data"]
+    recognition = result["recognition"]
+    assert "5" in recognition["transcription"] + recognition["final_answer"]
+    assert recognition["transcription"].strip() or recognition["final_answer"].strip()
+    confirmed = client.post(
+        "/api/v1/reviews/" + pid + "/attempt",
+        headers=headers,
+        json={
+            "answer": "5",
+            "handwriting_image_url": result["image_url"],
+            "handwriting_recognition": recognition,
+        },
+    )
+    assert confirmed.status_code == 200, confirmed.text
+    assert confirmed.json()["data"]["correct"] is True
+    print(
+        "real-handwriting upload and confirmed review passed; confidence:",
+        recognition["confidence"],
+    )
