@@ -2509,6 +2509,7 @@ def test_task_source_capture_real_database(question_app):
         TaskSourceError,
         capture_source,
         load_snapshot,
+        validate_version,
     )
 
     app, client, student, _ = question_app
@@ -2537,7 +2538,13 @@ def test_task_source_capture_real_database(question_app):
                 student_view={},
                 pending_action={},
             )
-            task = {"id": tid, "input_fingerprint": fingerprint}
+            task = {
+                "id": tid,
+                "input_fingerprint": fingerprint,
+                "status": "waiting_student",
+                "version": 1,
+            }
+            assert validate_version(db, task, current)
             assert capture_source(db, task, current) == current
             assert capture_source(db, task, current) == current
             assert (
@@ -2557,6 +2564,11 @@ def test_task_source_capture_real_database(question_app):
         )
         with app.state.database.session() as db, pytest.raises(TaskSourceError):
             capture_source(db, task, load_snapshot(db, q, user["id"]))
+        with app.state.database.session() as db, db.begin():
+            assert not validate_version(db, task, load_snapshot(db, q, user["id"]))
+            assert rows(
+                db, "SELECT status,version FROM learning_tasks WHERE id=?", [tid]
+            )[0] == {"status": "stale", "version": 2}
     finally:
         with app.state.database.session() as db, db.begin():
             execute(db, "DELETE FROM learning_task_sources WHERE task_id=?", [tid])

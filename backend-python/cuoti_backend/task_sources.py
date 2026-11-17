@@ -150,3 +150,48 @@ def load_snapshot(db, id, owner, *, lock=True):
         "references": refs,
         "diagnosis": diagnosis,
     }
+
+
+def validate_version(db, task, snapshot):
+    from .task_budget import stopped_view
+
+    q = snapshot["question"]
+    if (
+        task["input_fingerprint"] == digest(stamp_compact(fingerprint_fields(snapshot)))
+        and q["status"] != "archived"
+        and q["confirmed"] is True
+    ):
+        view = task.get("student_view") or {}
+        for block in view.get("prompt_blocks", []):
+            if (
+                block.get("kind") == "question"
+                and block.get("text") == q["question_text"]
+                and (task.get("checkpoint") or {}).get("phase") != "contrast"
+            ):
+                block.update(
+                    options=q["options"],
+                    question_type=q["question_type"],
+                    images=[
+                        asset["path"]
+                        for asset in snapshot["assets"]
+                        if asset["kind"] == "question_figure"
+                    ],
+                )
+        task["student_view"] = view
+        return True
+    if task.get("status") not in ["cancelled", "stale"]:
+        view = stopped_view("题目或学习依据已更新，请回原题重新开始")
+        execute(
+            db,
+            "UPDATE learning_tasks SET status='stale',version=version+1,lease_token=NULL,lease_until=NULL,student_view=?,exit_reason='input_changed',updated_at=UTC_TIMESTAMP(6) WHERE id=?",
+            [compact(view), task["id"]],
+        )
+        execute(
+            db,
+            "UPDATE learning_task_actions SET status='stale',updated_at=UTC_TIMESTAMP(6) WHERE task_id=? AND status='pending'",
+            [task["id"]],
+        )
+        task.update(
+            status="stale", student_view=view, version=task.get("version", 0) + 1
+        )
+    return False

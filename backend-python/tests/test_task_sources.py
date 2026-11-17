@@ -51,3 +51,37 @@ def test_existing_source_never_silently_replaced(monkeypatch):
             None, {"id": "task", "input_fingerprint": "new"}, source
         )
     assert error.value.reason == "source_fingerprint"
+
+
+def test_version_invalidation_preserves_cancelled_and_does_not_repeat(monkeypatch):
+    calls = []
+    monkeypatch.setattr(task_sources, "execute", lambda *args: calls.append(args))
+    q = dict.fromkeys(
+        [
+            "question_text",
+            "subject",
+            "grade",
+            "question_type",
+            "student_answer",
+            "options",
+            "knowledge_points",
+            "confirmed",
+            "status",
+        ],
+        "changed",
+    )
+    source = {
+        "question": q,
+        **dict.fromkeys(
+            ["work", "steps", "assets", "analysis", "references", "diagnosis"], None
+        ),
+    }
+    task = {"id": "task", "input_fingerprint": "old", "status": "running", "version": 7}
+    assert not task_sources.validate_version(None, task, source)
+    assert task["status"] == "stale" and task["version"] == 8 and len(calls) == 2
+    assert not task_sources.validate_version(None, task, source)
+    assert len(calls) == 2
+    assert not task_sources.validate_version(
+        None, {**task, "status": "cancelled"}, source
+    )
+    assert len(calls) == 2
