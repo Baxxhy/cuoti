@@ -2597,7 +2597,9 @@ def test_task_source_capture_real_database(question_app):
 
 def test_task_plan_candidates_real_database_scope(question_app):
     from cuoti_backend.question_data import select_rows
+    from cuoti_backend.task_context import prepare_context
     from cuoti_backend.task_planning import plan_candidates
+    from cuoti_backend.task_sources import load_snapshot
 
     app, client, student, _ = question_app
     user, headers = student()
@@ -2609,6 +2611,14 @@ def test_task_plan_candidates_real_database_scope(question_app):
             db, "questions", "SELECT * FROM questions WHERE id=?", [q]
         )[0]
         candidates = plan_candidates(db, user["id"], question, [])
+        context = prepare_context(
+            db, load_snapshot(db, q, user["id"], lock=False), user["id"]
+        )
+        assert context["question_id"] == q and context["expected"] == ""
+        assert context["practice_candidates"] == candidates
+        assert context["memory_snapshot"]["rule_version"] == "learning-memory-v1"
+        assert context["student_step_ids"] == []
+
         assert len(candidates) <= 200
         assert all(
             c["subject"] == question["subject"] and c["id"] != q for c in candidates
