@@ -172,7 +172,12 @@ def serve_media(request: Request, path: str):
                 "/uploads/answers/" + user.id + "/"
             ):
                 raise ApiError(404, "资源不存在或无权访问")
-    fd = store.open(full_path[1:])
+    return file_response(request, store, full_path[1:])
+
+
+def file_response(request, store, path):
+    full_path = request.url.path
+    fd = store.open(path)
     info = os.fstat(fd)
     length = info.st_size
     etag_data = f"{full_path[1:]}:{length}:{info.st_mtime_ns}:{info.st_ino}"

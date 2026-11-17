@@ -3812,3 +3812,172 @@ def test_standalone_variant_attempt_contract_and_completion(question_app, monkey
         "/api/v1/questions/" + qid, headers=headers, json={"question_text": "3x=18"}
     )
     assert client.post(path, headers=headers, json={"answer": "2"}).status_code == 409
+
+
+def test_practice_images_and_alignment_provenance(question_app):
+    from pathlib import Path
+
+    from cuoti_backend import practice_context
+    from cuoti_backend.dataset_images import question_images
+    from cuoti_backend.media import MediaStore
+    from cuoti_backend.question_data import select_rows
+
+    app, client, student, _ = question_app
+    user, headers = student()
+    qid = client.post(
+        "/api/v1/questions/manual",
+        headers=headers,
+        json={"question_text": "3x=15", "correct_answer": "5"},
+    ).json()["data"]["id"]
+    root = Path(app.state.settings.media_root) / "bank"
+    app.state.settings.question_bank_root = str(root)
+    bank = MediaStore(root, app.state.media.secret)
+    bank.write("one.png", picture())
+    sid, did, point = (str(uuid4()) for _ in range(3))
+    try:
+        with app.state.database.session() as db, db.begin():
+            insert(
+                db,
+                "dataset_sources",
+                id=sid,
+                key="migration-" + sid,
+                name="测试题库",
+                version="1",
+                homepage="",
+                license="test",
+                local_path="",
+                total_items=1,
+                imported_items=1,
+                source_metadata={},
+            )
+            insert(
+                db,
+                "dataset_questions",
+                id=did,
+                dataset_source_id=sid,
+                source_item_id="one",
+                split="test",
+                subject="数学",
+                grade="初一",
+                grade_band="初中",
+                title="方程",
+                question_text="2x=4",
+                question_type="calculation",
+                options=[],
+                answer="2",
+                solution="两边同除2",
+                knowledge_points=["一元一次方程"],
+                image_paths=[str(root / "one.png")],
+                difficulty="",
+                content_hash="0" * 64,
+                source_metadata={},
+                has_answer=True,
+                has_solution=True,
+                answer_verified=True,
+                quality_status="verified",
+                usable_for_practice=True,
+                usable_for_auto_grade=True,
+            )
+            insert(
+                db,
+                "knowledge_points",
+                id=point,
+                code="migration-" + point,
+                subject="数学",
+                name="一元一次方程",
+                content={},
+            )
+            source = select_rows(
+                db, "questions", "SELECT * FROM questions WHERE id=?", [qid]
+            )[0]
+            candidate = select_rows(
+                db,
+                "dataset_questions",
+                "SELECT * FROM dataset_questions WHERE id=?",
+                [did],
+            )[0]
+            prepared = {"target_knowledge_id": point}
+            trace = {
+                "source_question_fingerprint": practice_context.source_fingerprint(
+                    db, source
+                )
+            }
+            practice_context.save_proof(
+                db, source, prepared, candidate, trace, "symbolic_linear"
+            )
+            assert practice_context.proof_valid(db, source, prepared, candidate, trace)
+            assert not practice_context.proof_valid(
+                db, source, prepared, {**candidate, "answer": "9"}, trace
+            )
+            insert(
+                db,
+                "practice_recommendations",
+                user_id=user["id"],
+                mistake_id=qid,
+                dataset_question_id=did,
+                mode="reinforce",
+                retrieval_rank=1,
+                retrieval_trace=trace,
+            )
+            assert (
+                practice_context.served(db, user["id"], source, did, "reinforce")[
+                    "dataset_question_id"
+                ]
+                == did
+            )
+        url = question_images(app.state.media, candidate)["image_urls"][0]
+        unsupported = client.post(url)
+        assert unsupported.status_code == 405 and unsupported.json() == {
+            "detail": "请求方法不支持"
+        }
+        response = client.get(url)
+        assert response.status_code == 200 and response.content == picture()
+        assert response.headers["content-type"].startswith("image/png")
+        assert client.head(url).status_code == 200
+        assert client.get(url, headers={"Range": "bytes=0-3"}).status_code == 206
+        assert (
+            client.get(
+                url, headers={"If-None-Match": response.headers["etag"]}
+            ).status_code
+            == 304
+        )
+        assert client.get(url.split("?")[0]).status_code == 403
+        missing = app.state.media.url(f"/api/v1/practice/questions/{did}/images/99")
+        assert client.get(missing).status_code == 404
+        with app.state.database.session() as db, db.begin():
+            execute(
+                db,
+                "UPDATE dataset_questions SET image_paths=? WHERE id=?",
+                ['["/etc/passwd"]', did],
+            )
+        assert client.get(url).status_code == 404
+        with app.state.database.session() as db, db.begin():
+            execute(db, "UPDATE knowledge_points SET name='已变更' WHERE id=?", [point])
+            assert not practice_context.proof_valid(
+                db, source, prepared, candidate, trace
+            )
+        client.patch(
+            "/api/v1/questions/" + qid, headers=headers, json={"question_text": "3x=18"}
+        )
+        from cuoti_backend.protocol import ApiError
+
+        with app.state.database.session() as db, pytest.raises(ApiError):
+            practice_context.served(
+                db,
+                user["id"],
+                select_rows(
+                    db, "questions", "SELECT * FROM questions WHERE id=?", [qid]
+                )[0],
+                did,
+                "reinforce",
+            )
+    finally:
+        with app.state.database.session() as db, db.begin():
+            execute(
+                db,
+                "DELETE FROM practice_recommendations WHERE dataset_question_id=?",
+                [did],
+            )
+            execute(db, "DELETE FROM dataset_questions WHERE id=?", [did])
+            execute(db, "DELETE FROM dataset_sources WHERE id=?", [sid])
+            execute(db, "DELETE FROM knowledge_points WHERE id=?", [point])

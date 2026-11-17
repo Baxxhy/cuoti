@@ -68,7 +68,7 @@ def usable(source, candidate, kind):
     ]
 
 
-def candidates(service, db, question, analysis, excluded, kind, mode):
+def prepare(service, db, question, analysis, kind, mode):
     compute = service.compute
     diagnoses = select_rows(
         db,
@@ -82,7 +82,7 @@ def candidates(service, db, question, analysis, excluded, kind, mode):
         "SELECT * FROM knowledge_points WHERE subject=?",
         [question["subject"]],
     )
-    preparation = compute.compute(
+    return compute.compute(
         "retrieval_prepare",
         retrieval_source=question,
         retrieval_analysis=analysis,
@@ -91,6 +91,11 @@ def candidates(service, db, question, analysis, excluded, kind, mode):
         retrieval_diagnosis=diagnoses[0] if diagnoses else {},
         retrieval_cards=cards,
     )
+
+
+def candidates(service, db, question, analysis, excluded, kind, mode):
+    compute = service.compute
+    preparation = prepare(service, db, question, analysis, kind, mode)
     grade = question.get("grade") or ""
     found = compute.compute(
         "retrieval_search",

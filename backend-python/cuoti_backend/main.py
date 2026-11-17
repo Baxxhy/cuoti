@@ -14,6 +14,7 @@ from starlette.exceptions import HTTPException
 from .accounts import router as account_router
 from .config import Settings
 from .database import Database
+from .dataset_images import router as dataset_images_router
 from .diagnostics import router as diagnostic_router
 from .insights import router as insight_router
 from .journey import router as journey_router
@@ -195,6 +196,7 @@ def create_app(settings: Settings | None = None):
     app.include_router(diagnostic_router)
     app.include_router(insight_router)
     app.include_router(lesson_router)
+    app.include_router(dataset_images_router)
     app.include_router(variant_attempt_router)
     app.include_router(journey_router)
     app.include_router(task_router)
