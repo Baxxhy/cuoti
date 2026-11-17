@@ -24,6 +24,7 @@ from .protocol import ApiError
 from .question_routes import router as question_router
 from .questions import Questions
 from .recognition import ComputeBridge, RecognitionJobs
+from .task_records import router as task_records_router
 from .task_worker import LearningTaskWorker
 from .tutor_answers import router as answer_router
 from .tutor_dialogue import router as dialogue_router
@@ -192,6 +193,7 @@ def create_app(settings: Settings | None = None):
     app.include_router(insight_router)
     app.include_router(lesson_router)
     app.include_router(task_router)
+    app.include_router(task_records_router)
     app.include_router(tutoring_router)
     app.include_router(answer_router)
     app.include_router(dialogue_router)

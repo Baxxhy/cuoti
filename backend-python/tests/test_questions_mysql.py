@@ -3036,9 +3036,156 @@ def test_learning_task_api_contract_and_isolation(question_app, monkeypatch):
             ]
             == cancelled["version"]
         )
+        note_path = path + "/" + tid + "/self-check"
+        note_value = {
+            "text": "先检查等式两边是否同除非零数",
+            "version": 0,
+            "confirmed": True,
+            "input_fingerprint": task["input_fingerprint"],
+        }
+        assert client.get(note_path, headers=other_headers).status_code == 404
+        assert (
+            client.patch(note_path, headers=headers, json=note_value).status_code == 409
+        )
+        with app.state.database.session() as db, db.begin():
+            execute(
+                db, "UPDATE learning_tasks SET status='completed' WHERE id=?", [tid]
+            )
+        assert client.get(note_path, headers=headers).json()["data"]["can_save"] is True
+        assert (
+            client.patch(
+                note_path, headers=headers, json={**note_value, "confirmed": False}
+            ).status_code
+            == 422
+        )
+        saved = client.patch(note_path, headers=headers, json=note_value)
+        assert saved.status_code == 200, saved.text
+        assert saved.json()["data"]["note"]["kind"] == "student_self_report"
+        assert saved.json()["data"]["version"] == 1
+        assert (
+            client.patch(note_path, headers=headers, json=note_value).json()["data"][
+                "version"
+            ]
+            == 1
+        )
+        assert (
+            client.patch(
+                note_path,
+                headers=headers,
+                json={**note_value, "text": "修改", "version": 0},
+            ).status_code
+            == 409
+        )
+        assert (
+            client.patch(
+                note_path,
+                headers=headers,
+                json={**note_value, "text": "再次检查", "version": 1},
+            ).json()["data"]["version"]
+            == 2
+        )
+        assert (
+            client.request(
+                "DELETE", note_path, headers=headers, json={"version": 1}
+            ).status_code
+            == 409
+        )
+        removed = client.request(
+            "DELETE", note_path, headers=headers, json={"version": 2}
+        ).json()["data"]
+        assert removed["note"] is None and removed["version"] == 3
+        assert (
+            client.request(
+                "DELETE", note_path, headers=headers, json={"version": 2}
+            ).json()["data"]["version"]
+            == 3
+        )
+        history_path = path + "/" + tid + "/history"
+        assert client.get(history_path, headers=other_headers).status_code == 404
+        from cuoti_backend.lessons import compact
+
+        with app.state.database.session() as db, db.begin():
+            execute(
+                db,
+                "UPDATE learning_task_actions SET result=? WHERE task_id=?",
+                [
+                    compact(
+                        {
+                            "student_view": {"feedback": "已核对"},
+                            "attempt": {
+                                "phase": "independent",
+                                "verdict": "confirmed_correct",
+                                "assisted": False,
+                            },
+                            "checkpoint": {"private": "DO_NOT_EXPOSE"},
+                        }
+                    ),
+                    tid,
+                ],
+            )
+        history = client.get(history_path, headers=headers)
+        assert history.status_code == 200
+        record = history.json()["data"]
+        assert record["source_question"]["question_text"] == "3x=15"
+        assert record["items"][0]["feedback"] == "已核对"
+        assert "DO_NOT_EXPOSE" not in history.text
+        assert record["has_more"] is False
+        with app.state.database.session() as db, db.begin():
+            for index in range(51):
+                insert(
+                    db,
+                    "learning_task_actions",
+                    task_id=tid,
+                    request_id="history-" + str(index),
+                    body_hash="0" * 64,
+                    kind="hint",
+                    input_version=1,
+                    input_step_id=task["step_id"],
+                    body={"text": ""},
+                    status="applied",
+                )
+        bounded = client.get(history_path, headers=headers).json()["data"]
+        assert len(bounded["items"]) == 50 and bounded["has_more"] is True
+        assert (
+            client.patch(
+                note_path, headers=headers, json={**note_value, "version": 3}
+            ).json()["data"]["version"]
+            == 4
+        )
+        client.patch(
+            "/api/v1/questions/" + qid, headers=headers, json={"question_text": "3x=18"}
+        )
+        outdated = client.get(note_path, headers=headers).json()["data"]
+        assert outdated["source_current"] is False and outdated["can_save"] is False
+        assert outdated["note"]["text"] == note_value["text"]
+        assert (
+            client.patch(
+                note_path, headers=headers, json={**note_value, "version": 4}
+            ).status_code
+            == 409
+        )
+        assert (
+            client.request(
+                "DELETE", note_path, headers=headers, json={"version": 4}
+            ).json()["data"]["note"]
+            is None
+        )
     finally:
         if tid:
             with app.state.database.session() as db, db.begin():
+                audits = rows(
+                    db,
+                    "SELECT id FROM agent_runs WHERE agent_name='student_self_check' AND JSON_UNQUOTE(JSON_EXTRACT(result,'$.task_id'))=?",
+                    [tid],
+                )
+                for audit in audits:
+                    execute(
+                        db,
+                        "DELETE FROM agent_tool_calls WHERE agent_run_id=?",
+                        [audit["id"]],
+                    )
+                    execute(db, "DELETE FROM agent_runs WHERE id=?", [audit["id"]])
+                execute(db, "DELETE FROM learning_self_checks WHERE task_id=?", [tid])
                 for table in [
                     "learning_task_actions",
                     "learning_task_requests",
