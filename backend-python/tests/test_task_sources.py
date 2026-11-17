@@ -85,3 +85,23 @@ def test_version_invalidation_preserves_cancelled_and_does_not_repeat(monkeypatc
         None, {**task, "status": "cancelled"}, source
     )
     assert len(calls) == 2
+
+
+def test_attempt_source_uses_snapshot_and_verified_diagnosis(monkeypatch):
+    stored = {
+        "work": {"id": "work"},
+        "steps": [{"id": "one", "text": "first"}, {"id": "two", "text": "second"}],
+        "diagnosis": {"first_error_step": 0},
+    }
+    monkeypatch.setattr(task_sources, "rows", lambda *a: [{"source": stored}])
+    task = {
+        "id": "task",
+        "checkpoint": {"evidence_diagnosis": {"verified": True, "first_error_step": 1}},
+    }
+    result = task_sources.attempt_source(None, task, "repair")
+    assert result["student_step_id"] == "two" and result["student_work_id"] == "work"
+    task["checkpoint"]["evidence_diagnosis"]["verified"] = False
+    assert task_sources.attempt_source(None, task, "repair")["student_step_id"] == "one"
+    assert (
+        task_sources.attempt_source(None, task, "contrast")["student_step_id"] is None
+    )

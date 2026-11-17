@@ -2586,6 +2586,39 @@ def test_task_source_capture_real_database(question_app):
             )
             with pytest.raises(ApiError):
                 load_snapshot(db, q, other["id"])
+        from cuoti_backend.question_data import select_rows
+        from cuoti_backend.task_results import save_traces
+
+        with app.state.database.session() as db, db.begin():
+            full_task = select_rows(
+                db, "learning_tasks", "SELECT * FROM learning_tasks WHERE id=?", [tid]
+            )[0]
+            full_task["active_request"] = "__initial__"
+            result = {
+                "status": "needs_review",
+                "traces": [
+                    {
+                        "tool_name": "check_step",
+                        "validation": "needs_review",
+                        "memory_refs": [],
+                        "evidence": {},
+                    }
+                ],
+                "attempt": {"phase": "repair", "source": {"student_step_id": "forged"}},
+                "elapsed_ms": 1,
+                "usage": {},
+            }
+            save_traces(db, full_task, result, TaskBudget(), {"entries": []}, {})
+            assert result["attempt"]["source"]["snapshot_id"] == tid
+            assert result["attempt"]["source"]["student_step_id"] is None
+            assert (
+                len(
+                    rows(
+                        db, "SELECT id FROM learning_task_steps WHERE task_id=?", [tid]
+                    )
+                )
+                == 1
+            )
         client.patch(
             "/api/v1/questions/" + q, headers=headers, json={"question_text": "3x=18"}
         )
@@ -2598,6 +2631,19 @@ def test_task_source_capture_real_database(question_app):
             )[0] == {"status": "stale", "version": 2}
     finally:
         with app.state.database.session() as db, db.begin():
+            runs = rows(
+                db,
+                "SELECT agent_run_id FROM learning_task_steps WHERE task_id=?",
+                [tid],
+            )
+            execute(db, "DELETE FROM learning_task_steps WHERE task_id=?", [tid])
+            for run in runs:
+                execute(
+                    db,
+                    "DELETE FROM agent_tool_calls WHERE agent_run_id=?",
+                    [run["agent_run_id"]],
+                )
+                execute(db, "DELETE FROM agent_runs WHERE id=?", [run["agent_run_id"]])
             execute(db, "DELETE FROM learning_task_sources WHERE task_id=?", [tid])
             execute(db, "DELETE FROM learning_tasks WHERE id=?", [tid])
 

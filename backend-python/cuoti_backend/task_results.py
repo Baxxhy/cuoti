@@ -7,6 +7,7 @@ from .lessons import compact
 from .protocol import ApiError
 from .question_data import execute, insert
 from .task_planning import validate_recommendation
+from .task_sources import attempt_source
 
 TOOLS = {
     "check_step",
@@ -44,6 +45,13 @@ def validate_result(result, domain, memory):
 def save_traces(db, task, result, budget, memory, domain):
     """Caller must own the result transaction; checkpoint writes follow separately."""
     validate_result(result, domain, memory)
+    attempt = result.get("attempt")
+    if isinstance(attempt, dict):
+        source = attempt_source(db, task, attempt.get("phase", ""))
+        attempt["source"] = source
+        for trace in result.get("traces") or []:
+            if trace.get("tool_name") in ["check_step", "grade_answer"]:
+                trace.setdefault("evidence", {})["source"] = source
     manifest = audit_manifest(memory)
     for index, trace in enumerate(result.get("traces") or []):
         run = {

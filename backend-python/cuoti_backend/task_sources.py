@@ -195,3 +195,39 @@ def validate_version(db, task, snapshot):
             status="stale", student_view=view, version=task.get("version", 0) + 1
         )
     return False
+
+
+def attempt_source(db, task, phase):
+    saved = rows(
+        db, "SELECT source FROM learning_task_sources WHERE task_id=?", [task["id"]]
+    )
+    if not saved:
+        return {}
+    source = (
+        json.loads(saved[0]["source"])
+        if isinstance(saved[0]["source"], str)
+        else saved[0]["source"]
+    )
+    result = {
+        "snapshot_id": task["id"],
+        "student_step_id": None,
+        "step_index": None,
+        "student_step_text": "",
+        "student_work_id": (source.get("work") or {}).get("id", ""),
+    }
+    steps = source.get("steps") or []
+    if phase == "repair" and steps:
+        assessment = (task.get("checkpoint") or {}).get("evidence_diagnosis") or {}
+        first = (
+            assessment.get("first_error_step")
+            if assessment.get("verified") is True
+            and assessment.get("first_error_step") is not None
+            else (source.get("diagnosis") or {}).get("first_error_step", 0)
+        )
+        first = first if type(first) is int else 0
+        index = 0 if first < 0 or first > 99 else min(first, len(steps) - 1)
+        step = steps[index]
+        result.update(
+            student_step_id=step["id"], step_index=index, student_step_text=step["text"]
+        )
+    return result
